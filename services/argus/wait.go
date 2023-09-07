@@ -23,8 +23,6 @@ type APIClientInterface interface {
 	GetScrapeConfigsExecute(ctx context.Context, instanceId, projectId string) (*ScrapeConfigsResponse, error)
 }
 
-// TO-DO: consider a retry limit for the wait.RetryHttpErrorStatusCodes,
-// otherwise the terraform may be stuck up to the timeout (30min) always getting an error
 func handleError(reqErr error) (res interface{}, done bool, err error) {
 	oapiErr, ok := reqErr.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 	if !ok {
