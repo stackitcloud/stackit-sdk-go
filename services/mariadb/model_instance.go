@@ -14,6 +14,8 @@ type Instance struct {
 	// REQUIRED
 	CfGuid *string `json:"cfGuid"`
 	// REQUIRED
+	CfOrganizationGuid *string `json:"cfOrganizationGuid"`
+	// REQUIRED
 	CfSpaceGuid *string `json:"cfSpaceGuid"`
 	// REQUIRED
 	DashboardUrl *string `json:"dashboardUrl"`
@@ -23,8 +25,7 @@ type Instance struct {
 	// REQUIRED
 	LastOperation *LastOperation `json:"lastOperation"`
 	// REQUIRED
-	Name             *string `json:"name"`
-	OrganizationGuid *string `json:"organizationGuid,omitempty"`
+	Name *string `json:"name"`
 	// REQUIRED
 	Parameters *map[string]interface{} `json:"parameters"`
 	// REQUIRED
