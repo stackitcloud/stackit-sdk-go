@@ -4,7 +4,7 @@ on: [pull_request, workflow_dispatch]
 
 jobs:
   main:
-    name: Main
+    name: CI
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
