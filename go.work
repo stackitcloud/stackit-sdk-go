@@ -2,6 +2,18 @@ go 1.18
 
 use (
 	./core
+	./examples/authentication
+	./examples/configuration
+	./examples/dns
+	./examples/errorhandling
+	./examples/logme
+	./examples/mariadb
+	./examples/opensearch
+	./examples/postgresflex
+	./examples/postgresql
+	./examples/rabbitmq
+	./examples/redis
+	./examples/waiter
 	./services/argus
 	./services/dns
 	./services/logme
