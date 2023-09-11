@@ -13,6 +13,7 @@ go work sync
 # So we delete it and sync again, to keep what's actually used
 if [ -f "${ROOT_DIR}/go.work.sum" ]; then
     rm ${ROOT_DIR}/go.work.sum
+    echo "Removing go.work.sum"
 fi
 go work sync
 
