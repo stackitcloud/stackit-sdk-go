@@ -8,7 +8,7 @@ Your contribution is welcome! Thank you for your interest in contributing to the
 
 ## Developer Guide
 ### Repository structure
-The SDK STACKIT service modules are located under `services`, which are automatically generated from the [REST API specs](https://github.com/stackitcloud/stackit-api-specifications), except from the `wait.go` and `wait_test.go` files. Therefore, changes to these modules will not be accepted. Instead, consider proposing changes to the generation process in the [Generator repository](https://github.com/stackitcloud/stackit-sdk-generator).
+The SDK STACKIT service modules are located under `services`, which are automatically generated from the [REST API specs](https://github.com/stackitcloud/stackit-api-specifications), except from the `wait.go` and `wait_test.go` files. Therefore, changes to these modules besides the `wait.go` and `wait_test.go` files will not be accepted. Instead, consider proposing changes to the generation process in the [Generator repository](https://github.com/stackitcloud/stackit-sdk-generator).
 
 Inside `core` you can find several packages that are used by all service modules, such as `auth`, `config` and `wait`. Examples of usage of the SDK are located under the `examples` folder. 
 
