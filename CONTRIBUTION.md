@@ -1,9 +1,3 @@
-## Contribute
-
-
-The SDK service modules are  
-
-
 # Contribute to the STACKIT Go SDK
 Your contribution is welcome! Thank you for your interest in contributing to the STACKIT Go SDK. We greatly value your feedback, feature requests, additions to the code, bug reports or documentation extensions.
 
