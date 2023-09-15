@@ -28,3 +28,11 @@ for example_dir in ${EXAMPLES_PATH}/*; do
     cd ${example_dir}
     go mod tidy
 done
+
+# Fail when changes are produced
+git add -A
+echo "All go.mod files are is synced and tidy."
+if ! git diff --cached --exit-code --quiet; then # --cached flag needed so new files are considered
+    echo "Please run "make sync-tidy" locally to sync dependencies and tidy go.mod files."
+    exit 1
+fi
