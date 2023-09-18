@@ -1,0 +1,35 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:base",
+        ":dependencyDashboard"
+    ],
+    "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
+    "enabledManagers": [
+        "gomod",
+        "github-actions"
+    ],
+    "baseBranches": [
+        "hs/renovate-test"
+    ],
+    "gomod": {
+        "packageRules": [
+            {
+                "matchUpdateTypes": [
+                    "major"
+                ],
+                "groupName": "go-major"
+            },
+            {
+                "matchUpdateTypes": [
+                    "minor",
+                    "patch"
+                ],
+                "groupName": "go-non-major"
+            }
+        ]
+    },
+    "postUpdateOptions": [
+        "gomodTidy"
+    ]
+}
