@@ -8,7 +8,7 @@ on:
 
 jobs:
   renovate:
-    name: CI
+    name: Renovate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
