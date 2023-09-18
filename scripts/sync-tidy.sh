@@ -33,6 +33,6 @@ done
 git add -A
 echo "All go.mod files are synced and tidy."
 if ! git diff --cached --exit-code --quiet; then # --cached flag needed so new files are considered
-    echo "Please run "make sync-tidy" locally to sync dependencies and tidy go.mod files."
+    echo "Please run "make sync-tidy" locally to sync dependencies and tidy go.mod files. Commit the changes."
     exit 1
 fi
