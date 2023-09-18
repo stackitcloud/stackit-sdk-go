@@ -8,9 +8,6 @@
         "gomod",
         "github-actions"
     ],
-    "baseBranches": [
-        "main"
-    ],
     "gomod": {
         "packageRules": [
             {
