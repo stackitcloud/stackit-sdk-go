@@ -9,9 +9,7 @@
         "gomod",
         "github-actions"
     ],
-    "baseBranches": [
-        "hs/renovate-test"
-    ],
+    "baseBranch": "hs/renovate-test",
     "gomod": {
         "packageRules": [
             {
