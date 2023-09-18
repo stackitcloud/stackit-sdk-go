@@ -10,6 +10,7 @@
         "github-actions"
     ],
     "baseBranches": [
+        "main",
         "hs/renovate-test"
     ],
     "gomod": {
