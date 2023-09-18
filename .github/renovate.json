@@ -4,7 +4,6 @@
         "config:recommended",
         ":dependencyDashboard"
     ],
-    "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
     "enabledManagers": [
         "gomod",
         "github-actions"
