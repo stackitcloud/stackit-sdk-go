@@ -6,7 +6,7 @@
     "ignorePresets": [
         ":ignoreModulesAndTests"
     ],
-    "prHourlyLimit": 0,
+    "prHourlyLimit": 10,
     "repositories": [
         "stackitcloud/stackit-sdk-go"
     ],
