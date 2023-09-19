@@ -7,6 +7,9 @@
         ":ignoreModulesAndTests"
     ],
     "prHourlyLimit": 10,
+    "labels": [
+        "renovate"
+    ],
     "repositories": [
         "stackitcloud/stackit-sdk-go"
     ],
