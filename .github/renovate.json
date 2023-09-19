@@ -10,6 +10,9 @@
     "recreateWhen": "always",
     "prHourlyLimit": 0,
     "prConcurrentLimit": 0,
+    "baseBranches": [
+        "hs/renovate-v3"
+    ],
     "enabledManagers": [
         "gomod",
         "github-actions"
