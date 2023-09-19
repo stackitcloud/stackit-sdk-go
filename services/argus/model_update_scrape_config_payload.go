@@ -11,7 +11,7 @@ API version: 1.0.1
 package argus
 
 type UpdateScrapeConfigPayload struct {
-	BasicAuth *CreateScrapeConfigPayloadBasicAuth `json:"basicAuth,omitempty"`
+	BasicAuth *UpdateScrapeConfigPayloadBasicAuth `json:"basicAuth,omitempty"`
 	// Sets the 'Authorization' header on every scrape request with the configured bearer token. It is mutually exclusive with 'bearer_token_file'. `Additional Validators:` * needs to be a valid bearer token * if bearerToken is in the body no other authentication method should be in the body
 	BearerToken *string `json:"bearerToken,omitempty"`
 	// Note that any globally configured 'external_labels' are unaffected by this setting. In communication with external systems, they are always applied only when a time series does not have a given label yet and are ignored otherwise.
@@ -22,7 +22,7 @@ type UpdateScrapeConfigPayload struct {
 	// REQUIRED
 	MetricsPath *string `json:"metricsPath"`
 	// List of metric relabel configurations
-	MetricsRelabelConfigs *[]CreateScrapeConfigPayloadMetricsRelabelConfigsInner `json:"metricsRelabelConfigs,omitempty"`
+	MetricsRelabelConfigs *[]UpdateScrapeConfigPayloadMetricsRelabelConfigsInner `json:"metricsRelabelConfigs,omitempty"`
 	// Optional http params `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters
 	Params *map[string]interface{} `json:"params,omitempty"`
 	// Configures the protocol scheme used for requests. https or http
@@ -36,6 +36,6 @@ type UpdateScrapeConfigPayload struct {
 	ScrapeTimeout *string `json:"scrapeTimeout"`
 	// A list of scrape configurations.
 	// REQUIRED
-	StaticConfigs *[]UpdateScrapeConfigPayloadStaticConfigsInner              `json:"staticConfigs"`
-	TlsConfig     *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig `json:"tlsConfig,omitempty"`
+	StaticConfigs *[]UpdateScrapeConfigPayloadStaticConfigsInner `json:"staticConfigs"`
+	TlsConfig     *UpdateScrapeConfigPayloadTlsConfig            `json:"tlsConfig,omitempty"`
 }

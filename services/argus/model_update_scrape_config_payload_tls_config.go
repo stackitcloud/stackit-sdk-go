@@ -10,7 +10,7 @@ API version: 1.0.1
 
 package argus
 
-type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig struct {
+type UpdateScrapeConfigPayloadTlsConfig struct {
 	// Disable validation of the server certificate.
 	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
 }
