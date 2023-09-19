@@ -72,7 +72,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		}
 	}
 
-	// Get service account email
+	// Get service account  email
 	email := getServiceAccountEmail(cfg)
 	cfg.ServiceAccountEmail = email
 
