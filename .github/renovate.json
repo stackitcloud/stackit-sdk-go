@@ -28,8 +28,8 @@
         "useBaseBranchConfig": "merge"
     },
     "allowedPostUpgradeCommands": [
-        "cd $(git rev-parse --show-toplevel)",
-        "make sync-tidy"
+        "^cd .*$",
+        "^make sync-tidy$"
     ],
     "postUpgradeTasks": {
         "commands": [
