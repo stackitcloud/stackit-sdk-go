@@ -34,8 +34,6 @@
         "commands": [
             "cd $(git rev-parse --show-toplevel)",
             "make sync-tidy"
-        ],
-        "fileFilters": [],
-        "executionMode": "update"
+        ]
     }
 }
