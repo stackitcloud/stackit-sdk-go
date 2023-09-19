@@ -4,6 +4,13 @@
         "config:recommended",
         ":dependencyDashboard"
     ],
+    "recreateWhen": "always",
+    "prHourlyLimit": 0,
+    "prConcurrentLimit": 0,
+    "baseBranches": [
+        "hs/renovate-v4"
+    ],
+    "useBaseBranchConfig": "merge",
     "repositories": [
         "stackitcloud/stackit-sdk-go"
     ],
@@ -11,6 +18,12 @@
         "gomod",
         "github-actions"
     ],
+    "gomod": {
+        "baseBranches": [
+            "hs/renovate-v4"
+        ],
+        "useBaseBranchConfig": "merge"
+    },
     "postUpdateOptions": [
         "gomodTidy"
     ]
