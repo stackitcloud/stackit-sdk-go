@@ -18,6 +18,7 @@ use (
 	./services/dns
 	./services/logme
 	./services/mariadb
+	./services/mongodbflex
 	./services/opensearch
 	./services/postgresflex
 	./services/postgresql

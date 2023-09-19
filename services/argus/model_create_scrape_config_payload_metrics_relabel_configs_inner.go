@@ -10,7 +10,7 @@ API version: 1.0.1
 
 package argus
 
-type UpdateScrapeConfigPayloadMetricsRelabelConfigsInner struct {
+type CreateScrapeConfigPayloadMetricsRelabelConfigsInner struct {
 	// Action to perform based on regex matching. `Additional Validators:` * if action is replace, targetLabel needs to be in body
 	Action *string `json:"action,omitempty"`
 	// Modulus to take of the hash of the source label values.

@@ -10,7 +10,7 @@ API version: 1.0.1
 
 package argus
 
-type UpdateScrapeConfigPayloadBasicAuth struct {
+type CreateScrapeConfigPayloadBasicAuth struct {
 	// password
 	Password *string `json:"password,omitempty"`
 	// username
