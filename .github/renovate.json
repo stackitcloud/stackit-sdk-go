@@ -4,6 +4,9 @@
         "config:recommended",
         ":dependencyDashboard"
     ],
+    "repositories": [
+        "stackitcloud/stackit-sdk-go"
+    ],
     "enabledManagers": [
         "gomod",
         "github-actions"
