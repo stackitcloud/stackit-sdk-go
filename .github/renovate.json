@@ -11,6 +11,9 @@
         "gomod",
         "github-actions"
     ],
+    "baseBranches": [
+        "hs/renovate-v2"
+    ],
     "gomod": {
         "packageRules": [
             {
