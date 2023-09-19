@@ -8,6 +8,8 @@
         "stackitcloud/stackit-sdk-go"
     ],
     "recreateWhen": "always",
+    "prHourlyLimit": 0,
+    "prConcurrentLimit": 0,
     "enabledManagers": [
         "gomod",
         "github-actions"
