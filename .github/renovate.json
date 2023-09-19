@@ -27,7 +27,14 @@
         ],
         "useBaseBranchConfig": "merge"
     },
-    "postUpdateOptions": [
-        "gomodTidy"
-    ]
+    "allowedPostUpgradeCommands": [
+        "make lint"
+    ],
+    "postUpgradeTasks": {
+        "commands": [
+            "make lint"
+        ],
+        "fileFilters": [],
+        "executionMode": "update"
+    }
 }
