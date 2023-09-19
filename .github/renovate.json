@@ -14,23 +14,6 @@
         "gomod",
         "github-actions"
     ],
-    "gomod": {
-        "packageRules": [
-            {
-                "matchUpdateTypes": [
-                    "major"
-                ],
-                "groupName": "go-major"
-            },
-            {
-                "matchUpdateTypes": [
-                    "minor",
-                    "patch"
-                ],
-                "groupName": "go-non-major"
-            }
-        ]
-    },
     "postUpdateOptions": [
         "gomodTidy"
     ]
