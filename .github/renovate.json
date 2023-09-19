@@ -13,6 +13,7 @@
     "baseBranches": [
         "hs/renovate-v3"
     ],
+    "useBaseBranchConfig": "merge",
     "enabledManagers": [
         "gomod",
         "github-actions"
