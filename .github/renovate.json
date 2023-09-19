@@ -14,7 +14,12 @@
         "gomod",
         "github-actions"
     ],
-    "postUpdateOptions": [
-        "gomodTidy"
-    ]
+    "allowedPostUpgradeCommands": [
+        "^cd .* && make sync-tidy$"
+    ],
+    "postUpgradeTasks": {
+        "commands": [
+            "cd $(git rev-parse --show-toplevel) && make sync-tidy"
+        ]
+    }
 }
