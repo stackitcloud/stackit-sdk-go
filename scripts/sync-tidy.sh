@@ -9,12 +9,6 @@ EXAMPLES_PATH="${ROOT_DIR}/examples"
 
 cd ${ROOT_DIR}
 go work sync
-# go.work.sum gets a lot of content that is useless after versions are synced
-# So we delete it and sync again, to keep what's actually used
-if [ -f "${ROOT_DIR}/go.work.sum" ]; then
-    rm ${ROOT_DIR}/go.work.sum
-fi
-go work sync
 
 cd ${CORE_PATH}
 go mod tidy
@@ -28,3 +22,11 @@ for example_dir in ${EXAMPLES_PATH}/*; do
     cd ${example_dir}
     go mod tidy
 done
+
+# go.work.sum gets a lot of content that is useless after versions are synced
+# So we delete it and sync again, to keep what's actually used
+if [ -f "${ROOT_DIR}/go.work.sum" ]; then
+    rm ${ROOT_DIR}/go.work.sum
+fi
+cd ${ROOT_DIR}
+go work sync
