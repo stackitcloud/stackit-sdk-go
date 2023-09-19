@@ -7,13 +7,6 @@
     "repositories": [
         "stackitcloud/stackit-sdk-go"
     ],
-    "recreateWhen": "always",
-    "prHourlyLimit": 0,
-    "prConcurrentLimit": 0,
-    "baseBranches": [
-        "hs/renovate-v3"
-    ],
-    "useBaseBranchConfig": "merge",
     "enabledManagers": [
         "gomod",
         "github-actions"
