@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/google/go-cmp v0.5.9
 	golang.org/x/oauth2 v0.11.0
-	k8s.io/apimachinery v0.28.1
+	k8s.io/apimachinery v0.28.2
 )
 
 require (
