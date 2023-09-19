@@ -3,6 +3,9 @@
     "extends": [
         "config:recommended"
     ],
+    "ignorePresets": [
+        ":ignoreModulesAndTests"
+    ],
     "prHourlyLimit": 0,
     "repositories": [
         "stackitcloud/stackit-sdk-go"
