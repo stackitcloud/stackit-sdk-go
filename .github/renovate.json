@@ -14,17 +14,10 @@
     "gomod": {
         "packageRules": [
             {
-                "matchUpdateTypes": [
-                    "major"
+                "matchPackagePatterns": [
+                    ".*"
                 ],
-                "groupName": "go-major"
-            },
-            {
-                "matchUpdateTypes": [
-                    "minor",
-                    "patch"
-                ],
-                "groupName": "go-non-major"
+                "groupName": "go-package"
             }
         ]
     },
