@@ -4,6 +4,9 @@
         "config:recommended",
         ":dependencyDashboard"
     ],
+    "ignorePresets": [
+        ":ignoreModulesAndTests"
+    ],
     "recreateWhen": "always",
     "prHourlyLimit": 0,
     "prConcurrentLimit": 0,
