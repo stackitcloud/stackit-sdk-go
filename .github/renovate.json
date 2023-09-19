@@ -28,11 +28,11 @@
         "useBaseBranchConfig": "merge"
     },
     "allowedPostUpgradeCommands": [
-        "make lint"
+        "cd $(git rev-parse --show-toplevel) && make sync-tidy"
     ],
     "postUpgradeTasks": {
         "commands": [
-            "make lint"
+            "cd $(git rev-parse --show-toplevel) && make sync-tidy"
         ],
         "fileFilters": [],
         "executionMode": "update"
