@@ -11,11 +11,11 @@ API version: 1.0.1
 package argus
 
 type CreateScrapeConfigPayloadHttpSdConfigsInner struct {
-	BasicAuth *UpdateScrapeConfigPayloadBasicAuth                `json:"basicAuth,omitempty"`
+	BasicAuth *CreateScrapeConfigPayloadBasicAuth                `json:"basicAuth,omitempty"`
 	Oauth2    *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 `json:"oauth2,omitempty"`
 	// Refresh interval to re-query the endpoint. E.g. 60s `Additional Validators:` * must be a valid time format* must be >= 60s
-	RefreshInterval *string                             `json:"refreshInterval,omitempty"`
-	TlsConfig       *UpdateScrapeConfigPayloadTlsConfig `json:"tlsConfig,omitempty"`
+	RefreshInterval *string                                                     `json:"refreshInterval,omitempty"`
+	TlsConfig       *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig `json:"tlsConfig,omitempty"`
 	// URL from which the targets are fetched.
 	// REQUIRED
 	Url *string `json:"url"`
