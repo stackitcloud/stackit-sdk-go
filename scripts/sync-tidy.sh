@@ -28,4 +28,5 @@ done
 if [ -f "${ROOT_DIR}/go.work.sum" ]; then
     rm ${ROOT_DIR}/go.work.sum
 fi
+cd ${ROOT_DIR}
 go work sync
