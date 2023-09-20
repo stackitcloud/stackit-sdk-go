@@ -23,7 +23,7 @@ func NewConfiguration() *config.Configuration {
 		Servers: config.ServerConfigurations{
 			{
 				URL:         "https://ske.api.{region}stackit.cloud",
-				Description: "",
+				Description: "No description provided",
 				Variables: map[string]config.ServerVariable{
 					"region": {
 						Description:  "No description provided",
