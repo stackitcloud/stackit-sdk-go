@@ -2,7 +2,7 @@ module github.com/stackitcloud/stackit-sdk-go/services/mongodbflex
 
 go 1.18
 
-require github.com/stackitcloud/stackit-sdk-go/core v0.1.1
+require github.com/stackitcloud/stackit-sdk-go/core v0.1.0
 
 require (
 	github.com/go-logr/logr v1.2.4 // indirect
