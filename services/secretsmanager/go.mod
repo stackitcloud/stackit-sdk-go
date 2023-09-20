@@ -1,11 +1,8 @@
-module github.com/stackitcloud/stackit-sdk-go/services/postgresflex
+module github.com/stackitcloud/stackit-sdk-go/services/secretsmanager
 
 go 1.18
 
-require (
-	github.com/google/go-cmp v0.5.9
-	github.com/stackitcloud/stackit-sdk-go/core v0.1.0
-)
+require github.com/stackitcloud/stackit-sdk-go/core v0.1.0
 
 require (
 	github.com/go-logr/logr v1.2.4 // indirect

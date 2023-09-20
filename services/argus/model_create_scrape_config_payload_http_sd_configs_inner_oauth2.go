@@ -18,8 +18,8 @@ type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 struct {
 	// REQUIRED
 	ClientSecret *string `json:"clientSecret"`
 	// The URL to fetch the token from.
-	Scopes    *[]string                           `json:"scopes,omitempty"`
-	TlsConfig *UpdateScrapeConfigPayloadTlsConfig `json:"tlsConfig,omitempty"`
+	Scopes    *[]string                                                   `json:"scopes,omitempty"`
+	TlsConfig *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig `json:"tlsConfig,omitempty"`
 	// The URL to fetch the token from.
 	// REQUIRED
 	TokenUrl *string `json:"tokenUrl"`
