@@ -12,12 +12,11 @@ import (
 
 func main() {
 	// Specify the project ID
-	projectId := "c4da6a51-7453-4bbf-bef7-c163ec376e7d"
+	projectId := "PROJECT_ID"
 
 	// Create a new API client, that uses default authentication and configuration
 	skeClient, err := ske.NewAPIClient(
 		config.WithRegion("eu01"),
-		config.WithEndpoint("https://ske.api.eu01.stg.stackit.cloud"),
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
