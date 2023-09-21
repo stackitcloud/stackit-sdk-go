@@ -2,14 +2,12 @@ module github.com/stackitcloud/stackit-sdk-go/examples/postgresflex
 
 go 1.18
 
-require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.1.0
-	github.com/stackitcloud/stackit-sdk-go/services/postgresflex v0.1.0
-)
+require github.com/stackitcloud/stackit-sdk-go/services/postgresflex v0.1.0
 
 require (
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/stackitcloud/stackit-sdk-go/core v0.1.0 // indirect
 	golang.org/x/net v0.15.0 // indirect
 	golang.org/x/oauth2 v0.12.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect

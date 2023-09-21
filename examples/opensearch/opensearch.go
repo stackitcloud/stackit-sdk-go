@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/opensearch"
 )
@@ -16,9 +15,7 @@ func main() {
 	planId := "PLAN_ID"
 
 	// Create a new API client, that uses default authentication and configuration
-	opensearchClient, err := opensearch.NewAPIClient(
-		config.WithRegion("eu01"),
-	)
+	opensearchClient, err := opensearch.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)

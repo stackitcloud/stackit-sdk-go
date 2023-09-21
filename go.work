@@ -13,8 +13,6 @@ use (
 	./examples/postgresql
 	./examples/rabbitmq
 	./examples/redis
-	./examples/secretsmanager
-	./examples/ske
 	./examples/waiter
 	./services/argus
 	./services/dns

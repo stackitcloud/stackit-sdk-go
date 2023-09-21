@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/redis"
 )
@@ -16,9 +15,7 @@ func main() {
 	planId := "PLAN_ID"
 
 	// Create a new API client, that uses default authentication and configuration
-	redisClient, err := redis.NewAPIClient(
-		config.WithRegion("eu01"),
-	)
+	redisClient, err := redis.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
