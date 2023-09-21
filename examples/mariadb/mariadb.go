@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/mariadb"
 )
@@ -15,7 +16,9 @@ func main() {
 	planId := "PLAN_ID"
 
 	// Create a new API client, that uses default authentication and configuration
-	mariadbClient, err := mariadb.NewAPIClient()
+	mariadbClient, err := mariadb.NewAPIClient(
+		config.WithRegion("eu01"),
+	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)

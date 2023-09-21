@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex"
 )
 
@@ -13,7 +14,9 @@ func main() {
 	projectId := "PROJECT_ID"
 
 	// Create a new API client, that uses default authentication and configuration
-	postgresflexClient, err := postgresflex.NewAPIClient()
+	postgresflexClient, err := postgresflex.NewAPIClient(
+		config.WithRegion("eu01"),
+	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
