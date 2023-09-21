@@ -5,20 +5,32 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/ske"
 )
 
 func main() {
 	// Specify the project ID
-	projectId := "PROJECT_ID"
+	projectId := "c4da6a51-7453-4bbf-bef7-c163ec376e7d"
 
 	// Create a new API client, that uses default authentication and configuration
-	skeClient, err := ske.NewAPIClient()
+	skeClient, err := ske.NewAPIClient(
+		config.WithRegion("eu01"),
+		config.WithEndpoint("https://ske.api.eu01.stg.stackit.cloud"),
+	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
 	}
+
+	// The following operations assume you have a ske project already created. If you dont, run:
+	// createProjectResponse, err := skeClient.CreateProject(context.Background(), projectId).Execute()
+	// if err != nil {
+	// 	fmt.Fprintf(os.Stderr, "Error when calling `CreateProject`: %v\n", err)
+	// } else {
+	// 	fmt.Printf("Project created with projectId: %v\n", len(*createProjectResponse.ProjectId))
+	// }
 
 	// Get the ske clusters for your project
 	getClustersResp, err := skeClient.GetClusters(context.Background(), projectId).Execute()
@@ -49,6 +61,7 @@ func main() {
 				AvailabilityZones: utils.Ptr([]string{"eu01-3"}),
 				Machine: &ske.Machine{
 					Image: &ske.Image{
+						Name:    utils.Ptr("name"),
 						Version: utils.Ptr("3510.2.5"),
 					},
 					Type: utils.Ptr("b1.2"),
@@ -63,7 +76,7 @@ func main() {
 			},
 		},
 	}
-	clusterName := "my-cluster"
+	clusterName := "cl-name"
 	createClusterResp, err := skeClient.CreateOrUpdateCluster(context.Background(), projectId, clusterName).CreateOrUpdateClusterPayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateCluster`: %v\n", err)

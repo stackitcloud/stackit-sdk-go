@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/secretsmanager"
 )
@@ -14,7 +15,9 @@ func main() {
 	projectId := "PROJECT_ID"
 
 	// Create a new API client, that uses default authentication and configuration
-	secretsmanagerClient, err := secretsmanager.NewAPIClient()
+	secretsmanagerClient, err := secretsmanager.NewAPIClient(
+		config.WithRegion("eu01"),
+	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
