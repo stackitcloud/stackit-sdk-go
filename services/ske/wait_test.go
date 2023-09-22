@@ -27,14 +27,7 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 	}
 	rs := ClusterStatusState(a.resourceState)
 
-	if !a.invalidArgusInstance {
-		return &ClusterResponse{
-			Name: utils.Ptr("cluster"),
-			Status: &ClusterStatus{
-				Aggregated: &rs,
-			},
-		}, nil
-	} else {
+	if a.invalidArgusInstance {
 		return &ClusterResponse{
 			Name: utils.Ptr("cluster"),
 			Status: &ClusterStatus{
@@ -46,7 +39,12 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 			},
 		}, nil
 	}
-
+	return &ClusterResponse{
+		Name: utils.Ptr("cluster"),
+		Status: &ClusterStatus{
+			Aggregated: &rs,
+		},
+	}, nil
 }
 
 func (a *apiClientClusterMocked) GetClustersExecute(_ context.Context, _ string) (*ClustersResponse, error) {

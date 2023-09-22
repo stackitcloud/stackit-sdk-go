@@ -62,7 +62,6 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 				errorMessage = *s.Status.Error.Message
 				return nil, false, fmt.Errorf("cluster state is unhealthy: %s", errorMessage)
 			}
-
 		}
 
 		if state == StateHealthy || state == StateHibernated {
