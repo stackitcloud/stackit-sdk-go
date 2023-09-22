@@ -58,7 +58,7 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 		// The exception is when providing an invalid argus instance id, in that case the cluster stays as "Impaired" and the waiter should fail
 		if state == stateUnhealthy {
 			var errorMessage string
-			if s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Message == invalidArgusInstanceErrorCode {
+			if s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == invalidArgusInstanceErrorCode {
 				errorMessage = *s.Status.Error.Message
 				return nil, false, fmt.Errorf("cluster state is unhealthy: %s", errorMessage)
 			}

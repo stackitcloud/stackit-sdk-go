@@ -13,9 +13,10 @@ import (
 
 // Used for testing cluster operations
 type apiClientClusterMocked struct {
-	getFails      bool
-	name          string
-	resourceState string
+	getFails             bool
+	name                 string
+	resourceState        string
+	invalidArgusInstance bool
 }
 
 func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ string) (*ClusterResponse, error) {
@@ -26,12 +27,26 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 	}
 	rs := ClusterStatusState(a.resourceState)
 
-	return &ClusterResponse{
-		Name: utils.Ptr("cluster"),
-		Status: &ClusterStatus{
-			Aggregated: &rs,
-		},
-	}, nil
+	if !a.invalidArgusInstance {
+		return &ClusterResponse{
+			Name: utils.Ptr("cluster"),
+			Status: &ClusterStatus{
+				Aggregated: &rs,
+			},
+		}, nil
+	} else {
+		return &ClusterResponse{
+			Name: utils.Ptr("cluster"),
+			Status: &ClusterStatus{
+				Aggregated: &rs,
+				Error: &RuntimeError{
+					Code:    utils.Ptr(string(invalidArgusInstanceErrorCode)),
+					Message: utils.Ptr("invalid argus instance"),
+				},
+			},
+		}, nil
+	}
+
 }
 
 func (a *apiClientClusterMocked) GetClustersExecute(_ context.Context, _ string) (*ClustersResponse, error) {
@@ -140,10 +155,11 @@ func TestHandleError(t *testing.T) {
 
 func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 	tests := []struct {
-		desc          string
-		getFails      bool
-		resourceState string
-		wantErr       bool
+		desc                 string
+		getFails             bool
+		resourceState        string
+		invalidArgusInstance bool
+		wantErr              bool
 	}{
 		{
 			desc:          "create_succeeded",
@@ -158,10 +174,11 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			wantErr:       false,
 		},
 		{
-			desc:          "unhealthy_cluster",
-			getFails:      false,
-			resourceState: stateUnhealthy,
-			wantErr:       true,
+			desc:                 "unhealthy_cluster",
+			getFails:             false,
+			resourceState:        stateUnhealthy,
+			invalidArgusInstance: true,
+			wantErr:              true,
 		},
 		{
 			desc:     "create_failed",
@@ -185,9 +202,10 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			name := "cluster"
 
 			apiClient := &apiClientClusterMocked{
-				getFails:      tt.getFails,
-				name:          name,
-				resourceState: tt.resourceState,
+				getFails:             tt.getFails,
+				name:                 name,
+				resourceState:        tt.resourceState,
+				invalidArgusInstance: tt.invalidArgusInstance,
 			}
 			var wantRes *ClusterResponse
 			rs := ClusterStatusState(tt.resourceState)
