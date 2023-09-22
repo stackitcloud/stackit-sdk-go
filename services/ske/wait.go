@@ -10,11 +10,13 @@ import (
 )
 
 const (
-	StateHealthy    = "STATE_HEALTHY"
-	StateHibernated = "STATE_HIBERNATED"
-	StateFailed     = "STATE_FAILED"
-	StateDeleting   = "STATE_DELETING"
-	stateCreated    = "STATE_CREATED"
+	StateHealthy                  = "STATE_HEALTHY"
+	StateHibernated               = "STATE_HIBERNATED"
+	StateFailed                   = "STATE_FAILED"
+	StateDeleting                 = "STATE_DELETING"
+	stateCreated                  = "STATE_CREATED"
+	stateUnhealthy                = "STATE_UNHEALTHY"
+	invalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
 type APIClientProjectInterface interface {
@@ -50,11 +52,23 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 			return handleError(err)
 		}
 		state := *s.Status.Aggregated
+
+		// The state "STATE_UNHEALTHY" (aka "Impaired" in the portal) could be temporarily occur during cluster creation and the system is recovering usually, so it is not considered as a failed state here.
+		// -- alignment meeting with SKE team on 4.8.23
+		// The exception is when providing an invalid argus instance id, in that case the cluster stays as "Impaired" and the waiter should fail
+		if state == stateUnhealthy {
+			var errorMessage string
+			if s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Message == invalidArgusInstanceErrorCode {
+				errorMessage = *s.Status.Error.Message
+				return nil, false, fmt.Errorf("cluster state is unhealthy: %s", errorMessage)
+			}
+
+		}
+
 		if state == StateHealthy || state == StateHibernated {
 			return s, true, nil
 		}
-		// The state "STATE_UNHEALTHY" (aka "Impaired" in the portal) could be temporarily occur during cluster creation and the system is recovering usually, so it is not considered as a failed state here.
-		// -- alignment meeting with SKE team on 4.8.23
+
 		return s, false, nil
 	})
 }

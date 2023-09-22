@@ -158,6 +158,12 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			wantErr:       false,
 		},
 		{
+			desc:          "unhealthy_cluster",
+			getFails:      false,
+			resourceState: stateUnhealthy,
+			wantErr:       true,
+		},
+		{
 			desc:     "create_failed",
 			getFails: false,
 			wantErr:  true,
@@ -185,7 +191,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			}
 			var wantRes *ClusterResponse
 			rs := ClusterStatusState(tt.resourceState)
-			if !tt.getFails {
+			if !tt.getFails && tt.resourceState != stateUnhealthy {
 				wantRes = &ClusterResponse{
 					Name: &name,
 					Status: &ClusterStatus{
