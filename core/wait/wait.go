@@ -9,22 +9,24 @@ import (
 
 var RetryHttpErrorStatusCodes = []int{http.StatusBadGateway, http.StatusGatewayTimeout}
 
-type WaitFn func() (res interface{}, done bool, err error)
+type WaitFn func() (res interface{}, tempErrorFound, done bool, err error)
 
 type Handler struct {
-	fn              WaitFn
-	sleepBeforeWait time.Duration
-	throttle        time.Duration
-	timeout         time.Duration
+	fn                WaitFn
+	sleepBeforeWait   time.Duration
+	throttle          time.Duration
+	timeout           time.Duration
+	retryLimitTempErr int
 }
 
 // New creates a new Wait instance
 func New(f WaitFn) *Handler {
 	return &Handler{
-		fn:              f,
-		sleepBeforeWait: 0 * time.Second,
-		throttle:        5 * time.Second,
-		timeout:         30 * time.Minute,
+		fn:                f,
+		sleepBeforeWait:   0 * time.Second,
+		throttle:          5 * time.Second,
+		timeout:           30 * time.Minute,
+		retryLimitTempErr: 10,
 	}
 }
 
@@ -49,9 +51,16 @@ func (w *Handler) SetSleepBeforeWait(d time.Duration) *Handler {
 	return w
 }
 
+// SetRetryLimitTempErr sets the retry limit if a temporary error is found. The list of temporary errors is defined in the RetryHttpErrorStatusCodes variable
+func (w *Handler) SetRetryLimitTempErr(l int) *Handler {
+	w.retryLimitTempErr = l
+	return w
+}
+
 // WaitWithContext starts the wait until there's an error or wait is done
 func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err error) {
 	var done bool
+	var tempErrFound bool
 
 	ctx, cancel := context.WithTimeout(ctx, w.timeout)
 	defer cancel()
@@ -62,13 +71,21 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 	ticker := time.NewTicker(w.throttle)
 	defer ticker.Stop()
 
+	var retryTempErrCounter = 0
 	for {
-		res, done, err = w.fn()
+		res, tempErrFound, done, err = w.fn()
 		if err != nil {
 			return res, fmt.Errorf("executing wait function: %w", err)
 		}
 		if done {
 			return res, nil
+		}
+
+		if tempErrFound {
+			retryTempErrCounter++
+		}
+		if retryTempErrCounter == w.retryLimitTempErr {
+			return res, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
 		}
 
 		select {
