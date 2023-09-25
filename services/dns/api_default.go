@@ -33,7 +33,6 @@ type ApiCreateRecordSetRequest struct {
 
 // record set to create
 
-// func (r ApiCreateRecordSetRequest) CreateRecordSetPayload(createRecordSetPayload CreateRecordSetPayload) ApiCreateRecordSetRequest {
 func (r ApiCreateRecordSetRequest) CreateRecordSetPayload(createRecordSetPayload CreateRecordSetPayload) ApiCreateRecordSetRequest {
 	r.createRecordSetPayload = &createRecordSetPayload
 	return r
@@ -202,7 +201,6 @@ type ApiCreateZoneRequest struct {
 
 // zone to create
 
-// func (r ApiCreateZoneRequest) CreateZonePayload(createZonePayload CreateZonePayload) ApiCreateZoneRequest {
 func (r ApiCreateZoneRequest) CreateZonePayload(createZonePayload CreateZonePayload) ApiCreateZoneRequest {
 	r.createZonePayload = &createZonePayload
 	return r
@@ -833,7 +831,6 @@ type ApiGetRecordSetsRequest struct {
 
 // page
 
-// func (r ApiGetRecordSetsRequest) Page(page int32) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) Page(page int32) ApiGetRecordSetsRequest {
 	r.page = &page
 	return r
@@ -841,7 +838,6 @@ func (r ApiGetRecordSetsRequest) Page(page int32) ApiGetRecordSetsRequest {
 
 // page size
 
-// func (r ApiGetRecordSetsRequest) PageSize(pageSize int32) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) PageSize(pageSize int32) ApiGetRecordSetsRequest {
 	r.pageSize = &pageSize
 	return r
@@ -849,7 +845,6 @@ func (r ApiGetRecordSetsRequest) PageSize(pageSize int32) ApiGetRecordSetsReques
 
 // filter name equal
 
-// func (r ApiGetRecordSetsRequest) NameEq(nameEq string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) NameEq(nameEq string) ApiGetRecordSetsRequest {
 	r.nameEq = &nameEq
 	return r
@@ -857,7 +852,6 @@ func (r ApiGetRecordSetsRequest) NameEq(nameEq string) ApiGetRecordSetsRequest {
 
 // filter name like
 
-// func (r ApiGetRecordSetsRequest) NameLike(nameLike string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) NameLike(nameLike string) ApiGetRecordSetsRequest {
 	r.nameLike = &nameLike
 	return r
@@ -865,7 +859,6 @@ func (r ApiGetRecordSetsRequest) NameLike(nameLike string) ApiGetRecordSetsReque
 
 // filter type
 
-// func (r ApiGetRecordSetsRequest) TypeEq(typeEq string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) TypeEq(typeEq string) ApiGetRecordSetsRequest {
 	r.typeEq = &typeEq
 	return r
@@ -873,7 +866,6 @@ func (r ApiGetRecordSetsRequest) TypeEq(typeEq string) ApiGetRecordSetsRequest {
 
 // filter state
 
-// func (r ApiGetRecordSetsRequest) StateEq(stateEq string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) StateEq(stateEq string) ApiGetRecordSetsRequest {
 	r.stateEq = &stateEq
 	return r
@@ -881,7 +873,6 @@ func (r ApiGetRecordSetsRequest) StateEq(stateEq string) ApiGetRecordSetsRequest
 
 // filter state
 
-// func (r ApiGetRecordSetsRequest) StateNeq(stateNeq string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) StateNeq(stateNeq string) ApiGetRecordSetsRequest {
 	r.stateNeq = &stateNeq
 	return r
@@ -889,7 +880,6 @@ func (r ApiGetRecordSetsRequest) StateNeq(stateNeq string) ApiGetRecordSetsReque
 
 // filter active equal
 
-// func (r ApiGetRecordSetsRequest) ActiveEq(activeEq bool) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) ActiveEq(activeEq bool) ApiGetRecordSetsRequest {
 	r.activeEq = &activeEq
 	return r
@@ -897,7 +887,6 @@ func (r ApiGetRecordSetsRequest) ActiveEq(activeEq bool) ApiGetRecordSetsRequest
 
 // filter creation started greater with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) CreationStartedGt(creationStartedGt string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) CreationStartedGt(creationStartedGt string) ApiGetRecordSetsRequest {
 	r.creationStartedGt = &creationStartedGt
 	return r
@@ -905,7 +894,6 @@ func (r ApiGetRecordSetsRequest) CreationStartedGt(creationStartedGt string) Api
 
 // filter creation started lesser with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) CreationStartedLt(creationStartedLt string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) CreationStartedLt(creationStartedLt string) ApiGetRecordSetsRequest {
 	r.creationStartedLt = &creationStartedLt
 	return r
@@ -913,7 +901,6 @@ func (r ApiGetRecordSetsRequest) CreationStartedLt(creationStartedLt string) Api
 
 // filter creation started greater equal with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) CreationStartedGte(creationStartedGte string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) CreationStartedGte(creationStartedGte string) ApiGetRecordSetsRequest {
 	r.creationStartedGte = &creationStartedGte
 	return r
@@ -921,7 +908,6 @@ func (r ApiGetRecordSetsRequest) CreationStartedGte(creationStartedGte string) A
 
 // filter creation started lesser equal with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) CreationStartedLte(creationStartedLte string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) CreationStartedLte(creationStartedLte string) ApiGetRecordSetsRequest {
 	r.creationStartedLte = &creationStartedLte
 	return r
@@ -929,7 +915,6 @@ func (r ApiGetRecordSetsRequest) CreationStartedLte(creationStartedLte string) A
 
 // filter creation finished greater with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) CreationFinishedGt(creationFinishedGt string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) CreationFinishedGt(creationFinishedGt string) ApiGetRecordSetsRequest {
 	r.creationFinishedGt = &creationFinishedGt
 	return r
@@ -937,7 +922,6 @@ func (r ApiGetRecordSetsRequest) CreationFinishedGt(creationFinishedGt string) A
 
 // filter creation finished lesser with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) CreationFinishedLt(creationFinishedLt string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) CreationFinishedLt(creationFinishedLt string) ApiGetRecordSetsRequest {
 	r.creationFinishedLt = &creationFinishedLt
 	return r
@@ -945,7 +929,6 @@ func (r ApiGetRecordSetsRequest) CreationFinishedLt(creationFinishedLt string) A
 
 // filter creation finished greater equal with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) CreationFinishedGte(creationFinishedGte string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) CreationFinishedGte(creationFinishedGte string) ApiGetRecordSetsRequest {
 	r.creationFinishedGte = &creationFinishedGte
 	return r
@@ -953,7 +936,6 @@ func (r ApiGetRecordSetsRequest) CreationFinishedGte(creationFinishedGte string)
 
 // filter creation finished lesser equal with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) CreationFinishedLte(creationFinishedLte string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) CreationFinishedLte(creationFinishedLte string) ApiGetRecordSetsRequest {
 	r.creationFinishedLte = &creationFinishedLte
 	return r
@@ -961,7 +943,6 @@ func (r ApiGetRecordSetsRequest) CreationFinishedLte(creationFinishedLte string)
 
 // filter update started greater with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) UpdateStartedGt(updateStartedGt string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) UpdateStartedGt(updateStartedGt string) ApiGetRecordSetsRequest {
 	r.updateStartedGt = &updateStartedGt
 	return r
@@ -969,7 +950,6 @@ func (r ApiGetRecordSetsRequest) UpdateStartedGt(updateStartedGt string) ApiGetR
 
 // filter update started lesser with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) UpdateStartedLt(updateStartedLt string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) UpdateStartedLt(updateStartedLt string) ApiGetRecordSetsRequest {
 	r.updateStartedLt = &updateStartedLt
 	return r
@@ -977,7 +957,6 @@ func (r ApiGetRecordSetsRequest) UpdateStartedLt(updateStartedLt string) ApiGetR
 
 // filter update started greater equal with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) UpdateStartedGte(updateStartedGte string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) UpdateStartedGte(updateStartedGte string) ApiGetRecordSetsRequest {
 	r.updateStartedGte = &updateStartedGte
 	return r
@@ -985,7 +964,6 @@ func (r ApiGetRecordSetsRequest) UpdateStartedGte(updateStartedGte string) ApiGe
 
 // filter update started lesser equal with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) UpdateStartedLte(updateStartedLte string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) UpdateStartedLte(updateStartedLte string) ApiGetRecordSetsRequest {
 	r.updateStartedLte = &updateStartedLte
 	return r
@@ -993,7 +971,6 @@ func (r ApiGetRecordSetsRequest) UpdateStartedLte(updateStartedLte string) ApiGe
 
 // filter update finished greater with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) UpdateFinishedGt(updateFinishedGt string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) UpdateFinishedGt(updateFinishedGt string) ApiGetRecordSetsRequest {
 	r.updateFinishedGt = &updateFinishedGt
 	return r
@@ -1001,7 +978,6 @@ func (r ApiGetRecordSetsRequest) UpdateFinishedGt(updateFinishedGt string) ApiGe
 
 // filter update finished lesser with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) UpdateFinishedLt(updateFinishedLt string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) UpdateFinishedLt(updateFinishedLt string) ApiGetRecordSetsRequest {
 	r.updateFinishedLt = &updateFinishedLt
 	return r
@@ -1009,7 +985,6 @@ func (r ApiGetRecordSetsRequest) UpdateFinishedLt(updateFinishedLt string) ApiGe
 
 // filter update finished greater equal with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) UpdateFinishedGte(updateFinishedGte string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) UpdateFinishedGte(updateFinishedGte string) ApiGetRecordSetsRequest {
 	r.updateFinishedGte = &updateFinishedGte
 	return r
@@ -1017,7 +992,6 @@ func (r ApiGetRecordSetsRequest) UpdateFinishedGte(updateFinishedGte string) Api
 
 // filter update finished lesser equal with utc timestamp
 
-// func (r ApiGetRecordSetsRequest) UpdateFinishedLte(updateFinishedLte string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) UpdateFinishedLte(updateFinishedLte string) ApiGetRecordSetsRequest {
 	r.updateFinishedLte = &updateFinishedLte
 	return r
@@ -1025,7 +999,6 @@ func (r ApiGetRecordSetsRequest) UpdateFinishedLte(updateFinishedLte string) Api
 
 // order by name
 
-// func (r ApiGetRecordSetsRequest) OrderByName(orderByName string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) OrderByName(orderByName string) ApiGetRecordSetsRequest {
 	r.orderByName = &orderByName
 	return r
@@ -1033,7 +1006,6 @@ func (r ApiGetRecordSetsRequest) OrderByName(orderByName string) ApiGetRecordSet
 
 // order by creationStarted
 
-// func (r ApiGetRecordSetsRequest) OrderByCreationStarted(orderByCreationStarted string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) OrderByCreationStarted(orderByCreationStarted string) ApiGetRecordSetsRequest {
 	r.orderByCreationStarted = &orderByCreationStarted
 	return r
@@ -1041,7 +1013,6 @@ func (r ApiGetRecordSetsRequest) OrderByCreationStarted(orderByCreationStarted s
 
 // order by creationFinished
 
-// func (r ApiGetRecordSetsRequest) OrderByCreationFinished(orderByCreationFinished string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) OrderByCreationFinished(orderByCreationFinished string) ApiGetRecordSetsRequest {
 	r.orderByCreationFinished = &orderByCreationFinished
 	return r
@@ -1049,7 +1020,6 @@ func (r ApiGetRecordSetsRequest) OrderByCreationFinished(orderByCreationFinished
 
 // order by updateStarted
 
-// func (r ApiGetRecordSetsRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiGetRecordSetsRequest {
 	r.orderByUpdateStarted = &orderByUpdateStarted
 	return r
@@ -1057,7 +1027,6 @@ func (r ApiGetRecordSetsRequest) OrderByUpdateStarted(orderByUpdateStarted strin
 
 // order by updateFinished
 
-// func (r ApiGetRecordSetsRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiGetRecordSetsRequest {
 	r.orderByUpdateFinished = &orderByUpdateFinished
 	return r
@@ -1065,7 +1034,6 @@ func (r ApiGetRecordSetsRequest) OrderByUpdateFinished(orderByUpdateFinished str
 
 // order by type
 
-// func (r ApiGetRecordSetsRequest) OrderByType(orderByType string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) OrderByType(orderByType string) ApiGetRecordSetsRequest {
 	r.orderByType = &orderByType
 	return r
@@ -1073,7 +1041,6 @@ func (r ApiGetRecordSetsRequest) OrderByType(orderByType string) ApiGetRecordSet
 
 // order by state
 
-// func (r ApiGetRecordSetsRequest) OrderByState(orderByState string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) OrderByState(orderByState string) ApiGetRecordSetsRequest {
 	r.orderByState = &orderByState
 	return r
@@ -1081,7 +1048,6 @@ func (r ApiGetRecordSetsRequest) OrderByState(orderByState string) ApiGetRecordS
 
 // order by record count
 
-// func (r ApiGetRecordSetsRequest) OrderByRecordCount(orderByRecordCount string) ApiGetRecordSetsRequest {
 func (r ApiGetRecordSetsRequest) OrderByRecordCount(orderByRecordCount string) ApiGetRecordSetsRequest {
 	r.orderByRecordCount = &orderByRecordCount
 	return r
@@ -1494,7 +1460,6 @@ type ApiGetZonesRequest struct {
 
 // page
 
-// func (r ApiGetZonesRequest) Page(page int32) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) Page(page int32) ApiGetZonesRequest {
 	r.page = &page
 	return r
@@ -1502,7 +1467,6 @@ func (r ApiGetZonesRequest) Page(page int32) ApiGetZonesRequest {
 
 // page size
 
-// func (r ApiGetZonesRequest) PageSize(pageSize int32) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) PageSize(pageSize int32) ApiGetZonesRequest {
 	r.pageSize = &pageSize
 	return r
@@ -1510,7 +1474,6 @@ func (r ApiGetZonesRequest) PageSize(pageSize int32) ApiGetZonesRequest {
 
 // filter dns name equal
 
-// func (r ApiGetZonesRequest) DnsNameEq(dnsNameEq string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) DnsNameEq(dnsNameEq string) ApiGetZonesRequest {
 	r.dnsNameEq = &dnsNameEq
 	return r
@@ -1518,7 +1481,6 @@ func (r ApiGetZonesRequest) DnsNameEq(dnsNameEq string) ApiGetZonesRequest {
 
 // filter dns name like
 
-// func (r ApiGetZonesRequest) DnsNameLike(dnsNameLike string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) DnsNameLike(dnsNameLike string) ApiGetZonesRequest {
 	r.dnsNameLike = &dnsNameLike
 	return r
@@ -1526,7 +1488,6 @@ func (r ApiGetZonesRequest) DnsNameLike(dnsNameLike string) ApiGetZonesRequest {
 
 // filter type
 
-// func (r ApiGetZonesRequest) TypeEq(typeEq string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) TypeEq(typeEq string) ApiGetZonesRequest {
 	r.typeEq = &typeEq
 	return r
@@ -1534,7 +1495,6 @@ func (r ApiGetZonesRequest) TypeEq(typeEq string) ApiGetZonesRequest {
 
 // filter name equal
 
-// func (r ApiGetZonesRequest) NameEq(nameEq string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) NameEq(nameEq string) ApiGetZonesRequest {
 	r.nameEq = &nameEq
 	return r
@@ -1542,7 +1502,6 @@ func (r ApiGetZonesRequest) NameEq(nameEq string) ApiGetZonesRequest {
 
 // filter name not equal
 
-// func (r ApiGetZonesRequest) NameNeq(nameNeq string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) NameNeq(nameNeq string) ApiGetZonesRequest {
 	r.nameNeq = &nameNeq
 	return r
@@ -1550,7 +1509,6 @@ func (r ApiGetZonesRequest) NameNeq(nameNeq string) ApiGetZonesRequest {
 
 // filter name like
 
-// func (r ApiGetZonesRequest) NameLike(nameLike string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) NameLike(nameLike string) ApiGetZonesRequest {
 	r.nameLike = &nameLike
 	return r
@@ -1558,7 +1516,6 @@ func (r ApiGetZonesRequest) NameLike(nameLike string) ApiGetZonesRequest {
 
 // filter description equal
 
-// func (r ApiGetZonesRequest) DescriptionEq(descriptionEq string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) DescriptionEq(descriptionEq string) ApiGetZonesRequest {
 	r.descriptionEq = &descriptionEq
 	return r
@@ -1566,7 +1523,6 @@ func (r ApiGetZonesRequest) DescriptionEq(descriptionEq string) ApiGetZonesReque
 
 // filter description not equal
 
-// func (r ApiGetZonesRequest) DescriptionNeq(descriptionNeq string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) DescriptionNeq(descriptionNeq string) ApiGetZonesRequest {
 	r.descriptionNeq = &descriptionNeq
 	return r
@@ -1574,7 +1530,6 @@ func (r ApiGetZonesRequest) DescriptionNeq(descriptionNeq string) ApiGetZonesReq
 
 // filter description like
 
-// func (r ApiGetZonesRequest) DescriptionLike(descriptionLike string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) DescriptionLike(descriptionLike string) ApiGetZonesRequest {
 	r.descriptionLike = &descriptionLike
 	return r
@@ -1582,7 +1537,6 @@ func (r ApiGetZonesRequest) DescriptionLike(descriptionLike string) ApiGetZonesR
 
 // filter state
 
-// func (r ApiGetZonesRequest) StateEq(stateEq string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) StateEq(stateEq string) ApiGetZonesRequest {
 	r.stateEq = &stateEq
 	return r
@@ -1590,7 +1544,6 @@ func (r ApiGetZonesRequest) StateEq(stateEq string) ApiGetZonesRequest {
 
 // filter state
 
-// func (r ApiGetZonesRequest) StateNeq(stateNeq string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) StateNeq(stateNeq string) ApiGetZonesRequest {
 	r.stateNeq = &stateNeq
 	return r
@@ -1598,7 +1551,6 @@ func (r ApiGetZonesRequest) StateNeq(stateNeq string) ApiGetZonesRequest {
 
 // filter primary name server equal
 
-// func (r ApiGetZonesRequest) PrimaryNameServerEq(primaryNameServerEq string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) PrimaryNameServerEq(primaryNameServerEq string) ApiGetZonesRequest {
 	r.primaryNameServerEq = &primaryNameServerEq
 	return r
@@ -1606,7 +1558,6 @@ func (r ApiGetZonesRequest) PrimaryNameServerEq(primaryNameServerEq string) ApiG
 
 // filter primary name server like
 
-// func (r ApiGetZonesRequest) PrimaryNameServerLike(primaryNameServerLike string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) PrimaryNameServerLike(primaryNameServerLike string) ApiGetZonesRequest {
 	r.primaryNameServerLike = &primaryNameServerLike
 	return r
@@ -1614,7 +1565,6 @@ func (r ApiGetZonesRequest) PrimaryNameServerLike(primaryNameServerLike string) 
 
 // filter reverse zone equal
 
-// func (r ApiGetZonesRequest) IsReverseZoneEq(isReverseZoneEq bool) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) IsReverseZoneEq(isReverseZoneEq bool) ApiGetZonesRequest {
 	r.isReverseZoneEq = &isReverseZoneEq
 	return r
@@ -1622,7 +1572,6 @@ func (r ApiGetZonesRequest) IsReverseZoneEq(isReverseZoneEq bool) ApiGetZonesReq
 
 // filter active equal
 
-// func (r ApiGetZonesRequest) ActiveEq(activeEq bool) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) ActiveEq(activeEq bool) ApiGetZonesRequest {
 	r.activeEq = &activeEq
 	return r
@@ -1630,7 +1579,6 @@ func (r ApiGetZonesRequest) ActiveEq(activeEq bool) ApiGetZonesRequest {
 
 // filter creation started greater with utc timestamp
 
-// func (r ApiGetZonesRequest) CreationStartedGt(creationStartedGt string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) CreationStartedGt(creationStartedGt string) ApiGetZonesRequest {
 	r.creationStartedGt = &creationStartedGt
 	return r
@@ -1638,7 +1586,6 @@ func (r ApiGetZonesRequest) CreationStartedGt(creationStartedGt string) ApiGetZo
 
 // filter creation started lesser with utc timestamp
 
-// func (r ApiGetZonesRequest) CreationStartedLt(creationStartedLt string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) CreationStartedLt(creationStartedLt string) ApiGetZonesRequest {
 	r.creationStartedLt = &creationStartedLt
 	return r
@@ -1646,7 +1593,6 @@ func (r ApiGetZonesRequest) CreationStartedLt(creationStartedLt string) ApiGetZo
 
 // filter creation started greater equal with utc timestamp
 
-// func (r ApiGetZonesRequest) CreationStartedGte(creationStartedGte string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) CreationStartedGte(creationStartedGte string) ApiGetZonesRequest {
 	r.creationStartedGte = &creationStartedGte
 	return r
@@ -1654,7 +1600,6 @@ func (r ApiGetZonesRequest) CreationStartedGte(creationStartedGte string) ApiGet
 
 // filter creation started lesser equal with utc timestamp
 
-// func (r ApiGetZonesRequest) CreationStartedLte(creationStartedLte string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) CreationStartedLte(creationStartedLte string) ApiGetZonesRequest {
 	r.creationStartedLte = &creationStartedLte
 	return r
@@ -1662,7 +1607,6 @@ func (r ApiGetZonesRequest) CreationStartedLte(creationStartedLte string) ApiGet
 
 // filter creation finished greater with utc timestamp
 
-// func (r ApiGetZonesRequest) CreationFinishedGt(creationFinishedGt string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) CreationFinishedGt(creationFinishedGt string) ApiGetZonesRequest {
 	r.creationFinishedGt = &creationFinishedGt
 	return r
@@ -1670,7 +1614,6 @@ func (r ApiGetZonesRequest) CreationFinishedGt(creationFinishedGt string) ApiGet
 
 // filter creation finished lesser with utc timestamp
 
-// func (r ApiGetZonesRequest) CreationFinishedLt(creationFinishedLt string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) CreationFinishedLt(creationFinishedLt string) ApiGetZonesRequest {
 	r.creationFinishedLt = &creationFinishedLt
 	return r
@@ -1678,7 +1621,6 @@ func (r ApiGetZonesRequest) CreationFinishedLt(creationFinishedLt string) ApiGet
 
 // filter creation finished greater equal with utc timestamp
 
-// func (r ApiGetZonesRequest) CreationFinishedGte(creationFinishedGte string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) CreationFinishedGte(creationFinishedGte string) ApiGetZonesRequest {
 	r.creationFinishedGte = &creationFinishedGte
 	return r
@@ -1686,7 +1628,6 @@ func (r ApiGetZonesRequest) CreationFinishedGte(creationFinishedGte string) ApiG
 
 // filter creation finished lesser equal with utc timestamp
 
-// func (r ApiGetZonesRequest) CreationFinishedLte(creationFinishedLte string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) CreationFinishedLte(creationFinishedLte string) ApiGetZonesRequest {
 	r.creationFinishedLte = &creationFinishedLte
 	return r
@@ -1694,7 +1635,6 @@ func (r ApiGetZonesRequest) CreationFinishedLte(creationFinishedLte string) ApiG
 
 // filter update started greater with utc timestamp
 
-// func (r ApiGetZonesRequest) UpdateStartedGt(updateStartedGt string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) UpdateStartedGt(updateStartedGt string) ApiGetZonesRequest {
 	r.updateStartedGt = &updateStartedGt
 	return r
@@ -1702,7 +1642,6 @@ func (r ApiGetZonesRequest) UpdateStartedGt(updateStartedGt string) ApiGetZonesR
 
 // filter update started lesser with utc timestamp
 
-// func (r ApiGetZonesRequest) UpdateStartedLt(updateStartedLt string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) UpdateStartedLt(updateStartedLt string) ApiGetZonesRequest {
 	r.updateStartedLt = &updateStartedLt
 	return r
@@ -1710,7 +1649,6 @@ func (r ApiGetZonesRequest) UpdateStartedLt(updateStartedLt string) ApiGetZonesR
 
 // filter update started greater equal with utc timestamp
 
-// func (r ApiGetZonesRequest) UpdateStartedGte(updateStartedGte string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) UpdateStartedGte(updateStartedGte string) ApiGetZonesRequest {
 	r.updateStartedGte = &updateStartedGte
 	return r
@@ -1718,7 +1656,6 @@ func (r ApiGetZonesRequest) UpdateStartedGte(updateStartedGte string) ApiGetZone
 
 // filter update started lesser equal with utc timestamp
 
-// func (r ApiGetZonesRequest) UpdateStartedLte(updateStartedLte string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) UpdateStartedLte(updateStartedLte string) ApiGetZonesRequest {
 	r.updateStartedLte = &updateStartedLte
 	return r
@@ -1726,7 +1663,6 @@ func (r ApiGetZonesRequest) UpdateStartedLte(updateStartedLte string) ApiGetZone
 
 // filter update finished greater with utc timestamp
 
-// func (r ApiGetZonesRequest) UpdateFinishedGt(updateFinishedGt string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) UpdateFinishedGt(updateFinishedGt string) ApiGetZonesRequest {
 	r.updateFinishedGt = &updateFinishedGt
 	return r
@@ -1734,7 +1670,6 @@ func (r ApiGetZonesRequest) UpdateFinishedGt(updateFinishedGt string) ApiGetZone
 
 // filter update finished lesser with utc timestamp
 
-// func (r ApiGetZonesRequest) UpdateFinishedLt(updateFinishedLt string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) UpdateFinishedLt(updateFinishedLt string) ApiGetZonesRequest {
 	r.updateFinishedLt = &updateFinishedLt
 	return r
@@ -1742,7 +1677,6 @@ func (r ApiGetZonesRequest) UpdateFinishedLt(updateFinishedLt string) ApiGetZone
 
 // filter update finished greater equal with utc timestamp
 
-// func (r ApiGetZonesRequest) UpdateFinishedGte(updateFinishedGte string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) UpdateFinishedGte(updateFinishedGte string) ApiGetZonesRequest {
 	r.updateFinishedGte = &updateFinishedGte
 	return r
@@ -1750,7 +1684,6 @@ func (r ApiGetZonesRequest) UpdateFinishedGte(updateFinishedGte string) ApiGetZo
 
 // filter update finished lesser equal with utc timestamp
 
-// func (r ApiGetZonesRequest) UpdateFinishedLte(updateFinishedLte string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) UpdateFinishedLte(updateFinishedLte string) ApiGetZonesRequest {
 	r.updateFinishedLte = &updateFinishedLte
 	return r
@@ -1758,7 +1691,6 @@ func (r ApiGetZonesRequest) UpdateFinishedLte(updateFinishedLte string) ApiGetZo
 
 // order by dns name
 
-// func (r ApiGetZonesRequest) OrderByDnsName(orderByDnsName string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) OrderByDnsName(orderByDnsName string) ApiGetZonesRequest {
 	r.orderByDnsName = &orderByDnsName
 	return r
@@ -1766,7 +1698,6 @@ func (r ApiGetZonesRequest) OrderByDnsName(orderByDnsName string) ApiGetZonesReq
 
 // order by name
 
-// func (r ApiGetZonesRequest) OrderByName(orderByName string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) OrderByName(orderByName string) ApiGetZonesRequest {
 	r.orderByName = &orderByName
 	return r
@@ -1774,7 +1705,6 @@ func (r ApiGetZonesRequest) OrderByName(orderByName string) ApiGetZonesRequest {
 
 // order by record count
 
-// func (r ApiGetZonesRequest) OrderByRecordCount(orderByRecordCount string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) OrderByRecordCount(orderByRecordCount string) ApiGetZonesRequest {
 	r.orderByRecordCount = &orderByRecordCount
 	return r
@@ -1782,7 +1712,6 @@ func (r ApiGetZonesRequest) OrderByRecordCount(orderByRecordCount string) ApiGet
 
 // order by type
 
-// func (r ApiGetZonesRequest) OrderByType(orderByType string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) OrderByType(orderByType string) ApiGetZonesRequest {
 	r.orderByType = &orderByType
 	return r
@@ -1790,7 +1719,6 @@ func (r ApiGetZonesRequest) OrderByType(orderByType string) ApiGetZonesRequest {
 
 // order by description
 
-// func (r ApiGetZonesRequest) OrderByDescription(orderByDescription string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) OrderByDescription(orderByDescription string) ApiGetZonesRequest {
 	r.orderByDescription = &orderByDescription
 	return r
@@ -1798,7 +1726,6 @@ func (r ApiGetZonesRequest) OrderByDescription(orderByDescription string) ApiGet
 
 // order by creationStarted
 
-// func (r ApiGetZonesRequest) OrderByCreationStarted(orderByCreationStarted string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) OrderByCreationStarted(orderByCreationStarted string) ApiGetZonesRequest {
 	r.orderByCreationStarted = &orderByCreationStarted
 	return r
@@ -1806,7 +1733,6 @@ func (r ApiGetZonesRequest) OrderByCreationStarted(orderByCreationStarted string
 
 // order by creationFinished
 
-// func (r ApiGetZonesRequest) OrderByCreationFinished(orderByCreationFinished string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) OrderByCreationFinished(orderByCreationFinished string) ApiGetZonesRequest {
 	r.orderByCreationFinished = &orderByCreationFinished
 	return r
@@ -1814,7 +1740,6 @@ func (r ApiGetZonesRequest) OrderByCreationFinished(orderByCreationFinished stri
 
 // order by updateStarted
 
-// func (r ApiGetZonesRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiGetZonesRequest {
 	r.orderByUpdateStarted = &orderByUpdateStarted
 	return r
@@ -1822,7 +1747,6 @@ func (r ApiGetZonesRequest) OrderByUpdateStarted(orderByUpdateStarted string) Ap
 
 // order by updateFinished
 
-// func (r ApiGetZonesRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiGetZonesRequest {
 func (r ApiGetZonesRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiGetZonesRequest {
 	r.orderByUpdateFinished = &orderByUpdateFinished
 	return r
@@ -2088,7 +2012,6 @@ type ApiUpdateRecordRequest struct {
 
 // rrset to update
 
-// func (r ApiUpdateRecordRequest) UpdateRecordPayload(updateRecordPayload UpdateRecordPayload) ApiUpdateRecordRequest {
 func (r ApiUpdateRecordRequest) UpdateRecordPayload(updateRecordPayload UpdateRecordPayload) ApiUpdateRecordRequest {
 	r.updateRecordPayload = &updateRecordPayload
 	return r
@@ -2252,7 +2175,6 @@ type ApiUpdateRecordSetRequest struct {
 
 // record set to patch
 
-// func (r ApiUpdateRecordSetRequest) UpdateRecordSetPayload(updateRecordSetPayload UpdateRecordSetPayload) ApiUpdateRecordSetRequest {
 func (r ApiUpdateRecordSetRequest) UpdateRecordSetPayload(updateRecordSetPayload UpdateRecordSetPayload) ApiUpdateRecordSetRequest {
 	r.updateRecordSetPayload = &updateRecordSetPayload
 	return r
@@ -2415,7 +2337,6 @@ type ApiUpdateZoneRequest struct {
 
 // zone to update
 
-// func (r ApiUpdateZoneRequest) UpdateZonePayload(updateZonePayload UpdateZonePayload) ApiUpdateZoneRequest {
 func (r ApiUpdateZoneRequest) UpdateZonePayload(updateZonePayload UpdateZonePayload) ApiUpdateZoneRequest {
 	r.updateZonePayload = &updateZonePayload
 	return r
