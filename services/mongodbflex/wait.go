@@ -4,17 +4,18 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 )
 
 const (
-	InstanceStateEmpty       = ""
-	InstanceStateProgressing = "PROCESSING"
-	InstanceStateUnknown     = "UNKNOWN"
-	InstanceStateSuccess     = "READY"
-	InstanceStateFailed      = "FAILED"
+	InstanceStateEmpty      = ""
+	InstanceStateProcessing = "PROCESSING"
+	InstanceStateUnknown    = "UNKNOWN"
+	InstanceStateSuccess    = "READY"
+	InstanceStateFailed     = "FAILED"
 )
 
 // Interface needed for tests
@@ -36,7 +37,7 @@ func handleError(reqErr error) (res interface{}, done bool, err error) {
 
 // CreateInstanceWaitHandler will wait for creation
 func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+	waitHandler := wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
 			return handleError(err)
@@ -49,7 +50,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return nil, true, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case InstanceStateEmpty:
 			return nil, false, nil
-		case InstanceStateProgressing:
+		case InstanceStateProcessing:
 			return nil, false, nil
 		case InstanceStateUnknown:
 			return nil, false, nil
@@ -59,6 +60,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return nil, true, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
 	})
+	return waitHandler.SetSleepBeforeWait(5 * time.Second)
 }
 
 // UpdateInstanceWaitHandler will wait for update
@@ -76,7 +78,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return s, true, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case InstanceStateEmpty:
 			return s, false, nil
-		case InstanceStateProgressing:
+		case InstanceStateProcessing:
 			return s, false, nil
 		case InstanceStateUnknown:
 			return s, false, nil
