@@ -8,6 +8,7 @@ use (
 	./examples/errorhandling
 	./examples/logme
 	./examples/mariadb
+	./examples/mongodbflex
 	./examples/opensearch
 	./examples/postgresflex
 	./examples/postgresql
