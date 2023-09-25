@@ -6,7 +6,8 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/services/mongodbflex"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 	projectId := "PROJECT_ID"
 
 	// Create a new API client, that uses default authentication and configuration
-	postgresflexClient, err := postgresflex.NewAPIClient(
+	mongodbflexClient, err := mongodbflex.NewAPIClient(
 		config.WithRegion("eu01"),
 	)
 	if err != nil {
@@ -22,8 +23,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Get the postgresql instances for your project
-	getInstancesResp, err := postgresflexClient.GetInstances(context.Background(), projectId).Execute()
+	// Get the MongoDB Flex instances for your project
+	getInstancesResp, err := mongodbflexClient.GetInstances(context.Background(), projectId).Tag("tag").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 		os.Exit(1)
@@ -39,11 +40,12 @@ func main() {
 
 	instanceId := *items[0].Id
 	username := "example-user"
-	createUserPayload := postgresflex.CreateUserPayload{
+	createUserPayload := mongodbflex.CreateUserPayload{
 		Username: &username,
-		Roles:    &[]string{"login"},
+		Database: utils.Ptr("default"),
+		Roles:    &[]string{"read"},
 	}
-	_, err = postgresflexClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
+	_, err = mongodbflexClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateUser`: %v\n", err)
 		os.Exit(1)
