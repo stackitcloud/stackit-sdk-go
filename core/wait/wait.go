@@ -5,11 +5,14 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
 var RetryHttpErrorStatusCodes = []int{http.StatusBadGateway, http.StatusGatewayTimeout}
 
-type WaitFn func() (res interface{}, tempErrorFound, done bool, err error)
+type WaitFn func() (res interface{}, done bool, err error)
 
 type Handler struct {
 	fn                WaitFn
@@ -60,7 +63,6 @@ func (w *Handler) SetRetryLimitTempErr(l int) *Handler {
 // WaitWithContext starts the wait until there's an error or wait is done
 func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err error) {
 	var done bool
-	var tempErrFound bool
 
 	ctx, cancel := context.WithTimeout(ctx, w.timeout)
 	defer cancel()
@@ -71,21 +73,15 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 	ticker := time.NewTicker(w.throttle)
 	defer ticker.Stop()
 
-	var retryTempErrCounter = 0
+	var retryTempErrorCounter = 0
 	for {
-		res, tempErrFound, done, err = w.fn()
+		res, done, err = w.fn()
+		retryTempErrorCounter, err = handleError(retryTempErrorCounter, w.retryLimitTempErr, err)
 		if err != nil {
-			return res, fmt.Errorf("executing wait function: %w", err)
+			return res, err
 		}
 		if done {
 			return res, nil
-		}
-
-		if tempErrFound {
-			retryTempErrCounter++
-		}
-		if retryTempErrCounter == w.retryLimitTempErr {
-			return res, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
 		}
 
 		select {
@@ -95,4 +91,24 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 			return res, fmt.Errorf("WaitWithContext() has timed out")
 		}
 	}
+}
+
+func handleError(retryTempErrorCounter, retryLimitTempErr int, err error) (int, error) {
+	if err != nil {
+		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return retryTempErrorCounter, fmt.Errorf("could not convert error to GenericOpenApiError, %w", err)
+		}
+		// Some APIs may return temporary errors and the request should be retried
+		if utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
+			retryTempErrorCounter++
+			if retryTempErrorCounter == retryLimitTempErr {
+				return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
+			}
+			return retryTempErrorCounter, nil
+		} else {
+			return retryTempErrorCounter, fmt.Errorf("executing wait function: %w", err)
+		}
+	}
+	return retryTempErrorCounter, nil
 }

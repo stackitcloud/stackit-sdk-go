@@ -3,14 +3,16 @@ package wait
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"testing"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
 func TestNew(t *testing.T) {
-	simple := func() (res interface{}, tempErrFound, done bool, err error) { return nil, false, true, nil }
+	simple := func() (res interface{}, done bool, err error) { return nil, true, nil }
 	type args struct {
 		f WaitFn
 	}
@@ -31,7 +33,7 @@ func TestNew(t *testing.T) {
 }
 
 func TestWait_SetThrottle(t *testing.T) {
-	simple := func() (res interface{}, tempErrFound, done bool, err error) { return nil, false, true, nil }
+	simple := func() (res interface{}, done bool, err error) { return nil, true, nil }
 	type args struct {
 		d time.Duration
 	}
@@ -106,31 +108,31 @@ func TestWaitWithCtx_Run(t *testing.T) {
 		wantDone bool
 		wantErr  bool
 	}{
-		{"ok", fields{throttle: 1 * time.Second, timeout: 1 * time.Hour, fn: func() (res interface{}, tempErrFound, done bool, err error) {
-			return nil, false, true, nil
+		{"ok", fields{throttle: 1 * time.Second, timeout: 1 * time.Hour, fn: func() (res interface{}, done bool, err error) {
+			return nil, true, nil
 		}}, true, false},
 
-		{"ok 2", fields{throttle: 200 * time.Millisecond, timeout: 1 * time.Hour, retryLimitTempErr: 5, fn: func() (res interface{}, tempErrFound, done bool, err error) {
+		{"ok 2", fields{throttle: 200 * time.Millisecond, timeout: 1 * time.Hour, retryLimitTempErr: 5, fn: func() (res interface{}, done bool, err error) {
 			if ctx.Err() == nil {
-				return nil, false, false, nil
+				return nil, false, nil
 			}
-			return nil, false, true, nil
+			return nil, true, nil
 		}}, true, false},
 
-		{"err", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, fn: func() (res interface{}, tempErrFound, done bool, err error) {
-			return nil, false, true, fmt.Errorf("something happened")
+		{"err", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, fn: func() (res interface{}, done bool, err error) {
+			return nil, true, fmt.Errorf("something happened")
 		}}, true, true},
 
-		{"err 2", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, fn: func() (res interface{}, tempErrFound, done bool, err error) {
-			return nil, false, false, fmt.Errorf("something happened")
+		{"err 2", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, fn: func() (res interface{}, done bool, err error) {
+			return nil, false, fmt.Errorf("something happened")
 		}}, true, true},
 
-		{"timeout", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, fn: func() (res interface{}, tempErrFound, done bool, err error) {
-			return nil, false, false, nil
+		{"timeout", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, fn: func() (res interface{}, done bool, err error) {
+			return nil, false, nil
 		}}, false, true},
 
-		{"tempErrorLimitReached", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, fn: func() (res interface{}, tempErrFound, done bool, err error) {
-			return nil, true, false, nil
+		{"tempErrorLimitReached", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, fn: func() (res interface{}, done bool, err error) {
+			return nil, false, nil
 		}}, false, true},
 	}
 	for _, tt := range tests {
@@ -179,6 +181,63 @@ func TestWait_SetTimeout(t *testing.T) {
 			}
 			if got := w.SetTimeout(tt.args.d); !cmp.Equal(got, tt.want, cmp.AllowUnexported(Handler{})) {
 				t.Errorf("Wait.SetTimeout() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestHandleError(t *testing.T) {
+	tests := []struct {
+		desc                string
+		reqErr              error
+		retryLimitTempError int
+		wantErr             bool
+	}{
+		{
+			desc: "handle_oapi_error",
+			reqErr: &oapiError.GenericOpenAPIError{
+				StatusCode: http.StatusInternalServerError,
+			},
+			retryLimitTempError: 5,
+			wantErr:             true,
+		},
+		{
+			desc:                "not_generic_oapi_error",
+			reqErr:              fmt.Errorf("some error"),
+			retryLimitTempError: 5,
+			wantErr:             true,
+		},
+		{
+			desc: "bad_gateway_error",
+			reqErr: &oapiError.GenericOpenAPIError{
+				StatusCode: http.StatusBadGateway,
+			},
+			retryLimitTempError: 5,
+			wantErr:             false,
+		},
+		{
+			desc: "gateway_timeout_error",
+			reqErr: &oapiError.GenericOpenAPIError{
+				StatusCode: http.StatusBadGateway,
+			},
+			retryLimitTempError: 5,
+			wantErr:             false,
+		},
+		{
+			desc: "temp_error_retry_limit_reached",
+			reqErr: &oapiError.GenericOpenAPIError{
+				StatusCode: http.StatusBadGateway,
+			},
+			retryLimitTempError: 1,
+			wantErr:             true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			_, err := handleError(0, tt.retryLimitTempError, tt.reqErr)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("handleError() error = %v, wantErr %v", err, tt.wantErr)
+				return
 			}
 		})
 	}
