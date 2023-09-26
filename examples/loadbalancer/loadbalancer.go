@@ -23,6 +23,14 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Enable load balancer functionality for project
+	_, err = loadbalancerClient.EnableLoadBalancing(context.Background(), projectId).XRequestID("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EnableLoadBalancing`: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Enabled load balancer functionality for project %s.\n", projectId)
+
 	// List the load balancer instances for your project
 	listInstancesResp, err := loadbalancerClient.ListLoadBalancers(context.Background(), projectId).Execute()
 	if err != nil {
@@ -44,7 +52,7 @@ func main() {
 		},
 		Networks: &[]loadbalancer.Network{
 			{
-				NetworkId: utils.Ptr("2028e5d4-af4f-45e2-98df-502be37a4317"),
+				NetworkId: utils.Ptr("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
 				Role:      utils.Ptr(int32(1)),
 			},
 		},
@@ -63,24 +71,16 @@ func main() {
 				Targets: &[]loadbalancer.Target{
 					{
 						DisplayName: utils.Ptr("example-target"),
-						Ip:          utils.Ptr("192.0.2.5"),
+						Ip:          utils.Ptr("x.x.x.x"),
 					},
 				},
 			},
 		},
 	}
-	createLoadBalancerRes, err := loadbalancerClient.CreateLoadBalancer(context.Background(), projectId).CreateLoadBalancerPayload(createLoadBalancerPayload).XRequestID("X-Request-ID").Execute()
+	createLoadBalancerRes, err := loadbalancerClient.CreateLoadBalancer(context.Background(), projectId).CreateLoadBalancerPayload(createLoadBalancerPayload).XRequestID("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateLoadBalancer`: %v\n", err)
 		os.Exit(1)
 	}
 	fmt.Printf("Created load balancer \"%s\".\n", *createLoadBalancerRes.Name)
-
-	// Enable load balancer functionality for project
-	_, err = loadbalancerClient.EnableLoadBalancing(context.Background(), projectId).XRequestID("X-Request-ID").Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EnableLoadBalancing`: %v\n", err)
-		os.Exit(1)
-	}
-	fmt.Printf("Enabled load balancer functionality for project %s.\n", projectId)
 }
