@@ -16,7 +16,7 @@ const (
 	StateDeleting                 = "STATE_DELETING"
 	stateCreated                  = "STATE_CREATED"
 	stateUnhealthy                = "STATE_UNHEALTHY"
-	invalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
+	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
 type APIClientProjectInterface interface {
