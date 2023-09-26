@@ -100,7 +100,7 @@ func TestWaitWithContext(t *testing.T) {
 		fn                WaitFn
 		throttle          time.Duration
 		timeout           time.Duration
-		retryLimitTempErr int
+		tempErrRetryLimit int
 	}
 	tests := []struct {
 		name     string
@@ -112,7 +112,7 @@ func TestWaitWithContext(t *testing.T) {
 			return nil, true, nil
 		}}, true, false},
 
-		{"ok 2", fields{throttle: 200 * time.Millisecond, timeout: 1 * time.Hour, retryLimitTempErr: 5, fn: func() (res interface{}, done bool, err error) {
+		{"ok 2", fields{throttle: 200 * time.Millisecond, timeout: 1 * time.Hour, tempErrRetryLimit: 5, fn: func() (res interface{}, done bool, err error) {
 			if ctx.Err() == nil {
 				return nil, false, nil
 			}
@@ -141,7 +141,7 @@ func TestWaitWithContext(t *testing.T) {
 				fn:                tt.fields.fn,
 				throttle:          tt.fields.throttle,
 				timeout:           tt.fields.timeout,
-				tempErrRetryLimit: tt.fields.retryLimitTempErr,
+				tempErrRetryLimit: tt.fields.tempErrRetryLimit,
 			}
 			_, err := w.WaitWithContext(context.Background())
 			if (err != nil) != tt.wantErr {
@@ -188,54 +188,54 @@ func TestSetTimeout(t *testing.T) {
 
 func TestHandleError(t *testing.T) {
 	tests := []struct {
-		desc               string
-		reqErr             error
-		tempErroRetryLimit int
-		wantErr            bool
+		desc              string
+		reqErr            error
+		tempErrRetryLimit int
+		wantErr           bool
 	}{
 		{
 			desc: "handle_oapi_error",
 			reqErr: &oapiError.GenericOpenAPIError{
 				StatusCode: http.StatusInternalServerError,
 			},
-			tempErroRetryLimit: 5,
-			wantErr:            true,
+			tempErrRetryLimit: 5,
+			wantErr:           true,
 		},
 		{
-			desc:               "not_generic_oapi_error",
-			reqErr:             fmt.Errorf("some error"),
-			tempErroRetryLimit: 5,
-			wantErr:            true,
+			desc:              "not_generic_oapi_error",
+			reqErr:            fmt.Errorf("some error"),
+			tempErrRetryLimit: 5,
+			wantErr:           true,
 		},
 		{
 			desc: "bad_gateway_error",
 			reqErr: &oapiError.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
-			tempErroRetryLimit: 5,
-			wantErr:            false,
+			tempErrRetryLimit: 5,
+			wantErr:           false,
 		},
 		{
 			desc: "gateway_timeout_error",
 			reqErr: &oapiError.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
-			tempErroRetryLimit: 5,
-			wantErr:            false,
+			tempErrRetryLimit: 5,
+			wantErr:           false,
 		},
 		{
 			desc: "temp_error_retry_limit_reached",
 			reqErr: &oapiError.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
-			tempErroRetryLimit: 1,
-			wantErr:            true,
+			tempErrRetryLimit: 1,
+			wantErr:           true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
 			w := &Handler{
-				tempErrRetryLimit: tt.tempErroRetryLimit,
+				tempErrRetryLimit: tt.tempErrRetryLimit,
 			}
 			_, err := w.handleError(0, tt.reqErr)
 			if (err != nil) != tt.wantErr {
