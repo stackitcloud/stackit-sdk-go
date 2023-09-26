@@ -31,7 +31,6 @@ type ApiCreateAclRequest struct {
 	createAclPayload *CreateAclPayload
 }
 
-// func (r ApiCreateAclRequest) CreateAclPayload(createAclPayload CreateAclPayload) ApiCreateAclRequest {
 func (r ApiCreateAclRequest) CreateAclPayload(createAclPayload CreateAclPayload) ApiCreateAclRequest {
 	r.createAclPayload = &createAclPayload
 	return r
@@ -155,7 +154,6 @@ type ApiCreateInstanceRequest struct {
 	createInstancePayload *CreateInstancePayload
 }
 
-// func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 	r.createInstancePayload = &createInstancePayload
 	return r
@@ -276,7 +274,6 @@ type ApiCreateUserRequest struct {
 	createUserPayload *CreateUserPayload
 }
 
-// func (r ApiCreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
 func (r ApiCreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
 	r.createUserPayload = &createUserPayload
 	return r
@@ -1401,7 +1398,6 @@ type ApiUpdateAclRequest struct {
 	updateAclPayload *UpdateAclPayload
 }
 
-// func (r ApiUpdateAclRequest) UpdateAclPayload(updateAclPayload UpdateAclPayload) ApiUpdateAclRequest {
 func (r ApiUpdateAclRequest) UpdateAclPayload(updateAclPayload UpdateAclPayload) ApiUpdateAclRequest {
 	r.updateAclPayload = &updateAclPayload
 	return r
@@ -1520,7 +1516,6 @@ type ApiUpdateUserRequest struct {
 	updateUserPayload *UpdateUserPayload
 }
 
-// func (r ApiUpdateUserRequest) UpdateUserPayload(updateUserPayload UpdateUserPayload) ApiUpdateUserRequest {
 func (r ApiUpdateUserRequest) UpdateUserPayload(updateUserPayload UpdateUserPayload) ApiUpdateUserRequest {
 	r.updateUserPayload = &updateUserPayload
 	return r
