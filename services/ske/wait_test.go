@@ -207,7 +207,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			}
 			var wantRes *ClusterResponse
 			rs := ClusterStatusState(tt.resourceState)
-			if !tt.getFails && tt.resourceState != stateUnhealthy {
+			if !tt.getFails {
 				wantRes = &ClusterResponse{
 					Name: &name,
 					Status: &ClusterStatus{
@@ -216,6 +216,13 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 				}
 			} else {
 				wantRes = nil
+			}
+
+			if tt.invalidArgusInstance {
+				wantRes.Status.Error = &RuntimeError{
+					Code:    utils.Ptr(string(InvalidArgusInstanceErrorCode)),
+					Message: utils.Ptr("invalid argus instance"),
+				}
 			}
 
 			handler := CreateOrUpdateClusterWaitHandler(context.Background(), apiClient, "", name)
