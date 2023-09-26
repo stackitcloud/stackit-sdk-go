@@ -31,7 +31,6 @@ type ApiCreateOrUpdateClusterRequest struct {
 	createOrUpdateClusterPayload *CreateOrUpdateClusterPayload
 }
 
-// func (r ApiCreateOrUpdateClusterRequest) CreateOrUpdateClusterPayload(createOrUpdateClusterPayload CreateOrUpdateClusterPayload) ApiCreateOrUpdateClusterRequest {
 func (r ApiCreateOrUpdateClusterRequest) CreateOrUpdateClusterPayload(createOrUpdateClusterPayload CreateOrUpdateClusterPayload) ApiCreateOrUpdateClusterRequest {
 	r.createOrUpdateClusterPayload = &createOrUpdateClusterPayload
 	return r

@@ -153,7 +153,6 @@ type ApiCreateInstanceRequest struct {
 	createInstancePayload *CreateInstancePayload
 }
 
-// func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 	r.createInstancePayload = &createInstancePayload
 	return r
@@ -295,7 +294,6 @@ type ApiCreateScrapeConfigRequest struct {
 	createScrapeConfigPayload *CreateScrapeConfigPayload
 }
 
-// func (r ApiCreateScrapeConfigRequest) CreateScrapeConfigPayload(createScrapeConfigPayload CreateScrapeConfigPayload) ApiCreateScrapeConfigRequest {
 func (r ApiCreateScrapeConfigRequest) CreateScrapeConfigPayload(createScrapeConfigPayload CreateScrapeConfigPayload) ApiCreateScrapeConfigRequest {
 	r.createScrapeConfigPayload = &createScrapeConfigPayload
 	return r
@@ -1725,7 +1723,6 @@ type ApiUpdateInstanceRequest struct {
 	updateInstancePayload *UpdateInstancePayload
 }
 
-// func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 	r.updateInstancePayload = &updateInstancePayload
 	return r
@@ -1872,7 +1869,6 @@ type ApiUpdateScrapeConfigRequest struct {
 	updateScrapeConfigPayload *UpdateScrapeConfigPayload
 }
 
-// func (r ApiUpdateScrapeConfigRequest) UpdateScrapeConfigPayload(updateScrapeConfigPayload UpdateScrapeConfigPayload) ApiUpdateScrapeConfigRequest {
 func (r ApiUpdateScrapeConfigRequest) UpdateScrapeConfigPayload(updateScrapeConfigPayload UpdateScrapeConfigPayload) ApiUpdateScrapeConfigRequest {
 	r.updateScrapeConfigPayload = &updateScrapeConfigPayload
 	return r
