@@ -1,10 +1,10 @@
-module github.com/stackitcloud/stackit-sdk-go/services/loadbalancer
+module github.com/stackitcloud/stackit-sdk-go/examples/loadbalancer
 
 go 1.18
 
 require (
-	github.com/google/go-cmp v0.5.9
 	github.com/stackitcloud/stackit-sdk-go/core v0.1.1
+	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v0.1.0
 )
 
 require (

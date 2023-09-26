@@ -6,6 +6,7 @@ use (
 	./examples/configuration
 	./examples/dns
 	./examples/errorhandling
+	./examples/loadbalancer
 	./examples/logme
 	./examples/mariadb
 	./examples/mongodbflex
