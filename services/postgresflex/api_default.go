@@ -32,7 +32,6 @@ type ApiCreateInstanceRequest struct {
 
 // Body
 
-// func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 	r.createInstancePayload = &createInstancePayload
 	return r
@@ -166,7 +165,6 @@ type ApiCreateUserRequest struct {
 
 // body
 
-// func (r ApiCreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
 func (r ApiCreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
 	r.createUserPayload = &createUserPayload
 	return r
@@ -1526,7 +1524,6 @@ type ApiGetVersionsRequest struct {
 
 // Instance ID
 
-// func (r ApiGetVersionsRequest) InstanceId(instanceId string) ApiGetVersionsRequest {
 func (r ApiGetVersionsRequest) InstanceId(instanceId string) ApiGetVersionsRequest {
 	r.instanceId = &instanceId
 	return r
@@ -1658,7 +1655,6 @@ type ApiUpdateBackupScheduleRequest struct {
 
 // Body
 
-// func (r ApiUpdateBackupScheduleRequest) UpdateBackupSchedulePayload(updateBackupSchedulePayload UpdateBackupSchedulePayload) ApiUpdateBackupScheduleRequest {
 func (r ApiUpdateBackupScheduleRequest) UpdateBackupSchedulePayload(updateBackupSchedulePayload UpdateBackupSchedulePayload) ApiUpdateBackupScheduleRequest {
 	r.updateBackupSchedulePayload = &updateBackupSchedulePayload
 	return r
@@ -1785,7 +1781,6 @@ type ApiUpdateInstanceRequest struct {
 
 // Body
 
-// func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 	r.updateInstancePayload = &updateInstancePayload
 	return r

@@ -8,6 +8,7 @@ use (
 	./examples/errorhandling
 	./examples/logme
 	./examples/mariadb
+	./examples/mongodbflex
 	./examples/opensearch
 	./examples/postgresflex
 	./examples/postgresql
@@ -18,6 +19,7 @@ use (
 	./examples/waiter
 	./services/argus
 	./services/dns
+	./services/loadbalancer
 	./services/logme
 	./services/mariadb
 	./services/mongodbflex
