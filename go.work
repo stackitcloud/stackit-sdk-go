@@ -19,6 +19,7 @@ use (
 	./examples/waiter
 	./services/argus
 	./services/dns
+	./services/loadbalancer
 	./services/logme
 	./services/mariadb
 	./services/mongodbflex
