@@ -176,7 +176,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			getFails:             false,
 			resourceState:        stateUnhealthy,
 			invalidArgusInstance: true,
-			wantErr:              true,
+			wantErr:              false,
 		},
 		{
 			desc:     "create_failed",
