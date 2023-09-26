@@ -190,7 +190,7 @@ func TestHandleError(t *testing.T) {
 	tests := []struct {
 		desc               string
 		reqErr             error
-		tempErroRetryLimit int
+		tempErrRetryLimit int
 		wantErr            bool
 	}{
 		{
