@@ -19,7 +19,7 @@ type Handler struct {
 	sleepBeforeWait   time.Duration
 	throttle          time.Duration
 	timeout           time.Duration
-	retryLimitTempErr int
+	tempErrRetryLimit int
 }
 
 // New creates a new Wait instance
@@ -29,7 +29,7 @@ func New(f WaitFn) *Handler {
 		sleepBeforeWait:   0 * time.Second,
 		throttle:          5 * time.Second,
 		timeout:           30 * time.Minute,
-		retryLimitTempErr: 10,
+		tempErrRetryLimit: 10,
 	}
 }
 
@@ -56,7 +56,7 @@ func (w *Handler) SetSleepBeforeWait(d time.Duration) *Handler {
 
 // SetRetryLimitTempErr sets the retry limit if a temporary error is found. The list of temporary errors is defined in the RetryHttpErrorStatusCodes variable
 func (w *Handler) SetRetryLimitTempErr(l int) *Handler {
-	w.retryLimitTempErr = l
+	w.tempErrRetryLimit = l
 	return w
 }
 
@@ -76,7 +76,7 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 	var retryTempErrorCounter = 0
 	for {
 		res, done, err = w.fn()
-		retryTempErrorCounter, err = handleError(retryTempErrorCounter, w.retryLimitTempErr, err)
+		retryTempErrorCounter, err = w.handleError(retryTempErrorCounter, err)
 		if err != nil {
 			return res, err
 		}
@@ -93,7 +93,7 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 	}
 }
 
-func handleError(retryTempErrorCounter, retryLimitTempErr int, err error) (int, error) {
+func (w *Handler) handleError(retryTempErrorCounter int, err error) (int, error) {
 	if err != nil {
 		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
@@ -102,7 +102,7 @@ func handleError(retryTempErrorCounter, retryLimitTempErr int, err error) (int, 
 		// Some APIs may return temporary errors and the request should be retried
 		if utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
 			retryTempErrorCounter++
-			if retryTempErrorCounter == retryLimitTempErr {
+			if retryTempErrorCounter == w.tempErrRetryLimit {
 				return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
 			}
 			return retryTempErrorCounter, nil
