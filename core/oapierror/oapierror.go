@@ -28,19 +28,18 @@ func (e GenericOpenAPIError) Error() string {
 
 	if len(e.Body) <= ApiErrorMaxCharacterLimit {
 		return fmt.Sprintf("%s, status code %d, Body: %s\n", e.ErrorMessage, e.StatusCode, string(e.Body))
-	} else {
-		indexStart := ApiErrorMaxCharacterLimit / 2
-		indexEnd := len(e.Body) - ApiErrorMaxCharacterLimit/2
-		numberTruncatedCharacters := indexEnd - indexStart
-		return fmt.Sprintf(
-			"%s, status code %d, Body: %s [...truncated %d characters...] %s",
-			e.ErrorMessage,
-			e.StatusCode,
-			string(e.Body[:indexStart]),
-			numberTruncatedCharacters,
-			string(e.Body[indexEnd:]),
-		)
 	}
+	indexStart := ApiErrorMaxCharacterLimit / 2
+	indexEnd := len(e.Body) - ApiErrorMaxCharacterLimit/2
+	numberTruncatedCharacters := indexEnd - indexStart
+	return fmt.Sprintf(
+		"%s, status code %d, Body: %s [...truncated %d characters...] %s",
+		e.ErrorMessage,
+		e.StatusCode,
+		string(e.Body[:indexStart]),
+		numberTruncatedCharacters,
+		string(e.Body[indexEnd:]),
+	)
 }
 
 // StatusCode returns the status code of the response

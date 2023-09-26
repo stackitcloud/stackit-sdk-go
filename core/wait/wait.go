@@ -106,9 +106,8 @@ func handleError(retryTempErrorCounter, retryLimitTempErr int, err error) (int, 
 				return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
 			}
 			return retryTempErrorCounter, nil
-		} else {
-			return retryTempErrorCounter, fmt.Errorf("executing wait function: %w", err)
 		}
+		return retryTempErrorCounter, fmt.Errorf("executing wait function: %w", err)
 	}
 	return retryTempErrorCounter, nil
 }
