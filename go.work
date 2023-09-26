@@ -23,6 +23,7 @@ use (
 	./services/logme
 	./services/mariadb
 	./services/mongodbflex
+	./services/objectstorage
 	./services/opensearch
 	./services/postgresflex
 	./services/postgresql
