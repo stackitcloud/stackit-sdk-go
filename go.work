@@ -9,6 +9,7 @@ use (
 	./examples/logme
 	./examples/mariadb
 	./examples/mongodbflex
+	./examples/objectstorage
 	./examples/opensearch
 	./examples/postgresflex
 	./examples/postgresql
