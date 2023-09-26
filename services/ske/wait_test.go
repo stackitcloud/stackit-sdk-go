@@ -33,7 +33,7 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 			Status: &ClusterStatus{
 				Aggregated: &rs,
 				Error: &RuntimeError{
-					Code:    utils.Ptr(string(invalidArgusInstanceErrorCode)),
+					Code:    utils.Ptr(string(InvalidArgusInstanceErrorCode)),
 					Message: utils.Ptr("invalid argus instance"),
 				},
 			},

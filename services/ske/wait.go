@@ -58,7 +58,7 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 		// The exception is when providing an invalid argus instance id, in that case the cluster will stay as "Impaired" until the SKE team solves it, but it is still usable.
 		// In this caseand the waiter should succeed and in the terraform provider add a warning
 		if state == stateUnhealthy {
-			if s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == invalidArgusInstanceErrorCode {
+			if s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == InvalidArgusInstanceErrorCode {
 				return nil, true, nil
 			}
 		}
