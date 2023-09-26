@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
 var RetryHttpErrorStatusCodes = []int{http.StatusBadGateway, http.StatusGatewayTimeout}
@@ -12,19 +15,21 @@ var RetryHttpErrorStatusCodes = []int{http.StatusBadGateway, http.StatusGatewayT
 type WaitFn func() (res interface{}, done bool, err error)
 
 type Handler struct {
-	fn              WaitFn
-	sleepBeforeWait time.Duration
-	throttle        time.Duration
-	timeout         time.Duration
+	fn                WaitFn
+	sleepBeforeWait   time.Duration
+	throttle          time.Duration
+	timeout           time.Duration
+	tempErrRetryLimit int
 }
 
 // New creates a new Wait instance
 func New(f WaitFn) *Handler {
 	return &Handler{
-		fn:              f,
-		sleepBeforeWait: 0 * time.Second,
-		throttle:        5 * time.Second,
-		timeout:         30 * time.Minute,
+		fn:                f,
+		sleepBeforeWait:   0 * time.Second,
+		throttle:          5 * time.Second,
+		timeout:           30 * time.Minute,
+		tempErrRetryLimit: 10,
 	}
 }
 
@@ -49,6 +54,12 @@ func (w *Handler) SetSleepBeforeWait(d time.Duration) *Handler {
 	return w
 }
 
+// SetRetryLimitTempErr sets the retry limit if a temporary error is found. The list of temporary errors is defined in the RetryHttpErrorStatusCodes variable
+func (w *Handler) SetRetryLimitTempErr(l int) *Handler {
+	w.tempErrRetryLimit = l
+	return w
+}
+
 // WaitWithContext starts the wait until there's an error or wait is done
 func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err error) {
 	var done bool
@@ -62,10 +73,12 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 	ticker := time.NewTicker(w.throttle)
 	defer ticker.Stop()
 
+	var retryTempErrorCounter = 0
 	for {
 		res, done, err = w.fn()
+		retryTempErrorCounter, err = w.handleError(retryTempErrorCounter, err)
 		if err != nil {
-			return res, fmt.Errorf("executing wait function: %w", err)
+			return res, err
 		}
 		if done {
 			return res, nil
@@ -78,4 +91,23 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 			return res, fmt.Errorf("WaitWithContext() has timed out")
 		}
 	}
+}
+
+func (w *Handler) handleError(retryTempErrorCounter int, err error) (int, error) {
+	if err != nil {
+		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return retryTempErrorCounter, fmt.Errorf("could not convert error to GenericOpenApiError, %w", err)
+		}
+		// Some APIs may return temporary errors and the request should be retried
+		if utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
+			retryTempErrorCounter++
+			if retryTempErrorCounter == w.tempErrRetryLimit {
+				return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
+			}
+			return retryTempErrorCounter, nil
+		}
+		return retryTempErrorCounter, fmt.Errorf("executing wait function: %w", err)
+	}
+	return retryTempErrorCounter, nil
 }
