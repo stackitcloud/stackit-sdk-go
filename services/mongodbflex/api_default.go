@@ -33,7 +33,6 @@ type ApiCloneInstanceRequest struct {
 
 // payload
 
-// func (r ApiCloneInstanceRequest) CloneInstancePayload(cloneInstancePayload CloneInstancePayload) ApiCloneInstanceRequest {
 func (r ApiCloneInstanceRequest) CloneInstancePayload(cloneInstancePayload CloneInstancePayload) ApiCloneInstanceRequest {
 	r.cloneInstancePayload = &cloneInstancePayload
 	return r
@@ -181,7 +180,6 @@ type ApiCreateInstanceRequest struct {
 
 // payload
 
-// func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 	r.createInstancePayload = &createInstancePayload
 	return r
@@ -336,7 +334,6 @@ type ApiCreateUserRequest struct {
 
 // payload
 
-// func (r ApiCreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
 func (r ApiCreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
 	r.createUserPayload = &createUserPayload
 	return r
@@ -1162,7 +1159,6 @@ type ApiGetCPUMetricsRequest struct {
 
 // granularity
 
-// func (r ApiGetCPUMetricsRequest) Granularity(granularity string) ApiGetCPUMetricsRequest {
 func (r ApiGetCPUMetricsRequest) Granularity(granularity string) ApiGetCPUMetricsRequest {
 	r.granularity = &granularity
 	return r
@@ -1170,7 +1166,6 @@ func (r ApiGetCPUMetricsRequest) Granularity(granularity string) ApiGetCPUMetric
 
 // period
 
-// func (r ApiGetCPUMetricsRequest) Period(period string) ApiGetCPUMetricsRequest {
 func (r ApiGetCPUMetricsRequest) Period(period string) ApiGetCPUMetricsRequest {
 	r.period = &period
 	return r
@@ -1178,7 +1173,6 @@ func (r ApiGetCPUMetricsRequest) Period(period string) ApiGetCPUMetricsRequest {
 
 // period start
 
-// func (r ApiGetCPUMetricsRequest) Start(start string) ApiGetCPUMetricsRequest {
 func (r ApiGetCPUMetricsRequest) Start(start string) ApiGetCPUMetricsRequest {
 	r.start = &start
 	return r
@@ -1186,7 +1180,6 @@ func (r ApiGetCPUMetricsRequest) Start(start string) ApiGetCPUMetricsRequest {
 
 // period end
 
-// func (r ApiGetCPUMetricsRequest) End(end string) ApiGetCPUMetricsRequest {
 func (r ApiGetCPUMetricsRequest) End(end string) ApiGetCPUMetricsRequest {
 	r.end = &end
 	return r
@@ -1356,7 +1349,6 @@ type ApiGetDatabaseStorageMetricsRequest struct {
 
 // granularity
 
-// func (r ApiGetDatabaseStorageMetricsRequest) Granularity(granularity string) ApiGetDatabaseStorageMetricsRequest {
 func (r ApiGetDatabaseStorageMetricsRequest) Granularity(granularity string) ApiGetDatabaseStorageMetricsRequest {
 	r.granularity = &granularity
 	return r
@@ -1364,7 +1356,6 @@ func (r ApiGetDatabaseStorageMetricsRequest) Granularity(granularity string) Api
 
 // period
 
-// func (r ApiGetDatabaseStorageMetricsRequest) Period(period string) ApiGetDatabaseStorageMetricsRequest {
 func (r ApiGetDatabaseStorageMetricsRequest) Period(period string) ApiGetDatabaseStorageMetricsRequest {
 	r.period = &period
 	return r
@@ -1372,7 +1363,6 @@ func (r ApiGetDatabaseStorageMetricsRequest) Period(period string) ApiGetDatabas
 
 // period start
 
-// func (r ApiGetDatabaseStorageMetricsRequest) Start(start string) ApiGetDatabaseStorageMetricsRequest {
 func (r ApiGetDatabaseStorageMetricsRequest) Start(start string) ApiGetDatabaseStorageMetricsRequest {
 	r.start = &start
 	return r
@@ -1380,7 +1370,6 @@ func (r ApiGetDatabaseStorageMetricsRequest) Start(start string) ApiGetDatabaseS
 
 // period end
 
-// func (r ApiGetDatabaseStorageMetricsRequest) End(end string) ApiGetDatabaseStorageMetricsRequest {
 func (r ApiGetDatabaseStorageMetricsRequest) End(end string) ApiGetDatabaseStorageMetricsRequest {
 	r.end = &end
 	return r
@@ -1550,7 +1539,6 @@ type ApiGetDiskIOPSMetricsRequest struct {
 
 // granularity
 
-// func (r ApiGetDiskIOPSMetricsRequest) Granularity(granularity string) ApiGetDiskIOPSMetricsRequest {
 func (r ApiGetDiskIOPSMetricsRequest) Granularity(granularity string) ApiGetDiskIOPSMetricsRequest {
 	r.granularity = &granularity
 	return r
@@ -1558,7 +1546,6 @@ func (r ApiGetDiskIOPSMetricsRequest) Granularity(granularity string) ApiGetDisk
 
 // period
 
-// func (r ApiGetDiskIOPSMetricsRequest) Period(period string) ApiGetDiskIOPSMetricsRequest {
 func (r ApiGetDiskIOPSMetricsRequest) Period(period string) ApiGetDiskIOPSMetricsRequest {
 	r.period = &period
 	return r
@@ -1566,7 +1553,6 @@ func (r ApiGetDiskIOPSMetricsRequest) Period(period string) ApiGetDiskIOPSMetric
 
 // period start
 
-// func (r ApiGetDiskIOPSMetricsRequest) Start(start string) ApiGetDiskIOPSMetricsRequest {
 func (r ApiGetDiskIOPSMetricsRequest) Start(start string) ApiGetDiskIOPSMetricsRequest {
 	r.start = &start
 	return r
@@ -1574,7 +1560,6 @@ func (r ApiGetDiskIOPSMetricsRequest) Start(start string) ApiGetDiskIOPSMetricsR
 
 // period end
 
-// func (r ApiGetDiskIOPSMetricsRequest) End(end string) ApiGetDiskIOPSMetricsRequest {
 func (r ApiGetDiskIOPSMetricsRequest) End(end string) ApiGetDiskIOPSMetricsRequest {
 	r.end = &end
 	return r
@@ -1744,7 +1729,6 @@ type ApiGetDiskUsageMetricsRequest struct {
 
 // granularity
 
-// func (r ApiGetDiskUsageMetricsRequest) Granularity(granularity string) ApiGetDiskUsageMetricsRequest {
 func (r ApiGetDiskUsageMetricsRequest) Granularity(granularity string) ApiGetDiskUsageMetricsRequest {
 	r.granularity = &granularity
 	return r
@@ -1752,7 +1736,6 @@ func (r ApiGetDiskUsageMetricsRequest) Granularity(granularity string) ApiGetDis
 
 // period
 
-// func (r ApiGetDiskUsageMetricsRequest) Period(period string) ApiGetDiskUsageMetricsRequest {
 func (r ApiGetDiskUsageMetricsRequest) Period(period string) ApiGetDiskUsageMetricsRequest {
 	r.period = &period
 	return r
@@ -1760,7 +1743,6 @@ func (r ApiGetDiskUsageMetricsRequest) Period(period string) ApiGetDiskUsageMetr
 
 // period start
 
-// func (r ApiGetDiskUsageMetricsRequest) Start(start string) ApiGetDiskUsageMetricsRequest {
 func (r ApiGetDiskUsageMetricsRequest) Start(start string) ApiGetDiskUsageMetricsRequest {
 	r.start = &start
 	return r
@@ -1768,7 +1750,6 @@ func (r ApiGetDiskUsageMetricsRequest) Start(start string) ApiGetDiskUsageMetric
 
 // period end
 
-// func (r ApiGetDiskUsageMetricsRequest) End(end string) ApiGetDiskUsageMetricsRequest {
 func (r ApiGetDiskUsageMetricsRequest) End(end string) ApiGetDiskUsageMetricsRequest {
 	r.end = &end
 	return r
@@ -1938,7 +1919,6 @@ type ApiGetExecutionTimesMetricsRequest struct {
 
 // granularity
 
-// func (r ApiGetExecutionTimesMetricsRequest) Granularity(granularity string) ApiGetExecutionTimesMetricsRequest {
 func (r ApiGetExecutionTimesMetricsRequest) Granularity(granularity string) ApiGetExecutionTimesMetricsRequest {
 	r.granularity = &granularity
 	return r
@@ -1946,7 +1926,6 @@ func (r ApiGetExecutionTimesMetricsRequest) Granularity(granularity string) ApiG
 
 // period
 
-// func (r ApiGetExecutionTimesMetricsRequest) Period(period string) ApiGetExecutionTimesMetricsRequest {
 func (r ApiGetExecutionTimesMetricsRequest) Period(period string) ApiGetExecutionTimesMetricsRequest {
 	r.period = &period
 	return r
@@ -1954,7 +1933,6 @@ func (r ApiGetExecutionTimesMetricsRequest) Period(period string) ApiGetExecutio
 
 // period start
 
-// func (r ApiGetExecutionTimesMetricsRequest) Start(start string) ApiGetExecutionTimesMetricsRequest {
 func (r ApiGetExecutionTimesMetricsRequest) Start(start string) ApiGetExecutionTimesMetricsRequest {
 	r.start = &start
 	return r
@@ -1962,7 +1940,6 @@ func (r ApiGetExecutionTimesMetricsRequest) Start(start string) ApiGetExecutionT
 
 // period end
 
-// func (r ApiGetExecutionTimesMetricsRequest) End(end string) ApiGetExecutionTimesMetricsRequest {
 func (r ApiGetExecutionTimesMetricsRequest) End(end string) ApiGetExecutionTimesMetricsRequest {
 	r.end = &end
 	return r
@@ -2525,7 +2502,6 @@ type ApiGetInstancesRequest struct {
 
 // instance tag
 
-// func (r ApiGetInstancesRequest) Tag(tag string) ApiGetInstancesRequest {
 func (r ApiGetInstancesRequest) Tag(tag string) ApiGetInstancesRequest {
 	r.tag = &tag
 	return r
@@ -2672,7 +2648,6 @@ type ApiGetMemoryMetricsRequest struct {
 
 // instance id
 
-// func (r ApiGetMemoryMetricsRequest) InstanceId2(instanceId2 string) ApiGetMemoryMetricsRequest {
 func (r ApiGetMemoryMetricsRequest) InstanceId2(instanceId2 string) ApiGetMemoryMetricsRequest {
 	r.instanceId2 = &instanceId2
 	return r
@@ -2680,7 +2655,6 @@ func (r ApiGetMemoryMetricsRequest) InstanceId2(instanceId2 string) ApiGetMemory
 
 // granularity
 
-// func (r ApiGetMemoryMetricsRequest) Granularity(granularity string) ApiGetMemoryMetricsRequest {
 func (r ApiGetMemoryMetricsRequest) Granularity(granularity string) ApiGetMemoryMetricsRequest {
 	r.granularity = &granularity
 	return r
@@ -2688,7 +2662,6 @@ func (r ApiGetMemoryMetricsRequest) Granularity(granularity string) ApiGetMemory
 
 // period
 
-// func (r ApiGetMemoryMetricsRequest) Period(period string) ApiGetMemoryMetricsRequest {
 func (r ApiGetMemoryMetricsRequest) Period(period string) ApiGetMemoryMetricsRequest {
 	r.period = &period
 	return r
@@ -2696,7 +2669,6 @@ func (r ApiGetMemoryMetricsRequest) Period(period string) ApiGetMemoryMetricsReq
 
 // period start
 
-// func (r ApiGetMemoryMetricsRequest) Start(start string) ApiGetMemoryMetricsRequest {
 func (r ApiGetMemoryMetricsRequest) Start(start string) ApiGetMemoryMetricsRequest {
 	r.start = &start
 	return r
@@ -2704,7 +2676,6 @@ func (r ApiGetMemoryMetricsRequest) Start(start string) ApiGetMemoryMetricsReque
 
 // period end
 
-// func (r ApiGetMemoryMetricsRequest) End(end string) ApiGetMemoryMetricsRequest {
 func (r ApiGetMemoryMetricsRequest) End(end string) ApiGetMemoryMetricsRequest {
 	r.end = &end
 	return r
@@ -3400,7 +3371,6 @@ type ApiPartialUpdateInstanceRequest struct {
 
 // payload
 
-// func (r ApiPartialUpdateInstanceRequest) PartialUpdateInstancePayload(partialUpdateInstancePayload PartialUpdateInstancePayload) ApiPartialUpdateInstanceRequest {
 func (r ApiPartialUpdateInstanceRequest) PartialUpdateInstancePayload(partialUpdateInstancePayload PartialUpdateInstancePayload) ApiPartialUpdateInstanceRequest {
 	r.partialUpdateInstancePayload = &partialUpdateInstancePayload
 	return r
@@ -3571,7 +3541,6 @@ type ApiPartialUpdateUserRequest struct {
 
 // payload
 
-// func (r ApiPartialUpdateUserRequest) PartialUpdateUserPayload(partialUpdateUserPayload PartialUpdateUserPayload) ApiPartialUpdateUserRequest {
 func (r ApiPartialUpdateUserRequest) PartialUpdateUserPayload(partialUpdateUserPayload PartialUpdateUserPayload) ApiPartialUpdateUserRequest {
 	r.partialUpdateUserPayload = &partialUpdateUserPayload
 	return r
@@ -3862,7 +3831,6 @@ type ApiRestoreInstanceRequest struct {
 
 // payload
 
-// func (r ApiRestoreInstanceRequest) RestoreInstancePayload(restoreInstancePayload RestoreInstancePayload) ApiRestoreInstanceRequest {
 func (r ApiRestoreInstanceRequest) RestoreInstancePayload(restoreInstancePayload RestoreInstancePayload) ApiRestoreInstanceRequest {
 	r.restoreInstancePayload = &restoreInstancePayload
 	return r
@@ -4010,7 +3978,6 @@ type ApiUpdateBackupScheduleRequest struct {
 
 // payload
 
-// func (r ApiUpdateBackupScheduleRequest) UpdateBackupSchedulePayload(updateBackupSchedulePayload UpdateBackupSchedulePayload) ApiUpdateBackupScheduleRequest {
 func (r ApiUpdateBackupScheduleRequest) UpdateBackupSchedulePayload(updateBackupSchedulePayload UpdateBackupSchedulePayload) ApiUpdateBackupScheduleRequest {
 	r.updateBackupSchedulePayload = &updateBackupSchedulePayload
 	return r
@@ -4158,7 +4125,6 @@ type ApiUpdateInstanceRequest struct {
 
 // payload
 
-// func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 	r.updateInstancePayload = &updateInstancePayload
 	return r
@@ -4329,7 +4295,6 @@ type ApiUpdateUserRequest struct {
 
 // payload
 
-// func (r ApiUpdateUserRequest) UpdateUserPayload(updateUserPayload UpdateUserPayload) ApiUpdateUserRequest {
 func (r ApiUpdateUserRequest) UpdateUserPayload(updateUserPayload UpdateUserPayload) ApiUpdateUserRequest {
 	r.updateUserPayload = &updateUserPayload
 	return r
