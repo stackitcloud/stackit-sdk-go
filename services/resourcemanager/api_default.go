@@ -30,7 +30,6 @@ type ApiCreateProjectRequest struct {
 	createProjectPayload *CreateProjectPayload
 }
 
-// func (r ApiCreateProjectRequest) CreateProjectPayload(createProjectPayload CreateProjectPayload) ApiCreateProjectRequest {
 func (r ApiCreateProjectRequest) CreateProjectPayload(createProjectPayload CreateProjectPayload) ApiCreateProjectRequest {
 	r.createProjectPayload = &createProjectPayload
 	return r
@@ -286,7 +285,6 @@ type ApiGetProjectRequest struct {
 	includeParents *bool
 }
 
-// func (r ApiGetProjectRequest) IncludeParents(includeParents bool) ApiGetProjectRequest {
 func (r ApiGetProjectRequest) IncludeParents(includeParents bool) ApiGetProjectRequest {
 	r.includeParents = &includeParents
 	return r
@@ -431,7 +429,6 @@ type ApiGetProjectsRequest struct {
 
 // Identifier of the parent resource container - containerId as well as UUID identifier is supported.
 
-// func (r ApiGetProjectsRequest) ContainerParentId(containerParentId string) ApiGetProjectsRequest {
 func (r ApiGetProjectsRequest) ContainerParentId(containerParentId string) ApiGetProjectsRequest {
 	r.containerParentId = &containerParentId
 	return r
@@ -439,7 +436,6 @@ func (r ApiGetProjectsRequest) ContainerParentId(containerParentId string) ApiGe
 
 // List of container identifiers - containerId as well as UUID identifier is supported.
 
-// func (r ApiGetProjectsRequest) ContainerIds(containerIds []string) ApiGetProjectsRequest {
 func (r ApiGetProjectsRequest) ContainerIds(containerIds []string) ApiGetProjectsRequest {
 	r.containerIds = &containerIds
 	return r
@@ -447,7 +443,6 @@ func (r ApiGetProjectsRequest) ContainerIds(containerIds []string) ApiGetProject
 
 // E-Mail address of the user for whom the visible resource containers should be filtered.
 
-// func (r ApiGetProjectsRequest) Member(member string) ApiGetProjectsRequest {
 func (r ApiGetProjectsRequest) Member(member string) ApiGetProjectsRequest {
 	r.member = &member
 	return r
@@ -455,7 +450,6 @@ func (r ApiGetProjectsRequest) Member(member string) ApiGetProjectsRequest {
 
 // The offset of the first item in the collection to return.
 
-// func (r ApiGetProjectsRequest) Offset(offset float32) ApiGetProjectsRequest {
 func (r ApiGetProjectsRequest) Offset(offset float32) ApiGetProjectsRequest {
 	r.offset = &offset
 	return r
@@ -463,7 +457,6 @@ func (r ApiGetProjectsRequest) Offset(offset float32) ApiGetProjectsRequest {
 
 // The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
 
-// func (r ApiGetProjectsRequest) Limit(limit float32) ApiGetProjectsRequest {
 func (r ApiGetProjectsRequest) Limit(limit float32) ApiGetProjectsRequest {
 	r.limit = &limit
 	return r
@@ -471,7 +464,6 @@ func (r ApiGetProjectsRequest) Limit(limit float32) ApiGetProjectsRequest {
 
 // A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
 
-// func (r ApiGetProjectsRequest) CreationTimeStart(creationTimeStart time.Time) ApiGetProjectsRequest {
 func (r ApiGetProjectsRequest) CreationTimeStart(creationTimeStart time.Time) ApiGetProjectsRequest {
 	r.creationTimeStart = &creationTimeStart
 	return r
@@ -649,7 +641,6 @@ type ApiUpdateProjectRequest struct {
 	updateProjectPayload *UpdateProjectPayload
 }
 
-// func (r ApiUpdateProjectRequest) UpdateProjectPayload(updateProjectPayload UpdateProjectPayload) ApiUpdateProjectRequest {
 func (r ApiUpdateProjectRequest) UpdateProjectPayload(updateProjectPayload UpdateProjectPayload) ApiUpdateProjectRequest {
 	r.updateProjectPayload = &updateProjectPayload
 	return r

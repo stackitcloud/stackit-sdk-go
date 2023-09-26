@@ -155,7 +155,6 @@ type ApiCreateInstanceRequest struct {
 
 // Parameters for the requested service instance provision
 
-// func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 	r.createInstancePayload = &createInstancePayload
 	return r
@@ -1150,7 +1149,6 @@ type ApiUpdateInstanceRequest struct {
 
 // Parameters for the requested update operation on service instance - sgw acl update, plan upgrade
 
-// func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 	r.updateInstancePayload = &updateInstancePayload
 	return r
