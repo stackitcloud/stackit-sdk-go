@@ -174,7 +174,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 		{
 			desc:                 "unhealthy_cluster",
 			getFails:             false,
-			resourceState:        stateUnhealthy,
+			resourceState:        StateUnhealthy,
 			invalidArgusInstance: true,
 			wantErr:              false,
 		},
@@ -252,7 +252,7 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: stateCreated,
+			resourceState: StateCreated,
 			wantErr:       false,
 		},
 		{

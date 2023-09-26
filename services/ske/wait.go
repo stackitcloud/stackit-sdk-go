@@ -14,8 +14,8 @@ const (
 	StateHibernated               = "STATE_HIBERNATED"
 	StateFailed                   = "STATE_FAILED"
 	StateDeleting                 = "STATE_DELETING"
-	stateCreated                  = "STATE_CREATED"
-	stateUnhealthy                = "STATE_UNHEALTHY"
+	StateCreated                  = "STATE_CREATED"
+	StateUnhealthy                = "STATE_UNHEALTHY"
 	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
@@ -56,7 +56,7 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 		// The state "STATE_UNHEALTHY" (aka "Impaired" in the portal) could be temporarily occur during cluster creation and the system is recovering usually, so it is not considered as a failed state here.
 		// -- alignment meeting with SKE team on 4.8.23
 		// The exception is when providing an invalid argus instance id, in that case the cluster will stay as "Impaired" until the SKE team solves it, but it is still usable.
-		if state == stateUnhealthy && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == InvalidArgusInstanceErrorCode {
+		if state == StateUnhealthy && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == InvalidArgusInstanceErrorCode {
 			return s, true, nil
 		}
 
@@ -96,7 +96,7 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 		switch state {
 		case StateDeleting, StateFailed:
 			return nil, false, fmt.Errorf("received state: %s for project Id: %s", state, projectId)
-		case stateCreated:
+		case StateCreated:
 			return s, true, nil
 		}
 		return s, false, nil
