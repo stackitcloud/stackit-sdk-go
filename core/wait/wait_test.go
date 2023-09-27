@@ -21,7 +21,11 @@ func TestNew(t *testing.T) {
 		args args
 		want *Handler
 	}{
+<<<<<<< HEAD
 		{"ok", args{simple}, &Handler{fn: simple, throttle: 5 * time.Second, retryLimitTempErr: 10}},
+=======
+		{"ok", args{simple}, &Handler{fn: simple, throttle: 5 * time.Second, tempErrRetryLimit: 10}},
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -32,7 +36,7 @@ func TestNew(t *testing.T) {
 	}
 }
 
-func TestWait_SetThrottle(t *testing.T) {
+func TestSetThrottle(t *testing.T) {
 	simple := func() (res interface{}, done bool, err error) { return nil, true, nil }
 	type args struct {
 		d time.Duration
@@ -61,7 +65,11 @@ func TestWait_SetThrottle(t *testing.T) {
 	}
 }
 
+<<<<<<< HEAD
 func TestWait_SetSleepBeforeWait(t *testing.T) {
+=======
+func TestSetSleepBeforeWait(t *testing.T) {
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 	f := &Handler{
 		sleepBeforeWait: 1 * time.Minute,
 	}
@@ -92,7 +100,11 @@ func TestWait_SetSleepBeforeWait(t *testing.T) {
 	}
 }
 
+<<<<<<< HEAD
 func TestWaitWithCtx_Run(t *testing.T) {
+=======
+func TestWaitWithContext(t *testing.T) {
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
 	defer cancel()
 
@@ -100,7 +112,11 @@ func TestWaitWithCtx_Run(t *testing.T) {
 		fn                WaitFn
 		throttle          time.Duration
 		timeout           time.Duration
+<<<<<<< HEAD
 		retryLimitTempErr int
+=======
+		tempErrRetryLimit int
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 	}
 	tests := []struct {
 		name     string
@@ -112,7 +128,11 @@ func TestWaitWithCtx_Run(t *testing.T) {
 			return nil, true, nil
 		}}, true, false},
 
+<<<<<<< HEAD
 		{"ok 2", fields{throttle: 200 * time.Millisecond, timeout: 1 * time.Hour, retryLimitTempErr: 5, fn: func() (res interface{}, done bool, err error) {
+=======
+		{"ok 2", fields{throttle: 200 * time.Millisecond, timeout: 1 * time.Hour, tempErrRetryLimit: 5, fn: func() (res interface{}, done bool, err error) {
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 			if ctx.Err() == nil {
 				return nil, false, nil
 			}
@@ -141,7 +161,11 @@ func TestWaitWithCtx_Run(t *testing.T) {
 				fn:                tt.fields.fn,
 				throttle:          tt.fields.throttle,
 				timeout:           tt.fields.timeout,
+<<<<<<< HEAD
 				retryLimitTempErr: tt.fields.retryLimitTempErr,
+=======
+				tempErrRetryLimit: tt.fields.tempErrRetryLimit,
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 			}
 			_, err := w.WaitWithContext(context.Background())
 			if (err != nil) != tt.wantErr {
@@ -152,7 +176,7 @@ func TestWaitWithCtx_Run(t *testing.T) {
 	}
 }
 
-func TestWait_SetTimeout(t *testing.T) {
+func TestSetTimeout(t *testing.T) {
 	f := &Handler{
 		throttle: 5 * time.Second,
 		timeout:  5 * time.Hour,
@@ -188,16 +212,24 @@ func TestWait_SetTimeout(t *testing.T) {
 
 func TestHandleError(t *testing.T) {
 	tests := []struct {
+<<<<<<< HEAD
 		desc                string
 		reqErr              error
 		retryLimitTempError int
 		wantErr             bool
+=======
+		desc              string
+		reqErr            error
+		tempErrRetryLimit int
+		wantErr           bool
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 	}{
 		{
 			desc: "handle_oapi_error",
 			reqErr: &oapiError.GenericOpenAPIError{
 				StatusCode: http.StatusInternalServerError,
 			},
+<<<<<<< HEAD
 			retryLimitTempError: 5,
 			wantErr:             true,
 		},
@@ -206,35 +238,67 @@ func TestHandleError(t *testing.T) {
 			reqErr:              fmt.Errorf("some error"),
 			retryLimitTempError: 5,
 			wantErr:             true,
+=======
+			tempErrRetryLimit: 5,
+			wantErr:           true,
+		},
+		{
+			desc:              "not_generic_oapi_error",
+			reqErr:            fmt.Errorf("some error"),
+			tempErrRetryLimit: 5,
+			wantErr:           true,
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 		},
 		{
 			desc: "bad_gateway_error",
 			reqErr: &oapiError.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
+<<<<<<< HEAD
 			retryLimitTempError: 5,
 			wantErr:             false,
+=======
+			tempErrRetryLimit: 5,
+			wantErr:           false,
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 		},
 		{
 			desc: "gateway_timeout_error",
 			reqErr: &oapiError.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
+<<<<<<< HEAD
 			retryLimitTempError: 5,
 			wantErr:             false,
+=======
+			tempErrRetryLimit: 5,
+			wantErr:           false,
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 		},
 		{
 			desc: "temp_error_retry_limit_reached",
 			reqErr: &oapiError.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
+<<<<<<< HEAD
 			retryLimitTempError: 1,
 			wantErr:             true,
+=======
+			tempErrRetryLimit: 1,
+			wantErr:           true,
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
+<<<<<<< HEAD
 			_, err := handleError(0, tt.retryLimitTempError, tt.reqErr)
+=======
+			w := &Handler{
+				tempErrRetryLimit: tt.tempErrRetryLimit,
+			}
+			_, err := w.handleError(0, tt.reqErr)
+>>>>>>> 38270d7de1ef13009da0d026f6f838419532afb2
 			if (err != nil) != tt.wantErr {
 				t.Errorf("handleError() error = %v, wantErr %v", err, tt.wantErr)
 				return

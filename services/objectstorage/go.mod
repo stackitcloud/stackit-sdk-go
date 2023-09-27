@@ -1,4 +1,4 @@
-module github.com/stackitcloud/stackit-sdk-go/services/loadbalancer
+module github.com/stackitcloud/stackit-sdk-go/services/objectstorage
 
 go 1.18
 
