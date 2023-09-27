@@ -19,6 +19,8 @@ import (
 	"reflect"
 	"strings"
 	"time"
+
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
 // DefaultApiService DefaultApi service
@@ -45,7 +47,7 @@ func (r ApiCreateProjectRequest) Execute() (*ProjectResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateProject")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects"
@@ -91,52 +93,52 @@ func (r ApiCreateProjectRequest) Execute() (*ProjectResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -184,7 +186,7 @@ func (r ApiDeleteProjectRequest) Execute() error {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteProject")
 	if err != nil {
-		return &GenericOpenAPIError{error: err.Error()}
+		return &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{containerId}"
@@ -229,20 +231,20 @@ func (r ApiDeleteProjectRequest) Execute() error {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return newErr
 	}
@@ -300,7 +302,7 @@ func (r ApiGetProjectRequest) Execute() (*ProjectResponseWithParents, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetProject")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{containerId}"
@@ -348,41 +350,41 @@ func (r ApiGetProjectRequest) Execute() (*ProjectResponseWithParents, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -479,7 +481,7 @@ func (r ApiGetProjectsRequest) Execute() (*AllProjectsResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetProjects")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects"
@@ -549,52 +551,52 @@ func (r ApiGetProjectsRequest) Execute() (*AllProjectsResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -656,7 +658,7 @@ func (r ApiUpdateProjectRequest) Execute() (*ProjectResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateProject")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{containerId}"
@@ -703,52 +705,52 @@ func (r ApiUpdateProjectRequest) Execute() (*ProjectResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}

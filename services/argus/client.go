@@ -15,7 +15,6 @@ import (
 	"context"
 	"encoding/json"
 	"encoding/xml"
-	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -34,11 +33,6 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/auth"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-)
-
-var (
-	// When a response has a bad status, this limits the number of characters that are shown from the response body
-	ApiErrorMaxCharacterLimit = 500
 )
 
 var (
@@ -325,7 +319,7 @@ func (c *APIClient) prepareRequest(
 	// add form parameters and file if available.
 	if strings.HasPrefix(headerParams["Content-Type"], "multipart/form-data") && len(formParams) > 0 || (len(formFiles) > 0) {
 		if body != nil {
-			return nil, errors.New("Cannot specify postBody and multipart form at the same time.")
+			return nil, fmt.Errorf("cannot specify postBody and multipart form at the same time.")
 		}
 		body = &bytes.Buffer{}
 		w := multipart.NewWriter(body)
@@ -366,7 +360,7 @@ func (c *APIClient) prepareRequest(
 
 	if strings.HasPrefix(headerParams["Content-Type"], "application/x-www-form-urlencoded") && len(formParams) > 0 {
 		if body != nil {
-			return nil, errors.New("Cannot specify postBody and x-www-form-urlencoded form at the same time.")
+			return nil, fmt.Errorf("cannot specify postBody and x-www-form-urlencoded form at the same time.")
 		}
 		body = &bytes.Buffer{}
 		body.WriteString(formParams.Encode())
@@ -486,14 +480,14 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 					return err
 				}
 			} else {
-				return errors.New("Unknown type with GetActualInstance but no unmarshalObj.UnmarshalJSON defined")
+				return fmt.Errorf("unknown type with GetActualInstance but no unmarshalObj.UnmarshalJSON defined")
 			}
 		} else if err = json.Unmarshal(b, v); err != nil { // simple model
 			return err
 		}
 		return nil
 	}
-	return errors.New("undefined response type")
+	return fmt.Errorf("undefined response type")
 }
 
 // Add a file to the multipart request
@@ -550,7 +544,7 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	}
 
 	if bodyBuf.Len() == 0 {
-		err = fmt.Errorf("invalid body type %s\n", contentType)
+		err = fmt.Errorf("invalid body type %s", contentType)
 		return nil, err
 	}
 	return bodyBuf, nil
@@ -629,74 +623,4 @@ func CacheExpires(r *http.Response) time.Time {
 
 func strlen(s string) int {
 	return utf8.RuneCountInString(s)
-}
-
-// GenericOpenAPIError Provides access to the body, error and model on returned errors.
-type GenericOpenAPIError struct {
-	statusCode int
-	body       []byte
-	error      string
-	model      interface{}
-}
-
-// Error returns non-empty string if there was an error.
-func (e GenericOpenAPIError) Error() string {
-	// Prevent panic in case of negative value
-	if ApiErrorMaxCharacterLimit < 0 {
-		ApiErrorMaxCharacterLimit = 500
-	}
-
-	if len(e.body) <= ApiErrorMaxCharacterLimit {
-		return fmt.Sprintf("%s, status code %d, body: %s\n", e.error, e.statusCode, string(e.body))
-	} else {
-		indexStart := ApiErrorMaxCharacterLimit / 2
-		indexEnd := len(e.body) - ApiErrorMaxCharacterLimit/2
-		numberTruncatedCharacters := indexEnd - indexStart
-		return fmt.Sprintf(
-			"%s, status code %d, body: %s [...truncated %d characters...] %s",
-			e.error,
-			e.statusCode,
-			string(e.body[:indexStart]),
-			numberTruncatedCharacters,
-			string(e.body[indexEnd:]),
-		)
-	}
-}
-
-// StatusCode returns the status code of the response
-func (e GenericOpenAPIError) StatusCode() int {
-	return e.statusCode
-}
-
-// Body returns the raw bytes of the response
-func (e GenericOpenAPIError) Body() []byte {
-	return e.body
-}
-
-// Model returns the unpacked model of the error
-func (e GenericOpenAPIError) Model() interface{} {
-	return e.model
-}
-
-// format error message using title and detail when model implements rfc7807
-func formatErrorMessage(status string, v interface{}) string {
-	str := ""
-	metaValue := reflect.ValueOf(v).Elem()
-	switch metaValue.Kind() {
-	case reflect.Map:
-		return status
-	case reflect.Struct:
-		field := metaValue.FieldByName("Title")
-		if field != (reflect.Value{}) {
-			str = fmt.Sprintf("%s", field.Interface())
-		}
-		field = metaValue.FieldByName("Detail")
-		if field != (reflect.Value{}) {
-			str = fmt.Sprintf("%s (%s)", str, field.Interface())
-		}
-
-		// status title (detail)
-		return strings.TrimSpace(fmt.Sprintf("%s %s", status, str))
-	}
-	return status
 }
