@@ -25,8 +25,4 @@ func main() {
 	}
 
 	fmt.Printf("[DNS API] Unauthenticated request returned the following error: %v\n", err)
-
-	// You can change the max number of characters of the body that are shown
-	dns.ApiErrorMaxCharacterLimit = 10
-	fmt.Printf("[DNS API] Unauthenticated request returned the following error: %v\n", err)
 }
