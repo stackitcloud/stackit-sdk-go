@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 )
 
@@ -23,24 +23,12 @@ type APIClientInstanceInterface interface {
 	GetInstanceExecute(ctx context.Context, projectId, instanceId string) (*GetInstanceResponse, error)
 }
 
-func handleError(reqErr error) (res interface{}, done bool, err error) {
-	oapiErr, ok := reqErr.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-	if !ok {
-		return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError")
-	}
-	// Some APIs may return temporary errors and the request should be retried
-	if utils.Contains(wait.RetryHttpErrorStatusCodes, oapiErr.statusCode) {
-		return nil, false, nil
-	}
-	return nil, false, reqErr
-}
-
 // CreateInstanceWaitHandler will wait for creation
 func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
 	waitHandler := wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
 			return s, false, nil
@@ -68,7 +56,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
 			return s, false, nil
@@ -97,12 +85,12 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if err == nil {
 			return s, false, nil
 		}
-		oapiErr, ok := err.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError")
+			return nil, false, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
 		}
-		if oapiErr.statusCode != http.StatusNotFound {
-			return handleError(err)
+		if oapiErr.StatusCode != http.StatusNotFound {
+			return nil, false, err
 		}
 		return nil, true, nil
 	})

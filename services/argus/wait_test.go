@@ -2,13 +2,12 @@ package argus
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"testing"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
@@ -20,8 +19,8 @@ type apiClientMocked struct {
 
 func (a *apiClientMocked) GetInstanceExecute(_ context.Context, _, _ string) (*InstanceResponse, error) {
 	if a.getFails {
-		return nil, &GenericOpenAPIError{
-			statusCode: 500,
+		return nil, &oapiError.GenericOpenAPIError{
+			StatusCode: 500,
 		}
 	}
 
@@ -33,74 +32,14 @@ func (a *apiClientMocked) GetInstanceExecute(_ context.Context, _, _ string) (*I
 
 func (a *apiClientMocked) GetScrapeConfigsExecute(_ context.Context, _, _ string) (*ScrapeConfigsResponse, error) {
 	if a.getFails {
-		return nil, &GenericOpenAPIError{
-			statusCode: 500,
+		return nil, &oapiError.GenericOpenAPIError{
+			StatusCode: 500,
 		}
 	}
 
 	return &ScrapeConfigsResponse{
 		Data: &a.jobs,
 	}, nil
-}
-
-func TestHandleError(t *testing.T) {
-	tests := []struct {
-		desc     string
-		reqErr   error
-		wantRes  interface{}
-		wantDone bool
-		wantErr  bool
-	}{
-		{
-			desc: "handle_oapi_error",
-			reqErr: &GenericOpenAPIError{
-				statusCode: 500,
-			},
-			wantRes:  nil,
-			wantDone: false,
-			wantErr:  true,
-		},
-		{
-			desc:     "not_generic_oapi_error",
-			reqErr:   fmt.Errorf("some error"),
-			wantRes:  nil,
-			wantDone: false,
-			wantErr:  true,
-		},
-		{
-			desc: "bad_gateway_error",
-			reqErr: &GenericOpenAPIError{
-				statusCode: http.StatusBadGateway,
-			},
-			wantRes:  nil,
-			wantDone: false,
-			wantErr:  false,
-		},
-		{
-			desc: "gateway_timeout_error",
-			reqErr: &GenericOpenAPIError{
-				statusCode: http.StatusBadGateway,
-			},
-			wantRes:  nil,
-			wantDone: false,
-			wantErr:  false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			gotRes, gotDone, err := handleError(tt.reqErr)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("handleError() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if !cmp.Equal(gotRes, tt.wantRes) {
-				t.Errorf("handleError() gotRes = %v, want %v", gotRes, tt.wantRes)
-			}
-			if gotDone != tt.wantDone {
-				t.Errorf("handleError() gotDone = %v, want %v", gotDone, tt.wantDone)
-			}
-		})
-	}
 }
 
 func TestCreateInstanceWaitHandler(t *testing.T) {

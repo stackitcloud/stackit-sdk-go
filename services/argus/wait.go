@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 )
 
@@ -23,18 +22,6 @@ type APIClientInterface interface {
 	GetScrapeConfigsExecute(ctx context.Context, instanceId, projectId string) (*ScrapeConfigsResponse, error)
 }
 
-func handleError(reqErr error) (res interface{}, done bool, err error) {
-	oapiErr, ok := reqErr.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-	if !ok {
-		return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError")
-	}
-	// Some APIs may return temporary errors and the request should be retried
-	if utils.Contains(wait.RetryHttpErrorStatusCodes, oapiErr.statusCode) {
-		return nil, false, nil
-	}
-	return nil, false, reqErr
-}
-
 //	will wait for creation
 //
 // returned interface is nil or *InstanceResponse
@@ -42,7 +29,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s.Id == nil || s.Status == nil {
 			return s, false, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
@@ -63,7 +50,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s.Id == nil || s.Status == nil {
 			return s, false, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
@@ -85,7 +72,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s.Id == nil || s.Status == nil {
 			return s, false, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
@@ -104,7 +91,7 @@ func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetScrapeConfigsExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		jobs := *s.Data
 		for i := range jobs {
@@ -120,7 +107,7 @@ func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetScrapeConfigsExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		jobs := *s.Data
 		for i := range jobs {
