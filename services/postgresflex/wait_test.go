@@ -2,12 +2,11 @@ package postgresflex
 
 import (
 	"context"
-	"fmt"
-	"net/http"
 	"testing"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
 // Used for testing instance operations
@@ -21,14 +20,14 @@ type apiClientInstanceMocked struct {
 
 func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*InstanceResponse, error) {
 	if a.instanceGetFails {
-		return nil, &GenericOpenAPIError{
-			statusCode: 500,
+		return nil, &oapiError.GenericOpenAPIError{
+			StatusCode: 500,
 		}
 	}
 
 	if a.instanceIsDeleted {
-		return nil, &GenericOpenAPIError{
-			statusCode: 404,
+		return nil, &oapiError.GenericOpenAPIError{
+			StatusCode: 404,
 		}
 	}
 
@@ -42,8 +41,8 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 
 func (a *apiClientInstanceMocked) GetUsersExecute(_ context.Context, _, _ string) (*UsersResponse, error) {
 	if a.usersGetErrorStatus != 0 {
-		return nil, &GenericOpenAPIError{
-			statusCode: a.usersGetErrorStatus,
+		return nil, &oapiError.GenericOpenAPIError{
+			StatusCode: a.usersGetErrorStatus,
 		}
 	}
 
@@ -63,14 +62,14 @@ type apiClientUserMocked struct {
 
 func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _ string) (*UserResponse, error) {
 	if a.getFails {
-		return nil, &GenericOpenAPIError{
-			statusCode: 500,
+		return nil, &oapiError.GenericOpenAPIError{
+			StatusCode: 500,
 		}
 	}
 
 	if a.isUserDeleted {
-		return nil, &GenericOpenAPIError{
-			statusCode: 404,
+		return nil, &oapiError.GenericOpenAPIError{
+			StatusCode: 404,
 		}
 	}
 
@@ -79,66 +78,6 @@ func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _ string) 
 			Id: &a.userId,
 		},
 	}, nil
-}
-
-func TestHandleError(t *testing.T) {
-	tests := []struct {
-		desc     string
-		reqErr   error
-		wantRes  interface{}
-		wantDone bool
-		wantErr  bool
-	}{
-		{
-			desc: "handle_oapi_error",
-			reqErr: &GenericOpenAPIError{
-				statusCode: 500,
-			},
-			wantRes:  nil,
-			wantDone: false,
-			wantErr:  true,
-		},
-		{
-			desc:     "not_generic_oapi_error",
-			reqErr:   fmt.Errorf("some error"),
-			wantRes:  nil,
-			wantDone: false,
-			wantErr:  true,
-		},
-		{
-			desc: "bad_gateway_error",
-			reqErr: &GenericOpenAPIError{
-				statusCode: http.StatusBadGateway,
-			},
-			wantRes:  nil,
-			wantDone: false,
-			wantErr:  false,
-		},
-		{
-			desc: "gateway_timeout_error",
-			reqErr: &GenericOpenAPIError{
-				statusCode: http.StatusBadGateway,
-			},
-			wantRes:  nil,
-			wantDone: false,
-			wantErr:  false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			gotRes, gotDone, err := handleError(tt.reqErr)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("handleError() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if !cmp.Equal(gotRes, tt.wantRes) {
-				t.Errorf("handleError() gotRes = %v, want %v", gotRes, tt.wantRes)
-			}
-			if gotDone != tt.wantDone {
-				t.Errorf("handleError() gotDone = %v, want %v", gotDone, tt.wantDone)
-			}
-		})
-	}
 }
 
 func TestCreateInstanceWaitHandler(t *testing.T) {

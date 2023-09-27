@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 )
 
@@ -32,24 +32,12 @@ type APIClientCredentialsInterface interface {
 	GetCredentialsExecute(ctx context.Context, projectId, instanceId, credentialsId string) (*CredentialsResponse, error)
 }
 
-func handleError(reqErr error) (res interface{}, done bool, err error) {
-	oapiErr, ok := reqErr.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-	if !ok {
-		return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError, %w", reqErr)
-	}
-	// Some APIs may return temporary errors and the request should be retried
-	if utils.Contains(wait.RetryHttpErrorStatusCodes, oapiErr.statusCode) {
-		return nil, false, nil
-	}
-	return nil, false, reqErr
-}
-
 // CreateOrUpdateClusterWaitHandler will wait for creation
 func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.Handler {
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, name)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		state := *s.Status.Aggregated
 
@@ -73,7 +61,7 @@ func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, 
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetClustersExecute(ctx, projectId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		items := *s.Items
 		for i := range items {
@@ -90,7 +78,7 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetProjectExecute(ctx, projectId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		state := *s.State
 		switch state {
@@ -108,16 +96,11 @@ func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetProjectExecute(ctx, projectId)
 		if err != nil {
-			oapiErr, ok := err.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+			oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 			if !ok {
-				return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError in delete wait handler, %w", err)
+				return nil, false, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError in delete wait handler, %w", err)
 			}
-			// Some APIs may return temporary errors and the request should be retried
-			if utils.Contains(wait.RetryHttpErrorStatusCodes, oapiErr.statusCode) {
-				return nil, false, nil
-			}
-
-			if oapiErr.statusCode == http.StatusNotFound || oapiErr.statusCode == http.StatusForbidden {
+			if oapiErr.StatusCode == http.StatusNotFound || oapiErr.StatusCode == http.StatusForbidden {
 				return nil, true, nil
 			}
 			return nil, false, err

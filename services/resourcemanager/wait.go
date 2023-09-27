@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 )
 
@@ -19,25 +19,13 @@ type APIClientInterface interface {
 	GetProjectExecute(ctx context.Context, containerId string) (*ProjectResponseWithParents, error)
 }
 
-func handleError(reqErr error) (res interface{}, done bool, err error) {
-	oapiErr, ok := reqErr.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-	if !ok {
-		return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError")
-	}
-	// Some APIs may return temporary errors and the request should be retried
-	if utils.Contains(wait.RetryHttpErrorStatusCodes, oapiErr.statusCode) {
-		return nil, false, nil
-	}
-	return nil, false, reqErr
-}
-
 // CreateProjectWaitHandler will wait for creation
 // returned interface is nil or *ProjectResponseWithParents
 func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.Handler {
 	return wait.New(func() (res interface{}, done bool, err error) {
 		p, err := a.GetProjectExecute(ctx, containerId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if p.ContainerId == nil || p.LifecycleState == nil {
 			return p, false, fmt.Errorf("creation failed: response invalid for container id %s. Container id or LifeCycleState missing", containerId)
@@ -58,19 +46,13 @@ func DeleteProjectWaitHandler(ctx context.Context, a APIClientInterface, contain
 	return wait.New(func() (res interface{}, done bool, err error) {
 		p, err := a.GetProjectExecute(ctx, containerId)
 		if err != nil {
-			oapiErr, ok := err.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+			oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 			if !ok {
-				return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError")
+				return nil, false, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
 			}
-			// Some APIs may return temporary errors and the request should be retried
-			if utils.Contains(wait.RetryHttpErrorStatusCodes, oapiErr.statusCode) {
-				return nil, false, nil
-			}
-
-			if oapiErr.statusCode == http.StatusNotFound || oapiErr.statusCode == http.StatusForbidden {
+			if oapiErr.StatusCode == http.StatusNotFound || oapiErr.StatusCode == http.StatusForbidden {
 				return nil, true, nil
 			}
-
 			return nil, false, err
 		}
 		return p, false, nil

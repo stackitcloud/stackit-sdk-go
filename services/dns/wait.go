@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 )
 
@@ -23,25 +22,13 @@ type APIClientInterface interface {
 	GetRecordSetExecute(ctx context.Context, projectId, zoneId, rrSetId string) (*RecordSetResponse, error)
 }
 
-func handleError(reqErr error) (res interface{}, done bool, err error) {
-	oapiErr, ok := reqErr.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-	if !ok {
-		return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError")
-	}
-	// Some APIs may return temporary errors and the request should be retried
-	if utils.Contains(wait.RetryHttpErrorStatusCodes, oapiErr.statusCode) {
-		return nil, false, nil
-	}
-	return nil, false, reqErr
-}
-
 // CreateZoneWaitHandler will wait for creation
 // returned interface is nil or *ZoneResponseZone
 func CreateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.Handler {
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s.Zone.Id == nil || s.Zone.State == nil {
 			return s, false, fmt.Errorf("create failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
@@ -62,7 +49,7 @@ func UpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s.Zone.Id == nil || s.Zone.State == nil {
 			return s, false, fmt.Errorf("update failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
@@ -83,7 +70,7 @@ func DeleteZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s.Zone.Id == nil || s.Zone.State == nil {
 			return s, false, fmt.Errorf("delete failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
@@ -104,7 +91,7 @@ func CreateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s.Rrset.Id == nil || s.Rrset.State == nil {
 			return s, false, fmt.Errorf("create failed for record set with id %s. The response is not valid: the id or the state are missing", instanceId)
@@ -125,7 +112,7 @@ func UpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s.Rrset.Id == nil || s.Rrset.State == nil {
 			return s, false, fmt.Errorf("update failed for record set with id %s. The response is not valid: the id or the state are missing", rrSetId)
@@ -146,7 +133,7 @@ func DeleteRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s.Rrset.Id == nil || s.Rrset.State == nil {
 			return s, false, fmt.Errorf("delete failed for record set with id %s. The response is not valid: the id or the state are missing", rrSetId)

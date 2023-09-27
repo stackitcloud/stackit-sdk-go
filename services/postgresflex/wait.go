@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 )
 
@@ -26,18 +26,6 @@ type APIClientUserInterface interface {
 	GetUserExecute(ctx context.Context, projectId, instanceId, userId string) (*UserResponse, error)
 }
 
-func handleError(reqErr error) (res interface{}, done bool, err error) {
-	oapiErr, ok := reqErr.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-	if !ok {
-		return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError")
-	}
-	// Some APIs may return temporary errors and the request should be retried
-	if utils.Contains(wait.RetryHttpErrorStatusCodes, oapiErr.statusCode) {
-		return nil, false, nil
-	}
-	return nil, false, reqErr
-}
-
 // CreateInstanceWaitHandler will wait for creation
 func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
 	instanceCreated := false
@@ -47,7 +35,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if !instanceCreated {
 			s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 			if err != nil {
-				return handleError(err)
+				return nil, false, err
 			}
 			if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
 				return s, false, nil
@@ -73,12 +61,12 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if err == nil {
 			return instanceGetResponse, true, nil
 		}
-		oapiErr, ok := err.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return handleError(err)
+			return nil, false, err
 		}
-		if oapiErr.statusCode < 500 {
-			return nil, true, fmt.Errorf("users request after instance creation returned %d status code", oapiErr.statusCode)
+		if oapiErr.StatusCode < 500 {
+			return nil, true, fmt.Errorf("users request after instance creation returned %d status code", oapiErr.StatusCode)
 		}
 		return nil, false, nil
 	})
@@ -89,7 +77,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return handleError(err)
+			return nil, false, err
 		}
 		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
 			return s, false, nil
@@ -116,12 +104,12 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if err == nil {
 			return s, false, nil
 		}
-		oapiErr, ok := err.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return handleError(err)
+			return nil, false, err
 		}
-		if oapiErr.statusCode != 404 {
-			return handleError(err)
+		if oapiErr.StatusCode != 404 {
+			return nil, false, err
 		}
 		return nil, true, nil
 	})
@@ -134,12 +122,12 @@ func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projec
 		if err == nil {
 			return u, false, nil
 		}
-		oapiErr, ok := err.(*GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return handleError(err)
+			return nil, false, err
 		}
-		if oapiErr.statusCode != 404 {
-			return handleError(err)
+		if oapiErr.StatusCode != 404 {
+			return nil, false, err
 		}
 		return nil, true, nil
 	})
