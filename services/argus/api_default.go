@@ -18,6 +18,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
 // DefaultApiService DefaultApi service
@@ -40,7 +42,7 @@ func (r ApiCreateCredentialRequest) Execute() (*ApiUserProjectCreated, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCredential")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials"
@@ -86,30 +88,30 @@ func (r ApiCreateCredentialRequest) Execute() (*ApiUserProjectCreated, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -168,7 +170,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances"
@@ -218,41 +220,41 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -309,7 +311,7 @@ func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateScrapeConfig")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs"
@@ -360,41 +362,41 @@ func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -449,7 +451,7 @@ func (r ApiDeleteCredentialRequest) Execute() (*Message, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredential")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
@@ -496,52 +498,52 @@ func (r ApiDeleteCredentialRequest) Execute() (*Message, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Message
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -598,7 +600,7 @@ func (r ApiDeleteInstanceRequest) Execute() (*ProjectInstancesUpdateResponse, er
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstance")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}"
@@ -644,30 +646,30 @@ func (r ApiDeleteInstanceRequest) Execute() (*ProjectInstancesUpdateResponse, er
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -722,7 +724,7 @@ func (r ApiDeleteScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteScrapeConfig")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
@@ -769,41 +771,41 @@ func (r ApiDeleteScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -861,7 +863,7 @@ func (r ApiGetCredentialRequest) Execute() (*ServiceKeysResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredential")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
@@ -908,41 +910,41 @@ func (r ApiGetCredentialRequest) Execute() (*ServiceKeysResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -999,7 +1001,7 @@ func (r ApiGetCredentialsRequest) Execute() (*CredentialsListResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentials")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials"
@@ -1045,30 +1047,30 @@ func (r ApiGetCredentialsRequest) Execute() (*CredentialsListResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1122,7 +1124,7 @@ func (r ApiGetInstanceRequest) Execute() (*InstanceResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstance")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}"
@@ -1168,30 +1170,30 @@ func (r ApiGetInstanceRequest) Execute() (*InstanceResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1244,7 +1246,7 @@ func (r ApiGetInstancesRequest) Execute() (*ProjectInstanceFullMany, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstances")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances"
@@ -1289,30 +1291,30 @@ func (r ApiGetInstancesRequest) Execute() (*ProjectInstanceFullMany, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1362,7 +1364,7 @@ func (r ApiGetPlansRequest) Execute() (*PlansResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetPlans")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/plans"
@@ -1407,30 +1409,30 @@ func (r ApiGetPlansRequest) Execute() (*PlansResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1482,7 +1484,7 @@ func (r ApiGetScrapeConfigRequest) Execute() (*ScrapeConfigResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetScrapeConfig")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
@@ -1529,30 +1531,30 @@ func (r ApiGetScrapeConfigRequest) Execute() (*ScrapeConfigResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1609,7 +1611,7 @@ func (r ApiGetScrapeConfigsRequest) Execute() (*ScrapeConfigsResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetScrapeConfigs")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs"
@@ -1655,30 +1657,30 @@ func (r ApiGetScrapeConfigsRequest) Execute() (*ScrapeConfigsResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1738,7 +1740,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*ProjectInstancesUpdateResponse, er
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstance")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}"
@@ -1789,41 +1791,41 @@ func (r ApiUpdateInstanceRequest) Execute() (*ProjectInstancesUpdateResponse, er
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1884,7 +1886,7 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateScrapeConfig")
 	if err != nil {
-		return localVarReturnValue, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
@@ -1936,52 +1938,52 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      localVarHTTPResponse.Status,
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &GenericOpenAPIError{
-			statusCode: localVarHTTPResponse.StatusCode,
-			body:       localVarBody,
-			error:      err.Error(),
+		newErr := &oapiError.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, newErr
 	}
