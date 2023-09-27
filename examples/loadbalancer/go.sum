@@ -9,8 +9,8 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
 github.com/stackitcloud/stackit-sdk-go/core v0.1.1 h1:zePWTYnLi0HKViCRSDSF5u10zXH1yAk2yI+0N7phSbA=
 github.com/stackitcloud/stackit-sdk-go/core v0.1.1/go.mod h1:2LEfP04fooOahpKVwPTUSMNvBC1Cc0ky5FKtgN7pJ4M=
-github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v0.1.0 h1:sifflDOCYB8+uHbFGsD6+BM3JWBV9zjgwr/oPqYWdxE=
-github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v0.1.0/go.mod h1:B2cdU+2bPe5ABffAxZSgKpB2PGjU5HKRE61SUM0514A=
+github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v0.1.1 h1:DZuH5LRdDspgdNbC13HJ/kLvq6M62zwn2P1CvxAs3Ss=
+github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v0.1.1/go.mod h1:tJo89ayvMcIxL63K8o2NqVuaGo4dWP/hyhw1xEUkm9w=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/net v0.0.0-20190603091049-60506f45cf65/go.mod h1:HSz+uSET+XFnRR8LxR5pz3Of3rY3CfYBVs4xY44aLks=
 golang.org/x/net v0.15.0 h1:ugBLEUaxABaB5AJqW9enI0ACdci2RUd4eP51NTBvuJ8=
