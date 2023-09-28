@@ -29,7 +29,7 @@ func New(f WaitFn) *Handler {
 		sleepBeforeWait:   0 * time.Second,
 		throttle:          5 * time.Second,
 		timeout:           30 * time.Minute,
-		tempErrRetryLimit: 10,
+		tempErrRetryLimit: 5,
 	}
 }
 
@@ -76,9 +76,11 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 	var retryTempErrorCounter = 0
 	for {
 		res, done, err = w.fn()
-		retryTempErrorCounter, err = w.handleError(retryTempErrorCounter, err)
 		if err != nil {
-			return res, err
+			retryTempErrorCounter, err = w.handleError(retryTempErrorCounter, err)
+			if err != nil {
+				return res, err
+			}
 		}
 		if done {
 			return res, nil
@@ -94,20 +96,17 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 }
 
 func (w *Handler) handleError(retryTempErrorCounter int, err error) (int, error) {
-	if err != nil {
-		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return retryTempErrorCounter, fmt.Errorf("could not convert error to GenericOpenApiError, %w", err)
-		}
-		// Some APIs may return temporary errors and the request should be retried
-		if utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
-			retryTempErrorCounter++
-			if retryTempErrorCounter == w.tempErrRetryLimit {
-				return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
-			}
-			return retryTempErrorCounter, nil
-		}
-		return retryTempErrorCounter, fmt.Errorf("executing wait function: %w", err)
+	oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+	if !ok {
+		return retryTempErrorCounter, fmt.Errorf("could not convert error to GenericOpenApiError, %w", err)
 	}
-	return retryTempErrorCounter, nil
+	// Some APIs may return temporary errors and the request should be retried
+	if utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
+		retryTempErrorCounter++
+		if retryTempErrorCounter == w.tempErrRetryLimit {
+			return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
+		}
+		return retryTempErrorCounter, nil
+	}
+	return retryTempErrorCounter, fmt.Errorf("executing wait function: %w", err)
 }
