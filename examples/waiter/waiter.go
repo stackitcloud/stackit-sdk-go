@@ -37,7 +37,7 @@ func main() {
 	}
 
 	zoneId := *createZoneResp.Zone.Id
-	wres, err := dns.UpdateZoneWaitHandler(ctx, dnsClient, projectId, zoneId).SetTimeout(15 * time.Minute).WaitWithContext(ctx)
+	wres, err := dns.CreateZoneWaitHandler(ctx, dnsClient, projectId, zoneId).SetTimeout(15 * time.Minute).WaitWithContext(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Waiting for zone update: %v\n", err)
 		os.Exit(1)
