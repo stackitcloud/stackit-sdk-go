@@ -12,11 +12,18 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-const credentialsFilePath = ".stackit/credentials.json" //nolint:gosec // linter false positive
+const (
+	credentialsFilePath = ".stackit/credentials.json" //nolint:gosec // linter false positive
+	token               = "token"
+	serviceAccountKey   = "serviceAccountKey"
+	privateKey          = "privateKey"
+)
 
 type Credentials struct {
 	STACKIT_SERVICE_ACCOUNT_EMAIL string
 	STACKIT_SERVICE_ACCOUNT_TOKEN string
+	STACKIT_SERVICE_ACCOUNT_KEY   string
+	STACKIT_PRIVATE_KEY           string
 }
 
 // SetupAuth sets up authentication based on the configuration. The different options are
@@ -24,6 +31,8 @@ type Credentials struct {
 func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg == nil {
 		cfg = &config.Configuration{}
+		email := getServiceAccountEmail(cfg)
+		cfg.ServiceAccountEmail = email
 	}
 
 	if cfg.CustomAuth != nil {
@@ -34,10 +43,14 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 			return nil, fmt.Errorf("configuring no auth client: %w", err)
 		}
 		return noAuthRoundTripper, nil
+	} else if cfg.ServiceAccountKey != "" || cfg.ServiceAccountKeyPath != "" {
+		tokenRoundTripper, err := KeyAuth(cfg)
+		if err != nil {
+			return nil, fmt.Errorf("configuring key authentication: %w", err)
+		}
+		return tokenRoundTripper, nil
 	} else if cfg.Token != "" {
-		email := getServiceAccountEmail(cfg)
-		cfg.ServiceAccountEmail = email
-		tokenRoundTripper, err := TokenAuth(cfg.Token, cfg.RetryOptions)
+		tokenRoundTripper, err := TokenAuth(cfg)
 		if err != nil {
 			return nil, fmt.Errorf("configuring token authentication: %w", err)
 		}
@@ -62,21 +75,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		cfg = &config.Configuration{}
 	}
 
-	var token string
-	// Check token
-	token, tokenSet := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_TOKEN")
-	if !tokenSet || token == "" {
-		token, err = readTokenFromCredentialsFile(cfg.CredentialsFilePath)
-		if err != nil {
-			return nil, fmt.Errorf("STACKIT_SERVICE_ACCOUNT_TOKEN not set. Trying to read from credentials file: %w", err)
-		}
-	}
-
-	// Get service account email
-	email := getServiceAccountEmail(cfg)
-	cfg.ServiceAccountEmail = email
-
-	rt, err = TokenAuth(token, cfg.RetryOptions)
+	rt, err = TokenAuth(cfg)
 	if err != nil {
 		return nil, fmt.Errorf("using token flow: %w", err)
 	}
@@ -97,18 +96,29 @@ func NoAuth(retryOptions *clients.RetryConfig) (rt http.RoundTripper, err error)
 	return noAuthRoundTripper, nil
 }
 
-func readTokenFromCredentialsFile(path string) (string, error) {
-	credentials, err := readCredentialsFile(path)
-	if err != nil {
-		return "", fmt.Errorf("reading from file: %w", err)
+func readCredential(credentialType string, credentials *Credentials) (string, error) {
+	var credentialValue string
+	switch credentialType {
+	case token:
+		credentialValue := credentials.STACKIT_SERVICE_ACCOUNT_TOKEN
+		if credentialValue == "" {
+			return credentialValue, fmt.Errorf("token is empty or not set")
+		}
+	case serviceAccountKey:
+		credentialValue := credentials.STACKIT_SERVICE_ACCOUNT_KEY
+		if credentialValue == "" {
+			return credentialValue, fmt.Errorf("service account key is empty or not set")
+		}
+	case privateKey:
+		credentialValue := credentials.STACKIT_PRIVATE_KEY
+		if credentialValue == "" {
+			return credentialValue, fmt.Errorf("private key is empty or not set")
+		}
+	default:
+		return "", fmt.Errorf("invalid credential type: %s", credentialType)
 	}
 
-	token := credentials.STACKIT_SERVICE_ACCOUNT_TOKEN
-	if token == "" {
-		return token, fmt.Errorf("token is empty or not set")
-	}
-
-	return token, nil
+	return credentialValue, nil
 }
 
 func readCredentialsFile(path string) (*Credentials, error) {
@@ -159,16 +169,152 @@ func getServiceAccountEmail(cfg *config.Configuration) string {
 	return email
 }
 
+// getPrivateKey searches for the private key in the following order: client configuration, environment variable, credentials file.
+func getPrivateKey(cfg *config.Configuration) (err error) {
+	var privateKeyFilePathFound bool
+	// get key from configuration
+	if cfg.PrivateKey == "" {
+		// get key path from configuration
+		if cfg.PrivateKeyPath == "" {
+			// get key from environment
+			privateKey, privateKeySet := os.LookupEnv("STACKIT_PRIVATE_KEY")
+			if !privateKeySet || privateKey == "" {
+				// get key path from environment
+				privateKeyPath, privateKeyPathSet := os.LookupEnv("STACKIT_PRIVATE_KEY_PATH")
+				if !privateKeyPathSet || privateKeyPath == "" {
+					// get key from the credentials file
+					credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
+					if err != nil {
+						return fmt.Errorf("reading from credentials file: %w", err)
+					}
+					privateKey, err = readCredential(privateKey, credentials)
+					if err != nil || privateKey == "" {
+						// get key path from the credentials file
+						privateKey, err = readCredential(privateKeyPath, credentials)
+						if err != nil || privateKeyPath == "" {
+							return fmt.Errorf("neither key or path are provided in the configuration, as environment variable and not present in the credentials files: %w", err)
+						}
+						privateKeyFilePathFound = true
+					}
+					cfg.PrivateKey = privateKey
+				}
+				privateKeyFilePathFound = true
+			}
+			cfg.PrivateKey = privateKey
+		} else {
+			privateKeyFilePathFound = true
+		}
+		if privateKeyFilePathFound {
+			// Read from filepath
+			privateKeyBytes, err := os.ReadFile(cfg.PrivateKeyPath)
+			if err != nil {
+				return err
+			}
+			cfg.PrivateKey = string(privateKeyBytes)
+		}
+	}
+	return nil
+}
+
+// getServiceAccountKey searches for the service account key in the following order: client configuration, environment variable, credentials file.
+func getServiceAccountKey(cfg *config.Configuration) (err error) {
+	var serviceAccountKeyFilePathFound bool
+	// get key from configuration
+	if cfg.ServiceAccountKey == "" {
+		// get key path from configuration
+		if cfg.ServiceAccountKeyPath == "" {
+			// get key from environment
+			serviceAccountKey, serviceAccountKeySet := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_KEY")
+			if !serviceAccountKeySet || serviceAccountKey == "" {
+				// get key path from environment
+				serviceAccountKeyPath, serviceAccountKeyPathSet := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_KEY_PATH")
+				if !serviceAccountKeyPathSet || serviceAccountKeyPath == "" {
+					// get key from the credentials file
+					credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
+					if err != nil {
+						return fmt.Errorf("reading from credentials file: %w", err)
+					}
+					serviceAccountKey, err = readCredential(serviceAccountKey, credentials)
+					if err != nil || serviceAccountKey == "" {
+						// get key path from the credentials file
+						serviceAccountKey, err = readCredential(serviceAccountKeyPath, credentials)
+						if err != nil || serviceAccountKeyPath == "" {
+							return fmt.Errorf("neither key or path are provided in the configuration, as environment variable and not present in the credentials files: %w", err)
+						}
+						serviceAccountKeyFilePathFound = true
+					}
+					cfg.ServiceAccountKey = serviceAccountKey
+				}
+				serviceAccountKeyFilePathFound = true
+			}
+			cfg.ServiceAccountKey = serviceAccountKey
+		} else {
+			serviceAccountKeyFilePathFound = true
+		}
+		if serviceAccountKeyFilePathFound {
+			// Read from filepath
+			serviceAccountKeyBytes, err := os.ReadFile(cfg.ServiceAccountKeyPath)
+			if err != nil {
+				return err
+			}
+			cfg.ServiceAccountKey = string(serviceAccountKeyBytes)
+		}
+	}
+	return nil
+}
+
 // TokenAuth configures the token flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using a token
-func TokenAuth(token string, retryOptions *clients.RetryConfig) (http.RoundTripper, error) {
+func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
+	// Check token
+	if cfg.Token == "" {
+		token, tokenSet := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_TOKEN")
+		if !tokenSet || token == "" {
+			credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
+			if err != nil {
+				return nil, fmt.Errorf("reading from credentials file: %w", err)
+			}
+			token, err = readCredential(token, credentials)
+			if err != nil {
+				return nil, fmt.Errorf("STACKIT_SERVICE_ACCOUNT_TOKEN not set. Trying to read from credentials file: %w", err)
+			}
+		}
+		cfg.Token = token
+	}
+
 	tokenCfg := clients.TokenFlowConfig{
-		ServiceAccountToken: token,
-		ClientRetry:         retryOptions,
+		ServiceAccountToken: cfg.Token,
+		ClientRetry:         cfg.RetryOptions,
 	}
 
 	client := &clients.TokenFlow{}
 	if err := client.Init(context.Background(), &tokenCfg); err != nil {
+		return nil, fmt.Errorf("error initializing client: %w", err)
+	}
+
+	return client, nil
+}
+
+// KeyAuth configures the key flow and returns an http.RoundTripper
+// that can be used to make authenticated requests using an access token
+func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
+	err := getServiceAccountKey(cfg)
+	if err != nil {
+		return nil, fmt.Errorf("configuring key authentication: service account key could not be found: %w", err)
+	}
+
+	err = getPrivateKey(cfg)
+	if err != nil {
+		return nil, fmt.Errorf("configuring key authentication: private key could not be found: %w", err)
+	}
+
+	keyCfg := clients.KeyFlowConfig{
+		ServiceAccountToken: token,
+		ClientRetry:         retryOptions,
+	}
+
+	client := &clients.KeyFlow{}
+	if err := client.Init(context.Background(), &keyCfg); err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 

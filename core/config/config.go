@@ -6,7 +6,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -68,21 +67,25 @@ type APIKey struct {
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host                string            `json:"host,omitempty"`
-	Scheme              string            `json:"scheme,omitempty"`
-	DefaultHeader       map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent           string            `json:"userAgent,omitempty"`
-	Debug               bool              `json:"debug,omitempty"`
-	NoAuth              bool              `json:"noAuth,omitempty"`
-	ServiceAccountEmail string            `json:"serviceAccountEmail,omitempty"`
-	Token               string            `json:"token,omitempty"`
-	CredentialsFilePath string            `json:"credentialsFilePath,omitempty"`
-	Region              string            `json:"region,omitempty"`
-	CustomAuth          http.RoundTripper
-	Servers             ServerConfigurations
-	OperationServers    map[string]ServerConfigurations
-	HTTPClient          *http.Client
-	RetryOptions        *clients.RetryConfig
+	Host                  string            `json:"host,omitempty"`
+	Scheme                string            `json:"scheme,omitempty"`
+	DefaultHeader         map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent             string            `json:"userAgent,omitempty"`
+	Debug                 bool              `json:"debug,omitempty"`
+	NoAuth                bool              `json:"noAuth,omitempty"`
+	ServiceAccountEmail   string            `json:"serviceAccountEmail,omitempty"`
+	Token                 string            `json:"token,omitempty"`
+	ServiceAccountKey     string            `json:"serviceAccountKey,omitempty"`
+	PrivateKey            string            `json:"privateKey,omitempty"`
+	ServiceAccountKeyPath string            `json:"serviceAccountKeyPath,omitempty"`
+	PrivateKeyPath        string            `json:"privateKeyPath,omitempty"`
+	CredentialsFilePath   string            `json:"credentialsFilePath,omitempty"`
+	Region                string            `json:"region,omitempty"`
+	CustomAuth            http.RoundTripper
+	Servers               ServerConfigurations
+	OperationServers      map[string]ServerConfigurations
+	HTTPClient            *http.Client
+	RetryOptions          *clients.RetryConfig
 
 	setCustomEndpoint bool
 }
@@ -95,7 +98,9 @@ type Configuration struct {
 type ConfigurationOption func(*Configuration) error
 
 // WithHTTPClient returns a ConfigurationOption that specifies the HTTP client to use
-// as basis for the communication
+// as basis for the communication.
+// Warning: providing this option overrides authentication, if you just want to customize the http client parameters except Transport,
+// you can use the WithCheckRedirect, WithJar and WithTimeout
 func WithHTTPClient(client *http.Client) ConfigurationOption {
 	return func(config *Configuration) error {
 		config.HTTPClient = client
@@ -116,35 +121,6 @@ func WithCustomAuth(rt http.RoundTripper) ConfigurationOption {
 func WithUserAgent(userAgent string) ConfigurationOption {
 	return func(config *Configuration) error {
 		config.UserAgent = userAgent
-		return nil
-	}
-}
-
-// WithProxy returns a ConfigurationOption that sets an HTTP proxy to be used on all communications
-func WithProxy(proxyURL *url.URL) ConfigurationOption {
-	return func(config *Configuration) error {
-		proxy := func(*http.Request) (*url.URL, error) {
-			return proxyURL, nil
-		}
-
-		tempClient := config.HTTPClient
-		if tempClient == nil {
-			tempClient = &http.Client{}
-		}
-
-		if tempClient.Transport == nil {
-			tempClient.Transport = &http.Transport{
-				Proxy: proxy,
-			}
-		} else {
-			tempTransport, ok := tempClient.Transport.(*http.Transport)
-			if !ok {
-				return fmt.Errorf("configuring custom proxy: the client had a non-nil Transport that could not be converted to http.Transport")
-			}
-			tempTransport.Proxy = proxy
-			tempClient.Transport = tempTransport
-		}
-		config.HTTPClient = tempClient
 		return nil
 	}
 }
@@ -233,13 +209,26 @@ func WithRetryTimeout(retryTimeout time.Duration) ConfigurationOption {
 	}
 }
 
-// WithTiemout returns a ConfigurationOption that specifies the HTTP client timeout
+// WithTimeout returns a ConfigurationOption that specifies the HTTP client timeout
 func WithTimeout(timeout time.Duration) ConfigurationOption {
 	return func(config *Configuration) error {
-		if config.RetryOptions == nil {
-			config.RetryOptions = clients.NewRetryConfig()
-		}
-		config.RetryOptions.ClientTimeout = timeout
+		config.HTTPClient.Timeout = timeout
+		return nil
+	}
+}
+
+// WithCheckRedirect returns a ConfigurationOption that specifies the HTTP client checkRedirect function
+func WithCheckRedirect(checkRedirect func(req *http.Request, via []*http.Request) error) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.HTTPClient.CheckRedirect = checkRedirect
+		return nil
+	}
+}
+
+// WithJar returns a ConfigurationOption that specifies the HTTP client cookie jar
+func WithJar(jar http.CookieJar) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.HTTPClient.Jar = jar
 		return nil
 	}
 }
@@ -254,6 +243,11 @@ func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 		config.Debug = cfg.Debug
 		config.NoAuth = cfg.NoAuth
 		config.Token = cfg.Token
+		config.ServiceAccountKey = cfg.ServiceAccountKey
+		config.ServiceAccountEmail = cfg.ServiceAccountEmail
+		config.ServiceAccountKeyPath = cfg.ServiceAccountKeyPath
+		config.PrivateKey = cfg.PrivateKey
+		config.PrivateKeyPath = cfg.PrivateKeyPath
 		config.Region = cfg.Region
 		config.CredentialsFilePath = cfg.CredentialsFilePath
 		config.CustomAuth = cfg.CustomAuth
