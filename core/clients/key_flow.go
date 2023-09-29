@@ -3,7 +3,9 @@ package clients
 import (
 	"context"
 	"crypto/rsa"
+	"crypto/x509"
 	"encoding/json"
+	"encoding/pem"
 	"fmt"
 	"io"
 	"net/http"
@@ -11,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/MicahParks/keyfunc"
-	"github.com/gofrs/uuid"
+	"github.com/MicahParks/keyfunc/v2"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/google/uuid"
 	"github.com/pkg/errors"
 )
 
@@ -159,6 +161,25 @@ func (c *KeyFlow) validate() error {
 	if c.config.PrivateKey == "" {
 		return fmt.Errorf("private key cannot be empty")
 	}
+
+	c.key = &ServiceAccountKeyPrivateResponse{}
+	err := json.Unmarshal([]byte(c.config.ServiceAccountKey), c.key)
+	if err != nil {
+		return err
+	}
+
+	c.privateKey, err = jwt.ParseRSAPrivateKeyFromPEM([]byte(c.config.PrivateKey))
+	if err != nil {
+		return err
+	}
+
+	// Encode the private key in PEM format
+	privKeyPEM := &pem.Block{
+		Type:  "RSA PRIVATE KEY",
+		Bytes: x509.MarshalPKCS1PrivateKey(c.privateKey),
+	}
+	c.privateKeyPEM = pem.EncodeToMemory(privKeyPEM)
+
 	return nil
 }
 
@@ -258,7 +279,7 @@ func (c *KeyFlow) parseTokenResponse(res *http.Response) error {
 	return json.Unmarshal(body, c.token)
 }
 
-// validateToken returns true if tokeb is valid
+// validateToken returns true if token is valid
 func (c *KeyFlow) validateToken(token string) (bool, error) {
 	if token == "" {
 		return false, nil
