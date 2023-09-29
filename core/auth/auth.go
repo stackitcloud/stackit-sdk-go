@@ -150,6 +150,8 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		ServiceAccountKey: cfg.ServiceAccountKey,
 		PrivateKey:        cfg.PrivateKey,
 		ClientRetry:       cfg.RetryOptions,
+		TokenUrl:          cfg.TokenCustomUrl,
+		JWKSUrl:           cfg.JWKSCustomUrl,
 	}
 
 	client := &clients.KeyFlow{}

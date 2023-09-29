@@ -10,6 +10,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 	"time"
 
@@ -30,7 +31,7 @@ const (
 
 var tokenAPI = "https://api.stackit.cloud/service-account/token"
 
-var jsksAPI = "https://api.stackit.cloud/service-account/.well-known/jwks.json"
+var jwksAPI = "https://api.stackit.cloud/service-account/.well-known/jwks.json"
 
 // KeyFlow handles auth with SA key
 type KeyFlow struct {
@@ -48,6 +49,8 @@ type KeyFlowConfig struct {
 	ServiceAccountKey string
 	PrivateKey        string
 	ClientRetry       *RetryConfig
+	TokenUrl          string
+	JWKSUrl           string
 }
 
 // TokenResponseBody is the API response
@@ -99,6 +102,22 @@ func (c *KeyFlow) GetServiceAccountEmail() string {
 func (c *KeyFlow) Init(ctx context.Context, cfg *KeyFlowConfig) error {
 	c.token = &TokenResponseBody{}
 	c.config = cfg
+	if c.config.TokenUrl == "" {
+		tokenUrl, tokenUrlSet := os.LookupEnv("STACKIT_TOKEN_BASEURL")
+		if !tokenUrlSet || tokenUrl == "" {
+			c.config.TokenUrl = tokenAPI
+		} else {
+			c.config.TokenUrl = tokenUrl
+		}
+	}
+	if c.config.JWKSUrl == "" {
+		jwksUrl, jwksUrlSet := os.LookupEnv("STACKIT_JWKS_BASEURL")
+		if !jwksUrlSet || jwksUrl == "" {
+			c.config.JWKSUrl = jwksAPI
+		} else {
+			c.config.TokenUrl = jwksUrl
+		}
+	}
 	c.configureHTTPClient(ctx)
 	if c.config.ClientRetry == nil {
 		c.config.ClientRetry = NewRetryConfig()
@@ -255,7 +274,7 @@ func (c *KeyFlow) requestToken(grant, assertion string) (*http.Response, error) 
 	body.Set("grant_type", grant)
 	body.Set("assertion", assertion)
 	payload := strings.NewReader(body.Encode())
-	req, err := http.NewRequest(http.MethodPost, tokenAPI, payload)
+	req, err := http.NewRequest(http.MethodPost, c.config.TokenUrl, payload)
 	if err != nil {
 		return nil, err
 	}
@@ -306,7 +325,7 @@ func (c *KeyFlow) parseToken(token string) (*jwt.Token, error) {
 }
 
 func (c *KeyFlow) getJwksJSON(token string) ([]byte, error) {
-	req, err := http.NewRequest("GET", jsksAPI, nil)
+	req, err := http.NewRequest("GET", c.config.JWKSUrl, nil)
 	if err != nil {
 		return nil, err
 	}

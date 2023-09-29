@@ -80,6 +80,8 @@ type Configuration struct {
 	ServiceAccountKeyPath string            `json:"serviceAccountKeyPath,omitempty"`
 	PrivateKeyPath        string            `json:"privateKeyPath,omitempty"`
 	CredentialsFilePath   string            `json:"credentialsFilePath,omitempty"`
+	TokenCustomUrl        string            `json:"tokenCustomUrl,omitempty"`
+	JWKSCustomUrl         string            `json:"jwksCustomUrl,omitempty"`
 	Region                string            `json:"region,omitempty"`
 	CustomAuth            http.RoundTripper
 	Servers               ServerConfigurations
@@ -145,6 +147,22 @@ func WithEndpoint(endpoint string) ConfigurationOption {
 		}
 		config.Servers = customServers
 		config.setCustomEndpoint = true
+		return nil
+	}
+}
+
+// WithTokenEndpoint returns a ConfigurationOption that overrides the default url to be used to get a token when using the key flow
+func WithTokenEndpoint(url string) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.TokenCustomUrl = url
+		return nil
+	}
+}
+
+// WithJWKSEndpoint returns a ConfigurationOption that overrides the default url to be used to get the jwks when using the key flow
+func WithJWKSEndpoint(url string) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.JWKSCustomUrl = url
 		return nil
 	}
 }

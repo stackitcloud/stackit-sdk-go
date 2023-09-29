@@ -274,7 +274,6 @@ func TestTokenAuth(t *testing.T) {
 }
 
 func TestKeyAuth(t *testing.T) {
-
 	privateKey, err := generatePrivateKey()
 	if err != nil {
 		t.Fatalf("Failed to generate private key for testing")
@@ -522,12 +521,9 @@ func TestGetPrivateKey(t *testing.T) {
 			err := getPrivateKey(test.cfg)
 			if (err != nil) != test.wantErr {
 				t.Errorf("getPrivateKey() error = %v, wantErr %v", err, test.wantErr)
-			} else {
-				if test.cfg.PrivateKey != test.expectedKey {
-					t.Errorf("getPrivateKey() = %v, want %v", test.cfg.PrivateKey, test.expectedKey)
-				}
+			} else if test.cfg.PrivateKey != test.expectedKey {
+				t.Errorf("getPrivateKey() = %v, want %v", test.cfg.PrivateKey, test.expectedKey)
 			}
-
 		})
 	}
 }
@@ -604,12 +600,9 @@ func TestGetServiceAccountKey(t *testing.T) {
 			err := getServiceAccountKey(test.cfg)
 			if (err != nil) != test.wantErr {
 				t.Errorf("getServiceAccountKey() error = %v, wantErr %v", err, test.wantErr)
-			} else {
-				if test.cfg.ServiceAccountKey != test.expectedKey {
-					t.Errorf("getServiceAccountKey() = %v, want %v", test.cfg.ServiceAccountKey, test.expectedKey)
-				}
+			} else if test.cfg.ServiceAccountKey != test.expectedKey {
+				t.Errorf("getServiceAccountKey() = %v, want %v", test.cfg.ServiceAccountKey, test.expectedKey)
 			}
-
 		})
 	}
 }
