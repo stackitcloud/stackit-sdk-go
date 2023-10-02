@@ -82,7 +82,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		// Token flow
 		rt, err = TokenAuth(cfg)
 		if err != nil {
-			return nil, fmt.Errorf("no valid credentials were found: trying key flow: %s, trying token flow: %s", keyFlowErr.Error(), err)
+			return nil, fmt.Errorf("no valid credentials were found: trying key flow: %s, trying token flow: %w", keyFlowErr.Error(), err)
 		}
 	}
 	return rt, nil
