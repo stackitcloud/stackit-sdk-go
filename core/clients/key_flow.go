@@ -141,6 +141,10 @@ func (c *KeyFlow) Clone() interface{} {
 
 // Roundtrip performs the request
 func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
+	if c.client == nil {
+		return nil, fmt.Errorf("please run Init()")
+	}
+
 	accessToken, err := c.GetAccessToken()
 	if err != nil {
 		return nil, err
