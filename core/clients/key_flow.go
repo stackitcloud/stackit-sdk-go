@@ -17,7 +17,6 @@ import (
 	"github.com/MicahParks/keyfunc/v2"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
-	"github.com/pkg/errors"
 )
 
 const (
@@ -285,7 +284,7 @@ func (c *KeyFlow) requestToken(grant, assertion string) (*http.Response, error) 
 // parseTokenResponse parses the response from the server
 func (c *KeyFlow) parseTokenResponse(res *http.Response) error {
 	if res == nil {
-		return errors.New("received bad response from API")
+		return fmt.Errorf("received bad response from API")
 	}
 	if res.StatusCode != http.StatusOK {
 		return fmt.Errorf("received: %+v", res)

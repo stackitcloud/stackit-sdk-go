@@ -16,10 +16,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
-	"github.com/pkg/errors"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 )
 
 const saKeyStrPattern = `{
@@ -235,15 +233,6 @@ func TestKeyFlow_validateToken(t *testing.T) {
 	}
 }
 
-type MockDoer struct {
-	mock.Mock
-}
-
-func (m *MockDoer) Do(client *http.Client, req *http.Request, cfg *RetryConfig) (*http.Response, error) {
-	args := m.Called(req)
-	return args.Get(0).(*http.Response), args.Error(1)
-}
-
 func TestGetJwksJSON(t *testing.T) {
 	testCases := []struct {
 		name           string
@@ -274,44 +263,33 @@ func TestGetJwksJSON(t *testing.T) {
 		},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-
-			handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				if 
-				w.Header().Set("Content-Type", "application/json")
-				w.WriteHeader(http.StatusOK)
-				fmt.Fprintln(w, `{"status":"ok"}`)
-			})
-			server := httptest.NewServer(handler)
-			defer server.Close()
-			u, err := url.Parse(server.URL)
-			if err != nil {
-				t.Error(err)
-				return
+	for _, tt := range testCases {
+		t.Run(tt.name, func(t *testing.T) {
+			mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
+				return tt.mockResponse, tt.mockError
 			}
-			req := &http.Request{
-				URL: u,
-			}
-
-			mockDoer := new(MockDoer)
-			mockDoer.On("Do", mock.Anything).Return(tc.mockResponse, tc.mockError)
 
 			c := &KeyFlow{
 				config: &KeyFlowConfig{ClientRetry: NewRetryConfig()},
-				doer:   client.Do,
+				doer:   mockDo,
 			}
 
-			result, err := c.getJwksJSON(tc.token)
+			result, err := c.getJwksJSON(tt.token)
 
-			if tc.expectedError != nil {
-				assert.Error(t, err)
-				assert.Equal(t, tc.expectedError.Error(), err.Error())
+			if tt.expectedError != nil {
+				if err == nil {
+					t.Errorf("Expected error %v but no error was returned", tt.expectedError)
+				} else if tt.expectedError.Error() != err.Error() {
+					t.Errorf("Error is not correct. Expected %v, got %v", tt.expectedError, err)
+				}
 			} else {
-				assert.NoError(t, err)
+				if err != nil {
+					t.Errorf("Expected no error but error was returned: %v", err)
+				}
+				if !cmp.Equal(tt.expectedResult, result) {
+					t.Errorf("The returned result is wrong. Expected %s, got %s", string(tt.expectedResult), string(result))
+				}
 			}
-
-			assert.Equal(t, tc.expectedResult, result)
 		})
 	}
 }
@@ -341,31 +319,38 @@ func TestRequestToken(t *testing.T) {
 			grant:         "test_grant",
 			assertion:     "test_assertion",
 			mockResponse:  nil,
-			mockError:     errors.New("request error"),
-			expectedError: errors.New("request error"),
+			mockError:     fmt.Errorf("request error"),
+			expectedError: fmt.Errorf("request error"),
 		},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			mockDoer := new(MockDoer)
-			mockDoer.On("Do", mock.Anything).Return(tc.mockResponse, tc.mockError)
+	for _, tt := range testCases {
+		t.Run(tt.name, func(t *testing.T) {
+			mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
+				return tt.mockResponse, tt.mockError
+			}
 
 			c := &KeyFlow{
 				config: &KeyFlowConfig{ClientRetry: NewRetryConfig()},
-				doer:   mockDoer.Do,
+				doer:   mockDo,
 			}
 
-			res, err := c.requestToken(tc.grant, tc.assertion)
+			res, err := c.requestToken(tt.grant, tt.assertion)
 
-			if tc.expectedError != nil {
-				assert.Error(t, err)
-				assert.Equal(t, tc.expectedError.Error(), err.Error())
+			if tt.expectedError != nil {
+				if err == nil {
+					t.Errorf("Expected error '%v' but no error was returned", tt.expectedError)
+				} else if tt.expectedError.Error() != err.Error() {
+					t.Errorf("Error is not correct. Expected %v, got %v", tt.expectedError, err)
+				}
 			} else {
-				assert.NoError(t, err)
+				if err != nil {
+					t.Errorf("Expected no error but error was returned: %v", err)
+				}
+				if !cmp.Equal(tt.mockResponse, res, cmp.AllowUnexported(strings.Reader{})) {
+					t.Errorf("The returned result is wrong. Expected %v, got %v", tt.mockResponse, res)
+				}
 			}
-
-			assert.Equal(t, tc.mockResponse, res)
 		})
 	}
 }
