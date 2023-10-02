@@ -155,7 +155,7 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	}
 
 	client := &clients.KeyFlow{}
-	if err := client.Init(context.Background(), &keyCfg); err != nil {
+	if err := client.Init(&keyCfg); err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 

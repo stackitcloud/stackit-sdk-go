@@ -513,7 +513,7 @@ func TestGetPrivateKey(t *testing.T) {
 			}
 
 			if test.envPrivateKeyPathSet {
-				t.Setenv("STACKIT_PRIVATE_KEY_PATH", "test_resources/test_invalid_private_key.txt")
+				t.Setenv("STACKIT_PRIVATE_KEY_PATH", "test_resources/test_string_key.txt")
 			} else {
 				t.Setenv("STACKIT_PRIVATE_KEY_PATH", "")
 			}

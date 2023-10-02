@@ -2,7 +2,6 @@ package clients
 
 import (
 	"bytes"
-	"context"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
@@ -106,7 +105,7 @@ func TestKeyFlow_Init(t *testing.T) {
 				cfg.PrivateKey = "invalid_key"
 			}
 			cfg.ServiceAccountKey = tt.serviceAccountKey
-			if err := c.Init(context.Background(), cfg); (err != nil) != tt.wantErr {
+			if err := c.Init(cfg); (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			if c.config == nil {
@@ -195,14 +194,10 @@ func TestKeyClone(t *testing.T) {
 }
 
 func TestKeyFlow_validateToken(t *testing.T) {
-
 	// Generate a random private key
 	privateKey := make([]byte, 32)
 	if _, err := rand.Read(privateKey); err != nil {
 		t.Fatal(err)
-	}
-	type args struct {
-		token string
 	}
 	tests := []struct {
 		name    string
@@ -218,6 +213,7 @@ func TestKeyFlow_validateToken(t *testing.T) {
 			c := &KeyFlow{
 				config: &KeyFlowConfig{
 					PrivateKey: string(privateKey),
+					JWKSUrl:    jwksAPI,
 				},
 				doer: do,
 			}
@@ -336,7 +332,14 @@ func TestRequestToken(t *testing.T) {
 			}
 
 			res, err := c.requestToken(tt.grant, tt.assertion)
-
+			defer func() {
+				if res != nil {
+					tempErr := res.Body.Close()
+					if tempErr != nil {
+						t.Errorf("closing request token response: %s", tempErr.Error())
+					}
+				}
+			}()
 			if tt.expectedError != nil {
 				if err == nil {
 					t.Errorf("Expected error '%v' but no error was returned", tt.expectedError)

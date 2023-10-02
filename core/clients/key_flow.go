@@ -1,7 +1,6 @@
 package clients
 
 import (
-	"context"
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/json"
@@ -28,7 +27,7 @@ const (
 	PrivateKeyPath        = "STACKIT_PRIVATE_KEY_PATH"
 )
 
-var tokenAPI = "https://api.stackit.cloud/service-account/token"
+var tokenAPI = "https://api.stackit.cloud/service-account/token" //nolint:gosec // linter false positive
 
 var jwksAPI = "https://api.stackit.cloud/service-account/.well-known/jwks.json"
 
@@ -98,7 +97,7 @@ func (c *KeyFlow) GetServiceAccountEmail() string {
 	return c.key.Credentials.Iss
 }
 
-func (c *KeyFlow) Init(ctx context.Context, cfg *KeyFlowConfig) error {
+func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.token = &TokenResponseBody{}
 	c.config = cfg
 	if c.config.TokenUrl == "" {
@@ -117,7 +116,7 @@ func (c *KeyFlow) Init(ctx context.Context, cfg *KeyFlowConfig) error {
 			c.config.TokenUrl = jwksUrl
 		}
 	}
-	c.configureHTTPClient(ctx)
+	c.configureHTTPClient()
 	if c.config.ClientRetry == nil {
 		c.config.ClientRetry = NewRetryConfig()
 	}
@@ -165,7 +164,7 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 }
 
 // configureHTTPClient configures the HTTP client
-func (c *KeyFlow) configureHTTPClient(ctx context.Context) {
+func (c *KeyFlow) configureHTTPClient() {
 	client := &http.Client{}
 	client.Timeout = DefaultClientTimeout
 	c.client = client
@@ -225,7 +224,7 @@ func (c *KeyFlow) recreateAccessToken() error {
 }
 
 // createAccessToken creates an access token using self signed JWT
-func (c *KeyFlow) createAccessToken() error {
+func (c *KeyFlow) createAccessToken() (err error) {
 	grant := "urn:ietf:params:oauth:grant-type:jwt-bearer"
 	assertion, err := c.generateSelfSignedJWT()
 	if err != nil {
@@ -235,16 +234,28 @@ func (c *KeyFlow) createAccessToken() error {
 	if err != nil {
 		return err
 	}
+	defer func() {
+		tempErr := res.Body.Close()
+		if tempErr != nil {
+			err = fmt.Errorf("closing request access token response: %w", tempErr)
+		}
+	}()
 	return c.parseTokenResponse(res)
 }
 
 // createAccessTokenWithRefreshToken creates an access token using
 // an existing pre-validated refresh token
-func (c *KeyFlow) createAccessTokenWithRefreshToken() error {
+func (c *KeyFlow) createAccessTokenWithRefreshToken() (err error) {
 	res, err := c.requestToken("refresh_token", c.token.RefreshToken)
 	if err != nil {
 		return err
 	}
+	defer func() {
+		tempErr := res.Body.Close()
+		if tempErr != nil {
+			err = fmt.Errorf("closing request access token with refresh token response: %w", tempErr)
+		}
+	}()
 	return c.parseTokenResponse(res)
 }
 
@@ -303,6 +314,10 @@ func (c *KeyFlow) validateToken(token string) (bool, error) {
 		return false, nil
 	}
 	if _, err := c.parseToken(token); err != nil {
+		if strings.Contains(err.Error(), "401") {
+			c.token = new(TokenResponseBody)
+			return false, nil
+		}
 		return false, err
 	}
 	return true, nil
@@ -323,8 +338,8 @@ func (c *KeyFlow) parseToken(token string) (*jwt.Token, error) {
 	return jwt.Parse(token, jwks.Keyfunc)
 }
 
-func (c *KeyFlow) getJwksJSON(token string) ([]byte, error) {
-	req, err := http.NewRequest("GET", c.config.JWKSUrl, nil)
+func (c *KeyFlow) getJwksJSON(token string) (jwks []byte, err error) {
+	req, err := http.NewRequest("GET", c.config.JWKSUrl, http.NoBody)
 	if err != nil {
 		return nil, err
 	}
@@ -333,9 +348,15 @@ func (c *KeyFlow) getJwksJSON(token string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer func() {
+		tempErr := res.Body.Close()
+		if tempErr != nil {
+			jwks = nil
+			err = fmt.Errorf("closing get jwks response: %w", tempErr)
+		}
+	}()
 	if res.StatusCode == 200 {
 		return io.ReadAll(res.Body)
-	} else {
-		return nil, fmt.Errorf("error: %s", res.Status)
 	}
+	return nil, fmt.Errorf("error: %s", res.Status)
 }
