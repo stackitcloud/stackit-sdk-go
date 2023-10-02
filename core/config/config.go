@@ -175,6 +175,40 @@ func WithServiceAccountEmail(serviceAccountEmail string) ConfigurationOption {
 	}
 }
 
+// WithServiceAccountKey returns a ConfigurationOption that sets the service account key
+// This option takes precedence over WithServiceAccountKeyPath
+func WithServiceAccountKey(serviceAccountKey string) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.ServiceAccountKey = serviceAccountKey
+		return nil
+	}
+}
+
+// WithServiceAccountKeyPath returns a ConfigurationOption that sets the service account key path
+func WithServiceAccountKeyPath(serviceAccountKeyPath string) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.ServiceAccountKeyPath = serviceAccountKeyPath
+		return nil
+	}
+}
+
+// WithPrivateKey returns a ConfigurationOption that sets the private key
+// This option takes precedence over WithPrivateKeyPath
+func WithPrivateKey(privateKey string) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.PrivateKey = privateKey
+		return nil
+	}
+}
+
+// WithPrivateKeyPath returns a ConfigurationOption that sets the private key path
+func WithPrivateKeyPath(privateKeyPath string) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.PrivateKeyPath = privateKeyPath
+		return nil
+	}
+}
+
 // WithRetryTimeout returns a ConfigurationOption that specifies the maximum time for ret
 // WithoutAuthentication returns a ConfigurationOption that disables authentication.
 // This option takes precedence over the WithToken option
