@@ -100,6 +100,7 @@ func (c *KeyFlow) GetServiceAccountEmail() string {
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.token = &TokenResponseBody{}
 	c.config = cfg
+	c.doer = do
 	if c.config.TokenUrl == "" {
 		tokenUrl, tokenUrlSet := os.LookupEnv("STACKIT_TOKEN_BASEURL")
 		if !tokenUrlSet || tokenUrl == "" {
@@ -138,8 +139,8 @@ func (c *KeyFlow) Clone() interface{} {
 	return c
 }
 
-// Do performs the reuqest
-func (c *KeyFlow) Do(req *http.Request) (*http.Response, error) {
+// Roundtrip performs the request
+func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 	accessToken, err := c.GetAccessToken()
 	if err != nil {
 		return nil, err
@@ -182,12 +183,12 @@ func (c *KeyFlow) validate() error {
 	c.key = &ServiceAccountKeyPrivateResponse{}
 	err := json.Unmarshal([]byte(c.config.ServiceAccountKey), c.key)
 	if err != nil {
-		return err
+		return fmt.Errorf("unmarshalling service account key: %w", err)
 	}
 
 	c.privateKey, err = jwt.ParseRSAPrivateKeyFromPEM([]byte(c.config.PrivateKey))
 	if err != nil {
-		return err
+		return fmt.Errorf("parsing private key from PEM file: %w", err)
 	}
 
 	// Encode the private key in PEM format
@@ -198,14 +199,6 @@ func (c *KeyFlow) validate() error {
 	c.privateKeyPEM = pem.EncodeToMemory(privKeyPEM)
 
 	return nil
-}
-
-// Roundtrip performs the request
-func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
-	if c.client == nil {
-		return nil, fmt.Errorf("please run Init()")
-	}
-	return do(c.client, req, c.config.ClientRetry)
 }
 
 // Flow auth functions
@@ -304,7 +297,7 @@ func (c *KeyFlow) parseTokenResponse(res *http.Response) error {
 	if err != nil {
 		return err
 	}
-	c.token = new(TokenResponseBody)
+	c.token = &TokenResponseBody{}
 	return json.Unmarshal(body, c.token)
 }
 

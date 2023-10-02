@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 
@@ -19,7 +20,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Create an unauthenticated API client
+	// // Create an unauthenticated API client
 	_, err = dns.NewAPIClient(config.WithoutAuthentication())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
@@ -32,5 +33,26 @@ func main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
 		os.Exit(1)
+	}
+
+	// Create a new API client, that will authenticate using the key flow
+	saKeyPath := "/path/to/service_account_key.json"
+	privateKeyPath := "/path/to/private.key"
+	dnsClient, err := dns.NewAPIClient(
+		config.WithServiceAccountKeyPath(saKeyPath),
+		config.WithPrivateKeyPath(privateKeyPath),
+	)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Check that you can make an authenticated request
+	getZoneResp, err := dnsClient.GetZones(context.Background(), "PROJECT_ID").Execute()
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.GetZones`: %v\n", err)
+	} else {
+		fmt.Printf("[DNS API] Number of zones: %v\n", len(*getZoneResp.Zones))
 	}
 }
