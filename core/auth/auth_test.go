@@ -497,6 +497,48 @@ func TestGetPrivateKey(t *testing.T) {
 			expectedKey:         "bar_private_key",
 		},
 		{
+			name:                "credentials_file_private_key_path",
+			cfg:                 &config.Configuration{},
+			credentialsFilePath: "test_resources/test_credentials_foo.json",
+			wantErr:             false,
+			expectedKey:         "key",
+		},
+		{
+			name: "cfg_private_key_precedes_path",
+			cfg: &config.Configuration{
+				PrivateKey:     "cfg_key",
+				PrivateKeyPath: "test_resources/test_string_key.txt",
+			},
+			wantErr:     false,
+			expectedKey: "cfg_key",
+		},
+		{
+			name: "cfg_private_key_precedes_env",
+			cfg: &config.Configuration{
+				PrivateKey: "cfg_key",
+			},
+			envPrivateKeySet: true,
+			wantErr:          false,
+			expectedKey:      "cfg_key",
+		},
+		{
+			name: "cfg_private_key_precedes_creds_file",
+			cfg: &config.Configuration{
+				PrivateKey: "cfg_key",
+			},
+			credentialsFilePath: "test_resources/test_credentials_bar.json",
+			wantErr:             false,
+			expectedKey:         "cfg_key",
+		},
+		{
+			name:                "env_private_key_precedes_creds_file",
+			cfg:                 &config.Configuration{},
+			envPrivateKeySet:    true,
+			credentialsFilePath: "test_resources/test_credentials_bar.json",
+			wantErr:             false,
+			expectedKey:         "key",
+		},
+		{
 			name:        "no_private_key_provided",
 			cfg:         &config.Configuration{},
 			wantErr:     true,
@@ -574,6 +616,48 @@ func TestGetServiceAccountKey(t *testing.T) {
 			credentialsFilePath: "test_resources/test_credentials_bar.json",
 			wantErr:             false,
 			expectedKey:         "bar_sa_key",
+		},
+		{
+			name:                "credentials_file_sa_key_path",
+			cfg:                 &config.Configuration{},
+			credentialsFilePath: "test_resources/test_credentials_foo.json",
+			wantErr:             false,
+			expectedKey:         "key",
+		},
+		{
+			name: "cfg_sa_key_precedes_path",
+			cfg: &config.Configuration{
+				ServiceAccountKey:     "cfg_key",
+				ServiceAccountKeyPath: "test_resources/test_string_key.txt",
+			},
+			wantErr:     false,
+			expectedKey: "cfg_key",
+		},
+		{
+			name: "cfg_sa_key_precedes_env",
+			cfg: &config.Configuration{
+				ServiceAccountKey: "cfg_key",
+			},
+			envServiceAccountKeySet: true,
+			wantErr:                 false,
+			expectedKey:             "cfg_key",
+		},
+		{
+			name: "cfg_sa_key_precedes_creds_file",
+			cfg: &config.Configuration{
+				ServiceAccountKey: "cfg_key",
+			},
+			credentialsFilePath: "test_resources/test_credentials_bar.json",
+			wantErr:             false,
+			expectedKey:         "cfg_key",
+		},
+		{
+			name:                    "env_sa_key_precedes_creds_file",
+			cfg:                     &config.Configuration{},
+			envServiceAccountKeySet: true,
+			credentialsFilePath:     "test_resources/test_credentials_bar.json",
+			wantErr:                 false,
+			expectedKey:             "key",
 		},
 		{
 			name:        "no_sa_key_provided",

@@ -15,17 +15,21 @@ import (
 type credentialType string
 
 type Credentials struct {
-	STACKIT_SERVICE_ACCOUNT_EMAIL string
-	STACKIT_SERVICE_ACCOUNT_TOKEN string
-	STACKIT_SERVICE_ACCOUNT_KEY   string
-	STACKIT_PRIVATE_KEY           string
+	STACKIT_SERVICE_ACCOUNT_EMAIL    string
+	STACKIT_SERVICE_ACCOUNT_TOKEN    string
+	STACKIT_SERVICE_ACCOUNT_KEY      string
+	STACKIT_SERVICE_ACCOUNT_KEY_PATH string
+	STACKIT_PRIVATE_KEY              string
+	STACKIT_PRIVATE_KEY_PATH         string
 }
 
 const (
-	credentialsFilePath                            = ".stackit/credentials.json" //nolint:gosec // linter false positive
-	tokenCredentialType             credentialType = "token"
-	serviceAccountKeyCredentialType credentialType = "service_account_key"
-	privateKeyCredentialType        credentialType = "private_key"
+	credentialsFilePath                                = ".stackit/credentials.json" //nolint:gosec // linter false positive
+	tokenCredentialType                 credentialType = "token"
+	serviceAccountKeyCredentialType     credentialType = "service_account_key"
+	serviceAccountKeyPathCredentialType credentialType = "service_account_key_path"
+	privateKeyCredentialType            credentialType = "private_key"
+	privateKeyPathCredentialType        credentialType = "private_key_path"
 )
 
 // SetupAuth sets up authentication based on the configuration. The different options are
@@ -209,10 +213,20 @@ func readCredential(cred credentialType, credentials *Credentials) (string, erro
 		if credentialValue == "" {
 			return credentialValue, fmt.Errorf("service account key is empty or not set")
 		}
+	case serviceAccountKeyPathCredentialType:
+		credentialValue = credentials.STACKIT_SERVICE_ACCOUNT_KEY_PATH
+		if credentialValue == "" {
+			return credentialValue, fmt.Errorf("service account key path is empty or not set")
+		}
 	case privateKeyCredentialType:
 		credentialValue = credentials.STACKIT_PRIVATE_KEY
 		if credentialValue == "" {
 			return credentialValue, fmt.Errorf("private key is empty or not set")
+		}
+	case privateKeyPathCredentialType:
+		credentialValue = credentials.STACKIT_PRIVATE_KEY_PATH
+		if credentialValue == "" {
+			return credentialValue, fmt.Errorf("private key path is empty or not set")
 		}
 	default:
 		return "", fmt.Errorf("invalid credential type: %s", cred)
@@ -260,7 +274,13 @@ func getPrivateKey(cfg *config.Configuration) (err error) {
 					}
 					privateKey, err = readCredential(privateKeyCredentialType, credentials)
 					if err != nil || privateKey == "" {
-						return fmt.Errorf("neither key or path are provided in the configuration, as environment variable and not present in the credentials files: %w", err)
+						// get key path from the credentials file
+						privateKeyPath, err = readCredential(privateKeyPathCredentialType, credentials)
+						if err != nil || privateKeyPath == "" {
+							return fmt.Errorf("neither key or path are provided in the configuration, as environment variable and not present in the credentials files: %w", err)
+						}
+						privateKeyFilePathFound = true
+						cfg.PrivateKeyPath = privateKeyPath
 					}
 					cfg.PrivateKey = privateKey
 				}
@@ -303,7 +323,13 @@ func getServiceAccountKey(cfg *config.Configuration) (err error) {
 					}
 					serviceAccountKey, err = readCredential(serviceAccountKeyCredentialType, credentials)
 					if err != nil || serviceAccountKey == "" {
-						return fmt.Errorf("neither key or path are provided in the configuration, as environment variable and not present in the credentials files: %w", err)
+						// get key path from the credentials file
+						serviceAccountKeyPath, err = readCredential(serviceAccountKeyPathCredentialType, credentials)
+						if err != nil || serviceAccountKeyPath == "" {
+							return fmt.Errorf("neither key or path are provided in the configuration, as environment variable and not present in the credentials files: %w", err)
+						}
+						serviceAccountKeyFilePathFound = true
+						cfg.ServiceAccountKeyPath = serviceAccountKeyPath
 					}
 					cfg.ServiceAccountKey = serviceAccountKey
 				}
