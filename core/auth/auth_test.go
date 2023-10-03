@@ -123,22 +123,6 @@ func TestReadCredentials(t *testing.T) {
 			expectedCredential: "bar_token",
 		},
 		{
-			desc:               "valid_path_argument_sa_key",
-			path:               "test_resources/test_credentials_bar.json",
-			pathEnv:            "",
-			credentialType:     serviceAccountKeyCredentialType,
-			isValid:            true,
-			expectedCredential: "bar_sa_key",
-		},
-		{
-			desc:               "valid_path_argument_private_key",
-			path:               "test_resources/test_credentials_bar.json",
-			pathEnv:            "",
-			credentialType:     privateKeyCredentialType,
-			isValid:            true,
-			expectedCredential: "bar_private_key",
-		},
-		{
 			desc:               "valid_path_env",
 			path:               "",
 			pathEnv:            "test_resources/test_credentials_bar.json",
@@ -476,13 +460,6 @@ func TestGetPrivateKey(t *testing.T) {
 			expectedKey: "key",
 		},
 		{
-			name:             "env_private_key",
-			cfg:              &config.Configuration{},
-			envPrivateKeySet: true,
-			wantErr:          false,
-			expectedKey:      "key",
-		},
-		{
 			name:                 "env_private_key_path",
 			cfg:                  &config.Configuration{},
 			envPrivateKeyPathSet: true,
@@ -490,18 +467,11 @@ func TestGetPrivateKey(t *testing.T) {
 			expectedKey:          "key",
 		},
 		{
-			name:                "credentials_file_private_key",
-			cfg:                 &config.Configuration{},
-			credentialsFilePath: "test_resources/test_credentials_bar.json",
-			wantErr:             false,
-			expectedKey:         "bar_private_key",
-		},
-		{
 			name:                "credentials_file_private_key_path",
 			cfg:                 &config.Configuration{},
 			credentialsFilePath: "test_resources/test_credentials_foo.json",
 			wantErr:             false,
-			expectedKey:         "key",
+			expectedKey:         "foo_key",
 		},
 		{
 			name: "cfg_private_key_precedes_path",
@@ -517,26 +487,26 @@ func TestGetPrivateKey(t *testing.T) {
 			cfg: &config.Configuration{
 				PrivateKey: "cfg_key",
 			},
-			envPrivateKeySet: true,
-			wantErr:          false,
-			expectedKey:      "cfg_key",
+			envPrivateKeyPathSet: true,
+			wantErr:              false,
+			expectedKey:          "cfg_key",
 		},
 		{
 			name: "cfg_private_key_precedes_creds_file",
 			cfg: &config.Configuration{
 				PrivateKey: "cfg_key",
 			},
-			credentialsFilePath: "test_resources/test_credentials_bar.json",
+			credentialsFilePath: "test_resources/test_credentials_foo.json",
 			wantErr:             false,
 			expectedKey:         "cfg_key",
 		},
 		{
-			name:                "env_private_key_precedes_creds_file",
-			cfg:                 &config.Configuration{},
-			envPrivateKeySet:    true,
-			credentialsFilePath: "test_resources/test_credentials_bar.json",
-			wantErr:             false,
-			expectedKey:         "key",
+			name:                 "env_private_key_precedes_creds_file",
+			cfg:                  &config.Configuration{},
+			envPrivateKeyPathSet: true,
+			credentialsFilePath:  "test_resources/test_credentials_foo.json",
+			wantErr:              false,
+			expectedKey:          "key",
 		},
 		{
 			name:        "no_private_key_provided",
@@ -547,12 +517,6 @@ func TestGetPrivateKey(t *testing.T) {
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.credentialsFilePath)
-
-			if test.envPrivateKeySet {
-				t.Setenv("STACKIT_PRIVATE_KEY", "key")
-			} else {
-				t.Setenv("STACKIT_PRIVATE_KEY", "")
-			}
 
 			if test.envPrivateKeyPathSet {
 				t.Setenv("STACKIT_PRIVATE_KEY_PATH", "test_resources/test_string_key.txt")
@@ -597,13 +561,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 			expectedKey: "key",
 		},
 		{
-			name:                    "env_sa_key",
-			cfg:                     &config.Configuration{},
-			envServiceAccountKeySet: true,
-			wantErr:                 false,
-			expectedKey:             "key",
-		},
-		{
 			name:                        "env_sa_key_path",
 			cfg:                         &config.Configuration{},
 			envServiceAccountKeyPathSet: true,
@@ -611,18 +568,11 @@ func TestGetServiceAccountKey(t *testing.T) {
 			expectedKey:                 "key",
 		},
 		{
-			name:                "credentials_file_sa_key",
-			cfg:                 &config.Configuration{},
-			credentialsFilePath: "test_resources/test_credentials_bar.json",
-			wantErr:             false,
-			expectedKey:         "bar_sa_key",
-		},
-		{
 			name:                "credentials_file_sa_key_path",
 			cfg:                 &config.Configuration{},
 			credentialsFilePath: "test_resources/test_credentials_foo.json",
 			wantErr:             false,
-			expectedKey:         "key",
+			expectedKey:         "foo_key",
 		},
 		{
 			name: "cfg_sa_key_precedes_path",
@@ -638,26 +588,26 @@ func TestGetServiceAccountKey(t *testing.T) {
 			cfg: &config.Configuration{
 				ServiceAccountKey: "cfg_key",
 			},
-			envServiceAccountKeySet: true,
-			wantErr:                 false,
-			expectedKey:             "cfg_key",
+			envServiceAccountKeyPathSet: true,
+			wantErr:                     false,
+			expectedKey:                 "cfg_key",
 		},
 		{
 			name: "cfg_sa_key_precedes_creds_file",
 			cfg: &config.Configuration{
 				ServiceAccountKey: "cfg_key",
 			},
-			credentialsFilePath: "test_resources/test_credentials_bar.json",
+			credentialsFilePath: "test_resources/test_credentials_foo.json",
 			wantErr:             false,
 			expectedKey:         "cfg_key",
 		},
 		{
-			name:                    "env_sa_key_precedes_creds_file",
-			cfg:                     &config.Configuration{},
-			envServiceAccountKeySet: true,
-			credentialsFilePath:     "test_resources/test_credentials_bar.json",
-			wantErr:                 false,
-			expectedKey:             "key",
+			name:                        "env_sa_key_precedes_creds_file",
+			cfg:                         &config.Configuration{},
+			envServiceAccountKeyPathSet: true,
+			credentialsFilePath:         "test_resources/test_credentials_foo.json",
+			wantErr:                     false,
+			expectedKey:                 "key",
 		},
 		{
 			name:        "no_sa_key_provided",
@@ -668,12 +618,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.credentialsFilePath)
-
-			if test.envServiceAccountKeySet {
-				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", "key")
-			} else {
-				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", "")
-			}
 
 			if test.envServiceAccountKeyPathSet {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", "test_resources/test_string_key.txt")

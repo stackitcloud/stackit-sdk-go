@@ -128,7 +128,7 @@ To use the key flow, you need to have a service account key and an RSA key-pair.
 2. Save the content of the service account key and the corresponding private key by copying them or saving them in a file.
 3. Configure the service account key and private key for authentication in the SDK:
    - using the configuration options: `config.WithServiceAccountKey` or `config.WithServiceAccountKeyPath`, `config.WithPrivateKey` or `config.WithPrivateKeyPath`
-   - setting environment variables: `STACKIT_SERVICE_ACCOUNT_KEY` or `STACKIT_SERVICE_ACCOUNT_KEY_PATH`, `STACKIT_PRIVATE_KEY` or `STACKIT_PRIVATE_KEY_PATH`
+   - setting environment variables: `STACKIT_SERVICE_ACCOUNT_KEY_PATH` and `STACKIT_PRIVATE_KEY_PATH`
    - setting them in the credentials file (see above)
 4. The SDK will search for the keys and, if valid, will use them to get access and refresh tokens which will be used to authenticate all the requests.
 
