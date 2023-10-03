@@ -281,17 +281,20 @@ func getPrivateKey(cfg *config.Configuration) (err error) {
 						}
 						privateKeyFilePathFound = true
 						cfg.PrivateKeyPath = privateKeyPath
+					} else {
+						cfg.PrivateKey = privateKey
 					}
-					cfg.PrivateKey = privateKey
+				} else {
+					privateKeyFilePathFound = true
+					cfg.PrivateKeyPath = privateKeyPath
 				}
-				privateKeyFilePathFound = true
-				cfg.PrivateKeyPath = privateKeyPath
+			} else {
+				cfg.PrivateKey = privateKey
 			}
-			cfg.PrivateKey = privateKey
 		} else {
 			privateKeyFilePathFound = true
 		}
-		if privateKeyFilePathFound && cfg.PrivateKey == "" {
+		if privateKeyFilePathFound {
 			// Read from filepath
 			privateKeyBytes, err := os.ReadFile(cfg.PrivateKeyPath)
 			if err != nil {
@@ -330,17 +333,20 @@ func getServiceAccountKey(cfg *config.Configuration) (err error) {
 						}
 						serviceAccountKeyFilePathFound = true
 						cfg.ServiceAccountKeyPath = serviceAccountKeyPath
+					} else {
+						cfg.ServiceAccountKey = serviceAccountKey
 					}
-					cfg.ServiceAccountKey = serviceAccountKey
+				} else {
+					serviceAccountKeyFilePathFound = true
+					cfg.ServiceAccountKeyPath = serviceAccountKeyPath
 				}
-				serviceAccountKeyFilePathFound = true
-				cfg.ServiceAccountKeyPath = serviceAccountKeyPath
+			} else {
+				cfg.ServiceAccountKey = serviceAccountKey
 			}
-			cfg.ServiceAccountKey = serviceAccountKey
 		} else {
 			serviceAccountKeyFilePathFound = true
 		}
-		if serviceAccountKeyFilePathFound && cfg.ServiceAccountKey == "" {
+		if serviceAccountKeyFilePathFound {
 			// Read from filepath
 			serviceAccountKeyBytes, err := os.ReadFile(cfg.ServiceAccountKeyPath)
 			if err != nil {

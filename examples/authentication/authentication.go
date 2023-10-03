@@ -10,7 +10,6 @@ import (
 )
 
 func main() {
-
 	// When creating a new API client without providing any configuration, it will setup default authentication.
 	// The SDK will search for a valid service account key or token in several locations.
 	// It will first try to use the key flow, by looking into the variables STACKIT_SERVICE_ACCOUNT_KEY, STACKIT_SERVICE_ACCOUNT_KEY_PATH,
