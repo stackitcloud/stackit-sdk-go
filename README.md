@@ -94,7 +94,14 @@ Please note that the naming of the data models, functions and the SDK API is sub
 
 ## Authentication
 
-There are multiple ways to authenticate. Currently, the _token-flow_ is supported: The SDK will first try to find a token in the `STACKIT_SERVICE_ACCOUNT_TOKEN` env var. If not present, it will
+There are multiple ways to authenticate:
+
+- Token flow
+- Key flow (recommended)
+
+### Token flow
+
+The SDK will first try to find a token in the `STACKIT_SERVICE_ACCOUNT_TOKEN` env var. If not present, it will
 check the credentials file located in the path defined by the `STACKIT_CREDENTIALS_PATH` env var, if specified,
 or in `$HOME/.stackit/credentials.json` as a fallback. If the token is found, all the requests are authenticated using that token.
 
