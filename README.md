@@ -94,54 +94,51 @@ Please note that the naming of the data models, functions and the SDK API is sub
 
 ## Authentication
 
-There are multiple ways to authenticate:
+To authenticate to the SDK, you will need a service account. Create it in the STACKIT Portal an assign it the necessary permissions, e.g. project.owner. There are multiple ways to authenticate:
 
 - Token flow
 - Key flow (recommended)
 
+When setting up authentication, the SDK will always try to use the key flow first and search for credentials in several locations, following a specific order:
+
+1. Explicit configuration, e.g. by using the option `config.WithServiceAccountKeyPath("path/to/sa_key.json")`
+2. Environment variable, e.g. by setting `STACKIT_SERVICE_ACCOUNT_KEY_PATH`
+3. Credentials file
+
+   The SDK will check the credentials file located in the path defined by the `STACKIT_CREDENTIALS_PATH` env var, if specified,
+   or in `$HOME/.stackit/credentials.json` as a fallback.
+   The credentials should be set using the same name as the environmnet variables. Example:
+
+   ```json
+   {
+     "STACKIT_SERVICE_ACCOUNT_TOKEN": "foo_token",
+     "STACKIT_SERVICE_ACCOUNT_KEY_PATH": "path/to/sa_key.json",
+     "STACKIT_PRIVATE_KEY_PATH": "path/to/private_key.pem"
+   }
+   ```
+
+Check the [authentication example](examples/authentication/authentication.go) for more details.
+
+### Key flow
+
+To use the key flow, you need to have a service account key and an RSA key-pair. To configure it, follow this steps:
+
+1. In the Portal, go to `Service Account -> Service Account Keys` and create a key.
+   - You can create your own RSA key-pair or have the Portal generate one for you.
+2. Save the content of the service account key and the corresponding private key by copying them or saving them in a file.
+3. Configure the service account key and private key for authentication in the SDK:
+   - using the configuration options: `config.WithServiceAccountKey` or `config.WithServiceAccountKeyPath`, `config.WithPrivateKey` or `config.WithPrivateKeyPath`
+   - setting environment variables: `STACKIT_SERVICE_ACCOUNT_KEY` or `STACKIT_SERVICE_ACCOUNT_KEY_PATH`, `STACKIT_PRIVATE_KEY` or `STACKIT_PRIVATE_KEY_PATH`
+   - setting them in the credentials file (see above)
+4. The SDK will search for the keys and, if valid, will use them to get access and refresh tokens which will be used to authenticate all the requests.
+
 ### Token flow
 
-The SDK will first try to find a token in the `STACKIT_SERVICE_ACCOUNT_TOKEN` env var. If not present, it will
-check the credentials file located in the path defined by the `STACKIT_CREDENTIALS_PATH` env var, if specified,
-or in `$HOME/.stackit/credentials.json` as a fallback. If the token is found, all the requests are authenticated using that token.
+Using this flow is less secure since the token is long-lived. You can provide the token in several ways:
 
-In the example below, the case for no authentication and the case for a explicit token provision are shown.
-
-```go
-(...)
-
-import (
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
-)
-
-(...)
-
-// Create an unauthenticated API client
-client, err := dns.NewAPIClient(config.WithoutAuthentication())
-if err != nil {
-    fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
-    os.Exit(1)
-}
-
-```
-
-```go
-(...)
-
-import (
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
-)
-
-(...)
-
-// Create a new API client, that will authenticate using the provided bearer token
-token := "TOKEN"
-client, err := dns.NewAPIClient(config.WithToken(token))
-if err != nil {
-    fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
-    os.Exit(1)
-}
-```
+1. Using the configuration option `config.WithToken`
+2. Setting the environment variable `STACKIT_SERVICE_ACCOUNT_TOKEN`
+3. Setting it in the credentials file (see above)
 
 ## Reporting issues
 
