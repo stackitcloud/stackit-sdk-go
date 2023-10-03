@@ -110,7 +110,7 @@ func TestReadCredentials(t *testing.T) {
 		desc               string
 		path               string
 		pathEnv            string
-		credentialType     string
+		credentialType     credentialType
 		isValid            bool
 		expectedCredential string
 	}{

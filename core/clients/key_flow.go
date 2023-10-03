@@ -312,7 +312,7 @@ func (c *KeyFlow) validateToken(token string) (bool, error) {
 	}
 	if _, err := c.parseToken(token); err != nil {
 		if strings.Contains(err.Error(), "401") {
-			c.token = new(TokenResponseBody)
+			c.token = &TokenResponseBody{}
 			return false, nil
 		}
 		return false, err
@@ -352,8 +352,8 @@ func (c *KeyFlow) getJwksJSON(token string) (jwks []byte, err error) {
 			err = fmt.Errorf("closing get jwks response: %w", tempErr)
 		}
 	}()
-	if res.StatusCode == 200 {
-		return io.ReadAll(res.Body)
+	if res.StatusCode != 200 {
+		return nil, fmt.Errorf("getting jwks return error status %s", res.Status)
 	}
-	return nil, fmt.Errorf("error: %s", res.Status)
+	return io.ReadAll(res.Body)
 }

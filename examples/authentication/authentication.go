@@ -20,7 +20,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// // Create an unauthenticated API client
+	// Create an unauthenticated API client
 	_, err = dns.NewAPIClient(config.WithoutAuthentication())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)

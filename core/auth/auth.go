@@ -12,12 +12,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-const (
-	credentialsFilePath             = ".stackit/credentials.json" //nolint:gosec // linter false positive
-	tokenCredentialType             = "token"
-	serviceAccountKeyCredentialType = "serviceAccountKey"
-	privateKeyCredentialType        = "privateKey"
-)
+type credentialType string
 
 type Credentials struct {
 	STACKIT_SERVICE_ACCOUNT_EMAIL string
@@ -26,8 +21,15 @@ type Credentials struct {
 	STACKIT_PRIVATE_KEY           string
 }
 
+const (
+	credentialsFilePath                            = ".stackit/credentials.json" //nolint:gosec // linter false positive
+	tokenCredentialType             credentialType = "token"
+	serviceAccountKeyCredentialType credentialType = "service_account_key"
+	privateKeyCredentialType        credentialType = "private_key"
+)
+
 // SetupAuth sets up authentication based on the configuration. The different options are
-// custom authentication, no authentication, explicit token flow or default authentication
+// custom authentication, no authentication, explicit key flow, explicit token flow or default authentication
 func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg == nil {
 		cfg = &config.Configuration{}
@@ -64,11 +66,13 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	}
 }
 
-// DefaultAuth will search for a valid token in several locations.
-// It will first try to find the token in the STACKIT_SERVICE_ACCOUNT_TOKEN. If not present, it will
-// check the credentials file located in STACKIT_CREDENTIALS_PATH, if specified, or in
-// $HOME/.stackit/credentials.json as a fallback. If the token is found, the TokenAuth flow is used and DefaultAuth returns
-// an http.RoundTripper that can be used to make authenticated requests.
+// DefaultAuth will search for a valid service account key or token in several locations.
+// It will first try to use the key flow, by looking into the variables STACKIT_SERVICE_ACCOUNT_KEY, STACKIT_SERVICE_ACCOUNT_KEY_PATH,
+// STACKIT_PRIVATE_KEY and STACKIT_PRIVATE_KEY_PATH. If the keys cannot be retrieved, it will check the credentials file located in STACKIT_CREDENTIALS_PATH, if specified, or in
+// $HOME/.stackit/credentials.json as a fallback. If the key are found and are valid, the KeyAuth flow is used.
+// If the key flow cannot be used, it will try to find a token in the STACKIT_SERVICE_ACCOUNT_TOKEN. If not present, it will
+// search in the credentials file. If the token is found, the TokenAuth flow is used.
+// DefaultAuth returns an http.RoundTripper that can be used to make authenticated requests.
 // In case the token is not found, DefaultAuth fails.
 func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg == nil {
@@ -192,9 +196,9 @@ func readCredentialsFile(path string) (*Credentials, error) {
 }
 
 // readCredential reads the specified credentialType from Credentials and returns it as a string
-func readCredential(credentialType string, credentials *Credentials) (string, error) {
+func readCredential(cred credentialType, credentials *Credentials) (string, error) {
 	var credentialValue string
-	switch credentialType {
+	switch cred {
 	case tokenCredentialType:
 		credentialValue = credentials.STACKIT_SERVICE_ACCOUNT_TOKEN
 		if credentialValue == "" {
@@ -211,7 +215,7 @@ func readCredential(credentialType string, credentials *Credentials) (string, er
 			return credentialValue, fmt.Errorf("private key is empty or not set")
 		}
 	default:
-		return "", fmt.Errorf("invalid credential type: %s", credentialType)
+		return "", fmt.Errorf("invalid credential type: %s", cred)
 	}
 
 	return credentialValue, nil
