@@ -6,9 +6,12 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"fmt"
+	"os"
+	"reflect"
 	"testing"
 
 	"github.com/google/uuid"
+	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
@@ -33,19 +36,82 @@ var saKey = fmt.Sprintf(saKeyStrPattern, uuid.New().String(), uuid.New().String(
 
 // Error cases are tested in the noAuth, TokenAuth and DefaultAuth functions
 func TestSetupAuth(t *testing.T) {
+	privateKey, err := generatePrivateKey()
+	if err != nil {
+		t.Fatalf("Generating private key: %s", err)
+	}
+
+	// Create a temporary file
+	privateKeyFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary file: %s", err)
+	}
+	defer func() {
+		err := os.Remove(privateKeyFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
+	// Write some text to the file
+	_, errs = privateKeyFile.WriteString(string(privateKey))
+	if errs != nil {
+		t.Fatalf("Writing private key to temporary file: %s", err)
+	}
+
+	defer func() {
+		err := privateKeyFile.Close()
+		if err != nil {
+			t.Fatalf("Closing temporary file: %s", err)
+		}
+	}()
+
+	// Create a temporary file
+	saKeyFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary file: %s", err)
+	}
+	defer func() {
+		err := os.Remove(saKeyFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
+	// Write some text to the file
+	_, errs = saKeyFile.WriteString(string(saKey))
+	if errs != nil {
+		t.Fatalf("Writing private key to temporary file: %s", err)
+	}
+
+	defer func() {
+		err := saKeyFile.Close()
+		if err != nil {
+			t.Fatalf("Closing temporary file: %s", err)
+		}
+	}()
+
 	for _, test := range []struct {
 		desc     string
 		config   *config.Configuration
 		setToken bool
+		setKeys  bool
 		setPath  bool
 		isValid  bool
 	}{
 		{
-			desc:     "default_config",
+			desc:     "token_config",
 			config:   nil,
 			setToken: true,
 			setPath:  false,
 			isValid:  true,
+		},
+		{
+			desc:    "key_config",
+			config:  nil,
+			setKeys: true,
+			setPath: false,
+			isValid: true,
 		},
 		{
 			desc:     "valid_path_to_file",
@@ -74,6 +140,14 @@ func TestSetupAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			if test.setKeys {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", saKeyFile.Name())
+				t.Setenv("STACKIT_PRIVATE_KEY_PATH", privateKeyFile.Name())
+			} else {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", "")
+				t.Setenv("STACKIT_PRIVATE_KEY_PATH", "")
+			}
+
 			if test.setToken {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "test-token")
 			} else {
@@ -83,7 +157,7 @@ func TestSetupAuth(t *testing.T) {
 			if test.setPath {
 				t.Setenv("STACKIT_CREDENTIALS_PATH", "test_resources/test_credentials_bar.json")
 			} else {
-				t.Setenv("STACKIT_CREDENTIALS_PATH", "test-path")
+				t.Setenv("STACKIT_CREDENTIALS_PATH", "")
 			}
 
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "test-email")
@@ -172,23 +246,96 @@ func TestReadCredentials(t *testing.T) {
 }
 
 func TestDefaultAuth(t *testing.T) {
+	privateKey, err := generatePrivateKey()
+	if err != nil {
+		t.Fatalf("Generating private key: %s", err)
+	}
+
+	// Create a temporary file
+	privateKeyFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary file: %s", err)
+	}
+	defer func() {
+		err := os.Remove(privateKeyFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
+	// Write some text to the file
+	_, errs = privateKeyFile.WriteString(string(privateKey))
+	if errs != nil {
+		t.Fatalf("Writing private key to temporary file: %s", err)
+	}
+
+	defer func() {
+		err := privateKeyFile.Close()
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
+	// Create a temporary file
+	saKeyFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary file: %s", err)
+	}
+	defer func() {
+		err := os.Remove(saKeyFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
+	// Write some text to the file
+	_, errs = saKeyFile.WriteString(string(saKey))
+	if errs != nil {
+		t.Fatalf("Writing private key to temporary file: %s", err)
+	}
+
+	defer func() {
+		err := saKeyFile.Close()
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
 	for _, test := range []struct {
-		desc     string
-		setToken bool
-		isValid  bool
+		desc         string
+		setToken     bool
+		setKeys      bool
+		isValid      bool
+		expectedFlow string
 	}{
 		{
-			desc:     "valid_case",
-			setToken: true,
-			isValid:  true,
+			desc:         "token",
+			setToken:     true,
+			isValid:      true,
+			expectedFlow: "token",
 		},
 		{
-			desc:     "no_token",
+			desc:         "key_precedes_token",
+			setToken:     true,
+			setKeys:      true,
+			isValid:      true,
+			expectedFlow: "key",
+		},
+		{
+			desc:     "no_credentials",
 			setToken: false,
 			isValid:  false,
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			if test.setKeys {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", saKeyFile.Name())
+				t.Setenv("STACKIT_PRIVATE_KEY_PATH", privateKeyFile.Name())
+			} else {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", "")
+				t.Setenv("STACKIT_PRIVATE_KEY_PATH", "")
+			}
+
 			if test.setToken {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "test-token")
 			} else {
@@ -208,8 +355,20 @@ func TestDefaultAuth(t *testing.T) {
 				t.Fatalf("Test didn't return error on invalid test case")
 			}
 
-			if test.isValid && authClient == nil {
-				t.Fatalf("Client returned is nil for valid test case")
+			if test.isValid {
+				if authClient == nil {
+					t.Fatalf("Client returned is nil for valid test case")
+				}
+				switch test.expectedFlow {
+				case "token":
+					if _, ok := authClient.(*clients.TokenFlow); !ok {
+						t.Fatalf("Expected token flow, got %s", reflect.TypeOf(authClient))
+					}
+				case "key":
+					if _, ok := authClient.(*clients.KeyFlow); !ok {
+						t.Fatalf("Expected key flow, got %s", reflect.TypeOf(authClient))
+					}
+				}
 			}
 		})
 	}
