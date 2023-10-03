@@ -102,19 +102,19 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.config = cfg
 	c.doer = do
 	if c.config.TokenUrl == "" {
-		tokenUrl, tokenUrlSet := os.LookupEnv("STACKIT_TOKEN_BASEURL")
-		if !tokenUrlSet || tokenUrl == "" {
+		tokenCustomUrl, tokenUrlSet := os.LookupEnv("STACKIT_TOKEN_BASEURL")
+		if !tokenUrlSet || tokenCustomUrl == "" {
 			c.config.TokenUrl = tokenAPI
 		} else {
-			c.config.TokenUrl = tokenUrl
+			c.config.TokenUrl = tokenCustomUrl
 		}
 	}
 	if c.config.JWKSUrl == "" {
-		jwksUrl, jwksUrlSet := os.LookupEnv("STACKIT_JWKS_BASEURL")
-		if !jwksUrlSet || jwksUrl == "" {
+		jwksCustomUrl, jwksUrlSet := os.LookupEnv("STACKIT_JWKS_BASEURL")
+		if !jwksUrlSet || jwksCustomUrl == "" {
 			c.config.JWKSUrl = jwksAPI
 		} else {
-			c.config.TokenUrl = jwksUrl
+			c.config.TokenUrl = jwksCustomUrl
 		}
 	}
 	c.configureHTTPClient()
