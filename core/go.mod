@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/MicahParks/keyfunc/v2 v2.1.0
 	github.com/google/go-cmp v0.5.9
-	github.com/google/uuid v1.3.0
+	github.com/google/uuid v1.3.1
 	golang.org/x/oauth2 v0.12.0
 	k8s.io/apimachinery v0.28.2
 )
