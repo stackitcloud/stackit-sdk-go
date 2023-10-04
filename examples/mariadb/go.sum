@@ -9,8 +9,8 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
 github.com/stackitcloud/stackit-sdk-go/core v0.2.0 h1:dv9pMtGN6p5HbbpaB1PjncOdDPDyP4mXfXBxk7j9x0c=
 github.com/stackitcloud/stackit-sdk-go/core v0.2.0/go.mod h1:Bne56SlX8V2GbONcofEmZz5lVLuuZgsc015FPIUYXy4=
-github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.3.0 h1:dipeN36UsV01UprhM3FJDW3maJICWpGN09GrBI3M0vY=
-github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.3.0/go.mod h1:3dOLY0zIH/o2iP/DnkM2bnQIW/Dm79XNDw3gBY5se9s=
+github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.4.0 h1:0U8sJFEeYcp9sC9ybqOo0ZM4Rco56wFk+xD4+BltthM=
+github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.4.0/go.mod h1:3dOLY0zIH/o2iP/DnkM2bnQIW/Dm79XNDw3gBY5se9s=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/net v0.0.0-20190603091049-60506f45cf65/go.mod h1:HSz+uSET+XFnRR8LxR5pz3Of3rY3CfYBVs4xY44aLks=
 golang.org/x/net v0.15.0 h1:ugBLEUaxABaB5AJqW9enI0ACdci2RUd4eP51NTBvuJ8=

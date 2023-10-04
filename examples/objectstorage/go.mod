@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.2.0
-	github.com/stackitcloud/stackit-sdk-go/services/objectstorage v0.2.0
+	github.com/stackitcloud/stackit-sdk-go/services/objectstorage v0.3.0
 )
 
 require (
