@@ -18,7 +18,6 @@ use (
 	./examples/redis
 	./examples/secretsmanager
 	./examples/ske
-	./examples/waiter
 	./services/argus
 	./services/dns
 	./services/loadbalancer

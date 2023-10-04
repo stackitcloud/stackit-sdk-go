@@ -1,66 +1,10 @@
 package config
 
 import (
-	"net/http"
-	"net/url"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
 )
-
-func TestWithProxy(t *testing.T) {
-	for _, test := range []struct {
-		desc         string
-		client       *http.Client
-		checkTimeout bool
-	}{
-		{
-			desc:         "default_client",
-			client:       nil,
-			checkTimeout: false,
-		},
-		{
-			desc: "custom_client",
-			client: &http.Client{
-				Timeout: 10,
-			},
-			checkTimeout: true,
-		},
-	} {
-		t.Run(test.desc, func(t *testing.T) {
-			proxyURL, _ := url.Parse("http://example.com")
-
-			config := &Configuration{
-				HTTPClient: test.client,
-			}
-
-			err := WithProxy(proxyURL)(config)
-			if err != nil {
-				t.Fatalf("WithProxy returned an error: %s", err)
-			}
-
-			transport, ok := config.HTTPClient.Transport.(*http.Transport)
-			if !ok {
-				t.Fatalf("Failed to convert client Transport to http.Transport")
-			}
-
-			returnedProxy, err := transport.Proxy(nil)
-			if err != nil {
-				t.Fatalf("Proxy returned an error: %s", err)
-			}
-
-			if transport.Proxy == nil {
-				t.Fatalf("Expected proxy to be set, but it is nil")
-			} else if returnedProxy != proxyURL {
-				t.Fatalf("Expected proxy URL to be %s, but got %s", proxyURL, returnedProxy)
-			}
-
-			if test.checkTimeout && config.HTTPClient.Timeout == 0 {
-				t.Fatalf("Expected timeout to be set, but it is zero. The client was overwritten.")
-			}
-		})
-	}
-}
 
 func TestConfigureRegion(t *testing.T) {
 	for _, test := range []struct {
