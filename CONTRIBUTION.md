@@ -21,8 +21,8 @@ Check the [Getting Started](README.md#getting-started) and [Authentication](READ
 These commands can be executed from the project root:
 
 - `make project-tools`: get the required dependencies
-- `make lint`: lint the code and the examples and sync dependencies
-- `make test`: run unit tests
+- `make lint`: lint the code and the examples and sync dependencies. To only lint automatically generated files, run with `skip-non-generated-files=true`
+- `make test`: run unit tests. To only lint automatically generated files, run with `skip-non-generated-files=true`
 
 ## Code Contributions
 
