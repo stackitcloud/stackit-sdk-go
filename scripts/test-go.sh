@@ -4,7 +4,11 @@
 # Pre-requisites: Go
 set -eo pipefail
 
-SKIP_NON_GENERATED_FILES="${1:-false}"
+SKIP_NON_GENERATED_FILES="${1}"
+if [ ! "${SKIP_NON_GENERATED_FILES}" = true ]; then
+    SKIP_NON_GENERATED_FILES=false
+fi
+
 ROOT_DIR=$(git rev-parse --show-toplevel)
 GOTEST_ARGS="-timeout=5m -cover -count=1"
 CORE_PATH="${ROOT_DIR}/core"
@@ -17,7 +21,7 @@ else
     exit 1
 fi
 
-if [ ! "${SKIP_NON_GENERATED_FILES}" = true ]; then
+if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
     echo ">> Testing core"
     cd ${CORE_PATH}
     go test ./... ${GOTEST_ARGS}

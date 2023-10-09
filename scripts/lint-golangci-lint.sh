@@ -4,7 +4,10 @@
 # Pre-requisites: golangci-lint
 set -eo pipefail
 
-SKIP_NON_GENERATED_FILES="${1:-false}"
+SKIP_NON_GENERATED_FILES="${1}"
+if [ ! "${SKIP_NON_GENERATED_FILES}" = true ]; then
+    SKIP_NON_GENERATED_FILES=false
+fi
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
 CORE_PATH="${ROOT_DIR}/core"
@@ -20,7 +23,7 @@ else
     exit 1
 fi
 
-if [ ! "${SKIP_NON_GENERATED_FILES}" = true ]; then
+if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
     echo ">> Linting core"
     cd ${CORE_PATH}
     golangci-lint run ${GOLANG_CI_ARGS}
@@ -37,7 +40,7 @@ for service_dir in ${SERVICES_PATH}/*; do
     fi
 done
 
-if [ ! "${SKIP_NON_GENERATED_FILES}" = true ]; then
+if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
     for example_dir in ${EXAMPLES_PATH}/*; do
         example=$(basename ${example_dir})
         echo ">> Linting example ${example}"
