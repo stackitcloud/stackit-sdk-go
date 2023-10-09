@@ -11,13 +11,14 @@ project-tools:
 # LINT
 lint-golangci-lint:
 	@echo "Linting with golangci-lint"
-	@$(SCRIPTS_BASE)/lint-golangci-lint.sh
+	@$(SCRIPTS_BASE)/lint-golangci-lint.sh ${skip-non-generated-files}
 
 sync-tidy:
 	@echo "Syncing and tidying dependencies"
 	@$(SCRIPTS_BASE)/sync-tidy.sh
 
-lint: sync-tidy lint-golangci-lint
+lint: sync-tidy
+	@$(MAKE) --no-print-directory lint-golangci-lint skip-non-generated-files=${skip-non-generated-files}
 
 # TEST
 test-go:

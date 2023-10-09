@@ -1,7 +1,10 @@
 #!/bin/bash
 # This script lints the SDK modules and examples
+# To skip manually maintained files, pass an extra "true" argument
 # Pre-requisites: golangci-lint
 set -eo pipefail
+
+SKIP_NON_GENERATED_FILES="${1:-false}"
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
 CORE_PATH="${ROOT_DIR}/core"
@@ -25,8 +28,16 @@ for service_dir in ${SERVICES_PATH}/*; do
     service=$(basename ${service_dir})
     echo ">> Linting service ${service}"
     cd ${service_dir}
-    golangci-lint run ${GOLANG_CI_ARGS}
+    if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
+        golangci-lint run ${GOLANG_CI_ARGS} --skip-dirs wait
+    else
+        golangci-lint run ${GOLANG_CI_ARGS}
+    fi
 done
+
+if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
+    exit 0
+fi
 
 for example_dir in ${EXAMPLES_PATH}/*; do
     example=$(basename ${example_dir})
