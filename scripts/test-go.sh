@@ -1,7 +1,11 @@
 #!/bin/bash
 # This script tests the SDK modules
+# To skip manually maintained files, pass an extra "true" argument
 # Pre-requisites: Go
 set -eo pipefail
+
+SKIP_NON_GENERATED_FILES="${1:-false}"
+echo "${SKIP_NON_GENERATED_FILES}"
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
 GOTEST_ARGS="-timeout=5m -cover -count=1"
@@ -15,13 +19,19 @@ else
     exit 1
 fi
 
-echo ">> Testing core"
-cd ${CORE_PATH}
-go test ./... ${GOTEST_ARGS}
+if [ ! "${SKIP_NON_GENERATED_FILES}" = true ]; then
+    echo ">> Testing core"
+    cd ${CORE_PATH}
+    go test ./... ${GOTEST_ARGS}
+fi
 
 for service_dir in ${SERVICES_PATH}/*; do
     service=$(basename ${service_dir})
     echo ">> Testing services/${service}"
     cd ${service_dir}
-    go test ./... ${GOTEST_ARGS}
+    if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
+        go test ./ ${GOTEST_ARGS}
+    else
+        go test ./... ${GOTEST_ARGS}
+    fi
 done
