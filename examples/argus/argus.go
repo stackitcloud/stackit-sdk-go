@@ -35,7 +35,7 @@ func main() {
 	// Create a argus Instance
 	createInstancePayload := argus.CreateInstancePayload{
 		Name:   utils.Ptr("myInstance"),
-		PlanId: utils.Ptr("plan-uuid"),
+		PlanId: utils.Ptr("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
 	}
 
 	createInstanceResp, err := argusClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
