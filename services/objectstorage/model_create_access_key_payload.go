@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-type CreateAccessKeyRequest struct {
+type CreateAccessKeyPayload struct {
 	// Expiration date. Null means never expires.
 	Expires *time.Time `json:"expires,omitempty"`
 }

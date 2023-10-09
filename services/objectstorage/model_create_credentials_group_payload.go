@@ -10,10 +10,8 @@ API version: 1.0.7
 
 package objectstorage
 
-type ProjectResponse struct {
-	// Project ID
+type CreateCredentialsGroupPayload struct {
+	// Name of the group holding credentials
 	// REQUIRED
-	Project *string `json:"project"`
-	// REQUIRED
-	Scope *ProjectScope `json:"scope"`
+	DisplayName *string `json:"displayName"`
 }
