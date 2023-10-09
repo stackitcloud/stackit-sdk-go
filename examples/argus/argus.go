@@ -42,7 +42,7 @@ func main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Argus API] Error when calling `CreateInstance`: %v\n", err)
 		os.Exit(1)
-	} else {
-		fmt.Printf("[argus API] Created instance with id \"%s\" and dashboard url \"%s\".\n", *createInstanceResp.InstanceId, *createInstanceResp.DashboardUrl)
 	}
+
+	fmt.Printf("[argus API] Created instance with id \"%s\" and dashboard url \"%s\".\n", *createInstanceResp.InstanceId, *createInstanceResp.DashboardUrl)
 }
