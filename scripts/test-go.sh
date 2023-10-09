@@ -32,7 +32,7 @@ for service_dir in ${SERVICES_PATH}/*; do
     echo ">> Testing services/${service}"
     cd ${service_dir}
     if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
-        go test ./ ${GOTEST_ARGS}
+        go test ./ ${GOTEST_ARGS} # All manually maintained files are in subfolders
     else
         go test ./... ${GOTEST_ARGS}
     fi
