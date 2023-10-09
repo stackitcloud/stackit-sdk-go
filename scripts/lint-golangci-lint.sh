@@ -20,9 +20,11 @@ else
     exit 1
 fi
 
-echo ">> Linting core"
-cd ${CORE_PATH}
-golangci-lint run ${GOLANG_CI_ARGS}
+if [ ! "${SKIP_NON_GENERATED_FILES}" = true ]; then
+    echo ">> Linting core"
+    cd ${CORE_PATH}
+    golangci-lint run ${GOLANG_CI_ARGS}
+fi
 
 for service_dir in ${SERVICES_PATH}/*; do
     service=$(basename ${service_dir})
@@ -35,13 +37,11 @@ for service_dir in ${SERVICES_PATH}/*; do
     fi
 done
 
-if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
-    exit 0
+if [ ! "${SKIP_NON_GENERATED_FILES}" = true ]; then
+    for example_dir in ${EXAMPLES_PATH}/*; do
+        example=$(basename ${example_dir})
+        echo ">> Linting example ${example}"
+        cd ${example_dir}
+        golangci-lint run ${GOLANG_CI_ARGS}
+    done
 fi
-
-for example_dir in ${EXAMPLES_PATH}/*; do
-    example=$(basename ${example_dir})
-    echo ">> Linting example ${example}"
-    cd ${example_dir}
-    golangci-lint run ${GOLANG_CI_ARGS}
-done
