@@ -34,7 +34,7 @@ for service_dir in ${SERVICES_PATH}/*; do
     echo ">> Linting service ${service}"
     cd ${service_dir}
     if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
-        golangci-lint run ${GOLANG_CI_ARGS} --skip-dirs wait
+        golangci-lint run ${GOLANG_CI_ARGS} --skip-dirs wait # All manually maintained files are in subfolders
     else
         golangci-lint run ${GOLANG_CI_ARGS}
     fi
