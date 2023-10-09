@@ -10,8 +10,10 @@ API version: 1.0.7
 
 package objectstorage
 
-type CreateCredentialsGroupRequest struct {
-	// Name of the group holding credentials
+type GetProjectResponse struct {
+	// Project ID
 	// REQUIRED
-	DisplayName *string `json:"displayName"`
+	Project *string `json:"project"`
+	// REQUIRED
+	Scope *ProjectScope `json:"scope"`
 }
