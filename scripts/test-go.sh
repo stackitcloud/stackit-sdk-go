@@ -5,8 +5,6 @@
 set -eo pipefail
 
 SKIP_NON_GENERATED_FILES="${1:-false}"
-echo "${SKIP_NON_GENERATED_FILES}"
-
 ROOT_DIR=$(git rev-parse --show-toplevel)
 GOTEST_ARGS="-timeout=5m -cover -count=1"
 CORE_PATH="${ROOT_DIR}/core"
