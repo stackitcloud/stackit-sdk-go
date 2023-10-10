@@ -14,5 +14,5 @@ type Network struct {
 	// Openstack network ID
 	NetworkId *string `json:"networkId,omitempty"`
 	// The role defines how the load balancer is using the network. Currently only ROLE_LISTENERS_AND_TARGETS is supported.
-	Role *int32 `json:"role,omitempty"`
+	Role *string `json:"role,omitempty"`
 }
