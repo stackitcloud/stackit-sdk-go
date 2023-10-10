@@ -130,7 +130,7 @@ To configure it, follow this steps:
 
     - You can create your own RSA key-pair or have the Portal generate one for you.
 
-    **Disclaimer:** as of now, creation of a service account key in the Portal is only available in DEV and QA environments. You can use this flow in these environments by using the options `config.WithWithTokenEndpoint` and `config.WithWithJWKSEndpoint` to configure the corresponding endpoints.
+    **Disclaimer:** as of now, creation of a service account key in the Portal is only available in DEV and QA environments. You can use this flow in these environments by using the options `config.WithTokenEndpoint` and `config.WithJWKSEndpoint` to configure the corresponding endpoints.
 
 2.  Save the content of the service account key and the corresponding private key by copying them or saving them in a file.
 
