@@ -15,7 +15,7 @@ type Listener struct {
 	// Port number where we listen for traffic
 	Port *int32 `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP and PROTOCOL_TCP_PROXY are supported.
-	Protocol *int32 `json:"protocol,omitempty"`
+	Protocol *string `json:"protocol,omitempty"`
 	// Reference target pool by target pool name.
 	TargetPool *string `json:"targetPool,omitempty"`
 }
