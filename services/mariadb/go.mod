@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/services/mariadb
 go 1.18
 
 require (
-	github.com/google/go-cmp v0.5.9
+	github.com/google/go-cmp v0.6.0
 	github.com/stackitcloud/stackit-sdk-go/core v0.3.0
 )
 
