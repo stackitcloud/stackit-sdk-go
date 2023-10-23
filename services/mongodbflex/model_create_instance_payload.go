@@ -19,7 +19,7 @@ type CreateInstancePayload struct {
 	Labels   *map[string]string `json:"labels,omitempty"`
 	Name     *string            `json:"name,omitempty"`
 	Options  *map[string]string `json:"options,omitempty"`
-	Replicas *int32             `json:"replicas,omitempty"`
+	Replicas *int64             `json:"replicas,omitempty"`
 	Storage  *InstanceStorage   `json:"storage,omitempty"`
 	Version  *string            `json:"version,omitempty"`
 }

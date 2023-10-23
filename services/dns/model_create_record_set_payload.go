@@ -20,7 +20,7 @@ type CreateRecordSetPayload struct {
 	// REQUIRED
 	Records *[]RecordPayload `json:"records"`
 	// time to live. If nothing provided we will set the zone ttl.
-	Ttl *int32 `json:"ttl,omitempty"`
+	Ttl *int64 `json:"ttl,omitempty"`
 	// record set type
 	// REQUIRED
 	Type *string `json:"type"`

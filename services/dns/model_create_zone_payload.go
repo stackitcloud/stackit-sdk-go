@@ -16,27 +16,27 @@ type CreateZonePayload struct {
 	// contact e-mail for the zone
 	ContactEmail *string `json:"contactEmail,omitempty"`
 	// default time to live
-	DefaultTTL *int32 `json:"defaultTTL,omitempty"`
+	DefaultTTL *int64 `json:"defaultTTL,omitempty"`
 	// description of the zone
 	Description *string `json:"description,omitempty"`
 	// zone name
 	// REQUIRED
 	DnsName *string `json:"dnsName"`
 	// expire time
-	ExpireTime *int32 `json:"expireTime,omitempty"`
+	ExpireTime *int64 `json:"expireTime,omitempty"`
 	// if the zone is a reverse zone or not
 	IsReverseZone *bool `json:"isReverseZone,omitempty"`
 	// user given name
 	// REQUIRED
 	Name *string `json:"name"`
 	// negative caching
-	NegativeCache *int32 `json:"negativeCache,omitempty"`
+	NegativeCache *int64 `json:"negativeCache,omitempty"`
 	// primary name server for secondary zone
 	Primaries *[]string `json:"primaries,omitempty"`
 	// refresh time
-	RefreshTime *int32 `json:"refreshTime,omitempty"`
+	RefreshTime *int64 `json:"refreshTime,omitempty"`
 	// retry time
-	RetryTime *int32 `json:"retryTime,omitempty"`
+	RetryTime *int64 `json:"retryTime,omitempty"`
 	// zone type
 	Type *string `json:"type,omitempty"`
 }

@@ -11,6 +11,6 @@ API version: 1.0.0
 package postgresflex
 
 type UsersResponse struct {
-	Count *int32              `json:"count,omitempty"`
+	Count *int64              `json:"count,omitempty"`
 	Items *[]InstanceListUser `json:"items,omitempty"`
 }

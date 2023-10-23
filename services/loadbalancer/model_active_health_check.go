@@ -12,7 +12,7 @@ package loadbalancer
 
 type ActiveHealthCheck struct {
 	// Healthy threshold of the health checking
-	HealthyThreshold *int32 `json:"healthyThreshold,omitempty"`
+	HealthyThreshold *int64 `json:"healthyThreshold,omitempty"`
 	// Interval duration of health checking in seconds
 	Interval *string `json:"interval,omitempty"`
 	// Interval duration threshold of the health checking in seconds
@@ -20,5 +20,5 @@ type ActiveHealthCheck struct {
 	// Active health checking timeout duration in seconds
 	Timeout *string `json:"timeout,omitempty"`
 	// Unhealthy threshold of the health checking
-	UnhealthyThreshold *int32 `json:"unhealthyThreshold,omitempty"`
+	UnhealthyThreshold *int64 `json:"unhealthyThreshold,omitempty"`
 }

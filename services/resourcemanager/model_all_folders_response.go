@@ -15,8 +15,8 @@ type AllFoldersResponse struct {
 	Items *[]AllFoldersResponseItemsInner `json:"items"`
 	// The maximum number of projects to return in the response. If not present, an appropriate default will be used.
 	// REQUIRED
-	Limit *float32 `json:"limit"`
+	Limit *float64 `json:"limit"`
 	// The offset of the first item in the collection to return.
 	// REQUIRED
-	Offset *float32 `json:"offset"`
+	Offset *float64 `json:"offset"`
 }

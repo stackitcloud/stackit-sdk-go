@@ -22,7 +22,7 @@ type Job struct {
 	MetricsRelabelConfigs *[]MetricsRelabelConfig `json:"metricsRelabelConfigs,omitempty"`
 	Oauth2                *OAuth2                 `json:"oauth2,omitempty"`
 	Params                *map[string][]string    `json:"params,omitempty"`
-	SampleLimit           *int32                  `json:"sampleLimit,omitempty"`
+	SampleLimit           *int64                  `json:"sampleLimit,omitempty"`
 	Scheme                *string                 `json:"scheme,omitempty"`
 	// REQUIRED
 	ScrapeInterval *string `json:"scrapeInterval"`

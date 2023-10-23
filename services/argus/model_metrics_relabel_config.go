@@ -12,7 +12,7 @@ package argus
 
 type MetricsRelabelConfig struct {
 	Action      *string `json:"action,omitempty"`
-	Modulus     *int32  `json:"modulus,omitempty"`
+	Modulus     *int64  `json:"modulus,omitempty"`
 	Regex       *string `json:"regex,omitempty"`
 	Replacement *string `json:"replacement,omitempty"`
 	Separator   *string `json:"separator,omitempty"`

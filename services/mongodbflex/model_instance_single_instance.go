@@ -17,7 +17,7 @@ type InstanceSingleInstance struct {
 	Id             *string            `json:"id,omitempty"`
 	Name           *string            `json:"name,omitempty"`
 	Options        *map[string]string `json:"options,omitempty"`
-	Replicas       *int32             `json:"replicas,omitempty"`
+	Replicas       *int64             `json:"replicas,omitempty"`
 	Status         *string            `json:"status,omitempty"`
 	Storage        *InstanceStorage   `json:"storage,omitempty"`
 	Version        *string            `json:"version,omitempty"`

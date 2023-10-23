@@ -11,7 +11,7 @@ API version: 1.0.0
 package postgresflex
 
 type InstanceError struct {
-	Code    *int32               `json:"code,omitempty"`
+	Code    *int64               `json:"code,omitempty"`
 	Fields  *map[string][]string `json:"fields,omitempty"`
 	Message *string              `json:"message,omitempty"`
 	Type    *string              `json:"type,omitempty"`

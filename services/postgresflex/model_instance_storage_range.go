@@ -11,6 +11,6 @@ API version: 1.0.0
 package postgresflex
 
 type InstanceStorageRange struct {
-	Max *int32 `json:"max,omitempty"`
-	Min *int32 `json:"min,omitempty"`
+	Max *int64 `json:"max,omitempty"`
+	Min *int64 `json:"min,omitempty"`
 }

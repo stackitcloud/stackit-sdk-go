@@ -47,7 +47,7 @@ func (a *apiClientInstanceMocked) GetUsersExecute(_ context.Context, _, _ string
 		}
 	}
 
-	aux := int32(0)
+	aux := int64(0)
 	return &postgresflex.UsersResponse{
 		Count: &aux,
 		Items: &[]postgresflex.InstanceListUser{},

@@ -18,5 +18,5 @@ type UpdateRecordSetPayload struct {
 	// records
 	Records *[]RecordPayload `json:"records,omitempty"`
 	// time to live
-	Ttl *int32 `json:"ttl,omitempty"`
+	Ttl *int64 `json:"ttl,omitempty"`
 }

@@ -12,7 +12,7 @@ package argus
 
 type CredentialsRemoteWriteDeleteResponse struct {
 	// REQUIRED
-	MaxLimit *int32 `json:"maxLimit"`
+	MaxLimit *int64 `json:"maxLimit"`
 	// REQUIRED
 	Message *string `json:"message"`
 }

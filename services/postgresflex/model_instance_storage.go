@@ -12,5 +12,5 @@ package postgresflex
 
 type InstanceStorage struct {
 	Class *string `json:"class,omitempty"`
-	Size  *int32  `json:"size,omitempty"`
+	Size  *int64  `json:"size,omitempty"`
 }

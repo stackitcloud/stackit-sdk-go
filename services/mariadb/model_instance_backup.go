@@ -15,8 +15,8 @@ type InstanceBackup struct {
 	// REQUIRED
 	FinishedAt *string `json:"finished_at"`
 	// REQUIRED
-	Id   *int32 `json:"id"`
-	Size *int32 `json:"size,omitempty"`
+	Id   *int64 `json:"id"`
+	Size *int64 `json:"size,omitempty"`
 	// REQUIRED
 	Status      *string `json:"status"`
 	TriggeredAt *string `json:"triggered_at,omitempty"`

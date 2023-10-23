@@ -11,27 +11,27 @@ API version: 1.1.0
 package redis
 
 type InstanceMetrics struct {
-	CpuIdleTime *int32 `json:"cpuIdleTime,omitempty"`
+	CpuIdleTime *int64 `json:"cpuIdleTime,omitempty"`
 	// REQUIRED
-	CpuLoadPercent *int32 `json:"cpuLoadPercent"`
-	CpuSystemTime  *int32 `json:"cpuSystemTime,omitempty"`
-	CpuUserTime    *int32 `json:"cpuUserTime,omitempty"`
+	CpuLoadPercent *int64 `json:"cpuLoadPercent"`
+	CpuSystemTime  *int64 `json:"cpuSystemTime,omitempty"`
+	CpuUserTime    *int64 `json:"cpuUserTime,omitempty"`
 	// REQUIRED
-	DiskPersistentTotal *int32 `json:"diskPersistentTotal"`
+	DiskPersistentTotal *int64 `json:"diskPersistentTotal"`
 	// REQUIRED
-	DiskPersistentUsed *int32 `json:"diskPersistentUsed"`
+	DiskPersistentUsed *int64 `json:"diskPersistentUsed"`
 	// REQUIRED
-	MemoryTotal *int32 `json:"memoryTotal"`
+	MemoryTotal *int64 `json:"memoryTotal"`
 	// REQUIRED
-	MemoryUsed *int32 `json:"memoryUsed"`
+	MemoryUsed *int64 `json:"memoryUsed"`
 	// REQUIRED
-	ParachuteDiskPersistentActivated *int32 `json:"parachuteDiskPersistentActivated"`
+	ParachuteDiskPersistentActivated *int64 `json:"parachuteDiskPersistentActivated"`
 	// REQUIRED
-	ParachuteDiskPersistentTotal *int32 `json:"parachuteDiskPersistentTotal"`
+	ParachuteDiskPersistentTotal *int64 `json:"parachuteDiskPersistentTotal"`
 	// REQUIRED
-	ParachuteDiskPersistentUsed *int32 `json:"parachuteDiskPersistentUsed"`
+	ParachuteDiskPersistentUsed *int64 `json:"parachuteDiskPersistentUsed"`
 	// REQUIRED
-	ParachuteDiskPersistentUsedPercent *int32 `json:"parachuteDiskPersistentUsedPercent"`
+	ParachuteDiskPersistentUsedPercent *int64 `json:"parachuteDiskPersistentUsedPercent"`
 	// REQUIRED
-	ParachuteDiskPersistentUsedThreshold *int32 `json:"parachuteDiskPersistentUsedThreshold"`
+	ParachuteDiskPersistentUsedThreshold *int64 `json:"parachuteDiskPersistentUsedThreshold"`
 }

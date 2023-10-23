@@ -59,7 +59,7 @@ func main() {
 		Listeners: &[]loadbalancer.Listener{
 			{
 				DisplayName: utils.Ptr("example-listener"),
-				Port:        utils.Ptr(int32(1)),
+				Port:        utils.Ptr(int64(1)),
 				Protocol:    utils.Ptr("1"),
 				TargetPool:  utils.Ptr("example-target-pool"),
 			},
@@ -67,7 +67,7 @@ func main() {
 		TargetPools: &[]loadbalancer.TargetPool{
 			{
 				Name:       utils.Ptr("example-target-pool"),
-				TargetPort: utils.Ptr(int32(1)),
+				TargetPort: utils.Ptr(int64(1)),
 				Targets: &[]loadbalancer.Target{
 					{
 						DisplayName: utils.Ptr("example-target"),

@@ -17,12 +17,12 @@ type Nodepool struct {
 	Labels            *map[string]string `json:"labels,omitempty"`
 	// REQUIRED
 	Machine        *Machine `json:"machine"`
-	MaxSurge       *int32   `json:"maxSurge,omitempty"`
-	MaxUnavailable *int32   `json:"maxUnavailable,omitempty"`
+	MaxSurge       *int64   `json:"maxSurge,omitempty"`
+	MaxUnavailable *int64   `json:"maxUnavailable,omitempty"`
 	// REQUIRED
-	Maximum *int32 `json:"maximum"`
+	Maximum *int64 `json:"maximum"`
 	// REQUIRED
-	Minimum *int32 `json:"minimum"`
+	Minimum *int64 `json:"minimum"`
 	// REQUIRED
 	Name   *string  `json:"name"`
 	Taints *[]Taint `json:"taints,omitempty"`

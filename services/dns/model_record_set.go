@@ -37,7 +37,7 @@ type RecordSet struct {
 	State *string `json:"state"`
 	// time to live
 	// REQUIRED
-	Ttl *int32 `json:"ttl"`
+	Ttl *int64 `json:"ttl"`
 	// record set type
 	// REQUIRED
 	Type *string `json:"type"`

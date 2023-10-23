@@ -12,9 +12,9 @@ package mongodbflex
 
 type UpdateBackupSchedulePayload struct {
 	BackupSchedule                 *string `json:"backupSchedule,omitempty"`
-	DailySnapshotRetentionDays     *int32  `json:"dailySnapshotRetentionDays,omitempty"`
-	MonthlySnapshotRetentionMonths *int32  `json:"monthlySnapshotRetentionMonths,omitempty"`
-	PointInTimeWindowHours         *int32  `json:"pointInTimeWindowHours,omitempty"`
-	SnapshotRetentionDays          *int32  `json:"snapshotRetentionDays,omitempty"`
-	WeeklySnapshotRetentionWeeks   *int32  `json:"weeklySnapshotRetentionWeeks,omitempty"`
+	DailySnapshotRetentionDays     *int64  `json:"dailySnapshotRetentionDays,omitempty"`
+	MonthlySnapshotRetentionMonths *int64  `json:"monthlySnapshotRetentionMonths,omitempty"`
+	PointInTimeWindowHours         *int64  `json:"pointInTimeWindowHours,omitempty"`
+	SnapshotRetentionDays          *int64  `json:"snapshotRetentionDays,omitempty"`
+	WeeklySnapshotRetentionWeeks   *int64  `json:"weeklySnapshotRetentionWeeks,omitempty"`
 }

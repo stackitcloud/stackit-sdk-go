@@ -12,5 +12,5 @@ package argus
 
 type UpdateCredentialRemoteWriteConfigPayload struct {
 	// Remote write metric sample limit for credential to push in a single minute.
-	MaxLimit *float32 `json:"maxLimit,omitempty"`
+	MaxLimit *float64 `json:"maxLimit,omitempty"`
 }
