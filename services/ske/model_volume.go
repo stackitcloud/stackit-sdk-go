@@ -12,7 +12,7 @@ package ske
 
 type Volume struct {
 	// REQUIRED
-	Size *int32 `json:"size"`
+	Size *int64 `json:"size"`
 	// For valid values please take a look at /provider-options volumeTypes
 	Type *string `json:"type,omitempty"`
 }

@@ -12,7 +12,7 @@ package postgresflex
 
 type InstanceCreateCloneInstanceRequest struct {
 	Class *string `json:"class,omitempty"`
-	Size  *int32  `json:"size,omitempty"`
+	Size  *int64  `json:"size,omitempty"`
 	// The timestamp should be specified in UTC time following the format provided in the example.
 	Timestamp *string `json:"timestamp,omitempty"`
 }

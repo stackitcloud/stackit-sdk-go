@@ -17,6 +17,6 @@ type InstanceBackup struct {
 	Labels    *[]string          `json:"labels,omitempty"`
 	Name      *string            `json:"name,omitempty"`
 	Options   *map[string]string `json:"options,omitempty"`
-	Size      *int32             `json:"size,omitempty"`
+	Size      *int64             `json:"size,omitempty"`
 	StartTime *string            `json:"startTime,omitempty"`
 }

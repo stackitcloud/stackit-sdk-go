@@ -12,12 +12,12 @@ package dns
 
 type RecordSetsResponse struct {
 	// REQUIRED
-	ItemsPerPage *int32  `json:"itemsPerPage"`
+	ItemsPerPage *int64  `json:"itemsPerPage"`
 	Message      *string `json:"message,omitempty"`
 	// REQUIRED
 	RrSets *[]RecordSet `json:"rrSets"`
 	// REQUIRED
-	TotalItems *int32 `json:"totalItems"`
+	TotalItems *int64 `json:"totalItems"`
 	// REQUIRED
-	TotalPages *int32 `json:"totalPages"`
+	TotalPages *int64 `json:"totalPages"`
 }

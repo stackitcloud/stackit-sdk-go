@@ -13,7 +13,7 @@ package loadbalancer
 type Listener struct {
 	DisplayName *string `json:"displayName,omitempty"`
 	// Port number where we listen for traffic
-	Port *int32 `json:"port,omitempty"`
+	Port *int64 `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP and PROTOCOL_TCP_PROXY are supported.
 	Protocol *string `json:"protocol,omitempty"`
 	// Reference target pool by target pool name.

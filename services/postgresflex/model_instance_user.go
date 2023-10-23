@@ -15,7 +15,7 @@ type InstanceUser struct {
 	Host     *string   `json:"host,omitempty"`
 	Id       *string   `json:"id,omitempty"`
 	Password *string   `json:"password,omitempty"`
-	Port     *int32    `json:"port,omitempty"`
+	Port     *int64    `json:"port,omitempty"`
 	Roles    *[]string `json:"roles,omitempty"`
 	Uri      *string   `json:"uri,omitempty"`
 	Username *string   `json:"username,omitempty"`

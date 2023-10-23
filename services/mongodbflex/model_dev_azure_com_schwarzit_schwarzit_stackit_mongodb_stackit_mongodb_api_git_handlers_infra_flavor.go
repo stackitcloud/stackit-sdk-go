@@ -12,8 +12,8 @@ package mongodbflex
 
 type DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInfraFlavor struct {
 	Categories  *[]string `json:"categories,omitempty"`
-	Cpu         *int32    `json:"cpu,omitempty"`
+	Cpu         *int64    `json:"cpu,omitempty"`
 	Description *string   `json:"description,omitempty"`
 	Id          *string   `json:"id,omitempty"`
-	Memory      *int32    `json:"memory,omitempty"`
+	Memory      *int64    `json:"memory,omitempty"`
 }

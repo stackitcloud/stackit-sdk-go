@@ -11,6 +11,6 @@ API version: 1.0.0
 package mongodbflex
 
 type GetUsersResponse struct {
-	Count *int32              `json:"count,omitempty"`
+	Count *int64              `json:"count,omitempty"`
 	Items *[]InstanceListUser `json:"items,omitempty"`
 }

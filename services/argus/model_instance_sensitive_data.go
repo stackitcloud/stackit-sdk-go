@@ -38,11 +38,11 @@ type InstanceSensitiveData struct {
 	// REQUIRED
 	LogsUrl *string `json:"logsUrl"`
 	// REQUIRED
-	MetricsRetentionTime1h *int32 `json:"metricsRetentionTime1h"`
+	MetricsRetentionTime1h *int64 `json:"metricsRetentionTime1h"`
 	// REQUIRED
-	MetricsRetentionTime5m *int32 `json:"metricsRetentionTime5m"`
+	MetricsRetentionTime5m *int64 `json:"metricsRetentionTime5m"`
 	// REQUIRED
-	MetricsRetentionTimeRaw *int32 `json:"metricsRetentionTimeRaw"`
+	MetricsRetentionTimeRaw *int64 `json:"metricsRetentionTimeRaw"`
 	// REQUIRED
 	MetricsUrl *string `json:"metricsUrl"`
 	Name       *string `json:"name,omitempty"`

@@ -15,6 +15,6 @@ type TargetPool struct {
 	// Target pool name
 	Name *string `json:"name,omitempty"`
 	// Identical port number where each target listens for traffic.
-	TargetPort *int32    `json:"targetPort,omitempty"`
+	TargetPort *int64    `json:"targetPort,omitempty"`
 	Targets    *[]Target `json:"targets,omitempty"`
 }

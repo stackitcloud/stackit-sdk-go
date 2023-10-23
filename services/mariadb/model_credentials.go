@@ -19,7 +19,7 @@ type Credentials struct {
 	Name       *string `json:"name,omitempty"`
 	// REQUIRED
 	Password  *string                 `json:"password"`
-	Port      *int32                  `json:"port,omitempty"`
+	Port      *int64                  `json:"port,omitempty"`
 	Protocols *map[string]interface{} `json:"protocols,omitempty"`
 	Uri       *string                 `json:"uri,omitempty"`
 	// REQUIRED

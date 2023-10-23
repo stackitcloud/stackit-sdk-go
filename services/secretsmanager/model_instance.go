@@ -27,7 +27,7 @@ type Instance struct {
 	Name *string `json:"name"`
 	// The number of secrets currently stored inside of the instance. This value will be updated once per hour.
 	// REQUIRED
-	SecretCount *int32 `json:"secretCount"`
+	SecretCount *int64 `json:"secretCount"`
 	// The name of the secrets engine.
 	// REQUIRED
 	SecretsEngine *string `json:"secretsEngine"`

@@ -26,7 +26,7 @@ type ErrorResponse struct {
 	Path *string `json:"path"`
 	// Http Status Code.
 	// REQUIRED
-	Status *float32 `json:"status"`
+	Status *float64 `json:"status"`
 	// Timestamp at which the error occurred.
 	// REQUIRED
 	TimeStamp *time.Time `json:"timeStamp"`

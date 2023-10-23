@@ -25,7 +25,7 @@ type Zone struct {
 	CreationStarted *string `json:"creationStarted"`
 	// default time to live
 	// REQUIRED
-	DefaultTTL *int32 `json:"defaultTTL"`
+	DefaultTTL *int64 `json:"defaultTTL"`
 	// description of the zone
 	Description *string `json:"description,omitempty"`
 	// zone name
@@ -35,7 +35,7 @@ type Zone struct {
 	Error *string `json:"error,omitempty"`
 	// expire time
 	// REQUIRED
-	ExpireTime *int32 `json:"expireTime"`
+	ExpireTime *int64 `json:"expireTime"`
 	// zone id
 	// REQUIRED
 	Id *string `json:"id"`
@@ -46,23 +46,23 @@ type Zone struct {
 	Name *string `json:"name"`
 	// negative caching
 	// REQUIRED
-	NegativeCache *int32 `json:"negativeCache"`
+	NegativeCache *int64 `json:"negativeCache"`
 	// primary name server for secondary zone
 	Primaries *[]string `json:"primaries,omitempty"`
 	// primary name server. FQDN
 	// REQUIRED
 	PrimaryNameServer *string `json:"primaryNameServer"`
 	// record count how many records are in the zone
-	RecordCount *int32 `json:"recordCount,omitempty"`
+	RecordCount *int64 `json:"recordCount,omitempty"`
 	// refresh time
 	// REQUIRED
-	RefreshTime *int32 `json:"refreshTime"`
+	RefreshTime *int64 `json:"refreshTime"`
 	// retry time
 	// REQUIRED
-	RetryTime *int32 `json:"retryTime"`
+	RetryTime *int64 `json:"retryTime"`
 	// serial number
 	// REQUIRED
-	SerialNumber *int32 `json:"serialNumber"`
+	SerialNumber *int64 `json:"serialNumber"`
 	// zone state
 	// REQUIRED
 	State *string `json:"state"`

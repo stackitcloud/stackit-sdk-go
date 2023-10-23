@@ -12,12 +12,12 @@ package dns
 
 type ZonesResponse struct {
 	// REQUIRED
-	ItemsPerPage *int32  `json:"itemsPerPage"`
+	ItemsPerPage *int64  `json:"itemsPerPage"`
 	Message      *string `json:"message,omitempty"`
 	// REQUIRED
-	TotalItems *int32 `json:"totalItems"`
+	TotalItems *int64 `json:"totalItems"`
 	// REQUIRED
-	TotalPages *int32 `json:"totalPages"`
+	TotalPages *int64 `json:"totalPages"`
 	// REQUIRED
 	Zones *[]Zone `json:"zones"`
 }

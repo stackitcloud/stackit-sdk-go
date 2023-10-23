@@ -12,9 +12,9 @@ package argus
 
 type CredentialsRemoteWriteResponse struct {
 	// REQUIRED
-	CredentialsMaxLimit *int32 `json:"credentialsMaxLimit"`
+	CredentialsMaxLimit *int64 `json:"credentialsMaxLimit"`
 	// REQUIRED
-	MaxLimit *int32 `json:"maxLimit"`
+	MaxLimit *int64 `json:"maxLimit"`
 	// REQUIRED
 	Message *string `json:"message"`
 }

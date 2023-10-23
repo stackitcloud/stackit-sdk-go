@@ -11,6 +11,6 @@ API version: 1.0.0
 package mongodbflex
 
 type GetInstancesResponse struct {
-	Count *int32                  `json:"count,omitempty"`
+	Count *int64                  `json:"count,omitempty"`
 	Items *[]InstanceListInstance `json:"items,omitempty"`
 }

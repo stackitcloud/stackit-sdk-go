@@ -12,41 +12,41 @@ package argus
 
 type PlanModel struct {
 	// REQUIRED
-	AlertMatchers *int32 `json:"alertMatchers"`
+	AlertMatchers *int64 `json:"alertMatchers"`
 	// REQUIRED
-	AlertReceivers *int32 `json:"alertReceivers"`
+	AlertReceivers *int64 `json:"alertReceivers"`
 	// REQUIRED
-	AlertRules *int32   `json:"alertRules"`
-	Amount     *float32 `json:"amount,omitempty"`
+	AlertRules *int64   `json:"alertRules"`
+	Amount     *float64 `json:"amount,omitempty"`
 	// REQUIRED
-	BucketSize  *int32  `json:"bucketSize"`
+	BucketSize  *int64  `json:"bucketSize"`
 	Description *string `json:"description,omitempty"`
 	// REQUIRED
-	GrafanaGlobalDashboards *int32 `json:"grafanaGlobalDashboards"`
+	GrafanaGlobalDashboards *int64 `json:"grafanaGlobalDashboards"`
 	// REQUIRED
-	GrafanaGlobalOrgs *int32 `json:"grafanaGlobalOrgs"`
+	GrafanaGlobalOrgs *int64 `json:"grafanaGlobalOrgs"`
 	// REQUIRED
-	GrafanaGlobalSessions *int32 `json:"grafanaGlobalSessions"`
+	GrafanaGlobalSessions *int64 `json:"grafanaGlobalSessions"`
 	// REQUIRED
-	GrafanaGlobalUsers *int32 `json:"grafanaGlobalUsers"`
+	GrafanaGlobalUsers *int64 `json:"grafanaGlobalUsers"`
 	// REQUIRED
 	Id       *string `json:"id"`
 	IsFree   *bool   `json:"isFree,omitempty"`
 	IsPublic *bool   `json:"isPublic,omitempty"`
 	// REQUIRED
-	LogsAlert *int32 `json:"logsAlert"`
+	LogsAlert *int64 `json:"logsAlert"`
 	// REQUIRED
-	LogsStorage *int32  `json:"logsStorage"`
+	LogsStorage *int64  `json:"logsStorage"`
 	Name        *string `json:"name,omitempty"`
 	// REQUIRED
 	PlanId *string `json:"planId"`
 	// REQUIRED
-	SamplesPerScrape *int32  `json:"samplesPerScrape"`
+	SamplesPerScrape *int64  `json:"samplesPerScrape"`
 	Schema           *string `json:"schema,omitempty"`
 	// REQUIRED
-	TargetNumber *int32 `json:"targetNumber"`
+	TargetNumber *int64 `json:"targetNumber"`
 	// REQUIRED
-	TotalMetricSamples *int32 `json:"totalMetricSamples"`
+	TotalMetricSamples *int64 `json:"totalMetricSamples"`
 	// REQUIRED
-	TracesStorage *int32 `json:"tracesStorage"`
+	TracesStorage *int64 `json:"tracesStorage"`
 }

@@ -24,7 +24,7 @@ type Offering struct {
 	// REQUIRED
 	Plans *[]Plan `json:"plans"`
 	// REQUIRED
-	QuotaCount *int32          `json:"quotaCount"`
+	QuotaCount *int64          `json:"quotaCount"`
 	Schema     *InstanceSchema `json:"schema,omitempty"`
 	// REQUIRED
 	Version *string `json:"version"`

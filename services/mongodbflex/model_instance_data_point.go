@@ -12,5 +12,5 @@ package mongodbflex
 
 type InstanceDataPoint struct {
 	Timestamp *string  `json:"timestamp,omitempty"`
-	Value     *float32 `json:"value,omitempty"`
+	Value     *float64 `json:"value,omitempty"`
 }
