@@ -27,7 +27,7 @@ func TestNewRetryConfig(t *testing.T) {
 	}
 }
 
-func Test_do(t *testing.T) {
+func TestDo(t *testing.T) {
 	type args struct {
 		cfg            *RetryConfig
 		serverStatus   int

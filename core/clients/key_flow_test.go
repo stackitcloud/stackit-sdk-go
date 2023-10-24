@@ -53,7 +53,7 @@ func generatePrivateKey() ([]byte, error) {
 	return pem.EncodeToMemory(privKeyPEM), nil
 }
 
-func TestKeyFlow_Init(t *testing.T) {
+func TestKeyFlowInit(t *testing.T) {
 	tests := []struct {
 		name              string
 		serviceAccountKey string
@@ -131,7 +131,7 @@ func TestKeyClone(t *testing.T) {
 	}
 }
 
-func TestKeyFlow_validateToken(t *testing.T) {
+func TestKeyFlowValidateToken(t *testing.T) {
 	// Generate a random private key
 	privateKey := make([]byte, 32)
 	if _, err := rand.Read(privateKey); err != nil {
@@ -144,7 +144,7 @@ func TestKeyFlow_validateToken(t *testing.T) {
 		wantErr bool
 	}{
 		{"no token", "", false, false},
-		{"bad token - ask to recreate", "bad token", false, false},
+		{"bad token - ask to recreate", "bad token", false, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
