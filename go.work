@@ -18,6 +18,7 @@ use (
 	./examples/rabbitmq
 	./examples/redis
 	./examples/secretsmanager
+	./examples/serviceaccount
 	./examples/ske
 	./examples/waiter
 	./services/argus
