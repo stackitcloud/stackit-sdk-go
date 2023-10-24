@@ -11,13 +11,12 @@ github.com/golang/protobuf v1.5.3 h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg
 github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=
 github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
-github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/google/uuid v1.3.1 h1:KjJaJ9iWZ3jOFZIf1Lqf4laDRCasjl0BCmnEGxkdLb4=
 github.com/google/uuid v1.3.1/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.3.0 h1:bo29K6XMgUFhnvLJZ0dd/hWAltuDU+Qli7WqnKd2FbM=
 github.com/stackitcloud/stackit-sdk-go/core v0.3.0/go.mod h1:gNsJT/70wQ0hNgbObqlKl8Y9SQVg8crnFLwqdzFF8Q0=
-github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.4.0 h1:6Q+ArGyOQDir05pJLc0TbJBGrYyNZ2tKzNY8AGVA0SA=
-github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.4.0/go.mod h1:syCy6+8GsJu9lHyhN0Qeg66AgTv5LjlgtppbOVFIaPc=
+github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.5.0 h1:RuGCF+8dcLwaI7OuK1/jKDOplJxcXYhEEXOHLdf4Bd4=
+github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.5.0/go.mod h1:T0cUEpwLnvZ/yTeoXCjc7pfi6O3WWl3BnRPsxyhgg0o=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/net v0.0.0-20190603091049-60506f45cf65/go.mod h1:HSz+uSET+XFnRR8LxR5pz3Of3rY3CfYBVs4xY44aLks=
 golang.org/x/net v0.16.0 h1:7eBu7KsSvFDtSXUIDbh3aqlK4DPsZ1rByC8PFfBThos=
