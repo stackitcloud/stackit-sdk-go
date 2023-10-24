@@ -34,6 +34,6 @@ use (
 	./services/redis
 	./services/resourcemanager
 	./services/secretsmanager
-	./services/serviceaccounts
+	./services/serviceaccount
 	./services/ske
 )
