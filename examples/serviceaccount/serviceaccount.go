@@ -34,7 +34,7 @@ func main() {
 	}
 	createAccountResp, err := client.CreateServiceAccount(context.Background(), projectId).CreateServiceAccountPayload(createAccountPayload).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CreateInstance`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CreateServiceAccount`: %v\n", err)
 	} else {
 		fmt.Printf("Created service account with email \"%s\".\n", *createAccountResp.Email)
 	}
