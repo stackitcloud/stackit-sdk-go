@@ -27,7 +27,7 @@ type AsyncActionHandler[T any] struct {
 	tempErrRetryLimit int
 }
 
-// New creates a new AsyncHandler instance
+// New initializes an AsyncActionHandler
 func New[T any](f AsyncActionCheck[T]) *AsyncActionHandler[T] {
 	return &AsyncActionHandler[T]{
 		check:             f,
@@ -38,49 +38,51 @@ func New[T any](f AsyncActionCheck[T]) *AsyncActionHandler[T] {
 	}
 }
 
-// SetThrottle sets the duration between func triggering
-func (w *AsyncActionHandler[T]) SetThrottle(d time.Duration) error {
-	if d == 0 {
-		return fmt.Errorf("throttle can't be 0")
-	}
-	w.throttle = d
-	return nil
+// SetThrottle sets the duration between func triggering.
+func (h *AsyncActionHandler[T]) SetThrottle(d time.Duration) *AsyncActionHandler[T] {
+	h.throttle = d
+	return h
 }
 
-// SetTimeout sets the duration for wait timeout
-func (w *AsyncActionHandler[T]) SetTimeout(d time.Duration) *AsyncActionHandler[T] {
-	w.timeout = d
-	return w
+// SetTimeout sets the duration for wait timeout.
+func (h *AsyncActionHandler[T]) SetTimeout(d time.Duration) *AsyncActionHandler[T] {
+	h.timeout = d
+	return h
 }
 
-// SetSleepBeforeWait sets the duration for sleep before wait
-func (w *AsyncActionHandler[T]) SetSleepBeforeWait(d time.Duration) *AsyncActionHandler[T] {
-	w.sleepBeforeWait = d
-	return w
+// SetSleepBeforeWait sets the duration for sleep before wait.
+func (h *AsyncActionHandler[T]) SetSleepBeforeWait(d time.Duration) *AsyncActionHandler[T] {
+	h.sleepBeforeWait = d
+	return h
 }
 
-// SetRetryLimitTempErr sets the retry limit if a temporary error is found. The list of temporary errors is defined in the RetryHttpErrorStatusCodes variable
-func (w *AsyncActionHandler[T]) SetRetryLimitTempErr(l int) *AsyncActionHandler[T] {
-	w.tempErrRetryLimit = l
-	return w
+// SetRetryLimitTempErr sets the retry limit if a temporary error is found.
+// The list of temporary errors is defined in the RetryHttpErrorStatusCodes variable.
+func (h *AsyncActionHandler[T]) SetRetryLimitTempErr(l int) *AsyncActionHandler[T] {
+	h.tempErrRetryLimit = l
+	return h
 }
 
 // WaitWithContext starts the wait until there's an error or wait is done
-func (w *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, err error) {
-	ctx, cancel := context.WithTimeout(ctx, w.timeout)
+func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, err error) {
+	if h.throttle == 0 {
+		return nil, fmt.Errorf("throttle can't be 0")
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, h.timeout)
 	defer cancel()
 
 	// Wait some seconds for the API to process the request
-	time.Sleep(w.sleepBeforeWait)
+	time.Sleep(h.sleepBeforeWait)
 
-	ticker := time.NewTicker(w.throttle)
+	ticker := time.NewTicker(h.throttle)
 	defer ticker.Stop()
 
 	var retryTempErrorCounter = 0
 	for {
-		done, res, err := w.check()
+		done, res, err := h.check()
 		if err != nil {
-			retryTempErrorCounter, err = w.handleError(retryTempErrorCounter, err)
+			retryTempErrorCounter, err = h.handleError(retryTempErrorCounter, err)
 			if err != nil {
 				return res, err
 			}
@@ -98,7 +100,7 @@ func (w *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 	}
 }
 
-func (w *AsyncActionHandler[T]) handleError(retryTempErrorCounter int, err error) (int, error) {
+func (h *AsyncActionHandler[T]) handleError(retryTempErrorCounter int, err error) (int, error) {
 	oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 	if !ok {
 		return retryTempErrorCounter, fmt.Errorf("could not convert error to GenericOpenApiError, %w", err)
@@ -106,7 +108,7 @@ func (w *AsyncActionHandler[T]) handleError(retryTempErrorCounter int, err error
 	// Some APIs may return temporary errors and the request should be retried
 	if utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
 		retryTempErrorCounter++
-		if retryTempErrorCounter == w.tempErrRetryLimit {
+		if retryTempErrorCounter == h.tempErrRetryLimit {
 			return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
 		}
 		return retryTempErrorCounter, nil

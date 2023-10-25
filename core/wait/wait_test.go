@@ -33,29 +33,31 @@ func TestNew(t *testing.T) {
 }
 
 func TestSetThrottle(t *testing.T) {
-	simple := func() (waitFinished bool, res *interface{}, err error) { return true, nil, nil }
+	f := &AsyncActionHandler[interface{}]{
+		throttle: 1 * time.Minute,
+	}
+
+	type fields struct {
+		throttle time.Duration
+	}
 	type args struct {
 		d time.Duration
 	}
 	tests := []struct {
-		name string
-		args args
-		want error
+		name   string
+		fields fields
+		args   args
+		want   *AsyncActionHandler[interface{}]
 	}{
-		{"ok", args{10 * time.Second}, nil},
-		{"err", args{0 * time.Second}, fmt.Errorf("throttle can't be 0")},
+		{"ok", fields{throttle: 30 * time.Second}, args{d: 1 * time.Minute}, f},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			w := New(simple)
-			got := w.SetThrottle(tt.args.d)
-			if got == nil && tt.want != nil {
-				t.Errorf("Wait.SetThrottle() = %v, want %v", got, tt.want)
+			w := &AsyncActionHandler[interface{}]{
+				throttle: tt.fields.throttle,
 			}
-			if got != nil && tt.want != nil {
-				if got.Error() != tt.want.Error() {
-					t.Errorf("Wait.SetThrottle() = %v, want %v", got, tt.want)
-				}
+			if got := w.SetThrottle(tt.args.d); !cmp.Equal(got, tt.want, cmp.AllowUnexported(AsyncActionHandler[interface{}]{})) {
+				t.Errorf("Wait.SetThrottle() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -133,6 +135,10 @@ func TestWaitWithContext(t *testing.T) {
 
 		{"tempErrorLimitReached", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, check: func() (waitFinished bool, res *interface{}, err error) {
 			return false, nil, nil
+		}}, false, true},
+
+		{"badThrottle", fields{throttle: 0 * time.Second, timeout: 1 * time.Hour, check: func() (waitFinished bool, res *interface{}, err error) {
+			return true, nil, nil
 		}}, false, true},
 	}
 	for _, tt := range tests {
