@@ -23,99 +23,97 @@ type APIClientInterface interface {
 	GetScrapeConfigsExecute(ctx context.Context, instanceId, projectId string) (*argus.ScrapeConfigsResponse, error)
 }
 
-//	will wait for creation
-//
-// returned interface is nil or *InstanceResponse
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// CreateInstanceWaitHandler will wait for instance creation
+func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.InstanceResponse] {
+	return wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s.Id == nil || s.Status == nil {
-			return s, false, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
+			return false, s, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
 		if *s.Id == instanceId && *s.Status == CreateSuccess {
-			return s, true, nil
+			return true, s, nil
 		}
 		if *s.Id == instanceId && *s.Status == CreateFail {
-			return s, true, fmt.Errorf("create failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
-		return s, false, nil
+		return false, s, nil
 	})
 }
 
-// UpdateInstanceWaitHandler will wait for update
-// returned interface is nil or *InstanceResponse
-func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// UpdateInstanceWaitHandler will wait for instance update
+func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.InstanceResponse] {
+	return wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s.Id == nil || s.Status == nil {
-			return s, false, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
+			return false, s, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
 		// The argus instance API currently replies with create success in case the update was successful.
 		if *s.Id == instanceId && (*s.Status == UpdateSuccess || *s.Status == CreateSuccess) {
-			return s, true, nil
+			return true, s, nil
 		}
 		if *s.Id == instanceId && (*s.Status == UpdateFail || *s.Status == CreateFail) {
-			return s, true, fmt.Errorf("update failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
 		}
-		return s, false, nil
+		return false, s, nil
 	})
 }
 
-// DeleteInstanceWaitHandler will wait for delete
-// returned interface is nil or *InstanceResponse
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// DeleteInstanceWaitHandler will wait for instance deletion
+func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.InstanceResponse] {
+	return wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s.Id == nil || s.Status == nil {
-			return s, false, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
+			return false, s, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
 		if *s.Id == instanceId && *s.Status == DeleteSuccess {
-			return s, true, nil
+			return true, s, nil
 		}
 		if *s.Id == instanceId && *s.Status == DeleteFail {
-			return s, true, fmt.Errorf("delete failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("delete failed for instance with id %s", instanceId)
 		}
-		return s, false, nil
+		return false, s, nil
 	})
 }
 
-func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// CreateScrapeConfigWaitHandler will wait for scrape config creation
+func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[argus.ScrapeConfigsResponse] {
+	return wait.New(func() (waitFinished bool, response *argus.ScrapeConfigsResponse, err error) {
 		s, err := a.GetScrapeConfigsExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		jobs := *s.Data
 		for i := range jobs {
 			if *jobs[i].JobName == jobName {
-				return s, true, nil
+				return true, s, nil
 			}
 		}
-		return s, false, nil
+		return false, s, nil
 	})
 }
 
-func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// DeleteScrapeConfigWaitHandler will wait for scrape config deletion
+func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[argus.ScrapeConfigsResponse] {
+	return wait.New(func() (waitFinished bool, response *argus.ScrapeConfigsResponse, err error) {
 		s, err := a.GetScrapeConfigsExecute(ctx, instanceId, projectId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		jobs := *s.Data
 		for i := range jobs {
 			if *jobs[i].JobName == jobName {
-				return s, false, nil
+				return false, s, nil
 			}
 		}
-		return s, true, nil
+		return true, s, nil
 	})
 }

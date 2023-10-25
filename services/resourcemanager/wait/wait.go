@@ -20,42 +20,40 @@ type APIClientInterface interface {
 	GetProjectExecute(ctx context.Context, containerId string) (*resourcemanager.ProjectResponseWithParents, error)
 }
 
-// CreateProjectWaitHandler will wait for creation
-// returned interface is nil or *resourcemanager.ProjectResponseWithParents
-func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// CreateProjectWaitHandler will wait for project creation
+func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[resourcemanager.ProjectResponseWithParents] {
+	return wait.New(func() (waitFinished bool, response *resourcemanager.ProjectResponseWithParents, err error) {
 		p, err := a.GetProjectExecute(ctx, containerId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if p.ContainerId == nil || p.LifecycleState == nil {
-			return p, false, fmt.Errorf("creation failed: response invalid for container id %s. Container id or LifeCycleState missing", containerId)
+			return false, p, fmt.Errorf("creation failed: response invalid for container id %s. Container id or LifeCycleState missing", containerId)
 		}
 		if *p.ContainerId == containerId && *p.LifecycleState == ActiveState {
-			return p, true, nil
+			return true, p, nil
 		}
 		if *p.ContainerId == containerId && *p.LifecycleState == CreatingState {
-			return p, false, nil
+			return false, p, nil
 		}
-		return p, false, fmt.Errorf("creation failed: received project state '%s'", *p.LifecycleState)
+		return false, p, fmt.Errorf("creation failed: received project state '%s'", *p.LifecycleState)
 	})
 }
 
-// DeleteProjectWaitHandler will wait for delete
-// returned interface is nil or *resourcemanager.ProjectResponseWithParents
-func DeleteProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// DeleteProjectWaitHandler will wait for project deletion
+func DeleteProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[resourcemanager.ProjectResponseWithParents] {
+	return wait.New(func() (waitFinished bool, response *resourcemanager.ProjectResponseWithParents, err error) {
 		p, err := a.GetProjectExecute(ctx, containerId)
 		if err != nil {
 			oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 			if !ok {
-				return nil, false, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
+				return false, nil, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
 			}
 			if oapiErr.StatusCode == http.StatusNotFound || oapiErr.StatusCode == http.StatusForbidden {
-				return nil, true, nil
+				return true, nil, nil
 			}
-			return nil, false, err
+			return false, nil, err
 		}
-		return p, false, nil
+		return false, p, nil
 	})
 }

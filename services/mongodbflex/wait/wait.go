@@ -24,75 +24,75 @@ type APIClientInstanceInterface interface {
 	GetInstanceExecute(ctx context.Context, projectId, instanceId string) (*mongodbflex.GetInstanceResponse, error)
 }
 
-// CreateInstanceWaitHandler will wait for creation
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
-	waitHandler := wait.New(func() (res interface{}, done bool, err error) {
+// CreateInstanceWaitHandler will wait for instance creation
+func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[mongodbflex.GetInstanceResponse] {
+	waitHandler := wait.New(func() (waitFinished bool, response *mongodbflex.GetInstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
-			return s, false, nil
+			return false, s, nil
 		}
 		switch *s.Item.Status {
 		default:
-			return nil, true, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+			return true, nil, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case InstanceStateEmpty:
-			return nil, false, nil
+			return false, nil, nil
 		case InstanceStateProcessing:
-			return nil, false, nil
+			return false, nil, nil
 		case InstanceStateUnknown:
-			return nil, false, nil
+			return false, nil, nil
 		case InstanceStateSuccess:
-			return s, true, nil
+			return true, s, nil
 		case InstanceStateFailed:
-			return nil, true, fmt.Errorf("create failed for instance with id %s", instanceId)
+			return true, nil, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
 	})
 	return waitHandler.SetSleepBeforeWait(5 * time.Second)
 }
 
-// UpdateInstanceWaitHandler will wait for update
-func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// UpdateInstanceWaitHandler will wait for instance update
+func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[mongodbflex.GetInstanceResponse] {
+	return wait.New(func() (waitFinished bool, response *mongodbflex.GetInstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
-			return s, false, nil
+			return false, s, nil
 		}
 		switch *s.Item.Status {
 		default:
-			return s, true, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case InstanceStateEmpty:
-			return s, false, nil
+			return false, s, nil
 		case InstanceStateProcessing:
-			return s, false, nil
+			return false, s, nil
 		case InstanceStateUnknown:
-			return s, false, nil
+			return false, s, nil
 		case InstanceStateSuccess:
-			return s, true, nil
+			return true, s, nil
 		case InstanceStateFailed:
-			return s, true, fmt.Errorf("update failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
 		}
 	})
 }
 
-// DeleteInstanceWaitHandler will wait for delete
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// DeleteInstanceWaitHandler will wait for instance deletion
+func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[mongodbflex.GetInstanceResponse] {
+	return wait.New(func() (waitFinished bool, response *mongodbflex.GetInstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err == nil {
-			return s, false, nil
+			return false, s, nil
 		}
 		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return nil, false, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
+			return false, nil, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
 		}
 		if oapiErr.StatusCode != http.StatusNotFound {
-			return nil, false, err
+			return false, nil, err
 		}
-		return nil, true, nil
+		return true, nil, nil
 	})
 }

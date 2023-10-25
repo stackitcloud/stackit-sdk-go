@@ -105,7 +105,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceName)
+			handler := CreateLoadBalancerWaitHandler(context.Background(), apiClient, "", instanceName)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -157,7 +157,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				instanceIsDeleted: tt.instanceIsDeleted,
 			}
 
-			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceName)
+			handler := DeleteLoadBalancerWaitHandler(context.Background(), apiClient, "", instanceName)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 

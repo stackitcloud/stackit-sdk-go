@@ -27,32 +27,32 @@ type APIClientUserInterface interface {
 	GetUserExecute(ctx context.Context, projectId, instanceId, userId string) (*postgresflex.UserResponse, error)
 }
 
-// CreateInstanceWaitHandler will wait for creation
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
+// CreateInstanceWaitHandler will wait for instance creation
+func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
 	instanceCreated := false
 	var instanceGetResponse *postgresflex.InstanceResponse
 
-	return wait.New(func() (res interface{}, done bool, err error) {
+	return wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
 		if !instanceCreated {
 			s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 			if err != nil {
-				return nil, false, err
+				return false, nil, err
 			}
 			if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
-				return s, false, nil
+				return false, s, nil
 			}
 			switch *s.Item.Status {
 			default:
-				return nil, true, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+				return true, nil, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 			case InstanceStateEmpty:
-				return nil, false, nil
+				return false, nil, nil
 			case InstanceStateProgressing:
-				return nil, false, nil
+				return false, nil, nil
 			case InstanceStateSuccess:
 				instanceCreated = true
 				instanceGetResponse = s
 			case InstanceStateFailed:
-				return nil, true, fmt.Errorf("create failed for instance with id %s", instanceId)
+				return true, nil, fmt.Errorf("create failed for instance with id %s", instanceId)
 			}
 		}
 
@@ -60,76 +60,76 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		// To check if they are, perform a users request
 		_, err = a.GetUsersExecute(ctx, projectId, instanceId)
 		if err == nil {
-			return instanceGetResponse, true, nil
+			return true, instanceGetResponse, nil
 		}
 		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return nil, false, err
+			return false, nil, err
 		}
 		if oapiErr.StatusCode < 500 {
-			return nil, true, fmt.Errorf("users request after instance creation returned %d status code", oapiErr.StatusCode)
+			return true, nil, fmt.Errorf("users request after instance creation returned %d status code", oapiErr.StatusCode)
 		}
-		return nil, false, nil
+		return false, nil, nil
 	})
 }
 
-// UpdateInstanceWaitHandler will wait for update
-func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// UpdateInstanceWaitHandler will wait for instance update
+func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
+	return wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
-			return s, false, nil
+			return false, s, nil
 		}
 		switch *s.Item.Status {
 		default:
-			return s, true, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case InstanceStateEmpty:
-			return s, false, nil
+			return false, s, nil
 		case InstanceStateProgressing:
-			return s, false, nil
+			return false, s, nil
 		case InstanceStateSuccess:
-			return s, true, nil
+			return true, s, nil
 		case InstanceStateFailed:
-			return s, true, fmt.Errorf("create failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
 	})
 }
 
-// DeleteInstanceWaitHandler will wait for delete
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// DeleteInstanceWaitHandler will wait for instance deletion
+func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
+	return wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err == nil {
-			return s, false, nil
+			return false, s, nil
 		}
 		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return nil, false, err
+			return false, nil, err
 		}
 		if oapiErr.StatusCode != 404 {
-			return nil, false, err
+			return false, nil, err
 		}
-		return nil, true, nil
+		return true, nil, nil
 	})
 }
 
 // DeleteUserWaitHandler will wait for delete
-func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projectId, instanceId, userId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projectId, instanceId, userId string) *wait.AsyncActionHandler[postgresflex.UserResponse] {
+	return wait.New(func() (waitFinished bool, response *postgresflex.UserResponse, err error) {
 		u, err := a.GetUserExecute(ctx, projectId, instanceId, userId)
 		if err == nil {
-			return u, false, nil
+			return false, u, nil
 		}
 		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return nil, false, err
+			return false, nil, err
 		}
 		if oapiErr.StatusCode != 404 {
-			return nil, false, err
+			return false, nil, err
 		}
-		return nil, true, nil
+		return true, nil, nil
 	})
 }
