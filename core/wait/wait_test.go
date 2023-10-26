@@ -8,27 +8,24 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
 	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
 func TestNew(t *testing.T) {
-	simple := func() (waitFinished bool, res *interface{}, err error) { return true, nil, nil }
-	type args struct {
-		f AsyncActionCheck[interface{}]
+	checkFn := func() (waitFinished bool, res *interface{}, err error) { return true, nil, nil }
+	got := New(checkFn)
+	want := &AsyncActionHandler[interface{}]{
+		checkFn:           checkFn,
+		sleepBeforeWait:   0 * time.Second,
+		throttle:          5 * time.Second,
+		timeout:           30 * time.Minute,
+		tempErrRetryLimit: 5,
 	}
-	tests := []struct {
-		name string
-		args args
-		want *AsyncActionHandler[interface{}]
-	}{
-		{"ok", args{simple}, &AsyncActionHandler[interface{}]{checkFn: simple, throttle: 5 * time.Second, tempErrRetryLimit: 10}},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := New(tt.args.f); !cmp.Equal(got.throttle, tt.want.throttle) {
-				t.Errorf("New() = %v, want %v", got, tt.want)
-			}
-		})
+
+	diff := cmp.Diff(got, want, cmp.AllowUnexported(AsyncActionHandler[interface{}]{}), cmpopts.IgnoreFields(AsyncActionHandler[interface{}]{}, "checkFn"))
+	if diff != "" {
+		t.Fatalf("Data does not match: %s", diff)
 	}
 }
 
