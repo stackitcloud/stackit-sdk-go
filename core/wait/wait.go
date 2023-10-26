@@ -38,7 +38,7 @@ func New[T any](f AsyncActionCheck[T]) *AsyncActionHandler[T] {
 	}
 }
 
-// SetThrottle sets the duration between func triggering.
+// SetThrottle sets the time interval between each check of the async action.
 func (h *AsyncActionHandler[T]) SetThrottle(d time.Duration) *AsyncActionHandler[T] {
 	h.throttle = d
 	return h
