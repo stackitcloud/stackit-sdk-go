@@ -284,64 +284,202 @@ func TestSetRetryLimitTempErr(t *testing.T) {
 }
 
 func TestWaitWithContext(t *testing.T) {
-	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
-	defer cancel()
-
-	type fields struct {
-		checkFn           AsyncActionCheck[interface{}]
-		throttle          time.Duration
-		timeout           time.Duration
-		tempErrRetryLimit int
-	}
-	tests := []struct {
-		name     string
-		fields   fields
-		wantDone bool
-		wantErr  bool
+	for _, tt := range []struct {
+		desc                           string
+		checkFnNumberCallsToFinishWait int
+		checkFnWaitSucceeds            bool
+		checkFnNumberCallsUntilErr     int
+		checkFnReturnsTempErr          bool
+		handlerSleepBeforeWait         time.Duration
+		handlerThrottle                time.Duration
+		handlerTimeout                 time.Duration
+		handlerRetryLimitTempErr       int
+		contextTimeout                 time.Duration
+		wantCheckFnNumberCalls         int
+		wantErr                        bool
 	}{
-		{"ok", fields{throttle: 1 * time.Second, timeout: 1 * time.Hour, checkFn: func() (waitFinished bool, res *interface{}, err error) {
-			return true, nil, nil
-		}}, true, false},
+		{
+			desc:                           "base",
+			checkFnNumberCallsToFinishWait: 1,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     999999,
+			handlerSleepBeforeWait:         0,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 50 * time.Millisecond,
+			handlerRetryLimitTempErr:       0,
+			contextTimeout:                 50 * time.Millisecond,
+			wantCheckFnNumberCalls:         1,
+			wantErr:                        false,
+		},
+		{
+			desc:                           "throttle_1",
+			checkFnNumberCallsToFinishWait: 3,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     999999,
+			handlerSleepBeforeWait:         0,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 50 * time.Millisecond,
+			handlerRetryLimitTempErr:       0,
+			contextTimeout:                 50 * time.Millisecond,
+			wantCheckFnNumberCalls:         3,
+			wantErr:                        false,
+		},
+		{
+			desc:                           "throttle_timeout_1",
+			checkFnNumberCallsToFinishWait: 999999,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     999999,
+			handlerSleepBeforeWait:         0,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 50 * time.Millisecond,
+			handlerRetryLimitTempErr:       0,
+			contextTimeout:                 1000 * time.Millisecond,
+			wantCheckFnNumberCalls:         4,
+			wantErr:                        true,
+		},
+		{
+			desc:                           "throttle_timeout_2",
+			checkFnNumberCallsToFinishWait: 999999,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     999999,
+			handlerSleepBeforeWait:         0,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 1000 * time.Millisecond,
+			handlerRetryLimitTempErr:       0,
+			contextTimeout:                 50 * time.Millisecond,
+			wantCheckFnNumberCalls:         4,
+			wantErr:                        true,
+		},
+		{
+			desc:                           "set_sleep_before_wait_throttle",
+			checkFnNumberCallsToFinishWait: 999999,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     999999,
+			handlerSleepBeforeWait:         30 * time.Millisecond,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 50 * time.Millisecond,
+			handlerRetryLimitTempErr:       0,
+			contextTimeout:                 50 * time.Millisecond,
+			wantCheckFnNumberCalls:         2,
+			wantErr:                        true,
+		},
+		{
+			desc:                           "set_sleep_before_wait_timeout_1",
+			checkFnNumberCallsToFinishWait: 2,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     999999,
+			handlerSleepBeforeWait:         100 * time.Millisecond,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 50 * time.Millisecond,
+			handlerRetryLimitTempErr:       0,
+			contextTimeout:                 1000 * time.Millisecond,
+			wantCheckFnNumberCalls:         1,
+			wantErr:                        true,
+		},
+		{
+			desc:                           "set_sleep_before_wait_timeout_2",
+			checkFnNumberCallsToFinishWait: 2,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     999999,
+			handlerSleepBeforeWait:         100 * time.Millisecond,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 1000 * time.Millisecond,
+			handlerRetryLimitTempErr:       0,
+			contextTimeout:                 50 * time.Millisecond,
+			wantCheckFnNumberCalls:         1,
+			wantErr:                        true,
+		},
+		{
+			desc:                           "retry_limit_temp_err_1",
+			checkFnNumberCallsToFinishWait: 999999,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     0,
+			checkFnReturnsTempErr:          false,
+			handlerSleepBeforeWait:         0,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 1000 * time.Millisecond,
+			handlerRetryLimitTempErr:       5,
+			contextTimeout:                 1000 * time.Millisecond,
+			wantCheckFnNumberCalls:         1,
+			wantErr:                        true,
+		},
+		{
+			desc:                           "retry_limit_temp_err_2",
+			checkFnNumberCallsToFinishWait: 999999,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     1,
+			checkFnReturnsTempErr:          true,
+			handlerSleepBeforeWait:         0,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 1000 * time.Millisecond,
+			handlerRetryLimitTempErr:       5,
+			contextTimeout:                 1000 * time.Millisecond,
+			wantCheckFnNumberCalls:         5,
+			wantErr:                        true,
+		},
+		{
+			desc:                           "retry_limit_temp_err_3",
+			checkFnNumberCallsToFinishWait: 3,
+			checkFnWaitSucceeds:            true,
+			checkFnNumberCallsUntilErr:     1,
+			checkFnReturnsTempErr:          true,
+			handlerSleepBeforeWait:         0,
+			handlerThrottle:                15 * time.Millisecond,
+			handlerTimeout:                 1000 * time.Millisecond,
+			handlerRetryLimitTempErr:       5,
+			contextTimeout:                 1000 * time.Millisecond,
+			wantCheckFnNumberCalls:         3,
+			wantErr:                        false,
+		},
+	} {
+		t.Run(tt.desc, func(t *testing.T) {
+			type respType struct{}
 
-		{"ok 2", fields{throttle: 200 * time.Millisecond, timeout: 1 * time.Hour, tempErrRetryLimit: 5, checkFn: func() (waitFinished bool, res *interface{}, err error) {
-			if ctx.Err() == nil {
-				return false, nil, nil
+			numberCheckFnCalls := 0
+			checkFn := func() (waitFinished bool, response *respType, err error) {
+				numberCheckFnCalls += 1
+				if numberCheckFnCalls == tt.checkFnNumberCallsToFinishWait {
+					if tt.checkFnWaitSucceeds {
+						return true, &respType{}, nil
+					}
+					return true, &respType{}, fmt.Errorf("the async action couldn't be done")
+				}
+
+				if numberCheckFnCalls < tt.checkFnNumberCallsUntilErr {
+					return false, nil, nil
+				}
+
+				if tt.checkFnReturnsTempErr {
+					return false, nil, &oapiError.GenericOpenAPIError{
+						StatusCode:   RetryHttpErrorStatusCodes[0],
+						ErrorMessage: "something bad happenned when checking if the async action was finished",
+					}
+				}
+				return false, nil, fmt.Errorf("something bad happenned when checking if the async action was finished")
 			}
-			return true, nil, nil
-		}}, true, false},
-
-		{"err", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, checkFn: func() (waitFinished bool, res *interface{}, err error) {
-			return true, nil, fmt.Errorf("something happened")
-		}}, true, true},
-
-		{"err 2", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, checkFn: func() (waitFinished bool, res *interface{}, err error) {
-			return false, nil, fmt.Errorf("something happened")
-		}}, true, true},
-
-		{"timeout", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, checkFn: func() (waitFinished bool, res *interface{}, err error) {
-			return false, nil, nil
-		}}, false, true},
-
-		{"tempErrorLimitReached", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, checkFn: func() (waitFinished bool, res *interface{}, err error) {
-			return false, nil, nil
-		}}, false, true},
-
-		{"badThrottle", fields{throttle: 0 * time.Second, timeout: 1 * time.Hour, checkFn: func() (waitFinished bool, res *interface{}, err error) {
-			return true, nil, nil
-		}}, false, true},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			w := &AsyncActionHandler[interface{}]{
-				checkFn:           tt.fields.checkFn,
-				throttle:          tt.fields.throttle,
-				timeout:           tt.fields.timeout,
-				retryLimitTempErr: tt.fields.tempErrRetryLimit,
+			handler := AsyncActionHandler[respType]{
+				checkFn:           checkFn,
+				sleepBeforeWait:   tt.handlerSleepBeforeWait,
+				throttle:          tt.handlerThrottle,
+				timeout:           tt.handlerTimeout,
+				retryLimitTempErr: tt.handlerRetryLimitTempErr,
 			}
-			_, err := w.WaitWithContext(context.Background())
-			if (err != nil) != tt.wantErr {
-				t.Errorf("Wait.Run() error = %v, wantErr %v", err, tt.wantErr)
-				return
+			ctx, cancel := context.WithTimeout(context.Background(), tt.contextTimeout)
+			defer cancel()
+
+			resp, err := handler.WaitWithContext(ctx)
+
+			if tt.wantErr && (err == nil) {
+				t.Errorf("expected error but got none")
+			}
+			if !tt.wantErr && (err != nil) {
+				t.Errorf("expected no error but got \"%v\"", err)
+			}
+			if (err == nil) && (resp == nil) {
+				t.Errorf("got nil err but nil resp")
+			}
+			if numberCheckFnCalls != tt.wantCheckFnNumberCalls {
+				t.Errorf("expected %d calls to checkFn but got %d instead", tt.wantCheckFnNumberCalls, numberCheckFnCalls)
 			}
 		})
 	}
