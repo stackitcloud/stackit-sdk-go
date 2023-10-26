@@ -39,7 +39,7 @@ func main() {
 
 	zoneId := *createZoneResp.Zone.Id
 
-	// The following will wait until the DNS zone is finshed being created
+	// The following will wait until the DNS zone creation has finished
 	wres, err := wait.CreateZoneWaitHandler(ctx, dnsClient, projectId, zoneId).SetTimeout(15 * time.Minute).WaitWithContext(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Waiting for zone creation: %v\n", err)
