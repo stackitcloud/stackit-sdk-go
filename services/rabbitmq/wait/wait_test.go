@@ -91,29 +91,34 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
 			resourceState: InstanceStateSuccess,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
 			resourceState: InstanceStateFailed,
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:     "get_fails",
 			getFails: true,
 			wantErr:  true,
+			wantResp: false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -128,7 +133,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *rabbitmq.Instance
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &rabbitmq.Instance{
 					InstanceId: &instanceId,
 					LastOperation: &rabbitmq.LastOperation{
@@ -146,11 +151,8 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
 			diff := cmp.Diff(gotRes, wantRes)
-			if wantRes != nil && diff != "" {
+			if diff != "" {
 				t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
 			}
 		})
@@ -163,29 +165,34 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
 			resourceState: InstanceStateSuccess,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
 			resourceState: InstanceStateFailed,
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:     "get_fails",
 			getFails: true,
 			wantErr:  true,
+			wantResp: false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -200,7 +207,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *rabbitmq.Instance
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &rabbitmq.Instance{
 					InstanceId: &instanceId,
 					LastOperation: &rabbitmq.LastOperation{
@@ -218,10 +225,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -281,13 +285,10 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 
 			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if err == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, nil)
 			}
 		})
 	}
@@ -299,23 +300,27 @@ func TestCreateCredentialsWaitHandler(t *testing.T) {
 		getFails          bool
 		operationSucceeds bool
 		wantErr           bool
+		wantResp          bool
 	}{
 		{
 			desc:              "create_succeeded",
 			getFails:          false,
 			operationSucceeds: true,
 			wantErr:           false,
+			wantResp:          true,
 		},
 		{
 			desc:              "create_failed",
 			getFails:          false,
 			operationSucceeds: false,
 			wantErr:           true,
+			wantResp:          false,
 		},
 		{
 			desc:     "get_fails",
 			getFails: true,
 			wantErr:  true,
+			wantResp: false,
 		},
 	}
 	for _, tt := range tests {
@@ -329,12 +334,10 @@ func TestCreateCredentialsWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *rabbitmq.CredentialsResponse
-			if !tt.getFails && tt.operationSucceeds {
+			if tt.wantResp {
 				wantRes = &rabbitmq.CredentialsResponse{
 					Id: &credentialsId,
 				}
-			} else if !tt.getFails && !tt.operationSucceeds {
-				wantRes = nil
 			}
 
 			handler := CreateCredentialsWaitHandler(context.Background(), apiClient, "", "", credentialsId)
@@ -344,10 +347,7 @@ func TestCreateCredentialsWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -391,27 +391,12 @@ func TestDeleteCredentialsWaitHandler(t *testing.T) {
 				deletionSucceeds:  tt.deletionSucceeds,
 			}
 
-			var wantRes *rabbitmq.CredentialsResponse
-			if !tt.getFails && !tt.deletionSucceeds {
-				wantRes = &rabbitmq.CredentialsResponse{
-					Id: &credentialsId,
-				}
-			} else if !tt.getFails && tt.deletionSucceeds {
-				wantRes = nil
-			}
-
 			handler := DeleteCredentialsWaitHandler(context.Background(), apiClient, "", "", credentialsId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
 	}

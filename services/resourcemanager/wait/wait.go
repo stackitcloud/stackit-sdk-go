@@ -36,7 +36,7 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, contain
 		if *p.ContainerId == containerId && *p.LifecycleState == CreatingState {
 			return false, nil, nil
 		}
-		return false, nil, fmt.Errorf("creation failed: received project state '%s'", *p.LifecycleState)
+		return true, p, fmt.Errorf("creation failed: received project state '%s'", *p.LifecycleState)
 	})
 }
 
@@ -44,7 +44,7 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, contain
 func DeleteProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[struct{}] {
 	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetProjectExecute(ctx, containerId)
-		if err != nil {
+		if err == nil {
 			return false, nil, nil
 		}
 		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped

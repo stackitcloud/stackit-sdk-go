@@ -53,6 +53,10 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 			return true, s, nil
 		}
 
+		if state == StateFailed {
+			return true, s, fmt.Errorf("create failed")
+		}
+
 		return false, nil, nil
 	})
 }

@@ -37,16 +37,19 @@ func TestCreateBucketWaitHandler(t *testing.T) {
 		desc           string
 		bucketGetFails bool
 		wantErr        bool
+		wantResp       bool
 	}{
 		{
 			desc:           "create_succeeded",
 			bucketGetFails: false,
 			wantErr:        false,
+			wantResp:       true,
 		},
 		{
 			desc:           "get_fails",
 			bucketGetFails: true,
 			wantErr:        true,
+			wantResp:       false,
 		},
 	}
 	for _, tt := range tests {
@@ -56,7 +59,7 @@ func TestCreateBucketWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *objectstorage.GetBucketResponse
-			if !tt.bucketGetFails {
+			if tt.wantResp {
 				wantRes = &objectstorage.GetBucketResponse{}
 			}
 
@@ -67,10 +70,7 @@ func TestCreateBucketWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -103,13 +103,10 @@ func TestDeleteBucketWaitHandler(t *testing.T) {
 
 			handler := DeleteBucketWaitHandler(context.Background(), apiClient, "", "")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if err == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, nil)
 			}
 		})
 	}

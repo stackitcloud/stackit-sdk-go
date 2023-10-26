@@ -254,24 +254,28 @@ func TestCreateScrapeConfigWaitHandler(t *testing.T) {
 		getFails bool
 		jobs     []argus.Job
 		wantErr  bool
+		wantResp bool
 	}{
 		{
 			desc:     "create_succeeded",
 			getFails: false,
 			jobs:     []argus.Job{{JobName: utils.Ptr("job")}, {JobName: utils.Ptr("other-job")}},
 			wantErr:  false,
+			wantResp: true,
 		},
 		{
 			desc:     "create_failed and timeout",
 			getFails: false,
 			jobs:     []argus.Job{{JobName: utils.Ptr("other-job")}},
 			wantErr:  true,
+			wantResp: false,
 		},
 		{
 			desc:     "get_fails",
 			getFails: true,
 			jobs:     []argus.Job{},
 			wantErr:  true,
+			wantResp: false,
 		},
 	}
 	for _, tt := range tests {
@@ -282,12 +286,10 @@ func TestCreateScrapeConfigWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *argus.ScrapeConfigsResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &argus.ScrapeConfigsResponse{
 					Data: &tt.jobs,
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := CreateScrapeConfigWaitHandler(context.Background(), apiClient, "", "job", "")
@@ -297,10 +299,7 @@ func TestCreateScrapeConfigWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
+			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -313,24 +312,28 @@ func TestDeleteScrapeConfigWaitHandler(t *testing.T) {
 		getFails bool
 		jobs     []argus.Job
 		wantErr  bool
+		wantResp bool
 	}{
 		{
 			desc:     "delete_succeeded",
 			getFails: false,
 			jobs:     []argus.Job{{JobName: utils.Ptr("other-job")}},
 			wantErr:  false,
+			wantResp: true,
 		},
 		{
 			desc:     "timeout",
 			getFails: false,
 			jobs:     []argus.Job{{JobName: utils.Ptr("job")}},
 			wantErr:  true,
+			wantResp: false,
 		},
 		{
 			desc:     "get_fails",
 			getFails: true,
 			jobs:     []argus.Job{},
 			wantErr:  true,
+			wantResp: false,
 		},
 	}
 	for _, tt := range tests {
@@ -341,12 +344,10 @@ func TestDeleteScrapeConfigWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *argus.ScrapeConfigsResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &argus.ScrapeConfigsResponse{
 					Data: &tt.jobs,
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := DeleteScrapeConfigWaitHandler(context.Background(), apiClient, "", "job", "")
@@ -356,10 +357,7 @@ func TestDeleteScrapeConfigWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
+			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})

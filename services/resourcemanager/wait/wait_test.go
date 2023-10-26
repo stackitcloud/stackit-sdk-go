@@ -43,30 +43,35 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 		getFails     bool
 		projectState resourcemanager.LifecycleState
 		wantErr      bool
+		wantResp     bool
 	}{
 		{
 			desc:         "create_succeeded",
 			getFails:     false,
 			projectState: ActiveState,
 			wantErr:      false,
+			wantResp:     true,
 		},
 		{
 			desc:         "creating",
 			getFails:     false,
 			projectState: CreatingState,
 			wantErr:      true,
+			wantResp:     false,
 		},
 		{
 			desc:         "get_fails",
 			getFails:     true,
 			projectState: resourcemanager.LifecycleState(""),
 			wantErr:      true,
+			wantResp:     false,
 		},
 		{
 			desc:         "unknown_state",
 			getFails:     false,
 			projectState: resourcemanager.LifecycleState("ANOTHER STATE"),
 			wantErr:      true,
+			wantResp:     true,
 		},
 	}
 	for _, tt := range tests {
@@ -77,13 +82,11 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *resourcemanager.ProjectResponseWithParents
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &resourcemanager.ProjectResponseWithParents{
 					LifecycleState: &tt.projectState,
 					ContainerId:    utils.Ptr("cid"),
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := CreateProjectWaitHandler(context.Background(), apiClient, "cid")
@@ -93,10 +96,7 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -139,28 +139,12 @@ func TestDeleteProjectWaitHandler(t *testing.T) {
 				projectState: tt.projectState,
 			}
 
-			var wantRes *resourcemanager.ProjectResponseWithParents
-			if !tt.getFails && !tt.getNotFound {
-				wantRes = &resourcemanager.ProjectResponseWithParents{
-					LifecycleState: &tt.projectState,
-					ContainerId:    utils.Ptr("cid"),
-				}
-			} else {
-				wantRes = nil
-			}
-
 			handler := DeleteProjectWaitHandler(context.Background(), apiClient, "cid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
 	}
