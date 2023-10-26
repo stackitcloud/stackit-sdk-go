@@ -26,7 +26,7 @@ func TestNew(t *testing.T) {
 		sleepBeforeWait:   0 * time.Second,
 		throttle:          5 * time.Second,
 		timeout:           30 * time.Minute,
-		retryLimitTempErr: 5,
+		tempErrRetryLimit: 5,
 	}
 
 	diff := cmp.Diff(got, want, cmpOpts...)
@@ -224,12 +224,12 @@ func TestSetSleepBeforeWait(t *testing.T) {
 	}
 }
 
-func TestSetRetryLimitTempErr(t *testing.T) {
+func TestSetTempErrRetryLimit(t *testing.T) {
 	checkFn := func() (waitFinished bool, res *interface{}, err error) { return true, nil, nil }
 
 	for _, tt := range []struct {
 		desc              string
-		retryLimitTempErr int
+		tempErrRetryLimit int
 	}{
 		{
 			"base_1",
@@ -242,9 +242,9 @@ func TestSetRetryLimitTempErr(t *testing.T) {
 	} {
 		t.Run(tt.desc, func(t *testing.T) {
 			want := New(checkFn)
-			want.retryLimitTempErr = tt.retryLimitTempErr
+			want.tempErrRetryLimit = tt.tempErrRetryLimit
 			got := New(checkFn)
-			got.SetRetryLimitTempErr(tt.retryLimitTempErr)
+			got.SetTempErrRetryLimit(tt.tempErrRetryLimit)
 
 			diff := cmp.Diff(got, want, cmpOpts...)
 			if diff != "" {
@@ -293,7 +293,7 @@ func TestWaitWithContext(t *testing.T) {
 		handlerSleepBeforeWait         time.Duration
 		handlerThrottle                time.Duration
 		handlerTimeout                 time.Duration
-		handlerRetryLimitTempErr       int
+		handlerTempErrRetryLimit       int
 		contextTimeout                 time.Duration
 		wantCheckFnNumberCalls         int
 		wantErr                        bool
@@ -306,7 +306,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         0,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 100 * time.Millisecond,
-			handlerRetryLimitTempErr:       0,
+			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 100 * time.Millisecond,
 			wantCheckFnNumberCalls:         1,
 			wantErr:                        false,
@@ -319,7 +319,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         0,
 			handlerThrottle:                0 * time.Millisecond,
 			handlerTimeout:                 100 * time.Millisecond,
-			handlerRetryLimitTempErr:       0,
+			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 100 * time.Millisecond,
 			wantCheckFnNumberCalls:         0,
 			wantErr:                        true,
@@ -332,7 +332,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         0,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 100 * time.Millisecond,
-			handlerRetryLimitTempErr:       0,
+			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 100 * time.Millisecond,
 			wantCheckFnNumberCalls:         3,
 			wantErr:                        false,
@@ -345,7 +345,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         0,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 100 * time.Millisecond,
-			handlerRetryLimitTempErr:       0,
+			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 1000 * time.Millisecond,
 			wantCheckFnNumberCalls:         4,
 			wantErr:                        true,
@@ -358,7 +358,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         0,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 1000 * time.Millisecond,
-			handlerRetryLimitTempErr:       0,
+			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 100 * time.Millisecond,
 			wantCheckFnNumberCalls:         4,
 			wantErr:                        true,
@@ -371,7 +371,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         60 * time.Millisecond,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 100 * time.Millisecond,
-			handlerRetryLimitTempErr:       0,
+			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 100 * time.Millisecond,
 			wantCheckFnNumberCalls:         2,
 			wantErr:                        true,
@@ -384,7 +384,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         200 * time.Millisecond,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 100 * time.Millisecond,
-			handlerRetryLimitTempErr:       0,
+			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 1000 * time.Millisecond,
 			wantCheckFnNumberCalls:         1,
 			wantErr:                        true,
@@ -397,7 +397,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         200 * time.Millisecond,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 1000 * time.Millisecond,
-			handlerRetryLimitTempErr:       0,
+			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 100 * time.Millisecond,
 			wantCheckFnNumberCalls:         1,
 			wantErr:                        true,
@@ -411,7 +411,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         0,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 1000 * time.Millisecond,
-			handlerRetryLimitTempErr:       5,
+			handlerTempErrRetryLimit:       5,
 			contextTimeout:                 1000 * time.Millisecond,
 			wantCheckFnNumberCalls:         1,
 			wantErr:                        true,
@@ -425,7 +425,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         0,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 1000 * time.Millisecond,
-			handlerRetryLimitTempErr:       5,
+			handlerTempErrRetryLimit:       5,
 			contextTimeout:                 1000 * time.Millisecond,
 			wantCheckFnNumberCalls:         5,
 			wantErr:                        true,
@@ -439,7 +439,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerSleepBeforeWait:         0,
 			handlerThrottle:                30 * time.Millisecond,
 			handlerTimeout:                 1000 * time.Millisecond,
-			handlerRetryLimitTempErr:       5,
+			handlerTempErrRetryLimit:       5,
 			contextTimeout:                 1000 * time.Millisecond,
 			wantCheckFnNumberCalls:         3,
 			wantErr:                        false,
@@ -475,7 +475,7 @@ func TestWaitWithContext(t *testing.T) {
 				sleepBeforeWait:   tt.handlerSleepBeforeWait,
 				throttle:          tt.handlerThrottle,
 				timeout:           tt.handlerTimeout,
-				retryLimitTempErr: tt.handlerRetryLimitTempErr,
+				tempErrRetryLimit: tt.handlerTempErrRetryLimit,
 			}
 			ctx, cancel := context.WithTimeout(context.Background(), tt.contextTimeout)
 			defer cancel()
@@ -546,7 +546,7 @@ func TestHandleError(t *testing.T) {
 	} {
 		t.Run(tt.desc, func(t *testing.T) {
 			w := &AsyncActionHandler[interface{}]{
-				retryLimitTempErr: tt.tempErrRetryLimit,
+				tempErrRetryLimit: tt.tempErrRetryLimit,
 			}
 			_, err := w.handleError(0, tt.reqErr)
 			if (err != nil) != tt.wantErr {

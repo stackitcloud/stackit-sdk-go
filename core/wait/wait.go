@@ -24,7 +24,7 @@ type AsyncActionHandler[T any] struct {
 	sleepBeforeWait   time.Duration
 	throttle          time.Duration
 	timeout           time.Duration
-	retryLimitTempErr int
+	tempErrRetryLimit int
 }
 
 // New initializes an AsyncActionHandler
@@ -34,7 +34,7 @@ func New[T any](f AsyncActionCheck[T]) *AsyncActionHandler[T] {
 		sleepBeforeWait:   0 * time.Second,
 		throttle:          5 * time.Second,
 		timeout:           30 * time.Minute,
-		retryLimitTempErr: 5,
+		tempErrRetryLimit: 5,
 	}
 }
 
@@ -56,10 +56,10 @@ func (h *AsyncActionHandler[T]) SetSleepBeforeWait(d time.Duration) *AsyncAction
 	return h
 }
 
-// SetRetryLimitTempErr sets the retry limit if a temporary error is found.
+// SetTempErrRetryLimit sets the retry limit if a temporary error is found.
 // The list of temporary errors is defined in the RetryHttpErrorStatusCodes variable.
-func (h *AsyncActionHandler[T]) SetRetryLimitTempErr(l int) *AsyncActionHandler[T] {
-	h.retryLimitTempErr = l
+func (h *AsyncActionHandler[T]) SetTempErrRetryLimit(l int) *AsyncActionHandler[T] {
+	h.tempErrRetryLimit = l
 	return h
 }
 
@@ -110,7 +110,7 @@ func (h *AsyncActionHandler[T]) handleError(retryTempErrorCounter int, err error
 		return retryTempErrorCounter, err
 	}
 	retryTempErrorCounter++
-	if retryTempErrorCounter == h.retryLimitTempErr {
+	if retryTempErrorCounter == h.tempErrRetryLimit {
 		return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
 	}
 	return retryTempErrorCounter, nil
