@@ -15,7 +15,7 @@ import (
 // Options used for comparing AsyncActionHandler
 var cmpOpts = []cmp.Option{
 	cmp.AllowUnexported(AsyncActionHandler[interface{}]{}),
-	cmpopts.IgnoreFields(AsyncActionHandler[interface{}]{}, "checkFn"),
+	cmpopts.IgnoreFields(AsyncActionHandler[interface{}]{}, "checkFn"), // cmp won't compare functions well
 }
 
 func TestNew(t *testing.T) {
