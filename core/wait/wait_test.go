@@ -12,6 +12,12 @@ import (
 	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+// Options used for comparing AsyncActionHandler
+var cmpOpts = []cmp.Option{
+	cmp.AllowUnexported(AsyncActionHandler[interface{}]{}),
+	cmpopts.IgnoreFields(AsyncActionHandler[interface{}]{}, "checkFn"),
+}
+
 func TestNew(t *testing.T) {
 	checkFn := func() (waitFinished bool, res *interface{}, err error) { return true, nil, nil }
 	got := New(checkFn)
@@ -23,7 +29,7 @@ func TestNew(t *testing.T) {
 		tempErrRetryLimit: 5,
 	}
 
-	diff := cmp.Diff(got, want, cmp.AllowUnexported(AsyncActionHandler[interface{}]{}), cmpopts.IgnoreFields(AsyncActionHandler[interface{}]{}, "checkFn"))
+	diff := cmp.Diff(got, want, cmpOpts...)
 	if diff != "" {
 		t.Fatalf("Data does not match: %s", diff)
 	}
