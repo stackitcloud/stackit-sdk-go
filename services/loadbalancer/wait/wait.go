@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/loadbalancer"
 )
@@ -69,9 +69,9 @@ func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 		if err == nil {
 			return false, s, nil
 		}
-		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return false, nil, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
+			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 		}
 		if oapiErr.StatusCode != http.StatusNotFound {
 			return false, nil, err

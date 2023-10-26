@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/ske"
 )
@@ -98,9 +98,9 @@ func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 	return wait.New(func() (waitFinished bool, response *ske.ProjectResponse, err error) {
 		s, err := a.GetProjectExecute(ctx, projectId)
 		if err != nil {
-			oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+			oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 			if !ok {
-				return false, nil, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError in delete wait.AsyncHandler, %w", err)
+				return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError in delete wait.AsyncHandler, %w", err)
 			}
 			if oapiErr.StatusCode == http.StatusNotFound || oapiErr.StatusCode == http.StatusForbidden {
 				return true, nil, nil

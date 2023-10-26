@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/dns"
 )
@@ -18,7 +18,7 @@ type apiClientMocked struct {
 
 func (a *apiClientMocked) GetZoneExecute(_ context.Context, _, _ string) (*dns.ZoneResponse, error) {
 	if a.getFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
@@ -33,7 +33,7 @@ func (a *apiClientMocked) GetZoneExecute(_ context.Context, _, _ string) (*dns.Z
 
 func (a *apiClientMocked) GetRecordSetExecute(_ context.Context, _, _, _ string) (*dns.RecordSetResponse, error) {
 	if a.getFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}

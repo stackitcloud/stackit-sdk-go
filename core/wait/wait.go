@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
@@ -101,7 +101,7 @@ func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 }
 
 func (h *AsyncActionHandler[T]) handleError(retryTempErrorCounter int, err error) (int, error) {
-	oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+	oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 	if !ok {
 		return retryTempErrorCounter, fmt.Errorf("found non-GenericOpenApiError: %w", err)
 	}

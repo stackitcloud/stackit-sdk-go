@@ -9,7 +9,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
 // Options used for comparing AsyncActionHandler
@@ -347,7 +347,7 @@ func TestWaitWithContext(t *testing.T) {
 				}
 
 				if tt.checkFnReturnsTempErr {
-					return false, nil, &oapiError.GenericOpenAPIError{
+					return false, nil, &oapierror.GenericOpenAPIError{
 						StatusCode:   RetryHttpErrorStatusCodes[0],
 						ErrorMessage: "something bad happened when checking if the async action was finished",
 					}
@@ -391,7 +391,7 @@ func TestHandleError(t *testing.T) {
 	}{
 		{
 			desc: "handle_oapi_error",
-			reqErr: &oapiError.GenericOpenAPIError{
+			reqErr: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusInternalServerError,
 			},
 			tempErrRetryLimit: 5,
@@ -405,7 +405,7 @@ func TestHandleError(t *testing.T) {
 		},
 		{
 			desc: "bad_gateway_error",
-			reqErr: &oapiError.GenericOpenAPIError{
+			reqErr: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
 			tempErrRetryLimit: 5,
@@ -413,7 +413,7 @@ func TestHandleError(t *testing.T) {
 		},
 		{
 			desc: "gateway_timeout_error",
-			reqErr: &oapiError.GenericOpenAPIError{
+			reqErr: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
 			tempErrRetryLimit: 5,
@@ -421,7 +421,7 @@ func TestHandleError(t *testing.T) {
 		},
 		{
 			desc: "temp_error_retry_limit_reached",
-			reqErr: &oapiError.GenericOpenAPIError{
+			reqErr: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
 			tempErrRetryLimit: 1,
