@@ -325,7 +325,7 @@ func TestWaitWithContext(t *testing.T) {
 			wantErr:                        true,
 		},
 		{
-			desc:                           "throttle_1",
+			desc:                           "throttle",
 			checkFnNumberCallsToFinishWait: 3,
 			checkFnWaitSucceeds:            true,
 			checkFnNumberCallsUntilErr:     999999,
@@ -364,7 +364,7 @@ func TestWaitWithContext(t *testing.T) {
 			wantErr:                        true,
 		},
 		{
-			desc:                           "set_sleep_before_wait_throttle",
+			desc:                           "set_sleep_before_wait_and_throttle",
 			checkFnNumberCallsToFinishWait: 999999,
 			checkFnWaitSucceeds:            true,
 			checkFnNumberCallsUntilErr:     999999,
