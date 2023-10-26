@@ -67,35 +67,6 @@ func TestSetThrottle(t *testing.T) {
 			}
 		})
 	}
-
-	f := &AsyncActionHandler[interface{}]{
-		throttle: 1 * time.Minute,
-	}
-
-	type fields struct {
-		throttle time.Duration
-	}
-	type args struct {
-		d time.Duration
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-		want   *AsyncActionHandler[interface{}]
-	}{
-		{"ok", fields{throttle: 30 * time.Second}, args{d: 1 * time.Minute}, f},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			w := &AsyncActionHandler[interface{}]{
-				throttle: tt.fields.throttle,
-			}
-			if got := w.SetThrottle(tt.args.d); !cmp.Equal(got, tt.want, cmp.AllowUnexported(AsyncActionHandler[interface{}]{})) {
-				t.Errorf("Wait.SetThrottle() = %v, want %v", got, tt.want)
-			}
-		})
-	}
 }
 
 func TestSetTimeout(t *testing.T) {
@@ -127,35 +98,6 @@ func TestSetTimeout(t *testing.T) {
 			diff := cmp.Diff(got, want, cmpOpts...)
 			if diff != "" {
 				t.Errorf("Data does not match: %s", diff)
-			}
-		})
-	}
-
-	f := &AsyncActionHandler[interface{}]{
-		throttle: 1 * time.Minute,
-	}
-
-	type fields struct {
-		throttle time.Duration
-	}
-	type args struct {
-		d time.Duration
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-		want   *AsyncActionHandler[interface{}]
-	}{
-		{"ok", fields{throttle: 30 * time.Second}, args{d: 1 * time.Minute}, f},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			w := &AsyncActionHandler[interface{}]{
-				throttle: tt.fields.throttle,
-			}
-			if got := w.SetThrottle(tt.args.d); !cmp.Equal(got, tt.want, cmp.AllowUnexported(AsyncActionHandler[interface{}]{})) {
-				t.Errorf("Wait.SetThrottle() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -193,35 +135,6 @@ func TestSetSleepBeforeWait(t *testing.T) {
 			}
 		})
 	}
-
-	f := &AsyncActionHandler[interface{}]{
-		throttle: 1 * time.Minute,
-	}
-
-	type fields struct {
-		throttle time.Duration
-	}
-	type args struct {
-		d time.Duration
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-		want   *AsyncActionHandler[interface{}]
-	}{
-		{"ok", fields{throttle: 30 * time.Second}, args{d: 1 * time.Minute}, f},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			w := &AsyncActionHandler[interface{}]{
-				throttle: tt.fields.throttle,
-			}
-			if got := w.SetThrottle(tt.args.d); !cmp.Equal(got, tt.want, cmp.AllowUnexported(AsyncActionHandler[interface{}]{})) {
-				t.Errorf("Wait.SetThrottle() = %v, want %v", got, tt.want)
-			}
-		})
-	}
 }
 
 func TestSetTempErrRetryLimit(t *testing.T) {
@@ -249,35 +162,6 @@ func TestSetTempErrRetryLimit(t *testing.T) {
 			diff := cmp.Diff(got, want, cmpOpts...)
 			if diff != "" {
 				t.Errorf("Data does not match: %s", diff)
-			}
-		})
-	}
-
-	f := &AsyncActionHandler[interface{}]{
-		throttle: 1 * time.Minute,
-	}
-
-	type fields struct {
-		throttle time.Duration
-	}
-	type args struct {
-		d time.Duration
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-		want   *AsyncActionHandler[interface{}]
-	}{
-		{"ok", fields{throttle: 30 * time.Second}, args{d: 1 * time.Minute}, f},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			w := &AsyncActionHandler[interface{}]{
-				throttle: tt.fields.throttle,
-			}
-			if got := w.SetThrottle(tt.args.d); !cmp.Equal(got, tt.want, cmp.AllowUnexported(AsyncActionHandler[interface{}]{})) {
-				t.Errorf("Wait.SetThrottle() = %v, want %v", got, tt.want)
 			}
 		})
 	}
