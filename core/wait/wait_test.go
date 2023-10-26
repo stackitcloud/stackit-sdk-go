@@ -437,7 +437,7 @@ func TestWaitWithContext(t *testing.T) {
 
 			numberCheckFnCalls := 0
 			checkFn := func() (waitFinished bool, response *respType, err error) {
-				numberCheckFnCalls += 1
+				numberCheckFnCalls++
 				if numberCheckFnCalls == tt.checkFnNumberCallsToFinishWait {
 					if tt.checkFnWaitSucceeds {
 						return true, &respType{}, nil
@@ -452,10 +452,10 @@ func TestWaitWithContext(t *testing.T) {
 				if tt.checkFnReturnsTempErr {
 					return false, nil, &oapiError.GenericOpenAPIError{
 						StatusCode:   RetryHttpErrorStatusCodes[0],
-						ErrorMessage: "something bad happenned when checking if the async action was finished",
+						ErrorMessage: "something bad happened when checking if the async action was finished",
 					}
 				}
-				return false, nil, fmt.Errorf("something bad happenned when checking if the async action was finished")
+				return false, nil, fmt.Errorf("something bad happened when checking if the async action was finished")
 			}
 			handler := AsyncActionHandler[respType]{
 				checkFn:           checkFn,

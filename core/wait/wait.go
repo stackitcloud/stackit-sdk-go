@@ -114,5 +114,4 @@ func (h *AsyncActionHandler[T]) handleError(retryTempErrorCounter int, err error
 		return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
 	}
 	return retryTempErrorCounter, nil
-
 }
