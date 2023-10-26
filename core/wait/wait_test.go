@@ -317,7 +317,7 @@ func TestWaitWithContext(t *testing.T) {
 			checkFnWaitSucceeds:            true,
 			checkFnNumberCallsUntilErr:     999999,
 			handlerSleepBeforeWait:         0,
-			handlerThrottle:                0,
+			handlerThrottle:                0 * time.Millisecond,
 			handlerTimeout:                 100 * time.Millisecond,
 			handlerRetryLimitTempErr:       0,
 			contextTimeout:                 100 * time.Millisecond,
