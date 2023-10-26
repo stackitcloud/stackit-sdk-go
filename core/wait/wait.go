@@ -14,7 +14,7 @@ var RetryHttpErrorStatusCodes = []int{http.StatusBadGateway, http.StatusGatewayT
 
 // AsyncActionCheck reports whether a specific async action has finished.
 //   - waitFinished == true if the async action is finished, false otherwise.
-//   - response contains data regarding the current state of the resource targeted by the async action (if applicable). If not applicable, T should be interface{}.
+//   - response contains data regarding the current state of the resource targeted by the async action, if applicable. If not applicable, T should be struct{}.
 //   - err != nil if there was an error checking if the async action finished, or if it finished unsuccessfully.
 type AsyncActionCheck[T any] func() (waitFinished bool, response *T, err error)
 
