@@ -88,7 +88,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceStatus:   "ANOTHER STATE",
+			instanceStatus:   InstanceStatusPending,
 			wantErr:          true,
 			wantResp:         false,
 		},
@@ -191,7 +191,7 @@ func TestEnableLoadBalancingWaitHandler(t *testing.T) {
 			functionalityStatus:         FunctionalityStatusUpdating,
 			functionalityStatusGetFails: false,
 			wantErr:                     true,
-			wantResp:                    true,
+			wantResp:                    false,
 		},
 		{
 			desc:                        "enable_failed",
@@ -205,7 +205,7 @@ func TestEnableLoadBalancingWaitHandler(t *testing.T) {
 			functionalityStatus:         FunctionalityStatusUnspecified,
 			functionalityStatusGetFails: true,
 			wantErr:                     true,
-			wantResp:                    true,
+			wantResp:                    false,
 		},
 	}
 	for _, tt := range tests {

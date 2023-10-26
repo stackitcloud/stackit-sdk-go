@@ -314,7 +314,7 @@ func TestCreateCredentialsWaitHandler(t *testing.T) {
 			getFails:          false,
 			operationSucceeds: false,
 			wantErr:           true,
-			wantResp:          true,
+			wantResp:          false,
 		},
 		{
 			desc:     "get_fails",
