@@ -31,7 +31,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 			return false, nil, err
 		}
 		if s.Id == nil || s.Status == nil {
-			return false, s, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
+			return false, nil, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
 		if *s.Id == instanceId && *s.Status == CreateSuccess {
 			return true, s, nil
@@ -39,7 +39,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		if *s.Id == instanceId && *s.Status == CreateFail {
 			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -51,7 +51,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 			return false, nil, err
 		}
 		if s.Id == nil || s.Status == nil {
-			return false, s, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
+			return false, nil, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
 		// The argus instance API currently replies with create success in case the update was successful.
 		if *s.Id == instanceId && (*s.Status == UpdateSuccess || *s.Status == CreateSuccess) {
@@ -60,7 +60,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		if *s.Id == instanceId && (*s.Status == UpdateFail || *s.Status == CreateFail) {
 			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -72,7 +72,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 			return false, nil, err
 		}
 		if s.Id == nil || s.Status == nil {
-			return false, s, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
+			return false, nil, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
 		if *s.Id == instanceId && *s.Status == DeleteSuccess {
 			return true, s, nil
@@ -80,7 +80,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		if *s.Id == instanceId && *s.Status == DeleteFail {
 			return true, s, fmt.Errorf("delete failed for instance with id %s", instanceId)
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -97,7 +97,7 @@ func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 				return true, s, nil
 			}
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -111,7 +111,7 @@ func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 		jobs := *s.Data
 		for i := range jobs {
 			if *jobs[i].JobName == jobName {
-				return false, s, nil
+				return false, nil, nil
 			}
 		}
 		return true, s, nil

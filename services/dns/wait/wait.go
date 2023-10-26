@@ -31,7 +31,7 @@ func CreateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 			return false, nil, err
 		}
 		if s.Zone.Id == nil || s.Zone.State == nil {
-			return false, s, fmt.Errorf("create failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
+			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
 		}
 		if *s.Zone.Id == instanceId && *s.Zone.State == CreateSuccess {
 			return true, s, nil
@@ -39,7 +39,7 @@ func CreateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 		if *s.Zone.Id == instanceId && *s.Zone.State == CreateFail {
 			return true, s, fmt.Errorf("create failed for zone with id %s", instanceId)
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -51,7 +51,7 @@ func UpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 			return false, nil, err
 		}
 		if s.Zone.Id == nil || s.Zone.State == nil {
-			return false, s, fmt.Errorf("update failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
+			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
 		}
 		if *s.Zone.Id == instanceId && *s.Zone.State == UpdateSuccess {
 			return true, s, nil
@@ -59,7 +59,7 @@ func UpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 		if *s.Zone.Id == instanceId && *s.Zone.State == UpdateFail {
 			return true, s, fmt.Errorf("update failed for zone with id %s", instanceId)
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -72,7 +72,7 @@ func DeleteZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 			return false, nil, err
 		}
 		if s.Zone.Id == nil || s.Zone.State == nil {
-			return false, s, fmt.Errorf("delete failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
+			return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
 		}
 		if *s.Zone.Id == instanceId && *s.Zone.State == DeleteSuccess {
 			return true, s, nil
@@ -80,7 +80,7 @@ func DeleteZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 		if *s.Zone.Id == instanceId && *s.Zone.State == DeleteFail {
 			return true, s, fmt.Errorf("delete failed for zone with id %s", instanceId)
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -92,7 +92,7 @@ func CreateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 			return false, nil, err
 		}
 		if s.Rrset.Id == nil || s.Rrset.State == nil {
-			return false, s, fmt.Errorf("create failed for record set with id %s. The response is not valid: the id or the state are missing", instanceId)
+			return false, nil, fmt.Errorf("create failed for record set with id %s. The response is not valid: the id or the state are missing", instanceId)
 		}
 		if *s.Rrset.Id == rrSetId && *s.Rrset.State == CreateSuccess {
 			return true, s, nil
@@ -100,7 +100,7 @@ func CreateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 		if *s.Rrset.Id == rrSetId && *s.Rrset.State == CreateFail {
 			return true, s, fmt.Errorf("create failed for record with id %s", rrSetId)
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -112,7 +112,7 @@ func UpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 			return false, nil, err
 		}
 		if s.Rrset.Id == nil || s.Rrset.State == nil {
-			return false, s, fmt.Errorf("update failed for record set with id %s. The response is not valid: the id or the state are missing", rrSetId)
+			return false, nil, fmt.Errorf("update failed for record set with id %s. The response is not valid: the id or the state are missing", rrSetId)
 		}
 		if *s.Rrset.Id == rrSetId && *s.Rrset.State == UpdateSuccess {
 			return true, s, nil
@@ -120,7 +120,7 @@ func UpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 		if *s.Rrset.Id == rrSetId && *s.Rrset.State == UpdateFail {
 			return true, s, fmt.Errorf("update failed for record with id %s", rrSetId)
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -133,7 +133,7 @@ func DeleteRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 			return false, nil, err
 		}
 		if s.Rrset.Id == nil || s.Rrset.State == nil {
-			return false, s, fmt.Errorf("delete failed for record set with id %s. The response is not valid: the id or the state are missing", rrSetId)
+			return false, nil, fmt.Errorf("delete failed for record set with id %s. The response is not valid: the id or the state are missing", rrSetId)
 		}
 		if *s.Rrset.Id == rrSetId && *s.Rrset.State == DeleteSuccess {
 			return true, s, nil
@@ -141,6 +141,6 @@ func DeleteRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 		if *s.Rrset.Id == rrSetId && *s.Rrset.State == DeleteFail {
 			return true, s, fmt.Errorf("delete failed for record with id %s", rrSetId)
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }

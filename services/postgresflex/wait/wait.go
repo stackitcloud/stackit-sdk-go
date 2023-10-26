@@ -39,11 +39,11 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 				return false, nil, err
 			}
 			if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
-				return false, s, nil
+				return false, nil, nil
 			}
 			switch *s.Item.Status {
 			default:
-				return true, nil, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+				return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 			case InstanceStateEmpty:
 				return false, nil, nil
 			case InstanceStateProgressing:
@@ -52,7 +52,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 				instanceCreated = true
 				instanceGetResponse = s
 			case InstanceStateFailed:
-				return true, nil, fmt.Errorf("create failed for instance with id %s", instanceId)
+				return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 			}
 		}
 
@@ -67,7 +67,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return false, nil, err
 		}
 		if oapiErr.StatusCode < 500 {
-			return true, nil, fmt.Errorf("users request after instance creation returned %d status code", oapiErr.StatusCode)
+			return true, instanceGetResponse, fmt.Errorf("users request after instance creation returned %d status code", oapiErr.StatusCode)
 		}
 		return false, nil, nil
 	})
@@ -81,15 +81,15 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return false, nil, err
 		}
 		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
-			return false, s, nil
+			return false, nil, nil
 		}
 		switch *s.Item.Status {
 		default:
 			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case InstanceStateEmpty:
-			return false, s, nil
+			return false, nil, nil
 		case InstanceStateProgressing:
-			return false, s, nil
+			return false, nil, nil
 		case InstanceStateSuccess:
 			return true, s, nil
 		case InstanceStateFailed:
@@ -99,11 +99,11 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
-	return wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
-		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
+func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
+	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err == nil {
-			return false, s, nil
+			return false, nil, nil
 		}
 		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
@@ -117,11 +117,11 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // DeleteUserWaitHandler will wait for delete
-func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projectId, instanceId, userId string) *wait.AsyncActionHandler[postgresflex.UserResponse] {
-	return wait.New(func() (waitFinished bool, response *postgresflex.UserResponse, err error) {
-		u, err := a.GetUserExecute(ctx, projectId, instanceId, userId)
+func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projectId, instanceId, userId string) *wait.AsyncActionHandler[struct{}] {
+	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetUserExecute(ctx, projectId, instanceId, userId)
 		if err == nil {
-			return false, u, nil
+			return false, nil, nil
 		}
 		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {

@@ -53,7 +53,7 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 			return true, s, nil
 		}
 
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
@@ -68,7 +68,7 @@ func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, 
 		for i := range items {
 			n := items[i].Name
 			if n != nil && *n == name {
-				return false, s, nil
+				return false, nil, nil
 			}
 		}
 		return true, s, nil
@@ -89,24 +89,24 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 		case StateCreated:
 			return true, s, nil
 		}
-		return false, s, nil
+		return false, nil, nil
 	})
 }
 
 // DeleteProjectWaitHandler will wait for project deletion
-func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[ske.ProjectResponse] {
-	return wait.New(func() (waitFinished bool, response *ske.ProjectResponse, err error) {
-		s, err := a.GetProjectExecute(ctx, projectId)
-		if err != nil {
-			oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-			if !ok {
-				return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError in delete wait.AsyncHandler, %w", err)
-			}
-			if oapiErr.StatusCode == http.StatusNotFound || oapiErr.StatusCode == http.StatusForbidden {
-				return true, nil, nil
-			}
-			return false, nil, err
+func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[struct{}] {
+	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetProjectExecute(ctx, projectId)
+		if err == nil {
+			return false, nil, nil
 		}
-		return false, s, nil
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError in delete wait.AsyncHandler, %w", err)
+		}
+		if oapiErr.StatusCode == http.StatusNotFound || oapiErr.StatusCode == http.StatusForbidden {
+			return true, nil, nil
+		}
+		return false, nil, err
 	})
 }

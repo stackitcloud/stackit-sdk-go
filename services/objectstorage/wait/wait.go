@@ -28,11 +28,11 @@ func CreateBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, pr
 }
 
 // DeleteBucketWaitHandler will wait for bucket deletion
-func DeleteBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.AsyncActionHandler[objectstorage.GetBucketResponse] {
-	return wait.New(func() (waitFinished bool, response *objectstorage.GetBucketResponse, err error) {
-		s, err := a.GetBucketExecute(ctx, projectId, bucketName)
+func DeleteBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.AsyncActionHandler[struct{}] {
+	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetBucketExecute(ctx, projectId, bucketName)
 		if err == nil {
-			return false, s, nil
+			return false, nil, nil
 		}
 		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
