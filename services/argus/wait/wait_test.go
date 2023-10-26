@@ -7,7 +7,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/argus"
 )
@@ -20,7 +20,7 @@ type apiClientMocked struct {
 
 func (a *apiClientMocked) GetInstanceExecute(_ context.Context, _, _ string) (*argus.InstanceResponse, error) {
 	if a.getFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
@@ -33,7 +33,7 @@ func (a *apiClientMocked) GetInstanceExecute(_ context.Context, _, _ string) (*a
 
 func (a *apiClientMocked) GetScrapeConfigsExecute(_ context.Context, _, _ string) (*argus.ScrapeConfigsResponse, error) {
 	if a.getFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}

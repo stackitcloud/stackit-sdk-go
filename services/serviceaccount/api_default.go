@@ -19,7 +19,7 @@ import (
 	"net/url"
 	"strings"
 
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
 // DefaultApiService DefaultApi service
@@ -50,7 +50,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAccessToken")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
@@ -98,7 +98,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -110,7 +110,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -121,7 +121,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -132,7 +132,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -143,7 +143,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
@@ -151,7 +151,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -215,7 +215,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccount")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts"
@@ -262,7 +262,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -274,7 +274,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -285,7 +285,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -296,7 +296,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -307,7 +307,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
@@ -315,7 +315,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -377,7 +377,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccountKey")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys"
@@ -425,7 +425,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -437,7 +437,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -448,7 +448,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -459,7 +459,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -470,7 +470,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
@@ -478,7 +478,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -557,7 +557,7 @@ func (r ApiCreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAcces
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateShortLivedAccessToken")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/token"
@@ -611,7 +611,7 @@ func (r ApiCreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAcces
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -621,7 +621,7 @@ func (r ApiCreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAcces
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -673,7 +673,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAccessToken")
 	if err != nil {
-		return &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens/{accessTokenId}"
@@ -720,7 +720,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -732,7 +732,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
 		}
@@ -743,7 +743,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
 		}
@@ -754,7 +754,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
 		}
@@ -765,7 +765,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
 		}
@@ -776,7 +776,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return newErr
@@ -833,7 +833,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServiceAccount")
 	if err != nil {
-		return &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}"
@@ -879,7 +879,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -891,7 +891,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
 		}
@@ -902,7 +902,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
 		}
@@ -913,7 +913,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
 		}
@@ -924,7 +924,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return newErr
@@ -979,7 +979,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServiceAccountKey")
 	if err != nil {
-		return &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
@@ -1026,7 +1026,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -1038,7 +1038,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
 		}
@@ -1049,7 +1049,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
 		}
@@ -1060,7 +1060,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 				newErr.ErrorMessage = err.Error()
 				return newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return newErr
@@ -1118,7 +1118,7 @@ func (r ApiGetAccessTokensRequest) Execute() (*AccessTokensResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAccessTokens")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
@@ -1164,7 +1164,7 @@ func (r ApiGetAccessTokensRequest) Execute() (*AccessTokensResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -1176,7 +1176,7 @@ func (r ApiGetAccessTokensRequest) Execute() (*AccessTokensResponse, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1187,7 +1187,7 @@ func (r ApiGetAccessTokensRequest) Execute() (*AccessTokensResponse, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1198,7 +1198,7 @@ func (r ApiGetAccessTokensRequest) Execute() (*AccessTokensResponse, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1209,7 +1209,7 @@ func (r ApiGetAccessTokensRequest) Execute() (*AccessTokensResponse, error) {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
@@ -1217,7 +1217,7 @@ func (r ApiGetAccessTokensRequest) Execute() (*AccessTokensResponse, error) {
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -1273,7 +1273,7 @@ func (r ApiGetServiceAccountJWKSRequest) Execute() (*GetServiceAccountJWKS, erro
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccountJWKS")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/service-accounts/public/jwk/{serviceAccountEmail}"
@@ -1318,7 +1318,7 @@ func (r ApiGetServiceAccountJWKSRequest) Execute() (*GetServiceAccountJWKS, erro
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -1328,7 +1328,7 @@ func (r ApiGetServiceAccountJWKSRequest) Execute() (*GetServiceAccountJWKS, erro
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -1391,7 +1391,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccountKey")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
@@ -1441,7 +1441,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -1453,7 +1453,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1464,7 +1464,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1475,7 +1475,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
@@ -1483,7 +1483,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -1543,7 +1543,7 @@ func (r ApiGetServiceAccountKeysRequest) Execute() (*GetServiceAccountsKeysRespo
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccountKeys")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys"
@@ -1589,7 +1589,7 @@ func (r ApiGetServiceAccountKeysRequest) Execute() (*GetServiceAccountsKeysRespo
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -1601,7 +1601,7 @@ func (r ApiGetServiceAccountKeysRequest) Execute() (*GetServiceAccountsKeysRespo
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1612,7 +1612,7 @@ func (r ApiGetServiceAccountKeysRequest) Execute() (*GetServiceAccountsKeysRespo
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1623,7 +1623,7 @@ func (r ApiGetServiceAccountKeysRequest) Execute() (*GetServiceAccountsKeysRespo
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
@@ -1631,7 +1631,7 @@ func (r ApiGetServiceAccountKeysRequest) Execute() (*GetServiceAccountsKeysRespo
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -1687,7 +1687,7 @@ func (r ApiGetServiceAccountsRequest) Execute() (*GetServiceAccountsResponse, er
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccounts")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts"
@@ -1732,7 +1732,7 @@ func (r ApiGetServiceAccountsRequest) Execute() (*GetServiceAccountsResponse, er
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -1744,7 +1744,7 @@ func (r ApiGetServiceAccountsRequest) Execute() (*GetServiceAccountsResponse, er
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1755,7 +1755,7 @@ func (r ApiGetServiceAccountsRequest) Execute() (*GetServiceAccountsResponse, er
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1766,7 +1766,7 @@ func (r ApiGetServiceAccountsRequest) Execute() (*GetServiceAccountsResponse, er
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
@@ -1774,7 +1774,7 @@ func (r ApiGetServiceAccountsRequest) Execute() (*GetServiceAccountsResponse, er
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -1837,7 +1837,7 @@ func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyRe
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateServiceAccountKey")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
@@ -1886,7 +1886,7 @@ func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyRe
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -1898,7 +1898,7 @@ func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyRe
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1909,7 +1909,7 @@ func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyRe
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1920,7 +1920,7 @@ func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyRe
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
@@ -1931,7 +1931,7 @@ func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyRe
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
 			}
-			newErr.ErrorMessage = oapiError.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
@@ -1939,7 +1939,7 @@ func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyRe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),

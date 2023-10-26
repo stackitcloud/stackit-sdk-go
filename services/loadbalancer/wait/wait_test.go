@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/services/loadbalancer"
 )
 
@@ -22,13 +22,13 @@ type apiClientMocked struct {
 
 func (a *apiClientMocked) GetLoadBalancerExecute(_ context.Context, _, _ string) (*loadbalancer.LoadBalancer, error) {
 	if a.instanceGetFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
 
 	if a.instanceIsDeleted {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 404,
 		}
 	}
@@ -40,7 +40,7 @@ func (a *apiClientMocked) GetLoadBalancerExecute(_ context.Context, _, _ string)
 }
 func (a *apiClientMocked) GetStatusExecute(_ context.Context, _ string) (*loadbalancer.StatusResponse, error) {
 	if a.functionalityStatusGetFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}

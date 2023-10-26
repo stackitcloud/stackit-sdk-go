@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/services/objectstorage"
 )
 
@@ -18,13 +18,13 @@ type apiClientBucketMocked struct {
 
 func (a *apiClientBucketMocked) GetBucketExecute(_ context.Context, _, _ string) (*objectstorage.GetBucketResponse, error) {
 	if a.bucketGetFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
 
 	if a.bucketIsDeleted {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 404,
 		}
 	}

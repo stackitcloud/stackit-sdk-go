@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/redis"
 )
@@ -88,9 +88,9 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			}
 			return s, false, nil
 		}
-		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return nil, false, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
+			return nil, false, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 		}
 		if oapiErr.StatusCode != http.StatusGone {
 			return nil, false, err
@@ -104,9 +104,9 @@ func CreateCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInt
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetCredentialsExecute(ctx, projectId, instanceId, credentialsId)
 		if err != nil {
-			oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+			oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 			if !ok {
-				return nil, false, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
+				return nil, false, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 			}
 			// If the request returns 404, the credentials have not been created yet
 			if oapiErr.StatusCode == http.StatusNotFound {
@@ -126,9 +126,9 @@ func DeleteCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInt
 	return wait.New(func() (res interface{}, done bool, err error) {
 		s, err := a.GetCredentialsExecute(ctx, projectId, instanceId, credentialsId)
 		if err != nil {
-			oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+			oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 			if !ok {
-				return nil, false, fmt.Errorf("could not convert error to oapiError.GenericOpenAPIError")
+				return nil, false, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 			}
 			if oapiErr.StatusCode != http.StatusNotFound && oapiErr.StatusCode != http.StatusGone {
 				return nil, false, err

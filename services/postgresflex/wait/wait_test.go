@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex"
 )
 
@@ -21,13 +21,13 @@ type apiClientInstanceMocked struct {
 
 func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*postgresflex.InstanceResponse, error) {
 	if a.instanceGetFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
 
 	if a.instanceIsDeleted {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 404,
 		}
 	}
@@ -42,7 +42,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 
 func (a *apiClientInstanceMocked) GetUsersExecute(_ context.Context, _, _ string) (*postgresflex.UsersResponse, error) {
 	if a.usersGetErrorStatus != 0 {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: a.usersGetErrorStatus,
 		}
 	}
@@ -63,13 +63,13 @@ type apiClientUserMocked struct {
 
 func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _ string) (*postgresflex.UserResponse, error) {
 	if a.getFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
 
 	if a.isUserDeleted {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 404,
 		}
 	}

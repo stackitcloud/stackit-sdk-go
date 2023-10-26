@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex"
 )
@@ -62,7 +62,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if err == nil {
 			return instanceGetResponse, true, nil
 		}
-		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
 			return nil, false, err
 		}
@@ -105,7 +105,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if err == nil {
 			return s, false, nil
 		}
-		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
 			return nil, false, err
 		}
@@ -123,7 +123,7 @@ func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projec
 		if err == nil {
 			return u, false, nil
 		}
-		oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
 			return nil, false, err
 		}
