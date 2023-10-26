@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/ske"
 )
@@ -22,7 +22,7 @@ type apiClientClusterMocked struct {
 
 func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ string) (*ske.ClusterResponse, error) {
 	if a.getFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
 		}
 	}
@@ -50,7 +50,7 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 
 func (a *apiClientClusterMocked) GetClustersExecute(_ context.Context, _ string) (*ske.ClustersResponse, error) {
 	if a.getFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
 		}
 	}
@@ -76,12 +76,12 @@ type apiClientProjectMocked struct {
 
 func (a *apiClientProjectMocked) GetProjectExecute(_ context.Context, _ string) (*ske.ProjectResponse, error) {
 	if a.getFails {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
 		}
 	}
 	if a.getNotFound {
-		return nil, &oapiError.GenericOpenAPIError{
+		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusNotFound,
 		}
 	}

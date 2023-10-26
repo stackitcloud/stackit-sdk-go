@@ -19,7 +19,7 @@ import (
 	"net/url"
 	"strings"
 
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
 // DefaultApiService DefaultApi service
@@ -53,7 +53,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateLoadBalancer")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}/load-balancers"
@@ -107,7 +107,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -117,7 +117,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -171,7 +171,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteLoadBalancer")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}/load-balancers/{name}"
@@ -217,7 +217,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -227,7 +227,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -283,7 +283,7 @@ func (r ApiDisableLoadBalancingRequest) Execute() (map[string]interface{}, error
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableLoadBalancing")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}"
@@ -328,7 +328,7 @@ func (r ApiDisableLoadBalancingRequest) Execute() (map[string]interface{}, error
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -338,7 +338,7 @@ func (r ApiDisableLoadBalancingRequest) Execute() (map[string]interface{}, error
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -397,7 +397,7 @@ func (r ApiEnableLoadBalancingRequest) Execute() (map[string]interface{}, error)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableLoadBalancing")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}"
@@ -446,7 +446,7 @@ func (r ApiEnableLoadBalancingRequest) Execute() (map[string]interface{}, error)
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -456,7 +456,7 @@ func (r ApiEnableLoadBalancingRequest) Execute() (map[string]interface{}, error)
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -510,7 +510,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLoadBalancer")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}/load-balancers/{name}"
@@ -556,7 +556,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -566,7 +566,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -622,7 +622,7 @@ func (r ApiGetStatusRequest) Execute() (*StatusResponse, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetStatus")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}"
@@ -667,7 +667,7 @@ func (r ApiGetStatusRequest) Execute() (*StatusResponse, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -677,7 +677,7 @@ func (r ApiGetStatusRequest) Execute() (*StatusResponse, error) {
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -730,7 +730,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListLoadBalancers")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}/load-balancers"
@@ -775,7 +775,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -785,7 +785,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),
@@ -846,7 +846,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateTargetPool")
 	if err != nil {
-		return localVarReturnValue, &oapiError.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1beta/projects/{projectId}/load-balancers/{name}/target-pools/{targetPoolName}"
@@ -898,7 +898,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -908,7 +908,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := &oapiError.GenericOpenAPIError{
+		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: err.Error(),

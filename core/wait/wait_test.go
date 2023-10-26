@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	oapiError "github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
 func TestNew(t *testing.T) {
@@ -195,7 +195,7 @@ func TestHandleError(t *testing.T) {
 	}{
 		{
 			desc: "handle_oapi_error",
-			reqErr: &oapiError.GenericOpenAPIError{
+			reqErr: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusInternalServerError,
 			},
 			tempErrRetryLimit: 5,
@@ -209,7 +209,7 @@ func TestHandleError(t *testing.T) {
 		},
 		{
 			desc: "bad_gateway_error",
-			reqErr: &oapiError.GenericOpenAPIError{
+			reqErr: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
 			tempErrRetryLimit: 5,
@@ -217,7 +217,7 @@ func TestHandleError(t *testing.T) {
 		},
 		{
 			desc: "gateway_timeout_error",
-			reqErr: &oapiError.GenericOpenAPIError{
+			reqErr: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
 			tempErrRetryLimit: 5,
@@ -225,7 +225,7 @@ func TestHandleError(t *testing.T) {
 		},
 		{
 			desc: "temp_error_retry_limit_reached",
-			reqErr: &oapiError.GenericOpenAPIError{
+			reqErr: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusBadGateway,
 			},
 			tempErrRetryLimit: 1,

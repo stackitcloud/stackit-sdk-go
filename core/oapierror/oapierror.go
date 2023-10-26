@@ -1,4 +1,4 @@
-package oapiError
+package oapierror
 
 import (
 	"fmt"
