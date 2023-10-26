@@ -127,11 +127,7 @@ To configure it, follow this steps:
     The following instructions assume that you have created a service account and assigned it the necessary permissions, e.g. project.owner.
 
 1.  In the Portal, go to the `Service Accounts` tab, choose a `Service Account` and go to `Service Account Keys` to create a key.
-
     - You can create your own RSA key-pair or have the Portal generate one for you.
-
-    **Disclaimer:** as of now, creation of a service account key in the Portal is only available in DEV and QA environments. You can use this flow in these environments by using the options `config.WithTokenEndpoint` and `config.WithJWKSEndpoint` to configure the corresponding endpoints.
-
 2.  Save the content of the service account key and the corresponding private key by copying them or saving them in a file.
 
     **Hint:** If you have generated the RSA key-pair using the Portal, you can save the private key in a PEM encoded file by downloading the service account key as a PEM file and using `openssl storeutl -keys <path/to/sa_key_pem_file> > private.key` to extract the private key from the service account key.
