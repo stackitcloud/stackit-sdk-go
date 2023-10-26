@@ -49,36 +49,42 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState *string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
 			resourceState: utils.Ptr(CreateSuccess),
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
 			resourceState: utils.Ptr(CreateFail),
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: utils.Ptr(""),
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "broken_response",
 			getFails:      false,
 			resourceState: nil,
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: utils.Ptr("ANOTHER STATE"),
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -89,13 +95,11 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *argus.InstanceResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &argus.InstanceResponse{
 					Id:     utils.Ptr("iid"),
 					Status: tt.resourceState,
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "iid", "pid")
@@ -105,10 +109,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
+			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -121,30 +122,35 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState *string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
 			resourceState: utils.Ptr(UpdateSuccess),
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
 			resourceState: utils.Ptr(UpdateFail),
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: utils.Ptr(""),
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: utils.Ptr("ANOTHER STATE"),
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -155,13 +161,11 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *argus.InstanceResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &argus.InstanceResponse{
 					Status: tt.resourceState,
 					Id:     utils.Ptr("iid"),
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "iid", "pid")
@@ -171,10 +175,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
+			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -187,30 +188,35 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState *string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
 			resourceState: utils.Ptr(DeleteSuccess),
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "delete_failed",
 			getFails:      false,
 			resourceState: utils.Ptr(DeleteFail),
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: utils.Ptr(""),
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: utils.Ptr("ANOTHER STATE"),
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -221,13 +227,11 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *argus.InstanceResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &argus.InstanceResponse{
 					Status: tt.resourceState,
 					Id:     utils.Ptr("iid"),
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "iid", "pid")
@@ -237,10 +241,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
+			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(argus.NullableString{})) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
