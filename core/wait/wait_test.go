@@ -26,7 +26,7 @@ func TestNew(t *testing.T) {
 		sleepBeforeWait:   0 * time.Second,
 		throttle:          5 * time.Second,
 		timeout:           30 * time.Minute,
-		tempErrRetryLimit: 5,
+		retryLimitTempErr: 5,
 	}
 
 	diff := cmp.Diff(got, want, cmpOpts...)
@@ -242,7 +242,7 @@ func TestSetRetryLimitTempErr(t *testing.T) {
 	} {
 		t.Run(tt.desc, func(t *testing.T) {
 			want := New(checkFn)
-			want.tempErrRetryLimit = tt.retryLimitTempErr
+			want.retryLimitTempErr = tt.retryLimitTempErr
 			got := New(checkFn)
 			got.SetRetryLimitTempErr(tt.retryLimitTempErr)
 
@@ -336,7 +336,7 @@ func TestWaitWithContext(t *testing.T) {
 				checkFn:           tt.fields.checkFn,
 				throttle:          tt.fields.throttle,
 				timeout:           tt.fields.timeout,
-				tempErrRetryLimit: tt.fields.tempErrRetryLimit,
+				retryLimitTempErr: tt.fields.tempErrRetryLimit,
 			}
 			_, err := w.WaitWithContext(context.Background())
 			if (err != nil) != tt.wantErr {
@@ -396,7 +396,7 @@ func TestHandleError(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
 			w := &AsyncActionHandler[interface{}]{
-				tempErrRetryLimit: tt.tempErrRetryLimit,
+				retryLimitTempErr: tt.tempErrRetryLimit,
 			}
 			_, err := w.handleError(0, tt.reqErr)
 			if (err != nil) != tt.wantErr {
