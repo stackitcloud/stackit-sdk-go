@@ -486,7 +486,7 @@ func TestWaitWithContext(t *testing.T) {
 }
 
 func TestHandleError(t *testing.T) {
-	tests := []struct {
+	for _, tt := range []struct {
 		desc              string
 		reqErr            error
 		tempErrRetryLimit int
@@ -530,8 +530,7 @@ func TestHandleError(t *testing.T) {
 			tempErrRetryLimit: 1,
 			wantErr:           true,
 		},
-	}
-	for _, tt := range tests {
+	} {
 		t.Run(tt.desc, func(t *testing.T) {
 			w := &AsyncActionHandler[interface{}]{
 				retryLimitTempErr: tt.tempErrRetryLimit,
