@@ -103,15 +103,16 @@ func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 func (h *AsyncActionHandler[T]) handleError(retryTempErrorCounter int, err error) (int, error) {
 	oapiErr, ok := err.(*oapiError.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 	if !ok {
-		return retryTempErrorCounter, fmt.Errorf("could not convert error to GenericOpenApiError, %w", err)
+		return retryTempErrorCounter, fmt.Errorf("found non-GenericOpenApiError: %w", err)
 	}
 	// Some APIs may return temporary errors and the request should be retried
-	if utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
-		retryTempErrorCounter++
-		if retryTempErrorCounter == h.retryLimitTempErr {
-			return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
-		}
-		return retryTempErrorCounter, nil
+	if !utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
+		return retryTempErrorCounter, err
 	}
-	return retryTempErrorCounter, fmt.Errorf("executing wait function: %w", err)
+	retryTempErrorCounter++
+	if retryTempErrorCounter == h.retryLimitTempErr {
+		return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
+	}
+	return retryTempErrorCounter, nil
+
 }
