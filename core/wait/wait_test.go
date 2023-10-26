@@ -21,7 +21,7 @@ func TestNew(t *testing.T) {
 		args args
 		want *AsyncActionHandler[interface{}]
 	}{
-		{"ok", args{simple}, &AsyncActionHandler[interface{}]{check: simple, throttle: 5 * time.Second, tempErrRetryLimit: 10}},
+		{"ok", args{simple}, &AsyncActionHandler[interface{}]{checkFn: simple, throttle: 5 * time.Second, tempErrRetryLimit: 10}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -99,7 +99,7 @@ func TestWaitWithContext(t *testing.T) {
 	defer cancel()
 
 	type fields struct {
-		check             AsyncActionCheck[interface{}]
+		checkFn           AsyncActionCheck[interface{}]
 		throttle          time.Duration
 		timeout           time.Duration
 		tempErrRetryLimit int
@@ -110,41 +110,41 @@ func TestWaitWithContext(t *testing.T) {
 		wantDone bool
 		wantErr  bool
 	}{
-		{"ok", fields{throttle: 1 * time.Second, timeout: 1 * time.Hour, check: func() (waitFinished bool, res *interface{}, err error) {
+		{"ok", fields{throttle: 1 * time.Second, timeout: 1 * time.Hour, checkFn: func() (waitFinished bool, res *interface{}, err error) {
 			return true, nil, nil
 		}}, true, false},
 
-		{"ok 2", fields{throttle: 200 * time.Millisecond, timeout: 1 * time.Hour, tempErrRetryLimit: 5, check: func() (waitFinished bool, res *interface{}, err error) {
+		{"ok 2", fields{throttle: 200 * time.Millisecond, timeout: 1 * time.Hour, tempErrRetryLimit: 5, checkFn: func() (waitFinished bool, res *interface{}, err error) {
 			if ctx.Err() == nil {
 				return false, nil, nil
 			}
 			return true, nil, nil
 		}}, true, false},
 
-		{"err", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, check: func() (waitFinished bool, res *interface{}, err error) {
+		{"err", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, checkFn: func() (waitFinished bool, res *interface{}, err error) {
 			return true, nil, fmt.Errorf("something happened")
 		}}, true, true},
 
-		{"err 2", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, check: func() (waitFinished bool, res *interface{}, err error) {
+		{"err 2", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Hour, checkFn: func() (waitFinished bool, res *interface{}, err error) {
 			return false, nil, fmt.Errorf("something happened")
 		}}, true, true},
 
-		{"timeout", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, check: func() (waitFinished bool, res *interface{}, err error) {
+		{"timeout", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, checkFn: func() (waitFinished bool, res *interface{}, err error) {
 			return false, nil, nil
 		}}, false, true},
 
-		{"tempErrorLimitReached", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, check: func() (waitFinished bool, res *interface{}, err error) {
+		{"tempErrorLimitReached", fields{throttle: 1 * time.Millisecond, timeout: 1 * time.Millisecond, checkFn: func() (waitFinished bool, res *interface{}, err error) {
 			return false, nil, nil
 		}}, false, true},
 
-		{"badThrottle", fields{throttle: 0 * time.Second, timeout: 1 * time.Hour, check: func() (waitFinished bool, res *interface{}, err error) {
+		{"badThrottle", fields{throttle: 0 * time.Second, timeout: 1 * time.Hour, checkFn: func() (waitFinished bool, res *interface{}, err error) {
 			return true, nil, nil
 		}}, false, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			w := &AsyncActionHandler[interface{}]{
-				check:             tt.fields.check,
+				checkFn:           tt.fields.checkFn,
 				throttle:          tt.fields.throttle,
 				timeout:           tt.fields.timeout,
 				tempErrRetryLimit: tt.fields.tempErrRetryLimit,

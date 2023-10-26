@@ -20,7 +20,7 @@ type AsyncActionCheck[T any] func() (waitFinished bool, response *T, err error)
 
 // AsyncActionHandler handles waiting for a specific async action to be finished.
 type AsyncActionHandler[T any] struct {
-	check             AsyncActionCheck[T]
+	checkFn           AsyncActionCheck[T]
 	sleepBeforeWait   time.Duration
 	throttle          time.Duration
 	timeout           time.Duration
@@ -30,7 +30,7 @@ type AsyncActionHandler[T any] struct {
 // New initializes an AsyncActionHandler
 func New[T any](f AsyncActionCheck[T]) *AsyncActionHandler[T] {
 	return &AsyncActionHandler[T]{
-		check:             f,
+		checkFn:           f,
 		sleepBeforeWait:   0 * time.Second,
 		throttle:          5 * time.Second,
 		timeout:           30 * time.Minute,
@@ -80,7 +80,7 @@ func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 
 	var retryTempErrorCounter = 0
 	for {
-		done, res, err := h.check()
+		done, res, err := h.checkFn()
 		if err != nil {
 			retryTempErrorCounter, err = h.handleError(retryTempErrorCounter, err)
 			if err != nil {
