@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/redis
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.3.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.4.0
 	github.com/stackitcloud/stackit-sdk-go/services/redis v0.5.0
 )
 
