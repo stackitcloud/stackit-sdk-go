@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -17,19 +18,20 @@ type APIClientBucketInterface interface {
 
 // CreateBucketWaitHandler will wait for bucket creation
 func CreateBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.AsyncActionHandler[objectstorage.GetBucketResponse] {
-	waitHandler := wait.New(func() (waitFinished bool, response *objectstorage.GetBucketResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *objectstorage.GetBucketResponse, err error) {
 		s, err := a.GetBucketExecute(ctx, projectId, bucketName)
 		if err != nil {
 			return false, nil, err
 		}
 		return true, s, nil
 	})
-	return waitHandler
+	handler.SetTimeout(1 * time.Minute)
+	return handler
 }
 
 // DeleteBucketWaitHandler will wait for bucket deletion
 func DeleteBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.AsyncActionHandler[struct{}] {
-	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetBucketExecute(ctx, projectId, bucketName)
 		if err == nil {
 			return false, nil, nil
@@ -43,4 +45,6 @@ func DeleteBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, pr
 		}
 		return true, nil, nil
 	})
+	handler.SetTimeout(1 * time.Minute)
+	return handler
 }

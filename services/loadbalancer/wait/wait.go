@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -37,7 +38,7 @@ type APIClientInterface interface {
 
 // CreateLoadBalancerWaitHandler will wait for load balancer creation
 func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceName string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
-	return wait.New(func() (waitFinished bool, response *loadbalancer.LoadBalancer, err error) {
+	handler := wait.New(func() (waitFinished bool, response *loadbalancer.LoadBalancer, err error) {
 		s, err := a.GetLoadBalancerExecute(ctx, projectId, instanceName)
 		if err != nil {
 			return false, nil, err
@@ -60,11 +61,13 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 			return true, s, fmt.Errorf("instance with name %s has unexpected status %s", instanceName, *s.Status)
 		}
 	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
 }
 
 // DeleteLoadBalancerWaitHandler will wait for load balancer deletion
 func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
-	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetLoadBalancerExecute(ctx, projectId, instanceId)
 		if err == nil {
 			return false, nil, nil
@@ -78,11 +81,13 @@ func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 		}
 		return true, nil, nil
 	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
 }
 
 // EnableLoadBalancingWaitHandler will wait for functionality to be enabled
 func EnableLoadBalancingWaitHandler(ctx context.Context, a APIClientInterface, projectId string) *wait.AsyncActionHandler[loadbalancer.StatusResponse] {
-	return wait.New(func() (waitFinished bool, response *loadbalancer.StatusResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *loadbalancer.StatusResponse, err error) {
 		s, err := a.GetStatusExecute(ctx, projectId)
 		if err != nil {
 			return false, nil, err
@@ -107,4 +112,6 @@ func EnableLoadBalancingWaitHandler(ctx context.Context, a APIClientInterface, p
 			return true, s, fmt.Errorf("load balancing for project %s has unexpected status %s", projectId, *s.Status)
 		}
 	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
 }

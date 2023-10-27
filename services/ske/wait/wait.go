@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -35,7 +36,7 @@ type APIClientCredentialsInterface interface {
 
 // CreateOrUpdateClusterWaitHandler will wait for cluster creation or update
 func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.ClusterResponse] {
-	return wait.New(func() (waitFinished bool, response *ske.ClusterResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *ske.ClusterResponse, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, name)
 		if err != nil {
 			return false, nil, err
@@ -59,11 +60,13 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 
 		return false, nil, nil
 	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
 }
 
 // DeleteClusterWaitHandler will wait for cluster deletion
 func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.ClustersResponse] {
-	return wait.New(func() (waitFinished bool, response *ske.ClustersResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *ske.ClustersResponse, err error) {
 		s, err := a.GetClustersExecute(ctx, projectId)
 		if err != nil {
 			return false, nil, err
@@ -77,11 +80,13 @@ func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, 
 		}
 		return true, s, nil
 	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
 }
 
 // CreateOrUpdateClusterWaitHandler will wait for project creation
 func CreateProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[ske.ProjectResponse] {
-	return wait.New(func() (waitFinished bool, response *ske.ProjectResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *ske.ProjectResponse, err error) {
 		s, err := a.GetProjectExecute(ctx, projectId)
 		if err != nil {
 			return false, nil, err
@@ -95,11 +100,13 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
 }
 
 // DeleteProjectWaitHandler will wait for project deletion
 func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[struct{}] {
-	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetProjectExecute(ctx, projectId)
 		if err == nil {
 			return false, nil, nil
@@ -113,4 +120,6 @@ func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 		}
 		return false, nil, err
 	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
 }
