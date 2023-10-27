@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.4.0
-	github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.5.0
+	github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.6.0
 )
 
 require (
