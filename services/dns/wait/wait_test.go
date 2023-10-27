@@ -52,30 +52,35 @@ func TestCreateZoneWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
 			resourceState: CreateSuccess,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
 			resourceState: CreateFail,
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -86,15 +91,13 @@ func TestCreateZoneWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *dns.ZoneResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &dns.ZoneResponse{
 					Zone: &dns.Zone{
 						State: &tt.resourceState,
 						Id:    utils.Ptr("zid"),
 					},
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := CreateZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
@@ -104,10 +107,7 @@ func TestCreateZoneWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -120,30 +120,35 @@ func TestUpdateZoneWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
 			resourceState: UpdateSuccess,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
 			resourceState: UpdateFail,
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -154,15 +159,13 @@ func TestUpdateZoneWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *dns.ZoneResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &dns.ZoneResponse{
 					Zone: &dns.Zone{
 						State: &tt.resourceState,
 						Id:    utils.Ptr("zid"),
 					},
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := UpdateZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
@@ -172,10 +175,7 @@ func TestUpdateZoneWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -188,30 +188,35 @@ func TestDeleteZoneWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
 			resourceState: DeleteSuccess,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "delete_failed",
 			getFails:      false,
 			resourceState: DeleteFail,
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -222,7 +227,7 @@ func TestDeleteZoneWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *dns.ZoneResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &dns.ZoneResponse{
 					Zone: &dns.Zone{
 						State: &tt.resourceState,
@@ -240,10 +245,7 @@ func TestDeleteZoneWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -256,30 +258,35 @@ func TestCreateRecordSetWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
 			resourceState: CreateSuccess,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
 			resourceState: CreateFail,
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -290,15 +297,13 @@ func TestCreateRecordSetWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *dns.RecordSetResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &dns.RecordSetResponse{
 					Rrset: &dns.RecordSet{
 						State: &tt.resourceState,
 						Id:    utils.Ptr("rid"),
 					},
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := CreateRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
@@ -308,10 +313,7 @@ func TestCreateRecordSetWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -324,30 +326,35 @@ func TestUpdateRecordSetWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
 			resourceState: UpdateSuccess,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
 			resourceState: UpdateFail,
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -358,15 +365,13 @@ func TestUpdateRecordSetWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *dns.RecordSetResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &dns.RecordSetResponse{
 					Rrset: &dns.RecordSet{
 						State: &tt.resourceState,
 						Id:    utils.Ptr("rid"),
 					},
 				}
-			} else {
-				wantRes = nil
 			}
 
 			handler := UpdateRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
@@ -376,10 +381,7 @@ func TestUpdateRecordSetWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -392,30 +394,35 @@ func TestDeleteRecordSetWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
 			resourceState: DeleteSuccess,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "delete_failed",
 			getFails:      false,
 			resourceState: DeleteFail,
 			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
 			wantErr:       true,
+			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -426,7 +433,7 @@ func TestDeleteRecordSetWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *dns.RecordSetResponse
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &dns.RecordSetResponse{
 					Rrset: &dns.RecordSet{
 						State: &tt.resourceState,

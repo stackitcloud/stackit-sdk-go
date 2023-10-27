@@ -12,20 +12,25 @@ import (
 
 var RetryHttpErrorStatusCodes = []int{http.StatusBadGateway, http.StatusGatewayTimeout}
 
-type WaitFn func() (res interface{}, done bool, err error)
+// AsyncActionCheck reports whether a specific async action has finished.
+//   - waitFinished == true if the async action is finished, false otherwise.
+//   - response contains data regarding the current state of the resource targeted by the async action, if applicable. If not applicable, T should be struct{}.
+//   - err != nil if there was an error checking if the async action finished, or if it finished unsuccessfully.
+type AsyncActionCheck[T any] func() (waitFinished bool, response *T, err error)
 
-type Handler struct {
-	fn                WaitFn
+// AsyncActionHandler handles waiting for a specific async action to be finished.
+type AsyncActionHandler[T any] struct {
+	checkFn           AsyncActionCheck[T]
 	sleepBeforeWait   time.Duration
 	throttle          time.Duration
 	timeout           time.Duration
 	tempErrRetryLimit int
 }
 
-// New creates a new Wait instance
-func New(f WaitFn) *Handler {
-	return &Handler{
-		fn:                f,
+// New initializes an AsyncActionHandler
+func New[T any](f AsyncActionCheck[T]) *AsyncActionHandler[T] {
+	return &AsyncActionHandler[T]{
+		checkFn:           f,
 		sleepBeforeWait:   0 * time.Second,
 		throttle:          5 * time.Second,
 		timeout:           30 * time.Minute,
@@ -33,51 +38,51 @@ func New(f WaitFn) *Handler {
 	}
 }
 
-// SetThrottle sets the duration between func triggering
-func (w *Handler) SetThrottle(d time.Duration) error {
-	if d == 0 {
-		return fmt.Errorf("throttle can't be 0")
-	}
-	w.throttle = d
-	return nil
+// SetThrottle sets the time interval between each check of the async action.
+func (h *AsyncActionHandler[T]) SetThrottle(d time.Duration) *AsyncActionHandler[T] {
+	h.throttle = d
+	return h
 }
 
-// SetTimeout sets the duration for wait timeout
-func (w *Handler) SetTimeout(d time.Duration) *Handler {
-	w.timeout = d
-	return w
+// SetTimeout sets the duration for wait timeout.
+func (h *AsyncActionHandler[T]) SetTimeout(d time.Duration) *AsyncActionHandler[T] {
+	h.timeout = d
+	return h
 }
 
-// SetSleepBeforeWait sets the duration for sleep before wait
-func (w *Handler) SetSleepBeforeWait(d time.Duration) *Handler {
-	w.sleepBeforeWait = d
-	return w
+// SetSleepBeforeWait sets the duration for sleep before wait.
+func (h *AsyncActionHandler[T]) SetSleepBeforeWait(d time.Duration) *AsyncActionHandler[T] {
+	h.sleepBeforeWait = d
+	return h
 }
 
-// SetRetryLimitTempErr sets the retry limit if a temporary error is found. The list of temporary errors is defined in the RetryHttpErrorStatusCodes variable
-func (w *Handler) SetRetryLimitTempErr(l int) *Handler {
-	w.tempErrRetryLimit = l
-	return w
+// SetTempErrRetryLimit sets the retry limit if a temporary error is found.
+// The list of temporary errors is defined in the RetryHttpErrorStatusCodes variable.
+func (h *AsyncActionHandler[T]) SetTempErrRetryLimit(l int) *AsyncActionHandler[T] {
+	h.tempErrRetryLimit = l
+	return h
 }
 
 // WaitWithContext starts the wait until there's an error or wait is done
-func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err error) {
-	var done bool
+func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, err error) {
+	if h.throttle == 0 {
+		return nil, fmt.Errorf("throttle can't be 0")
+	}
 
-	ctx, cancel := context.WithTimeout(ctx, w.timeout)
+	ctx, cancel := context.WithTimeout(ctx, h.timeout)
 	defer cancel()
 
 	// Wait some seconds for the API to process the request
-	time.Sleep(w.sleepBeforeWait)
+	time.Sleep(h.sleepBeforeWait)
 
-	ticker := time.NewTicker(w.throttle)
+	ticker := time.NewTicker(h.throttle)
 	defer ticker.Stop()
 
 	var retryTempErrorCounter = 0
 	for {
-		res, done, err = w.fn()
+		done, res, err := h.checkFn()
 		if err != nil {
-			retryTempErrorCounter, err = w.handleError(retryTempErrorCounter, err)
+			retryTempErrorCounter, err = h.handleError(retryTempErrorCounter, err)
 			if err != nil {
 				return res, err
 			}
@@ -95,18 +100,18 @@ func (w *Handler) WaitWithContext(ctx context.Context) (res interface{}, err err
 	}
 }
 
-func (w *Handler) handleError(retryTempErrorCounter int, err error) (int, error) {
+func (h *AsyncActionHandler[T]) handleError(retryTempErrorCounter int, err error) (int, error) {
 	oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 	if !ok {
-		return retryTempErrorCounter, fmt.Errorf("could not convert error to GenericOpenApiError, %w", err)
+		return retryTempErrorCounter, fmt.Errorf("found non-GenericOpenApiError: %w", err)
 	}
 	// Some APIs may return temporary errors and the request should be retried
-	if utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
-		retryTempErrorCounter++
-		if retryTempErrorCounter == w.tempErrRetryLimit {
-			return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
-		}
-		return retryTempErrorCounter, nil
+	if !utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
+		return retryTempErrorCounter, err
 	}
-	return retryTempErrorCounter, fmt.Errorf("executing wait function: %w", err)
+	retryTempErrorCounter++
+	if retryTempErrorCounter == h.tempErrRetryLimit {
+		return retryTempErrorCounter, fmt.Errorf("temporary error was found and the retry limit was reached: %w", err)
+	}
+	return retryTempErrorCounter, nil
 }

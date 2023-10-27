@@ -29,112 +29,112 @@ type APIClientCredentialsInterface interface {
 	GetCredentialsExecute(ctx context.Context, projectId, instanceId, credentialsId string) (*logme.CredentialsResponse, error)
 }
 
-// CreateInstanceWaitHandler will wait for creation
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// CreateInstanceWaitHandler will wait for instance creation
+func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
+	return wait.New(func() (waitFinished bool, response *logme.Instance, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s.InstanceId == nil || s.LastOperation == nil || s.LastOperation.Type == nil || s.LastOperation.State == nil {
-			return s, false, fmt.Errorf("create failed for instance with id %s. The response is not valid: the instance id, the last operation type or the state are missing", instanceId)
+			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the instance id, the last operation type or the state are missing", instanceId)
 		}
 		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeCreate && *s.LastOperation.State == InstanceStateSuccess {
-			return s, true, nil
+			return true, s, nil
 		}
 		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeCreate && *s.LastOperation.State == InstanceStateFailed {
-			return s, true, fmt.Errorf("create failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
-		return s, false, nil
+		return false, nil, nil
 	})
 }
 
-// UpdateInstanceWaitHandler will wait for update
-func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// UpdateInstanceWaitHandler will wait for instance update
+func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
+	return wait.New(func() (waitFinished bool, response *logme.Instance, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s.InstanceId == nil || s.LastOperation == nil || s.LastOperation.Type == nil || s.LastOperation.State == nil {
-			return s, false, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id, the last operation type or the state are missing", instanceId)
+			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id, the last operation type or the state are missing", instanceId)
 		}
 		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeUpdate && *s.LastOperation.State == InstanceStateSuccess {
-			return s, true, nil
+			return true, s, nil
 		}
 		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeUpdate && *s.LastOperation.State == InstanceStateFailed {
-			return s, true, fmt.Errorf("create failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
-		return s, false, nil
+		return false, nil, nil
 	})
 }
 
-// DeleteInstanceWaitHandler will wait for delete
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// DeleteInstanceWaitHandler will wait for instance deletion
+func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
+	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err == nil {
 			if s.LastOperation == nil || s.LastOperation.Type == nil || s.LastOperation.State == nil || s.LastOperation.Description == nil {
-				return s, false, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The last operation type, description or the state are missing", instanceId)
+				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The last operation type, description or the state are missing", instanceId)
 			}
 			if *s.LastOperation.Type != InstanceTypeDelete {
-				return nil, false, nil
+				return false, nil, nil
 			}
 			if *s.LastOperation.State == InstanceStateSuccess {
 				if strings.Contains(*s.LastOperation.Description, "DeleteFailed") || strings.Contains(*s.LastOperation.Description, "failed") {
-					return s, true, fmt.Errorf("instance was deleted successfully but has errors: %s", *s.LastOperation.Description)
+					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", *s.LastOperation.Description)
 				}
-				return s, true, nil
+				return true, nil, nil
 			}
-			return s, false, nil
+			return false, nil, nil
 		}
 		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return nil, false, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 		}
 		if oapiErr.StatusCode != http.StatusGone {
-			return nil, false, err
+			return false, nil, err
 		}
-		return nil, true, nil
+		return true, nil, nil
 	})
 }
 
-// CreateCredentialsWaitHandler will wait for creation
-func CreateCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInterface, projectId, instanceId, credentialsId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// CreateCredentialsWaitHandler will wait for credentials creation
+func CreateCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInterface, projectId, instanceId, credentialsId string) *wait.AsyncActionHandler[logme.CredentialsResponse] {
+	return wait.New(func() (waitFinished bool, response *logme.CredentialsResponse, err error) {
 		s, err := a.GetCredentialsExecute(ctx, projectId, instanceId, credentialsId)
 		if err != nil {
 			oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 			if !ok {
-				return nil, false, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+				return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 			}
 			// If the request returns 404, the credentials have not been created yet
 			if oapiErr.StatusCode == http.StatusNotFound {
-				return nil, false, nil
+				return false, nil, nil
 			}
-			return nil, false, err
+			return false, nil, err
 		}
 		if *s.Id == credentialsId {
-			return s, true, nil
+			return true, s, nil
 		}
-		return s, false, nil
+		return false, nil, nil
 	})
 }
 
-// DeleteCredentialsWaitHandler will wait for deletion
-func DeleteCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInterface, projectId, instanceId, credentialsId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
-		s, err := a.GetCredentialsExecute(ctx, projectId, instanceId, credentialsId)
-		if err != nil {
-			oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-			if !ok {
-				return nil, false, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
-			}
-			if oapiErr.StatusCode != http.StatusNotFound && oapiErr.StatusCode != http.StatusGone {
-				return nil, false, err
-			}
-			return nil, true, nil
+// DeleteCredentialsWaitHandler will wait for credentials deletion
+func DeleteCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInterface, projectId, instanceId, credentialsId string) *wait.AsyncActionHandler[struct{}] {
+	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetCredentialsExecute(ctx, projectId, instanceId, credentialsId)
+		if err == nil {
+			return false, nil, nil
 		}
-		return s, false, nil
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+		}
+		if oapiErr.StatusCode != http.StatusNotFound && oapiErr.StatusCode != http.StatusGone {
+			return false, nil, err
+		}
+		return true, nil, nil
 	})
 }

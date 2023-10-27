@@ -35,76 +35,76 @@ type APIClientInterface interface {
 	GetStatusExecute(ctx context.Context, projectId string) (*loadbalancer.StatusResponse, error)
 }
 
-// CreateInstanceWaitHandler will wait for creation
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceName string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// CreateLoadBalancerWaitHandler will wait for load balancer creation
+func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceName string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
+	return wait.New(func() (waitFinished bool, response *loadbalancer.LoadBalancer, err error) {
 		s, err := a.GetLoadBalancerExecute(ctx, projectId, instanceName)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s == nil || s.Name == nil || *s.Name != instanceName || s.Status == nil {
-			return s, false, nil
+			return false, nil, nil
 		}
 		switch *s.Status {
 		case InstanceStatusReady:
-			return s, true, nil
+			return true, s, nil
 		case InstanceStatusUnspecified:
-			return nil, false, nil
+			return false, nil, nil
 		case InstanceStatusPending:
-			return nil, false, nil
+			return false, nil, nil
 		case InstanceStatusTerminating:
-			return nil, true, fmt.Errorf("create failed for instance with name %s, got status %s", instanceName, InstanceStatusTerminating)
+			return true, s, fmt.Errorf("create failed for instance with name %s, got status %s", instanceName, InstanceStatusTerminating)
 		case InstanceStatusError:
-			return nil, true, fmt.Errorf("create failed for instance with name %s, got status %s", instanceName, InstanceStatusError)
+			return true, s, fmt.Errorf("create failed for instance with name %s, got status %s", instanceName, InstanceStatusError)
 		default:
-			return nil, true, fmt.Errorf("instance with name %s has unexpected status %s", instanceName, *s.Status)
+			return true, s, fmt.Errorf("instance with name %s has unexpected status %s", instanceName, *s.Status)
 		}
 	})
 }
 
-// DeleteInstanceWaitHandler will wait for delete
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
-		s, err := a.GetLoadBalancerExecute(ctx, projectId, instanceId)
+// DeleteLoadBalancerWaitHandler will wait for load balancer deletion
+func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
+	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetLoadBalancerExecute(ctx, projectId, instanceId)
 		if err == nil {
-			return s, false, nil
+			return false, nil, nil
 		}
 		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return nil, false, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 		}
 		if oapiErr.StatusCode != http.StatusNotFound {
-			return nil, false, err
+			return false, nil, err
 		}
-		return nil, true, nil
+		return true, nil, nil
 	})
 }
 
 // EnableLoadBalancingWaitHandler will wait for functionality to be enabled
-func EnableLoadBalancingWaitHandler(ctx context.Context, a APIClientInterface, projectId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+func EnableLoadBalancingWaitHandler(ctx context.Context, a APIClientInterface, projectId string) *wait.AsyncActionHandler[loadbalancer.StatusResponse] {
+	return wait.New(func() (waitFinished bool, response *loadbalancer.StatusResponse, err error) {
 		s, err := a.GetStatusExecute(ctx, projectId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		if s == nil || s.Status == nil {
-			return s, false, nil
+			return false, nil, nil
 		}
 		switch *s.Status {
 		case FunctionalityStatusReady:
-			return s, true, nil
+			return true, s, nil
 		case FunctionalityStatusUnspecified:
-			return s, false, nil
+			return false, nil, nil
 		case FunctionalityStatusDisabled:
-			return nil, false, nil
+			return false, nil, nil
 		case FunctionalityStatusUpdating:
-			return nil, false, nil
+			return false, nil, nil
 		case FunctionalityStatusDeleting:
-			return nil, true, fmt.Errorf("enabling load balancing failed for project %s, got status %s", projectId, FunctionalityStatusDeleting)
+			return true, s, fmt.Errorf("enabling load balancing failed for project %s, got status %s", projectId, FunctionalityStatusDeleting)
 		case FunctionalityStatusFailed:
-			return nil, true, fmt.Errorf("enabling load balancing failed for project %s, got status %s", projectId, FunctionalityStatusFailed)
+			return true, s, fmt.Errorf("enabling load balancing failed for project %s, got status %s", projectId, FunctionalityStatusFailed)
 		default:
-			return nil, true, fmt.Errorf("load balancing for project %s has unexpected status %s", projectId, *s.Status)
+			return true, s, fmt.Errorf("load balancing for project %s has unexpected status %s", projectId, *s.Status)
 		}
 	})
 }

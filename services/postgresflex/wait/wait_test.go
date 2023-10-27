@@ -88,29 +88,34 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		instanceState       string
 		usersGetErrorStatus int
 		wantErr             bool
+		wantResp            bool
 	}{
 		{
 			desc:             "create_succeeded",
 			instanceGetFails: false,
 			instanceState:    InstanceStateSuccess,
 			wantErr:          false,
+			wantResp:         true,
 		},
 		{
 			desc:             "create_failed",
 			instanceGetFails: false,
 			instanceState:    InstanceStateFailed,
 			wantErr:          true,
+			wantResp:         true,
 		},
 		{
 			desc:             "create_failed_2",
 			instanceGetFails: false,
 			instanceState:    InstanceStateEmpty,
 			wantErr:          true,
+			wantResp:         false,
 		},
 		{
 			desc:             "instance_get_fails",
 			instanceGetFails: true,
 			wantErr:          true,
+			wantResp:         false,
 		},
 		{
 			desc:                "users_get_fails",
@@ -118,6 +123,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			instanceState:       InstanceStateSuccess,
 			usersGetErrorStatus: 500,
 			wantErr:             true,
+			wantResp:            false,
 		},
 		{
 			desc:                "users_get_fails_2",
@@ -125,12 +131,14 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			instanceState:       InstanceStateSuccess,
 			usersGetErrorStatus: 400,
 			wantErr:             true,
+			wantResp:            true,
 		},
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceState:    "ANOTHER STATE",
+			instanceState:    InstanceStateProgressing,
 			wantErr:          true,
+			wantResp:         false,
 		},
 	}
 	for _, tt := range tests {
@@ -145,7 +153,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *postgresflex.InstanceResponse
-			if (tt.instanceState == InstanceStateSuccess) && !tt.instanceGetFails && (tt.usersGetErrorStatus == 0) {
+			if tt.wantResp {
 				wantRes = &postgresflex.InstanceResponse{
 					Item: &postgresflex.InstanceSingleInstance{
 						Id:     &instanceId,
@@ -161,10 +169,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -177,35 +182,41 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		instanceGetFails bool
 		instanceState    string
 		wantErr          bool
+		wantResp         bool
 	}{
 		{
 			desc:             "update_succeeded",
 			instanceGetFails: false,
 			instanceState:    InstanceStateSuccess,
 			wantErr:          false,
+			wantResp:         true,
 		},
 		{
 			desc:             "update_failed",
 			instanceGetFails: false,
 			instanceState:    InstanceStateFailed,
 			wantErr:          true,
+			wantResp:         true,
 		},
 		{
 			desc:             "update_failed_2",
 			instanceGetFails: false,
 			instanceState:    InstanceStateEmpty,
 			wantErr:          true,
+			wantResp:         false,
 		},
 		{
 			desc:             "get_fails",
 			instanceGetFails: true,
 			wantErr:          true,
+			wantResp:         false,
 		},
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceState:    "ANOTHER STATE",
+			instanceState:    InstanceStateProgressing,
 			wantErr:          true,
+			wantResp:         false,
 		},
 	}
 	for _, tt := range tests {
@@ -219,7 +230,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *postgresflex.InstanceResponse
-			if !tt.instanceGetFails {
+			if tt.wantResp {
 				wantRes = &postgresflex.InstanceResponse{
 					Item: &postgresflex.InstanceSingleInstance{
 						Id:     &instanceId,
@@ -235,10 +246,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -283,13 +291,10 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 
 			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if err == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, nil)
 			}
 		})
 	}
@@ -333,13 +338,10 @@ func TestDeleteUserWaitHandler(t *testing.T) {
 
 			handler := DeleteUserWaitHandler(context.Background(), apiClient, "", "", userId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if err == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, nil)
 			}
 		})
 	}

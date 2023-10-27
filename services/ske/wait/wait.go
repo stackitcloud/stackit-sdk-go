@@ -33,12 +33,12 @@ type APIClientCredentialsInterface interface {
 	GetCredentialsExecute(ctx context.Context, projectId, instanceId, credentialsId string) (*ske.CredentialsResponse, error)
 }
 
-// CreateOrUpdateClusterWaitHandler will wait for creation
-func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// CreateOrUpdateClusterWaitHandler will wait for cluster creation or update
+func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.ClusterResponse] {
+	return wait.New(func() (waitFinished bool, response *ske.ClusterResponse, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, name)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		state := *s.Status.Aggregated
 
@@ -46,66 +46,71 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 		// -- alignment meeting with SKE team on 4.8.23
 		// The exception is when providing an invalid argus instance id, in that case the cluster will stay as "Impaired" until the SKE team solves it, but it is still usable.
 		if state == StateUnhealthy && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == InvalidArgusInstanceErrorCode {
-			return s, true, nil
+			return true, s, nil
 		}
 
 		if state == StateHealthy || state == StateHibernated {
-			return s, true, nil
+			return true, s, nil
 		}
 
-		return s, false, nil
+		if state == StateFailed {
+			return true, s, fmt.Errorf("create failed")
+		}
+
+		return false, nil, nil
 	})
 }
 
-// DeleteClusterWaitHandler will wait for delete
-func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// DeleteClusterWaitHandler will wait for cluster deletion
+func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.ClustersResponse] {
+	return wait.New(func() (waitFinished bool, response *ske.ClustersResponse, err error) {
 		s, err := a.GetClustersExecute(ctx, projectId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		items := *s.Items
 		for i := range items {
 			n := items[i].Name
 			if n != nil && *n == name {
-				return s, false, nil
+				return false, nil, nil
 			}
 		}
-		return s, true, nil
+		return true, s, nil
 	})
 }
 
-func CreateProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
+// CreateOrUpdateClusterWaitHandler will wait for project creation
+func CreateProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[ske.ProjectResponse] {
+	return wait.New(func() (waitFinished bool, response *ske.ProjectResponse, err error) {
 		s, err := a.GetProjectExecute(ctx, projectId)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
 		state := *s.State
 		switch state {
 		case StateDeleting, StateFailed:
-			return nil, false, fmt.Errorf("received state: %s for project Id: %s", state, projectId)
+			return false, nil, fmt.Errorf("received state: %s for project Id: %s", state, projectId)
 		case StateCreated:
-			return s, true, nil
+			return true, s, nil
 		}
-		return s, false, nil
+		return false, nil, nil
 	})
 }
 
-// DeleteProjectWaitHandler will wait for delete
-func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
-		s, err := a.GetProjectExecute(ctx, projectId)
-		if err != nil {
-			oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-			if !ok {
-				return nil, false, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError in delete wait handler, %w", err)
-			}
-			if oapiErr.StatusCode == http.StatusNotFound || oapiErr.StatusCode == http.StatusForbidden {
-				return nil, true, nil
-			}
-			return nil, false, err
+// DeleteProjectWaitHandler will wait for project deletion
+func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[struct{}] {
+	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetProjectExecute(ctx, projectId)
+		if err == nil {
+			return false, nil, nil
 		}
-		return s, false, nil
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError in delete wait.AsyncHandler, %w", err)
+		}
+		if oapiErr.StatusCode == http.StatusNotFound || oapiErr.StatusCode == http.StatusForbidden {
+			return true, nil, nil
+		}
+		return false, nil, err
 	})
 }

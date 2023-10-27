@@ -56,35 +56,41 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		instanceGetFails bool
 		instanceStatus   string
 		wantErr          bool
+		wantResp         bool
 	}{
 		{
 			desc:             "create_succeeded",
 			instanceGetFails: false,
 			instanceStatus:   InstanceStatusReady,
 			wantErr:          false,
+			wantResp:         true,
 		},
 		{
 			desc:             "create_failed",
 			instanceGetFails: false,
 			instanceStatus:   InstanceStatusError,
 			wantErr:          true,
+			wantResp:         true,
 		},
 		{
 			desc:             "create_failed_2",
 			instanceGetFails: false,
 			instanceStatus:   InstanceStatusTerminating,
 			wantErr:          true,
+			wantResp:         true,
 		},
 		{
 			desc:             "instance_get_fails",
 			instanceGetFails: true,
 			wantErr:          true,
+			wantResp:         false,
 		},
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceStatus:   "ANOTHER STATE",
+			instanceStatus:   InstanceStatusPending,
 			wantErr:          true,
+			wantResp:         false,
 		},
 	}
 	for _, tt := range tests {
@@ -98,24 +104,21 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *loadbalancer.LoadBalancer
-			if (tt.instanceStatus == InstanceStatusReady) && !tt.instanceGetFails {
+			if tt.wantResp {
 				wantRes = &loadbalancer.LoadBalancer{
 					Name:   &instanceName,
 					Status: &tt.instanceStatus,
 				}
 			}
 
-			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceName)
+			handler := CreateLoadBalancerWaitHandler(context.Background(), apiClient, "", instanceName)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
@@ -157,15 +160,12 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				instanceIsDeleted: tt.instanceIsDeleted,
 			}
 
-			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceName)
+			handler := DeleteLoadBalancerWaitHandler(context.Background(), apiClient, "", instanceName)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if err == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, nil)
 			}
 		})
 	}
@@ -177,30 +177,35 @@ func TestEnableLoadBalancingWaitHandler(t *testing.T) {
 		functionalityStatus         string
 		functionalityStatusGetFails bool
 		wantErr                     bool
+		wantResp                    bool
 	}{
 		{
 			desc:                        "enable_succeeded",
 			functionalityStatus:         FunctionalityStatusReady,
 			functionalityStatusGetFails: false,
 			wantErr:                     false,
+			wantResp:                    true,
 		},
 		{
 			desc:                        "enable_updating",
 			functionalityStatus:         FunctionalityStatusUpdating,
 			functionalityStatusGetFails: false,
 			wantErr:                     true,
+			wantResp:                    false,
 		},
 		{
 			desc:                        "enable_failed",
 			functionalityStatus:         FunctionalityStatusFailed,
 			functionalityStatusGetFails: false,
 			wantErr:                     true,
+			wantResp:                    true,
 		},
 		{
 			desc:                        "enable_failed_2",
 			functionalityStatus:         FunctionalityStatusUnspecified,
 			functionalityStatusGetFails: true,
 			wantErr:                     true,
+			wantResp:                    false,
 		},
 	}
 	for _, tt := range tests {
@@ -211,7 +216,7 @@ func TestEnableLoadBalancingWaitHandler(t *testing.T) {
 			}
 
 			var wantRes *loadbalancer.StatusResponse
-			if (tt.functionalityStatus == FunctionalityStatusReady) && !tt.functionalityStatusGetFails {
+			if tt.wantResp {
 				wantRes = &loadbalancer.StatusResponse{
 					Status: &tt.functionalityStatus,
 				}
@@ -224,7 +229,7 @@ func TestEnableLoadBalancingWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if err == nil && wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})

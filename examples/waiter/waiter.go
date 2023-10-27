@@ -38,20 +38,13 @@ func main() {
 	}
 
 	zoneId := *createZoneResp.Zone.Id
+
+	// The following will wait until the DNS zone creation has finished
 	wres, err := wait.CreateZoneWaitHandler(ctx, dnsClient, projectId, zoneId).SetTimeout(15 * time.Minute).WaitWithContext(ctx)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "[DNS API] Waiting for zone update: %v\n", err)
+		fmt.Fprintf(os.Stderr, "[DNS API] Waiting for zone creation: %v\n", err)
 		os.Exit(1)
 	}
 
-	// At this stage the waiter is waiting for an update to the zone
-	// You can make a manual request to the DNS API updating the zone that was just created
-	// The waiter will finish, and you will get the output below
-	got, ok := wres.(*dns.ZoneResponse)
-	if !ok {
-		fmt.Fprintf(os.Stderr, "[DNS API] Returned response has unexpected type: %v\n", err)
-		os.Exit(1)
-	}
-
-	fmt.Fprintf(os.Stderr, "[DNS API] Zone with id %s update (state: %s)\n", *got.Zone.Id, *got.Zone.State)
+	fmt.Fprintf(os.Stderr, "[DNS API] Zone with id %s created (state: %s)\n", *wres.Zone.Id, *wres.Zone.State) // The state is always successful
 }

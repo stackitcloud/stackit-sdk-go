@@ -15,32 +15,32 @@ type APIClientBucketInterface interface {
 	GetBucketExecute(ctx context.Context, projectId string, bucketName string) (*objectstorage.GetBucketResponse, error)
 }
 
-// CreateBucketWaitHandler will wait for creation
-func CreateBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.Handler {
-	waitHandler := wait.New(func() (res interface{}, done bool, err error) {
+// CreateBucketWaitHandler will wait for bucket creation
+func CreateBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.AsyncActionHandler[objectstorage.GetBucketResponse] {
+	waitHandler := wait.New(func() (waitFinished bool, response *objectstorage.GetBucketResponse, err error) {
 		s, err := a.GetBucketExecute(ctx, projectId, bucketName)
 		if err != nil {
-			return nil, false, err
+			return false, nil, err
 		}
-		return s, true, nil
+		return true, s, nil
 	})
 	return waitHandler
 }
 
-// DeleteBucketWaitHandler will wait for delete
-func DeleteBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.Handler {
-	return wait.New(func() (res interface{}, done bool, err error) {
-		s, err := a.GetBucketExecute(ctx, projectId, bucketName)
+// DeleteBucketWaitHandler will wait for bucket deletion
+func DeleteBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.AsyncActionHandler[struct{}] {
+	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		_, err = a.GetBucketExecute(ctx, projectId, bucketName)
 		if err == nil {
-			return s, false, nil
+			return false, nil, nil
 		}
 		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return nil, false, fmt.Errorf("could not convert error to GenericOpenApiError")
+			return false, nil, fmt.Errorf("could not convert error to GenericOpenApiError")
 		}
 		if oapiErr.StatusCode != http.StatusNotFound {
-			return nil, false, err
+			return false, nil, err
 		}
-		return nil, true, nil
+		return true, nil, nil
 	})
 }

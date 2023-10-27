@@ -99,18 +99,21 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 		resourceState        string
 		invalidArgusInstance bool
 		wantErr              bool
+		wantResp             bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
 			resourceState: StateHealthy,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
 			resourceState: StateHibernated,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:                 "unhealthy_cluster",
@@ -118,22 +121,27 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			resourceState:        StateUnhealthy,
 			invalidArgusInstance: true,
 			wantErr:              false,
+			wantResp:             true,
 		},
 		{
-			desc:     "create_failed",
-			getFails: false,
-			wantErr:  true,
+			desc:          "create_failed",
+			getFails:      false,
+			resourceState: StateFailed,
+			wantErr:       true,
+			wantResp:      true,
 		},
 		{
 			desc:     "get_fails",
 			getFails: true,
 			wantErr:  true,
+			wantResp: false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -148,21 +156,19 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			}
 			var wantRes *ske.ClusterResponse
 			rs := ske.ClusterStatusState(tt.resourceState)
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &ske.ClusterResponse{
 					Name: &name,
 					Status: &ske.ClusterStatus{
 						Aggregated: &rs,
 					},
 				}
-			} else {
-				wantRes = nil
-			}
 
-			if tt.invalidArgusInstance {
-				wantRes.Status.Error = &ske.RuntimeError{
-					Code:    utils.Ptr(string(InvalidArgusInstanceErrorCode)),
-					Message: utils.Ptr("invalid argus instance"),
+				if tt.invalidArgusInstance {
+					wantRes.Status.Error = &ske.RuntimeError{
+						Code:    utils.Ptr(string(InvalidArgusInstanceErrorCode)),
+						Message: utils.Ptr("invalid argus instance"),
+					}
 				}
 			}
 
@@ -173,10 +179,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
 			}
 		})
@@ -189,28 +192,33 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 		getFails      bool
 		resourceState string
 		wantErr       bool
+		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
 			resourceState: StateCreated,
 			wantErr:       false,
+			wantResp:      true,
 		},
 		{
 			desc:     "create_failed",
 			getFails: false,
 			wantErr:  true,
+			wantResp: false,
 		},
 		{
 			desc:     "get_fails",
 			getFails: true,
 			wantErr:  true,
+			wantResp: false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -221,7 +229,7 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 			}
 			var wantRes *ske.ProjectResponse
 			rs := ske.ProjectState(tt.resourceState)
-			if !tt.getFails {
+			if tt.wantResp {
 				wantRes = &ske.ProjectResponse{
 					ProjectId: utils.Ptr("pid"),
 					State:     &rs,
@@ -235,10 +243,7 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
 			}
 		})
@@ -279,29 +284,12 @@ func TestDeleteProjectWaitHandler(t *testing.T) {
 				resourceState: tt.resourceState,
 			}
 
-			var wantRes *ske.ProjectResponse
-			if !tt.getFails && !tt.getNotFound {
-				rs := ske.ProjectState(tt.resourceState)
-				wantRes = &ske.ProjectResponse{
-					ProjectId: utils.Ptr("pid"),
-					State:     &rs,
-				}
-			} else {
-				wantRes = nil
-			}
-
 			handler := DeleteProjectWaitHandler(context.Background(), apiClient, "")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
 	}
