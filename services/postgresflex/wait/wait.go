@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -32,7 +33,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 	instanceCreated := false
 	var instanceGetResponse *postgresflex.InstanceResponse
 
-	return wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
 		if !instanceCreated {
 			s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 			if err != nil {
@@ -71,11 +72,13 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
 }
 
 // UpdateInstanceWaitHandler will wait for instance update
 func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
-	return wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
 			return false, nil, err
@@ -96,11 +99,13 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
 	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
 func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
-	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err == nil {
 			return false, nil, nil
@@ -114,11 +119,13 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		}
 		return true, nil, nil
 	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
 }
 
 // DeleteUserWaitHandler will wait for delete
 func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projectId, instanceId, userId string) *wait.AsyncActionHandler[struct{}] {
-	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetUserExecute(ctx, projectId, instanceId, userId)
 		if err == nil {
 			return false, nil, nil
@@ -132,4 +139,6 @@ func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projec
 		}
 		return true, nil, nil
 	})
+	handler.SetTimeout(1 * time.Minute)
+	return handler
 }

@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/dns"
@@ -25,7 +26,7 @@ type APIClientInterface interface {
 
 // CreateZoneWaitHandler will wait for zone creation
 func CreateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
-	return wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
 		if err != nil {
 			return false, nil, err
@@ -41,11 +42,13 @@ func CreateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(10 * time.Minute)
+	return handler
 }
 
 // UpdateZoneWaitHandler will wait for zone update
 func UpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
-	return wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
 		if err != nil {
 			return false, nil, err
@@ -61,12 +64,14 @@ func UpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(10 * time.Minute)
+	return handler
 }
 
 // DeleteZoneWaitHandler will wait for zone deletion
 // returned interface is nil or *ZoneResponseZone
 func DeleteZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
-	return wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
 		if err != nil {
 			return false, nil, err
@@ -82,11 +87,13 @@ func DeleteZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(10 * time.Minute)
+	return handler
 }
 
 // CreateRecordWaitHandler will wait for recordset creation
 func CreateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
-	return wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)
 		if err != nil {
 			return false, nil, err
@@ -102,11 +109,13 @@ func CreateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(1 * time.Minute)
+	return handler
 }
 
 // UpdateRecordWaitHandler will wait for recordset update
 func UpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
-	return wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)
 		if err != nil {
 			return false, nil, err
@@ -122,12 +131,14 @@ func UpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(1 * time.Minute)
+	return handler
 }
 
 // DeleteRecordWaitHandler will wait for deletion
 // returned interface is nil or *RecordSetResponse
 func DeleteRecordSetWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
-	return wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)
 		if err != nil {
 			return false, nil, err
@@ -143,4 +154,6 @@ func DeleteRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(2 * time.Minute)
+	return handler
 }

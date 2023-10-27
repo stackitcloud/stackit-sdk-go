@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/argus"
@@ -25,7 +26,7 @@ type APIClientInterface interface {
 
 // CreateInstanceWaitHandler will wait for instance creation
 func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.InstanceResponse] {
-	return wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
@@ -41,11 +42,13 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
 }
 
 // UpdateInstanceWaitHandler will wait for instance update
 func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.InstanceResponse] {
-	return wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
@@ -62,11 +65,13 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
 func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.InstanceResponse] {
-	return wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
@@ -82,11 +87,13 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(10 * time.Minute)
+	return handler
 }
 
 // CreateScrapeConfigWaitHandler will wait for scrape config creation
 func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[argus.ScrapeConfigsResponse] {
-	return wait.New(func() (waitFinished bool, response *argus.ScrapeConfigsResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *argus.ScrapeConfigsResponse, err error) {
 		s, err := a.GetScrapeConfigsExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
@@ -99,11 +106,13 @@ func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 		}
 		return false, nil, nil
 	})
+	handler.SetTimeout(3 * time.Minute)
+	return handler
 }
 
 // DeleteScrapeConfigWaitHandler will wait for scrape config deletion
 func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[argus.ScrapeConfigsResponse] {
-	return wait.New(func() (waitFinished bool, response *argus.ScrapeConfigsResponse, err error) {
+	handler := wait.New(func() (waitFinished bool, response *argus.ScrapeConfigsResponse, err error) {
 		s, err := a.GetScrapeConfigsExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
@@ -116,4 +125,6 @@ func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 		}
 		return true, s, nil
 	})
+	handler.SetTimeout(1 * time.Minute)
+	return handler
 }

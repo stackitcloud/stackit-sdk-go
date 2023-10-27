@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -22,7 +23,7 @@ type APIClientInterface interface {
 
 // CreateProjectWaitHandler will wait for project creation
 func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[resourcemanager.ProjectResponseWithParents] {
-	return wait.New(func() (waitFinished bool, response *resourcemanager.ProjectResponseWithParents, err error) {
+	handler := wait.New(func() (waitFinished bool, response *resourcemanager.ProjectResponseWithParents, err error) {
 		p, err := a.GetProjectExecute(ctx, containerId)
 		if err != nil {
 			return false, nil, err
@@ -38,11 +39,14 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, contain
 		}
 		return true, p, fmt.Errorf("creation failed: received project state '%s'", *p.LifecycleState)
 	})
+	handler.SetSleepBeforeWait(1 * time.Minute)
+	handler.SetTimeout(45 * time.Minute)
+	return handler
 }
 
 // DeleteProjectWaitHandler will wait for project deletion
 func DeleteProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[struct{}] {
-	return wait.New(func() (waitFinished bool, response *struct{}, err error) {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetProjectExecute(ctx, containerId)
 		if err == nil {
 			return false, nil, nil
@@ -56,4 +60,6 @@ func DeleteProjectWaitHandler(ctx context.Context, a APIClientInterface, contain
 		}
 		return false, nil, err
 	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
 }
