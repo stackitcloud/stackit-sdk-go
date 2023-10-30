@@ -27,9 +27,8 @@ const (
 	PrivateKeyPath        = "STACKIT_PRIVATE_KEY_PATH"
 )
 
-var tokenAPI = "https://api.stackit.cloud/service-account/token" //nolint:gosec // linter false positive
-
-var jwksAPI = "https://api.stackit.cloud/service-account/.well-known/jwks.json"
+var tokenAPI = "https://service-account.api.stackit.cloud/token" //nolint:gosec // linter false positive
+var jwksAPI = "https://service-account.api.stackit.cloud/.well-known/jwks.json"
 
 // KeyFlow handles auth with SA key
 type KeyFlow struct {
