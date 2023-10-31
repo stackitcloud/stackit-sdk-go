@@ -10,6 +10,7 @@ use (
 	./examples/loadbalancer
 	./examples/logme
 	./examples/mariadb
+	./examples/membership
 	./examples/mongodbflex
 	./examples/objectstorage
 	./examples/opensearch
