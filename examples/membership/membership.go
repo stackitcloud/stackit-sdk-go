@@ -49,7 +49,6 @@ func main() {
 				*userMemberships[0].Role,
 			)
 		}
-
 	}
 
 	// Get the members of your project
