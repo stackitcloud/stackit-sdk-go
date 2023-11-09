@@ -17,7 +17,7 @@ const (
 // TokenFlow handles auth with SA static token
 type TokenFlow struct {
 	client *http.Client
-	Config *TokenFlowConfig
+	config *TokenFlowConfig
 }
 
 // TokenFlowConfig is the flow config
@@ -29,17 +29,17 @@ type TokenFlowConfig struct {
 
 // GetConfig returns the flow configuration
 func (c *TokenFlow) GetConfig() TokenFlowConfig {
-	if c.Config == nil {
+	if c.config == nil {
 		return TokenFlowConfig{}
 	}
-	return *c.Config
+	return *c.config
 }
 
 func (c *TokenFlow) Init(ctx context.Context, cfg *TokenFlowConfig) error {
-	c.Config = cfg
+	c.config = cfg
 	c.configureHTTPClient(ctx)
-	if c.Config.ClientRetry == nil {
-		c.Config.ClientRetry = NewRetryConfig()
+	if c.config.ClientRetry == nil {
+		c.config.ClientRetry = NewRetryConfig()
 	}
 	return c.validate()
 }
@@ -49,16 +49,16 @@ func (c *TokenFlow) Clone() interface{} {
 	sc := *c
 	nc := &sc
 	cl := *nc.client
-	cf := *nc.Config
+	cf := *nc.config
 	nc.client = &cl
-	nc.Config = &cf
+	nc.config = &cf
 	return c
 }
 
 // configureHTTPClient configures the HTTP client
 func (c *TokenFlow) configureHTTPClient(ctx context.Context) {
 	sts := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: c.Config.ServiceAccountToken},
+		&oauth2.Token{AccessToken: c.config.ServiceAccountToken},
 	)
 	o2nc := oauth2.NewClient(ctx, sts)
 	o2nc.Timeout = DefaultClientTimeout
@@ -67,7 +67,7 @@ func (c *TokenFlow) configureHTTPClient(ctx context.Context) {
 
 // validate the client is configured well
 func (c *TokenFlow) validate() error {
-	if c.Config.ServiceAccountToken == "" {
+	if c.config.ServiceAccountToken == "" {
 		return fmt.Errorf("service account access token cannot be empty")
 	}
 	return nil
@@ -78,5 +78,5 @@ func (c *TokenFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 	if c.client == nil {
 		return nil, fmt.Errorf("please run Init()")
 	}
-	return do(c.client, req, c.Config.ClientRetry)
+	return do(c.client, req, c.config.ClientRetry)
 }
