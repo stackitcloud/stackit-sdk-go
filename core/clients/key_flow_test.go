@@ -106,7 +106,7 @@ func TestKeyFlowInit(t *testing.T) {
 			if err := c.Init(cfg); (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if c.Config == nil {
+			if c.config == nil {
 				t.Error("config is nil")
 			}
 		})
@@ -116,9 +116,9 @@ func TestKeyFlowInit(t *testing.T) {
 func TestKeyClone(t *testing.T) {
 	c := &KeyFlow{
 		client: &http.Client{},
-		Config: &KeyFlowConfig{},
+		config: &KeyFlowConfig{},
 		key:    &ServiceAccountKeyPrivateResponse{},
-		token:  &TokenResponseBody{},
+		Token:  &TokenResponseBody{},
 	}
 
 	clone, ok := c.Clone().(*KeyFlow)
@@ -149,7 +149,7 @@ func TestKeyFlowValidateToken(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &KeyFlow{
-				Config: &KeyFlowConfig{
+				config: &KeyFlowConfig{
 					PrivateKey: string(privateKey),
 					JWKSUrl:    jwksAPI,
 				},
@@ -204,7 +204,7 @@ func TestGetJwksJSON(t *testing.T) {
 			}
 
 			c := &KeyFlow{
-				Config: &KeyFlowConfig{ClientRetry: NewRetryConfig()},
+				config: &KeyFlowConfig{ClientRetry: NewRetryConfig()},
 				doer:   mockDo,
 			}
 
@@ -265,7 +265,7 @@ func TestRequestToken(t *testing.T) {
 			}
 
 			c := &KeyFlow{
-				Config: &KeyFlowConfig{ClientRetry: NewRetryConfig()},
+				config: &KeyFlowConfig{ClientRetry: NewRetryConfig()},
 				doer:   mockDo,
 			}
 
