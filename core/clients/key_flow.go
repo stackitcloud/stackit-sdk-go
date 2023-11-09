@@ -38,7 +38,7 @@ type KeyFlow struct {
 	key           *ServiceAccountKeyPrivateResponse
 	privateKey    *rsa.PrivateKey
 	privateKeyPEM []byte
-	token         *TokenResponseBody
+	Token         *TokenResponseBody
 }
 
 // KeyFlowConfig is the flow config
@@ -97,7 +97,7 @@ func (c *KeyFlow) GetServiceAccountEmail() string {
 }
 
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
-	c.token = &TokenResponseBody{}
+	c.Token = &TokenResponseBody{}
 	c.config = cfg
 	c.doer = do
 	if c.config.TokenUrl == "" {
@@ -130,11 +130,11 @@ func (c *KeyFlow) Clone() interface{} {
 	cl := *nc.client
 	cf := *nc.config
 	ke := *nc.key
-	to := *nc.token
+	to := *nc.Token
 	nc.client = &cl
 	nc.config = &cf
 	nc.key = &ke
-	nc.token = &to
+	nc.Token = &to
 	return c
 }
 
@@ -154,17 +154,17 @@ func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 
 // GetAccessToken returns short-lived access token
 func (c *KeyFlow) GetAccessToken() (string, error) {
-	accessTokenIsValid, err := c.validateToken(c.token.AccessToken)
+	accessTokenIsValid, err := c.validateToken(c.Token.AccessToken)
 	if err != nil {
 		return "", fmt.Errorf("failed initial validation: %w", err)
 	}
 	if accessTokenIsValid {
-		return c.token.AccessToken, nil
+		return c.Token.AccessToken, nil
 	}
 	if err := c.recreateAccessToken(); err != nil {
 		return "", fmt.Errorf("failed during token recreation: %w", err)
 	}
-	return c.token.AccessToken, nil
+	return c.Token.AccessToken, nil
 }
 
 // configureHTTPClient configures the HTTP client
@@ -209,7 +209,7 @@ func (c *KeyFlow) validate() error {
 // recreateAccessToken is used to create a new access token
 // when the existing one isn't valid anymore
 func (c *KeyFlow) recreateAccessToken() error {
-	refreshTokenIsValid, err := c.validateToken(c.token.RefreshToken)
+	refreshTokenIsValid, err := c.validateToken(c.Token.RefreshToken)
 	if err != nil {
 		return err
 	}
@@ -242,7 +242,7 @@ func (c *KeyFlow) createAccessToken() (err error) {
 // createAccessTokenWithRefreshToken creates an access token using
 // an existing pre-validated refresh token
 func (c *KeyFlow) createAccessTokenWithRefreshToken() (err error) {
-	res, err := c.requestToken("refresh_token", c.token.RefreshToken)
+	res, err := c.requestToken("refresh_token", c.Token.RefreshToken)
 	if err != nil {
 		return err
 	}
@@ -300,8 +300,8 @@ func (c *KeyFlow) parseTokenResponse(res *http.Response) error {
 	if err != nil {
 		return err
 	}
-	c.token = &TokenResponseBody{}
-	return json.Unmarshal(body, c.token)
+	c.Token = &TokenResponseBody{}
+	return json.Unmarshal(body, c.Token)
 }
 
 // validateToken returns true if token is valid
@@ -311,7 +311,7 @@ func (c *KeyFlow) validateToken(token string) (bool, error) {
 	}
 	if _, err := c.parseToken(token); err != nil {
 		if strings.Contains(err.Error(), "401") {
-			c.token = &TokenResponseBody{}
+			c.Token = &TokenResponseBody{}
 			return false, nil
 		}
 		return false, err
