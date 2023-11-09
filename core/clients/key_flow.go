@@ -33,7 +33,7 @@ var jwksAPI = "https://service-account.api.stackit.cloud/.well-known/jwks.json"
 // KeyFlow handles auth with SA key
 type KeyFlow struct {
 	client        *http.Client
-	config        *KeyFlowConfig
+	Config        *KeyFlowConfig
 	doer          func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error)
 	key           *ServiceAccountKeyPrivateResponse
 	privateKey    *rsa.PrivateKey
@@ -82,10 +82,10 @@ type ServiceAccountKeyPrivateResponse struct {
 
 // GetConfig returns the flow configuration
 func (c *KeyFlow) GetConfig() KeyFlowConfig {
-	if c.config == nil {
+	if c.Config == nil {
 		return KeyFlowConfig{}
 	}
-	return *c.config
+	return *c.Config
 }
 
 // GetServiceAccountEmail returns the service account email
@@ -98,27 +98,27 @@ func (c *KeyFlow) GetServiceAccountEmail() string {
 
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.token = &TokenResponseBody{}
-	c.config = cfg
+	c.Config = cfg
 	c.doer = do
-	if c.config.TokenUrl == "" {
+	if c.Config.TokenUrl == "" {
 		tokenCustomUrl, tokenUrlSet := os.LookupEnv("STACKIT_TOKEN_BASEURL")
 		if !tokenUrlSet || tokenCustomUrl == "" {
-			c.config.TokenUrl = tokenAPI
+			c.Config.TokenUrl = tokenAPI
 		} else {
-			c.config.TokenUrl = tokenCustomUrl
+			c.Config.TokenUrl = tokenCustomUrl
 		}
 	}
-	if c.config.JWKSUrl == "" {
+	if c.Config.JWKSUrl == "" {
 		jwksCustomUrl, jwksUrlSet := os.LookupEnv("STACKIT_JWKS_BASEURL")
 		if !jwksUrlSet || jwksCustomUrl == "" {
-			c.config.JWKSUrl = jwksAPI
+			c.Config.JWKSUrl = jwksAPI
 		} else {
-			c.config.TokenUrl = jwksCustomUrl
+			c.Config.TokenUrl = jwksCustomUrl
 		}
 	}
 	c.configureHTTPClient()
-	if c.config.ClientRetry == nil {
-		c.config.ClientRetry = NewRetryConfig()
+	if c.Config.ClientRetry == nil {
+		c.Config.ClientRetry = NewRetryConfig()
 	}
 	return c.validate()
 }
@@ -128,11 +128,11 @@ func (c *KeyFlow) Clone() interface{} {
 	sc := *c
 	nc := &sc
 	cl := *nc.client
-	cf := *nc.config
+	cf := *nc.Config
 	ke := *nc.key
 	to := *nc.token
 	nc.client = &cl
-	nc.config = &cf
+	nc.Config = &cf
 	nc.key = &ke
 	nc.token = &to
 	return c
@@ -149,7 +149,7 @@ func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 		return nil, err
 	}
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", accessToken))
-	return c.doer(c.client, req, c.config.ClientRetry)
+	return c.doer(c.client, req, c.Config.ClientRetry)
 }
 
 // GetAccessToken returns short-lived access token
@@ -176,20 +176,20 @@ func (c *KeyFlow) configureHTTPClient() {
 
 // validate the client is configured well
 func (c *KeyFlow) validate() error {
-	if c.config.ServiceAccountKey == "" {
+	if c.Config.ServiceAccountKey == "" {
 		return fmt.Errorf("service account access key cannot be empty")
 	}
-	if c.config.PrivateKey == "" {
+	if c.Config.PrivateKey == "" {
 		return fmt.Errorf("private key cannot be empty")
 	}
 
 	c.key = &ServiceAccountKeyPrivateResponse{}
-	err := json.Unmarshal([]byte(c.config.ServiceAccountKey), c.key)
+	err := json.Unmarshal([]byte(c.Config.ServiceAccountKey), c.key)
 	if err != nil {
 		return fmt.Errorf("unmarshalling service account key: %w", err)
 	}
 
-	c.privateKey, err = jwt.ParseRSAPrivateKeyFromPEM([]byte(c.config.PrivateKey))
+	c.privateKey, err = jwt.ParseRSAPrivateKeyFromPEM([]byte(c.Config.PrivateKey))
 	if err != nil {
 		return fmt.Errorf("parsing private key from PEM file: %w", err)
 	}
@@ -280,12 +280,12 @@ func (c *KeyFlow) requestToken(grant, assertion string) (*http.Response, error) 
 	body.Set("grant_type", grant)
 	body.Set("assertion", assertion)
 	payload := strings.NewReader(body.Encode())
-	req, err := http.NewRequest(http.MethodPost, c.config.TokenUrl, payload)
+	req, err := http.NewRequest(http.MethodPost, c.Config.TokenUrl, payload)
 	if err != nil {
 		return nil, err
 	}
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	return c.doer(&http.Client{}, req, c.config.ClientRetry)
+	return c.doer(&http.Client{}, req, c.Config.ClientRetry)
 }
 
 // parseTokenResponse parses the response from the server
@@ -335,12 +335,12 @@ func (c *KeyFlow) parseToken(token string) (*jwt.Token, error) {
 }
 
 func (c *KeyFlow) getJwksJSON(token string) (jwks []byte, err error) {
-	req, err := http.NewRequest("GET", c.config.JWKSUrl, http.NoBody)
+	req, err := http.NewRequest("GET", c.Config.JWKSUrl, http.NoBody)
 	if err != nil {
 		return nil, err
 	}
 	req.Header.Add("Authorization", "Bearer "+token)
-	res, err := c.doer(&http.Client{}, req, c.config.ClientRetry)
+	res, err := c.doer(&http.Client{}, req, c.Config.ClientRetry)
 	if err != nil {
 		return nil, err
 	}

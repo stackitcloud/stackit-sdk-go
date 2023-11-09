@@ -45,7 +45,7 @@ func TestTokenFlow_Init(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Setting service account token: %s", err)
 			}
-			if c.config == nil {
+			if c.Config == nil {
 				t.Error("config is nil")
 			}
 		})
@@ -72,7 +72,7 @@ func TestTokenFlow_Do(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &TokenFlow{
 				client: tt.fields.client,
-				config: tt.fields.config,
+				Config: tt.fields.config,
 			}
 			handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				w.Header().Set("Content-Type", "application/json")
@@ -115,7 +115,7 @@ func TestTokenFlow_Do(t *testing.T) {
 func TestTokenClone(t *testing.T) {
 	c := &TokenFlow{
 		client: &http.Client{},
-		config: &TokenFlowConfig{},
+		Config: &TokenFlowConfig{},
 	}
 
 	clone, ok := c.Clone().(*TokenFlow)
