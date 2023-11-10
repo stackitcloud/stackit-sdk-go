@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/logme
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.4.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.6.0
 	github.com/stackitcloud/stackit-sdk-go/services/logme v0.6.0
 )
 
