@@ -19,6 +19,7 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
@@ -89,6 +90,10 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -256,6 +261,10 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -411,6 +420,10 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -559,6 +572,10 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -706,6 +723,10 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1195,6 +1216,10 @@ func (r ApiGetRecordSetsRequest) Execute() (*RecordSetsResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1329,6 +1354,10 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1923,6 +1952,10 @@ func (r ApiGetZonesRequest) Execute() (*ZonesResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -2069,6 +2102,10 @@ func (r ApiUpdateRecordRequest) Execute() (*Message, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -2232,6 +2269,10 @@ func (r ApiUpdateRecordSetRequest) Execute() (*Message, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -2393,6 +2434,10 @@ func (r ApiUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}

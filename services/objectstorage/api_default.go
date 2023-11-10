@@ -19,6 +19,7 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
@@ -94,6 +95,10 @@ func (r ApiCreateAccessKeyRequest) Execute() (*CreateAccessKeyResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -253,6 +258,10 @@ func (r ApiCreateBucketRequest) Execute() (*CreateBucketResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -419,6 +428,10 @@ func (r ApiCreateCredentialsGroupRequest) Execute() (*CreateCredentialsGroupResp
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -579,6 +592,10 @@ func (r ApiCreateProjectRequest) Execute() (*GetProjectResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -742,6 +759,10 @@ func (r ApiDeleteAccessKeyRequest) Execute() (*DeleteAccessKeyResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -915,6 +936,10 @@ func (r ApiDeleteBucketRequest) Execute() (*DeleteBucketResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1060,6 +1085,10 @@ func (r ApiDeleteCredentialsGroupRequest) Execute() (*DeleteCredentialsGroupResp
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1204,6 +1233,10 @@ func (r ApiDeleteProjectRequest) Execute() (*GetProjectResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1375,6 +1408,10 @@ func (r ApiGetAccessKeysRequest) Execute() (*GetAccessKeysResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1534,6 +1571,10 @@ func (r ApiGetBucketRequest) Execute() (*GetBucketResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1688,6 +1729,10 @@ func (r ApiGetBucketsRequest) Execute() (*GetBucketsResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1839,6 +1884,10 @@ func (r ApiGetCredentialsGroupsRequest) Execute() (*GetCredentialsGroupsResponse
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1979,6 +2028,10 @@ func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
