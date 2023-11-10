@@ -118,7 +118,7 @@ func TestKeyClone(t *testing.T) {
 		client: &http.Client{},
 		config: &KeyFlowConfig{},
 		key:    &ServiceAccountKeyPrivateResponse{},
-		Token:  &TokenResponseBody{},
+		token:  &TokenResponseBody{},
 	}
 
 	clone, ok := c.Clone().(*KeyFlow)
