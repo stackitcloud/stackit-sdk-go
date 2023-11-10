@@ -16,15 +16,9 @@ import (
 // contextKeys are used to identify the type of value in the context.
 // Since these are string, it is possible to get a short description of the
 // context key for logging and debugging using key.String().
-
 type contextKey string
 
-func (c contextKey) String() string {
-	return "auth " + string(c)
-}
-
 var (
-
 	// ContextOAuth2 takes an oauth2.TokenSource as authentication for the request.
 	ContextOAuth2 = contextKey("token")
 
@@ -51,6 +45,9 @@ var (
 
 	// ContextOperationServerVariables overrides a server configuration variables using operation specific values.
 	ContextOperationServerVariables = contextKey("serverOperationVariables")
+
+	// ContextHTTPResponse holds the raw HTTP response after the request has completed.
+	ContextHTTPResponse = contextKey("httpResponse")
 )
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
@@ -309,6 +306,12 @@ func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 		config.HTTPClient = cfg.HTTPClient
 		return nil
 	}
+}
+
+// WithCaptureHTTPResponse adds the raw HTTP response retrieval annotation to the parent context.
+// The resp parameter will contain the raw HTTP response after the request has completed.
+func WithCaptureHTTPResponse(parent context.Context, resp **http.Response) context.Context {
+	return context.WithValue(parent, ContextHTTPResponse, resp)
 }
 
 // ServerVariable stores the information about a server variable
