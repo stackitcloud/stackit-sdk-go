@@ -88,9 +88,7 @@ func main() {
 
 ```
 
-More examples on other service and authentication possibilities can be found in the [example folder](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples).
-
-Please note that the naming of the data models, functions and the SDK API is subject to ongoing changes.
+More examples on other services, configuration and authentication possibilities can be found in the [examples folder](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples).
 
 ## Authentication
 
@@ -170,7 +168,7 @@ Using this flow is less secure since the token is long-lived. You can provide th
 
 ## Reporting issues
 
-If you encounter any issues or have suggestions for improvements, please open an issue in the repository.
+If you encounter any issues or have suggestions for improvements, please open an issue in the repository or create a ticket in the [STACKIT Help Center](https://support.stackit.cloud/).
 
 ## Contribute
 
