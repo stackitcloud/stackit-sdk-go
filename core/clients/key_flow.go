@@ -160,7 +160,7 @@ func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 	return c.doer(c.client, req, c.config.ClientRetry)
 }
 
-// GetAccessToken returns a short-lived access token and also stores the access and refresh tokens
+// GetAccessToken returns a short-lived access token and saves the access and refresh tokens in the token field
 func (c *KeyFlow) GetAccessToken() (string, error) {
 	accessTokenIsValid, err := c.validateToken(c.token.AccessToken)
 	if err != nil {
