@@ -19,6 +19,7 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
@@ -87,6 +88,10 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -221,6 +226,10 @@ func (r ApiCreateUserRequest) Execute() (*CreateUserResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -344,6 +353,10 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return err
 	}
@@ -459,6 +472,10 @@ func (r ApiDeleteUserRequest) Execute() error {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return err
 	}
@@ -578,6 +595,10 @@ func (r ApiGetBackupRequest) Execute() (*BackupResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -705,6 +726,10 @@ func (r ApiGetBackupsRequest) Execute() (*BackupsResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -827,6 +852,10 @@ func (r ApiGetFlavorsRequest) Execute() (*FlavorsResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -948,6 +977,10 @@ func (r ApiGetInstanceRequest) Execute() (*InstanceResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1070,6 +1103,10 @@ func (r ApiGetInstancesRequest) Execute() (*InstancesResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1191,6 +1228,10 @@ func (r ApiGetStoragesRequest) Execute() (*StoragesResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1317,6 +1358,10 @@ func (r ApiGetUserRequest) Execute() (*UserResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1444,6 +1489,10 @@ func (r ApiGetUsersRequest) Execute() (*UsersResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1577,6 +1626,10 @@ func (r ApiGetVersionsRequest) Execute() (*VersionsResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1710,6 +1763,10 @@ func (r ApiUpdateBackupScheduleRequest) Execute() error {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return err
 	}
@@ -1837,6 +1894,10 @@ func (r ApiUpdateInstanceRequest) Execute() (*UpdateInstanceResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}

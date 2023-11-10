@@ -20,6 +20,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
@@ -81,6 +82,10 @@ func (r ApiCreateProjectRequest) Execute() (*ProjectResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -219,6 +224,10 @@ func (r ApiDeleteProjectRequest) Execute() error {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return err
 	}
@@ -338,6 +347,10 @@ func (r ApiGetProjectRequest) Execute() (*ProjectResponseWithParents, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -539,6 +552,10 @@ func (r ApiGetProjectsRequest) Execute() (*AllProjectsResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -693,6 +710,10 @@ func (r ApiUpdateProjectRequest) Execute() (*ProjectResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}

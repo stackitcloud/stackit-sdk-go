@@ -19,6 +19,7 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
@@ -87,6 +88,10 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*ClusterResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -228,6 +233,10 @@ func (r ApiCreateProjectRequest) Execute() (*ProjectResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -357,6 +366,10 @@ func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -476,6 +489,10 @@ func (r ApiDeleteProjectRequest) Execute() (map[string]interface{}, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -605,6 +622,10 @@ func (r ApiGetClusterRequest) Execute() (*ClusterResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -724,6 +745,10 @@ func (r ApiGetClustersRequest) Execute() (*ClustersResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -864,6 +889,10 @@ func (r ApiGetCredentialsRequest) Execute() (*CredentialsResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1003,6 +1032,10 @@ func (r ApiGetOptionsRequest) Execute() (*ProviderOptions, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1116,6 +1149,10 @@ func (r ApiGetProjectRequest) Execute() (*ProjectResponse, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1245,6 +1282,10 @@ func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1377,6 +1418,10 @@ func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) 
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1509,6 +1554,10 @@ func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
@@ -1641,6 +1690,10 @@ func (r ApiTriggerRotateCredentialsRequest) Execute() (map[string]interface{}, e
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, err
 	}
