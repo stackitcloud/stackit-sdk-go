@@ -13,8 +13,8 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/uuid v1.4.0 h1:MtMxsa51/r9yyhkyLsVeVt0B+BGQZzpQiTQ4eHZ8bc4=
 github.com/google/uuid v1.4.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/stackitcloud/stackit-sdk-go/core v0.4.0 h1:CiHaAph5x1yXCPpb4ctpl6qgsOv4EMBBPfs54hGRf5I=
-github.com/stackitcloud/stackit-sdk-go/core v0.4.0/go.mod h1:FXoqSf7npgGS7vHuF3zr7OFscwhAxSZU43Wlj6L+TR4=
+github.com/stackitcloud/stackit-sdk-go/core v0.6.0 h1:riAtDyM2dwrAFdGA/GCojJR1zBci3x3EHTH7swuPTXQ=
+github.com/stackitcloud/stackit-sdk-go/core v0.6.0/go.mod h1:FXoqSf7npgGS7vHuF3zr7OFscwhAxSZU43Wlj6L+TR4=
 github.com/stackitcloud/stackit-sdk-go/services/dns v0.5.0 h1:BlH9H0mYAeVwUa2bD02Kom5rjWWwCqruhpFALNvzKfc=
 github.com/stackitcloud/stackit-sdk-go/services/dns v0.5.0/go.mod h1:FY00NRurnDAA0gjopm1QgZhpd6iZlcg1giWr3SHSvJg=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
