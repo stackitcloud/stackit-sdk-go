@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.6.0
-	github.com/stackitcloud/stackit-sdk-go/services/membership v0.1.0
+	github.com/stackitcloud/stackit-sdk-go/services/membership v0.2.0
 )
 
 require (
