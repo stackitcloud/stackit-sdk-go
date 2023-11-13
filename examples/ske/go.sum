@@ -13,8 +13,8 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/uuid v1.4.0 h1:MtMxsa51/r9yyhkyLsVeVt0B+BGQZzpQiTQ4eHZ8bc4=
 github.com/google/uuid v1.4.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/stackitcloud/stackit-sdk-go/core v0.6.0 h1:riAtDyM2dwrAFdGA/GCojJR1zBci3x3EHTH7swuPTXQ=
-github.com/stackitcloud/stackit-sdk-go/core v0.6.0/go.mod h1:FXoqSf7npgGS7vHuF3zr7OFscwhAxSZU43Wlj6L+TR4=
+github.com/stackitcloud/stackit-sdk-go/core v0.7.1 h1:CNN9WKW1Kia2WfTHDqCIUpZYZuGP5fYIDQk23XlIX6Y=
+github.com/stackitcloud/stackit-sdk-go/core v0.7.1/go.mod h1:5sAmGrh1zHujRL9AXcTOXHwWLP9tWjCN1H3UdTSKYxM=
 github.com/stackitcloud/stackit-sdk-go/services/ske v0.5.0 h1:xxG8VX8TTupf6KTICTqm0rfvRAS8HM81x1t6EZ3EbNA=
 github.com/stackitcloud/stackit-sdk-go/services/ske v0.5.0/go.mod h1:IQPg/moQqtYsWeMlOnzUP6oH5dl5vGrWdklYKnyrpW8=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
