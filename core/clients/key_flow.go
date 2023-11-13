@@ -107,7 +107,7 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.token = &TokenResponseBody{}
 	c.config = cfg
-	c.doer = do
+	c.doer = Do
 	if c.config.TokenUrl == "" {
 		tokenCustomUrl, tokenUrlSet := os.LookupEnv("STACKIT_TOKEN_BASEURL")
 		if !tokenUrlSet || tokenCustomUrl == "" {
