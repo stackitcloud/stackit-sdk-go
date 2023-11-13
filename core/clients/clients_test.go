@@ -86,7 +86,7 @@ func TestDo(t *testing.T) {
 			if tt.name == "all ok nil client" {
 				c = nil
 			}
-			gotResp, err := do(c, req, tt.args.cfg)
+			gotResp, err := Do(c, req, tt.args.cfg)
 			if err == nil {
 				// Defer discard and close the body
 				defer func() {
