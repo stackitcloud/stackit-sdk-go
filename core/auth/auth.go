@@ -150,6 +150,19 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		return nil, fmt.Errorf("configuring key authentication: private key could not be found: %w", err)
 	}
 
+	if cfg.TokenCustomUrl == "" {
+		tokenCustomUrl, tokenUrlSet := os.LookupEnv("STACKIT_TOKEN_BASEURL")
+		if tokenUrlSet {
+			cfg.TokenCustomUrl = tokenCustomUrl
+		}
+	}
+	if cfg.JWKSCustomUrl == "" {
+		jwksCustomUrl, jwksUrlSet := os.LookupEnv("STACKIT_JWKS_BASEURL")
+		if jwksUrlSet {
+			cfg.JWKSCustomUrl = jwksCustomUrl
+		}
+	}
+
 	keyCfg := clients.KeyFlowConfig{
 		ServiceAccountKey: cfg.ServiceAccountKey,
 		PrivateKey:        cfg.PrivateKey,
