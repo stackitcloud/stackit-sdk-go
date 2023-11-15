@@ -2,7 +2,7 @@ module github.com/stackitcloud/stackit-sdk-go/services/serviceaccount
 
 go 1.18
 
-require github.com/stackitcloud/stackit-sdk-go/core v0.6.0
+require github.com/stackitcloud/stackit-sdk-go/core v0.7.2
 
 require (
 	github.com/MicahParks/keyfunc/v2 v2.1.0 // indirect
