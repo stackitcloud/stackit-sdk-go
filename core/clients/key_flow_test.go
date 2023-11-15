@@ -12,7 +12,9 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+	"time"
 
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
 )
@@ -34,7 +36,10 @@ const saKeyStrPattern = `{
 	"validUntil": "2024-03-22T18:05:41Z"
 }`
 
-var saKey = fmt.Sprintf(saKeyStrPattern, uuid.New().String(), uuid.New().String(), uuid.New().String())
+var (
+	saKey          = fmt.Sprintf(saKeyStrPattern, uuid.New().String(), uuid.New().String(), uuid.New().String())
+	testSigningKey = []byte("Test")
+)
 
 func generatePrivateKey() ([]byte, error) {
 	// Generate a new RSA key pair with a size of 2048 bits
@@ -108,6 +113,67 @@ func TestKeyFlowInit(t *testing.T) {
 			}
 			if c.config == nil {
 				t.Error("config is nil")
+			}
+		})
+	}
+}
+
+type MyCustomClaims struct {
+	Foo string `json:"foo"`
+}
+
+func TestSetToken(t *testing.T) {
+	tests := []struct {
+		name         string
+		tokenInvalid bool
+		refreshToken string
+		wantErr      bool
+	}{
+		{
+			name:         "ok",
+			tokenInvalid: false,
+			refreshToken: "refresh_token",
+			wantErr:      false,
+		},
+		{
+			name:         "invalid_token",
+			tokenInvalid: true,
+			refreshToken: "",
+			wantErr:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			var accessToken string
+			var err error
+			if tt.tokenInvalid {
+				accessToken = "foo"
+			} else {
+				accessTokenJWT := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+					ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour))})
+				accessToken, err = accessTokenJWT.SignedString(testSigningKey)
+				if err != nil {
+					t.Fatalf("get test access token as string: %s", err)
+				}
+			}
+
+			c := &KeyFlow{}
+			err = c.SetToken(accessToken, tt.refreshToken)
+
+			if (err != nil) != tt.wantErr {
+				t.Errorf("KeyFlow.SetToken() error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if err == nil {
+				expectedKeyFlowToken := &TokenResponseBody{
+					AccessToken:  accessToken,
+					ExpiresIn:    int(time.Now().Add(24 * time.Hour).Unix()),
+					RefreshToken: tt.refreshToken,
+					Scope:        defaultScope,
+					TokenType:    defaultTokenType,
+				}
+				if !cmp.Equal(expectedKeyFlowToken, c.token) {
+					t.Errorf("The returned result is wrong. Expected %+v, got %+v", expectedKeyFlowToken, c.token)
+				}
 			}
 		})
 	}
