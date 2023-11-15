@@ -9,7 +9,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
 	"time"
 
@@ -25,10 +24,11 @@ const (
 	PrivateKey            = "STACKIT_PRIVATE_KEY"
 	ServiceAccountKeyPath = "STACKIT_SERVICE_ACCOUNT_KEY_PATH"
 	PrivateKeyPath        = "STACKIT_PRIVATE_KEY_PATH"
+	tokenAPI              = "https://service-account.api.stackit.cloud/token" //nolint:gosec // linter false positive
+	jwksAPI               = "https://service-account.api.stackit.cloud/.well-known/jwks.json"
+	defaultTokenType      = "Bearer"
+	defaultScope          = ""
 )
-
-var tokenAPI = "https://service-account.api.stackit.cloud/token" //nolint:gosec // linter false positive
-var jwksAPI = "https://service-account.api.stackit.cloud/.well-known/jwks.json"
 
 // KeyFlow handles auth with SA key
 type KeyFlow struct {
@@ -108,27 +108,43 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.token = &TokenResponseBody{}
 	c.config = cfg
 	c.doer = Do
+
+	// set defaults if no custom token and jwks url are provided
 	if c.config.TokenUrl == "" {
-		tokenCustomUrl, tokenUrlSet := os.LookupEnv("STACKIT_TOKEN_BASEURL")
-		if !tokenUrlSet || tokenCustomUrl == "" {
-			c.config.TokenUrl = tokenAPI
-		} else {
-			c.config.TokenUrl = tokenCustomUrl
-		}
+		c.config.TokenUrl = tokenAPI
 	}
 	if c.config.JWKSUrl == "" {
-		jwksCustomUrl, jwksUrlSet := os.LookupEnv("STACKIT_JWKS_BASEURL")
-		if !jwksUrlSet || jwksCustomUrl == "" {
-			c.config.JWKSUrl = jwksAPI
-		} else {
-			c.config.TokenUrl = jwksCustomUrl
-		}
+		c.config.JWKSUrl = jwksAPI
 	}
 	c.configureHTTPClient()
 	if c.config.ClientRetry == nil {
 		c.config.ClientRetry = NewRetryConfig()
 	}
 	return c.validate()
+}
+
+// SetToken can be used to set an access and refresh token manually in the client.
+// The other fields in the token field are determined by inspecting the token or setting default values.
+func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
+	// We can safely use ParseUnverified because we are not authenticating the user,
+	// We are parsing the token just to get the expiration time claim
+	parsedAccessToken, _, err := jwt.NewParser().ParseUnverified(accessToken, &jwt.RegisteredClaims{})
+	if err != nil {
+		return fmt.Errorf("parse access token to read expiration time: %w", err)
+	}
+	exp, err := parsedAccessToken.Claims.GetExpirationTime()
+	if err != nil {
+		return fmt.Errorf("get expiration time from access token: %w", err)
+	}
+
+	c.token = &TokenResponseBody{
+		AccessToken:  accessToken,
+		ExpiresIn:    int(exp.Time.Unix()),
+		Scope:        defaultScope,
+		RefreshToken: refreshToken,
+		TokenType:    defaultTokenType,
+	}
+	return nil
 }
 
 // Clone creates a clone of the client
