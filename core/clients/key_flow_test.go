@@ -146,11 +146,13 @@ func TestSetToken(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			var accessToken string
 			var err error
+
+			timestamp := time.Now().Add(24 * time.Hour)
 			if tt.tokenInvalid {
 				accessToken = "foo"
 			} else {
 				accessTokenJWT := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-					ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour))})
+					ExpiresAt: jwt.NewNumericDate(timestamp)})
 				accessToken, err = accessTokenJWT.SignedString(testSigningKey)
 				if err != nil {
 					t.Fatalf("get test access token as string: %s", err)
@@ -166,7 +168,7 @@ func TestSetToken(t *testing.T) {
 			if err == nil {
 				expectedKeyFlowToken := &TokenResponseBody{
 					AccessToken:  accessToken,
-					ExpiresIn:    int(time.Now().Add(24 * time.Hour).Unix()),
+					ExpiresIn:    int(timestamp.Unix()),
 					RefreshToken: tt.refreshToken,
 					Scope:        defaultScope,
 					TokenType:    defaultTokenType,
