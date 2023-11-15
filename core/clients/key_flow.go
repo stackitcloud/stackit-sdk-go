@@ -123,8 +123,8 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	return c.validate()
 }
 
-// SetToken can be used to set an access and refresh token manually in the client
-// the other fields in the token field are determined by inspecting the token or setting default values
+// SetToken can be used to set an access and refresh token manually in the client.
+// The other fields in the token field are determined by inspecting the token or setting default values.
 func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 	// We can safely use ParseUnverified because we are not authenticating the user,
 	// We are parsing the token just to get the expiration time claim
