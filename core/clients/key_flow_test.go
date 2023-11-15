@@ -219,7 +219,7 @@ func TestKeyFlowValidateToken(t *testing.T) {
 					PrivateKey: string(privateKey),
 					JWKSUrl:    jwksAPI,
 				},
-				doer: do,
+				doer: Do,
 			}
 			got, err := c.validateToken(tt.token)
 			if (err != nil) != tt.wantErr {

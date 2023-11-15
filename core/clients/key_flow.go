@@ -107,7 +107,7 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.token = &TokenResponseBody{}
 	c.config = cfg
-	c.doer = do
+	c.doer = Do
 
 	// set defaults if no custom token and jwks url are provided
 	if c.config.TokenUrl == "" {

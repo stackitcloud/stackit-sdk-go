@@ -46,8 +46,8 @@ func NewRetryConfig() *RetryConfig {
 	}
 }
 
-// do performs the request
-func do(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
+// Do performs the request, retrying according to the configurations provided
+func Do(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
 	if cfg == nil {
 		cfg = NewRetryConfig()
 	}
