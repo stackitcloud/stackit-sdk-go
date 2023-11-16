@@ -38,7 +38,8 @@ const saKeyStrPattern = `{
 
 var (
 	saKey          = fmt.Sprintf(saKeyStrPattern, uuid.New().String(), uuid.New().String(), uuid.New().String())
-	testSigningKey = []byte("Test")
+	testSigningKey = []byte(`Test`)
+	testJwks       = []byte(`{ "keys": [ { "kty":"oct", "kid":"test", "alg":"HS256" } ] }`)
 )
 
 func generatePrivateKey() ([]byte, error) {
@@ -206,23 +207,52 @@ func TestKeyFlowValidateToken(t *testing.T) {
 		t.Fatal(err)
 	}
 	tests := []struct {
-		name    string
-		token   string
-		want    bool
-		wantErr bool
+		name             string
+		token            string
+		jwksMockResponse *http.Response
+		jwksMockError    error
+		want             bool
+		wantErr          bool
 	}{
-		{"no token", "", false, false},
-		{"bad token - ask to recreate", "bad token", false, true},
+		{
+			name:    "no token",
+			token:   "",
+			want:    false,
+			wantErr: false,
+		},
+		{
+			name:  "invalid token",
+			token: "bad token",
+			jwksMockResponse: &http.Response{
+				StatusCode: 200,
+				Body:       io.NopCloser(bytes.NewReader(testJwks)),
+			},
+			jwksMockError: nil,
+			want:          false,
+			wantErr:       true,
+		},
+		{
+			name:             "get_jwks_fail",
+			token:            "bad token",
+			jwksMockResponse: nil,
+			jwksMockError:    fmt.Errorf("error"),
+			want:             false,
+			wantErr:          true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
+				return tt.jwksMockResponse, tt.jwksMockError
+			}
 			c := &KeyFlow{
 				config: &KeyFlowConfig{
 					PrivateKey: string(privateKey),
 					JWKSUrl:    jwksAPI,
 				},
-				doer: Do,
+				doer: mockDo,
 			}
+
 			got, err := c.validateToken(tt.token)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.validateToken() error = %v, wantErr %v", err, tt.wantErr)

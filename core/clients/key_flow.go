@@ -5,6 +5,7 @@ import (
 	"crypto/x509"
 	"encoding/json"
 	"encoding/pem"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -334,11 +335,11 @@ func (c *KeyFlow) validateToken(token string) (bool, error) {
 		return false, nil
 	}
 	if _, err := c.parseToken(token); err != nil {
-		if strings.Contains(err.Error(), "401") {
+		if errors.Is(err, jwt.ErrTokenExpired) {
 			c.token = &TokenResponseBody{}
 			return false, nil
 		}
-		return false, err
+		return false, fmt.Errorf("parse token: %w", err)
 	}
 	return true, nil
 }
@@ -347,14 +348,13 @@ func (c *KeyFlow) validateToken(token string) (bool, error) {
 func (c *KeyFlow) parseToken(token string) (*jwt.Token, error) {
 	b, err := c.getJwksJSON(token)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("get JWKS Json: %w", err)
 	}
 	var jwksBytes = json.RawMessage(b)
 	jwks, err := keyfunc.NewJSON(jwksBytes)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("get JWKS function from JSON: %w", err)
 	}
-
 	return jwt.Parse(token, jwks.Keyfunc)
 }
 
