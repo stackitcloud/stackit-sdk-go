@@ -7,7 +7,7 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/google/uuid v1.4.0
 	golang.org/x/oauth2 v0.14.0
-	k8s.io/apimachinery v0.28.3
+	k8s.io/apimachinery v0.28.4
 )
 
 require (
