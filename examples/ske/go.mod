@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/ske
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.7.2
+	github.com/stackitcloud/stackit-sdk-go/core v0.7.3
 	github.com/stackitcloud/stackit-sdk-go/services/ske v0.6.0
 )
 

@@ -13,8 +13,8 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/uuid v1.4.0 h1:MtMxsa51/r9yyhkyLsVeVt0B+BGQZzpQiTQ4eHZ8bc4=
 github.com/google/uuid v1.4.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/stackitcloud/stackit-sdk-go/core v0.7.2 h1:OY98HuBoVq5bvI5S8WB+X3cK0Jv7O+F9bPtn6N1OVdI=
-github.com/stackitcloud/stackit-sdk-go/core v0.7.2/go.mod h1:5sAmGrh1zHujRL9AXcTOXHwWLP9tWjCN1H3UdTSKYxM=
+github.com/stackitcloud/stackit-sdk-go/core v0.7.3 h1:oxLY44Vuyn7+lcKBZDFGbc2YSjnw43PbuiATBL3aq+I=
+github.com/stackitcloud/stackit-sdk-go/core v0.7.3/go.mod h1:5hA/nSktcp/BiFaRyMIV6E/1d/i7cieLNE5XzWPrICo=
 github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.7.0 h1:vL+2hc4xwtW0xM/9gURwemZSfEc0Ko0JNT/L2IvLIAk=
 github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.7.0/go.mod h1:A1V3v3UYbKh/hK0U5a2nJWUUbdTn8EBO4J5ng9ssXcM=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
