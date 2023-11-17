@@ -96,7 +96,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		case InstanceStateSuccess:
 			return true, s, nil
 		case InstanceStateFailed:
-			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
 		}
 	})
 	handler.SetTimeout(45 * time.Minute)
