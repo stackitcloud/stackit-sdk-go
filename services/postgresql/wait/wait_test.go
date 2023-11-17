@@ -18,7 +18,7 @@ type apiClientInstanceMocked struct {
 	resourceId                 string
 	resourceOperation          string
 	resourceState              string
-	resourceDescription        *string
+	resourceDescription        string
 }
 
 func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*postgresql.Instance, error) {
@@ -32,7 +32,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 			return &postgresql.Instance{
 				InstanceId: &a.resourceId,
 				LastOperation: &postgresql.LastOperation{
-					Description: a.resourceDescription,
+					Description: &a.resourceDescription,
 					Type:        &a.resourceOperation,
 					State:       &a.resourceState,
 				},
@@ -46,7 +46,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 	return &postgresql.Instance{
 		InstanceId: &a.resourceId,
 		LastOperation: &postgresql.LastOperation{
-			Description: a.resourceDescription,
+			Description: &a.resourceDescription,
 			Type:        &a.resourceOperation,
 			State:       &a.resourceState,
 		},
@@ -118,7 +118,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
 			instanceId := "foo-bar"
-			var createType = InstanceTypeCreate
+			createType := InstanceTypeCreate
 			apiClient := &apiClientInstanceMocked{
 				getFails:          tt.getFails,
 				resourceId:        instanceId,
@@ -133,7 +133,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 					LastOperation: &postgresql.LastOperation{
 						Type:        &createType,
 						State:       &tt.resourceState,
-						Description: nil,
+						Description: utils.Ptr(""),
 					},
 				}
 			}
@@ -192,7 +192,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
 			instanceId := "foo-bar"
-			var updateType = InstanceTypeUpdate
+			updateType := InstanceTypeUpdate
 			apiClient := &apiClientInstanceMocked{
 				getFails:          tt.getFails,
 				resourceId:        instanceId,
@@ -205,8 +205,9 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				wantRes = &postgresql.Instance{
 					InstanceId: &instanceId,
 					LastOperation: &postgresql.LastOperation{
-						Type:  &updateType,
-						State: &tt.resourceState,
+						Type:        &updateType,
+						State:       &tt.resourceState,
+						Description: utils.Ptr(""),
 					},
 				}
 			}
@@ -231,7 +232,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		getFails                  bool
 		deleteSucceeedsWithErrors bool
 		resourceState             string
-		resourceDescription       *string
+		resourceDescription       string
 		wantErr                   bool
 	}{
 		{
@@ -253,7 +254,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			getFails:                  false,
 			resourceState:             InstanceStateSuccess,
 			deleteSucceeedsWithErrors: true,
-			resourceDescription:       utils.Ptr("Deleting resource: cf failed with error: DeleteFailed"),
+			resourceDescription:       "Deleting resource: cf failed with error: DeleteFailed",
 			wantErr:                   true,
 		},
 		{

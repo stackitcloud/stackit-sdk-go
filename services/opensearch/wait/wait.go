@@ -44,7 +44,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return true, s, nil
 		}
 		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeCreate && *s.LastOperation.State == InstanceStateFailed {
-			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, *s.LastOperation.Description)
 		}
 		return false, nil, nil
 	})
@@ -66,7 +66,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return true, s, nil
 		}
 		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeUpdate && *s.LastOperation.State == InstanceStateFailed {
-			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
+			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, *s.LastOperation.Description)
 		}
 		return false, nil, nil
 	})
