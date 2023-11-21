@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/objectstorage
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.7.2
+	github.com/stackitcloud/stackit-sdk-go/core v0.7.3
 	github.com/stackitcloud/stackit-sdk-go/services/objectstorage v0.7.0
 )
 
