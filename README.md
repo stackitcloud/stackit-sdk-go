@@ -4,8 +4,6 @@ This repository contains the published SDKs and [SDK releases](https://github.co
 The modules are structured into a [core module](https://github.com/stackitcloud/stackit-sdk-go/tree/main/core) with service clients, authentication and shared functionality as well as the different STACKIT [services](https://github.com/stackitcloud/stackit-sdk-go/tree/main/services).
 The usage of the SDK is shown in some [examples](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples).
 
-This repo is in BETA state.
-
 # Getting started
 
 Requires `Go 1.18` or higher.
