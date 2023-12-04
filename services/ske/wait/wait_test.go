@@ -294,3 +294,80 @@ func TestDeleteProjectWaitHandler(t *testing.T) {
 		})
 	}
 }
+
+func TestRotateCredentialsWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "reconciliation_succeeded_1",
+			getFails:      false,
+			resourceState: StateHealthy,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "reconciliation_succeeded_2",
+			getFails:      false,
+			resourceState: StateHibernated,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "reconciliation_failed",
+			getFails:      false,
+			resourceState: StateFailed,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:     "get_fails",
+			getFails: true,
+			wantErr:  true,
+			wantResp: false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: StateReconciling,
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			name := "cluster"
+
+			apiClient := &apiClientClusterMocked{
+				getFails:      tt.getFails,
+				name:          name,
+				resourceState: tt.resourceState,
+			}
+			var wantRes *ske.ClusterResponse
+			rs := ske.ClusterStatusState(tt.resourceState)
+			if tt.wantResp {
+				wantRes = &ske.ClusterResponse{
+					Name: &name,
+					Status: &ske.ClusterStatus{
+						Aggregated: &rs,
+					},
+				}
+			}
+
+			handler := RotateCredentialsWaitHandler(context.Background(), apiClient, "", name)
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+			}
+		})
+	}
+}

@@ -18,6 +18,7 @@ const (
 	StateDeleting                 = "STATE_DELETING"
 	StateCreated                  = "STATE_CREATED"
 	StateUnhealthy                = "STATE_UNHEALTHY"
+	StateReconciling              = "STATE_RECONCILING"
 	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
@@ -28,10 +29,6 @@ type APIClientProjectInterface interface {
 type APIClientClusterInterface interface {
 	GetClusterExecute(ctx context.Context, projectId, name string) (*ske.ClusterResponse, error)
 	GetClustersExecute(ctx context.Context, projectId string) (*ske.ClustersResponse, error)
-}
-
-type APIClientCredentialsInterface interface {
-	GetCredentialsExecute(ctx context.Context, projectId, instanceId, credentialsId string) (*ske.CredentialsResponse, error)
 }
 
 // CreateOrUpdateClusterWaitHandler will wait for cluster creation or update
@@ -121,5 +118,33 @@ func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 		return false, nil, err
 	})
 	handler.SetTimeout(15 * time.Minute)
+	return handler
+}
+
+// RotateCredentialsWaitHandler will wait for credentials rotation
+func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.ClusterResponse] {
+	handler := wait.New(func() (waitFinished bool, response *ske.ClusterResponse, err error) {
+		s, err := a.GetClusterExecute(ctx, projectId, clusterName)
+		if err != nil {
+			return false, nil, err
+		}
+		state := *s.Status.Aggregated
+
+		if state == StateHealthy || state == StateHibernated {
+			return true, s, nil
+		}
+
+		if state == StateReconciling {
+			return false, nil, nil
+		}
+
+		if state == StateFailed {
+			return true, s, fmt.Errorf("credentials rotation failed failed")
+		}
+
+		return true, s, fmt.Errorf("unexpected state %s while waiting for cluster reconciliation", state)
+	})
+
+	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
