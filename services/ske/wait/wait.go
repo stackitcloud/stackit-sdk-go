@@ -139,7 +139,7 @@ func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterfa
 		}
 
 		if state == StateFailed {
-			return true, s, fmt.Errorf("credentials rotation failed failed")
+			return true, s, fmt.Errorf("credentials rotation failed")
 		}
 
 		return true, s, fmt.Errorf("unexpected state %s while waiting for cluster reconciliation", state)
