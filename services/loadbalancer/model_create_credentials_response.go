@@ -10,7 +10,6 @@ API version: 1.4.0
 
 package loadbalancer
 
-type LoadbalancerOptionAccessControl struct {
-	// Load Balancer is accessible only from an IP address in this range
-	AllowedSourceRanges *[]string `json:"allowedSourceRanges,omitempty"`
+type CreateCredentialsResponse struct {
+	Credential *CredentialsResponse `json:"credential,omitempty"`
 }
