@@ -10,7 +10,9 @@ API version: 1.4.0
 
 package loadbalancer
 
-type LoadbalancerOptionAccessControl struct {
-	// Load Balancer is accessible only from an IP address in this range
-	AllowedSourceRanges *[]string `json:"allowedSourceRanges,omitempty"`
+type LoadbalancerOptionLogs struct {
+	// Credentials reference for metrics. Enables monitoring via logs for the Load Balancer.
+	CredentialsRef *string `json:"credentialsRef,omitempty"`
+	// The ARGUS/Loki Push URL you want the logs to be send to.
+	PushUrl *string `json:"pushUrl,omitempty"`
 }
