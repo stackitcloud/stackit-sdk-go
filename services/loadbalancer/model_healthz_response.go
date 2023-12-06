@@ -10,7 +10,7 @@ API version: 1.4.0
 
 package loadbalancer
 
-type LoadbalancerOptionAccessControl struct {
-	// Load Balancer is accessible only from an IP address in this range
-	AllowedSourceRanges *[]string `json:"allowedSourceRanges,omitempty"`
+type HealthzResponse struct {
+	// Human readable explanation about the response.
+	Message *string `json:"message,omitempty"`
 }

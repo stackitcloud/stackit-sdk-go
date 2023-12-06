@@ -10,7 +10,7 @@ API version: 1.4.0
 
 package loadbalancer
 
-type LoadBalancer struct {
+type UpdateLoadBalancerPayload struct {
 	Errors *[]LoadBalancerError `json:"errors,omitempty"`
 	// External load balancer IP address where this load balancer is exposed. Not changeable after creation.
 	ExternalAddress *string `json:"externalAddress,omitempty"`
