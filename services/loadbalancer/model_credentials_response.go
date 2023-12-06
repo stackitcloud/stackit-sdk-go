@@ -10,7 +10,11 @@ API version: 1.4.0
 
 package loadbalancer
 
-type LoadbalancerOptionAccessControl struct {
-	// Load Balancer is accessible only from an IP address in this range
-	AllowedSourceRanges *[]string `json:"allowedSourceRanges,omitempty"`
+type CredentialsResponse struct {
+	// The credentials reference can be used for observability of the Load Balancer.
+	CredentialsRef *string `json:"credentialsRef,omitempty"`
+	// Credential name
+	DisplayName *string `json:"displayName,omitempty"`
+	// The username used for the ARGUS instance
+	Username *string `json:"username,omitempty"`
 }

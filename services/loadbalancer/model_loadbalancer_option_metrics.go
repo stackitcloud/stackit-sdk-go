@@ -10,7 +10,9 @@ API version: 1.4.0
 
 package loadbalancer
 
-type LoadbalancerOptionAccessControl struct {
-	// Load Balancer is accessible only from an IP address in this range
-	AllowedSourceRanges *[]string `json:"allowedSourceRanges,omitempty"`
+type LoadbalancerOptionMetrics struct {
+	// Credentials reference for metrics. Enables monitoring via remote write for the Load Balancer.
+	CredentialsRef *string `json:"credentialsRef,omitempty"`
+	// The ARGUS/Prometheus remote write Push URL you want the metrics to be send to.
+	PushUrl *string `json:"pushUrl,omitempty"`
 }
