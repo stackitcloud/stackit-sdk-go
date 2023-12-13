@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"k8s.io/apimachinery/pkg/util/wait"
+	"github.com/cenkalti/backoff/v4"
 )
 
 const (
@@ -55,31 +55,34 @@ func Do(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Re
 		client = &http.Client{}
 	}
 	client.Timeout = cfg.ClientTimeout
+
 	maxRetries := cfg.MaxRetries
-	err = wait.PollUntilContextTimeout(context.Background(), cfg.WaitBetweenCalls, cfg.RetryTimeout, true, wait.ConditionFunc(
-		func() (bool, error) {
-			resp, err = client.Do(req) //nolint:bodyclose // body is closed by the caller functions
-			if err != nil {
-				if maxRetries > 0 {
-					if errorIsOneOf(err, ClientTimeoutErr, ClientContextDeadlineErr, ClientConnectionRefusedErr) ||
-						(req.Method == http.MethodGet && strings.Contains(err.Error(), ClientEOFError)) {
-						// reduce retries counter and retry
-						maxRetries--
-						return false, nil
-					}
-				}
-				return false, err
-			}
-			if maxRetries > 0 && resp != nil {
-				if resp.StatusCode == http.StatusBadGateway ||
-					resp.StatusCode == http.StatusGatewayTimeout {
+	ctx, cancel := context.WithTimeout(context.Background(), cfg.RetryTimeout)
+	defer cancel()
+	b := backoff.WithContext(backoff.NewConstantBackOff(cfg.WaitBetweenCalls), ctx)
+
+	err = backoff.Retry(func() error {
+		resp, err = client.Do(req) //nolint:bodyclose // body is closed by the caller functions
+		if err != nil {
+			if maxRetries > 0 {
+				if errorIsOneOf(err, ClientTimeoutErr, ClientContextDeadlineErr, ClientConnectionRefusedErr) ||
+					(req.Method == http.MethodGet && strings.Contains(err.Error(), ClientEOFError)) {
+					// reduce retries counter and retry
 					maxRetries--
-					return false, nil
+					return err
 				}
 			}
-			return true, nil
-		}).WithContext(),
-	)
+			return backoff.Permanent(err)
+		}
+		if maxRetries > 0 && resp != nil {
+			if resp.StatusCode == http.StatusBadGateway ||
+				resp.StatusCode == http.StatusGatewayTimeout {
+				maxRetries--
+				return fmt.Errorf("requested returned a gateway error")
+			}
+		}
+		return nil
+	}, b)
 	if err != nil {
 		return resp, fmt.Errorf("url: %s\nmethod: %s\n err: %w", req.URL.String(), req.Method, err)
 	}
