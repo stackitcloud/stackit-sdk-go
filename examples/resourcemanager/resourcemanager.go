@@ -34,7 +34,7 @@ func main() {
 		Name:              utils.Ptr("my-project"),
 		Members: &[]resourcemanager.ProjectMember{
 			{
-				Role:    utils.Ptr("owner"),
+				Role:    utils.Ptr("project.owner"),
 				Subject: utils.Ptr("owner-email@example.com"),
 			},
 		},
