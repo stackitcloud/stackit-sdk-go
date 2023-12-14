@@ -36,7 +36,7 @@ type KeyFlow struct {
 	client        *http.Client
 	config        *KeyFlowConfig
 	doer          func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error)
-	key           *ServiceAccountKeyPrivateResponse
+	key           *ServiceAccountKeyResponse
 	privateKey    *rsa.PrivateKey
 	privateKeyPEM []byte
 	token         *TokenResponseBody
@@ -44,7 +44,7 @@ type KeyFlow struct {
 
 // KeyFlowConfig is the flow config
 type KeyFlowConfig struct {
-	ServiceAccountKey string
+	ServiceAccountKey *ServiceAccountKeyResponse
 	PrivateKey        string
 	ClientRetry       *RetryConfig
 	TokenUrl          string
@@ -61,9 +61,9 @@ type TokenResponseBody struct {
 	TokenType    string `json:"token_type"`
 }
 
-// ServiceAccountKeyPrivateResponse is the API response
+// ServiceAccountKeyResponse is the API response
 // when creating a new SA key
-type ServiceAccountKeyPrivateResponse struct {
+type ServiceAccountKeyResponse struct {
 	Active      bool      `json:"active"`
 	CreatedAt   time.Time `json:"createdAt"`
 	Credentials struct {
@@ -200,19 +200,15 @@ func (c *KeyFlow) configureHTTPClient() {
 }
 
 // validate the client is configured well
-func (c *KeyFlow) validate() error {
-	if c.config.ServiceAccountKey == "" {
+func (c *KeyFlow) validate() (err error) {
+	if c.config.ServiceAccountKey == nil {
 		return fmt.Errorf("service account access key cannot be empty")
 	}
 	if c.config.PrivateKey == "" {
 		return fmt.Errorf("private key cannot be empty")
 	}
 
-	c.key = &ServiceAccountKeyPrivateResponse{}
-	err := json.Unmarshal([]byte(c.config.ServiceAccountKey), c.key)
-	if err != nil {
-		return fmt.Errorf("unmarshalling service account key: %w", err)
-	}
+	c.key = c.config.ServiceAccountKey
 
 	c.privateKey, err = jwt.ParseRSAPrivateKeyFromPEM([]byte(c.config.PrivateKey))
 	if err != nil {

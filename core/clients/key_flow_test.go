@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
+	"encoding/json"
 	"encoding/pem"
 	"fmt"
 	"io"
@@ -108,7 +109,17 @@ func TestKeyFlowInit(t *testing.T) {
 			if tt.invalidPrivateKey {
 				cfg.PrivateKey = "invalid_key"
 			}
-			cfg.ServiceAccountKey = tt.serviceAccountKey
+			var serviceAccountKey = &ServiceAccountKeyResponse{}
+			if tt.serviceAccountKey == "" {
+				serviceAccountKey = nil
+			} else {
+				err := json.Unmarshal([]byte(tt.serviceAccountKey), serviceAccountKey)
+				if err != nil {
+					t.Fatalf("unmarshalling service account key: %s", err)
+				}
+			}
+
+			cfg.ServiceAccountKey = serviceAccountKey
 			if err := c.Init(cfg); (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
@@ -186,7 +197,7 @@ func TestKeyClone(t *testing.T) {
 	c := &KeyFlow{
 		client: &http.Client{},
 		config: &KeyFlowConfig{},
-		key:    &ServiceAccountKeyPrivateResponse{},
+		key:    &ServiceAccountKeyResponse{},
 		token:  &TokenResponseBody{},
 	}
 
