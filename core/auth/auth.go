@@ -145,6 +145,7 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		return nil, fmt.Errorf("configuring key authentication: service account key could not be found: %w", err)
 	}
 
+	// Unmarshal service account key to check if private key is present
 	var serviceAccountKey = &clients.ServiceAccountKeyResponse{}
 	err = json.Unmarshal([]byte(cfg.ServiceAccountKey), serviceAccountKey)
 	if err != nil {

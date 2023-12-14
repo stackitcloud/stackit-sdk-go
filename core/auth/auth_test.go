@@ -442,7 +442,7 @@ func TestKeyAuth(t *testing.T) {
 		},
 		{
 			desc:              "no_private_key",
-			serviceAccountKey: "no_sa_key",
+			serviceAccountKey: saKey,
 			privateKey:        "",
 			isValid:           false,
 		},
