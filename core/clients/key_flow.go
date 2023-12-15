@@ -64,21 +64,23 @@ type TokenResponseBody struct {
 // ServiceAccountKeyResponse is the API response
 // when creating a new SA key
 type ServiceAccountKeyResponse struct {
-	Active      bool      `json:"active"`
-	CreatedAt   time.Time `json:"createdAt"`
-	Credentials struct {
-		Aud        string    `json:"aud"`
-		Iss        string    `json:"iss"`
-		Kid        string    `json:"kid"`
-		PrivateKey *string   `json:"privateKey,omitempty"`
-		Sub        uuid.UUID `json:"sub"`
-	} `json:"credentials"`
-	ID           uuid.UUID  `json:"id"`
-	KeyAlgorithm string     `json:"keyAlgorithm"`
-	KeyOrigin    string     `json:"keyOrigin"`
-	KeyType      string     `json:"keyType"`
-	PublicKey    string     `json:"publicKey"`
-	ValidUntil   *time.Time `json:"validUntil,omitempty"`
+	Active       bool                          `json:"active"`
+	CreatedAt    time.Time                     `json:"createdAt"`
+	Credentials  *ServiceAccountKeyCredentials `json:"credentials"`
+	ID           uuid.UUID                     `json:"id"`
+	KeyAlgorithm string                        `json:"keyAlgorithm"`
+	KeyOrigin    string                        `json:"keyOrigin"`
+	KeyType      string                        `json:"keyType"`
+	PublicKey    string                        `json:"publicKey"`
+	ValidUntil   *time.Time                    `json:"validUntil,omitempty"`
+}
+
+type ServiceAccountKeyCredentials struct {
+	Aud        string    `json:"aud"`
+	Iss        string    `json:"iss"`
+	Kid        string    `json:"kid"`
+	PrivateKey *string   `json:"privateKey,omitempty"`
+	Sub        uuid.UUID `json:"sub"`
 }
 
 // GetConfig returns the flow configuration

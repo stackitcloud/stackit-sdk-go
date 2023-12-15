@@ -152,7 +152,7 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		return nil, fmt.Errorf("unmarshalling service account key: %w", err)
 	}
 
-	if serviceAccountKey.Credentials.PrivateKey != nil {
+	if serviceAccountKey.Credentials != nil && serviceAccountKey.Credentials.PrivateKey != nil {
 		// TODO: Confirm that sa key private key should take precedence
 		// if cfg.PrivateKey != "" && cfg.PrivateKey != *serviceAccountKey.Credentials.PrivateKey {
 		// 	return nil, fmt.Errorf("configuring key authentication: private key was found both in the configuration and in the service account key and they don't match.")

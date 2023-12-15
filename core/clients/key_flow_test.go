@@ -5,7 +5,6 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
-	"encoding/json"
 	"encoding/pem"
 	"fmt"
 	"io"
@@ -20,28 +19,34 @@ import (
 	"github.com/google/uuid"
 )
 
-const saKeyStrPattern = `{
-	"active": true,
-	"createdAt": "2023-03-23T18:26:20.335Z",
-	"credentials": {
-	  "aud": "https://stackit-service-account-prod.apps.01.cf.eu01.stackit.cloud",
-	  "iss": "stackit@sa.stackit.cloud",
-	  "kid": "%s",
-	  "sub": "%s"
-	},
-	"id": "%s",
-	"keyAlgorithm": "RSA_2048",
-	"keyOrigin": "USER_PROVIDED",
-	"keyType": "USER_MANAGED",
-	"publicKey": "...",
-	"validUntil": "2024-03-22T18:05:41Z"
-}`
-
 var (
-	saKey          = fmt.Sprintf(saKeyStrPattern, uuid.New().String(), uuid.New().String(), uuid.New().String())
 	testSigningKey = []byte(`Test`)
 	testJwks       = []byte(`{ "keys": [ { "kty":"oct", "kid":"test", "alg":"HS256" } ] }`)
 )
+
+func fixtureServiceAccountKey(mods ...func(*ServiceAccountKeyResponse)) *ServiceAccountKeyResponse {
+	validUntil := time.Now().Add(time.Hour)
+	serviceAccountKeyResponse := &ServiceAccountKeyResponse{
+		Active:    true,
+		CreatedAt: time.Now(),
+		Credentials: &ServiceAccountKeyCredentials{
+			Aud: "https://stackit-service-account-prod.apps.01.cf.eu01.stackit.cloud",
+			Iss: "stackit@sa.stackit.cloud",
+			Kid: uuid.New().String(),
+			Sub: uuid.New(),
+		},
+		ID:           uuid.New(),
+		KeyAlgorithm: "RSA_2048",
+		KeyOrigin:    "USER_PROVIDED",
+		KeyType:      "USER_MANAGED",
+		PublicKey:    "...",
+		ValidUntil:   &validUntil,
+	}
+	for _, mod := range mods {
+		mod(serviceAccountKeyResponse)
+	}
+	return serviceAccountKeyResponse
+}
 
 func generatePrivateKey() ([]byte, error) {
 	// Generate a new RSA key pair with a size of 2048 bits
@@ -63,32 +68,32 @@ func generatePrivateKey() ([]byte, error) {
 func TestKeyFlowInit(t *testing.T) {
 	tests := []struct {
 		name              string
-		serviceAccountKey string
+		serviceAccountKey *ServiceAccountKeyResponse
 		genPrivateKey     bool
 		invalidPrivateKey bool
 		wantErr           bool
 	}{
 		{
-			name:              "ok",
-			serviceAccountKey: saKey,
+			name:              "ok-provided-private-key",
+			serviceAccountKey: fixtureServiceAccountKey(),
 			genPrivateKey:     true,
 			wantErr:           false,
 		},
 		{
 			name:              "missing_private_key",
-			serviceAccountKey: saKey,
+			serviceAccountKey: fixtureServiceAccountKey(),
 			genPrivateKey:     false,
 			wantErr:           true,
 		},
 		{
 			name:              "missing_service_account_key",
-			serviceAccountKey: "",
+			serviceAccountKey: nil,
 			genPrivateKey:     true,
 			wantErr:           true,
 		},
 		{
 			name:              "invalid_private_key",
-			serviceAccountKey: saKey,
+			serviceAccountKey: fixtureServiceAccountKey(),
 			genPrivateKey:     false,
 			invalidPrivateKey: true,
 			wantErr:           true,
@@ -100,26 +105,17 @@ func TestKeyFlowInit(t *testing.T) {
 			cfg := &KeyFlowConfig{}
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", "")
 			if tt.genPrivateKey {
-				privateKey, err := generatePrivateKey()
+				privateKeyBytes, err := generatePrivateKey()
 				if err != nil {
 					t.Fatalf("Error generating private key: %s", err)
 				}
-				cfg.PrivateKey = string(privateKey)
+				cfg.PrivateKey = string(privateKeyBytes)
 			}
 			if tt.invalidPrivateKey {
 				cfg.PrivateKey = "invalid_key"
 			}
-			var serviceAccountKey = &ServiceAccountKeyResponse{}
-			if tt.serviceAccountKey == "" {
-				serviceAccountKey = nil
-			} else {
-				err := json.Unmarshal([]byte(tt.serviceAccountKey), serviceAccountKey)
-				if err != nil {
-					t.Fatalf("unmarshalling service account key: %s", err)
-				}
-			}
 
-			cfg.ServiceAccountKey = serviceAccountKey
+			cfg.ServiceAccountKey = tt.serviceAccountKey
 			if err := c.Init(cfg); (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
