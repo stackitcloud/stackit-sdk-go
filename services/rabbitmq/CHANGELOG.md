@@ -1,5 +1,5 @@
-## v0.6.0 (2023-12-13)
+## v0.6.0 (2023-11-10)
 
-- Manage your RabbitMQ resources: `Instance`, `Credentials`, `Offerings`
+- Manage your STACKIT RabbitMQ resources: `Instance`, `Credentials`, `Offerings`
 - Waiters for async operations: `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, `DeleteInstanceWaitHandler`, `CreateCredentialsWaitHandler`, `DeleteCredentialsWaitHandler`
 - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/rabbitmq)
