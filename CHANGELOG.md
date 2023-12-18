@@ -1,6 +1,6 @@
 ## Release (2023-12-13)
 
-This is the first GitHub release of the STACKIT GO SDK.
+This is the first GitHub release of the STACKIT Go SDK.
 
 ### Highlights
 
