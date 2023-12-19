@@ -1,4 +1,4 @@
-## v0.9.0 (2023-12-19)
+## v0.9.0 (2023-12-20)
 
 API methods and structs were renamed to have the same look and feel across all services and according to user feedback.
 

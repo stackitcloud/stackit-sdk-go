@@ -1,4 +1,4 @@
-## Release (2023-12-19)
+## Release (2023-12-20)
 
 API methods and structs were renamed to have the same look and feel across all services and according to user feedback:
 
@@ -13,7 +13,7 @@ API methods and structs were renamed to have the same look and feel across all s
 
 Below is the list of changes for the API methods. For each service, you can check out the full changelog.
 
-- `argus`: [v0.8.0](services/argus/CHANGELOG.md#v080-2023-12-19)
+- `argus`: [v0.8.0](services/argus/CHANGELOG.md#v080-2023-12-20)
   - `CreateCredential` renamed to `CreateCredentials`
   - `CreateInstanceAlertConfigReceiver` renamed to `CreateAlertConfigReceiver`
   - `DeleteCredential` renamed to `DeleteCredentials`
@@ -38,34 +38,34 @@ Below is the list of changes for the API methods. For each service, you can chec
   - `UpdateInstanceAlertConfigRouteReceiver` renamed to `UpdateAlertConfigRoute`
   - `UpdateInstanceAlertConfigs` renamed to `UpdateAlertConfigs`
   - `UpdateInstanceGrafanaConfigs` renamed to `UpdateGrafanaConfigs`
-- `dns`: [v0.7.0](services/dns/CHANGELOG.md#v070-2023-12-19)
+- `dns`: [v0.7.0](services/dns/CHANGELOG.md#v070-2023-12-20)
   - `GetRecordSets` renamed to `ListRecordSets`
   - `GetZones` renamed to `ListZones`
   - `UpdateRecord` renamed to `PartialUpdateRecord`
   - `UpdateRecordSet` renamed to `PartialUpdateRecordSet`
   - `UpdateZone` renamed to `PartialUpdateZone`
-- `loadbalancer`: [v0.8.0](services/loadbalancer/CHANGELOG.md#v080-2023-12-19)
+- `loadbalancer`: [v0.8.0](services/loadbalancer/CHANGELOG.md#v080-2023-12-20)
   - `DisableLoadBalancing` renamed to `DisableService`
   - `EnableLoadBalancing` renamed to `EnableService`
   - `GetProjectStatus` renamed to `GetServiceStatus`
-- `logme`: [v0.7.0](services/logme/CHANGELOG.md#v070-2023-12-19)
+- `logme`: [v0.7.0](services/logme/CHANGELOG.md#v070-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `mariadb`: [v0.7.0](services/mariadb/CHANGELOG.md#v070-2023-12-19)
+- `mariadb`: [v0.7.0](services/mariadb/CHANGELOG.md#v070-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `membership`: [v0.3.0](services/membership/CHANGELOG.md#v030-2023-12-19)
+- `membership`: [v0.3.0](services/membership/CHANGELOG.md#v030-2023-12-20)
   - `DeleteMembers` renamed to `RemoveMembers`
   - `GetMembers` renamed to `ListMembers`
   - `GetMemberships` renamed to `ListUserMemberships`
   - `GetPermissions` renamed to `ListPermissions`
   - `GetRoles` renamed to `ListRoles`
   - `UpdateMembers` renamed to `AddMembers`
-- `mongodbflex`: [v0.8.0](services/mongodbflex/CHANGELOG.md#v080-2023-12-19)
+- `mongodbflex`: [v0.8.0](services/mongodbflex/CHANGELOG.md#v080-2023-12-20)
   - `DeleteProject` renamed to `DisableService`
   - `GetBackups` renamed to `ListBackups`
   - `GetCPUMetrics` renamed to `ListCPUMetrics`
@@ -78,19 +78,19 @@ Below is the list of changes for the API methods. For each service, you can chec
   - `GetInstances` renamed to `ListInstances`
   - `GetMemoryMetrics` renamed to `ListMemoryMetrics`
   - `GetUsers` renamed to `ListUsers`
-- `objectstorage`: [v0.8.0](services/objectstorage/CHANGELOG.md#v080-2023-12-19)
+- `objectstorage`: [v0.8.0](services/objectstorage/CHANGELOG.md#v080-2023-12-20)
   - `CreateProject` renamed to `EnableService`
   - `DeleteProject` renamed to `DisableService`
   - `GetAccessKeys` renamed to `ListAccessKeys`
   - `GetBuckets` renamed to `ListBuckets`
   - `GetCredentialsGroups` renamed to `ListCredentialsGroups`
   - `GetProject` renamed to `GetServiceStatus`
-- `opensearch`: [v0.7.0](services/opensearch/CHANGELOG.md#v070-2023-12-19)
+- `opensearch`: [v0.7.0](services/opensearch/CHANGELOG.md#v070-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `postgresflex`: [v0.8.0](services/postgresflex/CHANGELOG.md#v080-2023-12-19)
+- `postgresflex`: [v0.8.0](services/postgresflex/CHANGELOG.md#v080-2023-12-20)
   - `GetBackups` renamed to `ListBackups`
   - `GetFlavors` renamed to `ListFlavors`
   - `GetInstances` renamed to `ListInstances`
@@ -98,39 +98,39 @@ Below is the list of changes for the API methods. For each service, you can chec
   - `GetUsers` renamed to `ListUsers`
   - `GetVersions` renamed to `ListVersions`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `postgresql`: [v0.9.0](services/postgresql/CHANGELOG.md#v090-2023-12-19)
+- `postgresql`: [v0.9.0](services/postgresql/CHANGELOG.md#v090-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `rabbitmq`: [v0.7.0](services/rabbitmq/CHANGELOG.md#v070-2023-12-19)
+- `rabbitmq`: [v0.7.0](services/rabbitmq/CHANGELOG.md#v070-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `redis`: [v0.7.0](services/redis/CHANGELOG.md#v0670-2023-12-19)
+- `redis`: [v0.7.0](services/redis/CHANGELOG.md#v0670-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `resourcemanager`: [v0.7.0](services/resourcemanager/CHANGELOG.md#v070-2023-12-19)
+- `resourcemanager`: [v0.7.0](services/resourcemanager/CHANGELOG.md#v070-2023-12-20)
   - `GetProjects` renamed to `ListProjects`
   - `UpdateProject` renamed to `PartialUpdateProject`
-- `secretsmanager`: [v0.5.0](services/secretsmanager/CHANGELOG.md#v050-2023-12-19)
+- `secretsmanager`: [v0.5.0](services/secretsmanager/CHANGELOG.md#v050-2023-12-20)
   - `CreateAcl` renamed to `CreateACL`
   - `DeleteAcl` renamed to `DeleteACL`
   - `GetAcl` renamed to `GetACL`
   - `GetAcls` renamed to `ListACLs`
   - `GetInstances` renamed to `ListInstances`
   - `UpdateAcl` renamed to `UpdateACL`
-- `serviceaccount`: [v0.3.0](services/serviceaccount/CHANGELOG.md#v030-2023-12-19)
+- `serviceaccount`: [v0.3.0](services/serviceaccount/CHANGELOG.md#v030-2023-12-20)
   - `GetAccessTokens` renamed to `ListAccessTokens`
   - `GetServiceAccountJWKS` renamed to `GetJWKS`
   - `GetServiceAccountKeys` renamed to `ListServiceAccountKeys`
   - `GetServiceAccounts` renamed to `ListServiceAccounts`
   - `GetUsers` renamed to `ListUsers`
   - `UpdateServiceAccountKey` renamed to `PartialUpdateServiceAccountKey`
-- `ske`: [v0.8.0](services/ske/CHANGELOG.md#v080-2023-12-19)
+- `ske`: [v0.8.0](services/ske/CHANGELOG.md#v080-2023-12-20)
   - `CreateProject` renamed to `EnableService`
   - `DeleteProject` renamed to `DisableService`
   - `GetClusters` renamed to `ListClusters`
