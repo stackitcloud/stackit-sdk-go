@@ -20,12 +20,12 @@ const (
 // Interface needed for tests
 type APIClientInstanceInterface interface {
 	GetInstanceExecute(ctx context.Context, projectId, instanceId string) (*postgresflex.InstanceResponse, error)
-	GetUsersExecute(ctx context.Context, projectId string, instanceId string) (*postgresflex.UsersResponse, error)
+	ListUsersExecute(ctx context.Context, projectId string, instanceId string) (*postgresflex.ListUsersResponse, error)
 }
 
 // Interface needed for tests
 type APIClientUserInterface interface {
-	GetUserExecute(ctx context.Context, projectId, instanceId, userId string) (*postgresflex.UserResponse, error)
+	GetUserExecute(ctx context.Context, projectId, instanceId, userId string) (*postgresflex.GetUserResponse, error)
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
@@ -59,7 +59,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 
 		// User operations aren't available right after an instance is deemed successful
 		// To check if they are, perform a users request
-		_, err = a.GetUsersExecute(ctx, projectId, instanceId)
+		_, err = a.ListUsersExecute(ctx, projectId, instanceId)
 		if err == nil {
 			return true, instanceGetResponse, nil
 		}

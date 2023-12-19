@@ -18,27 +18,27 @@ type apiClientMocked struct {
 	jobs          []argus.Job
 }
 
-func (a *apiClientMocked) GetInstanceExecute(_ context.Context, _, _ string) (*argus.InstanceResponse, error) {
+func (a *apiClientMocked) GetInstanceExecute(_ context.Context, _, _ string) (*argus.GetInstanceResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
 
-	return &argus.InstanceResponse{
+	return &argus.GetInstanceResponse{
 		Id:     utils.Ptr("iid"),
 		Status: a.resourceState,
 	}, nil
 }
 
-func (a *apiClientMocked) GetScrapeConfigsExecute(_ context.Context, _, _ string) (*argus.ScrapeConfigsResponse, error) {
+func (a *apiClientMocked) ListScrapeConfigsExecute(_ context.Context, _, _ string) (*argus.ListScrapeConfigsResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
 
-	return &argus.ScrapeConfigsResponse{
+	return &argus.ListScrapeConfigsResponse{
 		Data: &a.jobs,
 	}, nil
 }
@@ -94,9 +94,9 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 				resourceState: tt.resourceState,
 			}
 
-			var wantRes *argus.InstanceResponse
+			var wantRes *argus.GetInstanceResponse
 			if tt.wantResp {
-				wantRes = &argus.InstanceResponse{
+				wantRes = &argus.GetInstanceResponse{
 					Id:     utils.Ptr("iid"),
 					Status: tt.resourceState,
 				}
@@ -160,9 +160,9 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				resourceState: tt.resourceState,
 			}
 
-			var wantRes *argus.InstanceResponse
+			var wantRes *argus.GetInstanceResponse
 			if tt.wantResp {
-				wantRes = &argus.InstanceResponse{
+				wantRes = &argus.GetInstanceResponse{
 					Status: tt.resourceState,
 					Id:     utils.Ptr("iid"),
 				}
@@ -226,9 +226,9 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				resourceState: tt.resourceState,
 			}
 
-			var wantRes *argus.InstanceResponse
+			var wantRes *argus.GetInstanceResponse
 			if tt.wantResp {
-				wantRes = &argus.InstanceResponse{
+				wantRes = &argus.GetInstanceResponse{
 					Status: tt.resourceState,
 					Id:     utils.Ptr("iid"),
 				}
@@ -285,9 +285,9 @@ func TestCreateScrapeConfigWaitHandler(t *testing.T) {
 				jobs:     tt.jobs,
 			}
 
-			var wantRes *argus.ScrapeConfigsResponse
+			var wantRes *argus.ListScrapeConfigsResponse
 			if tt.wantResp {
-				wantRes = &argus.ScrapeConfigsResponse{
+				wantRes = &argus.ListScrapeConfigsResponse{
 					Data: &tt.jobs,
 				}
 			}
@@ -343,9 +343,9 @@ func TestDeleteScrapeConfigWaitHandler(t *testing.T) {
 				jobs:     tt.jobs,
 			}
 
-			var wantRes *argus.ScrapeConfigsResponse
+			var wantRes *argus.ListScrapeConfigsResponse
 			if tt.wantResp {
-				wantRes = &argus.ScrapeConfigsResponse{
+				wantRes = &argus.ListScrapeConfigsResponse{
 					Data: &tt.jobs,
 				}
 			}

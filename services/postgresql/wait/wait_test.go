@@ -31,7 +31,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 		if a.deletionSucceedsWithErrors {
 			return &postgresql.Instance{
 				InstanceId: &a.resourceId,
-				LastOperation: &postgresql.LastOperation{
+				LastOperation: &postgresql.InstanceLastOperation{
 					Description: &a.resourceDescription,
 					Type:        &a.resourceOperation,
 					State:       &a.resourceState,
@@ -45,7 +45,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 
 	return &postgresql.Instance{
 		InstanceId: &a.resourceId,
-		LastOperation: &postgresql.LastOperation{
+		LastOperation: &postgresql.InstanceLastOperation{
 			Description: &a.resourceDescription,
 			Type:        &a.resourceOperation,
 			State:       &a.resourceState,
@@ -130,7 +130,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &postgresql.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &postgresql.LastOperation{
+					LastOperation: &postgresql.InstanceLastOperation{
 						Type:        &createType,
 						State:       &tt.resourceState,
 						Description: utils.Ptr(""),
@@ -204,7 +204,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &postgresql.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &postgresql.LastOperation{
+					LastOperation: &postgresql.InstanceLastOperation{
 						Type:        &updateType,
 						State:       &tt.resourceState,
 						Description: utils.Ptr(""),

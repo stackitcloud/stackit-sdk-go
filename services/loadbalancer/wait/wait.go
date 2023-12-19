@@ -33,7 +33,7 @@ const (
 // Interface needed for tests
 type APIClientInterface interface {
 	GetLoadBalancerExecute(ctx context.Context, projectId, name string) (*loadbalancer.LoadBalancer, error)
-	GetStatusExecute(ctx context.Context, projectId string) (*loadbalancer.StatusResponse, error)
+	GetServiceStatusExecute(ctx context.Context, projectId string) (*loadbalancer.GetServiceStatusResponse, error)
 }
 
 // CreateLoadBalancerWaitHandler will wait for load balancer creation
@@ -85,10 +85,10 @@ func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 	return handler
 }
 
-// EnableLoadBalancingWaitHandler will wait for functionality to be enabled
-func EnableLoadBalancingWaitHandler(ctx context.Context, a APIClientInterface, projectId string) *wait.AsyncActionHandler[loadbalancer.StatusResponse] {
-	handler := wait.New(func() (waitFinished bool, response *loadbalancer.StatusResponse, err error) {
-		s, err := a.GetStatusExecute(ctx, projectId)
+// EnableServiceWaitHandler will wait for functionality to be enabled
+func EnableServiceWaitHandler(ctx context.Context, a APIClientInterface, projectId string) *wait.AsyncActionHandler[loadbalancer.GetServiceStatusResponse] {
+	handler := wait.New(func() (waitFinished bool, response *loadbalancer.GetServiceStatusResponse, err error) {
+		s, err := a.GetServiceStatusExecute(ctx, projectId)
 		if err != nil {
 			return false, nil, err
 		}

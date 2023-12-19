@@ -37,7 +37,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 		if a.deletionSucceedsWithErrors {
 			return &rabbitmq.Instance{
 				InstanceId: &a.resourceId,
-				LastOperation: &rabbitmq.LastOperation{
+				LastOperation: &rabbitmq.InstanceLastOperation{
 					Description: &a.resourceDescription,
 					Type:        a.resourceOperation,
 					State:       &a.resourceState,
@@ -51,7 +51,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 
 	return &rabbitmq.Instance{
 		InstanceId: &a.resourceId,
-		LastOperation: &rabbitmq.LastOperation{
+		LastOperation: &rabbitmq.InstanceLastOperation{
 			Description: &a.resourceDescription,
 			Type:        a.resourceOperation,
 			State:       &a.resourceState,
@@ -136,7 +136,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &rabbitmq.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &rabbitmq.LastOperation{
+					LastOperation: &rabbitmq.InstanceLastOperation{
 						Type:        &instanceTypeCreate,
 						State:       &tt.resourceState,
 						Description: utils.Ptr(""),
@@ -210,7 +210,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &rabbitmq.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &rabbitmq.LastOperation{
+					LastOperation: &rabbitmq.InstanceLastOperation{
 						Type:        &instanceTypeUpdate,
 						State:       &tt.resourceState,
 						Description: utils.Ptr(""),

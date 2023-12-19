@@ -33,14 +33,14 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 	}
 
 	return &postgresflex.InstanceResponse{
-		Item: &postgresflex.InstanceSingleInstance{
+		Item: &postgresflex.Instance{
 			Id:     &a.instanceId,
 			Status: &a.instanceState,
 		},
 	}, nil
 }
 
-func (a *apiClientInstanceMocked) GetUsersExecute(_ context.Context, _, _ string) (*postgresflex.UsersResponse, error) {
+func (a *apiClientInstanceMocked) ListUsersExecute(_ context.Context, _, _ string) (*postgresflex.ListUsersResponse, error) {
 	if a.usersGetErrorStatus != 0 {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: a.usersGetErrorStatus,
@@ -48,9 +48,9 @@ func (a *apiClientInstanceMocked) GetUsersExecute(_ context.Context, _, _ string
 	}
 
 	aux := int64(0)
-	return &postgresflex.UsersResponse{
+	return &postgresflex.ListUsersResponse{
 		Count: &aux,
-		Items: &[]postgresflex.InstanceListUser{},
+		Items: &[]postgresflex.ListUser{},
 	}, nil
 }
 
@@ -61,7 +61,7 @@ type apiClientUserMocked struct {
 	isUserDeleted bool
 }
 
-func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _ string) (*postgresflex.UserResponse, error) {
+func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _ string) (*postgresflex.GetUserResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -74,8 +74,8 @@ func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _ string) 
 		}
 	}
 
-	return &postgresflex.UserResponse{
-		Item: &postgresflex.UserResponseUser{
+	return &postgresflex.GetUserResponse{
+		Item: &postgresflex.UserResponse{
 			Id: &a.userId,
 		},
 	}, nil
@@ -155,7 +155,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			var wantRes *postgresflex.InstanceResponse
 			if tt.wantResp {
 				wantRes = &postgresflex.InstanceResponse{
-					Item: &postgresflex.InstanceSingleInstance{
+					Item: &postgresflex.Instance{
 						Id:     &instanceId,
 						Status: &tt.instanceState,
 					},
@@ -232,7 +232,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			var wantRes *postgresflex.InstanceResponse
 			if tt.wantResp {
 				wantRes = &postgresflex.InstanceResponse{
-					Item: &postgresflex.InstanceSingleInstance{
+					Item: &postgresflex.Instance{
 						Id:     &instanceId,
 						Status: &tt.instanceState,
 					},

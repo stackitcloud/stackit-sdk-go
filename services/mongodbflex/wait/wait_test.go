@@ -32,7 +32,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 	}
 
 	return &mongodbflex.GetInstanceResponse{
-		Item: &mongodbflex.InstanceSingleInstance{
+		Item: &mongodbflex.Instance{
 			Id:     &a.instanceId,
 			Status: &a.instanceState,
 		},
@@ -96,7 +96,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			var wantRes *mongodbflex.GetInstanceResponse
 			if tt.wantResp {
 				wantRes = &mongodbflex.GetInstanceResponse{
-					Item: &mongodbflex.InstanceSingleInstance{
+					Item: &mongodbflex.Instance{
 						Id:     &instanceId,
 						Status: &tt.instanceState,
 					},
@@ -173,7 +173,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			var wantRes *mongodbflex.GetInstanceResponse
 			if tt.wantResp {
 				wantRes = &mongodbflex.GetInstanceResponse{
-					Item: &mongodbflex.InstanceSingleInstance{
+					Item: &mongodbflex.Instance{
 						Id:     &instanceId,
 						Status: &tt.instanceState,
 					},
