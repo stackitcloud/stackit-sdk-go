@@ -76,8 +76,8 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 	return handler
 }
 
-// UpdateInstanceWaitHandler will wait for instance update
-func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
+// PartialUpdateInstanceWaitHandler will wait for instance update
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {

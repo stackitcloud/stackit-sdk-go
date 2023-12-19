@@ -46,8 +46,8 @@ func CreateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 	return handler
 }
 
-// UpdateZoneWaitHandler will wait for zone update
-func UpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
+// PartialUpdateZoneWaitHandler will wait for zone update
+func PartialUpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
 	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
 		if err != nil {
@@ -114,7 +114,7 @@ func CreateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 }
 
 // UpdateRecordWaitHandler will wait for recordset update
-func UpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
+func PartialUpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
 	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)
 		if err != nil {

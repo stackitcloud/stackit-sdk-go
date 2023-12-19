@@ -212,7 +212,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+			handler := PartialUpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 

@@ -52,8 +52,8 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 	return handler
 }
 
-// UpdateInstanceWaitHandler will wait for instance update
-func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
+// PartialUpdateInstanceWaitHandler will wait for instance update
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[rabbitmq.Instance] {
 	handler := wait.New(func() (waitFinished bool, response *rabbitmq.Instance, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
