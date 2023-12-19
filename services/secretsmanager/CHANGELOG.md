@@ -1,6 +1,6 @@
 ## v0.5.0 (2023-12-19)
 
-API methods and structs were renamed to have the same look and feel and according to user feedback.
+API methods and structs were renamed to have the same look and feel across all services and according to user feedback.
 
 - Changed methods:
   - `CreateAcl` renamed to `CreateACL`
