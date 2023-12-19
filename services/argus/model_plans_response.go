@@ -14,5 +14,5 @@ type PlansResponse struct {
 	// REQUIRED
 	Message *string `json:"message"`
 	// REQUIRED
-	Plans *[]PlanModel `json:"plans"`
+	Plans *[]Plan `json:"plans"`
 }

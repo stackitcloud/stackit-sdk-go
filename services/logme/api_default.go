@@ -167,12 +167,12 @@ func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload Cr
 	return r
 }
 
-func (r ApiCreateInstanceRequest) Execute() (*InstanceId, error) {
+func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *InstanceId
+		localVarReturnValue *CreateInstanceResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
@@ -290,7 +290,7 @@ func (a *APIClient) CreateInstance(ctx context.Context, projectId string) ApiCre
 	}
 }
 
-func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string) (*InstanceId, error) {
+func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string) (*CreateInstanceResponse, error) {
 	r := ApiCreateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -679,133 +679,6 @@ func (a *APIClient) GetCredentialsExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiGetCredentialsIdsRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	instanceId string
-}
-
-func (r ApiGetCredentialsIdsRequest) Execute() (*CredentialsIdsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CredentialsIdsResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentialsIds")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetCredentialsIds get list of credentials ids
-
-get list all credentials ids for instance
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId
-	@param instanceId Instance id
-	@return ApiGetCredentialsIdsRequest
-*/
-func (a *APIClient) GetCredentialsIds(ctx context.Context, projectId string, instanceId string) ApiGetCredentialsIdsRequest {
-	return ApiGetCredentialsIdsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-}
-
-func (a *APIClient) GetCredentialsIdsExecute(ctx context.Context, projectId string, instanceId string) (*CredentialsIdsResponse, error) {
-	r := ApiGetCredentialsIdsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-	return r.Execute()
-}
-
 type ApiGetInstanceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -944,21 +817,148 @@ func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, in
 	return r.Execute()
 }
 
-type ApiGetInstancesRequest struct {
+type ApiListCredentialsRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	instanceId string
+}
+
+func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListCredentialsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCredentials")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListCredentials get list of credentials ids
+
+get list all credentials ids for instance
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param instanceId Instance id
+	@return ApiListCredentialsRequest
+*/
+func (a *APIClient) ListCredentials(ctx context.Context, projectId string, instanceId string) ApiListCredentialsRequest {
+	return ApiListCredentialsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+func (a *APIClient) ListCredentialsExecute(ctx context.Context, projectId string, instanceId string) (*ListCredentialsResponse, error) {
+	r := ApiListCredentialsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+	return r.Execute()
+}
+
+type ApiListInstancesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiGetInstancesRequest) Execute() (*InstanceList, error) {
+func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *InstanceList
+		localVarReturnValue *ListInstancesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstances")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1041,24 +1041,24 @@ func (r ApiGetInstancesRequest) Execute() (*InstanceList, error) {
 }
 
 /*
-GetInstances get service instances list
+ListInstances get service instances list
 
 Get a list of available instances
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
-	@return ApiGetInstancesRequest
+	@return ApiListInstancesRequest
 */
-func (a *APIClient) GetInstances(ctx context.Context, projectId string) ApiGetInstancesRequest {
-	return ApiGetInstancesRequest{
+func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest {
+	return ApiListInstancesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 	}
 }
 
-func (a *APIClient) GetInstancesExecute(ctx context.Context, projectId string) (*InstanceList, error) {
-	r := ApiGetInstancesRequest{
+func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) (*ListInstancesResponse, error) {
+	r := ApiListInstancesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1066,21 +1066,21 @@ func (a *APIClient) GetInstancesExecute(ctx context.Context, projectId string) (
 	return r.Execute()
 }
 
-type ApiGetOfferingsRequest struct {
+type ApiListOfferingsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiGetOfferingsRequest) Execute() (*OfferingList, error) {
+func (r ApiListOfferingsRequest) Execute() (*ListOfferingsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *OfferingList
+		localVarReturnValue *ListOfferingsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOfferings")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListOfferings")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1153,24 +1153,24 @@ func (r ApiGetOfferingsRequest) Execute() (*OfferingList, error) {
 }
 
 /*
-GetOfferings get the service offerings
+ListOfferings get the service offerings
 
 Get the service offerings that the service broker offers.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
-	@return ApiGetOfferingsRequest
+	@return ApiListOfferingsRequest
 */
-func (a *APIClient) GetOfferings(ctx context.Context, projectId string) ApiGetOfferingsRequest {
-	return ApiGetOfferingsRequest{
+func (a *APIClient) ListOfferings(ctx context.Context, projectId string) ApiListOfferingsRequest {
+	return ApiListOfferingsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 	}
 }
 
-func (a *APIClient) GetOfferingsExecute(ctx context.Context, projectId string) (*OfferingList, error) {
-	r := ApiGetOfferingsRequest{
+func (a *APIClient) ListOfferingsExecute(ctx context.Context, projectId string) (*ListOfferingsResponse, error) {
+	r := ApiListOfferingsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1178,29 +1178,29 @@ func (a *APIClient) GetOfferingsExecute(ctx context.Context, projectId string) (
 	return r.Execute()
 }
 
-type ApiUpdateInstanceRequest struct {
-	ctx                   context.Context
-	apiService            *DefaultApiService
-	projectId             string
-	instanceId            string
-	updateInstancePayload *UpdateInstancePayload
+type ApiPartialUpdateInstanceRequest struct {
+	ctx                          context.Context
+	apiService                   *DefaultApiService
+	projectId                    string
+	instanceId                   string
+	partialUpdateInstancePayload *PartialUpdateInstancePayload
 }
 
 // Parameters for the requested update operation on service instance - sgw acl update, plan upgrade
 
-func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
-	r.updateInstancePayload = &updateInstancePayload
+func (r ApiPartialUpdateInstanceRequest) PartialUpdateInstancePayload(partialUpdateInstancePayload PartialUpdateInstancePayload) ApiPartialUpdateInstanceRequest {
+	r.partialUpdateInstancePayload = &partialUpdateInstancePayload
 	return r
 }
 
-func (r ApiUpdateInstanceRequest) Execute() error {
+func (r ApiPartialUpdateInstanceRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPatch
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateInstance")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1212,8 +1212,8 @@ func (r ApiUpdateInstanceRequest) Execute() error {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateInstancePayload == nil {
-		return fmt.Errorf("updateInstancePayload is required and must be specified")
+	if r.partialUpdateInstancePayload == nil {
+		return fmt.Errorf("partialUpdateInstancePayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1234,7 +1234,7 @@ func (r ApiUpdateInstanceRequest) Execute() error {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateInstancePayload
+	localVarPostBody = r.partialUpdateInstancePayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
@@ -1290,17 +1290,17 @@ func (r ApiUpdateInstanceRequest) Execute() error {
 }
 
 /*
-UpdateInstance update a service instance
+PartialUpdateInstance update a service instance
 
 Update a service instance. This could be a sgw acl update or a plan upgrade.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param instanceId id of the instance being updated
-	@return ApiUpdateInstanceRequest
+	@return ApiPartialUpdateInstanceRequest
 */
-func (a *APIClient) UpdateInstance(ctx context.Context, projectId string, instanceId string) ApiUpdateInstanceRequest {
-	return ApiUpdateInstanceRequest{
+func (a *APIClient) PartialUpdateInstance(ctx context.Context, projectId string, instanceId string) ApiPartialUpdateInstanceRequest {
+	return ApiPartialUpdateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1308,8 +1308,8 @@ func (a *APIClient) UpdateInstance(ctx context.Context, projectId string, instan
 	}
 }
 
-func (a *APIClient) UpdateInstanceExecute(ctx context.Context, projectId string, instanceId string) error {
-	r := ApiUpdateInstanceRequest{
+func (a *APIClient) PartialUpdateInstanceExecute(ctx context.Context, projectId string, instanceId string) error {
+	r := ApiPartialUpdateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

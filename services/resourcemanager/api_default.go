@@ -431,7 +431,7 @@ func (a *APIClient) GetProjectExecute(ctx context.Context, containerId string) (
 	return r.Execute()
 }
 
-type ApiGetProjectsRequest struct {
+type ApiListProjectsRequest struct {
 	ctx               context.Context
 	apiService        *DefaultApiService
 	containerParentId *string
@@ -444,47 +444,47 @@ type ApiGetProjectsRequest struct {
 
 // Identifier of the parent resource container - containerId as well as UUID identifier is supported.
 
-func (r ApiGetProjectsRequest) ContainerParentId(containerParentId string) ApiGetProjectsRequest {
+func (r ApiListProjectsRequest) ContainerParentId(containerParentId string) ApiListProjectsRequest {
 	r.containerParentId = &containerParentId
 	return r
 }
 
 // List of container identifiers - containerId as well as UUID identifier is supported.
 
-func (r ApiGetProjectsRequest) ContainerIds(containerIds []string) ApiGetProjectsRequest {
+func (r ApiListProjectsRequest) ContainerIds(containerIds []string) ApiListProjectsRequest {
 	r.containerIds = &containerIds
 	return r
 }
 
 // E-Mail address of the user for whom the visible resource containers should be filtered.
 
-func (r ApiGetProjectsRequest) Member(member string) ApiGetProjectsRequest {
+func (r ApiListProjectsRequest) Member(member string) ApiListProjectsRequest {
 	r.member = &member
 	return r
 }
 
 // The offset of the first item in the collection to return.
 
-func (r ApiGetProjectsRequest) Offset(offset float32) ApiGetProjectsRequest {
+func (r ApiListProjectsRequest) Offset(offset float32) ApiListProjectsRequest {
 	r.offset = &offset
 	return r
 }
 
 // The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
 
-func (r ApiGetProjectsRequest) Limit(limit float32) ApiGetProjectsRequest {
+func (r ApiListProjectsRequest) Limit(limit float32) ApiListProjectsRequest {
 	r.limit = &limit
 	return r
 }
 
 // A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
 
-func (r ApiGetProjectsRequest) CreationTimeStart(creationTimeStart time.Time) ApiGetProjectsRequest {
+func (r ApiListProjectsRequest) CreationTimeStart(creationTimeStart time.Time) ApiListProjectsRequest {
 	r.creationTimeStart = &creationTimeStart
 	return r
 }
 
-func (r ApiGetProjectsRequest) Execute() (*AllProjectsResponse, error) {
+func (r ApiListProjectsRequest) Execute() (*AllProjectsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -492,7 +492,7 @@ func (r ApiGetProjectsRequest) Execute() (*AllProjectsResponse, error) {
 		localVarReturnValue *AllProjectsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetProjects")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListProjects")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -622,7 +622,7 @@ func (r ApiGetProjectsRequest) Execute() (*AllProjectsResponse, error) {
 }
 
 /*
-GetProjects Get All Projects
+ListProjects Get All Projects
 
 Returns all projects and their metadata that:
 - Are children of the specific containerParentId
@@ -636,36 +636,36 @@ Filter:
 - If member is given, containers must not point to the same container parent
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetProjectsRequest
+	@return ApiListProjectsRequest
 */
-func (a *APIClient) GetProjects(ctx context.Context) ApiGetProjectsRequest {
-	return ApiGetProjectsRequest{
+func (a *APIClient) ListProjects(ctx context.Context) ApiListProjectsRequest {
+	return ApiListProjectsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
-func (a *APIClient) GetProjectsExecute(ctx context.Context) (*AllProjectsResponse, error) {
-	r := ApiGetProjectsRequest{
+func (a *APIClient) ListProjectsExecute(ctx context.Context) (*AllProjectsResponse, error) {
+	r := ApiListProjectsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiUpdateProjectRequest struct {
-	ctx                  context.Context
-	apiService           *DefaultApiService
-	containerId          string
-	updateProjectPayload *UpdateProjectPayload
+type ApiPartialUpdateProjectRequest struct {
+	ctx                         context.Context
+	apiService                  *DefaultApiService
+	containerId                 string
+	partialUpdateProjectPayload *PartialUpdateProjectPayload
 }
 
-func (r ApiUpdateProjectRequest) UpdateProjectPayload(updateProjectPayload UpdateProjectPayload) ApiUpdateProjectRequest {
-	r.updateProjectPayload = &updateProjectPayload
+func (r ApiPartialUpdateProjectRequest) PartialUpdateProjectPayload(partialUpdateProjectPayload PartialUpdateProjectPayload) ApiPartialUpdateProjectRequest {
+	r.partialUpdateProjectPayload = &partialUpdateProjectPayload
 	return r
 }
 
-func (r ApiUpdateProjectRequest) Execute() (*ProjectResponse, error) {
+func (r ApiPartialUpdateProjectRequest) Execute() (*ProjectResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -673,7 +673,7 @@ func (r ApiUpdateProjectRequest) Execute() (*ProjectResponse, error) {
 		localVarReturnValue *ProjectResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateProject")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateProject")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -703,7 +703,7 @@ func (r ApiUpdateProjectRequest) Execute() (*ProjectResponse, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateProjectPayload
+	localVarPostBody = r.partialUpdateProjectPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -780,7 +780,7 @@ func (r ApiUpdateProjectRequest) Execute() (*ProjectResponse, error) {
 }
 
 /*
-UpdateProject Update Project
+PartialUpdateProject Update Project
 
 Update the project and its metadata.
 - Update project name
@@ -789,18 +789,18 @@ Update the project and its metadata.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param containerId Project identifier - containerId as well as UUID identifier is supported.
-	@return ApiUpdateProjectRequest
+	@return ApiPartialUpdateProjectRequest
 */
-func (a *APIClient) UpdateProject(ctx context.Context, containerId string) ApiUpdateProjectRequest {
-	return ApiUpdateProjectRequest{
+func (a *APIClient) PartialUpdateProject(ctx context.Context, containerId string) ApiPartialUpdateProjectRequest {
+	return ApiPartialUpdateProjectRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,
 	}
 }
 
-func (a *APIClient) UpdateProjectExecute(ctx context.Context, containerId string) (*ProjectResponse, error) {
-	r := ApiUpdateProjectRequest{
+func (a *APIClient) PartialUpdateProjectExecute(ctx context.Context, containerId string) (*ProjectResponse, error) {
+	r := ApiPartialUpdateProjectRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,

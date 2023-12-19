@@ -30,9 +30,7 @@ type PlanModel struct {
 	// REQUIRED
 	GrafanaGlobalUsers *int64 `json:"grafanaGlobalUsers"`
 	// REQUIRED
-	Id       *string `json:"id"`
-	IsFree   *bool   `json:"isFree,omitempty"`
-	IsPublic *bool   `json:"isPublic,omitempty"`
+	Id *string `json:"id"`
 	// REQUIRED
 	LogsAlert *int64 `json:"logsAlert"`
 	// REQUIRED
@@ -41,8 +39,7 @@ type PlanModel struct {
 	// REQUIRED
 	PlanId *string `json:"planId"`
 	// REQUIRED
-	SamplesPerScrape *int64  `json:"samplesPerScrape"`
-	Schema           *string `json:"schema,omitempty"`
+	SamplesPerScrape *int64 `json:"samplesPerScrape"`
 	// REQUIRED
 	TargetNumber *int64 `json:"targetNumber"`
 	// REQUIRED

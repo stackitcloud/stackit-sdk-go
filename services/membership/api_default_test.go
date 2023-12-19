@@ -23,8 +23,8 @@ import (
 
 func Test_membership_DefaultApiService(t *testing.T) {
 
-	t.Run("Test DefaultApiService DeleteMembers", func(t *testing.T) {
-		path := "/v2/{resourceId}/members/remove"
+	t.Run("Test DefaultApiService AddMembers", func(t *testing.T) {
+		path := "/v2/{resourceId}/members"
 		resourceIdValue := "resourceId"
 		path = strings.Replace(path, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
@@ -64,9 +64,9 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		}
 
 		resourceId := "resourceId"
-		deleteMembersPayload := DeleteMembersPayload{}
+		addMembersPayload := AddMembersPayload{}
 
-		resp, reqErr := apiClient.DeleteMembers(context.Background(), resourceId).DeleteMembersPayload(deleteMembersPayload).Execute()
+		resp, reqErr := apiClient.AddMembers(context.Background(), resourceId).AddMembersPayload(addMembersPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -76,7 +76,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetMembers", func(t *testing.T) {
+	t.Run("Test DefaultApiService ListMembers", func(t *testing.T) {
 		path := "/v2/{resourceType}/{resourceId}/members"
 		resourceTypeValue := "resourceType"
 		path = strings.Replace(path, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(resourceTypeValue, "resourceType")), -1)
@@ -85,7 +85,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := GetMembersResponse{}
+			data := ListMembersResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -121,7 +121,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		resourceType := "resourceType"
 		resourceId := "resourceId"
 
-		resp, reqErr := apiClient.GetMembers(context.Background(), resourceType, resourceId).Execute()
+		resp, reqErr := apiClient.ListMembers(context.Background(), resourceType, resourceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -131,64 +131,12 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetMemberships", func(t *testing.T) {
-		path := "/v2/users/{email}/memberships"
-		emailValue := "email"
-		path = strings.Replace(path, "{"+"email"+"}", url.PathEscape(ParameterValueToString(emailValue, "email")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := MembershipsResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for membership_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		email := "email"
-
-		resp, reqErr := apiClient.GetMemberships(context.Background(), email).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetPermissions", func(t *testing.T) {
+	t.Run("Test DefaultApiService ListPermissions", func(t *testing.T) {
 		path := "/v2/permissions"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := PermissionsResponse{}
+			data := ListPermissionsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -221,7 +169,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		resp, reqErr := apiClient.GetPermissions(context.Background()).Execute()
+		resp, reqErr := apiClient.ListPermissions(context.Background()).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -231,7 +179,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetRoles", func(t *testing.T) {
+	t.Run("Test DefaultApiService ListRoles", func(t *testing.T) {
 		path := "/v2/{resourceType}/{resourceId}/roles"
 		resourceTypeValue := "resourceType"
 		path = strings.Replace(path, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(resourceTypeValue, "resourceType")), -1)
@@ -276,7 +224,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		resourceType := "resourceType"
 		resourceId := "resourceId"
 
-		resp, reqErr := apiClient.GetRoles(context.Background(), resourceType, resourceId).Execute()
+		resp, reqErr := apiClient.ListRoles(context.Background(), resourceType, resourceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -286,8 +234,60 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateMembers", func(t *testing.T) {
-		path := "/v2/{resourceId}/members"
+	t.Run("Test DefaultApiService ListUserMemberships", func(t *testing.T) {
+		path := "/v2/users/{email}/memberships"
+		emailValue := "email"
+		path = strings.Replace(path, "{"+"email"+"}", url.PathEscape(ParameterValueToString(emailValue, "email")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ListUserMembershipsResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for membership_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		email := "email"
+
+		resp, reqErr := apiClient.ListUserMemberships(context.Background(), email).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService RemoveMembers", func(t *testing.T) {
+		path := "/v2/{resourceId}/members/remove"
 		resourceIdValue := "resourceId"
 		path = strings.Replace(path, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
@@ -327,9 +327,9 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		}
 
 		resourceId := "resourceId"
-		updateMembersPayload := UpdateMembersPayload{}
+		removeMembersPayload := RemoveMembersPayload{}
 
-		resp, reqErr := apiClient.UpdateMembers(context.Background(), resourceId).UpdateMembersPayload(updateMembersPayload).Execute()
+		resp, reqErr := apiClient.RemoveMembers(context.Background(), resourceId).RemoveMembersPayload(removeMembersPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)

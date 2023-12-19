@@ -1130,181 +1130,21 @@ func (a *APIClient) DeleteServiceAccountKeyExecute(ctx context.Context, projectI
 	return r.Execute()
 }
 
-type ApiGetAccessTokensRequest struct {
-	ctx                 context.Context
-	apiService          *DefaultApiService
-	projectId           string
-	serviceAccountEmail string
-}
-
-func (r ApiGetAccessTokensRequest) Execute() (*AccessTokensResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AccessTokensResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAccessTokens")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(r.serviceAccountEmail, "serviceAccountEmail")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetAccessTokens List Access Tokens of Service Account
-
-Get all Access Tokens of a Service Account. The token itself is not returned, only the metadata about the access tokens. Access tokens are listed until they are expired. Revoked tokens are returned until expired.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The ID of the project.
-	@param serviceAccountEmail The email of the Service Account.
-	@return ApiGetAccessTokensRequest
-*/
-func (a *APIClient) GetAccessTokens(ctx context.Context, projectId string, serviceAccountEmail string) ApiGetAccessTokensRequest {
-	return ApiGetAccessTokensRequest{
-		apiService:          a.defaultApi,
-		ctx:                 ctx,
-		projectId:           projectId,
-		serviceAccountEmail: serviceAccountEmail,
-	}
-}
-
-func (a *APIClient) GetAccessTokensExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*AccessTokensResponse, error) {
-	r := ApiGetAccessTokensRequest{
-		apiService:          a.defaultApi,
-		ctx:                 ctx,
-		projectId:           projectId,
-		serviceAccountEmail: serviceAccountEmail,
-	}
-	return r.Execute()
-}
-
-type ApiGetServiceAccountJWKSRequest struct {
+type ApiGetJWKSRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	serviceAccountEmail string
 }
 
-func (r ApiGetServiceAccountJWKSRequest) Execute() (*GetServiceAccountJWKS, error) {
+func (r ApiGetJWKSRequest) Execute() (*JWKS, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetServiceAccountJWKS
+		localVarReturnValue *JWKS
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccountJWKS")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetJWKS")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1377,24 +1217,24 @@ func (r ApiGetServiceAccountJWKSRequest) Execute() (*GetServiceAccountJWKS, erro
 }
 
 /*
-GetServiceAccountJWKS Get JSON Web Key set of the service account
+GetJWKS Get JSON Web Key set of the service account
 
 Get JSON Web Key set of the service account
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param serviceAccountEmail The email of the service account.
-	@return ApiGetServiceAccountJWKSRequest
+	@return ApiGetJWKSRequest
 */
-func (a *APIClient) GetServiceAccountJWKS(ctx context.Context, serviceAccountEmail string) ApiGetServiceAccountJWKSRequest {
-	return ApiGetServiceAccountJWKSRequest{
+func (a *APIClient) GetJWKS(ctx context.Context, serviceAccountEmail string) ApiGetJWKSRequest {
+	return ApiGetJWKSRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		serviceAccountEmail: serviceAccountEmail,
 	}
 }
 
-func (a *APIClient) GetServiceAccountJWKSExecute(ctx context.Context, serviceAccountEmail string) (*GetServiceAccountJWKS, error) {
-	r := ApiGetServiceAccountJWKSRequest{
+func (a *APIClient) GetJWKSExecute(ctx context.Context, serviceAccountEmail string) (*JWKS, error) {
+	r := ApiGetJWKSRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		serviceAccountEmail: serviceAccountEmail,
@@ -1567,22 +1407,182 @@ func (a *APIClient) GetServiceAccountKeyExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiGetServiceAccountKeysRequest struct {
+type ApiListAccessTokensRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
 	serviceAccountEmail string
 }
 
-func (r ApiGetServiceAccountKeysRequest) Execute() (*GetServiceAccountsKeysResponse, error) {
+func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetServiceAccountsKeysResponse
+		localVarReturnValue *ListAccessTokensResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccountKeys")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAccessTokens")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(r.serviceAccountEmail, "serviceAccountEmail")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListAccessTokens List Access Tokens of Service Account
+
+Get all Access Tokens of a Service Account. The token itself is not returned, only the metadata about the access tokens. Access tokens are listed until they are expired. Revoked tokens are returned until expired.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The ID of the project.
+	@param serviceAccountEmail The email of the Service Account.
+	@return ApiListAccessTokensRequest
+*/
+func (a *APIClient) ListAccessTokens(ctx context.Context, projectId string, serviceAccountEmail string) ApiListAccessTokensRequest {
+	return ApiListAccessTokensRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+	}
+}
+
+func (a *APIClient) ListAccessTokensExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*ListAccessTokensResponse, error) {
+	r := ApiListAccessTokensRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+	}
+	return r.Execute()
+}
+
+type ApiListServiceAccountKeysRequest struct {
+	ctx                 context.Context
+	apiService          *DefaultApiService
+	projectId           string
+	serviceAccountEmail string
+}
+
+func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListServiceAccountKeysResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccountKeys")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1688,17 +1688,17 @@ func (r ApiGetServiceAccountKeysRequest) Execute() (*GetServiceAccountsKeysRespo
 }
 
 /*
-GetServiceAccountKeys List all keys that belong to the service account
+ListServiceAccountKeys List all keys that belong to the service account
 
 List all keys that belong to the service account
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The ID of the project.
 	@param serviceAccountEmail The email of the service account.
-	@return ApiGetServiceAccountKeysRequest
+	@return ApiListServiceAccountKeysRequest
 */
-func (a *APIClient) GetServiceAccountKeys(ctx context.Context, projectId string, serviceAccountEmail string) ApiGetServiceAccountKeysRequest {
-	return ApiGetServiceAccountKeysRequest{
+func (a *APIClient) ListServiceAccountKeys(ctx context.Context, projectId string, serviceAccountEmail string) ApiListServiceAccountKeysRequest {
+	return ApiListServiceAccountKeysRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1706,8 +1706,8 @@ func (a *APIClient) GetServiceAccountKeys(ctx context.Context, projectId string,
 	}
 }
 
-func (a *APIClient) GetServiceAccountKeysExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*GetServiceAccountsKeysResponse, error) {
-	r := ApiGetServiceAccountKeysRequest{
+func (a *APIClient) ListServiceAccountKeysExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*ListServiceAccountKeysResponse, error) {
+	r := ApiListServiceAccountKeysRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1716,21 +1716,21 @@ func (a *APIClient) GetServiceAccountKeysExecute(ctx context.Context, projectId 
 	return r.Execute()
 }
 
-type ApiGetServiceAccountsRequest struct {
+type ApiListServiceAccountsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiGetServiceAccountsRequest) Execute() (*GetServiceAccountsResponse, error) {
+func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetServiceAccountsResponse
+		localVarReturnValue *ListServiceAccountsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccounts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccounts")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1835,24 +1835,24 @@ func (r ApiGetServiceAccountsRequest) Execute() (*GetServiceAccountsResponse, er
 }
 
 /*
-GetServiceAccounts List all Service Accounts
+ListServiceAccounts List all Service Accounts
 
 List all Service Account resources in a project. Returns the service account resources, not the service accounts that has access to the project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The ID of the project.
-	@return ApiGetServiceAccountsRequest
+	@return ApiListServiceAccountsRequest
 */
-func (a *APIClient) GetServiceAccounts(ctx context.Context, projectId string) ApiGetServiceAccountsRequest {
-	return ApiGetServiceAccountsRequest{
+func (a *APIClient) ListServiceAccounts(ctx context.Context, projectId string) ApiListServiceAccountsRequest {
+	return ApiListServiceAccountsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 	}
 }
 
-func (a *APIClient) GetServiceAccountsExecute(ctx context.Context, projectId string) (*GetServiceAccountsResponse, error) {
-	r := ApiGetServiceAccountsRequest{
+func (a *APIClient) ListServiceAccountsExecute(ctx context.Context, projectId string) (*ListServiceAccountsResponse, error) {
+	r := ApiListServiceAccountsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1860,31 +1860,31 @@ func (a *APIClient) GetServiceAccountsExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiUpdateServiceAccountKeyRequest struct {
-	ctx                            context.Context
-	apiService                     *DefaultApiService
-	projectId                      string
-	serviceAccountEmail            string
-	keyId                          string
-	updateServiceAccountKeyPayload *UpdateServiceAccountKeyPayload
+type ApiPartialUpdateServiceAccountKeyRequest struct {
+	ctx                                   context.Context
+	apiService                            *DefaultApiService
+	projectId                             string
+	serviceAccountEmail                   string
+	keyId                                 string
+	partialUpdateServiceAccountKeyPayload *PartialUpdateServiceAccountKeyPayload
 }
 
 // Service account request
 
-func (r ApiUpdateServiceAccountKeyRequest) UpdateServiceAccountKeyPayload(updateServiceAccountKeyPayload UpdateServiceAccountKeyPayload) ApiUpdateServiceAccountKeyRequest {
-	r.updateServiceAccountKeyPayload = &updateServiceAccountKeyPayload
+func (r ApiPartialUpdateServiceAccountKeyRequest) PartialUpdateServiceAccountKeyPayload(partialUpdateServiceAccountKeyPayload PartialUpdateServiceAccountKeyPayload) ApiPartialUpdateServiceAccountKeyRequest {
+	r.partialUpdateServiceAccountKeyPayload = &partialUpdateServiceAccountKeyPayload
 	return r
 }
 
-func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyResponse, error) {
+func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServiceAccountKeyResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *UpdateServiceAccountKeyResponse
+		localVarReturnValue *PartialUpdateServiceAccountKeyResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateServiceAccountKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateServiceAccountKey")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1916,7 +1916,7 @@ func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateServiceAccountKeyPayload
+	localVarPostBody = r.partialUpdateServiceAccountKeyPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -2004,7 +2004,7 @@ func (r ApiUpdateServiceAccountKeyRequest) Execute() (*UpdateServiceAccountKeyRe
 }
 
 /*
-UpdateServiceAccountKey Update Service Account key
+PartialUpdateServiceAccountKey Update Service Account key
 
 Update a key. You can activate or deactivate a key, or set/delete validUntil. Not usable with service accounts.
 
@@ -2012,10 +2012,10 @@ Update a key. You can activate or deactivate a key, or set/delete validUntil. No
 	@param projectId The ID of the project.
 	@param serviceAccountEmail The email of the service account.
 	@param keyId ID of the key.
-	@return ApiUpdateServiceAccountKeyRequest
+	@return ApiPartialUpdateServiceAccountKeyRequest
 */
-func (a *APIClient) UpdateServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) ApiUpdateServiceAccountKeyRequest {
-	return ApiUpdateServiceAccountKeyRequest{
+func (a *APIClient) PartialUpdateServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) ApiPartialUpdateServiceAccountKeyRequest {
+	return ApiPartialUpdateServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -2024,8 +2024,8 @@ func (a *APIClient) UpdateServiceAccountKey(ctx context.Context, projectId strin
 	}
 }
 
-func (a *APIClient) UpdateServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) (*UpdateServiceAccountKeyResponse, error) {
-	r := ApiUpdateServiceAccountKeyRequest{
+func (a *APIClient) PartialUpdateServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) (*PartialUpdateServiceAccountKeyResponse, error) {
+	r := ApiPartialUpdateServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,

@@ -11,5 +11,5 @@ API version: 1.0.0
 package mongodbflex
 
 type GetBackupResponse struct {
-	Item *InstanceBackup `json:"item,omitempty"`
+	Item *Backup `json:"item,omitempty"`
 }

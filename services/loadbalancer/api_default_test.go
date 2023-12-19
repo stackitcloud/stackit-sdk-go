@@ -241,7 +241,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DisableLoadBalancing", func(t *testing.T) {
+	t.Run("Test DefaultApiService DisableService", func(t *testing.T) {
 		path := "/v1/projects/{projectId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -283,7 +283,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 
-		resp, reqErr := apiClient.DisableLoadBalancing(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.DisableService(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -293,7 +293,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService EnableLoadBalancing", func(t *testing.T) {
+	t.Run("Test DefaultApiService EnableService", func(t *testing.T) {
 		path := "/v1/projects/{projectId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -336,7 +336,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		var xRequestID string
 
-		resp, reqErr := apiClient.EnableLoadBalancing(context.Background(), projectId).XRequestID(xRequestID).Execute()
+		resp, reqErr := apiClient.EnableService(context.Background(), projectId).XRequestID(xRequestID).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -456,14 +456,14 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetStatus", func(t *testing.T) {
+	t.Run("Test DefaultApiService GetServiceStatus", func(t *testing.T) {
 		path := "/v1/projects/{projectId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := StatusResponse{}
+			data := GetServiceStatusResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -498,7 +498,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 
-		resp, reqErr := apiClient.GetStatus(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.GetServiceStatus(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)

@@ -169,7 +169,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetProjects", func(t *testing.T) {
+	t.Run("Test DefaultApiService ListProjects", func(t *testing.T) {
 		path := "/v2/projects"
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -207,7 +207,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		resp, reqErr := apiClient.GetProjects(context.Background()).Execute()
+		resp, reqErr := apiClient.ListProjects(context.Background()).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -217,7 +217,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateProject", func(t *testing.T) {
+	t.Run("Test DefaultApiService PartialUpdateProject", func(t *testing.T) {
 		path := "/v2/projects/{containerId}"
 		containerIdValue := "containerId"
 		path = strings.Replace(path, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(containerIdValue, "containerId")), -1)
@@ -259,7 +259,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 
 		containerId := "containerId"
 
-		resp, reqErr := apiClient.UpdateProject(context.Background(), containerId).Execute()
+		resp, reqErr := apiClient.PartialUpdateProject(context.Background(), containerId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)

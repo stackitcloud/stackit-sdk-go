@@ -11,5 +11,5 @@ API version: 1.0.0
 package postgresflex
 
 type InstanceResponse struct {
-	Item *InstanceSingleInstance `json:"item,omitempty"`
+	Item *Instance `json:"item,omitempty"`
 }

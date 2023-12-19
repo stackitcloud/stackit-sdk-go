@@ -11,14 +11,14 @@ API version: 1.0.0
 package mongodbflex
 
 type UpdateInstancePayload struct {
-	Acl            *InstanceAcl `json:"acl,omitempty"`
-	BackupSchedule *string      `json:"backupSchedule,omitempty"`
-	FlavorId       *string      `json:"flavorId,omitempty"`
+	Acl            *ACL    `json:"acl,omitempty"`
+	BackupSchedule *string `json:"backupSchedule,omitempty"`
+	FlavorId       *string `json:"flavorId,omitempty"`
 	// Following fields are not certain/clear
 	Labels   *map[string]string `json:"labels,omitempty"`
 	Name     *string            `json:"name,omitempty"`
 	Options  *map[string]string `json:"options,omitempty"`
 	Replicas *int64             `json:"replicas,omitempty"`
-	Storage  *InstanceStorage   `json:"storage,omitempty"`
+	Storage  *Storage           `json:"storage,omitempty"`
 	Version  *string            `json:"version,omitempty"`
 }

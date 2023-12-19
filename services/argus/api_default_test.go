@@ -23,7 +23,119 @@ import (
 
 func Test_argus_DefaultApiService(t *testing.T) {
 
-	t.Run("Test DefaultApiService CreateCredential", func(t *testing.T) {
+	t.Run("Test DefaultApiService CreateAlertConfigReceiver", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AlertConfigReceiversResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+		createAlertConfigReceiverPayload := CreateAlertConfigReceiverPayload{}
+
+		resp, reqErr := apiClient.CreateAlertConfigReceiver(context.Background(), instanceId, projectId).CreateAlertConfigReceiverPayload(createAlertConfigReceiverPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService CreateAlertConfigRoute", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AlertConfigRouteResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+		createAlertConfigRoutePayload := CreateAlertConfigRoutePayload{}
+
+		resp, reqErr := apiClient.CreateAlertConfigRoute(context.Background(), instanceId, projectId).CreateAlertConfigRoutePayload(createAlertConfigRoutePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService CreateCredentials", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -32,7 +144,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ApiUserProjectCreated{}
+			data := CreateCredentialsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -68,7 +180,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		instanceId := "instanceId"
 		projectId := "projectId"
 
-		resp, reqErr := apiClient.CreateCredential(context.Background(), instanceId, projectId).Execute()
+		resp, reqErr := apiClient.CreateCredentials(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -122,118 +234,6 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		createInstancePayload := CreateInstancePayload{}
 
 		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService CreateInstanceAlertConfigReceiver", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ReceiversResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-		createInstanceAlertConfigReceiverPayload := CreateInstanceAlertConfigReceiverPayload{}
-
-		resp, reqErr := apiClient.CreateInstanceAlertConfigReceiver(context.Background(), instanceId, projectId).CreateInstanceAlertConfigReceiverPayload(createInstanceAlertConfigReceiverPayload).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService CreateInstanceAlertConfigRoute", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := RouteResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-		createInstanceAlertConfigRoutePayload := CreateInstanceAlertConfigRoutePayload{}
-
-		resp, reqErr := apiClient.CreateInstanceAlertConfigRoute(context.Background(), instanceId, projectId).CreateInstanceAlertConfigRoutePayload(createInstanceAlertConfigRoutePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -299,7 +299,123 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteCredential", func(t *testing.T) {
+	t.Run("Test DefaultApiService DeleteAlertConfigReceiver", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		receiverValue := "receiver"
+		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AlertConfigReceiversResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+		receiver := "receiver"
+
+		resp, reqErr := apiClient.DeleteAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteAlertConfigRoute", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		receiverValue := "receiver"
+		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AlertConfigRouteResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+		receiver := "receiver"
+
+		resp, reqErr := apiClient.DeleteAlertConfigRoute(context.Background(), instanceId, projectId, receiver).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteCredentials", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -347,7 +463,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		username := "username"
 
-		resp, reqErr := apiClient.DeleteCredential(context.Background(), instanceId, projectId, username).Execute()
+		resp, reqErr := apiClient.DeleteCredentials(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -357,7 +473,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteCredentialRemoteWriteConfig", func(t *testing.T) {
+	t.Run("Test DefaultApiService DeleteCredentialsRemoteWriteConfig", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -405,7 +521,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		username := "username"
 
-		resp, reqErr := apiClient.DeleteCredentialRemoteWriteConfig(context.Background(), instanceId, projectId, username).Execute()
+		resp, reqErr := apiClient.DeleteCredentialsRemoteWriteConfig(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -424,7 +540,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ProjectInstancesUpdateResponse{}
+			data := InstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -470,122 +586,6 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteInstanceAlertConfigReceiver", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ReceiversResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
-
-		resp, reqErr := apiClient.DeleteInstanceAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService DeleteInstanceAlertConfigRouteReceiver", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := RouteResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
-
-		resp, reqErr := apiClient.DeleteInstanceAlertConfigRouteReceiver(context.Background(), instanceId, projectId, receiver).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
 	t.Run("Test DefaultApiService DeleteScrapeConfig", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
 		instanceIdValue := "instanceId"
@@ -597,7 +597,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ScrapeConfigsResponse{}
+			data := DeleteScrapeConfigResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -644,18 +644,18 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetCredential", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
+	t.Run("Test DefaultApiService GetAlertConfigReceiver", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		usernameValue := "username"
-		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+		receiverValue := "receiver"
+		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ServiceKeysResponse{}
+			data := Receiver{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -690,9 +690,9 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		instanceId := "instanceId"
 		projectId := "projectId"
-		username := "username"
+		receiver := "receiver"
 
-		resp, reqErr := apiClient.GetCredential(context.Background(), instanceId, projectId, username).Execute()
+		resp, reqErr := apiClient.GetAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -702,18 +702,18 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetCredentialRemoteWriteConfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
+	t.Run("Test DefaultApiService GetAlertConfigRoute", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		usernameValue := "username"
-		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+		receiverValue := "receiver"
+		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := CredentialsRemoteWriteResponse{}
+			data := AlertConfigRouteResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -748,9 +748,64 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		instanceId := "instanceId"
 		projectId := "projectId"
-		username := "username"
+		receiver := "receiver"
 
-		resp, reqErr := apiClient.GetCredentialRemoteWriteConfig(context.Background(), instanceId, projectId, username).Execute()
+		resp, reqErr := apiClient.GetAlertConfigRoute(context.Background(), instanceId, projectId, receiver).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetAlertConfigs", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := GetAlertConfigsResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.GetAlertConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -761,7 +816,123 @@ func Test_argus_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetCredentials", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
+		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		usernameValue := "username"
+		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := GetCredentialsResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+		username := "username"
+
+		resp, reqErr := apiClient.GetCredentials(context.Background(), instanceId, projectId, username).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetCredentialsRemoteWriteConfig", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		usernameValue := "username"
+		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := CredentialsRemoteWriteConfig{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+		username := "username"
+
+		resp, reqErr := apiClient.GetCredentialsRemoteWriteConfig(context.Background(), instanceId, projectId, username).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetGrafanaConfigs", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
@@ -769,7 +940,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := CredentialsListResponse{}
+			data := GrafanaConfigs{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -805,7 +976,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		instanceId := "instanceId"
 		projectId := "projectId"
 
-		resp, reqErr := apiClient.GetCredentials(context.Background(), instanceId, projectId).Execute()
+		resp, reqErr := apiClient.GetGrafanaConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -824,7 +995,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := InstanceResponse{}
+			data := GetInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -870,501 +1041,6 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetInstanceAcl", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/acl"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := AclResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-
-		resp, reqErr := apiClient.GetInstanceAcl(context.Background(), instanceId, projectId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetInstanceAlertConfigReceiver", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ReceiversResponseSerializerSingle{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
-
-		resp, reqErr := apiClient.GetInstanceAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetInstanceAlertConfigReceivers", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ReceiversResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-
-		resp, reqErr := apiClient.GetInstanceAlertConfigReceivers(context.Background(), instanceId, projectId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetInstanceAlertConfigRouteReceiver", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := RouteResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
-
-		resp, reqErr := apiClient.GetInstanceAlertConfigRouteReceiver(context.Background(), instanceId, projectId, receiver).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetInstanceAlertConfigRoutes", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := RouteResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-
-		resp, reqErr := apiClient.GetInstanceAlertConfigRoutes(context.Background(), instanceId, projectId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetInstanceAlertConfigs", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := GetAlert{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-
-		resp, reqErr := apiClient.GetInstanceAlertConfigs(context.Background(), instanceId, projectId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetInstanceGrafanaConfigs", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := GrafanaConfigs{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-
-		resp, reqErr := apiClient.GetInstanceGrafanaConfigs(context.Background(), instanceId, projectId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetInstances", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ProjectInstanceFullMany{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := "projectId"
-
-		resp, reqErr := apiClient.GetInstances(context.Background(), projectId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetPlans", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/plans"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := PlansResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := "projectId"
-
-		resp, reqErr := apiClient.GetPlans(context.Background(), projectId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
 	t.Run("Test DefaultApiService GetScrapeConfig", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
 		instanceIdValue := "instanceId"
@@ -1376,7 +1052,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ScrapeConfigResponse{}
+			data := GetScrapeConfigResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -1423,7 +1099,331 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetScrapeConfigs", func(t *testing.T) {
+	t.Run("Test DefaultApiService ListACL", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/acl"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ListACLResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListACL(context.Background(), instanceId, projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListAlertConfigReceivers", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AlertConfigReceiversResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListAlertConfigReceivers(context.Background(), instanceId, projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListAlertConfigRoutes", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AlertConfigRouteResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListAlertConfigRoutes(context.Background(), instanceId, projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListCredentials", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ListCredentialsResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListCredentials(context.Background(), instanceId, projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ListInstancesResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListPlans", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/plans"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := PlansResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListPlans(context.Background(), projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListScrapeConfigs", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -1432,7 +1432,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ScrapeConfigsResponse{}
+			data := ListScrapeConfigsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -1468,7 +1468,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		instanceId := "instanceId"
 		projectId := "projectId"
 
-		resp, reqErr := apiClient.GetScrapeConfigs(context.Background(), instanceId, projectId).Execute()
+		resp, reqErr := apiClient.ListScrapeConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -1478,122 +1478,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateCredentialRemoteWriteConfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		usernameValue := "username"
-		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := CredentialsRemoteWriteResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-		username := "username"
-		updateCredentialRemoteWriteConfigPayload := UpdateCredentialRemoteWriteConfigPayload{}
-
-		resp, reqErr := apiClient.UpdateCredentialRemoteWriteConfig(context.Background(), instanceId, projectId, username).UpdateCredentialRemoteWriteConfigPayload(updateCredentialRemoteWriteConfigPayload).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
-		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ProjectInstancesUpdateResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for argus_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		instanceId := "instanceId"
-		projectId := "projectId"
-		updateInstancePayload := UpdateInstancePayload{}
-
-		resp, reqErr := apiClient.UpdateInstance(context.Background(), instanceId, projectId).UpdateInstancePayload(updateInstancePayload).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService UpdateInstanceAcl", func(t *testing.T) {
+	t.Run("Test DefaultApiService UpdateACL", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/acl"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -1638,7 +1523,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		instanceId := "instanceId"
 		projectId := "projectId"
 
-		resp, reqErr := apiClient.UpdateInstanceAcl(context.Background(), instanceId, projectId).Execute()
+		resp, reqErr := apiClient.UpdateACL(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -1648,7 +1533,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateInstanceAlertConfigReceiver", func(t *testing.T) {
+	t.Run("Test DefaultApiService UpdateAlertConfigReceiver", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -1659,7 +1544,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ReceiversResponse{}
+			data := AlertConfigReceiversResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -1695,9 +1580,9 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		instanceId := "instanceId"
 		projectId := "projectId"
 		receiver := "receiver"
-		updateInstanceAlertConfigReceiverPayload := UpdateInstanceAlertConfigReceiverPayload{}
+		updateAlertConfigReceiverPayload := UpdateAlertConfigReceiverPayload{}
 
-		resp, reqErr := apiClient.UpdateInstanceAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).UpdateInstanceAlertConfigReceiverPayload(updateInstanceAlertConfigReceiverPayload).Execute()
+		resp, reqErr := apiClient.UpdateAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).UpdateAlertConfigReceiverPayload(updateAlertConfigReceiverPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -1707,7 +1592,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateInstanceAlertConfigRouteReceiver", func(t *testing.T) {
+	t.Run("Test DefaultApiService UpdateAlertConfigRoute", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -1718,7 +1603,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := RouteResponse{}
+			data := AlertConfigRouteResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -1754,9 +1639,9 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		instanceId := "instanceId"
 		projectId := "projectId"
 		receiver := "receiver"
-		updateInstanceAlertConfigRouteReceiverPayload := UpdateInstanceAlertConfigRouteReceiverPayload{}
+		updateAlertConfigRoutePayload := UpdateAlertConfigRoutePayload{}
 
-		resp, reqErr := apiClient.UpdateInstanceAlertConfigRouteReceiver(context.Background(), instanceId, projectId, receiver).UpdateInstanceAlertConfigRouteReceiverPayload(updateInstanceAlertConfigRouteReceiverPayload).Execute()
+		resp, reqErr := apiClient.UpdateAlertConfigRoute(context.Background(), instanceId, projectId, receiver).UpdateAlertConfigRoutePayload(updateAlertConfigRoutePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -1766,7 +1651,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateInstanceAlertConfigs", func(t *testing.T) {
+	t.Run("Test DefaultApiService UpdateAlertConfigs", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -1775,7 +1660,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := PutAlert{}
+			data := UpdateAlertConfigsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -1810,9 +1695,9 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		instanceId := "instanceId"
 		projectId := "projectId"
-		updateInstanceAlertConfigsPayload := UpdateInstanceAlertConfigsPayload{}
+		updateAlertConfigsPayload := UpdateAlertConfigsPayload{}
 
-		resp, reqErr := apiClient.UpdateInstanceAlertConfigs(context.Background(), instanceId, projectId).UpdateInstanceAlertConfigsPayload(updateInstanceAlertConfigsPayload).Execute()
+		resp, reqErr := apiClient.UpdateAlertConfigs(context.Background(), instanceId, projectId).UpdateAlertConfigsPayload(updateAlertConfigsPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -1822,7 +1707,66 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateInstanceGrafanaConfigs", func(t *testing.T) {
+	t.Run("Test DefaultApiService UpdateCredentialsRemoteWriteConfig", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		usernameValue := "username"
+		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := CredentialsRemoteWriteConfig{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+		username := "username"
+		updateCredentialsRemoteWriteConfigPayload := UpdateCredentialsRemoteWriteConfigPayload{}
+
+		resp, reqErr := apiClient.UpdateCredentialsRemoteWriteConfig(context.Background(), instanceId, projectId, username).UpdateCredentialsRemoteWriteConfigPayload(updateCredentialsRemoteWriteConfigPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateGrafanaConfigs", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -1866,9 +1810,65 @@ func Test_argus_DefaultApiService(t *testing.T) {
 
 		instanceId := "instanceId"
 		projectId := "projectId"
-		updateInstanceGrafanaConfigsPayload := UpdateInstanceGrafanaConfigsPayload{}
+		updateGrafanaConfigsPayload := UpdateGrafanaConfigsPayload{}
 
-		resp, reqErr := apiClient.UpdateInstanceGrafanaConfigs(context.Background(), instanceId, projectId).UpdateInstanceGrafanaConfigsPayload(updateInstanceGrafanaConfigsPayload).Execute()
+		resp, reqErr := apiClient.UpdateGrafanaConfigs(context.Background(), instanceId, projectId).UpdateGrafanaConfigsPayload(updateGrafanaConfigsPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := InstanceResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+		updateInstancePayload := UpdateInstancePayload{}
+
+		resp, reqErr := apiClient.UpdateInstance(context.Background(), instanceId, projectId).UpdateInstancePayload(updateInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)

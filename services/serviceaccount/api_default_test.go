@@ -388,69 +388,14 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetAccessTokens", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
-		path = strings.Replace(path, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := AccessTokensResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := "projectId"
-		serviceAccountEmail := "serviceAccountEmail"
-
-		resp, reqErr := apiClient.GetAccessTokens(context.Background(), projectId, serviceAccountEmail).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetServiceAccountJWKS", func(t *testing.T) {
+	t.Run("Test DefaultApiService GetJWKS", func(t *testing.T) {
 		path := "/v2/service-accounts/public/jwk/{serviceAccountEmail}"
 		serviceAccountEmailValue := "serviceAccountEmail"
 		path = strings.Replace(path, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := GetServiceAccountJWKS{}
+			data := JWKS{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -485,7 +430,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 		serviceAccountEmail := "serviceAccountEmail"
 
-		resp, reqErr := apiClient.GetServiceAccountJWKS(context.Background(), serviceAccountEmail).Execute()
+		resp, reqErr := apiClient.GetJWKS(context.Background(), serviceAccountEmail).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -553,8 +498,8 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetServiceAccountKeys", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys"
+	t.Run("Test DefaultApiService ListAccessTokens", func(t *testing.T) {
+		path := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serviceAccountEmailValue := "serviceAccountEmail"
@@ -562,7 +507,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := GetServiceAccountsKeysResponse{}
+			data := ListAccessTokensResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -598,7 +543,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		serviceAccountEmail := "serviceAccountEmail"
 
-		resp, reqErr := apiClient.GetServiceAccountKeys(context.Background(), projectId, serviceAccountEmail).Execute()
+		resp, reqErr := apiClient.ListAccessTokens(context.Background(), projectId, serviceAccountEmail).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -608,14 +553,69 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetServiceAccounts", func(t *testing.T) {
+	t.Run("Test DefaultApiService ListServiceAccountKeys", func(t *testing.T) {
+		path := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serviceAccountEmailValue := "serviceAccountEmail"
+		path = strings.Replace(path, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ListServiceAccountKeysResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for serviceaccount_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		serviceAccountEmail := "serviceAccountEmail"
+
+		resp, reqErr := apiClient.ListServiceAccountKeys(context.Background(), projectId, serviceAccountEmail).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListServiceAccounts", func(t *testing.T) {
 		path := "/v2/projects/{projectId}/service-accounts"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := GetServiceAccountsResponse{}
+			data := ListServiceAccountsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -650,7 +650,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 
-		resp, reqErr := apiClient.GetServiceAccounts(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListServiceAccounts(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -660,7 +660,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateServiceAccountKey", func(t *testing.T) {
+	t.Run("Test DefaultApiService PartialUpdateServiceAccountKey", func(t *testing.T) {
 		path := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -671,7 +671,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := UpdateServiceAccountKeyResponse{}
+			data := PartialUpdateServiceAccountKeyResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -708,7 +708,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		serviceAccountEmail := "serviceAccountEmail"
 		keyId := "keyId"
 
-		resp, reqErr := apiClient.UpdateServiceAccountKey(context.Background(), projectId, serviceAccountEmail, keyId).Execute()
+		resp, reqErr := apiClient.PartialUpdateServiceAccountKey(context.Background(), projectId, serviceAccountEmail, keyId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
