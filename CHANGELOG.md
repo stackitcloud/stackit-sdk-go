@@ -1,6 +1,13 @@
 ## Release (2023-12-19)
 
-API methods and structs were renamed to have the same look and feel across all services and according to user feedback.
+API methods and structs were renamed to have the same look and feel across all services and according to user feedback:
+
+- Methods to get multiple instances of the same resource are now named `List[Resource Name]`
+- Methods to fully update a resource are now named `Update[Resource Name]`
+- Methods to update some fields of a resource are now named `PartialUpdate[Resource Name]`
+- Methods relative to API service enablement are now named `GetServiceStatus`, `EnableService` and `DisableService`
+- Several common terms, such as `ACL` and `Credentials`, have been standardized
+- Structs only used in method responses are named `[Method Name]Response`
 
 ## Highlights
 
