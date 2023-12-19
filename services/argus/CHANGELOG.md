@@ -1,3 +1,73 @@
+## v0.8.0 (2023-12-19)
+
+API methods and structs were renamed to have the same look and feel and according to user feedback.
+
+- Changed methods:
+  - `CreateCredential` renamed to `CreateCredentials`
+  - `CreateInstanceAlertConfigReceiver` renamed to `CreateAlertConfigReceiver`
+  - `DeleteCredential` renamed to `DeleteCredentials`
+  - `DeleteCredentialRemoteWriteConfig` renamed to `DeleteCredentialsRemoteWriteConfig`
+  - `DeleteInstanceAlertConfigReceiver` renamed to `DeleteAlertConfigReceiver`
+  - `DeleteInstanceAlertConfigRouteReceiver` renamed to `DeleteAlertConfigRoute`
+  - `GetCredential` renamed to `GetCredentials`
+  - `GetCredentialRemoteWriteConfig` renamed to `GetCredentialsRemoteWriteConfig`
+  - `GetCredentials` renamed to `ListCredentials`
+  - `GetInstanceAcl` renamed to `ListACL`
+  - `GetInstanceAlertConfigReceiver` renamed to `GetAlertConfigReceiver`
+  - `GetInstanceAlertConfigReceivers` renamed to `ListAlertConfigReceivers`
+  - `GetInstanceAlertConfigRoutes` renamed to `ListAlertConfigRoute`
+  - `GetInstanceAlertConfigs` renamed to `GetAlertConfigs`
+  - `GetInstanceGrafanaConfigs` renamed to `GetGrafanaConfigs`
+  - `GetInstances` renamed to `ListInstances`
+  - `GetPlans` renamed to `ListPlans`
+  - `GetScrapeConfigs` renamed to `ListScrapeConfigs`
+  - `UpdateCredentialRemoteWriteConfig` renamed to `UpdateCredentialsRemoteWriteConfig`
+  - `UpdateInstanceAcl` renamed to `UpdateACL`
+  - `UpdateInstanceAlertConfigReceiver` renamed to `UpdateAlertConfigReceiver`
+  - `UpdateInstanceAlertConfigRouteReceiver` renamed to `UpdateAlertConfigRoute`
+  - `UpdateInstanceAlertConfigs` renamed to `UpdateAlertConfigs`
+  - `UpdateInstanceGrafanaConfigs` renamed to `UpdateGrafanaConfigs`
+- Changed structs:
+  - `AclResponse` renamed to `ListACLResponse`
+  - `AlertGroupJson` renamed to `AlertGroup`
+  - `AlertRuleRecordJson` renamed to `AlertRuleRecord`
+  - `ApiUserProjectCreated` renamed to `CreateCredentialsResponse`
+  - `BackupScheduleModelJson` renamed to `BackupSchedule`
+  - `CreateInstanceAlertConfigReceiverPayload` renamed to `CreateAlertConfigReceiverPayload`
+  - `CreateInstanceAlertConfigRoutePayload` renamed to `CreateAlertConfigRoutePayload`
+  - `Credential` renamed to `Credentials`
+  - `CredentialsListResponse` renamed to `ListCredentialsResponse`
+  - `CredentialsRemoteWriteResponse` renamed to `CredentialsRemoteWriteConfig`
+  - `GetAlert` renamed to `GetAlertConfigsResponse`
+  - `InstanceResponse` renamed to `GetInstanceResponse`
+  - `MysqlCheckChildResponse` renamed to `MySQLCheckChildResponse`
+  - `PlanModel` renamed to `Plan`
+  - `ProjectInstanceFullMany` renamed to `ListInstancesResponse`
+  - `ProjectInstancesUpdateResponse` renamed to `InstanceResponse`
+  - `PutAlert` renamed to `UpdateAlertConfigsResponse`
+  - `ReceiversResponse` renamed to `AlertConfigReceiversResponse`
+  - `ReceiversResponseSerializerSingle` renamed to `Receiver`
+  - `RouteResponse` renamed to `AlertConfigRouteResponse`
+  - `RouteSerializer2` renamed to `RouteSerializer`
+  - `ScrapeConfigResponse` renamed to `GetScrapeConfigResponse`
+  - `ScrapeConfigsResponse` renamed to `ListScrapeConfigsResponse` (when output of ListScrapeConfigs) and `DeleteScrapeConfigResponse` (when output of DeleteScrapeConfig)
+  - `ServiceKeysResponse` renamed to `GetCredentialsResponse`
+  - `UpdateCredentialRemoteWriteConfigPayload` renamed to `UpdateCredentialsRemoteWriteConfigPayload`
+  - `UpdateInstanceAclPayload` renamed to `UpdateACLPayload`
+  - `UpdateInstanceAlertConfigReceiverPayload` renamed to `UpdateAlertConfigReceiverPayload`
+  - `UpdateInstanceAlertConfigRouteReceiverPayload` renamed to `UpdateAlertConfigsPayloadRoute`
+  - `UpdateInstanceAlertConfigsPayload` renamed to `UpdateAlertConfigsPayload`
+  - `UpdateInstanceAlertConfigsPayloadGlobal` renamed to `UpdateAlertConfigsPayloadGlobal`
+  - `UpdateInstanceAlertConfigsPayloadInhibitRules` renamed to `UpdateAlertConfigsPayloadInhibitRules`
+  - `UpdateInstanceAlertConfigsPayloadReceiversInner` renamed to `UpdateAlertConfigsPayloadReceiversInner`
+  - `UpdateInstanceAlertConfigsPayloadReceiversInnerEmailConfigsInner` renamed to `UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner`
+  - `UpdateInstanceAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner` renamed to `UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner`
+  - `UpdateInstanceAlertConfigsPayloadReceiversInnerWebHookConfigsInner` renamed to `UpdateAlertConfigsPayloadReceiversInnerWebHookConfigsInner`
+  - `UpdateInstanceAlertConfigsPayloadRoute` renamed to `UpdateAlertConfigRoutePayload`
+  - `UpdateInstanceAlertConfigsPayloadRouteRoutesInner` renamed to `UpdateAlertConfigsPayloadRouteRoutesInner`
+  - `UpdateInstanceGrafanaConfigsPayload` renamed to `UpdateGrafanaConfigsPayload`
+  - `UpdateInstanceGrafanaConfigsPayloadGenericOauth` renamed to `UpdateGrafanaConfigsPayloadGenericOauth`
+
 ## v0.7.0 (2023-11-10)
 
 - Manage your STACKIT Argus resources: `Instance`, `Credentials`, `ScrapeConfig`, `Acl`, `Alertconfig`, `GrafanaConfig`

@@ -1,3 +1,44 @@
+## v0.8.0 (2023-12-19)
+
+API methods and structs were renamed to have the same look and feel and according to user feedback.
+
+- Changed methods:
+  - `DeleteProject` renamed to `DisableService`
+  - `GetBackups` renamed to `ListBackups`
+  - `GetCPUMetrics` renamed to `ListCPUMetrics`
+  - `GetDatabaseStorageMetrics` renamed to `ListDatabaseStorageMetrics`
+  - `GetDiskIOPSMetrics` renamed to `ListDiskIOPSMetrics`
+  - `GetDiskUsageMetrics` renamed to `ListDiskUsageMetrics`
+  - `GetExecutionTimesMetrics` renamed to `ListExecutionTimesMetrics`
+  - `GetFlavors` renamed to `ListFlavors`
+  - `GetInstanceRestores` renamed to `ListRestoreJobs`
+  - `GetInstances` renamed to `ListInstances`
+  - `GetMemoryMetrics` renamed to `ListMemoryMetrics`
+  - `GetUsers` renamed to `ListUsers`
+- Changed structs:
+  - `BackupScheduleModelJson` renamed to `BackupSchedule`
+  - `GetBackupsResponse` renamed to `ListBackupsResponse`
+  - `GetFlavorsResponse` renamed to `ListFlavorsResponse`
+  - `GetInstanceRestoresResponse` renamed to `ListRestoreJobsResponse`
+  - `GetInstancesResponse` renamed to `ListInstancesResponse`
+  - `GetMetricsResponse` renamed to `ListMetricsResponse`
+  - `GetStorageResponse` renamed to `ListStorageResponse`
+  - `GetUsersResponse` renamed to `ListUsersResponseItem`
+  - `GetVersionsResponse` renamed to `ListVersionsResponse`
+  - `InstanceAcl` renamed to `ACL`
+  - `InstanceBackup` renamed to `Backup`
+  - `InstanceDataPoint` renamed to `DataPoint`
+  - `InstanceError` renamed to `Error`
+  - `InstanceFlavor` renamed to `Flavor`
+  - `InstanceHost` renamed to `Host`
+  - `InstanceHostMetric` renamed to `HostMetric`
+  - `InstanceListUser` renamed to `ListUsersResponse`
+  - `InstanceRestore` renamed to `RestoreInstanceStatus`
+  - `InstanceSingleInstance` renamed to `Instance`
+  - `InstanceStorage` renamed to `Storage`
+  - `InstanceStorageRange` renamed to `StorageRange`
+  - `InstanceUser` renamed to `User`
+
 ## v0.7.0 (2023-11-10)
 
 - Manage your STACKIT MongoDB Flex resources: `Instance`, `Flavors`, `Metrics`, `User`, `Storages`, `Versions`
