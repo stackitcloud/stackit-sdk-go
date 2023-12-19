@@ -50,7 +50,7 @@ func (a *apiClientInstanceMocked) ListUsersExecute(_ context.Context, _, _ strin
 	aux := int64(0)
 	return &postgresflex.ListUsersResponse{
 		Count: &aux,
-		Items: &[]postgresflex.ListUser{},
+		Items: &[]postgresflex.ListUsersResponseItem{},
 	}, nil
 }
 

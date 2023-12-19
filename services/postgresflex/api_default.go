@@ -1450,7 +1450,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListUsersResponseItem
+		localVarReturnValue *ListUsersResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUsers")

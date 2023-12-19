@@ -11,6 +11,6 @@ API version: 1.0.0
 package postgresflex
 
 type ListUsersResponseItem struct {
-	Count *int64      `json:"count,omitempty"`
-	Items *[]ListUser `json:"items,omitempty"`
+	Id       *string `json:"id,omitempty"`
+	Username *string `json:"username,omitempty"`
 }

@@ -627,11 +627,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-<<<<<<< HEAD
 			data := ListUsersResponse{}
-=======
-			data := ListUsersResponseItem{}
->>>>>>> 9691e2d (Generate services)
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
