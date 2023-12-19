@@ -23,7 +23,7 @@ const (
 )
 
 type APIClientProjectInterface interface {
-	GetProjectExecute(ctx context.Context, projectId string) (*ske.ProjectResponse, error)
+	GetProjectStatusExecute(ctx context.Context, projectId string) (*ske.ProjectResponse, error)
 }
 
 type APIClientClusterInterface interface {
@@ -84,7 +84,7 @@ func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, 
 // EnableServiceWaitHandler will wait for service enablement
 func EnableServiceWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[ske.ProjectResponse] {
 	handler := wait.New(func() (waitFinished bool, response *ske.ProjectResponse, err error) {
-		s, err := a.GetProjectExecute(ctx, projectId)
+		s, err := a.GetProjectStatusExecute(ctx, projectId)
 		if err != nil {
 			return false, nil, err
 		}
@@ -104,7 +104,7 @@ func EnableServiceWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 // DisableServiceWaitHandler will wait for service disablement
 func DisableServiceWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		_, err = a.GetProjectExecute(ctx, projectId)
+		_, err = a.GetProjectStatusExecute(ctx, projectId)
 		if err == nil {
 			return false, nil, nil
 		}

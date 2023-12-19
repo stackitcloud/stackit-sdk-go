@@ -74,7 +74,7 @@ type apiClientProjectMocked struct {
 	resourceState string
 }
 
-func (a *apiClientProjectMocked) GetProjectExecute(_ context.Context, _ string) (*ske.ProjectResponse, error) {
+func (a *apiClientProjectMocked) GetProjectStatusExecute(_ context.Context, _ string) (*ske.ProjectResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
