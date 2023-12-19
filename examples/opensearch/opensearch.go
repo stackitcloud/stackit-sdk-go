@@ -25,7 +25,7 @@ func main() {
 	}
 
 	// Get the opensearch instances for your project
-	getInstancesResp, err := opensearchClient.GetInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := opensearchClient.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
@@ -33,7 +33,7 @@ func main() {
 	}
 
 	// Get the opensearch offerings for your project
-	getOfferingsResp, err := opensearchClient.GetOfferings(context.Background(), projectId).Execute()
+	getOfferingsResp, err := opensearchClient.ListOfferings(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
 	} else {

@@ -52,7 +52,7 @@ func main() {
 	}
 
 	// Check that you can make an authenticated request
-	getZoneResp, err := dnsClient.GetZones(context.Background(), "PROJECT_ID").Execute()
+	getZoneResp, err := dnsClient.ListZones(context.Background(), "PROJECT_ID").Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.GetZones`: %v\n", err)

@@ -25,7 +25,7 @@ func main() {
 	}
 
 	// Get the postgresql instances for your project
-	getInstancesResp, err := postgresqlClient.GetInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := postgresqlClient.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
@@ -33,7 +33,7 @@ func main() {
 	}
 
 	// Get the postgresql offerings for your project
-	getOfferingsResp, err := postgresqlClient.GetOfferings(context.Background(), projectId).Execute()
+	getOfferingsResp, err := postgresqlClient.ListOfferings(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
 	} else {

@@ -25,7 +25,7 @@ func main() {
 	}
 
 	// Get the logme instances for your project
-	getInstancesResp, err := logmeClient.GetInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := logmeClient.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
@@ -33,7 +33,7 @@ func main() {
 	}
 
 	// Get the logme offerings for your project
-	getOfferingsResp, err := logmeClient.GetOfferings(context.Background(), projectId).Execute()
+	getOfferingsResp, err := logmeClient.ListOfferings(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
 	} else {

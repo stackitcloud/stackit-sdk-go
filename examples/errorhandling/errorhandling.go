@@ -18,7 +18,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	_, err = dnsClient.GetZones(context.Background(), "foo-bar").Execute()
+	_, err = dnsClient.ListZones(context.Background(), "foo-bar").Execute()
 	if err == nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Unauthenticated GET request succeeded")
 		os.Exit(1)

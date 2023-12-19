@@ -25,7 +25,7 @@ func main() {
 	}
 
 	// Get the redis instances for your project
-	getInstancesResp, err := redisClient.GetInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := redisClient.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
@@ -33,7 +33,7 @@ func main() {
 	}
 
 	// Get the redis offerings for your project
-	getOfferingsResp, err := redisClient.GetOfferings(context.Background(), projectId).Execute()
+	getOfferingsResp, err := redisClient.ListOfferings(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
 	} else {

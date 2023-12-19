@@ -23,7 +23,7 @@ func main() {
 	}
 
 	// Get the available permissions for the project resource type
-	getPermissionsResp, err := client.GetPermissions(context.Background()).ResourceType("project").Execute()
+	getPermissionsResp, err := client.ListPermissions(context.Background()).ResourceType("project").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetPermissions`: %v\n", err)
 	} else {
@@ -34,7 +34,7 @@ func main() {
 	}
 
 	// Get the memberships of your user
-	getMembershipsResp, err := client.GetMemberships(context.Background(), yourEmail).Execute()
+	getMembershipsResp, err := client.ListUserMemberships(context.Background(), yourEmail).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetMemberships`: %v\n", err)
 	} else {
@@ -52,7 +52,7 @@ func main() {
 	}
 
 	// Get the members of your project
-	getMembersResp, err := client.GetMembers(context.Background(), "project", projectId).Execute()
+	getMembersResp, err := client.ListMembers(context.Background(), "project", projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetMembers`: %v\n", err)
 	} else {
@@ -60,7 +60,7 @@ func main() {
 	}
 
 	// Add a member to your project or add an additional role to an existing member
-	updateMemberPayload := membership.UpdateMembersPayload{
+	updateMemberPayload := membership.AddMembersPayload{
 		Members: &[]membership.Member{
 			{
 				Role:    utils.Ptr("project.member"),
@@ -69,7 +69,7 @@ func main() {
 		},
 		ResourceType: utils.Ptr("project"),
 	}
-	_, err = client.UpdateMembers(context.Background(), projectId).UpdateMembersPayload(updateMemberPayload).Execute()
+	_, err = client.AddMembers(context.Background(), projectId).AddMembersPayload(updateMemberPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpdateMembers`: %v\n", err)
 	} else {
@@ -77,7 +77,7 @@ func main() {
 	}
 
 	// Remove a role from a member of your project
-	deleteMemberPayload := membership.DeleteMembersPayload{
+	deleteMemberPayload := membership.RemoveMembersPayload{
 		Members: &[]membership.Member{
 			{
 				Role:    utils.Ptr("project.member"),
@@ -86,7 +86,7 @@ func main() {
 		},
 		ResourceType: utils.Ptr("project"),
 	}
-	_, err = client.DeleteMembers(context.Background(), projectId).DeleteMembersPayload(deleteMemberPayload).Execute()
+	_, err = client.RemoveMembers(context.Background(), projectId).RemoveMembersPayload(deleteMemberPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteMembers`: %v\n", err)
 	} else {

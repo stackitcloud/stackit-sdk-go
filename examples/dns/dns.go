@@ -21,8 +21,8 @@ func main() {
 	}
 
 	// Get the DNS Zones for your project
-	var getZoneResp *dns.ZonesResponse //nolint:golint // transparency on data model naming
-	getZoneResp, err = dnsClient.GetZones(context.Background(), projectId).Execute()
+	var getZoneResp *dns.ListZonesResponse //nolint:golint // transparency on data model naming
+	getZoneResp, err = dnsClient.ListZones(context.Background(), projectId).Execute()
 
 	// Get only active DNS Zones for your project by adding the filter "ActiveEq(true)" to the call. More filters are available and can be chained.
 	// dnsRespGetZones, err := dnsClient.ZoneApi.GetZones(context.Background(), projectId).ActiveEq(true).Execute()

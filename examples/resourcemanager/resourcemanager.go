@@ -21,7 +21,7 @@ func main() {
 	}
 
 	// Get the projects under a specific resource (organization)
-	getProjectsResp, err := client.GetProjects(context.Background()).ContainerParentId(parentOrganizationId).Execute()
+	getProjectsResp, err := client.ListProjects(context.Background()).ContainerParentId(parentOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetProjects`: %v\n", err)
 	} else {

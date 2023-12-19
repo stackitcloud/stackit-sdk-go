@@ -24,7 +24,7 @@ func main() {
 	}
 
 	// Enable load balancer functionality for project
-	_, err = loadbalancerClient.EnableLoadBalancing(context.Background(), projectId).XRequestID("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").Execute()
+	_, err = loadbalancerClient.EnableService(context.Background(), projectId).XRequestID("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EnableLoadBalancing`: %v\n", err)
 		os.Exit(1)
