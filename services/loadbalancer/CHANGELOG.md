@@ -8,6 +8,8 @@ API methods and structs were renamed to have the same look and feel across all s
   - `GetProjectStatus` renamed to `GetServiceStatus`
 - Changed structs:
   - `StatusResponse` renamed to `GetServiceStatusResponse`
+- Changed waiters:
+  - `EnableLoadBalancingWaitHandler` renamed to `EnableServiceWaitHandler`
 
 ## v0.7.0 (2023-12-06)
 

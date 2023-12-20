@@ -17,6 +17,9 @@ API methods and structs were renamed to have the same look and feel across all s
   - `UpdateRecordSetPayload` renamed to `PartialUpdateRecordSetPayload`
   - `UpdateZonePayload` renamed to `PartialUpdateZonePayload`
   - `ZonesResponse` renamed to `ListZonesResponse`
+- Changed waiters:
+  - `UpdateZoneWaitHandler` renamed to `PartialUpdateZoneWaitHandler`
+  - `UpdateRecordSetWaitHandler` renamed to `PartialUpdateRecordSetWaitHandler`
 
 ## v0.6.0 (2023-11-10)
 

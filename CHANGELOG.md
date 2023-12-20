@@ -8,6 +8,7 @@ API methods and structs were renamed to have the same look and feel across all s
 - Methods relative to API service enablement are now named `GetServiceStatus`, `EnableService` and `DisableService`
 - Several common terms, such as `ACL` and `Credentials`, have been standardized
 - Structs only used in method responses are named `[Method Name]Response`
+- Waiters for a given method are now named `[Method name]WaitHandler`
 
 ## Highlights
 

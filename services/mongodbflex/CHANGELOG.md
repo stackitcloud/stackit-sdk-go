@@ -38,6 +38,8 @@ API methods and structs were renamed to have the same look and feel across all s
   - `InstanceStorage` renamed to `Storage`
   - `InstanceStorageRange` renamed to `StorageRange`
   - `InstanceUser` renamed to `User`
+Added waiters:
+  - `PartialUpdateInstanceWaitHandler`, for `PartialUpdateInstance` method
 
 ## v0.7.0 (2023-11-10)
 

@@ -32,6 +32,8 @@ API methods and structs were renamed to have the same look and feel across all s
   - `UserResponse` renamed to `GetUserResponse`
   - `UsersResponse` renamed to `ListUsersResponse`
   - `VersionsResponse` renamed to `ListVersionsResponse`
+Changed waiters:
+  - `UpdateInstanceWaitHandler` renamed to `PartialUpdateInstanceWaitHandler`
 
 ## v0.7.0 (2023-11-10)
 

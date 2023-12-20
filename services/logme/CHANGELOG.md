@@ -17,6 +17,8 @@ API methods and structs were renamed to have the same look and feel across all s
   - `LastOperation` renamed to `InstanceLastOperation`
   - `OfferingList` renamed to `ListOfferingsResponse`
   - `UpdateInstancePayload` renamed to `PartialUpdateInstancePayload`
+Changed waiters:
+  - `UpdateInstanceWaitHandler` renamed to `PartialUpdateInstanceWaitHandler`
 
 ## v0.6.0 (2023-11-10)
 
