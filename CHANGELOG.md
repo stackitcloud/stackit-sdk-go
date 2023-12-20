@@ -1,6 +1,7 @@
 ## Release (2023-12-20)
 
-API methods and structs were renamed to have the same look and feel across all services and according to user feedback:
+API methods, structs and waiters were renamed to have the same look and feel across all services and according to user feedback.
+Most significant changes:
 
 - Methods to get multiple instances of the same resource are now named `List[Resource Name]`
 - Methods to fully update a resource are now named `Update[Resource Name]`
