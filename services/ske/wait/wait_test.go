@@ -20,7 +20,7 @@ type apiClientClusterMocked struct {
 	invalidArgusInstance bool
 }
 
-func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ string) (*ske.ClusterResponse, error) {
+func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ string) (*ske.Cluster, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
@@ -29,7 +29,7 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 	rs := ske.ClusterStatusState(a.resourceState)
 
 	if a.invalidArgusInstance {
-		return &ske.ClusterResponse{
+		return &ske.Cluster{
 			Name: utils.Ptr("cluster"),
 			Status: &ske.ClusterStatus{
 				Aggregated: &rs,
@@ -40,7 +40,7 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 			},
 		}, nil
 	}
-	return &ske.ClusterResponse{
+	return &ske.Cluster{
 		Name: utils.Ptr("cluster"),
 		Status: &ske.ClusterStatus{
 			Aggregated: &rs,
@@ -48,15 +48,15 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 	}, nil
 }
 
-func (a *apiClientClusterMocked) GetClustersExecute(_ context.Context, _ string) (*ske.ClustersResponse, error) {
+func (a *apiClientClusterMocked) ListClustersExecute(_ context.Context, _ string) (*ske.ListClustersResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
 		}
 	}
 	rs := ske.ClusterStatusState(a.resourceState)
-	return &ske.ClustersResponse{
-		Items: &[]ske.ClusterResponse{
+	return &ske.ListClustersResponse{
+		Items: &[]ske.Cluster{
 			{
 				Name: utils.Ptr("cluster"),
 				Status: &ske.ClusterStatus{
@@ -74,7 +74,7 @@ type apiClientProjectMocked struct {
 	resourceState string
 }
 
-func (a *apiClientProjectMocked) GetProjectExecute(_ context.Context, _ string) (*ske.ProjectResponse, error) {
+func (a *apiClientProjectMocked) GetServiceStatusExecute(_ context.Context, _ string) (*ske.ProjectResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
@@ -154,10 +154,10 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 				resourceState:        tt.resourceState,
 				invalidArgusInstance: tt.invalidArgusInstance,
 			}
-			var wantRes *ske.ClusterResponse
+			var wantRes *ske.Cluster
 			rs := ske.ClusterStatusState(tt.resourceState)
 			if tt.wantResp {
-				wantRes = &ske.ClusterResponse{
+				wantRes = &ske.Cluster{
 					Name: &name,
 					Status: &ske.ClusterStatus{
 						Aggregated: &rs,
@@ -236,7 +236,7 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateProjectWaitHandler(context.Background(), apiClient, "")
+			handler := EnableServiceWaitHandler(context.Background(), apiClient, "")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -284,7 +284,7 @@ func TestDeleteProjectWaitHandler(t *testing.T) {
 				resourceState: tt.resourceState,
 			}
 
-			handler := DeleteProjectWaitHandler(context.Background(), apiClient, "")
+			handler := DisableServiceWaitHandler(context.Background(), apiClient, "")
 
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -347,10 +347,10 @@ func TestRotateCredentialsWaitHandler(t *testing.T) {
 				name:          name,
 				resourceState: tt.resourceState,
 			}
-			var wantRes *ske.ClusterResponse
+			var wantRes *ske.Cluster
 			rs := ske.ClusterStatusState(tt.resourceState)
 			if tt.wantResp {
-				wantRes = &ske.ClusterResponse{
+				wantRes = &ske.Cluster{
 					Name: &name,
 					Status: &ske.ClusterStatus{
 						Aggregated: &rs,

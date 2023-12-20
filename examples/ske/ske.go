@@ -32,7 +32,7 @@ func main() {
 	// }
 
 	// Get the ske clusters for your project
-	getClustersResp, err := skeClient.GetClusters(context.Background(), projectId).Execute()
+	getClustersResp, err := skeClient.ListClusters(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetClusters`: %v\n", err)
 	} else {
@@ -41,7 +41,7 @@ func main() {
 
 	var availableVersion string
 	// Get the ske provider options
-	getOptionsResp, err := skeClient.GetOptions(context.Background()).Execute()
+	getOptionsResp, err := skeClient.ListProviderOptions(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOptions`: %v\n", err)
 	} else {

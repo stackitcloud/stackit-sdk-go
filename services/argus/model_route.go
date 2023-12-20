@@ -18,7 +18,7 @@ type Route struct {
 	Match         *map[string]string `json:"match,omitempty"`
 	MatchRe       *map[string]string `json:"matchRe,omitempty"`
 	// REQUIRED
-	Receiver       *string             `json:"receiver"`
-	RepeatInterval *string             `json:"repeatInterval,omitempty"`
-	Routes         *[]RouteSerializer2 `json:"routes,omitempty"`
+	Receiver       *string            `json:"receiver"`
+	RepeatInterval *string            `json:"repeatInterval,omitempty"`
+	Routes         *[]RouteSerializer `json:"routes,omitempty"`
 }

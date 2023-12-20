@@ -14,5 +14,5 @@ type BackupSchedulePutResponse struct {
 	// REQUIRED
 	Message *string `json:"message"`
 	// REQUIRED
-	Schedule *BackupScheduleModelJson `json:"schedule"`
+	Schedule *BackupSchedule `json:"schedule"`
 }

@@ -813,7 +813,145 @@ func (a *APIClient) GetRecordSetExecute(ctx context.Context, projectId string, z
 	return r.Execute()
 }
 
-type ApiGetRecordSetsRequest struct {
+type ApiGetZoneRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	zoneId     string
+}
+
+func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ZoneResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetZone")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/zones/{zoneId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(r.zoneId, "zoneId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Message
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 502 {
+			var v Message
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetZone Get a single zone
+
+Get zone
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId project id
+	@param zoneId zone id
+	@return ApiGetZoneRequest
+*/
+func (a *APIClient) GetZone(ctx context.Context, projectId string, zoneId string) ApiGetZoneRequest {
+	return ApiGetZoneRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		zoneId:     zoneId,
+	}
+}
+
+func (a *APIClient) GetZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error) {
+	r := ApiGetZoneRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		zoneId:     zoneId,
+	}
+	return r.Execute()
+}
+
+type ApiListRecordSetsRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	projectId               string
@@ -854,237 +992,237 @@ type ApiGetRecordSetsRequest struct {
 
 // page
 
-func (r ApiGetRecordSetsRequest) Page(page int32) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) Page(page int32) ApiListRecordSetsRequest {
 	r.page = &page
 	return r
 }
 
 // page size
 
-func (r ApiGetRecordSetsRequest) PageSize(pageSize int32) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) PageSize(pageSize int32) ApiListRecordSetsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // filter name equal
 
-func (r ApiGetRecordSetsRequest) NameEq(nameEq string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) NameEq(nameEq string) ApiListRecordSetsRequest {
 	r.nameEq = &nameEq
 	return r
 }
 
 // filter name like
 
-func (r ApiGetRecordSetsRequest) NameLike(nameLike string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) NameLike(nameLike string) ApiListRecordSetsRequest {
 	r.nameLike = &nameLike
 	return r
 }
 
 // filter type
 
-func (r ApiGetRecordSetsRequest) TypeEq(typeEq string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) TypeEq(typeEq string) ApiListRecordSetsRequest {
 	r.typeEq = &typeEq
 	return r
 }
 
 // filter state
 
-func (r ApiGetRecordSetsRequest) StateEq(stateEq string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) StateEq(stateEq string) ApiListRecordSetsRequest {
 	r.stateEq = &stateEq
 	return r
 }
 
 // filter state
 
-func (r ApiGetRecordSetsRequest) StateNeq(stateNeq string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) StateNeq(stateNeq string) ApiListRecordSetsRequest {
 	r.stateNeq = &stateNeq
 	return r
 }
 
 // filter active equal
 
-func (r ApiGetRecordSetsRequest) ActiveEq(activeEq bool) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) ActiveEq(activeEq bool) ApiListRecordSetsRequest {
 	r.activeEq = &activeEq
 	return r
 }
 
 // filter creation started greater with utc timestamp
 
-func (r ApiGetRecordSetsRequest) CreationStartedGt(creationStartedGt string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) CreationStartedGt(creationStartedGt string) ApiListRecordSetsRequest {
 	r.creationStartedGt = &creationStartedGt
 	return r
 }
 
 // filter creation started lesser with utc timestamp
 
-func (r ApiGetRecordSetsRequest) CreationStartedLt(creationStartedLt string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) CreationStartedLt(creationStartedLt string) ApiListRecordSetsRequest {
 	r.creationStartedLt = &creationStartedLt
 	return r
 }
 
 // filter creation started greater equal with utc timestamp
 
-func (r ApiGetRecordSetsRequest) CreationStartedGte(creationStartedGte string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) CreationStartedGte(creationStartedGte string) ApiListRecordSetsRequest {
 	r.creationStartedGte = &creationStartedGte
 	return r
 }
 
 // filter creation started lesser equal with utc timestamp
 
-func (r ApiGetRecordSetsRequest) CreationStartedLte(creationStartedLte string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) CreationStartedLte(creationStartedLte string) ApiListRecordSetsRequest {
 	r.creationStartedLte = &creationStartedLte
 	return r
 }
 
 // filter creation finished greater with utc timestamp
 
-func (r ApiGetRecordSetsRequest) CreationFinishedGt(creationFinishedGt string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) CreationFinishedGt(creationFinishedGt string) ApiListRecordSetsRequest {
 	r.creationFinishedGt = &creationFinishedGt
 	return r
 }
 
 // filter creation finished lesser with utc timestamp
 
-func (r ApiGetRecordSetsRequest) CreationFinishedLt(creationFinishedLt string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) CreationFinishedLt(creationFinishedLt string) ApiListRecordSetsRequest {
 	r.creationFinishedLt = &creationFinishedLt
 	return r
 }
 
 // filter creation finished greater equal with utc timestamp
 
-func (r ApiGetRecordSetsRequest) CreationFinishedGte(creationFinishedGte string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) CreationFinishedGte(creationFinishedGte string) ApiListRecordSetsRequest {
 	r.creationFinishedGte = &creationFinishedGte
 	return r
 }
 
 // filter creation finished lesser equal with utc timestamp
 
-func (r ApiGetRecordSetsRequest) CreationFinishedLte(creationFinishedLte string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) CreationFinishedLte(creationFinishedLte string) ApiListRecordSetsRequest {
 	r.creationFinishedLte = &creationFinishedLte
 	return r
 }
 
 // filter update started greater with utc timestamp
 
-func (r ApiGetRecordSetsRequest) UpdateStartedGt(updateStartedGt string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) UpdateStartedGt(updateStartedGt string) ApiListRecordSetsRequest {
 	r.updateStartedGt = &updateStartedGt
 	return r
 }
 
 // filter update started lesser with utc timestamp
 
-func (r ApiGetRecordSetsRequest) UpdateStartedLt(updateStartedLt string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) UpdateStartedLt(updateStartedLt string) ApiListRecordSetsRequest {
 	r.updateStartedLt = &updateStartedLt
 	return r
 }
 
 // filter update started greater equal with utc timestamp
 
-func (r ApiGetRecordSetsRequest) UpdateStartedGte(updateStartedGte string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) UpdateStartedGte(updateStartedGte string) ApiListRecordSetsRequest {
 	r.updateStartedGte = &updateStartedGte
 	return r
 }
 
 // filter update started lesser equal with utc timestamp
 
-func (r ApiGetRecordSetsRequest) UpdateStartedLte(updateStartedLte string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) UpdateStartedLte(updateStartedLte string) ApiListRecordSetsRequest {
 	r.updateStartedLte = &updateStartedLte
 	return r
 }
 
 // filter update finished greater with utc timestamp
 
-func (r ApiGetRecordSetsRequest) UpdateFinishedGt(updateFinishedGt string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) UpdateFinishedGt(updateFinishedGt string) ApiListRecordSetsRequest {
 	r.updateFinishedGt = &updateFinishedGt
 	return r
 }
 
 // filter update finished lesser with utc timestamp
 
-func (r ApiGetRecordSetsRequest) UpdateFinishedLt(updateFinishedLt string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) UpdateFinishedLt(updateFinishedLt string) ApiListRecordSetsRequest {
 	r.updateFinishedLt = &updateFinishedLt
 	return r
 }
 
 // filter update finished greater equal with utc timestamp
 
-func (r ApiGetRecordSetsRequest) UpdateFinishedGte(updateFinishedGte string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) UpdateFinishedGte(updateFinishedGte string) ApiListRecordSetsRequest {
 	r.updateFinishedGte = &updateFinishedGte
 	return r
 }
 
 // filter update finished lesser equal with utc timestamp
 
-func (r ApiGetRecordSetsRequest) UpdateFinishedLte(updateFinishedLte string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) UpdateFinishedLte(updateFinishedLte string) ApiListRecordSetsRequest {
 	r.updateFinishedLte = &updateFinishedLte
 	return r
 }
 
 // order by name
 
-func (r ApiGetRecordSetsRequest) OrderByName(orderByName string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByName(orderByName string) ApiListRecordSetsRequest {
 	r.orderByName = &orderByName
 	return r
 }
 
 // order by creationStarted
 
-func (r ApiGetRecordSetsRequest) OrderByCreationStarted(orderByCreationStarted string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByCreationStarted(orderByCreationStarted string) ApiListRecordSetsRequest {
 	r.orderByCreationStarted = &orderByCreationStarted
 	return r
 }
 
 // order by creationFinished
 
-func (r ApiGetRecordSetsRequest) OrderByCreationFinished(orderByCreationFinished string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByCreationFinished(orderByCreationFinished string) ApiListRecordSetsRequest {
 	r.orderByCreationFinished = &orderByCreationFinished
 	return r
 }
 
 // order by updateStarted
 
-func (r ApiGetRecordSetsRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiListRecordSetsRequest {
 	r.orderByUpdateStarted = &orderByUpdateStarted
 	return r
 }
 
 // order by updateFinished
 
-func (r ApiGetRecordSetsRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiListRecordSetsRequest {
 	r.orderByUpdateFinished = &orderByUpdateFinished
 	return r
 }
 
 // order by type
 
-func (r ApiGetRecordSetsRequest) OrderByType(orderByType string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByType(orderByType string) ApiListRecordSetsRequest {
 	r.orderByType = &orderByType
 	return r
 }
 
 // order by state
 
-func (r ApiGetRecordSetsRequest) OrderByState(orderByState string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByState(orderByState string) ApiListRecordSetsRequest {
 	r.orderByState = &orderByState
 	return r
 }
 
 // order by record count
 
-func (r ApiGetRecordSetsRequest) OrderByRecordCount(orderByRecordCount string) ApiGetRecordSetsRequest {
+func (r ApiListRecordSetsRequest) OrderByRecordCount(orderByRecordCount string) ApiListRecordSetsRequest {
 	r.orderByRecordCount = &orderByRecordCount
 	return r
 }
 
-func (r ApiGetRecordSetsRequest) Execute() (*RecordSetsResponse, error) {
+func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *RecordSetsResponse
+		localVarReturnValue *ListRecordSetsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetRecordSets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListRecordSets")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1275,17 +1413,17 @@ func (r ApiGetRecordSetsRequest) Execute() (*RecordSetsResponse, error) {
 }
 
 /*
-GetRecordSets All get selected RRSets
+ListRecordSets All get selected RRSets
 
 All RRSet
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@param zoneId zone id
-	@return ApiGetRecordSetsRequest
+	@return ApiListRecordSetsRequest
 */
-func (a *APIClient) GetRecordSets(ctx context.Context, projectId string, zoneId string) ApiGetRecordSetsRequest {
-	return ApiGetRecordSetsRequest{
+func (a *APIClient) ListRecordSets(ctx context.Context, projectId string, zoneId string) ApiListRecordSetsRequest {
+	return ApiListRecordSetsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1293,8 +1431,8 @@ func (a *APIClient) GetRecordSets(ctx context.Context, projectId string, zoneId 
 	}
 }
 
-func (a *APIClient) GetRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*RecordSetsResponse, error) {
-	r := ApiGetRecordSetsRequest{
+func (a *APIClient) ListRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ListRecordSetsResponse, error) {
+	r := ApiListRecordSetsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1303,145 +1441,7 @@ func (a *APIClient) GetRecordSetsExecute(ctx context.Context, projectId string, 
 	return r.Execute()
 }
 
-type ApiGetZoneRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	zoneId     string
-}
-
-func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ZoneResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetZone")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/zones/{zoneId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(r.zoneId, "zoneId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 502 {
-			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetZone Get a single zone
-
-Get zone
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId project id
-	@param zoneId zone id
-	@return ApiGetZoneRequest
-*/
-func (a *APIClient) GetZone(ctx context.Context, projectId string, zoneId string) ApiGetZoneRequest {
-	return ApiGetZoneRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		zoneId:     zoneId,
-	}
-}
-
-func (a *APIClient) GetZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error) {
-	r := ApiGetZoneRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		zoneId:     zoneId,
-	}
-	return r.Execute()
-}
-
-type ApiGetZonesRequest struct {
+type ApiListZonesRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	projectId               string
@@ -1491,307 +1491,307 @@ type ApiGetZonesRequest struct {
 
 // page
 
-func (r ApiGetZonesRequest) Page(page int32) ApiGetZonesRequest {
+func (r ApiListZonesRequest) Page(page int32) ApiListZonesRequest {
 	r.page = &page
 	return r
 }
 
 // page size
 
-func (r ApiGetZonesRequest) PageSize(pageSize int32) ApiGetZonesRequest {
+func (r ApiListZonesRequest) PageSize(pageSize int32) ApiListZonesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // filter dns name equal
 
-func (r ApiGetZonesRequest) DnsNameEq(dnsNameEq string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) DnsNameEq(dnsNameEq string) ApiListZonesRequest {
 	r.dnsNameEq = &dnsNameEq
 	return r
 }
 
 // filter dns name like
 
-func (r ApiGetZonesRequest) DnsNameLike(dnsNameLike string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) DnsNameLike(dnsNameLike string) ApiListZonesRequest {
 	r.dnsNameLike = &dnsNameLike
 	return r
 }
 
 // filter type
 
-func (r ApiGetZonesRequest) TypeEq(typeEq string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) TypeEq(typeEq string) ApiListZonesRequest {
 	r.typeEq = &typeEq
 	return r
 }
 
 // filter name equal
 
-func (r ApiGetZonesRequest) NameEq(nameEq string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) NameEq(nameEq string) ApiListZonesRequest {
 	r.nameEq = &nameEq
 	return r
 }
 
 // filter name not equal
 
-func (r ApiGetZonesRequest) NameNeq(nameNeq string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) NameNeq(nameNeq string) ApiListZonesRequest {
 	r.nameNeq = &nameNeq
 	return r
 }
 
 // filter name like
 
-func (r ApiGetZonesRequest) NameLike(nameLike string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) NameLike(nameLike string) ApiListZonesRequest {
 	r.nameLike = &nameLike
 	return r
 }
 
 // filter description equal
 
-func (r ApiGetZonesRequest) DescriptionEq(descriptionEq string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) DescriptionEq(descriptionEq string) ApiListZonesRequest {
 	r.descriptionEq = &descriptionEq
 	return r
 }
 
 // filter description not equal
 
-func (r ApiGetZonesRequest) DescriptionNeq(descriptionNeq string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) DescriptionNeq(descriptionNeq string) ApiListZonesRequest {
 	r.descriptionNeq = &descriptionNeq
 	return r
 }
 
 // filter description like
 
-func (r ApiGetZonesRequest) DescriptionLike(descriptionLike string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) DescriptionLike(descriptionLike string) ApiListZonesRequest {
 	r.descriptionLike = &descriptionLike
 	return r
 }
 
 // filter state
 
-func (r ApiGetZonesRequest) StateEq(stateEq string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) StateEq(stateEq string) ApiListZonesRequest {
 	r.stateEq = &stateEq
 	return r
 }
 
 // filter state
 
-func (r ApiGetZonesRequest) StateNeq(stateNeq string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) StateNeq(stateNeq string) ApiListZonesRequest {
 	r.stateNeq = &stateNeq
 	return r
 }
 
 // filter primary name server equal
 
-func (r ApiGetZonesRequest) PrimaryNameServerEq(primaryNameServerEq string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) PrimaryNameServerEq(primaryNameServerEq string) ApiListZonesRequest {
 	r.primaryNameServerEq = &primaryNameServerEq
 	return r
 }
 
 // filter primary name server like
 
-func (r ApiGetZonesRequest) PrimaryNameServerLike(primaryNameServerLike string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) PrimaryNameServerLike(primaryNameServerLike string) ApiListZonesRequest {
 	r.primaryNameServerLike = &primaryNameServerLike
 	return r
 }
 
 // filter reverse zone equal
 
-func (r ApiGetZonesRequest) IsReverseZoneEq(isReverseZoneEq bool) ApiGetZonesRequest {
+func (r ApiListZonesRequest) IsReverseZoneEq(isReverseZoneEq bool) ApiListZonesRequest {
 	r.isReverseZoneEq = &isReverseZoneEq
 	return r
 }
 
 // filter active equal
 
-func (r ApiGetZonesRequest) ActiveEq(activeEq bool) ApiGetZonesRequest {
+func (r ApiListZonesRequest) ActiveEq(activeEq bool) ApiListZonesRequest {
 	r.activeEq = &activeEq
 	return r
 }
 
 // filter creation started greater with utc timestamp
 
-func (r ApiGetZonesRequest) CreationStartedGt(creationStartedGt string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) CreationStartedGt(creationStartedGt string) ApiListZonesRequest {
 	r.creationStartedGt = &creationStartedGt
 	return r
 }
 
 // filter creation started lesser with utc timestamp
 
-func (r ApiGetZonesRequest) CreationStartedLt(creationStartedLt string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) CreationStartedLt(creationStartedLt string) ApiListZonesRequest {
 	r.creationStartedLt = &creationStartedLt
 	return r
 }
 
 // filter creation started greater equal with utc timestamp
 
-func (r ApiGetZonesRequest) CreationStartedGte(creationStartedGte string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) CreationStartedGte(creationStartedGte string) ApiListZonesRequest {
 	r.creationStartedGte = &creationStartedGte
 	return r
 }
 
 // filter creation started lesser equal with utc timestamp
 
-func (r ApiGetZonesRequest) CreationStartedLte(creationStartedLte string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) CreationStartedLte(creationStartedLte string) ApiListZonesRequest {
 	r.creationStartedLte = &creationStartedLte
 	return r
 }
 
 // filter creation finished greater with utc timestamp
 
-func (r ApiGetZonesRequest) CreationFinishedGt(creationFinishedGt string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) CreationFinishedGt(creationFinishedGt string) ApiListZonesRequest {
 	r.creationFinishedGt = &creationFinishedGt
 	return r
 }
 
 // filter creation finished lesser with utc timestamp
 
-func (r ApiGetZonesRequest) CreationFinishedLt(creationFinishedLt string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) CreationFinishedLt(creationFinishedLt string) ApiListZonesRequest {
 	r.creationFinishedLt = &creationFinishedLt
 	return r
 }
 
 // filter creation finished greater equal with utc timestamp
 
-func (r ApiGetZonesRequest) CreationFinishedGte(creationFinishedGte string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) CreationFinishedGte(creationFinishedGte string) ApiListZonesRequest {
 	r.creationFinishedGte = &creationFinishedGte
 	return r
 }
 
 // filter creation finished lesser equal with utc timestamp
 
-func (r ApiGetZonesRequest) CreationFinishedLte(creationFinishedLte string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) CreationFinishedLte(creationFinishedLte string) ApiListZonesRequest {
 	r.creationFinishedLte = &creationFinishedLte
 	return r
 }
 
 // filter update started greater with utc timestamp
 
-func (r ApiGetZonesRequest) UpdateStartedGt(updateStartedGt string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) UpdateStartedGt(updateStartedGt string) ApiListZonesRequest {
 	r.updateStartedGt = &updateStartedGt
 	return r
 }
 
 // filter update started lesser with utc timestamp
 
-func (r ApiGetZonesRequest) UpdateStartedLt(updateStartedLt string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) UpdateStartedLt(updateStartedLt string) ApiListZonesRequest {
 	r.updateStartedLt = &updateStartedLt
 	return r
 }
 
 // filter update started greater equal with utc timestamp
 
-func (r ApiGetZonesRequest) UpdateStartedGte(updateStartedGte string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) UpdateStartedGte(updateStartedGte string) ApiListZonesRequest {
 	r.updateStartedGte = &updateStartedGte
 	return r
 }
 
 // filter update started lesser equal with utc timestamp
 
-func (r ApiGetZonesRequest) UpdateStartedLte(updateStartedLte string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) UpdateStartedLte(updateStartedLte string) ApiListZonesRequest {
 	r.updateStartedLte = &updateStartedLte
 	return r
 }
 
 // filter update finished greater with utc timestamp
 
-func (r ApiGetZonesRequest) UpdateFinishedGt(updateFinishedGt string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) UpdateFinishedGt(updateFinishedGt string) ApiListZonesRequest {
 	r.updateFinishedGt = &updateFinishedGt
 	return r
 }
 
 // filter update finished lesser with utc timestamp
 
-func (r ApiGetZonesRequest) UpdateFinishedLt(updateFinishedLt string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) UpdateFinishedLt(updateFinishedLt string) ApiListZonesRequest {
 	r.updateFinishedLt = &updateFinishedLt
 	return r
 }
 
 // filter update finished greater equal with utc timestamp
 
-func (r ApiGetZonesRequest) UpdateFinishedGte(updateFinishedGte string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) UpdateFinishedGte(updateFinishedGte string) ApiListZonesRequest {
 	r.updateFinishedGte = &updateFinishedGte
 	return r
 }
 
 // filter update finished lesser equal with utc timestamp
 
-func (r ApiGetZonesRequest) UpdateFinishedLte(updateFinishedLte string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) UpdateFinishedLte(updateFinishedLte string) ApiListZonesRequest {
 	r.updateFinishedLte = &updateFinishedLte
 	return r
 }
 
 // order by dns name
 
-func (r ApiGetZonesRequest) OrderByDnsName(orderByDnsName string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) OrderByDnsName(orderByDnsName string) ApiListZonesRequest {
 	r.orderByDnsName = &orderByDnsName
 	return r
 }
 
 // order by name
 
-func (r ApiGetZonesRequest) OrderByName(orderByName string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) OrderByName(orderByName string) ApiListZonesRequest {
 	r.orderByName = &orderByName
 	return r
 }
 
 // order by record count
 
-func (r ApiGetZonesRequest) OrderByRecordCount(orderByRecordCount string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) OrderByRecordCount(orderByRecordCount string) ApiListZonesRequest {
 	r.orderByRecordCount = &orderByRecordCount
 	return r
 }
 
 // order by type
 
-func (r ApiGetZonesRequest) OrderByType(orderByType string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) OrderByType(orderByType string) ApiListZonesRequest {
 	r.orderByType = &orderByType
 	return r
 }
 
 // order by description
 
-func (r ApiGetZonesRequest) OrderByDescription(orderByDescription string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) OrderByDescription(orderByDescription string) ApiListZonesRequest {
 	r.orderByDescription = &orderByDescription
 	return r
 }
 
 // order by creationStarted
 
-func (r ApiGetZonesRequest) OrderByCreationStarted(orderByCreationStarted string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) OrderByCreationStarted(orderByCreationStarted string) ApiListZonesRequest {
 	r.orderByCreationStarted = &orderByCreationStarted
 	return r
 }
 
 // order by creationFinished
 
-func (r ApiGetZonesRequest) OrderByCreationFinished(orderByCreationFinished string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) OrderByCreationFinished(orderByCreationFinished string) ApiListZonesRequest {
 	r.orderByCreationFinished = &orderByCreationFinished
 	return r
 }
 
 // order by updateStarted
 
-func (r ApiGetZonesRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiListZonesRequest {
 	r.orderByUpdateStarted = &orderByUpdateStarted
 	return r
 }
 
 // order by updateFinished
 
-func (r ApiGetZonesRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiGetZonesRequest {
+func (r ApiListZonesRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiListZonesRequest {
 	r.orderByUpdateFinished = &orderByUpdateFinished
 	return r
 }
 
-func (r ApiGetZonesRequest) Execute() (*ZonesResponse, error) {
+func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ZonesResponse
+		localVarReturnValue *ListZonesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetZones")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListZones")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2011,24 +2011,24 @@ func (r ApiGetZonesRequest) Execute() (*ZonesResponse, error) {
 }
 
 /*
-GetZones All get selected zones
+ListZones All get selected zones
 
 All zone
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
-	@return ApiGetZonesRequest
+	@return ApiListZonesRequest
 */
-func (a *APIClient) GetZones(ctx context.Context, projectId string) ApiGetZonesRequest {
-	return ApiGetZonesRequest{
+func (a *APIClient) ListZones(ctx context.Context, projectId string) ApiListZonesRequest {
+	return ApiListZonesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 	}
 }
 
-func (a *APIClient) GetZonesExecute(ctx context.Context, projectId string) (*ZonesResponse, error) {
-	r := ApiGetZonesRequest{
+func (a *APIClient) ListZonesExecute(ctx context.Context, projectId string) (*ListZonesResponse, error) {
+	r := ApiListZonesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2036,23 +2036,23 @@ func (a *APIClient) GetZonesExecute(ctx context.Context, projectId string) (*Zon
 	return r.Execute()
 }
 
-type ApiUpdateRecordRequest struct {
-	ctx                 context.Context
-	apiService          *DefaultApiService
-	projectId           string
-	zoneId              string
-	rrSetId             string
-	updateRecordPayload *UpdateRecordPayload
+type ApiPartialUpdateRecordRequest struct {
+	ctx                        context.Context
+	apiService                 *DefaultApiService
+	projectId                  string
+	zoneId                     string
+	rrSetId                    string
+	partialUpdateRecordPayload *PartialUpdateRecordPayload
 }
 
 // rrset to update
 
-func (r ApiUpdateRecordRequest) UpdateRecordPayload(updateRecordPayload UpdateRecordPayload) ApiUpdateRecordRequest {
-	r.updateRecordPayload = &updateRecordPayload
+func (r ApiPartialUpdateRecordRequest) PartialUpdateRecordPayload(partialUpdateRecordPayload PartialUpdateRecordPayload) ApiPartialUpdateRecordRequest {
+	r.partialUpdateRecordPayload = &partialUpdateRecordPayload
 	return r
 }
 
-func (r ApiUpdateRecordRequest) Execute() (*Message, error) {
+func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -2060,7 +2060,7 @@ func (r ApiUpdateRecordRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateRecord")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateRecord")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2073,8 +2073,8 @@ func (r ApiUpdateRecordRequest) Execute() (*Message, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateRecordPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateRecordPayload is required and must be specified")
+	if r.partialUpdateRecordPayload == nil {
+		return localVarReturnValue, fmt.Errorf("partialUpdateRecordPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2095,7 +2095,7 @@ func (r ApiUpdateRecordRequest) Execute() (*Message, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateRecordPayload
+	localVarPostBody = r.partialUpdateRecordPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -2172,7 +2172,7 @@ func (r ApiUpdateRecordRequest) Execute() (*Message, error) {
 }
 
 /*
-UpdateRecord PatchRecords updates a record in a rrset
+PartialUpdateRecord PatchRecords updates a record in a rrset
 
 PatchRecords rrset updates a record in a rrset
 
@@ -2180,10 +2180,10 @@ PatchRecords rrset updates a record in a rrset
 	@param projectId project id
 	@param zoneId zone id
 	@param rrSetId record set id
-	@return ApiUpdateRecordRequest
+	@return ApiPartialUpdateRecordRequest
 */
-func (a *APIClient) UpdateRecord(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiUpdateRecordRequest {
-	return ApiUpdateRecordRequest{
+func (a *APIClient) PartialUpdateRecord(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiPartialUpdateRecordRequest {
+	return ApiPartialUpdateRecordRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2192,8 +2192,8 @@ func (a *APIClient) UpdateRecord(ctx context.Context, projectId string, zoneId s
 	}
 }
 
-func (a *APIClient) UpdateRecordExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error) {
-	r := ApiUpdateRecordRequest{
+func (a *APIClient) PartialUpdateRecordExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error) {
+	r := ApiPartialUpdateRecordRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2203,23 +2203,23 @@ func (a *APIClient) UpdateRecordExecute(ctx context.Context, projectId string, z
 	return r.Execute()
 }
 
-type ApiUpdateRecordSetRequest struct {
-	ctx                    context.Context
-	apiService             *DefaultApiService
-	projectId              string
-	zoneId                 string
-	rrSetId                string
-	updateRecordSetPayload *UpdateRecordSetPayload
+type ApiPartialUpdateRecordSetRequest struct {
+	ctx                           context.Context
+	apiService                    *DefaultApiService
+	projectId                     string
+	zoneId                        string
+	rrSetId                       string
+	partialUpdateRecordSetPayload *PartialUpdateRecordSetPayload
 }
 
 // record set to patch
 
-func (r ApiUpdateRecordSetRequest) UpdateRecordSetPayload(updateRecordSetPayload UpdateRecordSetPayload) ApiUpdateRecordSetRequest {
-	r.updateRecordSetPayload = &updateRecordSetPayload
+func (r ApiPartialUpdateRecordSetRequest) PartialUpdateRecordSetPayload(partialUpdateRecordSetPayload PartialUpdateRecordSetPayload) ApiPartialUpdateRecordSetRequest {
+	r.partialUpdateRecordSetPayload = &partialUpdateRecordSetPayload
 	return r
 }
 
-func (r ApiUpdateRecordSetRequest) Execute() (*Message, error) {
+func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -2227,7 +2227,7 @@ func (r ApiUpdateRecordSetRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateRecordSet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2240,8 +2240,8 @@ func (r ApiUpdateRecordSetRequest) Execute() (*Message, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateRecordSetPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateRecordSetPayload is required and must be specified")
+	if r.partialUpdateRecordSetPayload == nil {
+		return localVarReturnValue, fmt.Errorf("partialUpdateRecordSetPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2262,7 +2262,7 @@ func (r ApiUpdateRecordSetRequest) Execute() (*Message, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateRecordSetPayload
+	localVarPostBody = r.partialUpdateRecordSetPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -2339,7 +2339,7 @@ func (r ApiUpdateRecordSetRequest) Execute() (*Message, error) {
 }
 
 /*
-UpdateRecordSet Patch updates a record set
+PartialUpdateRecordSet Patch updates a record set
 
 Patch record set
 
@@ -2347,10 +2347,10 @@ Patch record set
 	@param projectId project id
 	@param zoneId zone id
 	@param rrSetId record set id
-	@return ApiUpdateRecordSetRequest
+	@return ApiPartialUpdateRecordSetRequest
 */
-func (a *APIClient) UpdateRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiUpdateRecordSetRequest {
-	return ApiUpdateRecordSetRequest{
+func (a *APIClient) PartialUpdateRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiPartialUpdateRecordSetRequest {
+	return ApiPartialUpdateRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2359,8 +2359,8 @@ func (a *APIClient) UpdateRecordSet(ctx context.Context, projectId string, zoneI
 	}
 }
 
-func (a *APIClient) UpdateRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error) {
-	r := ApiUpdateRecordSetRequest{
+func (a *APIClient) PartialUpdateRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error) {
+	r := ApiPartialUpdateRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2370,22 +2370,22 @@ func (a *APIClient) UpdateRecordSetExecute(ctx context.Context, projectId string
 	return r.Execute()
 }
 
-type ApiUpdateZoneRequest struct {
-	ctx               context.Context
-	apiService        *DefaultApiService
-	projectId         string
-	zoneId            string
-	updateZonePayload *UpdateZonePayload
+type ApiPartialUpdateZoneRequest struct {
+	ctx                      context.Context
+	apiService               *DefaultApiService
+	projectId                string
+	zoneId                   string
+	partialUpdateZonePayload *PartialUpdateZonePayload
 }
 
 // zone to update
 
-func (r ApiUpdateZoneRequest) UpdateZonePayload(updateZonePayload UpdateZonePayload) ApiUpdateZoneRequest {
-	r.updateZonePayload = &updateZonePayload
+func (r ApiPartialUpdateZoneRequest) PartialUpdateZonePayload(partialUpdateZonePayload PartialUpdateZonePayload) ApiPartialUpdateZoneRequest {
+	r.partialUpdateZonePayload = &partialUpdateZonePayload
 	return r
 }
 
-func (r ApiUpdateZoneRequest) Execute() (*ZoneResponse, error) {
+func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -2393,7 +2393,7 @@ func (r ApiUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 		localVarReturnValue *ZoneResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateZone")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2405,8 +2405,8 @@ func (r ApiUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateZonePayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateZonePayload is required and must be specified")
+	if r.partialUpdateZonePayload == nil {
+		return localVarReturnValue, fmt.Errorf("partialUpdateZonePayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2427,7 +2427,7 @@ func (r ApiUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateZonePayload
+	localVarPostBody = r.partialUpdateZonePayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -2504,17 +2504,17 @@ func (r ApiUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 }
 
 /*
-UpdateZone Patch update an existing zone
+PartialUpdateZone Patch update an existing zone
 
 Patch update an existing zone
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@param zoneId zone id
-	@return ApiUpdateZoneRequest
+	@return ApiPartialUpdateZoneRequest
 */
-func (a *APIClient) UpdateZone(ctx context.Context, projectId string, zoneId string) ApiUpdateZoneRequest {
-	return ApiUpdateZoneRequest{
+func (a *APIClient) PartialUpdateZone(ctx context.Context, projectId string, zoneId string) ApiPartialUpdateZoneRequest {
+	return ApiPartialUpdateZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2522,8 +2522,8 @@ func (a *APIClient) UpdateZone(ctx context.Context, projectId string, zoneId str
 	}
 }
 
-func (a *APIClient) UpdateZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error) {
-	r := ApiUpdateZoneRequest{
+func (a *APIClient) PartialUpdateZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error) {
+	r := ApiPartialUpdateZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

@@ -12,7 +12,7 @@ package argus
 
 type AlertGroupsResponse struct {
 	// REQUIRED
-	Data *[]AlertGroupJson `json:"data"`
+	Data *[]AlertGroup `json:"data"`
 	// REQUIRED
 	Message *string `json:"message"`
 }

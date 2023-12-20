@@ -303,61 +303,6 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetRecordSets", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := RecordSetsResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := "projectId"
-		zoneId := "zoneId"
-
-		resp, reqErr := apiClient.GetRecordSets(context.Background(), projectId, zoneId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
 	t.Run("Test DefaultApiService GetZone", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/zones/{zoneId}"
 		projectIdValue := "projectId"
@@ -413,14 +358,69 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetZones", func(t *testing.T) {
+	t.Run("Test DefaultApiService ListRecordSets", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId"
+		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ListRecordSetsResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for dns_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		zoneId := "zoneId"
+
+		resp, reqErr := apiClient.ListRecordSets(context.Background(), projectId, zoneId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", err)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListZones", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/zones"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ZonesResponse{}
+			data := ListZonesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -455,7 +455,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 
-		resp, reqErr := apiClient.GetZones(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListZones(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -465,7 +465,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateRecord", func(t *testing.T) {
+	t.Run("Test DefaultApiService PartialUpdateRecord", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}/records"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -512,9 +512,9 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		zoneId := "zoneId"
 		rrSetId := "rrSetId"
-		updateRecordPayload := UpdateRecordPayload{}
+		partialUpdateRecordPayload := PartialUpdateRecordPayload{}
 
-		resp, reqErr := apiClient.UpdateRecord(context.Background(), projectId, zoneId, rrSetId).UpdateRecordPayload(updateRecordPayload).Execute()
+		resp, reqErr := apiClient.PartialUpdateRecord(context.Background(), projectId, zoneId, rrSetId).PartialUpdateRecordPayload(partialUpdateRecordPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -524,7 +524,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateRecordSet", func(t *testing.T) {
+	t.Run("Test DefaultApiService PartialUpdateRecordSet", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -571,9 +571,9 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		zoneId := "zoneId"
 		rrSetId := "rrSetId"
-		updateRecordSetPayload := UpdateRecordSetPayload{}
+		partialUpdateRecordSetPayload := PartialUpdateRecordSetPayload{}
 
-		resp, reqErr := apiClient.UpdateRecordSet(context.Background(), projectId, zoneId, rrSetId).UpdateRecordSetPayload(updateRecordSetPayload).Execute()
+		resp, reqErr := apiClient.PartialUpdateRecordSet(context.Background(), projectId, zoneId, rrSetId).PartialUpdateRecordSetPayload(partialUpdateRecordSetPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)
@@ -583,7 +583,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateZone", func(t *testing.T) {
+	t.Run("Test DefaultApiService PartialUpdateZone", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/zones/{zoneId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -627,9 +627,9 @@ func Test_dns_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		zoneId := "zoneId"
-		updateZonePayload := UpdateZonePayload{}
+		partialUpdateZonePayload := PartialUpdateZonePayload{}
 
-		resp, reqErr := apiClient.UpdateZone(context.Background(), projectId, zoneId).UpdateZonePayload(updateZonePayload).Execute()
+		resp, reqErr := apiClient.PartialUpdateZone(context.Background(), projectId, zoneId).PartialUpdateZonePayload(partialUpdateZonePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)

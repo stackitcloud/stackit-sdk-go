@@ -11,5 +11,5 @@ API version: 1.0.0
 package mongodbflex
 
 type GetInstanceResponse struct {
-	Item *InstanceSingleInstance `json:"item,omitempty"`
+	Item *Instance `json:"item,omitempty"`
 }

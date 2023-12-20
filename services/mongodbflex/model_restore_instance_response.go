@@ -11,5 +11,5 @@ API version: 1.0.0
 package mongodbflex
 
 type RestoreInstanceResponse struct {
-	Item *InstanceRestore `json:"item,omitempty"`
+	Item *RestoreInstanceStatus `json:"item,omitempty"`
 }

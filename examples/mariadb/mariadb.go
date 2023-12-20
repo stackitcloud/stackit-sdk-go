@@ -25,7 +25,7 @@ func main() {
 	}
 
 	// Get the mariadb instances for your project
-	getInstancesResp, err := mariadbClient.GetInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := mariadbClient.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
@@ -33,7 +33,7 @@ func main() {
 	}
 
 	// Get the mariadb offerings for your project
-	getOfferingsResp, err := mariadbClient.GetOfferings(context.Background(), projectId).Execute()
+	getOfferingsResp, err := mariadbClient.ListOfferings(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
 	} else {

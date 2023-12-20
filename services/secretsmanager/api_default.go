@@ -26,20 +26,20 @@ import (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateAclRequest struct {
+type ApiCreateACLRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
 	projectId        string
 	instanceId       string
-	createAclPayload *CreateAclPayload
+	createACLPayload *CreateACLPayload
 }
 
-func (r ApiCreateAclRequest) CreateAclPayload(createAclPayload CreateAclPayload) ApiCreateAclRequest {
-	r.createAclPayload = &createAclPayload
+func (r ApiCreateACLRequest) CreateACLPayload(createACLPayload CreateACLPayload) ApiCreateACLRequest {
+	r.createACLPayload = &createACLPayload
 	return r
 }
 
-func (r ApiCreateAclRequest) Execute() (*Acl, error) {
+func (r ApiCreateACLRequest) Execute() (*Acl, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -47,7 +47,7 @@ func (r ApiCreateAclRequest) Execute() (*Acl, error) {
 		localVarReturnValue *Acl
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAcl")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateACL")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -59,8 +59,8 @@ func (r ApiCreateAclRequest) Execute() (*Acl, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createAclPayload == nil {
-		return localVarReturnValue, fmt.Errorf("createAclPayload is required and must be specified")
+	if r.createACLPayload == nil {
+		return localVarReturnValue, fmt.Errorf("createACLPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -81,7 +81,7 @@ func (r ApiCreateAclRequest) Execute() (*Acl, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createAclPayload
+	localVarPostBody = r.createACLPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -126,17 +126,17 @@ func (r ApiCreateAclRequest) Execute() (*Acl, error) {
 }
 
 /*
-CreateAcl Method for CreateAcl
+CreateACL Method for CreateACL
 
 Creates a new Secrets Manager acl within the project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
 	@param instanceId The Secrets Manager instance UUID.
-	@return ApiCreateAclRequest
+	@return ApiCreateACLRequest
 */
-func (a *APIClient) CreateAcl(ctx context.Context, projectId string, instanceId string) ApiCreateAclRequest {
-	return ApiCreateAclRequest{
+func (a *APIClient) CreateACL(ctx context.Context, projectId string, instanceId string) ApiCreateACLRequest {
+	return ApiCreateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -144,8 +144,8 @@ func (a *APIClient) CreateAcl(ctx context.Context, projectId string, instanceId 
 	}
 }
 
-func (a *APIClient) CreateAclExecute(ctx context.Context, projectId string, instanceId string) (*Acl, error) {
-	r := ApiCreateAclRequest{
+func (a *APIClient) CreateACLExecute(ctx context.Context, projectId string, instanceId string) (*Acl, error) {
+	r := ApiCreateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -405,7 +405,7 @@ func (a *APIClient) CreateUserExecute(ctx context.Context, projectId string, ins
 	return r.Execute()
 }
 
-type ApiDeleteAclRequest struct {
+type ApiDeleteACLRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -413,14 +413,14 @@ type ApiDeleteAclRequest struct {
 	aclId      string
 }
 
-func (r ApiDeleteAclRequest) Execute() error {
+func (r ApiDeleteACLRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAcl")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteACL")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -485,7 +485,7 @@ func (r ApiDeleteAclRequest) Execute() error {
 }
 
 /*
-DeleteAcl Method for DeleteAcl
+DeleteACL Method for DeleteACL
 
 Deletes the given acl.
 
@@ -493,10 +493,10 @@ Deletes the given acl.
 	@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
 	@param instanceId The Secrets Manager instance UUID.
 	@param aclId The acl UUID of the Secrets Manager instance.
-	@return ApiDeleteAclRequest
+	@return ApiDeleteACLRequest
 */
-func (a *APIClient) DeleteAcl(ctx context.Context, projectId string, instanceId string, aclId string) ApiDeleteAclRequest {
-	return ApiDeleteAclRequest{
+func (a *APIClient) DeleteACL(ctx context.Context, projectId string, instanceId string, aclId string) ApiDeleteACLRequest {
+	return ApiDeleteACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -505,8 +505,8 @@ func (a *APIClient) DeleteAcl(ctx context.Context, projectId string, instanceId 
 	}
 }
 
-func (a *APIClient) DeleteAclExecute(ctx context.Context, projectId string, instanceId string, aclId string) error {
-	r := ApiDeleteAclRequest{
+func (a *APIClient) DeleteACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) error {
+	r := ApiDeleteACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -733,7 +733,7 @@ func (a *APIClient) DeleteUserExecute(ctx context.Context, projectId string, ins
 	return r.Execute()
 }
 
-type ApiGetAclRequest struct {
+type ApiGetACLRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -741,7 +741,7 @@ type ApiGetAclRequest struct {
 	aclId      string
 }
 
-func (r ApiGetAclRequest) Execute() (*Acl, error) {
+func (r ApiGetACLRequest) Execute() (*Acl, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -749,7 +749,7 @@ func (r ApiGetAclRequest) Execute() (*Acl, error) {
 		localVarReturnValue *Acl
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAcl")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetACL")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -824,7 +824,7 @@ func (r ApiGetAclRequest) Execute() (*Acl, error) {
 }
 
 /*
-GetAcl Method for GetAcl
+GetACL Method for GetACL
 
 Returns the details for the given acl.
 
@@ -832,10 +832,10 @@ Returns the details for the given acl.
 	@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
 	@param instanceId The Secrets Manager instance UUID.
 	@param aclId The acl UUID of the Secrets Manager instance.
-	@return ApiGetAclRequest
+	@return ApiGetACLRequest
 */
-func (a *APIClient) GetAcl(ctx context.Context, projectId string, instanceId string, aclId string) ApiGetAclRequest {
-	return ApiGetAclRequest{
+func (a *APIClient) GetACL(ctx context.Context, projectId string, instanceId string, aclId string) ApiGetACLRequest {
+	return ApiGetACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -844,130 +844,13 @@ func (a *APIClient) GetAcl(ctx context.Context, projectId string, instanceId str
 	}
 }
 
-func (a *APIClient) GetAclExecute(ctx context.Context, projectId string, instanceId string, aclId string) (*Acl, error) {
-	r := ApiGetAclRequest{
+func (a *APIClient) GetACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) (*Acl, error) {
+	r := ApiGetACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 		instanceId: instanceId,
 		aclId:      aclId,
-	}
-	return r.Execute()
-}
-
-type ApiGetAclsRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	instanceId string
-}
-
-func (r ApiGetAclsRequest) Execute() (*AclList, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AclList
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAcls")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/acls"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetAcls Method for GetAcls
-
-Returns the acls for the given Secrets Manager instance.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
-	@param instanceId The Secrets Manager instance UUID.
-	@return ApiGetAclsRequest
-*/
-func (a *APIClient) GetAcls(ctx context.Context, projectId string, instanceId string) ApiGetAclsRequest {
-	return ApiGetAclsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-}
-
-func (a *APIClient) GetAclsExecute(ctx context.Context, projectId string, instanceId string) (*AclList, error) {
-	r := ApiGetAclsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
 	}
 	return r.Execute()
 }
@@ -1085,118 +968,6 @@ func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, in
 		ctx:        ctx,
 		projectId:  projectId,
 		instanceId: instanceId,
-	}
-	return r.Execute()
-}
-
-type ApiGetInstancesRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-}
-
-func (r ApiGetInstancesRequest) Execute() (*InstanceList, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InstanceList
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstances")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstances Method for GetInstances
-
-Returns a list of all Secrets Manager instances within the project.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
-	@return ApiGetInstancesRequest
-*/
-func (a *APIClient) GetInstances(ctx context.Context, projectId string) ApiGetInstancesRequest {
-	return ApiGetInstancesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) GetInstancesExecute(ctx context.Context, projectId string) (*InstanceList, error) {
-	r := ApiGetInstancesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
 	}
 	return r.Execute()
 }
@@ -1323,14 +1094,243 @@ func (a *APIClient) GetUserExecute(ctx context.Context, projectId string, instan
 	return r.Execute()
 }
 
-type ApiGetUsersRequest struct {
+type ApiListACLsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	instanceId string
 }
 
-func (r ApiGetUsersRequest) Execute() (*UserList, error) {
+func (r ApiListACLsRequest) Execute() (*AclList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AclList
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListACLs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/acls"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListACLs Method for ListACLs
+
+Returns the acls for the given Secrets Manager instance.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+	@param instanceId The Secrets Manager instance UUID.
+	@return ApiListACLsRequest
+*/
+func (a *APIClient) ListACLs(ctx context.Context, projectId string, instanceId string) ApiListACLsRequest {
+	return ApiListACLsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+func (a *APIClient) ListACLsExecute(ctx context.Context, projectId string, instanceId string) (*AclList, error) {
+	r := ApiListACLsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+	return r.Execute()
+}
+
+type ApiListInstancesRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+}
+
+func (r ApiListInstancesRequest) Execute() (*InstanceList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *InstanceList
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListInstances Method for ListInstances
+
+Returns a list of all Secrets Manager instances within the project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+	@return ApiListInstancesRequest
+*/
+func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest {
+	return ApiListInstancesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) (*InstanceList, error) {
+	r := ApiListInstancesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiListUsersRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	instanceId string
+}
+
+func (r ApiListUsersRequest) Execute() (*UserList, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1338,7 +1338,7 @@ func (r ApiGetUsersRequest) Execute() (*UserList, error) {
 		localVarReturnValue *UserList
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUsers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUsers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1412,17 +1412,17 @@ func (r ApiGetUsersRequest) Execute() (*UserList, error) {
 }
 
 /*
-GetUsers Method for GetUsers
+ListUsers Method for ListUsers
 
 Returns the users for the given Secrets Manager instance.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
 	@param instanceId The Secrets Manager instance UUID.
-	@return ApiGetUsersRequest
+	@return ApiListUsersRequest
 */
-func (a *APIClient) GetUsers(ctx context.Context, projectId string, instanceId string) ApiGetUsersRequest {
-	return ApiGetUsersRequest{
+func (a *APIClient) ListUsers(ctx context.Context, projectId string, instanceId string) ApiListUsersRequest {
+	return ApiListUsersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1430,8 +1430,8 @@ func (a *APIClient) GetUsers(ctx context.Context, projectId string, instanceId s
 	}
 }
 
-func (a *APIClient) GetUsersExecute(ctx context.Context, projectId string, instanceId string) (*UserList, error) {
-	r := ApiGetUsersRequest{
+func (a *APIClient) ListUsersExecute(ctx context.Context, projectId string, instanceId string) (*UserList, error) {
+	r := ApiListUsersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1440,28 +1440,28 @@ func (a *APIClient) GetUsersExecute(ctx context.Context, projectId string, insta
 	return r.Execute()
 }
 
-type ApiUpdateAclRequest struct {
+type ApiUpdateACLRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
 	projectId        string
 	instanceId       string
 	aclId            string
-	updateAclPayload *UpdateAclPayload
+	updateACLPayload *UpdateACLPayload
 }
 
-func (r ApiUpdateAclRequest) UpdateAclPayload(updateAclPayload UpdateAclPayload) ApiUpdateAclRequest {
-	r.updateAclPayload = &updateAclPayload
+func (r ApiUpdateACLRequest) UpdateACLPayload(updateACLPayload UpdateACLPayload) ApiUpdateACLRequest {
+	r.updateACLPayload = &updateACLPayload
 	return r
 }
 
-func (r ApiUpdateAclRequest) Execute() error {
+func (r ApiUpdateACLRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPut
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAcl")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACL")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1474,8 +1474,8 @@ func (r ApiUpdateAclRequest) Execute() error {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateAclPayload == nil {
-		return fmt.Errorf("updateAclPayload is required and must be specified")
+	if r.updateACLPayload == nil {
+		return fmt.Errorf("updateACLPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1496,7 +1496,7 @@ func (r ApiUpdateAclRequest) Execute() error {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateAclPayload
+	localVarPostBody = r.updateACLPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
@@ -1531,7 +1531,7 @@ func (r ApiUpdateAclRequest) Execute() error {
 }
 
 /*
-UpdateAcl Method for UpdateAcl
+UpdateACL Method for UpdateACL
 
 Updates the ip ranges for the acl.
 
@@ -1539,10 +1539,10 @@ Updates the ip ranges for the acl.
 	@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
 	@param instanceId The Secrets Manager instance UUID.
 	@param aclId The acl UUID of the Secrets Manager instance.
-	@return ApiUpdateAclRequest
+	@return ApiUpdateACLRequest
 */
-func (a *APIClient) UpdateAcl(ctx context.Context, projectId string, instanceId string, aclId string) ApiUpdateAclRequest {
-	return ApiUpdateAclRequest{
+func (a *APIClient) UpdateACL(ctx context.Context, projectId string, instanceId string, aclId string) ApiUpdateACLRequest {
+	return ApiUpdateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1551,8 +1551,8 @@ func (a *APIClient) UpdateAcl(ctx context.Context, projectId string, instanceId 
 	}
 }
 
-func (a *APIClient) UpdateAclExecute(ctx context.Context, projectId string, instanceId string, aclId string) error {
-	r := ApiUpdateAclRequest{
+func (a *APIClient) UpdateACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) error {
+	r := ApiUpdateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

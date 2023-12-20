@@ -26,22 +26,320 @@ import (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateCredentialRequest struct {
+type ApiCreateAlertConfigReceiverRequest struct {
+	ctx                              context.Context
+	apiService                       *DefaultApiService
+	instanceId                       string
+	projectId                        string
+	createAlertConfigReceiverPayload *CreateAlertConfigReceiverPayload
+}
+
+func (r ApiCreateAlertConfigReceiverRequest) CreateAlertConfigReceiverPayload(createAlertConfigReceiverPayload CreateAlertConfigReceiverPayload) ApiCreateAlertConfigReceiverRequest {
+	r.createAlertConfigReceiverPayload = &createAlertConfigReceiverPayload
+	return r
+}
+
+func (r ApiCreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertConfigReceiversResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertConfigReceiver")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createAlertConfigReceiverPayload == nil {
+		return localVarReturnValue, fmt.Errorf("createAlertConfigReceiverPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createAlertConfigReceiverPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateAlertConfigReceiver Method for CreateAlertConfigReceiver
+
+Create alert config receiver.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiCreateAlertConfigReceiverRequest
+*/
+func (a *APIClient) CreateAlertConfigReceiver(ctx context.Context, instanceId string, projectId string) ApiCreateAlertConfigReceiverRequest {
+	return ApiCreateAlertConfigReceiverRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) CreateAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigReceiversResponse, error) {
+	r := ApiCreateAlertConfigReceiverRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiCreateAlertConfigRouteRequest struct {
+	ctx                           context.Context
+	apiService                    *DefaultApiService
+	instanceId                    string
+	projectId                     string
+	createAlertConfigRoutePayload *CreateAlertConfigRoutePayload
+}
+
+func (r ApiCreateAlertConfigRouteRequest) CreateAlertConfigRoutePayload(createAlertConfigRoutePayload CreateAlertConfigRoutePayload) ApiCreateAlertConfigRouteRequest {
+	r.createAlertConfigRoutePayload = &createAlertConfigRoutePayload
+	return r
+}
+
+func (r ApiCreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertConfigRouteResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertConfigRoute")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createAlertConfigRoutePayload == nil {
+		return localVarReturnValue, fmt.Errorf("createAlertConfigRoutePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createAlertConfigRoutePayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateAlertConfigRoute Method for CreateAlertConfigRoute
+
+Create alert config route in routes of route.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiCreateAlertConfigRouteRequest
+*/
+func (a *APIClient) CreateAlertConfigRoute(ctx context.Context, instanceId string, projectId string) ApiCreateAlertConfigRouteRequest {
+	return ApiCreateAlertConfigRouteRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) CreateAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigRouteResponse, error) {
+	r := ApiCreateAlertConfigRouteRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiCreateCredentialsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiCreateCredentialRequest) Execute() (*ApiUserProjectCreated, error) {
+func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ApiUserProjectCreated
+		localVarReturnValue *CreateCredentialsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCredential")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -125,17 +423,17 @@ func (r ApiCreateCredentialRequest) Execute() (*ApiUserProjectCreated, error) {
 }
 
 /*
-CreateCredential Method for CreateCredential
+CreateCredentials Method for CreateCredentials
 
 Create technical user credentials.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId
 	@param projectId
-	@return ApiCreateCredentialRequest
+	@return ApiCreateCredentialsRequest
 */
-func (a *APIClient) CreateCredential(ctx context.Context, instanceId string, projectId string) ApiCreateCredentialRequest {
-	return ApiCreateCredentialRequest{
+func (a *APIClient) CreateCredentials(ctx context.Context, instanceId string, projectId string) ApiCreateCredentialsRequest {
+	return ApiCreateCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -143,8 +441,8 @@ func (a *APIClient) CreateCredential(ctx context.Context, instanceId string, pro
 	}
 }
 
-func (a *APIClient) CreateCredentialExecute(ctx context.Context, instanceId string, projectId string) (*ApiUserProjectCreated, error) {
-	r := ApiCreateCredentialRequest{
+func (a *APIClient) CreateCredentialsExecute(ctx context.Context, instanceId string, projectId string) (*CreateCredentialsResponse, error) {
+	r := ApiCreateCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -292,304 +590,6 @@ func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string)
 	r := ApiCreateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiCreateInstanceAlertConfigReceiverRequest struct {
-	ctx                                      context.Context
-	apiService                               *DefaultApiService
-	instanceId                               string
-	projectId                                string
-	createInstanceAlertConfigReceiverPayload *CreateInstanceAlertConfigReceiverPayload
-}
-
-func (r ApiCreateInstanceAlertConfigReceiverRequest) CreateInstanceAlertConfigReceiverPayload(createInstanceAlertConfigReceiverPayload CreateInstanceAlertConfigReceiverPayload) ApiCreateInstanceAlertConfigReceiverRequest {
-	r.createInstanceAlertConfigReceiverPayload = &createInstanceAlertConfigReceiverPayload
-	return r
-}
-
-func (r ApiCreateInstanceAlertConfigReceiverRequest) Execute() (*ReceiversResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ReceiversResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstanceAlertConfigReceiver")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.createInstanceAlertConfigReceiverPayload == nil {
-		return localVarReturnValue, fmt.Errorf("createInstanceAlertConfigReceiverPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createInstanceAlertConfigReceiverPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-CreateInstanceAlertConfigReceiver Method for CreateInstanceAlertConfigReceiver
-
-Create alert config receiver.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiCreateInstanceAlertConfigReceiverRequest
-*/
-func (a *APIClient) CreateInstanceAlertConfigReceiver(ctx context.Context, instanceId string, projectId string) ApiCreateInstanceAlertConfigReceiverRequest {
-	return ApiCreateInstanceAlertConfigReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) CreateInstanceAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string) (*ReceiversResponse, error) {
-	r := ApiCreateInstanceAlertConfigReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiCreateInstanceAlertConfigRouteRequest struct {
-	ctx                                   context.Context
-	apiService                            *DefaultApiService
-	instanceId                            string
-	projectId                             string
-	createInstanceAlertConfigRoutePayload *CreateInstanceAlertConfigRoutePayload
-}
-
-func (r ApiCreateInstanceAlertConfigRouteRequest) CreateInstanceAlertConfigRoutePayload(createInstanceAlertConfigRoutePayload CreateInstanceAlertConfigRoutePayload) ApiCreateInstanceAlertConfigRouteRequest {
-	r.createInstanceAlertConfigRoutePayload = &createInstanceAlertConfigRoutePayload
-	return r
-}
-
-func (r ApiCreateInstanceAlertConfigRouteRequest) Execute() (*RouteResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *RouteResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstanceAlertConfigRoute")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.createInstanceAlertConfigRoutePayload == nil {
-		return localVarReturnValue, fmt.Errorf("createInstanceAlertConfigRoutePayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createInstanceAlertConfigRoutePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-CreateInstanceAlertConfigRoute Method for CreateInstanceAlertConfigRoute
-
-Create alert config route in routes of route.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiCreateInstanceAlertConfigRouteRequest
-*/
-func (a *APIClient) CreateInstanceAlertConfigRoute(ctx context.Context, instanceId string, projectId string) ApiCreateInstanceAlertConfigRouteRequest {
-	return ApiCreateInstanceAlertConfigRouteRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) CreateInstanceAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string) (*RouteResponse, error) {
-	r := ApiCreateInstanceAlertConfigRouteRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
 		projectId:  projectId,
 	}
 	return r.Execute()
@@ -744,7 +744,293 @@ func (a *APIClient) CreateScrapeConfigExecute(ctx context.Context, instanceId st
 	return r.Execute()
 }
 
-type ApiDeleteCredentialRequest struct {
+type ApiDeleteAlertConfigReceiverRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+	receiver   string
+}
+
+func (r ApiDeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertConfigReceiversResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertConfigReceiver")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Message
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+DeleteAlertConfigReceiver Method for DeleteAlertConfigReceiver
+
+Delete alert config receiver.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@param receiver
+	@return ApiDeleteAlertConfigReceiverRequest
+*/
+func (a *APIClient) DeleteAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiDeleteAlertConfigReceiverRequest {
+	return ApiDeleteAlertConfigReceiverRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+}
+
+func (a *APIClient) DeleteAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigReceiversResponse, error) {
+	r := ApiDeleteAlertConfigReceiverRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+	return r.Execute()
+}
+
+type ApiDeleteAlertConfigRouteRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+	receiver   string
+}
+
+func (r ApiDeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertConfigRouteResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertConfigRoute")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Message
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+DeleteAlertConfigRoute Method for DeleteAlertConfigRoute
+
+Delete alert receiver for route.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@param receiver
+	@return ApiDeleteAlertConfigRouteRequest
+*/
+func (a *APIClient) DeleteAlertConfigRoute(ctx context.Context, instanceId string, projectId string, receiver string) ApiDeleteAlertConfigRouteRequest {
+	return ApiDeleteAlertConfigRouteRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+}
+
+func (a *APIClient) DeleteAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error) {
+	r := ApiDeleteAlertConfigRouteRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+	return r.Execute()
+}
+
+type ApiDeleteCredentialsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -752,7 +1038,7 @@ type ApiDeleteCredentialRequest struct {
 	username   string
 }
 
-func (r ApiDeleteCredentialRequest) Execute() (*Message, error) {
+func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -760,7 +1046,7 @@ func (r ApiDeleteCredentialRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredential")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -867,7 +1153,7 @@ func (r ApiDeleteCredentialRequest) Execute() (*Message, error) {
 }
 
 /*
-DeleteCredential Method for DeleteCredential
+DeleteCredentials Method for DeleteCredentials
 
 Delete technical credentials.
 
@@ -875,10 +1161,10 @@ Delete technical credentials.
 	@param instanceId
 	@param projectId
 	@param username
-	@return ApiDeleteCredentialRequest
+	@return ApiDeleteCredentialsRequest
 */
-func (a *APIClient) DeleteCredential(ctx context.Context, instanceId string, projectId string, username string) ApiDeleteCredentialRequest {
-	return ApiDeleteCredentialRequest{
+func (a *APIClient) DeleteCredentials(ctx context.Context, instanceId string, projectId string, username string) ApiDeleteCredentialsRequest {
+	return ApiDeleteCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -887,8 +1173,8 @@ func (a *APIClient) DeleteCredential(ctx context.Context, instanceId string, pro
 	}
 }
 
-func (a *APIClient) DeleteCredentialExecute(ctx context.Context, instanceId string, projectId string, username string) (*Message, error) {
-	r := ApiDeleteCredentialRequest{
+func (a *APIClient) DeleteCredentialsExecute(ctx context.Context, instanceId string, projectId string, username string) (*Message, error) {
+	r := ApiDeleteCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -898,7 +1184,7 @@ func (a *APIClient) DeleteCredentialExecute(ctx context.Context, instanceId stri
 	return r.Execute()
 }
 
-type ApiDeleteCredentialRemoteWriteConfigRequest struct {
+type ApiDeleteCredentialsRemoteWriteConfigRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -906,7 +1192,7 @@ type ApiDeleteCredentialRemoteWriteConfigRequest struct {
 	username   string
 }
 
-func (r ApiDeleteCredentialRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteDeleteResponse, error) {
+func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteDeleteResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -914,7 +1200,7 @@ func (r ApiDeleteCredentialRemoteWriteConfigRequest) Execute() (*CredentialsRemo
 		localVarReturnValue *CredentialsRemoteWriteDeleteResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentialRemoteWriteConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentialsRemoteWriteConfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1032,7 +1318,7 @@ func (r ApiDeleteCredentialRemoteWriteConfigRequest) Execute() (*CredentialsRemo
 }
 
 /*
-DeleteCredentialRemoteWriteConfig Method for DeleteCredentialRemoteWriteConfig
+DeleteCredentialsRemoteWriteConfig Method for DeleteCredentialsRemoteWriteConfig
 
 Delete remote write config for credentials.
 
@@ -1040,10 +1326,10 @@ Delete remote write config for credentials.
 	@param instanceId
 	@param projectId
 	@param username
-	@return ApiDeleteCredentialRemoteWriteConfigRequest
+	@return ApiDeleteCredentialsRemoteWriteConfigRequest
 */
-func (a *APIClient) DeleteCredentialRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiDeleteCredentialRemoteWriteConfigRequest {
-	return ApiDeleteCredentialRemoteWriteConfigRequest{
+func (a *APIClient) DeleteCredentialsRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiDeleteCredentialsRemoteWriteConfigRequest {
+	return ApiDeleteCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1052,8 +1338,8 @@ func (a *APIClient) DeleteCredentialRemoteWriteConfig(ctx context.Context, insta
 	}
 }
 
-func (a *APIClient) DeleteCredentialRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteDeleteResponse, error) {
-	r := ApiDeleteCredentialRemoteWriteConfigRequest{
+func (a *APIClient) DeleteCredentialsRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteDeleteResponse, error) {
+	r := ApiDeleteCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1070,12 +1356,12 @@ type ApiDeleteInstanceRequest struct {
 	projectId  string
 }
 
-func (r ApiDeleteInstanceRequest) Execute() (*ProjectInstancesUpdateResponse, error) {
+func (r ApiDeleteInstanceRequest) Execute() (*InstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ProjectInstancesUpdateResponse
+		localVarReturnValue *InstanceResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstance")
@@ -1180,298 +1466,12 @@ func (a *APIClient) DeleteInstance(ctx context.Context, instanceId string, proje
 	}
 }
 
-func (a *APIClient) DeleteInstanceExecute(ctx context.Context, instanceId string, projectId string) (*ProjectInstancesUpdateResponse, error) {
+func (a *APIClient) DeleteInstanceExecute(ctx context.Context, instanceId string, projectId string) (*InstanceResponse, error) {
 	r := ApiDeleteInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
 		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiDeleteInstanceAlertConfigReceiverRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
-	receiver   string
-}
-
-func (r ApiDeleteInstanceAlertConfigReceiverRequest) Execute() (*ReceiversResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ReceiversResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstanceAlertConfigReceiver")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-DeleteInstanceAlertConfigReceiver Method for DeleteInstanceAlertConfigReceiver
-
-Delete alert config receiver.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@param receiver
-	@return ApiDeleteInstanceAlertConfigReceiverRequest
-*/
-func (a *APIClient) DeleteInstanceAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiDeleteInstanceAlertConfigReceiverRequest {
-	return ApiDeleteInstanceAlertConfigReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-}
-
-func (a *APIClient) DeleteInstanceAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*ReceiversResponse, error) {
-	r := ApiDeleteInstanceAlertConfigReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-	return r.Execute()
-}
-
-type ApiDeleteInstanceAlertConfigRouteReceiverRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
-	receiver   string
-}
-
-func (r ApiDeleteInstanceAlertConfigRouteReceiverRequest) Execute() (*RouteResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *RouteResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstanceAlertConfigRouteReceiver")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-DeleteInstanceAlertConfigRouteReceiver Method for DeleteInstanceAlertConfigRouteReceiver
-
-Delete alert receiver for route.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@param receiver
-	@return ApiDeleteInstanceAlertConfigRouteReceiverRequest
-*/
-func (a *APIClient) DeleteInstanceAlertConfigRouteReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiDeleteInstanceAlertConfigRouteReceiverRequest {
-	return ApiDeleteInstanceAlertConfigRouteReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-}
-
-func (a *APIClient) DeleteInstanceAlertConfigRouteReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*RouteResponse, error) {
-	r := ApiDeleteInstanceAlertConfigRouteReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
 	}
 	return r.Execute()
 }
@@ -1484,12 +1484,12 @@ type ApiDeleteScrapeConfigRequest struct {
 	projectId  string
 }
 
-func (r ApiDeleteScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) {
+func (r ApiDeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ScrapeConfigsResponse
+		localVarReturnValue *DeleteScrapeConfigResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteScrapeConfig")
@@ -1608,7 +1608,7 @@ func (a *APIClient) DeleteScrapeConfig(ctx context.Context, instanceId string, j
 	}
 }
 
-func (a *APIClient) DeleteScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*ScrapeConfigsResponse, error) {
+func (a *APIClient) DeleteScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*DeleteScrapeConfigResponse, error) {
 	r := ApiDeleteScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -1619,7 +1619,409 @@ func (a *APIClient) DeleteScrapeConfigExecute(ctx context.Context, instanceId st
 	return r.Execute()
 }
 
-type ApiGetCredentialRequest struct {
+type ApiGetAlertConfigReceiverRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+	receiver   string
+}
+
+func (r ApiGetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Receiver
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertConfigReceiver")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Message
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetAlertConfigReceiver Method for GetAlertConfigReceiver
+
+Get alert config receivers.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@param receiver
+	@return ApiGetAlertConfigReceiverRequest
+*/
+func (a *APIClient) GetAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiGetAlertConfigReceiverRequest {
+	return ApiGetAlertConfigReceiverRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+}
+
+func (a *APIClient) GetAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*Receiver, error) {
+	r := ApiGetAlertConfigReceiverRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+	return r.Execute()
+}
+
+type ApiGetAlertConfigRouteRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+	receiver   string
+}
+
+func (r ApiGetAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertConfigRouteResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertConfigRoute")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetAlertConfigRoute Method for GetAlertConfigRoute
+
+Get alert receiver for route.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@param receiver
+	@return ApiGetAlertConfigRouteRequest
+*/
+func (a *APIClient) GetAlertConfigRoute(ctx context.Context, instanceId string, projectId string, receiver string) ApiGetAlertConfigRouteRequest {
+	return ApiGetAlertConfigRouteRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+}
+
+func (a *APIClient) GetAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error) {
+	r := ApiGetAlertConfigRouteRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+	return r.Execute()
+}
+
+type ApiGetAlertConfigsRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+}
+
+func (r ApiGetAlertConfigsRequest) Execute() (*GetAlertConfigsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetAlertConfigsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertConfigs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetAlertConfigs Method for GetAlertConfigs
+
+Get alert config.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiGetAlertConfigsRequest
+*/
+func (a *APIClient) GetAlertConfigs(ctx context.Context, instanceId string, projectId string) ApiGetAlertConfigsRequest {
+	return ApiGetAlertConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) GetAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*GetAlertConfigsResponse, error) {
+	r := ApiGetAlertConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiGetCredentialsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -1627,15 +2029,15 @@ type ApiGetCredentialRequest struct {
 	username   string
 }
 
-func (r ApiGetCredentialRequest) Execute() (*ServiceKeysResponse, error) {
+func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ServiceKeysResponse
+		localVarReturnValue *GetCredentialsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredential")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1731,7 +2133,7 @@ func (r ApiGetCredentialRequest) Execute() (*ServiceKeysResponse, error) {
 }
 
 /*
-GetCredential Method for GetCredential
+GetCredentials Method for GetCredentials
 
 Get single technical credentials.
 
@@ -1739,10 +2141,10 @@ Get single technical credentials.
 	@param instanceId
 	@param projectId
 	@param username
-	@return ApiGetCredentialRequest
+	@return ApiGetCredentialsRequest
 */
-func (a *APIClient) GetCredential(ctx context.Context, instanceId string, projectId string, username string) ApiGetCredentialRequest {
-	return ApiGetCredentialRequest{
+func (a *APIClient) GetCredentials(ctx context.Context, instanceId string, projectId string, username string) ApiGetCredentialsRequest {
+	return ApiGetCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1751,8 +2153,8 @@ func (a *APIClient) GetCredential(ctx context.Context, instanceId string, projec
 	}
 }
 
-func (a *APIClient) GetCredentialExecute(ctx context.Context, instanceId string, projectId string, username string) (*ServiceKeysResponse, error) {
-	r := ApiGetCredentialRequest{
+func (a *APIClient) GetCredentialsExecute(ctx context.Context, instanceId string, projectId string, username string) (*GetCredentialsResponse, error) {
+	r := ApiGetCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1762,7 +2164,7 @@ func (a *APIClient) GetCredentialExecute(ctx context.Context, instanceId string,
 	return r.Execute()
 }
 
-type ApiGetCredentialRemoteWriteConfigRequest struct {
+type ApiGetCredentialsRemoteWriteConfigRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -1770,15 +2172,15 @@ type ApiGetCredentialRemoteWriteConfigRequest struct {
 	username   string
 }
 
-func (r ApiGetCredentialRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteResponse, error) {
+func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteConfig, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CredentialsRemoteWriteResponse
+		localVarReturnValue *CredentialsRemoteWriteConfig
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentialRemoteWriteConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentialsRemoteWriteConfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1885,7 +2287,7 @@ func (r ApiGetCredentialRemoteWriteConfigRequest) Execute() (*CredentialsRemoteW
 }
 
 /*
-GetCredentialRemoteWriteConfig Method for GetCredentialRemoteWriteConfig
+GetCredentialsRemoteWriteConfig Method for GetCredentialsRemoteWriteConfig
 
 Get remote write config.
 
@@ -1893,10 +2295,10 @@ Get remote write config.
 	@param instanceId
 	@param projectId
 	@param username
-	@return ApiGetCredentialRemoteWriteConfigRequest
+	@return ApiGetCredentialsRemoteWriteConfigRequest
 */
-func (a *APIClient) GetCredentialRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiGetCredentialRemoteWriteConfigRequest {
-	return ApiGetCredentialRemoteWriteConfigRequest{
+func (a *APIClient) GetCredentialsRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiGetCredentialsRemoteWriteConfigRequest {
+	return ApiGetCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1905,8 +2307,8 @@ func (a *APIClient) GetCredentialRemoteWriteConfig(ctx context.Context, instance
 	}
 }
 
-func (a *APIClient) GetCredentialRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteResponse, error) {
-	r := ApiGetCredentialRemoteWriteConfigRequest{
+func (a *APIClient) GetCredentialsRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteConfig, error) {
+	r := ApiGetCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1916,27 +2318,27 @@ func (a *APIClient) GetCredentialRemoteWriteConfigExecute(ctx context.Context, i
 	return r.Execute()
 }
 
-type ApiGetCredentialsRequest struct {
+type ApiGetGrafanaConfigsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiGetCredentialsRequest) Execute() (*CredentialsListResponse, error) {
+func (r ApiGetGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CredentialsListResponse
+		localVarReturnValue *GrafanaConfigs
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentials")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetGrafanaConfigs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials"
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
 
@@ -2015,17 +2417,17 @@ func (r ApiGetCredentialsRequest) Execute() (*CredentialsListResponse, error) {
 }
 
 /*
-GetCredentials Method for GetCredentials
+GetGrafanaConfigs Method for GetGrafanaConfigs
 
-Get all technical user credentials.
+Get grafana config.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId
 	@param projectId
-	@return ApiGetCredentialsRequest
+	@return ApiGetGrafanaConfigsRequest
 */
-func (a *APIClient) GetCredentials(ctx context.Context, instanceId string, projectId string) ApiGetCredentialsRequest {
-	return ApiGetCredentialsRequest{
+func (a *APIClient) GetGrafanaConfigs(ctx context.Context, instanceId string, projectId string) ApiGetGrafanaConfigsRequest {
+	return ApiGetGrafanaConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2033,8 +2435,8 @@ func (a *APIClient) GetCredentials(ctx context.Context, instanceId string, proje
 	}
 }
 
-func (a *APIClient) GetCredentialsExecute(ctx context.Context, instanceId string, projectId string) (*CredentialsListResponse, error) {
-	r := ApiGetCredentialsRequest{
+func (a *APIClient) GetGrafanaConfigsExecute(ctx context.Context, instanceId string, projectId string) (*GrafanaConfigs, error) {
+	r := ApiGetGrafanaConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2050,12 +2452,12 @@ type ApiGetInstanceRequest struct {
 	projectId  string
 }
 
-func (r ApiGetInstanceRequest) Execute() (*InstanceResponse, error) {
+func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *InstanceResponse
+		localVarReturnValue *GetInstanceResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstance")
@@ -2160,1165 +2562,11 @@ func (a *APIClient) GetInstance(ctx context.Context, instanceId string, projectI
 	}
 }
 
-func (a *APIClient) GetInstanceExecute(ctx context.Context, instanceId string, projectId string) (*InstanceResponse, error) {
+func (a *APIClient) GetInstanceExecute(ctx context.Context, instanceId string, projectId string) (*GetInstanceResponse, error) {
 	r := ApiGetInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiGetInstanceAclRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
-}
-
-func (r ApiGetInstanceAclRequest) Execute() (*AclResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AclResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstanceAcl")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/acl"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstanceAcl Method for GetInstanceAcl
-
-Get acl for instance.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiGetInstanceAclRequest
-*/
-func (a *APIClient) GetInstanceAcl(ctx context.Context, instanceId string, projectId string) ApiGetInstanceAclRequest {
-	return ApiGetInstanceAclRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) GetInstanceAclExecute(ctx context.Context, instanceId string, projectId string) (*AclResponse, error) {
-	r := ApiGetInstanceAclRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiGetInstanceAlertConfigReceiverRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
-	receiver   string
-}
-
-func (r ApiGetInstanceAlertConfigReceiverRequest) Execute() (*ReceiversResponseSerializerSingle, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ReceiversResponseSerializerSingle
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstanceAlertConfigReceiver")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstanceAlertConfigReceiver Method for GetInstanceAlertConfigReceiver
-
-Get alert config receivers.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@param receiver
-	@return ApiGetInstanceAlertConfigReceiverRequest
-*/
-func (a *APIClient) GetInstanceAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiGetInstanceAlertConfigReceiverRequest {
-	return ApiGetInstanceAlertConfigReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-}
-
-func (a *APIClient) GetInstanceAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*ReceiversResponseSerializerSingle, error) {
-	r := ApiGetInstanceAlertConfigReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-	return r.Execute()
-}
-
-type ApiGetInstanceAlertConfigReceiversRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
-}
-
-func (r ApiGetInstanceAlertConfigReceiversRequest) Execute() (*ReceiversResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ReceiversResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstanceAlertConfigReceivers")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstanceAlertConfigReceivers Method for GetInstanceAlertConfigReceivers
-
-Get alert config receivers.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiGetInstanceAlertConfigReceiversRequest
-*/
-func (a *APIClient) GetInstanceAlertConfigReceivers(ctx context.Context, instanceId string, projectId string) ApiGetInstanceAlertConfigReceiversRequest {
-	return ApiGetInstanceAlertConfigReceiversRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) GetInstanceAlertConfigReceiversExecute(ctx context.Context, instanceId string, projectId string) (*ReceiversResponse, error) {
-	r := ApiGetInstanceAlertConfigReceiversRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiGetInstanceAlertConfigRouteReceiverRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
-	receiver   string
-}
-
-func (r ApiGetInstanceAlertConfigRouteReceiverRequest) Execute() (*RouteResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *RouteResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstanceAlertConfigRouteReceiver")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstanceAlertConfigRouteReceiver Method for GetInstanceAlertConfigRouteReceiver
-
-Get alert receiver for route.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@param receiver
-	@return ApiGetInstanceAlertConfigRouteReceiverRequest
-*/
-func (a *APIClient) GetInstanceAlertConfigRouteReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiGetInstanceAlertConfigRouteReceiverRequest {
-	return ApiGetInstanceAlertConfigRouteReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-}
-
-func (a *APIClient) GetInstanceAlertConfigRouteReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*RouteResponse, error) {
-	r := ApiGetInstanceAlertConfigRouteReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-	return r.Execute()
-}
-
-type ApiGetInstanceAlertConfigRoutesRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
-}
-
-func (r ApiGetInstanceAlertConfigRoutesRequest) Execute() (*RouteResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *RouteResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstanceAlertConfigRoutes")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstanceAlertConfigRoutes Method for GetInstanceAlertConfigRoutes
-
-Get alert config route.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiGetInstanceAlertConfigRoutesRequest
-*/
-func (a *APIClient) GetInstanceAlertConfigRoutes(ctx context.Context, instanceId string, projectId string) ApiGetInstanceAlertConfigRoutesRequest {
-	return ApiGetInstanceAlertConfigRoutesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) GetInstanceAlertConfigRoutesExecute(ctx context.Context, instanceId string, projectId string) (*RouteResponse, error) {
-	r := ApiGetInstanceAlertConfigRoutesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiGetInstanceAlertConfigsRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
-}
-
-func (r ApiGetInstanceAlertConfigsRequest) Execute() (*GetAlert, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetAlert
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstanceAlertConfigs")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstanceAlertConfigs Method for GetInstanceAlertConfigs
-
-Get alert config.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiGetInstanceAlertConfigsRequest
-*/
-func (a *APIClient) GetInstanceAlertConfigs(ctx context.Context, instanceId string, projectId string) ApiGetInstanceAlertConfigsRequest {
-	return ApiGetInstanceAlertConfigsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) GetInstanceAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*GetAlert, error) {
-	r := ApiGetInstanceAlertConfigsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiGetInstanceGrafanaConfigsRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
-}
-
-func (r ApiGetInstanceGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GrafanaConfigs
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstanceGrafanaConfigs")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstanceGrafanaConfigs Method for GetInstanceGrafanaConfigs
-
-Get grafana config.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiGetInstanceGrafanaConfigsRequest
-*/
-func (a *APIClient) GetInstanceGrafanaConfigs(ctx context.Context, instanceId string, projectId string) ApiGetInstanceGrafanaConfigsRequest {
-	return ApiGetInstanceGrafanaConfigsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) GetInstanceGrafanaConfigsExecute(ctx context.Context, instanceId string, projectId string) (*GrafanaConfigs, error) {
-	r := ApiGetInstanceGrafanaConfigsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiGetInstancesRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-}
-
-func (r ApiGetInstancesRequest) Execute() (*ProjectInstanceFullMany, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ProjectInstanceFullMany
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstances")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstances Method for GetInstances
-
-Get all instances for a project.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId
-	@return ApiGetInstancesRequest
-*/
-func (a *APIClient) GetInstances(ctx context.Context, projectId string) ApiGetInstancesRequest {
-	return ApiGetInstancesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) GetInstancesExecute(ctx context.Context, projectId string) (*ProjectInstanceFullMany, error) {
-	r := ApiGetInstancesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiGetPlansRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-}
-
-func (r ApiGetPlansRequest) Execute() (*PlansResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PlansResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetPlans")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/plans"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetPlans Method for GetPlans
-
-Get all plans.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId
-	@return ApiGetPlansRequest
-*/
-func (a *APIClient) GetPlans(ctx context.Context, projectId string) ApiGetPlansRequest {
-	return ApiGetPlansRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) GetPlansExecute(ctx context.Context, projectId string) (*PlansResponse, error) {
-	r := ApiGetPlansRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
 		projectId:  projectId,
 	}
 	return r.Execute()
@@ -3332,12 +2580,12 @@ type ApiGetScrapeConfigRequest struct {
 	projectId  string
 }
 
-func (r ApiGetScrapeConfigRequest) Execute() (*ScrapeConfigResponse, error) {
+func (r ApiGetScrapeConfigRequest) Execute() (*GetScrapeConfigResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ScrapeConfigResponse
+		localVarReturnValue *GetScrapeConfigResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetScrapeConfig")
@@ -3445,7 +2693,7 @@ func (a *APIClient) GetScrapeConfig(ctx context.Context, instanceId string, jobN
 	}
 }
 
-func (a *APIClient) GetScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*ScrapeConfigResponse, error) {
+func (a *APIClient) GetScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*GetScrapeConfigResponse, error) {
 	r := ApiGetScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -3456,22 +2704,774 @@ func (a *APIClient) GetScrapeConfigExecute(ctx context.Context, instanceId strin
 	return r.Execute()
 }
 
-type ApiGetScrapeConfigsRequest struct {
+type ApiListACLRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiGetScrapeConfigsRequest) Execute() (*ScrapeConfigsResponse, error) {
+func (r ApiListACLRequest) Execute() (*ListACLResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ScrapeConfigsResponse
+		localVarReturnValue *ListACLResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetScrapeConfigs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListACL")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/acl"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListACL Method for ListACL
+
+Get acl for instance.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiListACLRequest
+*/
+func (a *APIClient) ListACL(ctx context.Context, instanceId string, projectId string) ApiListACLRequest {
+	return ApiListACLRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListACLExecute(ctx context.Context, instanceId string, projectId string) (*ListACLResponse, error) {
+	r := ApiListACLRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiListAlertConfigReceiversRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+}
+
+func (r ApiListAlertConfigReceiversRequest) Execute() (*AlertConfigReceiversResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertConfigReceiversResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertConfigReceivers")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListAlertConfigReceivers Method for ListAlertConfigReceivers
+
+Get alert config receivers.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiListAlertConfigReceiversRequest
+*/
+func (a *APIClient) ListAlertConfigReceivers(ctx context.Context, instanceId string, projectId string) ApiListAlertConfigReceiversRequest {
+	return ApiListAlertConfigReceiversRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListAlertConfigReceiversExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigReceiversResponse, error) {
+	r := ApiListAlertConfigReceiversRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiListAlertConfigRoutesRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+}
+
+func (r ApiListAlertConfigRoutesRequest) Execute() (*AlertConfigRouteResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertConfigRouteResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertConfigRoutes")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListAlertConfigRoutes Method for ListAlertConfigRoutes
+
+Get alert config route.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiListAlertConfigRoutesRequest
+*/
+func (a *APIClient) ListAlertConfigRoutes(ctx context.Context, instanceId string, projectId string) ApiListAlertConfigRoutesRequest {
+	return ApiListAlertConfigRoutesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListAlertConfigRoutesExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigRouteResponse, error) {
+	r := ApiListAlertConfigRoutesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiListCredentialsRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+}
+
+func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListCredentialsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCredentials")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListCredentials Method for ListCredentials
+
+Get all technical user credentials.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiListCredentialsRequest
+*/
+func (a *APIClient) ListCredentials(ctx context.Context, instanceId string, projectId string) ApiListCredentialsRequest {
+	return ApiListCredentialsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListCredentialsExecute(ctx context.Context, instanceId string, projectId string) (*ListCredentialsResponse, error) {
+	r := ApiListCredentialsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiListInstancesRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+}
+
+func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListInstancesResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListInstances Method for ListInstances
+
+Get all instances for a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@return ApiListInstancesRequest
+*/
+func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest {
+	return ApiListInstancesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) (*ListInstancesResponse, error) {
+	r := ApiListInstancesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiListPlansRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+}
+
+func (r ApiListPlansRequest) Execute() (*PlansResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PlansResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPlans")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/plans"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListPlans Method for ListPlans
+
+Get all plans.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@return ApiListPlansRequest
+*/
+func (a *APIClient) ListPlans(ctx context.Context, projectId string) ApiListPlansRequest {
+	return ApiListPlansRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListPlansExecute(ctx context.Context, projectId string) (*PlansResponse, error) {
+	r := ApiListPlansRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiListScrapeConfigsRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+}
+
+func (r ApiListScrapeConfigsRequest) Execute() (*ListScrapeConfigsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListScrapeConfigsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListScrapeConfigs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3555,17 +3555,17 @@ func (r ApiGetScrapeConfigsRequest) Execute() (*ScrapeConfigsResponse, error) {
 }
 
 /*
-GetScrapeConfigs Method for GetScrapeConfigs
+ListScrapeConfigs Method for ListScrapeConfigs
 
 Get scrape configs.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId
 	@param projectId
-	@return ApiGetScrapeConfigsRequest
+	@return ApiListScrapeConfigsRequest
 */
-func (a *APIClient) GetScrapeConfigs(ctx context.Context, instanceId string, projectId string) ApiGetScrapeConfigsRequest {
-	return ApiGetScrapeConfigsRequest{
+func (a *APIClient) ListScrapeConfigs(ctx context.Context, instanceId string, projectId string) ApiListScrapeConfigsRequest {
+	return ApiListScrapeConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3573,8 +3573,8 @@ func (a *APIClient) GetScrapeConfigs(ctx context.Context, instanceId string, pro
 	}
 }
 
-func (a *APIClient) GetScrapeConfigsExecute(ctx context.Context, instanceId string, projectId string) (*ScrapeConfigsResponse, error) {
-	r := ApiGetScrapeConfigsRequest{
+func (a *APIClient) ListScrapeConfigsExecute(ctx context.Context, instanceId string, projectId string) (*ListScrapeConfigsResponse, error) {
+	r := ApiListScrapeConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3583,43 +3583,189 @@ func (a *APIClient) GetScrapeConfigsExecute(ctx context.Context, instanceId stri
 	return r.Execute()
 }
 
-type ApiUpdateCredentialRemoteWriteConfigRequest struct {
-	ctx                                      context.Context
-	apiService                               *DefaultApiService
-	instanceId                               string
-	projectId                                string
-	username                                 string
-	updateCredentialRemoteWriteConfigPayload *UpdateCredentialRemoteWriteConfigPayload
+type ApiUpdateACLRequest struct {
+	ctx              context.Context
+	apiService       *DefaultApiService
+	instanceId       string
+	projectId        string
+	updateACLPayload *UpdateACLPayload
 }
 
-func (r ApiUpdateCredentialRemoteWriteConfigRequest) UpdateCredentialRemoteWriteConfigPayload(updateCredentialRemoteWriteConfigPayload UpdateCredentialRemoteWriteConfigPayload) ApiUpdateCredentialRemoteWriteConfigRequest {
-	r.updateCredentialRemoteWriteConfigPayload = &updateCredentialRemoteWriteConfigPayload
+func (r ApiUpdateACLRequest) UpdateACLPayload(updateACLPayload UpdateACLPayload) ApiUpdateACLRequest {
+	r.updateACLPayload = &updateACLPayload
 	return r
 }
 
-func (r ApiUpdateCredentialRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteResponse, error) {
+func (r ApiUpdateACLRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CredentialsRemoteWriteResponse
+		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateCredentialRemoteWriteConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACL")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/acl"
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(r.username, "username")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateCredentialRemoteWriteConfigPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateCredentialRemoteWriteConfigPayload is required and must be specified")
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateACLPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateACL Method for UpdateACL
+
+Update acl config.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiUpdateACLRequest
+*/
+func (a *APIClient) UpdateACL(ctx context.Context, instanceId string, projectId string) ApiUpdateACLRequest {
+	return ApiUpdateACLRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) UpdateACLExecute(ctx context.Context, instanceId string, projectId string) (*Message, error) {
+	r := ApiUpdateACLRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiUpdateAlertConfigReceiverRequest struct {
+	ctx                              context.Context
+	apiService                       *DefaultApiService
+	instanceId                       string
+	projectId                        string
+	receiver                         string
+	updateAlertConfigReceiverPayload *UpdateAlertConfigReceiverPayload
+}
+
+func (r ApiUpdateAlertConfigReceiverRequest) UpdateAlertConfigReceiverPayload(updateAlertConfigReceiverPayload UpdateAlertConfigReceiverPayload) ApiUpdateAlertConfigReceiverRequest {
+	r.updateAlertConfigReceiverPayload = &updateAlertConfigReceiverPayload
+	return r
+}
+
+func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertConfigReceiversResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertConfigReceiver")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateAlertConfigReceiverPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateAlertConfigReceiverPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3640,7 +3786,486 @@ func (r ApiUpdateCredentialRemoteWriteConfigRequest) Execute() (*CredentialsRemo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateCredentialRemoteWriteConfigPayload
+	localVarPostBody = r.updateAlertConfigReceiverPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Message
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateAlertConfigReceiver Method for UpdateAlertConfigReceiver
+
+Update alert config receiver.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@param receiver
+	@return ApiUpdateAlertConfigReceiverRequest
+*/
+func (a *APIClient) UpdateAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiUpdateAlertConfigReceiverRequest {
+	return ApiUpdateAlertConfigReceiverRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+}
+
+func (a *APIClient) UpdateAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigReceiversResponse, error) {
+	r := ApiUpdateAlertConfigReceiverRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+	return r.Execute()
+}
+
+type ApiUpdateAlertConfigRouteRequest struct {
+	ctx                           context.Context
+	apiService                    *DefaultApiService
+	instanceId                    string
+	projectId                     string
+	receiver                      string
+	updateAlertConfigRoutePayload *UpdateAlertConfigRoutePayload
+}
+
+func (r ApiUpdateAlertConfigRouteRequest) UpdateAlertConfigRoutePayload(updateAlertConfigRoutePayload UpdateAlertConfigRoutePayload) ApiUpdateAlertConfigRouteRequest {
+	r.updateAlertConfigRoutePayload = &updateAlertConfigRoutePayload
+	return r
+}
+
+func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertConfigRouteResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertConfigRoute")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateAlertConfigRoutePayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateAlertConfigRoutePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateAlertConfigRoutePayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Message
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateAlertConfigRoute Method for UpdateAlertConfigRoute
+
+Update alert receiver for route.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@param receiver
+	@return ApiUpdateAlertConfigRouteRequest
+*/
+func (a *APIClient) UpdateAlertConfigRoute(ctx context.Context, instanceId string, projectId string, receiver string) ApiUpdateAlertConfigRouteRequest {
+	return ApiUpdateAlertConfigRouteRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+}
+
+func (a *APIClient) UpdateAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error) {
+	r := ApiUpdateAlertConfigRouteRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+		receiver:   receiver,
+	}
+	return r.Execute()
+}
+
+type ApiUpdateAlertConfigsRequest struct {
+	ctx                       context.Context
+	apiService                *DefaultApiService
+	instanceId                string
+	projectId                 string
+	updateAlertConfigsPayload *UpdateAlertConfigsPayload
+}
+
+func (r ApiUpdateAlertConfigsRequest) UpdateAlertConfigsPayload(updateAlertConfigsPayload UpdateAlertConfigsPayload) ApiUpdateAlertConfigsRequest {
+	r.updateAlertConfigsPayload = &updateAlertConfigsPayload
+	return r
+}
+
+func (r ApiUpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UpdateAlertConfigsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertConfigs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateAlertConfigsPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateAlertConfigsPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateAlertConfigsPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateAlertConfigs Method for UpdateAlertConfigs
+
+Update alert config.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiUpdateAlertConfigsRequest
+*/
+func (a *APIClient) UpdateAlertConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateAlertConfigsRequest {
+	return ApiUpdateAlertConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) UpdateAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*UpdateAlertConfigsResponse, error) {
+	r := ApiUpdateAlertConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiUpdateCredentialsRemoteWriteConfigRequest struct {
+	ctx                                       context.Context
+	apiService                                *DefaultApiService
+	instanceId                                string
+	projectId                                 string
+	username                                  string
+	updateCredentialsRemoteWriteConfigPayload *UpdateCredentialsRemoteWriteConfigPayload
+}
+
+func (r ApiUpdateCredentialsRemoteWriteConfigRequest) UpdateCredentialsRemoteWriteConfigPayload(updateCredentialsRemoteWriteConfigPayload UpdateCredentialsRemoteWriteConfigPayload) ApiUpdateCredentialsRemoteWriteConfigRequest {
+	r.updateCredentialsRemoteWriteConfigPayload = &updateCredentialsRemoteWriteConfigPayload
+	return r
+}
+
+func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteConfig, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CredentialsRemoteWriteConfig
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateCredentialsRemoteWriteConfig")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(r.username, "username")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateCredentialsRemoteWriteConfigPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateCredentialsRemoteWriteConfigPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateCredentialsRemoteWriteConfigPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -3728,7 +4353,7 @@ func (r ApiUpdateCredentialRemoteWriteConfigRequest) Execute() (*CredentialsRemo
 }
 
 /*
-UpdateCredentialRemoteWriteConfig Method for UpdateCredentialRemoteWriteConfig
+UpdateCredentialsRemoteWriteConfig Method for UpdateCredentialsRemoteWriteConfig
 
 Update remote write config for credentials.
 
@@ -3736,10 +4361,10 @@ Update remote write config for credentials.
 	@param instanceId
 	@param projectId
 	@param username
-	@return ApiUpdateCredentialRemoteWriteConfigRequest
+	@return ApiUpdateCredentialsRemoteWriteConfigRequest
 */
-func (a *APIClient) UpdateCredentialRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiUpdateCredentialRemoteWriteConfigRequest {
-	return ApiUpdateCredentialRemoteWriteConfigRequest{
+func (a *APIClient) UpdateCredentialsRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiUpdateCredentialsRemoteWriteConfigRequest {
+	return ApiUpdateCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3748,13 +4373,162 @@ func (a *APIClient) UpdateCredentialRemoteWriteConfig(ctx context.Context, insta
 	}
 }
 
-func (a *APIClient) UpdateCredentialRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteResponse, error) {
-	r := ApiUpdateCredentialRemoteWriteConfigRequest{
+func (a *APIClient) UpdateCredentialsRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteConfig, error) {
+	r := ApiUpdateCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
 		projectId:  projectId,
 		username:   username,
+	}
+	return r.Execute()
+}
+
+type ApiUpdateGrafanaConfigsRequest struct {
+	ctx                         context.Context
+	apiService                  *DefaultApiService
+	instanceId                  string
+	projectId                   string
+	updateGrafanaConfigsPayload *UpdateGrafanaConfigsPayload
+}
+
+func (r ApiUpdateGrafanaConfigsRequest) UpdateGrafanaConfigsPayload(updateGrafanaConfigsPayload UpdateGrafanaConfigsPayload) ApiUpdateGrafanaConfigsRequest {
+	r.updateGrafanaConfigsPayload = &updateGrafanaConfigsPayload
+	return r
+}
+
+func (r ApiUpdateGrafanaConfigsRequest) Execute() (*Message, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Message
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateGrafanaConfigs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateGrafanaConfigsPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateGrafanaConfigsPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateGrafanaConfigsPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateGrafanaConfigs Method for UpdateGrafanaConfigs
+
+Update grafana config.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiUpdateGrafanaConfigsRequest
+*/
+func (a *APIClient) UpdateGrafanaConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateGrafanaConfigsRequest {
+	return ApiUpdateGrafanaConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) UpdateGrafanaConfigsExecute(ctx context.Context, instanceId string, projectId string) (*Message, error) {
+	r := ApiUpdateGrafanaConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
 	}
 	return r.Execute()
 }
@@ -3772,12 +4546,12 @@ func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload Up
 	return r
 }
 
-func (r ApiUpdateInstanceRequest) Execute() (*ProjectInstancesUpdateResponse, error) {
+func (r ApiUpdateInstanceRequest) Execute() (*InstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ProjectInstancesUpdateResponse
+		localVarReturnValue *InstanceResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstance")
@@ -3898,782 +4672,8 @@ func (a *APIClient) UpdateInstance(ctx context.Context, instanceId string, proje
 	}
 }
 
-func (a *APIClient) UpdateInstanceExecute(ctx context.Context, instanceId string, projectId string) (*ProjectInstancesUpdateResponse, error) {
+func (a *APIClient) UpdateInstanceExecute(ctx context.Context, instanceId string, projectId string) (*InstanceResponse, error) {
 	r := ApiUpdateInstanceRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiUpdateInstanceAclRequest struct {
-	ctx                      context.Context
-	apiService               *DefaultApiService
-	instanceId               string
-	projectId                string
-	updateInstanceAclPayload *UpdateInstanceAclPayload
-}
-
-func (r ApiUpdateInstanceAclRequest) UpdateInstanceAclPayload(updateInstanceAclPayload UpdateInstanceAclPayload) ApiUpdateInstanceAclRequest {
-	r.updateInstanceAclPayload = &updateInstanceAclPayload
-	return r
-}
-
-func (r ApiUpdateInstanceAclRequest) Execute() (*Message, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Message
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstanceAcl")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/acl"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.updateInstanceAclPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-UpdateInstanceAcl Method for UpdateInstanceAcl
-
-Update acl config.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiUpdateInstanceAclRequest
-*/
-func (a *APIClient) UpdateInstanceAcl(ctx context.Context, instanceId string, projectId string) ApiUpdateInstanceAclRequest {
-	return ApiUpdateInstanceAclRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) UpdateInstanceAclExecute(ctx context.Context, instanceId string, projectId string) (*Message, error) {
-	r := ApiUpdateInstanceAclRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiUpdateInstanceAlertConfigReceiverRequest struct {
-	ctx                                      context.Context
-	apiService                               *DefaultApiService
-	instanceId                               string
-	projectId                                string
-	receiver                                 string
-	updateInstanceAlertConfigReceiverPayload *UpdateInstanceAlertConfigReceiverPayload
-}
-
-func (r ApiUpdateInstanceAlertConfigReceiverRequest) UpdateInstanceAlertConfigReceiverPayload(updateInstanceAlertConfigReceiverPayload UpdateInstanceAlertConfigReceiverPayload) ApiUpdateInstanceAlertConfigReceiverRequest {
-	r.updateInstanceAlertConfigReceiverPayload = &updateInstanceAlertConfigReceiverPayload
-	return r
-}
-
-func (r ApiUpdateInstanceAlertConfigReceiverRequest) Execute() (*ReceiversResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ReceiversResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstanceAlertConfigReceiver")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.updateInstanceAlertConfigReceiverPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateInstanceAlertConfigReceiverPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.updateInstanceAlertConfigReceiverPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-UpdateInstanceAlertConfigReceiver Method for UpdateInstanceAlertConfigReceiver
-
-Update alert config receiver.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@param receiver
-	@return ApiUpdateInstanceAlertConfigReceiverRequest
-*/
-func (a *APIClient) UpdateInstanceAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiUpdateInstanceAlertConfigReceiverRequest {
-	return ApiUpdateInstanceAlertConfigReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-}
-
-func (a *APIClient) UpdateInstanceAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*ReceiversResponse, error) {
-	r := ApiUpdateInstanceAlertConfigReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-	return r.Execute()
-}
-
-type ApiUpdateInstanceAlertConfigRouteReceiverRequest struct {
-	ctx                                           context.Context
-	apiService                                    *DefaultApiService
-	instanceId                                    string
-	projectId                                     string
-	receiver                                      string
-	updateInstanceAlertConfigRouteReceiverPayload *UpdateInstanceAlertConfigRouteReceiverPayload
-}
-
-func (r ApiUpdateInstanceAlertConfigRouteReceiverRequest) UpdateInstanceAlertConfigRouteReceiverPayload(updateInstanceAlertConfigRouteReceiverPayload UpdateInstanceAlertConfigRouteReceiverPayload) ApiUpdateInstanceAlertConfigRouteReceiverRequest {
-	r.updateInstanceAlertConfigRouteReceiverPayload = &updateInstanceAlertConfigRouteReceiverPayload
-	return r
-}
-
-func (r ApiUpdateInstanceAlertConfigRouteReceiverRequest) Execute() (*RouteResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *RouteResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstanceAlertConfigRouteReceiver")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(r.receiver, "receiver")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.updateInstanceAlertConfigRouteReceiverPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateInstanceAlertConfigRouteReceiverPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.updateInstanceAlertConfigRouteReceiverPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-UpdateInstanceAlertConfigRouteReceiver Method for UpdateInstanceAlertConfigRouteReceiver
-
-Update alert receiver for route.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@param receiver
-	@return ApiUpdateInstanceAlertConfigRouteReceiverRequest
-*/
-func (a *APIClient) UpdateInstanceAlertConfigRouteReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiUpdateInstanceAlertConfigRouteReceiverRequest {
-	return ApiUpdateInstanceAlertConfigRouteReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-}
-
-func (a *APIClient) UpdateInstanceAlertConfigRouteReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*RouteResponse, error) {
-	r := ApiUpdateInstanceAlertConfigRouteReceiverRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-		receiver:   receiver,
-	}
-	return r.Execute()
-}
-
-type ApiUpdateInstanceAlertConfigsRequest struct {
-	ctx                               context.Context
-	apiService                        *DefaultApiService
-	instanceId                        string
-	projectId                         string
-	updateInstanceAlertConfigsPayload *UpdateInstanceAlertConfigsPayload
-}
-
-func (r ApiUpdateInstanceAlertConfigsRequest) UpdateInstanceAlertConfigsPayload(updateInstanceAlertConfigsPayload UpdateInstanceAlertConfigsPayload) ApiUpdateInstanceAlertConfigsRequest {
-	r.updateInstanceAlertConfigsPayload = &updateInstanceAlertConfigsPayload
-	return r
-}
-
-func (r ApiUpdateInstanceAlertConfigsRequest) Execute() (*PutAlert, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PutAlert
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstanceAlertConfigs")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.updateInstanceAlertConfigsPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateInstanceAlertConfigsPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.updateInstanceAlertConfigsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-UpdateInstanceAlertConfigs Method for UpdateInstanceAlertConfigs
-
-Update alert config.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiUpdateInstanceAlertConfigsRequest
-*/
-func (a *APIClient) UpdateInstanceAlertConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateInstanceAlertConfigsRequest {
-	return ApiUpdateInstanceAlertConfigsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) UpdateInstanceAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*PutAlert, error) {
-	r := ApiUpdateInstanceAlertConfigsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiUpdateInstanceGrafanaConfigsRequest struct {
-	ctx                                 context.Context
-	apiService                          *DefaultApiService
-	instanceId                          string
-	projectId                           string
-	updateInstanceGrafanaConfigsPayload *UpdateInstanceGrafanaConfigsPayload
-}
-
-func (r ApiUpdateInstanceGrafanaConfigsRequest) UpdateInstanceGrafanaConfigsPayload(updateInstanceGrafanaConfigsPayload UpdateInstanceGrafanaConfigsPayload) ApiUpdateInstanceGrafanaConfigsRequest {
-	r.updateInstanceGrafanaConfigsPayload = &updateInstanceGrafanaConfigsPayload
-	return r
-}
-
-func (r ApiUpdateInstanceGrafanaConfigsRequest) Execute() (*Message, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Message
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstanceGrafanaConfigs")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.updateInstanceGrafanaConfigsPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateInstanceGrafanaConfigsPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.updateInstanceGrafanaConfigsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-UpdateInstanceGrafanaConfigs Method for UpdateInstanceGrafanaConfigs
-
-Update grafana config.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param instanceId
-	@param projectId
-	@return ApiUpdateInstanceGrafanaConfigsRequest
-*/
-func (a *APIClient) UpdateInstanceGrafanaConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateInstanceGrafanaConfigsRequest {
-	return ApiUpdateInstanceGrafanaConfigsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) UpdateInstanceGrafanaConfigsExecute(ctx context.Context, instanceId string, projectId string) (*Message, error) {
-	r := ApiUpdateInstanceGrafanaConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,

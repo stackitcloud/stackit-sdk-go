@@ -11,10 +11,10 @@ API version: 1.1.0
 package argus
 
 type BackupScheduleResponse struct {
-	AlertConfigBackupSchedules *[]BackupScheduleModelJson `json:"alertConfigBackupSchedules,omitempty"`
-	AlertRulesBackupSchedules  *[]BackupScheduleModelJson `json:"alertRulesBackupSchedules,omitempty"`
-	GrafanaBackupSchedules     *[]BackupScheduleModelJson `json:"grafanaBackupSchedules,omitempty"`
+	AlertConfigBackupSchedules *[]BackupSchedule `json:"alertConfigBackupSchedules,omitempty"`
+	AlertRulesBackupSchedules  *[]BackupSchedule `json:"alertRulesBackupSchedules,omitempty"`
+	GrafanaBackupSchedules     *[]BackupSchedule `json:"grafanaBackupSchedules,omitempty"`
 	// REQUIRED
-	Message                     *string                    `json:"message"`
-	ScrapeConfigBackupSchedules *[]BackupScheduleModelJson `json:"scrapeConfigBackupSchedules,omitempty"`
+	Message                     *string           `json:"message"`
+	ScrapeConfigBackupSchedules *[]BackupSchedule `json:"scrapeConfigBackupSchedules,omitempty"`
 }

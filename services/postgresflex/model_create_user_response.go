@@ -11,5 +11,5 @@ API version: 1.0.0
 package postgresflex
 
 type CreateUserResponse struct {
-	Item *InstanceUser `json:"item,omitempty"`
+	Item *User `json:"item,omitempty"`
 }
