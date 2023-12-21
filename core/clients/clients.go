@@ -78,7 +78,7 @@ func Do(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Re
 			if resp.StatusCode == http.StatusBadGateway ||
 				resp.StatusCode == http.StatusGatewayTimeout {
 				maxRetries--
-				return fmt.Errorf("requested returned a gateway error")
+				return fmt.Errorf("request returned a gateway error")
 			}
 		}
 		return nil
