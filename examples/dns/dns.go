@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	// Specify the project ID
+	// Specify the project IDa
 	projectId := "PROJECT_ID"
 
 	// Create a new API client, that uses default authentication and configuration
