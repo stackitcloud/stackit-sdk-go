@@ -1,3 +1,7 @@
+## v0.9.1 (2023-12-22)
+
+- Dependency updates
+
 ## v0.9.0 (2023-12-20)
 
 API methods, structs and waiters were renamed to have the same look and feel across all services and according to user feedback.
