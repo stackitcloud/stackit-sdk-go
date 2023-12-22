@@ -11,7 +11,6 @@ Most significant changes:
 - Structs only used in method responses are named `[Method Name]Response`
 - Waiters for a given method are now named `[Method name]WaitHandler`
 
-
 ### Highlights
 
 Below is the list of changes for the API methods. For each service, you can check out the full changelog.
