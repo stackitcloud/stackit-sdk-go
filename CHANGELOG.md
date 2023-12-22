@@ -61,12 +61,12 @@ Below is the list of changes for the API methods. For each service, you can chec
   - `DisableLoadBalancing` renamed to `DisableService`
   - `EnableLoadBalancing` renamed to `EnableService`
   - `GetProjectStatus` renamed to `GetServiceStatus`
-- `logme`: [v0.7.0](services/logme/CHANGELOG.md#v070-2023-12-20)
+- `logme`: [v0.8.0](services/logme/CHANGELOG.md#v080-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `mariadb`: [v0.7.0](services/mariadb/CHANGELOG.md#v070-2023-12-20)
+- `mariadb`: [v0.8.0](services/mariadb/CHANGELOG.md#v080-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
@@ -98,7 +98,7 @@ Below is the list of changes for the API methods. For each service, you can chec
   - `GetBuckets` renamed to `ListBuckets`
   - `GetCredentialsGroups` renamed to `ListCredentialsGroups`
   - `GetProject` renamed to `GetServiceStatus`
-- `opensearch`: [v0.7.0](services/opensearch/CHANGELOG.md#v070-2023-12-20)
+- `opensearch`: [v0.8.0](services/opensearch/CHANGELOG.md#v080-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
@@ -116,7 +116,7 @@ Below is the list of changes for the API methods. For each service, you can chec
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `rabbitmq`: [v0.7.0](services/rabbitmq/CHANGELOG.md#v070-2023-12-20)
+- `rabbitmq`: [v0.8.0](services/rabbitmq/CHANGELOG.md#v080-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
@@ -177,11 +177,11 @@ List of modules:
   - Manage your STACKIT Load Balancer resources: `LoadBalancer`, `Credentials`
   - Waiters for async operations: `CreateLoadBalancerWaitHandler`, `DeleteLoadBalancerWaitHandler`, `EnableLoadBalancingWaitHandler`
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/loadbalancer)
-- `logme`: [v0.6.0](services/logme/CHANGELOG.md#v060-2023-11-10)
+- `logme`: [v0.7.0](services/logme/CHANGELOG.md#v070-2023-11-10)
   - Manage your STACKIT Logme resources: `Instance`, `Credentials`, `Offerings`
   - Waiters for async operations: `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, `DeleteInstanceWaitHandler`, `CreateCredentialsWaitHandler`, `DeleteCredentialsWaitHandler`
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/logme)
-- `mariadb`: [v0.6.0](services/mariadb/CHANGELOG.md#v060-2023-11-10)
+- `mariadb`: [v0.7.0](services/mariadb/CHANGELOG.md#v070-2023-11-10)
   - Manage your STACKIT MariaDB resources: `Instance`, `Credentials`, `Offerings`
   - Waiters for async operations: `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, `DeleteInstanceWaitHandler`, `CreateCredentialsWaitHandler`, `DeleteCredentialsWaitHandler`
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/mariadb)
@@ -196,7 +196,7 @@ List of modules:
   - Manage your STACKIT Object Storage resources: `Bucket`, `AccessKey`, `CredentialGroup`
   - Waiters for async operations: `CreateBucketWaitHandler`, `DeleteBucketWaitHandler`
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/objectstorage)
-- `opensearch`: [v0.6.0](services/opensearch/CHANGELOG.md#v060-2023-11-10)
+- `opensearch`: [v0.7.0](services/opensearch/CHANGELOG.md#v070-2023-11-10)
   - Manage your STACKIT OpenSearch resources: `Instance`, `Credentials`, `Offerings`
   - Waiters for async operations: `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, `DeleteInstanceWaitHandler`, `CreateCredentialsWaitHandler`, `DeleteCredentialsWaitHandler`
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/opensearch)
@@ -208,7 +208,7 @@ List of modules:
   - Manage your STACKIT PostgreSQL resources: `Instance`, `Credentials`, `Offerings`
   - Waiters for async operations: `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, `DeleteInstanceWaitHandler`, `CreateCredentialsWaitHandler`, `DeleteCredentialsWaitHandler`
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/postgresql)
-- `rabbitmq`: [v0.6.0](services/rabbitmq/CHANGELOG.md#v060-2023-11-10)
+- `rabbitmq`: [v0.7.0](services/rabbitmq/CHANGELOG.md#v070-2023-11-10)
   - Manage your STACKIT RabbitMQ resources: `Instance`, `Credentials`, `Offerings`
   - Waiters for async operations: `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, `DeleteInstanceWaitHandler`, `CreateCredentialsWaitHandler`, `DeleteCredentialsWaitHandler`
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/rabbitmq)
