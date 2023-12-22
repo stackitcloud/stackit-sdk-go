@@ -14,7 +14,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-// Deprecated: use ApiListStoragesRequest instead
+// Deprecated: this struct will be removed in the next minor upgrade, use ApiListStoragesRequest instead
 type ApiGetStorageRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -133,7 +133,7 @@ returns the storage for a certain flavor
 	@param flavor flavor id
 	@return ApiGetStorageRequest
 */
-// Deprecated: use ListStorage instead
+// Deprecated: this method will be removed in the next minor upgrade, use ListStorage instead
 func (a *APIClient) GetStorage(ctx context.Context, projectId string, flavor string) ApiGetStorageRequest {
 	return ApiGetStorageRequest{
 		apiService: a.defaultApi,
@@ -143,7 +143,7 @@ func (a *APIClient) GetStorage(ctx context.Context, projectId string, flavor str
 	}
 }
 
-// Deprecated: use ListStorageExecute instead
+// Deprecated: this method will be removed in the next minor upgrade,  use ListStorageExecute instead
 func (a *APIClient) GetStorageExecute(ctx context.Context, projectId string, flavor string) (*ListStoragesResponse, error) {
 	r := ApiGetStorageRequest{
 		apiService: a.defaultApi,
