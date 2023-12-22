@@ -1,8 +1,8 @@
-## v0.7.1 (2023-12-22)
+## v0.8.1 (2023-12-22)
 
 - Dependency updates
 
-## v0.7.0 (2023-12-20)
+## v0.8.0 (2023-12-20)
 
 API methods, structs and waiters were renamed to have the same look and feel across all services and according to user feedback.
 
@@ -24,7 +24,7 @@ API methods, structs and waiters were renamed to have the same look and feel acr
 Changed waiters:
   - `UpdateInstanceWaitHandler` renamed to `PartialUpdateInstanceWaitHandler`
 
-## v0.6.0 (2023-11-10)
+## v0.7.0 (2023-11-10)
 
 - Manage your STACKIT Redis resources: `Instance`, `Credentials`, `Offerings`
 - Waiters for async operations: `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, `DeleteInstanceWaitHandler`, `CreateCredentialsWaitHandler`, `DeleteCredentialsWaitHandler`
