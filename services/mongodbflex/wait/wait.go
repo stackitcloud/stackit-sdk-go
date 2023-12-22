@@ -54,6 +54,11 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 	return handler
 }
 
+// CloneInstanceWaitHandler will wait for instance clone to be created
+func CloneInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[mongodbflex.GetInstanceResponse] {
+	return CreateInstanceWaitHandler(ctx, a, projectId, instanceId)
+}
+
 // UpdateInstanceWaitHandler will wait for instance update
 func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[mongodbflex.GetInstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *mongodbflex.GetInstanceResponse, err error) {
