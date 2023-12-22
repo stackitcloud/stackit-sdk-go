@@ -1,3 +1,7 @@
+## v0.7.4 (2023-12-22)
+
+- Replace k8s.io/apimachinery with cenkalti/backoff
+
 ## v0.7.3 (2023-12-13)
 
 - `auth`: setup authentication, specifically using the service account key or token flows. Check our [authentication example](https://github.com/stackitcloud/stackit-sdk-go/blob/main/examples/authentication/authentication.go)

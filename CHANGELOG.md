@@ -1,3 +1,14 @@
+## Release (2023-12-22)
+
+### Highlights
+
+- `mongodbflex`: [v0.9.0](services/mongodbflex/CHANGELOG.md#v090-2023-12-22)
+  - Added struct `ApiListStoragesRequest`, which will replace `ApiGetStorageRequest`
+    - `ApiGetStorageRequest` has been marked as deprecated, and will be removed in the next minor update
+  - Added method `ListStorages`, which will replace `GetStorage`
+    - `GetStorage` has been marked as deprecated, and will be removed in the next minor update
+  - Added `CloneInstanceWaitHandler`, to wait for `CloneInstance` async operation to be completed
+
 ## Release (2023-12-20)
 
 API methods, structs and waiters were renamed to have the same look and feel across all services and according to user feedback.
