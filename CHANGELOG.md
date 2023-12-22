@@ -121,7 +121,7 @@ Below is the list of changes for the API methods. For each service, you can chec
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
   - `UpdateInstance` renamed to `PartialUpdateInstance`
-- `redis`: [v0.7.0](services/redis/CHANGELOG.md#v0670-2023-12-20)
+- `redis`: [v0.8.0](services/redis/CHANGELOG.md#v080-2023-12-20)
   - `GetCredentialsIds` renamed to `ListCredentials`
   - `GetInstances` renamed to `ListInstances`
   - `GetOfferings` renamed to `ListOfferings`
@@ -212,7 +212,7 @@ List of modules:
   - Manage your STACKIT RabbitMQ resources: `Instance`, `Credentials`, `Offerings`
   - Waiters for async operations: `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, `DeleteInstanceWaitHandler`, `CreateCredentialsWaitHandler`, `DeleteCredentialsWaitHandler`
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/rabbitmq)
-- `redis`: [v0.6.0](services/redis/CHANGELOG.md#v060-2023-11-10)
+- `redis`: [v0.7.0](services/redis/CHANGELOG.md#v070-2023-11-10)
   - Manage your STACKIT Redis resources: `Instance`, `Credentials`, `Offerings`
   - Waiters for async operations: `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, `DeleteInstanceWaitHandler`, `CreateCredentialsWaitHandler`, `DeleteCredentialsWaitHandler`
   - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/redis)
