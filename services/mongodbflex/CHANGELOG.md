@@ -3,7 +3,7 @@
 - Added struct `ApiListStoragesRequest`, which will replace `ApiGetStorageRequest`
   - `ApiGetStorageRequest` has been marked as deprecated, and will be removed in the next minor update
 - Added method `ListStorages`, which will replace `GetStorage`
-  - `ListStorages` has been marked as deprecated, and will be removed in the next minor update
+  - `GetStorage` has been marked as deprecated, and will be removed in the next minor update
 - Added `CloneInstanceWaitHandler`, to wait for `CloneInstance` async operation to be completed
 - Dependency updates
 
