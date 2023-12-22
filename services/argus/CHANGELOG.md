@@ -1,4 +1,5 @@
 ## v0.8.0 (2023-12-20)
+
 API methods, structs and waiters were renamed to have the same look and feel across all services and according to user feedback.
 
 - Changed methods:
