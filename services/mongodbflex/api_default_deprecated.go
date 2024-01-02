@@ -21,6 +21,7 @@ func (r ApiGetStorageRequest) Execute() (*ListStoragesResponse, error) {
 /*
 GetStorage Get storage
 returns the storage for a certain flavor
+
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId project id
 	@param flavor flavor id
