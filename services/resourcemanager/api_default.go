@@ -511,7 +511,7 @@ func (r ApiListProjectsRequest) Execute() (*AllProjectsResponse, error) {
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "containerIds", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "containerIds", s.Index(i).Interface(), "multi")
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "containerIds", t, "multi")
