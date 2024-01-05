@@ -1,3 +1,8 @@
+## v0.10.0 (2024-01-05)
+
+- Added method `ListMetrics` (which accepts the desired metric: `cpu`, `database`, `disk-iops`, `disk-use`, or `exec-time`) as an argument and replaces `ListCPUMetrics`, `ListDatabaseStorageMetrics`, `ListDiskIOPSMetrics`, `ListDiskUsageMetrics`, and `ListExecutionTimesMetrics`, respectivelly
+- Removes the previously deprecated method `GetStorage`, replaced by `ListStorages`
+
 ## v0.9.0 (2023-12-22)
 
 - Added struct `ApiListStoragesRequest`, which will replace `ApiGetStorageRequest`
@@ -47,7 +52,7 @@ API methods, structs and waiters were renamed to have the same look and feel acr
   - `InstanceStorage` renamed to `Storage`
   - `InstanceStorageRange` renamed to `StorageRange`
   - `InstanceUser` renamed to `User`
-Added waiters:
+- Added waiters:
   - `PartialUpdateInstanceWaitHandler`, for `PartialUpdateInstance` method
 
 ## v0.7.0 (2023-11-10)
