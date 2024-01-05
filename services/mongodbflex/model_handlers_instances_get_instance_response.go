@@ -10,6 +10,6 @@ API version: 1.0.0
 
 package mongodbflex
 
-type DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInstancesGetInstanceResponse struct {
+type HandlersInstancesGetInstanceResponse struct {
 	Item *Instance `json:"item,omitempty"`
 }

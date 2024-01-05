@@ -1181,6 +1181,205 @@ func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, in
 	return r.Execute()
 }
 
+type ApiGetMetricsRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	projectId   string
+	instanceId  string
+	metric      string
+	granularity *string
+	period      *string
+	start       *string
+	end         *string
+}
+
+// granularity
+
+func (r ApiGetMetricsRequest) Granularity(granularity string) ApiGetMetricsRequest {
+	r.granularity = &granularity
+	return r
+}
+
+// period
+
+func (r ApiGetMetricsRequest) Period(period string) ApiGetMetricsRequest {
+	r.period = &period
+	return r
+}
+
+// period start
+
+func (r ApiGetMetricsRequest) Start(start string) ApiGetMetricsRequest {
+	r.start = &start
+	return r
+}
+
+// period end
+
+func (r ApiGetMetricsRequest) End(end string) ApiGetMetricsRequest {
+	r.end = &end
+	return r
+}
+
+func (r ApiGetMetricsRequest) Execute() (*ListMetricsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListMetricsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetMetrics")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/metrics/{metric}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric"+"}", url.PathEscape(ParameterValueToString(r.metric, "metric")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.granularity == nil {
+		return localVarReturnValue, fmt.Errorf("granularity is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "")
+	if r.period != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "")
+	}
+	if r.start != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
+	}
+	if r.end != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetMetrics Metrics
+
+returns metrics for an instance
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId project id
+	@param instanceId instance id
+	@param metric metric type
+	@return ApiGetMetricsRequest
+*/
+func (a *APIClient) GetMetrics(ctx context.Context, projectId string, instanceId string, metric string) ApiGetMetricsRequest {
+	return ApiGetMetricsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		metric:     metric,
+	}
+}
+
+func (a *APIClient) GetMetricsExecute(ctx context.Context, projectId string, instanceId string, metric string) (*ListMetricsResponse, error) {
+	r := ApiGetMetricsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+		metric:     metric,
+	}
+	return r.Execute()
+}
+
 type ApiGetUserRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -1454,976 +1653,6 @@ func (a *APIClient) ListBackups(ctx context.Context, projectId string, instanceI
 
 func (a *APIClient) ListBackupsExecute(ctx context.Context, projectId string, instanceId string) (*ListBackupsResponse, error) {
 	r := ApiListBackupsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-	return r.Execute()
-}
-
-type ApiListCPUMetricsRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	projectId   string
-	instanceId  string
-	granularity *string
-	period      *string
-	start       *string
-	end         *string
-}
-
-// granularity
-
-func (r ApiListCPUMetricsRequest) Granularity(granularity string) ApiListCPUMetricsRequest {
-	r.granularity = &granularity
-	return r
-}
-
-// period
-
-func (r ApiListCPUMetricsRequest) Period(period string) ApiListCPUMetricsRequest {
-	r.period = &period
-	return r
-}
-
-// period start
-
-func (r ApiListCPUMetricsRequest) Start(start string) ApiListCPUMetricsRequest {
-	r.start = &start
-	return r
-}
-
-// period end
-
-func (r ApiListCPUMetricsRequest) End(end string) ApiListCPUMetricsRequest {
-	r.end = &end
-	return r
-}
-
-func (r ApiListCPUMetricsRequest) Execute() (*ListMetricsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ListMetricsResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCPUMetrics")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/metrics/cpu"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.granularity == nil {
-		return localVarReturnValue, fmt.Errorf("granularity is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "")
-	if r.period != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "")
-	}
-	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
-	if r.end != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-ListCPUMetrics CPU Metrics
-
-returns CPU metrics for an instance
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId project id
-	@param instanceId instance id
-	@return ApiListCPUMetricsRequest
-*/
-func (a *APIClient) ListCPUMetrics(ctx context.Context, projectId string, instanceId string) ApiListCPUMetricsRequest {
-	return ApiListCPUMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-}
-
-func (a *APIClient) ListCPUMetricsExecute(ctx context.Context, projectId string, instanceId string) (*ListMetricsResponse, error) {
-	r := ApiListCPUMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-	return r.Execute()
-}
-
-type ApiListDatabaseStorageMetricsRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	projectId   string
-	instanceId  string
-	granularity *string
-	period      *string
-	start       *string
-	end         *string
-}
-
-// granularity
-
-func (r ApiListDatabaseStorageMetricsRequest) Granularity(granularity string) ApiListDatabaseStorageMetricsRequest {
-	r.granularity = &granularity
-	return r
-}
-
-// period
-
-func (r ApiListDatabaseStorageMetricsRequest) Period(period string) ApiListDatabaseStorageMetricsRequest {
-	r.period = &period
-	return r
-}
-
-// period start
-
-func (r ApiListDatabaseStorageMetricsRequest) Start(start string) ApiListDatabaseStorageMetricsRequest {
-	r.start = &start
-	return r
-}
-
-// period end
-
-func (r ApiListDatabaseStorageMetricsRequest) End(end string) ApiListDatabaseStorageMetricsRequest {
-	r.end = &end
-	return r
-}
-
-func (r ApiListDatabaseStorageMetricsRequest) Execute() (*ListMetricsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ListMetricsResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListDatabaseStorageMetrics")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/metrics/database"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.granularity == nil {
-		return localVarReturnValue, fmt.Errorf("granularity is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "")
-	if r.period != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "")
-	}
-	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
-	if r.end != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-ListDatabaseStorageMetrics Database Storage Metrics
-
-returns databse storage metrics for an instance
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId project id
-	@param instanceId instance id
-	@return ApiListDatabaseStorageMetricsRequest
-*/
-func (a *APIClient) ListDatabaseStorageMetrics(ctx context.Context, projectId string, instanceId string) ApiListDatabaseStorageMetricsRequest {
-	return ApiListDatabaseStorageMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-}
-
-func (a *APIClient) ListDatabaseStorageMetricsExecute(ctx context.Context, projectId string, instanceId string) (*ListMetricsResponse, error) {
-	r := ApiListDatabaseStorageMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-	return r.Execute()
-}
-
-type ApiListDiskIOPSMetricsRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	projectId   string
-	instanceId  string
-	granularity *string
-	period      *string
-	start       *string
-	end         *string
-}
-
-// granularity
-
-func (r ApiListDiskIOPSMetricsRequest) Granularity(granularity string) ApiListDiskIOPSMetricsRequest {
-	r.granularity = &granularity
-	return r
-}
-
-// period
-
-func (r ApiListDiskIOPSMetricsRequest) Period(period string) ApiListDiskIOPSMetricsRequest {
-	r.period = &period
-	return r
-}
-
-// period start
-
-func (r ApiListDiskIOPSMetricsRequest) Start(start string) ApiListDiskIOPSMetricsRequest {
-	r.start = &start
-	return r
-}
-
-// period end
-
-func (r ApiListDiskIOPSMetricsRequest) End(end string) ApiListDiskIOPSMetricsRequest {
-	r.end = &end
-	return r
-}
-
-func (r ApiListDiskIOPSMetricsRequest) Execute() (*ListMetricsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ListMetricsResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListDiskIOPSMetrics")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/metrics/disk-iops"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.granularity == nil {
-		return localVarReturnValue, fmt.Errorf("granularity is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "")
-	if r.period != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "")
-	}
-	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
-	if r.end != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-ListDiskIOPSMetrics Disk IOPS CPU Metrics
-
-returns disk IOPS metrics for an instance
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId project id
-	@param instanceId instance id
-	@return ApiListDiskIOPSMetricsRequest
-*/
-func (a *APIClient) ListDiskIOPSMetrics(ctx context.Context, projectId string, instanceId string) ApiListDiskIOPSMetricsRequest {
-	return ApiListDiskIOPSMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-}
-
-func (a *APIClient) ListDiskIOPSMetricsExecute(ctx context.Context, projectId string, instanceId string) (*ListMetricsResponse, error) {
-	r := ApiListDiskIOPSMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-	return r.Execute()
-}
-
-type ApiListDiskUsageMetricsRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	projectId   string
-	instanceId  string
-	granularity *string
-	period      *string
-	start       *string
-	end         *string
-}
-
-// granularity
-
-func (r ApiListDiskUsageMetricsRequest) Granularity(granularity string) ApiListDiskUsageMetricsRequest {
-	r.granularity = &granularity
-	return r
-}
-
-// period
-
-func (r ApiListDiskUsageMetricsRequest) Period(period string) ApiListDiskUsageMetricsRequest {
-	r.period = &period
-	return r
-}
-
-// period start
-
-func (r ApiListDiskUsageMetricsRequest) Start(start string) ApiListDiskUsageMetricsRequest {
-	r.start = &start
-	return r
-}
-
-// period end
-
-func (r ApiListDiskUsageMetricsRequest) End(end string) ApiListDiskUsageMetricsRequest {
-	r.end = &end
-	return r
-}
-
-func (r ApiListDiskUsageMetricsRequest) Execute() (*ListMetricsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ListMetricsResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListDiskUsageMetrics")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/metrics/disk-use"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.granularity == nil {
-		return localVarReturnValue, fmt.Errorf("granularity is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "")
-	if r.period != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "")
-	}
-	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
-	if r.end != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-ListDiskUsageMetrics Disk Usage Metrics
-
-returns disk usage metrics for an instance
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId project id
-	@param instanceId instance id
-	@return ApiListDiskUsageMetricsRequest
-*/
-func (a *APIClient) ListDiskUsageMetrics(ctx context.Context, projectId string, instanceId string) ApiListDiskUsageMetricsRequest {
-	return ApiListDiskUsageMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-}
-
-func (a *APIClient) ListDiskUsageMetricsExecute(ctx context.Context, projectId string, instanceId string) (*ListMetricsResponse, error) {
-	r := ApiListDiskUsageMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-	return r.Execute()
-}
-
-type ApiListExecutionTimesMetricsRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	projectId   string
-	instanceId  string
-	granularity *string
-	period      *string
-	start       *string
-	end         *string
-}
-
-// granularity
-
-func (r ApiListExecutionTimesMetricsRequest) Granularity(granularity string) ApiListExecutionTimesMetricsRequest {
-	r.granularity = &granularity
-	return r
-}
-
-// period
-
-func (r ApiListExecutionTimesMetricsRequest) Period(period string) ApiListExecutionTimesMetricsRequest {
-	r.period = &period
-	return r
-}
-
-// period start
-
-func (r ApiListExecutionTimesMetricsRequest) Start(start string) ApiListExecutionTimesMetricsRequest {
-	r.start = &start
-	return r
-}
-
-// period end
-
-func (r ApiListExecutionTimesMetricsRequest) End(end string) ApiListExecutionTimesMetricsRequest {
-	r.end = &end
-	return r
-}
-
-func (r ApiListExecutionTimesMetricsRequest) Execute() (*ListMetricsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ListMetricsResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListExecutionTimesMetrics")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/metrics/exec-time"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.granularity == nil {
-		return localVarReturnValue, fmt.Errorf("granularity is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "")
-	if r.period != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "")
-	}
-	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
-	if r.end != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-ListExecutionTimesMetrics Operation Execution Time Metrics
-
-returns Operation Execution Times metrics for an instance
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId project id
-	@param instanceId instance id
-	@return ApiListExecutionTimesMetricsRequest
-*/
-func (a *APIClient) ListExecutionTimesMetrics(ctx context.Context, projectId string, instanceId string) ApiListExecutionTimesMetricsRequest {
-	return ApiListExecutionTimesMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-}
-
-func (a *APIClient) ListExecutionTimesMetricsExecute(ctx context.Context, projectId string, instanceId string) (*ListMetricsResponse, error) {
-	r := ApiListExecutionTimesMetricsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2706,212 +1935,6 @@ func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) 
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiListMemoryMetricsRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	projectId   string
-	instanceId  string
-	instanceId2 *string
-	granularity *string
-	period      *string
-	start       *string
-	end         *string
-}
-
-// instance id
-
-func (r ApiListMemoryMetricsRequest) InstanceId2(instanceId2 string) ApiListMemoryMetricsRequest {
-	r.instanceId2 = &instanceId2
-	return r
-}
-
-// granularity
-
-func (r ApiListMemoryMetricsRequest) Granularity(granularity string) ApiListMemoryMetricsRequest {
-	r.granularity = &granularity
-	return r
-}
-
-// period
-
-func (r ApiListMemoryMetricsRequest) Period(period string) ApiListMemoryMetricsRequest {
-	r.period = &period
-	return r
-}
-
-// period start
-
-func (r ApiListMemoryMetricsRequest) Start(start string) ApiListMemoryMetricsRequest {
-	r.start = &start
-	return r
-}
-
-// period end
-
-func (r ApiListMemoryMetricsRequest) End(end string) ApiListMemoryMetricsRequest {
-	r.end = &end
-	return r
-}
-
-func (r ApiListMemoryMetricsRequest) Execute() (*ListMetricsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ListMetricsResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListMemoryMetrics")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/metrics/memory"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.instanceId2 == nil {
-		return localVarReturnValue, fmt.Errorf("instanceId2 is required and must be specified")
-	}
-	if r.granularity == nil {
-		return localVarReturnValue, fmt.Errorf("granularity is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "instanceId", r.instanceId2, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "granularity", r.granularity, "")
-	if r.period != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "period", r.period, "")
-	}
-	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
-	}
-	if r.end != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-ListMemoryMetrics Memory Metrics
-
-returns memory metrics for an instance
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId project id
-	@param instanceId instance id
-	@return ApiListMemoryMetricsRequest
-*/
-func (a *APIClient) ListMemoryMetrics(ctx context.Context, projectId string, instanceId string) ApiListMemoryMetricsRequest {
-	return ApiListMemoryMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
-	}
-}
-
-func (a *APIClient) ListMemoryMetricsExecute(ctx context.Context, projectId string, instanceId string) (*ListMetricsResponse, error) {
-	r := ApiListMemoryMetricsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		instanceId: instanceId,
 	}
 	return r.Execute()
 }
