@@ -14,7 +14,7 @@ type PartialUpdateInstancePayload struct {
 	Acl            *ACL    `json:"acl,omitempty"`
 	BackupSchedule *string `json:"backupSchedule,omitempty"`
 	FlavorId       *string `json:"flavorId,omitempty"`
-	// Following fields are not certain/clear
+	// Labels field is not certain/clear
 	Labels   *map[string]string `json:"labels,omitempty"`
 	Name     *string            `json:"name,omitempty"`
 	Options  *map[string]string `json:"options,omitempty"`

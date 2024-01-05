@@ -11,6 +11,8 @@ API version: 1.0.0
 package mongodbflex
 
 type RestoreInstancePayload struct {
-	BackupId   *string `json:"backupId,omitempty"`
-	InstanceId *string `json:"instanceId,omitempty"`
+	// REQUIRED
+	BackupId *string `json:"backupId"`
+	// REQUIRED
+	InstanceId *string `json:"instanceId"`
 }
