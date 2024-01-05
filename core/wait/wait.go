@@ -92,10 +92,10 @@ func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 		}
 
 		select {
-		case <-ticker.C:
-			// continue
 		case <-ctx.Done():
 			return res, fmt.Errorf("WaitWithContext() has timed out")
+		case <-ticker.C:
+			continue
 		}
 	}
 }
