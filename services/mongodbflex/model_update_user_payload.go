@@ -11,6 +11,8 @@ API version: 1.0.0
 package mongodbflex
 
 type UpdateUserPayload struct {
-	Database *string   `json:"database,omitempty"`
-	Roles    *[]string `json:"roles,omitempty"`
+	// REQUIRED
+	Database *string `json:"database"`
+	// REQUIRED
+	Roles *[]string `json:"roles"`
 }

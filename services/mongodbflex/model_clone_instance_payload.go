@@ -11,6 +11,7 @@ API version: 1.0.0
 package mongodbflex
 
 type CloneInstancePayload struct {
-	InstanceId *string `json:"instanceId,omitempty"`
+	// REQUIRED
+	InstanceId *string `json:"instanceId"`
 	Timestamp  *string `json:"timestamp,omitempty"`
 }
