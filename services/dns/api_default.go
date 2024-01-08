@@ -1478,6 +1478,8 @@ type ApiListZonesRequest struct {
 	updateFinishedLt        *string
 	updateFinishedGte       *string
 	updateFinishedLte       *string
+	labelKeyEq              *[]string
+	labelValueEq            *[]string
 	orderByDnsName          *string
 	orderByName             *string
 	orderByRecordCount      *string
@@ -1720,6 +1722,20 @@ func (r ApiListZonesRequest) UpdateFinishedLte(updateFinishedLte string) ApiList
 	return r
 }
 
+// filter zones according to the zone label keys.
+
+func (r ApiListZonesRequest) LabelKeyEq(labelKeyEq []string) ApiListZonesRequest {
+	r.labelKeyEq = &labelKeyEq
+	return r
+}
+
+// filter zones according to the zone label values.
+
+func (r ApiListZonesRequest) LabelValueEq(labelValueEq []string) ApiListZonesRequest {
+	r.labelValueEq = &labelValueEq
+	return r
+}
+
 // order by dns name
 
 func (r ApiListZonesRequest) OrderByDnsName(orderByDnsName string) ApiListZonesRequest {
@@ -1901,6 +1917,12 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 	}
 	if r.updateFinishedLte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "updateFinished[lte]", r.updateFinishedLte, "")
+	}
+	if r.labelKeyEq != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "labelKey[eq]", r.labelKeyEq, "csv")
+	}
+	if r.labelValueEq != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "labelValue[eq]", r.labelValueEq, "csv")
 	}
 	if r.orderByDnsName != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy[dnsName]", r.orderByDnsName, "")

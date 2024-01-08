@@ -13,6 +13,7 @@ package logme
 type InstanceParameters struct {
 	EnableMonitoring     *bool     `json:"enable_monitoring,omitempty"`
 	Graphite             *string   `json:"graphite,omitempty"`
+	MaxDiskThreshold     *string   `json:"max_disk_threshold,omitempty"`
 	MetricsFrequency     *int64    `json:"metrics_frequency,omitempty"`
 	MetricsPrefix        *string   `json:"metrics_prefix,omitempty"`
 	MonitoringInstanceId *string   `json:"monitoring_instance_id,omitempty"`

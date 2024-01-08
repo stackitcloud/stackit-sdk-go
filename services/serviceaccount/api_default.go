@@ -1099,7 +1099,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 }
 
 /*
-DeleteServiceAccountKey Delete a service key
+DeleteServiceAccountKey Delete a service account key
 
 Delete a key
 
@@ -1376,7 +1376,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 }
 
 /*
-GetServiceAccountKey Get service key details
+GetServiceAccountKey Get service account key details
 
 Get key details
 
