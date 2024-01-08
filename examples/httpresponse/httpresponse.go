@@ -26,7 +26,7 @@ func main() {
 	// Get the MongoDB Flex instances for your project and capture the HTTP response using the context
 	var httpResp *http.Response
 	ctxWithHTTPResp := config.WithCaptureHTTPResponse(context.Background(), &httpResp)
-	getInstancesResp, err := mongodbflexClient.GetInstances(ctxWithHTTPResp, projectId).Tag("tag").Execute()
+	getInstancesResp, err := mongodbflexClient.ListInstances(ctxWithHTTPResp, projectId).Tag("tag").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 		os.Exit(1)

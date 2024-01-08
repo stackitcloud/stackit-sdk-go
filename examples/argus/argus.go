@@ -24,7 +24,7 @@ func main() {
 	}
 
 	// Get the argus instances for your project
-	getInstanceResp, err := argusClient.GetInstances(context.Background(), projectId).Execute()
+	getInstanceResp, err := argusClient.ListInstances(context.Background(), projectId).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Argus API] Error when calling `GetInstances`: %v\n", err)

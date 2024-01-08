@@ -19,6 +19,7 @@ use (
 	./examples/postgresql
 	./examples/rabbitmq
 	./examples/redis
+	./examples/resourcemanager
 	./examples/secretsmanager
 	./examples/serviceaccount
 	./examples/ske

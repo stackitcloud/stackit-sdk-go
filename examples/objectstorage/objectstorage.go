@@ -23,7 +23,7 @@ func main() {
 	}
 
 	// Get the object storage buckets for your project
-	getBucketsResp, err := objectStorageClient.GetBuckets(context.Background(), projectId).Execute()
+	getBucketsResp, err := objectStorageClient.ListBuckets(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetBuckets`: %v\n", err)
 	} else {

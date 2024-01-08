@@ -14,5 +14,5 @@ type MySQLCheckResponse struct {
 	// REQUIRED
 	Message *string `json:"message"`
 	// REQUIRED
-	MysqlChecks *[]MysqlCheckChildResponse `json:"mysqlChecks"`
+	MysqlChecks *[]MySQLCheckChildResponse `json:"mysqlChecks"`
 }

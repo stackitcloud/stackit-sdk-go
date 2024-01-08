@@ -21,7 +21,7 @@ func main() {
 	}
 
 	// Get the service accounts for your project
-	getAccountsResp, err := client.GetServiceAccounts(context.Background(), projectId).Execute()
+	getAccountsResp, err := client.ListServiceAccounts(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetServiceAccounts`: %v\n", err)
 	} else {

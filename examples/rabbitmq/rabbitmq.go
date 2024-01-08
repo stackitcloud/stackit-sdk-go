@@ -25,7 +25,7 @@ func main() {
 	}
 
 	// Get the rabbitmq instances for your project
-	getInstancesResp, err := rabbitmqClient.GetInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := rabbitmqClient.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
@@ -33,7 +33,7 @@ func main() {
 	}
 
 	// Get the rabbitmq offerings for your project
-	getOfferingsResp, err := rabbitmqClient.GetOfferings(context.Background(), projectId).Execute()
+	getOfferingsResp, err := rabbitmqClient.ListOfferings(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
 	} else {

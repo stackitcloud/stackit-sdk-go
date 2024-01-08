@@ -526,13 +526,13 @@ func (a *APIClient) DeleteLoadBalancerExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiDisableLoadBalancingRequest struct {
+type ApiDisableServiceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiDisableLoadBalancingRequest) Execute() (map[string]interface{}, error) {
+func (r ApiDisableServiceRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -540,7 +540,7 @@ func (r ApiDisableLoadBalancingRequest) Execute() (map[string]interface{}, error
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableLoadBalancing")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableService")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -613,24 +613,24 @@ func (r ApiDisableLoadBalancingRequest) Execute() (map[string]interface{}, error
 }
 
 /*
-DisableLoadBalancing Disables the functionality of load balancers for the project specified.
+DisableService Disables the functionality of load balancers for the project specified.
 
 Disable will disable the load balancer functionality for the project specified.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
-	@return ApiDisableLoadBalancingRequest
+	@return ApiDisableServiceRequest
 */
-func (a *APIClient) DisableLoadBalancing(ctx context.Context, projectId string) ApiDisableLoadBalancingRequest {
-	return ApiDisableLoadBalancingRequest{
+func (a *APIClient) DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest {
+	return ApiDisableServiceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 	}
 }
 
-func (a *APIClient) DisableLoadBalancingExecute(ctx context.Context, projectId string) (map[string]interface{}, error) {
-	r := ApiDisableLoadBalancingRequest{
+func (a *APIClient) DisableServiceExecute(ctx context.Context, projectId string) (map[string]interface{}, error) {
+	r := ApiDisableServiceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -638,19 +638,19 @@ func (a *APIClient) DisableLoadBalancingExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiEnableLoadBalancingRequest struct {
+type ApiEnableServiceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	xRequestID *string
 }
 
-func (r ApiEnableLoadBalancingRequest) XRequestID(xRequestID string) ApiEnableLoadBalancingRequest {
+func (r ApiEnableServiceRequest) XRequestID(xRequestID string) ApiEnableServiceRequest {
 	r.xRequestID = &xRequestID
 	return r
 }
 
-func (r ApiEnableLoadBalancingRequest) Execute() (map[string]interface{}, error) {
+func (r ApiEnableServiceRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -658,7 +658,7 @@ func (r ApiEnableLoadBalancingRequest) Execute() (map[string]interface{}, error)
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableLoadBalancing")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableService")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -735,24 +735,24 @@ func (r ApiEnableLoadBalancingRequest) Execute() (map[string]interface{}, error)
 }
 
 /*
-EnableLoadBalancing Enables the functionality of load balancers for the project specified.
+EnableService Enables the functionality of load balancers for the project specified.
 
 Enable will enable the load balancer functionality for the project specified.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
-	@return ApiEnableLoadBalancingRequest
+	@return ApiEnableServiceRequest
 */
-func (a *APIClient) EnableLoadBalancing(ctx context.Context, projectId string) ApiEnableLoadBalancingRequest {
-	return ApiEnableLoadBalancingRequest{
+func (a *APIClient) EnableService(ctx context.Context, projectId string) ApiEnableServiceRequest {
+	return ApiEnableServiceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 	}
 }
 
-func (a *APIClient) EnableLoadBalancingExecute(ctx context.Context, projectId string) (map[string]interface{}, error) {
-	r := ApiEnableLoadBalancingRequest{
+func (a *APIClient) EnableServiceExecute(ctx context.Context, projectId string) (map[string]interface{}, error) {
+	r := ApiEnableServiceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -994,21 +994,21 @@ func (a *APIClient) GetLoadBalancerExecute(ctx context.Context, projectId string
 	return r.Execute()
 }
 
-type ApiGetStatusRequest struct {
+type ApiGetServiceStatusRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiGetStatusRequest) Execute() (*StatusResponse, error) {
+func (r ApiGetServiceStatusRequest) Execute() (*GetServiceStatusResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *StatusResponse
+		localVarReturnValue *GetServiceStatusResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceStatus")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1081,24 +1081,24 @@ func (r ApiGetStatusRequest) Execute() (*StatusResponse, error) {
 }
 
 /*
-GetStatus Return the status of load balancer functionality for the project specified.
+GetServiceStatus Return the status of load balancer functionality for the project specified.
 
 Status will return the load balancer functionality status for the project specified.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
-	@return ApiGetStatusRequest
+	@return ApiGetServiceStatusRequest
 */
-func (a *APIClient) GetStatus(ctx context.Context, projectId string) ApiGetStatusRequest {
-	return ApiGetStatusRequest{
+func (a *APIClient) GetServiceStatus(ctx context.Context, projectId string) ApiGetServiceStatusRequest {
+	return ApiGetServiceStatusRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 	}
 }
 
-func (a *APIClient) GetStatusExecute(ctx context.Context, projectId string) (*StatusResponse, error) {
-	r := ApiGetStatusRequest{
+func (a *APIClient) GetServiceStatusExecute(ctx context.Context, projectId string) (*GetServiceStatusResponse, error) {
+	r := ApiGetServiceStatusRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

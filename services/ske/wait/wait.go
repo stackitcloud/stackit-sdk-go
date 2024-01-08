@@ -23,17 +23,17 @@ const (
 )
 
 type APIClientProjectInterface interface {
-	GetProjectExecute(ctx context.Context, projectId string) (*ske.ProjectResponse, error)
+	GetServiceStatusExecute(ctx context.Context, projectId string) (*ske.ProjectResponse, error)
 }
 
 type APIClientClusterInterface interface {
-	GetClusterExecute(ctx context.Context, projectId, name string) (*ske.ClusterResponse, error)
-	GetClustersExecute(ctx context.Context, projectId string) (*ske.ClustersResponse, error)
+	GetClusterExecute(ctx context.Context, projectId, name string) (*ske.Cluster, error)
+	ListClustersExecute(ctx context.Context, projectId string) (*ske.ListClustersResponse, error)
 }
 
 // CreateOrUpdateClusterWaitHandler will wait for cluster creation or update
-func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.ClusterResponse] {
-	handler := wait.New(func() (waitFinished bool, response *ske.ClusterResponse, err error) {
+func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, name)
 		if err != nil {
 			return false, nil, err
@@ -62,9 +62,9 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 }
 
 // DeleteClusterWaitHandler will wait for cluster deletion
-func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.ClustersResponse] {
-	handler := wait.New(func() (waitFinished bool, response *ske.ClustersResponse, err error) {
-		s, err := a.GetClustersExecute(ctx, projectId)
+func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.ListClustersResponse] {
+	handler := wait.New(func() (waitFinished bool, response *ske.ListClustersResponse, err error) {
+		s, err := a.ListClustersExecute(ctx, projectId)
 		if err != nil {
 			return false, nil, err
 		}
@@ -81,10 +81,10 @@ func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, 
 	return handler
 }
 
-// CreateOrUpdateClusterWaitHandler will wait for project creation
-func CreateProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[ske.ProjectResponse] {
+// EnableServiceWaitHandler will wait for service enablement
+func EnableServiceWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[ske.ProjectResponse] {
 	handler := wait.New(func() (waitFinished bool, response *ske.ProjectResponse, err error) {
-		s, err := a.GetProjectExecute(ctx, projectId)
+		s, err := a.GetServiceStatusExecute(ctx, projectId)
 		if err != nil {
 			return false, nil, err
 		}
@@ -101,10 +101,10 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 	return handler
 }
 
-// DeleteProjectWaitHandler will wait for project deletion
-func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[struct{}] {
+// DisableServiceWaitHandler will wait for service disablement
+func DisableServiceWaitHandler(ctx context.Context, a APIClientProjectInterface, projectId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		_, err = a.GetProjectExecute(ctx, projectId)
+		_, err = a.GetServiceStatusExecute(ctx, projectId)
 		if err == nil {
 			return false, nil, nil
 		}
@@ -122,8 +122,8 @@ func DeleteProjectWaitHandler(ctx context.Context, a APIClientProjectInterface, 
 }
 
 // RotateCredentialsWaitHandler will wait for credentials rotation
-func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.ClusterResponse] {
-	handler := wait.New(func() (waitFinished bool, response *ske.ClusterResponse, err error) {
+func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, clusterName)
 		if err != nil {
 			return false, nil, err

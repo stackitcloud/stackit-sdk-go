@@ -168,7 +168,7 @@ func TestUpdateZoneWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := UpdateZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
+			handler := PartialUpdateZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -374,7 +374,7 @@ func TestUpdateRecordSetWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := UpdateRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
+			handler := PartialUpdateRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 

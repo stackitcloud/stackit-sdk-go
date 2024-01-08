@@ -24,7 +24,7 @@ func main() {
 	}
 
 	// Get the secrets manager instances for your project
-	getInstancesResp, err := secretsmanagerClient.GetInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := secretsmanagerClient.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {

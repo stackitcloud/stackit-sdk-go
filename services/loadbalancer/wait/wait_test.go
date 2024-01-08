@@ -38,14 +38,14 @@ func (a *apiClientMocked) GetLoadBalancerExecute(_ context.Context, _, _ string)
 		Status: &a.instanceStatus,
 	}, nil
 }
-func (a *apiClientMocked) GetStatusExecute(_ context.Context, _ string) (*loadbalancer.StatusResponse, error) {
+func (a *apiClientMocked) GetServiceStatusExecute(_ context.Context, _ string) (*loadbalancer.GetServiceStatusResponse, error) {
 	if a.functionalityStatusGetFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
 
-	return &loadbalancer.StatusResponse{
+	return &loadbalancer.GetServiceStatusResponse{
 		Status: &a.functionalityStatus,
 	}, nil
 }
@@ -171,7 +171,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 	}
 }
 
-func TestEnableLoadBalancingWaitHandler(t *testing.T) {
+func TestEnableServiceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc                        string
 		functionalityStatus         string
@@ -215,14 +215,14 @@ func TestEnableLoadBalancingWaitHandler(t *testing.T) {
 				functionalityStatusGetFails: tt.functionalityStatusGetFails,
 			}
 
-			var wantRes *loadbalancer.StatusResponse
+			var wantRes *loadbalancer.GetServiceStatusResponse
 			if tt.wantResp {
-				wantRes = &loadbalancer.StatusResponse{
+				wantRes = &loadbalancer.GetServiceStatusResponse{
 					Status: &tt.functionalityStatus,
 				}
 			}
 
-			handler := EnableLoadBalancingWaitHandler(context.Background(), apiClient, "")
+			handler := EnableServiceWaitHandler(context.Background(), apiClient, "")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 

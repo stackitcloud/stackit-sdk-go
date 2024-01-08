@@ -20,13 +20,13 @@ const (
 
 // APIClientInterface Interfaces needed for tests
 type APIClientInterface interface {
-	GetInstanceExecute(ctx context.Context, instanceId, projectId string) (*argus.InstanceResponse, error)
-	GetScrapeConfigsExecute(ctx context.Context, instanceId, projectId string) (*argus.ScrapeConfigsResponse, error)
+	GetInstanceExecute(ctx context.Context, instanceId, projectId string) (*argus.GetInstanceResponse, error)
+	ListScrapeConfigsExecute(ctx context.Context, instanceId, projectId string) (*argus.ListScrapeConfigsResponse, error)
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.InstanceResponse] {
-	handler := wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
+func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.GetInstanceResponse] {
+	handler := wait.New(func() (waitFinished bool, response *argus.GetInstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
@@ -47,8 +47,8 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 }
 
 // UpdateInstanceWaitHandler will wait for instance update
-func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.InstanceResponse] {
-	handler := wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
+func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.GetInstanceResponse] {
+	handler := wait.New(func() (waitFinished bool, response *argus.GetInstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
@@ -70,8 +70,8 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.InstanceResponse] {
-	handler := wait.New(func() (waitFinished bool, response *argus.InstanceResponse, err error) {
+func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[argus.GetInstanceResponse] {
+	handler := wait.New(func() (waitFinished bool, response *argus.GetInstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
@@ -92,9 +92,9 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 }
 
 // CreateScrapeConfigWaitHandler will wait for scrape config creation
-func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[argus.ScrapeConfigsResponse] {
-	handler := wait.New(func() (waitFinished bool, response *argus.ScrapeConfigsResponse, err error) {
-		s, err := a.GetScrapeConfigsExecute(ctx, instanceId, projectId)
+func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[argus.ListScrapeConfigsResponse] {
+	handler := wait.New(func() (waitFinished bool, response *argus.ListScrapeConfigsResponse, err error) {
+		s, err := a.ListScrapeConfigsExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
 		}
@@ -111,9 +111,9 @@ func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 }
 
 // DeleteScrapeConfigWaitHandler will wait for scrape config deletion
-func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[argus.ScrapeConfigsResponse] {
-	handler := wait.New(func() (waitFinished bool, response *argus.ScrapeConfigsResponse, err error) {
-		s, err := a.GetScrapeConfigsExecute(ctx, instanceId, projectId)
+func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[argus.ListScrapeConfigsResponse] {
+	handler := wait.New(func() (waitFinished bool, response *argus.ListScrapeConfigsResponse, err error) {
+		s, err := a.ListScrapeConfigsExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
 		}

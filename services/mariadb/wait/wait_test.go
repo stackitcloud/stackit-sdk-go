@@ -37,7 +37,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 		if a.deletionSucceedsWithErrors {
 			return &mariadb.Instance{
 				InstanceId: &a.resourceId,
-				LastOperation: &mariadb.LastOperation{
+				LastOperation: &mariadb.InstanceLastOperation{
 					Description: &a.resourceDescription,
 					Type:        a.resourceOperation,
 					State:       &a.resourceState,
@@ -51,7 +51,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 
 	return &mariadb.Instance{
 		InstanceId: &a.resourceId,
-		LastOperation: &mariadb.LastOperation{
+		LastOperation: &mariadb.InstanceLastOperation{
 			Description: &a.resourceDescription,
 			Type:        a.resourceOperation,
 			State:       &a.resourceState,
@@ -136,7 +136,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &mariadb.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &mariadb.LastOperation{
+					LastOperation: &mariadb.InstanceLastOperation{
 						Type:        &instanceTypeCreate,
 						State:       &tt.resourceState,
 						Description: utils.Ptr(""),
@@ -210,7 +210,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &mariadb.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &mariadb.LastOperation{
+					LastOperation: &mariadb.InstanceLastOperation{
 						Type:        &instanceTypeUpdate,
 						State:       &tt.resourceState,
 						Description: utils.Ptr(""),
@@ -218,7 +218,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+			handler := PartialUpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 

@@ -20,7 +20,7 @@ type Offerings struct {
 	// REQUIRED
 	Name *string `json:"name"`
 	// REQUIRED
-	Plans *[]PlanModel `json:"plans"`
+	Plans *[]Plan `json:"plans"`
 	// REQUIRED
 	Tags *[]string `json:"tags"`
 }

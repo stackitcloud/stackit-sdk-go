@@ -23,7 +23,7 @@ func main() {
 	}
 
 	// Get the postgresql instances for your project
-	getInstancesResp, err := postgresflexClient.GetInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := postgresflexClient.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 		os.Exit(1)

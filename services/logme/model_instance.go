@@ -23,7 +23,7 @@ type Instance struct {
 	ImageUrl   *string `json:"imageUrl"`
 	InstanceId *string `json:"instanceId,omitempty"`
 	// REQUIRED
-	LastOperation *LastOperation `json:"lastOperation"`
+	LastOperation *InstanceLastOperation `json:"lastOperation"`
 	// REQUIRED
 	Name *string `json:"name"`
 	// REQUIRED
