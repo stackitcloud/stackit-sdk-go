@@ -536,7 +536,6 @@ func TestKeyAuth(t *testing.T) {
 					t.Fatalf("The private key is wrong: expected %s, got %s", test.expectedPrivateKey, keyFlow.GetConfig().PrivateKey)
 				}
 			}
-
 		})
 	}
 }
