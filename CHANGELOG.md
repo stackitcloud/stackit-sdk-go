@@ -1,3 +1,39 @@
+## Release (2024-01-09)
+
+### Highlights
+
+- `dns`: [v0.8.0](services/dns/CHANGELOG.md#v080-2024-01-09)
+  - `Zone` has a new filed `Labels`, which is an array of labels (key-value pairs) associated to a zone
+  - `ListZones` can be filtered by label keys or values
+  - `CloneZonePayload` has a flag `AdjustRecords` to adjust the record set content of the cloned zone (replaces the dns name of the original zone with the new dns name of the cloned zone)
+- `logme`: [v0.9.0](services/logme/CHANGELOG.md#v090-2024-01-09)
+  - `PartialUpdateInstance` can be used to update the instance's name
+  - `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - `ListMetricsResponse` has new fields regarding ephemeral disk
+- `mariadb`: [v0.9.0](services/mariadb/CHANGELOG.md#v090-2024-01-09)
+  - `PartialUpdateInstance` can be used to update the instance's name
+  - `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - `ListMetricsResponse` has new fields regarding ephemeral disk
+- `opensearch`: [v0.9.0](services/opensearch/CHANGELOG.md#v090-2024-01-09)
+  - `PartialUpdateInstance` can be used to update the instance's name
+  - `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - `ListMetricsResponse` has new fields regarding ephemeral disk
+- `postgresql`: [v0.10.0](services/postgresql/CHANGELOG.md#v0100-2024-01-09)
+  - `PartialUpdateInstance` can be used to update the instance's name
+  - `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - `ListMetricsResponse` has new fields regarding ephemeral disk
+- `rabbitmq`: [v0.9.0](services/rabbitmq/CHANGELOG.md#v090-2024-01-09)
+  - `PartialUpdateInstance` can be used to update the instance's name
+  - `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - `ListMetricsResponse` has new fields regarding ephemeral disk
+- `redis`: [v0.9.0](services/redis/CHANGELOG.md#v090-2024-01-09)
+  - `PartialUpdateInstance` can be used to update the instance's name
+  - `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - `ListMetricsResponse` has new fields regarding ephemeral disk
+- `ske`: [v0.9.0](services/ske/CHANGELOG.md#v090-2024-01-09)
+  - Add details on credentials for old clusters
+  - `ClusterStatus` now has a field `CredentialsRotation` with credentials' details
+
 ## Release (2023-12-22)
 
 ### Highlights
