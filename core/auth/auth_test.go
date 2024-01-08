@@ -464,6 +464,14 @@ func TestKeyAuth(t *testing.T) {
 			isValid:            true,
 		},
 		{
+			desc:                 "empty_configured_use_included_private_key",
+			serviceAccountKey:    fixtureServiceAccountKey(),
+			includedPrivateKey:   &includedPrivateKey,
+			configuredPrivateKey: "",
+			expectedPrivateKey:   includedPrivateKey,
+			isValid:              true,
+		},
+		{
 			desc:                 "configured_over_included_private_key",
 			serviceAccountKey:    fixtureServiceAccountKey(),
 			includedPrivateKey:   &includedPrivateKey,

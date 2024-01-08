@@ -300,6 +300,9 @@ func getPrivateKey(cfg *config.Configuration) (err error) {
 		if err != nil {
 			return err
 		}
+		if len(privateKeyBytes) == 0 {
+			return fmt.Errorf("key path points to an empty file")
+		}
 		cfg.PrivateKey = string(privateKeyBytes)
 	}
 	return nil
