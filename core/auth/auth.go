@@ -152,18 +152,20 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		return nil, fmt.Errorf("unmarshalling service account key: %w", err)
 	}
 
+	// If present, extract private key from the service account key
+	var extractedPrivateKey string
 	if serviceAccountKey.Credentials != nil && serviceAccountKey.Credentials.PrivateKey != nil {
-		// TODO: Confirm that sa key private key should take precedence
-		// if cfg.PrivateKey != "" && cfg.PrivateKey != *serviceAccountKey.Credentials.PrivateKey {
-		// 	return nil, fmt.Errorf("configuring key authentication: private key was found both in the configuration and in the service account key and they don't match.")
-		// }
-		cfg.PrivateKey = *serviceAccountKey.Credentials.PrivateKey
-	} else {
-		// TODO: Confirm that sa key private key should take precedence
-		err = getPrivateKey(cfg)
-		if err != nil {
-			return nil, fmt.Errorf("configuring key authentication: private key could not be found: %w", err)
+		extractedPrivateKey = *serviceAccountKey.Credentials.PrivateKey
+	}
+
+	// Try to get private key from configuration, environment or credentials file
+	err = getPrivateKey(cfg)
+	if err != nil {
+		if extractedPrivateKey == "" {
+			return nil, fmt.Errorf("configuring key authentication: private key is not part of the service account key and could not be found: %w", err)
 		}
+		// Use the extracted private key if it could not be found elsewhere
+		cfg.PrivateKey = extractedPrivateKey
 	}
 
 	if cfg.TokenCustomUrl == "" {

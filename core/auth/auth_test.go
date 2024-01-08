@@ -40,7 +40,7 @@ func fixtureServiceAccountKey(mods ...func(*clients.ServiceAccountKeyResponse)) 
 	return serviceAccountKeyResponse
 }
 
-// Error cases are tested in the noAuth, TokenAuth and DefaultAuth functions
+// Error cases are tested in the NoAuth, KeyAuth, TokenAuth and DefaultAuth functions
 func TestSetupAuth(t *testing.T) {
 	privateKey, err := generatePrivateKey()
 	if err != nil {
@@ -431,7 +431,11 @@ func TestTokenAuth(t *testing.T) {
 }
 
 func TestKeyAuth(t *testing.T) {
-	privateKey, err := generatePrivateKey()
+	includedPrivateKey, err := generatePrivateKey()
+	if err != nil {
+		t.Fatalf("Failed to generate private key for testing")
+	}
+	configuredPrivateKey, err := generatePrivateKey()
 	if err != nil {
 		t.Fatalf("Failed to generate private key for testing")
 	}
@@ -441,31 +445,36 @@ func TestKeyAuth(t *testing.T) {
 		serviceAccountKey    *clients.ServiceAccountKeyResponse
 		includedPrivateKey   *string
 		configuredPrivateKey string
+		envVarPrivateKey     string
+		expectedPrivateKey   string
 		isValid              bool
 	}{
 		{
 			desc:                 "configured_private_key",
 			serviceAccountKey:    fixtureServiceAccountKey(),
-			configuredPrivateKey: string(privateKey),
+			configuredPrivateKey: string(configuredPrivateKey),
+			expectedPrivateKey:   string(configuredPrivateKey),
 			isValid:              true,
 		},
 		{
 			desc:               "included_private_key",
 			serviceAccountKey:  fixtureServiceAccountKey(),
-			includedPrivateKey: &privateKey,
+			includedPrivateKey: &includedPrivateKey,
+			expectedPrivateKey: includedPrivateKey,
 			isValid:            true,
 		},
 		{
-			desc:                 "configured_and_included_private_key",
+			desc:                 "configured_over_included_private_key",
 			serviceAccountKey:    fixtureServiceAccountKey(),
-			includedPrivateKey:   &privateKey,
-			configuredPrivateKey: privateKey,
+			includedPrivateKey:   &includedPrivateKey,
+			configuredPrivateKey: configuredPrivateKey,
+			expectedPrivateKey:   configuredPrivateKey,
 			isValid:              true,
 		},
 		{
 			desc:                 "no_sa_key",
 			serviceAccountKey:    nil,
-			configuredPrivateKey: privateKey,
+			configuredPrivateKey: configuredPrivateKey,
 			isValid:              false,
 		},
 		{
@@ -487,17 +496,20 @@ func TestKeyAuth(t *testing.T) {
 			t.Setenv("STACKIT_PRIVATE_KEY", "")
 			t.Setenv("STACKIT_PRIVATE_KEY_PATH", "")
 
+			var saKey string
 			if test.serviceAccountKey != nil {
 				test.serviceAccountKey.Credentials.PrivateKey = test.includedPrivateKey
-			}
 
-			saKeyBytes, err := json.Marshal(test.serviceAccountKey)
-			if err != nil {
-				t.Fatalf("unmarshalling service account key: %s", err)
+				saKeyBytes, err := json.Marshal(test.serviceAccountKey)
+				if err != nil {
+					t.Fatalf("unmarshalling service account key: %s", err)
+				}
+
+				saKey = string(saKeyBytes)
 			}
 
 			cfg := &config.Configuration{
-				ServiceAccountKey: string(saKeyBytes),
+				ServiceAccountKey: saKey,
 				PrivateKey:        test.configuredPrivateKey,
 			}
 			// Get the key authentication client and ensure that it's not nil
@@ -511,9 +523,20 @@ func TestKeyAuth(t *testing.T) {
 				t.Fatalf("Test didn't return error on invalid test case")
 			}
 
-			if test.isValid && authClient == nil {
-				t.Fatalf("Client returned is nil for valid test case")
+			if test.isValid {
+				if authClient == nil {
+					t.Fatalf("Client returned is nil for valid test case")
+				}
+
+				keyFlow, ok := authClient.(*clients.KeyFlow)
+				if !ok {
+					t.Fatalf("Could not convert authClient to KeyFlow")
+				}
+				if keyFlow.GetConfig().PrivateKey != test.expectedPrivateKey {
+					t.Fatalf("The private key is wrong: expected %s, got %s", test.expectedPrivateKey, keyFlow.GetConfig().PrivateKey)
+				}
 			}
+
 		})
 	}
 }
