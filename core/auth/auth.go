@@ -139,6 +139,9 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 
 // KeyAuth configures the key flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using an access token
+// The KeyFlow requires a service account key and a private key.
+// If the private key is not provided explicitly, KeyAuth will check if there is one included
+// in the service account key and use that one.
 func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	err := getServiceAccountKey(cfg)
 	if err != nil {
