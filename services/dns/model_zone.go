@@ -40,7 +40,8 @@ type Zone struct {
 	// REQUIRED
 	Id *string `json:"id"`
 	// if the zone is a reverse zone or not
-	IsReverseZone *bool `json:"isReverseZone,omitempty"`
+	IsReverseZone *bool    `json:"isReverseZone,omitempty"`
+	Labels        *[]Label `json:"labels,omitempty"`
 	// user given name
 	// REQUIRED
 	Name *string `json:"name"`

@@ -11,6 +11,8 @@ API version: 1.0
 package dns
 
 type CloneZonePayload struct {
+	// Adjust record set content and replace the dns name of the original zone with the new dns name of the cloned zone
+	AdjustRecords *bool `json:"adjustRecords,omitempty"`
 	// New Description for the cloned zone. Leave empty to use the same description as the original zone
 	Description *string `json:"description,omitempty"`
 	// DnsName is the dns name of the zone to clone
