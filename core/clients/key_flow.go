@@ -202,7 +202,7 @@ func (c *KeyFlow) configureHTTPClient() {
 }
 
 // validate the client is configured well
-func (c *KeyFlow) validate() (err error) {
+func (c *KeyFlow) validate() error {
 	if c.config.ServiceAccountKey == nil {
 		return fmt.Errorf("service account access key cannot be empty")
 	}
@@ -211,7 +211,7 @@ func (c *KeyFlow) validate() (err error) {
 	}
 
 	c.key = c.config.ServiceAccountKey
-
+	var err error
 	c.privateKey, err = jwt.ParseRSAPrivateKeyFromPEM([]byte(c.config.PrivateKey))
 	if err != nil {
 		return fmt.Errorf("parsing private key from PEM file: %w", err)

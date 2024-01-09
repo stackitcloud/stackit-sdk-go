@@ -140,8 +140,10 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 // KeyAuth configures the key flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using an access token
 // The KeyFlow requires a service account key and a private key.
+//
 // If the private key is not provided explicitly, KeyAuth will check if there is one included
-// in the service account key and use that one.
+// in the service account key and use that one. An explicitly provided private key takes
+// precedence over the one on the service account key.
 func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	err := getServiceAccountKey(cfg)
 	if err != nil {
@@ -155,19 +157,18 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		return nil, fmt.Errorf("unmarshalling service account key: %w", err)
 	}
 
-	// If present, extract private key from the service account key
-	var extractedPrivateKey string
-	if serviceAccountKey.Credentials != nil && serviceAccountKey.Credentials.PrivateKey != nil {
-		extractedPrivateKey = *serviceAccountKey.Credentials.PrivateKey
-	}
-
 	// Try to get private key from configuration, environment or credentials file
 	err = getPrivateKey(cfg)
 	if err != nil {
+		// If the private key is not provided explicitly, try to extract private key from the service account key
+		// and use it if present
+		var extractedPrivateKey string
+		if serviceAccountKey.Credentials != nil && serviceAccountKey.Credentials.PrivateKey != nil {
+			extractedPrivateKey = *serviceAccountKey.Credentials.PrivateKey
+		}
 		if extractedPrivateKey == "" {
 			return nil, fmt.Errorf("configuring key authentication: private key is not part of the service account key and could not be found: %w", err)
 		}
-		// Use the extracted private key if it could not be found elsewhere
 		cfg.PrivateKey = extractedPrivateKey
 	}
 
