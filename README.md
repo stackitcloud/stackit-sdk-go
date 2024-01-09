@@ -149,13 +149,16 @@ To configure it, follow these steps:
 
 3. Configure the service account key for authentication in the SDK by following one of the alternatives below:
    - using the configuration options: `config.WithServiceAccountKey` or `config.WithServiceAccountKeyPath`, `config.WithPrivateKey` or `config.WithPrivateKeyPath`
-   - setting environment variables: `STACKIT_SERVICE_ACCOUNT_KEY_PATH`
+   - setting the environment variable: `STACKIT_SERVICE_ACCOUNT_KEY_PATH`
    - setting `STACKIT_SERVICE_ACCOUNT_KEY_PATH` in the credentials file (see above)
-4. **If you have provided your own RSA key-pair**, you can set it the same way (it will take precedence over the private key included in the service account key, if present):
-   - using the configuration options: `config.WithPrivateKey` or `config.WithPrivateKeyPath`
-   - setting environment variables: `STACKIT_PRIVATE_KEY_PATH`
-   - setting `STACKIT_PRIVATE_KEY_PATH` in the credentials file (see above)
-5. The SDK will search for the keys and, if valid, will use them to get access and refresh tokens which will be used to authenticate all the requests.
+
+> **If you have provided your own RSA key-pair when creating the service account key**, you also need to configure the private key (takes precedence over the private key included in the service account key, if present):
+>
+> - using the configuration options: `config.WithPrivateKey` or `config.WithPrivateKeyPath`
+> - setting the environment variable: `STACKIT_PRIVATE_KEY_PATH`
+> - setting `STACKIT_PRIVATE_KEY_PATH` in the credentials file (see above)
+
+4. The SDK will search for the keys and, if valid, will use them to get access and refresh tokens which will be used to authenticate all the requests.
 
 ### Token flow
 
