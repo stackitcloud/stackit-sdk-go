@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/serviceaccount
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.7.4
+	github.com/stackitcloud/stackit-sdk-go/core v0.7.5
 	github.com/stackitcloud/stackit-sdk-go/services/serviceaccount v0.3.1
 )
 
