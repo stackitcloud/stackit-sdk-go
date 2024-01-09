@@ -1,6 +1,7 @@
 ## v0.5.2 (2024-01-09)
 
 - Description fixes
+- Dependency updates
 
 ## v0.5.1 (2023-12-22)
 

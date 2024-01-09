@@ -1,3 +1,7 @@
+## v0.4.0 (2024-01-09)
+
+- Dependency updates
+
 ## v0.3.1 (2023-12-22)
 
 - Dependency updates

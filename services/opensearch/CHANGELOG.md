@@ -3,6 +3,7 @@
 - `PartialUpdateInstance` can be used to update the instance's name
 - `InstanceParameters` has a new setting `MaxDiskThreshold`
 - `ListMetricsResponse` has new fields regarding ephemeral disk
+- Dependency updates
 
 ## v0.8.1 (2023-12-22)
 

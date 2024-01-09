@@ -1,3 +1,7 @@
+## v0.7.3 (2024-01-09)
+
+- Dependency updates
+
 ## v0.7.2 (2024-01-02)
 
 - **Bugfix** Fixed slice parameter value formatting. This fixed the bug where providing `ContainerIds` as a query parameter never returned a valid result.
