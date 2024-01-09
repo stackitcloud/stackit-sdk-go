@@ -1,41 +1,42 @@
 ## Release (2024-01-09)
 
 ### Highlights
-
+- `core`: [v0.7.5](core/CHANGELOG.md#v075-2024-01-09)
+  - **Improvement:** When using the key flow, the SDK will extract the private key from the service account key and use it, if no private key is provided in the configuration, through environment variable or in the credentials file. This makes it simpler to use the key flow: if you create a service account key including the private key, you don't need to provide the private key separately anymore
 - `dns`: [v0.8.0](services/dns/CHANGELOG.md#v080-2024-01-09)
-  - `Zone` has a new filed `Labels`, which is an array of labels (key-value pairs) associated to a zone
-  - `ListZones` can be filtered by label keys or values
-  - `CloneZonePayload` has a flag `AdjustRecords` to adjust the record set content of the cloned zone (replaces the dns name of the original zone with the new dns name of the cloned zone)
+  - **Feature:** `Zone` has a new filed `Labels`, which is an array of labels (key-value pairs) associated to a zone
+  - **Feature:** `ListZones` can be filtered by label keys or values
+  - **Feature:** `CloneZonePayload` has a flag `AdjustRecords` to adjust the record set content of the cloned zone (replaces the dns name of the original zone with the new dns name of the cloned zone)
 - `logme`: [v0.9.0](services/logme/CHANGELOG.md#v090-2024-01-09)
-  - `PartialUpdateInstance` can be used to update the instance's name
-  - `InstanceParameters` has a new setting `MaxDiskThreshold`
-  - `ListMetricsResponse` has new fields regarding ephemeral disk
+  - **Feature:** `PartialUpdateInstance` can be used to update the instance's name
+  - **Feature:** `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - **Feature:** `ListMetricsResponse` has new fields regarding ephemeral disk
 - `mariadb`: [v0.9.0](services/mariadb/CHANGELOG.md#v090-2024-01-09)
-  - `PartialUpdateInstance` can be used to update the instance's name
-  - `InstanceParameters` has a new setting `MaxDiskThreshold`
-  - `ListMetricsResponse` has new fields regarding ephemeral disk
+  - **Feature:** `PartialUpdateInstance` can be used to update the instance's name
+  - **Feature:** `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - **Feature:** `ListMetricsResponse` has new fields regarding ephemeral disk
 - `mongodbflex`: [v0.10.0](services/mongodbflex/CHANGELOG.md#v0100-2024-01-05)
-  - Added method `ListMetrics` (which accepts the desired metric: `cpu`, `database`, `disk-iops`, `disk-use`, or `exec-time`) as an argument and replaces `ListCPUMetrics`, `ListDatabaseStorageMetrics`, `ListDiskIOPSMetrics`, `ListDiskUsageMetrics`, and `ListExecutionTimesMetrics`, respectivelly
-  - Removes the previously deprecated method `GetStorage`, replaced by `ListStorages`
+  - **Breaking Change:** Added method `ListMetrics` (which accepts the desired metric: `cpu`, `database`, `disk-iops`, `disk-use`, or `exec-time`) as an argument and replaces `ListCPUMetrics`, `ListDatabaseStorageMetrics`, `ListDiskIOPSMetrics`, `ListDiskUsageMetrics`, and `ListExecutionTimesMetrics`, respectivelly
+  - **Breaking Change:** Removes the previously deprecated method `GetStorage`, replaced by `ListStorages`
 - `opensearch`: [v0.9.0](services/opensearch/CHANGELOG.md#v090-2024-01-09)
-  - `PartialUpdateInstance` can be used to update the instance's name
-  - `InstanceParameters` has a new setting `MaxDiskThreshold`
-  - `ListMetricsResponse` has new fields regarding ephemeral disk
+  - **Feature:** `PartialUpdateInstance` can be used to update the instance's name
+  - **Feature:** `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - **Feature:** `ListMetricsResponse` has new fields regarding ephemeral disk
 - `postgresql`: [v0.10.0](services/postgresql/CHANGELOG.md#v0100-2024-01-09)
-  - `PartialUpdateInstance` can be used to update the instance's name
-  - `InstanceParameters` has a new setting `MaxDiskThreshold`
-  - `ListMetricsResponse` has new fields regarding ephemeral disk
+  - **Feature:** `PartialUpdateInstance` can be used to update the instance's name
+  - **Feature:** `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - **Feature:** `ListMetricsResponse` has new fields regarding ephemeral disk
 - `rabbitmq`: [v0.9.0](services/rabbitmq/CHANGELOG.md#v090-2024-01-09)
-  - `PartialUpdateInstance` can be used to update the instance's name
-  - `InstanceParameters` has a new setting `MaxDiskThreshold`
-  - `ListMetricsResponse` has new fields regarding ephemeral disk
+  - **Feature:** `PartialUpdateInstance` can be used to update the instance's name
+  - **Feature:** `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - **Feature:** `ListMetricsResponse` has new fields regarding ephemeral disk
 - `redis`: [v0.9.0](services/redis/CHANGELOG.md#v090-2024-01-09)
-  - `PartialUpdateInstance` can be used to update the instance's name
-  - `InstanceParameters` has a new setting `MaxDiskThreshold`
-  - `ListMetricsResponse` has new fields regarding ephemeral disk
+  - **Feature:** `PartialUpdateInstance` can be used to update the instance's name
+  - **Feature:** `InstanceParameters` has a new setting `MaxDiskThreshold`
+  - **Feature:** `ListMetricsResponse` has new fields regarding ephemeral disk
 - `ske`: [v0.9.0](services/ske/CHANGELOG.md#v090-2024-01-09)
-  - Add details on credentials for old clusters
-  - `ClusterStatus` now has a field `CredentialsRotation` with credentials' details
+  - **Improvement:** Add details on credentials for old clusters
+  - **Feature:** `ClusterStatus` now has a field `CredentialsRotation` with credentials' details
 
 ## Release (2023-12-22)
 

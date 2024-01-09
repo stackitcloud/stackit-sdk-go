@@ -1,8 +1,8 @@
 ## v0.8.0 (2024-01-09)
 
-- `Zone` has a new filed `Labels`, which is an array of labels (key-value pairs) associated to a zone
-- `ListZones` can be filtered by label keys or values
-- `CloneZonePayload` has a flag `AdjustRecords` to adjust the record set content of the cloned zone (replaces the dns name of the original zone with the new dns name of the cloned zone)
+- **Feature:** `Zone` has a new filed `Labels`, which is an array of labels (key-value pairs) associated to a zone
+- **Feature:** `ListZones` can be filtered by label keys or values
+- **Feature:** `CloneZonePayload` has a flag `AdjustRecords` to adjust the record set content of the cloned zone (replaces the dns name of the original zone with the new dns name of the cloned zone)
 - Dependency updates
 
 ## v0.7.1 (2023-12-22)
