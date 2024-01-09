@@ -2,6 +2,7 @@
 
 - Add details on credentials for old clusters
 - `ClusterStatus` now has a field `CredentialsRotation` with credentials' details
+- Dependency updates
 
 ## v0.8.1 (2023-12-22)
 
