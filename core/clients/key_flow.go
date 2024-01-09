@@ -36,7 +36,7 @@ type KeyFlow struct {
 	client        *http.Client
 	config        *KeyFlowConfig
 	doer          func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error)
-	key           *ServiceAccountKeyPrivateResponse
+	key           *ServiceAccountKeyResponse
 	privateKey    *rsa.PrivateKey
 	privateKeyPEM []byte
 	token         *TokenResponseBody
@@ -44,7 +44,7 @@ type KeyFlow struct {
 
 // KeyFlowConfig is the flow config
 type KeyFlowConfig struct {
-	ServiceAccountKey string
+	ServiceAccountKey *ServiceAccountKeyResponse
 	PrivateKey        string
 	ClientRetry       *RetryConfig
 	TokenUrl          string
@@ -61,24 +61,26 @@ type TokenResponseBody struct {
 	TokenType    string `json:"token_type"`
 }
 
-// ServiceAccountKeyPrivateResponse is the API response
+// ServiceAccountKeyResponse is the API response
 // when creating a new SA key
-type ServiceAccountKeyPrivateResponse struct {
-	Active      bool      `json:"active"`
-	CreatedAt   time.Time `json:"createdAt"`
-	Credentials struct {
-		Aud        string    `json:"aud"`
-		Iss        string    `json:"iss"`
-		Kid        string    `json:"kid"`
-		PrivateKey *string   `json:"privateKey,omitempty"`
-		Sub        uuid.UUID `json:"sub"`
-	} `json:"credentials"`
-	ID           uuid.UUID  `json:"id"`
-	KeyAlgorithm string     `json:"keyAlgorithm"`
-	KeyOrigin    string     `json:"keyOrigin"`
-	KeyType      string     `json:"keyType"`
-	PublicKey    string     `json:"publicKey"`
-	ValidUntil   *time.Time `json:"validUntil,omitempty"`
+type ServiceAccountKeyResponse struct {
+	Active       bool                          `json:"active"`
+	CreatedAt    time.Time                     `json:"createdAt"`
+	Credentials  *ServiceAccountKeyCredentials `json:"credentials"`
+	ID           uuid.UUID                     `json:"id"`
+	KeyAlgorithm string                        `json:"keyAlgorithm"`
+	KeyOrigin    string                        `json:"keyOrigin"`
+	KeyType      string                        `json:"keyType"`
+	PublicKey    string                        `json:"publicKey"`
+	ValidUntil   *time.Time                    `json:"validUntil,omitempty"`
+}
+
+type ServiceAccountKeyCredentials struct {
+	Aud        string    `json:"aud"`
+	Iss        string    `json:"iss"`
+	Kid        string    `json:"kid"`
+	PrivateKey *string   `json:"privateKey,omitempty"`
+	Sub        uuid.UUID `json:"sub"`
 }
 
 // GetConfig returns the flow configuration
@@ -201,19 +203,15 @@ func (c *KeyFlow) configureHTTPClient() {
 
 // validate the client is configured well
 func (c *KeyFlow) validate() error {
-	if c.config.ServiceAccountKey == "" {
+	if c.config.ServiceAccountKey == nil {
 		return fmt.Errorf("service account access key cannot be empty")
 	}
 	if c.config.PrivateKey == "" {
 		return fmt.Errorf("private key cannot be empty")
 	}
 
-	c.key = &ServiceAccountKeyPrivateResponse{}
-	err := json.Unmarshal([]byte(c.config.ServiceAccountKey), c.key)
-	if err != nil {
-		return fmt.Errorf("unmarshalling service account key: %w", err)
-	}
-
+	c.key = c.config.ServiceAccountKey
+	var err error
 	c.privateKey, err = jwt.ParseRSAPrivateKeyFromPEM([]byte(c.config.PrivateKey))
 	if err != nil {
 		return fmt.Errorf("parsing private key from PEM file: %w", err)

@@ -108,8 +108,7 @@ When setting up authentication, the SDK will always try to use the key flow firs
    ```json
    {
      "STACKIT_SERVICE_ACCOUNT_TOKEN": "foo_token",
-     "STACKIT_SERVICE_ACCOUNT_KEY_PATH": "path/to/sa_key.json",
-     "STACKIT_PRIVATE_KEY_PATH": "path/to/private_key.pem"
+     "STACKIT_SERVICE_ACCOUNT_KEY_PATH": "path/to/sa_key.json"
    }
    ```
 
@@ -118,17 +117,15 @@ Check the [authentication example](examples/authentication/authentication.go) fo
 ### Key flow
 
 To use the key flow, you need to have a service account key and an RSA key-pair.
-To configure it, follow this steps:
+To configure it, follow these steps:
 
     The following instructions assume that you have created a service account and assigned it the necessary permissions, e.g. project.owner.
 
 1.  In the Portal, go to the `Service Accounts` tab, choose a `Service Account` and go to `Service Account Keys` to create a key.
     - You can create your own RSA key-pair or have the Portal generate one for you.
-2.  Save the content of the service account key and the corresponding private key by copying them or saving them in a file.
+2.  Save the content of the service account key by copying it and saving it in a JSON file.
 
-    **Hint:** If you have generated the RSA key-pair using the Portal, you can save the private key in a PEM encoded file by downloading the service account key as a PEM file and using `openssl storeutl -keys <path/to/sa_key_pem_file> > private.key` to extract the private key from the service account key.
-
-The expected format of the service account key is a **json** with the following structure:
+    The expected format of the service account key is a **json** with the following structure:
 
 ```json
 {
@@ -150,11 +147,15 @@ The expected format of the service account key is a **json** with the following 
 }
 ```
 
-3. Configure the service account key and private key for authentication in the SDK by following one of the alternatives below:
+3. Configure the service account key for authentication in the SDK by following one of the alternatives below:
    - using the configuration options: `config.WithServiceAccountKey` or `config.WithServiceAccountKeyPath`, `config.WithPrivateKey` or `config.WithPrivateKeyPath`
-   - setting environment variables: `STACKIT_SERVICE_ACCOUNT_KEY_PATH` and `STACKIT_PRIVATE_KEY_PATH`
-   - setting `STACKIT_SERVICE_ACCOUNT_KEY_PATH` and `STACKIT_PRIVATE_KEY_PATH` in the credentials file (see above)
-4. The SDK will search for the keys and, if valid, will use them to get access and refresh tokens which will be used to authenticate all the requests.
+   - setting environment variables: `STACKIT_SERVICE_ACCOUNT_KEY_PATH`
+   - setting `STACKIT_SERVICE_ACCOUNT_KEY_PATH` in the credentials file (see above)
+4. **If you have provided your own RSA key-pair**, you can set it the same way (it will take precedence over the private key included in the service account key, if present):
+   - using the configuration options: `config.WithPrivateKey` or `config.WithPrivateKeyPath`
+   - setting environment variables: `STACKIT_PRIVATE_KEY_PATH`
+   - setting `STACKIT_PRIVATE_KEY_PATH` in the credentials file (see above)
+5. The SDK will search for the keys and, if valid, will use them to get access and refresh tokens which will be used to authenticate all the requests.
 
 ### Token flow
 

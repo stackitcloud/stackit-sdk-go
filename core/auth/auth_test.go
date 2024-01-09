@@ -4,37 +4,43 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
+	"encoding/json"
 	"encoding/pem"
-	"fmt"
 	"os"
 	"reflect"
 	"testing"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-const saKeyStrPattern = `{
-	"active": true,
-	"createdAt": "2023-03-23T18:26:20.335Z",
-	"credentials": {
-	  "aud": "https://test-url.com",
-	  "iss": "test@test.cloud",
-	  "kid": "%s",
-	  "sub": "%s"
-	},
-	"id": "%s",
-	"keyAlgorithm": "RSA_2048",
-	"keyOrigin": "USER_PROVIDED",
-	"keyType": "USER_MANAGED",
-	"publicKey": "...",
-	"validUntil": "2024-03-22T18:05:41Z"
-}`
+func fixtureServiceAccountKey(mods ...func(*clients.ServiceAccountKeyResponse)) *clients.ServiceAccountKeyResponse {
+	validUntil := time.Now().Add(time.Hour)
+	serviceAccountKeyResponse := &clients.ServiceAccountKeyResponse{
+		Active:    true,
+		CreatedAt: time.Now(),
+		Credentials: &clients.ServiceAccountKeyCredentials{
+			Aud: "https://stackit-service-account-prod.apps.01.cf.eu01.stackit.cloud",
+			Iss: "stackit@sa.stackit.cloud",
+			Kid: uuid.New().String(),
+			Sub: uuid.New(),
+		},
+		ID:           uuid.New(),
+		KeyAlgorithm: "RSA_2048",
+		KeyOrigin:    "USER_PROVIDED",
+		KeyType:      "USER_MANAGED",
+		PublicKey:    "...",
+		ValidUntil:   &validUntil,
+	}
+	for _, mod := range mods {
+		mod(serviceAccountKeyResponse)
+	}
+	return serviceAccountKeyResponse
+}
 
-var saKey = fmt.Sprintf(saKeyStrPattern, uuid.New().String(), uuid.New().String(), uuid.New().String())
-
-// Error cases are tested in the noAuth, TokenAuth and DefaultAuth functions
+// Error cases are tested in the NoAuth, KeyAuth, TokenAuth and DefaultAuth functions
 func TestSetupAuth(t *testing.T) {
 	privateKey, err := generatePrivateKey()
 	if err != nil {
@@ -78,7 +84,11 @@ func TestSetupAuth(t *testing.T) {
 		}
 	}()
 
-	// Write some text to the file
+	// Write the service account key to the file
+	saKey, err := json.Marshal(fixtureServiceAccountKey())
+	if err != nil {
+		t.Fatalf("unmarshalling service account key: %s", err)
+	}
 	_, errs = saKeyFile.WriteString(string(saKey))
 	if errs != nil {
 		t.Fatalf("Writing private key to temporary file: %s", err)
@@ -288,7 +298,11 @@ func TestDefaultAuth(t *testing.T) {
 		}
 	}()
 
-	// Write some text to the file
+	// Write the service account key to the file
+	saKey, err := json.Marshal(fixtureServiceAccountKey())
+	if err != nil {
+		t.Fatalf("unmarshalling service account key: %s", err)
+	}
 	_, errs = saKeyFile.WriteString(string(saKey))
 	if errs != nil {
 		t.Fatalf("Writing private key to temporary file: %s", err)
@@ -417,40 +431,71 @@ func TestTokenAuth(t *testing.T) {
 }
 
 func TestKeyAuth(t *testing.T) {
-	privateKey, err := generatePrivateKey()
+	includedPrivateKey, err := generatePrivateKey()
+	if err != nil {
+		t.Fatalf("Failed to generate private key for testing")
+	}
+	configuredPrivateKey, err := generatePrivateKey()
 	if err != nil {
 		t.Fatalf("Failed to generate private key for testing")
 	}
 
 	for _, test := range []struct {
-		desc              string
-		serviceAccountKey string
-		privateKey        string
-		isValid           bool
+		desc                 string
+		serviceAccountKey    *clients.ServiceAccountKeyResponse
+		includedPrivateKey   *string
+		configuredPrivateKey string
+		envVarPrivateKey     string
+		expectedPrivateKey   string
+		isValid              bool
 	}{
 		{
-			desc:              "valid_case",
-			serviceAccountKey: saKey,
-			privateKey:        string(privateKey),
-			isValid:           true,
+			desc:                 "configured_private_key",
+			serviceAccountKey:    fixtureServiceAccountKey(),
+			configuredPrivateKey: string(configuredPrivateKey),
+			expectedPrivateKey:   string(configuredPrivateKey),
+			isValid:              true,
 		},
 		{
-			desc:              "no_sa_key",
-			serviceAccountKey: "",
-			privateKey:        string(privateKey),
-			isValid:           false,
+			desc:               "included_private_key",
+			serviceAccountKey:  fixtureServiceAccountKey(),
+			includedPrivateKey: &includedPrivateKey,
+			expectedPrivateKey: includedPrivateKey,
+			isValid:            true,
 		},
 		{
-			desc:              "no_private_key",
-			serviceAccountKey: "no_sa_key",
-			privateKey:        "",
-			isValid:           false,
+			desc:                 "empty_configured_use_included_private_key",
+			serviceAccountKey:    fixtureServiceAccountKey(),
+			includedPrivateKey:   &includedPrivateKey,
+			configuredPrivateKey: "",
+			expectedPrivateKey:   includedPrivateKey,
+			isValid:              true,
 		},
 		{
-			desc:              "no_keys",
-			serviceAccountKey: "",
-			privateKey:        "",
-			isValid:           false,
+			desc:                 "configured_over_included_private_key",
+			serviceAccountKey:    fixtureServiceAccountKey(),
+			includedPrivateKey:   &includedPrivateKey,
+			configuredPrivateKey: configuredPrivateKey,
+			expectedPrivateKey:   configuredPrivateKey,
+			isValid:              true,
+		},
+		{
+			desc:                 "no_sa_key",
+			serviceAccountKey:    nil,
+			configuredPrivateKey: configuredPrivateKey,
+			isValid:              false,
+		},
+		{
+			desc:                 "missing_private_key",
+			serviceAccountKey:    fixtureServiceAccountKey(),
+			configuredPrivateKey: "",
+			isValid:              false,
+		},
+		{
+			desc:                 "no_keys",
+			serviceAccountKey:    nil,
+			configuredPrivateKey: "",
+			isValid:              false,
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
@@ -459,9 +504,21 @@ func TestKeyAuth(t *testing.T) {
 			t.Setenv("STACKIT_PRIVATE_KEY", "")
 			t.Setenv("STACKIT_PRIVATE_KEY_PATH", "")
 
+			var saKey string
+			if test.serviceAccountKey != nil {
+				test.serviceAccountKey.Credentials.PrivateKey = test.includedPrivateKey
+
+				saKeyBytes, err := json.Marshal(test.serviceAccountKey)
+				if err != nil {
+					t.Fatalf("unmarshalling service account key: %s", err)
+				}
+
+				saKey = string(saKeyBytes)
+			}
+
 			cfg := &config.Configuration{
-				ServiceAccountKey: test.serviceAccountKey,
-				PrivateKey:        test.privateKey,
+				ServiceAccountKey: saKey,
+				PrivateKey:        test.configuredPrivateKey,
 			}
 			// Get the key authentication client and ensure that it's not nil
 			authClient, err := KeyAuth(cfg)
@@ -474,8 +531,18 @@ func TestKeyAuth(t *testing.T) {
 				t.Fatalf("Test didn't return error on invalid test case")
 			}
 
-			if test.isValid && authClient == nil {
-				t.Fatalf("Client returned is nil for valid test case")
+			if test.isValid {
+				if authClient == nil {
+					t.Fatalf("Client returned is nil for valid test case")
+				}
+
+				keyFlow, ok := authClient.(*clients.KeyFlow)
+				if !ok {
+					t.Fatalf("Could not convert authClient to KeyFlow")
+				}
+				if keyFlow.GetConfig().PrivateKey != test.expectedPrivateKey {
+					t.Fatalf("The private key is wrong: expected %s, got %s", test.expectedPrivateKey, keyFlow.GetConfig().PrivateKey)
+				}
 			}
 		})
 	}
@@ -575,11 +642,11 @@ func TestGetServiceAccountEmail(t *testing.T) {
 	}
 }
 
-func generatePrivateKey() ([]byte, error) {
+func generatePrivateKey() (string, error) {
 	// Generate a new RSA key pair with a size of 2048 bits
 	privKey, err := rsa.GenerateKey(rand.Reader, 2048)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	// Encode the private key in PEM format
@@ -589,7 +656,7 @@ func generatePrivateKey() ([]byte, error) {
 	}
 
 	// Print the private and public keys
-	return pem.EncodeToMemory(privKeyPEM), nil
+	return string(pem.EncodeToMemory(privKeyPEM)), nil
 }
 
 func TestGetPrivateKey(t *testing.T) {

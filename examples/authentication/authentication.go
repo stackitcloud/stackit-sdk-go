@@ -40,11 +40,12 @@ func main() {
 	}
 
 	// Create a new API client, that will authenticate using the key flow
+	// If you created a service account key and provided your own RSA key pair,
+	// you need to add the path to a PEM encoded file including the private key
+	// using config.WithPrivateKeyPath("path/to/private_key.pem")
 	saKeyPath := "/path/to/service_account_key.json"
-	privateKeyPath := "/path/to/private.key"
 	dnsClient, err := dns.NewAPIClient(
 		config.WithServiceAccountKeyPath(saKeyPath),
-		config.WithPrivateKeyPath(privateKeyPath),
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)

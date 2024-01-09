@@ -1,3 +1,7 @@
+## v0.7.5 (2024-01-09)
+
+- **Improvement:** When using the key flow, the SDK will extract the private key from the service account key and use it, if no private key is provided in the configuration, through environment variable or in the credentials file. This makes it simpler to use the key flow: if you create a service account key including the private key, you don't need to provide the private key separately anymore
+
 ## v0.7.4 (2023-12-22)
 
 - Replace k8s.io/apimachinery with cenkalti/backoff

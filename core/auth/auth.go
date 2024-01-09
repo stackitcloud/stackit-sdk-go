@@ -139,15 +139,37 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 
 // KeyAuth configures the key flow and returns an http.RoundTripper
 // that can be used to make authenticated requests using an access token
+// The KeyFlow requires a service account key and a private key.
+//
+// If the private key is not provided explicitly, KeyAuth will check if there is one included
+// in the service account key and use that one. An explicitly provided private key takes
+// precedence over the one on the service account key.
 func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	err := getServiceAccountKey(cfg)
 	if err != nil {
 		return nil, fmt.Errorf("configuring key authentication: service account key could not be found: %w", err)
 	}
 
+	// Unmarshal service account key to check if private key is present
+	var serviceAccountKey = &clients.ServiceAccountKeyResponse{}
+	err = json.Unmarshal([]byte(cfg.ServiceAccountKey), serviceAccountKey)
+	if err != nil {
+		return nil, fmt.Errorf("unmarshalling service account key: %w", err)
+	}
+
+	// Try to get private key from configuration, environment or credentials file
 	err = getPrivateKey(cfg)
 	if err != nil {
-		return nil, fmt.Errorf("configuring key authentication: private key could not be found: %w", err)
+		// If the private key is not provided explicitly, try to extract private key from the service account key
+		// and use it if present
+		var extractedPrivateKey string
+		if serviceAccountKey.Credentials != nil && serviceAccountKey.Credentials.PrivateKey != nil {
+			extractedPrivateKey = *serviceAccountKey.Credentials.PrivateKey
+		}
+		if extractedPrivateKey == "" {
+			return nil, fmt.Errorf("configuring key authentication: private key is not part of the service account key and could not be found: %w", err)
+		}
+		cfg.PrivateKey = extractedPrivateKey
 	}
 
 	if cfg.TokenCustomUrl == "" {
@@ -164,7 +186,7 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	}
 
 	keyCfg := clients.KeyFlowConfig{
-		ServiceAccountKey: cfg.ServiceAccountKey,
+		ServiceAccountKey: serviceAccountKey,
 		PrivateKey:        cfg.PrivateKey,
 		ClientRetry:       cfg.RetryOptions,
 		TokenUrl:          cfg.TokenCustomUrl,
@@ -203,7 +225,7 @@ func readCredentialsFile(path string) (*Credentials, error) {
 	var credentials Credentials
 	err = json.Unmarshal(credentialsRaw, &credentials)
 	if err != nil {
-		return nil, fmt.Errorf("unmarshalling credentials: %w", err)
+		return nil, fmt.Errorf("unmaPrivateKeyrshalling credentials: %w", err)
 	}
 	return &credentials, nil
 }
@@ -278,6 +300,9 @@ func getPrivateKey(cfg *config.Configuration) (err error) {
 		privateKeyBytes, err := os.ReadFile(cfg.PrivateKeyPath)
 		if err != nil {
 			return err
+		}
+		if len(privateKeyBytes) == 0 {
+			return fmt.Errorf("key path points to an empty file")
 		}
 		cfg.PrivateKey = string(privateKeyBytes)
 	}
