@@ -16,7 +16,7 @@
   - **Feature:** `InstanceParameters` has a new setting `MaxDiskThreshold`
   - **Feature:** `ListMetricsResponse` has new fields regarding ephemeral disk
 - `mongodbflex`: [v0.10.0](services/mongodbflex/CHANGELOG.md#v0100-2024-01-05)
-  - **Feature:** Added method `ListMetrics` (which accepts the desired metric: `cpu`, `database`, `disk-iops`, `disk-use`, or `exec-time`) as an argument and replaces `ListCPUMetrics`, `ListDatabaseStorageMetrics`, `ListDiskIOPSMetrics`, `ListDiskUsageMetrics`, and `ListExecutionTimesMetrics`, respectivelly
+  - **Breaking Change:** Added method `ListMetrics` (which accepts the desired metric: `cpu`, `database`, `disk-iops`, `disk-use`, or `exec-time`) as an argument and replaces `ListCPUMetrics`, `ListDatabaseStorageMetrics`, `ListDiskIOPSMetrics`, `ListDiskUsageMetrics`, and `ListExecutionTimesMetrics`, respectivelly
   - **Breaking Change:** Removes the previously deprecated method `GetStorage`, replaced by `ListStorages`
 - `opensearch`: [v0.9.0](services/opensearch/CHANGELOG.md#v090-2024-01-09)
   - **Feature:** `PartialUpdateInstance` can be used to update the instance's name
