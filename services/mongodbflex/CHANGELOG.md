@@ -4,8 +4,8 @@
 
 ## v0.10.0 (2024-01-05)
 
-- Added method `ListMetrics` (which accepts the desired metric: `cpu`, `database`, `disk-iops`, `disk-use`, or `exec-time`) as an argument and replaces `ListCPUMetrics`, `ListDatabaseStorageMetrics`, `ListDiskIOPSMetrics`, `ListDiskUsageMetrics`, and `ListExecutionTimesMetrics`, respectivelly
-- Removes the previously deprecated method `GetStorage`, replaced by `ListStorages`
+- **Feature:** Added method `ListMetrics` (which accepts the desired metric: `cpu`, `database`, `disk-iops`, `disk-use`, or `exec-time`) as an argument and replaces `ListCPUMetrics`, `ListDatabaseStorageMetrics`, `ListDiskIOPSMetrics`, `ListDiskUsageMetrics`, and `ListExecutionTimesMetrics`, respectivelly
+- **Breaking Change:** Removes the previously deprecated method `GetStorage`, replaced by `ListStorages`
 
 ## v0.9.0 (2023-12-22)
 
