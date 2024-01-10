@@ -152,7 +152,7 @@ To configure it, follow these steps:
    - setting the environment variable: `STACKIT_SERVICE_ACCOUNT_KEY_PATH`
    - setting `STACKIT_SERVICE_ACCOUNT_KEY_PATH` in the credentials file (see above)
 
-> **If you have provided your own RSA key-pair when creating the service account key**, you also need to configure the private key (takes precedence over the private key included in the service account key, if present):
+> **If you have provided your own RSA key-pair when creating the service account key**, you also need to configure the private key (takes precedence over the private key included in the service account key, if present). **The private key must be PEM encoded** and can be provided using one of the options below:
 >
 > - using the configuration options: `config.WithPrivateKey` or `config.WithPrivateKeyPath`
 > - setting the environment variable: `STACKIT_PRIVATE_KEY_PATH`
