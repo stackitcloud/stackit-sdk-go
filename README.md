@@ -103,7 +103,7 @@ When setting up authentication, the SDK will always try to use the key flow firs
 
    The SDK will check the credentials file located in the path defined by the `STACKIT_CREDENTIALS_PATH` env var, if specified,
    or in `$HOME/.stackit/credentials.json` as a fallback.
-   The credentials should be set using the same name as the environment variables. Example:
+   The credentials file should be a json and each credential should be set using the name of the respective environment variable, as stated below in each flow. Example:
 
    ```json
    {
@@ -116,10 +116,15 @@ Check the [authentication example](examples/authentication/authentication.go) fo
 
 ### Key flow
 
-To use the key flow, you need to have a service account key and an RSA key-pair.
-To configure it, follow these steps:
+    The following instructions assume that you have created a service account and assigned it the necessary permissions, e.g. `project.owner`.
 
-    The following instructions assume that you have created a service account and assigned it the necessary permissions, e.g. project.owner.
+To use the key flow, you need to have a service account key, which must have an RSA key-pair attached to it.
+
+When creating the service account key, a new pair can be created automatically, which will be included in the service account key. This will make it much easier to configure the key flow authentication in the CLI, by just providing the service account key.
+
+**Optionally**, you can provide your own private key when creating the service account key, which will then require you to also provide it explicitly to the CLI, additionaly to the service account key. Check the STACKIT Knowledge Base for an [example of how to create your own key-pair](https://docs.stackit.cloud/stackit/en/usage-of-the-service-account-keys-in-stackit-175112464.html#UsageoftheserviceaccountkeysinSTACKIT-CreatinganRSAkey-pair).
+
+To configure the key flow, follow this steps:
 
 1.  In the Portal, go to the `Service Accounts` tab, choose a `Service Account` and go to `Service Account Keys` to create a key.
     - You can create your own RSA key-pair or have the Portal generate one for you.
@@ -152,7 +157,7 @@ To configure it, follow these steps:
    - setting the environment variable: `STACKIT_SERVICE_ACCOUNT_KEY_PATH`
    - setting `STACKIT_SERVICE_ACCOUNT_KEY_PATH` in the credentials file (see above)
 
-> **If you have provided your own RSA key-pair when creating the service account key**, you also need to configure the private key (takes precedence over the private key included in the service account key, if present). **The private key must be PEM encoded** and can be provided using one of the options below:
+> **Optionally, only if you have provided your own RSA key-pair when creating the service account key**, you also need to configure your private key (takes precedence over the one included in the service account key, if present). **The private key must be PEM encoded** and can be provided using one of the options below:
 >
 > - using the configuration options: `config.WithPrivateKey` or `config.WithPrivateKeyPath`
 > - setting the environment variable: `STACKIT_PRIVATE_KEY_PATH`
