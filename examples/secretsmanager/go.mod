@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.7.5
-	github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.5.1
+	github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.5.2
 )
 
 require (
