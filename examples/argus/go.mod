@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.7.5
-	github.com/stackitcloud/stackit-sdk-go/services/argus v0.8.1
+	github.com/stackitcloud/stackit-sdk-go/services/argus v0.8.2
 )
 
 require (
