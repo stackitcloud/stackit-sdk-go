@@ -126,8 +126,10 @@ When creating the service account key, a new pair can be created automatically, 
 
 To configure the key flow, follow this steps:
 
-1.  In the Portal, go to the `Service Accounts` tab, choose a `Service Account` and go to `Service Account Keys` to create a key.
-    - You can create your own RSA key-pair or have the Portal generate one for you.
+1.  Create a service account key:
+
+- Use the STACKIT Portal: go to the `Service Accounts` tab, choose a `Service Account` and go to `Service Account Keys` to create a key. For more details, see [Create a service account key](https://docs.stackit.cloud/stackit/en/create-a-service-account-key-175112456.html)
+
 2.  Save the content of the service account key by copying it and saving it in a JSON file.
 
     The expected format of the service account key is a **json** with the following structure:
