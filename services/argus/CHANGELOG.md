@@ -1,3 +1,9 @@
+## v0.9.0 (2024-01-12)
+
+- **Feature**: Add `SampleLimit` to `UpdateScrapeConfigPayload`.
+
+  This field allows you to update the per-scrape limit on number of scraped samples that will be accepted. If more than this number of samples are present after metric relabeling the entire scrape will be treated as failed. The total limit depends on the service plan target (limits \* samples).
+
 ## v0.8.2 (2024-01-09)
 
 - Dependency updates
