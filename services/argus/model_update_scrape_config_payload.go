@@ -25,6 +25,8 @@ type UpdateScrapeConfigPayload struct {
 	MetricsRelabelConfigs *[]CreateScrapeConfigPayloadMetricsRelabelConfigsInner `json:"metricsRelabelConfigs,omitempty"`
 	// Optional http params `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters
 	Params *map[string]interface{} `json:"params,omitempty"`
+	// Per-scrape limit on number of scraped samples that will be accepted. If more than this number of samples are present after metric relabeling the entire scrape will be treated as failed. The total limit depends on the service plan target limits * samples
+	SampleLimit *float64 `json:"sampleLimit,omitempty"`
 	// Configures the protocol scheme used for requests. https or http
 	// REQUIRED
 	Scheme *string `json:"scheme"`
