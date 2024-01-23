@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/secretsmanager
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.7.5
+	github.com/stackitcloud/stackit-sdk-go/core v0.7.6
 	github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.5.3
 )
 
