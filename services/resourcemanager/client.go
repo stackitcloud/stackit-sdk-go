@@ -72,7 +72,7 @@ func NewAPIClient(opts ...config.ConfigurationOption) (*APIClient, error) {
 	}
 
 	if cfg.HTTPClient == nil {
-		cfg.HTTPClient = http.DefaultClient
+		cfg.HTTPClient = &http.Client{}
 	}
 
 	authRoundTripper, err := auth.SetupAuth(cfg)
