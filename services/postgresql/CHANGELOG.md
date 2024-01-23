@@ -1,3 +1,7 @@
+## v0.10.1 (2024-01-24)
+
+- **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient`.
+
 ## v0.10.0 (2024-01-09)
 
 - **Feature:** `PartialUpdateInstance` can be used to update the instance's name

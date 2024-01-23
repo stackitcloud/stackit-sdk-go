@@ -1,3 +1,7 @@
+## v0.9.1 (2024-01-24)
+
+- **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient`.
+
 ## v0.9.0 (2024-01-12)
 
 - **Feature**: Add `SampleLimit` to `UpdateScrapeConfigPayload`.

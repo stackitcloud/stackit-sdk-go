@@ -1,3 +1,8 @@
+## Release (2024-01-24)
+
+Bug fixes:
+- [#236 | Avoid using/changing http.DefaultClient](https://github.com/stackitcloud/stackit-sdk-go/issues/236)
+
 ## Release (2024-01-09)
 
 ### Highlights
