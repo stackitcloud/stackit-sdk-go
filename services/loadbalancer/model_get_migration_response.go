@@ -10,9 +10,8 @@ API version: 1.6.0
 
 package loadbalancer
 
-type Target struct {
-	// Target name
-	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP
-	Ip *string `json:"ip,omitempty"`
+type GetMigrationResponse struct {
+	LoadBalancer    *LoadBalancer    `json:"loadBalancer,omitempty"`
+	MigrationParams *MigrationParams `json:"migrationParams,omitempty"`
+	MigrationState  *string          `json:"migrationState,omitempty"`
 }
