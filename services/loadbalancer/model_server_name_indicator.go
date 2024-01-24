@@ -10,9 +10,7 @@ API version: 1.6.0
 
 package loadbalancer
 
-type Target struct {
-	// Target name
-	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP
-	Ip *string `json:"ip,omitempty"`
+type ServerNameIndicator struct {
+	// The domain name for this SNI config.
+	Name *string `json:"name,omitempty"`
 }
