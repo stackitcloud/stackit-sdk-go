@@ -1,6 +1,11 @@
-## v0.8.3 (2024-01-24)
+## v0.9.0 (2024-01-24)
 
-- **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient`.
+- **Feature**: Added Server Name Indicator (SNI) support:
+  - `Listener` has a new field `ServerNameIndicators`
+- **Feature**: Added Layer 4 Session Persistance:
+  - `TargetPool` has a new field `SessionPersistence`
+  - `UpdateTargetPoolPayload` has a new field `SessionPersistence`
+- **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
 
 ## v0.8.2 (2024-01-09)
 

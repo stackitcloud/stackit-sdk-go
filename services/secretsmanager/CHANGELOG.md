@@ -1,6 +1,6 @@
 ## v0.5.3 (2024-01-24)
 
-- **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient`.
+- **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
 
 ## v0.5.2 (2024-01-09)
 

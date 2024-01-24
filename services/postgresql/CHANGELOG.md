@@ -1,6 +1,6 @@
 ## v0.10.1 (2024-01-24)
 
-- **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient`.
+- **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
 
 ## v0.10.0 (2024-01-09)
 
@@ -32,7 +32,7 @@ API methods, structs and waiters were renamed to have the same look and feel acr
   - `LastOperation` renamed to `InstanceLastOperation`
   - `OfferingList` renamed to `ListOfferingsResponse`
   - `UpdateInstancePayload` renamed to `PartialUpdateInstancePayload`
-Changed waiters:
+    Changed waiters:
   - `UpdateInstanceWaitHandler` renamed to `PartialUpdateInstanceWaitHandler`
 
 ## v0.8.0 (2023-11-17)
