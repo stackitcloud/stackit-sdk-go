@@ -7,6 +7,10 @@
   - `UpdateTargetPoolPayload` has a new field `SessionPersistence`
 - **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
 
+## v0.8.3 (2024-01-15)
+
+- Add license and notice files
+
 ## v0.8.2 (2024-01-09)
 
 - Dependency updates
