@@ -3,8 +3,8 @@
 ### Highlights
 
 - `loadbalancer`: [v0.9.0](services/loadbalancer/CHANGELOG.md#v090-2024-01-24)
-  - **Feature**: Added Server Name Indicator (SNI) support
-  - **Feature**: Added Layer 4 Session Persistance
+  - **Feature**: Server Name Indicator (SNI) support
+  - **Feature**: Layer 4 Session Persistance
 
 ## Release (2024-01-09)
 

@@ -1,8 +1,8 @@
 ## v0.9.0 (2024-01-24)
 
-- **Feature**: Added Server Name Indicator (SNI) support:
+- **Feature**: Introduces Server Name Indicator (SNI) support:
   - `Listener` has a new field `ServerNameIndicators`
-- **Feature**: Added Layer 4 Session Persistance:
+- **Feature**: Introduces Layer 4 Session Persistance:
   - `TargetPool` has a new field `SessionPersistence`
   - `UpdateTargetPoolPayload` has a new field `SessionPersistence`
 - **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
