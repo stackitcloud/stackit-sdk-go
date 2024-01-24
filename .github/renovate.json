@@ -17,9 +17,6 @@
         "gomod",
         "github-actions"
     ],
-    "allowedPostUpgradeCommands": [
-        "^cd .* && make sync-tidy$"
-    ],
     "packageRules": [
         {
             "matchSourceUrls": [
@@ -27,6 +24,9 @@
             ],
             "groupName": "SDK"
         }
+    ],
+    "allowedPostUpgradeCommands": [
+        "^cd .* && make sync-tidy$"
     ],
     "postUpgradeTasks": {
         "commands": [
