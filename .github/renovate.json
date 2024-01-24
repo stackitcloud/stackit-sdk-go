@@ -20,6 +20,14 @@
     "allowedPostUpgradeCommands": [
         "^cd .* && make sync-tidy$"
     ],
+    "packageRules": [
+        {
+            "matchSourceUrls": [
+                "https://github.com/stackitcloud/stackit-sdk-go"
+            ],
+            "groupName": "SDK"
+        }
+    ],
     "postUpgradeTasks": {
         "commands": [
             "cd $(git rev-parse --show-toplevel) && make sync-tidy"
