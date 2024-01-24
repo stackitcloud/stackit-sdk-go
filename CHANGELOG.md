@@ -1,6 +1,15 @@
+## Release (2024-01-24)
+
+### Highlights
+
+- `loadbalancer`: [v0.9.0](services/loadbalancer/CHANGELOG.md#v090-2024-01-24)
+  - **Feature**: Server Name Indicator (SNI) support
+  - **Feature**: Layer 4 Session Persistance
+
 ## Release (2024-01-09)
 
 ### Highlights
+
 - `core`: [v0.7.5](core/CHANGELOG.md#v075-2024-01-09)
   - **Improvement:** When using the key flow, the SDK will extract the private key from the service account key and use it, if no private key is provided in the configuration, through environment variable or in the credentials file. This makes it simpler to use the key flow: if you create a service account key including the private key, you don't need to provide the private key separately anymore
 - `dns`: [v0.8.0](services/dns/CHANGELOG.md#v080-2024-01-09)
