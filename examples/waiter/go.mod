@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.7.6
-	github.com/stackitcloud/stackit-sdk-go/services/dns v0.8.1
+	github.com/stackitcloud/stackit-sdk-go/services/dns v0.8.2
 )
 
 require (
