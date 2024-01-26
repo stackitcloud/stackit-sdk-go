@@ -1,3 +1,7 @@
+## v0.9.3 (2024-01-26)
+
+- Increase default timeouts of wait operations on Argus instances
+
 ## v0.9.2 (2024-01-24)
 
 - **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
