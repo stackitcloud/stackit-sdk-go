@@ -42,7 +42,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		}
 		return false, nil, nil
 	})
-	handler.SetTimeout(20 * time.Minute)
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
@@ -65,7 +65,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		}
 		return false, nil, nil
 	})
-	handler.SetTimeout(20 * time.Minute)
+	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
@@ -87,7 +87,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		}
 		return false, nil, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
 
@@ -106,7 +106,7 @@ func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 		}
 		return false, nil, nil
 	})
-	handler.SetTimeout(3 * time.Minute)
+	handler.SetTimeout(5 * time.Minute)
 	return handler
 }
 
@@ -125,6 +125,6 @@ func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 		}
 		return true, s, nil
 	})
-	handler.SetTimeout(1 * time.Minute)
+	handler.SetTimeout(3 * time.Minute)
 	return handler
 }
