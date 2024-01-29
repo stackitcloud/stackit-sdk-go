@@ -10,7 +10,9 @@ API version: 1.0.0
 
 package postgresflex
 
-type UpdateBackupSchedulePayload struct {
-	// REQUIRED
-	BackupSchedule *string `json:"backupSchedule"`
+type InstanceCreateDatabaseRequest struct {
+	Collation *string `json:"collation,omitempty"`
+	Name      *string `json:"name,omitempty"`
+	// Database specific options
+	Options *map[string]string `json:"options,omitempty"`
 }
