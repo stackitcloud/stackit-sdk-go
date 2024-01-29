@@ -170,7 +170,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 /*
 CreateAccessToken Create a new Access Token
 
-Create an Access Token for a Service Account. The service token can be then used for API calls (where enabled). Save the response token, as it is not recoverable later. Token metadata can be requested until the token is not expired. Not usable with service accounts.
+Create an Access Token for a Service Account. The service token can be then used for API calls. Save the response token, as it is not recoverable later. Token metadata can be requested until the token is not expired. A token cannot be created using another token from the same service account. Consider using service account keys instead as a more secure and automation friendly solution.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The ID of the project.
@@ -338,7 +338,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 /*
 CreateServiceAccount Create a new Service Account
 
-Create a new Service Account in a project. The service account only resides in the project, and initially has no roles or permissions on any resources. After creation, the service account can be assigned to this project, other projects in the parent organization or to the parent organization. Not usable with service accounts.
+Create a new Service Account in a project. The service account only resides in the project, and initially has no roles or permissions on any resources. After creation, the service account can be assigned to this project, other projects in the parent organization or to the parent organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The ID of the project.
@@ -505,7 +505,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 /*
 CreateServiceAccountKey Create a new Service Account key
 
-Create a new key to the service account. You can generate an RSA keypair, and post the PUBLIC part of the keypair, or leave empty, then the service will generate a pair. Maximum of 10 key can be added. Not usable with service accounts.
+Create a new key to the service account. You can generate an RSA keypair, and post the PUBLIC part of the keypair, or leave empty, then the service will generate a pair. Maximum of 10 key can be added. A new key cannot be created using the same service account (authenticated using the short lived token of another key of the same service account).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The ID of the project.
@@ -2006,7 +2006,7 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 /*
 PartialUpdateServiceAccountKey Update Service Account key
 
-Update a key. You can activate or deactivate a key, or set/delete validUntil. Not usable with service accounts.
+Update a key. You can activate or deactivate a key, or set/delete validUntil. The key cannot be updated using the same service account (authenticated using the short lived token of the key).
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The ID of the project.

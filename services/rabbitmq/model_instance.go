@@ -27,6 +27,8 @@ type Instance struct {
 	// REQUIRED
 	Name *string `json:"name"`
 	// REQUIRED
+	OfferingName *string `json:"offeringName"`
+	// REQUIRED
 	Parameters *map[string]interface{} `json:"parameters"`
 	// REQUIRED
 	PlanId *string `json:"planId"`
