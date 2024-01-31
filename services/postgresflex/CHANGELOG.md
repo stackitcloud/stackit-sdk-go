@@ -1,3 +1,7 @@
+## v0.8.5 (YYYY-MM-DD)
+
+- **Improvement**: Required fields in `CreateInstancePayload` and `UpdateBackupSchedulePayload` are now labelled as such
+
 ## v0.8.4 (2024-01-24)
 
 - **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))

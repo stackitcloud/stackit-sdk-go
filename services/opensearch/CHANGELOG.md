@@ -1,3 +1,7 @@
+## v0.10.0 (YYYY-MM-DD)
+
+- **Feature**: `Instance` has a new field `OfferingName`
+
 ## v0.9.2 (2024-01-24)
 
 - **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
