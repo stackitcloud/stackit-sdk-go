@@ -1,4 +1,4 @@
-## v0.8.5 (2024-01-24)
+## v0.8.5 (YYYY-MM-DD)
 
 - Remove deprecation warnings
 
