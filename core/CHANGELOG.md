@@ -1,4 +1,4 @@
-## v0.7.6 (YYYY-MM-DD)
+## v0.7.6 (2024-02-02)
 
 - **Bugfix:** Use `http.Request` context in `clients.Do`
 
