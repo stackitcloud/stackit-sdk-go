@@ -1,6 +1,6 @@
 ## v0.7.6 (YYYY-MM-DD)
 
-- **Bugfic:** Use context of the `http.Request` in `clients.Do`
+- **Bugfix:** Use `http.Request` context in `clients.Do`
 
 ## v0.7.5 (2024-01-09)
 
