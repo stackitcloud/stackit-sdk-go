@@ -1,3 +1,7 @@
+## v0.11.0 (YYYY-MM-DD)
+
+- **Breaking Change**: `HandlersInfraGetFlavorsResponse` renamed to `DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInfraGetFlavorsResponse`
+
 ## v0.10.3 (2024-01-24)
 
 - **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
