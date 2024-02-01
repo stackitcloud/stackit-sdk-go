@@ -57,7 +57,7 @@ func Do(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Re
 	client.Timeout = cfg.ClientTimeout
 
 	maxRetries := cfg.MaxRetries
-	ctx, cancel := context.WithTimeout(context.Background(), cfg.RetryTimeout)
+	ctx, cancel := context.WithTimeout(req.Context(), cfg.RetryTimeout)
 	defer cancel()
 	b := backoff.WithContext(backoff.NewConstantBackOff(cfg.WaitBetweenCalls), ctx)
 
