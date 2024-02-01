@@ -10,9 +10,7 @@ API version: 1.6.0
 
 package loadbalancer
 
-type Target struct {
-	// Target name
-	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP
-	Ip *string `json:"ip,omitempty"`
+type SessionPersistence struct {
+	// Enable using source IP address to persist sessions from a single IP
+	UseSourceIpAddress *bool `json:"useSourceIpAddress,omitempty"`
 }

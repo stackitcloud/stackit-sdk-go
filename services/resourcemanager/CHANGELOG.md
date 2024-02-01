@@ -1,3 +1,11 @@
+## v0.7.5 (2024-01-24)
+
+- **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
+
+## v0.7.4 (2024-01-15)
+
+- Add license and notice files
+
 ## v0.7.3 (2024-01-09)
 
 - Dependency updates
