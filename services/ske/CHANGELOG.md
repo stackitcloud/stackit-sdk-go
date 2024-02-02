@@ -2,6 +2,7 @@
 
 - **Improvement**: Fix state name in `CredentialsRotationState.Phase`
 - Update `core` to `v0.7.7`. The `http.request` context is now passed in the client `Do` call.
+- Increase timeout on `DeleteClusterWaitHandler` to 45 minutes
 
 ## v0.9.2 (2024-01-24)
 
