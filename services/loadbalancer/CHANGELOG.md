@@ -1,3 +1,7 @@
+## v0.9.1 (2024-02-02)
+
+- Update `core` to `v0.7.7`. The `http.request` context is now passed in the client `Do` call.
+
 ## v0.9.0 (2024-01-24)
 
 - **Feature**: Introduces Server Name Indicator (SNI) support:

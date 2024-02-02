@@ -1,6 +1,7 @@
-## v0.11.0 (YYYY-MM-DD)
+## v0.11.0 (2024-02-02)
 
 - **Breaking Change**: `HandlersInfraGetFlavorsResponse` renamed to `DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInfraGetFlavorsResponse`
+- Update `core` to `v0.7.7`. The `http.request` context is now passed in the client `Do` call.
 
 ## v0.10.3 (2024-01-24)
 
