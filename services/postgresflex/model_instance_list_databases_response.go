@@ -10,7 +10,6 @@ API version: 1.0.0
 
 package postgresflex
 
-type UpdateBackupSchedulePayload struct {
-	// REQUIRED
-	BackupSchedule *string `json:"backupSchedule"`
+type InstanceListDatabasesResponse struct {
+	Databases *[]InstanceDatabase `json:"databases,omitempty"`
 }

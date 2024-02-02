@@ -1,3 +1,7 @@
+## v0.3.5 (YYYY-MM-DD)
+
+- **Improvement**: Reword API client's description
+
 ## v0.3.4 (2024-01-24)
 
 - **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))
