@@ -1,3 +1,7 @@
+## v0.7.6 (2024-02-02)
+
+- Update `core` to `v0.7.7`. The `http.request` context is now passed in the client `Do` call.
+
 ## v0.7.5 (2024-01-24)
 
 - **Bug fix**: `NewAPIClient` now initializes a new client instead of using `http.DefaultClient` ([#236](https://github.com/stackitcloud/stackit-sdk-go/issues/236))

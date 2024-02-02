@@ -1,6 +1,7 @@
-## v0.10.0 (YYYY-MM-DD)
+## v0.10.0 (2024-02-02)
 
 - **Feature**: `Instance` has a new field `OfferingName`
+- Update `core` to `v0.7.7`. The `http.request` context is now passed in the client `Do` call.
 
 ## v0.9.2 (2024-01-24)
 
