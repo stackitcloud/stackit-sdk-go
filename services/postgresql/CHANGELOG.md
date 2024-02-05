@@ -1,3 +1,11 @@
+> **The STACKIT PostgreSQL service will reach its end of support on June 30th. All calls done to the API after that will stop working.**
+>
+> Use `github.com/stackitcloud/stackit-sdk-go/services/postgresflex` instead. For more details, check https://docs.stackit.cloud/stackit/en/bring-your-data-to-stackit-postgresql-flex-138347648.html.
+
+## v0.12.0 (2024-02-06)
+
+- Add deprecation note
+
 ## v0.11.0 (2024-02-02)
 
 - **Feature**: `Instance` has a new field `OfferingName`
