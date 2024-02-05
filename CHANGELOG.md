@@ -12,7 +12,7 @@
   - **Feature**: New API method `UpdateUser` to update user
   - **Feature**: New API method `PartialUpdateUser` to patch update user
   - **Feature**: New API method `ResetUser` to reset a user's password
-- `postgresql`: [v0.1q.0](services/postgresql/CHANGELOG.md#v0110-2024-02-02)
+- `postgresql`: [v0.11.0](services/postgresql/CHANGELOG.md#v0110-2024-02-02)
   - **Feature**: `Instance` has a new field `OfferingName`
 - `rabbitmq`: [v0.10.0](services/rabbitmq/CHANGELOG.md#v0100-2024-02-02)
   - **Feature**: `Instance` has a new field `OfferingName`
