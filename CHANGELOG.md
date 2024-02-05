@@ -1,3 +1,24 @@
+## Release (2024-02-05)
+
+### Highlights
+
+- `logme`: [v0.10.0](services/logme/CHANGELOG.md#v0100-2024-02-02)
+  - **Feature**: `Instance` has a new field `OfferingName`
+- `mariadb`: [v0.10.0](services/mariadb/CHANGELOG.md#v0100-2024-02-02)
+  - **Feature**: `Instance` has a new field `OfferingName`
+- `opensearch`: [v0.10.0](services/opensearch/CHANGELOG.md#v0100-2024-02-02)
+  - **Feature**: `Instance` has a new field `OfferingName`
+- `postgresflex`: [v0.9.0](services/postgresflex/CHANGELOG.md#v090-2024-02-05)
+  - **Feature**: New API method `UpdateUser` to update user
+  - **Feature**: New API method `PartialUpdateUser` to patch update user
+  - **Feature**: New API method `ResetUser` to reset a user's password
+- `postgresql`: [v0.1q.0](services/postgresql/CHANGELOG.md#v0110-2024-02-02)
+  - **Feature**: `Instance` has a new field `OfferingName`
+- `rabbitmq`: [v0.10.0](services/rabbitmq/CHANGELOG.md#v0100-2024-02-02)
+  - **Feature**: `Instance` has a new field `OfferingName`
+- `redis`: [v0.10.0](services/redis/CHANGELOG.md#v0100-2024-02-02)
+  - **Feature**: `Instance` has a new field `OfferingName`
+
 ## Release (2024-01-24)
 
 ### Highlights

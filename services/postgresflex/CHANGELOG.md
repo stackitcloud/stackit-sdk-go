@@ -1,4 +1,4 @@
-## v0.9.0 (YYYY-MM-DD)
+## v0.9.0 (2024-02-05)
 
 - **Feature**: New API method `UpdateUser` to update user
 - **Feature**: New API method `PartialUpdateUser` to patch update user
