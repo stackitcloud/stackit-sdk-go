@@ -1,3 +1,9 @@
+## v0.9.0 (YYYY-MM-DD)
+
+- **Feature**: New API method `UpdateUser` to update user
+- **Feature**: New API method `PartialUpdateUser` to patch update user
+- **Feature**: New API method `ResetUser` to reset a user's password
+
 ## v0.8.5 (2024-02-02)
 
 - **Improvement**: Required fields in `CreateInstancePayload` and `UpdateBackupSchedulePayload` are now labelled as such

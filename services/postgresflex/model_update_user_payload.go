@@ -10,7 +10,7 @@ API version: 1.0.0
 
 package postgresflex
 
-type InstancePartialUpdateUserRequest struct {
+type UpdateUserPayload struct {
 	Database *string   `json:"database,omitempty"`
 	Roles    *[]string `json:"roles,omitempty"`
 }
