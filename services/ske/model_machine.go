@@ -13,7 +13,7 @@ package ske
 type Machine struct {
 	// REQUIRED
 	Image *Image `json:"image"`
-	// For valid types please take a look at /provider-options machineTypes
+	// For valid types please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `machineTypes`.
 	// REQUIRED
 	Type *string `json:"type"`
 }

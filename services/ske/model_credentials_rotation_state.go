@@ -13,6 +13,6 @@ package ske
 type CredentialsRotationState struct {
 	LastCompletionTime *string `json:"lastCompletionTime,omitempty"`
 	LastInitiationTime *string `json:"lastInitiationTime,omitempty"`
-	// Phase of the credentials rotation. \"NEVER\" indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet. Using the deprecated \"/v1/projects/{project_id}/clusters/{cluster_name}/rotate-credentials\" endpoint will not update this status field.
+	// Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet. Using the deprecated [rotate-credentials](#tag/Credentials/operation/SkeService_GetClusterCredentials) endpoint will not update this status field.
 	Phase *string `json:"phase,omitempty"`
 }

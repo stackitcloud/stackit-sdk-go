@@ -10,7 +10,7 @@ API version: 1.1
 
 package ske
 
-type V1Kubeconfig struct {
+type Kubeconfig struct {
 	ExpirationTimestamp *string `json:"expirationTimestamp,omitempty"`
 	Kubeconfig          *string `json:"kubeconfig,omitempty"`
 }

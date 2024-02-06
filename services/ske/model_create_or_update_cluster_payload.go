@@ -16,6 +16,7 @@ type CreateOrUpdateClusterPayload struct {
 	// REQUIRED
 	Kubernetes  *Kubernetes  `json:"kubernetes"`
 	Maintenance *Maintenance `json:"maintenance,omitempty"`
+	Network     *V1Network   `json:"network,omitempty"`
 	// REQUIRED
 	Nodepools *[]Nodepool    `json:"nodepools"`
 	Status    *ClusterStatus `json:"status,omitempty"`
