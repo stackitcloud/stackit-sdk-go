@@ -12,7 +12,7 @@ package ske
 
 type Credentials struct {
 	CertificateAuthorityData *string `json:"certificateAuthorityData,omitempty"`
-	// This string contains the kubeconfig as yaml. If you want to directly get the yaml without any   characters you can use the following command: curl -s 'api.stackit.cloud/ske/v1/projects/{projectId}/clusters/{clusterName}/credentials' |jq -r .kubeconfig
+	// This string contains the kubeconfig as yaml.
 	Kubeconfig *string `json:"kubeconfig,omitempty"`
 	Server     *string `json:"server,omitempty"`
 	Token      *string `json:"token,omitempty"`

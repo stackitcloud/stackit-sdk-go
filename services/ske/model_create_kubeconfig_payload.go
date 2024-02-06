@@ -10,9 +10,6 @@ API version: 1.1
 
 package ske
 
-type Volume struct {
-	// REQUIRED
-	Size *int64 `json:"size"`
-	// For valid values please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `volumeTypes`.
-	Type *string `json:"type,omitempty"`
+type CreateKubeconfigPayload struct {
+	ExpirationSeconds *string `json:"expirationSeconds,omitempty"`
 }

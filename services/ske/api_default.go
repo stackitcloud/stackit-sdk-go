@@ -26,6 +26,289 @@ import (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
+type ApiCompleteCredentialsRotationRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	projectId   string
+	clusterName string
+}
+
+func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CompleteCredentialsRotation")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/clusters/{clusterName}/complete-credentials-rotation"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(r.clusterName, "clusterName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v map[string]interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v map[string]interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		var v RuntimeError
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CompleteCredentialsRotation Complete cluster credentials rotation
+
+Complete cluster credentials rotation. This is step 2 of a two-step process. Start the rotation using [start-credentials-rotation](#tag/Credentials/operation/SkeService_StartClusterCredentialsRotation).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param clusterName
+	@return ApiCompleteCredentialsRotationRequest
+*/
+func (a *APIClient) CompleteCredentialsRotation(ctx context.Context, projectId string, clusterName string) ApiCompleteCredentialsRotationRequest {
+	return ApiCompleteCredentialsRotationRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		clusterName: clusterName,
+	}
+}
+
+func (a *APIClient) CompleteCredentialsRotationExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error) {
+	r := ApiCompleteCredentialsRotationRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		clusterName: clusterName,
+	}
+	return r.Execute()
+}
+
+type ApiCreateKubeconfigRequest struct {
+	ctx                     context.Context
+	apiService              *DefaultApiService
+	projectId               string
+	clusterName             string
+	createKubeconfigPayload *CreateKubeconfigPayload
+}
+
+func (r ApiCreateKubeconfigRequest) CreateKubeconfigPayload(createKubeconfigPayload CreateKubeconfigPayload) ApiCreateKubeconfigRequest {
+	r.createKubeconfigPayload = &createKubeconfigPayload
+	return r
+}
+
+func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Kubeconfig
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateKubeconfig")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/clusters/{clusterName}/kubeconfig"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(r.clusterName, "clusterName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createKubeconfigPayload == nil {
+		return localVarReturnValue, fmt.Errorf("createKubeconfigPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createKubeconfigPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		var v RuntimeError
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateKubeconfig Create a kubeconfig
+
+Create a new kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 3600 (1 hour) to 15552000 (6 months).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param clusterName
+	@return ApiCreateKubeconfigRequest
+*/
+func (a *APIClient) CreateKubeconfig(ctx context.Context, projectId string, clusterName string) ApiCreateKubeconfigRequest {
+	return ApiCreateKubeconfigRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		clusterName: clusterName,
+	}
+}
+
+func (a *APIClient) CreateKubeconfigExecute(ctx context.Context, projectId string, clusterName string) (*Kubeconfig, error) {
+	r := ApiCreateKubeconfigRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		clusterName: clusterName,
+	}
+	return r.Execute()
+}
+
 type ApiCreateOrUpdateClusterRequest struct {
 	ctx                          context.Context
 	apiService                   *DefaultApiService
@@ -158,7 +441,7 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 /*
 CreateOrUpdateCluster Create or update a cluster
 
-Create a new cluster in your project or modify an existing one. To get valid values for certain properties please check the /provider-options endpoint.
+Create a new cluster in your project or modify an existing one. To get valid values for certain properties please check the [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) endpoint.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -283,7 +566,7 @@ func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
 /*
 DeleteCluster Delete a cluster
 
-Delete Kubernetes cluster specified by the identifier, belonging to the project specified by 'project_id' (portalProjectID).
+Delete Kubernetes cluster specified by the identifier, belonging to the project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -417,7 +700,7 @@ func (r ApiDisableServiceRequest) Execute() (map[string]interface{}, error) {
 /*
 DisableService Delete a project
 
-Deletes the SKE project specified by 'project_id' (portalProjectID). Deleting a project deletes all corresponding shoots.
+Deletes the SKE project specified by `projectId`. Deleting a project deletes all corresponding shoots.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -548,7 +831,7 @@ func (r ApiEnableServiceRequest) Execute() (*ProjectResponse, error) {
 /*
 EnableService Create a Project
 
-Returns creation state of Project specified by 'project_id' (portalProjectID).
+Returns creation state of Project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -670,7 +953,7 @@ func (r ApiGetClusterRequest) Execute() (*Cluster, error) {
 /*
 GetCluster Get a cluster
 
-Get Kubernetes cluster for the specified identifier, belonging to the project specified by 'project_id' (portalProjectID).
+Get Kubernetes cluster for the specified identifier, belonging to the project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -815,16 +1098,18 @@ func (r ApiGetCredentialsRequest) Execute() (*Credentials, error) {
 }
 
 /*
-GetCredentials Get credentials for a cluster (deprecated)
+GetCredentials Get credentials for a cluster
 
-This endpoint is deprecated since version 1.1 of this API. It will not work for clusters with Kubernetes v1.27+, or if the new endpoints for credentials rotation have already been used. Use "/v1/projects/{project_id}/clusters/{cluster_name}/kubeconfig" instead to obtain a kubeconfig. For more information, please see [docs link].
+This endpoint is deprecated since 2024-01-26. It will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. Use [kubeconfig](#tag/Credentials/operation/SkeService_CreateKubeconfig) instead to obtain a kubeconfig. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials).
 
-Get credentials for the cluster specified by 'cluster_name', belonging to the project specified by 'project_id' (portalProjectID).
+Get credentials for the cluster specified by `clusterName`, belonging to the project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param clusterName
 	@return ApiGetCredentialsRequest
+
+Deprecated
 */
 func (a *APIClient) GetCredentials(ctx context.Context, projectId string, clusterName string) ApiGetCredentialsRequest {
 	return ApiGetCredentialsRequest{
@@ -953,7 +1238,7 @@ func (r ApiGetServiceStatusRequest) Execute() (*ProjectResponse, error) {
 /*
 GetServiceStatus Get a Project
 
-Get a Project specified by 'project_id' (portalProjectID).
+Get a Project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -1095,7 +1380,7 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 /*
 ListClusters List all clusters
 
-Return a list of Kubernetes clusters in the project specified by 'project_id' (portalProjectID).
+Return a list of Kubernetes clusters in the project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -1229,6 +1514,153 @@ func (a *APIClient) ListProviderOptionsExecute(ctx context.Context) (*ProviderOp
 	r := ApiListProviderOptionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
+	}
+	return r.Execute()
+}
+
+type ApiStartCredentialsRotationRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	projectId   string
+	clusterName string
+}
+
+func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.StartCredentialsRotation")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/clusters/{clusterName}/start-credentials-rotation"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(r.clusterName, "clusterName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v map[string]interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v map[string]interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		var v RuntimeError
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+StartCredentialsRotation Start cluster credentials rotation
+
+Start cluster credentials rotation. This is step 1 of a two-step process. Complete the rotation using [complete-credentials-rotation](#tag/Credentials/operation/SkeService_CompleteClusterCredentialsRotation).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param clusterName
+	@return ApiStartCredentialsRotationRequest
+*/
+func (a *APIClient) StartCredentialsRotation(ctx context.Context, projectId string, clusterName string) ApiStartCredentialsRotationRequest {
+	return ApiStartCredentialsRotationRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		clusterName: clusterName,
+	}
+}
+
+func (a *APIClient) StartCredentialsRotationExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error) {
+	r := ApiStartCredentialsRotationRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		clusterName: clusterName,
 	}
 	return r.Execute()
 }
@@ -1749,9 +2181,9 @@ func (r ApiTriggerRotateCredentialsRequest) Execute() (map[string]interface{}, e
 }
 
 /*
-TriggerRotateCredentials Rotate cluster credentials (deprecated)
+TriggerRotateCredentials Rotate cluster credentials
 
-This endpoint is deprecated since version 1.1 of this API. It will not work for clusters with Kubernetes v1.27+, or if a kubeconfig has already been obtained from the new "/v1/projects/{project_id}/clusters/{cluster_name}/kubeconfig" endpoint. Use "/v1/projects/{project_id}/clusters/{cluster_name}/start-credentials-rotation" instead to rotate all cluster credentials. For more information, please see [docs link].
+This endpoint is deprecated since 2024-01-26. It will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. Use [start-credentials-rotation](#tag/Credentials/operation/SkeService_StartClusterCredentialsRotation) instead to rotate all cluster credentials. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials).
 
 Trigger credential rotation. The old credentials (kubeconfig) will be invalid after the operation.
 
@@ -1759,6 +2191,8 @@ Trigger credential rotation. The old credentials (kubeconfig) will be invalid af
 	@param projectId
 	@param clusterName
 	@return ApiTriggerRotateCredentialsRequest
+
+Deprecated
 */
 func (a *APIClient) TriggerRotateCredentials(ctx context.Context, projectId string, clusterName string) ApiTriggerRotateCredentialsRequest {
 	return ApiTriggerRotateCredentialsRequest{

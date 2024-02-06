@@ -8,6 +8,12 @@
 
 - `postgresql`: [v0.12.0](services/postgresql/CHANGELOG.md#v0120-2024-02-06)
   - Add deprecation note
+- `ske`: [v0.10.0](services/ske/CHANGELOG.md#v0100-2024-02-06)
+  - **Feature:** New endpoints for credentials rotation.
+    - `StartCredentialsRotation`
+    - `CompleteCredentialsRotation`
+    - `CreateKubeconfig`
+    - These endpoints replace `GetCredentials` and `TriggerRotateCredentials`, which are **deprecated** and will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials#tabs-237293ce-f625-44ea-9d4f-689e31f596d6-1).
 
 ## Release (2024-02-05)
 
