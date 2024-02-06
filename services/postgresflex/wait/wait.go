@@ -72,7 +72,8 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		}
 		return false, nil, nil
 	})
-	handler.SetTimeout(45 * time.Minute)
+	// Sleep before wait is set because sometimes API returns 404 right after creation request
+	handler.SetTimeout(45 * time.Minute).SetSleepBeforeWait(15 * time.Second)
 	return handler
 }
 

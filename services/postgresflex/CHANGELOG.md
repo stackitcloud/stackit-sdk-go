@@ -1,3 +1,7 @@
+## v0.9.1 (2024-02-06)
+
+- **Bug fix**: Fix `CreateInstanceWaitHandler` failing when instance isn't shown right after creation request
+
 ## v0.9.0 (2024-02-05)
 
 - **Feature**: New API method `UpdateUser` to update user
