@@ -3,8 +3,8 @@ module github.com/stackitcloud/stackit-sdk-go/examples/postgresflex
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.7.6
-	github.com/stackitcloud/stackit-sdk-go/services/postgresflex v0.8.4
+	github.com/stackitcloud/stackit-sdk-go/core v0.7.7
+	github.com/stackitcloud/stackit-sdk-go/services/postgresflex v0.9.0
 )
 
 require (
