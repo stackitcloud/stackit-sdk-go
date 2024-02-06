@@ -1,4 +1,4 @@
-## v0.10.0 (2024-02-03)
+## v0.10.0 (2024-02-06)
 
 - **Feature:** New endpoints for credentials rotation.
   - `StartCredentialsRotation`
