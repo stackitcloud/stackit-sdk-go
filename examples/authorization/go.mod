@@ -1,10 +1,10 @@
-module github.com/stackitcloud/stackit-sdk-go/examples/membership
+module github.com/stackitcloud/stackit-sdk-go/examples/authorization
 
 go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.7.7
-	github.com/stackitcloud/stackit-sdk-go/services/membership v0.3.5
+	github.com/stackitcloud/stackit-sdk-go/services/authorization v0.1.0
 )
 
 require (

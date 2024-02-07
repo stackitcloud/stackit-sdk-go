@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/membership"
+	"github.com/stackitcloud/stackit-sdk-go/services/authorization"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 	emailToBeAdded := "email@example.com"
 
 	// Create a new API client, that uses default authentication and configuration
-	client, err := membership.NewAPIClient()
+	client, err := authorization.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
@@ -36,7 +36,7 @@ func main() {
 	// Get the memberships of your user
 	getMembershipsResp, err := client.ListUserMemberships(context.Background(), yourEmail).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `GetMemberships`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ListUserMemberships`: %v\n", err)
 	} else {
 		userMemberships := *getMembershipsResp.Items
 		fmt.Printf("Number of memberships: %v\n", len(userMemberships))
@@ -60,8 +60,8 @@ func main() {
 	}
 
 	// Add a member to your project or add an additional role to an existing member
-	updateMemberPayload := membership.AddMembersPayload{
-		Members: &[]membership.Member{
+	updateMemberPayload := authorization.AddMembersPayload{
+		Members: &[]authorization.Member{
 			{
 				Role:    utils.Ptr("project.member"),
 				Subject: utils.Ptr(emailToBeAdded),
@@ -77,8 +77,8 @@ func main() {
 	}
 
 	// Remove a role from a member of your project
-	deleteMemberPayload := membership.RemoveMembersPayload{
-		Members: &[]membership.Member{
+	deleteMemberPayload := authorization.RemoveMembersPayload{
+		Members: &[]authorization.Member{
 			{
 				Role:    utils.Ptr("project.member"),
 				Subject: utils.Ptr(emailToBeAdded),
