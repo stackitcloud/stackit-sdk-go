@@ -2,4 +2,4 @@
 
 First release.
 
-This module offers the same functionalities as `membership` (v0.4.0).
+This module offers the same functionalities as `membership` (release v0.4.0).
