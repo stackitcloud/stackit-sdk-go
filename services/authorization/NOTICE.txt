@@ -1,2 +1,2 @@
-STACKIT Membership SDK for Go
+STACKIT Authorization SDK for Go
 Copyright 2023 Schwarz IT GmBH & Co. KG
