@@ -1,3 +1,16 @@
+## Release (2024-02-07)
+
+> The `membership` module has been replaced with the authorization module, which connects to the same API.
+>
+> **This module will receive no further updates.** Use `github.com/stackitcloud/stackit-sdk-go/services/authorization` instead.
+
+## Highlights
+
+- `authorization`: [v0.1.0](services/authorization/CHANGELOG.md#v010-2024-02-07)
+  - First release. This module offers the same functionalities as `membership` (release v0.4.0).
+- `membership`: [v0.4.0](services/membership/CHANGELOG.md#v040-2024-02-07)
+  - Add deprecation note
+
 ## Release (2024-02-06)
 
 > **The STACKIT PostgreSQL service will reach its end of support on June 30th 2024. All calls done to the API after that will stop working.**
