@@ -1,3 +1,11 @@
+> This module has been replaced with the authorization module, which connects to the same API.
+>
+> **This module will receive no further updates.** Use `github.com/stackitcloud/stackit-sdk-go/services/authorization` instead.
+
+## v0.4.0 (2024-02-07)
+
+- Add deprecation note
+
 ## v0.3.5 (2024-02-02)
 
 - Update `core` to `v0.7.7`. The `http.request` context is now passed in the client `Do` call.

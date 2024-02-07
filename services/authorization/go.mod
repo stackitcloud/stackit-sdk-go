@@ -1,5 +1,4 @@
-// Deprecated: this module has been replaced with the authorization module, which connects to the same API. This module will receive no further updates. Use github.com/stackitcloud/stackit-sdk-go/services/authorization instead
-module github.com/stackitcloud/stackit-sdk-go/services/membership
+module github.com/stackitcloud/stackit-sdk-go/services/authorization
 
 go 1.18
 

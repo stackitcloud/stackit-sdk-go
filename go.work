@@ -25,6 +25,7 @@ use (
 	./examples/ske
 	./examples/waiter
 	./services/argus
+	./services/authorization
 	./services/dns
 	./services/loadbalancer
 	./services/logme
