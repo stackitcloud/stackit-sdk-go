@@ -4,7 +4,7 @@
 >
 > **This module will receive no further updates.** Use `github.com/stackitcloud/stackit-sdk-go/services/authorization` instead.
 
-## Highlights
+### Highlights
 
 - `authorization`: [v0.1.0](services/authorization/CHANGELOG.md#v010-2024-02-07)
   - First release. This module offers the same functionalities as `membership` (release v0.4.0).
