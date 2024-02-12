@@ -1,6 +1,8 @@
 module github.com/stackitcloud/stackit-sdk-go/core
 
-go 1.18
+go 1.21
+
+toolchain go1.22.0
 
 require (
 	github.com/MicahParks/keyfunc/v2 v2.1.0
