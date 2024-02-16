@@ -2,7 +2,7 @@ module github.com/stackitcloud/stackit-sdk-go/services/authorization
 
 go 1.18
 
-require github.com/stackitcloud/stackit-sdk-go/core v0.7.7
+require github.com/stackitcloud/stackit-sdk-go/core v0.8.0
 
 require (
 	github.com/MicahParks/keyfunc/v2 v2.1.0 // indirect
