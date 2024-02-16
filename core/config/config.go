@@ -155,7 +155,7 @@ func WithTokenEndpoint(url string) ConfigurationOption {
 	}
 }
 
-// Deprecated: validation using JWKS is removed, for being redundant with token validation done in the APIs. This option has no effect, and will be removed in a later update
+// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This option has no effect, and will be removed in a later update
 func WithJWKSEndpoint(_ string) ConfigurationOption {
 	return func(config *Configuration) error {
 		return nil
