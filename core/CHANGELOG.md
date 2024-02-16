@@ -1,6 +1,7 @@
 ## v0.9.0 (YYYY-MM-DD)
 
 - **Deprecation:** Mark method `config.WithCaptureHTTPResponse` as deprecated, to avoid confusion due to it not being a configuration option. Use `runtime.WithCaptureHTTPResponse` instead.
+- **Breaking Change:** Removed methods `KeyFlow.GetToken` and `KeyFlow.Clone`
 
 ## v0.8.0 (2024-02-16)
 
