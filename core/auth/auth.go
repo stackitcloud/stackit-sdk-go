@@ -178,19 +178,12 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 			cfg.TokenCustomUrl = tokenCustomUrl
 		}
 	}
-	if cfg.JWKSCustomUrl == "" {
-		jwksCustomUrl, jwksUrlSet := os.LookupEnv("STACKIT_JWKS_BASEURL")
-		if jwksUrlSet {
-			cfg.JWKSCustomUrl = jwksCustomUrl
-		}
-	}
 
 	keyCfg := clients.KeyFlowConfig{
 		ServiceAccountKey: serviceAccountKey,
 		PrivateKey:        cfg.PrivateKey,
 		ClientRetry:       cfg.RetryOptions,
 		TokenUrl:          cfg.TokenCustomUrl,
-		JWKSUrl:           cfg.JWKSCustomUrl,
 	}
 
 	client := &clients.KeyFlow{}

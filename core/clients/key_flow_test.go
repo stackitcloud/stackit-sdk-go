@@ -1,7 +1,6 @@
 package clients
 
 import (
-	"bytes"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
@@ -21,7 +20,6 @@ import (
 
 var (
 	testSigningKey = []byte(`Test`)
-	testJwks       = []byte(`{ "keys": [ { "kty":"oct", "kid":"test", "alg":"HS256" } ] }`)
 )
 
 func fixtureServiceAccountKey(mods ...func(*ServiceAccountKeyResponse)) *ServiceAccountKeyResponse {
@@ -126,10 +124,6 @@ func TestKeyFlowInit(t *testing.T) {
 	}
 }
 
-type MyCustomClaims struct {
-	Foo string `json:"foo"`
-}
-
 func TestSetToken(t *testing.T) {
 	tests := []struct {
 		name         string
@@ -207,127 +201,55 @@ func TestKeyClone(t *testing.T) {
 	}
 }
 
-func TestKeyFlowValidateToken(t *testing.T) {
-	// Generate a random private key
-	privateKey := make([]byte, 32)
-	if _, err := rand.Read(privateKey); err != nil {
-		t.Fatal(err)
-	}
+func TestTokenExpired(t *testing.T) {
 	tests := []struct {
-		name             string
-		token            string
-		jwksMockResponse *http.Response
-		jwksMockError    error
-		want             bool
-		wantErr          bool
+		desc              string
+		tokenInvalid      bool
+		tokenExpiresAt    time.Time
+		expectedErr       bool
+		expectedIsExpired bool
 	}{
 		{
-			name:    "no token",
-			token:   "",
-			want:    false,
-			wantErr: false,
+			desc:              "token valid",
+			tokenExpiresAt:    time.Now().Add(time.Hour),
+			expectedErr:       false,
+			expectedIsExpired: false,
 		},
 		{
-			name:  "invalid token",
-			token: "bad token",
-			jwksMockResponse: &http.Response{
-				StatusCode: 200,
-				Body:       io.NopCloser(bytes.NewReader(testJwks)),
-			},
-			jwksMockError: nil,
-			want:          false,
-			wantErr:       true,
+			desc:              "token expired",
+			tokenExpiresAt:    time.Now().Add(-time.Hour),
+			expectedErr:       false,
+			expectedIsExpired: true,
 		},
 		{
-			name:             "get_jwks_fail",
-			token:            "bad token",
-			jwksMockResponse: nil,
-			jwksMockError:    fmt.Errorf("error"),
-			want:             false,
-			wantErr:          true,
+			desc:         "token invalid",
+			tokenInvalid: true,
+			expectedErr:  true,
 		},
 	}
+
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
-				return tt.jwksMockResponse, tt.jwksMockError
-			}
-			c := &KeyFlow{
-				config: &KeyFlowConfig{
-					PrivateKey: string(privateKey),
-					JWKSUrl:    jwksAPI,
-				},
-				doer: mockDo,
+		t.Run(tt.desc, func(t *testing.T) {
+			var err error
+			token := "foo"
+			if !tt.tokenInvalid {
+				token, err = jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+					ExpiresAt: jwt.NewNumericDate(tt.tokenExpiresAt),
+				}).SignedString([]byte("test"))
+				if err != nil {
+					t.Fatalf("failed to create token: %v", err)
+				}
 			}
 
-			got, err := c.validateToken(tt.token)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("KeyFlow.validateToken() error = %v, wantErr %v", err, tt.wantErr)
+			isExpired, err := tokenExpired(token)
+			if err != nil && !tt.expectedErr {
+				t.Fatalf("failed on valid input: %v", err)
+			}
+			if err != nil {
 				return
 			}
-			if got != tt.want {
-				t.Errorf("KeyFlow.validateToken() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func TestGetJwksJSON(t *testing.T) {
-	testCases := []struct {
-		name           string
-		token          string
-		mockResponse   *http.Response
-		mockError      error
-		expectedResult []byte
-		expectedError  error
-	}{
-		{
-			name:  "Success",
-			token: "test_token",
-			mockResponse: &http.Response{
-				StatusCode: 200,
-				Body:       io.NopCloser(bytes.NewReader([]byte(`{"key": "value"}`))),
-			},
-			mockError:      nil,
-			expectedResult: []byte(`{"key": "value"}`),
-			expectedError:  nil,
-		},
-		{
-			name:           "Error",
-			token:          "test_token",
-			mockResponse:   nil,
-			mockError:      fmt.Errorf("some error"),
-			expectedResult: nil,
-			expectedError:  fmt.Errorf("some error"),
-		},
-	}
-
-	for _, tt := range testCases {
-		t.Run(tt.name, func(t *testing.T) {
-			mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
-				return tt.mockResponse, tt.mockError
-			}
-
-			c := &KeyFlow{
-				config: &KeyFlowConfig{ClientRetry: NewRetryConfig()},
-				doer:   mockDo,
-			}
-
-			result, err := c.getJwksJSON(tt.token)
-
-			if tt.expectedError != nil {
-				if err == nil {
-					t.Errorf("Expected error %v but no error was returned", tt.expectedError)
-				} else if tt.expectedError.Error() != err.Error() {
-					t.Errorf("Error is not correct. Expected %v, got %v", tt.expectedError, err)
-				}
-			} else {
-				if err != nil {
-					t.Errorf("Expected no error but error was returned: %v", err)
-				}
-				if !cmp.Equal(tt.expectedResult, result) {
-					t.Errorf("The returned result is wrong. Expected %s, got %s", string(tt.expectedResult), string(result))
-				}
+			if isExpired != tt.expectedIsExpired {
+				t.Fatalf("expected isValid to be %t, got %t", tt.expectedIsExpired, isExpired)
 			}
 		})
 	}
