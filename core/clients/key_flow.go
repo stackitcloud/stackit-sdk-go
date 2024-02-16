@@ -99,14 +99,6 @@ func (c *KeyFlow) GetServiceAccountEmail() string {
 	return c.key.Credentials.Iss
 }
 
-// GetToken returns the token field
-func (c *KeyFlow) GetToken() TokenResponseBody {
-	if c.token == nil {
-		return TokenResponseBody{}
-	}
-	return *c.token
-}
-
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.token = &TokenResponseBody{}
 	c.config = cfg
@@ -148,21 +140,6 @@ func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 		TokenType:    defaultTokenType,
 	}
 	return nil
-}
-
-// Clone creates a clone of the client
-func (c *KeyFlow) Clone() interface{} {
-	sc := *c
-	nc := &sc
-	cl := *nc.client
-	cf := *nc.config
-	ke := *nc.key
-	to := *nc.token
-	nc.client = &cl
-	nc.config = &cf
-	nc.key = &ke
-	nc.token = &to
-	return c
 }
 
 // Roundtrip performs the request

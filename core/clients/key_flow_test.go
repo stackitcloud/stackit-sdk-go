@@ -9,7 +9,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"reflect"
 	"strings"
 	"testing"
 	"time"
@@ -186,24 +185,6 @@ func TestSetToken(t *testing.T) {
 				}
 			}
 		})
-	}
-}
-
-func TestKeyClone(t *testing.T) {
-	c := &KeyFlow{
-		client: &http.Client{},
-		config: &KeyFlowConfig{},
-		key:    &ServiceAccountKeyResponse{},
-		token:  &TokenResponseBody{},
-	}
-
-	clone, ok := c.Clone().(*KeyFlow)
-	if !ok {
-		t.Fatalf("Type assertion failed")
-	}
-
-	if !reflect.DeepEqual(c, clone) {
-		t.Errorf("Clone() = %v, want %v", clone, c)
 	}
 }
 
