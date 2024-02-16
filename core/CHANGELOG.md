@@ -1,3 +1,7 @@
+## v0.9.0 (YYYY-MM-DD)
+
+- **Deprecation:** Mark method `config.WithCaptureHTTPResponse` as deprecated, to avoid confusion due to it not being a configuration option. Use `runtime.WithCaptureHTTPResponse` instead.
+
 ## v0.8.0 (2024-02-16)
 
 - **Feature:** Add package `runtime`, which implements methods to be used when performing API requests
