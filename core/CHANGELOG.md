@@ -1,6 +1,7 @@
 ## v0.9.0 (YYYY-MM-DD)
 
-- **Deprecation:** Marked method `config.WithCaptureHTTPResponse` as deprecated, to avoid confusion due - **Deprecation:** Marked method `config.WithJWKSEndpoint` as deprecated. Validation using JWKS was removed, for being redundant with token validation done in the APIs. This option has no effect
+- **Deprecation:** Marked method `config.WithCaptureHTTPResponse` as deprecated, to avoid confusion due
+- **Deprecation:** Marked method `config.WithJWKSEndpoint` as deprecated. Validation using JWKS was removed, for being redundant with token validation done in the APIs. This option has no effect
 
 ## v0.8.0 (2024-02-16)
 
