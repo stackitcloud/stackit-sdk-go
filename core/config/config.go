@@ -310,8 +310,6 @@ func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 
 // WithCaptureHTTPResponse adds the raw HTTP response retrieval annotation to the parent context.
 // The resp parameter will contain the raw HTTP response after the request has completed.
-//
-// Deprecated: Use runtime.WithCaptureHTTPResponse()
 func WithCaptureHTTPResponse(parent context.Context, resp **http.Response) context.Context {
 	return context.WithValue(parent, ContextHTTPResponse, resp)
 }

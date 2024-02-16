@@ -7,8 +7,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/core/runtime"
-	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex"
+	"github.com/stackitcloud/stackit-sdk-go/services/mongodbflex"
 )
 
 func main() {
@@ -16,7 +15,7 @@ func main() {
 	projectId := "PROJECT_ID"
 
 	// Create a new API client, that uses default authentication and configuration
-	postgresflexClient, err := postgresflex.NewAPIClient(
+	mongodbflexClient, err := mongodbflex.NewAPIClient(
 		config.WithRegion("eu01"),
 	)
 	if err != nil {
@@ -24,12 +23,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Get the Postgres Flex instances for your project and capture the HTTP response using the context
+	// Get the MongoDB Flex instances for your project and capture the HTTP response using the context
 	var httpResp *http.Response
-	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
-	getInstancesResp, err := postgresflexClient.ListInstances(ctxWithHTTPResp, projectId).Execute()
+	ctxWithHTTPResp := config.WithCaptureHTTPResponse(context.Background(), &httpResp)
+	getInstancesResp, err := mongodbflexClient.ListInstances(ctxWithHTTPResp, projectId).Tag("tag").Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ListInstances`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 		os.Exit(1)
 	}
 	fmt.Printf("Number of instances: %v\n\n", len(*getInstancesResp.Items))
