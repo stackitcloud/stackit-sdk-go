@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
+	"github.com/stackitcloud/stackit-sdk-go/core/runtime"
 	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex"
 )
 
@@ -25,7 +26,7 @@ func main() {
 
 	// Get the Postgres Flex instances for your project and capture the HTTP response using the context
 	var httpResp *http.Response
-	ctxWithHTTPResp := config.CaptureHTTPResponse(context.Background(), &httpResp)
+	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
 	getInstancesResp, err := postgresflexClient.ListInstances(ctxWithHTTPResp, projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListInstances`: %v\n", err)
