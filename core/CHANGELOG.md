@@ -1,3 +1,7 @@
+## v0.8.0 (2024-02-16)
+
+- **Feature:** `WithCaptureHTTPResponse` renamed to `CaptureHTTPResponse`, to avoid confusion due to it not being a configuration option
+
 ## v0.7.7 (2024-02-02)
 
 - **Bugfix:** Use `http.Request` context in `clients.Do`
