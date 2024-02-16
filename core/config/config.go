@@ -78,7 +78,6 @@ type Configuration struct {
 	PrivateKeyPath        string            `json:"privateKeyPath,omitempty"`
 	CredentialsFilePath   string            `json:"credentialsFilePath,omitempty"`
 	TokenCustomUrl        string            `json:"tokenCustomUrl,omitempty"`
-	JWKSCustomUrl         string            `json:"jwksCustomUrl,omitempty"`
 	Region                string            `json:"region,omitempty"`
 	CustomAuth            http.RoundTripper
 	Servers               ServerConfigurations
@@ -156,10 +155,9 @@ func WithTokenEndpoint(url string) ConfigurationOption {
 	}
 }
 
-// WithJWKSEndpoint returns a ConfigurationOption that overrides the default url to be used to get the jwks when using the key flow
-func WithJWKSEndpoint(url string) ConfigurationOption {
+// Deprecated: validation using JWKS is removed, for being redundant with token validation done in the APIs. This option has no effect, and will be removed in a later update
+func WithJWKSEndpoint(_ string) ConfigurationOption {
 	return func(config *Configuration) error {
-		config.JWKSCustomUrl = url
 		return nil
 	}
 }
