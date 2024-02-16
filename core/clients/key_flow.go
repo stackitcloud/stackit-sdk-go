@@ -99,6 +99,14 @@ func (c *KeyFlow) GetServiceAccountEmail() string {
 	return c.key.Credentials.Iss
 }
 
+// GetToken returns the token field
+func (c *KeyFlow) GetToken() TokenResponseBody {
+	if c.token == nil {
+		return TokenResponseBody{}
+	}
+	return *c.token
+}
+
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.token = &TokenResponseBody{}
 	c.config = cfg
