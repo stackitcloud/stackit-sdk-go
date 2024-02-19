@@ -4,8 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-
-	"golang.org/x/oauth2"
 )
 
 const (
@@ -57,12 +55,9 @@ func (c *TokenFlow) Clone() interface{} {
 
 // configureHTTPClient configures the HTTP client
 func (c *TokenFlow) configureHTTPClient(ctx context.Context) {
-	sts := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: c.config.ServiceAccountToken},
-	)
-	o2nc := oauth2.NewClient(ctx, sts)
-	o2nc.Timeout = DefaultClientTimeout
-	c.client = o2nc
+	client := &http.Client{}
+	client.Timeout = DefaultClientTimeout
+	c.client = client
 }
 
 // validate the client is configured well
@@ -78,5 +73,6 @@ func (c *TokenFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 	if c.client == nil {
 		return nil, fmt.Errorf("please run Init()")
 	}
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.config.ServiceAccountToken))
 	return Do(c.client, req, c.config.ClientRetry)
 }
