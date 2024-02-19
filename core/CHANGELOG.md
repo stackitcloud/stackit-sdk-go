@@ -1,7 +1,10 @@
 ## v0.9.0 (YYYY-MM-DD)
 
+- **Feature:** Add package `runtime`, which implements methods to be used when performing API requests.
+- **Feature:** Add method `WithCaptureHTTPResponse` to package `runtime`, which does the same as `config.WithCaptureHTTPResponse`. Method was moved to avoid confusion due to it not being a configuration option, and will be removed in a later release.
 - **Deprecation:** Mark method `config.WithCaptureHTTPResponse` as deprecated, to avoid confusion due to it not being a configuration option. Use `runtime.WithCaptureHTTPResponse` instead.
-- **Breaking Change:** Removed method `KeyFlow.Clone`, that were no longer being used.
+- **Deprecation:** Mark method `config.WithJWKSEndpoint` as deprecated. Validation using JWKS was removed, for being redundant with token validation done in the APIs. This option has no effect.
+- **Breaking Change:** Remove method `KeyFlow.Clone`, that was no longer being used.
 
 ## v0.8.0 (2024-02-16)
 

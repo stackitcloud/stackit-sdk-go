@@ -5,7 +5,6 @@ import (
 	"crypto/x509"
 	"encoding/json"
 	"encoding/pem"
-	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -13,7 +12,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/MicahParks/keyfunc/v2"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 )
@@ -26,7 +24,6 @@ const (
 	ServiceAccountKeyPath = "STACKIT_SERVICE_ACCOUNT_KEY_PATH"
 	PrivateKeyPath        = "STACKIT_PRIVATE_KEY_PATH"
 	tokenAPI              = "https://service-account.api.stackit.cloud/token" //nolint:gosec // linter false positive
-	jwksAPI               = "https://service-account.api.stackit.cloud/.well-known/jwks.json"
 	defaultTokenType      = "Bearer"
 	defaultScope          = ""
 )
@@ -48,7 +45,6 @@ type KeyFlowConfig struct {
 	PrivateKey        string
 	ClientRetry       *RetryConfig
 	TokenUrl          string
-	JWKSUrl           string
 }
 
 // TokenResponseBody is the API response
@@ -112,12 +108,8 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.config = cfg
 	c.doer = Do
 
-	// set defaults if no custom token and jwks url are provided
 	if c.config.TokenUrl == "" {
 		c.config.TokenUrl = tokenAPI
-	}
-	if c.config.JWKSUrl == "" {
-		c.config.JWKSUrl = jwksAPI
 	}
 	c.configureHTTPClient()
 	if c.config.ClientRetry == nil {
@@ -166,11 +158,11 @@ func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 
 // GetAccessToken returns a short-lived access token and saves the access and refresh tokens in the token field
 func (c *KeyFlow) GetAccessToken() (string, error) {
-	accessTokenIsValid, err := c.validateToken(c.token.AccessToken)
+	accessTokenExpired, err := tokenExpired(c.token.AccessToken)
 	if err != nil {
 		return "", fmt.Errorf("failed initial validation: %w", err)
 	}
-	if accessTokenIsValid {
+	if !accessTokenExpired {
 		return c.token.AccessToken, nil
 	}
 	if err := c.recreateAccessToken(); err != nil {
@@ -217,11 +209,11 @@ func (c *KeyFlow) validate() error {
 // recreateAccessToken is used to create a new access token
 // when the existing one isn't valid anymore
 func (c *KeyFlow) recreateAccessToken() error {
-	refreshTokenIsValid, err := c.validateToken(c.token.RefreshToken)
+	refreshTokenExpired, err := tokenExpired(c.token.RefreshToken)
 	if err != nil {
 		return err
 	}
-	if refreshTokenIsValid {
+	if !refreshTokenExpired {
 		return c.createAccessTokenWithRefreshToken()
 	}
 	return c.createAccessToken()
@@ -312,54 +304,18 @@ func (c *KeyFlow) parseTokenResponse(res *http.Response) error {
 	return json.Unmarshal(body, c.token)
 }
 
-// validateToken returns true if token is valid
-func (c *KeyFlow) validateToken(token string) (bool, error) {
-	if token == "" {
-		return false, nil
-	}
-	if _, err := c.parseToken(token); err != nil {
-		if errors.Is(err, jwt.ErrTokenExpired) {
-			c.token = &TokenResponseBody{}
-			return false, nil
-		}
-		return false, fmt.Errorf("parse token: %w", err)
-	}
-	return true, nil
-}
-
-// parseToken parses and validates a JWT token
-func (c *KeyFlow) parseToken(token string) (*jwt.Token, error) {
-	b, err := c.getJwksJSON(token)
+func tokenExpired(token string) (bool, error) {
+	// We can safely use ParseUnverified because we are not authenticating the user at this point.
+	// We're just checking the expiration time
+	tokenParsed, _, err := jwt.NewParser().ParseUnverified(token, &jwt.RegisteredClaims{})
 	if err != nil {
-		return nil, fmt.Errorf("get JWKS Json: %w", err)
+		return false, fmt.Errorf("parse access token: %w", err)
 	}
-	var jwksBytes = json.RawMessage(b)
-	jwks, err := keyfunc.NewJSON(jwksBytes)
+	expirationTimestampNumeric, err := tokenParsed.Claims.GetExpirationTime()
 	if err != nil {
-		return nil, fmt.Errorf("get JWKS function from JSON: %w", err)
+		return false, fmt.Errorf("get expiration timestamp from access token: %w", err)
 	}
-	return jwt.Parse(token, jwks.Keyfunc)
-}
-
-func (c *KeyFlow) getJwksJSON(token string) (jwks []byte, err error) {
-	req, err := http.NewRequest("GET", c.config.JWKSUrl, http.NoBody)
-	if err != nil {
-		return nil, err
-	}
-	req.Header.Add("Authorization", "Bearer "+token)
-	res, err := c.doer(&http.Client{}, req, c.config.ClientRetry)
-	if err != nil {
-		return nil, err
-	}
-	defer func() {
-		tempErr := res.Body.Close()
-		if tempErr != nil {
-			jwks = nil
-			err = fmt.Errorf("closing get jwks response: %w", tempErr)
-		}
-	}()
-	if res.StatusCode != 200 {
-		return nil, fmt.Errorf("getting jwks return error status %s", res.Status)
-	}
-	return io.ReadAll(res.Body)
+	expirationTimestamp := expirationTimestampNumeric.Time
+	now := time.Now()
+	return now.After(expirationTimestamp), nil
 }
