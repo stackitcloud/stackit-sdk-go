@@ -78,7 +78,7 @@ type Configuration struct {
 	PrivateKeyPath        string            `json:"privateKeyPath,omitempty"`
 	CredentialsFilePath   string            `json:"credentialsFilePath,omitempty"`
 	TokenCustomUrl        string            `json:"tokenCustomUrl,omitempty"`
-	// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This option has no effect, and will be removed in a later update
+	// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This field has no effect, and will be removed in a later update
 	JWKSCustomUrl    string `json:"jwksCustomUrl,omitempty"`
 	Region           string `json:"region,omitempty"`
 	CustomAuth       http.RoundTripper
