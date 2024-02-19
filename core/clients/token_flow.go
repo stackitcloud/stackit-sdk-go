@@ -1,7 +1,6 @@
 package clients
 
 import (
-	"context"
 	"fmt"
 	"net/http"
 )
@@ -33,9 +32,9 @@ func (c *TokenFlow) GetConfig() TokenFlowConfig {
 	return *c.config
 }
 
-func (c *TokenFlow) Init(ctx context.Context, cfg *TokenFlowConfig) error {
+func (c *TokenFlow) Init(cfg *TokenFlowConfig) error {
 	c.config = cfg
-	c.configureHTTPClient(ctx)
+	c.configureHTTPClient()
 	if c.config.ClientRetry == nil {
 		c.config.ClientRetry = NewRetryConfig()
 	}
@@ -54,7 +53,7 @@ func (c *TokenFlow) Clone() interface{} {
 }
 
 // configureHTTPClient configures the HTTP client
-func (c *TokenFlow) configureHTTPClient(ctx context.Context) {
+func (c *TokenFlow) configureHTTPClient() {
 	client := &http.Client{}
 	client.Timeout = DefaultClientTimeout
 	c.client = client

@@ -86,7 +86,7 @@ func TestNoAuthFlow_Do(t *testing.T) {
 				t.Error(err)
 				return
 			}
-			req, err := http.NewRequest(http.MethodGet, u.String(), nil)
+			req, err := http.NewRequest(http.MethodGet, u.String(), http.NoBody)
 			if err != nil {
 				t.Error(err)
 				return
