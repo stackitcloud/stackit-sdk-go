@@ -1,6 +1,7 @@
 package clients
 
 import (
+	"context"
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/json"
@@ -10,7 +11,10 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"sync"
 	"time"
+
+	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
@@ -37,14 +41,16 @@ type KeyFlow struct {
 	privateKey    *rsa.PrivateKey
 	privateKeyPEM []byte
 	token         *TokenResponseBody
+	tokenMutex    sync.RWMutex
 }
 
 // KeyFlowConfig is the flow config
 type KeyFlowConfig struct {
-	ServiceAccountKey *ServiceAccountKeyResponse
-	PrivateKey        string
-	ClientRetry       *RetryConfig
-	TokenUrl          string
+	ServiceAccountKey               *ServiceAccountKeyResponse
+	PrivateKey                      string
+	ClientRetry                     *RetryConfig
+	TokenUrl                        string
+	TokenRefreshInBackgroundContext context.Context // Functionality is enabled if this isn't nil
 }
 
 // TokenResponseBody is the API response
@@ -97,13 +103,19 @@ func (c *KeyFlow) GetServiceAccountEmail() string {
 
 // GetToken returns the token field
 func (c *KeyFlow) GetToken() TokenResponseBody {
+	c.tokenMutex.RLock()
+	defer c.tokenMutex.RUnlock()
+
 	if c.token == nil {
 		return TokenResponseBody{}
 	}
+	// Returned struct is passed by value (because it's a struct: https://go.dev/play/p/0VQGLfP6vsg)
+	// So no deepy copy needed
 	return *c.token
 }
 
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
+	// No concurrency at this point
 	c.token = &TokenResponseBody{}
 	c.config = cfg
 	c.doer = Do
@@ -115,7 +127,14 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	if c.config.ClientRetry == nil {
 		c.config.ClientRetry = NewRetryConfig()
 	}
-	return c.validate()
+	err := c.validate()
+	if err != nil {
+		return err
+	}
+	if c.config.TokenRefreshInBackgroundContext != nil {
+		go refreshToken(c)
+	}
+	return nil
 }
 
 // SetToken can be used to set an access and refresh token manually in the client.
@@ -132,6 +151,7 @@ func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 		return fmt.Errorf("get expiration time from access token: %w", err)
 	}
 
+	c.tokenMutex.Lock()
 	c.token = &TokenResponseBody{
 		AccessToken:  accessToken,
 		ExpiresIn:    int(exp.Time.Unix()),
@@ -139,6 +159,7 @@ func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 		RefreshToken: refreshToken,
 		TokenType:    defaultTokenType,
 	}
+	c.tokenMutex.Unlock()
 	return nil
 }
 
@@ -158,17 +179,21 @@ func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 
 // GetAccessToken returns a short-lived access token and saves the access and refresh tokens in the token field
 func (c *KeyFlow) GetAccessToken() (string, error) {
-	accessTokenExpired, err := tokenExpired(c.token.AccessToken)
+	c.tokenMutex.RLock()
+	accessToken := c.token.AccessToken
+	c.tokenMutex.RUnlock()
+
+	accessTokenExpired, err := tokenExpired(accessToken)
 	if err != nil {
-		return "", fmt.Errorf("failed initial validation: %w", err)
+		return "", fmt.Errorf("check access token is expired: %w", err)
 	}
 	if !accessTokenExpired {
-		return c.token.AccessToken, nil
+		return accessToken, nil
 	}
 	if err := c.recreateAccessToken(); err != nil {
-		return "", fmt.Errorf("failed during token recreation: %w", err)
+		return "", fmt.Errorf("get new access token: %w", err)
 	}
-	return c.token.AccessToken, nil
+	return accessToken, nil
 }
 
 // configureHTTPClient configures the HTTP client
@@ -191,7 +216,7 @@ func (c *KeyFlow) validate() error {
 	var err error
 	c.privateKey, err = jwt.ParseRSAPrivateKeyFromPEM([]byte(c.config.PrivateKey))
 	if err != nil {
-		return fmt.Errorf("parsing private key from PEM file: %w", err)
+		return fmt.Errorf("parse private key from PEM file: %w", err)
 	}
 
 	// Encode the private key in PEM format
@@ -209,7 +234,11 @@ func (c *KeyFlow) validate() error {
 // recreateAccessToken is used to create a new access token
 // when the existing one isn't valid anymore
 func (c *KeyFlow) recreateAccessToken() error {
-	refreshTokenExpired, err := tokenExpired(c.token.RefreshToken)
+	c.tokenMutex.RLock()
+	refreshToken := c.token.RefreshToken
+	c.tokenMutex.RUnlock()
+
+	refreshTokenExpired, err := tokenExpired(refreshToken)
 	if err != nil {
 		return err
 	}
@@ -233,7 +262,7 @@ func (c *KeyFlow) createAccessToken() (err error) {
 	defer func() {
 		tempErr := res.Body.Close()
 		if tempErr != nil {
-			err = fmt.Errorf("closing request access token response: %w", tempErr)
+			err = fmt.Errorf("close request access token response: %w", tempErr)
 		}
 	}()
 	return c.parseTokenResponse(res)
@@ -242,14 +271,18 @@ func (c *KeyFlow) createAccessToken() (err error) {
 // createAccessTokenWithRefreshToken creates an access token using
 // an existing pre-validated refresh token
 func (c *KeyFlow) createAccessTokenWithRefreshToken() (err error) {
-	res, err := c.requestToken("refresh_token", c.token.RefreshToken)
+	c.tokenMutex.RLock()
+	refreshToken := c.token.RefreshToken
+	c.tokenMutex.RUnlock()
+
+	res, err := c.requestToken("refresh_token", refreshToken)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		tempErr := res.Body.Close()
 		if tempErr != nil {
-			err = fmt.Errorf("closing request access token with refresh token response: %w", tempErr)
+			err = fmt.Errorf("close request access token with refresh token response: %w", tempErr)
 		}
 	}()
 	return c.parseTokenResponse(res)
@@ -294,14 +327,32 @@ func (c *KeyFlow) parseTokenResponse(res *http.Response) error {
 		return fmt.Errorf("received bad response from API")
 	}
 	if res.StatusCode != http.StatusOK {
-		return fmt.Errorf("received: %+v", res)
+		body, err := io.ReadAll(res.Body)
+		if err != nil {
+			// Fail silently, omit body from error
+			// We're trying to show error details, so it's unnecessary to fail because of this err
+			body = []byte{}
+		}
+		return &oapierror.GenericOpenAPIError{
+			StatusCode:   res.StatusCode,
+			Body:         body,
+			ErrorMessage: err.Error(),
+		}
 	}
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return err
 	}
+
+	c.tokenMutex.Lock()
 	c.token = &TokenResponseBody{}
-	return json.Unmarshal(body, c.token)
+	err = json.Unmarshal(body, c.token)
+	c.tokenMutex.Unlock()
+	if err != nil {
+		return fmt.Errorf("unmarshal token response: %w", err)
+	}
+
+	return nil
 }
 
 func tokenExpired(token string) (bool, error) {
@@ -309,11 +360,11 @@ func tokenExpired(token string) (bool, error) {
 	// We're just checking the expiration time
 	tokenParsed, _, err := jwt.NewParser().ParseUnverified(token, &jwt.RegisteredClaims{})
 	if err != nil {
-		return false, fmt.Errorf("parse access token: %w", err)
+		return false, fmt.Errorf("parse token: %w", err)
 	}
 	expirationTimestampNumeric, err := tokenParsed.Claims.GetExpirationTime()
 	if err != nil {
-		return false, fmt.Errorf("get expiration timestamp from access token: %w", err)
+		return false, fmt.Errorf("get expiration timestamp: %w", err)
 	}
 	expirationTimestamp := expirationTimestampNumeric.Time
 	now := time.Now()

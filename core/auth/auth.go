@@ -179,10 +179,11 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	}
 
 	keyCfg := clients.KeyFlowConfig{
-		ServiceAccountKey: serviceAccountKey,
-		PrivateKey:        cfg.PrivateKey,
-		ClientRetry:       cfg.RetryOptions,
-		TokenUrl:          cfg.TokenCustomUrl,
+		ServiceAccountKey:               serviceAccountKey,
+		PrivateKey:                      cfg.PrivateKey,
+		ClientRetry:                     cfg.RetryOptions,
+		TokenUrl:                        cfg.TokenCustomUrl,
+		TokenRefreshInBackgroundContext: cfg.TokenRefreshInBackgroundContext,
 	}
 
 	client := &clients.KeyFlow{}

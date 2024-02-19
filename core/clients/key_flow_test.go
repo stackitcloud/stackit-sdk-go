@@ -182,12 +182,7 @@ func TestSetToken(t *testing.T) {
 	}
 }
 
-func TestKeyFlowValidateToken(t *testing.T) {
-	// Generate a random private key
-	privateKey := make([]byte, 32)
-	if _, err := rand.Read(privateKey); err != nil {
-		t.Fatal(err)
-	}
+func TestTokenExpired(t *testing.T) {
 	tests := []struct {
 		desc              string
 		tokenInvalid      bool

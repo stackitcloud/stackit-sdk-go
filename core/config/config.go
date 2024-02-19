@@ -64,26 +64,27 @@ type APIKey struct {
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host                  string            `json:"host,omitempty"`
-	Scheme                string            `json:"scheme,omitempty"`
-	DefaultHeader         map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent             string            `json:"userAgent,omitempty"`
-	Debug                 bool              `json:"debug,omitempty"`
-	NoAuth                bool              `json:"noAuth,omitempty"`
-	ServiceAccountEmail   string            `json:"serviceAccountEmail,omitempty"`
-	Token                 string            `json:"token,omitempty"`
-	ServiceAccountKey     string            `json:"serviceAccountKey,omitempty"`
-	PrivateKey            string            `json:"privateKey,omitempty"`
-	ServiceAccountKeyPath string            `json:"serviceAccountKeyPath,omitempty"`
-	PrivateKeyPath        string            `json:"privateKeyPath,omitempty"`
-	CredentialsFilePath   string            `json:"credentialsFilePath,omitempty"`
-	TokenCustomUrl        string            `json:"tokenCustomUrl,omitempty"`
-	Region                string            `json:"region,omitempty"`
-	CustomAuth            http.RoundTripper
-	Servers               ServerConfigurations
-	OperationServers      map[string]ServerConfigurations
-	HTTPClient            *http.Client
-	RetryOptions          *clients.RetryConfig
+	Host                            string            `json:"host,omitempty"`
+	Scheme                          string            `json:"scheme,omitempty"`
+	DefaultHeader                   map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent                       string            `json:"userAgent,omitempty"`
+	Debug                           bool              `json:"debug,omitempty"`
+	NoAuth                          bool              `json:"noAuth,omitempty"`
+	ServiceAccountEmail             string            `json:"serviceAccountEmail,omitempty"`
+	Token                           string            `json:"token,omitempty"`
+	ServiceAccountKey               string            `json:"serviceAccountKey,omitempty"`
+	PrivateKey                      string            `json:"privateKey,omitempty"`
+	ServiceAccountKeyPath           string            `json:"serviceAccountKeyPath,omitempty"`
+	PrivateKeyPath                  string            `json:"privateKeyPath,omitempty"`
+	CredentialsFilePath             string            `json:"credentialsFilePath,omitempty"`
+	TokenCustomUrl                  string            `json:"tokenCustomUrl,omitempty"`
+	Region                          string            `json:"region,omitempty"`
+	CustomAuth                      http.RoundTripper
+	Servers                         ServerConfigurations
+	OperationServers                map[string]ServerConfigurations
+	HTTPClient                      *http.Client
+	RetryOptions                    *clients.RetryConfig
+	TokenRefreshInBackgroundContext context.Context // Functionality is enabled if this isn't nil
 
 	// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This field has no effect, and will be removed in a later update
 	JWKSCustomUrl string `json:"jwksCustomUrl,omitempty"`
@@ -283,6 +284,22 @@ func WithJar(jar http.CookieJar) ConfigurationOption {
 	}
 }
 
+// WithTokenRefreshInBackground returns a ConfigurationOption that enables access token refreshing in backgound.
+//
+// If enabled, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
+// The goroutine is killed whenever the given context is cancelled.
+//
+// Only has effect for key flow
+func WithTokenRefreshInBackground(ctx context.Context) ConfigurationOption {
+	return func(c *Configuration) error {
+		if ctx == nil {
+			return fmt.Errorf("context for token refresh in background cannot be empty")
+		}
+		c.TokenRefreshInBackgroundContext = ctx
+		return nil
+	}
+}
+
 // WithCustomConfiguration returns a ConfigurationOption that sets a custom Configuration
 func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 	return func(config *Configuration) error {
@@ -305,6 +322,7 @@ func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 		config.setCustomEndpoint = (len(cfg.Servers) > 0)
 		config.OperationServers = cfg.OperationServers
 		config.HTTPClient = cfg.HTTPClient
+		config.TokenRefreshInBackgroundContext = cfg.TokenRefreshInBackgroundContext
 		return nil
 	}
 }
