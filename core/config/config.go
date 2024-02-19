@@ -64,27 +64,32 @@ type APIKey struct {
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host                            string            `json:"host,omitempty"`
-	Scheme                          string            `json:"scheme,omitempty"`
-	DefaultHeader                   map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent                       string            `json:"userAgent,omitempty"`
-	Debug                           bool              `json:"debug,omitempty"`
-	NoAuth                          bool              `json:"noAuth,omitempty"`
-	ServiceAccountEmail             string            `json:"serviceAccountEmail,omitempty"`
-	Token                           string            `json:"token,omitempty"`
-	ServiceAccountKey               string            `json:"serviceAccountKey,omitempty"`
-	PrivateKey                      string            `json:"privateKey,omitempty"`
-	ServiceAccountKeyPath           string            `json:"serviceAccountKeyPath,omitempty"`
-	PrivateKeyPath                  string            `json:"privateKeyPath,omitempty"`
-	CredentialsFilePath             string            `json:"credentialsFilePath,omitempty"`
-	TokenCustomUrl                  string            `json:"tokenCustomUrl,omitempty"`
-	Region                          string            `json:"region,omitempty"`
-	CustomAuth                      http.RoundTripper
-	Servers                         ServerConfigurations
-	OperationServers                map[string]ServerConfigurations
-	HTTPClient                      *http.Client
-	RetryOptions                    *clients.RetryConfig
-	TokenRefreshInBackgroundContext context.Context // Functionality is enabled if this isn't nil
+	Host                  string            `json:"host,omitempty"`
+	Scheme                string            `json:"scheme,omitempty"`
+	DefaultHeader         map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent             string            `json:"userAgent,omitempty"`
+	Debug                 bool              `json:"debug,omitempty"`
+	NoAuth                bool              `json:"noAuth,omitempty"`
+	ServiceAccountEmail   string            `json:"serviceAccountEmail,omitempty"`
+	Token                 string            `json:"token,omitempty"`
+	ServiceAccountKey     string            `json:"serviceAccountKey,omitempty"`
+	PrivateKey            string            `json:"privateKey,omitempty"`
+	ServiceAccountKeyPath string            `json:"serviceAccountKeyPath,omitempty"`
+	PrivateKeyPath        string            `json:"privateKeyPath,omitempty"`
+	CredentialsFilePath   string            `json:"credentialsFilePath,omitempty"`
+	TokenCustomUrl        string            `json:"tokenCustomUrl,omitempty"`
+	Region                string            `json:"region,omitempty"`
+	CustomAuth            http.RoundTripper
+	Servers               ServerConfigurations
+	OperationServers      map[string]ServerConfigurations
+	HTTPClient            *http.Client
+	RetryOptions          *clients.RetryConfig
+
+	// If != nil, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
+	// The goroutine is killed whenever this context is cancelled.
+	//
+	// Only has effect for key flow
+	TokenRefreshInBackgroundContext context.Context
 
 	// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This field has no effect, and will be removed in a later update
 	JWKSCustomUrl string `json:"jwksCustomUrl,omitempty"`
