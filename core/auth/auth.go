@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -130,7 +129,7 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	}
 
 	client := &clients.TokenFlow{}
-	if err := client.Init(context.Background(), &tokenCfg); err != nil {
+	if err := client.Init(&tokenCfg); err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 

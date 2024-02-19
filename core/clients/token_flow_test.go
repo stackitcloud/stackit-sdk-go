@@ -1,7 +1,6 @@
 package clients
 
 import (
-	"context"
 	"fmt"
 	"io"
 	"net/http"
@@ -14,7 +13,6 @@ import (
 
 func TestTokenFlow_Init(t *testing.T) {
 	type args struct {
-		ctx context.Context
 		cfg *TokenFlowConfig
 	}
 	tests := []struct {
@@ -22,10 +20,10 @@ func TestTokenFlow_Init(t *testing.T) {
 		args    args
 		wantErr bool
 	}{
-		{"ok", args{context.Background(), &TokenFlowConfig{
+		{"ok", args{&TokenFlowConfig{
 			ServiceAccountToken: "efg",
 		}}, false},
-		{"error 1", args{context.Background(), &TokenFlowConfig{
+		{"error 1", args{&TokenFlowConfig{
 			ServiceAccountToken: "",
 		}}, true},
 	}
@@ -38,7 +36,7 @@ func TestTokenFlow_Init(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Setting service account token: %s", err)
 			}
-			if err := c.Init(tt.args.ctx, tt.args.cfg); (err != nil) != tt.wantErr {
+			if err := c.Init(tt.args.cfg); (err != nil) != tt.wantErr {
 				t.Errorf("TokenFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			err = os.Setenv(ServiceAccountToken, b)
@@ -86,8 +84,10 @@ func TestTokenFlow_Do(t *testing.T) {
 				t.Error(err)
 				return
 			}
-			req := &http.Request{
-				URL: u,
+			req, err := http.NewRequest(http.MethodGet, u.String(), http.NoBody)
+			if err != nil {
+				t.Error(err)
+				return
 			}
 			got, err := c.RoundTrip(req)
 			if err == nil {
