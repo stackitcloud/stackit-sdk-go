@@ -142,21 +142,6 @@ func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 	return nil
 }
 
-// Clone creates a clone of the client
-func (c *KeyFlow) Clone() interface{} {
-	sc := *c
-	nc := &sc
-	cl := *nc.client
-	cf := *nc.config
-	ke := *nc.key
-	to := *nc.token
-	nc.client = &cl
-	nc.config = &cf
-	nc.key = &ke
-	nc.token = &to
-	return c
-}
-
 // Roundtrip performs the request
 func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 	if c.client == nil {
