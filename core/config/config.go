@@ -85,6 +85,9 @@ type Configuration struct {
 	HTTPClient            *http.Client
 	RetryOptions          *clients.RetryConfig
 
+	// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This field has no effect, and will be removed in a later update
+	JWKSCustomUrl string `json:"jwksCustomUrl,omitempty"`
+
 	setCustomEndpoint bool
 }
 
