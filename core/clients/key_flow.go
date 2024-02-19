@@ -115,7 +115,7 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 }
 
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
-	// No concurrency at this point
+	// No concurrency at this point, so no mutex check needed
 	c.token = &TokenResponseBody{}
 	c.config = cfg
 	c.doer = Do
