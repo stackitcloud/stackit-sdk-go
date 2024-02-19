@@ -83,11 +83,11 @@ func (refresher *tokenRefresher) getAccessTokenExpirationTimestamp() (*time.Time
 	// We're just checking the expiration time
 	tokenParsed, _, err := jwt.NewParser().ParseUnverified(token, &jwt.RegisteredClaims{})
 	if err != nil {
-		return nil, fmt.Errorf("parse access token: %w", err)
+		return nil, fmt.Errorf("parse token: %w", err)
 	}
 	expirationTimestampNumeric, err := tokenParsed.Claims.GetExpirationTime()
 	if err != nil {
-		return nil, fmt.Errorf("get expiration timestamp from access token: %w", err)
+		return nil, fmt.Errorf("get expiration timestamp: %w", err)
 	}
 	return &expirationTimestampNumeric.Time, nil
 }
