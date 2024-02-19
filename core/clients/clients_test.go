@@ -75,8 +75,10 @@ func TestDo(t *testing.T) {
 				t.Error(err)
 				return
 			}
-			req := &http.Request{
-				URL: u,
+			req, err := http.NewRequest(http.MethodGet, u.String(), nil)
+			if err != nil {
+				t.Error(err)
+				return
 			}
 			c := &http.Client{}
 			if tt.name == "fail 2 - timeout error" && server != nil {
