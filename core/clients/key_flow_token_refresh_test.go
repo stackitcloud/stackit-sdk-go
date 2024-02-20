@@ -153,3 +153,190 @@ func TestRefreshToken(t *testing.T) {
 		})
 	}
 }
+
+// Tests if
+//   - refreshToken() changes the token
+//   - The access token can be accessed while refreshToken() is trying to update it
+func TestRefreshTokenConcurrency(t *testing.T) {
+	// The times here are in the order of miliseconds (so they run faster)
+	// For this to work, we need to increase precision of the expiration timestamps
+	jwt.TimePrecision = time.Millisecond
+
+	// Test plan:
+	// 1) refreshToken() will trigger a token update. It will be blocked in the mockDo() routine
+	// 2) After refreshToken() is blocked, a request will be made using the key flow. That request should carry the access token (shouldn't be blocked just because refreshToken() is trying to update)
+	// 3) After the request is successful, refreshToken() will be unblocked
+	// 4) After waiting a bit, a new request will be made using the key flow. That request should carry the new access token
+
+	// Where we're at in the test plan:
+	// - Starts at 0
+	// - Is set to 1 before refreshToken() is called
+	// - Is set to 2 once the refreshToken() is blocked
+	// - Is set to 3 once the first request goes through and is checked
+	// - Is set to 4 after a small wait after refreshToken() is unblocked
+	currentTestPhase := 0
+
+	// Used to signal refreshToken() has been blocked
+	chanBlockRefreshToken := make(chan bool)
+
+	// Used to signal refreshToken() should be unblocked
+	chanUnblockRefreshToken := make(chan bool)
+
+	// The access token at the start
+	accessTokenFirst, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(100 * time.Millisecond)),
+	}).SignedString([]byte("token-first"))
+	if err != nil {
+		t.Fatalf("failed to create first access token: %v", err)
+	}
+
+	// The access token that will replace accessTokenFirst
+	// Has a much longer expiration timestamp
+	accessTokenSecond, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
+	}).SignedString([]byte("token-second"))
+	if err != nil {
+		t.Fatalf("failed to create second access token: %v", err)
+	}
+
+	// Context used for the requests
+	ctx := context.Background()
+	ctx, cancel := context.WithCancel(ctx)
+	defer cancel() // This cancels the refresher goroutine
+
+	// Do uses these to make sure only one request goes through on each test case
+	doTestPhase1RequestDone := false
+	doTestPhase2RequestDone := false
+	doTestPhase4RequestDone := false
+	mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
+		if currentTestPhase == 1 {
+			if doTestPhase1RequestDone {
+				t.Fatalf("Do call: multiple requests during test phase 1")
+			}
+			doTestPhase1RequestDone = true
+
+			currentTestPhase = 2
+			chanBlockRefreshToken <- true
+
+			// Wait until refreshToken() is to be unblocked
+			<-chanUnblockRefreshToken
+
+			if currentTestPhase != 3 {
+				t.Fatalf("Do call: after unlocking refreshToken(), expected test phase to be 3, got %d", currentTestPhase)
+			}
+
+			// Return response with accessTokenSecond
+			responseBodyStruct := TokenResponseBody{
+				AccessToken: accessTokenSecond,
+			}
+			responseBody, err := json.Marshal(responseBodyStruct)
+			if err != nil {
+				t.Fatalf("Do call: failed to marshal access token response: %v", err)
+			}
+			response := &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       io.NopCloser(bytes.NewReader(responseBody)),
+			}
+			return response, nil
+		} else if currentTestPhase == 2 {
+			if doTestPhase2RequestDone {
+				t.Fatalf("Do call: multiple requests during test phase 2")
+			}
+			doTestPhase2RequestDone = true
+
+			// Check Host and access token
+			host := req.Host
+			expectedHost := "first-request-url.com"
+			if host != expectedHost {
+				t.Fatalf("Do call: first request expected to have host %q, found %q", expectedHost, host)
+			}
+			authHeader := req.Header.Get("Authorization")
+			if authHeader != fmt.Sprintf("Bearer %s", accessTokenFirst) {
+				t.Fatalf("Do call: first request didn't carry first access token")
+			}
+
+			// Return empty response
+			response := &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       io.NopCloser(bytes.NewReader([]byte{})),
+			}
+			return response, nil
+		} else if currentTestPhase == 4 {
+			if doTestPhase4RequestDone {
+				t.Fatalf("Do call: multiple requests during test phase 4")
+			}
+			doTestPhase4RequestDone = true
+
+			// Check host and access token
+			host := req.Host
+			expectedHost := "second-request-url.com"
+			if host != expectedHost {
+				t.Fatalf("Do call: second request expected to have host %q, found %q", expectedHost, host)
+			}
+			authHeader := req.Header.Get("Authorization")
+			if authHeader != fmt.Sprintf("Bearer %s", accessTokenSecond) {
+				t.Fatalf("Do call: second request didn't carry second access token")
+			}
+
+			// Return empty response
+			response := &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       io.NopCloser(bytes.NewReader([]byte{})),
+			}
+			return response, nil
+		}
+		t.Fatalf("Do call: unexpected request during test phase %d", currentTestPhase)
+		return nil, nil
+	}
+
+	keyFlow := &KeyFlow{
+		client: &http.Client{},
+		config: &KeyFlowConfig{
+			ClientRetry:                     NewRetryConfig(),
+			TokenRefreshInBackgroundContext: ctx,
+		},
+		doer: mockDo,
+		token: &TokenResponseBody{
+			AccessToken: accessTokenFirst,
+		},
+	}
+
+	// TEST START
+	currentTestPhase = 1
+	go refreshToken(keyFlow)
+
+	// Wait until refreshToken() is blocked
+	<-chanBlockRefreshToken
+
+	if currentTestPhase != 2 {
+		t.Fatalf("Unexpected test phase %d after refreshToken() was blocked", currentTestPhase)
+	}
+
+	// Perform first request
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "http://first-request-url.com", nil)
+	if err != nil {
+		t.Fatalf("Create first request failed: %v", err)
+	}
+	_, err = keyFlow.RoundTrip(req)
+	if err != nil {
+		t.Fatalf("Perform first request failed: %v", err)
+	}
+
+	// Unblock refreshToken()
+	currentTestPhase = 3
+	chanUnblockRefreshToken <- true
+
+	// Wait for a bit
+	time.Sleep(10 * time.Millisecond)
+	currentTestPhase = 4
+
+	// Perform second request
+	req, err = http.NewRequestWithContext(ctx, http.MethodGet, "http://second-request-url.com", nil)
+	if err != nil {
+		t.Fatalf("Create second request failed: %v", err)
+	}
+	_, err = keyFlow.RoundTrip(req)
+	if err != nil {
+		t.Fatalf("Second request failed: %v", err)
+	}
+}
