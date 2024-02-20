@@ -89,7 +89,7 @@ type Configuration struct {
 	// The goroutine is killed whenever this context is canceled.
 	//
 	// Only has effect for key flow
-	TokenRefreshInBackgroundContext context.Context
+	BackgroundTokenRefreshContext context.Context
 
 	// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This field has no effect, and will be removed in a later update
 	JWKSCustomUrl string `json:"jwksCustomUrl,omitempty"`
@@ -289,18 +289,18 @@ func WithJar(jar http.CookieJar) ConfigurationOption {
 	}
 }
 
-// WithTokenRefreshInBackground returns a ConfigurationOption that enables access token refreshing in backgound.
+// WithBackgroundTokenRefresh returns a ConfigurationOption that enables access token refreshing in backgound.
 //
 // If enabled, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
 // The goroutine is killed whenever the given context is canceled.
 //
 // Only has effect for key flow
-func WithTokenRefreshInBackground(ctx context.Context) ConfigurationOption {
+func WithBackgroundTokenRefresh(ctx context.Context) ConfigurationOption {
 	return func(c *Configuration) error {
 		if ctx == nil {
 			return fmt.Errorf("context for token refresh in background cannot be empty")
 		}
-		c.TokenRefreshInBackgroundContext = ctx
+		c.BackgroundTokenRefreshContext = ctx
 		return nil
 	}
 }
@@ -327,7 +327,7 @@ func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 		config.setCustomEndpoint = (len(cfg.Servers) > 0)
 		config.OperationServers = cfg.OperationServers
 		config.HTTPClient = cfg.HTTPClient
-		config.TokenRefreshInBackgroundContext = cfg.TokenRefreshInBackgroundContext
+		config.BackgroundTokenRefreshContext = cfg.BackgroundTokenRefreshContext
 		return nil
 	}
 }

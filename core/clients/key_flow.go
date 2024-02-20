@@ -47,11 +47,11 @@ type KeyFlow struct {
 
 // KeyFlowConfig is the flow config
 type KeyFlowConfig struct {
-	ServiceAccountKey               *ServiceAccountKeyResponse
-	PrivateKey                      string
-	ClientRetry                     *RetryConfig
-	TokenUrl                        string
-	TokenRefreshInBackgroundContext context.Context // Functionality is enabled if this isn't nil
+	ServiceAccountKey             *ServiceAccountKeyResponse
+	PrivateKey                    string
+	ClientRetry                   *RetryConfig
+	TokenUrl                      string
+	BackgroundTokenRefreshContext context.Context // Functionality is enabled if this isn't nil
 }
 
 // TokenResponseBody is the API response
@@ -132,7 +132,7 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	if err != nil {
 		return err
 	}
-	if c.config.TokenRefreshInBackgroundContext != nil {
+	if c.config.BackgroundTokenRefreshContext != nil {
 		go refreshToken(c)
 	}
 	return nil

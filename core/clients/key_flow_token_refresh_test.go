@@ -127,8 +127,8 @@ func TestRefreshToken(t *testing.T) {
 
 			keyFlow := &KeyFlow{
 				config: &KeyFlowConfig{
-					ClientRetry:                     NewRetryConfig(),
-					TokenRefreshInBackgroundContext: ctx,
+					ClientRetry:                   NewRetryConfig(),
+					BackgroundTokenRefreshContext: ctx,
 				},
 				doer: mockDo,
 				token: &TokenResponseBody{
@@ -296,8 +296,8 @@ func TestRefreshTokenConcurrency(t *testing.T) {
 	keyFlow := &KeyFlow{
 		client: &http.Client{},
 		config: &KeyFlowConfig{
-			ClientRetry:                     NewRetryConfig(),
-			TokenRefreshInBackgroundContext: ctx,
+			ClientRetry:                   NewRetryConfig(),
+			BackgroundTokenRefreshContext: ctx,
 		},
 		doer: mockDo,
 		token: &TokenResponseBody{

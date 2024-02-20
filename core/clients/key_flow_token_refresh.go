@@ -55,7 +55,7 @@ func (refresher *tokenRefresher) refreshToken() error {
 			return err
 		}
 
-		err := refresher.keyFlow.config.TokenRefreshInBackgroundContext.Err()
+		err := refresher.keyFlow.config.BackgroundTokenRefreshContext.Err()
 		if err != nil {
 			return fmt.Errorf("check context: %w", err)
 		}
@@ -95,7 +95,7 @@ func (refresher *tokenRefresher) getAccessTokenExpirationTimestamp() (*time.Time
 
 func (refresher *tokenRefresher) waitUntilTimestamp(timestamp time.Time) error {
 	for time.Now().Before(timestamp) {
-		err := refresher.keyFlow.config.TokenRefreshInBackgroundContext.Err()
+		err := refresher.keyFlow.config.BackgroundTokenRefreshContext.Err()
 		if err != nil {
 			return fmt.Errorf("check context: %w", err)
 		}
