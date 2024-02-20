@@ -15,7 +15,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-func TestRefreshToken(t *testing.T) {
+func TestContinuousRefreshToken(t *testing.T) {
 	// The times here are in the order of miliseconds (so they run faster)
 	// For this to work, we need to increase precision of the expiration timestamps
 	jwt.TimePrecision = time.Millisecond
@@ -155,9 +155,9 @@ func TestRefreshToken(t *testing.T) {
 }
 
 // Tests if
-//   - refreshToken() changes the token
-//   - The access token can be accessed while refreshToken() is trying to update it
-func TestRefreshTokenConcurrency(t *testing.T) {
+//   - continuousRefreshToken() changes the token
+//   - The access token can be accessed while continuousRefreshToken() is trying to update it
+func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	// The times here are in the order of miliseconds (so they run faster)
 	// For this to work, we need to increase precision of the expiration timestamps
 	jwt.TimePrecision = time.Millisecond
