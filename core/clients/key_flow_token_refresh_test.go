@@ -45,17 +45,17 @@ func TestRefreshToken(t *testing.T) {
 			expectedNumberDoCalls: 2,
 		},
 		{
-			desc:                  "context cancelled at start",
+			desc:                  "context canceled at start",
 			contextClosesIn:       0,
 			expectedNumberDoCalls: 0,
 		},
 		{
-			desc:                  "context cancelled before start",
+			desc:                  "context canceled before start",
 			contextClosesIn:       -100 * time.Millisecond,
 			expectedNumberDoCalls: 0,
 		},
 		{
-			desc:                  "context cancelled before token refresh",
+			desc:                  "context canceled before token refresh",
 			contextClosesIn:       10 * time.Millisecond,
 			expectedNumberDoCalls: 0,
 		},
@@ -87,7 +87,7 @@ func TestRefreshToken(t *testing.T) {
 		t.Run(tt.desc, func(t *testing.T) {
 			numberDoCalls := 0
 			mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
-				numberDoCalls += 1
+				numberDoCalls++
 
 				if tt.doError != nil {
 					return nil, tt.doError
@@ -197,6 +197,10 @@ func TestRefreshTokenConcurrency(t *testing.T) {
 	}).SignedString([]byte("token-second"))
 	if err != nil {
 		t.Fatalf("failed to create second access token: %v", err)
+	}
+
+	if accessTokenFirst == accessTokenSecond {
+		t.Fatalf("created tokens are equal")
 	}
 
 	// Context used for the requests
@@ -313,13 +317,17 @@ func TestRefreshTokenConcurrency(t *testing.T) {
 	}
 
 	// Perform first request
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "http://first-request-url.com", nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "http://first-request-url.com", http.NoBody)
 	if err != nil {
 		t.Fatalf("Create first request failed: %v", err)
 	}
-	_, err = keyFlow.RoundTrip(req)
+	resp, err := keyFlow.RoundTrip(req)
 	if err != nil {
 		t.Fatalf("Perform first request failed: %v", err)
+	}
+	err = resp.Body.Close()
+	if err != nil {
+		t.Fatalf("First request body failed to close: %v", err)
 	}
 
 	// Unblock refreshToken()
@@ -331,12 +339,16 @@ func TestRefreshTokenConcurrency(t *testing.T) {
 	currentTestPhase = 4
 
 	// Perform second request
-	req, err = http.NewRequestWithContext(ctx, http.MethodGet, "http://second-request-url.com", nil)
+	req, err = http.NewRequestWithContext(ctx, http.MethodGet, "http://second-request-url.com", http.NoBody)
 	if err != nil {
 		t.Fatalf("Create second request failed: %v", err)
 	}
-	_, err = keyFlow.RoundTrip(req)
+	resp, err = keyFlow.RoundTrip(req)
 	if err != nil {
 		t.Fatalf("Second request failed: %v", err)
+	}
+	err = resp.Body.Close()
+	if err != nil {
+		t.Fatalf("Second request body failed to close: %v", err)
 	}
 }

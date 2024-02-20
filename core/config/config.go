@@ -86,7 +86,7 @@ type Configuration struct {
 	RetryOptions          *clients.RetryConfig
 
 	// If != nil, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
-	// The goroutine is killed whenever this context is cancelled.
+	// The goroutine is killed whenever this context is canceled.
 	//
 	// Only has effect for key flow
 	TokenRefreshInBackgroundContext context.Context
@@ -292,7 +292,7 @@ func WithJar(jar http.CookieJar) ConfigurationOption {
 // WithTokenRefreshInBackground returns a ConfigurationOption that enables access token refreshing in backgound.
 //
 // If enabled, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
-// The goroutine is killed whenever the given context is cancelled.
+// The goroutine is killed whenever the given context is canceled.
 //
 // Only has effect for key flow
 func WithTokenRefreshInBackground(ctx context.Context) ConfigurationOption {
