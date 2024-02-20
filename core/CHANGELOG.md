@@ -1,3 +1,7 @@
+## v0.10.0 (YYYY-MM-DD)
+
+- **Feature:** Add configuration option that, for the key flow, enables a goroutine to be spawned that will refresh the access token when it's close to expiring
+
 ## v0.9.0 (2024-02-19)
 
 - **Deprecation:** Mark method `config.WithCaptureHTTPResponse` as deprecated, to avoid confusion due to it not being a configuration option. Use `runtime.WithCaptureHTTPResponse` instead.
