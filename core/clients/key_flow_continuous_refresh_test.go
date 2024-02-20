@@ -23,7 +23,7 @@ func TestContinuousRefreshToken(t *testing.T) {
 	// Refresher settings
 	timeStartBeforeTokenExpiration := 30 * time.Millisecond
 	timeBetweenContextCheck := 10 * time.Millisecond
-	timeBetweenTries := 15 * time.Millisecond
+	timeBetweenTries := 20 * time.Millisecond
 
 	// All generated acess tokens will have this time to live
 	accessTokensTimeToLive := 100 * time.Millisecond
@@ -75,11 +75,11 @@ func TestContinuousRefreshToken(t *testing.T) {
 		},
 		{
 			desc:            "refresh token fails - API 5xx error",
-			contextClosesIn: 95 * time.Millisecond,
+			contextClosesIn: 100 * time.Millisecond,
 			doError: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusInternalServerError,
 			},
-			expectedNumberDoCalls: 3,
+			expectedNumberDoCalls: 2,
 		},
 	}
 
