@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
+
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
@@ -114,7 +115,7 @@ func (refresher *tokenRefresher) refreshTokens() (bool, error) {
 	}
 
 	// Should be retired if this is an API error with status code non-5xx
-	oapiErr := oapierror.GenericOpenAPIError{}
+	oapiErr := &oapierror.GenericOpenAPIError{}
 	if !errors.As(err, &oapiErr) {
 		return false, err
 	}
