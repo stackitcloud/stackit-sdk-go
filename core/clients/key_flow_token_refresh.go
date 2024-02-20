@@ -23,7 +23,7 @@ func refreshToken(keyflow *KeyFlow) {
 	refresher := &tokenRefresher{
 		keyFlow:                        keyflow,
 		timeStartBeforeTokenExpiration: defaultTimeStartBeforeTokenExpiration,
-		timeBetweenCtxCheck:            defaultTimeBetweenContextCheck,
+		timeBetweenContextCheck:        defaultTimeBetweenContextCheck,
 		timeBetweenTries:               defaultTimeBetweenTries,
 	}
 	err := refresher.refreshToken()
@@ -34,7 +34,7 @@ type tokenRefresher struct {
 	keyFlow *KeyFlow
 	// Token refresh tries start at [Access token expiration timestamp] - [This duration]
 	timeStartBeforeTokenExpiration time.Duration
-	timeBetweenCtxCheck            time.Duration
+	timeBetweenContextCheck        time.Duration
 	timeBetweenTries               time.Duration
 }
 
@@ -98,7 +98,7 @@ func (refresher *tokenRefresher) waitUntilTimestamp(timestamp time.Time) error {
 		if err != nil {
 			return fmt.Errorf("check context: %w", err)
 		}
-		time.Sleep(refresher.timeBetweenCtxCheck)
+		time.Sleep(refresher.timeBetweenContextCheck)
 	}
 	return nil
 }
