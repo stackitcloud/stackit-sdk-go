@@ -40,8 +40,9 @@ type KeyFlow struct {
 	key           *ServiceAccountKeyResponse
 	privateKey    *rsa.PrivateKey
 	privateKeyPEM []byte
-	token         *TokenResponseBody
-	tokenMutex    sync.RWMutex
+
+	tokenMutex sync.RWMutex
+	token      *TokenResponseBody
 }
 
 // KeyFlowConfig is the flow config
