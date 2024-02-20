@@ -20,14 +20,14 @@ var (
 // Continuously refreshes the token of a key flow, retrying if the token API returns 5xx errrors. Writes to stderr when it terminates.
 //
 // To terminate this routine, close the context in keyFlow.config.TokenRefreshInBackgroundContext.
-func continuousTokenRefresh(keyflow *KeyFlow) {
+func continuousRefreshToken(keyflow *KeyFlow) {
 	refresher := &continuousTokenRefresher{
 		keyFlow:                        keyflow,
 		timeStartBeforeTokenExpiration: defaultTimeStartBeforeTokenExpiration,
 		timeBetweenContextCheck:        defaultTimeBetweenContextCheck,
 		timeBetweenTries:               defaultTimeBetweenTries,
 	}
-	err := refresher.continuousTokenRefresh()
+	err := refresher.continuousRefreshToken()
 	fmt.Fprintf(os.Stderr, "Token refreshing terminated: %v", err)
 }
 
@@ -42,7 +42,7 @@ type continuousTokenRefresher struct {
 // Continuously refreshes the token of a key flow, retrying if the token API returns 5xx errrors. Always returns with a non-nil error.
 //
 // To terminate this routine, close the context in refresher.keyFlow.config.TokenRefreshInBackgroundContext.
-func (refresher *continuousTokenRefresher) continuousTokenRefresh() error {
+func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 	expirationTimestamp, err := refresher.getAccessTokenExpirationTimestamp()
 	if err != nil {
 		return fmt.Errorf("get access token expiration timestamp: %w", err)
@@ -60,7 +60,7 @@ func (refresher *continuousTokenRefresher) continuousTokenRefresh() error {
 			return fmt.Errorf("check context: %w", err)
 		}
 
-		ok, err := refresher.refreshTokens()
+		ok, err := refresher.refreshToken()
 		if err != nil {
 			return fmt.Errorf("refresh tokens: %w", err)
 		}
@@ -108,7 +108,7 @@ func (refresher *continuousTokenRefresher) waitUntilTimestamp(timestamp time.Tim
 //   - (true, nil) if successful.
 //   - (false, nil) if not successful but should be retried.
 //   - (_, err) if not successful and shouldn't be retried.
-func (refresher *continuousTokenRefresher) refreshTokens() (bool, error) {
+func (refresher *continuousTokenRefresher) refreshToken() (bool, error) {
 	err := refresher.keyFlow.createAccessTokenWithRefreshToken()
 	if err == nil {
 		return true, nil
