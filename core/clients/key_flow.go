@@ -110,7 +110,7 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 	if c.token == nil {
 		return TokenResponseBody{}
 	}
-	// Returned struct is passed by value (because it's a struct: https://go.dev/play/p/0VQGLfP6vsg)
+	// Returned struct is passed by value (because it's a struct)
 	// So no deepy copy needed
 	return *c.token
 }
