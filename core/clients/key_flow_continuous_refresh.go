@@ -20,18 +20,18 @@ var (
 // Continuously refreshes the token of a key flow, retrying if the token API returns 5xx errrors. Writes to stderr when it terminates.
 //
 // To terminate this routine, close the context in keyFlow.config.TokenRefreshInBackgroundContext.
-func refreshToken(keyflow *KeyFlow) {
-	refresher := &tokenRefresher{
+func continuousTokenRefresh(keyflow *KeyFlow) {
+	refresher := &continuousTokenRefresher{
 		keyFlow:                        keyflow,
 		timeStartBeforeTokenExpiration: defaultTimeStartBeforeTokenExpiration,
 		timeBetweenContextCheck:        defaultTimeBetweenContextCheck,
 		timeBetweenTries:               defaultTimeBetweenTries,
 	}
-	err := refresher.refreshToken()
+	err := refresher.continuousTokenRefresh()
 	fmt.Fprintf(os.Stderr, "Token refreshing terminated: %v", err)
 }
 
-type tokenRefresher struct {
+type continuousTokenRefresher struct {
 	keyFlow *KeyFlow
 	// Token refresh tries start at [Access token expiration timestamp] - [This duration]
 	timeStartBeforeTokenExpiration time.Duration
@@ -42,7 +42,7 @@ type tokenRefresher struct {
 // Continuously refreshes the token of a key flow, retrying if the token API returns 5xx errrors. Always returns with a non-nil error.
 //
 // To terminate this routine, close the context in refresher.keyFlow.config.TokenRefreshInBackgroundContext.
-func (refresher *tokenRefresher) refreshToken() error {
+func (refresher *continuousTokenRefresher) continuousTokenRefresh() error {
 	expirationTimestamp, err := refresher.getAccessTokenExpirationTimestamp()
 	if err != nil {
 		return fmt.Errorf("get access token expiration timestamp: %w", err)
@@ -77,7 +77,7 @@ func (refresher *tokenRefresher) refreshToken() error {
 	}
 }
 
-func (refresher *tokenRefresher) getAccessTokenExpirationTimestamp() (*time.Time, error) {
+func (refresher *continuousTokenRefresher) getAccessTokenExpirationTimestamp() (*time.Time, error) {
 	token := refresher.keyFlow.token.AccessToken
 
 	// We can safely use ParseUnverified because we are not doing authentication of any kind
@@ -93,7 +93,7 @@ func (refresher *tokenRefresher) getAccessTokenExpirationTimestamp() (*time.Time
 	return &expirationTimestampNumeric.Time, nil
 }
 
-func (refresher *tokenRefresher) waitUntilTimestamp(timestamp time.Time) error {
+func (refresher *continuousTokenRefresher) waitUntilTimestamp(timestamp time.Time) error {
 	for time.Now().Before(timestamp) {
 		err := refresher.keyFlow.config.BackgroundTokenRefreshContext.Err()
 		if err != nil {
@@ -108,7 +108,7 @@ func (refresher *tokenRefresher) waitUntilTimestamp(timestamp time.Time) error {
 //   - (true, nil) if successful.
 //   - (false, nil) if not successful but should be retried.
 //   - (_, err) if not successful and shouldn't be retried.
-func (refresher *tokenRefresher) refreshTokens() (bool, error) {
+func (refresher *continuousTokenRefresher) refreshTokens() (bool, error) {
 	err := refresher.keyFlow.createAccessTokenWithRefreshToken()
 	if err == nil {
 		return true, nil

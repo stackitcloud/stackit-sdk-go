@@ -133,7 +133,7 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 		return err
 	}
 	if c.config.BackgroundTokenRefreshContext != nil {
-		go refreshToken(c)
+		go continuousTokenRefresh(c)
 	}
 	return nil
 }

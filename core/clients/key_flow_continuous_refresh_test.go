@@ -136,14 +136,14 @@ func TestRefreshToken(t *testing.T) {
 				},
 			}
 
-			refresher := &tokenRefresher{
+			refresher := &continuousTokenRefresher{
 				keyFlow:                        keyFlow,
 				timeStartBeforeTokenExpiration: timeStartBeforeTokenExpiration,
 				timeBetweenContextCheck:        timeBetweenContextCheck,
 				timeBetweenTries:               timeBetweenTries,
 			}
 
-			err = refresher.refreshToken()
+			err = refresher.continuousTokenRefresh()
 			if err == nil {
 				t.Fatalf("routine finished with non-nil error")
 			}
@@ -307,7 +307,7 @@ func TestRefreshTokenConcurrency(t *testing.T) {
 
 	// TEST START
 	currentTestPhase = 1
-	go refreshToken(keyFlow)
+	go continuousTokenRefresh(keyFlow)
 
 	// Wait until refreshToken() is blocked
 	<-chanBlockRefreshToken
