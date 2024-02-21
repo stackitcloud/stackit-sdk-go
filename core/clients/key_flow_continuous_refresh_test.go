@@ -207,7 +207,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel() // This cancels the refresher goroutine
 
-	// The "do" routine, that both the keyFlow and continuousRefreshToken() use to make their requests
+	// The Do() routine, that both the keyFlow and continuousRefreshToken() use to make their requests
 	// The bools are used to make sure only one request goes through on each test phase
 	doTestPhase1RequestDone := false
 	doTestPhase2RequestDone := false
