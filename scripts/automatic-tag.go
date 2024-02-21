@@ -3,19 +3,23 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/go-git/go-git/v5"
-	"github.com/go-git/go-git/v5/plumbing/object"
+	"github.com/go-git/go-git/v5/config"
+	"github.com/go-git/go-git/v5/plumbing"
 	"golang.org/x/mod/semver"
 )
 
 const (
 	sdkRepo = "https://github.com/stackitcloud/stackit-sdk-go"
+	patch   = "patch"
+	minor   = "minor"
 )
 
 var (
-	updateTypes = []string{"minor", "patch"}
+	updateTypes = []string{minor, patch}
 )
 
 func main() {
@@ -44,14 +48,15 @@ func main() {
 	}
 
 	r, err := git.PlainClone(tempDir, false, &git.CloneOptions{
-		URL: sdkRepo,
+		URL:               sdkRepo,
+		RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
 	})
 	if err != nil {
 		fmt.Printf("clone SDK repo: %s", err.Error())
 		os.Exit(1)
 	}
 
-	tags, err := r.TagObjects()
+	tagrefs, err := r.Tags()
 	if err != nil {
 		fmt.Printf("get tags: %s", err.Error())
 		os.Exit(1)
@@ -59,7 +64,7 @@ func main() {
 
 	var coreOnly bool
 	if len(os.Args) == 3 {
-		if os.Args[3] != "--core-only" {
+		if os.Args[2] != "--core-only" {
 			fmt.Println("wrong arguments. Usage: go run automatic-tag.go [minor|patch] --core-only")
 			os.Exit(1)
 		}
@@ -67,8 +72,8 @@ func main() {
 	}
 
 	existingTags := map[string]string{}
-	err = tags.ForEach(func(t *object.Tag) error {
-		tagName, _ := strings.CutSuffix(t.Name, "refs/tags/")
+	err = tagrefs.ForEach(func(t *plumbing.Reference) error {
+		tagName, _ := strings.CutPrefix(t.Name().String(), "refs/tags/")
 		splitTag := strings.Split(tagName, "/")
 
 		if coreOnly {
@@ -109,10 +114,85 @@ func main() {
 		os.Exit(1)
 	}
 
-	for t := range existingTags {
-		fmt.Println(t)
+	for service, version := range existingTags {
+		canonicalVersion := semver.Canonical(version)
+		splitVersion := strings.Split(canonicalVersion, ".")
+		if len(splitVersion) != 3 {
+			fmt.Printf("Invalid canonical version for service %s with version %s, this tag will be skipped\n", service, version)
+			continue
+		}
+		switch updateType {
+		case patch:
+			patchNumber, err := strconv.Atoi(splitVersion[2])
+			if err != nil {
+				fmt.Printf("Couldnt convert patch number to int for service %s with version %s, this tag will be skipped\n", service, version)
+				continue
+			}
+			updatedPatchNumber := patchNumber + 1
+			splitVersion[2] = fmt.Sprint(updatedPatchNumber)
+		case minor:
+			minorNumber, err := strconv.Atoi(splitVersion[1])
+			if err != nil {
+				fmt.Printf("Couldnt convert minor number to int for service %s with version %s, this tag will be skipped\n", service, version)
+				continue
+			}
+			updatedPatchNumber := minorNumber + 1
+			splitVersion[1] = fmt.Sprint(updatedPatchNumber)
+			splitVersion[2] = "0"
+		default:
+			fmt.Println("Update type not supported in version increment, fix the script")
+			os.Exit(1)
+		}
+		updatedVersion := strings.Join(splitVersion, ".")
+		var newTag string
+		if coreOnly {
+			newTag = fmt.Sprintf("core/%s", updatedVersion)
+		} else {
+			newTag = fmt.Sprintf("services/%s/%s", service, updatedVersion)
+		}
+		err := createTag(r, newTag)
+		if err != nil {
+			fmt.Printf("Create tag %s returned error: %s", newTag, err)
+			continue
+		}
+		fmt.Printf("Created tag %s", newTag)
 	}
 
-	// TO-DO: Update tags
-	// TO-DO: Push tags
+	err = pushTags(r)
+	if err != nil {
+		fmt.Printf("push tags: %s", err)
+		os.Exit(1)
+	}
+
+}
+
+func createTag(r *git.Repository, tag string) error {
+	h, err := r.Head()
+	if err != nil {
+		return fmt.Errorf("get HEAD: %w", err)
+	}
+	_, err = r.CreateTag(tag, h.Hash(), nil)
+	if err != nil {
+		return fmt.Errorf("create tag: %w", err)
+	}
+	return nil
+}
+
+func pushTags(r *git.Repository) error {
+
+	po := &git.PushOptions{
+		RemoteName: "origin",
+		Progress:   os.Stdout,
+		RefSpecs:   []config.RefSpec{config.RefSpec("refs/tags/*:refs/tags/*")},
+	}
+	err := r.Push(po)
+
+	if err != nil {
+		if err == git.NoErrAlreadyUpToDate {
+			return fmt.Errorf("origin remote was up to date, no push done")
+		}
+		return fmt.Errorf("push to remote origin: %w", err)
+	}
+
+	return nil
 }
