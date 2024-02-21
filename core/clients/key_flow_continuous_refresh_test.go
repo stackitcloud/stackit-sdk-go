@@ -21,12 +21,12 @@ func TestContinuousRefreshToken(t *testing.T) {
 	jwt.TimePrecision = time.Millisecond
 
 	// Refresher settings
-	timeStartBeforeTokenExpiration := 30 * time.Millisecond
-	timeBetweenContextCheck := 10 * time.Millisecond
-	timeBetweenTries := 20 * time.Millisecond
+	timeStartBeforeTokenExpiration := 100 * time.Millisecond
+	timeBetweenContextCheck := 5 * time.Millisecond
+	timeBetweenTries := 40 * time.Millisecond
 
 	// All generated acess tokens will have this time to live
-	accessTokensTimeToLive := 100 * time.Millisecond
+	accessTokensTimeToLive := 200 * time.Millisecond
 
 	tests := []struct {
 		desc                  string
@@ -36,12 +36,12 @@ func TestContinuousRefreshToken(t *testing.T) {
 	}{
 		{
 			desc:                  "update access token once",
-			contextClosesIn:       100 * time.Millisecond,
+			contextClosesIn:       150 * time.Millisecond,
 			expectedNumberDoCalls: 1,
 		},
 		{
 			desc:                  "update access token twice",
-			contextClosesIn:       180 * time.Millisecond,
+			contextClosesIn:       250 * time.Millisecond,
 			expectedNumberDoCalls: 2,
 		},
 		{
@@ -51,23 +51,23 @@ func TestContinuousRefreshToken(t *testing.T) {
 		},
 		{
 			desc:                  "context canceled before start",
-			contextClosesIn:       -100 * time.Millisecond,
+			contextClosesIn:       -150 * time.Millisecond,
 			expectedNumberDoCalls: 0,
 		},
 		{
 			desc:                  "context canceled before token refresh",
-			contextClosesIn:       10 * time.Millisecond,
+			contextClosesIn:       50 * time.Millisecond,
 			expectedNumberDoCalls: 0,
 		},
 		{
 			desc:                  "refresh token fails - non-API error",
-			contextClosesIn:       100 * time.Millisecond,
+			contextClosesIn:       250 * time.Millisecond,
 			doError:               fmt.Errorf("something went wrong"),
 			expectedNumberDoCalls: 1,
 		},
 		{
 			desc:            "refresh token fails - API non-5xx error",
-			contextClosesIn: 100 * time.Millisecond,
+			contextClosesIn: 250 * time.Millisecond,
 			doError: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusBadRequest,
 			},
@@ -75,11 +75,11 @@ func TestContinuousRefreshToken(t *testing.T) {
 		},
 		{
 			desc:            "refresh token fails - API 5xx error",
-			contextClosesIn: 100 * time.Millisecond,
+			contextClosesIn: 200 * time.Millisecond,
 			doError: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusInternalServerError,
 			},
-			expectedNumberDoCalls: 2,
+			expectedNumberDoCalls: 3,
 		},
 	}
 
