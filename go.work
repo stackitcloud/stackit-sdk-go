@@ -2,7 +2,6 @@ go 1.18
 
 use (
 	./core
-	./scripts
 	./examples/argus
 	./examples/authentication
 	./examples/authorization
@@ -25,6 +24,7 @@ use (
 	./examples/serviceaccount
 	./examples/ske
 	./examples/waiter
+	./scripts
 	./services/argus
 	./services/authorization
 	./services/dns
