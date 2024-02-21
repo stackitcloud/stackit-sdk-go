@@ -19,7 +19,7 @@ var (
 
 // Continuously refreshes the token of a key flow, retrying if the token API returns 5xx errrors. Writes to stderr when it terminates.
 //
-// To terminate this routine, close the context in keyFlow.config.TokenRefreshInBackgroundContext.
+// To terminate this routine, close the context in keyFlow.config.BackgroundTokenRefreshContext.
 func continuousRefreshToken(keyflow *KeyFlow) {
 	refresher := &continuousTokenRefresher{
 		keyFlow:                        keyflow,
@@ -41,7 +41,7 @@ type continuousTokenRefresher struct {
 
 // Continuously refreshes the token of a key flow, retrying if the token API returns 5xx errrors. Always returns with a non-nil error.
 //
-// To terminate this routine, close the context in refresher.keyFlow.config.TokenRefreshInBackgroundContext.
+// To terminate this routine, close the context in refresher.keyFlow.config.BackgroundTokenRefreshContext.
 func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 	expirationTimestamp, err := refresher.getAccessTokenExpirationTimestamp()
 	if err != nil {
