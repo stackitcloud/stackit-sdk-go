@@ -262,7 +262,7 @@ func (c *KeyFlow) createAccessToken() (err error) {
 	}
 	defer func() {
 		tempErr := res.Body.Close()
-		if tempErr != nil {
+		if tempErr != nil && err == nil {
 			err = fmt.Errorf("close request access token response: %w", tempErr)
 		}
 	}()
@@ -282,7 +282,7 @@ func (c *KeyFlow) createAccessTokenWithRefreshToken() (err error) {
 	}
 	defer func() {
 		tempErr := res.Body.Close()
-		if tempErr != nil {
+		if tempErr != nil && err == nil {
 			err = fmt.Errorf("close request access token with refresh token response: %w", tempErr)
 		}
 	}()
