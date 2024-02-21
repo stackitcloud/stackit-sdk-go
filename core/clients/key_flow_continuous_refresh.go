@@ -114,7 +114,7 @@ func (refresher *continuousTokenRefresher) refreshToken() (bool, error) {
 		return true, nil
 	}
 
-	// Should be retried if this is an API error with status code non-5xx
+	// Should be retried if this is an API error with status code 5xx
 	oapiErr := &oapierror.GenericOpenAPIError{}
 	if !errors.As(err, &oapiErr) {
 		return false, err
