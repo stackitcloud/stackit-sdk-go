@@ -213,7 +213,11 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	doTestPhase2RequestDone := false
 	doTestPhase4RequestDone := false
 	mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
-		if currentTestPhase == 1 { // Call by continuousRefreshToken()
+		switch currentTestPhase {
+		default:
+			t.Fatalf("Do call: unexpected request during test phase %d", currentTestPhase)
+			return nil, nil
+		case 1: // Call by continuousRefreshToken()
 			if doTestPhase1RequestDone {
 				t.Fatalf("Do call: multiple requests during test phase 1")
 			}
@@ -242,7 +246,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 				Body:       io.NopCloser(bytes.NewReader(responseBody)),
 			}
 			return response, nil
-		} else if currentTestPhase == 2 { // Call by tokenFlow, first request
+		case 2: // Call by tokenFlow, first request
 			if doTestPhase2RequestDone {
 				t.Fatalf("Do call: multiple requests during test phase 2")
 			}
@@ -265,7 +269,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 				Body:       io.NopCloser(bytes.NewReader([]byte{})),
 			}
 			return response, nil
-		} else if currentTestPhase == 4 { // Call by tokenFlow, second request
+		case 4: // Call by tokenFlow, second request
 			if doTestPhase4RequestDone {
 				t.Fatalf("Do call: multiple requests during test phase 4")
 			}
@@ -289,8 +293,6 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 			}
 			return response, nil
 		}
-		t.Fatalf("Do call: unexpected request during test phase %d", currentTestPhase)
-		return nil, nil
 	}
 
 	keyFlow := &KeyFlow{
