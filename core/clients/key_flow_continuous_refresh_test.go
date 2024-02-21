@@ -248,7 +248,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 			}
 			doTestPhase2RequestDone = true
 
-			// Check Host and access token
+			// Check host and access token
 			host := req.Host
 			expectedHost := "first-request-url.com"
 			if host != expectedHost {
