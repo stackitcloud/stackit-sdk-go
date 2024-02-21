@@ -164,7 +164,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 
 	// Test plan:
 	// 1) continuousRefreshToken() will trigger a token update. It will be blocked in the mockDo() routine (defined below)
-	// 2) After continuousRefreshToken() is blocked, a request will be made using the key flow. That request should carry the access token (shouldn't be blocked just because continuousRefreshToken() is trying to update)
+	// 2) After continuousRefreshToken() is blocked, a request will be made using the key flow. That request should carry the access token (shouldn't be blocked just because continuousRefreshToken() is trying to refresh the token)
 	// 3) After the request is successful, continuousRefreshToken() will be unblocked
 	// 4) After waiting a bit, a new request will be made using the key flow. That request should carry the new access token
 
