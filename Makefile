@@ -37,3 +37,10 @@ test-scripts:
 
 test:
 	@$(MAKE) --no-print-directory test-go skip-non-generated-files=${skip-non-generated-files}
+
+# AUTOMATIC TAG
+sdk-tag: 
+	@go run $(SCRIPTS_BASE)/automatic_tag.go ${update-type} ${ssh-private-key-file-path} 
+
+sdk-tag-core: 
+	@go run $(SCRIPTS_BASE)/automatic_tag.go ${update-type} ${ssh-private-key-file-path} --core-only
