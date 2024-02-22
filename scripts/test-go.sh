@@ -9,6 +9,11 @@ if [ ! "${SKIP_NON_GENERATED_FILES}" = true ]; then
     SKIP_NON_GENERATED_FILES=false
 fi
 
+SKIP_SCRIPTS="${2}"
+if [ ! "${SKIP_SCRIPTS}" = true ]; then
+    SKIP_SCRIPTS=false
+fi
+
 ROOT_DIR=$(git rev-parse --show-toplevel)
 GOTEST_ARGS="-timeout=5m -cover -count=1"
 CORE_PATH="${ROOT_DIR}/core"
@@ -27,7 +32,7 @@ if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
     cd ${CORE_PATH}
     go test ./... ${GOTEST_ARGS}
 fi
-if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
+if [ "${SKIP_SCRIPTS}" = false ]; then
     echo ">> Testing scripts"
     cd ${SCRIPTS_PATH}
     go test ./... ${GOTEST_ARGS}

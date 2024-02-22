@@ -23,7 +23,7 @@ lint: sync-tidy
 # TEST
 test-go:
 	@echo "Running Go tests"
-	@$(SCRIPTS_BASE)/test-go.sh ${skip-non-generated-files}
+	@$(SCRIPTS_BASE)/test-go.sh ${skip-non-generated-files} ${skip-scripts}
 
 test:
-	@$(MAKE) --no-print-directory test-go skip-non-generated-files=${skip-non-generated-files}
+	@$(MAKE) --no-print-directory test-go skip-non-generated-files=${skip-non-generated-files} skip-scripts=${skip-scripts}
