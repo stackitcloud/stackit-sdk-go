@@ -15,8 +15,7 @@ import (
 )
 
 const (
-	//sdkRepo = "git@github.com:stackitcloud/stackit-sdk-go.git"
-	sdkRepo = "git@github.com:vicentepinto98/gh.git"
+	sdkRepo = "git@github.com:stackitcloud/stackit-sdk-go.git"
 	patch   = "patch"
 	minor   = "minor"
 	usage   = "go run automatic_tag.go [minor|patch] private-key-file-path --core-only"
