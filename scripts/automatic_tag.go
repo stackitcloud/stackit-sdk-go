@@ -15,9 +15,11 @@ import (
 )
 
 const (
-	sdkRepo = "git@github.com:stackitcloud/stackit-sdk-go.git"
+	//sdkRepo = "git@github.com:stackitcloud/stackit-sdk-go.git"
+	sdkRepo = "git@github.com:vicentepinto98/gh.git"
 	patch   = "patch"
 	minor   = "minor"
+	usage   = "go run automatic_tag.go [minor|patch] private-key-file-path --core-only"
 )
 
 var (
@@ -27,7 +29,7 @@ var (
 func main() {
 	// Parse arguments
 	if len(os.Args) != 3 && len(os.Args) != 4 {
-		fmt.Println("wrong number of arguments. Usage: go run automatic-tag.go [minor|patch] private-key-file-path --core-only")
+		fmt.Printf("wrong number of arguments. Usage: %s\n", usage)
 		os.Exit(1)
 	}
 
@@ -47,7 +49,7 @@ func main() {
 	privateKeyFile := os.Args[2]
 	_, err := os.Stat(privateKeyFile)
 	if err != nil {
-		fmt.Printf("the provided private key file path %s is not valid: %s\nUsage: go run automatic-tag.go [minor|patch] private-key-file-path --core-only\n", privateKeyFile, err)
+		fmt.Printf("The provided private key file path %s is not valid: %s\nUsage: %s\n", privateKeyFile, err, usage)
 		os.Exit(1)
 	}
 
@@ -55,29 +57,35 @@ func main() {
 	var coreOnly bool
 	if len(os.Args) == 4 {
 		if os.Args[3] != "--core-only" {
-			fmt.Println("wrong arguments. Usage: go run automatic-tag.go [minor|patch] --core-only")
+			fmt.Printf("Wrong arguments. Usage: %s\n", usage)
 			os.Exit(1)
 		}
 		coreOnly = true
 	}
 
+	err = automaticTagUpdate(updateType, privateKeyFile, coreOnly)
+	if err != nil {
+		fmt.Printf("Error updating tags: %s\n", err.Error())
+		os.Exit(1)
+	}
+}
+
+func automaticTagUpdate(updateType, privateKeyFile string, coreOnly bool) error {
 	tempDir, err := os.MkdirTemp("", "")
 	if err != nil {
-		fmt.Printf("create temporary directory: %s", err.Error())
-		os.Exit(1)
+		return fmt.Errorf("create temporary directory: %w", err)
 	}
 
 	defer func() {
 		tempErr := os.RemoveAll(tempDir)
-		if tempErr != nil {
-			fmt.Printf("temporary directory %s could not be removed: %s", tempDir, tempErr.Error())
+		if tempErr != nil && err == nil {
+			err = fmt.Errorf("temporary directory %s could not be removed: %w", tempDir, tempErr)
 		}
 	}()
 
 	publicKeys, err := ssh.NewPublicKeysFromFile("git", privateKeyFile, "")
 	if err != nil {
-		fmt.Printf("get public keys from private key file: %s\n", err.Error())
-		os.Exit(1)
+		return fmt.Errorf("get public keys from private key file: %w", err)
 	}
 
 	r, err := git.PlainClone(tempDir, false, &git.CloneOptions{
@@ -86,62 +94,27 @@ func main() {
 		RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
 	})
 	if err != nil {
-		fmt.Printf("clone SDK repo: %s\n", err.Error())
-		os.Exit(1)
+		return fmt.Errorf("clone SDK repo: %w", err)
 	}
 
 	tagrefs, err := r.Tags()
 	if err != nil {
-		fmt.Printf("get tags: %s", err.Error())
-		os.Exit(1)
+		return fmt.Errorf("get tags: %w", err)
 	}
 
-	existingTags := map[string]string{}
+	latestTags := map[string]string{}
 	err = tagrefs.ForEach(func(t *plumbing.Reference) error {
-		tagName, _ := strings.CutPrefix(t.Name().String(), "refs/tags/")
-		splitTag := strings.Split(tagName, "/")
-
-		if coreOnly {
-			if len(splitTag) != 2 || splitTag[0] != "core" {
-				return nil
-			}
-
-			version := splitTag[1]
-			if semver.Prerelease(version) != "" {
-				return nil
-			}
-
-			// invalid (or empty) semantic version are considered less than a valid one
-			if semver.Compare(existingTags["core"], version) == -1 {
-				existingTags["core"] = version
-			}
-		} else {
-			if len(splitTag) != 3 || splitTag[0] != "services" {
-				return nil
-			}
-
-			service := splitTag[1]
-			version := splitTag[2]
-			if semver.Prerelease(version) != "" {
-				return nil
-			}
-
-			// invalid (or empty) semantic version are considered less than a valid one
-			if semver.Compare(existingTags[service], version) == -1 {
-				existingTags[service] = version
-			}
-		}
+		latestTags = storeLatestTag(t, latestTags, coreOnly)
 		return nil
 	})
 	if err != nil {
-		fmt.Printf("iterate over existing tags: %s\n", err.Error())
-		os.Exit(1)
+		return fmt.Errorf("iterate over existing tags: %w", err)
 	}
 
-	for service, version := range existingTags {
-		newTag, err := incrementTag(service, version, updateType, coreOnly)
+	for service, version := range latestTags {
+		newTag, err := computeUpdatedTag(service, version, updateType, coreOnly)
 		if err != nil {
-			fmt.Printf("Error for %s with version %s, this tag will be skipped\n", service, version)
+			fmt.Printf("Error for %s with version %s, this tag will be skipped. Error: %s\n", service, version, err.Error())
 			continue
 		}
 
@@ -155,12 +128,49 @@ func main() {
 
 	err = pushTags(r, publicKeys)
 	if err != nil {
-		fmt.Printf("push tags: %s\n", err)
-		os.Exit(1)
+		return fmt.Errorf("push tags: %w", err)
 	}
+	return nil
 }
 
-func incrementTag(service, version, updateType string, coreOnly bool) (string, error) {
+func storeLatestTag(t *plumbing.Reference, latestTags map[string]string, coreOnly bool) map[string]string {
+	tagName, _ := strings.CutPrefix(t.Name().String(), "refs/tags/")
+	splitTag := strings.Split(tagName, "/")
+
+	if coreOnly {
+		if len(splitTag) != 2 || splitTag[0] != "core" {
+			return latestTags
+		}
+
+		version := splitTag[1]
+		if semver.Prerelease(version) != "" {
+			return latestTags
+		}
+
+		// invalid (or empty) semantic version are considered less than a valid one
+		if semver.Compare(latestTags["core"], version) == -1 {
+			latestTags["core"] = version
+		}
+	} else {
+		if len(splitTag) != 3 || splitTag[0] != "services" {
+			return latestTags
+		}
+
+		service := splitTag[1]
+		version := splitTag[2]
+		if semver.Prerelease(version) != "" {
+			return latestTags
+		}
+
+		// invalid (or empty) semantic version are considered less than a valid one
+		if semver.Compare(latestTags[service], version) == -1 {
+			latestTags[service] = version
+		}
+	}
+	return latestTags
+}
+
+func computeUpdatedTag(service, version, updateType string, coreOnly bool) (string, error) {
 	canonicalVersion := semver.Canonical(version)
 	splitVersion := strings.Split(canonicalVersion, ".")
 	if len(splitVersion) != 3 {
@@ -184,18 +194,18 @@ func incrementTag(service, version, updateType string, coreOnly bool) (string, e
 		splitVersion[1] = fmt.Sprint(updatedPatchNumber)
 		splitVersion[2] = "0"
 	default:
-		fmt.Println("Update type not supported in version increment, fix the script")
-		os.Exit(1)
+		return "", fmt.Errorf("update type not supported in version increment, fix the script")
 	}
 
 	updatedVersion := strings.Join(splitVersion, ".")
-	var newTag string
 	if coreOnly {
-		newTag = fmt.Sprintf("core/%s", updatedVersion)
-	} else {
-		newTag = fmt.Sprintf("services/%s/%s", service, updatedVersion)
+		if service != "core" {
+			return "", fmt.Errorf("--core-only was provided but store latest tag from another service: %s", service)
+		}
+		return fmt.Sprintf("core/%s", updatedVersion), nil
 	}
-	return newTag, nil
+
+	return fmt.Sprintf("services/%s/%s", service, updatedVersion), nil
 }
 
 func createTag(r *git.Repository, tag string) error {
