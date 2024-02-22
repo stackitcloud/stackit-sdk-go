@@ -11,7 +11,6 @@ fi
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
 CORE_PATH="${ROOT_DIR}/core"
-SCRIPTS_PATH="${ROOT_DIR}/scripts"
 SERVICES_PATH="${ROOT_DIR}/services"
 EXAMPLES_PATH="${ROOT_DIR}/examples"
 GOLANG_CI_YAML_PATH="${ROOT_DIR}/golang-ci.yaml"
@@ -27,12 +26,6 @@ fi
 if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
     echo ">> Linting core"
     cd ${CORE_PATH}
-    golangci-lint run ${GOLANG_CI_ARGS}
-fi
-
-if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
-    echo ">> Linting scripts"
-    cd ${SCRIPTS_PATH}
     golangci-lint run ${GOLANG_CI_ARGS}
 fi
 

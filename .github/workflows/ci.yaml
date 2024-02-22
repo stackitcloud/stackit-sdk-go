@@ -25,11 +25,15 @@ jobs:
         run: |
           make lint
           scripts/check-sync-tidy.sh
-      - name: Test for go 1.18
-        if: ${{ matrix.go-version == '1.18' }}
+      - name: Lint scripts
+        if: ${{ matrix.go-version == '1.21' }}
         run: |
-          make test skip-non-generated-files=false skip-scripts=true
+          make lint-scripts
       - name: Test
         if: ${{ matrix.go-version != '1.18' }}
         run: |
           make test
+      - name: Test scripts
+        if: ${{ matrix.go-version == '1.21' }}
+        run: |
+          make test-scripts
