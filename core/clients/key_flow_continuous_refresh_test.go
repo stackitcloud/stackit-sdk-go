@@ -85,6 +85,20 @@ func TestContinuousRefreshToken(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
+			accessToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+				ExpiresAt: jwt.NewNumericDate(time.Now().Add(accessTokensTimeToLive)),
+			}).SignedString([]byte("test"))
+			if err != nil {
+				t.Fatalf("failed to create access token: %v", err)
+			}
+
+			refreshToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+				ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
+			}).SignedString([]byte("test"))
+			if err != nil {
+				t.Fatalf("failed to create refresh token: %v", err)
+			}
+
 			numberDoCalls := 0
 			mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
 				numberDoCalls++
@@ -93,7 +107,7 @@ func TestContinuousRefreshToken(t *testing.T) {
 					return nil, tt.doError
 				}
 
-				accessToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+				newAccessToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
 					ExpiresAt: jwt.NewNumericDate(time.Now().Add(accessTokensTimeToLive)),
 				}).SignedString([]byte("test"))
 				if err != nil {
@@ -101,7 +115,8 @@ func TestContinuousRefreshToken(t *testing.T) {
 				}
 
 				responseBodyStruct := TokenResponseBody{
-					AccessToken: accessToken,
+					AccessToken:  newAccessToken,
+					RefreshToken: refreshToken,
 				}
 				responseBody, err := json.Marshal(responseBodyStruct)
 				if err != nil {
@@ -112,13 +127,6 @@ func TestContinuousRefreshToken(t *testing.T) {
 					Body:       io.NopCloser(bytes.NewReader(responseBody)),
 				}
 				return response, nil
-			}
-
-			accessToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-				ExpiresAt: jwt.NewNumericDate(time.Now().Add(accessTokensTimeToLive)),
-			}).SignedString([]byte("test"))
-			if err != nil {
-				t.Fatalf("failed to create access token: %v", err)
 			}
 
 			ctx := context.Background()
@@ -132,7 +140,8 @@ func TestContinuousRefreshToken(t *testing.T) {
 				},
 				doer: mockDo,
 				token: &TokenResponseBody{
-					AccessToken: accessToken,
+					AccessToken:  accessToken,
+					RefreshToken: refreshToken,
 				},
 			}
 
@@ -155,7 +164,7 @@ func TestContinuousRefreshToken(t *testing.T) {
 }
 
 // Tests if
-//   - continuousRefreshToken() changes the token
+//   - continuousRefreshToken() updates access token using the refresh token
 //   - The access token can be accessed while continuousRefreshToken() is trying to update it
 func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	// The times here are in the order of miliseconds (so they run faster)
@@ -203,6 +212,14 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 		t.Fatalf("created tokens are equal")
 	}
 
+	// The refresh token used to update the access token
+	refreshToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
+	}).SignedString([]byte("test"))
+	if err != nil {
+		t.Fatalf("failed to create refresh token: %v", err)
+	}
+
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel() // This cancels the refresher goroutine
@@ -233,13 +250,28 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 				t.Fatalf("Do call: after unlocking refreshToken(), expected test phase to be 3, got %d", currentTestPhase)
 			}
 
+			// Check required fields are passed
+			err = req.ParseForm()
+			if err != nil {
+				t.Fatalf("Do call: failed to parse body form: %v", err)
+			}
+			reqGrantType := req.Form.Get("grant_type")
+			if reqGrantType != "refresh_token" {
+				t.Fatalf("Do call: failed request to refresh token: call to refresh access expected to have grant type as %q, found %q instead", "refresh_token", reqGrantType)
+			}
+			reqRefreshToken := req.Form.Get("refresh_token")
+			if reqRefreshToken != refreshToken {
+				t.Fatalf("Do call: failed request to refresh token: call to refresh access token did not have the expected refresh token set")
+			}
+
 			// Return response with accessTokenSecond
 			responseBodyStruct := TokenResponseBody{
-				AccessToken: accessTokenSecond,
+				AccessToken:  accessTokenSecond,
+				RefreshToken: refreshToken,
 			}
 			responseBody, err := json.Marshal(responseBodyStruct)
 			if err != nil {
-				t.Fatalf("Do call: failed to marshal access token response: %v", err)
+				t.Fatalf("Do call: failed request to refresh token: marshal access token response: %v", err)
 			}
 			response := &http.Response{
 				StatusCode: http.StatusOK,
@@ -303,7 +335,8 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 		},
 		doer: mockDo,
 		token: &TokenResponseBody{
-			AccessToken: accessTokenFirst,
+			AccessToken:  accessTokenFirst,
+			RefreshToken: refreshToken,
 		},
 	}
 
