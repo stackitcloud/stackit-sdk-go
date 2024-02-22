@@ -43,19 +43,30 @@ type continuousTokenRefresher struct {
 //
 // To terminate this routine, close the context in refresher.keyFlow.config.BackgroundTokenRefreshContext.
 func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
-	expirationTimestamp, err := refresher.getAccessTokenExpirationTimestamp()
-	if err != nil {
-		return fmt.Errorf("get access token expiration timestamp: %w", err)
+	// Compute timestamp where we'll refresh token
+	// Access token may be empty at this point, we have to check it
+	var startRefreshTimestamp time.Time
+
+	refresher.keyFlow.tokenMutex.RLock()
+	accessToken := refresher.keyFlow.token.AccessToken
+	refresher.keyFlow.tokenMutex.RUnlock()
+	if accessToken == "" {
+		startRefreshTimestamp = time.Now()
+	} else {
+		expirationTimestamp, err := refresher.getAccessTokenExpirationTimestamp()
+		if err != nil {
+			return fmt.Errorf("get access token expiration timestamp: %w", err)
+		}
+		startRefreshTimestamp = expirationTimestamp.Add(-refresher.timeStartBeforeTokenExpiration)
 	}
-	startRefreshTimestamp := expirationTimestamp.Add(-refresher.timeStartBeforeTokenExpiration)
 
 	for {
-		err = refresher.waitUntilTimestamp(startRefreshTimestamp)
+		err := refresher.waitUntilTimestamp(startRefreshTimestamp)
 		if err != nil {
 			return err
 		}
 
-		err := refresher.keyFlow.config.BackgroundTokenRefreshContext.Err()
+		err = refresher.keyFlow.config.BackgroundTokenRefreshContext.Err()
 		if err != nil {
 			return fmt.Errorf("check context: %w", err)
 		}
@@ -78,7 +89,9 @@ func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 }
 
 func (refresher *continuousTokenRefresher) getAccessTokenExpirationTimestamp() (*time.Time, error) {
+	refresher.keyFlow.tokenMutex.RLock()
 	token := refresher.keyFlow.token.AccessToken
+	refresher.keyFlow.tokenMutex.RUnlock()
 
 	// We can safely use ParseUnverified because we are not doing authentication of any kind
 	// We're just checking the expiration time
@@ -109,7 +122,7 @@ func (refresher *continuousTokenRefresher) waitUntilTimestamp(timestamp time.Tim
 //   - (false, nil) if not successful but should be retried.
 //   - (_, err) if not successful and shouldn't be retried.
 func (refresher *continuousTokenRefresher) refreshToken() (bool, error) {
-	err := refresher.keyFlow.createAccessTokenWithRefreshToken()
+	err := refresher.keyFlow.recreateAccessToken()
 	if err == nil {
 		return true, nil
 	}

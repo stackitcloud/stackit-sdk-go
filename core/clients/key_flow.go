@@ -194,6 +194,11 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 	if err := c.recreateAccessToken(); err != nil {
 		return "", fmt.Errorf("get new access token: %w", err)
 	}
+
+	c.tokenMutex.RLock()
+	accessToken = c.token.AccessToken
+	c.tokenMutex.RUnlock()
+
 	return accessToken, nil
 }
 
@@ -312,7 +317,11 @@ func (c *KeyFlow) generateSelfSignedJWT() (string, error) {
 func (c *KeyFlow) requestToken(grant, assertion string) (*http.Response, error) {
 	body := url.Values{}
 	body.Set("grant_type", grant)
-	body.Set("assertion", assertion)
+	if grant == "refresh_token" {
+		body.Set("refresh_token", assertion)
+	} else {
+		body.Set("assertion", assertion)
+	}
 	payload := strings.NewReader(body.Encode())
 	req, err := http.NewRequest(http.MethodPost, c.config.TokenUrl, payload)
 	if err != nil {
@@ -335,9 +344,8 @@ func (c *KeyFlow) parseTokenResponse(res *http.Response) error {
 			body = []byte{}
 		}
 		return &oapierror.GenericOpenAPIError{
-			StatusCode:   res.StatusCode,
-			Body:         body,
-			ErrorMessage: err.Error(),
+			StatusCode: res.StatusCode,
+			Body:       body,
 		}
 	}
 	body, err := io.ReadAll(res.Body)
@@ -357,6 +365,10 @@ func (c *KeyFlow) parseTokenResponse(res *http.Response) error {
 }
 
 func tokenExpired(token string) (bool, error) {
+	if token == "" {
+		return true, nil
+	}
+
 	// We can safely use ParseUnverified because we are not authenticating the user at this point.
 	// We're just checking the expiration time
 	tokenParsed, _, err := jwt.NewParser().ParseUnverified(token, &jwt.RegisteredClaims{})
