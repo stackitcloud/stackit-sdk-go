@@ -18,7 +18,7 @@ const (
 	sdkRepo = "git@github.com:stackitcloud/stackit-sdk-go.git"
 	patch   = "patch"
 	minor   = "minor"
-	usage   = "go run automatic_tag.go [minor|patch] private-key-file-path --core-only"
+	usage   = "go run automatic_tag.go [minor|patch] ssh-private-key-file-path --core-only"
 )
 
 var (
@@ -45,10 +45,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	privateKeyFile := os.Args[2]
-	_, err := os.Stat(privateKeyFile)
+	sshPrivateKeyFilePath := os.Args[2]
+	_, err := os.Stat(sshPrivateKeyFilePath)
 	if err != nil {
-		fmt.Printf("The provided private key file path %s is not valid: %s\nUsage: %s\n", privateKeyFile, err, usage)
+		fmt.Printf("The provided private key file path %s is not valid: %s\nUsage: %s\n", sshPrivateKeyFilePath, err, usage)
 		os.Exit(1)
 	}
 
@@ -62,14 +62,14 @@ func main() {
 		coreOnly = true
 	}
 
-	err = automaticTagUpdate(updateType, privateKeyFile, coreOnly)
+	err = automaticTagUpdate(updateType, sshPrivateKeyFilePath, coreOnly)
 	if err != nil {
 		fmt.Printf("Error updating tags: %s\n", err.Error())
 		os.Exit(1)
 	}
 }
 
-func automaticTagUpdate(updateType, privateKeyFile string, coreOnly bool) error {
+func automaticTagUpdate(updateType, sshPrivateKeyFilePath string, coreOnly bool) error {
 	tempDir, err := os.MkdirTemp("", "")
 	if err != nil {
 		return fmt.Errorf("create temporary directory: %w", err)
@@ -82,7 +82,7 @@ func automaticTagUpdate(updateType, privateKeyFile string, coreOnly bool) error 
 		}
 	}()
 
-	publicKeys, err := ssh.NewPublicKeysFromFile("git", privateKeyFile, "")
+	publicKeys, err := ssh.NewPublicKeysFromFile("git", sshPrivateKeyFilePath, "")
 	if err != nil {
 		return fmt.Errorf("get public keys from private key file: %w", err)
 	}
