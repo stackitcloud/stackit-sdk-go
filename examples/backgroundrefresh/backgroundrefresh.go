@@ -20,7 +20,7 @@ func main() {
 
 	// Create a new API client, that uses key flow and has background token refresh enabled
 	dnsClient, err := dns.NewAPIClient(
-		config.WithServiceAccountKeyPath("path/to/service/account"),
+		config.WithServiceAccountKeyPath("path/to/service/account/key"),
 		config.WithBackgroundTokenRefresh(ctx),
 	)
 	if err != nil {
