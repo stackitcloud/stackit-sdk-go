@@ -1,6 +1,19 @@
 ## v0.10.0 (YYYY-MM-DD)
 
 - **Feature:** Add configuration option that, for the key flow, enables a goroutine to be spawned that will refresh the access token when it's close to expiring
+- **Deprecation:**
+  - Methods:
+    - `config.WithMaxRetries`
+    - `config.WithWaitBetweenCalls`
+    - `config.WithRetryTimeout`
+    - `client.NewRetryConfig()`
+  - Fields:
+    - `client.KeyFlowConfig.ClientRetry`
+    - `client.TokenFlowConfig.ClientRetry`
+    - `client.NoAuthFlowConfig.ClientRetry`
+    - `client.RetryConfig`
+  - Retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. An option to add HTTP middleware will be introduced soon.
+- **Breaking Change:** Remove methods `client.TokenFlow.Clone` and `client.NoAuthFlow.Clone`. Removed fields `client.DefaultRetryMaxRetries`, `client.DefaultRetryWaitBetweenCalls` and `client.DefaultRetryTimeout`. These are no longer being used.
 
 ## v0.9.0 (2024-02-19)
 

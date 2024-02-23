@@ -24,7 +24,7 @@ func (c *NoAuthFlow) GetConfig() NoAuthFlowConfig {
 	return *c.config
 }
 
-func (c *NoAuthFlow) Init(cfg NoAuthFlowConfig) error {
+func (c *NoAuthFlow) Init(_ NoAuthFlowConfig) error {
 	c.config = &NoAuthFlowConfig{}
 	c.client = &http.Client{
 		Timeout: DefaultClientTimeout,
