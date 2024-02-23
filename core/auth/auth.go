@@ -39,7 +39,7 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg.CustomAuth != nil {
 		return cfg.CustomAuth, nil
 	} else if cfg.NoAuth {
-		noAuthRoundTripper, err := NoAuth(cfg.RetryOptions)
+		noAuthRoundTripper, err := NoAuth(cfg.RetryOptions) //nolint:staticcheck //will be removed in a later update
 		if err != nil {
 			return nil, fmt.Errorf("configuring no auth client: %w", err)
 		}
@@ -93,10 +93,8 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 
 // NoAuth configures a flow without authentication and returns an http.RoundTripper
 // that can be used to make unauthenticated requests
-func NoAuth(retryOptions *clients.RetryConfig) (rt http.RoundTripper, err error) {
-	noAuthConfig := clients.NoAuthFlowConfig{
-		ClientRetry: retryOptions,
-	}
+func NoAuth(_ *clients.RetryConfig) (rt http.RoundTripper, err error) { //nolint:staticcheck //will be removed in a later update
+	noAuthConfig := clients.NoAuthFlowConfig{}
 	noAuthRoundTripper := &clients.NoAuthFlow{}
 	if err := noAuthRoundTripper.Init(noAuthConfig); err != nil {
 		return nil, fmt.Errorf("initializing client: %w", err)
@@ -125,7 +123,6 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 
 	tokenCfg := clients.TokenFlowConfig{
 		ServiceAccountToken: cfg.Token,
-		ClientRetry:         cfg.RetryOptions,
 	}
 
 	client := &clients.TokenFlow{}
@@ -181,7 +178,6 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	keyCfg := clients.KeyFlowConfig{
 		ServiceAccountKey:             serviceAccountKey,
 		PrivateKey:                    cfg.PrivateKey,
-		ClientRetry:                   cfg.RetryOptions,
 		TokenUrl:                      cfg.TokenCustomUrl,
 		BackgroundTokenRefreshContext: cfg.BackgroundTokenRefreshContext,
 	}

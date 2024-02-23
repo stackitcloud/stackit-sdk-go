@@ -12,6 +12,7 @@ type NoAuthFlow struct {
 
 // NoAuthFlowConfig holds the configuration for the unauthenticated flow
 type NoAuthFlowConfig struct {
+	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. An option to add HTTP middleware will be introduced soon
 	ClientRetry *RetryConfig
 }
 
@@ -24,27 +25,11 @@ func (c *NoAuthFlow) GetConfig() NoAuthFlowConfig {
 }
 
 func (c *NoAuthFlow) Init(cfg NoAuthFlowConfig) error {
-	c.config = &NoAuthFlowConfig{
-		ClientRetry: cfg.ClientRetry,
-	}
+	c.config = &NoAuthFlowConfig{}
 	c.client = &http.Client{
 		Timeout: DefaultClientTimeout,
 	}
-	if c.config.ClientRetry == nil {
-		c.config.ClientRetry = NewRetryConfig()
-	}
 	return nil
-}
-
-// Clone creates a clone of the client
-func (c *NoAuthFlow) Clone() interface{} {
-	sc := *c
-	nc := &sc
-	cl := *nc.client
-	cf := *nc.config
-	nc.client = &cl
-	nc.config = &cf
-	return c
 }
 
 // Roundtrip performs the request
@@ -52,5 +37,5 @@ func (c *NoAuthFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 	if c.client == nil {
 		return nil, fmt.Errorf("please run Init()")
 	}
-	return Do(c.client, req, c.config.ClientRetry)
+	return Do(c.client, req)
 }

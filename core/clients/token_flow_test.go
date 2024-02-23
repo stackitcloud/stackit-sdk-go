@@ -7,7 +7,6 @@ import (
 	"net/http/httptest"
 	"net/url"
 	"os"
-	"reflect"
 	"testing"
 )
 
@@ -64,7 +63,7 @@ func TestTokenFlow_Do(t *testing.T) {
 		wantErr bool
 	}{
 		{"fail", fields{nil, nil}, args{}, 0, true},
-		{"success", fields{&http.Client{}, &TokenFlowConfig{ClientRetry: &RetryConfig{}}}, args{}, http.StatusOK, false},
+		{"success", fields{&http.Client{}, &TokenFlowConfig{}}, args{}, http.StatusOK, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -109,21 +108,5 @@ func TestTokenFlow_Do(t *testing.T) {
 				t.Errorf("TokenFlow.Do() = %v, want %v", got.StatusCode, tt.want)
 			}
 		})
-	}
-}
-
-func TestTokenClone(t *testing.T) {
-	c := &TokenFlow{
-		client: &http.Client{},
-		config: &TokenFlowConfig{},
-	}
-
-	clone, ok := c.Clone().(*TokenFlow)
-	if !ok {
-		t.Fatalf("Type assertion failed")
-	}
-
-	if !reflect.DeepEqual(c, clone) {
-		t.Errorf("Clone() = %v, want %v", clone, c)
 	}
 }

@@ -9,17 +9,11 @@ import (
 	"reflect"
 	"strings"
 	"testing"
-	"time"
 )
 
 func TestNewRetryConfig(t *testing.T) {
 	got := NewRetryConfig()
-	want := RetryConfig{
-		MaxRetries:       DefaultRetryMaxRetries,
-		WaitBetweenCalls: DefaultRetryWaitBetweenCalls,
-		RetryTimeout:     DefaultRetryTimeout,
-		ClientTimeout:    DefaultClientTimeout,
-	}
+	want := RetryConfig{}
 	if got == nil {
 		t.Error("NewRetryConfig returned nil")
 	} else if !reflect.DeepEqual(*got, want) {
@@ -29,7 +23,6 @@ func TestNewRetryConfig(t *testing.T) {
 
 func TestDo(t *testing.T) {
 	type args struct {
-		cfg            *RetryConfig
 		serverStatus   int
 		serverResponse string
 	}
@@ -41,22 +34,18 @@ func TestDo(t *testing.T) {
 		errMsg   string
 	}{
 		{"all ok", args{
-			cfg:            &RetryConfig{0, time.Microsecond, time.Second, DefaultClientTimeout},
 			serverStatus:   http.StatusOK,
 			serverResponse: `{"status":"ok", "testing": "%s"}`,
 		}, &http.Response{StatusCode: http.StatusOK}, false, ""},
 		{"all ok nil client", args{
-			cfg:            &RetryConfig{0, time.Microsecond, time.Second, DefaultClientTimeout},
 			serverStatus:   http.StatusOK,
 			serverResponse: `{"status":"ok", "testing": "%s"}`,
 		}, &http.Response{StatusCode: http.StatusOK}, false, ""},
 		{"fail 1", args{
-			cfg:            &RetryConfig{1, time.Microsecond, time.Second, DefaultClientTimeout},
 			serverStatus:   http.StatusInternalServerError,
 			serverResponse: `{"status":"error 1", "testing": "%s"}`,
 		}, &http.Response{StatusCode: http.StatusInternalServerError}, false, ""},
 		{"fail 2 - timeout error", args{
-			cfg:            &RetryConfig{3, time.Microsecond, time.Second, DefaultClientTimeout},
 			serverStatus:   http.StatusOK,
 			serverResponse: `{"status":"ok", "testing": "%s"}`,
 		}, &http.Response{StatusCode: http.StatusOK}, true, "no such host"},
@@ -88,7 +77,7 @@ func TestDo(t *testing.T) {
 			if tt.name == "all ok nil client" {
 				c = nil
 			}
-			gotResp, err := Do(c, req, tt.args.cfg)
+			gotResp, err := Do(c, req)
 			if err == nil {
 				// Defer discard and close the body
 				defer func() {

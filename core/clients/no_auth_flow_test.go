@@ -59,9 +59,7 @@ func TestNoAuthFlow_Do(t *testing.T) {
 			name: "success",
 			fields: fields{
 				&http.Client{},
-				&NoAuthFlowConfig{
-					ClientRetry: &RetryConfig{},
-				},
+				&NoAuthFlowConfig{},
 			},
 			args:    args{},
 			want:    http.StatusOK,

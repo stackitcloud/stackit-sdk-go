@@ -86,7 +86,7 @@ func TestContinuousRefreshToken(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
 			numberDoCalls := 0
-			mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
+			mockDo := func(client *http.Client, req *http.Request) (resp *http.Response, err error) {
 				numberDoCalls++
 
 				if tt.doError != nil {
@@ -127,7 +127,6 @@ func TestContinuousRefreshToken(t *testing.T) {
 
 			keyFlow := &KeyFlow{
 				config: &KeyFlowConfig{
-					ClientRetry:                   NewRetryConfig(),
 					BackgroundTokenRefreshContext: ctx,
 				},
 				doer: mockDo,
@@ -212,7 +211,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	doTestPhase1RequestDone := false
 	doTestPhase2RequestDone := false
 	doTestPhase4RequestDone := false
-	mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
+	mockDo := func(client *http.Client, req *http.Request) (resp *http.Response, err error) {
 		switch currentTestPhase {
 		default:
 			t.Fatalf("Do call: unexpected request during test phase %d", currentTestPhase)
@@ -298,7 +297,6 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	keyFlow := &KeyFlow{
 		client: &http.Client{},
 		config: &KeyFlowConfig{
-			ClientRetry:                   NewRetryConfig(),
 			BackgroundTokenRefreshContext: ctx,
 		},
 		doer: mockDo,
