@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/services/dns"
@@ -27,12 +28,16 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when creating API client: %v\n", err)
 	}
 
-	// The client can then be used as normal
+	// The client can then be used as normal, a new token will be fetched whenever the current one is close to expiring
+	// Use this for long-running operations (hours)
+	for i := 0; i < 10; i++ {
+		// Get the DNS zones for your project
+		getZoneResp, err := dnsClient.ListZones(context.Background(), projectId).Execute()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error when calling `ListZones`: %v\n", err)
+		}
+		fmt.Printf("Number of DNS zones: %v\n", len(*getZoneResp.Zones))
 
-	// Get the DNS zones for your project
-	getZoneResp, err := dnsClient.ListZones(context.Background(), projectId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ListZones`: %v\n", err)
+		time.Sleep(time.Hour)
 	}
-	fmt.Printf("Number of DNS zones: %v\n", len(*getZoneResp.Zones))
 }
