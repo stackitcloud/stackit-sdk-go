@@ -5,6 +5,7 @@ use (
 	./examples/argus
 	./examples/authentication
 	./examples/authorization
+	./examples/backgroundrefresh
 	./examples/configuration
 	./examples/dns
 	./examples/errorhandling
