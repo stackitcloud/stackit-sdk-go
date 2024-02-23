@@ -78,7 +78,7 @@ func run() error {
 
 	_, err := os.Stat(sshPrivateKeyFilePath)
 	if err != nil {
-		return fmt.Errorf("the provided private key file path %s is not valid: %s\nUsage: %s", sshPrivateKeyFilePath, err, usage)
+		return fmt.Errorf("the provided private key file path %s is not valid: %w\nUsage: %s", sshPrivateKeyFilePath, err, usage)
 	}
 
 	err = automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target)
@@ -88,7 +88,7 @@ func run() error {
 	return nil
 }
 
-// automaticTagUpdate goes through all of the exising tags, gets the latest for the targer, creates a new one according to the updateType and pushes them
+// automaticTagUpdate goes through all of the existing tags, gets the latest for the targer, creates a new one according to the updateType and pushes them
 func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target string) error {
 	tempDir, err := os.MkdirTemp("", "")
 	if err != nil {
