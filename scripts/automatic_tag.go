@@ -18,7 +18,7 @@ const (
 	sdkRepo = "git@github.com:stackitcloud/stackit-sdk-go.git"
 	patch   = "patch"
 	minor   = "minor"
-	usage   = "go run automatic_tag.go [minor|patch] ssh-private-key-file-path --core-only"
+	usage   = "go run automatic_tag.go [minor|patch] ssh-private-key-file-path password --core-only"
 )
 
 var (
@@ -27,7 +27,7 @@ var (
 
 func main() {
 	// Parse arguments
-	if len(os.Args) != 3 && len(os.Args) != 4 {
+	if len(os.Args) != 4 && len(os.Args) != 5 {
 		fmt.Printf("wrong number of arguments. Usage: %s\n", usage)
 		os.Exit(1)
 	}
@@ -52,24 +52,26 @@ func main() {
 		os.Exit(1)
 	}
 
+	sshKeyPassword := os.Args[3]
+
 	// Parse flag
 	var coreOnly bool
-	if len(os.Args) == 4 {
-		if os.Args[3] != "--core-only" {
+	if len(os.Args) == 5 {
+		if os.Args[4] != "--core-only" {
 			fmt.Printf("Wrong arguments. Usage: %s\n", usage)
 			os.Exit(1)
 		}
 		coreOnly = true
 	}
 
-	err = automaticTagUpdate(updateType, sshPrivateKeyFilePath, coreOnly)
+	err = automaticTagUpdate(updateType, sshPrivateKeyFilePath, sshKeyPassword, coreOnly)
 	if err != nil {
 		fmt.Printf("Error updating tags: %s\n", err.Error())
 		os.Exit(1)
 	}
 }
 
-func automaticTagUpdate(updateType, sshPrivateKeyFilePath string, coreOnly bool) error {
+func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password string, coreOnly bool) error {
 	tempDir, err := os.MkdirTemp("", "")
 	if err != nil {
 		return fmt.Errorf("create temporary directory: %w", err)
@@ -82,7 +84,7 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath string, coreOnly bool)
 		}
 	}()
 
-	publicKeys, err := ssh.NewPublicKeysFromFile("git", sshPrivateKeyFilePath, "")
+	publicKeys, err := ssh.NewPublicKeysFromFile("git", sshPrivateKeyFilePath, password)
 	if err != nil {
 		return fmt.Errorf("get public keys from private key file: %w", err)
 	}

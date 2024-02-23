@@ -40,7 +40,7 @@ test:
 
 # AUTOMATIC TAG
 sdk-tag: 
-	@go run $(SCRIPTS_BASE)/automatic_tag.go ${update-type} ${ssh-private-key-file-path} 
+	@go run $(SCRIPTS_BASE)/automatic_tag.go ${update-type} ${ssh-private-key-file-path} ${password}
 
 sdk-tag-core: 
-	@go run $(SCRIPTS_BASE)/automatic_tag.go ${update-type} ${ssh-private-key-file-path} --core-only
+	@go run $(SCRIPTS_BASE)/automatic_tag.go ${update-type} ${ssh-private-key-file-path} ${password} --core-only
