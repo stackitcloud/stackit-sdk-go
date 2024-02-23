@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"flag"
 	"fmt"
 	"os"
 	"strconv"
@@ -15,68 +16,80 @@ import (
 )
 
 const (
-	sdkRepo      = "git@github.com:stackitcloud/stackit-sdk-go.git"
-	patch        = "patch"
-	minor        = "minor"
-	coreOnlyFlag = "--core-only"
+	sdkRepo     = "git@github.com:vicentepinto98/gh.git"
+	patch       = "patch"
+	minor       = "minor"
+	allServices = "all-services"
+	core        = "core"
+
+	updateTypeFlag            = "update-type"
+	sshPrivateKeyFilePathFlag = "ssh-private-key-file-path"
+	passwordFlag              = "password"
+	targetFlag                = "target"
 )
 
 var (
 	updateTypes = []string{minor, patch}
-	usage       = fmt.Sprintf("go run automatic_tag.go [minor|patch] ssh-private-key-file-path password %s", coreOnlyFlag)
+	targets     = []string{allServices, core}
+	usage       = "go run automatic_tag.go --update-type [minor|patch] --ssh-private-key-file-path path/to/private-key --password password --target [all-services|core]"
 )
 
 func main() {
-	// Parse arguments
-	if len(os.Args) != 4 && len(os.Args) != 5 {
-		fmt.Printf("wrong number of arguments. Usage: %s\n", usage)
-		os.Exit(1)
-	}
-
-	updateType := os.Args[1]
-	valid := false
-	for _, t := range updateTypes {
-		if updateType == t {
-			valid = true
-			break
-		}
-	}
-	if !valid {
-		fmt.Printf("the provided argument for update type `%s` is not valid, the valid values are: [%s]\n", updateType, strings.Join(updateTypes, ","))
-		os.Exit(1)
-	}
-
-	sshPrivateKeyFilePath := os.Args[2]
-	_, err := os.Stat(sshPrivateKeyFilePath)
-	if err != nil {
-		fmt.Printf("The provided private key file path %s is not valid: %s\nUsage: %s\n", sshPrivateKeyFilePath, err, usage)
-		os.Exit(1)
-	}
-
-	sshKeyPassword := os.Args[3]
-	if sshKeyPassword == coreOnlyFlag {
-		fmt.Printf("Wrong arguments. Usage: %s\n", usage)
-		os.Exit(1)
-	}
-
-	// Parse flag
-	var coreOnly bool
-	if len(os.Args) == 5 {
-		if os.Args[4] != coreOnlyFlag {
-			fmt.Printf("Wrong arguments. Usage: %s\n", usage)
-			os.Exit(1)
-		}
-		coreOnly = true
-	}
-
-	err = automaticTagUpdate(updateType, sshPrivateKeyFilePath, sshKeyPassword, coreOnly)
-	if err != nil {
-		fmt.Printf("Error updating tags: %s\n", err.Error())
+	if err := run(); err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %s\n", err)
 		os.Exit(1)
 	}
 }
 
-func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password string, coreOnly bool) error {
+func run() error {
+	var updateType string
+	var sshPrivateKeyFilePath string
+	var password string
+	var target string
+
+	flag.StringVar(&updateType, updateTypeFlag, "", fmt.Sprintf("Update type, must be one of: %s (required)", strings.Join(updateTypes, ",")))
+	flag.StringVar(&sshPrivateKeyFilePath, sshPrivateKeyFilePathFlag, "", "Path to the ssh private key (required)")
+	flag.StringVar(&password, passwordFlag, "", "Password of the ssh private key (optional)")
+	flag.StringVar(&target, targetFlag, allServices, fmt.Sprintf("Create tags for this target, must be one of %s (optional, default is %s)", strings.Join(targets, ","), allServices))
+
+	flag.Parse()
+
+	validUpdateType := false
+	for _, t := range updateTypes {
+		if updateType == t {
+			validUpdateType = true
+			break
+		}
+	}
+	if !validUpdateType {
+		return fmt.Errorf("the provided update type `%s` is not valid, the valid values are: [%s]", updateType, strings.Join(updateTypes, ","))
+	}
+
+	validTarget := false
+	for _, t := range targets {
+		if target == t {
+			validTarget = true
+			break
+		}
+	}
+	if !validTarget {
+		return fmt.Errorf("the provided target `%s` is not valid, the valid values are: [%s]", target, strings.Join(targets, ","))
+	}
+
+	_, err := os.Stat(sshPrivateKeyFilePath)
+	if err != nil {
+		return fmt.Errorf("the provided private key file path %s is not valid: %s\nUsage: %s", sshPrivateKeyFilePath, err, usage)
+	}
+
+	err = automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target)
+	if err != nil {
+		return fmt.Errorf("updating tags: %s", err.Error())
+	}
+	return nil
+}
+
+// automaticTagUpdate goes through all of the exising tags, gets the latest for the targer, creates a new one according to the updateType and pushes them
+func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target string) error {
 	tempDir, err := os.MkdirTemp("", "")
 	if err != nil {
 		return fmt.Errorf("create temporary directory: %w", err)
@@ -84,8 +97,8 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password string, core
 
 	defer func() {
 		tempErr := os.RemoveAll(tempDir)
-		if tempErr != nil && err == nil {
-			err = fmt.Errorf("temporary directory %s could not be removed: %w", tempDir, tempErr)
+		if tempErr != nil {
+			fmt.Printf("Warning: temporary directory %s could not be removed: %s", tempDir, tempErr.Error())
 		}
 	}()
 
@@ -110,7 +123,10 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password string, core
 
 	latestTags := map[string]string{}
 	err = tagrefs.ForEach(func(t *plumbing.Reference) error {
-		latestTags = storeLatestTag(t, latestTags, coreOnly)
+		latestTags, err = storeLatestTag(t, latestTags, target)
+		if err != nil {
+			return fmt.Errorf("store latest tag: %w", err)
+		}
 		return nil
 	})
 	if err != nil {
@@ -118,7 +134,7 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password string, core
 	}
 
 	for service, version := range latestTags {
-		newTag, err := computeUpdatedTag(service, version, updateType, coreOnly)
+		newTag, err := computeUpdatedTag(service, version, updateType, target)
 		if err != nil {
 			fmt.Printf("Error for %s with version %s, this tag will be skipped. Error: %s\n", service, version, err.Error())
 			continue
@@ -139,44 +155,52 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password string, core
 	return nil
 }
 
-func storeLatestTag(t *plumbing.Reference, latestTags map[string]string, coreOnly bool) map[string]string {
+// storeLatestTag receives a tag in the form of a plumbing.Reference and a map with the latest tag per service
+// It checks if the tag is part of the current target (if it is belonging to a service or to core),
+// checks if it is newer than the current latest tag stored in the map and if it is, updates latestTags and returns it
+func storeLatestTag(t *plumbing.Reference, latestTags map[string]string, target string) (map[string]string, error) {
 	tagName, _ := strings.CutPrefix(t.Name().String(), "refs/tags/")
 	splitTag := strings.Split(tagName, "/")
 
-	if coreOnly {
+	switch target {
+	case core:
 		if len(splitTag) != 2 || splitTag[0] != "core" {
-			return latestTags
+			return latestTags, nil
 		}
 
 		version := splitTag[1]
 		if semver.Prerelease(version) != "" {
-			return latestTags
+			return latestTags, nil
 		}
 
 		// invalid (or empty) semantic version are considered less than a valid one
 		if semver.Compare(latestTags["core"], version) == -1 {
 			latestTags["core"] = version
 		}
-	} else {
+	case allServices:
 		if len(splitTag) != 3 || splitTag[0] != "services" {
-			return latestTags
+			return latestTags, nil
 		}
 
 		service := splitTag[1]
 		version := splitTag[2]
 		if semver.Prerelease(version) != "" {
-			return latestTags
+			return latestTags, nil
 		}
 
 		// invalid (or empty) semantic version are considered less than a valid one
 		if semver.Compare(latestTags[service], version) == -1 {
 			latestTags[service] = version
 		}
+	default:
+		return nil, fmt.Errorf("target not supported in storeLatestTag, fix the script")
 	}
-	return latestTags
+	return latestTags, nil
 }
 
-func computeUpdatedTag(service, version, updateType string, coreOnly bool) (string, error) {
+// computeUpdatedTag returns the a new tag with the updated version for a specific service according to the update type and target
+// example: for service argus with version v0.1.1, target all-services and updateType minor, it returns services/argus/v0.2.0
+func computeUpdatedTag(service, version, updateType, target string) (string, error) {
 	canonicalVersion := semver.Canonical(version)
 	splitVersion := strings.Split(canonicalVersion, ".")
 	if len(splitVersion) != 3 {
@@ -204,14 +228,18 @@ func computeUpdatedTag(service, version, updateType string, coreOnly bool) (stri
 	}
 
 	updatedVersion := strings.Join(splitVersion, ".")
-	if coreOnly {
+
+	switch target {
+	case core:
 		if service != "core" {
-			return "", fmt.Errorf("%s was provided but store latest tag from another service: %s", coreOnlyFlag, service)
+			return "", fmt.Errorf("%s target was provided but store latest tag from another service: %s", target, service)
 		}
 		return fmt.Sprintf("core/%s", updatedVersion), nil
+	case allServices:
+		return fmt.Sprintf("services/%s/%s", service, updatedVersion), nil
+	default:
+		return "", fmt.Errorf("target not supported in version increment, fix the script")
 	}
-
-	return fmt.Sprintf("services/%s/%s", service, updatedVersion), nil
 }
 
 func createTag(r *git.Repository, tag string) error {

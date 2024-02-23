@@ -39,8 +39,18 @@ test:
 	@$(MAKE) --no-print-directory test-go skip-non-generated-files=${skip-non-generated-files}
 
 # AUTOMATIC TAG
-sdk-tag: 
-	@go run $(SCRIPTS_BASE)/automatic_tag.go ${update-type} ${ssh-private-key-file-path} ${password}
+sdk-tag-services:
+	@if [ "${password}" = "" ]; then \
+        go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path}; \
+    else \
+        go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path} --password ${password}; \
+    fi
+
 
 sdk-tag-core: 
-	@go run $(SCRIPTS_BASE)/automatic_tag.go ${update-type} ${ssh-private-key-file-path} ${password} --core-only
+	@if [ "${password}" = "" ]; then \
+        go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path} --target core; \
+    else \
+        go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path} --target core --password ${password}; \
+    fi
+	
