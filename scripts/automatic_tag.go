@@ -15,14 +15,15 @@ import (
 )
 
 const (
-	sdkRepo = "git@github.com:stackitcloud/stackit-sdk-go.git"
-	patch   = "patch"
-	minor   = "minor"
-	usage   = "go run automatic_tag.go [minor|patch] ssh-private-key-file-path password --core-only"
+	sdkRepo      = "git@github.com:stackitcloud/stackit-sdk-go.git"
+	patch        = "patch"
+	minor        = "minor"
+	coreOnlyFlag = "--core-only"
 )
 
 var (
 	updateTypes = []string{minor, patch}
+	usage       = fmt.Sprintf("go run automatic_tag.go [minor|patch] ssh-private-key-file-path password %s", coreOnlyFlag)
 )
 
 func main() {
@@ -53,11 +54,15 @@ func main() {
 	}
 
 	sshKeyPassword := os.Args[3]
+	if sshKeyPassword == coreOnlyFlag {
+		fmt.Printf("Wrong arguments. Usage: %s\n", usage)
+		os.Exit(1)
+	}
 
 	// Parse flag
 	var coreOnly bool
 	if len(os.Args) == 5 {
-		if os.Args[4] != "--core-only" {
+		if os.Args[4] != coreOnlyFlag {
 			fmt.Printf("Wrong arguments. Usage: %s\n", usage)
 			os.Exit(1)
 		}
@@ -201,7 +206,7 @@ func computeUpdatedTag(service, version, updateType string, coreOnly bool) (stri
 	updatedVersion := strings.Join(splitVersion, ".")
 	if coreOnly {
 		if service != "core" {
-			return "", fmt.Errorf("--core-only was provided but store latest tag from another service: %s", service)
+			return "", fmt.Errorf("%s was provided but store latest tag from another service: %s", coreOnlyFlag, service)
 		}
 		return fmt.Sprintf("core/%s", updatedVersion), nil
 	}
