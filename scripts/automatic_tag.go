@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	sdkRepo     = "git@github.com:vicentepinto98/gh.git"
+	sdkRepo     = "git@github.com:stackitcloud/stackit-sdk-go.git"
 	patch       = "patch"
 	minor       = "minor"
 	allServices = "all-services"
