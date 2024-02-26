@@ -88,7 +88,7 @@ func run() error {
 	return nil
 }
 
-// automaticTagUpdate goes through all of the existing tags, gets the latest for the targer, creates a new one according to the updateType and pushes them
+// automaticTagUpdate goes through all of the existing tags, gets the latest for the target, creates a new one according to the updateType and pushes them
 func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target string) error {
 	tempDir, err := os.MkdirTemp("", "")
 	if err != nil {
