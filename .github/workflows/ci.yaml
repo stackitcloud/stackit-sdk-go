@@ -25,6 +25,13 @@ jobs:
         run: |
           make lint
           scripts/check-sync-tidy.sh
-
+      - name: Lint scripts
+        if: ${{ matrix.go-version == '1.21' }}
+        run: |
+          make lint-scripts
       - name: Test
         run: make test
+      - name: Test scripts
+        if: ${{ matrix.go-version == '1.21' }}
+        run: |
+          make test-scripts
