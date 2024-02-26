@@ -132,88 +132,44 @@ func TestStoreLatestTag(t *testing.T) {
 	}
 }
 
-func TestComputeUpdatedTag(t *testing.T) {
+func TestComputeUpdatedVersion(t *testing.T) {
 	for _, test := range []struct {
-		desc        string
-		service     string
-		version     string
-		updateType  string
-		target      string
-		expectedTag string
-		isValid     bool
+		desc            string
+		version         string
+		updateType      string
+		expectedVersion string
+		isValid         bool
 	}{
 		{
-			desc:        "valid service minor update",
-			service:     "foo",
-			version:     "v0.1.0",
-			updateType:  "minor",
-			target:      "all-services",
-			expectedTag: "services/foo/v0.2.0",
-			isValid:     true,
+			desc:            "valid minor update",
+			version:         "v0.1.0",
+			updateType:      "minor",
+			expectedVersion: "v0.2.0",
+			isValid:         true,
 		},
 		{
-			desc:        "valid service minor update with previous patch version not zero",
-			service:     "foo",
-			version:     "v0.1.1",
-			updateType:  "minor",
-			target:      "all-services",
-			expectedTag: "services/foo/v0.2.0",
-			isValid:     true,
+			desc:            "valid minor update with previous patch version not zero",
+			version:         "v0.1.1",
+			updateType:      "minor",
+			expectedVersion: "v0.2.0",
+			isValid:         true,
 		},
 		{
-			desc:        "valid service patch update",
-			service:     "foo",
-			version:     "v0.1.0",
-			updateType:  "patch",
-			target:      "all-services",
-			expectedTag: "services/foo/v0.1.1",
-			isValid:     true,
-		},
-		{
-			desc:        "valid core minor update",
-			service:     "core",
-			version:     "v0.1.0",
-			updateType:  "minor",
-			target:      "core",
-			expectedTag: "core/v0.2.0",
-			isValid:     true,
-		},
-		{
-			desc:        "valid core patch update",
-			service:     "core",
-			version:     "v0.1.0",
-			updateType:  "patch",
-			target:      "core",
-			expectedTag: "core/v0.1.1",
-			isValid:     true,
+			desc:            "valid patch update",
+			version:         "v0.1.0",
+			updateType:      "patch",
+			expectedVersion: "v0.1.1",
+			isValid:         true,
 		},
 		{
 			desc:       "invalid update type",
-			service:    "foo",
 			version:    "v0.1.0",
 			updateType: "major",
-			target:     "all-services",
-			isValid:    false,
-		},
-		{
-			desc:       "invalid core update with wrong name - this should never happen",
-			service:    "foo",
-			version:    "v0.1.0",
-			updateType: "patch",
-			target:     "core",
-			isValid:    false,
-		},
-		{
-			desc:       "unsupported target - this should never happen",
-			service:    "foo",
-			version:    "v0.1.0",
-			updateType: "patch",
-			target:     "unsupported",
 			isValid:    false,
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
-			updatedTag, err := computeUpdatedTag(test.service, test.version, test.updateType, test.target)
+			updatedVersion, err := computeUpdatedVersion(test.version, test.updateType)
 
 			if err != nil && test.isValid {
 				t.Fatalf("Test returned error on valid test case: %v", err)
@@ -223,8 +179,8 @@ func TestComputeUpdatedTag(t *testing.T) {
 				t.Fatalf("Test didn't return error on invalid test case")
 			}
 
-			if test.isValid && test.expectedTag != updatedTag {
-				t.Fatalf("updated tag is wrong: expected %s, got %s", test.expectedTag, updatedTag)
+			if test.isValid && test.expectedVersion != updatedVersion {
+				t.Fatalf("updated tag is wrong: expected %s, got %s", test.expectedVersion, updatedVersion)
 			}
 		})
 	}

@@ -133,10 +133,24 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target stri
 		return fmt.Errorf("iterate over existing tags: %w", err)
 	}
 
-	for service, version := range latestTags {
-		newTag, err := computeUpdatedTag(service, version, updateType, target)
+	for module, version := range latestTags {
+		updatedVersion, err := computeUpdatedVersion(version, updateType)
 		if err != nil {
-			fmt.Printf("Error for %s with version %s, this tag will be skipped. Error: %s\n", service, version, err.Error())
+			fmt.Printf("Error computing updated version for %s with version %s, this tag will be skipped: %s\n", module, version, err.Error())
+			continue
+		}
+
+		var newTag string
+		switch target {
+		case core:
+			if module != "core" {
+				return fmt.Errorf("%s target was provided but there is a stored latest tag from another service: %s", target, module)
+			}
+			newTag = fmt.Sprintf("core/%s", updatedVersion)
+		case allServices:
+			newTag = fmt.Sprintf("services/%s/%s", module, updatedVersion)
+		default:
+			fmt.Printf("Error computing updated version for %s with version %s, this tag will be skipped: target %s not supported in version increment, fix the script\n", module, version, target)
 			continue
 		}
 
@@ -198,9 +212,9 @@ func storeLatestTag(t *plumbing.Reference, latestTags map[string]string, target 
 	return latestTags, nil
 }
 
-// computeUpdatedTag returns the a new tag with the updated version for a specific service according to the update type and target
-// example: for service argus with version v0.1.1, target all-services and updateType minor, it returns services/argus/v0.2.0
-func computeUpdatedTag(service, version, updateType, target string) (string, error) {
+// computeUpdatedVersion returns the updated version according to the update type
+// example: for version v0.1.1 and updateType minor, it returns v0.2.0
+func computeUpdatedVersion(version, updateType string) (string, error) {
 	canonicalVersion := semver.Canonical(version)
 	splitVersion := strings.Split(canonicalVersion, ".")
 	if len(splitVersion) != 3 {
@@ -228,18 +242,7 @@ func computeUpdatedTag(service, version, updateType, target string) (string, err
 	}
 
 	updatedVersion := strings.Join(splitVersion, ".")
-
-	switch target {
-	case core:
-		if service != "core" {
-			return "", fmt.Errorf("%s target was provided but store latest tag from another service: %s", target, service)
-		}
-		return fmt.Sprintf("core/%s", updatedVersion), nil
-	case allServices:
-		return fmt.Sprintf("services/%s/%s", service, updatedVersion), nil
-	default:
-		return "", fmt.Errorf("target not supported in version increment, fix the script")
-	}
+	return updatedVersion, nil
 }
 
 func createTag(r *git.Repository, tag string) error {
