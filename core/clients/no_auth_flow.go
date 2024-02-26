@@ -12,7 +12,7 @@ type NoAuthFlow struct {
 
 // NoAuthFlowConfig holds the configuration for the unauthenticated flow
 type NoAuthFlowConfig struct {
-	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. An option to add HTTP middleware will be introduced soon
+	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
 	ClientRetry *RetryConfig
 }
 

@@ -39,7 +39,7 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg.CustomAuth != nil {
 		return cfg.CustomAuth, nil
 	} else if cfg.NoAuth {
-		noAuthRoundTripper, err := NoAuth(cfg.RetryOptions) //nolint:staticcheck //will be removed in a later update
+		noAuthRoundTripper, err := NoAuth()
 		if err != nil {
 			return nil, fmt.Errorf("configuring no auth client: %w", err)
 		}
@@ -93,7 +93,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 
 // NoAuth configures a flow without authentication and returns an http.RoundTripper
 // that can be used to make unauthenticated requests
-func NoAuth(_ *clients.RetryConfig) (rt http.RoundTripper, err error) { //nolint:staticcheck //will be removed in a later update
+func NoAuth() (rt http.RoundTripper, err error) {
 	noAuthConfig := clients.NoAuthFlowConfig{}
 	noAuthRoundTripper := &clients.NoAuthFlow{}
 	if err := noAuthRoundTripper.Init(noAuthConfig); err != nil {

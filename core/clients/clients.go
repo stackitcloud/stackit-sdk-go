@@ -22,7 +22,7 @@ const (
 	DefaultClientTimeout = time.Minute
 )
 
-// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. An option to add HTTP middleware will be introduced soon
+// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
 type RetryConfig struct {
 	MaxRetries       int           // Max retries
 	WaitBetweenCalls time.Duration // Time to wait between requests
@@ -30,7 +30,7 @@ type RetryConfig struct {
 	ClientTimeout    time.Duration // HTTP Client timeout
 }
 
-// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. An option to add HTTP middleware will be introduced soon
+// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
 func NewRetryConfig() *RetryConfig {
 	return &RetryConfig{}
 }

@@ -28,9 +28,6 @@ func TestNoAuthFlow_Init(t *testing.T) {
 			if err := c.Init(tt.args.cfg); (err != nil) != tt.wantErr {
 				t.Errorf("NoAuthFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if c.config == nil {
-				t.Error("config is nil")
-			}
 		})
 	}
 }
@@ -38,7 +35,6 @@ func TestNoAuthFlow_Init(t *testing.T) {
 func TestNoAuthFlow_Do(t *testing.T) {
 	type fields struct {
 		client *http.Client
-		config *NoAuthFlowConfig
 	}
 	type args struct{}
 	tests := []struct {
@@ -50,7 +46,7 @@ func TestNoAuthFlow_Do(t *testing.T) {
 	}{
 		{
 			name:    "fail",
-			fields:  fields{nil, nil},
+			fields:  fields{nil},
 			args:    args{},
 			want:    0,
 			wantErr: true,
@@ -59,7 +55,6 @@ func TestNoAuthFlow_Do(t *testing.T) {
 			name: "success",
 			fields: fields{
 				&http.Client{},
-				&NoAuthFlowConfig{},
 			},
 			args:    args{},
 			want:    http.StatusOK,
@@ -70,7 +65,6 @@ func TestNoAuthFlow_Do(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &NoAuthFlow{
 				client: tt.fields.client,
-				config: tt.fields.config,
 			}
 			handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				w.Header().Set("Content-Type", "application/json")

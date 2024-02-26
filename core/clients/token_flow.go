@@ -21,7 +21,7 @@ type TokenFlow struct {
 type TokenFlowConfig struct {
 	ServiceAccountEmail string
 	ServiceAccountToken string
-	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. An option to add HTTP middleware will be introduced soon
+	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
 	ClientRetry *RetryConfig
 }
 

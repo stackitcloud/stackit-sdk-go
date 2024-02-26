@@ -49,7 +49,7 @@ type KeyFlow struct {
 type KeyFlowConfig struct {
 	ServiceAccountKey *ServiceAccountKeyResponse
 	PrivateKey        string
-	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. An option to add HTTP middleware will be introduced soon
+	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
 	ClientRetry                   *RetryConfig
 	TokenUrl                      string
 	BackgroundTokenRefreshContext context.Context // Functionality is enabled if this isn't nil

@@ -558,7 +558,7 @@ func TestNoAuth(t *testing.T) {
 	} {
 		t.Run(test.desc, func(t *testing.T) {
 			// Get the default authentication client and ensure that it's not nil
-			authClient, err := NoAuth(nil)
+			authClient, err := NoAuth()
 			if err != nil {
 				t.Fatalf("Test returned error on valid test case: %v", err)
 			}

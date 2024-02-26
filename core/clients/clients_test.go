@@ -6,20 +6,9 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"net/url"
-	"reflect"
 	"strings"
 	"testing"
 )
-
-func TestNewRetryConfig(t *testing.T) {
-	got := NewRetryConfig()
-	want := RetryConfig{}
-	if got == nil {
-		t.Error("NewRetryConfig returned nil")
-	} else if !reflect.DeepEqual(*got, want) {
-		t.Errorf("%+v != %+v", *got, want)
-	}
-}
 
 func TestDo(t *testing.T) {
 	type args struct {
