@@ -40,17 +40,9 @@ test:
 
 # AUTOMATIC TAG
 sdk-tag-services:
-	@if [ "${password}" = "" ]; then \
-        go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path}; \
-    else \
-        go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path} --password ${password}; \
-    fi
+	@go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path};
 
 
 sdk-tag-core: 
-	@if [ "${password}" = "" ]; then \
-        go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path} --target core; \
-    else \
-        go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path} --target core --password ${password}; \
-    fi
+	@go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path} --target core;
 	
