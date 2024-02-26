@@ -11,14 +11,6 @@ const (
 )
 
 const (
-	// Known error messages
-	ClientTimeoutErr           = "Client.Timeout exceeded while awaiting headers"
-	ClientContextDeadlineErr   = "context deadline exceeded"
-	ClientConnectionRefusedErr = "connection refused"
-	ClientEOFError             = "unexpected EOF"
-)
-
-const (
 	DefaultClientTimeout = time.Minute
 )
 

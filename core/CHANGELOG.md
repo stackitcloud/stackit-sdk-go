@@ -13,7 +13,7 @@
     - `client.NoAuthFlowConfig.ClientRetry`
     - `client.RetryConfig`
   - Retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
-- **Breaking Change:** Remove methods `client.TokenFlow.Clone` and `client.NoAuthFlow.Clone`. Removed fields `client.DefaultRetryMaxRetries`, `client.DefaultRetryWaitBetweenCalls` and `client.DefaultRetryTimeout`. These are no longer being used.
+- **Breaking Change:** Remove methods `client.TokenFlow.Clone` and `client.NoAuthFlow.Clone`. Removed fields `client.DefaultRetryMaxRetries`, `client.DefaultRetryWaitBetweenCalls` and `client.DefaultRetryTimeout`. Removed constants `client.ClientTimeoutErr`,`client.ClientContextDeadlineErr`, `client.ClientConnectionRefusedErr`, `client.ClientEOFError`. These are no longer being used.
 - **Breaking Change:** Change signature of `auth.NoAuth`, which no longer takes `client.RetryConfig` as argument
 
 ## v0.9.0 (2024-02-19)
