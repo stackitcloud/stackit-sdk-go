@@ -60,5 +60,5 @@ func (c *TokenFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 		return nil, fmt.Errorf("please run Init()")
 	}
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.config.ServiceAccountToken))
-	return Do(c.client, req)
+	return c.client.Do(req)
 }

@@ -36,7 +36,7 @@ const (
 type KeyFlow struct {
 	client        *http.Client
 	config        *KeyFlowConfig
-	doer          func(client *http.Client, req *http.Request) (resp *http.Response, err error)
+	doer          func(req *http.Request) (resp *http.Response, err error)
 	key           *ServiceAccountKeyResponse
 	privateKey    *rsa.PrivateKey
 	privateKeyPEM []byte
@@ -120,7 +120,6 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	// No concurrency at this point, so no mutex check needed
 	c.token = &TokenResponseBody{}
 	c.config = cfg
-	c.doer = Do
 
 	if c.config.TokenUrl == "" {
 		c.config.TokenUrl = tokenAPI
@@ -173,11 +172,15 @@ func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 		return nil, err
 	}
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", accessToken))
-	return c.doer(c.client, req)
+	return c.doer(req)
 }
 
 // GetAccessToken returns a short-lived access token and saves the access and refresh tokens in the token field
 func (c *KeyFlow) GetAccessToken() (string, error) {
+	if c.client == nil {
+		return "", fmt.Errorf("nil http client, please run Init()")
+	}
+
 	c.tokenMutex.RLock()
 	accessToken := c.token.AccessToken
 	c.tokenMutex.RUnlock()
@@ -200,6 +203,7 @@ func (c *KeyFlow) configureHTTPClient() {
 	client := &http.Client{}
 	client.Timeout = DefaultClientTimeout
 	c.client = client
+	c.doer = c.client.Do
 }
 
 // validate the client is configured well
@@ -270,6 +274,10 @@ func (c *KeyFlow) createAccessToken() (err error) {
 // createAccessTokenWithRefreshToken creates an access token using
 // an existing pre-validated refresh token
 func (c *KeyFlow) createAccessTokenWithRefreshToken() (err error) {
+	if c.client == nil {
+		return fmt.Errorf("nil http client, please run Init()")
+	}
+
 	c.tokenMutex.RLock()
 	refreshToken := c.token.RefreshToken
 	c.tokenMutex.RUnlock()
@@ -317,7 +325,7 @@ func (c *KeyFlow) requestToken(grant, assertion string) (*http.Response, error) 
 		return nil, err
 	}
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	return c.doer(&http.Client{}, req)
+	return c.doer(req)
 }
 
 // parseTokenResponse parses the response from the server

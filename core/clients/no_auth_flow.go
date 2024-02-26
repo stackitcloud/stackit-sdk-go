@@ -37,5 +37,5 @@ func (c *NoAuthFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 	if c.client == nil {
 		return nil, fmt.Errorf("please run Init()")
 	}
-	return Do(c.client, req)
+	return c.client.Do(req)
 }

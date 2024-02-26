@@ -1,7 +1,6 @@
 package clients
 
 import (
-	"net/http"
 	"time"
 )
 
@@ -25,12 +24,4 @@ type RetryConfig struct {
 // Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
 func NewRetryConfig() *RetryConfig {
 	return &RetryConfig{}
-}
-
-// Do performs the request
-func Do(client *http.Client, req *http.Request) (resp *http.Response, err error) {
-	if client == nil {
-		client = http.DefaultClient
-	}
-	return client.Do(req)
 }

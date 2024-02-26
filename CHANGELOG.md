@@ -6,7 +6,21 @@
 - **Feature:** Add configuration option that, for the key flow, enables a goroutine to be spawned that will refresh the access token when it's close to expiring
 - **Deprecation:** Mark method `config.WithCaptureHTTPResponse` as deprecated, to avoid confusion due to it not being a configuration option. Use `runtime.WithCaptureHTTPResponse` instead.
 - **Deprecation:** Mark method `config.WithJWKSEndpoint` and field `config.Configuration.JWKSCustomUrl` as deprecated. Validation using JWKS was removed, for being redundant with token validation done in the APIs. These have no effect.
-- **Breaking Change:** Remove method `KeyFlow.Clone`, that was no longer being used.
+- **Deprecation:**
+  - Methods:
+    - `config.WithMaxRetries`
+    - `config.WithWaitBetweenCalls`
+    - `config.WithRetryTimeout`
+    - `clients.NewRetryConfig`
+  - Fields:
+    - `clients.KeyFlowConfig.ClientRetry`
+    - `clients.TokenFlowConfig.ClientRetry`
+    - `clients.NoAuthFlowConfig.ClientRetry`
+    - `clients.RetryConfig`
+  - Retry options were removed to reduce complexity of the clients. If this functionality is needed, you can provide your own custom HTTP client.
+- **Breaking Change:** Remove method `clients.KeyFlow.Clone`, `clients.TokenFlow.Clone`, `clients.NoAuthFlow.Clone` and `clients.Do`, that are no longer being used.
+- **Breaking Change:** Removed fields `clients.DefaultRetryMaxRetries`, `clients.DefaultRetryWaitBetweenCalls`and `clients.DefaultRetryTimeout`. Removed constants `clients.ClientTimeoutErr`,`clients.ClientContextDeadlineErr`, `clients.ClientConnectionRefusedErr`, `clients.ClientEOFError`. These are no longer being used.
+- **Breaking Change:** Change signature of `auth.NoAuth`, which no longer takes `clients.RetryConfig` as argument.
 
 ## Release (2024-02-07)
 
