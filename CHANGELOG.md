@@ -1,6 +1,6 @@
-## Release (YYYY-MM-DD)
+## Release (2024-02-27)
 
-- `core`: [v0.y.z]
+- `core`: [v0.10.0](core/CHANGELOG.md#v0100-2024-02-27)
 - **Feature:** Add package `runtime`, which implements methods to be used when performing API requests.
 - **Feature:** Add method `WithCaptureHTTPResponse` to package `runtime`, which does the same as `config.WithCaptureHTTPResponse`. Method was moved to avoid confusion due to it not being a configuration option, and will be removed in a later release.
 - **Feature:** Add configuration option that, for the key flow, enables a goroutine to be spawned that will refresh the access token when it's close to expiring

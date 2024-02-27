@@ -1,4 +1,4 @@
-## v0.10.0 (YYYY-MM-DD)
+## v0.10.0 (2024-02-27)
 
 - **Feature:** Add configuration option that, for the key flow, enables a goroutine to be spawned that will refresh the access token when it's close to expiring
 - **Deprecation:**
