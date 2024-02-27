@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"errors"
 	"flag"
 	"fmt"
@@ -85,7 +86,7 @@ func run() error {
 		return fmt.Errorf("prompt for password: %s", err.Error())
 	}
 
-	fmt.Println("Starting automatic tag update...")
+	fmt.Print("Starting automatic tag update...\n\n")
 
 	err = automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target)
 	if err != nil {
@@ -133,6 +134,8 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target stri
 		return fmt.Errorf("clone SDK repo: %w", err)
 	}
 
+	fmt.Printf("Cloned %s successfully\n\n", sdkRepo)
+
 	tagrefs, err := r.Tags()
 	if err != nil {
 		return fmt.Errorf("get tags: %w", err)
@@ -150,6 +153,7 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target stri
 		return fmt.Errorf("iterate over existing tags: %w", err)
 	}
 
+	var newTagsList []string
 	for module, version := range latestTags {
 		updatedVersion, err := computeUpdatedVersion(version, updateType)
 		if err != nil {
@@ -171,6 +175,16 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target stri
 			continue
 		}
 
+		newTagsList = append(newTagsList, newTag)
+	}
+
+	fmt.Printf("The following tags will be created:\n%s\n\n", strings.Join(newTagsList, "\n"))
+	err = promptForConfirmation("Do you want to continue?")
+	if err != nil {
+		return fmt.Errorf("ask for confirmation: %w", err)
+	}
+
+	for _, newTag := range newTagsList {
 		err = createTag(r, newTag)
 		if err != nil {
 			fmt.Printf("Create tag %s returned error: %s\n", newTag, err)
@@ -183,6 +197,7 @@ func automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target stri
 	if err != nil {
 		return fmt.Errorf("push tags: %w", err)
 	}
+	fmt.Print("\nTags were pushed successfully!\n")
 	return nil
 }
 
@@ -260,6 +275,30 @@ func computeUpdatedVersion(version, updateType string) (string, error) {
 
 	updatedVersion := strings.Join(splitVersion, ".")
 	return updatedVersion, nil
+}
+
+// Prompts for confirmation.
+//
+// Returns nil only if the user (explicitly) answers positive.
+// Returns error if the user answers negative.
+func promptForConfirmation(prompt string) error {
+	question := fmt.Sprintf("%s [y/N] ", prompt)
+	reader := bufio.NewReader(os.Stdin)
+	for i := 0; i < 3; i++ {
+		fmt.Print(question)
+		answer, err := reader.ReadString('\n')
+		if err != nil {
+			continue
+		}
+		answer = strings.ToLower(strings.TrimSpace(answer))
+		if answer == "y" || answer == "yes" {
+			return nil
+		}
+		if answer == "" || answer == "n" || answer == "no" {
+			return errors.New("execution aborted")
+		}
+	}
+	return fmt.Errorf("max number of wrong inputs")
 }
 
 func createTag(r *git.Repository, tag string) error {
