@@ -268,12 +268,12 @@ func TestRequestToken(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			mockDo := func(client *http.Client, req *http.Request, cfg *RetryConfig) (resp *http.Response, err error) {
+			mockDo := func(req *http.Request) (resp *http.Response, err error) {
 				return tt.mockResponse, tt.mockError
 			}
 
 			c := &KeyFlow{
-				config: &KeyFlowConfig{ClientRetry: NewRetryConfig()},
+				config: &KeyFlowConfig{},
 				doer:   mockDo,
 			}
 

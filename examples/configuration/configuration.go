@@ -35,16 +35,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Create a new API client with custom configuration for retries
-	_, err = dns.NewAPIClient(
-		config.WithMaxRetries(5),
-		config.WithWaitBetweenCalls(10*time.Second),
-		config.WithRetryTimeout(1*time.Minute))
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
-		os.Exit(1)
-	}
-
 	// Create a new API client with custom endpoint, e.g. for accessing the QA environment
 	_, err = dns.NewAPIClient(config.WithEndpoint("www.api-qa-url.com"))
 	if err != nil {

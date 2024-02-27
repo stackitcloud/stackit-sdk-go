@@ -83,7 +83,6 @@ type Configuration struct {
 	Servers               ServerConfigurations
 	OperationServers      map[string]ServerConfigurations
 	HTTPClient            *http.Client
-	RetryOptions          *clients.RetryConfig
 
 	// If != nil, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
 	// The goroutine is killed whenever this context is canceled.
@@ -93,6 +92,8 @@ type Configuration struct {
 
 	// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This field has no effect, and will be removed in a later update
 	JWKSCustomUrl string `json:"jwksCustomUrl,omitempty"`
+	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. This field has no effect, and will be removed in a later update
+	RetryOptions *clients.RetryConfig //nolint:staticcheck //will be removed in a later update
 
 	setCustomEndpoint bool
 }
@@ -231,36 +232,23 @@ func WithToken(token string) ConfigurationOption {
 	}
 }
 
-// WithMaxRetries returns a ConfigurationOption that specifies the maximum number of retries in case of an error
-// when making a request
-func WithMaxRetries(maxRetries int) ConfigurationOption {
+// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. This option has no effect, and will be removed in a later update
+func WithMaxRetries(_ int) ConfigurationOption {
 	return func(config *Configuration) error {
-		if config.RetryOptions == nil {
-			config.RetryOptions = clients.NewRetryConfig()
-		}
-		config.RetryOptions.MaxRetries = maxRetries
 		return nil
 	}
 }
 
-// WithWaitBetweenCalls returns a ConfigurationOption that specifies the time to wait between calls to an API
-func WithWaitBetweenCalls(wait time.Duration) ConfigurationOption {
+// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. This option has no effect, and will be removed in a later update
+func WithWaitBetweenCalls(_ time.Duration) ConfigurationOption {
 	return func(config *Configuration) error {
-		if config.RetryOptions == nil {
-			config.RetryOptions = clients.NewRetryConfig()
-		}
-		config.RetryOptions.WaitBetweenCalls = wait
 		return nil
 	}
 }
 
-// WithRetryTimeout returns a ConfigurationOption that specifies the maximum time for retries
-func WithRetryTimeout(retryTimeout time.Duration) ConfigurationOption {
+// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. This option has no effect, and will be removed in a later update
+func WithRetryTimeout(_ time.Duration) ConfigurationOption {
 	return func(config *Configuration) error {
-		if config.RetryOptions == nil {
-			config.RetryOptions = clients.NewRetryConfig()
-		}
-		config.RetryOptions.RetryTimeout = retryTimeout
 		return nil
 	}
 }

@@ -1,12 +1,41 @@
-## Release (YYYY-MM-DD)
+## Release (2024-02-27)
 
-- `core`: [v0.y.z]
+- `core`: [v0.10.0](core/CHANGELOG.md#v0100-2024-02-27)
 - **Feature:** Add package `runtime`, which implements methods to be used when performing API requests.
 - **Feature:** Add method `WithCaptureHTTPResponse` to package `runtime`, which does the same as `config.WithCaptureHTTPResponse`. Method was moved to avoid confusion due to it not being a configuration option, and will be removed in a later release.
 - **Feature:** Add configuration option that, for the key flow, enables a goroutine to be spawned that will refresh the access token when it's close to expiring
 - **Deprecation:** Mark method `config.WithCaptureHTTPResponse` as deprecated, to avoid confusion due to it not being a configuration option. Use `runtime.WithCaptureHTTPResponse` instead.
 - **Deprecation:** Mark method `config.WithJWKSEndpoint` and field `config.Configuration.JWKSCustomUrl` as deprecated. Validation using JWKS was removed, for being redundant with token validation done in the APIs. These have no effect.
-- **Breaking Change:** Remove method `KeyFlow.Clone`, that was no longer being used.
+- **Deprecation:**
+  - Methods:
+    - `config.WithMaxRetries`
+    - `config.WithWaitBetweenCalls`
+    - `config.WithRetryTimeout`
+    - `clients.NewRetryConfig`
+  - Fields:
+    - `clients.KeyFlowConfig.ClientRetry`
+    - `clients.TokenFlowConfig.ClientRetry`
+    - `clients.NoAuthFlowConfig.ClientRetry`
+    - `clients.RetryConfig`
+  - Retry options removed to reduce complexity of the clients. If this functionality is needed, you can provide your own custom HTTP client.
+- **Breaking Change:** Change signature of `auth.NoAuth`, which no longer takes `clients.RetryConfig` as argument.
+- **Breaking Change:**
+  - Methods:
+    - `clients.KeyFlow.Clone`
+    - `clients.TokenFlow.Clone`
+    - `clients.NoAuthFlow.Clone`
+    - `clients.Do`
+  - Fields:
+    - `clients.DefaultRetryMaxRetries`
+    - `clients.DefaultRetryWaitBetweenCalls`
+    - `clients.DefaultRetryTimeout`
+  - Constants:
+    - `clients.ClientTimeoutErr`
+    - `clients.ClientContextDeadlineErr`
+    - `clients.ClientConnectionRefusedErr`
+    - `clients.ClientEOFError`
+    - `clients.Environment`
+  - Removed to reduce complexity of the clients, they were no longer being used.
 
 ## Release (2024-02-07)
 
