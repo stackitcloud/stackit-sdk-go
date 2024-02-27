@@ -96,7 +96,8 @@ func run() error {
 
 // Prompts the user for the ssh key password.
 func promptForPassword() (string, error) {
-	fmt.Println("Enter ssh key passphrase (empty for no passphrase):")
+	fmt.Print("Enter SSH key passphrase (empty for no passphrase): ")
+	defer fmt.Print("\n")
 	bytePassword, err := term.ReadPassword(int(syscall.Stdin))
 	if err != nil {
 		return "", fmt.Errorf("read password: %w", err)
