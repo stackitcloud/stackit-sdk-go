@@ -2,7 +2,10 @@ module github.com/stackitcloud/stackit-sdk-go/scripts
 
 go 1.18
 
-require github.com/go-git/go-git/v5 v5.11.0
+require (
+	github.com/go-git/go-git/v5 v5.11.0
+	golang.org/x/term v0.17.0
+)
 
 require (
 	dario.cat/mergo v1.0.0 // indirect

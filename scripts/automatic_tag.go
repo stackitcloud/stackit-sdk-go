@@ -7,12 +7,14 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"syscall"
 
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/config"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/transport/ssh"
 	"golang.org/x/mod/semver"
+	"golang.org/x/term"
 )
 
 const (
@@ -24,14 +26,13 @@ const (
 
 	updateTypeFlag            = "update-type"
 	sshPrivateKeyFilePathFlag = "ssh-private-key-file-path"
-	passwordFlag              = "password"
 	targetFlag                = "target"
 )
 
 var (
 	updateTypes = []string{minor, patch}
 	targets     = []string{allServices, core}
-	usage       = "go run automatic_tag.go --update-type [minor|patch] --ssh-private-key-file-path path/to/private-key --password password --target [all-services|core]"
+	usage       = "go run automatic_tag.go --update-type [minor|patch] --ssh-private-key-file-path path/to/private-key --target [all-services|core]"
 )
 
 func main() {
@@ -44,12 +45,10 @@ func main() {
 func run() error {
 	var updateType string
 	var sshPrivateKeyFilePath string
-	var password string
 	var target string
 
 	flag.StringVar(&updateType, updateTypeFlag, "", fmt.Sprintf("Update type, must be one of: %s (required)", strings.Join(updateTypes, ",")))
 	flag.StringVar(&sshPrivateKeyFilePath, sshPrivateKeyFilePathFlag, "", "Path to the ssh private key (required)")
-	flag.StringVar(&password, passwordFlag, "", "Password of the ssh private key (optional)")
 	flag.StringVar(&target, targetFlag, allServices, fmt.Sprintf("Create tags for this target, must be one of %s (optional, default is %s)", strings.Join(targets, ","), allServices))
 
 	flag.Parse()
@@ -81,11 +80,29 @@ func run() error {
 		return fmt.Errorf("the provided private key file path %s is not valid: %w\nUsage: %s", sshPrivateKeyFilePath, err, usage)
 	}
 
+	password, err := promptForPassword()
+	if err != nil {
+		return fmt.Errorf("prompt for password: %s", err.Error())
+	}
+
+	fmt.Println("Starting automatic tag update...")
+
 	err = automaticTagUpdate(updateType, sshPrivateKeyFilePath, password, target)
 	if err != nil {
-		return fmt.Errorf("updating tags: %s", err.Error())
+		return fmt.Errorf("update tags: %s", err.Error())
 	}
 	return nil
+}
+
+// Prompts the user for the ssh key password.
+func promptForPassword() (string, error) {
+	fmt.Print("Enter SSH key passphrase (empty for no passphrase): ")
+	defer fmt.Print("\n")
+	bytePassword, err := term.ReadPassword(int(syscall.Stdin))
+	if err != nil {
+		return "", fmt.Errorf("read password: %w", err)
+	}
+	return string(bytePassword), nil
 }
 
 // automaticTagUpdate goes through all of the existing tags, gets the latest for the target, creates a new one according to the updateType and pushes them
