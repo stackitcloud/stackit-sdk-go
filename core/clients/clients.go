@@ -5,11 +5,6 @@ import (
 )
 
 const (
-	// API configuration options:
-	Environment = "STACKIT_ENV"
-)
-
-const (
 	DefaultClientTimeout = time.Minute
 )
 

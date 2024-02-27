@@ -34,6 +34,7 @@
     - `clients.ClientContextDeadlineErr`
     - `clients.ClientConnectionRefusedErr`
     - `clients.ClientEOFError`
+    - `clients.Environment`
   - Removed to reduce complexity of the clients, they were no longer being used.
 
 ## Release (2024-02-07)
