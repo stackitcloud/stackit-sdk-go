@@ -14,6 +14,7 @@ import (
 	"github.com/go-git/go-git/v5/config"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/transport/ssh"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"golang.org/x/mod/semver"
 	"golang.org/x/term"
 )
@@ -31,9 +32,12 @@ const (
 )
 
 var (
-	updateTypes = []string{minor, patch}
-	targets     = []string{allServices, core}
-	usage       = "go run automatic_tag.go --update-type [minor|patch] --ssh-private-key-file-path path/to/private-key --target [all-services|core]"
+	updateTypes        = []string{minor, patch}
+	targets            = []string{allServices, core}
+	usage              = "go run automatic_tag.go --update-type [minor|patch] --ssh-private-key-file-path path/to/private-key --target [all-services|core]"
+	deprecatedServices = []string{
+		"membership",
+	}
 )
 
 func main() {
@@ -54,25 +58,11 @@ func run() error {
 
 	flag.Parse()
 
-	validUpdateType := false
-	for _, t := range updateTypes {
-		if updateType == t {
-			validUpdateType = true
-			break
-		}
-	}
-	if !validUpdateType {
+	if !utils.Contains(updateTypes, updateType) {
 		return fmt.Errorf("the provided update type `%s` is not valid, the valid values are: [%s]", updateType, strings.Join(updateTypes, ","))
 	}
 
-	validTarget := false
-	for _, t := range targets {
-		if target == t {
-			validTarget = true
-			break
-		}
-	}
-	if !validTarget {
+	if !utils.Contains(targets, target) {
 		return fmt.Errorf("the provided target `%s` is not valid, the valid values are: [%s]", target, strings.Join(targets, ","))
 	}
 
@@ -230,7 +220,7 @@ func storeLatestTag(t *plumbing.Reference, latestTags map[string]string, target 
 
 		service := splitTag[1]
 		version := splitTag[2]
-		if semver.Prerelease(version) != "" {
+		if semver.Prerelease(version) != "" || utils.Contains(deprecatedServices, service) {
 			return latestTags, nil
 		}
 
