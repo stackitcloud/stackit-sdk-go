@@ -2,6 +2,10 @@
 >
 > Use `github.com/stackitcloud/stackit-sdk-go/services/postgresflex` instead. For more details, check https://docs.stackit.cloud/stackit/en/bring-your-data-to-stackit-postgresql-flex-138347648.html.
 
+## v0.12.1 (2024-02-28)
+
+- Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
+
 ## v0.12.0 (2024-02-06)
 
 - Add deprecation note

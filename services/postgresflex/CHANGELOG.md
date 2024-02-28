@@ -1,3 +1,7 @@
+## v0.9.2 (2024-02-28)
+
+- Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
+
 ## v0.9.1 (2024-02-06)
 
 - **Bug fix**: Fix `CreateInstanceWaitHandler` failing when instance isn't shown right after creation request
