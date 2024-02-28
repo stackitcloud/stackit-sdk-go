@@ -1,3 +1,7 @@
+## v0.10.1 (2024-02-28)
+
+- Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
+
 ## v0.10.0 (2024-02-02)
 
 - **Feature**: `Instance` has a new field `OfferingName`

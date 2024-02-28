@@ -1,3 +1,7 @@
+## v0.7.7 (2024-02-28)
+
+- Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
+
 ## v0.7.6 (2024-02-02)
 
 - Update `core` to `v0.7.7`. The `http.request` context is now passed in the client `Do` call.
