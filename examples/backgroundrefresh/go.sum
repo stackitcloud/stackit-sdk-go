@@ -5,5 +5,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0 h1:IcY8xa/6wo8EhRE9mpCvz4EtTkkoiIa2ZwPHuc5zGyw=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0/go.mod h1:B5dkVm2HlBRG7liBVIFNqncDb6TUHnJ7t0GsKhAFuRk=
-github.com/stackitcloud/stackit-sdk-go/services/dns v0.8.3 h1:Fe4P8IQT3oc5dQn8FVa3CwYzJFxb9eBPEfQwY4Z+Qwc=
-github.com/stackitcloud/stackit-sdk-go/services/dns v0.8.3/go.mod h1:0IvHx+mJLo2YYWLfkmbsnXbxm8FYf7M2YbYq9/EaWLQ=
+github.com/stackitcloud/stackit-sdk-go/services/dns v0.8.4 h1:n/X2pVdETDXGHk+vCsg0p3b2zGxSRMJ065to/aAoncg=
+github.com/stackitcloud/stackit-sdk-go/services/dns v0.8.4/go.mod h1:PvgUVFLgELRADWk2epZdCryk0fs8b4DN47ghEJjNWhk=
