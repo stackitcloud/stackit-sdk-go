@@ -5,5 +5,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0 h1:IcY8xa/6wo8EhRE9mpCvz4EtTkkoiIa2ZwPHuc5zGyw=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0/go.mod h1:B5dkVm2HlBRG7liBVIFNqncDb6TUHnJ7t0GsKhAFuRk=
-github.com/stackitcloud/stackit-sdk-go/services/postgresql v0.12.0 h1:Ud9IT71e8oJcs7hSiJF2k8wysz3+zzTyYQJwMuM8J6Q=
-github.com/stackitcloud/stackit-sdk-go/services/postgresql v0.12.0/go.mod h1:8tWbOEdgd8GanzMj3Z/cdMW6uhvNrBEJ8ZLtRYNsY4Y=
+github.com/stackitcloud/stackit-sdk-go/services/postgresql v0.12.1 h1:u2jNFPPLM2TlpM1qUu1UuG9XKx/EYPjwg2nJqAK1HUY=
+github.com/stackitcloud/stackit-sdk-go/services/postgresql v0.12.1/go.mod h1:rTbdB/rl+e9o9sJNrT3yMIaSNVBGqR5G2Vh4opKrEwo=

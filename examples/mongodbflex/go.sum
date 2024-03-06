@@ -5,5 +5,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0 h1:IcY8xa/6wo8EhRE9mpCvz4EtTkkoiIa2ZwPHuc5zGyw=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0/go.mod h1:B5dkVm2HlBRG7liBVIFNqncDb6TUHnJ7t0GsKhAFuRk=
-github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v0.11.0 h1:Ys1WYHlM/5ev5WmM3Qn/FboIlKeXbQSOU2PYlMQ2C9A=
-github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v0.11.0/go.mod h1:n9bUnjBIAvpnyC5oNGFZKZ/mmoA9y7CBTFwi1KV62GA=
+github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v0.11.1 h1:SDeQf60BgAwsnB3366yz58ElvVwlyd7M/lPZIEqv9gU=
+github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v0.11.1/go.mod h1:/hQ7GW2hAqcKjKlNCcVJA9zNu3vGFzRaPdhMjfoIKFo=
