@@ -26,6 +26,147 @@ import (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
+type ApiCloneInstanceRequest struct {
+	ctx                  context.Context
+	apiService           *DefaultApiService
+	projectId            string
+	instanceId           string
+	cloneInstancePayload *CloneInstancePayload
+}
+
+// Body
+
+func (r ApiCloneInstanceRequest) CloneInstancePayload(cloneInstancePayload CloneInstancePayload) ApiCloneInstanceRequest {
+	r.cloneInstancePayload = &cloneInstancePayload
+	return r
+}
+
+func (r ApiCloneInstanceRequest) Execute() (*CloneInstanceResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CloneInstanceResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CloneInstance")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/clone"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.cloneInstancePayload == nil {
+		return localVarReturnValue, fmt.Errorf("cloneInstancePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.cloneInstancePayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CloneInstance Clone Instance
+
+Clone an existing instance of a postgres database to a new destination instance
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Project ID
+	@param instanceId Instance ID
+	@return ApiCloneInstanceRequest
+*/
+func (a *APIClient) CloneInstance(ctx context.Context, projectId string, instanceId string) ApiCloneInstanceRequest {
+	return ApiCloneInstanceRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+}
+
+func (a *APIClient) CloneInstanceExecute(ctx context.Context, projectId string, instanceId string) (*CloneInstanceResponse, error) {
+	r := ApiCloneInstanceRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		instanceId: instanceId,
+	}
+	return r.Execute()
+}
+
 type ApiCreateInstanceRequest struct {
 	ctx                   context.Context
 	apiService            *DefaultApiService

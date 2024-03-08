@@ -10,6 +10,6 @@ API version: 1.0.0
 
 package postgresflex
 
-type InstanceCreateCloneInstanceResponse struct {
+type CloneInstanceResponse struct {
 	InstanceId *string `json:"instanceId,omitempty"`
 }
