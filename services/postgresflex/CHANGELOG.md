@@ -1,3 +1,7 @@
+## v0.10.0 (2024-03-08)
+
+- **Feature**: New API method `CloneInstance` to clone the instance
+
 ## v0.9.2 (2024-02-28)
 
 - Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
