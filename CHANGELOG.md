@@ -1,3 +1,7 @@
+## Release (XXXX-XX-XX)
+- `postgresflex`: [v0.10.0](postgresflex/CHANGELOG.md#v0100-2024-03-08)
+  - **Feature:** New API method `CloneInstance` to clone the instance.
+
 ## Release (2024-02-27)
 
 - `core`: [v0.10.0](core/CHANGELOG.md#v0100-2024-02-27)
