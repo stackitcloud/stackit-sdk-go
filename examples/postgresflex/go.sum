@@ -5,5 +5,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0 h1:IcY8xa/6wo8EhRE9mpCvz4EtTkkoiIa2ZwPHuc5zGyw=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0/go.mod h1:B5dkVm2HlBRG7liBVIFNqncDb6TUHnJ7t0GsKhAFuRk=
-github.com/stackitcloud/stackit-sdk-go/services/postgresflex v0.9.2 h1:XCVyJh25BpyKPc7mZymBSL29Rh84dylJ9VP9iWv6DUw=
-github.com/stackitcloud/stackit-sdk-go/services/postgresflex v0.9.2/go.mod h1:lr+Z68jGNX3feNcdt1WRKUgHQJ6ATOrVnoKRp3m9EsY=
+github.com/stackitcloud/stackit-sdk-go/services/postgresflex v0.10.0 h1:+pGOyx15jkU6PcS6wqjBd7gxNIwB72vofzJ1rhGEt3M=
+github.com/stackitcloud/stackit-sdk-go/services/postgresflex v0.10.0/go.mod h1:qzbM0fmR9YiUzu3S+XnbOvvjIGzIV+Dz59zEizg6xvw=
