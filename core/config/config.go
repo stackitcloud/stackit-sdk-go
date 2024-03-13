@@ -13,6 +13,10 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 )
 
+const (
+	global = "global"
+)
+
 // contextKeys are used to identify the type of value in the context.
 // Since these are string, it is possible to get a short description of the
 // context key for logging and debugging using key.String().
@@ -480,12 +484,12 @@ func ConfigureRegion(cfg *Configuration) error {
 	}
 
 	if cfg.Region == "" {
-		// Check token
+		// Check region
 		envVarRegion, _ := os.LookupEnv("STACKIT_REGION")
 		cfg.Region = envVarRegion
 	}
 
-	if oasRegion.DefaultValue != "" {
+	if oasRegion.DefaultValue != "" && oasRegion.DefaultValue != global {
 		if cfg.Region == "" {
 			return fmt.Errorf("no region was provided, available regions are: %s", availableRegions)
 		}
@@ -503,7 +507,9 @@ func ConfigureRegion(cfg *Configuration) error {
 		// Region is not available.
 		return fmt.Errorf("the provided region is not available for this API, available regions are: %s", availableRegions)
 	}
-	// Global API. The provided region is ignored
+	// Global API. The provided region is ignored.
+	// If the url is a template, generated using deprecated config.json, the region variable is replaced
+	// If the url is already configured, there is no region variable and it remains the same
 	cfgUrl := strings.Replace(servers[0].URL, "{region}", "", -1)
 	cfg.Servers = ServerConfigurations{
 		{

@@ -41,7 +41,7 @@ func TestConfigureRegion(t *testing.T) {
 			isValid: true,
 		},
 		{
-			desc: "valid_global",
+			desc: "valid_deprecated_global",
 			cfg: &Configuration{
 				Region: "",
 				Servers: ServerConfigurations{
@@ -65,7 +65,55 @@ func TestConfigureRegion(t *testing.T) {
 			isValid: true,
 		},
 		{
-			desc: "valid_global_with_specified_region",
+			desc: "valid_global_empty_default",
+			cfg: &Configuration{
+				Region: "",
+				Servers: ServerConfigurations{
+					ServerConfiguration{
+						URL: "https://some-api.api.stackit.cloud",
+						Variables: map[string]ServerVariable{
+							"region": {
+								DefaultValue: "",
+								EnumValues:   []string{},
+							},
+						},
+					},
+				},
+			},
+			regionEnvVar: "",
+			expectedServers: ServerConfigurations{
+				ServerConfiguration{
+					URL: "https://some-api.api.stackit.cloud",
+				},
+			},
+			isValid: true,
+		},
+		{
+			desc: "valid_global_default",
+			cfg: &Configuration{
+				Region: "",
+				Servers: ServerConfigurations{
+					ServerConfiguration{
+						URL: "https://some-api.api.stackit.cloud",
+						Variables: map[string]ServerVariable{
+							"region": {
+								DefaultValue: "global",
+								EnumValues:   []string{},
+							},
+						},
+					},
+				},
+			},
+			regionEnvVar: "",
+			expectedServers: ServerConfigurations{
+				ServerConfiguration{
+					URL: "https://some-api.api.stackit.cloud",
+				},
+			},
+			isValid: true,
+		},
+		{
+			desc: "valid_deprecated_global_with_specified_region",
 			cfg: &Configuration{
 				Region: "eu01",
 				Servers: ServerConfigurations{
