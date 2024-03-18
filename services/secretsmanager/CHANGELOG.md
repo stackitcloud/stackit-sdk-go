@@ -1,3 +1,7 @@
+## v0.6.0 (2024-03-18)
+
+- **Feature**: New API method `UpdateACLs` to update all ACLs of an instance
+
 ## v0.5.6 (2024-02-28)
 
 - Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
