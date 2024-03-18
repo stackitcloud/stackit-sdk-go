@@ -1,4 +1,4 @@
-## v0.9.3 (2024-03-18)
+## v0.9.3 (2024-03-19)
 
 - Update Load Balancer creation waiter to check for errors the instance `Errors` field and, if some are found, return even if the status is still `STATUS_PENDING`
 
