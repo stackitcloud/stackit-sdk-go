@@ -1,6 +1,9 @@
 ## Release (XXXX-XX-XX)
-- `postgresflex`: [v0.10.0](postgresflex/CHANGELOG.md#v0100-2024-03-08)
+- `postgresflex`: [v0.10.0](services/postgresflex/CHANGELOG.md#v0100-2024-03-08)
   - **Feature:** New API method `CloneInstance` to clone the instance.
+
+- `secretsmanager`: [v0.6.0](services/secretsmanager/CHANGELOG.md#v060-2024-03-18)
+  - **Feature**: New API method `UpdateACLs` to update all ACLs of an instance
 
 ## Release (2024-02-27)
 
