@@ -37,6 +37,7 @@ type APIClientInterface interface {
 	GetServiceStatusExecute(ctx context.Context, projectId string) (*loadbalancer.GetServiceStatusResponse, error)
 }
 
+// CreateLoadBalancerWaitHandler will wait for load balancer creation
 func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceName string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
 	handler := wait.New(func() (waitFinished bool, response *loadbalancer.LoadBalancer, err error) {
 		s, err := a.GetLoadBalancerExecute(ctx, projectId, instanceName)
