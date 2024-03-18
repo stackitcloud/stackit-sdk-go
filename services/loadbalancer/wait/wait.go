@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
@@ -36,7 +37,6 @@ type APIClientInterface interface {
 	GetServiceStatusExecute(ctx context.Context, projectId string) (*loadbalancer.GetServiceStatusResponse, error)
 }
 
-// CreateLoadBalancerWaitHandler will wait for load balancer creation
 func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceName string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
 	handler := wait.New(func() (waitFinished bool, response *loadbalancer.LoadBalancer, err error) {
 		s, err := a.GetLoadBalancerExecute(ctx, projectId, instanceName)
@@ -46,6 +46,15 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 		if s == nil || s.Name == nil || *s.Name != instanceName || s.Status == nil {
 			return false, nil, nil
 		}
+
+		if s.Errors != nil && len(*s.Errors) != 0 {
+			errors := make([]string, len(*s.Errors))
+			for _, err := range *s.Errors {
+				errors = append(errors, fmt.Sprintf("%s: %s", *err.Type, *err.Description))
+			}
+			return true, s, fmt.Errorf("create failed for instance with name %s, got errors: %s", instanceName, strings.Join(errors, ";"))
+		}
+
 		switch *s.Status {
 		case InstanceStatusReady:
 			return true, s, nil

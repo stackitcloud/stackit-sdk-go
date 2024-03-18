@@ -1,3 +1,7 @@
+## v0.9.3 (2024-03-18)
+
+- Update Load Balancer creation waiter to check for errors the instance `Errors` field and, if some are found, return even if the status is still `STATUS_PENDING`
+
 ## v0.9.2 (2024-02-28)
 
 - Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
