@@ -48,12 +48,12 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 			return false, nil, nil
 		}
 
-		if s.Errors != nil && len(*s.Errors) != 0 {
-			errors := make([]string, len(*s.Errors))
+		var errors []string
+		if s.Errors != nil && len(*s.Errors) > 0 {
 			for _, err := range *s.Errors {
 				errors = append(errors, fmt.Sprintf("%s: %s", *err.Type, *err.Description))
 			}
-			return true, s, fmt.Errorf("create failed for instance with name %s, got errors: %s", instanceName, strings.Join(errors, ";"))
+			return true, s, fmt.Errorf("create failed for instance with name %s, got status %s and errors: %s", instanceName, *s.Status, strings.Join(errors, ";"))
 		}
 
 		switch *s.Status {
