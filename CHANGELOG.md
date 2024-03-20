@@ -1,9 +1,13 @@
-## Release (XXXX-XX-XX)
+## Release (2024-03-20)
+
+- `core`: [v0.10.1](core/CHANGELOG.md#v0101-2024-03-20)
+  - **Improvement:** Update `ConfigureRegion` method to take into account global servers without a region variable
 - `postgresflex`: [v0.10.0](services/postgresflex/CHANGELOG.md#v0100-2024-03-08)
   - **Feature:** New API method `CloneInstance` to clone the instance.
-
 - `secretsmanager`: [v0.6.0](services/secretsmanager/CHANGELOG.md#v060-2024-03-18)
   - **Feature**: New API method `UpdateACLs` to update all ACLs of an instance
+- `loadbalancer`: [v0.9.3](services/loadbalancer/CHANGELOG.md#v093-2024-03-20)
+  - **Improvement**: Improve error handling in Load Balancer creation waiter, fixing timeout being exceeded for `STATUS_PENDING` status with errors. If an error is found in the `Errors` field, the waiter now returns with error.
 
 ## Release (2024-02-27)
 

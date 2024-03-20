@@ -1,6 +1,6 @@
-## v0.9.3 (2024-03-19)
+## v0.9.3 (2024-03-20)
 
-- Improve error handling in Load Balancer creation waiter, fixing timeout being exceeded for `STATUS_PENDING` status with errors. If an error is found in the `Errors` field, the waiter now returns with error.
+- **Improvement**: Improve error handling in Load Balancer creation waiter, fixing timeout being exceeded for `STATUS_PENDING` status with errors. If an error is found in the `Errors` field, the waiter now returns with error.
 
 ## v0.9.2 (2024-02-28)
 
