@@ -5,5 +5,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0 h1:IcY8xa/6wo8EhRE9mpCvz4EtTkkoiIa2ZwPHuc5zGyw=
 github.com/stackitcloud/stackit-sdk-go/core v0.10.0/go.mod h1:B5dkVm2HlBRG7liBVIFNqncDb6TUHnJ7t0GsKhAFuRk=
-github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.5.6 h1:SC9p/+HP6e90NorFD6bRg6G+0VxJ7kRoihhbfjw2Mbs=
-github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.5.6/go.mod h1:vwyWRIKMD7J6S4qlnNP8uefouHtIZba9WpnoihSZByU=
+github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.6.0 h1:VC7VWadRo8r0eQUXMrYv6vEyS/5acW8faMSv9lxQMgw=
+github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.6.0/go.mod h1:KRoLXZdH8yuO6FBu2Grl5VGqW9arH03qYAC0P6H8h9o=
