@@ -11,7 +11,9 @@ API version: 1.1
 package ske
 
 type ClusterStatus struct {
-	Aggregated          *ClusterStatusState       `json:"aggregated,omitempty"`
+	Aggregated *ClusterStatusState `json:"aggregated,omitempty"`
+	// Format: `2024-02-15T11:06:29Z`
+	CreationTime        *string                   `json:"creationTime,omitempty"`
 	CredentialsRotation *CredentialsRotationState `json:"credentialsRotation,omitempty"`
 	Error               *RuntimeError             `json:"error,omitempty"`
 	Hibernated          *bool                     `json:"hibernated,omitempty"`

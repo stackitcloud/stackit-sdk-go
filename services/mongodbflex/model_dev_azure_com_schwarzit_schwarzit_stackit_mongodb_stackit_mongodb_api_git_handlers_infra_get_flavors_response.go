@@ -11,5 +11,5 @@ API version: 1.0.0
 package mongodbflex
 
 type DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInfraGetFlavorsResponse struct {
-	Flavors *[]HandlersInfraFlavor `json:"flavors,omitempty"`
+	Flavors *[]DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInfraFlavor `json:"flavors,omitempty"`
 }
