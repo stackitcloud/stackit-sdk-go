@@ -1468,12 +1468,12 @@ type ApiListFlavorsRequest struct {
 	projectId  string
 }
 
-func (r ApiListFlavorsRequest) Execute() (*ListFlavorsResponse, error) {
+func (r ApiListFlavorsRequest) Execute() (*DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInfraGetFlavorsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ListFlavorsResponse
+		localVarReturnValue *DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInfraGetFlavorsResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListFlavors")
@@ -1586,7 +1586,7 @@ func (a *APIClient) ListFlavors(ctx context.Context, projectId string) ApiListFl
 	}
 }
 
-func (a *APIClient) ListFlavorsExecute(ctx context.Context, projectId string) (*ListFlavorsResponse, error) {
+func (a *APIClient) ListFlavorsExecute(ctx context.Context, projectId string) (*DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInfraGetFlavorsResponse, error) {
 	r := ApiListFlavorsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,

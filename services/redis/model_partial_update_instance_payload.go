@@ -11,7 +11,7 @@ API version: 1.1.0
 package redis
 
 type PartialUpdateInstancePayload struct {
-	InstanceName *string             `json:"instanceName,omitempty"`
-	Parameters   *InstanceParameters `json:"parameters,omitempty"`
-	PlanId       *string             `json:"planId,omitempty"`
+	InstanceName *string                  `json:"instanceName,omitempty"`
+	Parameters   *RedisInstanceParameters `json:"parameters,omitempty"`
+	PlanId       *string                  `json:"planId,omitempty"`
 }

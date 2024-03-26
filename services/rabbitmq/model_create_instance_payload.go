@@ -12,8 +12,8 @@ package rabbitmq
 
 type CreateInstancePayload struct {
 	// REQUIRED
-	InstanceName *string             `json:"instanceName"`
-	Parameters   *InstanceParameters `json:"parameters,omitempty"`
+	InstanceName *string                     `json:"instanceName"`
+	Parameters   *RabbitMQInstanceParameters `json:"parameters,omitempty"`
 	// REQUIRED
 	PlanId *string `json:"planId"`
 }
