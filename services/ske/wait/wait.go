@@ -200,7 +200,7 @@ func CompleteCredentialsRotationWaitHandler(ctx context.Context, a APIClientClus
 		}
 
 		if state == CredentialsStateNever {
-			return true, s, fmt.Errorf("starting credentials rotation failed")
+			return true, s, fmt.Errorf("completing credentials rotation failed")
 		}
 
 		return true, s, fmt.Errorf("unexpected state %s while waiting for cluster credentials rotation phase", state)
