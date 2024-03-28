@@ -568,7 +568,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ListFlavorsResponse{}
+			data := DevAzureComSchwarzitSchwarzitStackitMongodbStackitMongodbApiGitHandlersInfraGetFlavorsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})

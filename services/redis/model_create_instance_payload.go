@@ -12,8 +12,8 @@ package redis
 
 type CreateInstancePayload struct {
 	// REQUIRED
-	InstanceName *string             `json:"instanceName"`
-	Parameters   *InstanceParameters `json:"parameters,omitempty"`
+	InstanceName *string                  `json:"instanceName"`
+	Parameters   *RedisInstanceParameters `json:"parameters,omitempty"`
 	// REQUIRED
 	PlanId *string `json:"planId"`
 }

@@ -12,8 +12,8 @@ package logme
 
 type CreateInstancePayload struct {
 	// REQUIRED
-	InstanceName *string             `json:"instanceName"`
-	Parameters   *InstanceParameters `json:"parameters,omitempty"`
+	InstanceName *string                   `json:"instanceName"`
+	Parameters   *LogMe2InstanceParameters `json:"parameters,omitempty"`
 	// REQUIRED
 	PlanId *string `json:"planId"`
 }

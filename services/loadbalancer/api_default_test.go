@@ -334,9 +334,8 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
-		var xRequestID string
 
-		resp, reqErr := apiClient.EnableService(context.Background(), projectId).XRequestID(xRequestID).Execute()
+		resp, reqErr := apiClient.EnableService(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", err)

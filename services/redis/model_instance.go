@@ -26,10 +26,16 @@ type Instance struct {
 	LastOperation *InstanceLastOperation `json:"lastOperation"`
 	// REQUIRED
 	Name *string `json:"name"`
+	// Deprecated
 	// REQUIRED
 	OfferingName *string `json:"offeringName"`
+	// REQUIRED
+	OfferingVersion *string `json:"offeringVersion"`
 	// REQUIRED
 	Parameters *map[string]interface{} `json:"parameters"`
 	// REQUIRED
 	PlanId *string `json:"planId"`
+	// REQUIRED
+	PlanName *string `json:"planName"`
+	Status   *string `json:"status,omitempty"`
 }
