@@ -8,6 +8,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/ske"
+	"github.com/stackitcloud/stackit-sdk-go/services/ske/wait"
 )
 
 func main() {
@@ -80,6 +81,46 @@ func main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateCluster`: %v\n", err)
 	} else {
-		fmt.Printf("Created cluster with cluster name \"%s\".\n", *createClusterResp.Name)
+		fmt.Printf("Triggered creation of cluster with name \"%s\".\n", *createClusterResp.Name)
+	}
+
+	// Wait for cluster creation to complete
+	_, err = wait.CreateOrUpdateClusterWaitHandler(context.Background(), skeClient, projectId, clusterName).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CreateOrUpdateCluster`: %v\n", err)
+	} else {
+		fmt.Printf("Cluster created.\n")
+	}
+
+	// Start cluster credential rotation
+	_, err = skeClient.StartCredentialsRotationExecute(context.Background(), projectId, clusterName)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StartCredentialsRotation`: %v\n", err)
+	} else {
+		fmt.Printf("Triggered start of cluster credentials rotation.\n")
+	}
+
+	// Wait for cluster credential rotation to be prepared
+	_, err = wait.StartCredentialsRotationWaitHandler(context.Background(), skeClient, projectId, clusterName).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StartRotateCredentials`: %v\n", err)
+	} else {
+		fmt.Printf("Cluster credentials ready to rotate.\n")
+	}
+
+	// Complete cluster credential rotation
+	_, err = skeClient.CompleteCredentialsRotationExecute(context.Background(), projectId, clusterName)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CompleteCredentialsRotation`: %v\n", err)
+	} else {
+		fmt.Printf("Triggered completion of cluster credentials rotation.\n")
+	}
+
+	// Wait for cluster credential rotation to be completed
+	_, err = wait.CompleteCredentialsRotationWaitHandler(context.Background(), skeClient, projectId, clusterName).WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CompleteRotateCredentials`: %v\n", err)
+	} else {
+		fmt.Printf("Completed cluster credentials rotation.\n")
 	}
 }

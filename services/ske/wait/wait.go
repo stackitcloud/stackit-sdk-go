@@ -12,14 +12,18 @@ import (
 )
 
 const (
-	StateHealthy                  = "STATE_HEALTHY"
-	StateHibernated               = "STATE_HIBERNATED"
-	StateFailed                   = "STATE_FAILED"
-	StateDeleting                 = "STATE_DELETING"
-	StateCreated                  = "STATE_CREATED"
-	StateUnhealthy                = "STATE_UNHEALTHY"
-	StateReconciling              = "STATE_RECONCILING"
-	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
+	StateHealthy                       = "STATE_HEALTHY"
+	StateHibernated                    = "STATE_HIBERNATED"
+	StateFailed                        = "STATE_FAILED"
+	StateDeleting                      = "STATE_DELETING"
+	StateCreated                       = "STATE_CREATED"
+	StateUnhealthy                     = "STATE_UNHEALTHY"
+	StateReconciling                   = "STATE_RECONCILING"
+	CredentialsRotationStatePreparing  = "PREPARING"
+	CredentialsRotationStatePrepared   = "PREPARED"
+	CredentialsRotationStateCompleting = "COMPLETING"
+	CredentialsRotationStateCompleted  = "COMPLETED"
+	InvalidArgusInstanceErrorCode      = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
 type APIClientProjectInterface interface {
@@ -146,5 +150,53 @@ func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterfa
 	})
 
 	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// StartCredentialsRotationWaitHandler will wait for credentials rotation
+func StartCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
+		s, err := a.GetClusterExecute(ctx, projectId, clusterName)
+		if err != nil {
+			return false, nil, err
+		}
+		state := *s.Status.CredentialsRotation.Phase
+
+		if state == CredentialsRotationStatePrepared {
+			return true, s, nil
+		}
+
+		if state == CredentialsRotationStatePreparing {
+			return false, nil, nil
+		}
+
+		return true, s, fmt.Errorf("unexpected status %s while waiting for cluster credentials rotation to be prepared", state)
+	})
+
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+// CompleteCredentialsRotationWaitHandler will wait for credentials rotation
+func CompleteCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
+		s, err := a.GetClusterExecute(ctx, projectId, clusterName)
+		if err != nil {
+			return false, nil, err
+		}
+		state := *s.Status.CredentialsRotation.Phase
+
+		if state == CredentialsRotationStateCompleted {
+			return true, s, nil
+		}
+
+		if state == CredentialsRotationStateCompleting {
+			return false, nil, nil
+		}
+
+		return true, s, fmt.Errorf("unexpected status %s while waiting for cluster credentials rotation to be completed", state)
+	})
+
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
