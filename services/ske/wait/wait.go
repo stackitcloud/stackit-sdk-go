@@ -19,6 +19,11 @@ const (
 	StateCreated                  = "STATE_CREATED"
 	StateUnhealthy                = "STATE_UNHEALTHY"
 	StateReconciling              = "STATE_RECONCILING"
+	CredentialsStateNever         = "NEVER"
+	CredentialsStatePreparing     = "PREPARING"
+	CredentialsStatePrepared      = "PREPARED"
+	CredentialsStateCompleting    = "COMPLETING"
+	CredentialsStateCompleted     = "COMPLETED"
 	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
@@ -146,5 +151,61 @@ func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterfa
 	})
 
 	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// StartCredentialsRotationWaitHandler will wait for credentials rotation
+func StartCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
+		s, err := a.GetClusterExecute(ctx, projectId, clusterName)
+		if err != nil {
+			return false, nil, err
+		}
+		state := *s.Status.CredentialsRotation.Phase
+
+		if state == CredentialsStatePrepared {
+			return true, s, nil
+		}
+
+		if state == CredentialsStatePreparing {
+			return false, nil, nil
+		}
+
+		if state == CredentialsStateNever {
+			return true, s, fmt.Errorf("starting credentials rotation failed")
+		}
+
+		return true, s, fmt.Errorf("unexpected state %s while waiting for cluster credentials rotation phase", state)
+	})
+
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+// CompleteCredentialsRotationWaitHandler will wait for credentials rotation
+func CompleteCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
+		s, err := a.GetClusterExecute(ctx, projectId, clusterName)
+		if err != nil {
+			return false, nil, err
+		}
+		state := *s.Status.CredentialsRotation.Phase
+
+		if state == CredentialsStateCompleted {
+			return true, s, nil
+		}
+
+		if state == CredentialsStateCompleting {
+			return false, nil, nil
+		}
+
+		if state == CredentialsStateNever {
+			return true, s, fmt.Errorf("starting credentials rotation failed")
+		}
+
+		return true, s, fmt.Errorf("unexpected state %s while waiting for cluster credentials rotation phase", state)
+	})
+
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
