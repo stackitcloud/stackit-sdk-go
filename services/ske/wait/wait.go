@@ -12,19 +12,18 @@ import (
 )
 
 const (
-	StateHealthy                  = "STATE_HEALTHY"
-	StateHibernated               = "STATE_HIBERNATED"
-	StateFailed                   = "STATE_FAILED"
-	StateDeleting                 = "STATE_DELETING"
-	StateCreated                  = "STATE_CREATED"
-	StateUnhealthy                = "STATE_UNHEALTHY"
-	StateReconciling              = "STATE_RECONCILING"
-	CredentialsStateNever         = "NEVER"
-	CredentialsStatePreparing     = "PREPARING"
-	CredentialsStatePrepared      = "PREPARED"
-	CredentialsStateCompleting    = "COMPLETING"
-	CredentialsStateCompleted     = "COMPLETED"
-	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
+	StateHealthy                       = "STATE_HEALTHY"
+	StateHibernated                    = "STATE_HIBERNATED"
+	StateFailed                        = "STATE_FAILED"
+	StateDeleting                      = "STATE_DELETING"
+	StateCreated                       = "STATE_CREATED"
+	StateUnhealthy                     = "STATE_UNHEALTHY"
+	StateReconciling                   = "STATE_RECONCILING"
+	CredentialsRotationStatePreparing  = "PREPARING"
+	CredentialsRotationStatePrepared   = "PREPARED"
+	CredentialsRotationStateCompleting = "COMPLETING"
+	CredentialsRotationStateCompleted  = "COMPLETED"
+	InvalidArgusInstanceErrorCode      = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
 type APIClientProjectInterface interface {
@@ -163,19 +162,15 @@ func StartCredentialsRotationWaitHandler(ctx context.Context, a APIClientCluster
 		}
 		state := *s.Status.CredentialsRotation.Phase
 
-		if state == CredentialsStatePrepared {
+		if state == CredentialsRotationStatePrepared {
 			return true, s, nil
 		}
 
-		if state == CredentialsStatePreparing {
+		if state == CredentialsRotationStatePreparing {
 			return false, nil, nil
 		}
 
-		if state == CredentialsStateNever {
-			return true, s, fmt.Errorf("starting credentials rotation failed")
-		}
-
-		return true, s, fmt.Errorf("unexpected state %s while waiting for cluster credentials rotation phase", state)
+		return true, s, fmt.Errorf("unexpected status %s while waiting for cluster credentials rotation to be prepared", state)
 	})
 
 	handler.SetTimeout(45 * time.Minute)
@@ -191,19 +186,15 @@ func CompleteCredentialsRotationWaitHandler(ctx context.Context, a APIClientClus
 		}
 		state := *s.Status.CredentialsRotation.Phase
 
-		if state == CredentialsStateCompleted {
+		if state == CredentialsRotationStateCompleted {
 			return true, s, nil
 		}
 
-		if state == CredentialsStateCompleting {
+		if state == CredentialsRotationStateCompleting {
 			return false, nil, nil
 		}
 
-		if state == CredentialsStateNever {
-			return true, s, fmt.Errorf("completing credentials rotation failed")
-		}
-
-		return true, s, fmt.Errorf("unexpected state %s while waiting for cluster credentials rotation phase", state)
+		return true, s, fmt.Errorf("unexpected status %s while waiting for cluster credentials rotation to be completed", state)
 	})
 
 	handler.SetTimeout(45 * time.Minute)

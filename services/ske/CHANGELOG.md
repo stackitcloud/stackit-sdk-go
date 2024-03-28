@@ -1,7 +1,6 @@
 ## v0.11.0 (2024-03-28)
 
-- Waiters for async operation `StartCredentialsRotationWaitHandler` and `CompleteCredentialsRotationWaitHandler`
-- [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/ske)
+- **Feature**: Waiters for async operation `StartCredentialsRotationWaitHandler` and `CompleteCredentialsRotationWaitHandler`
 
 ## v0.10.1 (2024-02-28)
 
