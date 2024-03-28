@@ -123,5 +123,4 @@ func main() {
 	} else {
 		fmt.Printf("Completed cluster credentials rotation.\n")
 	}
-
 }
