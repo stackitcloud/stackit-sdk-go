@@ -11,5 +11,5 @@ API version: 1.0.0
 package postgresflex
 
 type InstanceCreateDatabaseResponse struct {
-	Database *InstanceDatabase `json:"database,omitempty"`
+	Id *string `json:"id,omitempty"`
 }

@@ -18,7 +18,8 @@ type Offering struct {
 	// REQUIRED
 	ImageUrl *string `json:"imageUrl"`
 	// REQUIRED
-	Latest *bool `json:"latest"`
+	Latest    *bool   `json:"latest"`
+	Lifecycle *string `json:"lifecycle,omitempty"`
 	// REQUIRED
 	Name *string `json:"name"`
 	// REQUIRED
