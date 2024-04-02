@@ -1,3 +1,7 @@
+## v0.11.0 (2024-04-02)
+
+- **Feature**: New API method `ForceDeleteInstance` that forces the deletion of a delayed deleted instance
+
 ## v0.10.0 (2024-03-08)
 
 - **Feature**: New API method `CloneInstance` to clone the instance
