@@ -1,3 +1,9 @@
+## v0.11.0 (2024-04-02)
+
+- **Feature:** `InstanceParameters` has new fields `TlsCiphers`, `TlsProtocols`, `Roles`, and `ConsumerTimeout`
+- **Feature:** `Offering` has a new field `Lifecycle`
+- **Feature:** `Instance` has new fields `OfferingVersion`, `PlanName`, and `Status`
+
 ## v0.10.1 (2024-02-28)
 
 - Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)

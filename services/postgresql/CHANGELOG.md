@@ -2,6 +2,13 @@
 >
 > Use `github.com/stackitcloud/stackit-sdk-go/services/postgresflex` instead. For more details, check https://docs.stackit.cloud/stackit/en/bring-your-data-to-stackit-postgresql-flex-138347648.html.
 
+## v0.13.0 (2024-04-02)
+
+- **Breaking change:** Field `Plugins` was removed from `InstanceParameters`
+- **Feature:** `InstanceParameters` has new fields `ArchiveTimeout`, `ClientMinMessages`, `ContinuousArchiving`, `DataChecksums`, `DeletePlugins`, `EffectiveCacheSize`, `IdleInTransactionSessionTimeout`, `InstallPlugins`, `LogErrorVerbosity`, `LogMinDurationStatement`, `LogStatement`, `Loglevel`, `MaintenanceWorkMem`, `MaxConnections`, `MaxReplicationSlots`, `MaxWalSenders`, `MetricDatabases`, `MetricPgDatabaseSize`, `MetricPgReplication`, `MetricPgStatAllIndexes`, `MetricPgStatAllTables`, `MetricPgStatArchiverTable`, `MetricPgStatDatabase`, `MetricPgStatDatabaseConflicts`, `MetricPgStatioAllIndexes`, `MetricPgStatioAllTables`, `PgLogMinErrorStatement`, `PgLogMinMessages`, `RepmgrLoglevel`, `RolePrivileges`, `SharedBuffers`, `SslCiphers`, `SslMinProtocolVersion`, `StatementTimeout`, `SynchronousCommit`, `TempFileLimit`, `TempFiles`, `TrackIoTiming`, `WalLevelLogical`, `WalWriterDelay`, and `WorkMem`
+- **Feature:** `Offering` has a new field `Lifecycle`
+- **Feature:** `Instance` has new fields `OfferingVersion`, `PlanName`, and `Status`
+
 ## v0.12.1 (2024-02-28)
 
 - Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
