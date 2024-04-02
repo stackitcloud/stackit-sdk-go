@@ -11,10 +11,8 @@ API version: 1.0.0
 package postgresflex
 
 type InstanceDatabase struct {
-	Collation  *string `json:"collation,omitempty"`
-	CreateDate *string `json:"createDate,omitempty"`
-	Id         *string `json:"id,omitempty"`
-	Name       *string `json:"name,omitempty"`
+	Id   *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// Database specific options
 	Options *map[string]interface{} `json:"options,omitempty"`
 }

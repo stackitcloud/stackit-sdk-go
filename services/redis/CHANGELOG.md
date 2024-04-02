@@ -1,3 +1,9 @@
+## v0.11.0 (2024-04-02)
+
+- **Feature:** `InstanceParameters` has new fields `DownAfterMilliseconds`, `FailoverTimeout`, `LazyfreeLazyEviction`, `LazyfreeLazyExpire`, `LuaTimeLimit`, `Maxclients`, `MaxmemoryPolicy`, `MaxmemorySamples`, `MinReplicasMaxLag`, `NotifyKeyspaceEvents`, `Snapshot`, `TlsCiphers`, `TlsCiphersuites`, and `TlsProtocols`
+- **Feature:** `Offering` has a new field `Lifecycle`
+- **Feature:** `Instance` has new fields `OfferingVersion`, `PlanName`, and `Status`
+
 ## v0.10.1 (2024-02-28)
 
 - Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
