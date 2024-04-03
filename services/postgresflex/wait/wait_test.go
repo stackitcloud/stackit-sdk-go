@@ -309,7 +309,7 @@ func TestForceDeleteInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "delete_succeeded",
 			instanceGetFails: false,
-			instanceState:    InstanceStateSuccess,
+			instanceState:    InstanceStateDeleted,
 			wantErr:          false,
 		},
 		{
@@ -330,7 +330,7 @@ func TestForceDeleteInstanceWaitHandler(t *testing.T) {
 
 			apiClient := &apiClientInstanceMocked{
 				instanceGetFails:       tt.instanceGetFails,
-				instanceIsForceDeleted: tt.instanceState == InstanceStateSuccess,
+				instanceIsForceDeleted: tt.instanceState == InstanceStateDeleted,
 				instanceId:             instanceId,
 				instanceState:          tt.instanceState,
 			}

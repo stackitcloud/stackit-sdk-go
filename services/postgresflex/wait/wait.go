@@ -142,7 +142,7 @@ func ForceDeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInte
 		}
 		return true, nil, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
