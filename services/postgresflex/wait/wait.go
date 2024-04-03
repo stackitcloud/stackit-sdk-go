@@ -15,6 +15,7 @@ const (
 	InstanceStateProgressing = "Progressing"
 	InstanceStateSuccess     = "Ready"
 	InstanceStateFailed      = "Failure"
+	InstanceStateDeleted     = "Deleted"
 )
 
 // Interface needed for tests
@@ -106,6 +107,27 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceIn
 
 // DeleteInstanceWaitHandler will wait for instance deletion
 func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
+		if err != nil {
+			return false, nil, err
+		}
+		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
+			return false, nil, nil
+		}
+		switch *s.Item.Status {
+		default:
+			return true, nil, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+		case InstanceStateDeleted:
+			return true, nil, nil
+		}
+	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
+}
+
+// ForceDeleteInstanceWaitHandler will wait for instance deletion
+func ForceDeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err == nil {

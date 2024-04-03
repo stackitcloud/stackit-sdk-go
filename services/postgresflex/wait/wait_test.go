@@ -12,11 +12,11 @@ import (
 
 // Used for testing instance operations
 type apiClientInstanceMocked struct {
-	instanceId          string
-	instanceState       string
-	instanceIsDeleted   bool
-	instanceGetFails    bool
-	usersGetErrorStatus int
+	instanceId             string
+	instanceState          string
+	instanceIsForceDeleted bool
+	instanceGetFails       bool
+	usersGetErrorStatus    int
 }
 
 func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*postgresflex.InstanceResponse, error) {
@@ -26,7 +26,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 		}
 	}
 
-	if a.instanceIsDeleted {
+	if a.instanceIsForceDeleted {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 404,
 		}
@@ -263,7 +263,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "delete_succeeded",
 			instanceGetFails: false,
-			instanceState:    InstanceStateSuccess,
+			instanceState:    InstanceStateDeleted,
 			wantErr:          false,
 		},
 		{
@@ -283,13 +283,59 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			instanceId := "foo-bar"
 
 			apiClient := &apiClientInstanceMocked{
-				instanceGetFails:  tt.instanceGetFails,
-				instanceIsDeleted: tt.instanceState == InstanceStateSuccess,
-				instanceId:        instanceId,
-				instanceState:     tt.instanceState,
+				instanceGetFails: tt.instanceGetFails,
+				instanceId:       instanceId,
+				instanceState:    tt.instanceState,
 			}
 
 			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestForceDeleteInstanceWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc             string
+		instanceGetFails bool
+		instanceState    string
+		wantErr          bool
+	}{
+		{
+			desc:             "delete_succeeded",
+			instanceGetFails: false,
+			instanceState:    InstanceStateDeleted,
+			wantErr:          false,
+		},
+		{
+			desc:             "delete_failed",
+			instanceGetFails: false,
+			instanceState:    InstanceStateFailed,
+			wantErr:          true,
+		},
+		{
+			desc:             "get_fails",
+			instanceGetFails: true,
+			wantErr:          true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			instanceId := "foo-bar"
+
+			apiClient := &apiClientInstanceMocked{
+				instanceGetFails:       tt.instanceGetFails,
+				instanceIsForceDeleted: tt.instanceState == InstanceStateDeleted,
+				instanceId:             instanceId,
+				instanceState:          tt.instanceState,
+			}
+
+			handler := ForceDeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
 
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
