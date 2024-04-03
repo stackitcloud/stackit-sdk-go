@@ -79,5 +79,4 @@ func main() {
 	}
 
 	fmt.Printf("Force deleted PostgreSQL Flex instance \"%s\".\n", instanceId)
-
 }
