@@ -1,3 +1,9 @@
+## v0.12.0 (2024-04-03)
+
+- **Feature**: Update `DeleteInstanceWaitHandler` to support new deletion method.
+- **Feature**: New waiter `ForceDeleteInstanceWaitHandler` for async operation `ForceDeleteInstance`
+
+
 ## v0.11.0 (2024-04-02)
 
 - **Feature**: New API method `ForceDeleteInstance` that forces the deletion of a delayed deleted instance
