@@ -10,6 +10,6 @@ API version: 1.6.2
 
 package loadbalancer
 
-type ListCredentialsResponse struct {
-	Credentials *[]CredentialsResponse `json:"credentials,omitempty"`
+type UpdateCredentialsResponse struct {
+	Credential *CredentialsResponse `json:"credential,omitempty"`
 }
