@@ -118,11 +118,13 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		switch *s.Item.Status {
 		default:
 			return true, nil, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
+		case InstanceStateSuccess:
+			return false, nil, nil
 		case InstanceStateDeleted:
 			return true, nil, nil
 		}
 	})
-	handler.SetTimeout(15 * time.Minute)
+	handler.SetTimeout(5 * time.Minute)
 	return handler
 }
 
