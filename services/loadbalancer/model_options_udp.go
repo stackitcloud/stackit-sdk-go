@@ -10,8 +10,7 @@ API version: 1.6.3
 
 package loadbalancer
 
-type CreateMigrationResponse struct {
-	LoadBalancer    *LoadBalancer    `json:"loadBalancer,omitempty"`
-	MigrationParams *MigrationParams `json:"migrationParams,omitempty"`
-	MigrationState  *string          `json:"migrationState,omitempty"`
+type OptionsUDP struct {
+	// The connection idle timeout to be used with the protocol. The default value is set to 1 minute, and the maximum value is 2 minutes.
+	IdleTimeout *string `json:"idleTimeout,omitempty"`
 }
