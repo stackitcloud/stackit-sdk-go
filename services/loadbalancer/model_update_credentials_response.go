@@ -10,8 +10,6 @@ API version: 1.6.3
 
 package loadbalancer
 
-type CreateMigrationResponse struct {
-	LoadBalancer    *LoadBalancer    `json:"loadBalancer,omitempty"`
-	MigrationParams *MigrationParams `json:"migrationParams,omitempty"`
-	MigrationState  *string          `json:"migrationState,omitempty"`
+type UpdateCredentialsResponse struct {
+	Credential *CredentialsResponse `json:"credential,omitempty"`
 }
