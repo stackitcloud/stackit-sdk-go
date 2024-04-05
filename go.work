@@ -27,21 +27,6 @@ use (
 	./examples/waiter
 	./scripts
 	./services/argus
-	./services/authorization
-	./services/dns
-	./services/loadbalancer
-	./services/logme
-	./services/mariadb
 	./services/membership
-	./services/mongodbflex
-	./services/objectstorage
-	./services/opensearch
-	./services/postgresflex
-	./services/postgresql
-	./services/rabbitmq
-	./services/redis
 	./services/resourcemanager
-	./services/secretsmanager
-	./services/serviceaccount
-	./services/ske
 )

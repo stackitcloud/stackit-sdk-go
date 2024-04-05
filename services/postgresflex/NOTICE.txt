@@ -1,2 +1,0 @@
-STACKIT PostgreSQL Flex SDK for Go
-Copyright 2023 Schwarz IT GmBH & Co. KG
