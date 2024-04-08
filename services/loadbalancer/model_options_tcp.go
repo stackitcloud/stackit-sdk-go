@@ -10,7 +10,7 @@ API version: 1.6.4
 
 package loadbalancer
 
-type GetServiceStatusResponse struct {
-	// status of the project
-	Status *string `json:"status,omitempty"`
+type OptionsTCP struct {
+	// The connection idle timeout to be used with the protocol. The default value is set to 5 minutes, and the maximum value is one hour.
+	IdleTimeout *string `json:"idleTimeout,omitempty"`
 }

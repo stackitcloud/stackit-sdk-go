@@ -10,7 +10,6 @@ API version: 1.6.4
 
 package loadbalancer
 
-type GetServiceStatusResponse struct {
-	// status of the project
-	Status *string `json:"status,omitempty"`
+type UpdateCredentialsResponse struct {
+	Credential *CredentialsResponse `json:"credential,omitempty"`
 }
