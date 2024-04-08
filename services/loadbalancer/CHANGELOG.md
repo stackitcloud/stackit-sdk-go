@@ -1,3 +1,7 @@
+## v0.10.0 (2024-04-08)
+
+- **Deprecation:** Mark methods `EnableService` and `DisableService` as deprecated. Enablement and disablement of the load balancer functionality is now automaticly handled by the service.
+
 ## v0.9.3 (2024-03-20)
 
 - **Improvement**: Improve error handling in Load Balancer creation waiter, fixing timeout being exceeded for `STATUS_PENDING` status with errors. If an error is found in the `Errors` field, the waiter now returns with error.
