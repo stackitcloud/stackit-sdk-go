@@ -1,3 +1,8 @@
+## Release (2024-04-XX)
+
+- `loadbalancer`: [v0.10.0](services/loadbalancer/CHANGELOG.md#v0100-2024-04-08)
+  - **Deprecation:** Mark methods `EnableService` and `DisableService` as deprecated. Enablement and disablement of the load balancer functionality is now automaticly handled by the service.
+
 ## Release (2024-03-20)
 
 - `core`: [v0.10.1](core/CHANGELOG.md#v0101-2024-03-20)
