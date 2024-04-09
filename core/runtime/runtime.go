@@ -12,3 +12,9 @@ import (
 func WithCaptureHTTPResponse(parent context.Context, resp **http.Response) context.Context {
 	return context.WithValue(parent, config.ContextHTTPResponse, resp)
 }
+
+// WithCaptureHTTPRequest adds the raw HTTP request retrieval annotation to the parent context.
+// After the request has completed, the req parameter will contain the raw HTTP request made to the API.
+func WithCaptureHTTPRequest(parent context.Context, req **http.Request) context.Context {
+	return context.WithValue(parent, config.ContextHTTPRequest, req)
+}
