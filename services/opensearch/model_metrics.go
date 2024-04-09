@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package opensearch
 
-type RawCredentials struct {
+type Metrics struct {
 	// REQUIRED
-	Credentials *OpenSearchCredentials `json:"credentials"`
+	Metrics *[]ListMetricsResponse `json:"metrics"`
 }

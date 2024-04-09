@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package logme
 
-type RawCredentials struct {
+type Metrics struct {
 	// REQUIRED
-	Credentials *LogMeCredentials `json:"credentials"`
+	Metrics *[]ListMetricsResponse `json:"metrics"`
 }

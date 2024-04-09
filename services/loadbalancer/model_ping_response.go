@@ -10,9 +10,7 @@ API version: 1.6.4
 
 package loadbalancer
 
-type Target struct {
-	// Target name
-	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP. Must by unique within a target pool.
-	Ip *string `json:"ip,omitempty"`
+type PingResponse struct {
+	// Same project identifier as passed in on request.
+	ProjectId *string `json:"projectId,omitempty"`
 }

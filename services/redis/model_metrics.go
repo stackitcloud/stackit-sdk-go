@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package redis
 
-type RawCredentials struct {
+type Metrics struct {
 	// REQUIRED
-	Credentials *RedisCredentials `json:"credentials"`
+	Metrics *[]ListMetricsResponse `json:"metrics"`
 }

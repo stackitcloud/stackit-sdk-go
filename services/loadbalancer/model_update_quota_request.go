@@ -10,9 +10,9 @@ API version: 1.6.4
 
 package loadbalancer
 
-type Target struct {
-	// Target name
-	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP. Must by unique within a target pool.
-	Ip *string `json:"ip,omitempty"`
+type UpdateQuotaRequest struct {
+	// The maximum number of load balancing servers in this project. Unlimited if set to -1.
+	MaxLoadBalancers *int64 `json:"maxLoadBalancers,omitempty"`
+	// Project identifier
+	ProjectId *string `json:"projectId,omitempty"`
 }
