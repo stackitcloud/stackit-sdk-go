@@ -1,3 +1,7 @@
+## v0.8.7 (2024-04-09)
+
+- Remove unused model data types..
+
 ## v0.8.6 (2024-02-28)
 
 - Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)
