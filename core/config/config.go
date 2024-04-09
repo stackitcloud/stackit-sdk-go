@@ -52,6 +52,9 @@ var (
 
 	// ContextHTTPResponse holds the raw HTTP response after the request has completed.
 	ContextHTTPResponse = contextKey("httpResponse")
+
+	// ContextHTTPRequest holds the raw HTTP request.
+	ContextHTTPRequest = contextKey("httpRequest")
 )
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
