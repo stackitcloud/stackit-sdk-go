@@ -1,3 +1,6 @@
+## v0.11.0 (2024-04-09)
+- **Feature:** Add method `WithCaptureHTTPRequest` to package `runtime`, which allows capture of HTTP requests for debugging purposes.
+
 ## v0.10.1 (2024-03-20)
 - **Improvement:** Update `ConfigureRegion` method to take into account global servers without a region variable
 
