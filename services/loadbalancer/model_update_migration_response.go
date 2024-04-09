@@ -10,9 +10,8 @@ API version: 1.6.4
 
 package loadbalancer
 
-type Target struct {
-	// Target name
-	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP. Must by unique within a target pool.
-	Ip *string `json:"ip,omitempty"`
+type UpdateMigrationResponse struct {
+	LoadBalancer    *LoadBalancer    `json:"loadBalancer,omitempty"`
+	MigrationParams *MigrationParams `json:"migrationParams,omitempty"`
+	MigrationState  *string          `json:"migrationState,omitempty"`
 }

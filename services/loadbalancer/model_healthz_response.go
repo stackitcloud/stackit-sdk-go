@@ -10,9 +10,7 @@ API version: 1.6.4
 
 package loadbalancer
 
-type Target struct {
-	// Target name
-	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP. Must by unique within a target pool.
-	Ip *string `json:"ip,omitempty"`
+type HealthzResponse struct {
+	// Human readable explanation about the response.
+	Message *string `json:"message,omitempty"`
 }
