@@ -1,3 +1,7 @@
+## v0.6.1 (2024-04-09)
+
+- Set config.ContextHTTPRequest in Execute method
+
 ## v0.6.0 (2024-03-18)
 
 - **Feature**: New API method `UpdateACLs` to update all ACLs of an instance

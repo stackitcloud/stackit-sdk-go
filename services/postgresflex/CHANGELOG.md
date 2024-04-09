@@ -1,3 +1,7 @@
+## v0.12.1 (2024-04-09)
+
+- Set config.ContextHTTPRequest in Execute method
+
 ## v0.12.0 (2024-04-03)
 
 - **Improvement**: Update `DeleteInstanceWaitHandler` to support new deletion method.

@@ -1,3 +1,7 @@
+## v0.11.1 (2024-04-09)
+
+- Set config.ContextHTTPRequest in Execute method
+
 ## v0.11.0 (2024-04-02)
 
 - **Feature:** `InstanceParameters` has new fields `FluentdTcp`, `FluentdTls`, `FluentdTlsCiphers`, `FluentdTlsMaxVersion`, `FluentdTlsMinVersion`, `FluentdTlsVersion`, `FluentdUdp`, `Groks`, `IsmDeletionAfter`, `IsmJitter`, `IsmJobInterval`, `JavaHeapspace`, `JavaMaxmetaspace`, `OpensearchTlsCiphers`, `OpensearchTlsProtocols`, and `SyslogUseUdp`
