@@ -1,3 +1,7 @@
+## v0.1.3 (2024-04-09)
+
+- Set config.ContextHTTPRequest in Execute method
+
 ## v0.1.2 (2024-04-09)
 
 - Removed unused model data types.

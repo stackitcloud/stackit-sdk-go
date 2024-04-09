@@ -87,6 +87,11 @@ func (r ApiCreateACLRequest) Execute() (*Acl, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -211,6 +216,11 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -338,6 +348,11 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -456,6 +471,11 @@ func (r ApiDeleteACLRequest) Execute() error {
 		return err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -565,6 +585,11 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 		return err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -671,6 +696,11 @@ func (r ApiDeleteUserRequest) Execute() error {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -783,6 +813,11 @@ func (r ApiGetACLRequest) Execute() (*Acl, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -905,6 +940,11 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1022,6 +1062,11 @@ func (r ApiGetUserRequest) Execute() (*User, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1144,6 +1189,11 @@ func (r ApiListACLsRequest) Execute() (*AclList, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1259,6 +1309,11 @@ func (r ApiListInstancesRequest) Execute() (*InstanceList, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1371,6 +1426,11 @@ func (r ApiListUsersRequest) Execute() (*UserList, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1502,6 +1562,11 @@ func (r ApiUpdateACLRequest) Execute() error {
 		return err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1622,6 +1687,11 @@ func (r ApiUpdateACLsRequest) Execute() error {
 		return err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1739,6 +1809,11 @@ func (r ApiUpdateUserRequest) Execute() error {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)

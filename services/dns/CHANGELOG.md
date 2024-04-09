@@ -1,3 +1,7 @@
+## v0.8.5 (2024-04-09)
+
+- Set config.ContextHTTPRequest in Execute method
+
 ## v0.8.4 (2024-02-28)
 
 - Update `core` to [`v0.10.0`](../../core/CHANGELOG.md#v0100-2024-02-27)

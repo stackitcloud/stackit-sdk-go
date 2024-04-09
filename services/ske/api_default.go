@@ -76,6 +76,11 @@ func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -234,6 +239,11 @@ func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -368,6 +378,11 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -517,6 +532,11 @@ func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -638,6 +658,11 @@ func (r ApiDisableServiceRequest) Execute() (map[string]interface{}, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -769,6 +794,11 @@ func (r ApiEnableServiceRequest) Execute() (*ProjectResponse, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -904,6 +934,11 @@ func (r ApiGetClusterRequest) Execute() (*Cluster, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1027,6 +1062,11 @@ func (r ApiGetCredentialsRequest) Execute() (*Credentials, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1178,6 +1218,11 @@ func (r ApiGetServiceStatusRequest) Execute() (*ProjectResponse, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1307,6 +1352,11 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1449,6 +1499,11 @@ func (r ApiListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1566,6 +1621,11 @@ func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, e
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1715,6 +1775,11 @@ func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1849,6 +1914,11 @@ func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) 
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1987,6 +2057,11 @@ func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -2121,6 +2196,11 @@ func (r ApiTriggerRotateCredentialsRequest) Execute() (map[string]interface{}, e
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)

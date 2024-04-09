@@ -1,7 +1,6 @@
 > This module has been replaced with the authorization module, which connects to the same API.
 >
 > **This module will receive no further updates.** Use `github.com/stackitcloud/stackit-sdk-go/services/authorization` instead.
-
 ## v0.4.0 (2024-02-07)
 
 - Add deprecation note
