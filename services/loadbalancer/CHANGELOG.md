@@ -1,3 +1,7 @@
+## v0.10.1 (2024-04-09)
+
+- Remove unused model data types..
+
 ## v0.10.0 (2024-04-08)
 
 - **Deprecation:** Mark methods `EnableService` and `DisableService` as deprecated. Enablement and disablement of the load balancer functionality is now automaticly handled by the service.
