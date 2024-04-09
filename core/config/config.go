@@ -289,8 +289,8 @@ func WithJar(jar http.CookieJar) ConfigurationOption {
 	}
 }
 
-// WithMiddleware returns a ConfigurationOption that adds a middleware to the client
-// The middleware is prepended to the list of middlewares and is executed before the existing middlewares
+// WithMiddleware returns a ConfigurationOption that adds a Middleware to the client.
+// The Middleware is prepended to the list of Middlewares so that the last added Middleware is the first to be executed.
 // Warning: providing this option may overide authentication if you use a middleware that changes the authorization header,
 // if this header is empty, the request will still be authenticated
 func WithMiddleware(m Middleware) ConfigurationOption {
@@ -550,8 +550,8 @@ func containsCaseSensitive(haystack []string, needle string) bool {
 	return false
 }
 
-// ChainMiddleware chains the given middlewares in order and returns a new http.RoundTripper
-// that executes the middlewares in order before executing the original http.RoundTripper
+// ChainMiddleware chains multiple middlewares to create a single http.RoundTripper
+// The middlewares are applied in reverse order, so the last middleware provided in the arguments is the first to be executed
 // If the root http.RoundTripper is nil, http.DefaultTransport is used
 func ChainMiddleware(rt http.RoundTripper, middlewares ...Middleware) http.RoundTripper {
 	if rt == nil {
