@@ -1,6 +1,6 @@
 ## v0.8.7 (2024-04-09)
 
-- Remove unused models.
+- Remove unused model data types..
 
 ## v0.8.6 (2024-02-28)
 
