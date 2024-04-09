@@ -69,6 +69,9 @@ type APIKey struct {
 	Prefix string
 }
 
+// Middleware 
+type Middleware func(http.RoundTripper) http.RoundTripper
+
 // Configuration stores the configuration of the API client
 type Configuration struct {
 	Host                  string            `json:"host,omitempty"`
@@ -90,6 +93,7 @@ type Configuration struct {
 	Servers               ServerConfigurations
 	OperationServers      map[string]ServerConfigurations
 	HTTPClient            *http.Client
+	Middleware            []Middleware
 
 	// If != nil, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
 	// The goroutine is killed whenever this context is canceled.
@@ -280,6 +284,18 @@ func WithCheckRedirect(checkRedirect func(req *http.Request, via []*http.Request
 func WithJar(jar http.CookieJar) ConfigurationOption {
 	return func(config *Configuration) error {
 		config.HTTPClient.Jar = jar
+		return nil
+	}
+}
+
+// WithMiddleware returns a ConfigurationOption that adds a middleware to the client
+// The middleware is prepended to the list of middlewares and is executed before the existing middlewares
+// Warning: providing this option may overide authentication if you use a middleware that changes the authorization header,
+// if this header is empty, the request will still be authenticated
+func WithMiddleware(m Middleware) ConfigurationOption {
+	// Prepend m to the list of middlewares
+	return func(config *Configuration) error {
+		config.Middleware = append([]Middleware{m}, config.Middleware...)
 		return nil
 	}
 }
@@ -531,4 +547,20 @@ func containsCaseSensitive(haystack []string, needle string) bool {
 		}
 	}
 	return false
+}
+
+// ChainMiddleware chains the given middlewares in order and returns a new http.RoundTripper
+// that executes the middlewares in order before executing the original http.RoundTripper
+// If the root http.RoundTripper is nil, http.DefaultTransport is used
+func ChainMiddleware(rt http.RoundTripper, middlewares ...Middleware) http.RoundTripper {
+	if rt == nil {
+		rt = http.DefaultTransport
+	}
+
+	// Apply middlewares in reverse order
+	for i := len(middlewares) - 1; i >= 0; i-- {
+		rt = middlewares[i](rt)
+	}
+
+	return rt
 }
