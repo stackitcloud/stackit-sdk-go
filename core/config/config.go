@@ -69,7 +69,8 @@ type APIKey struct {
 	Prefix string
 }
 
-// Middleware 
+// Middleware is a function that wraps an http.RoundTripper to provide additional functionality
+// such as logging, authentication, etc.
 type Middleware func(http.RoundTripper) http.RoundTripper
 
 // Configuration stores the configuration of the API client
