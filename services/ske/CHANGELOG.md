@@ -1,3 +1,7 @@
+## v0.11.1 (2024-04-09)
+
+- Remove unused models.
+
 ## v0.11.0 (2024-03-28)
 
 - **Feature**: Waiters for async operation `StartCredentialsRotationWaitHandler` and `CompleteCredentialsRotationWaitHandler`
