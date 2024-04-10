@@ -10,14 +10,14 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/services/argus"
 )
 
-// RequestCapturer is a middleware that captures the request and appends it to a variable.
+// RequestCapturer is a middleware that prints the request and a status it receives.
 func RequestCapturer(status string) config.Middleware {
 	return func(rt http.RoundTripper) http.RoundTripper {
 		return &roundTripperWithCapture{rt, status}
 	}
 }
 
-// roundTripperWithCapture wraps an existing RoundTripper and captures requests.
+// roundTripperWithCapture is a custom round tripper that prints the request and a status it receives.
 type roundTripperWithCapture struct {
 	transport http.RoundTripper
 	status    string
@@ -30,6 +30,7 @@ func (rt roundTripperWithCapture) RoundTrip(req *http.Request) (*http.Response, 
 	fmt.Println("Status:", rt.status)
 
 	// Proceed with the original round trip
+	// This step is important to preserve the original behavior of the client
 	return rt.transport.RoundTrip(req)
 }
 
