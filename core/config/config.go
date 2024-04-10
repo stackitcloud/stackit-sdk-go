@@ -291,7 +291,7 @@ func WithJar(jar http.CookieJar) ConfigurationOption {
 
 // WithMiddleware returns a ConfigurationOption that adds a Middleware to the client.
 // The Middleware is prepended to the list of Middlewares so that the last added Middleware is the first to be executed.
-// Warning: Providing this option may overide the authentication performed by the SDK if the middlewares provided break the chain. 
+// Warning: Providing this option may overide the authentication performed by the SDK if the middlewares provided break the chain.
 // If changes are made to the authentication header and the chain is preserved, they will be overwritten. Please use WithCustomAuth for that purpose.
 func WithMiddleware(m Middleware) ConfigurationOption {
 	// Prepend m to the list of middlewares
