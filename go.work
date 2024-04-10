@@ -13,6 +13,7 @@ use (
 	./examples/loadbalancer
 	./examples/logme
 	./examples/mariadb
+	./examples/middleware
 	./examples/mongodbflex
 	./examples/objectstorage
 	./examples/opensearch
