@@ -69,6 +69,10 @@ type APIKey struct {
 	Prefix string
 }
 
+// Middleware is a function that wraps an http.RoundTripper to provide additional functionality
+// such as logging, authentication, etc.
+type Middleware func(http.RoundTripper) http.RoundTripper
+
 // Configuration stores the configuration of the API client
 type Configuration struct {
 	Host                  string            `json:"host,omitempty"`
@@ -90,6 +94,7 @@ type Configuration struct {
 	Servers               ServerConfigurations
 	OperationServers      map[string]ServerConfigurations
 	HTTPClient            *http.Client
+	Middleware            []Middleware
 
 	// If != nil, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
 	// The goroutine is killed whenever this context is canceled.
@@ -280,6 +285,18 @@ func WithCheckRedirect(checkRedirect func(req *http.Request, via []*http.Request
 func WithJar(jar http.CookieJar) ConfigurationOption {
 	return func(config *Configuration) error {
 		config.HTTPClient.Jar = jar
+		return nil
+	}
+}
+
+// WithMiddleware returns a ConfigurationOption that adds a Middleware to the client.
+// The Middleware is prepended to the list of Middlewares so that the last added Middleware is the first to be executed.
+// Warning: Providing this option may overide the authentication performed by the SDK if the middlewares provided break the chain.
+// If changes are made to the authentication header and the chain is preserved, they will be overwritten. If you wish to overwrite authentication, use WithCustomAuth.
+func WithMiddleware(m Middleware) ConfigurationOption {
+	// Prepend m to the list of middlewares
+	return func(config *Configuration) error {
+		config.Middleware = append([]Middleware{m}, config.Middleware...)
 		return nil
 	}
 }
@@ -531,4 +548,20 @@ func containsCaseSensitive(haystack []string, needle string) bool {
 		}
 	}
 	return false
+}
+
+// ChainMiddleware chains multiple middlewares to create a single http.RoundTripper
+// The middlewares are applied in reverse order, so the last middleware provided in the arguments is the first to be executed
+// If the root http.RoundTripper is nil, http.DefaultTransport is used
+func ChainMiddleware(rt http.RoundTripper, middlewares ...Middleware) http.RoundTripper {
+	if rt == nil {
+		rt = http.DefaultTransport
+	}
+
+	// Apply middlewares in reverse order
+	for i := len(middlewares) - 1; i >= 0; i-- {
+		rt = middlewares[i](rt)
+	}
+
+	return rt
 }
