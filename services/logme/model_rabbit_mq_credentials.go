@@ -10,18 +10,19 @@ API version: 1.1.0
 
 package logme
 
-type Credentials struct {
+type RabbitMQCredentials struct {
 	// REQUIRED
 	Host  *string   `json:"host"`
 	Hosts *[]string `json:"hosts,omitempty"`
 	// for rabbitmq only
-	HttpApiUri *string `json:"http_api_uri,omitempty"`
-	Name       *string `json:"name,omitempty"`
+	HttpApiUri  *string   `json:"http_api_uri,omitempty"`
+	HttpApiUris *[]string `json:"http_api_uris,omitempty"`
+	Management  *string   `json:"management,omitempty"`
 	// REQUIRED
-	Password  *string                 `json:"password"`
-	Port      *int64                  `json:"port,omitempty"`
-	Protocols *map[string]interface{} `json:"protocols,omitempty"`
-	Uri       *string                 `json:"uri,omitempty"`
+	Password *string   `json:"password"`
+	Port     *int64    `json:"port,omitempty"`
+	Uri      *string   `json:"uri,omitempty"`
+	Uris     *[]string `json:"uris,omitempty"`
 	// REQUIRED
 	Username *string `json:"username"`
 }
