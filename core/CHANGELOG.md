@@ -1,3 +1,6 @@
+## v0.12.0 (2024-04-11)
+- **Feature:** Add `Middleware` type, `WithMiddleware` and `ChainMiddleware` methods to package `config`, this allows clients to chain and add Middlewares to the transport layer of the HTTP client.
+
 ## v0.11.0 (2024-04-09)
 - **Feature:** Add method `WithCaptureHTTPRequest` to package `runtime`, which allows capture of HTTP requests for debugging purposes.
 
