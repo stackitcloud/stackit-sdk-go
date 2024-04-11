@@ -13,6 +13,6 @@ package loadbalancer
 type Target struct {
 	// Target name
 	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP. Must by unique within a target pool.
+	// Target IP
 	Ip *string `json:"ip,omitempty"`
 }

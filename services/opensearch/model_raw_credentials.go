@@ -12,5 +12,10 @@ package opensearch
 
 type RawCredentials struct {
 	// REQUIRED
-	Credentials *OpenSearchCredentials `json:"credentials"`
+	Credentials *Credentials `json:"credentials"`
+	// REQUIRED
+	RouteServiceUrl *string `json:"routeServiceUrl"`
+	// REQUIRED
+	SyslogDrainUrl *string                   `json:"syslogDrainUrl"`
+	VolumeMounts   *[]map[string]interface{} `json:"volumeMounts,omitempty"`
 }

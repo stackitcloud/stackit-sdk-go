@@ -10,8 +10,11 @@ API version: 1.6.4
 
 package loadbalancer
 
-type GetMigrationResponse struct {
-	LoadBalancer    *LoadBalancer    `json:"loadBalancer,omitempty"`
-	MigrationParams *MigrationParams `json:"migrationParams,omitempty"`
-	MigrationState  *string          `json:"migrationState,omitempty"`
+type Credentials struct {
+	// Credential name
+	DisplayName *string `json:"displayName,omitempty"`
+	// A valid password used for an existing ARGUS instance, which is used during basic auth.
+	Password *string `json:"password,omitempty"`
+	// A valid username used for an existing ARGUS instance, which is used during basic auth.
+	Username *string `json:"username,omitempty"`
 }
