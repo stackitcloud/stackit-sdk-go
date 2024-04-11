@@ -10,9 +10,11 @@ API version: 1.6.4
 
 package loadbalancer
 
-type Target struct {
-	// Target name
+type Credentials struct {
+	// Credential name
 	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP
-	Ip *string `json:"ip,omitempty"`
+	// A valid password used for an existing ARGUS instance, which is used during basic auth.
+	Password *string `json:"password,omitempty"`
+	// A valid username used for an existing ARGUS instance, which is used during basic auth.
+	Username *string `json:"username,omitempty"`
 }

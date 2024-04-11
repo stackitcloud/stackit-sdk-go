@@ -10,9 +10,6 @@ API version: 1.6.4
 
 package loadbalancer
 
-type Target struct {
-	// Target name
-	DisplayName *string `json:"displayName,omitempty"`
-	// Target IP
-	Ip *string `json:"ip,omitempty"`
+type UpdateCredentialsResponse struct {
+	Credential *CredentialsResponse `json:"credential,omitempty"`
 }
