@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package rabbitmq
 
-type RawCredentials struct {
+type Metrics struct {
 	// REQUIRED
-	Credentials *RabbitMQCredentials `json:"credentials"`
+	Metrics *[]ListMetricsResponse `json:"metrics"`
 }

@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package postgresql
 
-type RawCredentials struct {
+type Metrics struct {
 	// REQUIRED
-	Credentials *PostgresQLCredentials `json:"credentials"`
+	Metrics *[]ListMetricsResponse `json:"metrics"`
 }
