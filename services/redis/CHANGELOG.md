@@ -1,12 +1,14 @@
-## v0.12.0 (2024-04-14)
+## v0.13.0 (2024-04-11)
 
 - **Breaking change**: Fields removed from `RawCredentials`: `RouteServiceUrl`, `SyslogDrainUrl`, `VolumeMounts`.
 - **Breaking change**: Fields removed from `Credentials`: `HttpApiUri`, `Name`, `Protocols`
 - **Feature**: `Credentials` has new fields `LoadBalancedHost`
 
-## v0.11.1 (2024-04-09)
+## v0.12.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method
+- Support WithMiddleware configuration option in the client
+- Update `core` to [`v0.12.0`](../../core/CHANGELOG.md#v0120-2024-04-11)
 
 ## v0.11.0 (2024-04-02)
 
