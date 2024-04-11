@@ -1,11 +1,6 @@
 > **The STACKIT PostgreSQL service will reach its end of support on June 30th 2024. All calls done to the API after that will stop working.**
 >
 > Use `github.com/stackitcloud/stackit-sdk-go/services/postgresflex` instead. For more details, check https://docs.stackit.cloud/stackit/en/bring-your-data-to-stackit-postgresql-flex-138347648.html.
-
-## v0.13.1 (2024-04-09)
-
-- Set config.ContextHTTPRequest in Execute method
-
 ## v0.13.0 (2024-04-02)
 
 - **Breaking change:** Field `Plugins` was removed from `InstanceParameters`
