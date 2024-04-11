@@ -37,6 +37,7 @@ var (
 	usage              = "go run automatic_tag.go --update-type [minor|patch] --ssh-private-key-file-path path/to/private-key --target [all-services|core]"
 	deprecatedServices = []string{
 		"membership",
+		"postgresql",
 	}
 )
 
