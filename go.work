@@ -9,10 +9,10 @@ use (
 	./examples/configuration
 	./examples/dns
 	./examples/errorhandling
-	./examples/httpresponse
 	./examples/loadbalancer
 	./examples/logme
 	./examples/mariadb
+	./examples/middleware
 	./examples/mongodbflex
 	./examples/objectstorage
 	./examples/opensearch
@@ -21,6 +21,7 @@ use (
 	./examples/rabbitmq
 	./examples/redis
 	./examples/resourcemanager
+	./examples/runtime
 	./examples/secretsmanager
 	./examples/serviceaccount
 	./examples/ske
