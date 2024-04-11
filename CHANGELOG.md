@@ -1,7 +1,35 @@
 ## Release (2024-04-XX)
 
+- `core`: [v0.11.0](core/CHANGELOG.md#v0110-2024-04-09)
+  - **Feature:** Add method `WithCaptureHTTPRequest` to package `runtime`, which allows capture of HTTP requests for debugging purposes.
+- `core`: [v0.12.0](core/CHANGELOG.md#v0120-2024-04-11)
+  - **Feature:** Add `Middleware` type, `WithMiddleware` and `ChainMiddleware` methods to package `config`, this allows clients to chain and add Middlewares to the transport layer of the HTTP client.
 - `loadbalancer`: [v0.10.0](services/loadbalancer/CHANGELOG.md#v0100-2024-04-08)
   - **Deprecation:** Mark methods `EnableService` and `DisableService` as deprecated. Enablement and disablement of the load balancer functionality is now automaticly handled by the service.
+- `logme`: [v0.13.0](services/logme/CHANGELOG.md#v0130-2024-04-11)
+  - **Breaking change**: Fields removed from `RawCredentials`: `RouteServiceUrl`, `SyslogDrainUrl`, `VolumeMounts`.
+  - **Breaking change**: Fields removed from `Credentials`: `Hosts`, `HttpApiUri`, `Name`, `Protocols`
+  - **Feature**: `Credentials` has a new field `SyslogDrainUrl`
+- `mariadb`: [v0.13.0](services/mariadb/CHANGELOG.md#v0130-2024-04-11)
+  - **Breaking change**: Fields removed from `RawCredentials`: `RouteServiceUrl`, `SyslogDrainUrl`, `VolumeMounts`.
+  - **Breaking change**: Fields removed from `Credentials`: `HttpApiUri`, `Protocols`
+- `opensearch`: [v0.13.0](services/opensearch/CHANGELOG.md#v0130-2024-04-11)
+  - **Breaking change**: Fields removed from `RawCredentials`: `RouteServiceUrl`, `SyslogDrainUrl`, `VolumeMounts`.
+  - **Breaking change**: Fields removed from `Credentials`: `HttpApiUri`, `Name`, `Protocols`
+  - **Feature**: `Credentials` has a new field `Scheme`
+- `postgresflex`: [v0.12.0](services/postgresflex/CHANGELOG.md#v0120-2024-04-03)
+  - **Improvement**: Update `DeleteInstanceWaitHandler` to support new deletion method.
+  - **Feature**: New waiter `ForceDeleteInstanceWaitHandler` for async operation `ForceDeleteInstance`
+- `rabbitmq`: [v0.13.0](services/rabbitmq/CHANGELOG.md#v0130-2024-04-11)
+  - **Breaking change**: Fields removed from `RawCredentials`: `RouteServiceUrl`, `SyslogDrainUrl`, `VolumeMounts`.
+  - **Breaking change**: Fields removed from `Credentials`: `Name`, `Protocols`
+  - **Feature**: `Credentials` has new fields `HttpApiUris`, `Management`, `Uris`
+- `redis`: [v0.13.0](services/redis/CHANGELOG.md#v0130-2024-04-11)
+  - **Breaking change**: Fields removed from `RawCredentials`: `RouteServiceUrl`, `SyslogDrainUrl`, `VolumeMounts`.
+  - **Breaking change**: Fields removed from `Credentials`: `HttpApiUri`, `Name`, `Protocols`
+  - **Feature**: `Credentials` has new fields `LoadBalancedHost`
+- `ske`: [v0.11.0](services/ske/CHANGELOG.md#v0110-2024-03-28)
+  - **Feature**: Waiters for async operation `StartCredentialsRotationWaitHandler` and `CompleteCredentialsRotationWaitHandler`
 
 ## Release (2024-03-20)
 
