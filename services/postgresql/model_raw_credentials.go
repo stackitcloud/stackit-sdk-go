@@ -12,10 +12,5 @@ package postgresql
 
 type RawCredentials struct {
 	// REQUIRED
-	Credentials *Credentials `json:"credentials"`
-	// REQUIRED
-	RouteServiceUrl *string `json:"routeServiceUrl"`
-	// REQUIRED
-	SyslogDrainUrl *string                   `json:"syslogDrainUrl"`
-	VolumeMounts   *[]map[string]interface{} `json:"volumeMounts,omitempty"`
+	Credentials *PostgresQLCredentials `json:"credentials"`
 }
