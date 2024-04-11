@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package mariadb
 
-type Credentials struct {
+type PostgresQLCredentials struct {
 	// REQUIRED
 	Host  *string   `json:"host"`
 	Hosts *[]string `json:"hosts,omitempty"`

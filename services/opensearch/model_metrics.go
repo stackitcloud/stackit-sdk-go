@@ -10,15 +10,7 @@ API version: 1.1.0
 
 package opensearch
 
-type Credentials struct {
+type Metrics struct {
 	// REQUIRED
-	Host  *string   `json:"host"`
-	Hosts *[]string `json:"hosts,omitempty"`
-	// REQUIRED
-	Password *string `json:"password"`
-	Port     *int64  `json:"port,omitempty"`
-	Scheme   *string `json:"scheme,omitempty"`
-	Uri      *string `json:"uri,omitempty"`
-	// REQUIRED
-	Username *string `json:"username"`
+	Metrics *[]ListMetricsResponse `json:"metrics"`
 }
