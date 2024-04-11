@@ -1,3 +1,9 @@
+## v0.12.0 (2024-04-14)
+
+- **Breaking change**: Fields removed from `RawCredentials`: `RouteServiceUrl`, `SyslogDrainUrl`, `VolumeMounts`.
+- **Breaking change**: Fields removed from `Credentials`: `Name`, `Protocols`
+- **Feature**: `Credentials` has new fields `HttpApiUris`, `Management`, `Uris`
+
 ## v0.11.1 (2024-04-09)
 
 - Set config.ContextHTTPRequest in Execute method
