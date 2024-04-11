@@ -2,6 +2,7 @@
 
 - Set config.ContextHTTPRequest in Execute method
 - Support WithMiddleware configuration option in the client
+- Update `core` to [`v0.12.0`](../../core/CHANGELOG.md#v0120-2024-04-11)
 
 ## v0.6.0 (2024-03-18)
 

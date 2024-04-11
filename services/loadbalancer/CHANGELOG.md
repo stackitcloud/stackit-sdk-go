@@ -1,6 +1,7 @@
 ## v0.11.0 (2024-04-11)
 
 - Support WithMiddleware configuration option in the client
+- Update `core` to [`v0.12.0`](../../core/CHANGELOG.md#v0120-2024-04-11)
 
 ## v0.10.1 (2024-04-09)
 
