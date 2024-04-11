@@ -10,7 +10,14 @@ API version: 1.1.0
 
 package rabbitmq
 
-type RawCredentials struct {
+type LogMeCredentials struct {
 	// REQUIRED
-	Credentials *Credentials `json:"credentials"`
+	Host *string `json:"host"`
+	// REQUIRED
+	Password       *string `json:"password"`
+	Port           *int64  `json:"port,omitempty"`
+	SyslogDrainUrl *string `json:"syslog_drain_url,omitempty"`
+	Uri            *string `json:"uri,omitempty"`
+	// REQUIRED
+	Username *string `json:"username"`
 }

@@ -12,16 +12,12 @@ package logme
 
 type Credentials struct {
 	// REQUIRED
-	Host  *string   `json:"host"`
-	Hosts *[]string `json:"hosts,omitempty"`
-	// for rabbitmq only
-	HttpApiUri *string `json:"http_api_uri,omitempty"`
-	Name       *string `json:"name,omitempty"`
+	Host *string `json:"host"`
 	// REQUIRED
-	Password  *string                 `json:"password"`
-	Port      *int64                  `json:"port,omitempty"`
-	Protocols *map[string]interface{} `json:"protocols,omitempty"`
-	Uri       *string                 `json:"uri,omitempty"`
+	Password       *string `json:"password"`
+	Port           *int64  `json:"port,omitempty"`
+	SyslogDrainUrl *string `json:"syslog_drain_url,omitempty"`
+	Uri            *string `json:"uri,omitempty"`
 	// REQUIRED
 	Username *string `json:"username"`
 }

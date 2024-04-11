@@ -10,11 +10,11 @@ API version: 1.1.0
 
 package mariadb
 
-type Credentials struct {
+type RedisCredentials struct {
 	// REQUIRED
-	Host  *string   `json:"host"`
-	Hosts *[]string `json:"hosts,omitempty"`
-	Name  *string   `json:"name,omitempty"`
+	Host             *string   `json:"host"`
+	Hosts            *[]string `json:"hosts,omitempty"`
+	LoadBalancedHost *string   `json:"load_balanced_host,omitempty"`
 	// REQUIRED
 	Password *string `json:"password"`
 	Port     *int64  `json:"port,omitempty"`

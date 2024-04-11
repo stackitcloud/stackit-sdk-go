@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package mariadb
 
-type RawCredentials struct {
+type Metrics struct {
 	// REQUIRED
-	Credentials *Credentials `json:"credentials"`
+	Metrics *[]ListMetricsResponse `json:"metrics"`
 }

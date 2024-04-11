@@ -10,15 +10,14 @@ API version: 1.1.0
 
 package redis
 
-type Credentials struct {
+type LogMeCredentials struct {
 	// REQUIRED
-	Host             *string   `json:"host"`
-	Hosts            *[]string `json:"hosts,omitempty"`
-	LoadBalancedHost *string   `json:"load_balanced_host,omitempty"`
+	Host *string `json:"host"`
 	// REQUIRED
-	Password *string `json:"password"`
-	Port     *int64  `json:"port,omitempty"`
-	Uri      *string `json:"uri,omitempty"`
+	Password       *string `json:"password"`
+	Port           *int64  `json:"port,omitempty"`
+	SyslogDrainUrl *string `json:"syslog_drain_url,omitempty"`
+	Uri            *string `json:"uri,omitempty"`
 	// REQUIRED
 	Username *string `json:"username"`
 }

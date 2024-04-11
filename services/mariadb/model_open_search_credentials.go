@@ -10,14 +10,14 @@ API version: 1.1.0
 
 package mariadb
 
-type Credentials struct {
+type OpenSearchCredentials struct {
 	// REQUIRED
 	Host  *string   `json:"host"`
 	Hosts *[]string `json:"hosts,omitempty"`
-	Name  *string   `json:"name,omitempty"`
 	// REQUIRED
 	Password *string `json:"password"`
 	Port     *int64  `json:"port,omitempty"`
+	Scheme   *string `json:"scheme,omitempty"`
 	Uri      *string `json:"uri,omitempty"`
 	// REQUIRED
 	Username *string `json:"username"`
