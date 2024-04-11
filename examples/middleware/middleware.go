@@ -17,21 +17,25 @@ func RequestCapturer(status string) config.Middleware {
 	}
 }
 
-// roundTripperWithCapture is a custom round tripper that prints the request and a status it receives.
+// roundTripperWithCapture is a custom round tripper that prints the request and an input it receives.
 type roundTripperWithCapture struct {
-	transport http.RoundTripper
-	status    string
+	transport   http.RoundTripper
+	inputString string
 }
 
 func (rt roundTripperWithCapture) RoundTrip(req *http.Request) (*http.Response, error) {
 	returnStr := fmt.Sprintf("%s %s", req.Method, req.URL.String())
 
 	fmt.Println("Captured request:", returnStr)
-	fmt.Println("Status:", rt.status)
+	fmt.Println("Input:", rt.inputString)
 
 	// Proceed with the original round trip
 	// This step is important to preserve the original behavior of the client
-	return rt.transport.RoundTrip(req)
+	resp, err := rt.transport.RoundTrip(req)
+
+	fmt.Println("Captured response status:", resp.Status)
+
+	return resp, err
 }
 
 func main() {
@@ -44,8 +48,8 @@ func main() {
 	// In this case, the middleware with status "1" will be executed first
 	argusClient, err := argus.NewAPIClient(
 		config.WithRegion("eu01"),
-		config.WithMiddleware(RequestCapturer("2")),
-		config.WithMiddleware(RequestCapturer("1")),
+		config.WithMiddleware(RequestCapturer("Middleware 2")),
+		config.WithMiddleware(RequestCapturer("Middleware 1")),
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Argus API] Creating API client: %v\n", err)
