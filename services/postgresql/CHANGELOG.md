@@ -2,13 +2,10 @@
 >
 > Use `github.com/stackitcloud/stackit-sdk-go/services/postgresflex` instead. For more details, check https://docs.stackit.cloud/stackit/en/bring-your-data-to-stackit-postgresql-flex-138347648.html.
 
-## v0.13.2 (2024-04-11)
-
-- Add Middleware logic to the client.
-
-## v0.13.1 (2024-04-09)
+## v0.14.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method
+- Support WithMiddleware configuration option in the client
 
 ## v0.13.0 (2024-04-02)
 

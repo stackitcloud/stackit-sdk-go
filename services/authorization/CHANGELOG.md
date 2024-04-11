@@ -1,10 +1,7 @@
-## v0.1.4 (2024-04-11)
-
-- Add Middleware logic to the client.
-
-## v0.1.3 (2024-04-09)
+## v0.2.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method
+- Support WithMiddleware configuration option in the client
 
 ## v0.1.2 (2024-04-09)
 

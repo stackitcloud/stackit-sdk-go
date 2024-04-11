@@ -1,6 +1,6 @@
-## v0.10.2 (2024-04-11)
+## v0.11.0 (2024-04-11)
 
-- Add Middleware logic to the client.
+- Support WithMiddleware configuration option in the client
 
 ## v0.10.1 (2024-04-09)
 
