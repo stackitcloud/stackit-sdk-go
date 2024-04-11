@@ -33,5 +33,16 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Printf("Number of instances: %v\n\n", len(*getInstancesResp.Items))
-	fmt.Printf("HTTP response: %+v\n", *httpResp)
+	fmt.Printf("HTTP response: %+v\n\n", *httpResp)
+
+	// Get the MongoDB Flex instances for your project and capture the HTTP request using the context
+	var httpReq *http.Request
+	ctxWithHTTPReq := runtime.WithCaptureHTTPRequest(context.Background(), &httpReq)
+	getInstancesResp, err = postgresflexClient.ListInstances(ctxWithHTTPReq, projectId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ListInstances`: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Number of instances: %v\n\n", len(*getInstancesResp.Items))
+	fmt.Printf("HTTP request: %+v\n\n", *httpReq)
 }
