@@ -1,3 +1,7 @@
+## v0.10.2 (2024-04-11)
+
+- Add Middleware logic to the client.
+
 ## v0.10.1 (2024-04-09)
 
 - Remove unused model data types..
