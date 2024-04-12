@@ -725,11 +725,15 @@ func (r ApiDisableServiceRequest) Execute() (map[string]interface{}, error) {
 /*
 DisableService Delete a project
 
+This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
+
 Deletes the SKE project specified by `projectId`. Deleting a project deletes all corresponding shoots.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiDisableServiceRequest
+
+Deprecated
 */
 func (a *APIClient) DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest {
 	return ApiDisableServiceRequest{
@@ -861,11 +865,15 @@ func (r ApiEnableServiceRequest) Execute() (*ProjectResponse, error) {
 /*
 EnableService Create a Project
 
+This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
+
 Returns creation state of Project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiEnableServiceRequest
+
+Deprecated
 */
 func (a *APIClient) EnableService(ctx context.Context, projectId string) ApiEnableServiceRequest {
 	return ApiEnableServiceRequest{
@@ -1283,11 +1291,15 @@ func (r ApiGetServiceStatusRequest) Execute() (*ProjectResponse, error) {
 /*
 GetServiceStatus Get a Project
 
+This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
+
 Get a Project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiGetServiceStatusRequest
+
+Deprecated
 */
 func (a *APIClient) GetServiceStatus(ctx context.Context, projectId string) ApiGetServiceStatusRequest {
 	return ApiGetServiceStatusRequest{
