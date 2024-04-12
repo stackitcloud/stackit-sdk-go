@@ -1,4 +1,4 @@
-## Release (2024-04-XX)
+## Release (2024-04-12)
 
 - `core`: [v0.12.0](core/CHANGELOG.md#v0120-2024-04-11)
   - **Feature:** Add `Middleware` type, `WithMiddleware` and `ChainMiddleware` methods to package `config`, this allows clients to chain and add Middlewares to the transport layer of the HTTP client.
