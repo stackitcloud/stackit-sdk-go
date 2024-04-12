@@ -95,6 +95,11 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -231,6 +236,11 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -345,6 +355,11 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -464,6 +479,11 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -577,6 +597,11 @@ func (r ApiDisableServiceRequest) Execute() (map[string]interface{}, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -705,6 +730,11 @@ func (r ApiEnableServiceRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -821,6 +851,11 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -940,6 +975,11 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1010,6 +1050,123 @@ func (a *APIClient) GetLoadBalancerExecute(ctx context.Context, projectId string
 	return r.Execute()
 }
 
+type ApiGetQuotaRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+}
+
+func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetQuotaResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetQuota")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/quota"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetQuota Get the quota of Load Balancers and Target Pools in a project.
+
+GetQuota gets the configured load balancer quota for the project. Default is 3.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@return ApiGetQuotaRequest
+*/
+func (a *APIClient) GetQuota(ctx context.Context, projectId string) ApiGetQuotaRequest {
+	return ApiGetQuotaRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) GetQuotaExecute(ctx context.Context, projectId string) (*GetQuotaResponse, error) {
+	r := ApiGetQuotaRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
 type ApiGetServiceStatusRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -1056,6 +1213,11 @@ func (r ApiGetServiceStatusRequest) Execute() (*GetServiceStatusResponse, error)
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1174,6 +1336,11 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1286,6 +1453,11 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 		return localVarReturnValue, err
 	}
 
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
@@ -1353,6 +1525,139 @@ func (a *APIClient) ListLoadBalancersExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
+type ApiUpdateCredentialsRequest struct {
+	ctx                      context.Context
+	apiService               *DefaultApiService
+	projectId                string
+	credentialsRef           string
+	updateCredentialsPayload *UpdateCredentialsPayload
+}
+
+func (r ApiUpdateCredentialsRequest) UpdateCredentialsPayload(updateCredentialsPayload UpdateCredentialsPayload) ApiUpdateCredentialsRequest {
+	r.updateCredentialsPayload = &updateCredentialsPayload
+	return r
+}
+
+func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UpdateCredentialsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateCredentials")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/credentials/{credentialsRef}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(r.credentialsRef, "credentialsRef")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateCredentialsPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateCredentialsPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateCredentialsPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateCredentials Update credentials for observability in a project.
+
+Update Credentials
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param credentialsRef
+	@return ApiUpdateCredentialsRequest
+*/
+func (a *APIClient) UpdateCredentials(ctx context.Context, projectId string, credentialsRef string) ApiUpdateCredentialsRequest {
+	return ApiUpdateCredentialsRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		projectId:      projectId,
+		credentialsRef: credentialsRef,
+	}
+}
+
+func (a *APIClient) UpdateCredentialsExecute(ctx context.Context, projectId string, credentialsRef string) (*UpdateCredentialsResponse, error) {
+	r := ApiUpdateCredentialsRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		projectId:      projectId,
+		credentialsRef: credentialsRef,
+	}
+	return r.Execute()
+}
+
 type ApiUpdateLoadBalancerRequest struct {
 	ctx                       context.Context
 	apiService                *DefaultApiService
@@ -1412,6 +1717,11 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1545,6 +1855,11 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
