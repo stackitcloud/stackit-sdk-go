@@ -3,8 +3,8 @@ module github.com/stackitcloud/stackit-sdk-go/examples/authorization
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.10.1
-	github.com/stackitcloud/stackit-sdk-go/services/authorization v0.1.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.12.0
+	github.com/stackitcloud/stackit-sdk-go/services/authorization v0.2.0
 )
 
 require (

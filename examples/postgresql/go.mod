@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/postgresql
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.10.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.12.0
 	github.com/stackitcloud/stackit-sdk-go/services/postgresql v0.12.1
 )
 
