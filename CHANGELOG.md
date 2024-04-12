@@ -1,9 +1,15 @@
 ## Release (2024-04-XX)
 
-- `core`: [v0.11.0](core/CHANGELOG.md#v0110-2024-04-09)
-  - **Feature:** Add method `WithCaptureHTTPRequest` to package `runtime`, which allows capture of HTTP requests for debugging purposes.
 - `core`: [v0.12.0](core/CHANGELOG.md#v0120-2024-04-11)
   - **Feature:** Add `Middleware` type, `WithMiddleware` and `ChainMiddleware` methods to package `config`, this allows clients to chain and add Middlewares to the transport layer of the HTTP client.
+- `core`: [v0.11.0](core/CHANGELOG.md#v0110-2024-04-09)
+  - **Feature:** Add method `WithCaptureHTTPRequest` to package `runtime`, which allows capture of HTTP requests for debugging purposes.
+- `loadbalancer`: [v0.12.0](services/loadbalancer/CHANGELOG.md#v0120-2024-04-12)
+  - **Feature:** Set `config.ContextHTTPRequest` in `Execute` methods
+  - **Feature:** New API method `GetQuota` to get the maximum number of load balancing servers allowed for a project
+  - **Feature:** New API method `UpdateCredentials` to update the credentials for observability in a project
+- `loadbalancer`: [v0.11.0](services/loadbalancer/CHANGELOG.md#v0110-2024-04-11)
+  - **Feature:** Support WithMiddleware configuration option in the client
 - `loadbalancer`: [v0.10.0](services/loadbalancer/CHANGELOG.md#v0100-2024-04-08)
   - **Deprecation:** Mark methods `EnableService` and `DisableService` as deprecated. Enablement and disablement of the load balancer functionality is now automaticly handled by the service.
 - `logme`: [v0.13.0](services/logme/CHANGELOG.md#v0130-2024-04-11)

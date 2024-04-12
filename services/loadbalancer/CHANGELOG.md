@@ -1,6 +1,12 @@
+## v0.12.0 (2024-04-12)
+
+- **Feature:** Set `config.ContextHTTPRequest` in `Execute` methods
+- **Feature:** New API method `GetQuota` to get the maximum number of load balancing servers allowed for a project
+- **Feature:** New API method `UpdateCredentials` to update the credentials for observability in a project
+
 ## v0.11.0 (2024-04-11)
 
-- Support WithMiddleware configuration option in the client
+- **Feature:** Support WithMiddleware configuration option in the client
 - Update `core` to [`v0.12.0`](../../core/CHANGELOG.md#v0120-2024-04-11)
 
 ## v0.10.1 (2024-04-09)
