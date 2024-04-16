@@ -1,3 +1,10 @@
+## Release (2024-XX-XX)
+- `ske`: [v0.13.0](services/ske/CHANGELOG.md#v0130-2024-04-16)
+  - **Deprecation**: The following methods have been deprecated and the [Service Enablement API](https://docs.api.stackit.cloud/documentation/service-enablement/version/v1) must be used instead.
+    - `DisableService`
+    - `EnableService`
+    - `GetServiceStatus`
+
 ## Release (2024-04-12)
 
 - `core`: [v0.12.0](core/CHANGELOG.md#v0120-2024-04-11)
