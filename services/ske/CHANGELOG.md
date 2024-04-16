@@ -1,3 +1,9 @@
+## v0.13.0 (2024-04-16)
+- **Deprecation:** The following methods have been deprecated and `service-enablement` API must be used instead.
+  - `DisableService`
+  - `EnableService`
+  - `GetServiceStatus`
+
 ## v0.12.0 (2024-04-09)
 
 - Set config.ContextHTTPRequest in Execute method
