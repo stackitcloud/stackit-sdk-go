@@ -1,5 +1,5 @@
 ## v0.13.0 (2024-04-16)
-- **Deprecation:** The following methods have been deprecated and `service-enablement` API must be used instead.
+- **Deprecation:** The following methods have been deprecated and the [Service Enablement API](https://docs.api.stackit.cloud/documentation/service-enablement/version/v1) must be used instead.
   - `DisableService`
   - `EnableService`
   - `GetServiceStatus`
