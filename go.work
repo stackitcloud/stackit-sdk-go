@@ -28,6 +28,7 @@ use (
 	./examples/waiter
 	./scripts
 	./services/argus
+	./services/argus3
 	./services/authorization
 	./services/dns
 	./services/loadbalancer
