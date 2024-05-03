@@ -11,7 +11,9 @@ API version: 1.1
 package ske
 
 type MachineType struct {
-	Cpu    *int64  `json:"cpu,omitempty"`
-	Memory *int64  `json:"memory,omitempty"`
-	Name   *string `json:"name,omitempty"`
+	Architecture *string `json:"architecture,omitempty"`
+	Cpu          *int64  `json:"cpu,omitempty"`
+	Gpu          *int64  `json:"gpu,omitempty"`
+	Memory       *int64  `json:"memory,omitempty"`
+	Name         *string `json:"name,omitempty"`
 }

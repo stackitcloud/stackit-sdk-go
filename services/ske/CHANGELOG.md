@@ -1,3 +1,6 @@
+## v0.14.0 (2024-05-03)
+- **Feature:** New fields for `MachineType`: `Architecture`, `Gpu`
+
 ## v0.13.0 (2024-04-16)
 - **Deprecation:** The following methods have been deprecated and the [Service Enablement API](https://docs.api.stackit.cloud/documentation/service-enablement/version/v1) must be used instead.
   - `DisableService`

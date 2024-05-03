@@ -1,3 +1,8 @@
+## Release (2024-xx-xx)
+
+- `ske`: [v0.14.0](services/ske/CHANGELOG.md#v0140-2024-05-03)
+  - **Feature:** New fields for `MachineType`: `Architecture`, `Gpu`
+
 ## Release (2024-05-02)
 
 - `ske`: [v0.13.0](services/ske/CHANGELOG.md#v0130-2024-04-16)
