@@ -264,67 +264,42 @@ func getServiceAccountEmail(cfg *config.Configuration) string {
 	return email
 }
 
-// getPrivateKey searches for the private key in the following order: client configuration, environment variable, credentials file.
-func getPrivateKey(cfg *config.Configuration) (err error) {
-	// get key from configuration
-	if cfg.PrivateKey == "" {
-		// get key path from configuration
-		if cfg.PrivateKeyPath == "" {
-			// get key path from environment
-			privateKeyPath, privateKeyPathSet := os.LookupEnv("STACKIT_PRIVATE_KEY_PATH")
-			if !privateKeyPathSet || privateKeyPath == "" {
-				// get key path from the credentials file
-				credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
-				if err != nil {
-					return fmt.Errorf("reading from credentials file: %w", err)
-				}
-				privateKeyPath, err = readCredential(privateKeyPathCredentialType, credentials)
-				if err != nil || privateKeyPath == "" {
-					return fmt.Errorf("neither key or path are provided in the configuration, as environment variable and not present in the credentials files: %w", err)
-				}
-			}
-			cfg.PrivateKeyPath = privateKeyPath
-		}
-		// Read from filepath
-		privateKeyBytes, err := os.ReadFile(cfg.PrivateKeyPath)
-		if err != nil {
-			return err
-		}
-		if len(privateKeyBytes) == 0 {
-			return fmt.Errorf("key path points to an empty file")
-		}
-		cfg.PrivateKey = string(privateKeyBytes)
+// getKey searches for a key in the following order: client configuration, environment variable, credentials file.
+func getKey(cfgKey, cfgKeyPath *string, envVar, credType credentialType, cfgCredFilePath string) error {
+	if *cfgKey != "" {
+		return nil
 	}
+	if *cfgKeyPath == "" {
+		keyPath, keyPathSet := os.LookupEnv(string(envVar))
+		if !keyPathSet || keyPath == "" {
+			credentials, err := readCredentialsFile(cfgCredFilePath)
+			if err != nil {
+				return fmt.Errorf("reading from credentials file: %w", err)
+			}
+			keyPath, err = readCredential(credType, credentials)
+			if err != nil || keyPath == "" {
+				return fmt.Errorf("neither key nor path is provided in the configuration, environment variable, or credentials file: %w", err)
+			}
+		}
+		*cfgKeyPath = keyPath
+	}
+	keyBytes, err := os.ReadFile(*cfgKeyPath)
+	if err != nil {
+		return fmt.Errorf("reading key from file path: %w", err)
+	}
+	if len(keyBytes) == 0 {
+		return fmt.Errorf("key path points to an empty file")
+	}
+	*cfgKey = string(keyBytes)
 	return nil
 }
 
-// getServiceAccountKey searches for the service account key in the following order: client configuration, environment variable, credentials file.
-func getServiceAccountKey(cfg *config.Configuration) (err error) {
-	// get key from configuration
-	if cfg.ServiceAccountKey == "" {
-		// get key path from configuration
-		if cfg.ServiceAccountKeyPath == "" {
-			// get key path from environment
-			serviceAccountKeyPath, serviceAccountKeyPathSet := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_KEY_PATH")
-			if !serviceAccountKeyPathSet || serviceAccountKeyPath == "" {
-				// get key path from the credentials file
-				credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
-				if err != nil {
-					return fmt.Errorf("reading from credentials file: %w", err)
-				}
-				serviceAccountKeyPath, err = readCredential(serviceAccountKeyPathCredentialType, credentials)
-				if err != nil || serviceAccountKeyPath == "" {
-					return fmt.Errorf("neither key or path are provided in the configuration, as environment variable and not present in the credentials files: %w", err)
-				}
-			}
-			cfg.ServiceAccountKeyPath = serviceAccountKeyPath
-		}
-		// Read from filepath
-		serviceAccountKeyBytes, err := os.ReadFile(cfg.ServiceAccountKeyPath)
-		if err != nil {
-			return err
-		}
-		cfg.ServiceAccountKey = string(serviceAccountKeyBytes)
-	}
-	return nil
+// getServiceAccountKey configures the service account key in the provided configuration
+func getServiceAccountKey(cfg *config.Configuration) error {
+	return getKey(&cfg.ServiceAccountKey, &cfg.ServiceAccountKeyPath, "STACKIT_SERVICE_ACCOUNT_KEY_PATH", serviceAccountKeyPathCredentialType, cfg.CredentialsFilePath)
+}
+
+// getPrivateKey configures the private key in the provided configuration
+func getPrivateKey(cfg *config.Configuration) error {
+	return getKey(&cfg.PrivateKey, &cfg.PrivateKeyPath, "STACKIT_PRIVATE_KEY_PATH", privateKeyPathCredentialType, cfg.CredentialsFilePath)
 }
