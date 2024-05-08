@@ -264,7 +264,7 @@ func getServiceAccountEmail(cfg *config.Configuration) string {
 	return email
 }
 
-// getKey searches for the service account key in the following order: client configuration, environment variable, credentials file.
+// getKey searches for a key in the following order: client configuration, environment variable, credentials file.
 func getKey(cfgKey, cfgKeyPath *string, envVar, credType credentialType, cfgCredFilePath string) error {
 	if *cfgKey != "" {
 		return nil
