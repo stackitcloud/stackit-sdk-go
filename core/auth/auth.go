@@ -264,31 +264,33 @@ func getServiceAccountEmail(cfg *config.Configuration) string {
 	return email
 }
 
-func getKey(cfgKey, cfgPath *string, envVar, credType credentialType, cfgFilePath string) error {
-	if *cfgKey == "" {
-		if *cfgPath == "" {
-			keyPath, keyPathSet := os.LookupEnv(string(envVar))
-			if !keyPathSet || keyPath == "" {
-				credentials, err := readCredentialsFile(cfgFilePath)
-				if err != nil {
-					return fmt.Errorf("reading from credentials file: %w", err)
-				}
-				keyPath, err = readCredential(credType, credentials)
-				if err != nil || keyPath == "" {
-					return fmt.Errorf("neither key nor path is provided in the configuration, environment variable, or credentials file: %w", err)
-				}
-			}
-			*cfgPath = keyPath
-		}
-		keyBytes, err := os.ReadFile(*cfgPath)
-		if err != nil {
-			return fmt.Errorf("reading key from file path: %w", err)
-		}
-		if len(keyBytes) == 0 {
-			return fmt.Errorf("key path points to an empty file")
-		}
-		*cfgKey = string(keyBytes)
+// getKey searches for the service account key in the following order: client configuration, environment variable, credentials file.
+func getKey(cfgKey, cfgKeyPath *string, envVar, credType credentialType, cfgCredFilePath string) error {
+	if *cfgKey != "" {
+		return nil
 	}
+	if *cfgKeyPath == "" {
+		keyPath, keyPathSet := os.LookupEnv(string(envVar))
+		if !keyPathSet || keyPath == "" {
+			credentials, err := readCredentialsFile(cfgCredFilePath)
+			if err != nil {
+				return fmt.Errorf("reading from credentials file: %w", err)
+			}
+			keyPath, err = readCredential(credType, credentials)
+			if err != nil || keyPath == "" {
+				return fmt.Errorf("neither key nor path is provided in the configuration, environment variable, or credentials file: %w", err)
+			}
+		}
+		*cfgKeyPath = keyPath
+	}
+	keyBytes, err := os.ReadFile(*cfgKeyPath)
+	if err != nil {
+		return fmt.Errorf("reading key from file path: %w", err)
+	}
+	if len(keyBytes) == 0 {
+		return fmt.Errorf("key path points to an empty file")
+	}
+	*cfgKey = string(keyBytes)
 	return nil
 }
 
