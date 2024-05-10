@@ -64,7 +64,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateProject(context.Background()).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -113,7 +113,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteProject(context.Background(), containerId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -162,7 +162,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetProject(context.Background(), containerId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -210,7 +210,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListProjects(context.Background()).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -262,7 +262,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.PartialUpdateProject(context.Background(), containerId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
