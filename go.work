@@ -30,6 +30,7 @@ use (
 	./services/argus
 	./services/authorization
 	./services/dns
+	./services/elasticsearch
 	./services/loadbalancer
 	./services/logme
 	./services/mariadb
