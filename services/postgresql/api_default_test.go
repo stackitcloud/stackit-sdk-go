@@ -71,7 +71,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateCredentials(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -124,7 +124,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -179,7 +179,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteCredentials(context.Background(), projectId, instanceId, credentialsId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -228,7 +228,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -283,7 +283,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetCredentials(context.Background(), projectId, instanceId, credentialsId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -338,7 +338,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -393,7 +393,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListCredentials(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -445,7 +445,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -497,7 +497,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListOfferings(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -550,7 +550,7 @@ func Test_postgresql_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, instanceId).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
