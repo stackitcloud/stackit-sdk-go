@@ -34,6 +34,7 @@ for service_dir in ${SERVICES_PATH}/*; do
     # such as the UUID component used by IaaS. We introduce this hardcoded skip until we fix it
     if [ "${service}" = "iaas" ]; then
         echo ">> Skipping services/${service}"
+        continue
     fi
 
     echo ">> Testing services/${service}"
