@@ -70,7 +70,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateCredentials(context.Background(), projectId).XRequestID(xRequestID).CreateCredentialsPayload(createCredentialsPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -124,7 +124,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateLoadBalancer(context.Background(), projectId).XRequestID(xRequestID).CreateLoadBalancerPayload(createLoadBalancerPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -179,7 +179,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteCredentials(context.Background(), projectId, credentialsRef).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -234,7 +234,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteLoadBalancer(context.Background(), projectId, name).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -286,7 +286,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DisableService(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -339,7 +339,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.EnableService(context.Background(), projectId).XRequestID(xRequestID).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -394,7 +394,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetCredentials(context.Background(), projectId, credentialsRef).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -449,7 +449,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetLoadBalancer(context.Background(), projectId, name).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -501,7 +501,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetQuota(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -553,7 +553,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetServiceStatus(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -605,7 +605,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListCredentials(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -657,7 +657,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListLoadBalancers(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -713,7 +713,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateCredentials(context.Background(), projectId, credentialsRef).UpdateCredentialsPayload(updateCredentialsPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -769,7 +769,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateLoadBalancer(context.Background(), projectId, name).UpdateLoadBalancerPayload(updateLoadBalancerPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -828,7 +828,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateTargetPool(context.Background(), projectId, name, targetPoolName).UpdateTargetPoolPayload(updateTargetPoolPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
