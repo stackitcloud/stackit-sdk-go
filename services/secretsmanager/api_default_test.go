@@ -72,7 +72,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateACL(context.Background(), projectId, instanceId).CreateACLPayload(createACLPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -125,7 +125,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -181,7 +181,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -236,7 +236,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteACL(context.Background(), projectId, instanceId, aclId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -285,7 +285,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -337,7 +337,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -392,7 +392,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetACL(context.Background(), projectId, instanceId, aclId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -447,7 +447,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -505,7 +505,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -560,7 +560,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListACLs(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -612,7 +612,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -667,7 +667,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -723,7 +723,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.UpdateACL(context.Background(), projectId, instanceId, aclId).UpdateACLPayload(updateACLPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -773,7 +773,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.UpdateACLs(context.Background(), projectId, instanceId).UpdateACLsPayload(updateACLsPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -826,7 +826,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.UpdateUser(context.Background(), projectId, instanceId, userId).UpdateUserPayload(updateUserPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
