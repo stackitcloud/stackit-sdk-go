@@ -72,7 +72,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateAlertConfigReceiver(context.Background(), instanceId, projectId).CreateAlertConfigReceiverPayload(createAlertConfigReceiverPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -128,7 +128,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateAlertConfigRoute(context.Background(), instanceId, projectId).CreateAlertConfigRoutePayload(createAlertConfigRoutePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -183,7 +183,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateCredentials(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -236,7 +236,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -292,7 +292,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateScrapeConfig(context.Background(), instanceId, projectId).CreateScrapeConfigPayload(createScrapeConfigPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -350,7 +350,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -408,7 +408,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteAlertConfigRoute(context.Background(), instanceId, projectId, receiver).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -466,7 +466,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteCredentials(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -524,7 +524,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteCredentialsRemoteWriteConfig(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -579,7 +579,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteInstance(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -637,7 +637,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteScrapeConfig(context.Background(), instanceId, jobName, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -695,7 +695,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -753,7 +753,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetAlertConfigRoute(context.Background(), instanceId, projectId, receiver).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -808,7 +808,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetAlertConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -866,7 +866,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetCredentials(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -924,7 +924,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetCredentialsRemoteWriteConfig(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -979,7 +979,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetGrafanaConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1034,7 +1034,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetInstance(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1092,7 +1092,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetScrapeConfig(context.Background(), instanceId, jobName, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1147,7 +1147,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListACL(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1202,7 +1202,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListAlertConfigReceivers(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1257,7 +1257,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListAlertConfigRoutes(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1312,7 +1312,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListCredentials(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1364,7 +1364,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1416,7 +1416,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListPlans(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1471,7 +1471,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListScrapeConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1526,7 +1526,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateACL(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1585,7 +1585,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).UpdateAlertConfigReceiverPayload(updateAlertConfigReceiverPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1644,7 +1644,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateAlertConfigRoute(context.Background(), instanceId, projectId, receiver).UpdateAlertConfigRoutePayload(updateAlertConfigRoutePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1700,7 +1700,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateAlertConfigs(context.Background(), instanceId, projectId).UpdateAlertConfigsPayload(updateAlertConfigsPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1759,7 +1759,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateCredentialsRemoteWriteConfig(context.Background(), instanceId, projectId, username).UpdateCredentialsRemoteWriteConfigPayload(updateCredentialsRemoteWriteConfigPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1815,7 +1815,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateGrafanaConfigs(context.Background(), instanceId, projectId).UpdateGrafanaConfigsPayload(updateGrafanaConfigsPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1871,7 +1871,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateInstance(context.Background(), instanceId, projectId).UpdateInstancePayload(updateInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1930,7 +1930,7 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateScrapeConfig(context.Background(), instanceId, jobName, projectId).UpdateScrapeConfigPayload(updateScrapeConfigPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
