@@ -72,7 +72,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateRecordSet(context.Background(), projectId, zoneId).CreateRecordSetPayload(createRecordSetPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -125,7 +125,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateZone(context.Background(), projectId).CreateZonePayload(createZonePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -183,7 +183,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteRecordSet(context.Background(), projectId, zoneId, rrSetId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -238,7 +238,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteZone(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -296,7 +296,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetRecordSet(context.Background(), projectId, zoneId, rrSetId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -351,7 +351,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetZone(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -406,7 +406,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListRecordSets(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -458,7 +458,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListZones(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -517,7 +517,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.PartialUpdateRecord(context.Background(), projectId, zoneId, rrSetId).PartialUpdateRecordPayload(partialUpdateRecordPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -576,7 +576,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.PartialUpdateRecordSet(context.Background(), projectId, zoneId, rrSetId).PartialUpdateRecordSetPayload(partialUpdateRecordSetPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -632,7 +632,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.PartialUpdateZone(context.Background(), projectId, zoneId).PartialUpdateZonePayload(partialUpdateZonePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
