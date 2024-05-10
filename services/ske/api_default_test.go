@@ -71,7 +71,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CompleteCredentialsRotation(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -127,7 +127,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateKubeconfig(context.Background(), projectId, clusterName).CreateKubeconfigPayload(createKubeconfigPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -183,7 +183,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateOrUpdateCluster(context.Background(), projectId, clusterName).CreateOrUpdateClusterPayload(createOrUpdateClusterPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -238,7 +238,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteCluster(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -290,7 +290,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DisableService(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -342,7 +342,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.EnableService(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -397,7 +397,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetCluster(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -452,7 +452,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetCredentials(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -504,7 +504,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetServiceStatus(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -556,7 +556,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListClusters(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -604,7 +604,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListProviderOptions(context.Background()).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -659,7 +659,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.StartCredentialsRotation(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -714,7 +714,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.TriggerHibernate(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -769,7 +769,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.TriggerMaintenance(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -824,7 +824,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.TriggerReconcile(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -879,7 +879,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.TriggerRotateCredentials(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
