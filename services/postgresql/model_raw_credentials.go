@@ -12,5 +12,5 @@ package postgresql
 
 type RawCredentials struct {
 	// REQUIRED
-	Credentials *PostgresQLCredentials `json:"credentials"`
+	Credentials *Credentials `json:"credentials"`
 }
