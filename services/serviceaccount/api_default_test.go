@@ -71,7 +71,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateAccessToken(context.Background(), projectId, serviceAccountEmail).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -123,7 +123,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateServiceAccount(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -178,7 +178,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateServiceAccountKey(context.Background(), projectId, serviceAccountEmail).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -228,7 +228,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateShortLivedAccessToken(context.Background()).GrantType(grantType).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -283,7 +283,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteAccessToken(context.Background(), projectId, serviceAccountEmail, accessTokenId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -332,7 +332,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteServiceAccount(context.Background(), projectId, serviceAccountEmail).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -384,7 +384,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteServiceAccountKey(context.Background(), projectId, serviceAccountEmail, keyId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -433,7 +433,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetJWKS(context.Background(), serviceAccountEmail).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -491,7 +491,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetServiceAccountKey(context.Background(), projectId, serviceAccountEmail, keyId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -546,7 +546,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListAccessTokens(context.Background(), projectId, serviceAccountEmail).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -601,7 +601,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListServiceAccountKeys(context.Background(), projectId, serviceAccountEmail).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -653,7 +653,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListServiceAccounts(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -711,7 +711,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.PartialUpdateServiceAccountKey(context.Background(), projectId, serviceAccountEmail, keyId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
