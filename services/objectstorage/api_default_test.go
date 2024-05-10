@@ -69,7 +69,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateAccessKey(context.Background(), projectId).CreateAccessKeyPayload(createAccessKeyPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -124,7 +124,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateBucket(context.Background(), projectId, bucketName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -177,7 +177,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateCredentialsGroup(context.Background(), projectId).CreateCredentialsGroupPayload(createCredentialsGroupPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -232,7 +232,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteAccessKey(context.Background(), projectId, keyId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -287,7 +287,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteBucket(context.Background(), projectId, bucketName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -342,7 +342,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DeleteCredentialsGroup(context.Background(), projectId, groupId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -394,7 +394,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.DisableService(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -446,7 +446,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.EnableService(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -501,7 +501,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetBucket(context.Background(), projectId, bucketName).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -553,7 +553,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetServiceStatus(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -605,7 +605,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListAccessKeys(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -657,7 +657,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListBuckets(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -709,7 +709,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListCredentialsGroups(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
