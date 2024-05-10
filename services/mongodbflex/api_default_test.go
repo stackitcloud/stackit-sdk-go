@@ -72,7 +72,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CloneInstance(context.Background(), projectId, instanceId).CloneInstancePayload(cloneInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -125,7 +125,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -181,7 +181,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -233,7 +233,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -285,7 +285,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -331,7 +331,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DisableService(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -386,7 +386,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, instanceId, backupId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -441,7 +441,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -499,7 +499,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -554,7 +554,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -606,7 +606,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListFlavors(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -659,7 +659,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Tag(tag).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -718,7 +718,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListMetrics(context.Background(), projectId, instanceId, metric).Granularity(granularity).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -773,7 +773,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListRestoreJobs(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -828,7 +828,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListStorages(context.Background(), projectId, flavor).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -883,7 +883,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -935,7 +935,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListVersions(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -991,7 +991,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, instanceId).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1047,7 +1047,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.PartialUpdateUser(context.Background(), projectId, instanceId, userId).PartialUpdateUserPayload(partialUpdateUserPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -1102,7 +1102,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ResetUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1158,7 +1158,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.RestoreInstance(context.Background(), projectId, instanceId).RestoreInstancePayload(restoreInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1214,7 +1214,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateBackupSchedule(context.Background(), projectId, instanceId).UpdateBackupSchedulePayload(updateBackupSchedulePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1270,7 +1270,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.UpdateInstance(context.Background(), projectId, instanceId).UpdateInstancePayload(updateInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1326,7 +1326,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.UpdateUser(context.Background(), projectId, instanceId, userId).UpdateUserPayload(updateUserPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
