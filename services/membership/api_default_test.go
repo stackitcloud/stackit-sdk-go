@@ -69,7 +69,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.AddMembers(context.Background(), resourceId).AddMembersPayload(addMembersPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -124,7 +124,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListMembers(context.Background(), resourceType, resourceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -172,7 +172,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListPermissions(context.Background()).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -227,7 +227,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListRoles(context.Background(), resourceType, resourceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -279,7 +279,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListUserMemberships(context.Background(), email).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -332,7 +332,7 @@ func Test_membership_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.RemoveMembers(context.Background(), resourceId).RemoveMembersPayload(removeMembersPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
