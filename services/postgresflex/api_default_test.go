@@ -72,7 +72,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CloneInstance(context.Background(), projectId, instanceId).CloneInstancePayload(cloneInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -125,7 +125,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -181,7 +181,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -233,7 +233,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -285,7 +285,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.DeleteUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -334,7 +334,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.ForceDeleteInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -389,7 +389,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, instanceId, backupId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -444,7 +444,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -502,7 +502,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.GetUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -557,7 +557,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -609,7 +609,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListFlavors(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -661,7 +661,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -716,7 +716,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListStorages(context.Background(), projectId, flavorId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -771,7 +771,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -823,7 +823,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ListVersions(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -879,7 +879,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, instanceId).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -934,7 +934,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.PartialUpdateUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -989,7 +989,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		resp, reqErr := apiClient.ResetUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 		if resp == nil {
 			t.Fatalf("response not present")
@@ -1042,7 +1042,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.UpdateBackupSchedule(context.Background(), projectId, instanceId).UpdateBackupSchedulePayload(updateBackupSchedulePayload).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
@@ -1094,7 +1094,7 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		reqErr := apiClient.UpdateUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
-			t.Fatalf("error in call: %v", err)
+			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
