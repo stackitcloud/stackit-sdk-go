@@ -2,7 +2,7 @@
 
 - **Feature**: New method `GetMetrics` to get the latest metrics for cpu load, memory and disk usage for an instance
 - **Feature**: New method `ListBackups` to list the backups for an instance
-- **Breaking change**: `ListMetricsResponse` type renamed to `GetMetricsResponse`
+- **Breaking change**: `ListMetricsResponse` type (previously unused) renamed to `GetMetricsResponse`
 - **Breaking change**: Deleted unused data types
 
 ## v0.13.0 (2024-04-11)
