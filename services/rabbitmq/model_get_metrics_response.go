@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package rabbitmq
 
-type ListMetricsResponse struct {
+type GetMetricsResponse struct {
 	CpuIdleTime *int64 `json:"cpuIdleTime,omitempty"`
 	// REQUIRED
 	CpuLoadPercent *int64 `json:"cpuLoadPercent"`
