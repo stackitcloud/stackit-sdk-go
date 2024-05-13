@@ -12,5 +12,5 @@ package redis
 
 type Metrics struct {
 	// REQUIRED
-	Metrics *[]ListMetricsResponse `json:"metrics"`
+	Metrics *[]GetMetricsResponse `json:"metrics"`
 }
