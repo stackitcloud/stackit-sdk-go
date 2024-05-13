@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package postgresql
 
-type PostgresQLCredentials struct {
+type Credentials struct {
 	// REQUIRED
 	Host  *string   `json:"host"`
 	Hosts *[]string `json:"hosts,omitempty"`
