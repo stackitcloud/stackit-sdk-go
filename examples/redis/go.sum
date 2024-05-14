@@ -5,5 +5,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.12.0 h1:auIzUUNRuydKOScvpICP4MifGgvOajiDQd+ncGmBL0U=
 github.com/stackitcloud/stackit-sdk-go/core v0.12.0/go.mod h1:mDX1mSTsB3mP+tNBGcFNx6gH1mGBN4T+dVt+lcw7nlw=
-github.com/stackitcloud/stackit-sdk-go/services/redis v0.13.0 h1:MlREN/9zDntk90kahS0aJa/gPGAoUV4NLNnrTLs9CLc=
-github.com/stackitcloud/stackit-sdk-go/services/redis v0.13.0/go.mod h1:3LhiTR/DMbKR2HuleTzlFHltR1MT1KD0DeW46X6K2GE=
+github.com/stackitcloud/stackit-sdk-go/services/redis v0.14.0 h1:wcfA/3mTI7UmTFmKX09EKIVsEqflfkiuEoWL/j5cMvg=
+github.com/stackitcloud/stackit-sdk-go/services/redis v0.14.0/go.mod h1:3LhiTR/DMbKR2HuleTzlFHltR1MT1KD0DeW46X6K2GE=
