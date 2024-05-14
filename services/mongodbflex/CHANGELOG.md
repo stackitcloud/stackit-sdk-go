@@ -1,3 +1,7 @@
+## v0.13.0 (2024-05-14)
+
+- Waiter for async operation `RestoreInstance`
+
 ## v0.12.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method

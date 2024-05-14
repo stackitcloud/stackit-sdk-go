@@ -16,6 +16,10 @@ type apiClientInstanceMocked struct {
 	instanceState     string
 	instanceIsDeleted bool
 	instanceGetFails  bool
+
+	backupId             string
+	restoreState         string
+	listRestoreJobsFails bool
 }
 
 func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*mongodbflex.GetInstanceResponse, error) {
@@ -35,6 +39,23 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 		Item: &mongodbflex.Instance{
 			Id:     &a.instanceId,
 			Status: &a.instanceState,
+		},
+	}, nil
+}
+
+func (a *apiClientInstanceMocked) ListRestoreJobsExecute(_ context.Context, _, _ string) (*mongodbflex.ListRestoreJobsResponse, error) {
+	if a.listRestoreJobsFails {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 500,
+		}
+	}
+
+	return &mongodbflex.ListRestoreJobsResponse{
+		Items: &[]mongodbflex.RestoreInstanceStatus{
+			{
+				Status:   &a.restoreState,
+				BackupID: &a.backupId,
+			},
 		},
 	}, nil
 }
@@ -236,6 +257,85 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestRestoreInstanceWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc                 string
+		listRestoreJobsFails bool
+		restoreState         string
+		wantErr              bool
+		wantResp             bool
+	}{
+		{
+			desc:                 "restore_succeeded",
+			listRestoreJobsFails: false,
+			restoreState:         RestoreJobFinished,
+			wantErr:              false,
+			wantResp:             true,
+		},
+		{
+			desc:                 "restore_broken",
+			listRestoreJobsFails: false,
+			restoreState:         RestoreJobBroken,
+			wantErr:              true,
+			wantResp:             true,
+		},
+		{
+			desc:                 "restore_killed",
+			listRestoreJobsFails: false,
+			restoreState:         RestoreJobKilled,
+			wantErr:              true,
+			wantResp:             true,
+		},
+		{
+			desc:                 "list_fails",
+			listRestoreJobsFails: true,
+			wantErr:              true,
+			wantResp:             false,
+		},
+		{
+			desc:                 "timeout",
+			listRestoreJobsFails: false,
+			restoreState:         RestoreJobProcessing,
+			wantErr:              true,
+			wantResp:             false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			backupId := "foo-bar"
+
+			apiClient := &apiClientInstanceMocked{
+				backupId:             backupId,
+				restoreState:         tt.restoreState,
+				listRestoreJobsFails: tt.listRestoreJobsFails,
+			}
+
+			var wantRes *mongodbflex.ListRestoreJobsResponse
+			if tt.wantResp {
+				wantRes = &mongodbflex.ListRestoreJobsResponse{
+					Items: &[]mongodbflex.RestoreInstanceStatus{
+						{
+							Status:   &tt.restoreState,
+							BackupID: &backupId,
+						},
+					},
+				}
+			}
+
+			handler := RestoreInstanceWaitHandler(context.Background(), apiClient, "", "", backupId)
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
 	}

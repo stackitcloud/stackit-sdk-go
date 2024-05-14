@@ -8,6 +8,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/mongodbflex"
+	"github.com/stackitcloud/stackit-sdk-go/services/mongodbflex/wait"
 )
 
 func main() {
@@ -52,4 +53,26 @@ func main() {
 	}
 
 	fmt.Printf("Created user \"%s\" associated to instance \"%s\".\n", username, *items[0].Name)
+
+	// Restore an instance from a backup
+	restoreInstancePayload := mongodbflex.RestoreInstancePayload{
+		BackupId:   utils.Ptr("BACKUP_ID"),
+		InstanceId: &instanceId,
+	}
+	_, err = mongodbflexClient.RestoreInstance(context.Background(), projectId, instanceId).RestoreInstancePayload(restoreInstancePayload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RestoreInstance`: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Restoring instance \"%s\" from backup \"%s\".\n", instanceId, "BACKUP_ID")
+
+	_, err = wait.RestoreInstanceWaitHandler(context.Background(), mongodbflexClient, projectId, instanceId, "BACKUP_ID").WaitWithContext(context.Background())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when waiting for restore to finish: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Restored instance \"%s\" from backup \"%s\".\n", instanceId, "BACKUP_ID")
+
 }
