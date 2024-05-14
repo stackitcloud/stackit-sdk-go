@@ -74,5 +74,4 @@ func main() {
 	}
 
 	fmt.Printf("Restored instance \"%s\" from backup \"%s\".\n", instanceId, "BACKUP_ID")
-
 }
