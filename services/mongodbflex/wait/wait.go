@@ -1,9 +1,11 @@
 package wait
 
 import (
+	"cmp"
 	"context"
 	"fmt"
 	"net/http"
+	"slices"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
@@ -75,8 +77,16 @@ func RestoreInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterfac
 			return false, nil, nil
 		}
 
+		restoreJobsSlice := *s.Items
+
+		// sort array by descending date
+		slices.SortFunc(restoreJobsSlice, func(i, j mongodbflex.RestoreInstanceStatus) int {
+			// swap elements to sort by descending order
+			return cmp.Compare(*j.Date, *i.Date)
+		})
+
 		var status string
-		for _, restoreJob := range *s.Items {
+		for _, restoreJob := range restoreJobsSlice {
 			if *restoreJob.BackupID == backupId {
 				status = *restoreJob.Status
 				break
