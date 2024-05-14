@@ -1,3 +1,6 @@
+## v0.15.0 (2024-05-14)
+- **Feature:** New operation `GetLoginKubeconfig` to get a Kubeconfig for use with the STACKIT CLI. A Kubeconfig retrieved using this endpoint does not contain any credentials and instead obtains valid credentials via the STACKIT CLI.
+
 ## v0.14.0 (2024-05-03)
 - **Feature:** New fields for `MachineType`: `Architecture`, `Gpu`
 
