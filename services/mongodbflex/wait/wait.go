@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"sort"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
@@ -75,8 +76,16 @@ func RestoreInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterfac
 			return false, nil, nil
 		}
 
+		restoreJobsSlice := *s.Items
+
+		// sort array by descending date
+		sort.Slice(restoreJobsSlice, func(i, j int) bool {
+			// swap elements to sort by descending order
+			return *restoreJobsSlice[i].Date > *restoreJobsSlice[j].Date
+		})
+
 		var status string
-		for _, restoreJob := range *s.Items {
+		for _, restoreJob := range restoreJobsSlice {
 			if *restoreJob.BackupID == backupId {
 				status = *restoreJob.Status
 				break
