@@ -45,5 +45,6 @@ use (
 	./services/resourcemanager
 	./services/secretsmanager
 	./services/serviceaccount
+	./services/serviceenablement
 	./services/ske
 )
