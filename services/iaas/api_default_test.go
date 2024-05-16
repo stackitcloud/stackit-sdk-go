@@ -23,6 +23,106 @@ import (
 
 func Test_iaas_DefaultApiService(t *testing.T) {
 
+	t.Run("Test DefaultApiService CreateNetwork", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/networks"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		createNetworkPayload := CreateNetworkPayload{}
+
+		reqErr := apiClient.CreateNetwork(context.Background(), projectId).CreateNetworkPayload(createNetworkPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService CreateNetworkArea", func(t *testing.T) {
+		path := "/v1beta1/organizations/{organizationId}/network-areas"
+		organizationIdValue := "organizationId"
+		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := NetworkArea{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := "organizationId"
+		createNetworkAreaPayload := CreateNetworkAreaPayload{}
+
+		resp, reqErr := apiClient.CreateNetworkArea(context.Background(), organizationId).CreateNetworkAreaPayload(createNetworkAreaPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService CreateNetworkAreaRange", func(t *testing.T) {
 		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
 		organizationIdValue := "organizationId"
@@ -32,7 +132,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := NetworkRangeList{}
+			data := NetworkRangeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -88,7 +188,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := RouteList{}
+			data := RouteListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -135,16 +235,64 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateNetworkAreas", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+	t.Run("Test DefaultApiService DeleteNetwork", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/networks/{networkId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := "networkId"
+		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := V1NetworkArea{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		networkId := "networkId"
+
+		reqErr := apiClient.DeleteNetwork(context.Background(), projectId, networkId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteNetworkArea", func(t *testing.T) {
+		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
+		organizationIdValue := "organizationId"
+		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := "areaId"
+		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -176,15 +324,12 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		organizationId := "organizationId"
-		createNetworkAreasPayload := CreateNetworkAreasPayload{}
+		areaId := "areaId"
 
-		resp, reqErr := apiClient.CreateNetworkAreas(context.Background(), organizationId).CreateNetworkAreasPayload(createNetworkAreasPayload).Execute()
+		reqErr := apiClient.DeleteNetworkArea(context.Background(), organizationId, areaId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
 		}
 	})
 
@@ -292,55 +437,6 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteNetworkAreas", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for iaas_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		organizationId := "organizationId"
-		areaId := "areaId"
-
-		reqErr := apiClient.DeleteNetworkAreas(context.Background(), organizationId, areaId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-	})
-
 	t.Run("Test DefaultApiService GetNetwork", func(t *testing.T) {
 		path := "/v1beta1/projects/{projectId}/networks/{networkId}"
 		projectIdValue := "projectId"
@@ -405,7 +501,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := V1NetworkArea{}
+			data := NetworkArea{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -686,7 +782,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ProjectList{}
+			data := ProjectListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -741,7 +837,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := NetworkRangeList{}
+			data := NetworkRangeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -796,7 +892,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := RouteList{}
+			data := RouteListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -849,7 +945,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := NetworkAreaList{}
+			data := NetworkAreaListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -901,7 +997,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := NetworkList{}
+			data := NetworkListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -946,7 +1042,57 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateNetworkArea", func(t *testing.T) {
+	t.Run("Test DefaultApiService PartialUpdateNetwork", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/networks/{networkId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := "networkId"
+		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		networkId := "networkId"
+		partialUpdateNetworkPayload := PartialUpdateNetworkPayload{}
+
+		reqErr := apiClient.PartialUpdateNetwork(context.Background(), projectId, networkId).PartialUpdateNetworkPayload(partialUpdateNetworkPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService PartialUpdateNetworkArea", func(t *testing.T) {
 		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := "organizationId"
 		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
@@ -955,7 +1101,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := V1NetworkArea{}
+			data := NetworkArea{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -990,9 +1136,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := "organizationId"
 		areaId := "areaId"
-		updateNetworkAreaPayload := UpdateNetworkAreaPayload{}
+		partialUpdateNetworkAreaPayload := PartialUpdateNetworkAreaPayload{}
 
-		resp, reqErr := apiClient.UpdateNetworkArea(context.Background(), organizationId, areaId).UpdateNetworkAreaPayload(updateNetworkAreaPayload).Execute()
+		resp, reqErr := apiClient.PartialUpdateNetworkArea(context.Background(), organizationId, areaId).PartialUpdateNetworkAreaPayload(partialUpdateNetworkAreaPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)

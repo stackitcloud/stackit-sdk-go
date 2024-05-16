@@ -10,8 +10,8 @@ API version: 1beta1
 
 package iaas
 
-type ProjectList struct {
-	// List of STACKIT projects.
-	// REQUIRED
-	Items *[]string `json:"items"`
+type CreateNetworkIPv4 struct {
+	// List of DNS Servers/Nameservers.
+	Nameservers  *[]string `json:"nameservers,omitempty"`
+	PrefixLength *int64    `json:"prefixLength,omitempty"`
 }

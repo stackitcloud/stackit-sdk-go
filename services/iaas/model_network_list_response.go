@@ -10,7 +10,7 @@ API version: 1beta1
 
 package iaas
 
-type NetworkList struct {
+type NetworkListResponse struct {
 	// List of Networks.
 	// REQUIRED
 	Items *[]Network `json:"items"`

@@ -10,8 +10,7 @@ API version: 1beta1
 
 package iaas
 
-type NetworkRangeList struct {
-	// A list of Network ranges.
-	// REQUIRED
-	Items *[]NetworkRange `json:"items"`
+type UpdateNetworkIPv4 struct {
+	// List of DNS Servers/Nameservers.
+	Nameservers *[]string `json:"nameservers,omitempty"`
 }

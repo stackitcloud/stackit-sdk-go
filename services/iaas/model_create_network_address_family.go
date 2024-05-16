@@ -10,9 +10,6 @@ API version: 1beta1
 
 package iaas
 
-type V1Error struct {
-	// REQUIRED
-	Code *int64 `json:"code"`
-	// REQUIRED
-	Msg *string `json:"msg"`
+type CreateNetworkAddressFamily struct {
+	Ipv4 *CreateNetworkIPv4 `json:"ipv4,omitempty"`
 }

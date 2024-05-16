@@ -22,7 +22,7 @@ type Request struct {
 	// REQUIRED
 	RequestType *string `json:"requestType"`
 	// REQUIRED
-	Resources *[]V1RequestResource `json:"resources"`
+	Resources *[]RequestResource `json:"resources"`
 	// The state of a resource object.
 	// REQUIRED
 	Status *string `json:"status"`

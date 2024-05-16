@@ -10,8 +10,10 @@ API version: 1beta1
 
 package iaas
 
-type NetworkAreaList struct {
-	// A list of Network areas.
+type CreateNetworkAreaPayload struct {
 	// REQUIRED
-	Items *[]V1NetworkArea `json:"items"`
+	AddressFamily *CreateAreaAddressFamily `json:"addressFamily"`
+	// The name for a General Object. Matches Names and also UUIDs.
+	// REQUIRED
+	Name *string `json:"name"`
 }

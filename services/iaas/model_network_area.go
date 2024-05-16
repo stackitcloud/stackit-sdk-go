@@ -11,19 +11,16 @@ API version: 1beta1
 package iaas
 
 type NetworkArea struct {
-	DefaultNameservers *[]string `json:"defaultNameservers,omitempty"`
-	// A list of Network ranges.
+	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	NetworkRanges *[]NetworkRange `json:"networkRanges"`
-	// List of routes.
-	Routes *[]Route `json:"routes,omitempty"`
-	// Classless Inter-Domain Routing (CIDR).
+	AreaId *string          `json:"areaId"`
+	Ipv4   *NetworkAreaIPv4 `json:"ipv4,omitempty"`
 	// REQUIRED
-	TransferNetwork *string `json:"transferNetwork"`
-	// The default prefix length for networks in the network area.
-	DefaultPrefixLen *int64 `json:"defaultPrefixLen,omitempty"`
-	// The maximal prefix length for networks in the network area.
-	MaxPrefixLen *int64 `json:"maxPrefixLen,omitempty"`
-	// The minimal prefix length for networks in the network area.
-	MinPrefixLen *int64 `json:"minPrefixLen,omitempty"`
+	Name *string `json:"name"`
+	// The amount of projects currently referencing this area.
+	// REQUIRED
+	ProjectCount *int64 `json:"projectCount"`
+	// The state of a resource object.
+	// REQUIRED
+	State *string `json:"state"`
 }
