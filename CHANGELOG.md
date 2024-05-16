@@ -4,31 +4,40 @@
   - **Feature:** New fields for `MachineType`: `Architecture`, `Gpu`
 - `iaas`: [v0.1.0](services/iaas/CHANGELOG.md#v010-2024-05-10)
   - **New BETA module**: manage Infrastructure as a Service (IaaS) resources `Network` and `NetworkArea`
+- `iaas`: [v0.2.0](services/iaas/CHANGELOG.md#v010-2024-05-17)
+  - **Feature**: New methods to manage networks:
+    - `CreateNetwork`
+    - `PartialUpdateNetwork`
+    - `DeleteNetwork`
+  - **Breaking change**: Rename methods for better correspondence with endpoint behaviour (see service [release notes](services/iaas/CHANGELOG.md#v010-2024-05-17) for detailed changes)
+  - **Breaking change**: Rename types (see service [release notes](services/iaas/CHANGELOG.md#v010-2024-05-17) for detailed changes)
+    - Add `Response` sufix to types only used in method responses
+    - Remove `V1` prefix from all types
 - `logme`: [v0.14.0](services/logme/CHANGELOG.md#v0140-2024-05-13)
   - **Feature**: New method `GetMetrics` to get the latest metrics for cpu load, memory and disk usage for an instance
   - **Feature**: New method `ListBackups` to list the backups for an instance
   - **Breaking change**: `ListMetricsResponse` type (previously unused) renamed to `GetMetricsResponse`
-  - **Breaking change**: Deleted unused data types  
+  - **Breaking change**: Deleted unused data types
 - `mariadb`: [v0.14.0](services/mariadb/CHANGELOG.md#v0140-2024-05-13)
   - **Feature**: New method `GetMetrics` to get the latest metrics for cpu load, memory and disk usage for an instance
   - **Feature**: New method `ListBackups` to list the backups for an instance
   - **Breaking change**: `ListMetricsResponse` type (previously unused) renamed to `GetMetricsResponse`
-  - **Breaking change**: Deleted unused data types  
+  - **Breaking change**: Deleted unused data types
 - `opensearch`: [v0.14.0](services/opensearch/CHANGELOG.md#v0140-2024-05-13)
   - **Feature**: New method `GetMetrics` to get the latest metrics for cpu load, memory and disk usage for an instance
   - **Feature**: New method `ListBackups` to list the backups for an instance
   - **Breaking change**: `ListMetricsResponse` type (previously unused) renamed to `GetMetricsResponse`
-  - **Breaking change**: Deleted unused data types  
+  - **Breaking change**: Deleted unused data types
 - `rabbitmq`: [v0.14.0](services/rabbitmq/CHANGELOG.md#v0140-2024-05-13)
   - **Feature**: New method `GetMetrics` to get the latest metrics for cpu load, memory and disk usage for an instance
   - **Feature**: New method `ListBackups` to list the backups for an instance
   - **Breaking change**: `ListMetricsResponse` type (previously unused) renamed to `GetMetricsResponse`
-  - **Breaking change**: Deleted unused data types  
+  - **Breaking change**: Deleted unused data types
 - `redis`: [v0.14.0](services/redis/CHANGELOG.md#v0140-2024-05-13)
   - **Feature**: New method `GetMetrics` to get the latest metrics for cpu load, memory and disk usage for an instance
   - **Feature**: New method `ListBackups` to list the backups for an instance
   - **Breaking change**: `ListMetricsResponse` type (previously unused) renamed to `GetMetricsResponse`
-  - **Breaking change**: Deleted unused data types  
+  - **Breaking change**: Deleted unused data types
 
 ## Release (2024-05-02)
 
