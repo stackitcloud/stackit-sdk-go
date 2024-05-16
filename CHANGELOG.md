@@ -11,7 +11,7 @@
     - `DeleteNetwork`
   - **Breaking change**: Rename methods for better correspondence with endpoint behaviour (see service [release notes](services/iaas/CHANGELOG.md#v010-2024-05-17) for detailed changes)
   - **Breaking change**: Rename types (see service [release notes](services/iaas/CHANGELOG.md#v010-2024-05-17) for detailed changes)
-    - Add `Response` sufix to types only used in method responses
+    - Add `Response` suffix to types only used in method responses
     - Remove `V1` prefix from all types
 - `logme`: [v0.14.0](services/logme/CHANGELOG.md#v0140-2024-05-13)
   - **Feature**: New method `GetMetrics` to get the latest metrics for cpu load, memory and disk usage for an instance

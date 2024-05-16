@@ -9,7 +9,7 @@
   - `CreateNetworkAreas` renamed to **`CreateNetworkArea`**
   - `DeleteNetworkAreas` renamed to **`DeleteNetworkArea`** (same for the payload types)
 - **Breaking change**: Rename types:
-  - Add `Response` sufix to types only used in method responses:
+  - Add `Response` suffix to types only used in method responses:
     - `NetworkAreaList` renamed to **`NetworkAreaListResponse`**
     - `NetworkList` renamed to **`NetworkListResponsse`**
     - `NetworkRangeList` renamed to **`NetworkRangeListResponsse`**
