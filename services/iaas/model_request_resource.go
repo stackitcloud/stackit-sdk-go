@@ -10,7 +10,7 @@ API version: 1beta1
 
 package iaas
 
-type V1RequestResource struct {
+type RequestResource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
 	Id *string `json:"id"`

@@ -10,7 +10,7 @@ API version: 1beta1
 
 package iaas
 
-type V1AreaConfig struct {
+type AreaConfig struct {
 	DefaultNameservers *[]string `json:"defaultNameservers,omitempty"`
 	// A list of Network ranges.
 	// REQUIRED

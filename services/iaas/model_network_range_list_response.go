@@ -10,8 +10,8 @@ API version: 1beta1
 
 package iaas
 
-type RouteList struct {
-	// List of routes.
+type NetworkRangeListResponse struct {
+	// A list of Network ranges.
 	// REQUIRED
-	Items *[]Route `json:"items"`
+	Items *[]NetworkRange `json:"items"`
 }

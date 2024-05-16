@@ -10,6 +10,8 @@ API version: 1beta1
 
 package iaas
 
-type V1UpdateNetworkAddressFamily struct {
-	Ipv4 *V1UpdateNetworkIPv4 `json:"ipv4,omitempty"`
+type RouteListResponse struct {
+	// List of routes.
+	// REQUIRED
+	Items *[]Route `json:"items"`
 }

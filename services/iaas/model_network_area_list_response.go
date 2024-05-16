@@ -10,7 +10,8 @@ API version: 1beta1
 
 package iaas
 
-type V1UpdateNetworkIPv4 struct {
-	// List of DNS Servers/Nameservers.
-	Nameservers *[]string `json:"nameservers,omitempty"`
+type NetworkAreaListResponse struct {
+	// A list of Network areas.
+	// REQUIRED
+	Items *[]NetworkArea `json:"items"`
 }
