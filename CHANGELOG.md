@@ -29,7 +29,9 @@
   - **Feature**: New method `ListBackups` to list the backups for an instance
   - **Breaking change**: `ListMetricsResponse` type (previously unused) renamed to `GetMetricsResponse`
   - **Breaking change**: Deleted unused data types  
-
+- `serviceenablement`: [v0.1.0](services/serviceenablement/CHANGELOG.md#v010-2024-05-17)
+  - **New**: STACKIT Service Enablement module can be used to enable services
+  
 ## Release (2024-05-02)
 
 - `ske`: [v0.13.0](services/ske/CHANGELOG.md#v0130-2024-04-16)
