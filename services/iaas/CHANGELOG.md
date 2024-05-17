@@ -1,3 +1,7 @@
+## v0.3.0 (2024-05-17)
+
+- **Feature**: Add waiters for async operations: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler`, `DeleteNetworkAreaWaitHandler`, `CreateNetworkWaitHandler`, `UpdateNetworkWaitHandler`, `DeleteNetworkWaitHandler`
+
 ## v0.2.0 (2024-05-17)
 
 - **Feature**: New methods to manage networks:
