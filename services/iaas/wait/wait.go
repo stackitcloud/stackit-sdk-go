@@ -30,7 +30,7 @@ func CreateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 			return false, area, err
 		}
 		if area.AreaId == nil || area.State == nil {
-			return false, area, fmt.Errorf("create failed for netwrok area with id %s, the response is not valid: the id or the state are missing", areaId)
+			return false, area, fmt.Errorf("create failed for network area with id %s, the response is not valid: the id or the state are missing", areaId)
 		}
 		if *area.AreaId == areaId && *area.State == CreateSuccess {
 			return true, area, nil
@@ -87,7 +87,7 @@ func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
 		request, err := a.GetProjectRequestExecute(ctx, projectId, requestId)
 		if err != nil {
-			return false, nil, fmt.Errorf("get request with id %s", requestId)
+			return false, nil, err
 		}
 		if request == nil || request.Resources == nil || len(*request.Resources) == 0 || (*request.Resources)[0].Id == nil {
 			return false, nil, fmt.Errorf("no resources found for request with id %s", requestId)
@@ -95,10 +95,10 @@ func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 		networkId := *(*request.Resources)[0].Id
 		network, err := a.GetNetworkExecute(ctx, projectId, networkId)
 		if err != nil {
-			return false, network, fmt.Errorf("get network with id %s", networkId)
+			return false, network, err
 		}
 		if network.NetworkId == nil || network.State == nil {
-			return false, network, fmt.Errorf("the response is not valid: the id or the state are missing")
+			return false, network, fmt.Errorf("create failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
 		}
 		if *network.NetworkId == networkId && *network.State == CreateSuccess {
 			return true, network, nil
@@ -118,7 +118,7 @@ func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 			return false, network, err
 		}
 		if network.NetworkId == nil || network.State == nil {
-			return false, network, fmt.Errorf("the response is not valid: the id or the state are missing")
+			return false, network, fmt.Errorf("update failed for network area with id %s, the response is not valid: the id or the state are missing", networkId)
 		}
 		// The state returns to "CREATED" after a successful update is completed
 		if *network.NetworkId == networkId && *network.State == CreateSuccess {
