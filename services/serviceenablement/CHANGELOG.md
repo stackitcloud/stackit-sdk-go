@@ -1,3 +1,3 @@
 ## v0.1.0 (2024-05-17)
 
-- **New**: Manage STACKIT Service Enablement resources: `Services`
+- **New**: STACKIT Service Enablement module can be used to enable services
