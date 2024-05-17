@@ -18,7 +18,8 @@ const (
 // Interfaces needed for tests
 type APIClientInterface interface {
 	GetNetworkAreaExecute(ctx context.Context, organizationId, areaId string) (*iaas.NetworkArea, error)
-	// GetNetworkExecute(ctx context.Context, projectId, networkId string) (*iaas.Network, error)
+	GetProjectRequestExecute(ctx context.Context, projectId string, requestId string) (*iaas.Request, error)
+	GetNetworkExecute(ctx context.Context, projectId, networkId string) (*iaas.Network, error)
 }
 
 // CreateNetworkAreaWaitHandler will wait for network area creation
@@ -65,12 +66,84 @@ func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 func DeleteNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
 		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
+		if err == nil {
+			return false, nil, nil
+		}
 		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
-			return false, area, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+			return false, area, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
 		}
 		if oapiErr.StatusCode != http.StatusNotFound {
 			return false, area, err
+		}
+		return true, nil, nil
+	})
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// CreateNetworkWaitHandler will wait for network creation
+func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, requestId string) *wait.AsyncActionHandler[iaas.Network] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
+		request, err := a.GetProjectRequestExecute(ctx, projectId, requestId)
+		if err != nil {
+			return false, nil, fmt.Errorf("get request with id %s", requestId)
+		}
+		if request == nil || request.Resources == nil || len(*request.Resources) == 0 || (*request.Resources)[0].Id == nil {
+			return false, nil, fmt.Errorf("no resources found for request with id %s", requestId)
+		}
+		networkId := *(*request.Resources)[0].Id
+		network, err := a.GetNetworkExecute(ctx, projectId, networkId)
+		if err != nil {
+			return false, network, fmt.Errorf("get network with id %s", networkId)
+		}
+		if network.NetworkId == nil || network.State == nil {
+			return false, network, fmt.Errorf("the response is not valid: the id or the state are missing")
+		}
+		if *network.NetworkId == networkId && *network.State == CreateSuccess {
+			return true, network, nil
+		}
+		return false, network, nil
+	})
+	handler.SetSleepBeforeWait(2 * time.Second)
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// UpdateNetworkWaitHandler will wait for network update
+func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, networkId string) *wait.AsyncActionHandler[iaas.Network] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
+		network, err := a.GetNetworkExecute(ctx, projectId, networkId)
+		if err != nil {
+			return false, network, err
+		}
+		if network.NetworkId == nil || network.State == nil {
+			return false, network, fmt.Errorf("the response is not valid: the id or the state are missing")
+		}
+		// The state returns to "CREATED" after a successful update is completed
+		if *network.NetworkId == networkId && *network.State == CreateSuccess {
+			return true, network, nil
+		}
+		return false, network, nil
+	})
+	handler.SetSleepBeforeWait(2 * time.Second)
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// DeleteNetworkWaitHandler will wait for network deletion
+func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, networkId string) *wait.AsyncActionHandler[iaas.Network] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
+		network, err := a.GetNetworkExecute(ctx, projectId, networkId)
+		if err == nil {
+			return false, nil, nil
+		}
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, network, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
+		}
+		if oapiErr.StatusCode != http.StatusNotFound {
+			return false, network, err
 		}
 		return true, nil, nil
 	})
