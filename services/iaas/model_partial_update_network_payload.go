@@ -10,10 +10,8 @@ API version: 1beta1
 
 package iaas
 
-type CreateNetworkAreasPayload struct {
-	// REQUIRED
-	AddressFamily *V1CreateAreaAddressFamily `json:"addressFamily"`
+type PartialUpdateNetworkPayload struct {
+	AddressFamily *UpdateNetworkAddressFamily `json:"addressFamily,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	// REQUIRED
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 }

@@ -10,6 +10,6 @@ API version: 1beta1
 
 package iaas
 
-type V1CreateAreaAddressFamily struct {
-	Ipv4 *NetworkArea `json:"ipv4,omitempty"`
+type UpdateAreaAddressFamily struct {
+	Ipv4 *UpdateAreaIPv4 `json:"ipv4,omitempty"`
 }

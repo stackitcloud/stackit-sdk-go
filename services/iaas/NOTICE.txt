@@ -1,2 +1,2 @@
-STACKIT DNS SDK for Go
+STACKIT IaaS SDK for Go
 Copyright 2024 Schwarz IT KG

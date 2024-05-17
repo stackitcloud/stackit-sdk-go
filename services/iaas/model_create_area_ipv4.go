@@ -10,8 +10,16 @@ API version: 1beta1
 
 package iaas
 
-type V1UpdateAreaIPv4 struct {
+type CreateAreaIPv4 struct {
 	DefaultNameservers *[]string `json:"defaultNameservers,omitempty"`
+	// A list of Network ranges.
+	// REQUIRED
+	NetworkRanges *[]NetworkRange `json:"networkRanges"`
+	// List of routes.
+	Routes *[]Route `json:"routes,omitempty"`
+	// Classless Inter-Domain Routing (CIDR).
+	// REQUIRED
+	TransferNetwork *string `json:"transferNetwork"`
 	// The default prefix length for networks in the network area.
 	DefaultPrefixLen *int64 `json:"defaultPrefixLen,omitempty"`
 	// The maximal prefix length for networks in the network area.

@@ -26,6 +26,386 @@ import (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
+type ApiCreateNetworkRequest struct {
+	ctx                  context.Context
+	apiService           *DefaultApiService
+	projectId            string
+	createNetworkPayload *CreateNetworkPayload
+}
+
+// Create network request.
+
+func (r ApiCreateNetworkRequest) CreateNetworkPayload(createNetworkPayload CreateNetworkPayload) ApiCreateNetworkRequest {
+	r.createNetworkPayload = &createNetworkPayload
+	return r
+}
+
+func (r ApiCreateNetworkRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateNetwork")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if r.createNetworkPayload == nil {
+		return fmt.Errorf("createNetworkPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createNetworkPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+CreateNetwork Create new network.
+
+Create a new network in a project. `nameservers` will be filled from `defaultNameservers` of the respective area if not specified. If the project has `internetAccess` enabled and this is the first network in the project this might incur cost.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT Project ID.
+	@return ApiCreateNetworkRequest
+*/
+func (a *APIClient) CreateNetwork(ctx context.Context, projectId string) ApiCreateNetworkRequest {
+	return ApiCreateNetworkRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) CreateNetworkExecute(ctx context.Context, projectId string) error {
+	r := ApiCreateNetworkRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiCreateNetworkAreaRequest struct {
+	ctx                      context.Context
+	apiService               *DefaultApiService
+	organizationId           string
+	createNetworkAreaPayload *CreateNetworkAreaPayload
+}
+
+// Area creation request.
+
+func (r ApiCreateNetworkAreaRequest) CreateNetworkAreaPayload(createNetworkAreaPayload CreateNetworkAreaPayload) ApiCreateNetworkAreaRequest {
+	r.createNetworkAreaPayload = &createNetworkAreaPayload
+	return r
+}
+
+func (r ApiCreateNetworkAreaRequest) Execute() (*NetworkArea, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NetworkArea
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateNetworkArea")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/organizations/{organizationId}/network-areas"
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(r.organizationId, "organizationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.organizationId) < 36 {
+		return localVarReturnValue, fmt.Errorf("organizationId must have at least 36 elements")
+	}
+	if strlen(r.organizationId) > 36 {
+		return localVarReturnValue, fmt.Errorf("organizationId must have less than 36 elements")
+	}
+	if r.createNetworkAreaPayload == nil {
+		return localVarReturnValue, fmt.Errorf("createNetworkAreaPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createNetworkAreaPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateNetworkArea Create new network area in an organization.
+
+Create a new network area in an organization.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param organizationId STACKIT Organization ID.
+	@return ApiCreateNetworkAreaRequest
+*/
+func (a *APIClient) CreateNetworkArea(ctx context.Context, organizationId string) ApiCreateNetworkAreaRequest {
+	return ApiCreateNetworkAreaRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		organizationId: organizationId,
+	}
+}
+
+func (a *APIClient) CreateNetworkAreaExecute(ctx context.Context, organizationId string) (*NetworkArea, error) {
+	r := ApiCreateNetworkAreaRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		organizationId: organizationId,
+	}
+	return r.Execute()
+}
+
 type ApiCreateNetworkAreaRangeRequest struct {
 	ctx                           context.Context
 	apiService                    *DefaultApiService
@@ -41,12 +421,12 @@ func (r ApiCreateNetworkAreaRangeRequest) CreateNetworkAreaRangePayload(createNe
 	return r
 }
 
-func (r ApiCreateNetworkAreaRangeRequest) Execute() (*NetworkRangeList, error) {
+func (r ApiCreateNetworkAreaRangeRequest) Execute() (*NetworkRangeListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *NetworkRangeList
+		localVarReturnValue *NetworkRangeListResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateNetworkAreaRange")
@@ -129,7 +509,7 @@ func (r ApiCreateNetworkAreaRangeRequest) Execute() (*NetworkRangeList, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -140,7 +520,7 @@ func (r ApiCreateNetworkAreaRangeRequest) Execute() (*NetworkRangeList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -151,7 +531,7 @@ func (r ApiCreateNetworkAreaRangeRequest) Execute() (*NetworkRangeList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -162,7 +542,7 @@ func (r ApiCreateNetworkAreaRangeRequest) Execute() (*NetworkRangeList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -173,7 +553,7 @@ func (r ApiCreateNetworkAreaRangeRequest) Execute() (*NetworkRangeList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -184,7 +564,7 @@ func (r ApiCreateNetworkAreaRangeRequest) Execute() (*NetworkRangeList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -228,7 +608,7 @@ func (a *APIClient) CreateNetworkAreaRange(ctx context.Context, organizationId s
 	}
 }
 
-func (a *APIClient) CreateNetworkAreaRangeExecute(ctx context.Context, organizationId string, areaId string) (*NetworkRangeList, error) {
+func (a *APIClient) CreateNetworkAreaRangeExecute(ctx context.Context, organizationId string, areaId string) (*NetworkRangeListResponse, error) {
 	r := ApiCreateNetworkAreaRangeRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
@@ -253,12 +633,12 @@ func (r ApiCreateNetworkAreaRouteRequest) CreateNetworkAreaRoutePayload(createNe
 	return r
 }
 
-func (r ApiCreateNetworkAreaRouteRequest) Execute() (*RouteList, error) {
+func (r ApiCreateNetworkAreaRouteRequest) Execute() (*RouteListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *RouteList
+		localVarReturnValue *RouteListResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateNetworkAreaRoute")
@@ -341,7 +721,7 @@ func (r ApiCreateNetworkAreaRouteRequest) Execute() (*RouteList, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -352,7 +732,7 @@ func (r ApiCreateNetworkAreaRouteRequest) Execute() (*RouteList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -363,7 +743,7 @@ func (r ApiCreateNetworkAreaRouteRequest) Execute() (*RouteList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -374,7 +754,7 @@ func (r ApiCreateNetworkAreaRouteRequest) Execute() (*RouteList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -385,7 +765,7 @@ func (r ApiCreateNetworkAreaRouteRequest) Execute() (*RouteList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -396,7 +776,7 @@ func (r ApiCreateNetworkAreaRouteRequest) Execute() (*RouteList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -440,7 +820,7 @@ func (a *APIClient) CreateNetworkAreaRoute(ctx context.Context, organizationId s
 	}
 }
 
-func (a *APIClient) CreateNetworkAreaRouteExecute(ctx context.Context, organizationId string, areaId string) (*RouteList, error) {
+func (a *APIClient) CreateNetworkAreaRouteExecute(ctx context.Context, organizationId string, areaId string) (*RouteListResponse, error) {
 	r := ApiCreateNetworkAreaRouteRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
@@ -450,51 +830,47 @@ func (a *APIClient) CreateNetworkAreaRouteExecute(ctx context.Context, organizat
 	return r.Execute()
 }
 
-type ApiCreateNetworkAreasRequest struct {
-	ctx                       context.Context
-	apiService                *DefaultApiService
-	organizationId            string
-	createNetworkAreasPayload *CreateNetworkAreasPayload
+type ApiDeleteNetworkRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	networkId  string
 }
 
-// Area creation request.
-
-func (r ApiCreateNetworkAreasRequest) CreateNetworkAreasPayload(createNetworkAreasPayload CreateNetworkAreasPayload) ApiCreateNetworkAreasRequest {
-	r.createNetworkAreasPayload = &createNetworkAreasPayload
-	return r
-}
-
-func (r ApiCreateNetworkAreasRequest) Execute() (*V1NetworkArea, error) {
+func (r ApiDeleteNetworkRequest) Execute() error {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *V1NetworkArea
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateNetworkAreas")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteNetwork")
 	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1beta1/organizations/{organizationId}/network-areas"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.organizationId) < 36 {
-		return localVarReturnValue, fmt.Errorf("organizationId must have at least 36 elements")
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
 	}
-	if strlen(r.organizationId) > 36 {
-		return localVarReturnValue, fmt.Errorf("organizationId must have less than 36 elements")
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
 	}
-	if r.createNetworkAreasPayload == nil {
-		return localVarReturnValue, fmt.Errorf("createNetworkAreasPayload is required and must be specified")
+	if strlen(r.networkId) < 36 {
+		return fmt.Errorf("networkId must have at least 36 elements")
+	}
+	if strlen(r.networkId) > 36 {
+		return fmt.Errorf("networkId must have less than 36 elements")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -510,11 +886,9 @@ func (r ApiCreateNetworkAreasRequest) Execute() (*V1NetworkArea, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.createNetworkAreasPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, err
+		return err
 	}
 
 	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
@@ -528,14 +902,14 @@ func (r ApiCreateNetworkAreasRequest) Execute() (*V1NetworkArea, error) {
 		*contextHTTPResponse = localVarHTTPResponse
 	}
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
+		return err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, err
+		return err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -545,97 +919,289 @@ func (r ApiCreateNetworkAreasRequest) Execute() (*V1NetworkArea, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
+				return newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
+			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
+				return newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
+			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
+				return newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
+			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
+				return newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
+				return newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
-		return localVarReturnValue, newErr
+		return newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
+	return nil
 }
 
 /*
-CreateNetworkAreas Create new network area in an organization.
+DeleteNetwork Delete network.
 
-Create a new network area in an organization.
+Delete a network.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@return ApiCreateNetworkAreasRequest
+	@param projectId STACKIT Project ID.
+	@param networkId STACKIT Network ID.
+	@return ApiDeleteNetworkRequest
 */
-func (a *APIClient) CreateNetworkAreas(ctx context.Context, organizationId string) ApiCreateNetworkAreasRequest {
-	return ApiCreateNetworkAreasRequest{
-		apiService:     a.defaultApi,
-		ctx:            ctx,
-		organizationId: organizationId,
+func (a *APIClient) DeleteNetwork(ctx context.Context, projectId string, networkId string) ApiDeleteNetworkRequest {
+	return ApiDeleteNetworkRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
 	}
 }
 
-func (a *APIClient) CreateNetworkAreasExecute(ctx context.Context, organizationId string) (*V1NetworkArea, error) {
-	r := ApiCreateNetworkAreasRequest{
+func (a *APIClient) DeleteNetworkExecute(ctx context.Context, projectId string, networkId string) error {
+	r := ApiDeleteNetworkRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+	}
+	return r.Execute()
+}
+
+type ApiDeleteNetworkAreaRequest struct {
+	ctx            context.Context
+	apiService     *DefaultApiService
+	organizationId string
+	areaId         string
+}
+
+func (r ApiDeleteNetworkAreaRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteNetworkArea")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(r.areaId, "areaId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.organizationId) < 36 {
+		return fmt.Errorf("organizationId must have at least 36 elements")
+	}
+	if strlen(r.organizationId) > 36 {
+		return fmt.Errorf("organizationId must have less than 36 elements")
+	}
+	if strlen(r.areaId) < 36 {
+		return fmt.Errorf("areaId must have at least 36 elements")
+	}
+	if strlen(r.areaId) > 36 {
+		return fmt.Errorf("areaId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+DeleteNetworkArea Delete a network area.
+
+Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param organizationId STACKIT Organization ID.
+	@param areaId STACKIT Network Area ID.
+	@return ApiDeleteNetworkAreaRequest
+*/
+func (a *APIClient) DeleteNetworkArea(ctx context.Context, organizationId string, areaId string) ApiDeleteNetworkAreaRequest {
+	return ApiDeleteNetworkAreaRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		organizationId: organizationId,
+		areaId:         areaId,
+	}
+}
+
+func (a *APIClient) DeleteNetworkAreaExecute(ctx context.Context, organizationId string, areaId string) error {
+	r := ApiDeleteNetworkAreaRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		organizationId: organizationId,
+		areaId:         areaId,
 	}
 	return r.Execute()
 }
@@ -737,7 +1303,7 @@ func (r ApiDeleteNetworkAreaRangeRequest) Execute() error {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -748,7 +1314,7 @@ func (r ApiDeleteNetworkAreaRangeRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -759,7 +1325,7 @@ func (r ApiDeleteNetworkAreaRangeRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -770,7 +1336,7 @@ func (r ApiDeleteNetworkAreaRangeRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -781,7 +1347,7 @@ func (r ApiDeleteNetworkAreaRangeRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -792,7 +1358,7 @@ func (r ApiDeleteNetworkAreaRangeRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -936,7 +1502,7 @@ func (r ApiDeleteNetworkAreaRouteRequest) Execute() error {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -947,7 +1513,7 @@ func (r ApiDeleteNetworkAreaRouteRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -958,7 +1524,7 @@ func (r ApiDeleteNetworkAreaRouteRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -969,7 +1535,7 @@ func (r ApiDeleteNetworkAreaRouteRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -980,7 +1546,7 @@ func (r ApiDeleteNetworkAreaRouteRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1023,194 +1589,6 @@ func (a *APIClient) DeleteNetworkAreaRouteExecute(ctx context.Context, organizat
 		organizationId: organizationId,
 		areaId:         areaId,
 		routeId:        routeId,
-	}
-	return r.Execute()
-}
-
-type ApiDeleteNetworkAreasRequest struct {
-	ctx            context.Context
-	apiService     *DefaultApiService
-	organizationId string
-	areaId         string
-}
-
-func (r ApiDeleteNetworkAreasRequest) Execute() error {
-	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteNetworkAreas")
-	if err != nil {
-		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(r.organizationId, "organizationId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(r.areaId, "areaId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.organizationId) < 36 {
-		return fmt.Errorf("organizationId must have at least 36 elements")
-	}
-	if strlen(r.organizationId) > 36 {
-		return fmt.Errorf("organizationId must have less than 36 elements")
-	}
-	if strlen(r.areaId) < 36 {
-		return fmt.Errorf("areaId must have at least 36 elements")
-	}
-	if strlen(r.areaId) > 36 {
-		return fmt.Errorf("areaId must have less than 36 elements")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v V1Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return newErr
-	}
-
-	return nil
-}
-
-/*
-DeleteNetworkAreas Delete a network area.
-
-Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
-	@return ApiDeleteNetworkAreasRequest
-*/
-func (a *APIClient) DeleteNetworkAreas(ctx context.Context, organizationId string, areaId string) ApiDeleteNetworkAreasRequest {
-	return ApiDeleteNetworkAreasRequest{
-		apiService:     a.defaultApi,
-		ctx:            ctx,
-		organizationId: organizationId,
-		areaId:         areaId,
-	}
-}
-
-func (a *APIClient) DeleteNetworkAreasExecute(ctx context.Context, organizationId string, areaId string) error {
-	r := ApiDeleteNetworkAreasRequest{
-		apiService:     a.defaultApi,
-		ctx:            ctx,
-		organizationId: organizationId,
-		areaId:         areaId,
 	}
 	return r.Execute()
 }
@@ -1305,7 +1683,7 @@ func (r ApiGetNetworkRequest) Execute() (*Network, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1316,7 +1694,7 @@ func (r ApiGetNetworkRequest) Execute() (*Network, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1327,7 +1705,7 @@ func (r ApiGetNetworkRequest) Execute() (*Network, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1338,7 +1716,7 @@ func (r ApiGetNetworkRequest) Execute() (*Network, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1349,7 +1727,7 @@ func (r ApiGetNetworkRequest) Execute() (*Network, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1410,12 +1788,12 @@ type ApiGetNetworkAreaRequest struct {
 	areaId         string
 }
 
-func (r ApiGetNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
+func (r ApiGetNetworkAreaRequest) Execute() (*NetworkArea, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *V1NetworkArea
+		localVarReturnValue *NetworkArea
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetNetworkArea")
@@ -1493,7 +1871,7 @@ func (r ApiGetNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1504,7 +1882,7 @@ func (r ApiGetNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1515,7 +1893,7 @@ func (r ApiGetNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1526,7 +1904,7 @@ func (r ApiGetNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1537,7 +1915,7 @@ func (r ApiGetNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1581,7 +1959,7 @@ func (a *APIClient) GetNetworkArea(ctx context.Context, organizationId string, a
 	}
 }
 
-func (a *APIClient) GetNetworkAreaExecute(ctx context.Context, organizationId string, areaId string) (*V1NetworkArea, error) {
+func (a *APIClient) GetNetworkAreaExecute(ctx context.Context, organizationId string, areaId string) (*NetworkArea, error) {
 	r := ApiGetNetworkAreaRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
@@ -1689,7 +2067,7 @@ func (r ApiGetNetworkAreaRangeRequest) Execute() (*NetworkRange, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1700,7 +2078,7 @@ func (r ApiGetNetworkAreaRangeRequest) Execute() (*NetworkRange, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1711,7 +2089,7 @@ func (r ApiGetNetworkAreaRangeRequest) Execute() (*NetworkRange, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1722,7 +2100,7 @@ func (r ApiGetNetworkAreaRangeRequest) Execute() (*NetworkRange, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1733,7 +2111,7 @@ func (r ApiGetNetworkAreaRangeRequest) Execute() (*NetworkRange, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1888,7 +2266,7 @@ func (r ApiGetNetworkAreaRouteRequest) Execute() (*Route, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1899,7 +2277,7 @@ func (r ApiGetNetworkAreaRouteRequest) Execute() (*Route, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1910,7 +2288,7 @@ func (r ApiGetNetworkAreaRouteRequest) Execute() (*Route, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1921,7 +2299,7 @@ func (r ApiGetNetworkAreaRouteRequest) Execute() (*Route, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1932,7 +2310,7 @@ func (r ApiGetNetworkAreaRouteRequest) Execute() (*Route, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2079,7 +2457,7 @@ func (r ApiGetOrganizationRequestRequest) Execute() (*Request, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2090,7 +2468,7 @@ func (r ApiGetOrganizationRequestRequest) Execute() (*Request, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2101,7 +2479,7 @@ func (r ApiGetOrganizationRequestRequest) Execute() (*Request, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2112,7 +2490,7 @@ func (r ApiGetOrganizationRequestRequest) Execute() (*Request, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2123,7 +2501,7 @@ func (r ApiGetOrganizationRequestRequest) Execute() (*Request, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2267,7 +2645,7 @@ func (r ApiGetProjectRequestRequest) Execute() (*Request, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2278,7 +2656,7 @@ func (r ApiGetProjectRequestRequest) Execute() (*Request, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2289,7 +2667,7 @@ func (r ApiGetProjectRequestRequest) Execute() (*Request, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2300,7 +2678,7 @@ func (r ApiGetProjectRequestRequest) Execute() (*Request, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2311,7 +2689,7 @@ func (r ApiGetProjectRequestRequest) Execute() (*Request, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2372,12 +2750,12 @@ type ApiListNetworkAreaProjectsRequest struct {
 	areaId         string
 }
 
-func (r ApiListNetworkAreaProjectsRequest) Execute() (*ProjectList, error) {
+func (r ApiListNetworkAreaProjectsRequest) Execute() (*ProjectListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ProjectList
+		localVarReturnValue *ProjectListResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListNetworkAreaProjects")
@@ -2455,7 +2833,7 @@ func (r ApiListNetworkAreaProjectsRequest) Execute() (*ProjectList, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2466,7 +2844,7 @@ func (r ApiListNetworkAreaProjectsRequest) Execute() (*ProjectList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2477,7 +2855,7 @@ func (r ApiListNetworkAreaProjectsRequest) Execute() (*ProjectList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2488,7 +2866,7 @@ func (r ApiListNetworkAreaProjectsRequest) Execute() (*ProjectList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2499,7 +2877,7 @@ func (r ApiListNetworkAreaProjectsRequest) Execute() (*ProjectList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2543,7 +2921,7 @@ func (a *APIClient) ListNetworkAreaProjects(ctx context.Context, organizationId 
 	}
 }
 
-func (a *APIClient) ListNetworkAreaProjectsExecute(ctx context.Context, organizationId string, areaId string) (*ProjectList, error) {
+func (a *APIClient) ListNetworkAreaProjectsExecute(ctx context.Context, organizationId string, areaId string) (*ProjectListResponse, error) {
 	r := ApiListNetworkAreaProjectsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
@@ -2560,12 +2938,12 @@ type ApiListNetworkAreaRangesRequest struct {
 	areaId         string
 }
 
-func (r ApiListNetworkAreaRangesRequest) Execute() (*NetworkRangeList, error) {
+func (r ApiListNetworkAreaRangesRequest) Execute() (*NetworkRangeListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *NetworkRangeList
+		localVarReturnValue *NetworkRangeListResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListNetworkAreaRanges")
@@ -2643,7 +3021,7 @@ func (r ApiListNetworkAreaRangesRequest) Execute() (*NetworkRangeList, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2654,7 +3032,7 @@ func (r ApiListNetworkAreaRangesRequest) Execute() (*NetworkRangeList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2665,7 +3043,7 @@ func (r ApiListNetworkAreaRangesRequest) Execute() (*NetworkRangeList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2676,7 +3054,7 @@ func (r ApiListNetworkAreaRangesRequest) Execute() (*NetworkRangeList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2687,7 +3065,7 @@ func (r ApiListNetworkAreaRangesRequest) Execute() (*NetworkRangeList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2731,7 +3109,7 @@ func (a *APIClient) ListNetworkAreaRanges(ctx context.Context, organizationId st
 	}
 }
 
-func (a *APIClient) ListNetworkAreaRangesExecute(ctx context.Context, organizationId string, areaId string) (*NetworkRangeList, error) {
+func (a *APIClient) ListNetworkAreaRangesExecute(ctx context.Context, organizationId string, areaId string) (*NetworkRangeListResponse, error) {
 	r := ApiListNetworkAreaRangesRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
@@ -2748,12 +3126,12 @@ type ApiListNetworkAreaRoutesRequest struct {
 	areaId         string
 }
 
-func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteList, error) {
+func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *RouteList
+		localVarReturnValue *RouteListResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListNetworkAreaRoutes")
@@ -2831,7 +3209,7 @@ func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteList, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2842,7 +3220,7 @@ func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2853,7 +3231,7 @@ func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2864,7 +3242,7 @@ func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2875,7 +3253,7 @@ func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2919,7 +3297,7 @@ func (a *APIClient) ListNetworkAreaRoutes(ctx context.Context, organizationId st
 	}
 }
 
-func (a *APIClient) ListNetworkAreaRoutesExecute(ctx context.Context, organizationId string, areaId string) (*RouteList, error) {
+func (a *APIClient) ListNetworkAreaRoutesExecute(ctx context.Context, organizationId string, areaId string) (*RouteListResponse, error) {
 	r := ApiListNetworkAreaRoutesRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
@@ -2935,12 +3313,12 @@ type ApiListNetworkAreasRequest struct {
 	organizationId string
 }
 
-func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaList, error) {
+func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *NetworkAreaList
+		localVarReturnValue *NetworkAreaListResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListNetworkAreas")
@@ -3011,7 +3389,7 @@ func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaList, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3022,7 +3400,7 @@ func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3033,7 +3411,7 @@ func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3044,7 +3422,7 @@ func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3055,7 +3433,7 @@ func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3097,7 +3475,7 @@ func (a *APIClient) ListNetworkAreas(ctx context.Context, organizationId string)
 	}
 }
 
-func (a *APIClient) ListNetworkAreasExecute(ctx context.Context, organizationId string) (*NetworkAreaList, error) {
+func (a *APIClient) ListNetworkAreasExecute(ctx context.Context, organizationId string) (*NetworkAreaListResponse, error) {
 	r := ApiListNetworkAreasRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
@@ -3112,12 +3490,12 @@ type ApiListNetworksRequest struct {
 	projectId  string
 }
 
-func (r ApiListNetworksRequest) Execute() (*NetworkList, error) {
+func (r ApiListNetworksRequest) Execute() (*NetworkListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *NetworkList
+		localVarReturnValue *NetworkListResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListNetworks")
@@ -3188,7 +3566,7 @@ func (r ApiListNetworksRequest) Execute() (*NetworkList, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3199,7 +3577,7 @@ func (r ApiListNetworksRequest) Execute() (*NetworkList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3210,7 +3588,7 @@ func (r ApiListNetworksRequest) Execute() (*NetworkList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3221,7 +3599,7 @@ func (r ApiListNetworksRequest) Execute() (*NetworkList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3232,7 +3610,7 @@ func (r ApiListNetworksRequest) Execute() (*NetworkList, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3274,7 +3652,7 @@ func (a *APIClient) ListNetworks(ctx context.Context, projectId string) ApiListN
 	}
 }
 
-func (a *APIClient) ListNetworksExecute(ctx context.Context, projectId string) (*NetworkList, error) {
+func (a *APIClient) ListNetworksExecute(ctx context.Context, projectId string) (*NetworkListResponse, error) {
 	r := ApiListNetworksRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -3283,30 +3661,220 @@ func (a *APIClient) ListNetworksExecute(ctx context.Context, projectId string) (
 	return r.Execute()
 }
 
-type ApiUpdateNetworkAreaRequest struct {
-	ctx                      context.Context
-	apiService               *DefaultApiService
-	organizationId           string
-	areaId                   string
-	updateNetworkAreaPayload *UpdateNetworkAreaPayload
+type ApiPartialUpdateNetworkRequest struct {
+	ctx                         context.Context
+	apiService                  *DefaultApiService
+	projectId                   string
+	networkId                   string
+	partialUpdateNetworkPayload *PartialUpdateNetworkPayload
+}
+
+// Update network request.
+
+func (r ApiPartialUpdateNetworkRequest) PartialUpdateNetworkPayload(partialUpdateNetworkPayload PartialUpdateNetworkPayload) ApiPartialUpdateNetworkRequest {
+	r.partialUpdateNetworkPayload = &partialUpdateNetworkPayload
+	return r
+}
+
+func (r ApiPartialUpdateNetworkRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateNetwork")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.networkId) < 36 {
+		return fmt.Errorf("networkId must have at least 36 elements")
+	}
+	if strlen(r.networkId) > 36 {
+		return fmt.Errorf("networkId must have less than 36 elements")
+	}
+	if r.partialUpdateNetworkPayload == nil {
+		return fmt.Errorf("partialUpdateNetworkPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.partialUpdateNetworkPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+PartialUpdateNetwork Update network settings.
+
+Update the settings of a network.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT Project ID.
+	@param networkId STACKIT Network ID.
+	@return ApiPartialUpdateNetworkRequest
+*/
+func (a *APIClient) PartialUpdateNetwork(ctx context.Context, projectId string, networkId string) ApiPartialUpdateNetworkRequest {
+	return ApiPartialUpdateNetworkRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+	}
+}
+
+func (a *APIClient) PartialUpdateNetworkExecute(ctx context.Context, projectId string, networkId string) error {
+	r := ApiPartialUpdateNetworkRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+	}
+	return r.Execute()
+}
+
+type ApiPartialUpdateNetworkAreaRequest struct {
+	ctx                             context.Context
+	apiService                      *DefaultApiService
+	organizationId                  string
+	areaId                          string
+	partialUpdateNetworkAreaPayload *PartialUpdateNetworkAreaPayload
 }
 
 // Area update request.
 
-func (r ApiUpdateNetworkAreaRequest) UpdateNetworkAreaPayload(updateNetworkAreaPayload UpdateNetworkAreaPayload) ApiUpdateNetworkAreaRequest {
-	r.updateNetworkAreaPayload = &updateNetworkAreaPayload
+func (r ApiPartialUpdateNetworkAreaRequest) PartialUpdateNetworkAreaPayload(partialUpdateNetworkAreaPayload PartialUpdateNetworkAreaPayload) ApiPartialUpdateNetworkAreaRequest {
+	r.partialUpdateNetworkAreaPayload = &partialUpdateNetworkAreaPayload
 	return r
 }
 
-func (r ApiUpdateNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
+func (r ApiPartialUpdateNetworkAreaRequest) Execute() (*NetworkArea, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *V1NetworkArea
+		localVarReturnValue *NetworkArea
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateNetworkArea")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateNetworkArea")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3330,8 +3898,8 @@ func (r ApiUpdateNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 	if strlen(r.areaId) > 36 {
 		return localVarReturnValue, fmt.Errorf("areaId must have less than 36 elements")
 	}
-	if r.updateNetworkAreaPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateNetworkAreaPayload is required and must be specified")
+	if r.partialUpdateNetworkAreaPayload == nil {
+		return localVarReturnValue, fmt.Errorf("partialUpdateNetworkAreaPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3352,7 +3920,7 @@ func (r ApiUpdateNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNetworkAreaPayload
+	localVarPostBody = r.partialUpdateNetworkAreaPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -3386,7 +3954,7 @@ func (r ApiUpdateNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3397,7 +3965,7 @@ func (r ApiUpdateNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3408,7 +3976,7 @@ func (r ApiUpdateNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3419,7 +3987,7 @@ func (r ApiUpdateNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3430,7 +3998,7 @@ func (r ApiUpdateNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v V1Error
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -3456,17 +4024,17 @@ func (r ApiUpdateNetworkAreaRequest) Execute() (*V1NetworkArea, error) {
 }
 
 /*
-UpdateNetworkArea Update network area settings.
+PartialUpdateNetworkArea Update network area settings.
 
 Update the settings of a network area in an organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId STACKIT Organization ID.
 	@param areaId STACKIT Network Area ID.
-	@return ApiUpdateNetworkAreaRequest
+	@return ApiPartialUpdateNetworkAreaRequest
 */
-func (a *APIClient) UpdateNetworkArea(ctx context.Context, organizationId string, areaId string) ApiUpdateNetworkAreaRequest {
-	return ApiUpdateNetworkAreaRequest{
+func (a *APIClient) PartialUpdateNetworkArea(ctx context.Context, organizationId string, areaId string) ApiPartialUpdateNetworkAreaRequest {
+	return ApiPartialUpdateNetworkAreaRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		organizationId: organizationId,
@@ -3474,8 +4042,8 @@ func (a *APIClient) UpdateNetworkArea(ctx context.Context, organizationId string
 	}
 }
 
-func (a *APIClient) UpdateNetworkAreaExecute(ctx context.Context, organizationId string, areaId string) (*V1NetworkArea, error) {
-	r := ApiUpdateNetworkAreaRequest{
+func (a *APIClient) PartialUpdateNetworkAreaExecute(ctx context.Context, organizationId string, areaId string) (*NetworkArea, error) {
+	r := ApiPartialUpdateNetworkAreaRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		organizationId: organizationId,
