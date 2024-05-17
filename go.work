@@ -30,6 +30,7 @@ use (
 	./services/argus
 	./services/authorization
 	./services/dns
+	./services/elasticsearch
 	./services/iaas
 	./services/loadbalancer
 	./services/logme
