@@ -1,2 +1,2 @@
 STACKIT RabbitMQ SDK for Go
-Copyright 2023 Schwarz IT GmBH & Co. KG
+Copyright 2024 Schwarz IT KG
