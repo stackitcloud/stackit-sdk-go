@@ -22,7 +22,7 @@ func NewConfiguration() *config.Configuration {
 		Debug:         false,
 		Servers: config.ServerConfigurations{
 			{
-				URL:         "https://mongodb-flex-service.api.{region}stackit.cloud",
+				URL:         "https://mongodb-flex.api.{region}stackit.cloud",
 				Description: "No description provided",
 				Variables: map[string]config.ServerVariable{
 					"region": {
