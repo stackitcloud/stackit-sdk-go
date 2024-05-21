@@ -13,6 +13,7 @@ package authorization
 type Role struct {
 	// REQUIRED
 	Description *string `json:"description"`
+	Id          *string `json:"id,omitempty"`
 	// REQUIRED
 	Name *string `json:"name"`
 	// REQUIRED
