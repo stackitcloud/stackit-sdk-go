@@ -1,5 +1,7 @@
 ## Release (2024-xx-xx)
 
+- `mongodbflex`: [v0.14.0](services/mongodbflex/CHANGELOG.md#v0140-2024-05-22)
+  - **Breaking change**: Remove unused data types.
 - `postgresflex`: [v0.14.0](services/postgresflex/CHANGELOG.md#v0140-2024-05-22)
   - **Breaking change**: Remove unused model data types.
 - `sqlserverflex`: [v0.1.0](services/sqlserverflex/CHANGELOG.md#v010-2024-05-22)
