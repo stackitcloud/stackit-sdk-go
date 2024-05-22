@@ -1,3 +1,12 @@
+## v0.8.0 (2024-05-22)
+
+- **Breaking change**: Rename data types for uniformity
+  - `Acl` is now `ACL`
+  - `AclList` is now `ListACLsResponse`
+  - `InstanceList` is now `ListInstancesResponse`
+  - `UserList` is now `ListUsersResponse`
+- **Breaking change**: Remove unused data types
+
 ## v0.7.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method

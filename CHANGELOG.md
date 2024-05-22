@@ -1,3 +1,13 @@
+Release (2024-XX-XX)
+
+- `secretsmanager`: [v0.8.0](services/secretsmanager/CHANGELOG.md#v080-2024-05-22)
+  - **Breaking change**: Rename data types for uniformity
+    - `Acl` is now `ACL`
+    - `AclList` is now `ListACLsResponse`
+    - `InstanceList` is now `ListInstancesResponse`
+    - `UserList` is now `ListUsersResponse`
+  - **Breaking change**: Remove unused data types
+
 ## Release (2024-05-22)
 
 - `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030-2024-05-22)
@@ -7,7 +17,7 @@
 - `postgresflex`: [v0.14.0](services/postgresflex/CHANGELOG.md#v0140-2024-05-22)
   - **Breaking change**: Remove unused model data types.
 - `sqlserverflex`: [v0.1.0](services/sqlserverflex/CHANGELOG.md#v010-2024-05-22)
-  - Manage your STACKIT SQL Server Flex resources:  `Instance`, `Flavors`, `Users`, `Databases`, `Backups`
+  - Manage your STACKIT SQL Server Flex resources: `Instance`, `Flavors`, `Users`, `Databases`, `Backups`
 - `ske`: [v0.14.0](services/ske/CHANGELOG.md#v0140-2024-05-03)
   - **Feature:** New fields for `MachineType`: `Architecture`, `Gpu`
 - `iaas`: [v0.1.0](services/iaas/CHANGELOG.md#v010-2024-05-10)
