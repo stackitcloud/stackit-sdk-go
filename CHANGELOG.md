@@ -10,6 +10,8 @@
   - Manage your STACKIT SQL Server Flex resources:  `Instance`, `Flavors`, `Users`, `Databases`, `Backups`
 - `ske`: [v0.14.0](services/ske/CHANGELOG.md#v0140-2024-05-03)
   - **Feature:** New fields for `MachineType`: `Architecture`, `Gpu`
+- `ske`: [v0.15.0](services/ske/CHANGELOG.md#v0150-2024-05-14)
+  - **Feature:** New operation `GetLoginKubeconfig` to get a Kubeconfig for use with the STACKIT CLI. A Kubeconfig retrieved using this endpoint does not contain any credentials and instead obtains valid credentials via the STACKIT CLI.
 - `iaas`: [v0.1.0](services/iaas/CHANGELOG.md#v010-2024-05-10)
   - **New BETA module**: manage Infrastructure as a Service (IaaS) resources `Network` and `NetworkArea`
 - `iaas`: [v0.2.0](services/iaas/CHANGELOG.md#v020-2024-05-17)
