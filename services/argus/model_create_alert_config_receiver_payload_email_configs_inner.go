@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package argus
 
-type UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner struct {
+type CreateAlertConfigReceiverPayloadEmailConfigsInner struct {
 	// SMTP authentication information. `Additional Validators:` * must be a syntactically valid email address
 	AuthIdentity *string `json:"authIdentity,omitempty"`
 	// SMTP authentication information.

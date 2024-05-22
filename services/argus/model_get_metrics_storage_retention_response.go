@@ -10,17 +10,13 @@ API version: 1.1.0
 
 package argus
 
-type ApiUserCreated struct {
-	// REQUIRED
-	ApiUrl *string `json:"apiUrl"`
-	// REQUIRED
-	ApiUrlSwagger *string `json:"apiUrlSwagger"`
-	// REQUIRED
-	InstanceId *string `json:"instanceId"`
+type GetMetricsStorageRetentionResponse struct {
 	// REQUIRED
 	Message *string `json:"message"`
 	// REQUIRED
-	Password *string `json:"password"`
+	MetricsRetentionTime1h *string `json:"metricsRetentionTime1h"`
 	// REQUIRED
-	Username *string `json:"username"`
+	MetricsRetentionTime5m *string `json:"metricsRetentionTime5m"`
+	// REQUIRED
+	MetricsRetentionTimeRaw *string `json:"metricsRetentionTimeRaw"`
 }

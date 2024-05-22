@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package argus
 
-type UpdateAlertConfigsPayloadRouteRoutesInner struct {
+type CreateAlertConfigRoutePayloadRoutesInner struct {
 	GroupBy *[]string `json:"groupBy,omitempty"`
 	// As in one level above
 	GroupInterval *string `json:"groupInterval,omitempty"`
