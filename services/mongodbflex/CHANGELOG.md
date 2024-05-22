@@ -1,3 +1,7 @@
+## v0.14.0 (2024-05-22)
+
+- **Breaking change**: Remove unused data types.
+
 ## v0.13.0 (2024-05-14)
 
 - Waiter for async operation `RestoreInstance`
