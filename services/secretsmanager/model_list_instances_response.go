@@ -10,8 +10,7 @@ API version: 1.2.0
 
 package secretsmanager
 
-type AclCreate struct {
-	// The given IP/IP Range that is permitted to access.
+type ListInstancesResponse struct {
 	// REQUIRED
-	Cidr *string `json:"cidr"`
+	Instances *[]Instance `json:"instances"`
 }
