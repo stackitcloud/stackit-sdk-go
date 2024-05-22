@@ -1,3 +1,7 @@
+## v0.3.0 (2024-05-22)
+
+- **Feature:** `Role` has a new field `Id`
+
 ## v0.2.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method

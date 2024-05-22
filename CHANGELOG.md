@@ -1,5 +1,7 @@
-## Release (2024-xx-xx)
+## Release (2024-05-22)
 
+- `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030-2024-05-22)
+  - **Feature:** New field for `Role`: `Id`
 - `mongodbflex`: [v0.14.0](services/mongodbflex/CHANGELOG.md#v0140-2024-05-22)
   - **Breaking change**: Remove unused data types.
 - `postgresflex`: [v0.14.0](services/postgresflex/CHANGELOG.md#v0140-2024-05-22)
