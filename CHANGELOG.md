@@ -1,5 +1,5 @@
 ## Release (2024-xx-xx)
-- `authorization`: [v0.2.1](services/authorization/CHANGELOG.md#v021-2024-05-22)
+- `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030-2024-05-22)
   - **Feature:** New field for `Role`: `Id`
 - `ske`: [v0.14.0](services/ske/CHANGELOG.md#v0140-2024-05-03)
   - **Feature:** New fields for `MachineType`: `Architecture`, `Gpu`
