@@ -11,5 +11,5 @@ API version: 1.2.0
 package secretsmanager
 
 type UpdateACLsPayload struct {
-	Cidrs *[]AclUpdate `json:"cidrs,omitempty"`
+	Cidrs *[]UpdateACLPayload `json:"cidrs,omitempty"`
 }

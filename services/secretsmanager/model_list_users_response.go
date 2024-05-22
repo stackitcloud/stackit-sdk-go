@@ -10,7 +10,7 @@ API version: 1.2.0
 
 package secretsmanager
 
-type InstanceList struct {
+type ListUsersResponse struct {
 	// REQUIRED
-	Instances *[]Instance `json:"instances"`
+	Users *[]User `json:"users"`
 }

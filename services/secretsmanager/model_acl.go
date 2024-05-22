@@ -10,7 +10,7 @@ API version: 1.2.0
 
 package secretsmanager
 
-type Acl struct {
+type ACL struct {
 	// The given IP/IP Range that is permitted to access.
 	// REQUIRED
 	Cidr *string `json:"cidr"`

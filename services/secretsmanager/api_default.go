@@ -39,12 +39,12 @@ func (r ApiCreateACLRequest) CreateACLPayload(createACLPayload CreateACLPayload)
 	return r
 }
 
-func (r ApiCreateACLRequest) Execute() (*Acl, error) {
+func (r ApiCreateACLRequest) Execute() (*ACL, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Acl
+		localVarReturnValue *ACL
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateACL")
@@ -149,7 +149,7 @@ func (a *APIClient) CreateACL(ctx context.Context, projectId string, instanceId 
 	}
 }
 
-func (a *APIClient) CreateACLExecute(ctx context.Context, projectId string, instanceId string) (*Acl, error) {
+func (a *APIClient) CreateACLExecute(ctx context.Context, projectId string, instanceId string) (*ACL, error) {
 	r := ApiCreateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -771,12 +771,12 @@ type ApiGetACLRequest struct {
 	aclId      string
 }
 
-func (r ApiGetACLRequest) Execute() (*Acl, error) {
+func (r ApiGetACLRequest) Execute() (*ACL, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Acl
+		localVarReturnValue *ACL
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetACL")
@@ -879,7 +879,7 @@ func (a *APIClient) GetACL(ctx context.Context, projectId string, instanceId str
 	}
 }
 
-func (a *APIClient) GetACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) (*Acl, error) {
+func (a *APIClient) GetACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) (*ACL, error) {
 	r := ApiGetACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -1146,12 +1146,12 @@ type ApiListACLsRequest struct {
 	instanceId string
 }
 
-func (r ApiListACLsRequest) Execute() (*AclList, error) {
+func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *AclList
+		localVarReturnValue *ListACLsResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListACLs")
@@ -1251,7 +1251,7 @@ func (a *APIClient) ListACLs(ctx context.Context, projectId string, instanceId s
 	}
 }
 
-func (a *APIClient) ListACLsExecute(ctx context.Context, projectId string, instanceId string) (*AclList, error) {
+func (a *APIClient) ListACLsExecute(ctx context.Context, projectId string, instanceId string) (*ListACLsResponse, error) {
 	r := ApiListACLsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -1267,12 +1267,12 @@ type ApiListInstancesRequest struct {
 	projectId  string
 }
 
-func (r ApiListInstancesRequest) Execute() (*InstanceList, error) {
+func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *InstanceList
+		localVarReturnValue *ListInstancesResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
@@ -1369,7 +1369,7 @@ func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiList
 	}
 }
 
-func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) (*InstanceList, error) {
+func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) (*ListInstancesResponse, error) {
 	r := ApiListInstancesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -1385,12 +1385,12 @@ type ApiListUsersRequest struct {
 	instanceId string
 }
 
-func (r ApiListUsersRequest) Execute() (*UserList, error) {
+func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *UserList
+		localVarReturnValue *ListUsersResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUsers")
@@ -1490,7 +1490,7 @@ func (a *APIClient) ListUsers(ctx context.Context, projectId string, instanceId 
 	}
 }
 
-func (a *APIClient) ListUsersExecute(ctx context.Context, projectId string, instanceId string) (*UserList, error) {
+func (a *APIClient) ListUsersExecute(ctx context.Context, projectId string, instanceId string) (*ListUsersResponse, error) {
 	r := ApiListUsersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
