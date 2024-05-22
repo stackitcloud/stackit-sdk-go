@@ -1,5 +1,7 @@
 ## Release (2024-xx-xx)
 
+- `sqlserverflex`: [v0.1.0](services/sqlserverflex/CHANGELOG.md#v010-2024-05-22)
+  - Manage your STACKIT SQL Server Flex resources:  `Instance`, `Flavors`, `Users`, `Databases`, `Backups`
 - `ske`: [v0.14.0](services/ske/CHANGELOG.md#v0140-2024-05-03)
   - **Feature:** New fields for `MachineType`: `Architecture`, `Gpu`
 - `iaas`: [v0.1.0](services/iaas/CHANGELOG.md#v010-2024-05-10)
