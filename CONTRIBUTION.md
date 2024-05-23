@@ -5,7 +5,6 @@ Your contribution is welcome! Thank you for your interest in contributing to the
 ## Table of contents
 
 - [Developer Guide](#developer-guide)
-  - [Getting started](#getting-started)
   - [Repository structure](#repository-structure)
   - [Implementing a module waiter](#implementing-a-module-waiter)
     - [Waiter structure](#waiter-structure)
@@ -14,10 +13,6 @@ Your contribution is welcome! Thank you for your interest in contributing to the
 - [Bug Reports](#bug-reports)
 
 ## Developer Guide
-
-### Getting started
-
-Check the [Getting Started](README.md#getting-started) and [Authentication](README.md#authentication) sections on the README.
 
 #### Useful Make commands
 
