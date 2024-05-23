@@ -7,6 +7,8 @@ Release (2024-XX-XX)
     - `InstanceList` is now `ListInstancesResponse`
     - `UserList` is now `ListUsersResponse`
   - **Breaking change**: Remove unused data types
+- `serverbackup`: [v0.1.0](services/serverbackup/CHANGELOG.md#v010-2024-05-23)
+  - Manage your STACKIT Server Backups: `Backup`, `BackupSchedule`, `VolumeBackup`
 
 ## Release (2024-05-22)
 
