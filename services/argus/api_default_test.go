@@ -1041,6 +1041,61 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService GetMetricsStorageRetention", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := GetMetricsStorageRetentionResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.GetMetricsStorageRetention(context.Background(), instanceId, projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService GetScrapeConfig", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
 		instanceIdValue := "instanceId"
@@ -1869,6 +1924,62 @@ func Test_argus_DefaultApiService(t *testing.T) {
 		updateInstancePayload := UpdateInstancePayload{}
 
 		resp, reqErr := apiClient.UpdateInstance(context.Background(), instanceId, projectId).UpdateInstancePayload(updateInstancePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateMetricsStorageRetention", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Message{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for argus_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := "instanceId"
+		projectId := "projectId"
+		updateMetricsStorageRetentionPayload := UpdateMetricsStorageRetentionPayload{}
+
+		resp, reqErr := apiClient.UpdateMetricsStorageRetention(context.Background(), instanceId, projectId).UpdateMetricsStorageRetentionPayload(updateMetricsStorageRetentionPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
