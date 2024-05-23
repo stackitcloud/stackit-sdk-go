@@ -5,6 +5,11 @@ Your contribution is welcome! Thank you for your interest in contributing to the
 ## Table of contents
 
 - [Developer Guide](#developer-guide)
+  - [Getting started](#getting-started)
+  - [Repository structure](#repository-structure)
+  - [Implementing a module waiter](#implementing-a-module-waiter)
+    - [Waiter structure](#waiter-structure)
+    - [Notest](#notes)
 - [Code Contributions](#code-contributions)
 - [Bug Reports](#bug-reports)
 
@@ -135,6 +140,35 @@ func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, BarId, proj
 	return handler
 }
 ```
+
+#### Notes
+
+- The states may vary from service to service
+- The `id` and the `state` might not be present on the root level of the API response, this also varies from service to service. You must always match the resource `id` and the resource `state` to what is expected
+- The timeout values included above are just for reference, each resource takes different amounts of time to finish the create, update or delete operations
+- For some resources, after a successful delete operation the resource can't be found anymore, so a call to the `Get` method would result in an error. In those cases, the waiter can be implemented by calling the `List` method and check that the resource is not present, like in this example:
+
+  ```go
+  // DeleteBarWaitHandler will wait for Bar deletion
+  func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, barId, projectId string) *wait.AsyncActionHandler[foo.ListBarsResponse] {
+      handler := wait.New(func() (waitFinished bool, response *foo.ListBarsResponse, err error) {
+          s, err := a.ListBarsExecute(ctx, barId, projectId)
+          if err != nil {
+              return false, nil, err
+          }
+          for i := range s {
+              if *s[i].Id == barId {
+                  return false, nil, nil
+              }
+          }
+          return true, s, nil
+      })
+      handler.SetTimeout(10 * time.Minute)
+      return handler
+  }
+  ```
+
+- The main objective of the `wait` functions is to make sure that the operation was successful, which means any other special cases such as intermediate error states should also be handled
 
 ## Code Contributions
 
