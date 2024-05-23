@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package argus
 
-type UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner struct {
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInner struct {
 	// The API key to use when talking to the OpsGenie API. `Additional Validators:` * should only include the characters: a-zA-Z0-9-
 	ApiKey *string `json:"apiKey,omitempty"`
 	// The host to send OpsGenie API requests to. `Additional Validators:` * must be a syntactically valid url address

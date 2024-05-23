@@ -8,6 +8,9 @@ Release (2024-XX-XX)
     - `InstanceList` is now `ListInstancesResponse`
     - `UserList` is now `ListUsersResponse`
   - **Breaking change**: Remove unused data types
+- `argus`: [v0.11.0](services/argus/CHANGELOG.md#v0110-2024-05-23)
+  - **Feature**: New methods `GetMetricsStorageRetention`, `UpdateMetricsStorageRetention`
+  - **Breaking change**: Remove unused data types
 
 - `dns`: [v0.10.0](services/dns/CHANGELOG.md#v0100-2024-05-23)
   - **Feature**: New method `CloneZone` to clone an existing zone with all record sets to a new zone with a different name
