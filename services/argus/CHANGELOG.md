@@ -1,3 +1,8 @@
+## v0.11.0 (2024-05-23)
+
+- **Feature**: New methods `GetMetricsStorageRetention`, `UpdateMetricsStorageRetention`
+- **Breaking change**: Remove unused data types
+
 ## v0.10.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method
