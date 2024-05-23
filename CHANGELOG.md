@@ -1,12 +1,22 @@
 Release (2024-XX-XX)
 
 - `secretsmanager`: [v0.8.0](services/secretsmanager/CHANGELOG.md#v080-2024-05-22)
+
   - **Breaking change**: Rename data types for uniformity
     - `Acl` is now `ACL`
     - `AclList` is now `ListACLsResponse`
     - `InstanceList` is now `ListInstancesResponse`
     - `UserList` is now `ListUsersResponse`
   - **Breaking change**: Remove unused data types
+
+- `dns`: [v0.10.0](services/dns/CHANGELOG.md#v0100-2024-05-23)
+  - **Feature**: New method `CloneZone` to clone an existing zone with all record sets to a new zone with a different name
+  - **Feature**: New methods `CreateLabel`, `DeleteLabel` and `ListLabels` to manage labels for a zone
+  - **Feature**: New methods `CreateMoveCode`, `DeleteMoveCode` and `ValidateMoveCode` to manage move codes to move a zone to another project
+  - **Feature**: New method `MoveZone` to move a zone to another project
+  - **Feature**: New methods `ExportRecordSets` and `ImportRecordSets`
+  - **Feature**: New methods `RestoreZone` and `RestoreRecordSet` to restore inactive zones and record-sets, respectively
+  - **Feature**: New method `RetrieveZone` to queue a secondary zone for a zone transfer request
 
 ## Release (2024-05-22)
 
