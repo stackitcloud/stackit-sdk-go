@@ -1,4 +1,4 @@
-## v0.8.0 (2024-05-22)
+## v0.8.0 (2024-05-23)
 
 - **Breaking change**: Rename data types for uniformity
   - `Acl` is now `ACL`
