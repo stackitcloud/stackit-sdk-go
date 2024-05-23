@@ -1,17 +1,17 @@
 Release (2024-XX-XX)
 
 - `secretsmanager`: [v0.8.0](services/secretsmanager/CHANGELOG.md#v080-2024-05-23)
-
   - **Breaking change**: Rename data types for uniformity
     - `Acl` is now `ACL`
     - `AclList` is now `ListACLsResponse`
     - `InstanceList` is now `ListInstancesResponse`
     - `UserList` is now `ListUsersResponse`
   - **Breaking change**: Remove unused data types
+- `serverbackup`: [v0.1.0](services/serverbackup/CHANGELOG.md#v010-2024-05-23)
+  - Manage your STACKIT Server Backups: `Backup`, `BackupSchedule`, `VolumeBackup`
 - `argus`: [v0.11.0](services/argus/CHANGELOG.md#v0110-2024-05-23)
   - **Feature**: New methods `GetMetricsStorageRetention`, `UpdateMetricsStorageRetention`
   - **Breaking change**: Remove unused data types
-
 - `dns`: [v0.10.0](services/dns/CHANGELOG.md#v0100-2024-05-23)
   - **Feature**: New method `CloneZone` to clone an existing zone with all record sets to a new zone with a different name
   - **Feature**: New methods `CreateLabel`, `DeleteLabel` and `ListLabels` to manage labels for a zone
