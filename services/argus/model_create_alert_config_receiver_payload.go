@@ -12,11 +12,11 @@ package argus
 
 type CreateAlertConfigReceiverPayload struct {
 	// Email configurations
-	EmailConfigs *[]UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner `json:"emailConfigs,omitempty"`
+	EmailConfigs *[]CreateAlertConfigReceiverPayloadEmailConfigsInner `json:"emailConfigs,omitempty"`
 	// `Additional Validators:` * must be unique * should only include the characters: a-zA-Z0-9-
 	// REQUIRED
 	Name *string `json:"name"`
 	// Configuration for ops genie.
-	OpsgenieConfigs *[]UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner `json:"opsgenieConfigs,omitempty"`
-	WebHookConfigs  *[]UpdateAlertConfigsPayloadReceiversInnerWebHookConfigsInner  `json:"webHookConfigs,omitempty"`
+	OpsgenieConfigs *[]CreateAlertConfigReceiverPayloadOpsgenieConfigsInner `json:"opsgenieConfigs,omitempty"`
+	WebHookConfigs  *[]CreateAlertConfigReceiverPayloadWebHookConfigsInner  `json:"webHookConfigs,omitempty"`
 }

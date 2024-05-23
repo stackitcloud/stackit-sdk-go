@@ -29,5 +29,5 @@ type CreateAlertConfigRoutePayload struct {
 	// How long to wait before sending a notification again if it has already been sent successfully for an alert. (Usually ~3h or more). `Additional Validators:` * must be a valid time format
 	RepeatInterval *string `json:"repeatInterval,omitempty"`
 	// Zero or more child routes.
-	Routes *[]UpdateAlertConfigsPayloadRouteRoutesInner `json:"routes,omitempty"`
+	Routes *[]CreateAlertConfigRoutePayloadRoutesInner `json:"routes,omitempty"`
 }
