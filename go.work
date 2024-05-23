@@ -45,6 +45,7 @@ use (
 	./services/redis
 	./services/resourcemanager
 	./services/secretsmanager
+	./services/serverbackup
 	./services/serviceaccount
 	./services/serviceenablement
 	./services/ske
