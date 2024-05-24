@@ -5,5 +5,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.12.0 h1:auIzUUNRuydKOScvpICP4MifGgvOajiDQd+ncGmBL0U=
 github.com/stackitcloud/stackit-sdk-go/core v0.12.0/go.mod h1:mDX1mSTsB3mP+tNBGcFNx6gH1mGBN4T+dVt+lcw7nlw=
-github.com/stackitcloud/stackit-sdk-go/services/argus v0.10.0 h1:FAYOt6UBy/F2jPH2C/NnZnbjLZryJBjtM3afLVgGc4w=
-github.com/stackitcloud/stackit-sdk-go/services/argus v0.10.0/go.mod h1:nVllQfYODhX1q3bgwVTLO7wHOp+8NMLiKbn3u/Dg5nU=
+github.com/stackitcloud/stackit-sdk-go/services/argus v0.11.0 h1:JVEx/ouHB6PlwGzQa3ywyDym1HTWo3WgrxAyXprCnuM=
+github.com/stackitcloud/stackit-sdk-go/services/argus v0.11.0/go.mod h1:nVllQfYODhX1q3bgwVTLO7wHOp+8NMLiKbn3u/Dg5nU=
