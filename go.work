@@ -26,6 +26,7 @@ use (
 	./examples/secretsmanager
 	./examples/serviceaccount
 	./examples/ske
+	./examples/sqlserverflex
 	./examples/waiter
 	./scripts
 	./services/argus
