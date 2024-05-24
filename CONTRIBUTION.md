@@ -34,8 +34,8 @@ For integration with other tools such as the [STACKIT Terraform Provider](https:
 
 Let's suppose you want to implement the waiters for the `Create`, `Update` and `Delete` operations of a resource `bar` of service `foo`:
 
-1. You would start by creating a new folder `wait/` inside `services/foo/`, if it not exists yet
-2. Following with the creation of a file `wait.go` inside your new folder `services/foo/wait`, if it not exists yet. The Go package should be named `wait`.
+1. Start by creating a new folder `wait/` inside `services/foo/`, if it doesn't exist yet
+2. Create a file `wait.go` inside your new folder `services/foo/wait`, if it doesn't exist yet. The Go package should be named `wait`.
 3. Refer to the [Waiter structure](./CONTRIBUTION.md/#waiter-structure) section for details on the structure of the file and the methods
 4. Add unit tests to the wait functions
 
@@ -138,9 +138,9 @@ func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, BarId, proj
 
 #### Notes
 
-- The states may vary from service to service
+- The success condition may vary from service to service. In the example above we wait for the field `Status` to match a successful or failed message, but other services may have different fields and/or values to represent the state of the create, update or delete operations
 - The `id` and the `state` might not be present on the root level of the API response, this also varies from service to service. You must always match the resource `id` and the resource `state` to what is expected
-- The timeout values included above are just for reference, each resource takes different amounts of time to finish the create, update or delete operations
+- The timeout values included above are just for reference, each resource takes different amounts of time to finish the create, update or delete operations. You should account for some buffer, e.g. 15 minutes, on top of normal execution times
 - For some resources, after a successful delete operation the resource can't be found anymore, so a call to the `Get` method would result in an error. In those cases, the waiter can be implemented by calling the `List` method and check that the resource is not present, like in this example:
 
   ```go
