@@ -164,7 +164,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 
 			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
