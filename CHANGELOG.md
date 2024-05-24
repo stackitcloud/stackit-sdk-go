@@ -1,4 +1,4 @@
-Release (2024-XX-XX)
+## Release (2024-XX-XX)
 
 - `secretsmanager`: [v0.8.0](services/secretsmanager/CHANGELOG.md#v080-2024-05-23)
   - **Breaking change**: Rename data types for uniformity
@@ -20,6 +20,8 @@ Release (2024-XX-XX)
   - **Feature**: New methods `ExportRecordSets` and `ImportRecordSets`
   - **Feature**: New methods `RestoreZone` and `RestoreRecordSet` to restore inactive zones and record-sets, respectively
   - **Feature**: New method `RetrieveZone` to queue a secondary zone for a zone transfer request
+- `sqlserverflex`: [v0.2.0](services/sqlserverflex/CHANGELOG.md#v020-2024-05-24)
+  - **Feature** Waiters for async operations `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, and `DeleteInstanceWaitHandler`
 
 ## Release (2024-05-22)
 
