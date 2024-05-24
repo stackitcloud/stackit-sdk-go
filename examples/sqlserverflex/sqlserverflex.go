@@ -30,7 +30,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Get the MongoDB Flex instances for your project
+	// Get the SQLServer Flex instances for your project
 	getInstancesResp, err := sqlserverflexClient.ListInstances(ctx, projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
