@@ -27,7 +27,7 @@ func main() {
 	// Get the MongoDB Flex instances for your project
 	getInstancesResp, err := mongodbflexClient.ListInstances(context.Background(), projectId).Tag("tag").Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ListInstances`: %v\n", err)
 		os.Exit(1)
 	}
 	items := *getInstancesResp.Items
