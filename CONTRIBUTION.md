@@ -24,7 +24,7 @@ These commands can be executed from the project root:
 
 ### Repository structure
 
-The SDK STACKIT service modules are located under `services`. The files located in `services/[service]` are automatically generated from the [REST API specs](https://github.com/stackitcloud/stackit-api-specifications), whereas the ones located in subfolders (like `wait`) are manually maintained. Therefore, changes to files located in `services/[service]` will not be accepted. Instead, consider proposing changes to the generation process in the [Generator repository](https://github.com/stackitcloud/stackit-sdk-generator).
+The STACKIT Go SDK service modules are located under `services`. The files located in `services/[service]` are automatically generated from the [REST API specs](https://github.com/stackitcloud/stackit-api-specifications), whereas the ones located in subfolders (like `wait`) are manually maintained. Therefore, changes to files located in `services/[service]` will not be accepted. Instead, consider proposing changes to the generation process in the [Generator repository](https://github.com/stackitcloud/stackit-sdk-generator).
 
 Inside `core` you can find several packages that are used by all service modules, such as `auth`, `config` and `wait`. Examples of usage of the SDK are located under the `examples` folder.
 
