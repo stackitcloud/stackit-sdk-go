@@ -66,7 +66,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			instanceGetFails: false,
 			instanceState:    InstanceStateEmpty,
 			wantErr:          true,
-			wantResp:         false,
+			wantResp:         true,
 		},
 		{
 			desc:             "instance_get_fails",
@@ -79,7 +79,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			instanceGetFails: false,
 			instanceState:    InstanceStateProcessing,
 			wantErr:          true,
-			wantResp:         false,
+			wantResp:         true,
 		},
 	}
 	for _, tt := range tests {
@@ -143,7 +143,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			instanceGetFails: false,
 			instanceState:    InstanceStateEmpty,
 			wantErr:          true,
-			wantResp:         false,
+			wantResp:         true,
 		},
 		{
 			desc:             "get_fails",
@@ -156,7 +156,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			instanceGetFails: false,
 			instanceState:    InstanceStateProcessing,
 			wantErr:          true,
-			wantResp:         false,
+			wantResp:         true,
 		},
 	}
 	for _, tt := range tests {
