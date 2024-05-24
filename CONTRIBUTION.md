@@ -8,7 +8,7 @@ Your contribution is welcome! Thank you for your interest in contributing to the
   - [Repository structure](#repository-structure)
   - [Implementing a module waiter](#implementing-a-module-waiter)
     - [Waiter structure](#waiter-structure)
-    - [Notest](#notes)
+    - [Notes](#notes)
 - [Code Contributions](#code-contributions)
 - [Bug Reports](#bug-reports)
 
