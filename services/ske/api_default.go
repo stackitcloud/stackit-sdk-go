@@ -1185,12 +1185,12 @@ type ApiGetLoginKubeconfigRequest struct {
 	clusterName string
 }
 
-func (r ApiGetLoginKubeconfigRequest) Execute() (*V1LoginKubeconfig, error) {
+func (r ApiGetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *V1LoginKubeconfig
+		localVarReturnValue *LoginKubeconfig
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLoginKubeconfig")
@@ -1298,7 +1298,7 @@ func (a *APIClient) GetLoginKubeconfig(ctx context.Context, projectId string, cl
 	}
 }
 
-func (a *APIClient) GetLoginKubeconfigExecute(ctx context.Context, projectId string, clusterName string) (*V1LoginKubeconfig, error) {
+func (a *APIClient) GetLoginKubeconfigExecute(ctx context.Context, projectId string, clusterName string) (*LoginKubeconfig, error) {
 	r := ApiGetLoginKubeconfigRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,

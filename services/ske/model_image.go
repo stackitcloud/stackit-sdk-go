@@ -11,7 +11,8 @@ API version: 1.1
 package ske
 
 type Image struct {
-	Name *string `json:"name,omitempty"`
+	// REQUIRED
+	Name *string `json:"name"`
 	// REQUIRED
 	Version *string `json:"version"`
 }
