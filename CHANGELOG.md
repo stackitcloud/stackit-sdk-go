@@ -22,6 +22,10 @@
   - **Feature**: New method `RetrieveZone` to queue a secondary zone for a zone transfer request
 - `sqlserverflex`: [v0.2.0](services/sqlserverflex/CHANGELOG.md#v020-2024-05-24)
   - **Feature** Waiters for async operations `CreateInstanceWaitHandler`, `UpdateInstanceWaitHandler`, and `DeleteInstanceWaitHandler`
+- `ske`: [v0.16.0](services/ske/CHANGELOG.md#v0160-2024-05-27)
+  - **Breaking change:** Renamed data types:
+  - `V1Network` is now `Network`
+  - `V1LoginKubeConfig` is now `LoginKubeConfig`
 
 ## Release (2024-05-22)
 

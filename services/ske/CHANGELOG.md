@@ -1,10 +1,19 @@
+## v0.16.0 (2024-05-27)
+
+- **Breaking change:** Renamed data types:
+  - `V1Network` is now `Network`
+  - `V1LoginKubeConfig` is now `LoginKubeConfig`
+
 ## v0.15.0 (2024-05-14)
+
 - **Feature:** New operation `GetLoginKubeconfig` to get a Kubeconfig for use with the STACKIT CLI. A Kubeconfig retrieved using this endpoint does not contain any credentials and instead obtains valid credentials via the STACKIT CLI.
 
 ## v0.14.0 (2024-05-03)
+
 - **Feature:** New fields for `MachineType`: `Architecture`, `Gpu`
 
 ## v0.13.0 (2024-04-16)
+
 - **Deprecation:** The following methods have been deprecated and the [Service Enablement API](https://docs.api.stackit.cloud/documentation/service-enablement/version/v1) must be used instead.
   - `DisableService`
   - `EnableService`
