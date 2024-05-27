@@ -17,7 +17,7 @@ type Cluster struct {
 	Kubernetes  *Kubernetes  `json:"kubernetes"`
 	Maintenance *Maintenance `json:"maintenance,omitempty"`
 	Name        *string      `json:"name,omitempty"`
-	Network     *V1Network   `json:"network,omitempty"`
+	Network     *Network     `json:"network,omitempty"`
 	// REQUIRED
 	Nodepools *[]Nodepool    `json:"nodepools"`
 	Status    *ClusterStatus `json:"status,omitempty"`

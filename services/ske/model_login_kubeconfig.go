@@ -10,6 +10,6 @@ API version: 1.1
 
 package ske
 
-type V1Network struct {
-	Id *string `json:"id,omitempty"`
+type LoginKubeconfig struct {
+	Kubeconfig *string `json:"kubeconfig,omitempty"`
 }
