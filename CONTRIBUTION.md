@@ -30,7 +30,7 @@ Inside `core` you can find several packages that are used by all service modules
 
 ### Implementing a module waiter
 
-For integration with other tools such as the [STACKIT Terraform Provider](https://github.com/stackitcloud/terraform-provider-stackit) and the [STACKIT CLI](https://github.com/stackitcloud/stackit-cli), there is the need to implement `waiters` for some SDK modules. Waiters are routines for resources that are created/updated/deleted asynchronously, which wait until the creation/update/deletion of the specified resource is completed. The waiters are located in a folder named `wait` inside each service folder.
+For integration with other tools such as the [STACKIT Terraform Provider](https://github.com/stackitcloud/terraform-provider-stackit) and the [STACKIT CLI](https://github.com/stackitcloud/stackit-cli), there is the need to implement waiters for some SDK modules. Waiters are routines that wait for the completion of asynchronous operations. They are located in a folder named `wait` inside each service folder.
 
 Let's suppose you want to implement the waiters for the `Create`, `Update` and `Delete` operations of a resource `bar` of service `foo`:
 
@@ -163,7 +163,7 @@ func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, BarId, proj
   }
   ```
 
-- The main objective of the `wait` functions is to make sure that the operation was successful, which means any other special cases such as intermediate error states should also be handled
+- The main objective of the waiter functions is to make sure that the operation was successful, which means any other special cases such as intermediate error states should also be handled
 
 ## Code Contributions
 
