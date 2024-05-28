@@ -30,6 +30,9 @@
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Feature**: `Credentials` has a new field: `Mqtt`, `Stomp`
   - **Breaking change**: Deleted unused data type
+- `logme`: [v0.15.0](services/logme/CHANGELOG.md#v0150-2024-05-28)
+  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
+  - **Breaking change**: Deleted unused data type
 
 ## Release (2024-05-22)
 
