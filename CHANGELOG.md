@@ -26,6 +26,9 @@
   - **Breaking change:** Renamed data types:
   - `V1Network` is now `Network`
   - `V1LoginKubeConfig` is now `LoginKubeConfig`
+- `mariadb`: [v0.15.0](services/mariadb/CHANGELOG.md#v0150-2024-05-28)
+  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
+  - **Breaking change**: Deleted unused data type 
 - `redis`: [v0.15.0](services/redis/CHANGELOG.md#v0150-2024-05-28)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Breaking change**: Deleted unused data type
