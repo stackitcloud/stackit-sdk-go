@@ -26,6 +26,9 @@
   - **Breaking change:** Renamed data types:
   - `V1Network` is now `Network`
   - `V1LoginKubeConfig` is now `LoginKubeConfig`
+- `logme`: [v0.15.0](services/logme/CHANGELOG.md#v0150-2024-05-28)
+  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
+  - **Breaking change**: Deleted unused data type
 
 ## Release (2024-05-22)
 
