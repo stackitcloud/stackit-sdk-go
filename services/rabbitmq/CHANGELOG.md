@@ -1,3 +1,9 @@
+## v0.15.0 (2024-05-29)
+
+- **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
+- **Feature**: `Credentials` has a new field: `Mqtt`, `Stomp`
+- **Breaking change**: Deleted unused data type
+
 ## v0.14.0 (2024-05-13)
 
 - **Feature**: New method `GetMetrics` to get the latest metrics for cpu load, memory and disk usage for an instance

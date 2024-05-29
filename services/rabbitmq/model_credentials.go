@@ -18,9 +18,11 @@ type Credentials struct {
 	HttpApiUri  *string   `json:"http_api_uri,omitempty"`
 	HttpApiUris *[]string `json:"http_api_uris,omitempty"`
 	Management  *string   `json:"management,omitempty"`
+	Mqtt        *string   `json:"mqtt,omitempty"`
 	// REQUIRED
 	Password *string   `json:"password"`
 	Port     *int64    `json:"port,omitempty"`
+	Stomp    *string   `json:"stomp,omitempty"`
 	Uri      *string   `json:"uri,omitempty"`
 	Uris     *[]string `json:"uris,omitempty"`
 	// REQUIRED

@@ -26,13 +26,16 @@
   - **Breaking change:** Renamed data types:
   - `V1Network` is now `Network`
   - `V1LoginKubeConfig` is now `LoginKubeConfig`
-- `mariadb`: [v0.15.0](services/mariadb/CHANGELOG.md#v0150-2024-05-28)
+- `rabbitmq`: [v0.15.0](services/rabbitmq/CHANGELOG.md#v0150-2024-05-29)
+  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
+  - **Feature**: `Credentials` has a new field: `Mqtt`, `Stomp`
+- `mariadb`: [v0.15.0](services/mariadb/CHANGELOG.md#v0150-2024-05-29)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Breaking change**: Deleted unused data type 
-- `redis`: [v0.15.0](services/redis/CHANGELOG.md#v0150-2024-05-28)
+- `redis`: [v0.15.0](services/redis/CHANGELOG.md#v0150-2024-05-29)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Breaking change**: Deleted unused data type
-- `logme`: [v0.15.0](services/logme/CHANGELOG.md#v0150-2024-05-28)
+- `logme`: [v0.15.0](services/logme/CHANGELOG.md#v0150-2024-05-29)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
   - **Breaking change**: Deleted unused data type
  
