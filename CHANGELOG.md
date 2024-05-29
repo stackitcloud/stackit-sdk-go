@@ -29,11 +29,16 @@
 - `rabbitmq`: [v0.15.0](services/rabbitmq/CHANGELOG.md#v0150-2024-05-28)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Feature**: `Credentials` has a new field: `Mqtt`, `Stomp`
+- `mariadb`: [v0.15.0](services/mariadb/CHANGELOG.md#v0150-2024-05-28)
+  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
+  - **Breaking change**: Deleted unused data type 
+- `redis`: [v0.15.0](services/redis/CHANGELOG.md#v0150-2024-05-28)
+  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Breaking change**: Deleted unused data type
 - `logme`: [v0.15.0](services/logme/CHANGELOG.md#v0150-2024-05-28)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
   - **Breaking change**: Deleted unused data type
-
+ 
 ## Release (2024-05-22)
 
 - `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030-2024-05-22)
