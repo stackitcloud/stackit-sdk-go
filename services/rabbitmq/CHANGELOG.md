@@ -1,4 +1,4 @@
-## v0.15.0 (2024-05-28)
+## v0.15.0 (2024-05-29)
 
 - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
 - **Feature**: `Credentials` has a new field: `Mqtt`, `Stomp`
