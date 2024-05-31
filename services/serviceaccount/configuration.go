@@ -22,12 +22,12 @@ func NewConfiguration() *config.Configuration {
 		Debug:         false,
 		Servers: config.ServerConfigurations{
 			{
-				URL:         "https://service-account.api.{region}stackit.cloud",
+				URL:         "https://service-account.api.stackit.cloud",
 				Description: "No description provided",
 				Variables: map[string]config.ServerVariable{
 					"region": {
 						Description:  "No description provided",
-						DefaultValue: "",
+						DefaultValue: "global",
 					},
 				},
 			},
