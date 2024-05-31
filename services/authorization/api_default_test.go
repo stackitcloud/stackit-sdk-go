@@ -286,6 +286,58 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService ListUserPermissions", func(t *testing.T) {
+		path := "/v2/users/{email}/permissions"
+		emailValue := "email"
+		path = strings.Replace(path, "{"+"email"+"}", url.PathEscape(ParameterValueToString(emailValue, "email")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ListUserPermissionsResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for authorization_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		email := "email"
+
+		resp, reqErr := apiClient.ListUserPermissions(context.Background(), email).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService RemoveMembers", func(t *testing.T) {
 		path := "/v2/{resourceId}/members/remove"
 		resourceIdValue := "resourceId"

@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
@@ -825,6 +826,190 @@ func (a *APIClient) ListUserMemberships(ctx context.Context, email string) ApiLi
 
 func (a *APIClient) ListUserMembershipsExecute(ctx context.Context, email string) (*ListUserMembershipsResponse, error) {
 	r := ApiListUserMembershipsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		email:      email,
+	}
+	return r.Execute()
+}
+
+type ApiListUserPermissionsRequest struct {
+	ctx          context.Context
+	apiService   *DefaultApiService
+	email        string
+	resource     *string
+	resourceType *string
+	permissions  *[]string
+}
+
+func (r ApiListUserPermissionsRequest) Resource(resource string) ApiListUserPermissionsRequest {
+	r.resource = &resource
+	return r
+}
+
+func (r ApiListUserPermissionsRequest) ResourceType(resourceType string) ApiListUserPermissionsRequest {
+	r.resourceType = &resourceType
+	return r
+}
+
+func (r ApiListUserPermissionsRequest) Permissions(permissions []string) ApiListUserPermissionsRequest {
+	r.permissions = &permissions
+	return r
+}
+
+func (r ApiListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListUserPermissionsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUserPermissions")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/users/{email}/permissions"
+	localVarPath = strings.Replace(localVarPath, "{"+"email"+"}", url.PathEscape(ParameterValueToString(r.email, "email")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.resource != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "resource", r.resource, "")
+	}
+	if r.resourceType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "resourceType", r.resourceType, "")
+	}
+	if r.permissions != nil {
+		t := *r.permissions
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "permissions", s.Index(i).Interface(), "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "permissions", t, "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListUserPermissions List permissions of a user
+
+List permissions of a user. An administrative access is needed to list any user's permissions, while the user can do it on his/her own email. Lists every resource of the given type where the user has any effective permissions. When requested, also lists why the permission is present.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param email
+	@return ApiListUserPermissionsRequest
+*/
+func (a *APIClient) ListUserPermissions(ctx context.Context, email string) ApiListUserPermissionsRequest {
+	return ApiListUserPermissionsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		email:      email,
+	}
+}
+
+func (a *APIClient) ListUserPermissionsExecute(ctx context.Context, email string) (*ListUserPermissionsResponse, error) {
+	r := ApiListUserPermissionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		email:      email,
