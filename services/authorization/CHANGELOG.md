@@ -1,3 +1,7 @@
+## v0.4.0 (2024-06-04)
+
+- **Feature:** New method `ListUserPermissions`
+
 ## v0.3.0 (2024-05-22)
 
 - **Feature:** `Role` has a new field `Id`

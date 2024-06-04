@@ -1,5 +1,7 @@
 ## Release (2024-XX-XX)
 
+- `authorization`: [v0.4.0](services/secretsmanager/CHANGELOG.md#v080-2024-06-04) 
+  - **Feature:** New method `ListUserPermissions`
 - `secretsmanager`: [v0.8.0](services/secretsmanager/CHANGELOG.md#v080-2024-05-23)
   - **Breaking change**: Rename data types for uniformity
     - `Acl` is now `ACL`
