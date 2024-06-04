@@ -1,12 +1,20 @@
 [![GitHub License](https://img.shields.io/github/license/stackitcloud/stackit-sdk-go)](https://www.apache.org/licenses/LICENSE-2.0)
 
-# Overview
+<br>
+<p align="center">
+  <img src=".github/images/stackit-logo.png" alt="STACKIT logo" width="50%"/>
+</p>
+<br>
+
+# STACKIT SDK for Go
+
+## Overview
 
 This repository contains the published SDKs and [SDK releases](https://github.com/stackitcloud/stackit-sdk-go/releases/).
 The modules are structured into a [core module](https://github.com/stackitcloud/stackit-sdk-go/tree/main/core) with service clients, authentication and shared functionality as well as the different STACKIT [services](https://github.com/stackitcloud/stackit-sdk-go/tree/main/services).
 The usage of the SDK is shown in some [examples](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples).
 
-# Getting started
+## Getting started
 
 Requires `Go 1.18` or higher.
 
@@ -22,7 +30,7 @@ To download the `services/dns` module:
 go mod download github.com/stackitcloud/stackit-sdk-go/services/dns
 ```
 
-# Examples
+## Examples
 
 This is an example on how to do create a client and interact with the STACKIT DNS service for reading and creating DNS zones. As prerequisite, you need a STACKIT project with its project ID.
 The setup of the authentication is describe below in section [Authentication](#authentication) in more detail.
@@ -90,7 +98,7 @@ func main() {
 
 More examples on other services, configuration and authentication possibilities can be found in the [examples folder](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples).
 
-## Authentication
+### Authentication
 
 To authenticate to the SDK, you will need a [service account](https://docs.stackit.cloud/stackit/en/service-accounts-134415819.html). Create it in the STACKIT Portal an assign it the necessary permissions, e.g. `project.owner`. There are multiple ways to authenticate:
 
@@ -116,7 +124,7 @@ When setting up authentication, the SDK will always try to use the key flow firs
 
 Check the [authentication example](examples/authentication/authentication.go) for more details.
 
-### Key flow
+#### Key flow
 
     The following instructions assume that you have created a service account and assigned it the necessary permissions, e.g. `project.owner`.
 
@@ -169,7 +177,7 @@ To configure the key flow, follow this steps:
 
 4. The SDK will search for the keys and, if valid, will use them to get access and refresh tokens which will be used to authenticate all the requests.
 
-### Token flow
+#### Token flow
 
 Using this flow is less secure since the token is long-lived. You can provide the token in several ways:
 
@@ -177,7 +185,7 @@ Using this flow is less secure since the token is long-lived. You can provide th
 2. Setting the environment variable `STACKIT_SERVICE_ACCOUNT_TOKEN`
 3. Setting it in the credentials file (see above)
 
-## Reporting issues
+### Reporting issues
 
 If you encounter any issues or have suggestions for improvements, please open an issue in the repository or create a ticket in the [STACKIT Help Center](https://support.stackit.cloud/).
 
