@@ -1,3 +1,7 @@
+## v0.4.1 (2024-06-04)
+
+- Cleanup Server configuration
+
 ## v0.4.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method
