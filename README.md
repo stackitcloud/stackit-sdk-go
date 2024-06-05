@@ -1,14 +1,13 @@
-[![GitHub License](https://img.shields.io/github/license/stackitcloud/stackit-sdk-go)](https://www.apache.org/licenses/LICENSE-2.0)
-
+<div align="center">
 <br>
-<p align="center">
-  <img src=".github/images/stackit-logo.png" alt="STACKIT logo" width="50%"/>
-</p>
+<img src=".github/images/stackit-logo.png" alt="STACKIT logo" width="50%"/>
 <br>
+<br>
+</div>
 
 # STACKIT SDK for Go
 
-## Overview
+[![GitHub License](https://img.shields.io/github/license/stackitcloud/stackit-sdk-go)](https://www.apache.org/licenses/LICENSE-2.0)
 
 This repository contains the published SDKs and [SDK releases](https://github.com/stackitcloud/stackit-sdk-go/releases/).
 The modules are structured into a [core module](https://github.com/stackitcloud/stackit-sdk-go/tree/main/core) with service clients, authentication and shared functionality as well as the different STACKIT [services](https://github.com/stackitcloud/stackit-sdk-go/tree/main/services).
