@@ -1,12 +1,19 @@
-[![GitHub License](https://img.shields.io/github/license/stackitcloud/stackit-sdk-go)](https://www.apache.org/licenses/LICENSE-2.0)
+<div align="center">
+<br>
+<img src=".github/images/stackit-logo.png" alt="STACKIT logo" width="50%"/>
+<br>
+<br>
+</div>
 
-# Overview
+# STACKIT SDK for Go
+
+[![GitHub License](https://img.shields.io/github/license/stackitcloud/stackit-sdk-go)](https://www.apache.org/licenses/LICENSE-2.0)
 
 This repository contains the published SDKs and [SDK releases](https://github.com/stackitcloud/stackit-sdk-go/releases/).
 The modules are structured into a [core module](https://github.com/stackitcloud/stackit-sdk-go/tree/main/core) with service clients, authentication and shared functionality as well as the different STACKIT [services](https://github.com/stackitcloud/stackit-sdk-go/tree/main/services).
 The usage of the SDK is shown in some [examples](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples).
 
-# Getting started
+## Getting started
 
 Requires `Go 1.18` or higher.
 
@@ -22,7 +29,7 @@ To download the `services/dns` module:
 go mod download github.com/stackitcloud/stackit-sdk-go/services/dns
 ```
 
-# Examples
+## Examples
 
 This is an example on how to do create a client and interact with the STACKIT DNS service for reading and creating DNS zones. As prerequisite, you need a STACKIT project with its project ID.
 The setup of the authentication is describe below in section [Authentication](#authentication) in more detail.
