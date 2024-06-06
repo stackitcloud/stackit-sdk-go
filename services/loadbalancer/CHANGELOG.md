@@ -1,8 +1,6 @@
 ## v0.13.0 (2024-XX-XX)
 
-- **Feature:** `CreateLoadBalancerPayload` has a new field `PlanId`
-- **Feature:** `LoadBalancer` has a new field `PlanId`
-- **Feature:** `UpdateLoadBalancerPayload` has a new field `PlanId`
+- **Feature:** `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` have a new field `PlanId`
 
 ## v0.12.0 (2024-04-12)
 
