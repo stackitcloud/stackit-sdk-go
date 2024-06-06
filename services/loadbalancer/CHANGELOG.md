@@ -1,3 +1,9 @@
+## v0.12.1 (2024-XX-XX)
+
+- **Feature:** `CreateLoadBalancerPayload` has a new field `PlanId`
+- **Feature:** `LoadBalancer` has a new field `PlanId`
+- **Feature:** `UpdateLoadBalancerPayload` has a new field `PlanId`
+
 ## v0.12.0 (2024-04-12)
 
 - **Feature:** Set `config.ContextHTTPRequest` in `Execute` methods
