@@ -120,13 +120,17 @@ func main() {
 
 	var httpResp *http.Response
 	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
-	err = iaasClient.CreateNetwork(ctxWithHTTPResp, projectId).CreateNetworkPayload(createNetworkPayload).Execute()
+	network, err := iaasClient.CreateNetwork(ctxWithHTTPResp, projectId).CreateNetworkPayload(createNetworkPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when calling `CreateNetwork`: %v\n", err)
 		os.Exit(1)
 	}
 
-	network, err := wait.CreateNetworkWaitHandler(context.Background(), iaasClient, projectId, httpResp.Header.Get("x-request-id")).WaitWithContext(context.Background())
+	fmt.Printf("[IaaS API] Triggered creation of network with ID %q.\n", *network.NetworkId)
+	fmt.Printf("[Iaas API] Current state of the network: %q\n", *network.State)
+	fmt.Println("[Iaas API] Waiting for network to be created...")
+
+	network, err = wait.CreateNetworkWaitHandler(context.Background(), iaasClient, projectId, httpResp.Header.Get("x-request-id")).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when waiting for creation: %v\n", err)
 		os.Exit(1)
