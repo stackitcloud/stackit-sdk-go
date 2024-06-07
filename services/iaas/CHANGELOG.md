@@ -1,3 +1,7 @@
+## v0.4.0 (2024-06-07)
+
+- **Breaking change**: `CreateNetwork` now returns the `Network` triggered by the operation.
+
 ## v0.3.0 (2024-05-17)
 
 - **Feature**: Add waiters for async operations: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler`, `DeleteNetworkAreaWaitHandler`, `CreateNetworkWaitHandler`, `UpdateNetworkWaitHandler`, `DeleteNetworkWaitHandler`
