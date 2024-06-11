@@ -1,5 +1,12 @@
 ## Release (2024-XX-XX)
 
+- `resourcemanager`: [v0.9.0](services/resourcemanager/CHANGELOG.md#v090-2024-06-11)
+  - **Breaking Change**: Rename data types for uniformity
+    - `ProjectResponse` -> `Project`
+    - `ProjectResponseWithParents` -> `GetProjectResponse`
+    - `AllProjectsResponse` -> `ListProjectsResponse`
+  - **Breaking Change**: Delete unused data types
+  - **Feature**: New methods `GetOrganization` and `ListOrganizations`
 - `iaas`: [v0.4.0](services/iaas/CHANGELOG.md#v040-2024-06-07)
   - **Breaking change**: `CreateNetwork` now returns the `Network` triggered by the operation.
 - `loadbalancer`: [v0.13.0](services/loadbalancer/CHANGELOG.md#v0130-2024-XX-XX)
