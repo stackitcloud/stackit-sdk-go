@@ -1,5 +1,7 @@
 ## Release (2024-XX-XX)
 
+- `objectstorage`: [v0.10.0](services/objectstorage/CHANGELOG.md#v0100-2024-06-12)
+  - **Breaking change**: Remove unused data types.
 - `iaas`: [v0.4.0](services/iaas/CHANGELOG.md#v040-2024-06-07)
   - **Breaking change**: `CreateNetwork` now returns the `Network` triggered by the operation.
 - `loadbalancer`: [v0.13.0](services/loadbalancer/CHANGELOG.md#v0130-2024-XX-XX)
