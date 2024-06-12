@@ -18,7 +18,7 @@ type apiClientMocked struct {
 	projectState resourcemanager.LifecycleState
 }
 
-func (a *apiClientMocked) GetProjectExecute(_ context.Context, _ string) (*resourcemanager.ProjectResponseWithParents, error) {
+func (a *apiClientMocked) GetProjectExecute(_ context.Context, _ string) (*resourcemanager.GetProjectResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
@@ -31,7 +31,7 @@ func (a *apiClientMocked) GetProjectExecute(_ context.Context, _ string) (*resou
 		}
 	}
 
-	return &resourcemanager.ProjectResponseWithParents{
+	return &resourcemanager.GetProjectResponse{
 		LifecycleState: &a.projectState,
 		ContainerId:    utils.Ptr("cid"),
 	}, nil
@@ -81,9 +81,9 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 				projectState: tt.projectState,
 			}
 
-			var wantRes *resourcemanager.ProjectResponseWithParents
+			var wantRes *resourcemanager.GetProjectResponse
 			if tt.wantResp {
-				wantRes = &resourcemanager.ProjectResponseWithParents{
+				wantRes = &resourcemanager.GetProjectResponse{
 					LifecycleState: &tt.projectState,
 					ContainerId:    utils.Ptr("cid"),
 				}

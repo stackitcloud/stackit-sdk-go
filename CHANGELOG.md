@@ -1,5 +1,12 @@
 ## Release (2024-06-12)
 
+- `resourcemanager`: [v0.9.0](services/resourcemanager/CHANGELOG.md#v090-2024-06-12)
+  - **Breaking Change**: Rename data types for uniformity
+    - `ProjectResponse` -> `Project`
+    - `ProjectResponseWithParents` -> `GetProjectResponse`
+    - `AllProjectsResponse` -> `ListProjectsResponse`
+  - **Breaking Change**: Delete unused data types
+  - **Feature**: New methods `GetOrganization` and `ListOrganizations`
 - `objectstorage`: [v0.10.0](services/objectstorage/CHANGELOG.md#v0100-2024-06-12)
   - **Breaking change**: Remove unused data types.
 - `iaas`: [v0.4.0](services/iaas/CHANGELOG.md#v040-2024-06-07)

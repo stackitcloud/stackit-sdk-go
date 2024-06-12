@@ -18,12 +18,12 @@ const (
 
 // Interfaces needed for tests
 type APIClientInterface interface {
-	GetProjectExecute(ctx context.Context, containerId string) (*resourcemanager.ProjectResponseWithParents, error)
+	GetProjectExecute(ctx context.Context, containerId string) (*resourcemanager.GetProjectResponse, error)
 }
 
 // CreateProjectWaitHandler will wait for project creation
-func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[resourcemanager.ProjectResponseWithParents] {
-	handler := wait.New(func() (waitFinished bool, response *resourcemanager.ProjectResponseWithParents, err error) {
+func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[resourcemanager.GetProjectResponse] {
+	handler := wait.New(func() (waitFinished bool, response *resourcemanager.GetProjectResponse, err error) {
 		p, err := a.GetProjectExecute(ctx, containerId)
 		if err != nil {
 			return false, nil, err

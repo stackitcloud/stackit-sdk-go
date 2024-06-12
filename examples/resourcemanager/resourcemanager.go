@@ -32,7 +32,7 @@ func main() {
 	createProjectPayload := resourcemanager.CreateProjectPayload{
 		ContainerParentId: utils.Ptr(parentOrganizationId),
 		Name:              utils.Ptr("my-project"),
-		Members: &[]resourcemanager.ProjectMember{
+		Members: &[]resourcemanager.Member{
 			{
 				Role:    utils.Ptr("project.owner"),
 				Subject: utils.Ptr("owner-email@example.com"),
