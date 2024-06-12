@@ -2,7 +2,7 @@
 
 - `iaas`: [v0.4.0](services/iaas/CHANGELOG.md#v040-2024-06-07)
   - **Breaking change**: `CreateNetwork` now returns the `Network` triggered by the operation.
-- `loadbalancer`: [v0.13.0](services/loadbalancer/CHANGELOG.md#v0130-2024-XX-XX)
+- `loadbalancer`: [v0.13.0](services/loadbalancer/CHANGELOG.md#v0130-2024-06-12)
   - **Feature:** `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` have a new field `PlanId`
 - `authorization`: [v0.4.0](services/secretsmanager/CHANGELOG.md#v080-2024-06-04) 
   - **Feature:** New method `ListUserPermissions`
