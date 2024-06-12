@@ -28,7 +28,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ProjectResponse{}
+			data := Project{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -72,9 +72,9 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteProject", func(t *testing.T) {
-		path := "/v2/projects/{containerId}"
-		containerIdValue := "containerId"
-		path = strings.Replace(path, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(containerIdValue, "containerId")), -1)
+		path := "/v2/projects/{id}"
+		idValue := "id"
+		path = strings.Replace(path, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -108,23 +108,23 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		containerId := "containerId"
+		id := "id"
 
-		reqErr := apiClient.DeleteProject(context.Background(), containerId).Execute()
+		reqErr := apiClient.DeleteProject(context.Background(), id).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
-	t.Run("Test DefaultApiService GetProject", func(t *testing.T) {
-		path := "/v2/projects/{containerId}"
-		containerIdValue := "containerId"
-		path = strings.Replace(path, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(containerIdValue, "containerId")), -1)
+	t.Run("Test DefaultApiService GetOrganization", func(t *testing.T) {
+		path := "/v2/organizations/{id}"
+		idValue := "id"
+		path = strings.Replace(path, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ProjectResponseWithParents{}
+			data := OrganizationResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -157,9 +157,109 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		containerId := "containerId"
+		id := "id"
 
-		resp, reqErr := apiClient.GetProject(context.Background(), containerId).Execute()
+		resp, reqErr := apiClient.GetOrganization(context.Background(), id).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetProject", func(t *testing.T) {
+		path := "/v2/projects/{id}"
+		idValue := "id"
+		path = strings.Replace(path, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := GetProjectResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for resourcemanager_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		id := "id"
+
+		resp, reqErr := apiClient.GetProject(context.Background(), id).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListOrganizations", func(t *testing.T) {
+		path := "/v2/organizations"
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ListOrganizationsResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for resourcemanager_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		resp, reqErr := apiClient.ListOrganizations(context.Background()).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -174,7 +274,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := AllProjectsResponse{}
+			data := ListProjectsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -218,13 +318,13 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateProject", func(t *testing.T) {
-		path := "/v2/projects/{containerId}"
-		containerIdValue := "containerId"
-		path = strings.Replace(path, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(containerIdValue, "containerId")), -1)
+		path := "/v2/projects/{id}"
+		idValue := "id"
+		path = strings.Replace(path, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := ProjectResponse{}
+			data := Project{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -257,9 +357,9 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		containerId := "containerId"
+		id := "id"
 
-		resp, reqErr := apiClient.PartialUpdateProject(context.Background(), containerId).Execute()
+		resp, reqErr := apiClient.PartialUpdateProject(context.Background(), id).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)

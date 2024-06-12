@@ -1,3 +1,13 @@
+## v0.9.0 (2024-06-12)
+
+- **Breaking Change**: Rename data types for uniformity
+  - `ProjectResponse` -> `Project`
+  - `ProjectResponseWithParents` -> `GetProjectResponse`
+  - `AllProjectsResponse` -> `ListProjectsResponse`
+- **Breaking Change**: Delete unused data types
+- **Feature**: New methods `GetOrganization` and `ListOrganizations`
+- Updated examples
+
 ## v0.8.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method
