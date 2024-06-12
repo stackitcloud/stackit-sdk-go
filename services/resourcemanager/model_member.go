@@ -10,16 +10,11 @@ API version: 2.0
 
 package resourcemanager
 
-type CreateProjectPayload struct {
-	// Identifier of the parent resource container - containerId as well as UUID identifier is supported.
+type Member struct {
+	// A valid role defined for the resource.
 	// REQUIRED
-	ContainerParentId *string `json:"containerParentId"`
-	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
-	Labels *map[string]string `json:"labels,omitempty"`
-	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
+	Role *string `json:"role"`
+	// Unique identifier of the user, service account or client.
 	// REQUIRED
-	Members *[]Member `json:"members"`
-	// Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	// REQUIRED
-	Name *string `json:"name"`
+	Subject *string `json:"subject"`
 }

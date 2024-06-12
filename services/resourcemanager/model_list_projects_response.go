@@ -10,16 +10,13 @@ API version: 2.0
 
 package resourcemanager
 
-type CreateProjectPayload struct {
-	// Identifier of the parent resource container - containerId as well as UUID identifier is supported.
+type ListProjectsResponse struct {
 	// REQUIRED
-	ContainerParentId *string `json:"containerParentId"`
-	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
-	Labels *map[string]string `json:"labels,omitempty"`
-	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
+	Items *[]Project `json:"items"`
+	// The maximum number of projects to return in the response. If not present, an appropriate default will be used.
 	// REQUIRED
-	Members *[]Member `json:"members"`
-	// Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
+	Limit *float64 `json:"limit"`
+	// The offset of the first item in the collection to return.
 	// REQUIRED
-	Name *string `json:"name"`
+	Offset *float64 `json:"offset"`
 }
