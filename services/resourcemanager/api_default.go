@@ -1,7 +1,7 @@
 /*
 Resource Manager API
 
-API v2 to manage resource containers - organizations, folders, projects incl. labels  ### Resource Management STACKIT resource management handles the terms _Organization_, _Folder_, _Project_, _Label_, and the hierarchical structure between them. Technically, organizations,  folders, and projects are _Resource Containers_ to which a _Label_ can be attached to. The STACKIT _Resource Manager_ provides CRUD endpoints to query and to modify the state.  ### Resource Hierarchy STACKIT resource hierarchy defines the relationship of resource containers as tree structure with organizations as the root node. Folders and projects are optional  child elements referencing the organization as parent. STACKIT resource hierarchy allows to structure cloud-resources clearly providing flexibility and individuality  for fine grained access control, access inheritance, and policies.  The STACKIT resource hierarchy model can be compared to the folder concept of a Unix file system. A folder can have exactly one parent. Folder nesting allows to organize and to structure content while defining  fine grained access permissions per folder. Within STACKIT resource hierarchy access is inherited, meaning if you have access to a resource container, you also have access to its child containers. - Users are assigned to resource containers as members by role - A user inherits permissions to all child containers  ### Organizations STACKIT organizations are the base element to create and to use cloud-resources. An organization is bound to one customer account. Organizations have a lifecycle. - Organizations are always the root node in resource hierarchy and do not have a parent  ### Folders STACKIT folders allow to organize cloud-resources and to define fine-grained access control. A folder might represent departments, teams, user groups, components etc.  Folders do not have a lifecycle as they act as structural element only. - Folders are optional - A folder can be created having either an organization, or a folder as parent - Folder names under the same parent must be unique (case insensitive) - Root organization cannot be changed  ### Projects STACKIT projects are needed to use cloud-resources. Projects serve as wrapper for underlying technical structures and processes. Projects have a lifecycle. Projects compared to folders may have different policies. - Projects are optional, but mandatory for cloud-resource usage - A project can be created having either an organization, or a folder as parent - A project must not have a project as parent - Project names under the same parent must not be unique - Root organization cannot be changed  ### Label STACKIT labels are key-value pairs including a resource container reference. Labels can be defined and attached freely to resource containers by which resources can be organized and queried. - Policy-based, immutable labels may exists  ### Current Limits - Vertically - Maximum folder nesting level: 5 - Horizontally - Maximum number of folders under one parent: 150 - Maximum number of projects under one organization: 2.500 - Maximum number of labels attached to one container: 100
+API v2 to manage resource containers - organizations, folders, projects incl. labels  ### Resource Management STACKIT resource management handles the terms _Organization_, _Folder_, _Project_, _Label_, and the hierarchical structure between them. Technically, organizations,  folders, and projects are _Resource Containers_ to which a _Label_ can be attached to. The STACKIT _Resource Manager_ provides CRUD endpoints to query and to modify the state.  ### Organizations STACKIT organizations are the base element to create and to use cloud-resources. An organization is bound to one customer account. Organizations have a lifecycle. - Organizations are always the root node in resource hierarchy and do not have a parent  ### Projects STACKIT projects are needed to use cloud-resources. Projects serve as wrapper for underlying technical structures and processes. Projects have a lifecycle. Projects compared to folders may have different policies. - Projects are optional, but mandatory for cloud-resource usage - A project can be created having either an organization, or a folder as parent - A project must not have a project as parent - Project names under the same parent must not be unique - Root organization cannot be changed  ### Label STACKIT labels are key-value pairs including a resource container reference. Labels can be defined and attached freely to resource containers by which resources can be organized and queried. - Policy-based, immutable labels may exists
 
 API version: 2.0
 */
@@ -38,12 +38,12 @@ func (r ApiCreateProjectRequest) CreateProjectPayload(createProjectPayload Creat
 	return r
 }
 
-func (r ApiCreateProjectRequest) Execute() (*ProjectResponse, error) {
+func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ProjectResponse
+		localVarReturnValue *Project
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateProject")
@@ -173,7 +173,7 @@ func (a *APIClient) CreateProject(ctx context.Context) ApiCreateProjectRequest {
 	}
 }
 
-func (a *APIClient) CreateProjectExecute(ctx context.Context) (*ProjectResponse, error) {
+func (a *APIClient) CreateProjectExecute(ctx context.Context) (*Project, error) {
 	r := ApiCreateProjectRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -182,9 +182,9 @@ func (a *APIClient) CreateProjectExecute(ctx context.Context) (*ProjectResponse,
 }
 
 type ApiDeleteProjectRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	containerId string
+	ctx        context.Context
+	apiService *DefaultApiService
+	id         string
 }
 
 func (r ApiDeleteProjectRequest) Execute() error {
@@ -199,8 +199,8 @@ func (r ApiDeleteProjectRequest) Execute() error {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/projects/{containerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(r.containerId, "containerId")), -1)
+	localVarPath := localBasePath + "/v2/projects/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -279,22 +279,149 @@ Triggers the deletion of a project.
 - Lifecycle state remains in DELETING, until workflow completes
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param containerId Project identifier - containerId as well as UUID identifier is supported.
+	@param id Project identifier - containerId as well as UUID identifier is supported.
 	@return ApiDeleteProjectRequest
 */
-func (a *APIClient) DeleteProject(ctx context.Context, containerId string) ApiDeleteProjectRequest {
+func (a *APIClient) DeleteProject(ctx context.Context, id string) ApiDeleteProjectRequest {
 	return ApiDeleteProjectRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		containerId: containerId,
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
-func (a *APIClient) DeleteProjectExecute(ctx context.Context, containerId string) error {
+func (a *APIClient) DeleteProjectExecute(ctx context.Context, id string) error {
 	r := ApiDeleteProjectRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		containerId: containerId,
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		id:         id,
+	}
+	return r.Execute()
+}
+
+type ApiGetOrganizationRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	id         string
+}
+
+func (r ApiGetOrganizationRequest) Execute() (*OrganizationResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OrganizationResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOrganization")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/organizations/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetOrganization Get Organization Details
+
+Returns the organization and its metadata.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id Organization identifier - containerId as well as UUID identifier is supported.
+	@return ApiGetOrganizationRequest
+*/
+func (a *APIClient) GetOrganization(ctx context.Context, id string) ApiGetOrganizationRequest {
+	return ApiGetOrganizationRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		id:         id,
+	}
+}
+
+func (a *APIClient) GetOrganizationExecute(ctx context.Context, id string) (*OrganizationResponse, error) {
+	r := ApiGetOrganizationRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		id:         id,
 	}
 	return r.Execute()
 }
@@ -302,7 +429,7 @@ func (a *APIClient) DeleteProjectExecute(ctx context.Context, containerId string
 type ApiGetProjectRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
-	containerId    string
+	id             string
 	includeParents *bool
 }
 
@@ -311,12 +438,12 @@ func (r ApiGetProjectRequest) IncludeParents(includeParents bool) ApiGetProjectR
 	return r
 }
 
-func (r ApiGetProjectRequest) Execute() (*ProjectResponseWithParents, error) {
+func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ProjectResponseWithParents
+		localVarReturnValue *GetProjectResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetProject")
@@ -324,8 +451,8 @@ func (r ApiGetProjectRequest) Execute() (*ProjectResponseWithParents, error) {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/projects/{containerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(r.containerId, "containerId")), -1)
+	localVarPath := localBasePath + "/v2/projects/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -426,22 +553,222 @@ GetProject Get Project Details
 Returns the project and its metadata.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param containerId Project identifier - containerId as well as UUID identifier is supported.
+	@param id Project identifier - containerId as well as UUID identifier is supported.
 	@return ApiGetProjectRequest
 */
-func (a *APIClient) GetProject(ctx context.Context, containerId string) ApiGetProjectRequest {
+func (a *APIClient) GetProject(ctx context.Context, id string) ApiGetProjectRequest {
 	return ApiGetProjectRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		containerId: containerId,
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
-func (a *APIClient) GetProjectExecute(ctx context.Context, containerId string) (*ProjectResponseWithParents, error) {
+func (a *APIClient) GetProjectExecute(ctx context.Context, id string) (*GetProjectResponse, error) {
 	r := ApiGetProjectRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		containerId: containerId,
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		id:         id,
+	}
+	return r.Execute()
+}
+
+type ApiListOrganizationsRequest struct {
+	ctx               context.Context
+	apiService        *DefaultApiService
+	containerIds      *[]string
+	member            *string
+	limit             *float32
+	offset            *float32
+	creationTimeStart *time.Time
+}
+
+// Organization identifiers - containerId as well as UUID identifier is supported. A combination of both is not allowed.
+
+func (r ApiListOrganizationsRequest) ContainerIds(containerIds []string) ApiListOrganizationsRequest {
+	r.containerIds = &containerIds
+	return r
+}
+
+// E-Mail address of the user for whom the visible resource containers should be filtered.
+
+func (r ApiListOrganizationsRequest) Member(member string) ApiListOrganizationsRequest {
+	r.member = &member
+	return r
+}
+
+// The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
+
+func (r ApiListOrganizationsRequest) Limit(limit float32) ApiListOrganizationsRequest {
+	r.limit = &limit
+	return r
+}
+
+// The offset of the first item in the collection to return.
+
+func (r ApiListOrganizationsRequest) Offset(offset float32) ApiListOrganizationsRequest {
+	r.offset = &offset
+	return r
+}
+
+// A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
+
+func (r ApiListOrganizationsRequest) CreationTimeStart(creationTimeStart time.Time) ApiListOrganizationsRequest {
+	r.creationTimeStart = &creationTimeStart
+	return r
+}
+
+func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListOrganizationsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListOrganizations")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/organizations"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.containerIds != nil {
+		t := *r.containerIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "containerIds", s.Index(i).Interface(), "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "containerIds", t, "multi")
+		}
+	}
+	if r.member != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "member", r.member, "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.creationTimeStart != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "creation-time-start", r.creationTimeStart, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListOrganizations Get All Organizations
+
+Returns all organizations and their metadata.
+- If no containerIds are specified, all organizations are returned, if permitted
+- ContainerIds may be set to filter
+- Member may be set to filter
+- If member and containerIds are given, both are used for filtering
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListOrganizationsRequest
+*/
+func (a *APIClient) ListOrganizations(ctx context.Context) ApiListOrganizationsRequest {
+	return ApiListOrganizationsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+	}
+}
+
+func (a *APIClient) ListOrganizationsExecute(ctx context.Context) (*ListOrganizationsResponse, error) {
+	r := ApiListOrganizationsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
 	}
 	return r.Execute()
 }
@@ -499,12 +826,12 @@ func (r ApiListProjectsRequest) CreationTimeStart(creationTimeStart time.Time) A
 	return r
 }
 
-func (r ApiListProjectsRequest) Execute() (*AllProjectsResponse, error) {
+func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *AllProjectsResponse
+		localVarReturnValue *ListProjectsResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListProjects")
@@ -613,17 +940,6 @@ func (r ApiListProjectsRequest) Execute() (*AllProjectsResponse, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
 		}
 		return localVarReturnValue, newErr
 	}
@@ -665,7 +981,7 @@ func (a *APIClient) ListProjects(ctx context.Context) ApiListProjectsRequest {
 	}
 }
 
-func (a *APIClient) ListProjectsExecute(ctx context.Context) (*AllProjectsResponse, error) {
+func (a *APIClient) ListProjectsExecute(ctx context.Context) (*ListProjectsResponse, error) {
 	r := ApiListProjectsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -676,7 +992,7 @@ func (a *APIClient) ListProjectsExecute(ctx context.Context) (*AllProjectsRespon
 type ApiPartialUpdateProjectRequest struct {
 	ctx                         context.Context
 	apiService                  *DefaultApiService
-	containerId                 string
+	id                          string
 	partialUpdateProjectPayload *PartialUpdateProjectPayload
 }
 
@@ -685,12 +1001,12 @@ func (r ApiPartialUpdateProjectRequest) PartialUpdateProjectPayload(partialUpdat
 	return r
 }
 
-func (r ApiPartialUpdateProjectRequest) Execute() (*ProjectResponse, error) {
+func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ProjectResponse
+		localVarReturnValue *Project
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateProject")
@@ -698,8 +1014,8 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*ProjectResponse, error) {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/projects/{containerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(r.containerId, "containerId")), -1)
+	localVarPath := localBasePath + "/v2/projects/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -813,22 +1129,22 @@ Update the project and its metadata.
 - Update project parent (folder or organization)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param containerId Project identifier - containerId as well as UUID identifier is supported.
+	@param id Project identifier - containerId as well as UUID identifier is supported.
 	@return ApiPartialUpdateProjectRequest
 */
-func (a *APIClient) PartialUpdateProject(ctx context.Context, containerId string) ApiPartialUpdateProjectRequest {
+func (a *APIClient) PartialUpdateProject(ctx context.Context, id string) ApiPartialUpdateProjectRequest {
 	return ApiPartialUpdateProjectRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		containerId: containerId,
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		id:         id,
 	}
 }
 
-func (a *APIClient) PartialUpdateProjectExecute(ctx context.Context, containerId string) (*ProjectResponse, error) {
+func (a *APIClient) PartialUpdateProjectExecute(ctx context.Context, id string) (*Project, error) {
 	r := ApiPartialUpdateProjectRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		containerId: containerId,
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		id:         id,
 	}
 	return r.Execute()
 }

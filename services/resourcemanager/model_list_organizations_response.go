@@ -10,11 +10,13 @@ API version: 2.0
 
 package resourcemanager
 
-type PartialUpdateProjectPayload struct {
-	// New parent identifier for the resource container - containerId as well as UUID identifier is supported.
-	ContainerParentId *string `json:"containerParentId,omitempty"`
-	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
-	Labels *map[string]string `json:"labels,omitempty"`
-	// New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	Name *string `json:"name,omitempty"`
+type ListOrganizationsResponse struct {
+	// REQUIRED
+	Items *[]ListOrganizationsResponseItemsInner `json:"items"`
+	// The maximum number of projects to return in the response. If not present, an appropriate default will be used.
+	// REQUIRED
+	Limit *float64 `json:"limit"`
+	// The offset of the first item in the collection to return.
+	// REQUIRED
+	Offset *float64 `json:"offset"`
 }
