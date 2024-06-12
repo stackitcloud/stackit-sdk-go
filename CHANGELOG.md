@@ -1,4 +1,4 @@
-## Release (2024-XX-XX)
+## Release (2024-06-12)
 
 - `iaas`: [v0.4.0](services/iaas/CHANGELOG.md#v040-2024-06-07)
   - **Breaking change**: `CreateNetwork` now returns the `Network` triggered by the operation.
