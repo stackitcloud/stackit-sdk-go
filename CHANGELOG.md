@@ -1,19 +1,19 @@
-## Release (2024-06-12)
+## Release (2024-06-14)
 
-- `resourcemanager`: [v0.9.0](services/resourcemanager/CHANGELOG.md#v090-2024-06-12)
+- `resourcemanager`: [v0.9.0](services/resourcemanager/CHANGELOG.md#v090-2024-06-14)
   - **Breaking Change**: Rename data types for uniformity
     - `ProjectResponse` -> `Project`
     - `ProjectResponseWithParents` -> `GetProjectResponse`
     - `AllProjectsResponse` -> `ListProjectsResponse`
   - **Breaking Change**: Delete unused data types
   - **Feature**: New methods `GetOrganization` and `ListOrganizations`
-- `objectstorage`: [v0.10.0](services/objectstorage/CHANGELOG.md#v0100-2024-06-12)
+- `objectstorage`: [v0.10.0](services/objectstorage/CHANGELOG.md#v0100-2024-06-14)
   - **Breaking change**: Remove unused data types.
 - `iaas`: [v0.4.0](services/iaas/CHANGELOG.md#v040-2024-06-07)
   - **Breaking change**: `CreateNetwork` now returns the `Network` triggered by the operation.
 - `loadbalancer`: [v0.13.0](services/loadbalancer/CHANGELOG.md#v0130-2024-06-12)
   - **Feature:** `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` have a new field `PlanId`
-- `authorization`: [v0.4.0](services/secretsmanager/CHANGELOG.md#v080-2024-06-04) 
+- `authorization`: [v0.4.0](services/secretsmanager/CHANGELOG.md#v080-2024-06-04)
   - **Feature:** New method `ListUserPermissions`
 - `secretsmanager`: [v0.8.0](services/secretsmanager/CHANGELOG.md#v080-2024-05-23)
   - **Breaking change**: Rename data types for uniformity
