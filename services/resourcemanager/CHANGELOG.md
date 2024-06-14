@@ -1,4 +1,4 @@
-## v0.9.0 (2024-06-12)
+## v0.9.0 (2024-06-14)
 
 - **Breaking Change**: Rename data types for uniformity
   - `ProjectResponse` -> `Project`
