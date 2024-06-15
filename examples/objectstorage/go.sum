@@ -5,5 +5,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.12.0 h1:auIzUUNRuydKOScvpICP4MifGgvOajiDQd+ncGmBL0U=
 github.com/stackitcloud/stackit-sdk-go/core v0.12.0/go.mod h1:mDX1mSTsB3mP+tNBGcFNx6gH1mGBN4T+dVt+lcw7nlw=
-github.com/stackitcloud/stackit-sdk-go/services/objectstorage v0.9.0 h1:rWgy4/eCIgyA2dUuc4a30pldmS6taQDwiLqoeZmyeP8=
-github.com/stackitcloud/stackit-sdk-go/services/objectstorage v0.9.0/go.mod h1:dkVMJI88eJ3Xs0ZV15r4tUpgitUGJXcvrX3RL4Zq2bQ=
+github.com/stackitcloud/stackit-sdk-go/services/objectstorage v0.10.0 h1:tn1MD1nu+gYEbT3lslRI6BrapKwuvHv5Wi2Zw9uVPPc=
+github.com/stackitcloud/stackit-sdk-go/services/objectstorage v0.10.0/go.mod h1:dkVMJI88eJ3Xs0ZV15r4tUpgitUGJXcvrX3RL4Zq2bQ=
