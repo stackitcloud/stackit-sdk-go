@@ -1,3 +1,7 @@
+## v0.16.0 (2024-06-XX)
+
+- **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.
+
 ## v0.15.0 (2024-05-29)
 
 - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
