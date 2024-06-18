@@ -1,3 +1,9 @@
+## Release (2024-XX-XX)
+
+- `logme`: [v0.16.0](services/logme/CHANGELOG.md#v0160-2024-06-xx)
+  - **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.
+  - **Breaking change**: `Groks` parameter in `InstanceParameters` model is now of type `InstanceParametersGroksInner` (previously `map[string]interface{}`)
+
 ## Release (2024-06-14)
 
 - `resourcemanager`: [v0.9.0](services/resourcemanager/CHANGELOG.md#v090-2024-06-14)
