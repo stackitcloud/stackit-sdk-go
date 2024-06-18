@@ -10,7 +10,7 @@ API version: 1.1.0
 
 package opensearch
 
-type Metrics struct {
+type ListRestoresResponse struct {
 	// REQUIRED
-	Metrics *[]GetMetricsResponse `json:"metrics"`
+	InstanceRestores *[]Restore `json:"instanceRestores"`
 }
