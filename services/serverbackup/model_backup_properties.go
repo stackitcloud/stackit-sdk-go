@@ -15,6 +15,7 @@ type BackupProperties struct {
 	// REQUIRED
 	Name *string `json:"name"`
 	// Values are set in days (1-36500)
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	RetentionPeriod *int64    `json:"retentionPeriod"`
 	VolumeIds       *[]string `json:"volumeIds,omitempty"`
