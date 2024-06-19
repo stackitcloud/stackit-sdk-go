@@ -20,8 +20,8 @@ type InstanceParameters struct {
 	FluentdTlsVersion    *string `json:"fluentd-tls-version,omitempty"`
 	FluentdUdp           *int64  `json:"fluentd-udp,omitempty"`
 	// If you want to monitor your service with Graphite, you can set the custom parameter graphite. It expects the host and port where the Graphite metrics should be sent to.
-	Graphite *string                   `json:"graphite,omitempty"`
-	Groks    *[]map[string]interface{} `json:"groks,omitempty"`
+	Graphite *string                         `json:"graphite,omitempty"`
+	Groks    *[]InstanceParametersGroksInner `json:"groks,omitempty"`
 	// Combination of an integer and a timerange when an index will be considered 'd' and can be deleted from OpenSearch. Possible values for the timerange are s, m, h and d.
 	IsmDeletionAfter *string  `json:"ism_deletion_after,omitempty"`
 	IsmJitter        *float64 `json:"ism_jitter,omitempty"`
