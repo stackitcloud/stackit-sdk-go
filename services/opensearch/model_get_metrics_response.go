@@ -25,6 +25,12 @@ type GetMetricsResponse struct {
 	// REQUIRED
 	DiskPersistentUsed *int64 `json:"diskPersistentUsed"`
 	// REQUIRED
+	Load1 *int64 `json:"load1"`
+	// REQUIRED
+	Load15 *int64 `json:"load15"`
+	// REQUIRED
+	Load5 *int64 `json:"load5"`
+	// REQUIRED
 	MemoryTotal *int64 `json:"memoryTotal"`
 	// REQUIRED
 	MemoryUsed *int64 `json:"memoryUsed"`
