@@ -14,7 +14,8 @@ type BackupVolumeBackupsInner struct {
 	Id                   *string `json:"id,omitempty"`
 	LastRestoredAt       *string `json:"lastRestoredAt,omitempty"`
 	LastRestoredVolumeId *string `json:"lastRestoredVolumeId,omitempty"`
-	Size                 *int64  `json:"size,omitempty"`
-	Status               *string `json:"status,omitempty"`
-	VolumeId             *string `json:"volumeId,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	Size     *int64  `json:"size,omitempty"`
+	Status   *string `json:"status,omitempty"`
+	VolumeId *string `json:"volumeId,omitempty"`
 }
