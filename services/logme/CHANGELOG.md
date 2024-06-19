@@ -1,3 +1,8 @@
+## v0.16.0 (2024-06-19)
+
+- **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.
+- **Breaking change**: `Groks` parameter in `InstanceParameters` model is now of type `InstanceParametersGroksInner` (previously `map[string]interface{}`)
+
 ## v0.15.0 (2024-05-29)
 
 - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`

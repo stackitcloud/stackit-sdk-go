@@ -1,3 +1,17 @@
+## Release (2024-XX-XX)
+
+- `logme`: [v0.16.0](services/logme/CHANGELOG.md#v0160-2024-06-19)
+  - **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.
+  - **Breaking change**: `Groks` parameter in `InstanceParameters` model is now of type `InstanceParametersGroksInner` (previously `map[string]interface{}`)
+- `mariadb`: [v0.16.0](services/mariadb/CHANGELOG.md#v0160-2024-06-19)
+  - **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.
+- `opensearch`: [v0.15.0](services/opensearch/CHANGELOG.md#v0150-2024-06-19)
+  - **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.
+- `rabbitmq`: [v0.16.0](services/rabbitmq/CHANGELOG.md#v0160-2024-06-19)
+  - **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.
+- `redis`: [v0.16.0](services/redis/CHANGELOG.md#v0160-2024-06-19)
+  - **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.
+
 ## Release (2024-06-14)
 
 - `resourcemanager`: [v0.9.0](services/resourcemanager/CHANGELOG.md#v090-2024-06-14)
