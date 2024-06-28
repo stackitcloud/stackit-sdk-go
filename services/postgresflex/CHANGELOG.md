@@ -1,6 +1,6 @@
 ## v0.15.0 (2024-06-28)
 
-- **Feature**: New PostgreSQL Flex resources: `Database`
+- **Feature**: New PostgreSQL Flex resource: `Database`
 - **Feature**: New API method `UpdateInstance` to update the instance
 - **Feature**: New API method `ListMetrics` to list metrics of an instance
 
