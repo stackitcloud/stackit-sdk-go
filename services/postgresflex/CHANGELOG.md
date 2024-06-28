@@ -1,3 +1,10 @@
+## v0.15.0 (2024-06-28)
+
+- **Feature**: New API methods `CreateDatabase`, `DeleteDatabase`, `ListDatabase`, `ListDatabaseParameters` to manage PostgreSQL Flex databases
+- **Feature**: New API method `UpdateInstance` to update the instance
+- **Feature**: New API method `ListMetrics` to list metrics of an instance
+- **Feature**: New API method `DisableService` to terminate the whole project
+
 ## v0.14.0 (2024-05-22)
 
 - **Breaking change**: Remove unused model data types.

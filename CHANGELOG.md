@@ -1,5 +1,10 @@
 ## Release (2024-XX-XX)
 
+- `postgresflex`: [v0.15.0](services/postgresflex/CHANGELOG.md#v0150-2024-06-28)
+  - **Feature**: New API methods `CreateDatabase`, `DeleteDatabase`, `ListDatabase`, `ListDatabaseParameters` to manage PostgreSQL Flex databases
+  - **Feature**: New API method `UpdateInstance` to update the instance
+  - **Feature**: New API method `ListMetrics` to list metrics of an instance
+  - **Feature**: New API method `DisableService` to terminate the whole project
 - `logme`: [v0.16.0](services/logme/CHANGELOG.md#v0160-2024-06-19)
   - **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.
   - **Breaking change**: `Groks` parameter in `InstanceParameters` model is now of type `InstanceParametersGroksInner` (previously `map[string]interface{}`)
