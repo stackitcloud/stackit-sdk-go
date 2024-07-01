@@ -1,4 +1,4 @@
-## Release (2024-XX-XX)
+## Release (2024-07-01)
 
 > **The STACKIT PostgreSQL service has reached its end of support on June 30th 2024. All calls done to the API have stopped working since then.**
 >
@@ -69,14 +69,14 @@
   - **Feature**: `Credentials` has a new field: `Mqtt`, `Stomp`
 - `mariadb`: [v0.15.0](services/mariadb/CHANGELOG.md#v0150-2024-05-29)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
-  - **Breaking change**: Deleted unused data type 
+  - **Breaking change**: Deleted unused data type
 - `redis`: [v0.15.0](services/redis/CHANGELOG.md#v0150-2024-05-29)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Breaking change**: Deleted unused data type
 - `logme`: [v0.15.0](services/logme/CHANGELOG.md#v0150-2024-05-29)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
   - **Breaking change**: Deleted unused data type
- 
+
 ## Release (2024-05-22)
 
 - `authorization`: [v0.3.0](services/authorization/CHANGELOG.md#v030-2024-05-22)
