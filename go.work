@@ -18,7 +18,6 @@ use (
 	./examples/objectstorage
 	./examples/opensearch
 	./examples/postgresflex
-	./examples/postgresql
 	./examples/rabbitmq
 	./examples/redis
 	./examples/resourcemanager
@@ -41,7 +40,6 @@ use (
 	./services/objectstorage
 	./services/opensearch
 	./services/postgresflex
-	./services/postgresql
 	./services/rabbitmq
 	./services/redis
 	./services/resourcemanager
