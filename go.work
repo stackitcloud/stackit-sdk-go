@@ -40,6 +40,7 @@ use (
 	./services/objectstorage
 	./services/opensearch
 	./services/postgresflex
+	./services/postgresql
 	./services/rabbitmq
 	./services/redis
 	./services/resourcemanager
