@@ -11,6 +11,8 @@ API version: 1.1
 package ske
 
 type Nodepool struct {
+	// This needs to be true for at least one node pool.
+	AllowSystemComponents *bool `json:"allowSystemComponents,omitempty"`
 	// REQUIRED
 	AvailabilityZones *[]string          `json:"availabilityZones"`
 	Cri               *CRI               `json:"cri,omitempty"`
