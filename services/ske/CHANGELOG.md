@@ -1,3 +1,7 @@
+## v0.17.0 (2024-07-04)
+
+- **Feature:** Add new field `AllowSystemComponents` to the `Nodepool` model that configures wether system components are allowed to run on the node pool.
+
 ## v0.16.0 (2024-05-27)
 
 - **Breaking change:** Renamed data types:
