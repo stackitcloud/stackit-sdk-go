@@ -1,3 +1,9 @@
+## Release (2024-XX-XX)
+
+- `archiving`: [v0.1.0](services/archiving/CHANGELOG.md#v010-2024-07-04)
+  - Manage your STACKIT Archiving instance with: `CreateInstance`, `DeleteInstance`, `GetInstance`, `ListInstances` and `PartialUpdateInstance`.
+
+
 ## Release (2024-07-01)
 
 > **The STACKIT PostgreSQL service has reached its end of support on June 30th 2024. All calls done to the API have stopped working since then.**
