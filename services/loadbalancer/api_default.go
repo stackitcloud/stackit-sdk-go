@@ -122,6 +122,14 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -263,6 +271,14 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -384,6 +400,14 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -506,6 +530,14 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -626,6 +658,14 @@ func (r ApiDisableServiceRequest) Execute() (map[string]interface{}, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -757,6 +797,14 @@ func (r ApiEnableServiceRequest) Execute() (map[string]interface{}, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -880,6 +928,14 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1002,6 +1058,14 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1125,6 +1189,14 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1242,6 +1314,14 @@ func (r ApiGetServiceStatusRequest) Execute() (*GetServiceStatusResponse, error)
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1363,6 +1443,14 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1480,6 +1568,14 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1613,6 +1709,14 @@ func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, erro
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1746,6 +1850,14 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1884,6 +1996,14 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
