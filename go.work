@@ -28,6 +28,7 @@ use (
 	./examples/sqlserverflex
 	./examples/waiter
 	./scripts
+	./services/archiving
 	./services/argus
 	./services/authorization
 	./services/dns
