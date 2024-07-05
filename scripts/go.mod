@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/go-git/go-git/v5 v5.12.0
 	github.com/stackitcloud/stackit-sdk-go/core v0.12.0
-	golang.org/x/term v0.21.0
+	golang.org/x/term v0.22.0
 )
 
 require (
@@ -30,7 +30,7 @@ require (
 	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/mod v0.19.0
 	golang.org/x/net v0.23.0 // indirect
-	golang.org/x/sys v0.21.0 // indirect
+	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/tools v0.13.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 )
