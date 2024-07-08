@@ -4,6 +4,8 @@
   - Manage your STACKIT Archiving instance with: `CreateInstance`, `DeleteInstance`, `GetInstance`, `ListInstances` and `PartialUpdateInstance`.
 - `ske`: [v0.17.0](services/ske/CHANGELOG.md#v0170-2024-07-04)
   - **Feature:** Add new field `AllowSystemComponents` to the `Nodepool` model that configures wether system components are allowed to run on the node pool.
+- `loadbalancer`: [v0.XX.X](services/loadbalancer/CHANGELOG.md#v0xxx-2024-xx-xx)
+  - **Improvement:** Improve default error messages.
 
 ## Release (2024-07-01)
 
