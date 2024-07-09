@@ -152,7 +152,7 @@ func (r ApiCreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 }
 
 /*
-CreateAlertConfigReceiver Method for CreateAlertConfigReceiver
+CreateAlertConfigReceiver: Method for CreateAlertConfigReceiver
 
 Create alert config receiver.
 
@@ -306,7 +306,7 @@ func (r ApiCreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 }
 
 /*
-CreateAlertConfigRoute Method for CreateAlertConfigRoute
+CreateAlertConfigRoute: Method for CreateAlertConfigRoute
 
 Create alert config route in routes of route.
 
@@ -438,7 +438,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 }
 
 /*
-CreateCredentials Method for CreateCredentials
+CreateCredentials: Method for CreateCredentials
 
 Create technical user credentials.
 
@@ -590,7 +590,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 }
 
 /*
-CreateInstance Method for CreateInstance
+CreateInstance: Method for CreateInstance
 
 Create new instance.
 
@@ -741,7 +741,7 @@ func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 }
 
 /*
-CreateScrapeConfig Method for CreateScrapeConfig
+CreateScrapeConfig: Method for CreateScrapeConfig
 
 Create scrape config.
 
@@ -886,7 +886,7 @@ func (r ApiDeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 }
 
 /*
-DeleteAlertConfigReceiver Method for DeleteAlertConfigReceiver
+DeleteAlertConfigReceiver: Method for DeleteAlertConfigReceiver
 
 Delete alert config receiver.
 
@@ -1034,7 +1034,7 @@ func (r ApiDeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 }
 
 /*
-DeleteAlertConfigRoute Method for DeleteAlertConfigRoute
+DeleteAlertConfigRoute: Method for DeleteAlertConfigRoute
 
 Delete alert receiver for route.
 
@@ -1193,7 +1193,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
 }
 
 /*
-DeleteCredentials Method for DeleteCredentials
+DeleteCredentials: Method for DeleteCredentials
 
 Delete technical credentials.
 
@@ -1363,7 +1363,7 @@ func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 }
 
 /*
-DeleteCredentialsRemoteWriteConfig Method for DeleteCredentialsRemoteWriteConfig
+DeleteCredentialsRemoteWriteConfig: Method for DeleteCredentialsRemoteWriteConfig
 
 Delete remote write config for credentials.
 
@@ -1498,7 +1498,7 @@ func (r ApiDeleteInstanceRequest) Execute() (*InstanceResponse, error) {
 }
 
 /*
-DeleteInstance Method for DeleteInstance
+DeleteInstance: Method for DeleteInstance
 
 Delete instance.
 
@@ -1643,7 +1643,7 @@ func (r ApiDeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, er
 }
 
 /*
-DeleteScrapeConfig Method for DeleteScrapeConfig
+DeleteScrapeConfig: Method for DeleteScrapeConfig
 
 Delete scrape config.
 
@@ -1791,7 +1791,7 @@ func (r ApiGetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
 }
 
 /*
-GetAlertConfigReceiver Method for GetAlertConfigReceiver
+GetAlertConfigReceiver: Method for GetAlertConfigReceiver
 
 Get alert config receivers.
 
@@ -1928,7 +1928,7 @@ func (r ApiGetAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, err
 }
 
 /*
-GetAlertConfigRoute Method for GetAlertConfigRoute
+GetAlertConfigRoute: Method for GetAlertConfigRoute
 
 Get alert receiver for route.
 
@@ -2063,7 +2063,7 @@ func (r ApiGetAlertConfigsRequest) Execute() (*GetAlertConfigsResponse, error) {
 }
 
 /*
-GetAlertConfigs Method for GetAlertConfigs
+GetAlertConfigs: Method for GetAlertConfigs
 
 Get alert config.
 
@@ -2208,7 +2208,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 }
 
 /*
-GetCredentials Method for GetCredentials
+GetCredentials: Method for GetCredentials
 
 Get single technical credentials.
 
@@ -2367,7 +2367,7 @@ func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemote
 }
 
 /*
-GetCredentialsRemoteWriteConfig Method for GetCredentialsRemoteWriteConfig
+GetCredentialsRemoteWriteConfig: Method for GetCredentialsRemoteWriteConfig
 
 Get remote write config.
 
@@ -2502,7 +2502,7 @@ func (r ApiGetGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
 }
 
 /*
-GetGrafanaConfigs Method for GetGrafanaConfigs
+GetGrafanaConfigs: Method for GetGrafanaConfigs
 
 Get grafana config.
 
@@ -2634,7 +2634,7 @@ func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 }
 
 /*
-GetInstance Method for GetInstance
+GetInstance: Method for GetInstance
 
 Get instance information.
 
@@ -2766,7 +2766,7 @@ func (r ApiGetMetricsStorageRetentionRequest) Execute() (*GetMetricsStorageReten
 }
 
 /*
-GetMetricsStorageRetention Method for GetMetricsStorageRetention
+GetMetricsStorageRetention: Method for GetMetricsStorageRetention
 
 Get metric storage retention time.
 
@@ -2900,7 +2900,7 @@ func (r ApiGetScrapeConfigRequest) Execute() (*GetScrapeConfigResponse, error) {
 }
 
 /*
-GetScrapeConfig Method for GetScrapeConfig
+GetScrapeConfig: Method for GetScrapeConfig
 
 Get scrape config.
 
@@ -3035,7 +3035,7 @@ func (r ApiListACLRequest) Execute() (*ListACLResponse, error) {
 }
 
 /*
-ListACL Method for ListACL
+ListACL: Method for ListACL
 
 Get acl for instance.
 
@@ -3167,7 +3167,7 @@ func (r ApiListAlertConfigReceiversRequest) Execute() (*AlertConfigReceiversResp
 }
 
 /*
-ListAlertConfigReceivers Method for ListAlertConfigReceivers
+ListAlertConfigReceivers: Method for ListAlertConfigReceivers
 
 Get alert config receivers.
 
@@ -3299,7 +3299,7 @@ func (r ApiListAlertConfigRoutesRequest) Execute() (*AlertConfigRouteResponse, e
 }
 
 /*
-ListAlertConfigRoutes Method for ListAlertConfigRoutes
+ListAlertConfigRoutes: Method for ListAlertConfigRoutes
 
 Get alert config route.
 
@@ -3431,7 +3431,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 }
 
 /*
-ListCredentials Method for ListCredentials
+ListCredentials: Method for ListCredentials
 
 Get all technical user credentials.
 
@@ -3561,7 +3561,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 }
 
 /*
-ListInstances Method for ListInstances
+ListInstances: Method for ListInstances
 
 Get all instances for a project.
 
@@ -3688,7 +3688,7 @@ func (r ApiListPlansRequest) Execute() (*PlansResponse, error) {
 }
 
 /*
-ListPlans Method for ListPlans
+ListPlans: Method for ListPlans
 
 Get all plans.
 
@@ -3817,7 +3817,7 @@ func (r ApiListScrapeConfigsRequest) Execute() (*ListScrapeConfigsResponse, erro
 }
 
 /*
-ListScrapeConfigs Method for ListScrapeConfigs
+ListScrapeConfigs: Method for ListScrapeConfigs
 
 Get scrape configs.
 
@@ -3968,7 +3968,7 @@ func (r ApiUpdateACLRequest) Execute() (*Message, error) {
 }
 
 /*
-UpdateACL Method for UpdateACL
+UpdateACL: Method for UpdateACL
 
 Update acl config.
 
@@ -4135,7 +4135,7 @@ func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 }
 
 /*
-UpdateAlertConfigReceiver Method for UpdateAlertConfigReceiver
+UpdateAlertConfigReceiver: Method for UpdateAlertConfigReceiver
 
 Update alert config receiver.
 
@@ -4305,7 +4305,7 @@ func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 }
 
 /*
-UpdateAlertConfigRoute Method for UpdateAlertConfigRoute
+UpdateAlertConfigRoute: Method for UpdateAlertConfigRoute
 
 Update alert receiver for route.
 
@@ -4462,7 +4462,7 @@ func (r ApiUpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, er
 }
 
 /*
-UpdateAlertConfigs Method for UpdateAlertConfigs
+UpdateAlertConfigs: Method for UpdateAlertConfigs
 
 Update alert config.
 
@@ -4640,7 +4640,7 @@ func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 }
 
 /*
-UpdateCredentialsRemoteWriteConfig Method for UpdateCredentialsRemoteWriteConfig
+UpdateCredentialsRemoteWriteConfig: Method for UpdateCredentialsRemoteWriteConfig
 
 Update remote write config for credentials.
 
@@ -4797,7 +4797,7 @@ func (r ApiUpdateGrafanaConfigsRequest) Execute() (*Message, error) {
 }
 
 /*
-UpdateGrafanaConfigs Method for UpdateGrafanaConfigs
+UpdateGrafanaConfigs: Method for UpdateGrafanaConfigs
 
 Update grafana config.
 
@@ -4951,7 +4951,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*InstanceResponse, error) {
 }
 
 /*
-UpdateInstance Method for UpdateInstance
+UpdateInstance: Method for UpdateInstance
 
 Update instance.
 
@@ -5105,7 +5105,7 @@ func (r ApiUpdateMetricsStorageRetentionRequest) Execute() (*Message, error) {
 }
 
 /*
-UpdateMetricsStorageRetention Method for UpdateMetricsStorageRetention
+UpdateMetricsStorageRetention: Method for UpdateMetricsStorageRetention
 
 Update metric update retention time.
 
@@ -5272,7 +5272,7 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 }
 
 /*
-UpdateScrapeConfig Method for UpdateScrapeConfig
+UpdateScrapeConfig: Method for UpdateScrapeConfig
 
 Update scrape config.
 
