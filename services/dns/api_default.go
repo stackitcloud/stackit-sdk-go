@@ -176,7 +176,7 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 }
 
 /*
-CloneZone Clone an existing zone with all record sets to a new zone with a different name
+CloneZone: Clone an existing zone with all record sets to a new zone with a different name
 
 Clone an existing zone with all record sets to a new zone with a different name
 
@@ -343,7 +343,7 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 }
 
 /*
-CreateLabel Create or update label
+CreateLabel: Create or update label
 
 Create or update label
 
@@ -486,7 +486,7 @@ func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 }
 
 /*
-CreateMoveCode request a move code to move zone to another project
+CreateMoveCode: request a move code to move zone to another project
 
 move zone from one project to another
 
@@ -664,7 +664,7 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 }
 
 /*
-CreateRecordSet Post record set
+CreateRecordSet: Post record set
 
 Post record set
 
@@ -840,7 +840,7 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 }
 
 /*
-CreateZone Post create a new zone
+CreateZone: Post create a new zone
 
 Post zone create a new zone
 
@@ -993,7 +993,7 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 }
 
 /*
-DeleteLabel Delete a label
+DeleteLabel: Delete a label
 
 Delete a label
 
@@ -1139,7 +1139,7 @@ func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
 }
 
 /*
-DeleteMoveCode delete/invalidate a move code
+DeleteMoveCode: delete/invalidate a move code
 
 delete/invalidate a move code
 
@@ -1295,7 +1295,7 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 }
 
 /*
-DeleteRecordSet Delete a record set
+DeleteRecordSet: Delete a record set
 
 Delete a record set
 
@@ -1452,7 +1452,7 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 }
 
 /*
-DeleteZone Delete a zone
+DeleteZone: Delete a zone
 
 Delete a zone
 
@@ -1608,7 +1608,7 @@ func (r ApiExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 }
 
 /*
-ExportRecordSets Export all records in a single zone
+ExportRecordSets: Export all records in a single zone
 
 Export Zone
 
@@ -1753,7 +1753,7 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 }
 
 /*
-GetRecordSet Get a single rrset
+GetRecordSet: Get a single rrset
 
 Get rrset
 
@@ -1899,7 +1899,7 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 }
 
 /*
-GetZone Get a single zone
+GetZone: Get a single zone
 
 Get zone
 
@@ -2088,7 +2088,7 @@ func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error)
 }
 
 /*
-ImportRecordSets Imports a zone
+ImportRecordSets: Imports a zone
 
 Imports a zone and overwrites/deletes/inserts all desired records
 
@@ -2242,7 +2242,7 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 }
 
 /*
-ListLabels Get all labels
+ListLabels: Get all labels
 
 All Labels
 
@@ -2737,7 +2737,7 @@ func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 }
 
 /*
-ListRecordSets All get selected RRSets
+ListRecordSets: All get selected RRSets
 
 All RRSet
 
@@ -3362,7 +3362,7 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 }
 
 /*
-ListZones All get selected zones
+ListZones: All get selected zones
 
 All zone
 
@@ -3524,7 +3524,7 @@ func (r ApiMoveZoneRequest) Execute() (*Message, error) {
 }
 
 /*
-MoveZone move zone from one project to another
+MoveZone: move zone from one project to another
 
 move zone from one project to another
 
@@ -3690,7 +3690,7 @@ func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 }
 
 /*
-PartialUpdateRecord PatchRecords updates a record in a rrset
+PartialUpdateRecord: PatchRecords updates a record in a rrset
 
 PatchRecords rrset updates a record in a rrset
 
@@ -3862,7 +3862,7 @@ func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 }
 
 /*
-PartialUpdateRecordSet Patch updates a record set
+PartialUpdateRecordSet: Patch updates a record set
 
 Patch record set
 
@@ -4032,7 +4032,7 @@ func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 }
 
 /*
-PartialUpdateZone Patch update an existing zone
+PartialUpdateZone: Patch update an existing zone
 
 Patch update an existing zone
 
@@ -4177,7 +4177,7 @@ func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
 }
 
 /*
-RestoreRecordSet Restore record set
+RestoreRecordSet: Restore record set
 
 Restore record set
 
@@ -4323,7 +4323,7 @@ func (r ApiRestoreZoneRequest) Execute() (*Message, error) {
 }
 
 /*
-RestoreZone Restore  an inactive zone
+RestoreZone: Restore  an inactive zone
 
 Restore  an inactive zone
 
@@ -4466,7 +4466,7 @@ func (r ApiRetrieveZoneRequest) Execute() (*Message, error) {
 }
 
 /*
-RetrieveZone Queue secondary zone for a zone transfer request.
+RetrieveZone: Queue secondary zone for a zone transfer request.
 
 The zone transfer will usually be performed within a few seconds, and will be tried only once by randomly choosing one of the configured primary name servers. If that single attempt fails, no further attempt will be performed. The zone will be transferred to our inbound name server regardless of its serial, but the internal zone distribution is only reliable if the zone's serial on the customer's primary name server is higher than on the STACKIT name server. <br>NOTE: As said above, this endpoint is not a reliable way to decrease a zone's serial. To guarantee consistent zones over all STACKIT location, the zone's serial MUST always be increased on zone changes.
 
@@ -4622,7 +4622,7 @@ func (r ApiValidateMoveCodeRequest) Execute() (*Message, error) {
 }
 
 /*
-ValidateMoveCode validate the move code is still valid for the zone
+ValidateMoveCode: validate the move code is still valid for the zone
 
 validate the move code is still valid for the zone
 
