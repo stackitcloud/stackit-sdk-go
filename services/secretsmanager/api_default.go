@@ -131,7 +131,7 @@ func (r ApiCreateACLRequest) Execute() (*ACL, error) {
 }
 
 /*
-CreateACL Method for CreateACL
+CreateACL: Method for CreateACL
 
 Creates a new Secrets Manager acl within the project.
 
@@ -262,7 +262,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 }
 
 /*
-CreateInstance Method for CreateInstance
+CreateInstance: Method for CreateInstance
 
 Creates a new Secrets Manager instance within the project.
 
@@ -392,7 +392,7 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 }
 
 /*
-CreateUser Method for CreateUser
+CreateUser: Method for CreateUser
 
 Creates a new user for the given Secrets Manager instance.
 
@@ -505,7 +505,7 @@ func (r ApiDeleteACLRequest) Execute() error {
 }
 
 /*
-DeleteACL Method for DeleteACL
+DeleteACL: Method for DeleteACL
 
 Deletes the given acl.
 
@@ -619,7 +619,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 }
 
 /*
-DeleteInstance Method for DeleteInstance
+DeleteInstance: Method for DeleteInstance
 
 Deletes the given Secrets Manager instance.
 
@@ -732,7 +732,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 }
 
 /*
-DeleteUser Method for DeleteUser
+DeleteUser: Method for DeleteUser
 
 Deletes the given user.
 
@@ -859,7 +859,7 @@ func (r ApiGetACLRequest) Execute() (*ACL, error) {
 }
 
 /*
-GetACL Method for GetACL
+GetACL: Method for GetACL
 
 Returns the details for the given acl.
 
@@ -984,7 +984,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 }
 
 /*
-GetInstance Method for GetInstance
+GetInstance: Method for GetInstance
 
 Returns the details for the given Secrets Manager instance.
 
@@ -1108,7 +1108,7 @@ func (r ApiGetUserRequest) Execute() (*User, error) {
 }
 
 /*
-GetUser Method for GetUser
+GetUser: Method for GetUser
 
 Returns the details for the given user.
 
@@ -1233,7 +1233,7 @@ func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
 }
 
 /*
-ListACLs Method for ListACLs
+ListACLs: Method for ListACLs
 
 Returns the acls for the given Secrets Manager instance.
 
@@ -1353,7 +1353,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 }
 
 /*
-ListInstances Method for ListInstances
+ListInstances: Method for ListInstances
 
 Returns a list of all Secrets Manager instances within the project.
 
@@ -1472,7 +1472,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 }
 
 /*
-ListUsers Method for ListUsers
+ListUsers: Method for ListUsers
 
 Returns the users for the given Secrets Manager instance.
 
@@ -1596,7 +1596,7 @@ func (r ApiUpdateACLRequest) Execute() error {
 }
 
 /*
-UpdateACL Method for UpdateACL
+UpdateACL: Method for UpdateACL
 
 Updates the ip ranges for the acl.
 
@@ -1721,7 +1721,7 @@ func (r ApiUpdateACLsRequest) Execute() error {
 }
 
 /*
-UpdateACLs Method for UpdateACLs
+UpdateACLs: Method for UpdateACLs
 
 Changes a list of ACLs within the project.
 
@@ -1845,7 +1845,7 @@ func (r ApiUpdateUserRequest) Execute() error {
 }
 
 /*
-UpdateUser Method for UpdateUser
+UpdateUser: Method for UpdateUser
 
 Updates the details for the given user.
 
