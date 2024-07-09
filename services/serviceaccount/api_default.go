@@ -173,7 +173,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 }
 
 /*
-CreateAccessToken Create a new Access Token
+CreateAccessToken: Create a new Access Token
 
 Create an Access Token for a Service Account. The service token can be then used for API calls. Save the response token, as it is not recoverable later. Token metadata can be requested until the token is not expired. A token cannot be created using another token from the same service account. Consider using service account keys instead as a more secure and automation friendly solution.
 
@@ -346,7 +346,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 }
 
 /*
-CreateServiceAccount Create a new Service Account
+CreateServiceAccount: Create a new Service Account
 
 Create a new Service Account in a project. The service account only resides in the project, and initially has no roles or permissions on any resources. After creation, the service account can be assigned to this project, other projects in the parent organization or to the parent organization.
 
@@ -518,7 +518,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 }
 
 /*
-CreateServiceAccountKey Create a new Service Account key
+CreateServiceAccountKey: Create a new Service Account key
 
 Create a new key to the service account. You can generate an RSA keypair, and post the PUBLIC part of the keypair, or leave empty, then the service will generate a pair. Maximum of 10 key can be added. A new key cannot be created using the same service account (authenticated using the short lived token of another key of the same service account).
 
@@ -670,7 +670,7 @@ func (r ApiCreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAcces
 }
 
 /*
-CreateShortLivedAccessToken Request short lived API access token (OAUTH2).
+CreateShortLivedAccessToken: Request short lived API access token (OAUTH2).
 
 Request a short lived API access token with OAUTH2. Compatible with [Using JWTs as Authorization Grants](https://www.rfc-editor.org/rfc/rfc7523.html#section-2.1)
 You can request a token with a self signed token, or with a refresh token.
@@ -832,7 +832,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 }
 
 /*
-DeleteAccessToken Revoke Access Token
+DeleteAccessToken: Revoke Access Token
 
 Revoke an Access Token. The access token is instantly revoked, any following calls with the token will be unauthorized. The token metadata is still stored until the expiration time.
 
@@ -989,7 +989,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 }
 
 /*
-DeleteServiceAccount Delete Service Account
+DeleteServiceAccount: Delete Service Account
 
 Delete a Service Account.
 
@@ -1134,7 +1134,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 }
 
 /*
-DeleteServiceAccountKey Delete a service account key
+DeleteServiceAccountKey: Delete a service account key
 
 Delete a key
 
@@ -1257,7 +1257,7 @@ func (r ApiGetJWKSRequest) Execute() (*JWKS, error) {
 }
 
 /*
-GetJWKS Get JSON Web Key set of the service account
+GetJWKS: Get JSON Web Key set of the service account
 
 Get JSON Web Key set of the service account
 
@@ -1421,7 +1421,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 }
 
 /*
-GetServiceAccountKey Get service account key details
+GetServiceAccountKey: Get service account key details
 
 Get key details
 
@@ -1589,7 +1589,7 @@ func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error)
 }
 
 /*
-ListAccessTokens List Access Tokens of Service Account
+ListAccessTokens: List Access Tokens of Service Account
 
 Get all Access Tokens of a Service Account. The token itself is not returned, only the metadata about the access tokens. Access tokens are listed until they are expired. Revoked tokens are returned until expired.
 
@@ -1743,7 +1743,7 @@ func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResp
 }
 
 /*
-ListServiceAccountKeys List all keys that belong to the service account
+ListServiceAccountKeys: List all keys that belong to the service account
 
 List all keys that belong to the service account
 
@@ -1895,7 +1895,7 @@ func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, 
 }
 
 /*
-ListServiceAccounts List all Service Accounts
+ListServiceAccounts: List all Service Accounts
 
 List all Service Account resources in a project. Returns the service account resources, not the service accounts that has access to the project.
 
@@ -2069,7 +2069,7 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 }
 
 /*
-PartialUpdateServiceAccountKey Update Service Account key
+PartialUpdateServiceAccountKey: Update Service Account key
 
 Update a key. You can activate or deactivate a key, or set/delete validUntil. The key cannot be updated using the same service account (authenticated using the short lived token of the key).
 
