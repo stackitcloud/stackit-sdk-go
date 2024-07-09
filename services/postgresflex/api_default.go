@@ -144,7 +144,7 @@ func (r ApiCloneInstanceRequest) Execute() (*CloneInstanceResponse, error) {
 }
 
 /*
-CloneInstance Clone Instance
+CloneInstance: Clone Instance
 
 Clone an existing instance of a postgres database to a new destination instance
 
@@ -290,7 +290,7 @@ func (r ApiCreateDatabaseRequest) Execute() (*InstanceCreateDatabaseResponse, er
 }
 
 /*
-CreateDatabase Create Database
+CreateDatabase: Create Database
 
 Create database for a user
 Note: The name of a valid user must be provided in the "options" map field using the key "owner"
@@ -435,7 +435,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 }
 
 /*
-CreateInstance Create Instance
+CreateInstance: Create Instance
 
 Create a new instance of a postgres database
 
@@ -578,7 +578,7 @@ func (r ApiCreateUserRequest) Execute() (*CreateUserResponse, error) {
 }
 
 /*
-CreateUser Create User
+CreateUser: Create User
 
 Create user for an instance
 
@@ -702,7 +702,7 @@ func (r ApiDeleteDatabaseRequest) Execute() error {
 }
 
 /*
-DeleteDatabase Delete Database
+DeleteDatabase: Delete Database
 
 Delete database for an instance
 
@@ -848,7 +848,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 }
 
 /*
-DeleteInstance Delete Instance
+DeleteInstance: Delete Instance
 
 Delete available instance
 
@@ -972,7 +972,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 }
 
 /*
-DeleteUser Delete User
+DeleteUser: Delete User
 
 Delete user for an instance
 
@@ -1105,7 +1105,7 @@ func (r ApiDisableServiceRequest) Execute() error {
 }
 
 /*
-DisableService Terminate the Project
+DisableService: Terminate the Project
 
 Termination is the deletion of a whole project which causes the deletion of all instances for this project. Only System with permission system.databases-project.remove is able to call this resource
 
@@ -1234,7 +1234,7 @@ func (r ApiForceDeleteInstanceRequest) Execute() error {
 }
 
 /*
-ForceDeleteInstance Force delete instance
+ForceDeleteInstance: Force delete instance
 
 Forces the deletion of an delayed deleted instance
 
@@ -1369,7 +1369,7 @@ func (r ApiGetBackupRequest) Execute() (*GetBackupResponse, error) {
 }
 
 /*
-GetBackup Get specific backup
+GetBackup: Get specific backup
 
 Get specific available backup
 
@@ -1505,7 +1505,7 @@ func (r ApiGetInstanceRequest) Execute() (*InstanceResponse, error) {
 }
 
 /*
-GetInstance Get specific instance
+GetInstance: Get specific instance
 
 Get specific available instances
 
@@ -1640,7 +1640,7 @@ func (r ApiGetUserRequest) Execute() (*GetUserResponse, error) {
 }
 
 /*
-GetUser Get User
+GetUser: Get User
 
 Get specific available user for an instance
 
@@ -1776,7 +1776,7 @@ func (r ApiListBackupsRequest) Execute() (*ListBackupsResponse, error) {
 }
 
 /*
-ListBackups List backups
+ListBackups: List backups
 
 List all backups which are available for a specific instance
 
@@ -1909,7 +1909,7 @@ func (r ApiListDatabaseParametersRequest) Execute() (*PostgresDatabaseParameterR
 }
 
 /*
-ListDatabaseParameters List Databases parameter
+ListDatabaseParameters: List Databases parameter
 
 List available databases parameter
 
@@ -2042,7 +2042,7 @@ func (r ApiListDatabasesRequest) Execute() (*InstanceListDatabasesResponse, erro
 }
 
 /*
-ListDatabases List Databases
+ListDatabases: List Databases
 
 List available databases for an instance
 
@@ -2173,7 +2173,7 @@ func (r ApiListFlavorsRequest) Execute() (*ListFlavorsResponse, error) {
 }
 
 /*
-ListFlavors Get Flavors
+ListFlavors: Get Flavors
 
 Get available flavors for a specific projectID
 
@@ -2301,7 +2301,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 }
 
 /*
-ListInstances List Instances
+ListInstances: List Instances
 
 List available instances
 
@@ -2499,7 +2499,7 @@ func (r ApiListMetricsRequest) Execute() (*InstanceMetricsResponse, error) {
 }
 
 /*
-ListMetrics Get Metric
+ListMetrics: Get Metric
 
 Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in max-connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
 
@@ -2635,7 +2635,7 @@ func (r ApiListStoragesRequest) Execute() (*ListStoragesResponse, error) {
 }
 
 /*
-ListStorages Get Storages
+ListStorages: Get Storages
 
 Get available storages for a specific flavor
 
@@ -2768,7 +2768,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 }
 
 /*
-ListUsers List Users
+ListUsers: List Users
 
 List available users for an instance
 
@@ -2910,7 +2910,7 @@ func (r ApiListVersionsRequest) Execute() (*ListVersionsResponse, error) {
 }
 
 /*
-ListVersions Get Versions
+ListVersions: Get Versions
 
 Get available versions for postgres database
 
@@ -3053,7 +3053,7 @@ func (r ApiPartialUpdateInstanceRequest) Execute() (*PartialUpdateInstanceRespon
 }
 
 /*
-PartialUpdateInstance Update Instance
+PartialUpdateInstance: Update Instance
 
 Update available instance of a postgres database. Supported Versions are 12, 13, 14, 15 -- only upgrades are allowed!
 
@@ -3197,7 +3197,7 @@ func (r ApiPartialUpdateUserRequest) Execute() error {
 }
 
 /*
-PartialUpdateUser Update User
+PartialUpdateUser: Update User
 
 Update user for an instance. Only the roles are updatable.
 
@@ -3356,7 +3356,7 @@ func (r ApiResetUserRequest) Execute() (*ResetUserResponse, error) {
 }
 
 /*
-ResetUser Reset User
+ResetUser: Reset User
 
 Reset user password for a postgres instance
 
@@ -3494,7 +3494,7 @@ func (r ApiUpdateBackupScheduleRequest) Execute() error {
 }
 
 /*
-UpdateBackupSchedule Update Backup Schedule
+UpdateBackupSchedule: Update Backup Schedule
 
 Update backup schedule
 
@@ -3640,7 +3640,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*PartialUpdateInstanceResponse, err
 }
 
 /*
-UpdateInstance Update Instance
+UpdateInstance: Update Instance
 
 Update available instance of a postgres database. Supported Versions are 12, 13, 14, 15 -- only upgrades are allowed!
 
@@ -3784,7 +3784,7 @@ func (r ApiUpdateUserRequest) Execute() error {
 }
 
 /*
-UpdateUser Update User
+UpdateUser: Update User
 
 Update user for an instance. Only the roles are updatable.
 
