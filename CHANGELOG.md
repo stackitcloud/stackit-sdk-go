@@ -3,7 +3,7 @@
 - `sqlserverflex`: [v0.3.0](services/sqlserverflex/CHANGELOG.md#v030-2024-07-09)
   - **Breaking changes:**
     - `Database` renamed to `DefaultDatabase`, in `CreateUserPayload`
-    - `Roles` type changed from `[]Role` to `[]string`, in `CreateUserPayload`
+    - Type of `Roles` changed from `[]Role` to `[]string`, in `CreateUserPayload`
     - `User` renamed to `SingleUser`, in `CreateUserResponse`
     - `OwnerName` renamed to `Owner`, in `DatabaseOptions`
     - Fields in `GetDatabaseResponse` are now nested in a `Database` field (with type `SingleDatabase`)
