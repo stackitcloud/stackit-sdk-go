@@ -11,5 +11,5 @@ API version: 1.0.0
 package sqlserverflex
 
 type CreateUserResponse struct {
-	Item *User `json:"item,omitempty"`
+	Item *SingleUser `json:"item,omitempty"`
 }

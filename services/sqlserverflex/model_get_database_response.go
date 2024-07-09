@@ -11,9 +11,5 @@ API version: 1.0.0
 package sqlserverflex
 
 type GetDatabaseResponse struct {
-	Collation  *string                     `json:"collation,omitempty"`
-	CreateDate *string                     `json:"createDate,omitempty"`
-	Id         *string                     `json:"id,omitempty"`
-	Name       *string                     `json:"name,omitempty"`
-	Options    *GetDatabaseResponseOptions `json:"options,omitempty"`
+	Database *SingleDatabase `json:"database,omitempty"`
 }

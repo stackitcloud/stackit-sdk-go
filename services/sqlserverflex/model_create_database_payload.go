@@ -11,7 +11,8 @@ API version: 1.0.0
 package sqlserverflex
 
 type CreateDatabasePayload struct {
-	Name *string `json:"name,omitempty"`
-	// Database specific options
-	Options *map[string]string `json:"options,omitempty"`
+	// REQUIRED
+	Name *string `json:"name"`
+	// REQUIRED
+	Options *DatabaseDocumentationCreateDatabaseRequestOptions `json:"options"`
 }
