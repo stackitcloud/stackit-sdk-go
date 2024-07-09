@@ -142,7 +142,7 @@ func (r ApiCreateBackupRequest) Execute() ([]CreateBackupResponseItem, error) {
 }
 
 /*
-CreateBackup create a backup
+CreateBackup: create a backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId Instance id
@@ -272,7 +272,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CredentialsResponse, error) {
 }
 
 /*
-CreateCredentials create new credentials
+CreateCredentials: create new credentials
 
 Create new service credentials
 
@@ -426,7 +426,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 }
 
 /*
-CreateInstance provision
+CreateInstance: provision
 
 Provision a service instance.
 
@@ -546,7 +546,7 @@ func (r ApiDeleteCredentialsRequest) Execute() error {
 }
 
 /*
-DeleteCredentials delete credentials by id
+DeleteCredentials: delete credentials by id
 
 Delete a service credentials.
 
@@ -681,7 +681,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 }
 
 /*
-DeleteInstance delete service instance
+DeleteInstance: delete service instance
 
 Deprovision a service instance.
 
@@ -815,7 +815,7 @@ func (r ApiDownloadBackupRequest) Execute() (*os.File, error) {
 }
 
 /*
-DownloadBackup download backup
+DownloadBackup: download backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param backupId Backup id
@@ -950,7 +950,7 @@ func (r ApiGetCredentialsRequest) Execute() (*CredentialsResponse, error) {
 }
 
 /*
-GetCredentials get credentials by id
+GetCredentials: get credentials by id
 
 get a service credentials by credentials id
 
@@ -1096,7 +1096,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 }
 
 /*
-GetInstance get a service instance
+GetInstance: get a service instance
 
 get a service instance
 
@@ -1228,7 +1228,7 @@ func (r ApiGetMetricsRequest) Execute() (*GetMetricsResponse, error) {
 }
 
 /*
-GetMetrics get latest metrics for cpu load, memory and disk usage
+GetMetrics: get latest metrics for cpu load, memory and disk usage
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId Instance id
@@ -1358,7 +1358,7 @@ func (r ApiListBackupsRequest) Execute() (*ListBackupsResponse, error) {
 }
 
 /*
-ListBackups get latest backup information for provided instanceId
+ListBackups: get latest backup information for provided instanceId
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId Instance id
@@ -1488,7 +1488,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 }
 
 /*
-ListCredentials get list of credentials ids
+ListCredentials: get list of credentials ids
 
 get list all credentials ids for instance
 
@@ -1618,7 +1618,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 }
 
 /*
-ListInstances get service instances list
+ListInstances: get service instances list
 
 Get a list of available instances
 
@@ -1735,7 +1735,7 @@ func (r ApiListOfferingsRequest) Execute() (*ListOfferingsResponse, error) {
 }
 
 /*
-ListOfferings get the service offerings
+ListOfferings: get the service offerings
 
 Get the service offerings that the service broker offers.
 
@@ -1864,7 +1864,7 @@ func (r ApiListRestoresRequest) Execute() (*ListRestoresResponse, error) {
 }
 
 /*
-ListRestores get latest restore information for provided instanceId
+ListRestores: get latest restore information for provided instanceId
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId Instance id
@@ -2007,7 +2007,7 @@ func (r ApiPartialUpdateInstanceRequest) Execute() error {
 }
 
 /*
-PartialUpdateInstance update a service instance
+PartialUpdateInstance: update a service instance
 
 Update a service instance. This could be a sgw acl update or a plan upgrade.
 
@@ -2150,7 +2150,7 @@ func (r ApiTriggerRecreateRequest) Execute() (*CreateInstanceResponse, error) {
 }
 
 /*
-TriggerRecreate trigger a recreate
+TriggerRecreate: trigger a recreate
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId Instance id
@@ -2291,7 +2291,7 @@ func (r ApiTriggerRestartRequest) Execute() (*CreateInstanceResponse, error) {
 }
 
 /*
-TriggerRestart trigger a restart
+TriggerRestart: trigger a restart
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId Instance id
@@ -2434,7 +2434,7 @@ func (r ApiTriggerRestoreRequest) Execute() (*TriggerRestoreResponse, error) {
 }
 
 /*
-TriggerRestore trigger a restore
+TriggerRestore: trigger a restore
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param instanceId Instance id
@@ -2591,7 +2591,7 @@ func (r ApiUpdateBackupsConfigRequest) Execute() (*UpdateBackupsConfigResponse, 
 }
 
 /*
-UpdateBackupsConfig backups configuration update
+UpdateBackupsConfig: backups configuration update
 
 Update the configuration for backups for your instance.
 
