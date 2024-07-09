@@ -157,7 +157,7 @@ func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 }
 
 /*
-CreateProject Create Project
+CreateProject: Create Project
 
 Create a new project.
 - The request is synchronous, but the workflow-based creation is asynchronous.
@@ -272,7 +272,7 @@ func (r ApiDeleteProjectRequest) Execute() error {
 }
 
 /*
-DeleteProject Delete Project
+DeleteProject: Delete Project
 
 Triggers the deletion of a project.
 - The request is synchronous, but the workflow-based deletion is asynchronous
@@ -401,7 +401,7 @@ func (r ApiGetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 }
 
 /*
-GetOrganization Get Organization Details
+GetOrganization: Get Organization Details
 
 Returns the organization and its metadata.
 
@@ -548,7 +548,7 @@ func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 }
 
 /*
-GetProject Get Project Details
+GetProject: Get Project Details
 
 Returns the project and its metadata.
 
@@ -747,7 +747,7 @@ func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, erro
 }
 
 /*
-ListOrganizations Get All Organizations
+ListOrganizations: Get All Organizations
 
 Returns all organizations and their metadata.
 - If no containerIds are specified, all organizations are returned, if permitted
@@ -958,7 +958,7 @@ func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 }
 
 /*
-ListProjects Get All Projects
+ListProjects: Get All Projects
 
 Returns all projects and their metadata that:
 - Are children of the specific containerParentId
@@ -1121,7 +1121,7 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 }
 
 /*
-PartialUpdateProject Update Project
+PartialUpdateProject: Update Project
 
 Update the project and its metadata.
 - Update project name
