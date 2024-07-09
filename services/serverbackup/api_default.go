@@ -138,7 +138,7 @@ func (r ApiCreateBackupRequest) Execute() (*BackupJob, error) {
 }
 
 /*
-CreateBackup create backup
+CreateBackup: create backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -277,7 +277,7 @@ func (r ApiCreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 }
 
 /*
-CreateBackupSchedule create backup schedule
+CreateBackupSchedule: create backup schedule
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -399,7 +399,7 @@ func (r ApiDeleteBackupRequest) Execute() error {
 }
 
 /*
-DeleteBackup delete backup
+DeleteBackup: delete backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -524,7 +524,7 @@ func (r ApiDeleteBackupScheduleRequest) Execute() error {
 }
 
 /*
-DeleteBackupSchedule delete backup schedule
+DeleteBackupSchedule: delete backup schedule
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -651,7 +651,7 @@ func (r ApiDeleteVolumeBackupRequest) Execute() error {
 }
 
 /*
-DeleteVolumeBackup delete volume backup
+DeleteVolumeBackup: delete volume backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -777,7 +777,7 @@ func (r ApiDisableServiceRequest) Execute() error {
 }
 
 /*
-DisableService disable backup service
+DisableService: disable backup service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -905,7 +905,7 @@ func (r ApiEnableServiceRequest) Execute() error {
 }
 
 /*
-EnableService enable backup service
+EnableService: enable backup service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -1038,7 +1038,7 @@ func (r ApiGetBackupRequest) Execute() (*Backup, error) {
 }
 
 /*
-GetBackup get backup
+GetBackup: get backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -1174,7 +1174,7 @@ func (r ApiGetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 }
 
 /*
-GetBackupSchedule get single backup schedule details
+GetBackupSchedule: get single backup schedule details
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -1308,7 +1308,7 @@ func (r ApiListBackupSchedulesRequest) Execute() (*ListBackupSchedules200Respons
 }
 
 /*
-ListBackupSchedules get list of backup schedules
+ListBackupSchedules: get list of backup schedules
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -1439,7 +1439,7 @@ func (r ApiListBackupsRequest) Execute() (*ListBackups200Response, error) {
 }
 
 /*
-ListBackups get list of backups
+ListBackups: get list of backups
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -1569,7 +1569,7 @@ func (r ApiRestoreBackupRequest) Execute() error {
 }
 
 /*
-RestoreBackup trigger restore of the requested backup
+RestoreBackup: trigger restore of the requested backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -1704,7 +1704,7 @@ func (r ApiRestoreVolumeBackupRequest) Execute() error {
 }
 
 /*
-RestoreVolumeBackup trigger restore of the requested volume backup
+RestoreVolumeBackup: trigger restore of the requested volume backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
@@ -1851,7 +1851,7 @@ func (r ApiUpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 }
 
 /*
-UpdateBackupSchedule update backup schedule
+UpdateBackupSchedule: update backup schedule
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId portal project id
