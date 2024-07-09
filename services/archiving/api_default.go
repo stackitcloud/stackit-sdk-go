@@ -152,7 +152,7 @@ func (r ApiCreateInstanceRequest) Execute() (*InstanceProvision, error) {
 }
 
 /*
-CreateInstance provision a service instance
+CreateInstance: provision a service instance
 
 Provision a service instance.
 
@@ -292,7 +292,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 }
 
 /*
-DeleteInstance delete service instance
+DeleteInstance: delete service instance
 
 Deprovision a service instance.
 
@@ -446,7 +446,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 }
 
 /*
-GetInstance get a service instance
+GetInstance: get a service instance
 
 get a service instance
 
@@ -598,7 +598,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 }
 
 /*
-ListInstances get service instances list
+ListInstances: get service instances list
 
 Get a list of available instances
 
@@ -751,7 +751,7 @@ func (r ApiPartialUpdateInstanceRequest) Execute() error {
 }
 
 /*
-PartialUpdateInstance update a service instance
+PartialUpdateInstance: update a service instance
 
 Update a service instance. This could be a repository update.
 
