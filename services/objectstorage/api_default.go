@@ -181,7 +181,7 @@ func (r ApiCreateAccessKeyRequest) Execute() (*CreateAccessKeyResponse, error) {
 }
 
 /*
-CreateAccessKey Create Access Key
+CreateAccessKey: Create Access Key
 
 Create an access key for the given project.
 
@@ -349,7 +349,7 @@ func (r ApiCreateBucketRequest) Execute() (*CreateBucketResponse, error) {
 }
 
 /*
-CreateBucket Create Bucket
+CreateBucket: Create Bucket
 
 Create a bucket for the given project. Bucket with the same name
 cannot already exists in the object storage
@@ -535,7 +535,7 @@ func (r ApiCreateCredentialsGroupRequest) Execute() (*CreateCredentialsGroupResp
 }
 
 /*
-CreateCredentialsGroup Create Credentials Group
+CreateCredentialsGroup: Create Credentials Group
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId STACKIT project ID
@@ -715,7 +715,7 @@ func (r ApiDeleteAccessKeyRequest) Execute() (*DeleteAccessKeyResponse, error) {
 }
 
 /*
-DeleteAccessKey Delete Access Key
+DeleteAccessKey: Delete Access Key
 
 Delete an access key from the given project.
 
@@ -875,7 +875,7 @@ func (r ApiDeleteBucketRequest) Execute() (*DeleteBucketResponse, error) {
 }
 
 /*
-DeleteBucket Delete Bucket
+DeleteBucket: Delete Bucket
 
 Delete a bucket from the given project.
 
@@ -1029,7 +1029,7 @@ func (r ApiDeleteCredentialsGroupRequest) Execute() (*DeleteCredentialsGroupResp
 }
 
 /*
-DeleteCredentialsGroup Delete Credentials Group
+DeleteCredentialsGroup: Delete Credentials Group
 
 Delete a credentials group inside a project if the project
 exists and no valid access keys are left in the group.
@@ -1204,7 +1204,7 @@ func (r ApiDisableServiceRequest) Execute() (*ProjectStatus, error) {
 }
 
 /*
-DisableService Delete Project
+DisableService: Delete Project
 
 Delete the given project
 
@@ -1364,7 +1364,7 @@ func (r ApiEnableServiceRequest) Execute() (*ProjectStatus, error) {
 }
 
 /*
-EnableService Create Project
+EnableService: Create Project
 
 Create a project. Creation will also be successful if the project
 already exists, but will not create a duplicate
@@ -1533,7 +1533,7 @@ func (r ApiGetBucketRequest) Execute() (*GetBucketResponse, error) {
 }
 
 /*
-GetBucket Get Bucket
+GetBucket: Get Bucket
 
 Get information for the given bucket in the project.
 
@@ -1696,7 +1696,7 @@ func (r ApiGetServiceStatusRequest) Execute() (*ProjectStatus, error) {
 }
 
 /*
-GetServiceStatus Get Project
+GetServiceStatus: Get Project
 
 Get project details.
 
@@ -1865,7 +1865,7 @@ func (r ApiListAccessKeysRequest) Execute() (*ListAccessKeysResponse, error) {
 }
 
 /*
-ListAccessKeys Get Access Keys
+ListAccessKeys: Get Access Keys
 
 Get a list of access keys for the given project.
 
@@ -2025,7 +2025,7 @@ func (r ApiListBucketsRequest) Execute() (*ListBucketsResponse, error) {
 }
 
 /*
-ListBuckets Get Buckets
+ListBuckets: Get Buckets
 
 Get the list of all buckets in the given project
 
@@ -2174,7 +2174,7 @@ func (r ApiListCredentialsGroupsRequest) Execute() (*ListCredentialsGroupsRespon
 }
 
 /*
-ListCredentialsGroups Get Credentials Groups
+ListCredentialsGroups: Get Credentials Groups
 
 Get credentials groups inside a project if the project exists
 
