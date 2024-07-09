@@ -161,7 +161,7 @@ func (r ApiAddMembersRequest) Execute() (*MembersResponse, error) {
 }
 
 /*
-AddMembers Add members to a resource
+AddMembers: Add members to a resource
 
 Add members to the given resource with specified roles.
 
@@ -321,7 +321,7 @@ func (r ApiListMembersRequest) Execute() (*ListMembersResponse, error) {
 }
 
 /*
-ListMembers Get members to a resource
+ListMembers: Get members to a resource
 
 List members of the given resource.
 
@@ -480,7 +480,7 @@ func (r ApiListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 }
 
 /*
-ListPermissions Get available permissions
+ListPermissions: Get available permissions
 
 Get available permissions
 
@@ -628,7 +628,7 @@ func (r ApiListRolesRequest) Execute() (*RolesResponse, error) {
 }
 
 /*
-ListRoles Get roles and permissions of a resource
+ListRoles: Get roles and permissions of a resource
 
 Get roles and permissions of a resource
 
@@ -807,7 +807,7 @@ func (r ApiListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, 
 }
 
 /*
-ListUserMemberships List memberships of a user
+ListUserMemberships: List memberships of a user
 
 List memberships of a user. An administrative access is needed to list any user's memberships, while the user can do it on his/her own email. You can use filters to scope the request to a project/folder/organization. In this case -if caller is not the subject-, owner permissions are required. Because of hierarchical role bindings, the user might have permissions on more resources.
 
@@ -967,7 +967,7 @@ func (r ApiRemoveMembersRequest) Execute() (*MembersResponse, error) {
 }
 
 /*
-RemoveMembers Remove members from a resource
+RemoveMembers: Remove members from a resource
 
 Remove members from the given resource with specified roles.
 
