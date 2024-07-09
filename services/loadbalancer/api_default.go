@@ -147,7 +147,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 }
 
 /*
-CreateCredentials Create credentials for observability of the Load Balancer
+CreateCredentials: Create credentials for observability of the Load Balancer
 
 Create credentials can be used to store existing credentials, which are valid to be used for Load Balancer Observability.
 
@@ -296,7 +296,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 }
 
 /*
-CreateLoadBalancer Create a load balancer in a project
+CreateLoadBalancer: Create a load balancer in a project
 
 Create Load Balancer will create a load balancer.
 
@@ -425,7 +425,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 }
 
 /*
-DeleteCredentials Delete a single credential in a project.
+DeleteCredentials: Delete a single credential in a project.
 
 Delete Credential
 
@@ -555,7 +555,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 }
 
 /*
-DeleteLoadBalancer Delete a given load balancer in a project.
+DeleteLoadBalancer: Delete a given load balancer in a project.
 
 DeleteLoadBalancer will delete a given load balancer.
 
@@ -683,17 +683,15 @@ func (r ApiDisableServiceRequest) Execute() (map[string]interface{}, error) {
 }
 
 /*
-DisableService Disables the functionality of load balancers for the project specified.
+DisableService: Disables the functionality of load balancers for the project specified.
 
-DEPRECATED! Disabling the load balancer functionality is now automatic. The endpoint is kept for compatibility.
+Deprecated: DEPRECATED! Disabling the load balancer functionality is now automatic. The endpoint is kept for compatibility.
 
 	Disable will disable the load balancer functionality for the project specified.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiDisableServiceRequest
-
-Deprecated
 */
 func (a *APIClient) DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest {
 	return ApiDisableServiceRequest{
@@ -703,6 +701,11 @@ func (a *APIClient) DisableService(ctx context.Context, projectId string) ApiDis
 	}
 }
 
+/*
+Deprecated: DEPRECATED! Disabling the load balancer functionality is now automatic. The endpoint is kept for compatibility.
+
+	Disable will disable the load balancer functionality for the project specified.
+*/
 func (a *APIClient) DisableServiceExecute(ctx context.Context, projectId string) (map[string]interface{}, error) {
 	r := ApiDisableServiceRequest{
 		apiService: a.defaultApi,
@@ -822,17 +825,15 @@ func (r ApiEnableServiceRequest) Execute() (map[string]interface{}, error) {
 }
 
 /*
-EnableService Enables the functionality of load balancers for the project specified.
+EnableService: Enables the functionality of load balancers for the project specified.
 
-DEPRECATED! Use CreateLoadBalancer directly instead.
+Deprecated: DEPRECATED! Use CreateLoadBalancer directly instead.
 
 	Enable will enable the load balancer functionality for the project specified.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiEnableServiceRequest
-
-Deprecated
 */
 func (a *APIClient) EnableService(ctx context.Context, projectId string) ApiEnableServiceRequest {
 	return ApiEnableServiceRequest{
@@ -842,6 +843,11 @@ func (a *APIClient) EnableService(ctx context.Context, projectId string) ApiEnab
 	}
 }
 
+/*
+Deprecated: DEPRECATED! Use CreateLoadBalancer directly instead.
+
+	Enable will enable the load balancer functionality for the project specified.
+*/
 func (a *APIClient) EnableServiceExecute(ctx context.Context, projectId string) (map[string]interface{}, error) {
 	r := ApiEnableServiceRequest{
 		apiService: a.defaultApi,
@@ -953,7 +959,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 }
 
 /*
-GetCredentials Get a single credential reference in a project.
+GetCredentials: Get a single credential reference in a project.
 
 Get Credentials
 
@@ -1083,7 +1089,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 }
 
 /*
-GetLoadBalancer Get a single load balancer in a project.
+GetLoadBalancer: Get a single load balancer in a project.
 
 Get Load Balancer will get a single load balancer of a project. This contains all the information set during
 
@@ -1214,7 +1220,7 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 }
 
 /*
-GetQuota Get the quota of Load Balancers and Target Pools in a project.
+GetQuota: Get the quota of Load Balancers and Target Pools in a project.
 
 GetQuota gets the configured load balancer quota for the project. Default is 3.
 
@@ -1339,17 +1345,15 @@ func (r ApiGetServiceStatusRequest) Execute() (*GetServiceStatusResponse, error)
 }
 
 /*
-GetServiceStatus Return the status of load balancer functionality for the project specified.
+GetServiceStatus: Return the status of load balancer functionality for the project specified.
 
-DEPRECATED! Projects are auto-enabled on SE side, meaning status is always enabled.
+Deprecated: DEPRECATED! Projects are auto-enabled on SE side, meaning status is always enabled.
 
 	Status will return the load balancer functionality status for the project specified.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiGetServiceStatusRequest
-
-Deprecated
 */
 func (a *APIClient) GetServiceStatus(ctx context.Context, projectId string) ApiGetServiceStatusRequest {
 	return ApiGetServiceStatusRequest{
@@ -1359,6 +1363,11 @@ func (a *APIClient) GetServiceStatus(ctx context.Context, projectId string) ApiG
 	}
 }
 
+/*
+Deprecated: DEPRECATED! Projects are auto-enabled on SE side, meaning status is always enabled.
+
+	Status will return the load balancer functionality status for the project specified.
+*/
 func (a *APIClient) GetServiceStatusExecute(ctx context.Context, projectId string) (*GetServiceStatusResponse, error) {
 	r := ApiGetServiceStatusRequest{
 		apiService: a.defaultApi,
@@ -1468,7 +1477,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 }
 
 /*
-ListCredentials List all credentials in a project.
+ListCredentials: List all credentials in a project.
 
 List Credentials
 
@@ -1593,7 +1602,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 }
 
 /*
-ListLoadBalancers List load balancers in a project.
+ListLoadBalancers: List load balancers in a project.
 
 ListLoadBalancer will list load balancers of a project. This contains information set during
 
@@ -1734,7 +1743,7 @@ func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, erro
 }
 
 /*
-UpdateCredentials Update credentials for observability in a project.
+UpdateCredentials: Update credentials for observability in a project.
 
 Update Credentials
 
@@ -1875,7 +1884,7 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 }
 
 /*
-UpdateLoadBalancer Update a load balancer in a project.
+UpdateLoadBalancer: Update a load balancer in a project.
 
 Update Load Balancer allows the change of listeners and target pools of an existing Load Balancer.
 
@@ -2021,7 +2030,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 }
 
 /*
-UpdateTargetPool Update a single target pool of a load balancer in a project.
+UpdateTargetPool: Update a single target pool of a load balancer in a project.
 
 ReplaceTargetPool will replace a specific target pool of a load balancer with new content.
 
