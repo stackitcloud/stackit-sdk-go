@@ -26,7 +26,7 @@ type Instance struct {
 	LastOperation *InstanceLastOperation `json:"lastOperation"`
 	// REQUIRED
 	Name *string `json:"name"`
-	// Deprecated
+	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
 	OfferingName *string `json:"offeringName"`
 	// REQUIRED
