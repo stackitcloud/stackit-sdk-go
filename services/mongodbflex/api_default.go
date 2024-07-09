@@ -154,7 +154,7 @@ func (r ApiCloneInstanceRequest) Execute() (*CloneInstanceResponse, error) {
 }
 
 /*
-CloneInstance Clone instance
+CloneInstance: Clone instance
 
 Clone an instance via PIT restore<br/> Note that the Timestamp is a RFC3339 standard and uses by default UTC time format<br/>
 As an example a valid timestamp look like "2023-04-20T15:05:15Z"
@@ -320,7 +320,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 }
 
 /*
-CreateInstance Create instance
+CreateInstance: Create instance
 
 Create and deploys an instance<br/> Note that the time format for the backupSchedule is in UTC
 
@@ -495,7 +495,7 @@ func (r ApiCreateUserRequest) Execute() (*CreateUserResponse, error) {
 }
 
 /*
-CreateUser Create User
+CreateUser: Create User
 
 create a new user for a mongodb instance
 
@@ -638,7 +638,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 }
 
 /*
-DeleteInstance Delete instance
+DeleteInstance: Delete instance
 
 removes an instance
 
@@ -772,7 +772,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 }
 
 /*
-DeleteUser Delete User
+DeleteUser: Delete User
 
 delete mongodb user
 
@@ -905,7 +905,7 @@ func (r ApiDisableServiceRequest) Execute() error {
 }
 
 /*
-DisableService Delete project
+DisableService: Delete project
 
 removes all instances inside project
 
@@ -1047,7 +1047,7 @@ func (r ApiGetBackupRequest) Execute() (*GetBackupResponse, error) {
 }
 
 /*
-GetBackup Get backup
+GetBackup: Get backup
 
 Get details about a specific backup
 
@@ -1193,7 +1193,7 @@ func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 }
 
 /*
-GetInstance Get instance
+GetInstance: Get instance
 
 gets information of an instance
 
@@ -1338,7 +1338,7 @@ func (r ApiGetUserRequest) Execute() (*GetUserResponse, error) {
 }
 
 /*
-GetUser Get User
+GetUser: Get User
 
 get detailed information of a user of a mongodb instance
 
@@ -1484,7 +1484,7 @@ func (r ApiListBackupsRequest) Execute() (*ListBackupsResponse, error) {
 }
 
 /*
-ListBackups List backup
+ListBackups: List backup
 
 List backups of an instance
 
@@ -1625,7 +1625,7 @@ func (r ApiListFlavorsRequest) Execute() (*ListFlavorsResponse, error) {
 }
 
 /*
-ListFlavors Flavors
+ListFlavors: Flavors
 
 returns all possible flavors
 
@@ -1775,7 +1775,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 }
 
 /*
-ListInstances List Instances
+ListInstances: List Instances
 
 list all instances for a projectID
 
@@ -1973,7 +1973,7 @@ func (r ApiListMetricsRequest) Execute() (*ListMetricsResponse, error) {
 }
 
 /*
-ListMetrics Metrics
+ListMetrics: Metrics
 
 returns metrics for an instance
 
@@ -2119,7 +2119,7 @@ func (r ApiListRestoreJobsRequest) Execute() (*ListRestoreJobsResponse, error) {
 }
 
 /*
-ListRestoreJobs List restore jobs
+ListRestoreJobs: List restore jobs
 
 List restore jobs of an instance
 
@@ -2262,7 +2262,7 @@ func (r ApiListStoragesRequest) Execute() (*ListStoragesResponse, error) {
 }
 
 /*
-ListStorages Get storage
+ListStorages: Get storage
 
 returns the storage for a certain flavor
 
@@ -2405,7 +2405,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 }
 
 /*
-ListUsers List Users
+ListUsers: List Users
 
 list all users for a mongodb instance
 
@@ -2535,7 +2535,7 @@ func (r ApiListVersionsRequest) Execute() (*ListVersionsResponse, error) {
 }
 
 /*
-ListVersions Get versions
+ListVersions: Get versions
 
 returns all available versions for creating endpoint
 
@@ -2710,7 +2710,7 @@ func (r ApiPartialUpdateInstanceRequest) Execute() (*UpdateInstanceResponse, err
 }
 
 /*
-PartialUpdateInstance Patch endpoint
+PartialUpdateInstance: Patch endpoint
 
 Updates a deployment plan<br/> Note that the time format for the backupSchedule is in UTC
 
@@ -2868,7 +2868,7 @@ func (r ApiPartialUpdateUserRequest) Execute() error {
 }
 
 /*
-PartialUpdateUser Update User
+PartialUpdateUser: Update User
 
 updates user for a mongodb instance
 
@@ -3016,7 +3016,7 @@ func (r ApiResetUserRequest) Execute() (*User, error) {
 }
 
 /*
-ResetUser Reset User
+ResetUser: Reset User
 
 resets mongodb user's password
 
@@ -3175,7 +3175,7 @@ func (r ApiRestoreInstanceRequest) Execute() (*RestoreInstanceResponse, error) {
 }
 
 /*
-RestoreInstance Restore instance
+RestoreInstance: Restore instance
 
 Restore an instance based on snapshot
 
@@ -3331,7 +3331,7 @@ func (r ApiUpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 }
 
 /*
-UpdateBackupSchedule Update schedule
+UpdateBackupSchedule: Update schedule
 
 Updates a backup schedule<br/> Note that the time format is in UTC
 
@@ -3509,7 +3509,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*UpdateInstanceResponse, error) {
 }
 
 /*
-UpdateInstance Put endpoint
+UpdateInstance: Put endpoint
 
 Updates a deployment plan<br/> Note that the time format for the backupSchedule is in UTC
 
@@ -3667,7 +3667,7 @@ func (r ApiUpdateUserRequest) Execute() error {
 }
 
 /*
-UpdateUser Update User
+UpdateUser: Update User
 
 updates user for a mongodb instance
 
