@@ -108,7 +108,7 @@ func (r ApiDisableServiceRequest) Execute() error {
 }
 
 /*
-DisableService Method for DisableService
+DisableService: Method for DisableService
 
 disables the service in a project.
 
@@ -219,7 +219,7 @@ func (r ApiEnableServiceRequest) Execute() error {
 }
 
 /*
-EnableService Method for EnableService
+EnableService: Method for EnableService
 
 enables the service in a project.
 
@@ -341,7 +341,7 @@ func (r ApiGetServiceStatusRequest) Execute() (*ServiceStatus, error) {
 }
 
 /*
-GetServiceStatus Method for GetServiceStatus
+GetServiceStatus: Method for GetServiceStatus
 
 returns the current status of a service in a project.
 
@@ -470,7 +470,7 @@ func (r ApiListServiceStatusRequest) Execute() (*ListServiceStatus200Response, e
 }
 
 /*
-ListServiceStatus Method for ListServiceStatus
+ListServiceStatus: Method for ListServiceStatus
 
 returns a list of all available services for a project.
 
