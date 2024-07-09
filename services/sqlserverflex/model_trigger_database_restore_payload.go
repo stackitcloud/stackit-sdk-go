@@ -12,7 +12,9 @@ package sqlserverflex
 
 type TriggerDatabaseRestorePayload struct {
 	// Name for the restored database no overwrite allowed at the moment
-	Name *string `json:"name,omitempty"`
+	// REQUIRED
+	Name *string `json:"name"`
 	// Time of the restore point formate RFC3339
-	RestoreDateTime *string `json:"restoreDateTime,omitempty"`
+	// REQUIRED
+	RestoreDateTime *string `json:"restoreDateTime"`
 }

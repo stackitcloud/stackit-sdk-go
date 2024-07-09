@@ -1,5 +1,13 @@
 ## Release (2024-XX-XX)
 
+- `sqlserverflex`: [v0.3.0](services/sqlserverflex/CHANGELOG.md#v030-2024-07-09)
+  - **Breaking changes:**
+    - `Database` renamed to `DefaultDatabase`, in `CreateUserPayload`
+    - Type of `Roles` changed from `[]Role` to `[]string`, in `CreateUserPayload`
+    - `User` renamed to `SingleUser`, in `CreateUserResponse`
+    - `OwnerName` renamed to `Owner`, in `DatabaseOptions`
+    - Fields in `GetDatabaseResponse` are now nested in a `Database` field (with type `SingleDatabase`)
+    - `GetDatabaseResponseOptions` renamed to `SingleDatabaseOptions` (and `OwnerName` renamed to `Owner`)
 - `archiving`: [v0.1.0](services/archiving/CHANGELOG.md#v010-2024-07-04)
   - Manage your STACKIT Archiving instance with: `CreateInstance`, `DeleteInstance`, `GetInstance`, `ListInstances` and `PartialUpdateInstance`.
 - `ske`: [v0.17.0](services/ske/CHANGELOG.md#v0170-2024-07-04)

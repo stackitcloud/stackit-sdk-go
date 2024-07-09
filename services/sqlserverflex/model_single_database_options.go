@@ -10,13 +10,13 @@ API version: 1.0.0
 
 package sqlserverflex
 
-type GetDatabaseResponseOptions struct {
+type SingleDatabaseOptions struct {
 	// CompatibilityLevel of the Database.
 	CompatibilityLevel *int64 `json:"compatibilityLevel,omitempty"`
 	// IsEncrypted shows if the database is encrypted.
 	IsEncrypted *bool `json:"isEncrypted,omitempty"`
 	// Name of the owner of the database.
-	OwnerName *string `json:"ownerName,omitempty"`
+	Owner *string `json:"owner,omitempty"`
 	// A recovery model is a database property that controls how transactions are logged.
 	RecoveryModel *string `json:"recoveryModel,omitempty"`
 	// Indicates which users can access the database.

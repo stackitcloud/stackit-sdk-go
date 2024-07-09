@@ -12,7 +12,7 @@ package sqlserverflex
 
 type PartialUpdateInstancePayload struct {
 	Acl *CreateInstancePayloadAcl `json:"acl,omitempty"`
-	// Cronjob for the daily full backup if not provided a job will generated between 0000 and 0459
+	// Cronjob for the daily full backup if not provided a job will generated between 00:00 and 04:59
 	BackupSchedule *string `json:"backupSchedule,omitempty"`
 	// Id of the selected flavor
 	FlavorId *string                 `json:"flavorId,omitempty"`

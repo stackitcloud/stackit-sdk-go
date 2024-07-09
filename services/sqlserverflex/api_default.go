@@ -321,7 +321,7 @@ type ApiCreateUserRequest struct {
 	createUserPayload *CreateUserPayload
 }
 
-// body
+// The request body contains a username, a list of roles and database. The possible roles  can be fetched from the ListRoles endpoint.
 
 func (r ApiCreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
 	r.createUserPayload = &createUserPayload

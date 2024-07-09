@@ -11,14 +11,20 @@ API version: 1.0.0
 package sqlserverflex
 
 type UpdateInstancePayload struct {
-	Acl *CreateInstancePayloadAcl `json:"acl,omitempty"`
-	// Cronjob for the daily full backup if not provided a job will generated between 0000 and 0459
-	BackupSchedule *string `json:"backupSchedule,omitempty"`
+	// REQUIRED
+	Acl *CreateInstancePayloadAcl `json:"acl"`
+	// Cronjob for the daily full backup if not provided a job will generated between 00:00 and 04:59
+	// REQUIRED
+	BackupSchedule *string `json:"backupSchedule"`
 	// Id of the selected flavor
-	FlavorId *string                 `json:"flavorId,omitempty"`
-	Labels   *map[string]interface{} `json:"labels,omitempty"`
+	// REQUIRED
+	FlavorId *string `json:"flavorId"`
+	// REQUIRED
+	Labels *map[string]interface{} `json:"labels"`
 	// Name of the instance
-	Name *string `json:"name,omitempty"`
+	// REQUIRED
+	Name *string `json:"name"`
 	// Version of the MSSQL Server
-	Version *string `json:"version,omitempty"`
+	// REQUIRED
+	Version *string `json:"version"`
 }
