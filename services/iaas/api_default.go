@@ -202,7 +202,7 @@ func (r ApiCreateNetworkRequest) Execute() (*Network, error) {
 }
 
 /*
-CreateNetwork Create new network.
+CreateNetwork: Create new network.
 
 Create a new network in a project. `nameservers` will be filled from `defaultNameservers` of the respective area if not specified. If the project has `internetAccess` enabled and this is the first network in the project this might incur cost.
 
@@ -392,7 +392,7 @@ func (r ApiCreateNetworkAreaRequest) Execute() (*NetworkArea, error) {
 }
 
 /*
-CreateNetworkArea Create new network area in an organization.
+CreateNetworkArea: Create new network area in an organization.
 
 Create a new network area in an organization.
 
@@ -601,7 +601,7 @@ func (r ApiCreateNetworkAreaRangeRequest) Execute() (*NetworkRangeListResponse, 
 }
 
 /*
-CreateNetworkAreaRange Create new network range in a network area.
+CreateNetworkAreaRange: Create new network range in a network area.
 
 Create a new network range in an existing network area.
 
@@ -813,7 +813,7 @@ func (r ApiCreateNetworkAreaRouteRequest) Execute() (*RouteListResponse, error) 
 }
 
 /*
-CreateNetworkAreaRoute Create new network routes.
+CreateNetworkAreaRoute: Create new network routes.
 
 Create one or several new network routes in a network area.
 
@@ -1001,7 +1001,7 @@ func (r ApiDeleteNetworkRequest) Execute() error {
 }
 
 /*
-DeleteNetwork Delete network.
+DeleteNetwork: Delete network.
 
 Delete a network.
 
@@ -1189,7 +1189,7 @@ func (r ApiDeleteNetworkAreaRequest) Execute() error {
 }
 
 /*
-DeleteNetworkArea Delete a network area.
+DeleteNetworkArea: Delete a network area.
 
 Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
 
@@ -1385,7 +1385,7 @@ func (r ApiDeleteNetworkAreaRangeRequest) Execute() error {
 }
 
 /*
-DeleteNetworkAreaRange Delete a network range.
+DeleteNetworkAreaRange: Delete a network range.
 
 Delete a network range of a network area.
 
@@ -1573,7 +1573,7 @@ func (r ApiDeleteNetworkAreaRouteRequest) Execute() error {
 }
 
 /*
-DeleteNetworkAreaRoute Delete a network route.
+DeleteNetworkAreaRoute: Delete a network route.
 
 Delete a network route of a network area.
 
@@ -1764,7 +1764,7 @@ func (r ApiGetNetworkRequest) Execute() (*Network, error) {
 }
 
 /*
-GetNetwork Get network details.
+GetNetwork: Get network details.
 
 Get details about a network.
 
@@ -1952,7 +1952,7 @@ func (r ApiGetNetworkAreaRequest) Execute() (*NetworkArea, error) {
 }
 
 /*
-GetNetworkArea Get details about a network area.
+GetNetworkArea: Get details about a network area.
 
 Get details about a network area in an organization.
 
@@ -2148,7 +2148,7 @@ func (r ApiGetNetworkAreaRangeRequest) Execute() (*NetworkRange, error) {
 }
 
 /*
-GetNetworkAreaRange Get details about a network range.
+GetNetworkAreaRange: Get details about a network range.
 
 Get details about a network range in a network area.
 
@@ -2347,7 +2347,7 @@ func (r ApiGetNetworkAreaRouteRequest) Execute() (*Route, error) {
 }
 
 /*
-GetNetworkAreaRoute Get details about a network route.
+GetNetworkAreaRoute: Get details about a network route.
 
 Get details about a network route defined in a network area.
 
@@ -2538,7 +2538,7 @@ func (r ApiGetOrganizationRequestRequest) Execute() (*Request, error) {
 }
 
 /*
-GetOrganizationRequest Lookup an organization request ID.
+GetOrganizationRequest: Lookup an organization request ID.
 
 Lookup an organization request ID from a previous request. This allows to find resource IDs of resources generated during a organization request.
 
@@ -2726,7 +2726,7 @@ func (r ApiGetProjectRequestRequest) Execute() (*Request, error) {
 }
 
 /*
-GetProjectRequest Lookup a project request ID.
+GetProjectRequest: Lookup a project request ID.
 
 Lookup a project request ID from a previous request. This allows to find resource IDs of resources generated during a projects request.
 
@@ -2914,7 +2914,7 @@ func (r ApiListNetworkAreaProjectsRequest) Execute() (*ProjectListResponse, erro
 }
 
 /*
-ListNetworkAreaProjects List all projects using a network area.
+ListNetworkAreaProjects: List all projects using a network area.
 
 Get a list of all projects using a network area.
 
@@ -3102,7 +3102,7 @@ func (r ApiListNetworkAreaRangesRequest) Execute() (*NetworkRangeListResponse, e
 }
 
 /*
-ListNetworkAreaRanges List all network ranges in a network area.
+ListNetworkAreaRanges: List all network ranges in a network area.
 
 Get a list of all network ranges in a network area.
 
@@ -3290,7 +3290,7 @@ func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteListResponse, error) {
 }
 
 /*
-ListNetworkAreaRoutes List all network routes in a network area.
+ListNetworkAreaRoutes: List all network routes in a network area.
 
 Get a list of all network routes defined in a network area.
 
@@ -3470,7 +3470,7 @@ func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaListResponse, error) 
 }
 
 /*
-ListNetworkAreas List all network areas in an organization.
+ListNetworkAreas: List all network areas in an organization.
 
 Get a list of all visible network areas defined in an organization.
 
@@ -3647,7 +3647,7 @@ func (r ApiListNetworksRequest) Execute() (*NetworkListResponse, error) {
 }
 
 /*
-ListNetworks List all networks inside a project.
+ListNetworks: List all networks inside a project.
 
 Get a list of all networks inside a project.
 
@@ -3834,7 +3834,7 @@ func (r ApiPartialUpdateNetworkRequest) Execute() error {
 }
 
 /*
-PartialUpdateNetwork Update network settings.
+PartialUpdateNetwork: Update network settings.
 
 Update the settings of a network.
 
@@ -4035,7 +4035,7 @@ func (r ApiPartialUpdateNetworkAreaRequest) Execute() (*NetworkArea, error) {
 }
 
 /*
-PartialUpdateNetworkArea Update network area settings.
+PartialUpdateNetworkArea: Update network area settings.
 
 Update the settings of a network area in an organization.
 
