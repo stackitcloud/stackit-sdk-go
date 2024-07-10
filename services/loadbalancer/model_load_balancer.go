@@ -22,7 +22,7 @@ type LoadBalancer struct {
 	// List of networks that listeners and targets reside in. Currently limited to one. Not changeable after creation.
 	Networks *[]Network           `json:"networks,omitempty"`
 	Options  *LoadBalancerOptions `json:"options,omitempty"`
-	// Service Plan configures the size of the Load Balancer. Currently supported plans are p10, p25, p50, p250 and p750. This list can change in the future where plan ids will be removed and new plans by added. That is the reason this is not an enum.
+	// Service Plan configures the size of the Load Balancer. Currently supported plans are p10, p50, p250 and p750. This list can change in the future where plan ids will be removed and new plans by added. That is the reason this is not an enum.
 	PlanId *string `json:"planId,omitempty"`
 	// Transient private load balancer IP address that can change any time.
 	PrivateAddress *string `json:"privateAddress,omitempty"`
