@@ -1,3 +1,7 @@
+## v0.18.0 (2024-07-10)
+
+- **Bugfix:** Fix marking of deprecated methods. Potential breaking change for users with linters that treat deprecations as errors.
+
 ## v0.17.0 (2024-07-04)
 
 - **Feature:** Add new field `AllowSystemComponents` to the `Nodepool` model that configures wether system components are allowed to run on the node pool.

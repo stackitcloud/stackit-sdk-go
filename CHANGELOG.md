@@ -1,5 +1,19 @@
 ## Release (2024-XX-XX)
 
+- `rabbitmq`: [v0.17.0](services/rabbitmq/CHANGELOG.md#v0161-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields. Potential breaking change for users with linters that treat deprecations as errors.
+- `opensearch`: [v0.16.0](services/opensearch/CHANGELOG.md#v0151-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields. Potential breaking change for users with linters that treat deprecations as errors.
+- `mariadb`: [v0.17.0](services/mariadb/CHANGELOG.md#v0161-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields. Potential breaking change for users with linters that treat deprecations as errors.
+- `logme`: [v0.17.0](services/logme/CHANGELOG.md#v0161-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields. Potential breaking change for users with linters that treat deprecations as errors.
+- `redis`: [v0.17.0](services/redis/CHANGELOG.md#v0161-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields. Potential breaking change for users with linters that treat deprecations as errors.
+- `loadbalancer`: [v0.14.0](services/loadbalancer/CHANGELOG.md#v0131-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated methods. Potential breaking change for users with linters that treat deprecations as errors.
+- `ske`: [v0.18.0](services/ske/CHANGELOG.md#v0171-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated methods. Potential breaking change for users with linters that treat deprecations as errors.
 - `sqlserverflex`: [v0.3.0](services/sqlserverflex/CHANGELOG.md#v030-2024-07-09)
   - **Breaking changes:**
     - `Database` renamed to `DefaultDatabase`, in `CreateUserPayload`
