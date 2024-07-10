@@ -144,7 +144,7 @@ func (r ApiCreateDatabaseRequest) Execute() (*CreateDatabaseResponse, error) {
 }
 
 /*
-CreateDatabase Create a Database
+CreateDatabase: Create a Database
 
 Create a Database for an instance
 
@@ -288,7 +288,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 }
 
 /*
-CreateInstance Create Instance
+CreateInstance: Create Instance
 
 Create a new instance of a sqlServerCRD database
 
@@ -431,7 +431,7 @@ func (r ApiCreateUserRequest) Execute() (*CreateUserResponse, error) {
 }
 
 /*
-CreateUser Create User
+CreateUser: Create User
 
 Create user for an instance
 
@@ -555,7 +555,7 @@ func (r ApiDeleteDatabaseRequest) Execute() error {
 }
 
 /*
-DeleteDatabase Delete Database
+DeleteDatabase: Delete Database
 
 Delete Database for an instance
 
@@ -680,7 +680,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 }
 
 /*
-DeleteInstance Delete Instance
+DeleteInstance: Delete Instance
 
 Delete available instance
 
@@ -804,7 +804,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 }
 
 /*
-DeleteUser Delete User
+DeleteUser: Delete User
 
 Delete user for an instance
 
@@ -942,7 +942,7 @@ func (r ApiGetBackupRequest) Execute() (*GetBackupResponse, error) {
 }
 
 /*
-GetBackup Get specific backup
+GetBackup: Get specific backup
 
 Get specific available backup
 
@@ -1080,7 +1080,7 @@ func (r ApiGetDatabaseRequest) Execute() (*GetDatabaseResponse, error) {
 }
 
 /*
-GetDatabase Get specific Database
+GetDatabase: Get specific Database
 
 Get specific available database
 
@@ -1216,7 +1216,7 @@ func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 }
 
 /*
-GetInstance Get specific instance
+GetInstance: Get specific instance
 
 Get specific available instances
 
@@ -1372,7 +1372,7 @@ func (r ApiGetUserRequest) Execute() (*GetUserResponse, error) {
 }
 
 /*
-GetUser Get User
+GetUser: Get User
 
 Get specific available user for an instance
 
@@ -1508,7 +1508,7 @@ func (r ApiListBackupsRequest) Execute() (*ListBackupsResponse, error) {
 }
 
 /*
-ListBackups List backups
+ListBackups: List backups
 
 List all backups which are available for a specific instance
 
@@ -1662,7 +1662,7 @@ func (r ApiListCollationsRequest) Execute() (*ListCollationsResponse, error) {
 }
 
 /*
-ListCollations Get database collation list
+ListCollations: Get database collation list
 
 Returns a list of collations
 
@@ -1816,7 +1816,7 @@ func (r ApiListCompatibilityRequest) Execute() (*ListCompatibilityResponse, erro
 }
 
 /*
-ListCompatibility Get database compatibility list
+ListCompatibility: Get database compatibility list
 
 Returns a list of compatibility levels for creating a new database
 
@@ -1949,7 +1949,7 @@ func (r ApiListDatabasesRequest) Execute() (*ListDatabasesResponse, error) {
 }
 
 /*
-ListDatabases Get list of databases
+ListDatabases: Get list of databases
 
 Get list of all databases in the instance
 
@@ -2080,7 +2080,7 @@ func (r ApiListFlavorsRequest) Execute() (*ListFlavorsResponse, error) {
 }
 
 /*
-ListFlavors Get Flavors
+ListFlavors: Get Flavors
 
 Get available flavors for a specific projectID
 
@@ -2208,7 +2208,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 }
 
 /*
-ListInstances List Instances
+ListInstances: List Instances
 
 List available instances
 
@@ -2338,7 +2338,7 @@ func (r ApiListRestoreJobsRequest) Execute() (*ListRestoreJobsResponse, error) {
 }
 
 /*
-ListRestoreJobs List current running restore jobs
+ListRestoreJobs: List current running restore jobs
 
 List all currently running restore jobs which are available for a specific instance
 
@@ -2471,7 +2471,7 @@ func (r ApiListRolesRequest) Execute() (*ListRolesResponse, error) {
 }
 
 /*
-ListRoles List Roles
+ListRoles: List Roles
 
 List available roles for an instance that can be assigned to a user
 
@@ -2604,7 +2604,7 @@ func (r ApiListStoragesRequest) Execute() (*ListStoragesResponse, error) {
 }
 
 /*
-ListStorages Get Storages
+ListStorages: Get Storages
 
 Get available storages for a specific flavor
 
@@ -2737,7 +2737,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 }
 
 /*
-ListUsers List Users
+ListUsers: List Users
 
 List available users for an instance
 
@@ -2879,7 +2879,7 @@ func (r ApiListVersionsRequest) Execute() (*ListVersionsResponse, error) {
 }
 
 /*
-ListVersions Get Versions
+ListVersions: Get Versions
 
 Get available versions for mssql database
 
@@ -3022,7 +3022,7 @@ func (r ApiPartialUpdateInstanceRequest) Execute() (*UpdateInstanceResponse, err
 }
 
 /*
-PartialUpdateInstance Update Instance
+PartialUpdateInstance: Update Instance
 
 Update available instance of a mssql database.
 
@@ -3178,7 +3178,7 @@ func (r ApiResetUserRequest) Execute() (*ResetUserResponse, error) {
 }
 
 /*
-ResetUser Reset User
+ResetUser: Reset User
 
 Reset user password for a mssql instance
 
@@ -3300,7 +3300,7 @@ func (r ApiTerminateProjectRequest) Execute() error {
 }
 
 /*
-TerminateProject Terminate the Project
+TerminateProject: Terminate the Project
 
 Termination is the deletion of a whole project which causes the deletion of all instances for this project. Only System with permission system.databases-project.remove is able to call this resource
 
@@ -3442,7 +3442,7 @@ func (r ApiTriggerDatabaseBackupRequest) Execute() error {
 }
 
 /*
-TriggerDatabaseBackup Trigger backup for a specific Database
+TriggerDatabaseBackup: Trigger backup for a specific Database
 
 Trigger backup for a specific Database
 
@@ -3603,7 +3603,7 @@ func (r ApiTriggerDatabaseRestoreRequest) Execute() error {
 }
 
 /*
-TriggerDatabaseRestore Trigger restore for a specific Database
+TriggerDatabaseRestore: Trigger restore for a specific Database
 
 Trigger restore for a specific Database
 
@@ -3752,7 +3752,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*UpdateInstanceResponse, error) {
 }
 
 /*
-UpdateInstance Update Instance
+UpdateInstance: Update Instance
 
 Update available instance of a mssql database.
 
