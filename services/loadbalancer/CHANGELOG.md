@@ -1,7 +1,7 @@
-## v0.13.1 (2024-07-10)
+## v0.14.0 (2024-07-10)
 
 - **Improvement:** Improve default error messages.
-- **Bugfix:** Fix marking of deprecated methods.
+- **Bugfix:** Fix marking of deprecated methods. Potential breaking change for users with linters that treat deprecations as errors.
 
 ## v0.13.0 (2024-06-12)
 
