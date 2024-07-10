@@ -1,3 +1,7 @@
+## v0.15.1 (2024-07-10)
+
+- **Bugfix:** Fix marking of deprecated struct fields.
+
 ## v0.15.0 (2024-06-19)
 
 - **Feature**: New methods `CreateBackup`, `DownloadBackup`, `ListRestores`,`UpdateBackupsConfig`, `TriggerRecreate`, `TriggerRestart`, `TriggerRestore` to manage the backup and restoration of an instance.

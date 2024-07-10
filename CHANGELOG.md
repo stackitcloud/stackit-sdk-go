@@ -1,5 +1,19 @@
 ## Release (2024-XX-XX)
 
+- `rabbitmq`: [v0.16.1](services/rabbitmq/CHANGELOG.md#v0161-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields.
+- `opensearch`: [v0.15.1](services/opensearch/CHANGELOG.md#v0151-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields.
+- `mariadb`: [v0.16.1](services/mariadb/CHANGELOG.md#v0161-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields.
+- `logme`: [v0.16.1](services/logme/CHANGELOG.md#v0161-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields.
+- `redis`: [v0.16.1](services/redis/CHANGELOG.md#v0161-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated struct fields.
+- `loadbalancer`: [v0.13.1](services/loadbalancer/CHANGELOG.md#v0131-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated methods.
+- `ske`: [v0.17.1](services/ske/CHANGELOG.md#v0171-2024-07-10)
+  - **Bugfix:** Fix marking of deprecated methods.
 - `sqlserverflex`: [v0.3.0](services/sqlserverflex/CHANGELOG.md#v030-2024-07-09)
   - **Breaking changes:**
     - `Database` renamed to `DefaultDatabase`, in `CreateUserPayload`
