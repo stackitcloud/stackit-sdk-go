@@ -150,7 +150,7 @@ func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}
 }
 
 /*
-CompleteCredentialsRotation Complete cluster credentials rotation
+CompleteCredentialsRotation: Complete cluster credentials rotation
 
 Complete cluster credentials rotation. This is step 2 of a two-step process. Start the rotation using [start-credentials-rotation](#tag/Credentials/operation/SkeService_StartClusterCredentialsRotation).
 
@@ -291,7 +291,7 @@ func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 }
 
 /*
-CreateKubeconfig Create a kubeconfig
+CreateKubeconfig: Create a kubeconfig
 
 Create a new kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months).
 
@@ -454,7 +454,7 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 }
 
 /*
-CreateOrUpdateCluster Create or update a cluster
+CreateOrUpdateCluster: Create or update a cluster
 
 Create a new cluster in your project or modify an existing one. To get valid values for certain properties please check the [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) endpoint.
 
@@ -584,7 +584,7 @@ func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
 }
 
 /*
-DeleteCluster Delete a cluster
+DeleteCluster: Delete a cluster
 
 Delete Kubernetes cluster specified by the identifier, belonging to the project specified by `projectId`.
 
@@ -723,17 +723,15 @@ func (r ApiDisableServiceRequest) Execute() (map[string]interface{}, error) {
 }
 
 /*
-DisableService Delete a project
+DisableService: Delete a project
 
-This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
+Deprecated: This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
 
 Deletes the SKE project specified by `projectId`. Deleting a project deletes all corresponding shoots.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiDisableServiceRequest
-
-Deprecated
 */
 func (a *APIClient) DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest {
 	return ApiDisableServiceRequest{
@@ -743,6 +741,11 @@ func (a *APIClient) DisableService(ctx context.Context, projectId string) ApiDis
 	}
 }
 
+/*
+Deprecated: This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
+
+Deletes the SKE project specified by `projectId`. Deleting a project deletes all corresponding shoots.
+*/
 func (a *APIClient) DisableServiceExecute(ctx context.Context, projectId string) (map[string]interface{}, error) {
 	r := ApiDisableServiceRequest{
 		apiService: a.defaultApi,
@@ -863,17 +866,15 @@ func (r ApiEnableServiceRequest) Execute() (*ProjectResponse, error) {
 }
 
 /*
-EnableService Create a Project
+EnableService: Create a Project
 
-This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
+Deprecated: This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
 
 Returns creation state of Project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiEnableServiceRequest
-
-Deprecated
 */
 func (a *APIClient) EnableService(ctx context.Context, projectId string) ApiEnableServiceRequest {
 	return ApiEnableServiceRequest{
@@ -883,6 +884,11 @@ func (a *APIClient) EnableService(ctx context.Context, projectId string) ApiEnab
 	}
 }
 
+/*
+Deprecated: This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
+
+Returns creation state of Project specified by `projectId`.
+*/
 func (a *APIClient) EnableServiceExecute(ctx context.Context, projectId string) (*ProjectResponse, error) {
 	r := ApiEnableServiceRequest{
 		apiService: a.defaultApi,
@@ -994,7 +1000,7 @@ func (r ApiGetClusterRequest) Execute() (*Cluster, error) {
 }
 
 /*
-GetCluster Get a cluster
+GetCluster: Get a cluster
 
 Get Kubernetes cluster for the specified identifier, belonging to the project specified by `projectId`.
 
@@ -1146,9 +1152,9 @@ func (r ApiGetCredentialsRequest) Execute() (*Credentials, error) {
 }
 
 /*
-GetCredentials Get credentials for a cluster
+GetCredentials: Get credentials for a cluster
 
-This endpoint is deprecated since 2024-01-26. It will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. Use [kubeconfig](#tag/Credentials/operation/SkeService_CreateKubeconfig) instead to obtain a kubeconfig. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials).
+Deprecated: This endpoint is deprecated since 2024-01-26. It will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. Use [kubeconfig](#tag/Credentials/operation/SkeService_CreateKubeconfig) instead to obtain a kubeconfig. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials).
 
 Get credentials for the cluster specified by `clusterName`, belonging to the project specified by `projectId`.
 
@@ -1156,8 +1162,6 @@ Get credentials for the cluster specified by `clusterName`, belonging to the pro
 	@param projectId
 	@param clusterName
 	@return ApiGetCredentialsRequest
-
-Deprecated
 */
 func (a *APIClient) GetCredentials(ctx context.Context, projectId string, clusterName string) ApiGetCredentialsRequest {
 	return ApiGetCredentialsRequest{
@@ -1168,6 +1172,11 @@ func (a *APIClient) GetCredentials(ctx context.Context, projectId string, cluste
 	}
 }
 
+/*
+Deprecated: This endpoint is deprecated since 2024-01-26. It will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. Use [kubeconfig](#tag/Credentials/operation/SkeService_CreateKubeconfig) instead to obtain a kubeconfig. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials).
+
+Get credentials for the cluster specified by `clusterName`, belonging to the project specified by `projectId`.
+*/
 func (a *APIClient) GetCredentialsExecute(ctx context.Context, projectId string, clusterName string) (*Credentials, error) {
 	r := ApiGetCredentialsRequest{
 		apiService:  a.defaultApi,
@@ -1280,7 +1289,7 @@ func (r ApiGetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 }
 
 /*
-GetLoginKubeconfig Get a kubeconfig for use with the STACKIT CLI
+GetLoginKubeconfig: Get a kubeconfig for use with the STACKIT CLI
 
 A kubeconfig retrieved using this endpoint does not contain any credentials and instead obtains valid credentials via the STACKIT CLI.
 
@@ -1419,17 +1428,15 @@ func (r ApiGetServiceStatusRequest) Execute() (*ProjectResponse, error) {
 }
 
 /*
-GetServiceStatus Get a Project
+GetServiceStatus: Get a Project
 
-This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
+Deprecated: This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
 
 Get a Project specified by `projectId`.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiGetServiceStatusRequest
-
-Deprecated
 */
 func (a *APIClient) GetServiceStatus(ctx context.Context, projectId string) ApiGetServiceStatusRequest {
 	return ApiGetServiceStatusRequest{
@@ -1439,6 +1446,11 @@ func (a *APIClient) GetServiceStatus(ctx context.Context, projectId string) ApiG
 	}
 }
 
+/*
+Deprecated: This endpoint is deprecated since 2024-04-11. Use the service-enablement API instead.
+
+Get a Project specified by `projectId`.
+*/
 func (a *APIClient) GetServiceStatusExecute(ctx context.Context, projectId string) (*ProjectResponse, error) {
 	r := ApiGetServiceStatusRequest{
 		apiService: a.defaultApi,
@@ -1570,7 +1582,7 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 }
 
 /*
-ListClusters List all clusters
+ListClusters: List all clusters
 
 Return a list of Kubernetes clusters in the project specified by `projectId`.
 
@@ -1693,7 +1705,7 @@ func (r ApiListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 }
 
 /*
-ListProviderOptions List provider options
+ListProviderOptions: List provider options
 
 Returns a list of supported Kubernetes versions and a list of supported machine types for the cluster nodes.
 
@@ -1839,7 +1851,7 @@ func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, e
 }
 
 /*
-StartCredentialsRotation Start cluster credentials rotation
+StartCredentialsRotation: Start cluster credentials rotation
 
 Start cluster credentials rotation. This is step 1 of a two-step process. Complete the rotation using [complete-credentials-rotation](#tag/Credentials/operation/SkeService_CompleteClusterCredentialsRotation).
 
@@ -1980,7 +1992,7 @@ func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 }
 
 /*
-TriggerHibernate Trigger cluster hibernation
+TriggerHibernate: Trigger cluster hibernation
 
 Trigger immediate hibernation of the cluster. If the cluster is already in hibernation state, the method does nothing.
 
@@ -2121,7 +2133,7 @@ func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) 
 }
 
 /*
-TriggerMaintenance Trigger cluster maintenance
+TriggerMaintenance: Trigger cluster maintenance
 
 Trigger immediate maintenance of the cluster. The autoUpdate configuration specified in the Maintenance object of the cluster spec defines what is updated during the immediate maintenance operation.
 
@@ -2262,7 +2274,7 @@ func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 }
 
 /*
-TriggerReconcile Trigger cluster reconciliation
+TriggerReconcile: Trigger cluster reconciliation
 
 Trigger immediate reconciliation of the complete cluster without changing the cluster specification.
 
@@ -2403,9 +2415,9 @@ func (r ApiTriggerRotateCredentialsRequest) Execute() (map[string]interface{}, e
 }
 
 /*
-TriggerRotateCredentials Rotate cluster credentials
+TriggerRotateCredentials: Rotate cluster credentials
 
-This endpoint is deprecated since 2024-01-26. It will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. Use [start-credentials-rotation](#tag/Credentials/operation/SkeService_StartClusterCredentialsRotation) instead to rotate all cluster credentials. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials).
+Deprecated: This endpoint is deprecated since 2024-01-26. It will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. Use [start-credentials-rotation](#tag/Credentials/operation/SkeService_StartClusterCredentialsRotation) instead to rotate all cluster credentials. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials).
 
 Trigger credential rotation. The old credentials (kubeconfig) will be invalid after the operation.
 
@@ -2413,8 +2425,6 @@ Trigger credential rotation. The old credentials (kubeconfig) will be invalid af
 	@param projectId
 	@param clusterName
 	@return ApiTriggerRotateCredentialsRequest
-
-Deprecated
 */
 func (a *APIClient) TriggerRotateCredentials(ctx context.Context, projectId string, clusterName string) ApiTriggerRotateCredentialsRequest {
 	return ApiTriggerRotateCredentialsRequest{
@@ -2425,6 +2435,11 @@ func (a *APIClient) TriggerRotateCredentials(ctx context.Context, projectId stri
 	}
 }
 
+/*
+Deprecated: This endpoint is deprecated since 2024-01-26. It will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. Use [start-credentials-rotation](#tag/Credentials/operation/SkeService_StartClusterCredentialsRotation) instead to rotate all cluster credentials. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials).
+
+Trigger credential rotation. The old credentials (kubeconfig) will be invalid after the operation.
+*/
 func (a *APIClient) TriggerRotateCredentialsExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error) {
 	r := ApiTriggerRotateCredentialsRequest{
 		apiService:  a.defaultApi,
