@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.12.0
-	github.com/stackitcloud/stackit-sdk-go/services/logme v0.16.0
+	github.com/stackitcloud/stackit-sdk-go/services/logme v0.17.0
 )
 
 require (
