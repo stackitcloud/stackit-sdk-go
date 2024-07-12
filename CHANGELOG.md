@@ -28,6 +28,8 @@
   - **Feature:** Add new field `AllowSystemComponents` to the `Nodepool` model that configures wether system components are allowed to run on the node pool.
 - `loadbalancer`: [v0.XX.X](services/loadbalancer/CHANGELOG.md#v0xxx-2024-xx-xx)
   - **Improvement:** Improve default error messages.
+- `serviceenablement`: [v0.2.0](services/serviceenablement/CHANGELOG.md#v020-2024-07-12)
+  - **Feature**: New waiters `EnableServiceWaitHandler` and `DisableServiceWaitHandler` for async operations `EnableService` and `DisableService`, respectively.
 
 ## Release (2024-07-01)
 
