@@ -31,9 +31,10 @@ func main() {
 		fmt.Printf("Number of services: %v\n", len(*listServicesResp.Items))
 	}
 
-	// Get Service Status
-	serviceId := "SERVICE_ID"
-	getServiceStatusResp, err := client.GetServiceStatus(context.Background(), projectId, serviceId).Execute()
+	// Get Service Id from the list of services
+	serviceId := (*listServicesResp.Items)[0].ServiceId
+
+	getServiceStatusResp, err := client.GetServiceStatus(context.Background(), projectId, *serviceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetServiceStatus`: %v\n", err)
 	} else {
@@ -41,12 +42,12 @@ func main() {
 	}
 
 	// Enable Service
-	err = client.EnableService(context.Background(), projectId, serviceId).Execute()
+	err = client.EnableService(context.Background(), projectId, *serviceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EnableService`: %v\n", err)
 	}
 	// Wait for the service to be enabled
-	status, err := wait.EnableServiceWaitHandler(context.Background(), client, projectId, serviceId).WaitWithContext(context.Background())
+	status, err := wait.EnableServiceWaitHandler(context.Background(), client, projectId, *serviceId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when waiting for service to be enabled: %v\n", err)
 	} else {
@@ -54,12 +55,12 @@ func main() {
 	}
 
 	// Disable Service
-	err = client.DisableService(context.Background(), projectId, serviceId).Execute()
+	err = client.DisableService(context.Background(), projectId, *serviceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DisableService`: %v\n", err)
 	}
 	// Wait for the service to be disabled
-	status, err = wait.DisableServiceWaitHandler(context.Background(), client, projectId, serviceId).WaitWithContext(context.Background())
+	status, err = wait.DisableServiceWaitHandler(context.Background(), client, projectId, *serviceId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when waiting for service to be disabled: %v\n", err)
 	} else {
