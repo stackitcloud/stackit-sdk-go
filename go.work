@@ -24,6 +24,7 @@ use (
 	./examples/runtime
 	./examples/secretsmanager
 	./examples/serviceaccount
+	./examples/serviceenablement
 	./examples/ske
 	./examples/sqlserverflex
 	./examples/waiter
