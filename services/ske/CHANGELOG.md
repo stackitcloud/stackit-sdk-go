@@ -1,10 +1,14 @@
+## v0.19.0 (2024-07-18)
+
+- **Feature:** New fields for `Extension`: `Dns`
+
 ## v0.18.0 (2024-07-10)
 
 - **Bugfix:** Fix marking of deprecated methods. Potential breaking change for users with linters that treat deprecations as errors.
 
 ## v0.17.0 (2024-07-04)
 
-- **Feature:** Add new field `AllowSystemComponents` to the `Nodepool` model that configures wether system components are allowed to run on the node pool.
+- **Feature:** Add new field `AllowSystemComponents` to the `Nodepool` model that configures whether system components are allowed to run on the node pool.
 
 ## v0.16.0 (2024-05-27)
 
