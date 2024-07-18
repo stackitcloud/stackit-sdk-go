@@ -44,7 +44,7 @@ func EnableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface,
 		}
 	})
 
-	handler.SetTimeout(45 * time.Minute).SetSleepBeforeWait(15 * time.Second)
+	handler.SetTimeout(45 * time.Minute).SetSleepBeforeWait(45 * time.Second)
 	return handler
 }
 
@@ -70,6 +70,6 @@ func DisableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return true, s, fmt.Errorf("service with id %s is in state %s", serviceId, *s.State)
 		}
 	})
-	handler.SetTimeout(45 * time.Minute).SetSleepBeforeWait(15 * time.Second)
+	handler.SetTimeout(45 * time.Minute).SetSleepBeforeWait(30 * time.Second)
 	return handler
 }
