@@ -14,6 +14,6 @@ type DNS struct {
 	// Enables the dns extension.
 	// REQUIRED
 	Enabled *bool `json:"enabled"`
-	// Array of DNS zones for external DNS.
+	// Array of domain filters for externalDNS, e.g., *.runs.onstackit.cloud.
 	Zones *[]string `json:"zones,omitempty"`
 }
