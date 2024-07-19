@@ -1,5 +1,7 @@
 ## Release (2024-XX-XX)
 
+- `runcommand`: [v0.1.0](services/runcommand/CHANGELOG.md#v010-2024-07-19)
+  - **New**: STACKIT Run Command module can be used to run remote commands and custom scripts on VMs
 - `sqlserverflex`: [v0.4.0](services/sqlserverflex/CHANGELOG.md#v040-2024-07-19)
   - **Feature:** New field for `DatabaseOptions` and `SingleDatabaseOptions`: `CollationName`
   - **Breaking changes:**
