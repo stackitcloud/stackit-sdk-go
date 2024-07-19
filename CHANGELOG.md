@@ -2,6 +2,8 @@
 
 - `runcommand`: [v0.1.0](services/runcommand/CHANGELOG.md#v010-2024-07-19)
   - **New**: STACKIT Run Command module can be used to run remote commands and custom scripts on VMs
+- `ske`: [v0.19.0](services/ske/CHANGELOG.md#v0190-2024-07-18)
+  - **Feature:** New fields for `Extension`: `Dns`
 - `rabbitmq`: [v0.17.0](services/rabbitmq/CHANGELOG.md#v0161-2024-07-10)
   - **Bugfix:** Fix marking of deprecated struct fields. Potential breaking change for users with linters that treat deprecations as errors.
 - `opensearch`: [v0.16.0](services/opensearch/CHANGELOG.md#v0151-2024-07-10)
