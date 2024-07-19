@@ -10,8 +10,10 @@ API version: 1.1
 
 package ske
 
-type Extension struct {
-	Acl   *ACL   `json:"acl,omitempty"`
-	Argus *Argus `json:"argus,omitempty"`
-	Dns   *DNS   `json:"dns,omitempty"`
+type DNS struct {
+	// Enables the dns extension.
+	// REQUIRED
+	Enabled *bool `json:"enabled"`
+	// Array of DNS zones for external DNS.
+	Zones *[]string `json:"zones,omitempty"`
 }
