@@ -45,6 +45,7 @@ use (
 	./services/rabbitmq
 	./services/redis
 	./services/resourcemanager
+	./services/runcommand
 	./services/secretsmanager
 	./services/serverbackup
 	./services/serviceaccount
