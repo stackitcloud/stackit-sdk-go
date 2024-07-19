@@ -1,3 +1,10 @@
+## v0.4.0 (2024-07-19)
+
+- **Feature:** New field for `DatabaseOptions` and `SingleDatabaseOptions`: `CollationName`
+- **Breaking change**: Fields removed from `DatabaseOptions` and `SingleDatabaseOptions`: `IsEncrypted`, `RecoveryModel`, `UserAccess`
+- **Breaking change**: Fields removed from `SingleDatabase`: `Collation`, `CreateDate`
+
+
 ## v0.3.0 (2024-07-09)
 
 - **Breaking changes:**
