@@ -1,5 +1,10 @@
 ## Release (2024-XX-XX)
 
+- `sqlserverflex`: [v0.4.0](services/sqlserverflex/CHANGELOG.md#v040-2024-07-19)
+  - **Feature:** New field for `DatabaseOptions` and `SingleDatabaseOptions`: `CollationName`
+  - **Breaking changes:**
+    - Fields removed from `DatabaseOptions` and `SingleDatabaseOptions`: `IsEncrypted`, `RecoveryModel`, `UserAccess`
+    - Fields removed from `SingleDatabase`: `Collation`, `CreateDate`
 - `ske`: [v0.19.0](services/ske/CHANGELOG.md#v0190-2024-07-18)
   - **Feature:** New fields for `Extension`: `Dns`
 - `rabbitmq`: [v0.17.0](services/rabbitmq/CHANGELOG.md#v0161-2024-07-10)
