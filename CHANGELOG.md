@@ -1,5 +1,10 @@
 ## Release (2024-XX-XX)
 
+- `sqlserverflex`: [v0.4.0](services/sqlserverflex/CHANGELOG.md#v040-2024-07-19)
+  - **Feature:** New field for `DatabaseOptions` and `SingleDatabaseOptions`: `CollationName`
+  - **Breaking changes:**
+    - Fields removed from `DatabaseOptions` and `SingleDatabaseOptions`: `IsEncrypted`, `RecoveryModel`, `UserAccess`
+    - Fields removed from `SingleDatabase`: `Collation`, `CreateDate`
 - `rabbitmq`: [v0.17.0](services/rabbitmq/CHANGELOG.md#v0161-2024-07-10)
   - **Bugfix:** Fix marking of deprecated struct fields. Potential breaking change for users with linters that treat deprecations as errors.
 - `opensearch`: [v0.16.0](services/opensearch/CHANGELOG.md#v0151-2024-07-10)
