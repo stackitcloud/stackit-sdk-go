@@ -2,6 +2,11 @@
 
 - `runcommand`: [v0.1.0](services/runcommand/CHANGELOG.md#v010-2024-07-19)
   - **New**: STACKIT Run Command module can be used to run remote commands and custom scripts on VMs
+- `sqlserverflex`: [v0.4.0](services/sqlserverflex/CHANGELOG.md#v040-2024-07-19)
+  - **Feature:** New field for `DatabaseOptions` and `SingleDatabaseOptions`: `CollationName`
+  - **Breaking changes:**
+    - Fields removed from `DatabaseOptions` and `SingleDatabaseOptions`: `IsEncrypted`, `RecoveryModel`, `UserAccess`
+    - Fields removed from `SingleDatabase`: `Collation`, `CreateDate`
 - `ske`: [v0.19.0](services/ske/CHANGELOG.md#v0190-2024-07-18)
   - **Feature:** New fields for `Extension`: `Dns`
 - `rabbitmq`: [v0.17.0](services/rabbitmq/CHANGELOG.md#v0161-2024-07-10)

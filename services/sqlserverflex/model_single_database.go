@@ -11,9 +11,7 @@ API version: 1.0.0
 package sqlserverflex
 
 type SingleDatabase struct {
-	Collation  *string                `json:"collation,omitempty"`
-	CreateDate *string                `json:"createDate,omitempty"`
-	Id         *string                `json:"id,omitempty"`
-	Name       *string                `json:"name,omitempty"`
-	Options    *SingleDatabaseOptions `json:"options,omitempty"`
+	Id      *string                `json:"id,omitempty"`
+	Name    *string                `json:"name,omitempty"`
+	Options *SingleDatabaseOptions `json:"options,omitempty"`
 }
