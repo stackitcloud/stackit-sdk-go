@@ -17,7 +17,7 @@ type RequestResource struct {
 	// The state of a resource object.
 	// REQUIRED
 	Status *string `json:"status"`
-	// Resource type.
+	// Object that represents a resource type.
 	// REQUIRED
 	Type *string `json:"type"`
 }

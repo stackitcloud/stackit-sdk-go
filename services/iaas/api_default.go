@@ -33,7 +33,7 @@ type ApiCreateNetworkRequest struct {
 	createNetworkPayload *CreateNetworkPayload
 }
 
-// Create network request.
+// Request a network creation.
 
 func (r ApiCreateNetworkRequest) CreateNetworkPayload(createNetworkPayload CreateNetworkPayload) ApiCreateNetworkRequest {
 	r.createNetworkPayload = &createNetworkPayload
@@ -207,7 +207,7 @@ CreateNetwork: Create new network.
 Create a new network in a project. `nameservers` will be filled from `defaultNameservers` of the respective area if not specified. If the project has `internetAccess` enabled and this is the first network in the project this might incur cost.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId STACKIT Project ID.
+	@param projectId The identifier (ID) of a STACKIT Project.
 	@return ApiCreateNetworkRequest
 */
 func (a *APIClient) CreateNetwork(ctx context.Context, projectId string) ApiCreateNetworkRequest {
@@ -234,7 +234,7 @@ type ApiCreateNetworkAreaRequest struct {
 	createNetworkAreaPayload *CreateNetworkAreaPayload
 }
 
-// Area creation request.
+// Request an Area creation.
 
 func (r ApiCreateNetworkAreaRequest) CreateNetworkAreaPayload(createNetworkAreaPayload CreateNetworkAreaPayload) ApiCreateNetworkAreaRequest {
 	r.createNetworkAreaPayload = &createNetworkAreaPayload
@@ -397,7 +397,7 @@ CreateNetworkArea: Create new network area in an organization.
 Create a new network area in an organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
 	@return ApiCreateNetworkAreaRequest
 */
 func (a *APIClient) CreateNetworkArea(ctx context.Context, organizationId string) ApiCreateNetworkAreaRequest {
@@ -425,7 +425,7 @@ type ApiCreateNetworkAreaRangeRequest struct {
 	createNetworkAreaRangePayload *CreateNetworkAreaRangePayload
 }
 
-// Add network ranges to an area request.
+// Request an addition of network ranges to an area.
 
 func (r ApiCreateNetworkAreaRangeRequest) CreateNetworkAreaRangePayload(createNetworkAreaRangePayload CreateNetworkAreaRangePayload) ApiCreateNetworkAreaRangeRequest {
 	r.createNetworkAreaRangePayload = &createNetworkAreaRangePayload
@@ -606,8 +606,8 @@ CreateNetworkAreaRange: Create new network range in a network area.
 Create a new network range in an existing network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@return ApiCreateNetworkAreaRangeRequest
 */
 func (a *APIClient) CreateNetworkAreaRange(ctx context.Context, organizationId string, areaId string) ApiCreateNetworkAreaRangeRequest {
@@ -637,7 +637,7 @@ type ApiCreateNetworkAreaRouteRequest struct {
 	createNetworkAreaRoutePayload *CreateNetworkAreaRoutePayload
 }
 
-// Add routes to an area request.
+// Request an addition of routes to an area.
 
 func (r ApiCreateNetworkAreaRouteRequest) CreateNetworkAreaRoutePayload(createNetworkAreaRoutePayload CreateNetworkAreaRoutePayload) ApiCreateNetworkAreaRouteRequest {
 	r.createNetworkAreaRoutePayload = &createNetworkAreaRoutePayload
@@ -818,8 +818,8 @@ CreateNetworkAreaRoute: Create new network routes.
 Create one or several new network routes in a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@return ApiCreateNetworkAreaRouteRequest
 */
 func (a *APIClient) CreateNetworkAreaRoute(ctx context.Context, organizationId string, areaId string) ApiCreateNetworkAreaRouteRequest {
@@ -1003,11 +1003,11 @@ func (r ApiDeleteNetworkRequest) Execute() error {
 /*
 DeleteNetwork: Delete network.
 
-Delete a network.
+Delete a network. If the network is still in use, the deletion will fail.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId STACKIT Project ID.
-	@param networkId STACKIT Network ID.
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param networkId The identifier (ID) of a STACKIT Network.
 	@return ApiDeleteNetworkRequest
 */
 func (a *APIClient) DeleteNetwork(ctx context.Context, projectId string, networkId string) ApiDeleteNetworkRequest {
@@ -1194,8 +1194,8 @@ DeleteNetworkArea: Delete a network area.
 Delete an existing network area in an organization. This is only possible if no projects are using the area anymore.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@return ApiDeleteNetworkAreaRequest
 */
 func (a *APIClient) DeleteNetworkArea(ctx context.Context, organizationId string, areaId string) ApiDeleteNetworkAreaRequest {
@@ -1387,12 +1387,12 @@ func (r ApiDeleteNetworkAreaRangeRequest) Execute() error {
 /*
 DeleteNetworkAreaRange: Delete a network range.
 
-Delete a network range of a network area.
+Delete a network range of a network area. The deletion will fail if the network range is still used.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
-	@param networkRangeId STACKIT Network Range ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
+	@param networkRangeId The identifier (ID) of a STACKIT Network Range.
 	@return ApiDeleteNetworkAreaRangeRequest
 */
 func (a *APIClient) DeleteNetworkAreaRange(ctx context.Context, organizationId string, areaId string, networkRangeId string) ApiDeleteNetworkAreaRangeRequest {
@@ -1578,9 +1578,9 @@ DeleteNetworkAreaRoute: Delete a network route.
 Delete a network route of a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
-	@param routeId STACKI Route ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
+	@param routeId The identifier (ID) of a STACKIT Route.
 	@return ApiDeleteNetworkAreaRouteRequest
 */
 func (a *APIClient) DeleteNetworkAreaRoute(ctx context.Context, organizationId string, areaId string, routeId string) ApiDeleteNetworkAreaRouteRequest {
@@ -1766,11 +1766,11 @@ func (r ApiGetNetworkRequest) Execute() (*Network, error) {
 /*
 GetNetwork: Get network details.
 
-Get details about a network.
+Get details about a network of a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId STACKIT Project ID.
-	@param networkId STACKIT Network ID.
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param networkId The identifier (ID) of a STACKIT Network.
 	@return ApiGetNetworkRequest
 */
 func (a *APIClient) GetNetwork(ctx context.Context, projectId string, networkId string) ApiGetNetworkRequest {
@@ -1957,8 +1957,8 @@ GetNetworkArea: Get details about a network area.
 Get details about a network area in an organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@return ApiGetNetworkAreaRequest
 */
 func (a *APIClient) GetNetworkArea(ctx context.Context, organizationId string, areaId string) ApiGetNetworkAreaRequest {
@@ -2153,9 +2153,9 @@ GetNetworkAreaRange: Get details about a network range.
 Get details about a network range in a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
-	@param networkRangeId STACKIT Network Range ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
+	@param networkRangeId The identifier (ID) of a STACKIT Network Range.
 	@return ApiGetNetworkAreaRangeRequest
 */
 func (a *APIClient) GetNetworkAreaRange(ctx context.Context, organizationId string, areaId string, networkRangeId string) ApiGetNetworkAreaRangeRequest {
@@ -2352,9 +2352,9 @@ GetNetworkAreaRoute: Get details about a network route.
 Get details about a network route defined in a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
-	@param routeId STACKI Route ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
+	@param routeId The identifier (ID) of a STACKIT Route.
 	@return ApiGetNetworkAreaRouteRequest
 */
 func (a *APIClient) GetNetworkAreaRoute(ctx context.Context, organizationId string, areaId string, routeId string) ApiGetNetworkAreaRouteRequest {
@@ -2543,8 +2543,8 @@ GetOrganizationRequest: Lookup an organization request ID.
 Lookup an organization request ID from a previous request. This allows to find resource IDs of resources generated during a organization request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param requestId STACKIT Request ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param requestId The identifier (ID) of a STACKIT Request.
 	@return ApiGetOrganizationRequestRequest
 */
 func (a *APIClient) GetOrganizationRequest(ctx context.Context, organizationId string, requestId string) ApiGetOrganizationRequestRequest {
@@ -2731,8 +2731,8 @@ GetProjectRequest: Lookup a project request ID.
 Lookup a project request ID from a previous request. This allows to find resource IDs of resources generated during a projects request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId STACKIT Project ID.
-	@param requestId STACKIT Request ID.
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param requestId The identifier (ID) of a STACKIT Request.
 	@return ApiGetProjectRequestRequest
 */
 func (a *APIClient) GetProjectRequest(ctx context.Context, projectId string, requestId string) ApiGetProjectRequestRequest {
@@ -2919,8 +2919,8 @@ ListNetworkAreaProjects: List all projects using a network area.
 Get a list of all projects using a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@return ApiListNetworkAreaProjectsRequest
 */
 func (a *APIClient) ListNetworkAreaProjects(ctx context.Context, organizationId string, areaId string) ApiListNetworkAreaProjectsRequest {
@@ -3107,8 +3107,8 @@ ListNetworkAreaRanges: List all network ranges in a network area.
 Get a list of all network ranges in a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@return ApiListNetworkAreaRangesRequest
 */
 func (a *APIClient) ListNetworkAreaRanges(ctx context.Context, organizationId string, areaId string) ApiListNetworkAreaRangesRequest {
@@ -3295,8 +3295,8 @@ ListNetworkAreaRoutes: List all network routes in a network area.
 Get a list of all network routes defined in a network area.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@return ApiListNetworkAreaRoutesRequest
 */
 func (a *APIClient) ListNetworkAreaRoutes(ctx context.Context, organizationId string, areaId string) ApiListNetworkAreaRoutesRequest {
@@ -3475,7 +3475,7 @@ ListNetworkAreas: List all network areas in an organization.
 Get a list of all visible network areas defined in an organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
 	@return ApiListNetworkAreasRequest
 */
 func (a *APIClient) ListNetworkAreas(ctx context.Context, organizationId string) ApiListNetworkAreasRequest {
@@ -3652,7 +3652,7 @@ ListNetworks: List all networks inside a project.
 Get a list of all networks inside a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId STACKIT Project ID.
+	@param projectId The identifier (ID) of a STACKIT Project.
 	@return ApiListNetworksRequest
 */
 func (a *APIClient) ListNetworks(ctx context.Context, projectId string) ApiListNetworksRequest {
@@ -3680,7 +3680,7 @@ type ApiPartialUpdateNetworkRequest struct {
 	partialUpdateNetworkPayload *PartialUpdateNetworkPayload
 }
 
-// Update network request.
+// Request an update of a network.
 
 func (r ApiPartialUpdateNetworkRequest) PartialUpdateNetworkPayload(partialUpdateNetworkPayload PartialUpdateNetworkPayload) ApiPartialUpdateNetworkRequest {
 	r.partialUpdateNetworkPayload = &partialUpdateNetworkPayload
@@ -3836,11 +3836,11 @@ func (r ApiPartialUpdateNetworkRequest) Execute() error {
 /*
 PartialUpdateNetwork: Update network settings.
 
-Update the settings of a network.
+Update the settings of a network inside a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId STACKIT Project ID.
-	@param networkId STACKIT Network ID.
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param networkId The identifier (ID) of a STACKIT Network.
 	@return ApiPartialUpdateNetworkRequest
 */
 func (a *APIClient) PartialUpdateNetwork(ctx context.Context, projectId string, networkId string) ApiPartialUpdateNetworkRequest {
@@ -3870,7 +3870,7 @@ type ApiPartialUpdateNetworkAreaRequest struct {
 	partialUpdateNetworkAreaPayload *PartialUpdateNetworkAreaPayload
 }
 
-// Area update request.
+// Request to update an Area.
 
 func (r ApiPartialUpdateNetworkAreaRequest) PartialUpdateNetworkAreaPayload(partialUpdateNetworkAreaPayload PartialUpdateNetworkAreaPayload) ApiPartialUpdateNetworkAreaRequest {
 	r.partialUpdateNetworkAreaPayload = &partialUpdateNetworkAreaPayload
@@ -4040,8 +4040,8 @@ PartialUpdateNetworkArea: Update network area settings.
 Update the settings of a network area in an organization.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId STACKIT Organization ID.
-	@param areaId STACKIT Network Area ID.
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
 	@return ApiPartialUpdateNetworkAreaRequest
 */
 func (a *APIClient) PartialUpdateNetworkArea(ctx context.Context, organizationId string, areaId string) ApiPartialUpdateNetworkAreaRequest {

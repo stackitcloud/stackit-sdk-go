@@ -11,7 +11,7 @@ API version: 1beta1
 package iaas
 
 type ProjectListResponse struct {
-	// List of STACKIT projects.
+	// A list of STACKIT projects.
 	// REQUIRED
 	Items *[]string `json:"items"`
 }

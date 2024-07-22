@@ -13,13 +13,16 @@ package iaas
 type Network struct {
 	// REQUIRED
 	Name *string `json:"name"`
-	// List of DNS Servers/Nameservers.
+	// A list containing DNS Servers/Nameservers for IPv4.
 	Nameservers *[]string `json:"nameservers,omitempty"`
+	// A list containing DNS Servers/Nameservers for IPv6.
+	NameserversV6 *[]string `json:"nameserversV6,omitempty"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	NetworkId *string   `json:"networkId"`
-	Prefixes  *[]string `json:"prefixes,omitempty"`
-	// An IP address.
+	NetworkId  *string   `json:"networkId"`
+	Prefixes   *[]string `json:"prefixes,omitempty"`
+	PrefixesV6 *[]string `json:"prefixesV6,omitempty"`
+	// Object that represents an IPv4 address.
 	PublicIp *string `json:"publicIp,omitempty"`
 	// The state of a resource object.
 	// REQUIRED

@@ -11,7 +11,7 @@ API version: 1beta1
 package iaas
 
 type RouteListResponse struct {
-	// List of routes.
+	// A list of routes.
 	// REQUIRED
 	Items *[]Route `json:"items"`
 }
