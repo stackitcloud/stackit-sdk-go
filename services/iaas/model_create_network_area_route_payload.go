@@ -11,6 +11,6 @@ API version: 1beta1
 package iaas
 
 type CreateNetworkAreaRoutePayload struct {
-	// List of routes.
+	// A list of routes.
 	Ipv4 *[]Route `json:"ipv4,omitempty"`
 }

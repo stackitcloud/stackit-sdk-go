@@ -11,11 +11,11 @@ API version: 1beta1
 package iaas
 
 type Area struct {
-	// List of DNS Servers/Nameservers.
+	// A list containing DNS Servers/Nameservers for IPv4.
 	DefaultNameservers *[]string `json:"defaultNameservers,omitempty"`
-	// A list of Network ranges.
+	// A list of network ranges.
 	NetworkRanges *[]NetworkRange `json:"networkRanges,omitempty"`
-	// List of routes.
+	// A list of routes.
 	Routes *[]Route `json:"routes,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
 	TransferNetwork *string `json:"transferNetwork,omitempty"`

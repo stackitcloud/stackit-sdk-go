@@ -12,10 +12,10 @@ package iaas
 
 type AreaConfig struct {
 	DefaultNameservers *[]string `json:"defaultNameservers,omitempty"`
-	// A list of Network ranges.
+	// A list of network ranges.
 	// REQUIRED
 	NetworkRanges *[]NetworkRange `json:"networkRanges"`
-	// List of routes.
+	// A list of routes.
 	Routes *[]Route `json:"routes,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED

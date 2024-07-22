@@ -11,7 +11,7 @@ API version: 1beta1
 package iaas
 
 type Route struct {
-	// An IP address.
+	// Object that represents an IPv4 address.
 	// REQUIRED
 	Nexthop *string `json:"nexthop"`
 	// Classless Inter-Domain Routing (CIDR).

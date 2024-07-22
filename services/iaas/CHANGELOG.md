@@ -1,3 +1,7 @@
+## v0.5.0 (2024-07-22)
+- **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6` 
+- **Feature:** `Network` has new fields: `NameserversV6` and `PrefixesV6`
+
 ## v0.4.0 (2024-06-07)
 
 - **Breaking change**: `CreateNetwork` now returns the `Network` triggered by the operation.

@@ -11,6 +11,6 @@ API version: 1beta1
 package iaas
 
 type UpdateNetworkIPv4 struct {
-	// List of DNS Servers/Nameservers.
+	// A list containing DNS Servers/Nameservers for IPv4.
 	Nameservers *[]string `json:"nameservers,omitempty"`
 }

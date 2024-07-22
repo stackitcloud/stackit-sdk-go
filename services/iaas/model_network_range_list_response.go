@@ -11,7 +11,7 @@ API version: 1beta1
 package iaas
 
 type NetworkRangeListResponse struct {
-	// A list of Network ranges.
+	// A list of network ranges.
 	// REQUIRED
 	Items *[]NetworkRange `json:"items"`
 }
