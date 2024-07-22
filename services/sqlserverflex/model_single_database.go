@@ -11,7 +11,9 @@ API version: 1.0.0
 package sqlserverflex
 
 type SingleDatabase struct {
-	Id      *string                `json:"id,omitempty"`
+	// Database id
+	Id *string `json:"id,omitempty"`
+	// Database name
 	Name    *string                `json:"name,omitempty"`
 	Options *SingleDatabaseOptions `json:"options,omitempty"`
 }

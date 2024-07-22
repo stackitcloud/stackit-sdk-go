@@ -11,6 +11,7 @@ API version: 1.0.0
 package sqlserverflex
 
 type DatabaseOptions struct {
+	// Name of the collation of the database
 	CollationName *string `json:"collationName,omitempty"`
 	// CompatibilityLevel of the Database.
 	CompatibilityLevel *int64 `json:"compatibilityLevel,omitempty"`
