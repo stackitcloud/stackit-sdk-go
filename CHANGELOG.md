@@ -1,9 +1,6 @@
 ## Release (2024-XX-XX)
 
 - `iaas`: [v0.5.0](services/iaas/CHANGELOG.md#v050-2024-07-22)
-  - **Feature**: New methods to manage networks for IPv6:
-    - `V1CreateNetworkIPv6`
-    - `V1UpdateNetworkIPv6`
 - **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6`
 - **Feature:** `Network` has new fields: `NameserversV6` and `PrefixesV6`
 - `runcommand`: [v0.1.0](services/runcommand/CHANGELOG.md#v010-2024-07-19)

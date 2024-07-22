@@ -1,7 +1,4 @@
 ## v0.5.0 (2024-07-22)
-- **Feature**: New methods to manage networks for IPv6:
-  - `V1CreateNetworkIPv6`
-  - `V1UpdateNetworkIPv6`
 - **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6` 
 - **Feature:** `Network` has new fields: `NameserversV6` and `PrefixesV6`
 
