@@ -11,7 +11,7 @@ API version: 1beta1
 package iaas
 
 type NetworkAreaListResponse struct {
-	// A list of Network areas.
+	// A list of network areas.
 	// REQUIRED
 	Items *[]NetworkArea `json:"items"`
 }

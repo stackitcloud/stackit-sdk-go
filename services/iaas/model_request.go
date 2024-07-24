@@ -12,13 +12,13 @@ package iaas
 
 type Request struct {
 	Details *string `json:"details,omitempty"`
-	// Resource action.
+	// Object that represents a resource action.
 	// REQUIRED
 	RequestAction *string `json:"requestAction"`
-	// ID representing a single API request.
+	// Identifier (ID) representing a single API request.
 	// REQUIRED
 	RequestId *string `json:"requestId"`
-	// Resource type.
+	// Object that represents a resource type.
 	// REQUIRED
 	RequestType *string `json:"requestType"`
 	// REQUIRED

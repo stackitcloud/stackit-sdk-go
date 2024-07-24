@@ -17,7 +17,7 @@ type NetworkArea struct {
 	Ipv4   *NetworkAreaIPv4 `json:"ipv4,omitempty"`
 	// REQUIRED
 	Name *string `json:"name"`
-	// The amount of projects currently referencing this area.
+	// The amount of projects currently referencing a specific area.
 	// REQUIRED
 	ProjectCount *int64 `json:"projectCount"`
 	// The state of a resource object.

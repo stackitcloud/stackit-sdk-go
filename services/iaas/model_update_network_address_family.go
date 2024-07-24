@@ -11,5 +11,6 @@ API version: 1beta1
 package iaas
 
 type UpdateNetworkAddressFamily struct {
-	Ipv4 *UpdateNetworkIPv4 `json:"ipv4,omitempty"`
+	Ipv4 *UpdateNetworkIPv4   `json:"ipv4,omitempty"`
+	Ipv6 *V1UpdateNetworkIPv6 `json:"ipv6,omitempty"`
 }

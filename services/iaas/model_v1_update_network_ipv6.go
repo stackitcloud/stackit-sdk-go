@@ -10,7 +10,7 @@ API version: 1beta1
 
 package iaas
 
-type CreateNetworkAreaRangePayload struct {
-	// A list of network ranges.
-	Ipv4 *[]NetworkRange `json:"ipv4,omitempty"`
+type V1UpdateNetworkIPv6 struct {
+	// A list containing DNS Servers/Nameservers for IPv6.
+	Nameservers *[]string `json:"nameservers,omitempty"`
 }

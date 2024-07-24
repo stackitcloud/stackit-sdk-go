@@ -10,8 +10,8 @@ API version: 1beta1
 
 package iaas
 
-type CreateNetworkIPv4 struct {
-	// A list containing DNS Servers/Nameservers for IPv4.
+type V1CreateNetworkIPv6 struct {
+	// A list containing DNS Servers/Nameservers for IPv6.
 	Nameservers  *[]string `json:"nameservers,omitempty"`
 	PrefixLength *int64    `json:"prefixLength,omitempty"`
 }
