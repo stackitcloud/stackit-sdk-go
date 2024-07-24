@@ -1,3 +1,9 @@
+## v0.5.0 (2024-07-24)
+
+- **Breaking changes**: 
+  - `GetBackupResponse` renamed to `BackupDocumentationGetBackupResponse`
+  - Fields which are nested in `Backup` are now directly available in `BackupDocumentationGetBackupResponse`
+
 ## v0.4.0 (2024-07-19)
 
 - **Feature:** New field for `DatabaseOptions` and `SingleDatabaseOptions`: `CollationName`

@@ -1,5 +1,9 @@
 ## Release (2024-XX-XX)
 
+- `sqlserverflex`: [v0.5.0](services/sqlserverflex/CHANGELOG.md#v050-2024-07-24)
+  - **Breaking changes**:
+  - `GetBackupResponse` renamed to `BackupDocumentationGetBackupResponse`
+  - Fields which are nested in `Backup` are now directly available in `BackupDocumentationGetBackupResponse`
 - `runcommand`: [v0.1.0](services/runcommand/CHANGELOG.md#v010-2024-07-19)
   - **New**: STACKIT Run Command module can be used to run remote commands and custom scripts on VMs
 - `sqlserverflex`: [v0.4.0](services/sqlserverflex/CHANGELOG.md#v040-2024-07-19)
