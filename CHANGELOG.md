@@ -1,6 +1,6 @@
-## Release (2024-XX-XX)
+## Release (2024-07-24)
 
-- `iaas`: [v0.5.0](services/iaas/CHANGELOG.md#v050-2024-07-22)
+- `iaas`: [v0.5.0](services/iaas/CHANGELOG.md#v050-2024-07-24)
 - **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6`
 - **Feature:** `Network` has new fields: `NameserversV6` and `PrefixesV6`
 - `runcommand`: [v0.1.0](services/runcommand/CHANGELOG.md#v010-2024-07-19)
