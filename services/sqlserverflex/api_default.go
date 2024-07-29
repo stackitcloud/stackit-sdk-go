@@ -843,12 +843,12 @@ type ApiGetBackupRequest struct {
 	backupId   string
 }
 
-func (r ApiGetBackupRequest) Execute() (*GetBackupResponse, error) {
+func (r ApiGetBackupRequest) Execute() (*BackupDocumentationGetBackupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetBackupResponse
+		localVarReturnValue *BackupDocumentationGetBackupResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetBackup")
@@ -962,7 +962,7 @@ func (a *APIClient) GetBackup(ctx context.Context, projectId string, instanceId 
 	}
 }
 
-func (a *APIClient) GetBackupExecute(ctx context.Context, projectId string, instanceId string, backupId string) (*GetBackupResponse, error) {
+func (a *APIClient) GetBackupExecute(ctx context.Context, projectId string, instanceId string, backupId string) (*BackupDocumentationGetBackupResponse, error) {
 	r := ApiGetBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
