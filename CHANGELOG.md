@@ -2,7 +2,7 @@
 
 - `rabbitmq`: [v0.18.0](services/rabbitmq/CHANGELOG.md#v0180-2024-08-01)
   - **Feature:** `Plan` has a new field `SkuName`
-- `opensearch`: [v0.16.0](services/opensearch/CHANGELOG.md#v0151-2024-08-01)
+- `opensearch`: [v0.17.0](services/opensearch/CHANGELOG.md#v0170-2024-08-01)
   - **Feature:** `Plan` has a new field `SkuName`
 - `mariadb`: [v0.18.0](services/mariadb/CHANGELOG.md#v0180-2024-08-01)
   - **Feature:** `Plan` has a new field `SkuName`
