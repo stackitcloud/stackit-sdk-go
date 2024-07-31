@@ -1,3 +1,16 @@
+## Release (2024-XX-XX)
+
+- `rabbitmq`: [v0.18.0](services/rabbitmq/CHANGELOG.md#v0180-2024-08-01)
+  - **Feature:** `Plan` has a new field `SkuName`
+- `opensearch`: [v0.16.0](services/opensearch/CHANGELOG.md#v0151-2024-08-01)
+  - **Feature:** `Plan` has a new field `SkuName`
+- `mariadb`: [v0.18.0](services/mariadb/CHANGELOG.md#v0180-2024-08-01)
+  - **Feature:** `Plan` has a new field `SkuName`
+- `logme`: [v0.18.0](services/logme/CHANGELOG.md#v0180-2024-08-01)
+  - **Feature:** `Plan` has a new field `SkuName`
+- `redis`: [v0.18.0](services/redis/CHANGELOG.md#v0180-2024-08-01)
+  - **Feature:** `Plan` has a new field `SkuName`
+
 ## Release (2024-07-24)
 
 - `iaas`: [v0.5.0](services/iaas/CHANGELOG.md#v050-2024-07-24)

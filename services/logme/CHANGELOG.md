@@ -1,3 +1,7 @@
+## v0.18.0 (2024-08-01)
+
+- **Feature:** `Plan` has a new field `SkuName`
+
 ## v0.17.0 (2024-07-10)
 
 - **Bugfix:** Fix marking of deprecated struct fields. Potential breaking change for users with linters that treat deprecations as errors.
