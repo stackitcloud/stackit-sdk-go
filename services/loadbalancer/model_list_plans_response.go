@@ -10,6 +10,6 @@ API version: 1.7.1
 
 package loadbalancer
 
-type ListLoadBalancersResponse struct {
-	LoadBalancers *[]LoadBalancer `json:"loadBalancers,omitempty"`
+type ListPlansResponse struct {
+	ValidPlans *[]PlanDetails `json:"validPlans,omitempty"`
 }

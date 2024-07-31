@@ -10,6 +10,15 @@ API version: 1.7.1
 
 package loadbalancer
 
-type ListLoadBalancersResponse struct {
-	LoadBalancers *[]LoadBalancer `json:"loadBalancers,omitempty"`
+type PlanDetails struct {
+	// Description
+	Description *string `json:"description,omitempty"`
+	// Flavor Name
+	FlavorName *string `json:"flavorName,omitempty"`
+	// Maximum number of concurrent connections per load balancer VM instance.
+	MaxConnections *int64 `json:"maxConnections,omitempty"`
+	// Service Plan Name
+	Name *string `json:"name,omitempty"`
+	// Service Plan Identifier
+	PlanId *string `json:"planId,omitempty"`
 }
