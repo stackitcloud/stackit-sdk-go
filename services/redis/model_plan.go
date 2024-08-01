@@ -19,4 +19,6 @@ type Plan struct {
 	Id *string `json:"id"`
 	// REQUIRED
 	Name *string `json:"name"`
+	// REQUIRED
+	SkuName *string `json:"skuName"`
 }
