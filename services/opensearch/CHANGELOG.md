@@ -1,4 +1,4 @@
-## v0.17.0 (2024-XX-XX)
+## v0.17.0 (2024-08-01)
 
 - **Feature:** `Plan` has a new field `SkuName`
 
