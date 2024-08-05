@@ -214,7 +214,7 @@ func TestDeleteNetworkAreaWaitHandler(t *testing.T) {
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
-			wantResp:      true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -515,7 +515,7 @@ func TestDeleteNetworkWaitHandler(t *testing.T) {
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
-			wantResp:      true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
