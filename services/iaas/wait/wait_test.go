@@ -369,6 +369,65 @@ func TestCreateNetworkWaitHandler(t *testing.T) {
 	}
 }
 
+func TestCreateNetworkWaitHandlerWithNetworkId(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "create_succeeded",
+			getFails:      false,
+			resourceState: CreateSuccess,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getNetworkFails: tt.getFails,
+				resourceState:   tt.resourceState,
+			}
+
+			var wantRes *iaas.Network
+			if tt.wantResp {
+				wantRes = &iaas.Network{
+					NetworkId: utils.Ptr("nid"),
+					State:     &tt.resourceState,
+				}
+			}
+
+			handler := CreateNetworkWaitHandlerWithNetworkId(context.Background(), apiClient, "pid", "nid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
 func TestUpdateNetworkWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string

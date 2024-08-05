@@ -110,6 +110,27 @@ func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 	return handler
 }
 
+// CreateNetworkWaitHandlerWithNetworkId will wait for network creation using network id
+func CreateNetworkWaitHandlerWithNetworkId(ctx context.Context, a APIClientInterface, projectId, networkId string) *wait.AsyncActionHandler[iaas.Network] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
+		network, err := a.GetNetworkExecute(ctx, projectId, networkId)
+		if err != nil {
+			return false, network, err
+		}
+		if network.NetworkId == nil || network.State == nil {
+			return false, network, fmt.Errorf("crate failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
+		}
+		// The state returns to "CREATED" after a successful creation is completed
+		if *network.NetworkId == networkId && *network.State == CreateSuccess {
+			return true, network, nil
+		}
+		return false, network, nil
+	})
+	handler.SetSleepBeforeWait(2 * time.Second)
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
 // UpdateNetworkWaitHandler will wait for network update
 func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
@@ -118,7 +139,7 @@ func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 			return false, network, err
 		}
 		if network.NetworkId == nil || network.State == nil {
-			return false, network, fmt.Errorf("update failed for network area with id %s, the response is not valid: the id or the state are missing", networkId)
+			return false, network, fmt.Errorf("update failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
 		}
 		// The state returns to "CREATED" after a successful update is completed
 		if *network.NetworkId == networkId && *network.State == CreateSuccess {
