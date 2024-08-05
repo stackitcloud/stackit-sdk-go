@@ -1,5 +1,7 @@
 ## Release (2024-XX-XX)
 
+- `iaas`: [v0.6.0](services/iaas/CHANGELOG.md#v060-2024-08-05)
+  - **Breaking change:** Use network ID instead of request ID in the waiter: `CreateNetworkWaitHandler`
 - `rabbitmq`: [v0.18.0](services/rabbitmq/CHANGELOG.md#v0180-2024-08-01)
   - **Feature:** `Plan` has a new field `SkuName`
 - `opensearch`: [v0.17.0](services/opensearch/CHANGELOG.md#v0170-2024-08-01)
