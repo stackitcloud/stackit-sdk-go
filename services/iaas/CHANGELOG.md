@@ -1,5 +1,5 @@
 ## v0.6.0 (2024-08-05)
-- **Feature:** Use network ID in the waiter: `CreateNetworkWaitHandler`
+- **Breaking change:** Use network ID in the waiter: `CreateNetworkWaitHandler`
 
 ## v0.5.0 (2024-07-24)
 - **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6` 
