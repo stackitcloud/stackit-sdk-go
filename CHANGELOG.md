@@ -1,5 +1,6 @@
 ## Release (2024-XX-XX)
-
+- `loadbalancer`: [v0.15.0](services/loadbalancer/CHANGELOG.md#v0150-2024-08-08)
+  - **Feature:** New API method `ListPlans` to list the available service plans
 - `iaas`: [v0.6.0](services/iaas/CHANGELOG.md#v060-2024-08-05)
   - **Breaking change:** Use network ID instead of request ID in the waiter: `CreateNetworkWaitHandler`
 - `rabbitmq`: [v0.18.0](services/rabbitmq/CHANGELOG.md#v0180-2024-08-01)
@@ -14,7 +15,6 @@
   - **Feature:** `Plan` has a new field `SkuName`
 
 ## Release (2024-07-24)
-
 - `iaas`: [v0.5.0](services/iaas/CHANGELOG.md#v050-2024-07-24)
   - **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6`
   - **Feature:** `Network` has new fields: `NameserversV6` and `PrefixesV6`
