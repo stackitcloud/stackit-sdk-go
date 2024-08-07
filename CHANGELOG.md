@@ -1,5 +1,8 @@
-## Release (2024-07-24)
+## Release (2024-XX-XX)
+- `loadbalancer`: [v0.15.0](services/loadbalancer/CHANGELOG.md#v0150-2024-08-08)
+  - **Feature:** New API method `ListPlans` to list the available service plans
 
+## Release (2024-07-24)
 - `iaas`: [v0.5.0](services/iaas/CHANGELOG.md#v050-2024-07-24)
   - **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6`
   - **Feature:** `Network` has new fields: `NameserversV6` and `PrefixesV6`

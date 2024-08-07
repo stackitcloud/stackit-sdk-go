@@ -1,3 +1,6 @@
+## v0.15.0 (2024-08-08)
+- **Feature:** New API method `ListPlans` to list the available service plans
+
 ## v0.14.0 (2024-07-10)
 
 - **Improvement:** Improve default error messages.
