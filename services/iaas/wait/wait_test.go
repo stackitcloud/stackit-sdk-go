@@ -214,7 +214,7 @@ func TestDeleteNetworkAreaWaitHandler(t *testing.T) {
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
-			wantResp:      true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -249,102 +249,39 @@ func TestDeleteNetworkAreaWaitHandler(t *testing.T) {
 
 func TestCreateNetworkWaitHandler(t *testing.T) {
 	tests := []struct {
-		desc                   string
-		getProjectRequestFails bool
-		getProjectRequestResp  *iaas.Request
-		getNetworkFails        bool
-		resourceState          string
-		wantErr                bool
-		wantResp               bool
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
 	}{
 		{
-			desc:                   "create_succeeded",
-			getProjectRequestFails: false,
-			getProjectRequestResp: &iaas.Request{
-				Resources: &[]iaas.RequestResource{
-					{
-						Id: utils.Ptr("nid"),
-					},
-				},
-			},
-			getNetworkFails: false,
-			resourceState:   CreateSuccess,
-			wantErr:         false,
-			wantResp:        true,
+			desc:          "create_succeeded",
+			getFails:      false,
+			resourceState: CreateSuccess,
+			wantErr:       false,
+			wantResp:      true,
 		},
 		{
-			desc:                   "get_request_fails",
-			getProjectRequestFails: true,
-			getProjectRequestResp:  nil,
-			getNetworkFails:        false,
-			resourceState:          "",
-			wantErr:                true,
-			wantResp:               false,
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
 		},
 		{
-			desc:                   "get_network_fails",
-			getProjectRequestFails: false,
-			getProjectRequestResp: &iaas.Request{
-				Resources: &[]iaas.RequestResource{
-					{
-						Id: utils.Ptr("nid"),
-					},
-				},
-			},
-			getNetworkFails: true,
-			resourceState:   "",
-			wantErr:         true,
-			wantResp:        false,
-		},
-		{
-			desc:                   "timeout",
-			getProjectRequestFails: false,
-			getProjectRequestResp: &iaas.Request{
-				Resources: &[]iaas.RequestResource{
-					{
-						Id: utils.Ptr("nid"),
-					},
-				},
-			},
-			getNetworkFails: false,
-			resourceState:   "ANOTHER STATE",
-			wantErr:         true,
-			wantResp:        true,
-		},
-		{
-			desc:                   "no_resources",
-			getProjectRequestFails: false,
-			getProjectRequestResp: &iaas.Request{
-				Resources: &[]iaas.RequestResource{},
-			},
-			getNetworkFails: false,
-			resourceState:   "",
-			wantErr:         true,
-			wantResp:        false,
-		},
-		{
-			desc:                   "no_resource_id_in_request",
-			getProjectRequestFails: false,
-			getProjectRequestResp: &iaas.Request{
-				Resources: &[]iaas.RequestResource{
-					{
-						Id: nil,
-					},
-				},
-			},
-			getNetworkFails: false,
-			resourceState:   "",
-			wantErr:         true,
-			wantResp:        false,
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
 			apiClient := &apiClientMocked{
-				getProjectRequestFails: tt.getProjectRequestFails,
-				getProjectRequestResp:  tt.getProjectRequestResp,
-				getNetworkFails:        tt.getNetworkFails,
-				resourceState:          tt.resourceState,
+				getNetworkFails: tt.getFails,
+				resourceState:   tt.resourceState,
 			}
 
 			var wantRes *iaas.Network
@@ -355,7 +292,7 @@ func TestCreateNetworkWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateNetworkWaitHandler(context.Background(), apiClient, "pid", "rid")
+			handler := CreateNetworkWaitHandler(context.Background(), apiClient, "pid", "nid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -456,7 +393,7 @@ func TestDeleteNetworkWaitHandler(t *testing.T) {
 			getFails:      false,
 			resourceState: "ANOTHER STATE",
 			wantErr:       true,
-			wantResp:      true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
