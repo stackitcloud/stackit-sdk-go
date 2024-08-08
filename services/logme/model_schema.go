@@ -10,7 +10,101 @@ API version: 1.1.0
 
 package logme
 
+import (
+	"encoding/json"
+)
+
+// checks if the Schema type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Schema{}
+
+// Schema struct for Schema
 type Schema struct {
 	// REQUIRED
 	Parameters *map[string]interface{} `json:"parameters"`
+}
+
+type _Schema Schema
+
+// NewSchema instantiates a new Schema object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSchema(parameters *map[string]interface{}) *Schema {
+	this := Schema{}
+	this.Parameters = parameters
+	return &this
+}
+
+// NewSchemaWithDefaults instantiates a new Schema object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSchemaWithDefaults() *Schema {
+	this := Schema{}
+	return &this
+}
+
+// GetParameters returns the Parameters field value
+func (o *Schema) GetParameters() *map[string]interface{} {
+	if o == nil {
+		var ret *map[string]interface{}
+		return ret
+	}
+
+	return o.Parameters
+}
+
+// GetParametersOk returns a tuple with the Parameters field value
+// and a boolean to check if the value has been set.
+func (o *Schema) GetParametersOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return &map[string]interface{}{}, false
+	}
+	return o.Parameters, true
+}
+
+// SetParameters sets field value
+func (o *Schema) SetParameters(v *map[string]interface{}) {
+	o.Parameters = v
+}
+
+func (o Schema) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["parameters"] = o.Parameters
+	return toSerialize, nil
+}
+
+type NullableSchema struct {
+	value *Schema
+	isSet bool
+}
+
+func (v NullableSchema) Get() *Schema {
+	return v.value
+}
+
+func (v *NullableSchema) Set(val *Schema) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSchema) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSchema) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSchema(val *Schema) *NullableSchema {
+	return &NullableSchema{value: val, isSet: true}
+}
+
+func (v NullableSchema) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableSchema) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
