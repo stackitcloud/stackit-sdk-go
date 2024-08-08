@@ -10,7 +10,101 @@ API version: 1.1.0
 
 package mariadb
 
+import (
+	"encoding/json"
+)
+
+// checks if the TriggerRestoreResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TriggerRestoreResponse{}
+
+// TriggerRestoreResponse struct for TriggerRestoreResponse
 type TriggerRestoreResponse struct {
 	// REQUIRED
 	Id *int64 `json:"id"`
+}
+
+type _TriggerRestoreResponse TriggerRestoreResponse
+
+// NewTriggerRestoreResponse instantiates a new TriggerRestoreResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTriggerRestoreResponse(id *int64) *TriggerRestoreResponse {
+	this := TriggerRestoreResponse{}
+	this.Id = id
+	return &this
+}
+
+// NewTriggerRestoreResponseWithDefaults instantiates a new TriggerRestoreResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTriggerRestoreResponseWithDefaults() *TriggerRestoreResponse {
+	this := TriggerRestoreResponse{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *TriggerRestoreResponse) GetId() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *TriggerRestoreResponse) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// SetId sets field value
+func (o *TriggerRestoreResponse) SetId(v *int64) {
+	o.Id = v
+}
+
+func (o TriggerRestoreResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	return toSerialize, nil
+}
+
+type NullableTriggerRestoreResponse struct {
+	value *TriggerRestoreResponse
+	isSet bool
+}
+
+func (v NullableTriggerRestoreResponse) Get() *TriggerRestoreResponse {
+	return v.value
+}
+
+func (v *NullableTriggerRestoreResponse) Set(val *TriggerRestoreResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTriggerRestoreResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTriggerRestoreResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTriggerRestoreResponse(val *TriggerRestoreResponse) *NullableTriggerRestoreResponse {
+	return &NullableTriggerRestoreResponse{value: val, isSet: true}
+}
+
+func (v NullableTriggerRestoreResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableTriggerRestoreResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
