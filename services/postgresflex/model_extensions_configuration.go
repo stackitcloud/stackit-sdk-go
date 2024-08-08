@@ -10,7 +10,143 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the ExtensionsConfiguration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExtensionsConfiguration{}
+
+// ExtensionsConfiguration struct for ExtensionsConfiguration
 type ExtensionsConfiguration struct {
 	Name    *string `json:"name,omitempty"`
 	Setting *string `json:"setting,omitempty"`
+}
+
+// NewExtensionsConfiguration instantiates a new ExtensionsConfiguration object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewExtensionsConfiguration() *ExtensionsConfiguration {
+	this := ExtensionsConfiguration{}
+	return &this
+}
+
+// NewExtensionsConfigurationWithDefaults instantiates a new ExtensionsConfiguration object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewExtensionsConfigurationWithDefaults() *ExtensionsConfiguration {
+	this := ExtensionsConfiguration{}
+	return &this
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *ExtensionsConfiguration) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionsConfiguration) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *ExtensionsConfiguration) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *ExtensionsConfiguration) SetName(v *string) {
+	o.Name = v
+}
+
+// GetSetting returns the Setting field value if set, zero value otherwise.
+func (o *ExtensionsConfiguration) GetSetting() *string {
+	if o == nil || IsNil(o.Setting) {
+		var ret *string
+		return ret
+	}
+	return o.Setting
+}
+
+// GetSettingOk returns a tuple with the Setting field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionsConfiguration) GetSettingOk() (*string, bool) {
+	if o == nil || IsNil(o.Setting) {
+		return nil, false
+	}
+	return o.Setting, true
+}
+
+// HasSetting returns a boolean if a field has been set.
+func (o *ExtensionsConfiguration) HasSetting() bool {
+	if o != nil && !IsNil(o.Setting) {
+		return true
+	}
+
+	return false
+}
+
+// SetSetting gets a reference to the given string and assigns it to the Setting field.
+func (o *ExtensionsConfiguration) SetSetting(v *string) {
+	o.Setting = v
+}
+
+func (o ExtensionsConfiguration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Setting) {
+		toSerialize["setting"] = o.Setting
+	}
+	return toSerialize, nil
+}
+
+type NullableExtensionsConfiguration struct {
+	value *ExtensionsConfiguration
+	isSet bool
+}
+
+func (v NullableExtensionsConfiguration) Get() *ExtensionsConfiguration {
+	return v.value
+}
+
+func (v *NullableExtensionsConfiguration) Set(val *ExtensionsConfiguration) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableExtensionsConfiguration) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableExtensionsConfiguration) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableExtensionsConfiguration(val *ExtensionsConfiguration) *NullableExtensionsConfiguration {
+	return &NullableExtensionsConfiguration{value: val, isSet: true}
+}
+
+func (v NullableExtensionsConfiguration) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableExtensionsConfiguration) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
