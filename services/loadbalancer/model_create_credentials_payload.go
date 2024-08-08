@@ -10,6 +10,14 @@ API version: 1.7.1
 
 package loadbalancer
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateCredentialsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateCredentialsPayload{}
+
+// CreateCredentialsPayload struct for CreateCredentialsPayload
 type CreateCredentialsPayload struct {
 	// Credential name
 	DisplayName *string `json:"displayName,omitempty"`
@@ -17,4 +25,167 @@ type CreateCredentialsPayload struct {
 	Password *string `json:"password,omitempty"`
 	// A valid username used for an existing ARGUS instance, which is used during basic auth.
 	Username *string `json:"username,omitempty"`
+}
+
+// NewCreateCredentialsPayload instantiates a new CreateCredentialsPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateCredentialsPayload() *CreateCredentialsPayload {
+	this := CreateCredentialsPayload{}
+	return &this
+}
+
+// NewCreateCredentialsPayloadWithDefaults instantiates a new CreateCredentialsPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateCredentialsPayloadWithDefaults() *CreateCredentialsPayload {
+	this := CreateCredentialsPayload{}
+	return &this
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *CreateCredentialsPayload) GetDisplayName() *string {
+	if o == nil || IsNil(o.DisplayName) {
+		var ret *string
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCredentialsPayload) GetDisplayNameOk() (*string, bool) {
+	if o == nil || IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *CreateCredentialsPayload) HasDisplayName() bool {
+	if o != nil && !IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *CreateCredentialsPayload) SetDisplayName(v *string) {
+	o.DisplayName = v
+}
+
+// GetPassword returns the Password field value if set, zero value otherwise.
+func (o *CreateCredentialsPayload) GetPassword() *string {
+	if o == nil || IsNil(o.Password) {
+		var ret *string
+		return ret
+	}
+	return o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCredentialsPayload) GetPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.Password) {
+		return nil, false
+	}
+	return o.Password, true
+}
+
+// HasPassword returns a boolean if a field has been set.
+func (o *CreateCredentialsPayload) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
+func (o *CreateCredentialsPayload) SetPassword(v *string) {
+	o.Password = v
+}
+
+// GetUsername returns the Username field value if set, zero value otherwise.
+func (o *CreateCredentialsPayload) GetUsername() *string {
+	if o == nil || IsNil(o.Username) {
+		var ret *string
+		return ret
+	}
+	return o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCredentialsPayload) GetUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.Username) {
+		return nil, false
+	}
+	return o.Username, true
+}
+
+// HasUsername returns a boolean if a field has been set.
+func (o *CreateCredentialsPayload) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
+func (o *CreateCredentialsPayload) SetUsername(v *string) {
+	o.Username = v
+}
+
+func (o CreateCredentialsPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DisplayName) {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateCredentialsPayload struct {
+	value *CreateCredentialsPayload
+	isSet bool
+}
+
+func (v NullableCreateCredentialsPayload) Get() *CreateCredentialsPayload {
+	return v.value
+}
+
+func (v *NullableCreateCredentialsPayload) Set(val *CreateCredentialsPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateCredentialsPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateCredentialsPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateCredentialsPayload(val *CreateCredentialsPayload) *NullableCreateCredentialsPayload {
+	return &NullableCreateCredentialsPayload{value: val, isSet: true}
+}
+
+func (v NullableCreateCredentialsPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateCredentialsPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
