@@ -111,7 +111,7 @@ func main() {
 	createNetworkPayload := iaas.CreateNetworkPayload{
 		Name: utils.Ptr("example-network"),
 		AddressFamily: &iaas.CreateNetworkAddressFamily{
-			Ipv4: &iaas.CreateNetworkIPv4{
+			Ipv4: &iaas.CreateNetworkIPv4Body{
 				PrefixLength: utils.Ptr(int64(24)),
 				Nameservers:  &[]string{"1.2.3.4"},
 			},
@@ -130,7 +130,7 @@ func main() {
 	fmt.Printf("[Iaas API] Current state of the network: %q\n", *network.State)
 	fmt.Println("[Iaas API] Waiting for network to be created...")
 
-	network, err = wait.CreateNetworkWaitHandler(context.Background(), iaasClient, projectId, httpResp.Header.Get("x-request-id")).WaitWithContext(context.Background())
+	network, err = wait.CreateNetworkWaitHandler(context.Background(), iaasClient, projectId, *network.NetworkId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when waiting for creation: %v\n", err)
 		os.Exit(1)
