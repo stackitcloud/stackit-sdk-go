@@ -10,6 +10,14 @@ API version: 1.0.9
 
 package objectstorage
 
+import (
+	"encoding/json"
+)
+
+// checks if the DeleteCredentialsGroupResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeleteCredentialsGroupResponse{}
+
+// DeleteCredentialsGroupResponse struct for DeleteCredentialsGroupResponse
 type DeleteCredentialsGroupResponse struct {
 	// The ID of the credentials group
 	// REQUIRED
@@ -17,4 +25,116 @@ type DeleteCredentialsGroupResponse struct {
 	// Project ID
 	// REQUIRED
 	Project *string `json:"project"`
+}
+
+type _DeleteCredentialsGroupResponse DeleteCredentialsGroupResponse
+
+// NewDeleteCredentialsGroupResponse instantiates a new DeleteCredentialsGroupResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDeleteCredentialsGroupResponse(credentialsGroupId *string, project *string) *DeleteCredentialsGroupResponse {
+	this := DeleteCredentialsGroupResponse{}
+	this.CredentialsGroupId = credentialsGroupId
+	this.Project = project
+	return &this
+}
+
+// NewDeleteCredentialsGroupResponseWithDefaults instantiates a new DeleteCredentialsGroupResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeleteCredentialsGroupResponseWithDefaults() *DeleteCredentialsGroupResponse {
+	this := DeleteCredentialsGroupResponse{}
+	return &this
+}
+
+// GetCredentialsGroupId returns the CredentialsGroupId field value
+func (o *DeleteCredentialsGroupResponse) GetCredentialsGroupId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.CredentialsGroupId
+}
+
+// GetCredentialsGroupIdOk returns a tuple with the CredentialsGroupId field value
+// and a boolean to check if the value has been set.
+func (o *DeleteCredentialsGroupResponse) GetCredentialsGroupIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CredentialsGroupId, true
+}
+
+// SetCredentialsGroupId sets field value
+func (o *DeleteCredentialsGroupResponse) SetCredentialsGroupId(v *string) {
+	o.CredentialsGroupId = v
+}
+
+// GetProject returns the Project field value
+func (o *DeleteCredentialsGroupResponse) GetProject() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value
+// and a boolean to check if the value has been set.
+func (o *DeleteCredentialsGroupResponse) GetProjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// SetProject sets field value
+func (o *DeleteCredentialsGroupResponse) SetProject(v *string) {
+	o.Project = v
+}
+
+func (o DeleteCredentialsGroupResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["credentialsGroupId"] = o.CredentialsGroupId
+	toSerialize["project"] = o.Project
+	return toSerialize, nil
+}
+
+type NullableDeleteCredentialsGroupResponse struct {
+	value *DeleteCredentialsGroupResponse
+	isSet bool
+}
+
+func (v NullableDeleteCredentialsGroupResponse) Get() *DeleteCredentialsGroupResponse {
+	return v.value
+}
+
+func (v *NullableDeleteCredentialsGroupResponse) Set(val *DeleteCredentialsGroupResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeleteCredentialsGroupResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDeleteCredentialsGroupResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDeleteCredentialsGroupResponse(val *DeleteCredentialsGroupResponse) *NullableDeleteCredentialsGroupResponse {
+	return &NullableDeleteCredentialsGroupResponse{value: val, isSet: true}
+}
+
+func (v NullableDeleteCredentialsGroupResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDeleteCredentialsGroupResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
