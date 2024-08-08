@@ -10,7 +10,101 @@ API version: 2.0
 
 package authorization
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListUserMembershipsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListUserMembershipsResponse{}
+
+// ListUserMembershipsResponse struct for ListUserMembershipsResponse
 type ListUserMembershipsResponse struct {
 	// REQUIRED
 	Items *[]UserMembership `json:"items"`
+}
+
+type _ListUserMembershipsResponse ListUserMembershipsResponse
+
+// NewListUserMembershipsResponse instantiates a new ListUserMembershipsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListUserMembershipsResponse(items *[]UserMembership) *ListUserMembershipsResponse {
+	this := ListUserMembershipsResponse{}
+	this.Items = items
+	return &this
+}
+
+// NewListUserMembershipsResponseWithDefaults instantiates a new ListUserMembershipsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListUserMembershipsResponseWithDefaults() *ListUserMembershipsResponse {
+	this := ListUserMembershipsResponse{}
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *ListUserMembershipsResponse) GetItems() *[]UserMembership {
+	if o == nil {
+		var ret *[]UserMembership
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *ListUserMembershipsResponse) GetItemsOk() (*[]UserMembership, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *ListUserMembershipsResponse) SetItems(v *[]UserMembership) {
+	o.Items = v
+}
+
+func (o ListUserMembershipsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["items"] = o.Items
+	return toSerialize, nil
+}
+
+type NullableListUserMembershipsResponse struct {
+	value *ListUserMembershipsResponse
+	isSet bool
+}
+
+func (v NullableListUserMembershipsResponse) Get() *ListUserMembershipsResponse {
+	return v.value
+}
+
+func (v *NullableListUserMembershipsResponse) Set(val *ListUserMembershipsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListUserMembershipsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListUserMembershipsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListUserMembershipsResponse(val *ListUserMembershipsResponse) *NullableListUserMembershipsResponse {
+	return &NullableListUserMembershipsResponse{value: val, isSet: true}
+}
+
+func (v NullableListUserMembershipsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListUserMembershipsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
