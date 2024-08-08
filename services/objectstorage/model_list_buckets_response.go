@@ -10,10 +10,130 @@ API version: 1.0.9
 
 package objectstorage
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListBucketsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListBucketsResponse{}
+
+// ListBucketsResponse struct for ListBucketsResponse
 type ListBucketsResponse struct {
 	// REQUIRED
 	Buckets *[]Bucket `json:"buckets"`
 	// Project ID
 	// REQUIRED
 	Project *string `json:"project"`
+}
+
+type _ListBucketsResponse ListBucketsResponse
+
+// NewListBucketsResponse instantiates a new ListBucketsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListBucketsResponse(buckets *[]Bucket, project *string) *ListBucketsResponse {
+	this := ListBucketsResponse{}
+	this.Buckets = buckets
+	this.Project = project
+	return &this
+}
+
+// NewListBucketsResponseWithDefaults instantiates a new ListBucketsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListBucketsResponseWithDefaults() *ListBucketsResponse {
+	this := ListBucketsResponse{}
+	return &this
+}
+
+// GetBuckets returns the Buckets field value
+func (o *ListBucketsResponse) GetBuckets() *[]Bucket {
+	if o == nil {
+		var ret *[]Bucket
+		return ret
+	}
+
+	return o.Buckets
+}
+
+// GetBucketsOk returns a tuple with the Buckets field value
+// and a boolean to check if the value has been set.
+func (o *ListBucketsResponse) GetBucketsOk() (*[]Bucket, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Buckets, true
+}
+
+// SetBuckets sets field value
+func (o *ListBucketsResponse) SetBuckets(v *[]Bucket) {
+	o.Buckets = v
+}
+
+// GetProject returns the Project field value
+func (o *ListBucketsResponse) GetProject() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value
+// and a boolean to check if the value has been set.
+func (o *ListBucketsResponse) GetProjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// SetProject sets field value
+func (o *ListBucketsResponse) SetProject(v *string) {
+	o.Project = v
+}
+
+func (o ListBucketsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["buckets"] = o.Buckets
+	toSerialize["project"] = o.Project
+	return toSerialize, nil
+}
+
+type NullableListBucketsResponse struct {
+	value *ListBucketsResponse
+	isSet bool
+}
+
+func (v NullableListBucketsResponse) Get() *ListBucketsResponse {
+	return v.value
+}
+
+func (v *NullableListBucketsResponse) Set(val *ListBucketsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListBucketsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListBucketsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListBucketsResponse(val *ListBucketsResponse) *NullableListBucketsResponse {
+	return &NullableListBucketsResponse{value: val, isSet: true}
+}
+
+func (v NullableListBucketsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListBucketsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

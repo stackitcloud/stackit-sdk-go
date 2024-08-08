@@ -10,6 +10,14 @@ API version: 1.0.9
 
 package objectstorage
 
+import (
+	"encoding/json"
+)
+
+// checks if the AccessKey type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AccessKey{}
+
+// AccessKey struct for AccessKey
 type AccessKey struct {
 	// REQUIRED
 	DisplayName *string `json:"displayName"`
@@ -18,4 +26,142 @@ type AccessKey struct {
 	// Identifies the pair of access key and secret access key for deletion
 	// REQUIRED
 	KeyId *string `json:"keyId"`
+}
+
+type _AccessKey AccessKey
+
+// NewAccessKey instantiates a new AccessKey object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAccessKey(displayName *string, expires *string, keyId *string) *AccessKey {
+	this := AccessKey{}
+	this.DisplayName = displayName
+	this.Expires = expires
+	this.KeyId = keyId
+	return &this
+}
+
+// NewAccessKeyWithDefaults instantiates a new AccessKey object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccessKeyWithDefaults() *AccessKey {
+	this := AccessKey{}
+	return &this
+}
+
+// GetDisplayName returns the DisplayName field value
+func (o *AccessKey) GetDisplayName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value
+// and a boolean to check if the value has been set.
+func (o *AccessKey) GetDisplayNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// SetDisplayName sets field value
+func (o *AccessKey) SetDisplayName(v *string) {
+	o.DisplayName = v
+}
+
+// GetExpires returns the Expires field value
+func (o *AccessKey) GetExpires() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Expires
+}
+
+// GetExpiresOk returns a tuple with the Expires field value
+// and a boolean to check if the value has been set.
+func (o *AccessKey) GetExpiresOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Expires, true
+}
+
+// SetExpires sets field value
+func (o *AccessKey) SetExpires(v *string) {
+	o.Expires = v
+}
+
+// GetKeyId returns the KeyId field value
+func (o *AccessKey) GetKeyId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.KeyId
+}
+
+// GetKeyIdOk returns a tuple with the KeyId field value
+// and a boolean to check if the value has been set.
+func (o *AccessKey) GetKeyIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KeyId, true
+}
+
+// SetKeyId sets field value
+func (o *AccessKey) SetKeyId(v *string) {
+	o.KeyId = v
+}
+
+func (o AccessKey) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["displayName"] = o.DisplayName
+	toSerialize["expires"] = o.Expires
+	toSerialize["keyId"] = o.KeyId
+	return toSerialize, nil
+}
+
+type NullableAccessKey struct {
+	value *AccessKey
+	isSet bool
+}
+
+func (v NullableAccessKey) Get() *AccessKey {
+	return v.value
+}
+
+func (v *NullableAccessKey) Set(val *AccessKey) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccessKey) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccessKey) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAccessKey(val *AccessKey) *NullableAccessKey {
+	return &NullableAccessKey{value: val, isSet: true}
+}
+
+func (v NullableAccessKey) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAccessKey) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
