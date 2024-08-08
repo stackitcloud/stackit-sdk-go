@@ -10,8 +10,16 @@ API version: 1beta1
 
 package iaas
 
+import (
+	"encoding/json"
+)
+
+// checks if the Route type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Route{}
+
+// Route Object represents a network route.
 type Route struct {
-	// Object that represents an IPv4 address.
+	// Object that represents an IP address.
 	// REQUIRED
 	Nexthop *string `json:"nexthop"`
 	// Classless Inter-Domain Routing (CIDR).
@@ -19,4 +27,151 @@ type Route struct {
 	Prefix *string `json:"prefix"`
 	// Universally Unique Identifier (UUID).
 	RouteId *string `json:"routeId,omitempty"`
+}
+
+type _Route Route
+
+// NewRoute instantiates a new Route object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRoute(nexthop *string, prefix *string) *Route {
+	this := Route{}
+	this.Nexthop = nexthop
+	this.Prefix = prefix
+	return &this
+}
+
+// NewRouteWithDefaults instantiates a new Route object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRouteWithDefaults() *Route {
+	this := Route{}
+	return &this
+}
+
+// GetNexthop returns the Nexthop field value
+func (o *Route) GetNexthop() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Nexthop
+}
+
+// GetNexthopOk returns a tuple with the Nexthop field value
+// and a boolean to check if the value has been set.
+func (o *Route) GetNexthopOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Nexthop, true
+}
+
+// SetNexthop sets field value
+func (o *Route) SetNexthop(v *string) {
+	o.Nexthop = v
+}
+
+// GetPrefix returns the Prefix field value
+func (o *Route) GetPrefix() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Prefix
+}
+
+// GetPrefixOk returns a tuple with the Prefix field value
+// and a boolean to check if the value has been set.
+func (o *Route) GetPrefixOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Prefix, true
+}
+
+// SetPrefix sets field value
+func (o *Route) SetPrefix(v *string) {
+	o.Prefix = v
+}
+
+// GetRouteId returns the RouteId field value if set, zero value otherwise.
+func (o *Route) GetRouteId() *string {
+	if o == nil || IsNil(o.RouteId) {
+		var ret *string
+		return ret
+	}
+	return o.RouteId
+}
+
+// GetRouteIdOk returns a tuple with the RouteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Route) GetRouteIdOk() (*string, bool) {
+	if o == nil || IsNil(o.RouteId) {
+		return nil, false
+	}
+	return o.RouteId, true
+}
+
+// HasRouteId returns a boolean if a field has been set.
+func (o *Route) HasRouteId() bool {
+	if o != nil && !IsNil(o.RouteId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRouteId gets a reference to the given string and assigns it to the RouteId field.
+func (o *Route) SetRouteId(v *string) {
+	o.RouteId = v
+}
+
+func (o Route) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["nexthop"] = o.Nexthop
+	toSerialize["prefix"] = o.Prefix
+	if !IsNil(o.RouteId) {
+		toSerialize["routeId"] = o.RouteId
+	}
+	return toSerialize, nil
+}
+
+type NullableRoute struct {
+	value *Route
+	isSet bool
+}
+
+func (v NullableRoute) Get() *Route {
+	return v.value
+}
+
+func (v *NullableRoute) Set(val *Route) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRoute) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRoute) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRoute(val *Route) *NullableRoute {
+	return &NullableRoute{value: val, isSet: true}
+}
+
+func (v NullableRoute) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRoute) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
