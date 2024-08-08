@@ -10,10 +10,139 @@ API version: 1.1.0
 
 package argus
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateScrapeConfigPayloadStaticConfigsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateScrapeConfigPayloadStaticConfigsInner{}
+
+// CreateScrapeConfigPayloadStaticConfigsInner struct for CreateScrapeConfigPayloadStaticConfigsInner
 type CreateScrapeConfigPayloadStaticConfigsInner struct {
 	// Labels assigned to all metrics scraped from the targets. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The targets specified by the static config.
 	// REQUIRED
 	Targets *[]string `json:"targets"`
+}
+
+type _CreateScrapeConfigPayloadStaticConfigsInner CreateScrapeConfigPayloadStaticConfigsInner
+
+// NewCreateScrapeConfigPayloadStaticConfigsInner instantiates a new CreateScrapeConfigPayloadStaticConfigsInner object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateScrapeConfigPayloadStaticConfigsInner(targets *[]string) *CreateScrapeConfigPayloadStaticConfigsInner {
+	this := CreateScrapeConfigPayloadStaticConfigsInner{}
+	this.Targets = targets
+	return &this
+}
+
+// NewCreateScrapeConfigPayloadStaticConfigsInnerWithDefaults instantiates a new CreateScrapeConfigPayloadStaticConfigsInner object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateScrapeConfigPayloadStaticConfigsInnerWithDefaults() *CreateScrapeConfigPayloadStaticConfigsInner {
+	this := CreateScrapeConfigPayloadStaticConfigsInner{}
+	return &this
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetLabels() *map[string]interface{} {
+	if o == nil || IsNil(o.Labels) {
+		var ret *map[string]interface{}
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetLabelsOk() (*map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return &map[string]interface{}{}, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) SetLabels(v *map[string]interface{}) {
+	o.Labels = v
+}
+
+// GetTargets returns the Targets field value
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetTargets() *[]string {
+	if o == nil {
+		var ret *[]string
+		return ret
+	}
+
+	return o.Targets
+}
+
+// GetTargetsOk returns a tuple with the Targets field value
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetTargetsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Targets, true
+}
+
+// SetTargets sets field value
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) SetTargets(v *[]string) {
+	o.Targets = v
+}
+
+func (o CreateScrapeConfigPayloadStaticConfigsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	toSerialize["targets"] = o.Targets
+	return toSerialize, nil
+}
+
+type NullableCreateScrapeConfigPayloadStaticConfigsInner struct {
+	value *CreateScrapeConfigPayloadStaticConfigsInner
+	isSet bool
+}
+
+func (v NullableCreateScrapeConfigPayloadStaticConfigsInner) Get() *CreateScrapeConfigPayloadStaticConfigsInner {
+	return v.value
+}
+
+func (v *NullableCreateScrapeConfigPayloadStaticConfigsInner) Set(val *CreateScrapeConfigPayloadStaticConfigsInner) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateScrapeConfigPayloadStaticConfigsInner) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateScrapeConfigPayloadStaticConfigsInner) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateScrapeConfigPayloadStaticConfigsInner(val *CreateScrapeConfigPayloadStaticConfigsInner) *NullableCreateScrapeConfigPayloadStaticConfigsInner {
+	return &NullableCreateScrapeConfigPayloadStaticConfigsInner{value: val, isSet: true}
+}
+
+func (v NullableCreateScrapeConfigPayloadStaticConfigsInner) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateScrapeConfigPayloadStaticConfigsInner) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

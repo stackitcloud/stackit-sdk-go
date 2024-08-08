@@ -10,6 +10,14 @@ API version: 1.1.0
 
 package argus
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateScrapeConfigPayloadMetricsRelabelConfigsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
+
+// CreateScrapeConfigPayloadMetricsRelabelConfigsInner struct for CreateScrapeConfigPayloadMetricsRelabelConfigsInner
 type CreateScrapeConfigPayloadMetricsRelabelConfigsInner struct {
 	// Action to perform based on regex matching. `Additional Validators:` * if action is replace, targetLabel needs to be in body
 	Action *string `json:"action,omitempty"`
@@ -25,4 +33,323 @@ type CreateScrapeConfigPayloadMetricsRelabelConfigsInner struct {
 	SourceLabels *[]string `json:"sourceLabels,omitempty"`
 	// Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
 	TargetLabel *string `json:"targetLabel,omitempty"`
+}
+
+// NewCreateScrapeConfigPayloadMetricsRelabelConfigsInner instantiates a new CreateScrapeConfigPayloadMetricsRelabelConfigsInner object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInner() *CreateScrapeConfigPayloadMetricsRelabelConfigsInner {
+	this := CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
+	var action string = "replace"
+	this.Action = &action
+	var regex string = ".*"
+	this.Regex = &regex
+	var replacement string = "$1"
+	this.Replacement = &replacement
+	var separator string = ";"
+	this.Separator = &separator
+	return &this
+}
+
+// NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerWithDefaults instantiates a new CreateScrapeConfigPayloadMetricsRelabelConfigsInner object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerWithDefaults() *CreateScrapeConfigPayloadMetricsRelabelConfigsInner {
+	this := CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
+	var action string = "replace"
+	this.Action = &action
+	var regex string = ".*"
+	this.Regex = &regex
+	var replacement string = "$1"
+	this.Replacement = &replacement
+	var separator string = ";"
+	this.Separator = &separator
+	return &this
+}
+
+// GetAction returns the Action field value if set, zero value otherwise.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetAction() *string {
+	if o == nil || IsNil(o.Action) {
+		var ret *string
+		return ret
+	}
+	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetActionOk() (*string, bool) {
+	if o == nil || IsNil(o.Action) {
+		return nil, false
+	}
+	return o.Action, true
+}
+
+// HasAction returns a boolean if a field has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasAction() bool {
+	if o != nil && !IsNil(o.Action) {
+		return true
+	}
+
+	return false
+}
+
+// SetAction gets a reference to the given string and assigns it to the Action field.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetAction(v *string) {
+	o.Action = v
+}
+
+// GetModulus returns the Modulus field value if set, zero value otherwise.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetModulus() *float64 {
+	if o == nil || IsNil(o.Modulus) {
+		var ret *float64
+		return ret
+	}
+	return o.Modulus
+}
+
+// GetModulusOk returns a tuple with the Modulus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetModulusOk() (*float64, bool) {
+	if o == nil || IsNil(o.Modulus) {
+		return nil, false
+	}
+	return o.Modulus, true
+}
+
+// HasModulus returns a boolean if a field has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasModulus() bool {
+	if o != nil && !IsNil(o.Modulus) {
+		return true
+	}
+
+	return false
+}
+
+// SetModulus gets a reference to the given float64 and assigns it to the Modulus field.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetModulus(v *float64) {
+	o.Modulus = v
+}
+
+// GetRegex returns the Regex field value if set, zero value otherwise.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetRegex() *string {
+	if o == nil || IsNil(o.Regex) {
+		var ret *string
+		return ret
+	}
+	return o.Regex
+}
+
+// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetRegexOk() (*string, bool) {
+	if o == nil || IsNil(o.Regex) {
+		return nil, false
+	}
+	return o.Regex, true
+}
+
+// HasRegex returns a boolean if a field has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasRegex() bool {
+	if o != nil && !IsNil(o.Regex) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegex gets a reference to the given string and assigns it to the Regex field.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetRegex(v *string) {
+	o.Regex = v
+}
+
+// GetReplacement returns the Replacement field value if set, zero value otherwise.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetReplacement() *string {
+	if o == nil || IsNil(o.Replacement) {
+		var ret *string
+		return ret
+	}
+	return o.Replacement
+}
+
+// GetReplacementOk returns a tuple with the Replacement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetReplacementOk() (*string, bool) {
+	if o == nil || IsNil(o.Replacement) {
+		return nil, false
+	}
+	return o.Replacement, true
+}
+
+// HasReplacement returns a boolean if a field has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasReplacement() bool {
+	if o != nil && !IsNil(o.Replacement) {
+		return true
+	}
+
+	return false
+}
+
+// SetReplacement gets a reference to the given string and assigns it to the Replacement field.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetReplacement(v *string) {
+	o.Replacement = v
+}
+
+// GetSeparator returns the Separator field value if set, zero value otherwise.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetSeparator() *string {
+	if o == nil || IsNil(o.Separator) {
+		var ret *string
+		return ret
+	}
+	return o.Separator
+}
+
+// GetSeparatorOk returns a tuple with the Separator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetSeparatorOk() (*string, bool) {
+	if o == nil || IsNil(o.Separator) {
+		return nil, false
+	}
+	return o.Separator, true
+}
+
+// HasSeparator returns a boolean if a field has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasSeparator() bool {
+	if o != nil && !IsNil(o.Separator) {
+		return true
+	}
+
+	return false
+}
+
+// SetSeparator gets a reference to the given string and assigns it to the Separator field.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetSeparator(v *string) {
+	o.Separator = v
+}
+
+// GetSourceLabels returns the SourceLabels field value if set, zero value otherwise.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetSourceLabels() *[]string {
+	if o == nil || IsNil(o.SourceLabels) {
+		var ret *[]string
+		return ret
+	}
+	return o.SourceLabels
+}
+
+// GetSourceLabelsOk returns a tuple with the SourceLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetSourceLabelsOk() (*[]string, bool) {
+	if o == nil || IsNil(o.SourceLabels) {
+		return nil, false
+	}
+	return o.SourceLabels, true
+}
+
+// HasSourceLabels returns a boolean if a field has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasSourceLabels() bool {
+	if o != nil && !IsNil(o.SourceLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceLabels gets a reference to the given []string and assigns it to the SourceLabels field.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetSourceLabels(v *[]string) {
+	o.SourceLabels = v
+}
+
+// GetTargetLabel returns the TargetLabel field value if set, zero value otherwise.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetTargetLabel() *string {
+	if o == nil || IsNil(o.TargetLabel) {
+		var ret *string
+		return ret
+	}
+	return o.TargetLabel
+}
+
+// GetTargetLabelOk returns a tuple with the TargetLabel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetTargetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.TargetLabel) {
+		return nil, false
+	}
+	return o.TargetLabel, true
+}
+
+// HasTargetLabel returns a boolean if a field has been set.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasTargetLabel() bool {
+	if o != nil && !IsNil(o.TargetLabel) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetLabel gets a reference to the given string and assigns it to the TargetLabel field.
+func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetTargetLabel(v *string) {
+	o.TargetLabel = v
+}
+
+func (o CreateScrapeConfigPayloadMetricsRelabelConfigsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Action) {
+		toSerialize["action"] = o.Action
+	}
+	if !IsNil(o.Modulus) {
+		toSerialize["modulus"] = o.Modulus
+	}
+	if !IsNil(o.Regex) {
+		toSerialize["regex"] = o.Regex
+	}
+	if !IsNil(o.Replacement) {
+		toSerialize["replacement"] = o.Replacement
+	}
+	if !IsNil(o.Separator) {
+		toSerialize["separator"] = o.Separator
+	}
+	if !IsNil(o.SourceLabels) {
+		toSerialize["sourceLabels"] = o.SourceLabels
+	}
+	if !IsNil(o.TargetLabel) {
+		toSerialize["targetLabel"] = o.TargetLabel
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner struct {
+	value *CreateScrapeConfigPayloadMetricsRelabelConfigsInner
+	isSet bool
+}
+
+func (v NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner) Get() *CreateScrapeConfigPayloadMetricsRelabelConfigsInner {
+	return v.value
+}
+
+func (v *NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner) Set(val *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner(val *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) *NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner {
+	return &NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner{value: val, isSet: true}
+}
+
+func (v NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInner) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
