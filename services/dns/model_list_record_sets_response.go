@@ -10,6 +10,14 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListRecordSetsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListRecordSetsResponse{}
+
+// ListRecordSetsResponse ResponseRRSetAll.
 type ListRecordSetsResponse struct {
 	// REQUIRED
 	ItemsPerPage *int64  `json:"itemsPerPage"`
@@ -20,4 +28,203 @@ type ListRecordSetsResponse struct {
 	TotalItems *int64 `json:"totalItems"`
 	// REQUIRED
 	TotalPages *int64 `json:"totalPages"`
+}
+
+type _ListRecordSetsResponse ListRecordSetsResponse
+
+// NewListRecordSetsResponse instantiates a new ListRecordSetsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListRecordSetsResponse(itemsPerPage *int64, rrSets *[]RecordSet, totalItems *int64, totalPages *int64) *ListRecordSetsResponse {
+	this := ListRecordSetsResponse{}
+	this.ItemsPerPage = itemsPerPage
+	this.RrSets = rrSets
+	this.TotalItems = totalItems
+	this.TotalPages = totalPages
+	return &this
+}
+
+// NewListRecordSetsResponseWithDefaults instantiates a new ListRecordSetsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListRecordSetsResponseWithDefaults() *ListRecordSetsResponse {
+	this := ListRecordSetsResponse{}
+	return &this
+}
+
+// GetItemsPerPage returns the ItemsPerPage field value
+func (o *ListRecordSetsResponse) GetItemsPerPage() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.ItemsPerPage
+}
+
+// GetItemsPerPageOk returns a tuple with the ItemsPerPage field value
+// and a boolean to check if the value has been set.
+func (o *ListRecordSetsResponse) GetItemsPerPageOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ItemsPerPage, true
+}
+
+// SetItemsPerPage sets field value
+func (o *ListRecordSetsResponse) SetItemsPerPage(v *int64) {
+	o.ItemsPerPage = v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *ListRecordSetsResponse) GetMessage() *string {
+	if o == nil || IsNil(o.Message) {
+		var ret *string
+		return ret
+	}
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListRecordSetsResponse) GetMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.Message) {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *ListRecordSetsResponse) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *ListRecordSetsResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+// GetRrSets returns the RrSets field value
+func (o *ListRecordSetsResponse) GetRrSets() *[]RecordSet {
+	if o == nil {
+		var ret *[]RecordSet
+		return ret
+	}
+
+	return o.RrSets
+}
+
+// GetRrSetsOk returns a tuple with the RrSets field value
+// and a boolean to check if the value has been set.
+func (o *ListRecordSetsResponse) GetRrSetsOk() (*[]RecordSet, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RrSets, true
+}
+
+// SetRrSets sets field value
+func (o *ListRecordSetsResponse) SetRrSets(v *[]RecordSet) {
+	o.RrSets = v
+}
+
+// GetTotalItems returns the TotalItems field value
+func (o *ListRecordSetsResponse) GetTotalItems() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.TotalItems
+}
+
+// GetTotalItemsOk returns a tuple with the TotalItems field value
+// and a boolean to check if the value has been set.
+func (o *ListRecordSetsResponse) GetTotalItemsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TotalItems, true
+}
+
+// SetTotalItems sets field value
+func (o *ListRecordSetsResponse) SetTotalItems(v *int64) {
+	o.TotalItems = v
+}
+
+// GetTotalPages returns the TotalPages field value
+func (o *ListRecordSetsResponse) GetTotalPages() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.TotalPages
+}
+
+// GetTotalPagesOk returns a tuple with the TotalPages field value
+// and a boolean to check if the value has been set.
+func (o *ListRecordSetsResponse) GetTotalPagesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TotalPages, true
+}
+
+// SetTotalPages sets field value
+func (o *ListRecordSetsResponse) SetTotalPages(v *int64) {
+	o.TotalPages = v
+}
+
+func (o ListRecordSetsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["itemsPerPage"] = o.ItemsPerPage
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	toSerialize["rrSets"] = o.RrSets
+	toSerialize["totalItems"] = o.TotalItems
+	toSerialize["totalPages"] = o.TotalPages
+	return toSerialize, nil
+}
+
+type NullableListRecordSetsResponse struct {
+	value *ListRecordSetsResponse
+	isSet bool
+}
+
+func (v NullableListRecordSetsResponse) Get() *ListRecordSetsResponse {
+	return v.value
+}
+
+func (v *NullableListRecordSetsResponse) Set(val *ListRecordSetsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListRecordSetsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListRecordSetsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListRecordSetsResponse(val *ListRecordSetsResponse) *NullableListRecordSetsResponse {
+	return &NullableListRecordSetsResponse{value: val, isSet: true}
+}
+
+func (v NullableListRecordSetsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListRecordSetsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

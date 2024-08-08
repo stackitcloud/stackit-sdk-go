@@ -10,10 +10,251 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the RecordDataExchange type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecordDataExchange{}
+
+// RecordDataExchange struct for RecordDataExchange
 type RecordDataExchange struct {
 	Comment *string   `json:"comment,omitempty"`
 	Content *[]string `json:"content,omitempty"`
 	Name    *string   `json:"name,omitempty"`
 	Ttl     *int64    `json:"ttl,omitempty"`
 	Type    *string   `json:"type,omitempty"`
+}
+
+// NewRecordDataExchange instantiates a new RecordDataExchange object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRecordDataExchange() *RecordDataExchange {
+	this := RecordDataExchange{}
+	return &this
+}
+
+// NewRecordDataExchangeWithDefaults instantiates a new RecordDataExchange object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRecordDataExchangeWithDefaults() *RecordDataExchange {
+	this := RecordDataExchange{}
+	return &this
+}
+
+// GetComment returns the Comment field value if set, zero value otherwise.
+func (o *RecordDataExchange) GetComment() *string {
+	if o == nil || IsNil(o.Comment) {
+		var ret *string
+		return ret
+	}
+	return o.Comment
+}
+
+// GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordDataExchange) GetCommentOk() (*string, bool) {
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
+	}
+	return o.Comment, true
+}
+
+// HasComment returns a boolean if a field has been set.
+func (o *RecordDataExchange) HasComment() bool {
+	if o != nil && !IsNil(o.Comment) {
+		return true
+	}
+
+	return false
+}
+
+// SetComment gets a reference to the given string and assigns it to the Comment field.
+func (o *RecordDataExchange) SetComment(v *string) {
+	o.Comment = v
+}
+
+// GetContent returns the Content field value if set, zero value otherwise.
+func (o *RecordDataExchange) GetContent() *[]string {
+	if o == nil || IsNil(o.Content) {
+		var ret *[]string
+		return ret
+	}
+	return o.Content
+}
+
+// GetContentOk returns a tuple with the Content field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordDataExchange) GetContentOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Content) {
+		return nil, false
+	}
+	return o.Content, true
+}
+
+// HasContent returns a boolean if a field has been set.
+func (o *RecordDataExchange) HasContent() bool {
+	if o != nil && !IsNil(o.Content) {
+		return true
+	}
+
+	return false
+}
+
+// SetContent gets a reference to the given []string and assigns it to the Content field.
+func (o *RecordDataExchange) SetContent(v *[]string) {
+	o.Content = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *RecordDataExchange) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordDataExchange) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *RecordDataExchange) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *RecordDataExchange) SetName(v *string) {
+	o.Name = v
+}
+
+// GetTtl returns the Ttl field value if set, zero value otherwise.
+func (o *RecordDataExchange) GetTtl() *int64 {
+	if o == nil || IsNil(o.Ttl) {
+		var ret *int64
+		return ret
+	}
+	return o.Ttl
+}
+
+// GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordDataExchange) GetTtlOk() (*int64, bool) {
+	if o == nil || IsNil(o.Ttl) {
+		return nil, false
+	}
+	return o.Ttl, true
+}
+
+// HasTtl returns a boolean if a field has been set.
+func (o *RecordDataExchange) HasTtl() bool {
+	if o != nil && !IsNil(o.Ttl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTtl gets a reference to the given int64 and assigns it to the Ttl field.
+func (o *RecordDataExchange) SetTtl(v *int64) {
+	o.Ttl = v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *RecordDataExchange) GetType() *string {
+	if o == nil || IsNil(o.Type) {
+		var ret *string
+		return ret
+	}
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordDataExchange) GetTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *RecordDataExchange) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *RecordDataExchange) SetType(v *string) {
+	o.Type = v
+}
+
+func (o RecordDataExchange) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	if !IsNil(o.Content) {
+		toSerialize["content"] = o.Content
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Ttl) {
+		toSerialize["ttl"] = o.Ttl
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
+}
+
+type NullableRecordDataExchange struct {
+	value *RecordDataExchange
+	isSet bool
+}
+
+func (v NullableRecordDataExchange) Get() *RecordDataExchange {
+	return v.value
+}
+
+func (v *NullableRecordDataExchange) Set(val *RecordDataExchange) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRecordDataExchange) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRecordDataExchange) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRecordDataExchange(val *RecordDataExchange) *NullableRecordDataExchange {
+	return &NullableRecordDataExchange{value: val, isSet: true}
+}
+
+func (v NullableRecordDataExchange) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRecordDataExchange) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
