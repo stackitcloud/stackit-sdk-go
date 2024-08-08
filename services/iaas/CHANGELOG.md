@@ -1,3 +1,13 @@
+## v0.6.1 (2024-08-09)
+- **Breaking change**: Rename types:
+  - `CreateNetworkIPv4` renamed to **`CreateNetworkIPv4Body`**
+  - `V1CreateNetworkIPv6` renamed to **`CreateNetworkIPv6Body`**
+  - `UpdateNetworkIPv4` renamed to **`UpdateNetworkIPv4Body`**
+  - `V1UpdateNetworkIPv6` renamed to **`UpdateNetworkIPv6Body`**
+- **Feature:** `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `UpdateNetworkIPv4Body`, `UpdateNetworkIPv6Body` and `Network` have a new field: `Gateway`
+- **Feature:** `CreateNetworkPayload`, `PartialUpdateNetworkPayload` and `Network` have a new field: `Routed`
+- **Feature:** Add support for nullable fields
+
 ## v0.6.0 (2024-08-05)
 - **Breaking change:** Use network ID instead of request ID in the waiter: `CreateNetworkWaitHandler`
 
