@@ -10,7 +10,101 @@ API version: 1.1.0
 
 package logme
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListBackupsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListBackupsResponse{}
+
+// ListBackupsResponse struct for ListBackupsResponse
 type ListBackupsResponse struct {
 	// REQUIRED
 	InstanceBackups *[]Backup `json:"instanceBackups"`
+}
+
+type _ListBackupsResponse ListBackupsResponse
+
+// NewListBackupsResponse instantiates a new ListBackupsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListBackupsResponse(instanceBackups *[]Backup) *ListBackupsResponse {
+	this := ListBackupsResponse{}
+	this.InstanceBackups = instanceBackups
+	return &this
+}
+
+// NewListBackupsResponseWithDefaults instantiates a new ListBackupsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListBackupsResponseWithDefaults() *ListBackupsResponse {
+	this := ListBackupsResponse{}
+	return &this
+}
+
+// GetInstanceBackups returns the InstanceBackups field value
+func (o *ListBackupsResponse) GetInstanceBackups() *[]Backup {
+	if o == nil {
+		var ret *[]Backup
+		return ret
+	}
+
+	return o.InstanceBackups
+}
+
+// GetInstanceBackupsOk returns a tuple with the InstanceBackups field value
+// and a boolean to check if the value has been set.
+func (o *ListBackupsResponse) GetInstanceBackupsOk() (*[]Backup, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InstanceBackups, true
+}
+
+// SetInstanceBackups sets field value
+func (o *ListBackupsResponse) SetInstanceBackups(v *[]Backup) {
+	o.InstanceBackups = v
+}
+
+func (o ListBackupsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["instanceBackups"] = o.InstanceBackups
+	return toSerialize, nil
+}
+
+type NullableListBackupsResponse struct {
+	value *ListBackupsResponse
+	isSet bool
+}
+
+func (v NullableListBackupsResponse) Get() *ListBackupsResponse {
+	return v.value
+}
+
+func (v *NullableListBackupsResponse) Set(val *ListBackupsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListBackupsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListBackupsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListBackupsResponse(val *ListBackupsResponse) *NullableListBackupsResponse {
+	return &NullableListBackupsResponse{value: val, isSet: true}
+}
+
+func (v NullableListBackupsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListBackupsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
