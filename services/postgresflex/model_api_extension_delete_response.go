@@ -10,6 +10,107 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the ApiExtensionDeleteResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiExtensionDeleteResponse{}
+
+// ApiExtensionDeleteResponse struct for ApiExtensionDeleteResponse
 type ApiExtensionDeleteResponse struct {
 	IsSucceded *bool `json:"isSucceded,omitempty"`
+}
+
+// NewApiExtensionDeleteResponse instantiates a new ApiExtensionDeleteResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApiExtensionDeleteResponse() *ApiExtensionDeleteResponse {
+	this := ApiExtensionDeleteResponse{}
+	return &this
+}
+
+// NewApiExtensionDeleteResponseWithDefaults instantiates a new ApiExtensionDeleteResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApiExtensionDeleteResponseWithDefaults() *ApiExtensionDeleteResponse {
+	this := ApiExtensionDeleteResponse{}
+	return &this
+}
+
+// GetIsSucceded returns the IsSucceded field value if set, zero value otherwise.
+func (o *ApiExtensionDeleteResponse) GetIsSucceded() *bool {
+	if o == nil || IsNil(o.IsSucceded) {
+		var ret *bool
+		return ret
+	}
+	return o.IsSucceded
+}
+
+// GetIsSuccededOk returns a tuple with the IsSucceded field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiExtensionDeleteResponse) GetIsSuccededOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsSucceded) {
+		return nil, false
+	}
+	return o.IsSucceded, true
+}
+
+// HasIsSucceded returns a boolean if a field has been set.
+func (o *ApiExtensionDeleteResponse) HasIsSucceded() bool {
+	if o != nil && !IsNil(o.IsSucceded) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsSucceded gets a reference to the given bool and assigns it to the IsSucceded field.
+func (o *ApiExtensionDeleteResponse) SetIsSucceded(v *bool) {
+	o.IsSucceded = v
+}
+
+func (o ApiExtensionDeleteResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IsSucceded) {
+		toSerialize["isSucceded"] = o.IsSucceded
+	}
+	return toSerialize, nil
+}
+
+type NullableApiExtensionDeleteResponse struct {
+	value *ApiExtensionDeleteResponse
+	isSet bool
+}
+
+func (v NullableApiExtensionDeleteResponse) Get() *ApiExtensionDeleteResponse {
+	return v.value
+}
+
+func (v *NullableApiExtensionDeleteResponse) Set(val *ApiExtensionDeleteResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApiExtensionDeleteResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApiExtensionDeleteResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApiExtensionDeleteResponse(val *ApiExtensionDeleteResponse) *NullableApiExtensionDeleteResponse {
+	return &NullableApiExtensionDeleteResponse{value: val, isSet: true}
+}
+
+func (v NullableApiExtensionDeleteResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableApiExtensionDeleteResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
