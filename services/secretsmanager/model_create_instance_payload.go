@@ -10,8 +10,102 @@ API version: 1.2.0
 
 package secretsmanager
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateInstancePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateInstancePayload{}
+
+// CreateInstancePayload struct for CreateInstancePayload
 type CreateInstancePayload struct {
 	// A user chosen name to distinguish multiple secrets manager instances.
 	// REQUIRED
 	Name *string `json:"name"`
+}
+
+type _CreateInstancePayload CreateInstancePayload
+
+// NewCreateInstancePayload instantiates a new CreateInstancePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateInstancePayload(name *string) *CreateInstancePayload {
+	this := CreateInstancePayload{}
+	this.Name = name
+	return &this
+}
+
+// NewCreateInstancePayloadWithDefaults instantiates a new CreateInstancePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateInstancePayloadWithDefaults() *CreateInstancePayload {
+	this := CreateInstancePayload{}
+	return &this
+}
+
+// GetName returns the Name field value
+func (o *CreateInstancePayload) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CreateInstancePayload) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *CreateInstancePayload) SetName(v *string) {
+	o.Name = v
+}
+
+func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	return toSerialize, nil
+}
+
+type NullableCreateInstancePayload struct {
+	value *CreateInstancePayload
+	isSet bool
+}
+
+func (v NullableCreateInstancePayload) Get() *CreateInstancePayload {
+	return v.value
+}
+
+func (v *NullableCreateInstancePayload) Set(val *CreateInstancePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateInstancePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateInstancePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateInstancePayload(val *CreateInstancePayload) *NullableCreateInstancePayload {
+	return &NullableCreateInstancePayload{value: val, isSet: true}
+}
+
+func (v NullableCreateInstancePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateInstancePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
