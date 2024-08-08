@@ -10,6 +10,14 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the Argus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Argus{}
+
+// Argus struct for Argus
 type Argus struct {
 	// Argus instance ID to choose which Argus instance is used.
 	// REQUIRED
@@ -17,4 +25,116 @@ type Argus struct {
 	// Enables the argus extension.
 	// REQUIRED
 	Enabled *bool `json:"enabled"`
+}
+
+type _Argus Argus
+
+// NewArgus instantiates a new Argus object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewArgus(argusInstanceId *string, enabled *bool) *Argus {
+	this := Argus{}
+	this.ArgusInstanceId = argusInstanceId
+	this.Enabled = enabled
+	return &this
+}
+
+// NewArgusWithDefaults instantiates a new Argus object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewArgusWithDefaults() *Argus {
+	this := Argus{}
+	return &this
+}
+
+// GetArgusInstanceId returns the ArgusInstanceId field value
+func (o *Argus) GetArgusInstanceId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ArgusInstanceId
+}
+
+// GetArgusInstanceIdOk returns a tuple with the ArgusInstanceId field value
+// and a boolean to check if the value has been set.
+func (o *Argus) GetArgusInstanceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ArgusInstanceId, true
+}
+
+// SetArgusInstanceId sets field value
+func (o *Argus) SetArgusInstanceId(v *string) {
+	o.ArgusInstanceId = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *Argus) GetEnabled() *bool {
+	if o == nil {
+		var ret *bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *Argus) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *Argus) SetEnabled(v *bool) {
+	o.Enabled = v
+}
+
+func (o Argus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["argusInstanceId"] = o.ArgusInstanceId
+	toSerialize["enabled"] = o.Enabled
+	return toSerialize, nil
+}
+
+type NullableArgus struct {
+	value *Argus
+	isSet bool
+}
+
+func (v NullableArgus) Get() *Argus {
+	return v.value
+}
+
+func (v *NullableArgus) Set(val *Argus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableArgus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableArgus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableArgus(val *Argus) *NullableArgus {
+	return &NullableArgus{value: val, isSet: true}
+}
+
+func (v NullableArgus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableArgus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,8 +10,179 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the Extension type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Extension{}
+
+// Extension struct for Extension
 type Extension struct {
 	Acl   *ACL   `json:"acl,omitempty"`
 	Argus *Argus `json:"argus,omitempty"`
 	Dns   *DNS   `json:"dns,omitempty"`
+}
+
+// NewExtension instantiates a new Extension object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewExtension() *Extension {
+	this := Extension{}
+	return &this
+}
+
+// NewExtensionWithDefaults instantiates a new Extension object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewExtensionWithDefaults() *Extension {
+	this := Extension{}
+	return &this
+}
+
+// GetAcl returns the Acl field value if set, zero value otherwise.
+func (o *Extension) GetAcl() *ACL {
+	if o == nil || IsNil(o.Acl) {
+		var ret *ACL
+		return ret
+	}
+	return o.Acl
+}
+
+// GetAclOk returns a tuple with the Acl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Extension) GetAclOk() (*ACL, bool) {
+	if o == nil || IsNil(o.Acl) {
+		return nil, false
+	}
+	return o.Acl, true
+}
+
+// HasAcl returns a boolean if a field has been set.
+func (o *Extension) HasAcl() bool {
+	if o != nil && !IsNil(o.Acl) {
+		return true
+	}
+
+	return false
+}
+
+// SetAcl gets a reference to the given ACL and assigns it to the Acl field.
+func (o *Extension) SetAcl(v *ACL) {
+	o.Acl = v
+}
+
+// GetArgus returns the Argus field value if set, zero value otherwise.
+func (o *Extension) GetArgus() *Argus {
+	if o == nil || IsNil(o.Argus) {
+		var ret *Argus
+		return ret
+	}
+	return o.Argus
+}
+
+// GetArgusOk returns a tuple with the Argus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Extension) GetArgusOk() (*Argus, bool) {
+	if o == nil || IsNil(o.Argus) {
+		return nil, false
+	}
+	return o.Argus, true
+}
+
+// HasArgus returns a boolean if a field has been set.
+func (o *Extension) HasArgus() bool {
+	if o != nil && !IsNil(o.Argus) {
+		return true
+	}
+
+	return false
+}
+
+// SetArgus gets a reference to the given Argus and assigns it to the Argus field.
+func (o *Extension) SetArgus(v *Argus) {
+	o.Argus = v
+}
+
+// GetDns returns the Dns field value if set, zero value otherwise.
+func (o *Extension) GetDns() *DNS {
+	if o == nil || IsNil(o.Dns) {
+		var ret *DNS
+		return ret
+	}
+	return o.Dns
+}
+
+// GetDnsOk returns a tuple with the Dns field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Extension) GetDnsOk() (*DNS, bool) {
+	if o == nil || IsNil(o.Dns) {
+		return nil, false
+	}
+	return o.Dns, true
+}
+
+// HasDns returns a boolean if a field has been set.
+func (o *Extension) HasDns() bool {
+	if o != nil && !IsNil(o.Dns) {
+		return true
+	}
+
+	return false
+}
+
+// SetDns gets a reference to the given DNS and assigns it to the Dns field.
+func (o *Extension) SetDns(v *DNS) {
+	o.Dns = v
+}
+
+func (o Extension) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Acl) {
+		toSerialize["acl"] = o.Acl
+	}
+	if !IsNil(o.Argus) {
+		toSerialize["argus"] = o.Argus
+	}
+	if !IsNil(o.Dns) {
+		toSerialize["dns"] = o.Dns
+	}
+	return toSerialize, nil
+}
+
+type NullableExtension struct {
+	value *Extension
+	isSet bool
+}
+
+func (v NullableExtension) Get() *Extension {
+	return v.value
+}
+
+func (v *NullableExtension) Set(val *Extension) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableExtension) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableExtension) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableExtension(val *Extension) *NullableExtension {
+	return &NullableExtension{value: val, isSet: true}
+}
+
+func (v NullableExtension) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableExtension) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
