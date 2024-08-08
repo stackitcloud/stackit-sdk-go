@@ -10,6 +10,14 @@ API version: 1.1.0
 
 package argus
 
+import (
+	"encoding/json"
+)
+
+// checks if the Instance type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Instance{}
+
+// Instance struct for Instance
 type Instance struct {
 	// REQUIRED
 	Cluster *string `json:"cluster"`
@@ -29,4 +37,342 @@ type Instance struct {
 	// REQUIRED
 	Plan  *PlanModel `json:"plan"`
 	State *string    `json:"state,omitempty"`
+}
+
+type _Instance Instance
+
+// NewInstance instantiates a new Instance object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInstance(cluster *string, grafanaPublicReadAccess *bool, grafanaUseStackitSso *bool, instance *string, metricsRetentionTime1h *int64, metricsRetentionTime5m *int64, metricsRetentionTimeRaw *int64, plan *PlanModel) *Instance {
+	this := Instance{}
+	this.Cluster = cluster
+	this.GrafanaPublicReadAccess = grafanaPublicReadAccess
+	this.GrafanaUseStackitSso = grafanaUseStackitSso
+	this.Instance = instance
+	this.MetricsRetentionTime1h = metricsRetentionTime1h
+	this.MetricsRetentionTime5m = metricsRetentionTime5m
+	this.MetricsRetentionTimeRaw = metricsRetentionTimeRaw
+	this.Plan = plan
+	return &this
+}
+
+// NewInstanceWithDefaults instantiates a new Instance object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInstanceWithDefaults() *Instance {
+	this := Instance{}
+	return &this
+}
+
+// GetCluster returns the Cluster field value
+func (o *Instance) GetCluster() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Cluster
+}
+
+// GetClusterOk returns a tuple with the Cluster field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetClusterOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Cluster, true
+}
+
+// SetCluster sets field value
+func (o *Instance) SetCluster(v *string) {
+	o.Cluster = v
+}
+
+// GetGrafanaPublicReadAccess returns the GrafanaPublicReadAccess field value
+func (o *Instance) GetGrafanaPublicReadAccess() *bool {
+	if o == nil {
+		var ret *bool
+		return ret
+	}
+
+	return o.GrafanaPublicReadAccess
+}
+
+// GetGrafanaPublicReadAccessOk returns a tuple with the GrafanaPublicReadAccess field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetGrafanaPublicReadAccessOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GrafanaPublicReadAccess, true
+}
+
+// SetGrafanaPublicReadAccess sets field value
+func (o *Instance) SetGrafanaPublicReadAccess(v *bool) {
+	o.GrafanaPublicReadAccess = v
+}
+
+// GetGrafanaUseStackitSso returns the GrafanaUseStackitSso field value
+func (o *Instance) GetGrafanaUseStackitSso() *bool {
+	if o == nil {
+		var ret *bool
+		return ret
+	}
+
+	return o.GrafanaUseStackitSso
+}
+
+// GetGrafanaUseStackitSsoOk returns a tuple with the GrafanaUseStackitSso field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetGrafanaUseStackitSsoOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GrafanaUseStackitSso, true
+}
+
+// SetGrafanaUseStackitSso sets field value
+func (o *Instance) SetGrafanaUseStackitSso(v *bool) {
+	o.GrafanaUseStackitSso = v
+}
+
+// GetInstance returns the Instance field value
+func (o *Instance) GetInstance() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Instance
+}
+
+// GetInstanceOk returns a tuple with the Instance field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetInstanceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Instance, true
+}
+
+// SetInstance sets field value
+func (o *Instance) SetInstance(v *string) {
+	o.Instance = v
+}
+
+// GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
+func (o *Instance) GetMetricsRetentionTime1h() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.MetricsRetentionTime1h
+}
+
+// GetMetricsRetentionTime1hOk returns a tuple with the MetricsRetentionTime1h field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetMetricsRetentionTime1hOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MetricsRetentionTime1h, true
+}
+
+// SetMetricsRetentionTime1h sets field value
+func (o *Instance) SetMetricsRetentionTime1h(v *int64) {
+	o.MetricsRetentionTime1h = v
+}
+
+// GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
+func (o *Instance) GetMetricsRetentionTime5m() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.MetricsRetentionTime5m
+}
+
+// GetMetricsRetentionTime5mOk returns a tuple with the MetricsRetentionTime5m field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetMetricsRetentionTime5mOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MetricsRetentionTime5m, true
+}
+
+// SetMetricsRetentionTime5m sets field value
+func (o *Instance) SetMetricsRetentionTime5m(v *int64) {
+	o.MetricsRetentionTime5m = v
+}
+
+// GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
+func (o *Instance) GetMetricsRetentionTimeRaw() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.MetricsRetentionTimeRaw
+}
+
+// GetMetricsRetentionTimeRawOk returns a tuple with the MetricsRetentionTimeRaw field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetMetricsRetentionTimeRawOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MetricsRetentionTimeRaw, true
+}
+
+// SetMetricsRetentionTimeRaw sets field value
+func (o *Instance) SetMetricsRetentionTimeRaw(v *int64) {
+	o.MetricsRetentionTimeRaw = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *Instance) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *Instance) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *Instance) SetName(v *string) {
+	o.Name = v
+}
+
+// GetPlan returns the Plan field value
+func (o *Instance) GetPlan() *PlanModel {
+	if o == nil {
+		var ret *PlanModel
+		return ret
+	}
+
+	return o.Plan
+}
+
+// GetPlanOk returns a tuple with the Plan field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetPlanOk() (*PlanModel, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Plan, true
+}
+
+// SetPlan sets field value
+func (o *Instance) SetPlan(v *PlanModel) {
+	o.Plan = v
+}
+
+// GetState returns the State field value if set, zero value otherwise.
+func (o *Instance) GetState() *string {
+	if o == nil || IsNil(o.State) {
+		var ret *string
+		return ret
+	}
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetStateOk() (*string, bool) {
+	if o == nil || IsNil(o.State) {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *Instance) HasState() bool {
+	if o != nil && !IsNil(o.State) {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *Instance) SetState(v *string) {
+	o.State = v
+}
+
+func (o Instance) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["cluster"] = o.Cluster
+	toSerialize["grafanaPublicReadAccess"] = o.GrafanaPublicReadAccess
+	toSerialize["grafanaUseStackitSso"] = o.GrafanaUseStackitSso
+	toSerialize["instance"] = o.Instance
+	toSerialize["metricsRetentionTime1h"] = o.MetricsRetentionTime1h
+	toSerialize["metricsRetentionTime5m"] = o.MetricsRetentionTime5m
+	toSerialize["metricsRetentionTimeRaw"] = o.MetricsRetentionTimeRaw
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["plan"] = o.Plan
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	return toSerialize, nil
+}
+
+type NullableInstance struct {
+	value *Instance
+	isSet bool
+}
+
+func (v NullableInstance) Get() *Instance {
+	return v.value
+}
+
+func (v *NullableInstance) Set(val *Instance) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstance) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstance) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstance(val *Instance) *NullableInstance {
+	return &NullableInstance{value: val, isSet: true}
+}
+
+func (v NullableInstance) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstance) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

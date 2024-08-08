@@ -10,9 +10,129 @@ API version: 1.1.0
 
 package argus
 
+import (
+	"encoding/json"
+)
+
+// checks if the PlansResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PlansResponse{}
+
+// PlansResponse struct for PlansResponse
 type PlansResponse struct {
 	// REQUIRED
 	Message *string `json:"message"`
 	// REQUIRED
 	Plans *[]Plan `json:"plans"`
+}
+
+type _PlansResponse PlansResponse
+
+// NewPlansResponse instantiates a new PlansResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPlansResponse(message *string, plans *[]Plan) *PlansResponse {
+	this := PlansResponse{}
+	this.Message = message
+	this.Plans = plans
+	return &this
+}
+
+// NewPlansResponseWithDefaults instantiates a new PlansResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPlansResponseWithDefaults() *PlansResponse {
+	this := PlansResponse{}
+	return &this
+}
+
+// GetMessage returns the Message field value
+func (o *PlansResponse) GetMessage() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *PlansResponse) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// SetMessage sets field value
+func (o *PlansResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+// GetPlans returns the Plans field value
+func (o *PlansResponse) GetPlans() *[]Plan {
+	if o == nil {
+		var ret *[]Plan
+		return ret
+	}
+
+	return o.Plans
+}
+
+// GetPlansOk returns a tuple with the Plans field value
+// and a boolean to check if the value has been set.
+func (o *PlansResponse) GetPlansOk() (*[]Plan, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Plans, true
+}
+
+// SetPlans sets field value
+func (o *PlansResponse) SetPlans(v *[]Plan) {
+	o.Plans = v
+}
+
+func (o PlansResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["message"] = o.Message
+	toSerialize["plans"] = o.Plans
+	return toSerialize, nil
+}
+
+type NullablePlansResponse struct {
+	value *PlansResponse
+	isSet bool
+}
+
+func (v NullablePlansResponse) Get() *PlansResponse {
+	return v.value
+}
+
+func (v *NullablePlansResponse) Set(val *PlansResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePlansResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePlansResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePlansResponse(val *PlansResponse) *NullablePlansResponse {
+	return &NullablePlansResponse{value: val, isSet: true}
+}
+
+func (v NullablePlansResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePlansResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

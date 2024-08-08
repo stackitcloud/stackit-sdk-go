@@ -10,6 +10,14 @@ API version: 1.1.0
 
 package argus
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateAlertConfigReceiverPayloadOpsgenieConfigsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateAlertConfigReceiverPayloadOpsgenieConfigsInner{}
+
+// CreateAlertConfigReceiverPayloadOpsgenieConfigsInner struct for CreateAlertConfigReceiverPayloadOpsgenieConfigsInner
 type CreateAlertConfigReceiverPayloadOpsgenieConfigsInner struct {
 	// The API key to use when talking to the OpsGenie API. `Additional Validators:` * should only include the characters: a-zA-Z0-9-
 	ApiKey *string `json:"apiKey,omitempty"`
@@ -17,4 +25,167 @@ type CreateAlertConfigReceiverPayloadOpsgenieConfigsInner struct {
 	ApiUrl *string `json:"apiUrl,omitempty"`
 	// Comma separated list of tags attached to the notifications.
 	Tags *string `json:"tags,omitempty"`
+}
+
+// NewCreateAlertConfigReceiverPayloadOpsgenieConfigsInner instantiates a new CreateAlertConfigReceiverPayloadOpsgenieConfigsInner object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateAlertConfigReceiverPayloadOpsgenieConfigsInner() *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner {
+	this := CreateAlertConfigReceiverPayloadOpsgenieConfigsInner{}
+	return &this
+}
+
+// NewCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerWithDefaults instantiates a new CreateAlertConfigReceiverPayloadOpsgenieConfigsInner object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerWithDefaults() *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner {
+	this := CreateAlertConfigReceiverPayloadOpsgenieConfigsInner{}
+	return &this
+}
+
+// GetApiKey returns the ApiKey field value if set, zero value otherwise.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiKey() *string {
+	if o == nil || IsNil(o.ApiKey) {
+		var ret *string
+		return ret
+	}
+	return o.ApiKey
+}
+
+// GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiKey) {
+		return nil, false
+	}
+	return o.ApiKey, true
+}
+
+// HasApiKey returns a boolean if a field has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasApiKey() bool {
+	if o != nil && !IsNil(o.ApiKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetApiKey(v *string) {
+	o.ApiKey = v
+}
+
+// GetApiUrl returns the ApiUrl field value if set, zero value otherwise.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiUrl() *string {
+	if o == nil || IsNil(o.ApiUrl) {
+		var ret *string
+		return ret
+	}
+	return o.ApiUrl
+}
+
+// GetApiUrlOk returns a tuple with the ApiUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiUrl) {
+		return nil, false
+	}
+	return o.ApiUrl, true
+}
+
+// HasApiUrl returns a boolean if a field has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasApiUrl() bool {
+	if o != nil && !IsNil(o.ApiUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiUrl gets a reference to the given string and assigns it to the ApiUrl field.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetApiUrl(v *string) {
+	o.ApiUrl = v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetTags() *string {
+	if o == nil || IsNil(o.Tags) {
+		var ret *string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetTagsOk() (*string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given string and assigns it to the Tags field.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetTags(v *string) {
+	o.Tags = v
+}
+
+func (o CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ApiKey) {
+		toSerialize["apiKey"] = o.ApiKey
+	}
+	if !IsNil(o.ApiUrl) {
+		toSerialize["apiUrl"] = o.ApiUrl
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner struct {
+	value *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner
+	isSet bool
+}
+
+func (v NullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner) Get() *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner {
+	return v.value
+}
+
+func (v *NullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner) Set(val *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner(val *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) *NullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner {
+	return &NullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner{value: val, isSet: true}
+}
+
+func (v NullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateAlertConfigReceiverPayloadOpsgenieConfigsInner) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

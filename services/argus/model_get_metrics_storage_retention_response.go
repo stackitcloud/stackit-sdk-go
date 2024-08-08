@@ -10,6 +10,14 @@ API version: 1.1.0
 
 package argus
 
+import (
+	"encoding/json"
+)
+
+// checks if the GetMetricsStorageRetentionResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetMetricsStorageRetentionResponse{}
+
+// GetMetricsStorageRetentionResponse struct for GetMetricsStorageRetentionResponse
 type GetMetricsStorageRetentionResponse struct {
 	// REQUIRED
 	Message *string `json:"message"`
@@ -19,4 +27,168 @@ type GetMetricsStorageRetentionResponse struct {
 	MetricsRetentionTime5m *string `json:"metricsRetentionTime5m"`
 	// REQUIRED
 	MetricsRetentionTimeRaw *string `json:"metricsRetentionTimeRaw"`
+}
+
+type _GetMetricsStorageRetentionResponse GetMetricsStorageRetentionResponse
+
+// NewGetMetricsStorageRetentionResponse instantiates a new GetMetricsStorageRetentionResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetMetricsStorageRetentionResponse(message *string, metricsRetentionTime1h *string, metricsRetentionTime5m *string, metricsRetentionTimeRaw *string) *GetMetricsStorageRetentionResponse {
+	this := GetMetricsStorageRetentionResponse{}
+	this.Message = message
+	this.MetricsRetentionTime1h = metricsRetentionTime1h
+	this.MetricsRetentionTime5m = metricsRetentionTime5m
+	this.MetricsRetentionTimeRaw = metricsRetentionTimeRaw
+	return &this
+}
+
+// NewGetMetricsStorageRetentionResponseWithDefaults instantiates a new GetMetricsStorageRetentionResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetMetricsStorageRetentionResponseWithDefaults() *GetMetricsStorageRetentionResponse {
+	this := GetMetricsStorageRetentionResponse{}
+	return &this
+}
+
+// GetMessage returns the Message field value
+func (o *GetMetricsStorageRetentionResponse) GetMessage() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *GetMetricsStorageRetentionResponse) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// SetMessage sets field value
+func (o *GetMetricsStorageRetentionResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+// GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime1h() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.MetricsRetentionTime1h
+}
+
+// GetMetricsRetentionTime1hOk returns a tuple with the MetricsRetentionTime1h field value
+// and a boolean to check if the value has been set.
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime1hOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MetricsRetentionTime1h, true
+}
+
+// SetMetricsRetentionTime1h sets field value
+func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTime1h(v *string) {
+	o.MetricsRetentionTime1h = v
+}
+
+// GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime5m() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.MetricsRetentionTime5m
+}
+
+// GetMetricsRetentionTime5mOk returns a tuple with the MetricsRetentionTime5m field value
+// and a boolean to check if the value has been set.
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime5mOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MetricsRetentionTime5m, true
+}
+
+// SetMetricsRetentionTime5m sets field value
+func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTime5m(v *string) {
+	o.MetricsRetentionTime5m = v
+}
+
+// GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTimeRaw() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.MetricsRetentionTimeRaw
+}
+
+// GetMetricsRetentionTimeRawOk returns a tuple with the MetricsRetentionTimeRaw field value
+// and a boolean to check if the value has been set.
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTimeRawOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MetricsRetentionTimeRaw, true
+}
+
+// SetMetricsRetentionTimeRaw sets field value
+func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTimeRaw(v *string) {
+	o.MetricsRetentionTimeRaw = v
+}
+
+func (o GetMetricsStorageRetentionResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["message"] = o.Message
+	toSerialize["metricsRetentionTime1h"] = o.MetricsRetentionTime1h
+	toSerialize["metricsRetentionTime5m"] = o.MetricsRetentionTime5m
+	toSerialize["metricsRetentionTimeRaw"] = o.MetricsRetentionTimeRaw
+	return toSerialize, nil
+}
+
+type NullableGetMetricsStorageRetentionResponse struct {
+	value *GetMetricsStorageRetentionResponse
+	isSet bool
+}
+
+func (v NullableGetMetricsStorageRetentionResponse) Get() *GetMetricsStorageRetentionResponse {
+	return v.value
+}
+
+func (v *NullableGetMetricsStorageRetentionResponse) Set(val *GetMetricsStorageRetentionResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetMetricsStorageRetentionResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetMetricsStorageRetentionResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetMetricsStorageRetentionResponse(val *GetMetricsStorageRetentionResponse) *NullableGetMetricsStorageRetentionResponse {
+	return &NullableGetMetricsStorageRetentionResponse{value: val, isSet: true}
+}
+
+func (v NullableGetMetricsStorageRetentionResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetMetricsStorageRetentionResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

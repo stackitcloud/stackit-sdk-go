@@ -10,9 +10,129 @@ API version: 1.1.0
 
 package argus
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListInstancesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListInstancesResponse{}
+
+// ListInstancesResponse struct for ListInstancesResponse
 type ListInstancesResponse struct {
 	// REQUIRED
 	Instances *[]ProjectInstanceFull `json:"instances"`
 	// REQUIRED
 	Message *string `json:"message"`
+}
+
+type _ListInstancesResponse ListInstancesResponse
+
+// NewListInstancesResponse instantiates a new ListInstancesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListInstancesResponse(instances *[]ProjectInstanceFull, message *string) *ListInstancesResponse {
+	this := ListInstancesResponse{}
+	this.Instances = instances
+	this.Message = message
+	return &this
+}
+
+// NewListInstancesResponseWithDefaults instantiates a new ListInstancesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListInstancesResponseWithDefaults() *ListInstancesResponse {
+	this := ListInstancesResponse{}
+	return &this
+}
+
+// GetInstances returns the Instances field value
+func (o *ListInstancesResponse) GetInstances() *[]ProjectInstanceFull {
+	if o == nil {
+		var ret *[]ProjectInstanceFull
+		return ret
+	}
+
+	return o.Instances
+}
+
+// GetInstancesOk returns a tuple with the Instances field value
+// and a boolean to check if the value has been set.
+func (o *ListInstancesResponse) GetInstancesOk() (*[]ProjectInstanceFull, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Instances, true
+}
+
+// SetInstances sets field value
+func (o *ListInstancesResponse) SetInstances(v *[]ProjectInstanceFull) {
+	o.Instances = v
+}
+
+// GetMessage returns the Message field value
+func (o *ListInstancesResponse) GetMessage() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *ListInstancesResponse) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// SetMessage sets field value
+func (o *ListInstancesResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+func (o ListInstancesResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["instances"] = o.Instances
+	toSerialize["message"] = o.Message
+	return toSerialize, nil
+}
+
+type NullableListInstancesResponse struct {
+	value *ListInstancesResponse
+	isSet bool
+}
+
+func (v NullableListInstancesResponse) Get() *ListInstancesResponse {
+	return v.value
+}
+
+func (v *NullableListInstancesResponse) Set(val *ListInstancesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListInstancesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListInstancesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListInstancesResponse(val *ListInstancesResponse) *NullableListInstancesResponse {
+	return &NullableListInstancesResponse{value: val, isSet: true}
+}
+
+func (v NullableListInstancesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListInstancesResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
