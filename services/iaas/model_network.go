@@ -10,7 +10,16 @@ API version: 1beta1
 
 package iaas
 
+import (
+	"encoding/json"
+)
+
+// checks if the Network type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Network{}
+
+// Network Object that represents a network.
 type Network struct {
+	Gateway *NullableV1NetworkGateway `json:"gateway,omitempty"`
 	// REQUIRED
 	Name *string `json:"name"`
 	// A list containing DNS Servers/Nameservers for IPv4.
@@ -22,9 +31,409 @@ type Network struct {
 	NetworkId  *string   `json:"networkId"`
 	Prefixes   *[]string `json:"prefixes,omitempty"`
 	PrefixesV6 *[]string `json:"prefixesV6,omitempty"`
-	// Object that represents an IPv4 address.
+	// Object that represents an IP address.
 	PublicIp *string `json:"publicIp,omitempty"`
+	// Shows if the network is routed and therefore accessible from other networks.
+	Routed *bool `json:"routed,omitempty"`
 	// The state of a resource object.
 	// REQUIRED
 	State *string `json:"state"`
+}
+
+type _Network Network
+
+// NewNetwork instantiates a new Network object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNetwork(name *string, networkId *string, state *string) *Network {
+	this := Network{}
+	this.Name = name
+	this.NetworkId = networkId
+	var routed bool = true
+	this.Routed = &routed
+	this.State = state
+	return &this
+}
+
+// NewNetworkWithDefaults instantiates a new Network object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNetworkWithDefaults() *Network {
+	this := Network{}
+	var routed bool = true
+	this.Routed = &routed
+	return &this
+}
+
+// GetGateway returns the Gateway field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Network) GetGateway() *V1NetworkGateway {
+	if o == nil || IsNil(o.Gateway.Get()) {
+		var ret *V1NetworkGateway
+		return ret
+	}
+	return o.Gateway.Get()
+}
+
+// GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Network) GetGatewayOk() (*V1NetworkGateway, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Gateway.Get(), o.Gateway.IsSet()
+}
+
+// HasGateway returns a boolean if a field has been set.
+func (o *Network) HasGateway() bool {
+	if o != nil && o.Gateway.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGateway gets a reference to the given V1NetworkGateway and assigns it to the Gateway field.
+func (o *Network) SetGateway(v *V1NetworkGateway) {
+	o.Gateway.Set(v)
+}
+
+// SetGatewayNil sets the value for Gateway to be an explicit nil
+func (o *Network) SetGatewayNil() {
+	o.Gateway.Set(nil)
+}
+
+// UnsetGateway ensures that no value is present for Gateway, not even an explicit nil
+func (o *Network) UnsetGateway() {
+	o.Gateway.Unset()
+}
+
+// GetName returns the Name field value
+func (o *Network) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Network) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *Network) SetName(v *string) {
+	o.Name = v
+}
+
+// GetNameservers returns the Nameservers field value if set, zero value otherwise.
+func (o *Network) GetNameservers() *[]string {
+	if o == nil || IsNil(o.Nameservers) {
+		var ret *[]string
+		return ret
+	}
+	return o.Nameservers
+}
+
+// GetNameserversOk returns a tuple with the Nameservers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetNameserversOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Nameservers) {
+		return nil, false
+	}
+	return o.Nameservers, true
+}
+
+// HasNameservers returns a boolean if a field has been set.
+func (o *Network) HasNameservers() bool {
+	if o != nil && !IsNil(o.Nameservers) {
+		return true
+	}
+
+	return false
+}
+
+// SetNameservers gets a reference to the given []string and assigns it to the Nameservers field.
+func (o *Network) SetNameservers(v *[]string) {
+	o.Nameservers = v
+}
+
+// GetNameserversV6 returns the NameserversV6 field value if set, zero value otherwise.
+func (o *Network) GetNameserversV6() *[]string {
+	if o == nil || IsNil(o.NameserversV6) {
+		var ret *[]string
+		return ret
+	}
+	return o.NameserversV6
+}
+
+// GetNameserversV6Ok returns a tuple with the NameserversV6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetNameserversV6Ok() (*[]string, bool) {
+	if o == nil || IsNil(o.NameserversV6) {
+		return nil, false
+	}
+	return o.NameserversV6, true
+}
+
+// HasNameserversV6 returns a boolean if a field has been set.
+func (o *Network) HasNameserversV6() bool {
+	if o != nil && !IsNil(o.NameserversV6) {
+		return true
+	}
+
+	return false
+}
+
+// SetNameserversV6 gets a reference to the given []string and assigns it to the NameserversV6 field.
+func (o *Network) SetNameserversV6(v *[]string) {
+	o.NameserversV6 = v
+}
+
+// GetNetworkId returns the NetworkId field value
+func (o *Network) GetNetworkId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.NetworkId
+}
+
+// GetNetworkIdOk returns a tuple with the NetworkId field value
+// and a boolean to check if the value has been set.
+func (o *Network) GetNetworkIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NetworkId, true
+}
+
+// SetNetworkId sets field value
+func (o *Network) SetNetworkId(v *string) {
+	o.NetworkId = v
+}
+
+// GetPrefixes returns the Prefixes field value if set, zero value otherwise.
+func (o *Network) GetPrefixes() *[]string {
+	if o == nil || IsNil(o.Prefixes) {
+		var ret *[]string
+		return ret
+	}
+	return o.Prefixes
+}
+
+// GetPrefixesOk returns a tuple with the Prefixes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetPrefixesOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Prefixes) {
+		return nil, false
+	}
+	return o.Prefixes, true
+}
+
+// HasPrefixes returns a boolean if a field has been set.
+func (o *Network) HasPrefixes() bool {
+	if o != nil && !IsNil(o.Prefixes) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrefixes gets a reference to the given []string and assigns it to the Prefixes field.
+func (o *Network) SetPrefixes(v *[]string) {
+	o.Prefixes = v
+}
+
+// GetPrefixesV6 returns the PrefixesV6 field value if set, zero value otherwise.
+func (o *Network) GetPrefixesV6() *[]string {
+	if o == nil || IsNil(o.PrefixesV6) {
+		var ret *[]string
+		return ret
+	}
+	return o.PrefixesV6
+}
+
+// GetPrefixesV6Ok returns a tuple with the PrefixesV6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetPrefixesV6Ok() (*[]string, bool) {
+	if o == nil || IsNil(o.PrefixesV6) {
+		return nil, false
+	}
+	return o.PrefixesV6, true
+}
+
+// HasPrefixesV6 returns a boolean if a field has been set.
+func (o *Network) HasPrefixesV6() bool {
+	if o != nil && !IsNil(o.PrefixesV6) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrefixesV6 gets a reference to the given []string and assigns it to the PrefixesV6 field.
+func (o *Network) SetPrefixesV6(v *[]string) {
+	o.PrefixesV6 = v
+}
+
+// GetPublicIp returns the PublicIp field value if set, zero value otherwise.
+func (o *Network) GetPublicIp() *string {
+	if o == nil || IsNil(o.PublicIp) {
+		var ret *string
+		return ret
+	}
+	return o.PublicIp
+}
+
+// GetPublicIpOk returns a tuple with the PublicIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetPublicIpOk() (*string, bool) {
+	if o == nil || IsNil(o.PublicIp) {
+		return nil, false
+	}
+	return o.PublicIp, true
+}
+
+// HasPublicIp returns a boolean if a field has been set.
+func (o *Network) HasPublicIp() bool {
+	if o != nil && !IsNil(o.PublicIp) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicIp gets a reference to the given string and assigns it to the PublicIp field.
+func (o *Network) SetPublicIp(v *string) {
+	o.PublicIp = v
+}
+
+// GetRouted returns the Routed field value if set, zero value otherwise.
+func (o *Network) GetRouted() *bool {
+	if o == nil || IsNil(o.Routed) {
+		var ret *bool
+		return ret
+	}
+	return o.Routed
+}
+
+// GetRoutedOk returns a tuple with the Routed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetRoutedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Routed) {
+		return nil, false
+	}
+	return o.Routed, true
+}
+
+// HasRouted returns a boolean if a field has been set.
+func (o *Network) HasRouted() bool {
+	if o != nil && !IsNil(o.Routed) {
+		return true
+	}
+
+	return false
+}
+
+// SetRouted gets a reference to the given bool and assigns it to the Routed field.
+func (o *Network) SetRouted(v *bool) {
+	o.Routed = v
+}
+
+// GetState returns the State field value
+func (o *Network) GetState() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *Network) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// SetState sets field value
+func (o *Network) SetState(v *string) {
+	o.State = v
+}
+
+func (o Network) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Gateway.IsSet() {
+		toSerialize["gateway"] = o.Gateway.Get()
+	}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Nameservers) {
+		toSerialize["nameservers"] = o.Nameservers
+	}
+	if !IsNil(o.NameserversV6) {
+		toSerialize["nameserversV6"] = o.NameserversV6
+	}
+	toSerialize["networkId"] = o.NetworkId
+	if !IsNil(o.Prefixes) {
+		toSerialize["prefixes"] = o.Prefixes
+	}
+	if !IsNil(o.PrefixesV6) {
+		toSerialize["prefixesV6"] = o.PrefixesV6
+	}
+	if !IsNil(o.PublicIp) {
+		toSerialize["publicIp"] = o.PublicIp
+	}
+	if !IsNil(o.Routed) {
+		toSerialize["routed"] = o.Routed
+	}
+	toSerialize["state"] = o.State
+	return toSerialize, nil
+}
+
+type NullableNetwork struct {
+	value *Network
+	isSet bool
+}
+
+func (v NullableNetwork) Get() *Network {
+	return v.value
+}
+
+func (v *NullableNetwork) Set(val *Network) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNetwork) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNetwork) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNetwork(val *Network) *NullableNetwork {
+	return &NullableNetwork{value: val, isSet: true}
+}
+
+func (v NullableNetwork) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableNetwork) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,8 +10,185 @@ API version: 1beta1
 
 package iaas
 
+import (
+	"encoding/json"
+)
+
+// checks if the PartialUpdateNetworkPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartialUpdateNetworkPayload{}
+
+// PartialUpdateNetworkPayload Object that represents the request body for a network update.
 type PartialUpdateNetworkPayload struct {
 	AddressFamily *UpdateNetworkAddressFamily `json:"addressFamily,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty"`
+	// Shows if the network is routed and therefore accessible from other networks.
+	Routed *bool `json:"routed,omitempty"`
+}
+
+// NewPartialUpdateNetworkPayload instantiates a new PartialUpdateNetworkPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPartialUpdateNetworkPayload() *PartialUpdateNetworkPayload {
+	this := PartialUpdateNetworkPayload{}
+	var routed bool = true
+	this.Routed = &routed
+	return &this
+}
+
+// NewPartialUpdateNetworkPayloadWithDefaults instantiates a new PartialUpdateNetworkPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPartialUpdateNetworkPayloadWithDefaults() *PartialUpdateNetworkPayload {
+	this := PartialUpdateNetworkPayload{}
+	var routed bool = true
+	this.Routed = &routed
+	return &this
+}
+
+// GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
+func (o *PartialUpdateNetworkPayload) GetAddressFamily() *UpdateNetworkAddressFamily {
+	if o == nil || IsNil(o.AddressFamily) {
+		var ret *UpdateNetworkAddressFamily
+		return ret
+	}
+	return o.AddressFamily
+}
+
+// GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateNetworkPayload) GetAddressFamilyOk() (*UpdateNetworkAddressFamily, bool) {
+	if o == nil || IsNil(o.AddressFamily) {
+		return nil, false
+	}
+	return o.AddressFamily, true
+}
+
+// HasAddressFamily returns a boolean if a field has been set.
+func (o *PartialUpdateNetworkPayload) HasAddressFamily() bool {
+	if o != nil && !IsNil(o.AddressFamily) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddressFamily gets a reference to the given UpdateNetworkAddressFamily and assigns it to the AddressFamily field.
+func (o *PartialUpdateNetworkPayload) SetAddressFamily(v *UpdateNetworkAddressFamily) {
+	o.AddressFamily = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PartialUpdateNetworkPayload) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateNetworkPayload) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PartialUpdateNetworkPayload) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PartialUpdateNetworkPayload) SetName(v *string) {
+	o.Name = v
+}
+
+// GetRouted returns the Routed field value if set, zero value otherwise.
+func (o *PartialUpdateNetworkPayload) GetRouted() *bool {
+	if o == nil || IsNil(o.Routed) {
+		var ret *bool
+		return ret
+	}
+	return o.Routed
+}
+
+// GetRoutedOk returns a tuple with the Routed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateNetworkPayload) GetRoutedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Routed) {
+		return nil, false
+	}
+	return o.Routed, true
+}
+
+// HasRouted returns a boolean if a field has been set.
+func (o *PartialUpdateNetworkPayload) HasRouted() bool {
+	if o != nil && !IsNil(o.Routed) {
+		return true
+	}
+
+	return false
+}
+
+// SetRouted gets a reference to the given bool and assigns it to the Routed field.
+func (o *PartialUpdateNetworkPayload) SetRouted(v *bool) {
+	o.Routed = v
+}
+
+func (o PartialUpdateNetworkPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AddressFamily) {
+		toSerialize["addressFamily"] = o.AddressFamily
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Routed) {
+		toSerialize["routed"] = o.Routed
+	}
+	return toSerialize, nil
+}
+
+type NullablePartialUpdateNetworkPayload struct {
+	value *PartialUpdateNetworkPayload
+	isSet bool
+}
+
+func (v NullablePartialUpdateNetworkPayload) Get() *PartialUpdateNetworkPayload {
+	return v.value
+}
+
+func (v *NullablePartialUpdateNetworkPayload) Set(val *PartialUpdateNetworkPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateNetworkPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateNetworkPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateNetworkPayload(val *PartialUpdateNetworkPayload) *NullablePartialUpdateNetworkPayload {
+	return &NullablePartialUpdateNetworkPayload{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateNetworkPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateNetworkPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
