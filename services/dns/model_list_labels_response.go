@@ -10,7 +10,143 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListLabelsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListLabelsResponse{}
+
+// ListLabelsResponse ResponseAllLabels.
 type ListLabelsResponse struct {
 	Labels  *[]Label `json:"labels,omitempty"`
 	Message *string  `json:"message,omitempty"`
+}
+
+// NewListLabelsResponse instantiates a new ListLabelsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListLabelsResponse() *ListLabelsResponse {
+	this := ListLabelsResponse{}
+	return &this
+}
+
+// NewListLabelsResponseWithDefaults instantiates a new ListLabelsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListLabelsResponseWithDefaults() *ListLabelsResponse {
+	this := ListLabelsResponse{}
+	return &this
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *ListLabelsResponse) GetLabels() *[]Label {
+	if o == nil || IsNil(o.Labels) {
+		var ret *[]Label
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListLabelsResponse) GetLabelsOk() (*[]Label, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *ListLabelsResponse) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []Label and assigns it to the Labels field.
+func (o *ListLabelsResponse) SetLabels(v *[]Label) {
+	o.Labels = v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *ListLabelsResponse) GetMessage() *string {
+	if o == nil || IsNil(o.Message) {
+		var ret *string
+		return ret
+	}
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListLabelsResponse) GetMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.Message) {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *ListLabelsResponse) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *ListLabelsResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+func (o ListLabelsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	return toSerialize, nil
+}
+
+type NullableListLabelsResponse struct {
+	value *ListLabelsResponse
+	isSet bool
+}
+
+func (v NullableListLabelsResponse) Get() *ListLabelsResponse {
+	return v.value
+}
+
+func (v *NullableListLabelsResponse) Set(val *ListLabelsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListLabelsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListLabelsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListLabelsResponse(val *ListLabelsResponse) *NullableListLabelsResponse {
+	return &NullableListLabelsResponse{value: val, isSet: true}
+}
+
+func (v NullableListLabelsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListLabelsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,6 +10,14 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the PartialUpdateRecordSetPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartialUpdateRecordSetPayload{}
+
+// PartialUpdateRecordSetPayload RRSetPatch for rr patch set info.
 type PartialUpdateRecordSetPayload struct {
 	// user comment
 	Comment *string `json:"comment,omitempty"`
@@ -19,4 +27,202 @@ type PartialUpdateRecordSetPayload struct {
 	Records *[]RecordPayload `json:"records,omitempty"`
 	// time to live
 	Ttl *int64 `json:"ttl,omitempty"`
+}
+
+// NewPartialUpdateRecordSetPayload instantiates a new PartialUpdateRecordSetPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPartialUpdateRecordSetPayload() *PartialUpdateRecordSetPayload {
+	this := PartialUpdateRecordSetPayload{}
+	return &this
+}
+
+// NewPartialUpdateRecordSetPayloadWithDefaults instantiates a new PartialUpdateRecordSetPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPartialUpdateRecordSetPayloadWithDefaults() *PartialUpdateRecordSetPayload {
+	this := PartialUpdateRecordSetPayload{}
+	return &this
+}
+
+// GetComment returns the Comment field value if set, zero value otherwise.
+func (o *PartialUpdateRecordSetPayload) GetComment() *string {
+	if o == nil || IsNil(o.Comment) {
+		var ret *string
+		return ret
+	}
+	return o.Comment
+}
+
+// GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateRecordSetPayload) GetCommentOk() (*string, bool) {
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
+	}
+	return o.Comment, true
+}
+
+// HasComment returns a boolean if a field has been set.
+func (o *PartialUpdateRecordSetPayload) HasComment() bool {
+	if o != nil && !IsNil(o.Comment) {
+		return true
+	}
+
+	return false
+}
+
+// SetComment gets a reference to the given string and assigns it to the Comment field.
+func (o *PartialUpdateRecordSetPayload) SetComment(v *string) {
+	o.Comment = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PartialUpdateRecordSetPayload) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateRecordSetPayload) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PartialUpdateRecordSetPayload) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PartialUpdateRecordSetPayload) SetName(v *string) {
+	o.Name = v
+}
+
+// GetRecords returns the Records field value if set, zero value otherwise.
+func (o *PartialUpdateRecordSetPayload) GetRecords() *[]RecordPayload {
+	if o == nil || IsNil(o.Records) {
+		var ret *[]RecordPayload
+		return ret
+	}
+	return o.Records
+}
+
+// GetRecordsOk returns a tuple with the Records field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateRecordSetPayload) GetRecordsOk() (*[]RecordPayload, bool) {
+	if o == nil || IsNil(o.Records) {
+		return nil, false
+	}
+	return o.Records, true
+}
+
+// HasRecords returns a boolean if a field has been set.
+func (o *PartialUpdateRecordSetPayload) HasRecords() bool {
+	if o != nil && !IsNil(o.Records) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecords gets a reference to the given []RecordPayload and assigns it to the Records field.
+func (o *PartialUpdateRecordSetPayload) SetRecords(v *[]RecordPayload) {
+	o.Records = v
+}
+
+// GetTtl returns the Ttl field value if set, zero value otherwise.
+func (o *PartialUpdateRecordSetPayload) GetTtl() *int64 {
+	if o == nil || IsNil(o.Ttl) {
+		var ret *int64
+		return ret
+	}
+	return o.Ttl
+}
+
+// GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateRecordSetPayload) GetTtlOk() (*int64, bool) {
+	if o == nil || IsNil(o.Ttl) {
+		return nil, false
+	}
+	return o.Ttl, true
+}
+
+// HasTtl returns a boolean if a field has been set.
+func (o *PartialUpdateRecordSetPayload) HasTtl() bool {
+	if o != nil && !IsNil(o.Ttl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTtl gets a reference to the given int64 and assigns it to the Ttl field.
+func (o *PartialUpdateRecordSetPayload) SetTtl(v *int64) {
+	o.Ttl = v
+}
+
+func (o PartialUpdateRecordSetPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Records) {
+		toSerialize["records"] = o.Records
+	}
+	if !IsNil(o.Ttl) {
+		toSerialize["ttl"] = o.Ttl
+	}
+	return toSerialize, nil
+}
+
+type NullablePartialUpdateRecordSetPayload struct {
+	value *PartialUpdateRecordSetPayload
+	isSet bool
+}
+
+func (v NullablePartialUpdateRecordSetPayload) Get() *PartialUpdateRecordSetPayload {
+	return v.value
+}
+
+func (v *NullablePartialUpdateRecordSetPayload) Set(val *PartialUpdateRecordSetPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateRecordSetPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateRecordSetPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateRecordSetPayload(val *PartialUpdateRecordSetPayload) *NullablePartialUpdateRecordSetPayload {
+	return &NullablePartialUpdateRecordSetPayload{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateRecordSetPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateRecordSetPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

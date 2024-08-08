@@ -10,6 +10,14 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the RecordSet type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecordSet{}
+
+// RecordSet RRSet.
 type RecordSet struct {
 	// if the record set is active or not
 	Active *bool `json:"active,omitempty"`
@@ -47,4 +55,429 @@ type RecordSet struct {
 	// when record set update/deletion started
 	// REQUIRED
 	UpdateStarted *string `json:"updateStarted"`
+}
+
+type _RecordSet RecordSet
+
+// NewRecordSet instantiates a new RecordSet object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRecordSet(creationFinished *string, creationStarted *string, id *string, name *string, records *[]Record, state *string, ttl *int64, type_ *string, updateFinished *string, updateStarted *string) *RecordSet {
+	this := RecordSet{}
+	this.CreationFinished = creationFinished
+	this.CreationStarted = creationStarted
+	this.Id = id
+	this.Name = name
+	this.Records = records
+	this.State = state
+	this.Ttl = ttl
+	this.Type = type_
+	this.UpdateFinished = updateFinished
+	this.UpdateStarted = updateStarted
+	return &this
+}
+
+// NewRecordSetWithDefaults instantiates a new RecordSet object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRecordSetWithDefaults() *RecordSet {
+	this := RecordSet{}
+	return &this
+}
+
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *RecordSet) GetActive() *bool {
+	if o == nil || IsNil(o.Active) {
+		var ret *bool
+		return ret
+	}
+	return o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *RecordSet) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *RecordSet) SetActive(v *bool) {
+	o.Active = v
+}
+
+// GetComment returns the Comment field value if set, zero value otherwise.
+func (o *RecordSet) GetComment() *string {
+	if o == nil || IsNil(o.Comment) {
+		var ret *string
+		return ret
+	}
+	return o.Comment
+}
+
+// GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetCommentOk() (*string, bool) {
+	if o == nil || IsNil(o.Comment) {
+		return nil, false
+	}
+	return o.Comment, true
+}
+
+// HasComment returns a boolean if a field has been set.
+func (o *RecordSet) HasComment() bool {
+	if o != nil && !IsNil(o.Comment) {
+		return true
+	}
+
+	return false
+}
+
+// SetComment gets a reference to the given string and assigns it to the Comment field.
+func (o *RecordSet) SetComment(v *string) {
+	o.Comment = v
+}
+
+// GetCreationFinished returns the CreationFinished field value
+func (o *RecordSet) GetCreationFinished() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.CreationFinished
+}
+
+// GetCreationFinishedOk returns a tuple with the CreationFinished field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetCreationFinishedOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreationFinished, true
+}
+
+// SetCreationFinished sets field value
+func (o *RecordSet) SetCreationFinished(v *string) {
+	o.CreationFinished = v
+}
+
+// GetCreationStarted returns the CreationStarted field value
+func (o *RecordSet) GetCreationStarted() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.CreationStarted
+}
+
+// GetCreationStartedOk returns a tuple with the CreationStarted field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetCreationStartedOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreationStarted, true
+}
+
+// SetCreationStarted sets field value
+func (o *RecordSet) SetCreationStarted(v *string) {
+	o.CreationStarted = v
+}
+
+// GetError returns the Error field value if set, zero value otherwise.
+func (o *RecordSet) GetError() *string {
+	if o == nil || IsNil(o.Error) {
+		var ret *string
+		return ret
+	}
+	return o.Error
+}
+
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetErrorOk() (*string, bool) {
+	if o == nil || IsNil(o.Error) {
+		return nil, false
+	}
+	return o.Error, true
+}
+
+// HasError returns a boolean if a field has been set.
+func (o *RecordSet) HasError() bool {
+	if o != nil && !IsNil(o.Error) {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given string and assigns it to the Error field.
+func (o *RecordSet) SetError(v *string) {
+	o.Error = v
+}
+
+// GetId returns the Id field value
+func (o *RecordSet) GetId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// SetId sets field value
+func (o *RecordSet) SetId(v *string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *RecordSet) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *RecordSet) SetName(v *string) {
+	o.Name = v
+}
+
+// GetRecords returns the Records field value
+func (o *RecordSet) GetRecords() *[]Record {
+	if o == nil {
+		var ret *[]Record
+		return ret
+	}
+
+	return o.Records
+}
+
+// GetRecordsOk returns a tuple with the Records field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetRecordsOk() (*[]Record, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Records, true
+}
+
+// SetRecords sets field value
+func (o *RecordSet) SetRecords(v *[]Record) {
+	o.Records = v
+}
+
+// GetState returns the State field value
+func (o *RecordSet) GetState() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// SetState sets field value
+func (o *RecordSet) SetState(v *string) {
+	o.State = v
+}
+
+// GetTtl returns the Ttl field value
+func (o *RecordSet) GetTtl() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.Ttl
+}
+
+// GetTtlOk returns a tuple with the Ttl field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetTtlOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Ttl, true
+}
+
+// SetTtl sets field value
+func (o *RecordSet) SetTtl(v *int64) {
+	o.Ttl = v
+}
+
+// GetType returns the Type field value
+func (o *RecordSet) GetType() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// SetType sets field value
+func (o *RecordSet) SetType(v *string) {
+	o.Type = v
+}
+
+// GetUpdateFinished returns the UpdateFinished field value
+func (o *RecordSet) GetUpdateFinished() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.UpdateFinished
+}
+
+// GetUpdateFinishedOk returns a tuple with the UpdateFinished field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetUpdateFinishedOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UpdateFinished, true
+}
+
+// SetUpdateFinished sets field value
+func (o *RecordSet) SetUpdateFinished(v *string) {
+	o.UpdateFinished = v
+}
+
+// GetUpdateStarted returns the UpdateStarted field value
+func (o *RecordSet) GetUpdateStarted() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.UpdateStarted
+}
+
+// GetUpdateStartedOk returns a tuple with the UpdateStarted field value
+// and a boolean to check if the value has been set.
+func (o *RecordSet) GetUpdateStartedOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UpdateStarted, true
+}
+
+// SetUpdateStarted sets field value
+func (o *RecordSet) SetUpdateStarted(v *string) {
+	o.UpdateStarted = v
+}
+
+func (o RecordSet) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	toSerialize["creationFinished"] = o.CreationFinished
+	toSerialize["creationStarted"] = o.CreationStarted
+	if !IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["records"] = o.Records
+	toSerialize["state"] = o.State
+	toSerialize["ttl"] = o.Ttl
+	toSerialize["type"] = o.Type
+	toSerialize["updateFinished"] = o.UpdateFinished
+	toSerialize["updateStarted"] = o.UpdateStarted
+	return toSerialize, nil
+}
+
+type NullableRecordSet struct {
+	value *RecordSet
+	isSet bool
+}
+
+func (v NullableRecordSet) Get() *RecordSet {
+	return v.value
+}
+
+func (v *NullableRecordSet) Set(val *RecordSet) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRecordSet) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRecordSet) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRecordSet(val *RecordSet) *NullableRecordSet {
+	return &NullableRecordSet{value: val, isSet: true}
+}
+
+func (v NullableRecordSet) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRecordSet) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
