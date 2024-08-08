@@ -10,10 +10,130 @@ API version: 1.0.9
 
 package objectstorage
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListCredentialsGroupsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListCredentialsGroupsResponse{}
+
+// ListCredentialsGroupsResponse struct for ListCredentialsGroupsResponse
 type ListCredentialsGroupsResponse struct {
 	// REQUIRED
 	CredentialsGroups *[]CredentialsGroup `json:"credentialsGroups"`
 	// Project ID
 	// REQUIRED
 	Project *string `json:"project"`
+}
+
+type _ListCredentialsGroupsResponse ListCredentialsGroupsResponse
+
+// NewListCredentialsGroupsResponse instantiates a new ListCredentialsGroupsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListCredentialsGroupsResponse(credentialsGroups *[]CredentialsGroup, project *string) *ListCredentialsGroupsResponse {
+	this := ListCredentialsGroupsResponse{}
+	this.CredentialsGroups = credentialsGroups
+	this.Project = project
+	return &this
+}
+
+// NewListCredentialsGroupsResponseWithDefaults instantiates a new ListCredentialsGroupsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListCredentialsGroupsResponseWithDefaults() *ListCredentialsGroupsResponse {
+	this := ListCredentialsGroupsResponse{}
+	return &this
+}
+
+// GetCredentialsGroups returns the CredentialsGroups field value
+func (o *ListCredentialsGroupsResponse) GetCredentialsGroups() *[]CredentialsGroup {
+	if o == nil {
+		var ret *[]CredentialsGroup
+		return ret
+	}
+
+	return o.CredentialsGroups
+}
+
+// GetCredentialsGroupsOk returns a tuple with the CredentialsGroups field value
+// and a boolean to check if the value has been set.
+func (o *ListCredentialsGroupsResponse) GetCredentialsGroupsOk() (*[]CredentialsGroup, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CredentialsGroups, true
+}
+
+// SetCredentialsGroups sets field value
+func (o *ListCredentialsGroupsResponse) SetCredentialsGroups(v *[]CredentialsGroup) {
+	o.CredentialsGroups = v
+}
+
+// GetProject returns the Project field value
+func (o *ListCredentialsGroupsResponse) GetProject() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value
+// and a boolean to check if the value has been set.
+func (o *ListCredentialsGroupsResponse) GetProjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// SetProject sets field value
+func (o *ListCredentialsGroupsResponse) SetProject(v *string) {
+	o.Project = v
+}
+
+func (o ListCredentialsGroupsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["credentialsGroups"] = o.CredentialsGroups
+	toSerialize["project"] = o.Project
+	return toSerialize, nil
+}
+
+type NullableListCredentialsGroupsResponse struct {
+	value *ListCredentialsGroupsResponse
+	isSet bool
+}
+
+func (v NullableListCredentialsGroupsResponse) Get() *ListCredentialsGroupsResponse {
+	return v.value
+}
+
+func (v *NullableListCredentialsGroupsResponse) Set(val *ListCredentialsGroupsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListCredentialsGroupsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListCredentialsGroupsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListCredentialsGroupsResponse(val *ListCredentialsGroupsResponse) *NullableListCredentialsGroupsResponse {
+	return &NullableListCredentialsGroupsResponse{value: val, isSet: true}
+}
+
+func (v NullableListCredentialsGroupsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListCredentialsGroupsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
