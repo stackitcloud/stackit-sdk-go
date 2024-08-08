@@ -10,9 +10,129 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the UpdateUserPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateUserPayload{}
+
+// UpdateUserPayload struct for UpdateUserPayload
 type UpdateUserPayload struct {
 	// REQUIRED
 	Database *string `json:"database"`
 	// REQUIRED
 	Roles *[]string `json:"roles"`
+}
+
+type _UpdateUserPayload UpdateUserPayload
+
+// NewUpdateUserPayload instantiates a new UpdateUserPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateUserPayload(database *string, roles *[]string) *UpdateUserPayload {
+	this := UpdateUserPayload{}
+	this.Database = database
+	this.Roles = roles
+	return &this
+}
+
+// NewUpdateUserPayloadWithDefaults instantiates a new UpdateUserPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateUserPayloadWithDefaults() *UpdateUserPayload {
+	this := UpdateUserPayload{}
+	return &this
+}
+
+// GetDatabase returns the Database field value
+func (o *UpdateUserPayload) GetDatabase() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Database
+}
+
+// GetDatabaseOk returns a tuple with the Database field value
+// and a boolean to check if the value has been set.
+func (o *UpdateUserPayload) GetDatabaseOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Database, true
+}
+
+// SetDatabase sets field value
+func (o *UpdateUserPayload) SetDatabase(v *string) {
+	o.Database = v
+}
+
+// GetRoles returns the Roles field value
+func (o *UpdateUserPayload) GetRoles() *[]string {
+	if o == nil {
+		var ret *[]string
+		return ret
+	}
+
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value
+// and a boolean to check if the value has been set.
+func (o *UpdateUserPayload) GetRolesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// SetRoles sets field value
+func (o *UpdateUserPayload) SetRoles(v *[]string) {
+	o.Roles = v
+}
+
+func (o UpdateUserPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["database"] = o.Database
+	toSerialize["roles"] = o.Roles
+	return toSerialize, nil
+}
+
+type NullableUpdateUserPayload struct {
+	value *UpdateUserPayload
+	isSet bool
+}
+
+func (v NullableUpdateUserPayload) Get() *UpdateUserPayload {
+	return v.value
+}
+
+func (v *NullableUpdateUserPayload) Set(val *UpdateUserPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateUserPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateUserPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateUserPayload(val *UpdateUserPayload) *NullableUpdateUserPayload {
+	return &NullableUpdateUserPayload{value: val, isSet: true}
+}
+
+func (v NullableUpdateUserPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateUserPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

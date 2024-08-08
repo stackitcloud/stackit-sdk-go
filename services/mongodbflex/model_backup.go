@@ -10,6 +10,14 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the Backup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Backup{}
+
+// Backup struct for Backup
 type Backup struct {
 	EndTime   *string            `json:"endTime,omitempty"`
 	Error     *string            `json:"error,omitempty"`
@@ -19,4 +27,342 @@ type Backup struct {
 	Options   *map[string]string `json:"options,omitempty"`
 	Size      *int64             `json:"size,omitempty"`
 	StartTime *string            `json:"startTime,omitempty"`
+}
+
+// NewBackup instantiates a new Backup object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBackup() *Backup {
+	this := Backup{}
+	return &this
+}
+
+// NewBackupWithDefaults instantiates a new Backup object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBackupWithDefaults() *Backup {
+	this := Backup{}
+	return &this
+}
+
+// GetEndTime returns the EndTime field value if set, zero value otherwise.
+func (o *Backup) GetEndTime() *string {
+	if o == nil || IsNil(o.EndTime) {
+		var ret *string
+		return ret
+	}
+	return o.EndTime
+}
+
+// GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetEndTimeOk() (*string, bool) {
+	if o == nil || IsNil(o.EndTime) {
+		return nil, false
+	}
+	return o.EndTime, true
+}
+
+// HasEndTime returns a boolean if a field has been set.
+func (o *Backup) HasEndTime() bool {
+	if o != nil && !IsNil(o.EndTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndTime gets a reference to the given string and assigns it to the EndTime field.
+func (o *Backup) SetEndTime(v *string) {
+	o.EndTime = v
+}
+
+// GetError returns the Error field value if set, zero value otherwise.
+func (o *Backup) GetError() *string {
+	if o == nil || IsNil(o.Error) {
+		var ret *string
+		return ret
+	}
+	return o.Error
+}
+
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetErrorOk() (*string, bool) {
+	if o == nil || IsNil(o.Error) {
+		return nil, false
+	}
+	return o.Error, true
+}
+
+// HasError returns a boolean if a field has been set.
+func (o *Backup) HasError() bool {
+	if o != nil && !IsNil(o.Error) {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given string and assigns it to the Error field.
+func (o *Backup) SetError(v *string) {
+	o.Error = v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Backup) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Backup) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Backup) SetId(v *string) {
+	o.Id = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Backup) GetLabels() *[]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret *[]string
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetLabelsOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Backup) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []string and assigns it to the Labels field.
+func (o *Backup) SetLabels(v *[]string) {
+	o.Labels = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *Backup) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *Backup) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *Backup) SetName(v *string) {
+	o.Name = v
+}
+
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *Backup) GetOptions() *map[string]string {
+	if o == nil || IsNil(o.Options) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetOptionsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Options) {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *Backup) HasOptions() bool {
+	if o != nil && !IsNil(o.Options) {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
+func (o *Backup) SetOptions(v *map[string]string) {
+	o.Options = v
+}
+
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *Backup) GetSize() *int64 {
+	if o == nil || IsNil(o.Size) {
+		var ret *int64
+		return ret
+	}
+	return o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetSizeOk() (*int64, bool) {
+	if o == nil || IsNil(o.Size) {
+		return nil, false
+	}
+	return o.Size, true
+}
+
+// HasSize returns a boolean if a field has been set.
+func (o *Backup) HasSize() bool {
+	if o != nil && !IsNil(o.Size) {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *Backup) SetSize(v *int64) {
+	o.Size = v
+}
+
+// GetStartTime returns the StartTime field value if set, zero value otherwise.
+func (o *Backup) GetStartTime() *string {
+	if o == nil || IsNil(o.StartTime) {
+		var ret *string
+		return ret
+	}
+	return o.StartTime
+}
+
+// GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetStartTimeOk() (*string, bool) {
+	if o == nil || IsNil(o.StartTime) {
+		return nil, false
+	}
+	return o.StartTime, true
+}
+
+// HasStartTime returns a boolean if a field has been set.
+func (o *Backup) HasStartTime() bool {
+	if o != nil && !IsNil(o.StartTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartTime gets a reference to the given string and assigns it to the StartTime field.
+func (o *Backup) SetStartTime(v *string) {
+	o.StartTime = v
+}
+
+func (o Backup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EndTime) {
+		toSerialize["endTime"] = o.EndTime
+	}
+	if !IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Options) {
+		toSerialize["options"] = o.Options
+	}
+	if !IsNil(o.Size) {
+		toSerialize["size"] = o.Size
+	}
+	if !IsNil(o.StartTime) {
+		toSerialize["startTime"] = o.StartTime
+	}
+	return toSerialize, nil
+}
+
+type NullableBackup struct {
+	value *Backup
+	isSet bool
+}
+
+func (v NullableBackup) Get() *Backup {
+	return v.value
+}
+
+func (v *NullableBackup) Set(val *Backup) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBackup) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBackup) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBackup(val *Backup) *NullableBackup {
+	return &NullableBackup{value: val, isSet: true}
+}
+
+func (v NullableBackup) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableBackup) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

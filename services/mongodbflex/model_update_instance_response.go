@@ -10,6 +10,107 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the UpdateInstanceResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateInstanceResponse{}
+
+// UpdateInstanceResponse struct for UpdateInstanceResponse
 type UpdateInstanceResponse struct {
 	Item *Instance `json:"item,omitempty"`
+}
+
+// NewUpdateInstanceResponse instantiates a new UpdateInstanceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateInstanceResponse() *UpdateInstanceResponse {
+	this := UpdateInstanceResponse{}
+	return &this
+}
+
+// NewUpdateInstanceResponseWithDefaults instantiates a new UpdateInstanceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateInstanceResponseWithDefaults() *UpdateInstanceResponse {
+	this := UpdateInstanceResponse{}
+	return &this
+}
+
+// GetItem returns the Item field value if set, zero value otherwise.
+func (o *UpdateInstanceResponse) GetItem() *Instance {
+	if o == nil || IsNil(o.Item) {
+		var ret *Instance
+		return ret
+	}
+	return o.Item
+}
+
+// GetItemOk returns a tuple with the Item field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateInstanceResponse) GetItemOk() (*Instance, bool) {
+	if o == nil || IsNil(o.Item) {
+		return nil, false
+	}
+	return o.Item, true
+}
+
+// HasItem returns a boolean if a field has been set.
+func (o *UpdateInstanceResponse) HasItem() bool {
+	if o != nil && !IsNil(o.Item) {
+		return true
+	}
+
+	return false
+}
+
+// SetItem gets a reference to the given Instance and assigns it to the Item field.
+func (o *UpdateInstanceResponse) SetItem(v *Instance) {
+	o.Item = v
+}
+
+func (o UpdateInstanceResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Item) {
+		toSerialize["item"] = o.Item
+	}
+	return toSerialize, nil
+}
+
+type NullableUpdateInstanceResponse struct {
+	value *UpdateInstanceResponse
+	isSet bool
+}
+
+func (v NullableUpdateInstanceResponse) Get() *UpdateInstanceResponse {
+	return v.value
+}
+
+func (v *NullableUpdateInstanceResponse) Set(val *UpdateInstanceResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateInstanceResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateInstanceResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateInstanceResponse(val *UpdateInstanceResponse) *NullableUpdateInstanceResponse {
+	return &NullableUpdateInstanceResponse{value: val, isSet: true}
+}
+
+func (v NullableUpdateInstanceResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateInstanceResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
