@@ -10,8 +10,179 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the HostMetric type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HostMetric{}
+
+// HostMetric struct for HostMetric
 type HostMetric struct {
 	Datapoints *[]DataPoint `json:"datapoints,omitempty"`
 	Name       *string      `json:"name,omitempty"`
 	Units      *string      `json:"units,omitempty"`
+}
+
+// NewHostMetric instantiates a new HostMetric object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHostMetric() *HostMetric {
+	this := HostMetric{}
+	return &this
+}
+
+// NewHostMetricWithDefaults instantiates a new HostMetric object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHostMetricWithDefaults() *HostMetric {
+	this := HostMetric{}
+	return &this
+}
+
+// GetDatapoints returns the Datapoints field value if set, zero value otherwise.
+func (o *HostMetric) GetDatapoints() *[]DataPoint {
+	if o == nil || IsNil(o.Datapoints) {
+		var ret *[]DataPoint
+		return ret
+	}
+	return o.Datapoints
+}
+
+// GetDatapointsOk returns a tuple with the Datapoints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HostMetric) GetDatapointsOk() (*[]DataPoint, bool) {
+	if o == nil || IsNil(o.Datapoints) {
+		return nil, false
+	}
+	return o.Datapoints, true
+}
+
+// HasDatapoints returns a boolean if a field has been set.
+func (o *HostMetric) HasDatapoints() bool {
+	if o != nil && !IsNil(o.Datapoints) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatapoints gets a reference to the given []DataPoint and assigns it to the Datapoints field.
+func (o *HostMetric) SetDatapoints(v *[]DataPoint) {
+	o.Datapoints = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *HostMetric) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HostMetric) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *HostMetric) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *HostMetric) SetName(v *string) {
+	o.Name = v
+}
+
+// GetUnits returns the Units field value if set, zero value otherwise.
+func (o *HostMetric) GetUnits() *string {
+	if o == nil || IsNil(o.Units) {
+		var ret *string
+		return ret
+	}
+	return o.Units
+}
+
+// GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HostMetric) GetUnitsOk() (*string, bool) {
+	if o == nil || IsNil(o.Units) {
+		return nil, false
+	}
+	return o.Units, true
+}
+
+// HasUnits returns a boolean if a field has been set.
+func (o *HostMetric) HasUnits() bool {
+	if o != nil && !IsNil(o.Units) {
+		return true
+	}
+
+	return false
+}
+
+// SetUnits gets a reference to the given string and assigns it to the Units field.
+func (o *HostMetric) SetUnits(v *string) {
+	o.Units = v
+}
+
+func (o HostMetric) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Datapoints) {
+		toSerialize["datapoints"] = o.Datapoints
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Units) {
+		toSerialize["units"] = o.Units
+	}
+	return toSerialize, nil
+}
+
+type NullableHostMetric struct {
+	value *HostMetric
+	isSet bool
+}
+
+func (v NullableHostMetric) Get() *HostMetric {
+	return v.value
+}
+
+func (v *NullableHostMetric) Set(val *HostMetric) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHostMetric) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableHostMetric) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHostMetric(val *HostMetric) *NullableHostMetric {
+	return &NullableHostMetric{value: val, isSet: true}
+}
+
+func (v NullableHostMetric) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableHostMetric) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

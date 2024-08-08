@@ -10,9 +10,129 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the RestoreInstancePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RestoreInstancePayload{}
+
+// RestoreInstancePayload struct for RestoreInstancePayload
 type RestoreInstancePayload struct {
 	// REQUIRED
 	BackupId *string `json:"backupId"`
 	// REQUIRED
 	InstanceId *string `json:"instanceId"`
+}
+
+type _RestoreInstancePayload RestoreInstancePayload
+
+// NewRestoreInstancePayload instantiates a new RestoreInstancePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRestoreInstancePayload(backupId *string, instanceId *string) *RestoreInstancePayload {
+	this := RestoreInstancePayload{}
+	this.BackupId = backupId
+	this.InstanceId = instanceId
+	return &this
+}
+
+// NewRestoreInstancePayloadWithDefaults instantiates a new RestoreInstancePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRestoreInstancePayloadWithDefaults() *RestoreInstancePayload {
+	this := RestoreInstancePayload{}
+	return &this
+}
+
+// GetBackupId returns the BackupId field value
+func (o *RestoreInstancePayload) GetBackupId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.BackupId
+}
+
+// GetBackupIdOk returns a tuple with the BackupId field value
+// and a boolean to check if the value has been set.
+func (o *RestoreInstancePayload) GetBackupIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BackupId, true
+}
+
+// SetBackupId sets field value
+func (o *RestoreInstancePayload) SetBackupId(v *string) {
+	o.BackupId = v
+}
+
+// GetInstanceId returns the InstanceId field value
+func (o *RestoreInstancePayload) GetInstanceId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.InstanceId
+}
+
+// GetInstanceIdOk returns a tuple with the InstanceId field value
+// and a boolean to check if the value has been set.
+func (o *RestoreInstancePayload) GetInstanceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InstanceId, true
+}
+
+// SetInstanceId sets field value
+func (o *RestoreInstancePayload) SetInstanceId(v *string) {
+	o.InstanceId = v
+}
+
+func (o RestoreInstancePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["backupId"] = o.BackupId
+	toSerialize["instanceId"] = o.InstanceId
+	return toSerialize, nil
+}
+
+type NullableRestoreInstancePayload struct {
+	value *RestoreInstancePayload
+	isSet bool
+}
+
+func (v NullableRestoreInstancePayload) Get() *RestoreInstancePayload {
+	return v.value
+}
+
+func (v *NullableRestoreInstancePayload) Set(val *RestoreInstancePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRestoreInstancePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRestoreInstancePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRestoreInstancePayload(val *RestoreInstancePayload) *NullableRestoreInstancePayload {
+	return &NullableRestoreInstancePayload{value: val, isSet: true}
+}
+
+func (v NullableRestoreInstancePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRestoreInstancePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
