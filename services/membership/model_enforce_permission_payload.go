@@ -10,6 +10,14 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the EnforcePermissionPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EnforcePermissionPayload{}
+
+// EnforcePermissionPayload struct for EnforcePermissionPayload
 type EnforcePermissionPayload struct {
 	// REQUIRED
 	Actions     *[]string    `json:"actions"`
@@ -20,4 +28,203 @@ type EnforcePermissionPayload struct {
 	ResourceType *string `json:"resourceType"`
 	// REQUIRED
 	Subject *string `json:"subject"`
+}
+
+type _EnforcePermissionPayload EnforcePermissionPayload
+
+// NewEnforcePermissionPayload instantiates a new EnforcePermissionPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEnforcePermissionPayload(actions *[]string, resource *string, resourceType *string, subject *string) *EnforcePermissionPayload {
+	this := EnforcePermissionPayload{}
+	this.Actions = actions
+	this.Resource = resource
+	this.ResourceType = resourceType
+	this.Subject = subject
+	return &this
+}
+
+// NewEnforcePermissionPayloadWithDefaults instantiates a new EnforcePermissionPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEnforcePermissionPayloadWithDefaults() *EnforcePermissionPayload {
+	this := EnforcePermissionPayload{}
+	return &this
+}
+
+// GetActions returns the Actions field value
+func (o *EnforcePermissionPayload) GetActions() *[]string {
+	if o == nil {
+		var ret *[]string
+		return ret
+	}
+
+	return o.Actions
+}
+
+// GetActionsOk returns a tuple with the Actions field value
+// and a boolean to check if the value has been set.
+func (o *EnforcePermissionPayload) GetActionsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Actions, true
+}
+
+// SetActions sets field value
+func (o *EnforcePermissionPayload) SetActions(v *[]string) {
+	o.Actions = v
+}
+
+// GetConsistency returns the Consistency field value if set, zero value otherwise.
+func (o *EnforcePermissionPayload) GetConsistency() *Consistency {
+	if o == nil || IsNil(o.Consistency) {
+		var ret *Consistency
+		return ret
+	}
+	return o.Consistency
+}
+
+// GetConsistencyOk returns a tuple with the Consistency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EnforcePermissionPayload) GetConsistencyOk() (*Consistency, bool) {
+	if o == nil || IsNil(o.Consistency) {
+		return nil, false
+	}
+	return o.Consistency, true
+}
+
+// HasConsistency returns a boolean if a field has been set.
+func (o *EnforcePermissionPayload) HasConsistency() bool {
+	if o != nil && !IsNil(o.Consistency) {
+		return true
+	}
+
+	return false
+}
+
+// SetConsistency gets a reference to the given Consistency and assigns it to the Consistency field.
+func (o *EnforcePermissionPayload) SetConsistency(v *Consistency) {
+	o.Consistency = v
+}
+
+// GetResource returns the Resource field value
+func (o *EnforcePermissionPayload) GetResource() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Resource
+}
+
+// GetResourceOk returns a tuple with the Resource field value
+// and a boolean to check if the value has been set.
+func (o *EnforcePermissionPayload) GetResourceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Resource, true
+}
+
+// SetResource sets field value
+func (o *EnforcePermissionPayload) SetResource(v *string) {
+	o.Resource = v
+}
+
+// GetResourceType returns the ResourceType field value
+func (o *EnforcePermissionPayload) GetResourceType() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ResourceType
+}
+
+// GetResourceTypeOk returns a tuple with the ResourceType field value
+// and a boolean to check if the value has been set.
+func (o *EnforcePermissionPayload) GetResourceTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ResourceType, true
+}
+
+// SetResourceType sets field value
+func (o *EnforcePermissionPayload) SetResourceType(v *string) {
+	o.ResourceType = v
+}
+
+// GetSubject returns the Subject field value
+func (o *EnforcePermissionPayload) GetSubject() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Subject
+}
+
+// GetSubjectOk returns a tuple with the Subject field value
+// and a boolean to check if the value has been set.
+func (o *EnforcePermissionPayload) GetSubjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Subject, true
+}
+
+// SetSubject sets field value
+func (o *EnforcePermissionPayload) SetSubject(v *string) {
+	o.Subject = v
+}
+
+func (o EnforcePermissionPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["actions"] = o.Actions
+	if !IsNil(o.Consistency) {
+		toSerialize["consistency"] = o.Consistency
+	}
+	toSerialize["resource"] = o.Resource
+	toSerialize["resourceType"] = o.ResourceType
+	toSerialize["subject"] = o.Subject
+	return toSerialize, nil
+}
+
+type NullableEnforcePermissionPayload struct {
+	value *EnforcePermissionPayload
+	isSet bool
+}
+
+func (v NullableEnforcePermissionPayload) Get() *EnforcePermissionPayload {
+	return v.value
+}
+
+func (v *NullableEnforcePermissionPayload) Set(val *EnforcePermissionPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEnforcePermissionPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEnforcePermissionPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableEnforcePermissionPayload(val *EnforcePermissionPayload) *NullableEnforcePermissionPayload {
+	return &NullableEnforcePermissionPayload{value: val, isSet: true}
+}
+
+func (v NullableEnforcePermissionPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableEnforcePermissionPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
