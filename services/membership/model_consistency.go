@@ -10,9 +10,215 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the Consistency type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Consistency{}
+
+// Consistency struct for Consistency
 type Consistency struct {
 	AtExactSnapshot *Zookie `json:"atExactSnapshot,omitempty"`
 	AtLeastAsFresh  *Zookie `json:"atLeastAsFresh,omitempty"`
 	FullyConsistent *bool   `json:"fullyConsistent,omitempty"`
 	MinimizeLatency *bool   `json:"minimizeLatency,omitempty"`
+}
+
+// NewConsistency instantiates a new Consistency object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewConsistency() *Consistency {
+	this := Consistency{}
+	return &this
+}
+
+// NewConsistencyWithDefaults instantiates a new Consistency object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewConsistencyWithDefaults() *Consistency {
+	this := Consistency{}
+	return &this
+}
+
+// GetAtExactSnapshot returns the AtExactSnapshot field value if set, zero value otherwise.
+func (o *Consistency) GetAtExactSnapshot() *Zookie {
+	if o == nil || IsNil(o.AtExactSnapshot) {
+		var ret *Zookie
+		return ret
+	}
+	return o.AtExactSnapshot
+}
+
+// GetAtExactSnapshotOk returns a tuple with the AtExactSnapshot field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Consistency) GetAtExactSnapshotOk() (*Zookie, bool) {
+	if o == nil || IsNil(o.AtExactSnapshot) {
+		return nil, false
+	}
+	return o.AtExactSnapshot, true
+}
+
+// HasAtExactSnapshot returns a boolean if a field has been set.
+func (o *Consistency) HasAtExactSnapshot() bool {
+	if o != nil && !IsNil(o.AtExactSnapshot) {
+		return true
+	}
+
+	return false
+}
+
+// SetAtExactSnapshot gets a reference to the given Zookie and assigns it to the AtExactSnapshot field.
+func (o *Consistency) SetAtExactSnapshot(v *Zookie) {
+	o.AtExactSnapshot = v
+}
+
+// GetAtLeastAsFresh returns the AtLeastAsFresh field value if set, zero value otherwise.
+func (o *Consistency) GetAtLeastAsFresh() *Zookie {
+	if o == nil || IsNil(o.AtLeastAsFresh) {
+		var ret *Zookie
+		return ret
+	}
+	return o.AtLeastAsFresh
+}
+
+// GetAtLeastAsFreshOk returns a tuple with the AtLeastAsFresh field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Consistency) GetAtLeastAsFreshOk() (*Zookie, bool) {
+	if o == nil || IsNil(o.AtLeastAsFresh) {
+		return nil, false
+	}
+	return o.AtLeastAsFresh, true
+}
+
+// HasAtLeastAsFresh returns a boolean if a field has been set.
+func (o *Consistency) HasAtLeastAsFresh() bool {
+	if o != nil && !IsNil(o.AtLeastAsFresh) {
+		return true
+	}
+
+	return false
+}
+
+// SetAtLeastAsFresh gets a reference to the given Zookie and assigns it to the AtLeastAsFresh field.
+func (o *Consistency) SetAtLeastAsFresh(v *Zookie) {
+	o.AtLeastAsFresh = v
+}
+
+// GetFullyConsistent returns the FullyConsistent field value if set, zero value otherwise.
+func (o *Consistency) GetFullyConsistent() *bool {
+	if o == nil || IsNil(o.FullyConsistent) {
+		var ret *bool
+		return ret
+	}
+	return o.FullyConsistent
+}
+
+// GetFullyConsistentOk returns a tuple with the FullyConsistent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Consistency) GetFullyConsistentOk() (*bool, bool) {
+	if o == nil || IsNil(o.FullyConsistent) {
+		return nil, false
+	}
+	return o.FullyConsistent, true
+}
+
+// HasFullyConsistent returns a boolean if a field has been set.
+func (o *Consistency) HasFullyConsistent() bool {
+	if o != nil && !IsNil(o.FullyConsistent) {
+		return true
+	}
+
+	return false
+}
+
+// SetFullyConsistent gets a reference to the given bool and assigns it to the FullyConsistent field.
+func (o *Consistency) SetFullyConsistent(v *bool) {
+	o.FullyConsistent = v
+}
+
+// GetMinimizeLatency returns the MinimizeLatency field value if set, zero value otherwise.
+func (o *Consistency) GetMinimizeLatency() *bool {
+	if o == nil || IsNil(o.MinimizeLatency) {
+		var ret *bool
+		return ret
+	}
+	return o.MinimizeLatency
+}
+
+// GetMinimizeLatencyOk returns a tuple with the MinimizeLatency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Consistency) GetMinimizeLatencyOk() (*bool, bool) {
+	if o == nil || IsNil(o.MinimizeLatency) {
+		return nil, false
+	}
+	return o.MinimizeLatency, true
+}
+
+// HasMinimizeLatency returns a boolean if a field has been set.
+func (o *Consistency) HasMinimizeLatency() bool {
+	if o != nil && !IsNil(o.MinimizeLatency) {
+		return true
+	}
+
+	return false
+}
+
+// SetMinimizeLatency gets a reference to the given bool and assigns it to the MinimizeLatency field.
+func (o *Consistency) SetMinimizeLatency(v *bool) {
+	o.MinimizeLatency = v
+}
+
+func (o Consistency) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AtExactSnapshot) {
+		toSerialize["atExactSnapshot"] = o.AtExactSnapshot
+	}
+	if !IsNil(o.AtLeastAsFresh) {
+		toSerialize["atLeastAsFresh"] = o.AtLeastAsFresh
+	}
+	if !IsNil(o.FullyConsistent) {
+		toSerialize["fullyConsistent"] = o.FullyConsistent
+	}
+	if !IsNil(o.MinimizeLatency) {
+		toSerialize["minimizeLatency"] = o.MinimizeLatency
+	}
+	return toSerialize, nil
+}
+
+type NullableConsistency struct {
+	value *Consistency
+	isSet bool
+}
+
+func (v NullableConsistency) Get() *Consistency {
+	return v.value
+}
+
+func (v *NullableConsistency) Set(val *Consistency) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableConsistency) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableConsistency) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableConsistency(val *Consistency) *NullableConsistency {
+	return &NullableConsistency{value: val, isSet: true}
+}
+
+func (v NullableConsistency) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableConsistency) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
