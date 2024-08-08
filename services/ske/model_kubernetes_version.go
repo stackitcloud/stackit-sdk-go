@@ -10,9 +10,215 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the KubernetesVersion type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &KubernetesVersion{}
+
+// KubernetesVersion struct for KubernetesVersion
 type KubernetesVersion struct {
 	ExpirationDate *string            `json:"expirationDate,omitempty"`
 	FeatureGates   *map[string]string `json:"featureGates,omitempty"`
 	State          *string            `json:"state,omitempty"`
 	Version        *string            `json:"version,omitempty"`
+}
+
+// NewKubernetesVersion instantiates a new KubernetesVersion object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewKubernetesVersion() *KubernetesVersion {
+	this := KubernetesVersion{}
+	return &this
+}
+
+// NewKubernetesVersionWithDefaults instantiates a new KubernetesVersion object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewKubernetesVersionWithDefaults() *KubernetesVersion {
+	this := KubernetesVersion{}
+	return &this
+}
+
+// GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
+func (o *KubernetesVersion) GetExpirationDate() *string {
+	if o == nil || IsNil(o.ExpirationDate) {
+		var ret *string
+		return ret
+	}
+	return o.ExpirationDate
+}
+
+// GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KubernetesVersion) GetExpirationDateOk() (*string, bool) {
+	if o == nil || IsNil(o.ExpirationDate) {
+		return nil, false
+	}
+	return o.ExpirationDate, true
+}
+
+// HasExpirationDate returns a boolean if a field has been set.
+func (o *KubernetesVersion) HasExpirationDate() bool {
+	if o != nil && !IsNil(o.ExpirationDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpirationDate gets a reference to the given string and assigns it to the ExpirationDate field.
+func (o *KubernetesVersion) SetExpirationDate(v *string) {
+	o.ExpirationDate = v
+}
+
+// GetFeatureGates returns the FeatureGates field value if set, zero value otherwise.
+func (o *KubernetesVersion) GetFeatureGates() *map[string]string {
+	if o == nil || IsNil(o.FeatureGates) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.FeatureGates
+}
+
+// GetFeatureGatesOk returns a tuple with the FeatureGates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KubernetesVersion) GetFeatureGatesOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.FeatureGates) {
+		return nil, false
+	}
+	return o.FeatureGates, true
+}
+
+// HasFeatureGates returns a boolean if a field has been set.
+func (o *KubernetesVersion) HasFeatureGates() bool {
+	if o != nil && !IsNil(o.FeatureGates) {
+		return true
+	}
+
+	return false
+}
+
+// SetFeatureGates gets a reference to the given map[string]string and assigns it to the FeatureGates field.
+func (o *KubernetesVersion) SetFeatureGates(v *map[string]string) {
+	o.FeatureGates = v
+}
+
+// GetState returns the State field value if set, zero value otherwise.
+func (o *KubernetesVersion) GetState() *string {
+	if o == nil || IsNil(o.State) {
+		var ret *string
+		return ret
+	}
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KubernetesVersion) GetStateOk() (*string, bool) {
+	if o == nil || IsNil(o.State) {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *KubernetesVersion) HasState() bool {
+	if o != nil && !IsNil(o.State) {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *KubernetesVersion) SetState(v *string) {
+	o.State = v
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *KubernetesVersion) GetVersion() *string {
+	if o == nil || IsNil(o.Version) {
+		var ret *string
+		return ret
+	}
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KubernetesVersion) GetVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.Version) {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *KubernetesVersion) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *KubernetesVersion) SetVersion(v *string) {
+	o.Version = v
+}
+
+func (o KubernetesVersion) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ExpirationDate) {
+		toSerialize["expirationDate"] = o.ExpirationDate
+	}
+	if !IsNil(o.FeatureGates) {
+		toSerialize["featureGates"] = o.FeatureGates
+	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	return toSerialize, nil
+}
+
+type NullableKubernetesVersion struct {
+	value *KubernetesVersion
+	isSet bool
+}
+
+func (v NullableKubernetesVersion) Get() *KubernetesVersion {
+	return v.value
+}
+
+func (v *NullableKubernetesVersion) Set(val *KubernetesVersion) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableKubernetesVersion) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableKubernetesVersion) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableKubernetesVersion(val *KubernetesVersion) *NullableKubernetesVersion {
+	return &NullableKubernetesVersion{value: val, isSet: true}
+}
+
+func (v NullableKubernetesVersion) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableKubernetesVersion) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
