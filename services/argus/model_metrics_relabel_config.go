@@ -10,6 +10,14 @@ API version: 1.1.0
 
 package argus
 
+import (
+	"encoding/json"
+)
+
+// checks if the MetricsRelabelConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetricsRelabelConfig{}
+
+// MetricsRelabelConfig struct for MetricsRelabelConfig
 type MetricsRelabelConfig struct {
 	Action      *string `json:"action,omitempty"`
 	Modulus     *int64  `json:"modulus,omitempty"`
@@ -19,4 +27,316 @@ type MetricsRelabelConfig struct {
 	// REQUIRED
 	SourceLabels *[]string `json:"sourceLabels"`
 	TargetLabel  *string   `json:"targetLabel,omitempty"`
+}
+
+type _MetricsRelabelConfig MetricsRelabelConfig
+
+// NewMetricsRelabelConfig instantiates a new MetricsRelabelConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMetricsRelabelConfig(sourceLabels *[]string) *MetricsRelabelConfig {
+	this := MetricsRelabelConfig{}
+	var action string = "replace"
+	this.Action = &action
+	var regex string = ".*"
+	this.Regex = &regex
+	var replacement string = "$1"
+	this.Replacement = &replacement
+	var separator string = ";"
+	this.Separator = &separator
+	this.SourceLabels = sourceLabels
+	return &this
+}
+
+// NewMetricsRelabelConfigWithDefaults instantiates a new MetricsRelabelConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMetricsRelabelConfigWithDefaults() *MetricsRelabelConfig {
+	this := MetricsRelabelConfig{}
+	var action string = "replace"
+	this.Action = &action
+	var regex string = ".*"
+	this.Regex = &regex
+	var replacement string = "$1"
+	this.Replacement = &replacement
+	var separator string = ";"
+	this.Separator = &separator
+	return &this
+}
+
+// GetAction returns the Action field value if set, zero value otherwise.
+func (o *MetricsRelabelConfig) GetAction() *string {
+	if o == nil || IsNil(o.Action) {
+		var ret *string
+		return ret
+	}
+	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsRelabelConfig) GetActionOk() (*string, bool) {
+	if o == nil || IsNil(o.Action) {
+		return nil, false
+	}
+	return o.Action, true
+}
+
+// HasAction returns a boolean if a field has been set.
+func (o *MetricsRelabelConfig) HasAction() bool {
+	if o != nil && !IsNil(o.Action) {
+		return true
+	}
+
+	return false
+}
+
+// SetAction gets a reference to the given string and assigns it to the Action field.
+func (o *MetricsRelabelConfig) SetAction(v *string) {
+	o.Action = v
+}
+
+// GetModulus returns the Modulus field value if set, zero value otherwise.
+func (o *MetricsRelabelConfig) GetModulus() *int64 {
+	if o == nil || IsNil(o.Modulus) {
+		var ret *int64
+		return ret
+	}
+	return o.Modulus
+}
+
+// GetModulusOk returns a tuple with the Modulus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsRelabelConfig) GetModulusOk() (*int64, bool) {
+	if o == nil || IsNil(o.Modulus) {
+		return nil, false
+	}
+	return o.Modulus, true
+}
+
+// HasModulus returns a boolean if a field has been set.
+func (o *MetricsRelabelConfig) HasModulus() bool {
+	if o != nil && !IsNil(o.Modulus) {
+		return true
+	}
+
+	return false
+}
+
+// SetModulus gets a reference to the given int64 and assigns it to the Modulus field.
+func (o *MetricsRelabelConfig) SetModulus(v *int64) {
+	o.Modulus = v
+}
+
+// GetRegex returns the Regex field value if set, zero value otherwise.
+func (o *MetricsRelabelConfig) GetRegex() *string {
+	if o == nil || IsNil(o.Regex) {
+		var ret *string
+		return ret
+	}
+	return o.Regex
+}
+
+// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsRelabelConfig) GetRegexOk() (*string, bool) {
+	if o == nil || IsNil(o.Regex) {
+		return nil, false
+	}
+	return o.Regex, true
+}
+
+// HasRegex returns a boolean if a field has been set.
+func (o *MetricsRelabelConfig) HasRegex() bool {
+	if o != nil && !IsNil(o.Regex) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegex gets a reference to the given string and assigns it to the Regex field.
+func (o *MetricsRelabelConfig) SetRegex(v *string) {
+	o.Regex = v
+}
+
+// GetReplacement returns the Replacement field value if set, zero value otherwise.
+func (o *MetricsRelabelConfig) GetReplacement() *string {
+	if o == nil || IsNil(o.Replacement) {
+		var ret *string
+		return ret
+	}
+	return o.Replacement
+}
+
+// GetReplacementOk returns a tuple with the Replacement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsRelabelConfig) GetReplacementOk() (*string, bool) {
+	if o == nil || IsNil(o.Replacement) {
+		return nil, false
+	}
+	return o.Replacement, true
+}
+
+// HasReplacement returns a boolean if a field has been set.
+func (o *MetricsRelabelConfig) HasReplacement() bool {
+	if o != nil && !IsNil(o.Replacement) {
+		return true
+	}
+
+	return false
+}
+
+// SetReplacement gets a reference to the given string and assigns it to the Replacement field.
+func (o *MetricsRelabelConfig) SetReplacement(v *string) {
+	o.Replacement = v
+}
+
+// GetSeparator returns the Separator field value if set, zero value otherwise.
+func (o *MetricsRelabelConfig) GetSeparator() *string {
+	if o == nil || IsNil(o.Separator) {
+		var ret *string
+		return ret
+	}
+	return o.Separator
+}
+
+// GetSeparatorOk returns a tuple with the Separator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsRelabelConfig) GetSeparatorOk() (*string, bool) {
+	if o == nil || IsNil(o.Separator) {
+		return nil, false
+	}
+	return o.Separator, true
+}
+
+// HasSeparator returns a boolean if a field has been set.
+func (o *MetricsRelabelConfig) HasSeparator() bool {
+	if o != nil && !IsNil(o.Separator) {
+		return true
+	}
+
+	return false
+}
+
+// SetSeparator gets a reference to the given string and assigns it to the Separator field.
+func (o *MetricsRelabelConfig) SetSeparator(v *string) {
+	o.Separator = v
+}
+
+// GetSourceLabels returns the SourceLabels field value
+func (o *MetricsRelabelConfig) GetSourceLabels() *[]string {
+	if o == nil {
+		var ret *[]string
+		return ret
+	}
+
+	return o.SourceLabels
+}
+
+// GetSourceLabelsOk returns a tuple with the SourceLabels field value
+// and a boolean to check if the value has been set.
+func (o *MetricsRelabelConfig) GetSourceLabelsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SourceLabels, true
+}
+
+// SetSourceLabels sets field value
+func (o *MetricsRelabelConfig) SetSourceLabels(v *[]string) {
+	o.SourceLabels = v
+}
+
+// GetTargetLabel returns the TargetLabel field value if set, zero value otherwise.
+func (o *MetricsRelabelConfig) GetTargetLabel() *string {
+	if o == nil || IsNil(o.TargetLabel) {
+		var ret *string
+		return ret
+	}
+	return o.TargetLabel
+}
+
+// GetTargetLabelOk returns a tuple with the TargetLabel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsRelabelConfig) GetTargetLabelOk() (*string, bool) {
+	if o == nil || IsNil(o.TargetLabel) {
+		return nil, false
+	}
+	return o.TargetLabel, true
+}
+
+// HasTargetLabel returns a boolean if a field has been set.
+func (o *MetricsRelabelConfig) HasTargetLabel() bool {
+	if o != nil && !IsNil(o.TargetLabel) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetLabel gets a reference to the given string and assigns it to the TargetLabel field.
+func (o *MetricsRelabelConfig) SetTargetLabel(v *string) {
+	o.TargetLabel = v
+}
+
+func (o MetricsRelabelConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Action) {
+		toSerialize["action"] = o.Action
+	}
+	if !IsNil(o.Modulus) {
+		toSerialize["modulus"] = o.Modulus
+	}
+	if !IsNil(o.Regex) {
+		toSerialize["regex"] = o.Regex
+	}
+	if !IsNil(o.Replacement) {
+		toSerialize["replacement"] = o.Replacement
+	}
+	if !IsNil(o.Separator) {
+		toSerialize["separator"] = o.Separator
+	}
+	toSerialize["sourceLabels"] = o.SourceLabels
+	if !IsNil(o.TargetLabel) {
+		toSerialize["targetLabel"] = o.TargetLabel
+	}
+	return toSerialize, nil
+}
+
+type NullableMetricsRelabelConfig struct {
+	value *MetricsRelabelConfig
+	isSet bool
+}
+
+func (v NullableMetricsRelabelConfig) Get() *MetricsRelabelConfig {
+	return v.value
+}
+
+func (v *NullableMetricsRelabelConfig) Set(val *MetricsRelabelConfig) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetricsRelabelConfig) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMetricsRelabelConfig) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetricsRelabelConfig(val *MetricsRelabelConfig) *NullableMetricsRelabelConfig {
+	return &NullableMetricsRelabelConfig{value: val, isSet: true}
+}
+
+func (v NullableMetricsRelabelConfig) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableMetricsRelabelConfig) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

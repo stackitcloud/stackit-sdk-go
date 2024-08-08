@@ -10,6 +10,14 @@ API version: 1.1.0
 
 package argus
 
+import (
+	"encoding/json"
+)
+
+// checks if the HTTPServiceSD type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HTTPServiceSD{}
+
+// HTTPServiceSD struct for HTTPServiceSD
 type HTTPServiceSD struct {
 	BasicAuth       *BasicAuth `json:"basicAuth,omitempty"`
 	Oauth2          *OAuth2    `json:"oauth2,omitempty"`
@@ -17,4 +25,234 @@ type HTTPServiceSD struct {
 	TlsConfig       *TLSConfig `json:"tlsConfig,omitempty"`
 	// REQUIRED
 	Url *string `json:"url"`
+}
+
+type _HTTPServiceSD HTTPServiceSD
+
+// NewHTTPServiceSD instantiates a new HTTPServiceSD object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHTTPServiceSD(url *string) *HTTPServiceSD {
+	this := HTTPServiceSD{}
+	var refreshInterval string = "60s"
+	this.RefreshInterval = &refreshInterval
+	this.Url = url
+	return &this
+}
+
+// NewHTTPServiceSDWithDefaults instantiates a new HTTPServiceSD object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHTTPServiceSDWithDefaults() *HTTPServiceSD {
+	this := HTTPServiceSD{}
+	var refreshInterval string = "60s"
+	this.RefreshInterval = &refreshInterval
+	return &this
+}
+
+// GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
+func (o *HTTPServiceSD) GetBasicAuth() *BasicAuth {
+	if o == nil || IsNil(o.BasicAuth) {
+		var ret *BasicAuth
+		return ret
+	}
+	return o.BasicAuth
+}
+
+// GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HTTPServiceSD) GetBasicAuthOk() (*BasicAuth, bool) {
+	if o == nil || IsNil(o.BasicAuth) {
+		return nil, false
+	}
+	return o.BasicAuth, true
+}
+
+// HasBasicAuth returns a boolean if a field has been set.
+func (o *HTTPServiceSD) HasBasicAuth() bool {
+	if o != nil && !IsNil(o.BasicAuth) {
+		return true
+	}
+
+	return false
+}
+
+// SetBasicAuth gets a reference to the given BasicAuth and assigns it to the BasicAuth field.
+func (o *HTTPServiceSD) SetBasicAuth(v *BasicAuth) {
+	o.BasicAuth = v
+}
+
+// GetOauth2 returns the Oauth2 field value if set, zero value otherwise.
+func (o *HTTPServiceSD) GetOauth2() *OAuth2 {
+	if o == nil || IsNil(o.Oauth2) {
+		var ret *OAuth2
+		return ret
+	}
+	return o.Oauth2
+}
+
+// GetOauth2Ok returns a tuple with the Oauth2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HTTPServiceSD) GetOauth2Ok() (*OAuth2, bool) {
+	if o == nil || IsNil(o.Oauth2) {
+		return nil, false
+	}
+	return o.Oauth2, true
+}
+
+// HasOauth2 returns a boolean if a field has been set.
+func (o *HTTPServiceSD) HasOauth2() bool {
+	if o != nil && !IsNil(o.Oauth2) {
+		return true
+	}
+
+	return false
+}
+
+// SetOauth2 gets a reference to the given OAuth2 and assigns it to the Oauth2 field.
+func (o *HTTPServiceSD) SetOauth2(v *OAuth2) {
+	o.Oauth2 = v
+}
+
+// GetRefreshInterval returns the RefreshInterval field value if set, zero value otherwise.
+func (o *HTTPServiceSD) GetRefreshInterval() *string {
+	if o == nil || IsNil(o.RefreshInterval) {
+		var ret *string
+		return ret
+	}
+	return o.RefreshInterval
+}
+
+// GetRefreshIntervalOk returns a tuple with the RefreshInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HTTPServiceSD) GetRefreshIntervalOk() (*string, bool) {
+	if o == nil || IsNil(o.RefreshInterval) {
+		return nil, false
+	}
+	return o.RefreshInterval, true
+}
+
+// HasRefreshInterval returns a boolean if a field has been set.
+func (o *HTTPServiceSD) HasRefreshInterval() bool {
+	if o != nil && !IsNil(o.RefreshInterval) {
+		return true
+	}
+
+	return false
+}
+
+// SetRefreshInterval gets a reference to the given string and assigns it to the RefreshInterval field.
+func (o *HTTPServiceSD) SetRefreshInterval(v *string) {
+	o.RefreshInterval = v
+}
+
+// GetTlsConfig returns the TlsConfig field value if set, zero value otherwise.
+func (o *HTTPServiceSD) GetTlsConfig() *TLSConfig {
+	if o == nil || IsNil(o.TlsConfig) {
+		var ret *TLSConfig
+		return ret
+	}
+	return o.TlsConfig
+}
+
+// GetTlsConfigOk returns a tuple with the TlsConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HTTPServiceSD) GetTlsConfigOk() (*TLSConfig, bool) {
+	if o == nil || IsNil(o.TlsConfig) {
+		return nil, false
+	}
+	return o.TlsConfig, true
+}
+
+// HasTlsConfig returns a boolean if a field has been set.
+func (o *HTTPServiceSD) HasTlsConfig() bool {
+	if o != nil && !IsNil(o.TlsConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetTlsConfig gets a reference to the given TLSConfig and assigns it to the TlsConfig field.
+func (o *HTTPServiceSD) SetTlsConfig(v *TLSConfig) {
+	o.TlsConfig = v
+}
+
+// GetUrl returns the Url field value
+func (o *HTTPServiceSD) GetUrl() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *HTTPServiceSD) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Url, true
+}
+
+// SetUrl sets field value
+func (o *HTTPServiceSD) SetUrl(v *string) {
+	o.Url = v
+}
+
+func (o HTTPServiceSD) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BasicAuth) {
+		toSerialize["basicAuth"] = o.BasicAuth
+	}
+	if !IsNil(o.Oauth2) {
+		toSerialize["oauth2"] = o.Oauth2
+	}
+	if !IsNil(o.RefreshInterval) {
+		toSerialize["refreshInterval"] = o.RefreshInterval
+	}
+	if !IsNil(o.TlsConfig) {
+		toSerialize["tlsConfig"] = o.TlsConfig
+	}
+	toSerialize["url"] = o.Url
+	return toSerialize, nil
+}
+
+type NullableHTTPServiceSD struct {
+	value *HTTPServiceSD
+	isSet bool
+}
+
+func (v NullableHTTPServiceSD) Get() *HTTPServiceSD {
+	return v.value
+}
+
+func (v *NullableHTTPServiceSD) Set(val *HTTPServiceSD) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHTTPServiceSD) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableHTTPServiceSD) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHTTPServiceSD(val *HTTPServiceSD) *NullableHTTPServiceSD {
+	return &NullableHTTPServiceSD{value: val, isSet: true}
+}
+
+func (v NullableHTTPServiceSD) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableHTTPServiceSD) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
