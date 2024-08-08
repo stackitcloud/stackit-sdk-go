@@ -10,6 +10,107 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the ImportRecordSetsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ImportRecordSetsPayload{}
+
+// ImportRecordSetsPayload struct for ImportRecordSetsPayload
 type ImportRecordSetsPayload struct {
 	RrSets *[]RecordDataExchange `json:"rrSets,omitempty"`
+}
+
+// NewImportRecordSetsPayload instantiates a new ImportRecordSetsPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewImportRecordSetsPayload() *ImportRecordSetsPayload {
+	this := ImportRecordSetsPayload{}
+	return &this
+}
+
+// NewImportRecordSetsPayloadWithDefaults instantiates a new ImportRecordSetsPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewImportRecordSetsPayloadWithDefaults() *ImportRecordSetsPayload {
+	this := ImportRecordSetsPayload{}
+	return &this
+}
+
+// GetRrSets returns the RrSets field value if set, zero value otherwise.
+func (o *ImportRecordSetsPayload) GetRrSets() *[]RecordDataExchange {
+	if o == nil || IsNil(o.RrSets) {
+		var ret *[]RecordDataExchange
+		return ret
+	}
+	return o.RrSets
+}
+
+// GetRrSetsOk returns a tuple with the RrSets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ImportRecordSetsPayload) GetRrSetsOk() (*[]RecordDataExchange, bool) {
+	if o == nil || IsNil(o.RrSets) {
+		return nil, false
+	}
+	return o.RrSets, true
+}
+
+// HasRrSets returns a boolean if a field has been set.
+func (o *ImportRecordSetsPayload) HasRrSets() bool {
+	if o != nil && !IsNil(o.RrSets) {
+		return true
+	}
+
+	return false
+}
+
+// SetRrSets gets a reference to the given []RecordDataExchange and assigns it to the RrSets field.
+func (o *ImportRecordSetsPayload) SetRrSets(v *[]RecordDataExchange) {
+	o.RrSets = v
+}
+
+func (o ImportRecordSetsPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RrSets) {
+		toSerialize["rrSets"] = o.RrSets
+	}
+	return toSerialize, nil
+}
+
+type NullableImportRecordSetsPayload struct {
+	value *ImportRecordSetsPayload
+	isSet bool
+}
+
+func (v NullableImportRecordSetsPayload) Get() *ImportRecordSetsPayload {
+	return v.value
+}
+
+func (v *NullableImportRecordSetsPayload) Set(val *ImportRecordSetsPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableImportRecordSetsPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableImportRecordSetsPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableImportRecordSetsPayload(val *ImportRecordSetsPayload) *NullableImportRecordSetsPayload {
+	return &NullableImportRecordSetsPayload{value: val, isSet: true}
+}
+
+func (v NullableImportRecordSetsPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableImportRecordSetsPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
