@@ -10,6 +10,107 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListRestoreJobsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListRestoreJobsResponse{}
+
+// ListRestoreJobsResponse struct for ListRestoreJobsResponse
 type ListRestoreJobsResponse struct {
 	Items *[]RestoreInstanceStatus `json:"items,omitempty"`
+}
+
+// NewListRestoreJobsResponse instantiates a new ListRestoreJobsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListRestoreJobsResponse() *ListRestoreJobsResponse {
+	this := ListRestoreJobsResponse{}
+	return &this
+}
+
+// NewListRestoreJobsResponseWithDefaults instantiates a new ListRestoreJobsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListRestoreJobsResponseWithDefaults() *ListRestoreJobsResponse {
+	this := ListRestoreJobsResponse{}
+	return &this
+}
+
+// GetItems returns the Items field value if set, zero value otherwise.
+func (o *ListRestoreJobsResponse) GetItems() *[]RestoreInstanceStatus {
+	if o == nil || IsNil(o.Items) {
+		var ret *[]RestoreInstanceStatus
+		return ret
+	}
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListRestoreJobsResponse) GetItemsOk() (*[]RestoreInstanceStatus, bool) {
+	if o == nil || IsNil(o.Items) {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// HasItems returns a boolean if a field has been set.
+func (o *ListRestoreJobsResponse) HasItems() bool {
+	if o != nil && !IsNil(o.Items) {
+		return true
+	}
+
+	return false
+}
+
+// SetItems gets a reference to the given []RestoreInstanceStatus and assigns it to the Items field.
+func (o *ListRestoreJobsResponse) SetItems(v *[]RestoreInstanceStatus) {
+	o.Items = v
+}
+
+func (o ListRestoreJobsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Items) {
+		toSerialize["items"] = o.Items
+	}
+	return toSerialize, nil
+}
+
+type NullableListRestoreJobsResponse struct {
+	value *ListRestoreJobsResponse
+	isSet bool
+}
+
+func (v NullableListRestoreJobsResponse) Get() *ListRestoreJobsResponse {
+	return v.value
+}
+
+func (v *NullableListRestoreJobsResponse) Set(val *ListRestoreJobsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListRestoreJobsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListRestoreJobsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListRestoreJobsResponse(val *ListRestoreJobsResponse) *NullableListRestoreJobsResponse {
+	return &NullableListRestoreJobsResponse{value: val, isSet: true}
+}
+
+func (v NullableListRestoreJobsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListRestoreJobsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

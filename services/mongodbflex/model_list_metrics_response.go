@@ -10,6 +10,107 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListMetricsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListMetricsResponse{}
+
+// ListMetricsResponse struct for ListMetricsResponse
 type ListMetricsResponse struct {
 	Hosts *[]Host `json:"hosts,omitempty"`
+}
+
+// NewListMetricsResponse instantiates a new ListMetricsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListMetricsResponse() *ListMetricsResponse {
+	this := ListMetricsResponse{}
+	return &this
+}
+
+// NewListMetricsResponseWithDefaults instantiates a new ListMetricsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListMetricsResponseWithDefaults() *ListMetricsResponse {
+	this := ListMetricsResponse{}
+	return &this
+}
+
+// GetHosts returns the Hosts field value if set, zero value otherwise.
+func (o *ListMetricsResponse) GetHosts() *[]Host {
+	if o == nil || IsNil(o.Hosts) {
+		var ret *[]Host
+		return ret
+	}
+	return o.Hosts
+}
+
+// GetHostsOk returns a tuple with the Hosts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListMetricsResponse) GetHostsOk() (*[]Host, bool) {
+	if o == nil || IsNil(o.Hosts) {
+		return nil, false
+	}
+	return o.Hosts, true
+}
+
+// HasHosts returns a boolean if a field has been set.
+func (o *ListMetricsResponse) HasHosts() bool {
+	if o != nil && !IsNil(o.Hosts) {
+		return true
+	}
+
+	return false
+}
+
+// SetHosts gets a reference to the given []Host and assigns it to the Hosts field.
+func (o *ListMetricsResponse) SetHosts(v *[]Host) {
+	o.Hosts = v
+}
+
+func (o ListMetricsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Hosts) {
+		toSerialize["hosts"] = o.Hosts
+	}
+	return toSerialize, nil
+}
+
+type NullableListMetricsResponse struct {
+	value *ListMetricsResponse
+	isSet bool
+}
+
+func (v NullableListMetricsResponse) Get() *ListMetricsResponse {
+	return v.value
+}
+
+func (v *NullableListMetricsResponse) Set(val *ListMetricsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListMetricsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListMetricsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListMetricsResponse(val *ListMetricsResponse) *NullableListMetricsResponse {
+	return &NullableListMetricsResponse{value: val, isSet: true}
+}
+
+func (v NullableListMetricsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListMetricsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

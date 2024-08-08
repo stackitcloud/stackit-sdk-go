@@ -10,10 +10,251 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the RestoreInstanceStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RestoreInstanceStatus{}
+
+// RestoreInstanceStatus struct for RestoreInstanceStatus
 type RestoreInstanceStatus struct {
 	BackupID   *string `json:"backupID,omitempty"`
 	Date       *string `json:"date,omitempty"`
 	Id         *string `json:"id,omitempty"`
 	InstanceId *string `json:"instanceId,omitempty"`
 	Status     *string `json:"status,omitempty"`
+}
+
+// NewRestoreInstanceStatus instantiates a new RestoreInstanceStatus object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRestoreInstanceStatus() *RestoreInstanceStatus {
+	this := RestoreInstanceStatus{}
+	return &this
+}
+
+// NewRestoreInstanceStatusWithDefaults instantiates a new RestoreInstanceStatus object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRestoreInstanceStatusWithDefaults() *RestoreInstanceStatus {
+	this := RestoreInstanceStatus{}
+	return &this
+}
+
+// GetBackupID returns the BackupID field value if set, zero value otherwise.
+func (o *RestoreInstanceStatus) GetBackupID() *string {
+	if o == nil || IsNil(o.BackupID) {
+		var ret *string
+		return ret
+	}
+	return o.BackupID
+}
+
+// GetBackupIDOk returns a tuple with the BackupID field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreInstanceStatus) GetBackupIDOk() (*string, bool) {
+	if o == nil || IsNil(o.BackupID) {
+		return nil, false
+	}
+	return o.BackupID, true
+}
+
+// HasBackupID returns a boolean if a field has been set.
+func (o *RestoreInstanceStatus) HasBackupID() bool {
+	if o != nil && !IsNil(o.BackupID) {
+		return true
+	}
+
+	return false
+}
+
+// SetBackupID gets a reference to the given string and assigns it to the BackupID field.
+func (o *RestoreInstanceStatus) SetBackupID(v *string) {
+	o.BackupID = v
+}
+
+// GetDate returns the Date field value if set, zero value otherwise.
+func (o *RestoreInstanceStatus) GetDate() *string {
+	if o == nil || IsNil(o.Date) {
+		var ret *string
+		return ret
+	}
+	return o.Date
+}
+
+// GetDateOk returns a tuple with the Date field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreInstanceStatus) GetDateOk() (*string, bool) {
+	if o == nil || IsNil(o.Date) {
+		return nil, false
+	}
+	return o.Date, true
+}
+
+// HasDate returns a boolean if a field has been set.
+func (o *RestoreInstanceStatus) HasDate() bool {
+	if o != nil && !IsNil(o.Date) {
+		return true
+	}
+
+	return false
+}
+
+// SetDate gets a reference to the given string and assigns it to the Date field.
+func (o *RestoreInstanceStatus) SetDate(v *string) {
+	o.Date = v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *RestoreInstanceStatus) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreInstanceStatus) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *RestoreInstanceStatus) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *RestoreInstanceStatus) SetId(v *string) {
+	o.Id = v
+}
+
+// GetInstanceId returns the InstanceId field value if set, zero value otherwise.
+func (o *RestoreInstanceStatus) GetInstanceId() *string {
+	if o == nil || IsNil(o.InstanceId) {
+		var ret *string
+		return ret
+	}
+	return o.InstanceId
+}
+
+// GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreInstanceStatus) GetInstanceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.InstanceId) {
+		return nil, false
+	}
+	return o.InstanceId, true
+}
+
+// HasInstanceId returns a boolean if a field has been set.
+func (o *RestoreInstanceStatus) HasInstanceId() bool {
+	if o != nil && !IsNil(o.InstanceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceId gets a reference to the given string and assigns it to the InstanceId field.
+func (o *RestoreInstanceStatus) SetInstanceId(v *string) {
+	o.InstanceId = v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *RestoreInstanceStatus) GetStatus() *string {
+	if o == nil || IsNil(o.Status) {
+		var ret *string
+		return ret
+	}
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreInstanceStatus) GetStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *RestoreInstanceStatus) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *RestoreInstanceStatus) SetStatus(v *string) {
+	o.Status = v
+}
+
+func (o RestoreInstanceStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BackupID) {
+		toSerialize["backupID"] = o.BackupID
+	}
+	if !IsNil(o.Date) {
+		toSerialize["date"] = o.Date
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.InstanceId) {
+		toSerialize["instanceId"] = o.InstanceId
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
+}
+
+type NullableRestoreInstanceStatus struct {
+	value *RestoreInstanceStatus
+	isSet bool
+}
+
+func (v NullableRestoreInstanceStatus) Get() *RestoreInstanceStatus {
+	return v.value
+}
+
+func (v *NullableRestoreInstanceStatus) Set(val *RestoreInstanceStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRestoreInstanceStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRestoreInstanceStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRestoreInstanceStatus(val *RestoreInstanceStatus) *NullableRestoreInstanceStatus {
+	return &NullableRestoreInstanceStatus{value: val, isSet: true}
+}
+
+func (v NullableRestoreInstanceStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRestoreInstanceStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
