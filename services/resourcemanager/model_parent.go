@@ -10,6 +10,14 @@ API version: 2.0
 
 package resourcemanager
 
+import (
+	"encoding/json"
+)
+
+// checks if the Parent type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Parent{}
+
+// Parent Parent container.
 type Parent struct {
 	// User-friendly identifier of either organization or folder (will replace id).
 	// REQUIRED
@@ -20,4 +28,142 @@ type Parent struct {
 	// Container type of parent container.
 	// REQUIRED
 	Type *string `json:"type"`
+}
+
+type _Parent Parent
+
+// NewParent instantiates a new Parent object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewParent(containerId *string, id *string, type_ *string) *Parent {
+	this := Parent{}
+	this.ContainerId = containerId
+	this.Id = id
+	this.Type = type_
+	return &this
+}
+
+// NewParentWithDefaults instantiates a new Parent object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewParentWithDefaults() *Parent {
+	this := Parent{}
+	return &this
+}
+
+// GetContainerId returns the ContainerId field value
+func (o *Parent) GetContainerId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ContainerId
+}
+
+// GetContainerIdOk returns a tuple with the ContainerId field value
+// and a boolean to check if the value has been set.
+func (o *Parent) GetContainerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContainerId, true
+}
+
+// SetContainerId sets field value
+func (o *Parent) SetContainerId(v *string) {
+	o.ContainerId = v
+}
+
+// GetId returns the Id field value
+func (o *Parent) GetId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Parent) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// SetId sets field value
+func (o *Parent) SetId(v *string) {
+	o.Id = v
+}
+
+// GetType returns the Type field value
+func (o *Parent) GetType() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *Parent) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// SetType sets field value
+func (o *Parent) SetType(v *string) {
+	o.Type = v
+}
+
+func (o Parent) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["containerId"] = o.ContainerId
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
+}
+
+type NullableParent struct {
+	value *Parent
+	isSet bool
+}
+
+func (v NullableParent) Get() *Parent {
+	return v.value
+}
+
+func (v *NullableParent) Set(val *Parent) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableParent) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableParent) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableParent(val *Parent) *NullableParent {
+	return &NullableParent{value: val, isSet: true}
+}
+
+func (v NullableParent) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableParent) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
