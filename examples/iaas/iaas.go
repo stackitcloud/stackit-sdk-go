@@ -3,11 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/core/runtime"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas/wait"
@@ -118,9 +116,7 @@ func main() {
 		},
 	}
 
-	var httpResp *http.Response
-	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
-	network, err := iaasClient.CreateNetwork(ctxWithHTTPResp, projectId).CreateNetworkPayload(createNetworkPayload).Execute()
+	network, err := iaasClient.CreateNetwork(context.Background(), projectId).CreateNetworkPayload(createNetworkPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when calling `CreateNetwork`: %v\n", err)
 		os.Exit(1)
