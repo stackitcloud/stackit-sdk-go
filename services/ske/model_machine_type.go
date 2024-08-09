@@ -10,10 +10,251 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the MachineType type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MachineType{}
+
+// MachineType struct for MachineType
 type MachineType struct {
 	Architecture *string `json:"architecture,omitempty"`
 	Cpu          *int64  `json:"cpu,omitempty"`
 	Gpu          *int64  `json:"gpu,omitempty"`
 	Memory       *int64  `json:"memory,omitempty"`
 	Name         *string `json:"name,omitempty"`
+}
+
+// NewMachineType instantiates a new MachineType object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMachineType() *MachineType {
+	this := MachineType{}
+	return &this
+}
+
+// NewMachineTypeWithDefaults instantiates a new MachineType object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMachineTypeWithDefaults() *MachineType {
+	this := MachineType{}
+	return &this
+}
+
+// GetArchitecture returns the Architecture field value if set, zero value otherwise.
+func (o *MachineType) GetArchitecture() *string {
+	if o == nil || IsNil(o.Architecture) {
+		var ret *string
+		return ret
+	}
+	return o.Architecture
+}
+
+// GetArchitectureOk returns a tuple with the Architecture field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineType) GetArchitectureOk() (*string, bool) {
+	if o == nil || IsNil(o.Architecture) {
+		return nil, false
+	}
+	return o.Architecture, true
+}
+
+// HasArchitecture returns a boolean if a field has been set.
+func (o *MachineType) HasArchitecture() bool {
+	if o != nil && !IsNil(o.Architecture) {
+		return true
+	}
+
+	return false
+}
+
+// SetArchitecture gets a reference to the given string and assigns it to the Architecture field.
+func (o *MachineType) SetArchitecture(v *string) {
+	o.Architecture = v
+}
+
+// GetCpu returns the Cpu field value if set, zero value otherwise.
+func (o *MachineType) GetCpu() *int64 {
+	if o == nil || IsNil(o.Cpu) {
+		var ret *int64
+		return ret
+	}
+	return o.Cpu
+}
+
+// GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineType) GetCpuOk() (*int64, bool) {
+	if o == nil || IsNil(o.Cpu) {
+		return nil, false
+	}
+	return o.Cpu, true
+}
+
+// HasCpu returns a boolean if a field has been set.
+func (o *MachineType) HasCpu() bool {
+	if o != nil && !IsNil(o.Cpu) {
+		return true
+	}
+
+	return false
+}
+
+// SetCpu gets a reference to the given int64 and assigns it to the Cpu field.
+func (o *MachineType) SetCpu(v *int64) {
+	o.Cpu = v
+}
+
+// GetGpu returns the Gpu field value if set, zero value otherwise.
+func (o *MachineType) GetGpu() *int64 {
+	if o == nil || IsNil(o.Gpu) {
+		var ret *int64
+		return ret
+	}
+	return o.Gpu
+}
+
+// GetGpuOk returns a tuple with the Gpu field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineType) GetGpuOk() (*int64, bool) {
+	if o == nil || IsNil(o.Gpu) {
+		return nil, false
+	}
+	return o.Gpu, true
+}
+
+// HasGpu returns a boolean if a field has been set.
+func (o *MachineType) HasGpu() bool {
+	if o != nil && !IsNil(o.Gpu) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpu gets a reference to the given int64 and assigns it to the Gpu field.
+func (o *MachineType) SetGpu(v *int64) {
+	o.Gpu = v
+}
+
+// GetMemory returns the Memory field value if set, zero value otherwise.
+func (o *MachineType) GetMemory() *int64 {
+	if o == nil || IsNil(o.Memory) {
+		var ret *int64
+		return ret
+	}
+	return o.Memory
+}
+
+// GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineType) GetMemoryOk() (*int64, bool) {
+	if o == nil || IsNil(o.Memory) {
+		return nil, false
+	}
+	return o.Memory, true
+}
+
+// HasMemory returns a boolean if a field has been set.
+func (o *MachineType) HasMemory() bool {
+	if o != nil && !IsNil(o.Memory) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemory gets a reference to the given int64 and assigns it to the Memory field.
+func (o *MachineType) SetMemory(v *int64) {
+	o.Memory = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *MachineType) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineType) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *MachineType) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *MachineType) SetName(v *string) {
+	o.Name = v
+}
+
+func (o MachineType) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Architecture) {
+		toSerialize["architecture"] = o.Architecture
+	}
+	if !IsNil(o.Cpu) {
+		toSerialize["cpu"] = o.Cpu
+	}
+	if !IsNil(o.Gpu) {
+		toSerialize["gpu"] = o.Gpu
+	}
+	if !IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
+}
+
+type NullableMachineType struct {
+	value *MachineType
+	isSet bool
+}
+
+func (v NullableMachineType) Get() *MachineType {
+	return v.value
+}
+
+func (v *NullableMachineType) Set(val *MachineType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMachineType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMachineType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMachineType(val *MachineType) *NullableMachineType {
+	return &NullableMachineType{value: val, isSet: true}
+}
+
+func (v NullableMachineType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableMachineType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
