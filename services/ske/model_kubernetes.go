@@ -10,9 +10,138 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the Kubernetes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Kubernetes{}
+
+// Kubernetes For valid versions please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `kubernetesVersions`.
 type Kubernetes struct {
 	// DEPRECATED as of Kubernetes 1.25+ Flag to specify if privileged mode for containers is enabled or not. This should be used with care since it also disables a couple of other features like the use of some volume type (e.g. PVCs). By default this is set to true.
 	AllowPrivilegedContainers *bool `json:"allowPrivilegedContainers,omitempty"`
 	// REQUIRED
 	Version *string `json:"version"`
+}
+
+type _Kubernetes Kubernetes
+
+// NewKubernetes instantiates a new Kubernetes object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewKubernetes(version *string) *Kubernetes {
+	this := Kubernetes{}
+	this.Version = version
+	return &this
+}
+
+// NewKubernetesWithDefaults instantiates a new Kubernetes object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewKubernetesWithDefaults() *Kubernetes {
+	this := Kubernetes{}
+	return &this
+}
+
+// GetAllowPrivilegedContainers returns the AllowPrivilegedContainers field value if set, zero value otherwise.
+func (o *Kubernetes) GetAllowPrivilegedContainers() *bool {
+	if o == nil || IsNil(o.AllowPrivilegedContainers) {
+		var ret *bool
+		return ret
+	}
+	return o.AllowPrivilegedContainers
+}
+
+// GetAllowPrivilegedContainersOk returns a tuple with the AllowPrivilegedContainers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Kubernetes) GetAllowPrivilegedContainersOk() (*bool, bool) {
+	if o == nil || IsNil(o.AllowPrivilegedContainers) {
+		return nil, false
+	}
+	return o.AllowPrivilegedContainers, true
+}
+
+// HasAllowPrivilegedContainers returns a boolean if a field has been set.
+func (o *Kubernetes) HasAllowPrivilegedContainers() bool {
+	if o != nil && !IsNil(o.AllowPrivilegedContainers) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowPrivilegedContainers gets a reference to the given bool and assigns it to the AllowPrivilegedContainers field.
+func (o *Kubernetes) SetAllowPrivilegedContainers(v *bool) {
+	o.AllowPrivilegedContainers = v
+}
+
+// GetVersion returns the Version field value
+func (o *Kubernetes) GetVersion() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *Kubernetes) GetVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// SetVersion sets field value
+func (o *Kubernetes) SetVersion(v *string) {
+	o.Version = v
+}
+
+func (o Kubernetes) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowPrivilegedContainers) {
+		toSerialize["allowPrivilegedContainers"] = o.AllowPrivilegedContainers
+	}
+	toSerialize["version"] = o.Version
+	return toSerialize, nil
+}
+
+type NullableKubernetes struct {
+	value *Kubernetes
+	isSet bool
+}
+
+func (v NullableKubernetes) Get() *Kubernetes {
+	return v.value
+}
+
+func (v *NullableKubernetes) Set(val *Kubernetes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableKubernetes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableKubernetes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableKubernetes(val *Kubernetes) *NullableKubernetes {
+	return &NullableKubernetes{value: val, isSet: true}
+}
+
+func (v NullableKubernetes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableKubernetes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
