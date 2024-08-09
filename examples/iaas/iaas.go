@@ -3,11 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/core/runtime"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas/wait"
@@ -111,16 +109,14 @@ func main() {
 	createNetworkPayload := iaas.CreateNetworkPayload{
 		Name: utils.Ptr("example-network"),
 		AddressFamily: &iaas.CreateNetworkAddressFamily{
-			Ipv4: &iaas.CreateNetworkIPv4{
+			Ipv4: &iaas.CreateNetworkIPv4Body{
 				PrefixLength: utils.Ptr(int64(24)),
 				Nameservers:  &[]string{"1.2.3.4"},
 			},
 		},
 	}
 
-	var httpResp *http.Response
-	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
-	network, err := iaasClient.CreateNetwork(ctxWithHTTPResp, projectId).CreateNetworkPayload(createNetworkPayload).Execute()
+	network, err := iaasClient.CreateNetwork(context.Background(), projectId).CreateNetworkPayload(createNetworkPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when calling `CreateNetwork`: %v\n", err)
 		os.Exit(1)
@@ -130,7 +126,7 @@ func main() {
 	fmt.Printf("[Iaas API] Current state of the network: %q\n", *network.State)
 	fmt.Println("[Iaas API] Waiting for network to be created...")
 
-	network, err = wait.CreateNetworkWaitHandler(context.Background(), iaasClient, projectId, httpResp.Header.Get("x-request-id")).WaitWithContext(context.Background())
+	network, err = wait.CreateNetworkWaitHandler(context.Background(), iaasClient, projectId, *network.NetworkId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when waiting for creation: %v\n", err)
 		os.Exit(1)

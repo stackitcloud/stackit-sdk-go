@@ -10,6 +10,14 @@ API version: 1beta1
 
 package iaas
 
+import (
+	"encoding/json"
+)
+
+// checks if the RequestResource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RequestResource{}
+
+// RequestResource Object that represents a resource as part of a request.
 type RequestResource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
@@ -20,4 +28,142 @@ type RequestResource struct {
 	// Object that represents a resource type.
 	// REQUIRED
 	Type *string `json:"type"`
+}
+
+type _RequestResource RequestResource
+
+// NewRequestResource instantiates a new RequestResource object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRequestResource(id *string, status *string, type_ *string) *RequestResource {
+	this := RequestResource{}
+	this.Id = id
+	this.Status = status
+	this.Type = type_
+	return &this
+}
+
+// NewRequestResourceWithDefaults instantiates a new RequestResource object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRequestResourceWithDefaults() *RequestResource {
+	this := RequestResource{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *RequestResource) GetId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *RequestResource) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// SetId sets field value
+func (o *RequestResource) SetId(v *string) {
+	o.Id = v
+}
+
+// GetStatus returns the Status field value
+func (o *RequestResource) GetStatus() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *RequestResource) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// SetStatus sets field value
+func (o *RequestResource) SetStatus(v *string) {
+	o.Status = v
+}
+
+// GetType returns the Type field value
+func (o *RequestResource) GetType() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *RequestResource) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// SetType sets field value
+func (o *RequestResource) SetType(v *string) {
+	o.Type = v
+}
+
+func (o RequestResource) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	toSerialize["status"] = o.Status
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
+}
+
+type NullableRequestResource struct {
+	value *RequestResource
+	isSet bool
+}
+
+func (v NullableRequestResource) Get() *RequestResource {
+	return v.value
+}
+
+func (v *NullableRequestResource) Set(val *RequestResource) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRequestResource) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRequestResource) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRequestResource(val *RequestResource) *NullableRequestResource {
+	return &NullableRequestResource{value: val, isSet: true}
+}
+
+func (v NullableRequestResource) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRequestResource) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
