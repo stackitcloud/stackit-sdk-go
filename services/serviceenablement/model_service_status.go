@@ -10,6 +10,14 @@ API version: 1.1
 
 package serviceenablement
 
+import (
+	"encoding/json"
+)
+
+// checks if the ServiceStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceStatus{}
+
+// ServiceStatus struct for ServiceStatus
 type ServiceStatus struct {
 	Dependencies *Dependencies      `json:"dependencies,omitempty"`
 	Enablement   *string            `json:"enablement,omitempty"`
@@ -22,4 +30,393 @@ type ServiceStatus struct {
 	ServiceId *string `json:"serviceId,omitempty"`
 	// the state of a service within a project
 	State *string `json:"state,omitempty"`
+}
+
+// NewServiceStatus instantiates a new ServiceStatus object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServiceStatus() *ServiceStatus {
+	this := ServiceStatus{}
+	var enablement string = "REQUEST"
+	this.Enablement = &enablement
+	var lifecycle string = "FLEX"
+	this.Lifecycle = &lifecycle
+	var scope string = "PUBLIC"
+	this.Scope = &scope
+	var state string = "ENABLED"
+	this.State = &state
+	return &this
+}
+
+// NewServiceStatusWithDefaults instantiates a new ServiceStatus object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServiceStatusWithDefaults() *ServiceStatus {
+	this := ServiceStatus{}
+	var enablement string = "REQUEST"
+	this.Enablement = &enablement
+	var lifecycle string = "FLEX"
+	this.Lifecycle = &lifecycle
+	var scope string = "PUBLIC"
+	this.Scope = &scope
+	var state string = "ENABLED"
+	this.State = &state
+	return &this
+}
+
+// GetDependencies returns the Dependencies field value if set, zero value otherwise.
+func (o *ServiceStatus) GetDependencies() *Dependencies {
+	if o == nil || IsNil(o.Dependencies) {
+		var ret *Dependencies
+		return ret
+	}
+	return o.Dependencies
+}
+
+// GetDependenciesOk returns a tuple with the Dependencies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceStatus) GetDependenciesOk() (*Dependencies, bool) {
+	if o == nil || IsNil(o.Dependencies) {
+		return nil, false
+	}
+	return o.Dependencies, true
+}
+
+// HasDependencies returns a boolean if a field has been set.
+func (o *ServiceStatus) HasDependencies() bool {
+	if o != nil && !IsNil(o.Dependencies) {
+		return true
+	}
+
+	return false
+}
+
+// SetDependencies gets a reference to the given Dependencies and assigns it to the Dependencies field.
+func (o *ServiceStatus) SetDependencies(v *Dependencies) {
+	o.Dependencies = v
+}
+
+// GetEnablement returns the Enablement field value if set, zero value otherwise.
+func (o *ServiceStatus) GetEnablement() *string {
+	if o == nil || IsNil(o.Enablement) {
+		var ret *string
+		return ret
+	}
+	return o.Enablement
+}
+
+// GetEnablementOk returns a tuple with the Enablement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceStatus) GetEnablementOk() (*string, bool) {
+	if o == nil || IsNil(o.Enablement) {
+		return nil, false
+	}
+	return o.Enablement, true
+}
+
+// HasEnablement returns a boolean if a field has been set.
+func (o *ServiceStatus) HasEnablement() bool {
+	if o != nil && !IsNil(o.Enablement) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnablement gets a reference to the given string and assigns it to the Enablement field.
+func (o *ServiceStatus) SetEnablement(v *string) {
+	o.Enablement = v
+}
+
+// GetError returns the Error field value if set, zero value otherwise.
+func (o *ServiceStatus) GetError() *ActionError {
+	if o == nil || IsNil(o.Error) {
+		var ret *ActionError
+		return ret
+	}
+	return o.Error
+}
+
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceStatus) GetErrorOk() (*ActionError, bool) {
+	if o == nil || IsNil(o.Error) {
+		return nil, false
+	}
+	return o.Error, true
+}
+
+// HasError returns a boolean if a field has been set.
+func (o *ServiceStatus) HasError() bool {
+	if o != nil && !IsNil(o.Error) {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given ActionError and assigns it to the Error field.
+func (o *ServiceStatus) SetError(v *ActionError) {
+	o.Error = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *ServiceStatus) GetLabels() *map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceStatus) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *ServiceStatus) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *ServiceStatus) SetLabels(v *map[string]string) {
+	o.Labels = v
+}
+
+// GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
+func (o *ServiceStatus) GetLifecycle() *string {
+	if o == nil || IsNil(o.Lifecycle) {
+		var ret *string
+		return ret
+	}
+	return o.Lifecycle
+}
+
+// GetLifecycleOk returns a tuple with the Lifecycle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceStatus) GetLifecycleOk() (*string, bool) {
+	if o == nil || IsNil(o.Lifecycle) {
+		return nil, false
+	}
+	return o.Lifecycle, true
+}
+
+// HasLifecycle returns a boolean if a field has been set.
+func (o *ServiceStatus) HasLifecycle() bool {
+	if o != nil && !IsNil(o.Lifecycle) {
+		return true
+	}
+
+	return false
+}
+
+// SetLifecycle gets a reference to the given string and assigns it to the Lifecycle field.
+func (o *ServiceStatus) SetLifecycle(v *string) {
+	o.Lifecycle = v
+}
+
+// GetParameters returns the Parameters field value if set, zero value otherwise.
+func (o *ServiceStatus) GetParameters() *Parameters {
+	if o == nil || IsNil(o.Parameters) {
+		var ret *Parameters
+		return ret
+	}
+	return o.Parameters
+}
+
+// GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceStatus) GetParametersOk() (*Parameters, bool) {
+	if o == nil || IsNil(o.Parameters) {
+		return nil, false
+	}
+	return o.Parameters, true
+}
+
+// HasParameters returns a boolean if a field has been set.
+func (o *ServiceStatus) HasParameters() bool {
+	if o != nil && !IsNil(o.Parameters) {
+		return true
+	}
+
+	return false
+}
+
+// SetParameters gets a reference to the given Parameters and assigns it to the Parameters field.
+func (o *ServiceStatus) SetParameters(v *Parameters) {
+	o.Parameters = v
+}
+
+// GetScope returns the Scope field value if set, zero value otherwise.
+func (o *ServiceStatus) GetScope() *string {
+	if o == nil || IsNil(o.Scope) {
+		var ret *string
+		return ret
+	}
+	return o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceStatus) GetScopeOk() (*string, bool) {
+	if o == nil || IsNil(o.Scope) {
+		return nil, false
+	}
+	return o.Scope, true
+}
+
+// HasScope returns a boolean if a field has been set.
+func (o *ServiceStatus) HasScope() bool {
+	if o != nil && !IsNil(o.Scope) {
+		return true
+	}
+
+	return false
+}
+
+// SetScope gets a reference to the given string and assigns it to the Scope field.
+func (o *ServiceStatus) SetScope(v *string) {
+	o.Scope = v
+}
+
+// GetServiceId returns the ServiceId field value if set, zero value otherwise.
+func (o *ServiceStatus) GetServiceId() *string {
+	if o == nil || IsNil(o.ServiceId) {
+		var ret *string
+		return ret
+	}
+	return o.ServiceId
+}
+
+// GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceStatus) GetServiceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ServiceId) {
+		return nil, false
+	}
+	return o.ServiceId, true
+}
+
+// HasServiceId returns a boolean if a field has been set.
+func (o *ServiceStatus) HasServiceId() bool {
+	if o != nil && !IsNil(o.ServiceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceId gets a reference to the given string and assigns it to the ServiceId field.
+func (o *ServiceStatus) SetServiceId(v *string) {
+	o.ServiceId = v
+}
+
+// GetState returns the State field value if set, zero value otherwise.
+func (o *ServiceStatus) GetState() *string {
+	if o == nil || IsNil(o.State) {
+		var ret *string
+		return ret
+	}
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceStatus) GetStateOk() (*string, bool) {
+	if o == nil || IsNil(o.State) {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *ServiceStatus) HasState() bool {
+	if o != nil && !IsNil(o.State) {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *ServiceStatus) SetState(v *string) {
+	o.State = v
+}
+
+func (o ServiceStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Dependencies) {
+		toSerialize["dependencies"] = o.Dependencies
+	}
+	if !IsNil(o.Enablement) {
+		toSerialize["enablement"] = o.Enablement
+	}
+	if !IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	if !IsNil(o.Lifecycle) {
+		toSerialize["lifecycle"] = o.Lifecycle
+	}
+	if !IsNil(o.Parameters) {
+		toSerialize["parameters"] = o.Parameters
+	}
+	if !IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
+	}
+	if !IsNil(o.ServiceId) {
+		toSerialize["serviceId"] = o.ServiceId
+	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	return toSerialize, nil
+}
+
+type NullableServiceStatus struct {
+	value *ServiceStatus
+	isSet bool
+}
+
+func (v NullableServiceStatus) Get() *ServiceStatus {
+	return v.value
+}
+
+func (v *NullableServiceStatus) Set(val *ServiceStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableServiceStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceStatus(val *ServiceStatus) *NullableServiceStatus {
+	return &NullableServiceStatus{value: val, isSet: true}
+}
+
+func (v NullableServiceStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableServiceStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
