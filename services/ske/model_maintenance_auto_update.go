@@ -10,7 +10,143 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the MaintenanceAutoUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MaintenanceAutoUpdate{}
+
+// MaintenanceAutoUpdate struct for MaintenanceAutoUpdate
 type MaintenanceAutoUpdate struct {
 	KubernetesVersion   *bool `json:"kubernetesVersion,omitempty"`
 	MachineImageVersion *bool `json:"machineImageVersion,omitempty"`
+}
+
+// NewMaintenanceAutoUpdate instantiates a new MaintenanceAutoUpdate object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMaintenanceAutoUpdate() *MaintenanceAutoUpdate {
+	this := MaintenanceAutoUpdate{}
+	return &this
+}
+
+// NewMaintenanceAutoUpdateWithDefaults instantiates a new MaintenanceAutoUpdate object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMaintenanceAutoUpdateWithDefaults() *MaintenanceAutoUpdate {
+	this := MaintenanceAutoUpdate{}
+	return &this
+}
+
+// GetKubernetesVersion returns the KubernetesVersion field value if set, zero value otherwise.
+func (o *MaintenanceAutoUpdate) GetKubernetesVersion() *bool {
+	if o == nil || IsNil(o.KubernetesVersion) {
+		var ret *bool
+		return ret
+	}
+	return o.KubernetesVersion
+}
+
+// GetKubernetesVersionOk returns a tuple with the KubernetesVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MaintenanceAutoUpdate) GetKubernetesVersionOk() (*bool, bool) {
+	if o == nil || IsNil(o.KubernetesVersion) {
+		return nil, false
+	}
+	return o.KubernetesVersion, true
+}
+
+// HasKubernetesVersion returns a boolean if a field has been set.
+func (o *MaintenanceAutoUpdate) HasKubernetesVersion() bool {
+	if o != nil && !IsNil(o.KubernetesVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetKubernetesVersion gets a reference to the given bool and assigns it to the KubernetesVersion field.
+func (o *MaintenanceAutoUpdate) SetKubernetesVersion(v *bool) {
+	o.KubernetesVersion = v
+}
+
+// GetMachineImageVersion returns the MachineImageVersion field value if set, zero value otherwise.
+func (o *MaintenanceAutoUpdate) GetMachineImageVersion() *bool {
+	if o == nil || IsNil(o.MachineImageVersion) {
+		var ret *bool
+		return ret
+	}
+	return o.MachineImageVersion
+}
+
+// GetMachineImageVersionOk returns a tuple with the MachineImageVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MaintenanceAutoUpdate) GetMachineImageVersionOk() (*bool, bool) {
+	if o == nil || IsNil(o.MachineImageVersion) {
+		return nil, false
+	}
+	return o.MachineImageVersion, true
+}
+
+// HasMachineImageVersion returns a boolean if a field has been set.
+func (o *MaintenanceAutoUpdate) HasMachineImageVersion() bool {
+	if o != nil && !IsNil(o.MachineImageVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetMachineImageVersion gets a reference to the given bool and assigns it to the MachineImageVersion field.
+func (o *MaintenanceAutoUpdate) SetMachineImageVersion(v *bool) {
+	o.MachineImageVersion = v
+}
+
+func (o MaintenanceAutoUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.KubernetesVersion) {
+		toSerialize["kubernetesVersion"] = o.KubernetesVersion
+	}
+	if !IsNil(o.MachineImageVersion) {
+		toSerialize["machineImageVersion"] = o.MachineImageVersion
+	}
+	return toSerialize, nil
+}
+
+type NullableMaintenanceAutoUpdate struct {
+	value *MaintenanceAutoUpdate
+	isSet bool
+}
+
+func (v NullableMaintenanceAutoUpdate) Get() *MaintenanceAutoUpdate {
+	return v.value
+}
+
+func (v *NullableMaintenanceAutoUpdate) Set(val *MaintenanceAutoUpdate) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMaintenanceAutoUpdate) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMaintenanceAutoUpdate) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMaintenanceAutoUpdate(val *MaintenanceAutoUpdate) *NullableMaintenanceAutoUpdate {
+	return &NullableMaintenanceAutoUpdate{value: val, isSet: true}
+}
+
+func (v NullableMaintenanceAutoUpdate) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableMaintenanceAutoUpdate) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

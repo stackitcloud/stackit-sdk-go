@@ -10,9 +10,129 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the TimeWindow type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TimeWindow{}
+
+// TimeWindow struct for TimeWindow
 type TimeWindow struct {
 	// REQUIRED
 	End *string `json:"end"`
 	// REQUIRED
 	Start *string `json:"start"`
+}
+
+type _TimeWindow TimeWindow
+
+// NewTimeWindow instantiates a new TimeWindow object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTimeWindow(end *string, start *string) *TimeWindow {
+	this := TimeWindow{}
+	this.End = end
+	this.Start = start
+	return &this
+}
+
+// NewTimeWindowWithDefaults instantiates a new TimeWindow object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTimeWindowWithDefaults() *TimeWindow {
+	this := TimeWindow{}
+	return &this
+}
+
+// GetEnd returns the End field value
+func (o *TimeWindow) GetEnd() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.End
+}
+
+// GetEndOk returns a tuple with the End field value
+// and a boolean to check if the value has been set.
+func (o *TimeWindow) GetEndOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.End, true
+}
+
+// SetEnd sets field value
+func (o *TimeWindow) SetEnd(v *string) {
+	o.End = v
+}
+
+// GetStart returns the Start field value
+func (o *TimeWindow) GetStart() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Start
+}
+
+// GetStartOk returns a tuple with the Start field value
+// and a boolean to check if the value has been set.
+func (o *TimeWindow) GetStartOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Start, true
+}
+
+// SetStart sets field value
+func (o *TimeWindow) SetStart(v *string) {
+	o.Start = v
+}
+
+func (o TimeWindow) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["end"] = o.End
+	toSerialize["start"] = o.Start
+	return toSerialize, nil
+}
+
+type NullableTimeWindow struct {
+	value *TimeWindow
+	isSet bool
+}
+
+func (v NullableTimeWindow) Get() *TimeWindow {
+	return v.value
+}
+
+func (v *NullableTimeWindow) Set(val *TimeWindow) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTimeWindow) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTimeWindow) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTimeWindow(val *TimeWindow) *NullableTimeWindow {
+	return &NullableTimeWindow{value: val, isSet: true}
+}
+
+func (v NullableTimeWindow) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableTimeWindow) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

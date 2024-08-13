@@ -10,6 +10,107 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the Network type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Network{}
+
+// Network struct for Network
 type Network struct {
 	Id *string `json:"id,omitempty"`
+}
+
+// NewNetwork instantiates a new Network object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNetwork() *Network {
+	this := Network{}
+	return &this
+}
+
+// NewNetworkWithDefaults instantiates a new Network object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNetworkWithDefaults() *Network {
+	this := Network{}
+	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Network) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Network) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Network) SetId(v *string) {
+	o.Id = v
+}
+
+func (o Network) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
+}
+
+type NullableNetwork struct {
+	value *Network
+	isSet bool
+}
+
+func (v NullableNetwork) Get() *Network {
+	return v.value
+}
+
+func (v *NullableNetwork) Set(val *Network) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNetwork) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNetwork) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNetwork(val *Network) *NullableNetwork {
+	return &NullableNetwork{value: val, isSet: true}
+}
+
+func (v NullableNetwork) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableNetwork) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
