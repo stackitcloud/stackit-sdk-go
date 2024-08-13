@@ -1,3 +1,7 @@
+## v0.19.1 (2024-08-13)
+
+- **Feature:** Add support for nullable fields
+
 ## v0.19.0 (2024-07-18)
 
 - **Feature:** New fields for `Extension`: `Dns`

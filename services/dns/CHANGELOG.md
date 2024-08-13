@@ -1,3 +1,7 @@
+## v0.10.1 (2024-08-13)
+
+- **Feature:** Add support for nullable fields
+
 ## v0.10.0 (2024-05-23)
 
 - **Feature**: New method `CloneZone` to clone an existing zone with all record sets to a new zone with a different name

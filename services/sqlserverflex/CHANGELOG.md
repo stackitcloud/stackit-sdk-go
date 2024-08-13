@@ -1,4 +1,4 @@
-## v0.5.0 (2024-08-13)
+## v0.5.1 (2024-08-13)
 
 - **Feature:** Add support for nullable fields
 - **Breaking change**: 

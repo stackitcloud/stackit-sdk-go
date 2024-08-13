@@ -1,3 +1,7 @@
+## v0.17.1 (2024-08-13)
+
+- **Feature:** Add support for nullable fields
+
 ## v0.17.0 (2024-08-01)
 
 - **Feature:** `Plan` has a new field `SkuName`
