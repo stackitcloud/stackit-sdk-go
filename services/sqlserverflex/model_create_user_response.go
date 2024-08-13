@@ -10,6 +10,107 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateUserResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateUserResponse{}
+
+// CreateUserResponse struct for CreateUserResponse
 type CreateUserResponse struct {
 	Item *SingleUser `json:"item,omitempty"`
+}
+
+// NewCreateUserResponse instantiates a new CreateUserResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateUserResponse() *CreateUserResponse {
+	this := CreateUserResponse{}
+	return &this
+}
+
+// NewCreateUserResponseWithDefaults instantiates a new CreateUserResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateUserResponseWithDefaults() *CreateUserResponse {
+	this := CreateUserResponse{}
+	return &this
+}
+
+// GetItem returns the Item field value if set, zero value otherwise.
+func (o *CreateUserResponse) GetItem() *SingleUser {
+	if o == nil || IsNil(o.Item) {
+		var ret *SingleUser
+		return ret
+	}
+	return o.Item
+}
+
+// GetItemOk returns a tuple with the Item field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateUserResponse) GetItemOk() (*SingleUser, bool) {
+	if o == nil || IsNil(o.Item) {
+		return nil, false
+	}
+	return o.Item, true
+}
+
+// HasItem returns a boolean if a field has been set.
+func (o *CreateUserResponse) HasItem() bool {
+	if o != nil && !IsNil(o.Item) {
+		return true
+	}
+
+	return false
+}
+
+// SetItem gets a reference to the given SingleUser and assigns it to the Item field.
+func (o *CreateUserResponse) SetItem(v *SingleUser) {
+	o.Item = v
+}
+
+func (o CreateUserResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Item) {
+		toSerialize["item"] = o.Item
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateUserResponse struct {
+	value *CreateUserResponse
+	isSet bool
+}
+
+func (v NullableCreateUserResponse) Get() *CreateUserResponse {
+	return v.value
+}
+
+func (v *NullableCreateUserResponse) Set(val *CreateUserResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateUserResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateUserResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateUserResponse(val *CreateUserResponse) *NullableCreateUserResponse {
+	return &NullableCreateUserResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateUserResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateUserResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
