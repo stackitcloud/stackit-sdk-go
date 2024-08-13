@@ -1,4 +1,56 @@
-## Release (2024-XX-XX)
+## Release (2024-08-13)
+- `argus`: [v0.11.1](services/argus/CHANGELOG.md#v0111-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `authorization`: [v0.4.1](services/authorization/CHANGELOG.md#v041-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `dns`: [v0.10.1](services/dns/CHANGELOG.md#v0101-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `iaas`: [v0.6.1](services/iaas/CHANGELOG.md#v061-2024-08-13)
+  - **Breaking change**: Rename types:
+    - `CreateNetworkIPv4` renamed to **`CreateNetworkIPv4Body`**
+    - `V1CreateNetworkIPv6` renamed to **`CreateNetworkIPv6Body`**
+    - `UpdateNetworkIPv4` renamed to **`UpdateNetworkIPv4Body`**
+    - `V1UpdateNetworkIPv6` renamed to **`UpdateNetworkIPv6Body`**
+  - **Feature:** `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `UpdateNetworkIPv4Body`, `UpdateNetworkIPv6Body` and `Network` have a new field: `Gateway`
+  - **Feature:** `CreateNetworkPayload`, `PartialUpdateNetworkPayload` and `Network` have a new field: `Routed`
+  - **Feature:** Add support for nullable fields
+- `loadbalancer`: [v0.15.1](services/loadbalancer/CHANGELOG.md#v0151-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `logme`: [v0.18.1](services/logme/CHANGELOG.md#v0181-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `mariadb`: [v0.18.1](services/mariadb/CHANGELOG.md#v0181-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `mongodbflex`: [v0.14.1](services/mongodbflex/CHANGELOG.md#v0141-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `objectstorage`: [v0.10.1](services/objectstorage/CHANGELOG.md#v0101-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `opensearch`: [v0.17.1](services/opensearch/CHANGELOG.md#v0171-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `postgresflex`: [v0.15.1](services/postgresflex/CHANGELOG.md#v0151-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `rabbitmq`: [v0.18.1](services/rabbitmq/CHANGELOG.md#v0181-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `redis`: [v0.18.1](services/redis/CHANGELOG.md#v0181-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `resourcemanager`: [v0.9.1](services/resourcemanager/CHANGELOG.md#v091-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `runcommand`: [v0.1.1](services/runcommand/CHANGELOG.md#v011-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `secretsmanager`: [v0.8.1](services/secretsmanager/CHANGELOG.md#v081-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `serverbackup`: [v0.1.1](services/serverbackup/CHANGELOG.md#v011-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `serviceaccount`: [v0.4.1](services/serviceaccount/CHANGELOG.md#v041-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `serviceenablement`: [v0.2.1](services/serviceenablement/CHANGELOG.md#v021-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `ske`: [v0.19.1](services/ske/CHANGELOG.md#v0191-2024-08-13)
+  - **Feature:** Add support for nullable fields
+- `sqlserverflex`: [v0.5.1](services/sqlserverflex/CHANGELOG.md#v051-2024-08-13)
+  - **Feature:** Add support for nullable fields
+  - **Breaking change**:
+    - Fields in `GetBackupResponse` are not nested in an `Item` field (with type `Backup`) anymore
+    - `GetBackupResponse` have these new fields: `EndTime`, `Error`, `Id`, `Labels`, `Name`, `Options`, `Size`, `StartTime`
 - `loadbalancer`: [v0.15.0](services/loadbalancer/CHANGELOG.md#v0150-2024-08-08)
   - **Feature:** New API method `ListPlans` to list the available service plans
 - `iaas`: [v0.6.0](services/iaas/CHANGELOG.md#v060-2024-08-05)

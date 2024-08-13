@@ -1,3 +1,7 @@
+## v0.14.1 (2024-08-13)
+
+- **Feature:** Add support for nullable fields
+
 ## v0.14.0 (2024-05-22)
 
 - **Breaking change**: Remove unused data types.

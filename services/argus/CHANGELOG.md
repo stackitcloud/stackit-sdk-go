@@ -1,3 +1,7 @@
+## v0.11.1 (2024-08-13)
+
+- **Feature:** Add support for nullable fields
+
 ## v0.11.0 (2024-05-23)
 
 - **Feature**: New methods `GetMetricsStorageRetention`, `UpdateMetricsStorageRetention`

@@ -1,3 +1,7 @@
+## v0.4.1 (2024-08-13)
+
+- **Feature:** Add support for nullable fields
+
 ## v0.4.0 (2024-06-04)
 
 - **Feature:** New method `ListUserPermissions`

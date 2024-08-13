@@ -1,3 +1,7 @@
+## v0.8.1 (2024-08-13)
+
+- **Feature:** Add support for nullable fields
+
 ## v0.8.0 (2024-05-23)
 
 - **Breaking change**: Rename data types for uniformity

@@ -1,4 +1,4 @@
-## v0.6.1 (2024-08-09)
+## v0.6.1 (2024-08-13)
 - **Breaking change**: Rename types:
   - `CreateNetworkIPv4` renamed to **`CreateNetworkIPv4Body`**
   - `V1CreateNetworkIPv6` renamed to **`CreateNetworkIPv6Body`**

@@ -1,3 +1,7 @@
+## v0.2.1 (2024-08-13)
+
+- **Feature:** Add support for nullable fields
+
 ## v0.2.0 (2024-07-12)
 
 - **Feature**: New waiters `EnableServiceWaitHandler` and `DisableServiceWaitHandler` for async operations `EnableService` and `DisableService`, respectively.
