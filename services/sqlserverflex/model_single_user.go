@@ -10,6 +10,14 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the SingleUser type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SingleUser{}
+
+// SingleUser struct for SingleUser
 type SingleUser struct {
 	DefaultDatabase *string   `json:"default_database,omitempty"`
 	Host            *string   `json:"host,omitempty"`
@@ -19,4 +27,342 @@ type SingleUser struct {
 	Roles           *[]string `json:"roles,omitempty"`
 	Uri             *string   `json:"uri,omitempty"`
 	Username        *string   `json:"username,omitempty"`
+}
+
+// NewSingleUser instantiates a new SingleUser object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSingleUser() *SingleUser {
+	this := SingleUser{}
+	return &this
+}
+
+// NewSingleUserWithDefaults instantiates a new SingleUser object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSingleUserWithDefaults() *SingleUser {
+	this := SingleUser{}
+	return &this
+}
+
+// GetDefaultDatabase returns the DefaultDatabase field value if set, zero value otherwise.
+func (o *SingleUser) GetDefaultDatabase() *string {
+	if o == nil || IsNil(o.DefaultDatabase) {
+		var ret *string
+		return ret
+	}
+	return o.DefaultDatabase
+}
+
+// GetDefaultDatabaseOk returns a tuple with the DefaultDatabase field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SingleUser) GetDefaultDatabaseOk() (*string, bool) {
+	if o == nil || IsNil(o.DefaultDatabase) {
+		return nil, false
+	}
+	return o.DefaultDatabase, true
+}
+
+// HasDefaultDatabase returns a boolean if a field has been set.
+func (o *SingleUser) HasDefaultDatabase() bool {
+	if o != nil && !IsNil(o.DefaultDatabase) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultDatabase gets a reference to the given string and assigns it to the DefaultDatabase field.
+func (o *SingleUser) SetDefaultDatabase(v *string) {
+	o.DefaultDatabase = v
+}
+
+// GetHost returns the Host field value if set, zero value otherwise.
+func (o *SingleUser) GetHost() *string {
+	if o == nil || IsNil(o.Host) {
+		var ret *string
+		return ret
+	}
+	return o.Host
+}
+
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SingleUser) GetHostOk() (*string, bool) {
+	if o == nil || IsNil(o.Host) {
+		return nil, false
+	}
+	return o.Host, true
+}
+
+// HasHost returns a boolean if a field has been set.
+func (o *SingleUser) HasHost() bool {
+	if o != nil && !IsNil(o.Host) {
+		return true
+	}
+
+	return false
+}
+
+// SetHost gets a reference to the given string and assigns it to the Host field.
+func (o *SingleUser) SetHost(v *string) {
+	o.Host = v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SingleUser) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SingleUser) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *SingleUser) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *SingleUser) SetId(v *string) {
+	o.Id = v
+}
+
+// GetPassword returns the Password field value if set, zero value otherwise.
+func (o *SingleUser) GetPassword() *string {
+	if o == nil || IsNil(o.Password) {
+		var ret *string
+		return ret
+	}
+	return o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SingleUser) GetPasswordOk() (*string, bool) {
+	if o == nil || IsNil(o.Password) {
+		return nil, false
+	}
+	return o.Password, true
+}
+
+// HasPassword returns a boolean if a field has been set.
+func (o *SingleUser) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given string and assigns it to the Password field.
+func (o *SingleUser) SetPassword(v *string) {
+	o.Password = v
+}
+
+// GetPort returns the Port field value if set, zero value otherwise.
+func (o *SingleUser) GetPort() *int64 {
+	if o == nil || IsNil(o.Port) {
+		var ret *int64
+		return ret
+	}
+	return o.Port
+}
+
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SingleUser) GetPortOk() (*int64, bool) {
+	if o == nil || IsNil(o.Port) {
+		return nil, false
+	}
+	return o.Port, true
+}
+
+// HasPort returns a boolean if a field has been set.
+func (o *SingleUser) HasPort() bool {
+	if o != nil && !IsNil(o.Port) {
+		return true
+	}
+
+	return false
+}
+
+// SetPort gets a reference to the given int64 and assigns it to the Port field.
+func (o *SingleUser) SetPort(v *int64) {
+	o.Port = v
+}
+
+// GetRoles returns the Roles field value if set, zero value otherwise.
+func (o *SingleUser) GetRoles() *[]string {
+	if o == nil || IsNil(o.Roles) {
+		var ret *[]string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SingleUser) GetRolesOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Roles) {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *SingleUser) HasRoles() bool {
+	if o != nil && !IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *SingleUser) SetRoles(v *[]string) {
+	o.Roles = v
+}
+
+// GetUri returns the Uri field value if set, zero value otherwise.
+func (o *SingleUser) GetUri() *string {
+	if o == nil || IsNil(o.Uri) {
+		var ret *string
+		return ret
+	}
+	return o.Uri
+}
+
+// GetUriOk returns a tuple with the Uri field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SingleUser) GetUriOk() (*string, bool) {
+	if o == nil || IsNil(o.Uri) {
+		return nil, false
+	}
+	return o.Uri, true
+}
+
+// HasUri returns a boolean if a field has been set.
+func (o *SingleUser) HasUri() bool {
+	if o != nil && !IsNil(o.Uri) {
+		return true
+	}
+
+	return false
+}
+
+// SetUri gets a reference to the given string and assigns it to the Uri field.
+func (o *SingleUser) SetUri(v *string) {
+	o.Uri = v
+}
+
+// GetUsername returns the Username field value if set, zero value otherwise.
+func (o *SingleUser) GetUsername() *string {
+	if o == nil || IsNil(o.Username) {
+		var ret *string
+		return ret
+	}
+	return o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SingleUser) GetUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.Username) {
+		return nil, false
+	}
+	return o.Username, true
+}
+
+// HasUsername returns a boolean if a field has been set.
+func (o *SingleUser) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
+func (o *SingleUser) SetUsername(v *string) {
+	o.Username = v
+}
+
+func (o SingleUser) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultDatabase) {
+		toSerialize["default_database"] = o.DefaultDatabase
+	}
+	if !IsNil(o.Host) {
+		toSerialize["host"] = o.Host
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	if !IsNil(o.Uri) {
+		toSerialize["uri"] = o.Uri
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	return toSerialize, nil
+}
+
+type NullableSingleUser struct {
+	value *SingleUser
+	isSet bool
+}
+
+func (v NullableSingleUser) Get() *SingleUser {
+	return v.value
+}
+
+func (v *NullableSingleUser) Set(val *SingleUser) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSingleUser) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSingleUser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSingleUser(val *SingleUser) *NullableSingleUser {
+	return &NullableSingleUser{value: val, isSet: true}
+}
+
+func (v NullableSingleUser) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableSingleUser) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

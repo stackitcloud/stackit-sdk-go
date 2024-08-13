@@ -10,6 +10,107 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListRestoreJobsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListRestoreJobsResponse{}
+
+// ListRestoreJobsResponse struct for ListRestoreJobsResponse
 type ListRestoreJobsResponse struct {
 	RunningRestores *[]RestoreRunningRestore `json:"runningRestores,omitempty"`
+}
+
+// NewListRestoreJobsResponse instantiates a new ListRestoreJobsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListRestoreJobsResponse() *ListRestoreJobsResponse {
+	this := ListRestoreJobsResponse{}
+	return &this
+}
+
+// NewListRestoreJobsResponseWithDefaults instantiates a new ListRestoreJobsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListRestoreJobsResponseWithDefaults() *ListRestoreJobsResponse {
+	this := ListRestoreJobsResponse{}
+	return &this
+}
+
+// GetRunningRestores returns the RunningRestores field value if set, zero value otherwise.
+func (o *ListRestoreJobsResponse) GetRunningRestores() *[]RestoreRunningRestore {
+	if o == nil || IsNil(o.RunningRestores) {
+		var ret *[]RestoreRunningRestore
+		return ret
+	}
+	return o.RunningRestores
+}
+
+// GetRunningRestoresOk returns a tuple with the RunningRestores field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListRestoreJobsResponse) GetRunningRestoresOk() (*[]RestoreRunningRestore, bool) {
+	if o == nil || IsNil(o.RunningRestores) {
+		return nil, false
+	}
+	return o.RunningRestores, true
+}
+
+// HasRunningRestores returns a boolean if a field has been set.
+func (o *ListRestoreJobsResponse) HasRunningRestores() bool {
+	if o != nil && !IsNil(o.RunningRestores) {
+		return true
+	}
+
+	return false
+}
+
+// SetRunningRestores gets a reference to the given []RestoreRunningRestore and assigns it to the RunningRestores field.
+func (o *ListRestoreJobsResponse) SetRunningRestores(v *[]RestoreRunningRestore) {
+	o.RunningRestores = v
+}
+
+func (o ListRestoreJobsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RunningRestores) {
+		toSerialize["runningRestores"] = o.RunningRestores
+	}
+	return toSerialize, nil
+}
+
+type NullableListRestoreJobsResponse struct {
+	value *ListRestoreJobsResponse
+	isSet bool
+}
+
+func (v NullableListRestoreJobsResponse) Get() *ListRestoreJobsResponse {
+	return v.value
+}
+
+func (v *NullableListRestoreJobsResponse) Set(val *ListRestoreJobsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListRestoreJobsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListRestoreJobsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListRestoreJobsResponse(val *ListRestoreJobsResponse) *NullableListRestoreJobsResponse {
+	return &NullableListRestoreJobsResponse{value: val, isSet: true}
+}
+
+func (v NullableListRestoreJobsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListRestoreJobsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
