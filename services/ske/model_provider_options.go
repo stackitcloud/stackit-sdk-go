@@ -10,10 +10,251 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the ProviderOptions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ProviderOptions{}
+
+// ProviderOptions struct for ProviderOptions
 type ProviderOptions struct {
 	AvailabilityZones  *[]AvailabilityZone  `json:"availabilityZones,omitempty"`
 	KubernetesVersions *[]KubernetesVersion `json:"kubernetesVersions,omitempty"`
 	MachineImages      *[]MachineImage      `json:"machineImages,omitempty"`
 	MachineTypes       *[]MachineType       `json:"machineTypes,omitempty"`
 	VolumeTypes        *[]VolumeType        `json:"volumeTypes,omitempty"`
+}
+
+// NewProviderOptions instantiates a new ProviderOptions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewProviderOptions() *ProviderOptions {
+	this := ProviderOptions{}
+	return &this
+}
+
+// NewProviderOptionsWithDefaults instantiates a new ProviderOptions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewProviderOptionsWithDefaults() *ProviderOptions {
+	this := ProviderOptions{}
+	return &this
+}
+
+// GetAvailabilityZones returns the AvailabilityZones field value if set, zero value otherwise.
+func (o *ProviderOptions) GetAvailabilityZones() *[]AvailabilityZone {
+	if o == nil || IsNil(o.AvailabilityZones) {
+		var ret *[]AvailabilityZone
+		return ret
+	}
+	return o.AvailabilityZones
+}
+
+// GetAvailabilityZonesOk returns a tuple with the AvailabilityZones field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProviderOptions) GetAvailabilityZonesOk() (*[]AvailabilityZone, bool) {
+	if o == nil || IsNil(o.AvailabilityZones) {
+		return nil, false
+	}
+	return o.AvailabilityZones, true
+}
+
+// HasAvailabilityZones returns a boolean if a field has been set.
+func (o *ProviderOptions) HasAvailabilityZones() bool {
+	if o != nil && !IsNil(o.AvailabilityZones) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailabilityZones gets a reference to the given []AvailabilityZone and assigns it to the AvailabilityZones field.
+func (o *ProviderOptions) SetAvailabilityZones(v *[]AvailabilityZone) {
+	o.AvailabilityZones = v
+}
+
+// GetKubernetesVersions returns the KubernetesVersions field value if set, zero value otherwise.
+func (o *ProviderOptions) GetKubernetesVersions() *[]KubernetesVersion {
+	if o == nil || IsNil(o.KubernetesVersions) {
+		var ret *[]KubernetesVersion
+		return ret
+	}
+	return o.KubernetesVersions
+}
+
+// GetKubernetesVersionsOk returns a tuple with the KubernetesVersions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProviderOptions) GetKubernetesVersionsOk() (*[]KubernetesVersion, bool) {
+	if o == nil || IsNil(o.KubernetesVersions) {
+		return nil, false
+	}
+	return o.KubernetesVersions, true
+}
+
+// HasKubernetesVersions returns a boolean if a field has been set.
+func (o *ProviderOptions) HasKubernetesVersions() bool {
+	if o != nil && !IsNil(o.KubernetesVersions) {
+		return true
+	}
+
+	return false
+}
+
+// SetKubernetesVersions gets a reference to the given []KubernetesVersion and assigns it to the KubernetesVersions field.
+func (o *ProviderOptions) SetKubernetesVersions(v *[]KubernetesVersion) {
+	o.KubernetesVersions = v
+}
+
+// GetMachineImages returns the MachineImages field value if set, zero value otherwise.
+func (o *ProviderOptions) GetMachineImages() *[]MachineImage {
+	if o == nil || IsNil(o.MachineImages) {
+		var ret *[]MachineImage
+		return ret
+	}
+	return o.MachineImages
+}
+
+// GetMachineImagesOk returns a tuple with the MachineImages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProviderOptions) GetMachineImagesOk() (*[]MachineImage, bool) {
+	if o == nil || IsNil(o.MachineImages) {
+		return nil, false
+	}
+	return o.MachineImages, true
+}
+
+// HasMachineImages returns a boolean if a field has been set.
+func (o *ProviderOptions) HasMachineImages() bool {
+	if o != nil && !IsNil(o.MachineImages) {
+		return true
+	}
+
+	return false
+}
+
+// SetMachineImages gets a reference to the given []MachineImage and assigns it to the MachineImages field.
+func (o *ProviderOptions) SetMachineImages(v *[]MachineImage) {
+	o.MachineImages = v
+}
+
+// GetMachineTypes returns the MachineTypes field value if set, zero value otherwise.
+func (o *ProviderOptions) GetMachineTypes() *[]MachineType {
+	if o == nil || IsNil(o.MachineTypes) {
+		var ret *[]MachineType
+		return ret
+	}
+	return o.MachineTypes
+}
+
+// GetMachineTypesOk returns a tuple with the MachineTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProviderOptions) GetMachineTypesOk() (*[]MachineType, bool) {
+	if o == nil || IsNil(o.MachineTypes) {
+		return nil, false
+	}
+	return o.MachineTypes, true
+}
+
+// HasMachineTypes returns a boolean if a field has been set.
+func (o *ProviderOptions) HasMachineTypes() bool {
+	if o != nil && !IsNil(o.MachineTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetMachineTypes gets a reference to the given []MachineType and assigns it to the MachineTypes field.
+func (o *ProviderOptions) SetMachineTypes(v *[]MachineType) {
+	o.MachineTypes = v
+}
+
+// GetVolumeTypes returns the VolumeTypes field value if set, zero value otherwise.
+func (o *ProviderOptions) GetVolumeTypes() *[]VolumeType {
+	if o == nil || IsNil(o.VolumeTypes) {
+		var ret *[]VolumeType
+		return ret
+	}
+	return o.VolumeTypes
+}
+
+// GetVolumeTypesOk returns a tuple with the VolumeTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProviderOptions) GetVolumeTypesOk() (*[]VolumeType, bool) {
+	if o == nil || IsNil(o.VolumeTypes) {
+		return nil, false
+	}
+	return o.VolumeTypes, true
+}
+
+// HasVolumeTypes returns a boolean if a field has been set.
+func (o *ProviderOptions) HasVolumeTypes() bool {
+	if o != nil && !IsNil(o.VolumeTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetVolumeTypes gets a reference to the given []VolumeType and assigns it to the VolumeTypes field.
+func (o *ProviderOptions) SetVolumeTypes(v *[]VolumeType) {
+	o.VolumeTypes = v
+}
+
+func (o ProviderOptions) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AvailabilityZones) {
+		toSerialize["availabilityZones"] = o.AvailabilityZones
+	}
+	if !IsNil(o.KubernetesVersions) {
+		toSerialize["kubernetesVersions"] = o.KubernetesVersions
+	}
+	if !IsNil(o.MachineImages) {
+		toSerialize["machineImages"] = o.MachineImages
+	}
+	if !IsNil(o.MachineTypes) {
+		toSerialize["machineTypes"] = o.MachineTypes
+	}
+	if !IsNil(o.VolumeTypes) {
+		toSerialize["volumeTypes"] = o.VolumeTypes
+	}
+	return toSerialize, nil
+}
+
+type NullableProviderOptions struct {
+	value *ProviderOptions
+	isSet bool
+}
+
+func (v NullableProviderOptions) Get() *ProviderOptions {
+	return v.value
+}
+
+func (v *NullableProviderOptions) Set(val *ProviderOptions) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProviderOptions) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProviderOptions) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableProviderOptions(val *ProviderOptions) *NullableProviderOptions {
+	return &NullableProviderOptions{value: val, isSet: true}
+}
+
+func (v NullableProviderOptions) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableProviderOptions) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

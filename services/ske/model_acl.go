@@ -10,6 +10,14 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the ACL type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ACL{}
+
+// ACL struct for ACL
 type ACL struct {
 	// Array of CIDRs to allow access to the kubernetes API.
 	// REQUIRED
@@ -17,4 +25,116 @@ type ACL struct {
 	// Enables the acl extension.
 	// REQUIRED
 	Enabled *bool `json:"enabled"`
+}
+
+type _ACL ACL
+
+// NewACL instantiates a new ACL object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewACL(allowedCidrs *[]string, enabled *bool) *ACL {
+	this := ACL{}
+	this.AllowedCidrs = allowedCidrs
+	this.Enabled = enabled
+	return &this
+}
+
+// NewACLWithDefaults instantiates a new ACL object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewACLWithDefaults() *ACL {
+	this := ACL{}
+	return &this
+}
+
+// GetAllowedCidrs returns the AllowedCidrs field value
+func (o *ACL) GetAllowedCidrs() *[]string {
+	if o == nil {
+		var ret *[]string
+		return ret
+	}
+
+	return o.AllowedCidrs
+}
+
+// GetAllowedCidrsOk returns a tuple with the AllowedCidrs field value
+// and a boolean to check if the value has been set.
+func (o *ACL) GetAllowedCidrsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AllowedCidrs, true
+}
+
+// SetAllowedCidrs sets field value
+func (o *ACL) SetAllowedCidrs(v *[]string) {
+	o.AllowedCidrs = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *ACL) GetEnabled() *bool {
+	if o == nil {
+		var ret *bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *ACL) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *ACL) SetEnabled(v *bool) {
+	o.Enabled = v
+}
+
+func (o ACL) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["allowedCidrs"] = o.AllowedCidrs
+	toSerialize["enabled"] = o.Enabled
+	return toSerialize, nil
+}
+
+type NullableACL struct {
+	value *ACL
+	isSet bool
+}
+
+func (v NullableACL) Get() *ACL {
+	return v.value
+}
+
+func (v *NullableACL) Set(val *ACL) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableACL) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableACL) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableACL(val *ACL) *NullableACL {
+	return &NullableACL{value: val, isSet: true}
+}
+
+func (v NullableACL) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableACL) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

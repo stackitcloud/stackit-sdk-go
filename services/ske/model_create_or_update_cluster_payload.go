@@ -10,6 +10,14 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateOrUpdateClusterPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrUpdateClusterPayload{}
+
+// CreateOrUpdateClusterPayload struct for CreateOrUpdateClusterPayload
 type CreateOrUpdateClusterPayload struct {
 	Extensions  *Extension   `json:"extensions,omitempty"`
 	Hibernation *Hibernation `json:"hibernation,omitempty"`
@@ -20,4 +28,291 @@ type CreateOrUpdateClusterPayload struct {
 	// REQUIRED
 	Nodepools *[]Nodepool    `json:"nodepools"`
 	Status    *ClusterStatus `json:"status,omitempty"`
+}
+
+type _CreateOrUpdateClusterPayload CreateOrUpdateClusterPayload
+
+// NewCreateOrUpdateClusterPayload instantiates a new CreateOrUpdateClusterPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateOrUpdateClusterPayload(kubernetes *Kubernetes, nodepools *[]Nodepool) *CreateOrUpdateClusterPayload {
+	this := CreateOrUpdateClusterPayload{}
+	this.Kubernetes = kubernetes
+	this.Nodepools = nodepools
+	return &this
+}
+
+// NewCreateOrUpdateClusterPayloadWithDefaults instantiates a new CreateOrUpdateClusterPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateOrUpdateClusterPayloadWithDefaults() *CreateOrUpdateClusterPayload {
+	this := CreateOrUpdateClusterPayload{}
+	return &this
+}
+
+// GetExtensions returns the Extensions field value if set, zero value otherwise.
+func (o *CreateOrUpdateClusterPayload) GetExtensions() *Extension {
+	if o == nil || IsNil(o.Extensions) {
+		var ret *Extension
+		return ret
+	}
+	return o.Extensions
+}
+
+// GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetExtensionsOk() (*Extension, bool) {
+	if o == nil || IsNil(o.Extensions) {
+		return nil, false
+	}
+	return o.Extensions, true
+}
+
+// HasExtensions returns a boolean if a field has been set.
+func (o *CreateOrUpdateClusterPayload) HasExtensions() bool {
+	if o != nil && !IsNil(o.Extensions) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensions gets a reference to the given Extension and assigns it to the Extensions field.
+func (o *CreateOrUpdateClusterPayload) SetExtensions(v *Extension) {
+	o.Extensions = v
+}
+
+// GetHibernation returns the Hibernation field value if set, zero value otherwise.
+func (o *CreateOrUpdateClusterPayload) GetHibernation() *Hibernation {
+	if o == nil || IsNil(o.Hibernation) {
+		var ret *Hibernation
+		return ret
+	}
+	return o.Hibernation
+}
+
+// GetHibernationOk returns a tuple with the Hibernation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetHibernationOk() (*Hibernation, bool) {
+	if o == nil || IsNil(o.Hibernation) {
+		return nil, false
+	}
+	return o.Hibernation, true
+}
+
+// HasHibernation returns a boolean if a field has been set.
+func (o *CreateOrUpdateClusterPayload) HasHibernation() bool {
+	if o != nil && !IsNil(o.Hibernation) {
+		return true
+	}
+
+	return false
+}
+
+// SetHibernation gets a reference to the given Hibernation and assigns it to the Hibernation field.
+func (o *CreateOrUpdateClusterPayload) SetHibernation(v *Hibernation) {
+	o.Hibernation = v
+}
+
+// GetKubernetes returns the Kubernetes field value
+func (o *CreateOrUpdateClusterPayload) GetKubernetes() *Kubernetes {
+	if o == nil {
+		var ret *Kubernetes
+		return ret
+	}
+
+	return o.Kubernetes
+}
+
+// GetKubernetesOk returns a tuple with the Kubernetes field value
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetKubernetesOk() (*Kubernetes, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Kubernetes, true
+}
+
+// SetKubernetes sets field value
+func (o *CreateOrUpdateClusterPayload) SetKubernetes(v *Kubernetes) {
+	o.Kubernetes = v
+}
+
+// GetMaintenance returns the Maintenance field value if set, zero value otherwise.
+func (o *CreateOrUpdateClusterPayload) GetMaintenance() *Maintenance {
+	if o == nil || IsNil(o.Maintenance) {
+		var ret *Maintenance
+		return ret
+	}
+	return o.Maintenance
+}
+
+// GetMaintenanceOk returns a tuple with the Maintenance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetMaintenanceOk() (*Maintenance, bool) {
+	if o == nil || IsNil(o.Maintenance) {
+		return nil, false
+	}
+	return o.Maintenance, true
+}
+
+// HasMaintenance returns a boolean if a field has been set.
+func (o *CreateOrUpdateClusterPayload) HasMaintenance() bool {
+	if o != nil && !IsNil(o.Maintenance) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaintenance gets a reference to the given Maintenance and assigns it to the Maintenance field.
+func (o *CreateOrUpdateClusterPayload) SetMaintenance(v *Maintenance) {
+	o.Maintenance = v
+}
+
+// GetNetwork returns the Network field value if set, zero value otherwise.
+func (o *CreateOrUpdateClusterPayload) GetNetwork() *Network {
+	if o == nil || IsNil(o.Network) {
+		var ret *Network
+		return ret
+	}
+	return o.Network
+}
+
+// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetNetworkOk() (*Network, bool) {
+	if o == nil || IsNil(o.Network) {
+		return nil, false
+	}
+	return o.Network, true
+}
+
+// HasNetwork returns a boolean if a field has been set.
+func (o *CreateOrUpdateClusterPayload) HasNetwork() bool {
+	if o != nil && !IsNil(o.Network) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetwork gets a reference to the given Network and assigns it to the Network field.
+func (o *CreateOrUpdateClusterPayload) SetNetwork(v *Network) {
+	o.Network = v
+}
+
+// GetNodepools returns the Nodepools field value
+func (o *CreateOrUpdateClusterPayload) GetNodepools() *[]Nodepool {
+	if o == nil {
+		var ret *[]Nodepool
+		return ret
+	}
+
+	return o.Nodepools
+}
+
+// GetNodepoolsOk returns a tuple with the Nodepools field value
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetNodepoolsOk() (*[]Nodepool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Nodepools, true
+}
+
+// SetNodepools sets field value
+func (o *CreateOrUpdateClusterPayload) SetNodepools(v *[]Nodepool) {
+	o.Nodepools = v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *CreateOrUpdateClusterPayload) GetStatus() *ClusterStatus {
+	if o == nil || IsNil(o.Status) {
+		var ret *ClusterStatus
+		return ret
+	}
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetStatusOk() (*ClusterStatus, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *CreateOrUpdateClusterPayload) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given ClusterStatus and assigns it to the Status field.
+func (o *CreateOrUpdateClusterPayload) SetStatus(v *ClusterStatus) {
+	o.Status = v
+}
+
+func (o CreateOrUpdateClusterPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Extensions) {
+		toSerialize["extensions"] = o.Extensions
+	}
+	if !IsNil(o.Hibernation) {
+		toSerialize["hibernation"] = o.Hibernation
+	}
+	toSerialize["kubernetes"] = o.Kubernetes
+	if !IsNil(o.Maintenance) {
+		toSerialize["maintenance"] = o.Maintenance
+	}
+	if !IsNil(o.Network) {
+		toSerialize["network"] = o.Network
+	}
+	toSerialize["nodepools"] = o.Nodepools
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateOrUpdateClusterPayload struct {
+	value *CreateOrUpdateClusterPayload
+	isSet bool
+}
+
+func (v NullableCreateOrUpdateClusterPayload) Get() *CreateOrUpdateClusterPayload {
+	return v.value
+}
+
+func (v *NullableCreateOrUpdateClusterPayload) Set(val *CreateOrUpdateClusterPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateOrUpdateClusterPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateOrUpdateClusterPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateOrUpdateClusterPayload(val *CreateOrUpdateClusterPayload) *NullableCreateOrUpdateClusterPayload {
+	return &NullableCreateOrUpdateClusterPayload{value: val, isSet: true}
+}
+
+func (v NullableCreateOrUpdateClusterPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateOrUpdateClusterPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

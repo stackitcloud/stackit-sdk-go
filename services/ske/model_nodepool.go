@@ -10,6 +10,14 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the Nodepool type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Nodepool{}
+
+// Nodepool struct for Nodepool
 type Nodepool struct {
 	// This needs to be true for at least one node pool.
 	AllowSystemComponents *bool `json:"allowSystemComponents,omitempty"`
@@ -31,4 +39,430 @@ type Nodepool struct {
 	Taints *[]Taint `json:"taints,omitempty"`
 	// REQUIRED
 	Volume *Volume `json:"volume"`
+}
+
+type _Nodepool Nodepool
+
+// NewNodepool instantiates a new Nodepool object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNodepool(availabilityZones *[]string, machine *Machine, maximum *int64, minimum *int64, name *string, volume *Volume) *Nodepool {
+	this := Nodepool{}
+	this.AvailabilityZones = availabilityZones
+	this.Machine = machine
+	this.Maximum = maximum
+	this.Minimum = minimum
+	this.Name = name
+	this.Volume = volume
+	return &this
+}
+
+// NewNodepoolWithDefaults instantiates a new Nodepool object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNodepoolWithDefaults() *Nodepool {
+	this := Nodepool{}
+	return &this
+}
+
+// GetAllowSystemComponents returns the AllowSystemComponents field value if set, zero value otherwise.
+func (o *Nodepool) GetAllowSystemComponents() *bool {
+	if o == nil || IsNil(o.AllowSystemComponents) {
+		var ret *bool
+		return ret
+	}
+	return o.AllowSystemComponents
+}
+
+// GetAllowSystemComponentsOk returns a tuple with the AllowSystemComponents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetAllowSystemComponentsOk() (*bool, bool) {
+	if o == nil || IsNil(o.AllowSystemComponents) {
+		return nil, false
+	}
+	return o.AllowSystemComponents, true
+}
+
+// HasAllowSystemComponents returns a boolean if a field has been set.
+func (o *Nodepool) HasAllowSystemComponents() bool {
+	if o != nil && !IsNil(o.AllowSystemComponents) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowSystemComponents gets a reference to the given bool and assigns it to the AllowSystemComponents field.
+func (o *Nodepool) SetAllowSystemComponents(v *bool) {
+	o.AllowSystemComponents = v
+}
+
+// GetAvailabilityZones returns the AvailabilityZones field value
+func (o *Nodepool) GetAvailabilityZones() *[]string {
+	if o == nil {
+		var ret *[]string
+		return ret
+	}
+
+	return o.AvailabilityZones
+}
+
+// GetAvailabilityZonesOk returns a tuple with the AvailabilityZones field value
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetAvailabilityZonesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AvailabilityZones, true
+}
+
+// SetAvailabilityZones sets field value
+func (o *Nodepool) SetAvailabilityZones(v *[]string) {
+	o.AvailabilityZones = v
+}
+
+// GetCri returns the Cri field value if set, zero value otherwise.
+func (o *Nodepool) GetCri() *CRI {
+	if o == nil || IsNil(o.Cri) {
+		var ret *CRI
+		return ret
+	}
+	return o.Cri
+}
+
+// GetCriOk returns a tuple with the Cri field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetCriOk() (*CRI, bool) {
+	if o == nil || IsNil(o.Cri) {
+		return nil, false
+	}
+	return o.Cri, true
+}
+
+// HasCri returns a boolean if a field has been set.
+func (o *Nodepool) HasCri() bool {
+	if o != nil && !IsNil(o.Cri) {
+		return true
+	}
+
+	return false
+}
+
+// SetCri gets a reference to the given CRI and assigns it to the Cri field.
+func (o *Nodepool) SetCri(v *CRI) {
+	o.Cri = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Nodepool) GetLabels() *map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Nodepool) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *Nodepool) SetLabels(v *map[string]string) {
+	o.Labels = v
+}
+
+// GetMachine returns the Machine field value
+func (o *Nodepool) GetMachine() *Machine {
+	if o == nil {
+		var ret *Machine
+		return ret
+	}
+
+	return o.Machine
+}
+
+// GetMachineOk returns a tuple with the Machine field value
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetMachineOk() (*Machine, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Machine, true
+}
+
+// SetMachine sets field value
+func (o *Nodepool) SetMachine(v *Machine) {
+	o.Machine = v
+}
+
+// GetMaxSurge returns the MaxSurge field value if set, zero value otherwise.
+func (o *Nodepool) GetMaxSurge() *int64 {
+	if o == nil || IsNil(o.MaxSurge) {
+		var ret *int64
+		return ret
+	}
+	return o.MaxSurge
+}
+
+// GetMaxSurgeOk returns a tuple with the MaxSurge field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetMaxSurgeOk() (*int64, bool) {
+	if o == nil || IsNil(o.MaxSurge) {
+		return nil, false
+	}
+	return o.MaxSurge, true
+}
+
+// HasMaxSurge returns a boolean if a field has been set.
+func (o *Nodepool) HasMaxSurge() bool {
+	if o != nil && !IsNil(o.MaxSurge) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxSurge gets a reference to the given int64 and assigns it to the MaxSurge field.
+func (o *Nodepool) SetMaxSurge(v *int64) {
+	o.MaxSurge = v
+}
+
+// GetMaxUnavailable returns the MaxUnavailable field value if set, zero value otherwise.
+func (o *Nodepool) GetMaxUnavailable() *int64 {
+	if o == nil || IsNil(o.MaxUnavailable) {
+		var ret *int64
+		return ret
+	}
+	return o.MaxUnavailable
+}
+
+// GetMaxUnavailableOk returns a tuple with the MaxUnavailable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetMaxUnavailableOk() (*int64, bool) {
+	if o == nil || IsNil(o.MaxUnavailable) {
+		return nil, false
+	}
+	return o.MaxUnavailable, true
+}
+
+// HasMaxUnavailable returns a boolean if a field has been set.
+func (o *Nodepool) HasMaxUnavailable() bool {
+	if o != nil && !IsNil(o.MaxUnavailable) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxUnavailable gets a reference to the given int64 and assigns it to the MaxUnavailable field.
+func (o *Nodepool) SetMaxUnavailable(v *int64) {
+	o.MaxUnavailable = v
+}
+
+// GetMaximum returns the Maximum field value
+func (o *Nodepool) GetMaximum() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.Maximum
+}
+
+// GetMaximumOk returns a tuple with the Maximum field value
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetMaximumOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Maximum, true
+}
+
+// SetMaximum sets field value
+func (o *Nodepool) SetMaximum(v *int64) {
+	o.Maximum = v
+}
+
+// GetMinimum returns the Minimum field value
+func (o *Nodepool) GetMinimum() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.Minimum
+}
+
+// GetMinimumOk returns a tuple with the Minimum field value
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetMinimumOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Minimum, true
+}
+
+// SetMinimum sets field value
+func (o *Nodepool) SetMinimum(v *int64) {
+	o.Minimum = v
+}
+
+// GetName returns the Name field value
+func (o *Nodepool) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *Nodepool) SetName(v *string) {
+	o.Name = v
+}
+
+// GetTaints returns the Taints field value if set, zero value otherwise.
+func (o *Nodepool) GetTaints() *[]Taint {
+	if o == nil || IsNil(o.Taints) {
+		var ret *[]Taint
+		return ret
+	}
+	return o.Taints
+}
+
+// GetTaintsOk returns a tuple with the Taints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetTaintsOk() (*[]Taint, bool) {
+	if o == nil || IsNil(o.Taints) {
+		return nil, false
+	}
+	return o.Taints, true
+}
+
+// HasTaints returns a boolean if a field has been set.
+func (o *Nodepool) HasTaints() bool {
+	if o != nil && !IsNil(o.Taints) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaints gets a reference to the given []Taint and assigns it to the Taints field.
+func (o *Nodepool) SetTaints(v *[]Taint) {
+	o.Taints = v
+}
+
+// GetVolume returns the Volume field value
+func (o *Nodepool) GetVolume() *Volume {
+	if o == nil {
+		var ret *Volume
+		return ret
+	}
+
+	return o.Volume
+}
+
+// GetVolumeOk returns a tuple with the Volume field value
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetVolumeOk() (*Volume, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Volume, true
+}
+
+// SetVolume sets field value
+func (o *Nodepool) SetVolume(v *Volume) {
+	o.Volume = v
+}
+
+func (o Nodepool) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowSystemComponents) {
+		toSerialize["allowSystemComponents"] = o.AllowSystemComponents
+	}
+	toSerialize["availabilityZones"] = o.AvailabilityZones
+	if !IsNil(o.Cri) {
+		toSerialize["cri"] = o.Cri
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	toSerialize["machine"] = o.Machine
+	if !IsNil(o.MaxSurge) {
+		toSerialize["maxSurge"] = o.MaxSurge
+	}
+	if !IsNil(o.MaxUnavailable) {
+		toSerialize["maxUnavailable"] = o.MaxUnavailable
+	}
+	toSerialize["maximum"] = o.Maximum
+	toSerialize["minimum"] = o.Minimum
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Taints) {
+		toSerialize["taints"] = o.Taints
+	}
+	toSerialize["volume"] = o.Volume
+	return toSerialize, nil
+}
+
+type NullableNodepool struct {
+	value *Nodepool
+	isSet bool
+}
+
+func (v NullableNodepool) Get() *Nodepool {
+	return v.value
+}
+
+func (v *NullableNodepool) Set(val *Nodepool) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNodepool) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNodepool) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNodepool(val *Nodepool) *NullableNodepool {
+	return &NullableNodepool{value: val, isSet: true}
+}
+
+func (v NullableNodepool) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableNodepool) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

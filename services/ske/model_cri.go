@@ -10,6 +10,107 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the CRI type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CRI{}
+
+// CRI struct for CRI
 type CRI struct {
 	Name *string `json:"name,omitempty"`
+}
+
+// NewCRI instantiates a new CRI object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCRI() *CRI {
+	this := CRI{}
+	return &this
+}
+
+// NewCRIWithDefaults instantiates a new CRI object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCRIWithDefaults() *CRI {
+	this := CRI{}
+	return &this
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *CRI) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CRI) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *CRI) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *CRI) SetName(v *string) {
+	o.Name = v
+}
+
+func (o CRI) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
+}
+
+type NullableCRI struct {
+	value *CRI
+	isSet bool
+}
+
+func (v NullableCRI) Get() *CRI {
+	return v.value
+}
+
+func (v *NullableCRI) Set(val *CRI) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCRI) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCRI) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCRI(val *CRI) *NullableCRI {
+	return &NullableCRI{value: val, isSet: true}
+}
+
+func (v NullableCRI) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCRI) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
