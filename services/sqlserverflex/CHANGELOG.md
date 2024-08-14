@@ -1,5 +1,6 @@
-## v0.5.0 (2024-08-16)
+## v0.5.0 (2024-08-13)
 
+- **Feature:** Add support for nullable fields
 - **Breaking change**: 
   - Fields in `GetBackupResponse` are not nested in an `Item` field (with type `Backup`) anymore
   - `GetBackupResponse` have these new fields: `EndTime`, `Error`, `Id`, `Labels`, `Name`, `Options`, `Size`, `StartTime`
