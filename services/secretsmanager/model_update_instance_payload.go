@@ -10,8 +10,9 @@ API version: 1.4.0
 
 package secretsmanager
 
-// ListInstancesResponse struct for ListInstancesResponse
-type ListInstancesResponse struct {
+// UpdateInstancePayload struct for UpdateInstancePayload
+type UpdateInstancePayload struct {
+	// A user chosen name to distinguish multiple secrets manager instances.
 	// REQUIRED
-	Instances *[]Instance `json:"instances"`
+	Name *string `json:"name"`
 }

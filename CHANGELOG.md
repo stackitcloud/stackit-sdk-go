@@ -1,4 +1,6 @@
 ## Release (2024-XX-XX)
+- `secretsmanager`: [v0.9.0](services/secretsmanager/CHANGELOG.md#v090-2024-08-16)
+  - **Feature**: New API method `UpdateInstance` to update an instance
 - `sqlserverflex`: [v0.5.0](services/sqlserverflex/CHANGELOG.md#v050-2024-08-16)
   - **Breaking change**:
     - Fields in `GetBackupResponse` are not nested in an `Item` field (with type `Backup`) anymore

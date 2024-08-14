@@ -1,3 +1,7 @@
+## v0.9.0 (2024-08-16)
+
+- **Feature**: New API method `UpdateInstance` to update an instance
+
 ## v0.8.0 (2024-05-23)
 
 - **Breaking change**: Rename data types for uniformity
