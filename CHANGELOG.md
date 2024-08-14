@@ -1,4 +1,11 @@
 ## Release (2024-XX-XX)
+- `iaas`: [v0.7.0](services/iaas/CHANGELOG.md#v070-2024-08-16)
+  - **Breaking change**: Rename types:
+    - `CreateNetworkIPv4` renamed to **`CreateNetworkIPv4Body`**
+    - `V1CreateNetworkIPv6` renamed to **`CreateNetworkIPv6Body`**
+    - `UpdateNetworkIPv4` renamed to **`UpdateNetworkIPv4Body`**
+    - `V1UpdateNetworkIPv6` renamed to **`UpdateNetworkIPv6Body`**
+  - **Feature:** `CreateNetworkPayload`, `PartialUpdateNetworkPayload` and `Network` have a new field: `Routed`
 - `loadbalancer`: [v0.15.0](services/loadbalancer/CHANGELOG.md#v0150-2024-08-08)
   - **Feature:** New API method `ListPlans` to list the available service plans
 - `iaas`: [v0.6.0](services/iaas/CHANGELOG.md#v060-2024-08-05)
