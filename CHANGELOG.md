@@ -1,4 +1,11 @@
 ## Release (2024-XX-XX)
+- `iaas`: [v0.7.0](services/iaas/CHANGELOG.md#v070-2024-08-16)
+  - **Breaking change**: Rename types:
+    - `CreateNetworkIPv4` renamed to **`CreateNetworkIPv4Body`**
+    - `V1CreateNetworkIPv6` renamed to **`CreateNetworkIPv6Body`**
+    - `UpdateNetworkIPv4` renamed to **`UpdateNetworkIPv4Body`**
+    - `V1UpdateNetworkIPv6` renamed to **`UpdateNetworkIPv6Body`**
+  - **Feature:** `CreateNetworkPayload`, `PartialUpdateNetworkPayload` and `Network` have a new field: `Routed`
 - `secretsmanager`: [v0.9.0](services/secretsmanager/CHANGELOG.md#v090-2024-08-16)
   - **Feature**: New API method `UpdateInstance` to update an instance
 - `sqlserverflex`: [v0.5.0](services/sqlserverflex/CHANGELOG.md#v050-2024-08-16)
