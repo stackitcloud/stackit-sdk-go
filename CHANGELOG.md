@@ -6,6 +6,12 @@
     - `UpdateNetworkIPv4` renamed to **`UpdateNetworkIPv4Body`**
     - `V1UpdateNetworkIPv6` renamed to **`UpdateNetworkIPv6Body`**
   - **Feature:** `CreateNetworkPayload`, `PartialUpdateNetworkPayload` and `Network` have a new field: `Routed`
+- `secretsmanager`: [v0.9.0](services/secretsmanager/CHANGELOG.md#v090-2024-08-16)
+  - **Feature**: New API method `UpdateInstance` to update an instance
+- `sqlserverflex`: [v0.5.0](services/sqlserverflex/CHANGELOG.md#v050-2024-08-16)
+  - **Breaking change**:
+    - Fields in `GetBackupResponse` are not nested in an `Item` field (with type `Backup`) anymore
+    - `GetBackupResponse` have these new fields: `EndTime`, `Error`, `Id`, `Labels`, `Name`, `Options`, `Size`, `StartTime`
 - `loadbalancer`: [v0.15.0](services/loadbalancer/CHANGELOG.md#v0150-2024-08-08)
   - **Feature:** New API method `ListPlans` to list the available service plans
 - `iaas`: [v0.6.0](services/iaas/CHANGELOG.md#v060-2024-08-05)
