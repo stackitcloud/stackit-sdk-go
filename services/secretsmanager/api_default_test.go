@@ -777,6 +777,56 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
+		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		instanceIdValue := "instanceId"
+		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for secretsmanager_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		instanceId := "instanceId"
+		updateInstancePayload := UpdateInstancePayload{}
+
+		reqErr := apiClient.UpdateInstance(context.Background(), projectId, instanceId).UpdateInstancePayload(updateInstancePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
 	t.Run("Test DefaultApiService UpdateUser", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
