@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.12.0
-	github.com/stackitcloud/stackit-sdk-go/services/iaas v0.6.0
+	github.com/stackitcloud/stackit-sdk-go/services/iaas v0.7.0
 )
 
 require (
