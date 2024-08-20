@@ -10,9 +10,11 @@ API version: 1beta1
 
 package iaas
 
-// CreateNetworkIPv4Body The config object for a IPv4 network.
+// CreateNetworkIPv4Body The config object for an IPv4 network.
 type CreateNetworkIPv4Body struct {
 	// A list containing DNS Servers/Nameservers for IPv4.
-	Nameservers  *[]string `json:"nameservers,omitempty"`
-	PrefixLength *int64    `json:"prefixLength,omitempty"`
+	Nameservers *[]string `json:"nameservers,omitempty"`
+	// Classless Inter-Domain Routing (CIDR).
+	Prefix       *string `json:"prefix,omitempty"`
+	PrefixLength *int64  `json:"prefixLength,omitempty"`
 }
