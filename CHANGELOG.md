@@ -1,4 +1,18 @@
 ## Release (2024-XX-XX)
+
+> [!WARNING]
+> 
+> **The STACKIT Argus service was renamed to Observability.** 
+> 
+> In the SDK, this means that there is a new `observability` service, which offers the same functionality as the deprecated `argus` service.
+> 
+> SDK updates from now on will be released on the new `observability` service, meaning `argus` will no longer get updates.
+> 
+> Please migrate to `github.com/stackitcloud/stackit-sdk-go/services/observability`.
+
+- `observability`: [v0.1.0](services/observability/CHANGELOG.md#v010-2024-08-21)
+  - First release. This module offers the same functionalities as `argus` (release [v0.11.0](https://github.com/stackitcloud/stackit-sdk-go/releases/tag/services%2Fargus%2Fv0.11.0)).
+- `membership`: [v0.4.0](services/membership/CHANGELOG.md#v040-2024-02-07)
 - `observability`: [v0.12.0](services/observability/CHANGELOG.md#v0120-2024-08-21)
   - **Breaking change:** STACKIT Argus service has been renamed to STACKIT Observability
 - `iaas`: [v0.7.0](services/iaas/CHANGELOG.md#v070-2024-08-16)
