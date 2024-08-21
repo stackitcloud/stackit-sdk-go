@@ -40,6 +40,7 @@ use (
 	./services/membership
 	./services/mongodbflex
 	./services/objectstorage
+	./services/observability
 	./services/opensearch
 	./services/postgresflex
 	./services/rabbitmq
