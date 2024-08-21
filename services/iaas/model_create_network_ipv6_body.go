@@ -10,9 +10,11 @@ API version: 1beta1
 
 package iaas
 
-// CreateNetworkIPv6Body The config object for a IPv6 network.
+// CreateNetworkIPv6Body The config object for an IPv6 network.
 type CreateNetworkIPv6Body struct {
 	// A list containing DNS Servers/Nameservers for IPv6.
-	Nameservers  *[]string `json:"nameservers,omitempty"`
-	PrefixLength *int64    `json:"prefixLength,omitempty"`
+	Nameservers *[]string `json:"nameservers,omitempty"`
+	// Classless Inter-Domain Routing (CIDR) for IPv6.
+	Prefix       *string `json:"prefix,omitempty"`
+	PrefixLength *int64  `json:"prefixLength,omitempty"`
 }
