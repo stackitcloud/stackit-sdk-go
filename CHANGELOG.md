@@ -12,9 +12,6 @@
 
 - `observability`: [v0.1.0](services/observability/CHANGELOG.md#v010-2024-08-21)
   - First release. This module offers the same functionalities as `argus` (release [v0.11.0](https://github.com/stackitcloud/stackit-sdk-go/releases/tag/services%2Fargus%2Fv0.11.0)).
-- `membership`: [v0.4.0](services/membership/CHANGELOG.md#v040-2024-02-07)
-- `observability`: [v0.12.0](services/observability/CHANGELOG.md#v0120-2024-08-21)
-  - **Breaking change:** STACKIT Argus service has been renamed to STACKIT Observability
 - `iaas`: [v0.7.0](services/iaas/CHANGELOG.md#v070-2024-08-16)
   - **Breaking change**: Rename types:
     - `CreateNetworkIPv4` renamed to **`CreateNetworkIPv4Body`**
