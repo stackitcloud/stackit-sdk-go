@@ -1,4 +1,6 @@
 ## Release (2024-XX-XX)
+- `iaas`: [v0.8.0](services/iaas/CHANGELOG.md#v080-2024-08-21)
+  - **Feature:** `CreateNetworkIPv4Body` and `CreateNetworkIPv6Body` have a new field `Prefix`
 - `iaas`: [v0.7.0](services/iaas/CHANGELOG.md#v070-2024-08-16)
   - **Breaking change**: Rename types:
     - `CreateNetworkIPv4` renamed to **`CreateNetworkIPv4Body`**
