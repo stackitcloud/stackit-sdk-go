@@ -1,4 +1,17 @@
 ## Release (2024-XX-XX)
+
+> [!WARNING]
+> 
+> **The STACKIT Argus service was renamed to STACKIT Observability.** 
+> 
+> In the SDK, this means that there is a new `observability` service, which offers the same functionality as the deprecated `argus` service.
+> 
+> SDK updates from now on will be released on the new `observability` service, meaning `argus` will no longer get updates.
+> 
+> Please migrate to `github.com/stackitcloud/stackit-sdk-go/services/observability`.
+
+- `observability`: [v0.1.0](services/observability/CHANGELOG.md#v010-2024-08-21)
+  - First release. This module offers the same functionalities as `argus` (release [v0.11.0](https://github.com/stackitcloud/stackit-sdk-go/blob/main/services/argus/CHANGELOG.md#v0110-2024-05-23).
 - `iaas`: [v0.8.0](services/iaas/CHANGELOG.md#v080-2024-08-21)
   - **Feature:** `CreateNetworkIPv4Body` and `CreateNetworkIPv6Body` have a new field `Prefix`
 - `iaas`: [v0.7.0](services/iaas/CHANGELOG.md#v070-2024-08-16)
