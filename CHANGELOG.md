@@ -2,7 +2,7 @@
 
 > [!WARNING]
 > 
-> **The STACKIT Argus service was renamed to Observability.** 
+> **The STACKIT Argus service was renamed to STACKIT Observability.** 
 > 
 > In the SDK, this means that there is a new `observability` service, which offers the same functionality as the deprecated `argus` service.
 > 
