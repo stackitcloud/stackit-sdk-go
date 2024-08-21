@@ -1,4 +1,6 @@
 ## Release (2024-XX-XX)
+- `observability`: [v0.12.0](services/observability/CHANGELOG.md#v0120-2024-08-21)
+  - **Breaking change:** STACKIT Argus service has been renamed to STACKIT Observability
 - `iaas`: [v0.7.0](services/iaas/CHANGELOG.md#v070-2024-08-16)
   - **Breaking change**: Rename types:
     - `CreateNetworkIPv4` renamed to **`CreateNetworkIPv4Body`**
