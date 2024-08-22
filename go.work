@@ -2,7 +2,6 @@ go 1.18
 
 use (
 	./core
-	./examples/argus
 	./examples/authentication
 	./examples/authorization
 	./examples/backgroundrefresh
@@ -16,6 +15,7 @@ use (
 	./examples/middleware
 	./examples/mongodbflex
 	./examples/objectstorage
+	./examples/observability
 	./examples/opensearch
 	./examples/postgresflex
 	./examples/rabbitmq
@@ -30,7 +30,6 @@ use (
 	./examples/waiter
 	./scripts
 	./services/archiving
-	./services/argus
 	./services/authorization
 	./services/dns
 	./services/iaas
