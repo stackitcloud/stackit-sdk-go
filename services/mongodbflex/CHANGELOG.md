@@ -1,3 +1,8 @@
+## v0.15.0 (2024-08-26)
+
+- **Feature**: New API method `ListAdvisorSlowQueries` to list slow queries of an instance
+- **Feature**: New API method `ListSuggestedIndexes` to list suggested indexes of an instance
+
 ## v0.14.0 (2024-05-22)
 
 - **Breaking change**: Remove unused data types.

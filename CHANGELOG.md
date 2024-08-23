@@ -1,4 +1,4 @@
-## Release (2024-XX-XX)
+## Release (2024-08-26)
 
 > [!WARNING]
 > 
@@ -10,6 +10,9 @@
 > 
 > Please migrate to `github.com/stackitcloud/stackit-sdk-go/services/observability`.
 
+- `mongodbflex`: [v0.15.0](services/mongodbflex/CHANGELOG.md#v0150-2024-08-26)
+  - **Feature**: New API method `ListAdvisorSlowQueries` to list slow queries of an instance
+  - **Feature**: New API method `ListSuggestedIndexes` to list suggested indexes of an instance
 - `observability`: [v0.1.0](services/observability/CHANGELOG.md#v010-2024-08-21)
   - First release. This module offers the same functionalities as `argus` (release [v0.11.0](https://github.com/stackitcloud/stackit-sdk-go/blob/main/services/argus/CHANGELOG.md#v0110-2024-05-23).
 - `iaas`: [v0.8.0](services/iaas/CHANGELOG.md#v080-2024-08-21)
