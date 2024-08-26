@@ -1,7 +1,7 @@
 /*
-STACKIT Argus API
+STACKIT Observability API
 
-API endpoints for Argus on STACKIT
+API endpoints for Observability on STACKIT
 
 API version: 1.1.0
 */

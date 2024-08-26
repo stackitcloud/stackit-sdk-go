@@ -1,7 +1,7 @@
 /*
-STACKIT Argus API
+STACKIT Observability API
 
-API endpoints for Argus on STACKIT
+API endpoints for Observability on STACKIT
 
 API version: 1.1.0
 */
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the STACKIT Argus API API v1.1.0
+// APIClient manages communication with the STACKIT Observability API API v1.1.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg        *config.Configuration
