@@ -1,4 +1,4 @@
-## Release (2024-XX-XX)
+## Release (2024-08-26)
 
 > [!WARNING]
 > 
