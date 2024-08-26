@@ -1,5 +1,5 @@
 /*
-STACKIT Argus API
+STACKIT Observability API
 
 Testing DefaultApiService
 
