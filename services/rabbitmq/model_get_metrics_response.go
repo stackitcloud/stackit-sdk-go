@@ -14,9 +14,9 @@ package rabbitmq
 type GetMetricsResponse struct {
 	CpuIdleTime *int64 `json:"cpuIdleTime,omitempty"`
 	// REQUIRED
-	CpuLoadPercent *int64 `json:"cpuLoadPercent"`
-	CpuSystemTime  *int64 `json:"cpuSystemTime,omitempty"`
-	CpuUserTime    *int64 `json:"cpuUserTime,omitempty"`
+	CpuLoadPercent *float64 `json:"cpuLoadPercent"`
+	CpuSystemTime  *int64   `json:"cpuSystemTime,omitempty"`
+	CpuUserTime    *int64   `json:"cpuUserTime,omitempty"`
 	// REQUIRED
 	DiskEphemeralTotal *int64 `json:"diskEphemeralTotal"`
 	// REQUIRED
@@ -26,17 +26,17 @@ type GetMetricsResponse struct {
 	// REQUIRED
 	DiskPersistentUsed *int64 `json:"diskPersistentUsed"`
 	// REQUIRED
-	Load1 *int64 `json:"load1"`
+	Load1 *float64 `json:"load1"`
 	// REQUIRED
-	Load15 *int64 `json:"load15"`
+	Load15 *float64 `json:"load15"`
 	// REQUIRED
-	Load5 *int64 `json:"load5"`
+	Load5 *float64 `json:"load5"`
 	// REQUIRED
 	MemoryTotal *int64 `json:"memoryTotal"`
 	// REQUIRED
 	MemoryUsed *int64 `json:"memoryUsed"`
 	// REQUIRED
-	ParachuteDiskEphemeralActivated *int64 `json:"parachuteDiskEphemeralActivated"`
+	ParachuteDiskEphemeralActivated *bool `json:"parachuteDiskEphemeralActivated"`
 	// REQUIRED
 	ParachuteDiskEphemeralTotal *int64 `json:"parachuteDiskEphemeralTotal"`
 	// REQUIRED
@@ -46,7 +46,7 @@ type GetMetricsResponse struct {
 	// REQUIRED
 	ParachuteDiskEphemeralUsedThreshold *int64 `json:"parachuteDiskEphemeralUsedThreshold"`
 	// REQUIRED
-	ParachuteDiskPersistentActivated *int64 `json:"parachuteDiskPersistentActivated"`
+	ParachuteDiskPersistentActivated *bool `json:"parachuteDiskPersistentActivated"`
 	// REQUIRED
 	ParachuteDiskPersistentTotal *int64 `json:"parachuteDiskPersistentTotal"`
 	// REQUIRED
