@@ -1,3 +1,8 @@
+## Release (XXXX-XX-XX)
+
+- `core`: [v0.13.0](core/CHANGELOG.md#v0130-2024-09-03)
+  - Deprecated method `config.WithJWKSEndpoint` and field `config.Configuration.JWKSCustomUrl` have been removed. Deprecation was done in the `core` release [v0.10.0](core/CHANGELOG.md#v0100-2024-02-27).
+
 ## Release (2024-08-26)
 
 > [!WARNING]
