@@ -1,13 +1,20 @@
+## Release (2024-XX-XX)
+
+- `mongodbflex`: [v0.15.0](services/mongodbflex/CHANGELOG.md#v0150-2024-09-02)
+  - **Feature**: New method `ListAdvisorSlowQueries` that gets slow queries from the Opsmanager performance advisor.
+  - **Feature**: New method `ListSuggestedIndexes` that gets suggested indexes from the Opsmanager performance advisor.
+  - **Breaking change**: Remove nullable fields.
+
 ## Release (2024-08-26)
 
 > [!WARNING]
-> 
-> **The STACKIT Argus service was renamed to STACKIT Observability.** 
-> 
+>
+> **The STACKIT Argus service was renamed to STACKIT Observability.**
+>
 > In the SDK, this means that there is a new `observability` service, which offers the same functionality as the deprecated `argus` service.
-> 
+>
 > SDK updates from now on will be released on the new `observability` service, meaning `argus` will no longer get updates.
-> 
+>
 > Please migrate to `github.com/stackitcloud/stackit-sdk-go/services/observability`.
 
 - `observability`: [v0.1.0](services/observability/CHANGELOG.md#v010-2024-08-21)
@@ -43,6 +50,7 @@
   - **Feature:** `Plan` has a new field `SkuName`
 
 ## Release (2024-07-24)
+
 - `iaas`: [v0.5.0](services/iaas/CHANGELOG.md#v050-2024-07-24)
   - **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6`
   - **Feature:** `Network` has new fields: `NameserversV6` and `PrefixesV6`

@@ -1,3 +1,9 @@
+## v0.15.0 (2024-09-02)
+
+- **Feature**: New method `ListAdvisorSlowQueries` that gets slow queries from the Opsmanager performance advisor.
+- **Feature**: New method `ListSuggestedIndexes` that gets suggested indexes from the Opsmanager performance advisor.
+- **Breaking change**: Remove nullable fields.
+
 ## v0.14.0 (2024-05-22)
 
 - **Breaking change**: Remove unused data types.
