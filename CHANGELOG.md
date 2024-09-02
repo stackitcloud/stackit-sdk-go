@@ -4,6 +4,18 @@
   - **Breaking changes:** `GetMetricsResponse` fields have changed data types
     - `CpuLoadPercent`, `Load1`, `Load15` and `Load5` are now `*float64`
     - `ParachuteDiskEphemeralActivated` and `ParachuteDiskPersistentActivated` are now `*bool`
+- `mariadb`: [v0.19.0](services/mariadb/CHANGELOG.md#v0190-2024-09-02)
+  - **Breaking changes:** `GetMetricsResponse` fields have changed data types
+    - `CpuLoadPercent`, `Load1`, `Load15` and `Load5` are now `*float64`
+    - `ParachuteDiskEphemeralActivated` and `ParachuteDiskPersistentActivated` are now `*bool`
+- `logme`: [v0.19.0](services/logme/CHANGELOG.md#v0190-2024-09-02)
+  - **Breaking changes:** `GetMetricsResponse` fields have changed data types
+    - `CpuLoadPercent`, `Load1`, `Load15` and `Load5` are now `*float64`
+    - `ParachuteDiskEphemeralActivated` and `ParachuteDiskPersistentActivated` are now `*bool`
+- `mongodbflex`: [v0.15.0](services/mongodbflex/CHANGELOG.md#v0150-2024-09-02)
+  - **Feature**: New method `ListAdvisorSlowQueries` that gets slow queries from the Opsmanager performance advisor.
+  - **Feature**: New method `ListSuggestedIndexes` that gets suggested indexes from the Opsmanager performance advisor.
+  - **Breaking change**: Remove nullable fields.
 
 ## Release (2024-08-26)
 
