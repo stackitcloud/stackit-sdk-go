@@ -1,3 +1,9 @@
+## v0.18.0 (2024-09-02)
+
+- **Breaking changes:** `GetMetricsResponse` fields have changed data types
+  - `CpuLoadPercent`, `Load1`, `Load15` and `Load5` are now `*float64`
+  - `ParachuteDiskEphemeralActivated` and `ParachuteDiskPersistentActivated` are now `*bool`
+
 ## v0.17.0 (2024-08-01)
 
 - **Feature:** `Plan` has a new field `SkuName`
