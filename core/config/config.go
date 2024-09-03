@@ -102,8 +102,6 @@ type Configuration struct {
 	// Only has effect for key flow
 	BackgroundTokenRefreshContext context.Context
 
-	// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This field has no effect, and will be removed in a later update
-	JWKSCustomUrl string `json:"jwksCustomUrl,omitempty"`
 	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. This field has no effect, and will be removed in a later update
 	RetryOptions *clients.RetryConfig //nolint:staticcheck //will be removed in a later update
 
@@ -173,13 +171,6 @@ func WithEndpoint(endpoint string) ConfigurationOption {
 func WithTokenEndpoint(url string) ConfigurationOption {
 	return func(config *Configuration) error {
 		config.TokenCustomUrl = url
-		return nil
-	}
-}
-
-// Deprecated: validation using JWKS was removed, for being redundant with token validation done in the APIs. This option has no effect, and will be removed in a later update
-func WithJWKSEndpoint(_ string) ConfigurationOption {
-	return func(config *Configuration) error {
 		return nil
 	}
 }
