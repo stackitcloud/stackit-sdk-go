@@ -4,6 +4,12 @@
   - **Breaking changes:** `GetMetricsResponse` fields have changed data types
     - `CpuLoadPercent`, `Load1`, `Load15` and `Load5` are now `*float64`
     - `ParachuteDiskEphemeralActivated` and `ParachuteDiskPersistentActivated` are now `*bool`
+- `redis`: [v0.19.0](services/redis/CHANGELOG.md#v0190-2024-09-02)
+  - **Breaking changes:** `GetMetricsResponse` fields have changed data types
+    - `CpuLoadPercent`, `Load1`, `Load15` and `Load5` are now `*float64`
+    - `ParachuteDiskEphemeralActivated` and `ParachuteDiskPersistentActivated` are now `*bool`
+- `core`: [v0.13.0](core/CHANGELOG.md#v0130-2024-09-03)
+  - Deprecated method `config.WithJWKSEndpoint` and field `config.Configuration.JWKSCustomUrl` have been removed. Deprecation was done in the `core` release [v0.10.0](core/CHANGELOG.md#v0100-2024-02-27).
 - `opensearch`: [v0.18.0](services/opensearch/CHANGELOG.md#v0180-2024-09-02)
   - **Breaking changes:** `GetMetricsResponse` fields have changed data types
     - `CpuLoadPercent`, `Load1`, `Load15` and `Load5` are now `*float64`
