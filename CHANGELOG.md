@@ -1,5 +1,9 @@
 ## Release (2024-XX-XX)
 
+- `rabbitmq`: [v0.19.0](services/rabbitmq/CHANGELOG.md#v0190-2024-09-02)
+  - **Breaking changes:** `GetMetricsResponse` fields have changed data types
+    - `CpuLoadPercent`, `Load1`, `Load15` and `Load5` are now `*float64`
+    - `ParachuteDiskEphemeralActivated` and `ParachuteDiskPersistentActivated` are now `*bool`
 - `redis`: [v0.19.0](services/redis/CHANGELOG.md#v0190-2024-09-02)
   - **Breaking changes:** `GetMetricsResponse` fields have changed data types
     - `CpuLoadPercent`, `Load1`, `Load15` and `Load5` are now `*float64`
