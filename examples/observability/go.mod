@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/argus
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.12.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.13.0
 	github.com/stackitcloud/stackit-sdk-go/services/observability v0.1.0
 )
 

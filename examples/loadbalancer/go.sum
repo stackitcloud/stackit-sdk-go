@@ -3,7 +3,7 @@ github.com/golang-jwt/jwt/v5 v5.2.1/go.mod h1:pqrtFR0X4osieyHYxtmOUWsAWrfe1Q5UVI
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/stackitcloud/stackit-sdk-go/core v0.12.0 h1:auIzUUNRuydKOScvpICP4MifGgvOajiDQd+ncGmBL0U=
-github.com/stackitcloud/stackit-sdk-go/core v0.12.0/go.mod h1:mDX1mSTsB3mP+tNBGcFNx6gH1mGBN4T+dVt+lcw7nlw=
+github.com/stackitcloud/stackit-sdk-go/core v0.13.0 h1:BtJT2WXqZdexPPQi/HPUIr8g4JUPOCheh6J9dxiCQ4Q=
+github.com/stackitcloud/stackit-sdk-go/core v0.13.0/go.mod h1:mDX1mSTsB3mP+tNBGcFNx6gH1mGBN4T+dVt+lcw7nlw=
 github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v0.14.0 h1:/GwkGMD7ID5hSjdZs1l/Mj8waceCt7oj3TxHgBfEMDQ=
 github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v0.14.0/go.mod h1:wsO3+vXe1XiKLeCIctWAptaHQZ07Un7kmLTQ+drbj7w=
