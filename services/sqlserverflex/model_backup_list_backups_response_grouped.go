@@ -10,7 +10,8 @@ API version: 1.0.0
 
 package sqlserverflex
 
-// ListBackupsResponse struct for ListBackupsResponse
-type ListBackupsResponse struct {
-	Databases *[]BackupListBackupsResponseGrouped `json:"databases,omitempty"`
+// BackupListBackupsResponseGrouped struct for BackupListBackupsResponseGrouped
+type BackupListBackupsResponseGrouped struct {
+	Backups *[]Backup `json:"backups,omitempty"`
+	Name    *string   `json:"name,omitempty"`
 }
