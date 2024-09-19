@@ -1,16 +1,18 @@
+## v0.6.0 (2024-09-19)
+
+- **Breaking change**: Field `ListBackupsResponse` has a new field `BackupListBackupsResponseGrouped`, replacing the removed `Count` and `Items` fields
+
 ## v0.5.0 (2024-08-16)
 
-- **Breaking change**: 
+- **Breaking change**:
   - Fields in `GetBackupResponse` are not nested in an `Item` field (with type `Backup`) anymore
   - `GetBackupResponse` have these new fields: `EndTime`, `Error`, `Id`, `Labels`, `Name`, `Options`, `Size`, `StartTime`
-
 
 ## v0.4.0 (2024-07-19)
 
 - **Feature:** New field for `DatabaseOptions` and `SingleDatabaseOptions`: `CollationName`
 - **Breaking change**: Fields removed from `DatabaseOptions` and `SingleDatabaseOptions`: `IsEncrypted`, `RecoveryModel`, `UserAccess`
 - **Breaking change**: Fields removed from `SingleDatabase`: `Collation`, `CreateDate`
-
 
 ## v0.3.0 (2024-07-09)
 
