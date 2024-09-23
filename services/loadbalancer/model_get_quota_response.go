@@ -13,6 +13,7 @@ package loadbalancer
 // GetQuotaResponse struct for GetQuotaResponse
 type GetQuotaResponse struct {
 	// The maximum number of load balancing servers in this project. Unlimited if set to -1.
+	// Can be cast to int32 without loss of precision.
 	MaxLoadBalancers *int64 `json:"maxLoadBalancers,omitempty"`
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty"`

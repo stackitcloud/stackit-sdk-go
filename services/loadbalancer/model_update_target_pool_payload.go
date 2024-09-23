@@ -17,6 +17,7 @@ type UpdateTargetPoolPayload struct {
 	Name               *string             `json:"name,omitempty"`
 	SessionPersistence *SessionPersistence `json:"sessionPersistence,omitempty"`
 	// The number identifying the port where each target listens for traffic.
+	// Can be cast to int32 without loss of precision.
 	TargetPort *int64 `json:"targetPort,omitempty"`
 	// List of all targets which will be used in the pool. Limited to 250.
 	Targets *[]Target `json:"targets,omitempty"`

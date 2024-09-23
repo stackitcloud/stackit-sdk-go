@@ -17,6 +17,7 @@ type PlanDetails struct {
 	// Flavor Name
 	FlavorName *string `json:"flavorName,omitempty"`
 	// Maximum number of concurrent connections per load balancer VM instance.
+	// Can be cast to int32 without loss of precision.
 	MaxConnections *int64 `json:"maxConnections,omitempty"`
 	// Service Plan Name
 	Name *string `json:"name,omitempty"`

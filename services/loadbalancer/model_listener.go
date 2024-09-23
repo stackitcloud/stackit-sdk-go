@@ -16,6 +16,7 @@ type Listener struct {
 	// Will be used to reference a listener and will replace display name in the future. Currently uses <protocol>-<port> as the name if no display name is given.
 	Name *string `json:"name,omitempty"`
 	// Port number where we listen for traffic
+	// Can be cast to int32 without loss of precision.
 	Port *int64 `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP, PROTOCOL_TCP_PROXY and PROTOCOL_TLS_PASSTHROUGH are supported.
 	Protocol *string `json:"protocol,omitempty"`
