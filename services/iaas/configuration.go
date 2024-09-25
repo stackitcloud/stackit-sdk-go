@@ -30,6 +30,7 @@ func NewConfiguration() *config.Configuration {
 						DefaultValue: "eu01.",
 						EnumValues: []string{
 							"eu01.",
+							"sx-stoi01.",
 						},
 					},
 				},
