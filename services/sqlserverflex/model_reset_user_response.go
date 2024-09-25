@@ -12,5 +12,5 @@ package sqlserverflex
 
 // ResetUserResponse struct for ResetUserResponse
 type ResetUserResponse struct {
-	Item *User `json:"item,omitempty"`
+	Item *SingleUser `json:"item,omitempty"`
 }
