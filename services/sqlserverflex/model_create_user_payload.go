@@ -12,9 +12,9 @@ package sqlserverflex
 
 // CreateUserPayload struct for CreateUserPayload
 type CreateUserPayload struct {
+	DefaultDatabase *string `json:"default_database,omitempty"`
 	// REQUIRED
-	DefaultDatabase *string `json:"default_database"`
+	Roles *[]string `json:"roles"`
 	// REQUIRED
-	Roles    *[]string `json:"roles"`
-	Username *string   `json:"username,omitempty"`
+	Username *string `json:"username"`
 }

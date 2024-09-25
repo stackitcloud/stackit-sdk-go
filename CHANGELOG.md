@@ -1,3 +1,9 @@
+## Release (2024-XX-XX)
+
+- `sqlserverflex`: [v0.7.0](services/sqlserverflex/CHANGELOG.md#v070-2024-09-25)
+  - **Breaking change**: Field `Item` in `ResetUserResponse` is now of type `SingleUser` (previously was `User`)
+  - **Feature:** `DefaultDatabase` is no longer required in `CreateUserPayload`
+
 ## Release (2024-09-19)
 
 - `sqlserverflex`: [v0.6.0](services/sqlserverflex/CHANGELOG.md#v060-2024-09-19)
