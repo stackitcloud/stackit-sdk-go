@@ -1,6 +1,7 @@
 ## v0.7.0 (2024-09-25)
 
 - **Breaking change**: Field `Item` in `ResetUserResponse` is now of type `SingleUser` (previously was `User`)
+- **Feature:** `DefaultDatabase` is no longer required in `CreateUserPayload`
 
 ## v0.6.0 (2024-09-19)
 
