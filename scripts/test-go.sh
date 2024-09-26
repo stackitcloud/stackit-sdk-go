@@ -32,7 +32,7 @@ for service_dir in ${SERVICES_PATH}/*; do
 
     # Our unit test template fails because it doesn't support fields with validations,
     # such as the UUID component used by IaaS. We introduce this hardcoded skip until we fix it
-    if [ "${service}" = "iaas" ]; then
+    if [ "${service}" = "iaas" ] || [ "${service}" = "iaasalpha" ]; then
         echo ">> Skipping services/${service}"
         continue
     fi
