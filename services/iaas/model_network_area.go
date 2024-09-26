@@ -16,6 +16,8 @@ type NetworkArea struct {
 	// REQUIRED
 	AreaId *string          `json:"areaId"`
 	Ipv4   *NetworkAreaIPv4 `json:"ipv4,omitempty"`
+	// Object that represents the labels of an object.
+	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// REQUIRED
 	Name *string `json:"name"`
 	// The amount of projects currently referencing a specific area.
