@@ -13,7 +13,8 @@ package iaas
 // NetworkRange Object that represents a network range.
 type NetworkRange struct {
 	// Universally Unique Identifier (UUID).
-	NetworkRangeId *string `json:"networkRangeId,omitempty"`
+	// REQUIRED
+	NetworkRangeId *string `json:"networkRangeId"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
 	Prefix *string `json:"prefix"`
