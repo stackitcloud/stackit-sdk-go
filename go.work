@@ -33,6 +33,7 @@ use (
 	./services/authorization
 	./services/dns
 	./services/iaas
+	./services/iaasalpha
 	./services/loadbalancer
 	./services/logme
 	./services/mariadb
