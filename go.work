@@ -34,6 +34,7 @@ use (
 	./services/dns
 	./services/iaas
 	./services/loadbalancer
+	./services/loadbalancerstoi01
 	./services/logme
 	./services/mariadb
 	./services/membership
