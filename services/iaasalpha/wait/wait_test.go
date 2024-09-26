@@ -12,11 +12,9 @@ import (
 )
 
 type apiClientMocked struct {
-	getVolumeFails         bool
-	getNetworkFails        bool
-	getProjectRequestFails bool
-	isDeleted              bool
-	resourceState          string
+	getVolumeFails bool
+	isDeleted      bool
+	resourceState  string
 }
 
 func (a *apiClientMocked) GetVolumeExecute(_ context.Context, _, _ string) (*iaasalpha.Volume, error) {
