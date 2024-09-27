@@ -1,7 +1,13 @@
+## v0.9.0 (2024-09-27)
+
+- **Feature:** Add `Labels` field to several data models
+
 ## v0.8.0 (2024-08-21)
+
 - **Feature:** `CreateNetworkIPv4Body` and `CreateNetworkIPv6Body` have a new field `Prefix`
 
 ## v0.7.0 (2024-08-16)
+
 - **Breaking change**: Rename types:
   - `CreateNetworkIPv4` renamed to **`CreateNetworkIPv4Body`**
   - `V1CreateNetworkIPv6` renamed to **`CreateNetworkIPv6Body`**
@@ -10,10 +16,12 @@
 - **Feature:** `CreateNetworkPayload`, `PartialUpdateNetworkPayload` and `Network` have a new field: `Routed`
 
 ## v0.6.0 (2024-08-05)
+
 - **Breaking change:** Use network ID instead of request ID in the waiter: `CreateNetworkWaitHandler`
 
 ## v0.5.0 (2024-07-24)
-- **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6` 
+
+- **Feature:** `CreateNetworkAddressFamily` and `UpdateNetworkAddressFamily` have a new field `Ipv6`
 - **Feature:** `Network` has new fields: `NameserversV6` and `PrefixesV6`
 
 ## v0.4.0 (2024-06-07)
