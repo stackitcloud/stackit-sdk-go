@@ -13,8 +13,7 @@ package iaasalpha
 // NetworkRange Object that represents a network range.
 type NetworkRange struct {
 	// Universally Unique Identifier (UUID).
-	// REQUIRED
-	NetworkRangeId *string `json:"networkRangeId"`
+	NetworkRangeId *string `json:"networkRangeId,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
 	Prefix *string `json:"prefix"`
