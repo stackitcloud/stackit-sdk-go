@@ -14,6 +14,7 @@ import (
 const (
 	AvailableStatus = "AVAILABLE"
 	DeleteSuccess   = "DELETED"
+	ErrorStatus     = "ERROR"
 )
 
 // Interfaces needed for tests
@@ -34,6 +35,9 @@ func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		if *volume.Id == volumeId && *volume.Status == AvailableStatus {
 			return true, volume, nil
 		}
+		if *volume.Id == volumeId && *volume.Status == ErrorStatus {
+			return true, volume, fmt.Errorf("create failed for volume with id %s", volumeId)
+		}
 		return false, volume, nil
 	})
 	handler.SetTimeout(10 * time.Minute)
@@ -45,6 +49,14 @@ func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Volume, err error) {
 		volume, err := a.GetVolumeExecute(ctx, projectId, volumeId)
 		if err == nil {
+			if volume != nil {
+				if volume.Id == nil || volume.Status == nil {
+					return false, volume, fmt.Errorf("delete failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
+				}
+				if *volume.Id == volumeId && *volume.Status == DeleteSuccess {
+					return true, volume, nil
+				}
+			}
 			return false, nil, nil
 		}
 		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
@@ -52,14 +64,6 @@ func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 			return false, volume, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
 		}
 		if oapiErr.StatusCode != http.StatusNotFound {
-			if volume != nil {
-				if volume.Id == nil || volume.Status == nil {
-					return false, nil, fmt.Errorf("delete failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
-				}
-				if *volume.Id == volumeId && *volume.Status == DeleteSuccess {
-					return true, nil, nil
-				}
-			}
 			return false, volume, err
 		}
 		return true, nil, nil

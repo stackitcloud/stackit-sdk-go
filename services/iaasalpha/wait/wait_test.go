@@ -52,6 +52,13 @@ func TestCreateVolumeWaitHandler(t *testing.T) {
 			wantResp:      true,
 		},
 		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
