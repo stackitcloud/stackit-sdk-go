@@ -15,16 +15,14 @@ type SecurityGroup struct {
 	// Description Object. Allows string up to 127 Characters.
 	Description *string `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
-	// REQUIRED
-	Id *string `json:"id"`
+	Id *string `json:"id,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
 	Name *string `json:"name"`
 	// A list containing security group rule objects.
-	// REQUIRED
-	Rules *[]SecurityGroupRule `json:"rules"`
+	Rules *[]SecurityGroupRule `json:"rules,omitempty"`
 	// Shows if a security group is stateful or stateless. You can only have one type of security groups per network interface/server.
 	Stateful *bool `json:"stateful,omitempty"`
 }

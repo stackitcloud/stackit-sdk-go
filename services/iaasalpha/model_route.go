@@ -21,6 +21,5 @@ type Route struct {
 	// REQUIRED
 	Prefix *string `json:"prefix"`
 	// Universally Unique Identifier (UUID).
-	// REQUIRED
-	RouteId *string `json:"routeId"`
+	RouteId *string `json:"routeId,omitempty"`
 }

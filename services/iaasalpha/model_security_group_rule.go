@@ -21,8 +21,7 @@ type SecurityGroupRule struct {
 	Ethertype      *string         `json:"ethertype,omitempty"`
 	IcmpParameters *ICMPParameters `json:"icmpParameters,omitempty"`
 	// Universally Unique Identifier (UUID).
-	// REQUIRED
-	Id *string `json:"id"`
+	Id *string `json:"id,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
 	IpRange   *string                      `json:"ipRange,omitempty"`
 	PortRange *PortRange                   `json:"portRange,omitempty"`
@@ -30,6 +29,5 @@ type SecurityGroupRule struct {
 	// Universally Unique Identifier (UUID).
 	RemoteSecurityGroupId *string `json:"remoteSecurityGroupId,omitempty"`
 	// Universally Unique Identifier (UUID).
-	// REQUIRED
-	SecurityGroupId *string `json:"securityGroupId"`
+	SecurityGroupId *string `json:"securityGroupId,omitempty"`
 }
