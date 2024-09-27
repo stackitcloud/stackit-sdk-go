@@ -13,6 +13,8 @@ package iaas
 // PartialUpdateNetworkAreaPayload struct for PartialUpdateNetworkAreaPayload
 type PartialUpdateNetworkAreaPayload struct {
 	AddressFamily *UpdateAreaAddressFamily `json:"addressFamily,omitempty"`
+	// Object that represents the labels of an object.
+	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty"`
 }

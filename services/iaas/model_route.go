@@ -12,6 +12,8 @@ package iaas
 
 // Route Object represents a network route.
 type Route struct {
+	// Object that represents the labels of an object.
+	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// Object that represents an IP address.
 	// REQUIRED
 	Nexthop *string `json:"nexthop"`

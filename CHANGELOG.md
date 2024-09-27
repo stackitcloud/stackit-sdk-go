@@ -3,6 +3,8 @@
 - `sqlserverflex`: [v0.7.0](services/sqlserverflex/CHANGELOG.md#v070-2024-09-25)
   - **Breaking change**: Field `Item` in `ResetUserResponse` is now of type `SingleUser` (previously was `User`)
   - **Feature:** `DefaultDatabase` is no longer required in `CreateUserPayload`
+- `iaas`: [v0.9.0](services/iaas/CHANGELOG.md#v090-2024-09-27)
+  - **Feature:** Add `Labels` field to several data models
 
 ## Release (2024-09-19)
 
