@@ -12,6 +12,8 @@ package iaas
 
 // Network Object that represents a network.
 type Network struct {
+	// Object that represents the labels of an object.
+	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// REQUIRED
 	Name *string `json:"name"`
 	// A list containing DNS Servers/Nameservers for IPv4.
