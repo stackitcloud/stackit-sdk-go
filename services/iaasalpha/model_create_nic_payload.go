@@ -15,11 +15,9 @@ type CreateNICPayload struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses *[]AllowedAddressesInner `json:"allowedAddresses,omitempty"`
 	// Universally Unique Identifier (UUID).
-	// REQUIRED
-	Device *string `json:"device"`
+	Device *string `json:"device,omitempty"`
 	// Universally Unique Identifier (UUID).
-	// REQUIRED
-	Id *string `json:"id"`
+	Id *string `json:"id,omitempty"`
 	// Object that represents an IP address.
 	Ipv4 *string `json:"ipv4,omitempty"`
 	// Object that represents an IPv6 address.
@@ -27,19 +25,15 @@ type CreateNICPayload struct {
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// Object that represents an MAC address.
-	// REQUIRED
-	Mac *string `json:"mac"`
+	Mac *string `json:"mac,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty"`
 	// Universally Unique Identifier (UUID).
-	// REQUIRED
-	NetworkId *string `json:"networkId"`
+	NetworkId *string `json:"networkId,omitempty"`
 	// If this is set to false, then no security groups will apply to this network interface.
 	NicSecurity *bool `json:"nicSecurity,omitempty"`
 	// A list of UUIDs.
 	SecurityGroups *[]string `json:"securityGroups,omitempty"`
-	// REQUIRED
-	Status *string `json:"status"`
-	// REQUIRED
-	Type *string `json:"type"`
+	Status         *string   `json:"status,omitempty"`
+	Type           *string   `json:"type,omitempty"`
 }

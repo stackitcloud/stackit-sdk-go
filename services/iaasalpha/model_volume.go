@@ -18,8 +18,7 @@ type Volume struct {
 	// Description Object. Allows string up to 127 Characters.
 	Description *string `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
-	// REQUIRED
-	Id *string `json:"id"`
+	Id *string `json:"id,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
@@ -32,6 +31,5 @@ type Volume struct {
 	Size   *int64                     `json:"size,omitempty"`
 	Source *CreateVolumePayloadSource `json:"source,omitempty"`
 	// The status of a volume object.
-	// REQUIRED
-	Status *string `json:"status"`
+	Status *string `json:"status,omitempty"`
 }
