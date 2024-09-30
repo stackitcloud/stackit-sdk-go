@@ -10,10 +10,8 @@ API version: 1alpha1
 
 package iaasalpha
 
-// V1alpha1UpdateSecurityGroupPayload Object that represents an update request body of a security group.
-type V1alpha1UpdateSecurityGroupPayload struct {
-	// Description Object. Allows string up to 127 Characters.
-	Description *string `json:"description,omitempty"`
+// V1alpha1UpdateServerPayload Object that represents an update request body of a server.
+type V1alpha1UpdateServerPayload struct {
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.

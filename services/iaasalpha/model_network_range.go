@@ -10,11 +10,19 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"time"
+)
+
 // NetworkRange Object that represents a network range.
 type NetworkRange struct {
+	// Date-time when resource was created.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Universally Unique Identifier (UUID).
 	NetworkRangeId *string `json:"networkRangeId,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
 	Prefix *string `json:"prefix"`
+	// Date-time when resource was last updated.
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 }
