@@ -10,8 +10,14 @@ API version: 1beta1
 
 package iaas
 
+import (
+	"time"
+)
+
 // Route Object represents a network route.
 type Route struct {
+	// Date-time when resource was created.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// Object that represents an IP address.
@@ -22,4 +28,6 @@ type Route struct {
 	Prefix *string `json:"prefix"`
 	// Universally Unique Identifier (UUID).
 	RouteId *string `json:"routeId,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 }
