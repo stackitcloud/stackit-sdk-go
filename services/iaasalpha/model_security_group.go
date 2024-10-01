@@ -10,8 +10,14 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"time"
+)
+
 // SecurityGroup Object that represents a security group.
 type SecurityGroup struct {
+	// Date-time when resource was created.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 127 Characters.
 	Description *string `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -25,4 +31,6 @@ type SecurityGroup struct {
 	Rules *[]SecurityGroupRule `json:"rules,omitempty"`
 	// Shows if a security group is stateful or stateless. You can only have one type of security groups per network interface/server.
 	Stateful *bool `json:"stateful,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 }

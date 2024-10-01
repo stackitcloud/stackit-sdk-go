@@ -10,11 +10,17 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"time"
+)
+
 // Volume Object that represents a volume and its parameters. Used for Creating and returning (get/list).
 type Volume struct {
 	// Object that represents an availability zone.
 	// REQUIRED
 	AvailabilityZone *string `json:"availabilityZone"`
+	// Date-time when resource was created.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 127 Characters.
 	Description *string `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -32,4 +38,6 @@ type Volume struct {
 	Source *CreateVolumePayloadSource `json:"source,omitempty"`
 	// The status of a volume object.
 	Status *string `json:"status,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 }
