@@ -10,12 +10,18 @@ API version: 1beta1
 
 package iaas
 
+import (
+	"time"
+)
+
 // NetworkArea Object that represents a network area.
 type NetworkArea struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	AreaId *string          `json:"areaId"`
-	Ipv4   *NetworkAreaIPv4 `json:"ipv4,omitempty"`
+	AreaId *string `json:"areaId"`
+	// Date-time when resource was created.
+	CreatedAt *time.Time       `json:"createdAt,omitempty"`
+	Ipv4      *NetworkAreaIPv4 `json:"ipv4,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// REQUIRED
@@ -26,4 +32,6 @@ type NetworkArea struct {
 	// The state of a resource object.
 	// REQUIRED
 	State *string `json:"state"`
+	// Date-time when resource was last updated.
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 }

@@ -10,8 +10,14 @@ API version: 1beta1
 
 package iaas
 
+import (
+	"time"
+)
+
 // Network Object that represents a network.
 type Network struct {
+	// Date-time when resource was created.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// REQUIRED
@@ -32,4 +38,6 @@ type Network struct {
 	// The state of a resource object.
 	// REQUIRED
 	State *string `json:"state"`
+	// Date-time when resource was last updated.
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 }

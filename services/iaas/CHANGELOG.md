@@ -1,3 +1,7 @@
+## v0.10.0 (2024-10-01)
+
+- **Feature:** Add `CreatedAt` and `UpdatedAt` fields to several data models
+
 ## v0.9.0 (2024-09-27)
 
 - **Feature:** Add `Labels` field to several data models
