@@ -5,6 +5,8 @@
   - **Feature:** `DefaultDatabase` is no longer required in `CreateUserPayload`
 - `iaas`: [v0.9.0](services/iaas/CHANGELOG.md#v090-2024-09-27)
   - **Feature:** Add `Labels` field to several data models
+- `iaas`: [v0.10.0](services/iaas/CHANGELOG.md#v0100-2024-10-01)
+  - **Feature:** Add `CreatedAt` and `UpdatedAt` fields to several data models
 
 ## Release (2024-09-19)
 
