@@ -21,6 +21,8 @@ type Server struct {
 	BootVolume       *CreateServerPayloadBootVolume `json:"bootVolume,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	// An error message.
+	ErrorMessage *string `json:"errorMessage,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id *string `json:"id,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -28,8 +30,9 @@ type Server struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	Keypair *string `json:"keypair,omitempty"`
 	// Object that represents the labels of an object.
-	Labels     *map[string]interface{} `json:"labels,omitempty"`
-	LaunchedAt *time.Time              `json:"launchedAt,omitempty"`
+	Labels *map[string]interface{} `json:"labels,omitempty"`
+	// Date-time when resource was launched.
+	LaunchedAt *time.Time `json:"launchedAt,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
 	MachineType       *string            `json:"machineType"`
