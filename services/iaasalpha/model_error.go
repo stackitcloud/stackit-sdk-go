@@ -14,6 +14,7 @@ package iaasalpha
 type Error struct {
 	// REQUIRED
 	Code *int64 `json:"code"`
+	// An error message.
 	// REQUIRED
 	Msg *string `json:"msg"`
 }
