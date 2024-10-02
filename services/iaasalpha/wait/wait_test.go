@@ -449,7 +449,8 @@ func TestResizeServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			timeoutCtx, _ := context.WithTimeout(context.Background(), 10*time.Millisecond)
+			timeoutCtx, cancel := context.WithTimeout(context.Background(), 10*time.Millisecond)
+			defer cancel()
 			handler := ResizeServerWaitHandler(timeoutCtx, apiClient, "pid", "sid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(timeoutCtx)
