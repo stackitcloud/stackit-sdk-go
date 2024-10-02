@@ -10,9 +10,12 @@ API version: 1alpha1
 
 package iaasalpha
 
-// VolumeSourceSnapshot The volume source type to generate a new volume based on a existing Snapshot.
-type VolumeSourceSnapshot struct {
+// VolumeSource The source object of a volume.
+type VolumeSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	SnapshotId *string `json:"snapshotId"`
+	Id *string `json:"id"`
+	// The source types of a volume.
+	// REQUIRED
+	Type *string `json:"type"`
 }

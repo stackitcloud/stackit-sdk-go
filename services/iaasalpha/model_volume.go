@@ -34,8 +34,8 @@ type Volume struct {
 	// Universally Unique Identifier (UUID).
 	ServerId *string `json:"serverId,omitempty"`
 	// Size in Gigabyte.
-	Size   *int64                     `json:"size,omitempty"`
-	Source *CreateVolumePayloadSource `json:"source,omitempty"`
+	Size   *int64        `json:"size,omitempty"`
+	Source *VolumeSource `json:"source,omitempty"`
 	// The status of a volume object.
 	Status *string `json:"status,omitempty"`
 	// Date-time when resource was last updated.
