@@ -52,7 +52,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("[iaasalpha API] Network volume %q has been successfully created.\n", *volume.Id)
+	fmt.Printf("[iaasalpha API] Volume %q has been successfully created.\n", *volume.Id)
 
 	// Update a volume
 	updateVolumePayload := iaasalpha.UpdateVolumePayload{
@@ -63,7 +63,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when calling `UpdateVolume`: %v\n", err)
 	}
 
-	fmt.Printf("[iaasalpha API] Network volume %q has been successfully updated.\n", *volume.Id)
+	fmt.Printf("[iaasalpha API] Volume %q has been successfully updated.\n", *volume.Id)
 
 	// Resize a volume
 	resizeVolumePayload := iaasalpha.ResizeVolumePayload{
@@ -74,7 +74,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when calling `ResizeVolume`: %v\n", err)
 	}
 
-	fmt.Printf("[iaasalpha API] Network volume %q has been successfully resized.\n", *volume.Id)
+	fmt.Printf("[iaasalpha API] Volume %q has been successfully resized.\n", *volume.Id)
 
 	// Delete a volume
 	err = iaasalphaClient.DeleteVolume(context.Background(), projectId, *volume.Id).Execute()
@@ -91,5 +91,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("[iaasalpha API] Network volume %q has been successfully deleted.\n", *volume.Id)
+	fmt.Printf("[iaasalpha API] Volume %q has been successfully deleted.\n", *volume.Id)
 }
