@@ -12,11 +12,11 @@ import (
 )
 
 const (
-	AvailableStatus = "AVAILABLE"
-	DeleteSuccess   = "DELETED"
-	ErrorStatus     = "ERROR"
-	ActiveStatus    = "ACTIVE"
-	ResizingStatus  = "RESIZING"
+	VolumeAvailableStatus = "AVAILABLE"
+	DeleteSuccess         = "DELETED"
+	ErrorStatus           = "ERROR"
+	ServerActiveStatus    = "ACTIVE"
+	ServerResizingStatus  = "RESIZING"
 )
 
 // Interfaces needed for tests
@@ -35,7 +35,7 @@ func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		if volume.Id == nil || volume.Status == nil {
 			return false, volume, fmt.Errorf("create failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
 		}
-		if *volume.Id == volumeId && *volume.Status == AvailableStatus {
+		if *volume.Id == volumeId && *volume.Status == VolumeAvailableStatus {
 			return true, volume, nil
 		}
 		if *volume.Id == volumeId && *volume.Status == ErrorStatus {
@@ -85,7 +85,7 @@ func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		if server.Id == nil || server.Status == nil {
 			return false, server, fmt.Errorf("create failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
-		if *server.Id == serverId && *server.Status == ActiveStatus {
+		if *server.Id == serverId && *server.Status == ServerActiveStatus {
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
@@ -108,7 +108,7 @@ func resizingServerWaitHandler(ctx context.Context, a APIClientInterface, projec
 		if server.Id == nil || server.Status == nil {
 			return false, server, fmt.Errorf("resizing failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
-		if *server.Id == serverId && *server.Status == ResizingStatus {
+		if *server.Id == serverId && *server.Status == ServerResizingStatus {
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
@@ -135,7 +135,7 @@ func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		if server.Id == nil || server.Status == nil {
 			return false, server, fmt.Errorf("resizing failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
-		if *server.Id == serverId && *server.Status == ActiveStatus {
+		if *server.Id == serverId && *server.Status == ServerActiveStatus {
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {

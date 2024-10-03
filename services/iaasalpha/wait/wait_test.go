@@ -43,7 +43,7 @@ func (a *apiClientMocked) GetServerExecute(_ context.Context, _, _ string) (*iaa
 		a.returnResizing = false
 		return &iaasalpha.Server{
 			Id:     utils.Ptr("sid"),
-			Status: utils.Ptr(ResizingStatus),
+			Status: utils.Ptr(ServerResizingStatus),
 		}, nil
 	}
 
@@ -76,7 +76,7 @@ func TestCreateVolumeWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: AvailableStatus,
+			resourceState: VolumeAvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -203,7 +203,7 @@ func TestCreateServerWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: ActiveStatus,
+			resourceState: ServerActiveStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -330,7 +330,7 @@ func TestResizingServerWaitHandler(t *testing.T) {
 		{
 			desc:          "resizing",
 			getFails:      false,
-			resourceState: ResizingStatus,
+			resourceState: ServerResizingStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -398,7 +398,7 @@ func TestResizeServerWaitHandler(t *testing.T) {
 			desc:               "resize_succeeded",
 			getFails:           false,
 			returnResizing:     true,
-			finalResourceState: ActiveStatus,
+			finalResourceState: ServerActiveStatus,
 			wantErr:            false,
 			wantResp:           true,
 		},
@@ -406,7 +406,7 @@ func TestResizeServerWaitHandler(t *testing.T) {
 			desc:               "resizing_status_is_never_returned",
 			getFails:           false,
 			returnResizing:     false,
-			finalResourceState: ActiveStatus,
+			finalResourceState: ServerActiveStatus,
 			wantErr:            true,
 			wantResp:           true,
 		},
