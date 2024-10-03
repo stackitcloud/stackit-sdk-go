@@ -9,8 +9,8 @@ use (
 	./examples/dns
 	./examples/errorhandling
 	./examples/iaas
-	./examples/iaasalpha_volume
 	./examples/iaasalpha_server
+	./examples/iaasalpha_volume
 	./examples/loadbalancer
 	./examples/logme
 	./examples/mariadb
