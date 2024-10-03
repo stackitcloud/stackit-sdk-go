@@ -1,4 +1,4 @@
-module github.com/stackitcloud/stackit-sdk-go/examples/iaasalpha-volume
+module github.com/stackitcloud/stackit-sdk-go/examples/iaasalpha
 
 go 1.18
 
