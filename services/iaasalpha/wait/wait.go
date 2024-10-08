@@ -89,6 +89,9 @@ func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
+			if server.ErrorMessage != nil {
+				return true, server, fmt.Errorf("create failed for server with id %s: %s", serverId, *server.ErrorMessage)
+			}
 			return true, server, fmt.Errorf("create failed for server with id %s", serverId)
 		}
 		return false, server, nil
@@ -112,6 +115,9 @@ func resizingServerWaitHandler(ctx context.Context, a APIClientInterface, projec
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
+			if server.ErrorMessage != nil {
+				return true, server, fmt.Errorf("resizing failed for server with id %s: %s", serverId, *server.ErrorMessage)
+			}
 			return true, server, fmt.Errorf("resizing failed for server with id %s", serverId)
 		}
 		return false, server, nil
@@ -139,6 +145,9 @@ func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
+			if server.ErrorMessage != nil {
+				return true, server, fmt.Errorf("resizing failed for server with id %s: %s", serverId, *server.ErrorMessage)
+			}
 			return true, server, fmt.Errorf("resizing failed for server with id %s", serverId)
 		}
 		return false, server, nil
