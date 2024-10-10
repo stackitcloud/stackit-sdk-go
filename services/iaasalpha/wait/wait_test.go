@@ -319,72 +319,6 @@ func TestDeleteServerWaitHandler(t *testing.T) {
 	}
 }
 
-func TestResizingServerWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc          string
-		getFails      bool
-		resourceState string
-		wantErr       bool
-		wantResp      bool
-	}{
-		{
-			desc:          "resizing",
-			getFails:      false,
-			resourceState: ServerResizingStatus,
-			wantErr:       false,
-			wantResp:      true,
-		},
-		{
-			desc:          "error_status",
-			getFails:      false,
-			resourceState: ErrorStatus,
-			wantErr:       true,
-			wantResp:      true,
-		},
-		{
-			desc:          "get_fails",
-			getFails:      true,
-			resourceState: "",
-			wantErr:       true,
-			wantResp:      false,
-		},
-		{
-			desc:          "timeout",
-			getFails:      false,
-			resourceState: "ANOTHER Status",
-			wantErr:       true,
-			wantResp:      true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getServerFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaasalpha.Server
-			if tt.wantResp {
-				wantRes = &iaasalpha.Server{
-					Id:     utils.Ptr("sid"),
-					Status: &tt.resourceState,
-				}
-			}
-
-			handler := resizingServerWaitHandler(context.Background(), apiClient, "pid", "sid")
-
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-		})
-	}
-}
-
 func TestResizeServerWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc               string
@@ -449,11 +383,9 @@ func TestResizeServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			timeoutCtx, cancel := context.WithTimeout(context.Background(), 10*time.Millisecond)
-			defer cancel()
-			handler := ResizeServerWaitHandler(timeoutCtx, apiClient, "pid", "sid")
+			handler := ResizeServerWaitHandler(context.Background(), apiClient, "pid", "sid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(timeoutCtx)
+			gotRes, err := handler.SetThrottle(1 * time.Millisecond).SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)

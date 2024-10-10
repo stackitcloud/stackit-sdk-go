@@ -20,11 +20,12 @@ type AsyncActionCheck[T any] func() (waitFinished bool, response *T, err error)
 
 // AsyncActionHandler handles waiting for a specific async action to be finished.
 type AsyncActionHandler[T any] struct {
-	checkFn           AsyncActionCheck[T]
-	sleepBeforeWait   time.Duration
-	throttle          time.Duration
-	timeout           time.Duration
-	tempErrRetryLimit int
+	checkFn                  AsyncActionCheck[T]
+	sleepBeforeWait          time.Duration
+	throttle                 time.Duration
+	timeout                  time.Duration
+	tempErrRetryLimit        int
+	IntermediateStateReached bool
 }
 
 // New initializes an AsyncActionHandler
