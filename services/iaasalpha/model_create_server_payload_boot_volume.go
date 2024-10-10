@@ -19,7 +19,6 @@ type CreateServerPayloadBootVolume struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	PerformanceClass *string `json:"performanceClass,omitempty"`
 	// Size in Gigabyte.
-	Size *int64 `json:"size,omitempty"`
-	// REQUIRED
-	Source *BootVolumeSource `json:"source"`
+	Size   *int64            `json:"size,omitempty"`
+	Source *BootVolumeSource `json:"source,omitempty"`
 }
