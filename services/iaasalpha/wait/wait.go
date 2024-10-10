@@ -113,16 +113,17 @@ func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 			return false, server, fmt.Errorf("resizing failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
 
+		if *server.Id == serverId && *server.Status == ErrorStatus {
+			if server.ErrorMessage != nil {
+				return true, server, fmt.Errorf("resizing failed for server with id %s: %s", serverId, *server.ErrorMessage)
+			}
+			return true, server, fmt.Errorf("resizing failed for server with id %s", serverId)
+		}
+
 		if !h.IntermediateStateReached {
 			if *server.Id == serverId && *server.Status == ServerResizingStatus {
 				h.IntermediateStateReached = true
 				return false, server, nil
-			}
-			if *server.Id == serverId && *server.Status == ErrorStatus {
-				if server.ErrorMessage != nil {
-					return true, server, fmt.Errorf("resizing failed for server with id %s: %s", serverId, *server.ErrorMessage)
-				}
-				return true, server, fmt.Errorf("resizing failed for server with id %s", serverId)
 			}
 			return false, server, nil
 		}
@@ -130,12 +131,7 @@ func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		if *server.Id == serverId && *server.Status == ServerActiveStatus {
 			return true, server, nil
 		}
-		if *server.Id == serverId && *server.Status == ErrorStatus {
-			if server.ErrorMessage != nil {
-				return true, server, fmt.Errorf("resizing failed for server with id %s: %s", serverId, *server.ErrorMessage)
-			}
-			return true, server, fmt.Errorf("resizing failed for server with id %s", serverId)
-		}
+
 		return false, server, nil
 	})
 	handler.SetTimeout(20 * time.Minute)
