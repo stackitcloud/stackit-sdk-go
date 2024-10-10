@@ -1,13 +1,21 @@
+## v0.14.0 (2024-10-10)
+
+- **Feature:**: Added `IntermediateStateReached` to `AsyncActionHandler` that can be used to check for an intermediate state when executing the wait function of a wait handler.
+
 ## v0.13.0 (2024-09-03)
+
 - Deprecated method `config.WithJWKSEndpoint` and field `config.Configuration.JWKSCustomUrl` have been removed. Deprecation was done in the `core` release [v0.10.0](core/CHANGELOG.md#v0100-2024-02-27).
 
 ## v0.12.0 (2024-04-11)
+
 - **Feature:** Add `Middleware` type, `WithMiddleware` and `ChainMiddleware` methods to package `config`, this allows clients to chain and add Middlewares to the transport layer of the HTTP client.
 
 ## v0.11.0 (2024-04-09)
+
 - **Feature:** Add method `WithCaptureHTTPRequest` to package `runtime`, which allows capture of HTTP requests for debugging purposes.
 
 ## v0.10.1 (2024-03-20)
+
 - **Improvement:** Update `ConfigureRegion` method to take into account global servers without a region variable
 
 ## v0.10.0 (2024-02-27)
