@@ -7,6 +7,8 @@
   - **Feature:** Add `Labels` field to several data models
 - `iaas`: [v0.10.0](services/iaas/CHANGELOG.md#v0100-2024-10-01)
   - **Feature:** Add `CreatedAt` and `UpdatedAt` fields to several data models
+- `core`: [v0.14.0](core/CHANGELOG.md#v0140-2024-10-10)
+  - **Feature:**: Added `IntermediateStateReached` to `AsyncActionHandler` that can be used to check for an intermediate state when executing the wait function of a wait handler
 
 ## Release (2024-09-19)
 
