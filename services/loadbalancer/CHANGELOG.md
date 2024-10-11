@@ -1,4 +1,9 @@
+## v0.16.0 (2024-10-11)
+
+- **Feature:** Add pagination to `ListLoadBalancers` with the new fields `pageSize` and `pageId` on `ApiListLoadBalancersRequest` and the field `NextPageId` in `ListLoadBalancersResponse`
+
 ## v0.15.0 (2024-08-08)
+
 - **Feature:** New API method `ListPlans` to list the available service plans
 
 ## v0.14.0 (2024-07-10)

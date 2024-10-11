@@ -13,4 +13,6 @@ package loadbalancer
 // ListLoadBalancersResponse struct for ListLoadBalancersResponse
 type ListLoadBalancersResponse struct {
 	LoadBalancers *[]LoadBalancer `json:"loadBalancers,omitempty"`
+	// Continue token from the ListLoadBalancerResponse with Limit option
+	NextPageId *string `json:"nextPageId,omitempty"`
 }

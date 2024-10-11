@@ -1627,6 +1627,22 @@ type ApiListLoadBalancersRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
+	pageSize   *string
+	pageId     *string
+}
+
+// page_size specifies how many load balancers should be returned on this page. Must be a positive number &lt;&#x3D; 1000
+
+func (r ApiListLoadBalancersRequest) PageSize(pageSize string) ApiListLoadBalancersRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// page_id is a page identifier returned by the previous response and is used to request the next page
+
+func (r ApiListLoadBalancersRequest) PageId(pageId string) ApiListLoadBalancersRequest {
+	r.pageId = &pageId
+	return r
 }
 
 func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, error) {
@@ -1649,6 +1665,12 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.pageId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageId", r.pageId, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
