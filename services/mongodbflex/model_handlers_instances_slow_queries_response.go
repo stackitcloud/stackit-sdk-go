@@ -10,8 +10,108 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the HandlersInstancesSlowQueriesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HandlersInstancesSlowQueriesResponse{}
+
 // HandlersInstancesSlowQueriesResponse struct for HandlersInstancesSlowQueriesResponse
 type HandlersInstancesSlowQueriesResponse struct {
 	// A list of documents with information about slow queries as detected by the Performance Advisor.
 	SlowQueries *[]SlowQuery `json:"slowQueries,omitempty"`
+}
+
+// NewHandlersInstancesSlowQueriesResponse instantiates a new HandlersInstancesSlowQueriesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHandlersInstancesSlowQueriesResponse() *HandlersInstancesSlowQueriesResponse {
+	this := HandlersInstancesSlowQueriesResponse{}
+	return &this
+}
+
+// NewHandlersInstancesSlowQueriesResponseWithDefaults instantiates a new HandlersInstancesSlowQueriesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHandlersInstancesSlowQueriesResponseWithDefaults() *HandlersInstancesSlowQueriesResponse {
+	this := HandlersInstancesSlowQueriesResponse{}
+	return &this
+}
+
+// GetSlowQueries returns the SlowQueries field value if set, zero value otherwise.
+func (o *HandlersInstancesSlowQueriesResponse) GetSlowQueries() *[]SlowQuery {
+	if o == nil || IsNil(o.SlowQueries) {
+		var ret *[]SlowQuery
+		return ret
+	}
+	return o.SlowQueries
+}
+
+// GetSlowQueriesOk returns a tuple with the SlowQueries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HandlersInstancesSlowQueriesResponse) GetSlowQueriesOk() (*[]SlowQuery, bool) {
+	if o == nil || IsNil(o.SlowQueries) {
+		return nil, false
+	}
+	return o.SlowQueries, true
+}
+
+// HasSlowQueries returns a boolean if a field has been set.
+func (o *HandlersInstancesSlowQueriesResponse) HasSlowQueries() bool {
+	if o != nil && !IsNil(o.SlowQueries) {
+		return true
+	}
+
+	return false
+}
+
+// SetSlowQueries gets a reference to the given []SlowQuery and assigns it to the SlowQueries field.
+func (o *HandlersInstancesSlowQueriesResponse) SetSlowQueries(v *[]SlowQuery) {
+	o.SlowQueries = v
+}
+
+func (o HandlersInstancesSlowQueriesResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SlowQueries) {
+		toSerialize["slowQueries"] = o.SlowQueries
+	}
+	return toSerialize, nil
+}
+
+type NullableHandlersInstancesSlowQueriesResponse struct {
+	value *HandlersInstancesSlowQueriesResponse
+	isSet bool
+}
+
+func (v NullableHandlersInstancesSlowQueriesResponse) Get() *HandlersInstancesSlowQueriesResponse {
+	return v.value
+}
+
+func (v *NullableHandlersInstancesSlowQueriesResponse) Set(val *HandlersInstancesSlowQueriesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHandlersInstancesSlowQueriesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableHandlersInstancesSlowQueriesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHandlersInstancesSlowQueriesResponse(val *HandlersInstancesSlowQueriesResponse) *NullableHandlersInstancesSlowQueriesResponse {
+	return &NullableHandlersInstancesSlowQueriesResponse{value: val, isSet: true}
+}
+
+func (v NullableHandlersInstancesSlowQueriesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableHandlersInstancesSlowQueriesResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

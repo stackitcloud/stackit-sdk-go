@@ -10,8 +10,143 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the Host type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Host{}
+
 // Host struct for Host
 type Host struct {
 	HostMetrics *[]HostMetric `json:"hostMetrics,omitempty"`
 	Id          *string       `json:"id,omitempty"`
+}
+
+// NewHost instantiates a new Host object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHost() *Host {
+	this := Host{}
+	return &this
+}
+
+// NewHostWithDefaults instantiates a new Host object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHostWithDefaults() *Host {
+	this := Host{}
+	return &this
+}
+
+// GetHostMetrics returns the HostMetrics field value if set, zero value otherwise.
+func (o *Host) GetHostMetrics() *[]HostMetric {
+	if o == nil || IsNil(o.HostMetrics) {
+		var ret *[]HostMetric
+		return ret
+	}
+	return o.HostMetrics
+}
+
+// GetHostMetricsOk returns a tuple with the HostMetrics field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Host) GetHostMetricsOk() (*[]HostMetric, bool) {
+	if o == nil || IsNil(o.HostMetrics) {
+		return nil, false
+	}
+	return o.HostMetrics, true
+}
+
+// HasHostMetrics returns a boolean if a field has been set.
+func (o *Host) HasHostMetrics() bool {
+	if o != nil && !IsNil(o.HostMetrics) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostMetrics gets a reference to the given []HostMetric and assigns it to the HostMetrics field.
+func (o *Host) SetHostMetrics(v *[]HostMetric) {
+	o.HostMetrics = v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Host) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Host) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Host) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Host) SetId(v *string) {
+	o.Id = v
+}
+
+func (o Host) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.HostMetrics) {
+		toSerialize["hostMetrics"] = o.HostMetrics
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
+}
+
+type NullableHost struct {
+	value *Host
+	isSet bool
+}
+
+func (v NullableHost) Get() *Host {
+	return v.value
+}
+
+func (v *NullableHost) Set(val *Host) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHost) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableHost) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHost(val *Host) *NullableHost {
+	return &NullableHost{value: val, isSet: true}
+}
+
+func (v NullableHost) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableHost) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
