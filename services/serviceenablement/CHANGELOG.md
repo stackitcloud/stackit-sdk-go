@@ -1,3 +1,5 @@
+- **Feature:** Add support for nullable models
+
 ## v0.2.0 (2024-07-12)
 
 - **Feature**: New waiters `EnableServiceWaitHandler` and `DisableServiceWaitHandler` for async operations `EnableService` and `DisableService`, respectively.

@@ -1,3 +1,6 @@
+
+- **Feature:** Add support for nullable models
+
 ## v0.9.0 (2024-08-16)
 
 - **Feature**: New API method `UpdateInstance` to update an instance

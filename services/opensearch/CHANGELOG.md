@@ -1,3 +1,5 @@
+- **Feature:** Add support for nullable models
+
 ## v0.18.0 (2024-09-02)
 
 - **Breaking changes:** `GetMetricsResponse` fields have changed data types

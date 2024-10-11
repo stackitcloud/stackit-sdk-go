@@ -1,3 +1,5 @@
+- **Feature:** Add support for nullable models
+
 ## v0.4.0 (2024-04-11)
 
 - Set config.ContextHTTPRequest in Execute method

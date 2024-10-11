@@ -1,3 +1,5 @@
+- **Feature:** Add support for nullable models
+
 ## v0.7.0 (2024-09-25)
 
 - **Breaking change**: Field `Item` in `ResetUserResponse` is now of type `SingleUser` (previously was `User`)
