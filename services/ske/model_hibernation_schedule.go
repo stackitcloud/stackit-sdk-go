@@ -10,6 +10,13 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the HibernationSchedule type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HibernationSchedule{}
+
 // HibernationSchedule struct for HibernationSchedule
 type HibernationSchedule struct {
 	// REQUIRED
@@ -17,4 +24,151 @@ type HibernationSchedule struct {
 	// REQUIRED
 	Start    *string `json:"start"`
 	Timezone *string `json:"timezone,omitempty"`
+}
+
+type _HibernationSchedule HibernationSchedule
+
+// NewHibernationSchedule instantiates a new HibernationSchedule object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHibernationSchedule(end *string, start *string) *HibernationSchedule {
+	this := HibernationSchedule{}
+	this.End = end
+	this.Start = start
+	return &this
+}
+
+// NewHibernationScheduleWithDefaults instantiates a new HibernationSchedule object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHibernationScheduleWithDefaults() *HibernationSchedule {
+	this := HibernationSchedule{}
+	return &this
+}
+
+// GetEnd returns the End field value
+func (o *HibernationSchedule) GetEnd() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.End
+}
+
+// GetEndOk returns a tuple with the End field value
+// and a boolean to check if the value has been set.
+func (o *HibernationSchedule) GetEndOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.End, true
+}
+
+// SetEnd sets field value
+func (o *HibernationSchedule) SetEnd(v *string) {
+	o.End = v
+}
+
+// GetStart returns the Start field value
+func (o *HibernationSchedule) GetStart() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Start
+}
+
+// GetStartOk returns a tuple with the Start field value
+// and a boolean to check if the value has been set.
+func (o *HibernationSchedule) GetStartOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Start, true
+}
+
+// SetStart sets field value
+func (o *HibernationSchedule) SetStart(v *string) {
+	o.Start = v
+}
+
+// GetTimezone returns the Timezone field value if set, zero value otherwise.
+func (o *HibernationSchedule) GetTimezone() *string {
+	if o == nil || IsNil(o.Timezone) {
+		var ret *string
+		return ret
+	}
+	return o.Timezone
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HibernationSchedule) GetTimezoneOk() (*string, bool) {
+	if o == nil || IsNil(o.Timezone) {
+		return nil, false
+	}
+	return o.Timezone, true
+}
+
+// HasTimezone returns a boolean if a field has been set.
+func (o *HibernationSchedule) HasTimezone() bool {
+	if o != nil && !IsNil(o.Timezone) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+func (o *HibernationSchedule) SetTimezone(v *string) {
+	o.Timezone = v
+}
+
+func (o HibernationSchedule) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["end"] = o.End
+	toSerialize["start"] = o.Start
+	if !IsNil(o.Timezone) {
+		toSerialize["timezone"] = o.Timezone
+	}
+	return toSerialize, nil
+}
+
+type NullableHibernationSchedule struct {
+	value *HibernationSchedule
+	isSet bool
+}
+
+func (v NullableHibernationSchedule) Get() *HibernationSchedule {
+	return v.value
+}
+
+func (v *NullableHibernationSchedule) Set(val *HibernationSchedule) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHibernationSchedule) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableHibernationSchedule) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHibernationSchedule(val *HibernationSchedule) *NullableHibernationSchedule {
+	return &NullableHibernationSchedule{value: val, isSet: true}
+}
+
+func (v NullableHibernationSchedule) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableHibernationSchedule) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

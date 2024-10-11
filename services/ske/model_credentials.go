@@ -10,6 +10,13 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the Credentials type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Credentials{}
+
 // Credentials struct for Credentials
 type Credentials struct {
 	CertificateAuthorityData *string `json:"certificateAuthorityData,omitempty"`
@@ -17,4 +24,202 @@ type Credentials struct {
 	Kubeconfig *string `json:"kubeconfig,omitempty"`
 	Server     *string `json:"server,omitempty"`
 	Token      *string `json:"token,omitempty"`
+}
+
+// NewCredentials instantiates a new Credentials object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCredentials() *Credentials {
+	this := Credentials{}
+	return &this
+}
+
+// NewCredentialsWithDefaults instantiates a new Credentials object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCredentialsWithDefaults() *Credentials {
+	this := Credentials{}
+	return &this
+}
+
+// GetCertificateAuthorityData returns the CertificateAuthorityData field value if set, zero value otherwise.
+func (o *Credentials) GetCertificateAuthorityData() *string {
+	if o == nil || IsNil(o.CertificateAuthorityData) {
+		var ret *string
+		return ret
+	}
+	return o.CertificateAuthorityData
+}
+
+// GetCertificateAuthorityDataOk returns a tuple with the CertificateAuthorityData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Credentials) GetCertificateAuthorityDataOk() (*string, bool) {
+	if o == nil || IsNil(o.CertificateAuthorityData) {
+		return nil, false
+	}
+	return o.CertificateAuthorityData, true
+}
+
+// HasCertificateAuthorityData returns a boolean if a field has been set.
+func (o *Credentials) HasCertificateAuthorityData() bool {
+	if o != nil && !IsNil(o.CertificateAuthorityData) {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateAuthorityData gets a reference to the given string and assigns it to the CertificateAuthorityData field.
+func (o *Credentials) SetCertificateAuthorityData(v *string) {
+	o.CertificateAuthorityData = v
+}
+
+// GetKubeconfig returns the Kubeconfig field value if set, zero value otherwise.
+func (o *Credentials) GetKubeconfig() *string {
+	if o == nil || IsNil(o.Kubeconfig) {
+		var ret *string
+		return ret
+	}
+	return o.Kubeconfig
+}
+
+// GetKubeconfigOk returns a tuple with the Kubeconfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Credentials) GetKubeconfigOk() (*string, bool) {
+	if o == nil || IsNil(o.Kubeconfig) {
+		return nil, false
+	}
+	return o.Kubeconfig, true
+}
+
+// HasKubeconfig returns a boolean if a field has been set.
+func (o *Credentials) HasKubeconfig() bool {
+	if o != nil && !IsNil(o.Kubeconfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetKubeconfig gets a reference to the given string and assigns it to the Kubeconfig field.
+func (o *Credentials) SetKubeconfig(v *string) {
+	o.Kubeconfig = v
+}
+
+// GetServer returns the Server field value if set, zero value otherwise.
+func (o *Credentials) GetServer() *string {
+	if o == nil || IsNil(o.Server) {
+		var ret *string
+		return ret
+	}
+	return o.Server
+}
+
+// GetServerOk returns a tuple with the Server field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Credentials) GetServerOk() (*string, bool) {
+	if o == nil || IsNil(o.Server) {
+		return nil, false
+	}
+	return o.Server, true
+}
+
+// HasServer returns a boolean if a field has been set.
+func (o *Credentials) HasServer() bool {
+	if o != nil && !IsNil(o.Server) {
+		return true
+	}
+
+	return false
+}
+
+// SetServer gets a reference to the given string and assigns it to the Server field.
+func (o *Credentials) SetServer(v *string) {
+	o.Server = v
+}
+
+// GetToken returns the Token field value if set, zero value otherwise.
+func (o *Credentials) GetToken() *string {
+	if o == nil || IsNil(o.Token) {
+		var ret *string
+		return ret
+	}
+	return o.Token
+}
+
+// GetTokenOk returns a tuple with the Token field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Credentials) GetTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.Token) {
+		return nil, false
+	}
+	return o.Token, true
+}
+
+// HasToken returns a boolean if a field has been set.
+func (o *Credentials) HasToken() bool {
+	if o != nil && !IsNil(o.Token) {
+		return true
+	}
+
+	return false
+}
+
+// SetToken gets a reference to the given string and assigns it to the Token field.
+func (o *Credentials) SetToken(v *string) {
+	o.Token = v
+}
+
+func (o Credentials) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CertificateAuthorityData) {
+		toSerialize["certificateAuthorityData"] = o.CertificateAuthorityData
+	}
+	if !IsNil(o.Kubeconfig) {
+		toSerialize["kubeconfig"] = o.Kubeconfig
+	}
+	if !IsNil(o.Server) {
+		toSerialize["server"] = o.Server
+	}
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
+	}
+	return toSerialize, nil
+}
+
+type NullableCredentials struct {
+	value *Credentials
+	isSet bool
+}
+
+func (v NullableCredentials) Get() *Credentials {
+	return v.value
+}
+
+func (v *NullableCredentials) Set(val *Credentials) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCredentials) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCredentials) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCredentials(val *Credentials) *NullableCredentials {
+	return &NullableCredentials{value: val, isSet: true}
+}
+
+func (v NullableCredentials) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCredentials) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
