@@ -1,3 +1,7 @@
+## v0.11.0 (2024-10-11)
+
+- **Feature:** Filter networks by labels using the new `LabelSelector` method on `ApiListNetworksRequest`
+
 ## v0.10.0 (2024-10-01)
 
 - **Feature:** Add `CreatedAt` and `UpdatedAt` fields to several data models
