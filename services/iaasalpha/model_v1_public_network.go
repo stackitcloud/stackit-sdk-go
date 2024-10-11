@@ -10,9 +10,102 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"encoding/json"
+)
+
+// checks if the V1PublicNetwork type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &V1PublicNetwork{}
+
 // V1PublicNetwork Public network.
 type V1PublicNetwork struct {
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
 	Cidr *string `json:"cidr"`
+}
+
+type _V1PublicNetwork V1PublicNetwork
+
+// NewV1PublicNetwork instantiates a new V1PublicNetwork object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewV1PublicNetwork(cidr *string) *V1PublicNetwork {
+	this := V1PublicNetwork{}
+	this.Cidr = cidr
+	return &this
+}
+
+// NewV1PublicNetworkWithDefaults instantiates a new V1PublicNetwork object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewV1PublicNetworkWithDefaults() *V1PublicNetwork {
+	this := V1PublicNetwork{}
+	return &this
+}
+
+// GetCidr returns the Cidr field value
+func (o *V1PublicNetwork) GetCidr() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Cidr
+}
+
+// GetCidrOk returns a tuple with the Cidr field value
+// and a boolean to check if the value has been set.
+func (o *V1PublicNetwork) GetCidrOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Cidr, true
+}
+
+// SetCidr sets field value
+func (o *V1PublicNetwork) SetCidr(v *string) {
+	o.Cidr = v
+}
+
+func (o V1PublicNetwork) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["cidr"] = o.Cidr
+	return toSerialize, nil
+}
+
+type NullableV1PublicNetwork struct {
+	value *V1PublicNetwork
+	isSet bool
+}
+
+func (v NullableV1PublicNetwork) Get() *V1PublicNetwork {
+	return v.value
+}
+
+func (v *NullableV1PublicNetwork) Set(val *V1PublicNetwork) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableV1PublicNetwork) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableV1PublicNetwork) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableV1PublicNetwork(val *V1PublicNetwork) *NullableV1PublicNetwork {
+	return &NullableV1PublicNetwork{value: val, isSet: true}
+}
+
+func (v NullableV1PublicNetwork) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableV1PublicNetwork) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
