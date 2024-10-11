@@ -10,6 +10,13 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"encoding/json"
+)
+
+// checks if the ICMPParameters type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ICMPParameters{}
+
 // ICMPParameters Object that represents ICMP parameters.
 type ICMPParameters struct {
 	// ICMP code. Can be set if the protocol is ICMP.
@@ -18,4 +25,116 @@ type ICMPParameters struct {
 	// ICMP type. Can be set if the protocol is ICMP.
 	// REQUIRED
 	Type *int64 `json:"type"`
+}
+
+type _ICMPParameters ICMPParameters
+
+// NewICMPParameters instantiates a new ICMPParameters object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewICMPParameters(code *int64, type_ *int64) *ICMPParameters {
+	this := ICMPParameters{}
+	this.Code = code
+	this.Type = type_
+	return &this
+}
+
+// NewICMPParametersWithDefaults instantiates a new ICMPParameters object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewICMPParametersWithDefaults() *ICMPParameters {
+	this := ICMPParameters{}
+	return &this
+}
+
+// GetCode returns the Code field value
+func (o *ICMPParameters) GetCode() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *ICMPParameters) GetCodeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// SetCode sets field value
+func (o *ICMPParameters) SetCode(v *int64) {
+	o.Code = v
+}
+
+// GetType returns the Type field value
+func (o *ICMPParameters) GetType() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ICMPParameters) GetTypeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// SetType sets field value
+func (o *ICMPParameters) SetType(v *int64) {
+	o.Type = v
+}
+
+func (o ICMPParameters) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["code"] = o.Code
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
+}
+
+type NullableICMPParameters struct {
+	value *ICMPParameters
+	isSet bool
+}
+
+func (v NullableICMPParameters) Get() *ICMPParameters {
+	return v.value
+}
+
+func (v *NullableICMPParameters) Set(val *ICMPParameters) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableICMPParameters) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableICMPParameters) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableICMPParameters(val *ICMPParameters) *NullableICMPParameters {
+	return &NullableICMPParameters{value: val, isSet: true}
+}
+
+func (v NullableICMPParameters) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableICMPParameters) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

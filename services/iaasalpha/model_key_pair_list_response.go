@@ -10,9 +10,102 @@ API version: 1alpha1
 
 package iaasalpha
 
-// KeyPairListResponse Key pair list response.
+import (
+	"encoding/json"
+)
+
+// checks if the KeyPairListResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &KeyPairListResponse{}
+
+// KeyPairListResponse SSH keypair list response.
 type KeyPairListResponse struct {
-	// A list of key pairs.
+	// A list of SSH keypairs.
 	// REQUIRED
 	Items *[]Keypair `json:"items"`
+}
+
+type _KeyPairListResponse KeyPairListResponse
+
+// NewKeyPairListResponse instantiates a new KeyPairListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewKeyPairListResponse(items *[]Keypair) *KeyPairListResponse {
+	this := KeyPairListResponse{}
+	this.Items = items
+	return &this
+}
+
+// NewKeyPairListResponseWithDefaults instantiates a new KeyPairListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewKeyPairListResponseWithDefaults() *KeyPairListResponse {
+	this := KeyPairListResponse{}
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *KeyPairListResponse) GetItems() *[]Keypair {
+	if o == nil {
+		var ret *[]Keypair
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *KeyPairListResponse) GetItemsOk() (*[]Keypair, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *KeyPairListResponse) SetItems(v *[]Keypair) {
+	o.Items = v
+}
+
+func (o KeyPairListResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["items"] = o.Items
+	return toSerialize, nil
+}
+
+type NullableKeyPairListResponse struct {
+	value *KeyPairListResponse
+	isSet bool
+}
+
+func (v NullableKeyPairListResponse) Get() *KeyPairListResponse {
+	return v.value
+}
+
+func (v *NullableKeyPairListResponse) Set(val *KeyPairListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableKeyPairListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableKeyPairListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableKeyPairListResponse(val *KeyPairListResponse) *NullableKeyPairListResponse {
+	return &NullableKeyPairListResponse{value: val, isSet: true}
+}
+
+func (v NullableKeyPairListResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableKeyPairListResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,6 +9,10 @@
   - **Feature:** Add `CreatedAt` and `UpdatedAt` fields to several data models
 - `core`: [v0.14.0](core/CHANGELOG.md#v0140-2024-10-10)
   - **Feature:**: Added `IntermediateStateReached` to `AsyncActionHandler` that can be used to check for an intermediate state when executing the wait function of a wait handler
+- `iaas`: [v0.11.0](services/iaas/CHANGELOG.md#v0110-2024-10-11)
+  - **Feature:** Filter networks by labels using the new `LabelSelector` method on `ApiListNetworksRequest`
+- `loadbalancer`: [v0.16.0](services/loadbalancer/CHANGELOG.md#v0160-2024-10-11)
+- **Feature:** Add pagination to `ListLoadBalancers` with the new fields `pageSize` and `pageId` on `ApiListLoadBalancersRequest` and the field `NextPageId` in `ListLoadBalancersResponse`
 
 ## Release (2024-09-19)
 

@@ -62,10 +62,10 @@ func main() {
 	fmt.Printf("[iaasalpha API] Server %q has been successfully created.\n", *server.Id)
 
 	// Update a server
-	updateServerPayload := iaasalpha.V1alpha1UpdateServerPayload{
+	updateServerPayload := iaasalpha.UpdateServerPayload{
 		Name: utils.Ptr("renamed"),
 	}
-	server, err = iaasalphaClient.V1alpha1UpdateServer(context.Background(), projectId, *server.Id).V1alpha1UpdateServerPayload(updateServerPayload).Execute()
+	server, err = iaasalphaClient.UpdateServer(context.Background(), projectId, *server.Id).UpdateServerPayload(updateServerPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when calling `UpdateServer`: %v\n", err)
 	}

@@ -10,9 +10,102 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"encoding/json"
+)
+
+// checks if the ServerListResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerListResponse{}
+
 // ServerListResponse Response object for server list request.
 type ServerListResponse struct {
 	// A list of servers.
 	// REQUIRED
 	Items *[]Server `json:"items"`
+}
+
+type _ServerListResponse ServerListResponse
+
+// NewServerListResponse instantiates a new ServerListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServerListResponse(items *[]Server) *ServerListResponse {
+	this := ServerListResponse{}
+	this.Items = items
+	return &this
+}
+
+// NewServerListResponseWithDefaults instantiates a new ServerListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServerListResponseWithDefaults() *ServerListResponse {
+	this := ServerListResponse{}
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *ServerListResponse) GetItems() *[]Server {
+	if o == nil {
+		var ret *[]Server
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *ServerListResponse) GetItemsOk() (*[]Server, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *ServerListResponse) SetItems(v *[]Server) {
+	o.Items = v
+}
+
+func (o ServerListResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["items"] = o.Items
+	return toSerialize, nil
+}
+
+type NullableServerListResponse struct {
+	value *ServerListResponse
+	isSet bool
+}
+
+func (v NullableServerListResponse) Get() *ServerListResponse {
+	return v.value
+}
+
+func (v *NullableServerListResponse) Set(val *ServerListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServerListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableServerListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServerListResponse(val *ServerListResponse) *NullableServerListResponse {
+	return &NullableServerListResponse{value: val, isSet: true}
+}
+
+func (v NullableServerListResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableServerListResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
