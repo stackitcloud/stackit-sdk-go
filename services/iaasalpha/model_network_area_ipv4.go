@@ -10,6 +10,13 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"encoding/json"
+)
+
+// checks if the NetworkAreaIPv4 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NetworkAreaIPv4{}
+
 // NetworkAreaIPv4 The IPv4 properties of a network area.
 type NetworkAreaIPv4 struct {
 	// A list containing DNS Servers/Nameservers for IPv4.
@@ -26,4 +33,319 @@ type NetworkAreaIPv4 struct {
 	MaxPrefixLen *int64 `json:"maxPrefixLen,omitempty"`
 	// The minimal prefix length for networks in the network area.
 	MinPrefixLen *int64 `json:"minPrefixLen,omitempty"`
+}
+
+// NewNetworkAreaIPv4 instantiates a new NetworkAreaIPv4 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNetworkAreaIPv4() *NetworkAreaIPv4 {
+	this := NetworkAreaIPv4{}
+	var defaultPrefixLen int64 = 25
+	this.DefaultPrefixLen = &defaultPrefixLen
+	var maxPrefixLen int64 = 29
+	this.MaxPrefixLen = &maxPrefixLen
+	var minPrefixLen int64 = 24
+	this.MinPrefixLen = &minPrefixLen
+	return &this
+}
+
+// NewNetworkAreaIPv4WithDefaults instantiates a new NetworkAreaIPv4 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNetworkAreaIPv4WithDefaults() *NetworkAreaIPv4 {
+	this := NetworkAreaIPv4{}
+	var defaultPrefixLen int64 = 25
+	this.DefaultPrefixLen = &defaultPrefixLen
+	var maxPrefixLen int64 = 29
+	this.MaxPrefixLen = &maxPrefixLen
+	var minPrefixLen int64 = 24
+	this.MinPrefixLen = &minPrefixLen
+	return &this
+}
+
+// GetDefaultNameservers returns the DefaultNameservers field value if set, zero value otherwise.
+func (o *NetworkAreaIPv4) GetDefaultNameservers() *[]string {
+	if o == nil || IsNil(o.DefaultNameservers) {
+		var ret *[]string
+		return ret
+	}
+	return o.DefaultNameservers
+}
+
+// GetDefaultNameserversOk returns a tuple with the DefaultNameservers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkAreaIPv4) GetDefaultNameserversOk() (*[]string, bool) {
+	if o == nil || IsNil(o.DefaultNameservers) {
+		return nil, false
+	}
+	return o.DefaultNameservers, true
+}
+
+// HasDefaultNameservers returns a boolean if a field has been set.
+func (o *NetworkAreaIPv4) HasDefaultNameservers() bool {
+	if o != nil && !IsNil(o.DefaultNameservers) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultNameservers gets a reference to the given []string and assigns it to the DefaultNameservers field.
+func (o *NetworkAreaIPv4) SetDefaultNameservers(v *[]string) {
+	o.DefaultNameservers = v
+}
+
+// GetNetworkRanges returns the NetworkRanges field value if set, zero value otherwise.
+func (o *NetworkAreaIPv4) GetNetworkRanges() *[]NetworkRange {
+	if o == nil || IsNil(o.NetworkRanges) {
+		var ret *[]NetworkRange
+		return ret
+	}
+	return o.NetworkRanges
+}
+
+// GetNetworkRangesOk returns a tuple with the NetworkRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkAreaIPv4) GetNetworkRangesOk() (*[]NetworkRange, bool) {
+	if o == nil || IsNil(o.NetworkRanges) {
+		return nil, false
+	}
+	return o.NetworkRanges, true
+}
+
+// HasNetworkRanges returns a boolean if a field has been set.
+func (o *NetworkAreaIPv4) HasNetworkRanges() bool {
+	if o != nil && !IsNil(o.NetworkRanges) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkRanges gets a reference to the given []NetworkRange and assigns it to the NetworkRanges field.
+func (o *NetworkAreaIPv4) SetNetworkRanges(v *[]NetworkRange) {
+	o.NetworkRanges = v
+}
+
+// GetRoutes returns the Routes field value if set, zero value otherwise.
+func (o *NetworkAreaIPv4) GetRoutes() *[]Route {
+	if o == nil || IsNil(o.Routes) {
+		var ret *[]Route
+		return ret
+	}
+	return o.Routes
+}
+
+// GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkAreaIPv4) GetRoutesOk() (*[]Route, bool) {
+	if o == nil || IsNil(o.Routes) {
+		return nil, false
+	}
+	return o.Routes, true
+}
+
+// HasRoutes returns a boolean if a field has been set.
+func (o *NetworkAreaIPv4) HasRoutes() bool {
+	if o != nil && !IsNil(o.Routes) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoutes gets a reference to the given []Route and assigns it to the Routes field.
+func (o *NetworkAreaIPv4) SetRoutes(v *[]Route) {
+	o.Routes = v
+}
+
+// GetTransferNetwork returns the TransferNetwork field value if set, zero value otherwise.
+func (o *NetworkAreaIPv4) GetTransferNetwork() *string {
+	if o == nil || IsNil(o.TransferNetwork) {
+		var ret *string
+		return ret
+	}
+	return o.TransferNetwork
+}
+
+// GetTransferNetworkOk returns a tuple with the TransferNetwork field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkAreaIPv4) GetTransferNetworkOk() (*string, bool) {
+	if o == nil || IsNil(o.TransferNetwork) {
+		return nil, false
+	}
+	return o.TransferNetwork, true
+}
+
+// HasTransferNetwork returns a boolean if a field has been set.
+func (o *NetworkAreaIPv4) HasTransferNetwork() bool {
+	if o != nil && !IsNil(o.TransferNetwork) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransferNetwork gets a reference to the given string and assigns it to the TransferNetwork field.
+func (o *NetworkAreaIPv4) SetTransferNetwork(v *string) {
+	o.TransferNetwork = v
+}
+
+// GetDefaultPrefixLen returns the DefaultPrefixLen field value if set, zero value otherwise.
+func (o *NetworkAreaIPv4) GetDefaultPrefixLen() *int64 {
+	if o == nil || IsNil(o.DefaultPrefixLen) {
+		var ret *int64
+		return ret
+	}
+	return o.DefaultPrefixLen
+}
+
+// GetDefaultPrefixLenOk returns a tuple with the DefaultPrefixLen field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkAreaIPv4) GetDefaultPrefixLenOk() (*int64, bool) {
+	if o == nil || IsNil(o.DefaultPrefixLen) {
+		return nil, false
+	}
+	return o.DefaultPrefixLen, true
+}
+
+// HasDefaultPrefixLen returns a boolean if a field has been set.
+func (o *NetworkAreaIPv4) HasDefaultPrefixLen() bool {
+	if o != nil && !IsNil(o.DefaultPrefixLen) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultPrefixLen gets a reference to the given int64 and assigns it to the DefaultPrefixLen field.
+func (o *NetworkAreaIPv4) SetDefaultPrefixLen(v *int64) {
+	o.DefaultPrefixLen = v
+}
+
+// GetMaxPrefixLen returns the MaxPrefixLen field value if set, zero value otherwise.
+func (o *NetworkAreaIPv4) GetMaxPrefixLen() *int64 {
+	if o == nil || IsNil(o.MaxPrefixLen) {
+		var ret *int64
+		return ret
+	}
+	return o.MaxPrefixLen
+}
+
+// GetMaxPrefixLenOk returns a tuple with the MaxPrefixLen field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkAreaIPv4) GetMaxPrefixLenOk() (*int64, bool) {
+	if o == nil || IsNil(o.MaxPrefixLen) {
+		return nil, false
+	}
+	return o.MaxPrefixLen, true
+}
+
+// HasMaxPrefixLen returns a boolean if a field has been set.
+func (o *NetworkAreaIPv4) HasMaxPrefixLen() bool {
+	if o != nil && !IsNil(o.MaxPrefixLen) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxPrefixLen gets a reference to the given int64 and assigns it to the MaxPrefixLen field.
+func (o *NetworkAreaIPv4) SetMaxPrefixLen(v *int64) {
+	o.MaxPrefixLen = v
+}
+
+// GetMinPrefixLen returns the MinPrefixLen field value if set, zero value otherwise.
+func (o *NetworkAreaIPv4) GetMinPrefixLen() *int64 {
+	if o == nil || IsNil(o.MinPrefixLen) {
+		var ret *int64
+		return ret
+	}
+	return o.MinPrefixLen
+}
+
+// GetMinPrefixLenOk returns a tuple with the MinPrefixLen field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkAreaIPv4) GetMinPrefixLenOk() (*int64, bool) {
+	if o == nil || IsNil(o.MinPrefixLen) {
+		return nil, false
+	}
+	return o.MinPrefixLen, true
+}
+
+// HasMinPrefixLen returns a boolean if a field has been set.
+func (o *NetworkAreaIPv4) HasMinPrefixLen() bool {
+	if o != nil && !IsNil(o.MinPrefixLen) {
+		return true
+	}
+
+	return false
+}
+
+// SetMinPrefixLen gets a reference to the given int64 and assigns it to the MinPrefixLen field.
+func (o *NetworkAreaIPv4) SetMinPrefixLen(v *int64) {
+	o.MinPrefixLen = v
+}
+
+func (o NetworkAreaIPv4) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultNameservers) {
+		toSerialize["defaultNameservers"] = o.DefaultNameservers
+	}
+	if !IsNil(o.NetworkRanges) {
+		toSerialize["networkRanges"] = o.NetworkRanges
+	}
+	if !IsNil(o.Routes) {
+		toSerialize["routes"] = o.Routes
+	}
+	if !IsNil(o.TransferNetwork) {
+		toSerialize["transferNetwork"] = o.TransferNetwork
+	}
+	if !IsNil(o.DefaultPrefixLen) {
+		toSerialize["defaultPrefixLen"] = o.DefaultPrefixLen
+	}
+	if !IsNil(o.MaxPrefixLen) {
+		toSerialize["maxPrefixLen"] = o.MaxPrefixLen
+	}
+	if !IsNil(o.MinPrefixLen) {
+		toSerialize["minPrefixLen"] = o.MinPrefixLen
+	}
+	return toSerialize, nil
+}
+
+type NullableNetworkAreaIPv4 struct {
+	value *NetworkAreaIPv4
+	isSet bool
+}
+
+func (v NullableNetworkAreaIPv4) Get() *NetworkAreaIPv4 {
+	return v.value
+}
+
+func (v *NullableNetworkAreaIPv4) Set(val *NetworkAreaIPv4) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNetworkAreaIPv4) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNetworkAreaIPv4) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNetworkAreaIPv4(val *NetworkAreaIPv4) *NullableNetworkAreaIPv4 {
+	return &NullableNetworkAreaIPv4{value: val, isSet: true}
+}
+
+func (v NullableNetworkAreaIPv4) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableNetworkAreaIPv4) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -11,8 +11,12 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"encoding/json"
 	"time"
 )
+
+// checks if the CreateServerPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateServerPayload{}
 
 // CreateServerPayload Representation of a single server object.
 type CreateServerPayload struct {
@@ -59,4 +63,816 @@ type CreateServerPayload struct {
 	UserData *string `json:"userData,omitempty"`
 	// A list of UUIDs.
 	Volumes *[]string `json:"volumes,omitempty"`
+}
+
+type _CreateServerPayload CreateServerPayload
+
+// NewCreateServerPayload instantiates a new CreateServerPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateServerPayload(machineType *string, name *string) *CreateServerPayload {
+	this := CreateServerPayload{}
+	this.MachineType = machineType
+	this.Name = name
+	return &this
+}
+
+// NewCreateServerPayloadWithDefaults instantiates a new CreateServerPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateServerPayloadWithDefaults() *CreateServerPayload {
+	this := CreateServerPayload{}
+	return &this
+}
+
+// GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetAvailabilityZone() *string {
+	if o == nil || IsNil(o.AvailabilityZone) {
+		var ret *string
+		return ret
+	}
+	return o.AvailabilityZone
+}
+
+// GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetAvailabilityZoneOk() (*string, bool) {
+	if o == nil || IsNil(o.AvailabilityZone) {
+		return nil, false
+	}
+	return o.AvailabilityZone, true
+}
+
+// HasAvailabilityZone returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasAvailabilityZone() bool {
+	if o != nil && !IsNil(o.AvailabilityZone) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailabilityZone gets a reference to the given string and assigns it to the AvailabilityZone field.
+func (o *CreateServerPayload) SetAvailabilityZone(v *string) {
+	o.AvailabilityZone = v
+}
+
+// GetBootVolume returns the BootVolume field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetBootVolume() *CreateServerPayloadBootVolume {
+	if o == nil || IsNil(o.BootVolume) {
+		var ret *CreateServerPayloadBootVolume
+		return ret
+	}
+	return o.BootVolume
+}
+
+// GetBootVolumeOk returns a tuple with the BootVolume field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetBootVolumeOk() (*CreateServerPayloadBootVolume, bool) {
+	if o == nil || IsNil(o.BootVolume) {
+		return nil, false
+	}
+	return o.BootVolume, true
+}
+
+// HasBootVolume returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasBootVolume() bool {
+	if o != nil && !IsNil(o.BootVolume) {
+		return true
+	}
+
+	return false
+}
+
+// SetBootVolume gets a reference to the given CreateServerPayloadBootVolume and assigns it to the BootVolume field.
+func (o *CreateServerPayload) SetBootVolume(v *CreateServerPayloadBootVolume) {
+	o.BootVolume = v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetCreatedAt() *time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *CreateServerPayload) SetCreatedAt(v *time.Time) {
+	o.CreatedAt = v
+}
+
+// GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetErrorMessage() *string {
+	if o == nil || IsNil(o.ErrorMessage) {
+		var ret *string
+		return ret
+	}
+	return o.ErrorMessage
+}
+
+// GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetErrorMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.ErrorMessage) {
+		return nil, false
+	}
+	return o.ErrorMessage, true
+}
+
+// HasErrorMessage returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasErrorMessage() bool {
+	if o != nil && !IsNil(o.ErrorMessage) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
+func (o *CreateServerPayload) SetErrorMessage(v *string) {
+	o.ErrorMessage = v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *CreateServerPayload) SetId(v *string) {
+	o.Id = v
+}
+
+// GetImageId returns the ImageId field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetImageId() *string {
+	if o == nil || IsNil(o.ImageId) {
+		var ret *string
+		return ret
+	}
+	return o.ImageId
+}
+
+// GetImageIdOk returns a tuple with the ImageId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetImageIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ImageId) {
+		return nil, false
+	}
+	return o.ImageId, true
+}
+
+// HasImageId returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasImageId() bool {
+	if o != nil && !IsNil(o.ImageId) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageId gets a reference to the given string and assigns it to the ImageId field.
+func (o *CreateServerPayload) SetImageId(v *string) {
+	o.ImageId = v
+}
+
+// GetKeypairName returns the KeypairName field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetKeypairName() *string {
+	if o == nil || IsNil(o.KeypairName) {
+		var ret *string
+		return ret
+	}
+	return o.KeypairName
+}
+
+// GetKeypairNameOk returns a tuple with the KeypairName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetKeypairNameOk() (*string, bool) {
+	if o == nil || IsNil(o.KeypairName) {
+		return nil, false
+	}
+	return o.KeypairName, true
+}
+
+// HasKeypairName returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasKeypairName() bool {
+	if o != nil && !IsNil(o.KeypairName) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeypairName gets a reference to the given string and assigns it to the KeypairName field.
+func (o *CreateServerPayload) SetKeypairName(v *string) {
+	o.KeypairName = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetLabels() *map[string]interface{} {
+	if o == nil || IsNil(o.Labels) {
+		var ret *map[string]interface{}
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetLabelsOk() (*map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return &map[string]interface{}{}, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
+func (o *CreateServerPayload) SetLabels(v *map[string]interface{}) {
+	o.Labels = v
+}
+
+// GetLaunchedAt returns the LaunchedAt field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetLaunchedAt() *time.Time {
+	if o == nil || IsNil(o.LaunchedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.LaunchedAt
+}
+
+// GetLaunchedAtOk returns a tuple with the LaunchedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetLaunchedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.LaunchedAt) {
+		return nil, false
+	}
+	return o.LaunchedAt, true
+}
+
+// HasLaunchedAt returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasLaunchedAt() bool {
+	if o != nil && !IsNil(o.LaunchedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetLaunchedAt gets a reference to the given time.Time and assigns it to the LaunchedAt field.
+func (o *CreateServerPayload) SetLaunchedAt(v *time.Time) {
+	o.LaunchedAt = v
+}
+
+// GetMachineType returns the MachineType field value
+func (o *CreateServerPayload) GetMachineType() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.MachineType
+}
+
+// GetMachineTypeOk returns a tuple with the MachineType field value
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetMachineTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MachineType, true
+}
+
+// SetMachineType sets field value
+func (o *CreateServerPayload) SetMachineType(v *string) {
+	o.MachineType = v
+}
+
+// GetMaintenanceWindow returns the MaintenanceWindow field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetMaintenanceWindow() *ServerMaintenance {
+	if o == nil || IsNil(o.MaintenanceWindow) {
+		var ret *ServerMaintenance
+		return ret
+	}
+	return o.MaintenanceWindow
+}
+
+// GetMaintenanceWindowOk returns a tuple with the MaintenanceWindow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetMaintenanceWindowOk() (*ServerMaintenance, bool) {
+	if o == nil || IsNil(o.MaintenanceWindow) {
+		return nil, false
+	}
+	return o.MaintenanceWindow, true
+}
+
+// HasMaintenanceWindow returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasMaintenanceWindow() bool {
+	if o != nil && !IsNil(o.MaintenanceWindow) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaintenanceWindow gets a reference to the given ServerMaintenance and assigns it to the MaintenanceWindow field.
+func (o *CreateServerPayload) SetMaintenanceWindow(v *ServerMaintenance) {
+	o.MaintenanceWindow = v
+}
+
+// GetName returns the Name field value
+func (o *CreateServerPayload) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *CreateServerPayload) SetName(v *string) {
+	o.Name = v
+}
+
+// GetNetworking returns the Networking field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetNetworking() *CreateServerPayloadNetworking {
+	if o == nil || IsNil(o.Networking) {
+		var ret *CreateServerPayloadNetworking
+		return ret
+	}
+	return o.Networking
+}
+
+// GetNetworkingOk returns a tuple with the Networking field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetNetworkingOk() (*CreateServerPayloadNetworking, bool) {
+	if o == nil || IsNil(o.Networking) {
+		return nil, false
+	}
+	return o.Networking, true
+}
+
+// HasNetworking returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasNetworking() bool {
+	if o != nil && !IsNil(o.Networking) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworking gets a reference to the given CreateServerPayloadNetworking and assigns it to the Networking field.
+func (o *CreateServerPayload) SetNetworking(v *CreateServerPayloadNetworking) {
+	o.Networking = v
+}
+
+// GetNics returns the Nics field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetNics() *[]ServerNetwork {
+	if o == nil || IsNil(o.Nics) {
+		var ret *[]ServerNetwork
+		return ret
+	}
+	return o.Nics
+}
+
+// GetNicsOk returns a tuple with the Nics field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetNicsOk() (*[]ServerNetwork, bool) {
+	if o == nil || IsNil(o.Nics) {
+		return nil, false
+	}
+	return o.Nics, true
+}
+
+// HasNics returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasNics() bool {
+	if o != nil && !IsNil(o.Nics) {
+		return true
+	}
+
+	return false
+}
+
+// SetNics gets a reference to the given []ServerNetwork and assigns it to the Nics field.
+func (o *CreateServerPayload) SetNics(v *[]ServerNetwork) {
+	o.Nics = v
+}
+
+// GetPowerStatus returns the PowerStatus field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetPowerStatus() *string {
+	if o == nil || IsNil(o.PowerStatus) {
+		var ret *string
+		return ret
+	}
+	return o.PowerStatus
+}
+
+// GetPowerStatusOk returns a tuple with the PowerStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetPowerStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.PowerStatus) {
+		return nil, false
+	}
+	return o.PowerStatus, true
+}
+
+// HasPowerStatus returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasPowerStatus() bool {
+	if o != nil && !IsNil(o.PowerStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetPowerStatus gets a reference to the given string and assigns it to the PowerStatus field.
+func (o *CreateServerPayload) SetPowerStatus(v *string) {
+	o.PowerStatus = v
+}
+
+// GetSecurityGroups returns the SecurityGroups field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetSecurityGroups() *[]string {
+	if o == nil || IsNil(o.SecurityGroups) {
+		var ret *[]string
+		return ret
+	}
+	return o.SecurityGroups
+}
+
+// GetSecurityGroupsOk returns a tuple with the SecurityGroups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetSecurityGroupsOk() (*[]string, bool) {
+	if o == nil || IsNil(o.SecurityGroups) {
+		return nil, false
+	}
+	return o.SecurityGroups, true
+}
+
+// HasSecurityGroups returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasSecurityGroups() bool {
+	if o != nil && !IsNil(o.SecurityGroups) {
+		return true
+	}
+
+	return false
+}
+
+// SetSecurityGroups gets a reference to the given []string and assigns it to the SecurityGroups field.
+func (o *CreateServerPayload) SetSecurityGroups(v *[]string) {
+	o.SecurityGroups = v
+}
+
+// GetServerGroup returns the ServerGroup field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetServerGroup() *string {
+	if o == nil || IsNil(o.ServerGroup) {
+		var ret *string
+		return ret
+	}
+	return o.ServerGroup
+}
+
+// GetServerGroupOk returns a tuple with the ServerGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetServerGroupOk() (*string, bool) {
+	if o == nil || IsNil(o.ServerGroup) {
+		return nil, false
+	}
+	return o.ServerGroup, true
+}
+
+// HasServerGroup returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasServerGroup() bool {
+	if o != nil && !IsNil(o.ServerGroup) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerGroup gets a reference to the given string and assigns it to the ServerGroup field.
+func (o *CreateServerPayload) SetServerGroup(v *string) {
+	o.ServerGroup = v
+}
+
+// GetServiceAccountMails returns the ServiceAccountMails field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetServiceAccountMails() *[]string {
+	if o == nil || IsNil(o.ServiceAccountMails) {
+		var ret *[]string
+		return ret
+	}
+	return o.ServiceAccountMails
+}
+
+// GetServiceAccountMailsOk returns a tuple with the ServiceAccountMails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetServiceAccountMailsOk() (*[]string, bool) {
+	if o == nil || IsNil(o.ServiceAccountMails) {
+		return nil, false
+	}
+	return o.ServiceAccountMails, true
+}
+
+// HasServiceAccountMails returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasServiceAccountMails() bool {
+	if o != nil && !IsNil(o.ServiceAccountMails) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceAccountMails gets a reference to the given []string and assigns it to the ServiceAccountMails field.
+func (o *CreateServerPayload) SetServiceAccountMails(v *[]string) {
+	o.ServiceAccountMails = v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetStatus() *string {
+	if o == nil || IsNil(o.Status) {
+		var ret *string
+		return ret
+	}
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *CreateServerPayload) SetStatus(v *string) {
+	o.Status = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetUpdatedAt() *time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *CreateServerPayload) SetUpdatedAt(v *time.Time) {
+	o.UpdatedAt = v
+}
+
+// GetUserData returns the UserData field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetUserData() *string {
+	if o == nil || IsNil(o.UserData) {
+		var ret *string
+		return ret
+	}
+	return o.UserData
+}
+
+// GetUserDataOk returns a tuple with the UserData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetUserDataOk() (*string, bool) {
+	if o == nil || IsNil(o.UserData) {
+		return nil, false
+	}
+	return o.UserData, true
+}
+
+// HasUserData returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasUserData() bool {
+	if o != nil && !IsNil(o.UserData) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserData gets a reference to the given string and assigns it to the UserData field.
+func (o *CreateServerPayload) SetUserData(v *string) {
+	o.UserData = v
+}
+
+// GetVolumes returns the Volumes field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetVolumes() *[]string {
+	if o == nil || IsNil(o.Volumes) {
+		var ret *[]string
+		return ret
+	}
+	return o.Volumes
+}
+
+// GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetVolumesOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Volumes) {
+		return nil, false
+	}
+	return o.Volumes, true
+}
+
+// HasVolumes returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasVolumes() bool {
+	if o != nil && !IsNil(o.Volumes) {
+		return true
+	}
+
+	return false
+}
+
+// SetVolumes gets a reference to the given []string and assigns it to the Volumes field.
+func (o *CreateServerPayload) SetVolumes(v *[]string) {
+	o.Volumes = v
+}
+
+func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AvailabilityZone) {
+		toSerialize["availabilityZone"] = o.AvailabilityZone
+	}
+	if !IsNil(o.BootVolume) {
+		toSerialize["bootVolume"] = o.BootVolume
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.ErrorMessage) {
+		toSerialize["errorMessage"] = o.ErrorMessage
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.ImageId) {
+		toSerialize["imageId"] = o.ImageId
+	}
+	if !IsNil(o.KeypairName) {
+		toSerialize["keypairName"] = o.KeypairName
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	if !IsNil(o.LaunchedAt) {
+		toSerialize["launchedAt"] = o.LaunchedAt
+	}
+	toSerialize["machineType"] = o.MachineType
+	if !IsNil(o.MaintenanceWindow) {
+		toSerialize["maintenanceWindow"] = o.MaintenanceWindow
+	}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Networking) {
+		toSerialize["networking"] = o.Networking
+	}
+	if !IsNil(o.Nics) {
+		toSerialize["nics"] = o.Nics
+	}
+	if !IsNil(o.PowerStatus) {
+		toSerialize["powerStatus"] = o.PowerStatus
+	}
+	if !IsNil(o.SecurityGroups) {
+		toSerialize["securityGroups"] = o.SecurityGroups
+	}
+	if !IsNil(o.ServerGroup) {
+		toSerialize["serverGroup"] = o.ServerGroup
+	}
+	if !IsNil(o.ServiceAccountMails) {
+		toSerialize["serviceAccountMails"] = o.ServiceAccountMails
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	if !IsNil(o.UserData) {
+		toSerialize["userData"] = o.UserData
+	}
+	if !IsNil(o.Volumes) {
+		toSerialize["volumes"] = o.Volumes
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateServerPayload struct {
+	value *CreateServerPayload
+	isSet bool
+}
+
+func (v NullableCreateServerPayload) Get() *CreateServerPayload {
+	return v.value
+}
+
+func (v *NullableCreateServerPayload) Set(val *CreateServerPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateServerPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateServerPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateServerPayload(val *CreateServerPayload) *NullableCreateServerPayload {
+	return &NullableCreateServerPayload{value: val, isSet: true}
+}
+
+func (v NullableCreateServerPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateServerPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,9 +10,102 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"encoding/json"
+)
+
+// checks if the ResizeVolumePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ResizeVolumePayload{}
+
 // ResizeVolumePayload struct for ResizeVolumePayload
 type ResizeVolumePayload struct {
 	// Size in Gigabyte.
 	// REQUIRED
 	Size *int64 `json:"size"`
+}
+
+type _ResizeVolumePayload ResizeVolumePayload
+
+// NewResizeVolumePayload instantiates a new ResizeVolumePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewResizeVolumePayload(size *int64) *ResizeVolumePayload {
+	this := ResizeVolumePayload{}
+	this.Size = size
+	return &this
+}
+
+// NewResizeVolumePayloadWithDefaults instantiates a new ResizeVolumePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewResizeVolumePayloadWithDefaults() *ResizeVolumePayload {
+	this := ResizeVolumePayload{}
+	return &this
+}
+
+// GetSize returns the Size field value
+func (o *ResizeVolumePayload) GetSize() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value
+// and a boolean to check if the value has been set.
+func (o *ResizeVolumePayload) GetSizeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Size, true
+}
+
+// SetSize sets field value
+func (o *ResizeVolumePayload) SetSize(v *int64) {
+	o.Size = v
+}
+
+func (o ResizeVolumePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["size"] = o.Size
+	return toSerialize, nil
+}
+
+type NullableResizeVolumePayload struct {
+	value *ResizeVolumePayload
+	isSet bool
+}
+
+func (v NullableResizeVolumePayload) Get() *ResizeVolumePayload {
+	return v.value
+}
+
+func (v *NullableResizeVolumePayload) Set(val *ResizeVolumePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableResizeVolumePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableResizeVolumePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableResizeVolumePayload(val *ResizeVolumePayload) *NullableResizeVolumePayload {
+	return &NullableResizeVolumePayload{value: val, isSet: true}
+}
+
+func (v NullableResizeVolumePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableResizeVolumePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

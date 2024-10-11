@@ -10,6 +10,13 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateServerGroupPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateServerGroupPayload{}
+
 // CreateServerGroupPayload Definition of a server group.
 type CreateServerGroupPayload struct {
 	// Universally Unique Identifier (UUID).
@@ -22,4 +29,186 @@ type CreateServerGroupPayload struct {
 	// The server group policy.
 	// REQUIRED
 	Policy *string `json:"policy"`
+}
+
+type _CreateServerGroupPayload CreateServerGroupPayload
+
+// NewCreateServerGroupPayload instantiates a new CreateServerGroupPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateServerGroupPayload(name *string, policy *string) *CreateServerGroupPayload {
+	this := CreateServerGroupPayload{}
+	this.Name = name
+	this.Policy = policy
+	return &this
+}
+
+// NewCreateServerGroupPayloadWithDefaults instantiates a new CreateServerGroupPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateServerGroupPayloadWithDefaults() *CreateServerGroupPayload {
+	this := CreateServerGroupPayload{}
+	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *CreateServerGroupPayload) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerGroupPayload) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *CreateServerGroupPayload) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *CreateServerGroupPayload) SetId(v *string) {
+	o.Id = v
+}
+
+// GetMembers returns the Members field value if set, zero value otherwise.
+func (o *CreateServerGroupPayload) GetMembers() *[]string {
+	if o == nil || IsNil(o.Members) {
+		var ret *[]string
+		return ret
+	}
+	return o.Members
+}
+
+// GetMembersOk returns a tuple with the Members field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerGroupPayload) GetMembersOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Members) {
+		return nil, false
+	}
+	return o.Members, true
+}
+
+// HasMembers returns a boolean if a field has been set.
+func (o *CreateServerGroupPayload) HasMembers() bool {
+	if o != nil && !IsNil(o.Members) {
+		return true
+	}
+
+	return false
+}
+
+// SetMembers gets a reference to the given []string and assigns it to the Members field.
+func (o *CreateServerGroupPayload) SetMembers(v *[]string) {
+	o.Members = v
+}
+
+// GetName returns the Name field value
+func (o *CreateServerGroupPayload) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CreateServerGroupPayload) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *CreateServerGroupPayload) SetName(v *string) {
+	o.Name = v
+}
+
+// GetPolicy returns the Policy field value
+func (o *CreateServerGroupPayload) GetPolicy() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value
+// and a boolean to check if the value has been set.
+func (o *CreateServerGroupPayload) GetPolicyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Policy, true
+}
+
+// SetPolicy sets field value
+func (o *CreateServerGroupPayload) SetPolicy(v *string) {
+	o.Policy = v
+}
+
+func (o CreateServerGroupPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Members) {
+		toSerialize["members"] = o.Members
+	}
+	toSerialize["name"] = o.Name
+	toSerialize["policy"] = o.Policy
+	return toSerialize, nil
+}
+
+type NullableCreateServerGroupPayload struct {
+	value *CreateServerGroupPayload
+	isSet bool
+}
+
+func (v NullableCreateServerGroupPayload) Get() *CreateServerGroupPayload {
+	return v.value
+}
+
+func (v *NullableCreateServerGroupPayload) Set(val *CreateServerGroupPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateServerGroupPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateServerGroupPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateServerGroupPayload(val *CreateServerGroupPayload) *NullableCreateServerGroupPayload {
+	return &NullableCreateServerGroupPayload{value: val, isSet: true}
+}
+
+func (v NullableCreateServerGroupPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateServerGroupPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
