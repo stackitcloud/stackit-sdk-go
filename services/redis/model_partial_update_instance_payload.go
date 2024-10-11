@@ -10,9 +10,179 @@ API version: 1.1.0
 
 package redis
 
+import (
+	"encoding/json"
+)
+
+// checks if the PartialUpdateInstancePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartialUpdateInstancePayload{}
+
 // PartialUpdateInstancePayload struct for PartialUpdateInstancePayload
 type PartialUpdateInstancePayload struct {
 	InstanceName *string             `json:"instanceName,omitempty"`
 	Parameters   *InstanceParameters `json:"parameters,omitempty"`
 	PlanId       *string             `json:"planId,omitempty"`
+}
+
+// NewPartialUpdateInstancePayload instantiates a new PartialUpdateInstancePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPartialUpdateInstancePayload() *PartialUpdateInstancePayload {
+	this := PartialUpdateInstancePayload{}
+	return &this
+}
+
+// NewPartialUpdateInstancePayloadWithDefaults instantiates a new PartialUpdateInstancePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPartialUpdateInstancePayloadWithDefaults() *PartialUpdateInstancePayload {
+	this := PartialUpdateInstancePayload{}
+	return &this
+}
+
+// GetInstanceName returns the InstanceName field value if set, zero value otherwise.
+func (o *PartialUpdateInstancePayload) GetInstanceName() *string {
+	if o == nil || IsNil(o.InstanceName) {
+		var ret *string
+		return ret
+	}
+	return o.InstanceName
+}
+
+// GetInstanceNameOk returns a tuple with the InstanceName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateInstancePayload) GetInstanceNameOk() (*string, bool) {
+	if o == nil || IsNil(o.InstanceName) {
+		return nil, false
+	}
+	return o.InstanceName, true
+}
+
+// HasInstanceName returns a boolean if a field has been set.
+func (o *PartialUpdateInstancePayload) HasInstanceName() bool {
+	if o != nil && !IsNil(o.InstanceName) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceName gets a reference to the given string and assigns it to the InstanceName field.
+func (o *PartialUpdateInstancePayload) SetInstanceName(v *string) {
+	o.InstanceName = v
+}
+
+// GetParameters returns the Parameters field value if set, zero value otherwise.
+func (o *PartialUpdateInstancePayload) GetParameters() *InstanceParameters {
+	if o == nil || IsNil(o.Parameters) {
+		var ret *InstanceParameters
+		return ret
+	}
+	return o.Parameters
+}
+
+// GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateInstancePayload) GetParametersOk() (*InstanceParameters, bool) {
+	if o == nil || IsNil(o.Parameters) {
+		return nil, false
+	}
+	return o.Parameters, true
+}
+
+// HasParameters returns a boolean if a field has been set.
+func (o *PartialUpdateInstancePayload) HasParameters() bool {
+	if o != nil && !IsNil(o.Parameters) {
+		return true
+	}
+
+	return false
+}
+
+// SetParameters gets a reference to the given InstanceParameters and assigns it to the Parameters field.
+func (o *PartialUpdateInstancePayload) SetParameters(v *InstanceParameters) {
+	o.Parameters = v
+}
+
+// GetPlanId returns the PlanId field value if set, zero value otherwise.
+func (o *PartialUpdateInstancePayload) GetPlanId() *string {
+	if o == nil || IsNil(o.PlanId) {
+		var ret *string
+		return ret
+	}
+	return o.PlanId
+}
+
+// GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateInstancePayload) GetPlanIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PlanId) {
+		return nil, false
+	}
+	return o.PlanId, true
+}
+
+// HasPlanId returns a boolean if a field has been set.
+func (o *PartialUpdateInstancePayload) HasPlanId() bool {
+	if o != nil && !IsNil(o.PlanId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanId gets a reference to the given string and assigns it to the PlanId field.
+func (o *PartialUpdateInstancePayload) SetPlanId(v *string) {
+	o.PlanId = v
+}
+
+func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.InstanceName) {
+		toSerialize["instanceName"] = o.InstanceName
+	}
+	if !IsNil(o.Parameters) {
+		toSerialize["parameters"] = o.Parameters
+	}
+	if !IsNil(o.PlanId) {
+		toSerialize["planId"] = o.PlanId
+	}
+	return toSerialize, nil
+}
+
+type NullablePartialUpdateInstancePayload struct {
+	value *PartialUpdateInstancePayload
+	isSet bool
+}
+
+func (v NullablePartialUpdateInstancePayload) Get() *PartialUpdateInstancePayload {
+	return v.value
+}
+
+func (v *NullablePartialUpdateInstancePayload) Set(val *PartialUpdateInstancePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateInstancePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateInstancePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateInstancePayload(val *PartialUpdateInstancePayload) *NullablePartialUpdateInstancePayload {
+	return &NullablePartialUpdateInstancePayload{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateInstancePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateInstancePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
