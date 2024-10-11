@@ -10,6 +10,13 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the RouteSerializer type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RouteSerializer{}
+
 // RouteSerializer struct for RouteSerializer
 type RouteSerializer struct {
 	Continue      *bool              `json:"continue,omitempty"`
@@ -23,4 +30,421 @@ type RouteSerializer struct {
 	Receiver       *string              `json:"receiver"`
 	RepeatInterval *string              `json:"repeatInterval,omitempty"`
 	Routes         *[]map[string]string `json:"routes,omitempty"`
+}
+
+type _RouteSerializer RouteSerializer
+
+// NewRouteSerializer instantiates a new RouteSerializer object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRouteSerializer(receiver *string) *RouteSerializer {
+	this := RouteSerializer{}
+	var continue_ bool = false
+	this.Continue = &continue_
+	var groupInterval string = "5m"
+	this.GroupInterval = &groupInterval
+	var groupWait string = "30s"
+	this.GroupWait = &groupWait
+	this.Receiver = receiver
+	var repeatInterval string = "4h"
+	this.RepeatInterval = &repeatInterval
+	return &this
+}
+
+// NewRouteSerializerWithDefaults instantiates a new RouteSerializer object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRouteSerializerWithDefaults() *RouteSerializer {
+	this := RouteSerializer{}
+	var continue_ bool = false
+	this.Continue = &continue_
+	var groupInterval string = "5m"
+	this.GroupInterval = &groupInterval
+	var groupWait string = "30s"
+	this.GroupWait = &groupWait
+	var repeatInterval string = "4h"
+	this.RepeatInterval = &repeatInterval
+	return &this
+}
+
+// GetContinue returns the Continue field value if set, zero value otherwise.
+func (o *RouteSerializer) GetContinue() *bool {
+	if o == nil || IsNil(o.Continue) {
+		var ret *bool
+		return ret
+	}
+	return o.Continue
+}
+
+// GetContinueOk returns a tuple with the Continue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetContinueOk() (*bool, bool) {
+	if o == nil || IsNil(o.Continue) {
+		return nil, false
+	}
+	return o.Continue, true
+}
+
+// HasContinue returns a boolean if a field has been set.
+func (o *RouteSerializer) HasContinue() bool {
+	if o != nil && !IsNil(o.Continue) {
+		return true
+	}
+
+	return false
+}
+
+// SetContinue gets a reference to the given bool and assigns it to the Continue field.
+func (o *RouteSerializer) SetContinue(v *bool) {
+	o.Continue = v
+}
+
+// GetGroupBy returns the GroupBy field value if set, zero value otherwise.
+func (o *RouteSerializer) GetGroupBy() *[]string {
+	if o == nil || IsNil(o.GroupBy) {
+		var ret *[]string
+		return ret
+	}
+	return o.GroupBy
+}
+
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetGroupByOk() (*[]string, bool) {
+	if o == nil || IsNil(o.GroupBy) {
+		return nil, false
+	}
+	return o.GroupBy, true
+}
+
+// HasGroupBy returns a boolean if a field has been set.
+func (o *RouteSerializer) HasGroupBy() bool {
+	if o != nil && !IsNil(o.GroupBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
+func (o *RouteSerializer) SetGroupBy(v *[]string) {
+	o.GroupBy = v
+}
+
+// GetGroupInterval returns the GroupInterval field value if set, zero value otherwise.
+func (o *RouteSerializer) GetGroupInterval() *string {
+	if o == nil || IsNil(o.GroupInterval) {
+		var ret *string
+		return ret
+	}
+	return o.GroupInterval
+}
+
+// GetGroupIntervalOk returns a tuple with the GroupInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetGroupIntervalOk() (*string, bool) {
+	if o == nil || IsNil(o.GroupInterval) {
+		return nil, false
+	}
+	return o.GroupInterval, true
+}
+
+// HasGroupInterval returns a boolean if a field has been set.
+func (o *RouteSerializer) HasGroupInterval() bool {
+	if o != nil && !IsNil(o.GroupInterval) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupInterval gets a reference to the given string and assigns it to the GroupInterval field.
+func (o *RouteSerializer) SetGroupInterval(v *string) {
+	o.GroupInterval = v
+}
+
+// GetGroupWait returns the GroupWait field value if set, zero value otherwise.
+func (o *RouteSerializer) GetGroupWait() *string {
+	if o == nil || IsNil(o.GroupWait) {
+		var ret *string
+		return ret
+	}
+	return o.GroupWait
+}
+
+// GetGroupWaitOk returns a tuple with the GroupWait field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetGroupWaitOk() (*string, bool) {
+	if o == nil || IsNil(o.GroupWait) {
+		return nil, false
+	}
+	return o.GroupWait, true
+}
+
+// HasGroupWait returns a boolean if a field has been set.
+func (o *RouteSerializer) HasGroupWait() bool {
+	if o != nil && !IsNil(o.GroupWait) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupWait gets a reference to the given string and assigns it to the GroupWait field.
+func (o *RouteSerializer) SetGroupWait(v *string) {
+	o.GroupWait = v
+}
+
+// GetMatch returns the Match field value if set, zero value otherwise.
+func (o *RouteSerializer) GetMatch() *map[string]string {
+	if o == nil || IsNil(o.Match) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.Match
+}
+
+// GetMatchOk returns a tuple with the Match field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetMatchOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Match) {
+		return nil, false
+	}
+	return o.Match, true
+}
+
+// HasMatch returns a boolean if a field has been set.
+func (o *RouteSerializer) HasMatch() bool {
+	if o != nil && !IsNil(o.Match) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatch gets a reference to the given map[string]string and assigns it to the Match field.
+func (o *RouteSerializer) SetMatch(v *map[string]string) {
+	o.Match = v
+}
+
+// GetMatchRe returns the MatchRe field value if set, zero value otherwise.
+func (o *RouteSerializer) GetMatchRe() *map[string]string {
+	if o == nil || IsNil(o.MatchRe) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.MatchRe
+}
+
+// GetMatchReOk returns a tuple with the MatchRe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetMatchReOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.MatchRe) {
+		return nil, false
+	}
+	return o.MatchRe, true
+}
+
+// HasMatchRe returns a boolean if a field has been set.
+func (o *RouteSerializer) HasMatchRe() bool {
+	if o != nil && !IsNil(o.MatchRe) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatchRe gets a reference to the given map[string]string and assigns it to the MatchRe field.
+func (o *RouteSerializer) SetMatchRe(v *map[string]string) {
+	o.MatchRe = v
+}
+
+// GetMatchers returns the Matchers field value if set, zero value otherwise.
+func (o *RouteSerializer) GetMatchers() *[]string {
+	if o == nil || IsNil(o.Matchers) {
+		var ret *[]string
+		return ret
+	}
+	return o.Matchers
+}
+
+// GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetMatchersOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Matchers) {
+		return nil, false
+	}
+	return o.Matchers, true
+}
+
+// HasMatchers returns a boolean if a field has been set.
+func (o *RouteSerializer) HasMatchers() bool {
+	if o != nil && !IsNil(o.Matchers) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatchers gets a reference to the given []string and assigns it to the Matchers field.
+func (o *RouteSerializer) SetMatchers(v *[]string) {
+	o.Matchers = v
+}
+
+// GetReceiver returns the Receiver field value
+func (o *RouteSerializer) GetReceiver() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Receiver
+}
+
+// GetReceiverOk returns a tuple with the Receiver field value
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetReceiverOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Receiver, true
+}
+
+// SetReceiver sets field value
+func (o *RouteSerializer) SetReceiver(v *string) {
+	o.Receiver = v
+}
+
+// GetRepeatInterval returns the RepeatInterval field value if set, zero value otherwise.
+func (o *RouteSerializer) GetRepeatInterval() *string {
+	if o == nil || IsNil(o.RepeatInterval) {
+		var ret *string
+		return ret
+	}
+	return o.RepeatInterval
+}
+
+// GetRepeatIntervalOk returns a tuple with the RepeatInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetRepeatIntervalOk() (*string, bool) {
+	if o == nil || IsNil(o.RepeatInterval) {
+		return nil, false
+	}
+	return o.RepeatInterval, true
+}
+
+// HasRepeatInterval returns a boolean if a field has been set.
+func (o *RouteSerializer) HasRepeatInterval() bool {
+	if o != nil && !IsNil(o.RepeatInterval) {
+		return true
+	}
+
+	return false
+}
+
+// SetRepeatInterval gets a reference to the given string and assigns it to the RepeatInterval field.
+func (o *RouteSerializer) SetRepeatInterval(v *string) {
+	o.RepeatInterval = v
+}
+
+// GetRoutes returns the Routes field value if set, zero value otherwise.
+func (o *RouteSerializer) GetRoutes() *[]map[string]string {
+	if o == nil || IsNil(o.Routes) {
+		var ret *[]map[string]string
+		return ret
+	}
+	return o.Routes
+}
+
+// GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RouteSerializer) GetRoutesOk() (*[]map[string]string, bool) {
+	if o == nil || IsNil(o.Routes) {
+		return nil, false
+	}
+	return o.Routes, true
+}
+
+// HasRoutes returns a boolean if a field has been set.
+func (o *RouteSerializer) HasRoutes() bool {
+	if o != nil && !IsNil(o.Routes) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoutes gets a reference to the given []map[string]string and assigns it to the Routes field.
+func (o *RouteSerializer) SetRoutes(v *[]map[string]string) {
+	o.Routes = v
+}
+
+func (o RouteSerializer) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Continue) {
+		toSerialize["continue"] = o.Continue
+	}
+	if !IsNil(o.GroupBy) {
+		toSerialize["groupBy"] = o.GroupBy
+	}
+	if !IsNil(o.GroupInterval) {
+		toSerialize["groupInterval"] = o.GroupInterval
+	}
+	if !IsNil(o.GroupWait) {
+		toSerialize["groupWait"] = o.GroupWait
+	}
+	if !IsNil(o.Match) {
+		toSerialize["match"] = o.Match
+	}
+	if !IsNil(o.MatchRe) {
+		toSerialize["matchRe"] = o.MatchRe
+	}
+	if !IsNil(o.Matchers) {
+		toSerialize["matchers"] = o.Matchers
+	}
+	toSerialize["receiver"] = o.Receiver
+	if !IsNil(o.RepeatInterval) {
+		toSerialize["repeatInterval"] = o.RepeatInterval
+	}
+	if !IsNil(o.Routes) {
+		toSerialize["routes"] = o.Routes
+	}
+	return toSerialize, nil
+}
+
+type NullableRouteSerializer struct {
+	value *RouteSerializer
+	isSet bool
+}
+
+func (v NullableRouteSerializer) Get() *RouteSerializer {
+	return v.value
+}
+
+func (v *NullableRouteSerializer) Set(val *RouteSerializer) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRouteSerializer) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRouteSerializer) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRouteSerializer(val *RouteSerializer) *NullableRouteSerializer {
+	return &NullableRouteSerializer{value: val, isSet: true}
+}
+
+func (v NullableRouteSerializer) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRouteSerializer) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

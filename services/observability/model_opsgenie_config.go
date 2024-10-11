@@ -10,6 +10,13 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the OpsgenieConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OpsgenieConfig{}
+
 // OpsgenieConfig struct for OpsgenieConfig
 type OpsgenieConfig struct {
 	ApiKey       *string `json:"apiKey,omitempty"`
@@ -17,4 +24,241 @@ type OpsgenieConfig struct {
 	Priority     *string `json:"priority,omitempty"`
 	SendResolved *bool   `json:"sendResolved,omitempty"`
 	Tags         *string `json:"tags,omitempty"`
+}
+
+// NewOpsgenieConfig instantiates a new OpsgenieConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOpsgenieConfig() *OpsgenieConfig {
+	this := OpsgenieConfig{}
+	var sendResolved bool = true
+	this.SendResolved = &sendResolved
+	return &this
+}
+
+// NewOpsgenieConfigWithDefaults instantiates a new OpsgenieConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOpsgenieConfigWithDefaults() *OpsgenieConfig {
+	this := OpsgenieConfig{}
+	var sendResolved bool = true
+	this.SendResolved = &sendResolved
+	return &this
+}
+
+// GetApiKey returns the ApiKey field value if set, zero value otherwise.
+func (o *OpsgenieConfig) GetApiKey() *string {
+	if o == nil || IsNil(o.ApiKey) {
+		var ret *string
+		return ret
+	}
+	return o.ApiKey
+}
+
+// GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpsgenieConfig) GetApiKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiKey) {
+		return nil, false
+	}
+	return o.ApiKey, true
+}
+
+// HasApiKey returns a boolean if a field has been set.
+func (o *OpsgenieConfig) HasApiKey() bool {
+	if o != nil && !IsNil(o.ApiKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
+func (o *OpsgenieConfig) SetApiKey(v *string) {
+	o.ApiKey = v
+}
+
+// GetApiUrl returns the ApiUrl field value if set, zero value otherwise.
+func (o *OpsgenieConfig) GetApiUrl() *string {
+	if o == nil || IsNil(o.ApiUrl) {
+		var ret *string
+		return ret
+	}
+	return o.ApiUrl
+}
+
+// GetApiUrlOk returns a tuple with the ApiUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpsgenieConfig) GetApiUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.ApiUrl) {
+		return nil, false
+	}
+	return o.ApiUrl, true
+}
+
+// HasApiUrl returns a boolean if a field has been set.
+func (o *OpsgenieConfig) HasApiUrl() bool {
+	if o != nil && !IsNil(o.ApiUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetApiUrl gets a reference to the given string and assigns it to the ApiUrl field.
+func (o *OpsgenieConfig) SetApiUrl(v *string) {
+	o.ApiUrl = v
+}
+
+// GetPriority returns the Priority field value if set, zero value otherwise.
+func (o *OpsgenieConfig) GetPriority() *string {
+	if o == nil || IsNil(o.Priority) {
+		var ret *string
+		return ret
+	}
+	return o.Priority
+}
+
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpsgenieConfig) GetPriorityOk() (*string, bool) {
+	if o == nil || IsNil(o.Priority) {
+		return nil, false
+	}
+	return o.Priority, true
+}
+
+// HasPriority returns a boolean if a field has been set.
+func (o *OpsgenieConfig) HasPriority() bool {
+	if o != nil && !IsNil(o.Priority) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriority gets a reference to the given string and assigns it to the Priority field.
+func (o *OpsgenieConfig) SetPriority(v *string) {
+	o.Priority = v
+}
+
+// GetSendResolved returns the SendResolved field value if set, zero value otherwise.
+func (o *OpsgenieConfig) GetSendResolved() *bool {
+	if o == nil || IsNil(o.SendResolved) {
+		var ret *bool
+		return ret
+	}
+	return o.SendResolved
+}
+
+// GetSendResolvedOk returns a tuple with the SendResolved field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpsgenieConfig) GetSendResolvedOk() (*bool, bool) {
+	if o == nil || IsNil(o.SendResolved) {
+		return nil, false
+	}
+	return o.SendResolved, true
+}
+
+// HasSendResolved returns a boolean if a field has been set.
+func (o *OpsgenieConfig) HasSendResolved() bool {
+	if o != nil && !IsNil(o.SendResolved) {
+		return true
+	}
+
+	return false
+}
+
+// SetSendResolved gets a reference to the given bool and assigns it to the SendResolved field.
+func (o *OpsgenieConfig) SetSendResolved(v *bool) {
+	o.SendResolved = v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *OpsgenieConfig) GetTags() *string {
+	if o == nil || IsNil(o.Tags) {
+		var ret *string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpsgenieConfig) GetTagsOk() (*string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *OpsgenieConfig) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given string and assigns it to the Tags field.
+func (o *OpsgenieConfig) SetTags(v *string) {
+	o.Tags = v
+}
+
+func (o OpsgenieConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ApiKey) {
+		toSerialize["apiKey"] = o.ApiKey
+	}
+	if !IsNil(o.ApiUrl) {
+		toSerialize["apiUrl"] = o.ApiUrl
+	}
+	if !IsNil(o.Priority) {
+		toSerialize["priority"] = o.Priority
+	}
+	if !IsNil(o.SendResolved) {
+		toSerialize["sendResolved"] = o.SendResolved
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	return toSerialize, nil
+}
+
+type NullableOpsgenieConfig struct {
+	value *OpsgenieConfig
+	isSet bool
+}
+
+func (v NullableOpsgenieConfig) Get() *OpsgenieConfig {
+	return v.value
+}
+
+func (v *NullableOpsgenieConfig) Set(val *OpsgenieConfig) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOpsgenieConfig) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOpsgenieConfig) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOpsgenieConfig(val *OpsgenieConfig) *NullableOpsgenieConfig {
+	return &NullableOpsgenieConfig{value: val, isSet: true}
+}
+
+func (v NullableOpsgenieConfig) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableOpsgenieConfig) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

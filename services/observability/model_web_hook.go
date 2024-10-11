@@ -10,10 +10,181 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the WebHook type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WebHook{}
+
 // WebHook struct for WebHook
 type WebHook struct {
 	MsTeams      *bool `json:"msTeams,omitempty"`
 	SendResolved *bool `json:"sendResolved,omitempty"`
 	// REQUIRED
 	Url *string `json:"url"`
+}
+
+type _WebHook WebHook
+
+// NewWebHook instantiates a new WebHook object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewWebHook(url *string) *WebHook {
+	this := WebHook{}
+	var msTeams bool = false
+	this.MsTeams = &msTeams
+	var sendResolved bool = true
+	this.SendResolved = &sendResolved
+	this.Url = url
+	return &this
+}
+
+// NewWebHookWithDefaults instantiates a new WebHook object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewWebHookWithDefaults() *WebHook {
+	this := WebHook{}
+	var msTeams bool = false
+	this.MsTeams = &msTeams
+	var sendResolved bool = true
+	this.SendResolved = &sendResolved
+	return &this
+}
+
+// GetMsTeams returns the MsTeams field value if set, zero value otherwise.
+func (o *WebHook) GetMsTeams() *bool {
+	if o == nil || IsNil(o.MsTeams) {
+		var ret *bool
+		return ret
+	}
+	return o.MsTeams
+}
+
+// GetMsTeamsOk returns a tuple with the MsTeams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebHook) GetMsTeamsOk() (*bool, bool) {
+	if o == nil || IsNil(o.MsTeams) {
+		return nil, false
+	}
+	return o.MsTeams, true
+}
+
+// HasMsTeams returns a boolean if a field has been set.
+func (o *WebHook) HasMsTeams() bool {
+	if o != nil && !IsNil(o.MsTeams) {
+		return true
+	}
+
+	return false
+}
+
+// SetMsTeams gets a reference to the given bool and assigns it to the MsTeams field.
+func (o *WebHook) SetMsTeams(v *bool) {
+	o.MsTeams = v
+}
+
+// GetSendResolved returns the SendResolved field value if set, zero value otherwise.
+func (o *WebHook) GetSendResolved() *bool {
+	if o == nil || IsNil(o.SendResolved) {
+		var ret *bool
+		return ret
+	}
+	return o.SendResolved
+}
+
+// GetSendResolvedOk returns a tuple with the SendResolved field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebHook) GetSendResolvedOk() (*bool, bool) {
+	if o == nil || IsNil(o.SendResolved) {
+		return nil, false
+	}
+	return o.SendResolved, true
+}
+
+// HasSendResolved returns a boolean if a field has been set.
+func (o *WebHook) HasSendResolved() bool {
+	if o != nil && !IsNil(o.SendResolved) {
+		return true
+	}
+
+	return false
+}
+
+// SetSendResolved gets a reference to the given bool and assigns it to the SendResolved field.
+func (o *WebHook) SetSendResolved(v *bool) {
+	o.SendResolved = v
+}
+
+// GetUrl returns the Url field value
+func (o *WebHook) GetUrl() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *WebHook) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Url, true
+}
+
+// SetUrl sets field value
+func (o *WebHook) SetUrl(v *string) {
+	o.Url = v
+}
+
+func (o WebHook) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MsTeams) {
+		toSerialize["msTeams"] = o.MsTeams
+	}
+	if !IsNil(o.SendResolved) {
+		toSerialize["sendResolved"] = o.SendResolved
+	}
+	toSerialize["url"] = o.Url
+	return toSerialize, nil
+}
+
+type NullableWebHook struct {
+	value *WebHook
+	isSet bool
+}
+
+func (v NullableWebHook) Get() *WebHook {
+	return v.value
+}
+
+func (v *NullableWebHook) Set(val *WebHook) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableWebHook) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableWebHook) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableWebHook(val *WebHook) *NullableWebHook {
+	return &NullableWebHook{value: val, isSet: true}
+}
+
+func (v NullableWebHook) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableWebHook) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
