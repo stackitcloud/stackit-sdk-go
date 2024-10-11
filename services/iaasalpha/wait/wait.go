@@ -182,10 +182,12 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 // To get the raw http response of an operation using the SDK, use the runtime.WithCaptureHTTPResponse method from the core pkg.
 // Then the value of the request id can be obtained by accessing the header key which is defined in the constant XRequestIDHeader in this package.
 // Example usage:
-// 	var httpResp *http.Response
-// 	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
-// 	err = iaasalphaClient.AddPublicIpToServer(ctxWithHTTPResp, projectId, serverId, publicIpId).Execute()
-// 	requestId := httpResp.Header[wait.XRequestIDHeader][0]
+//
+//	var httpResp *http.Response
+//	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
+//	err = iaasalphaClient.AddPublicIpToServer(ctxWithHTTPResp, projectId, serverId, publicIpId).Execute()
+//	requestId := httpResp.Header[wait.XRequestIDHeader][0]
+//
 // _, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())
 func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projectId, requestId string) *wait.AsyncActionHandler[iaasalpha.Request] {
 	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Request, err error) {
