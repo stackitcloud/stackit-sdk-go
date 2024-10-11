@@ -10,6 +10,13 @@ API version: 1.0.9
 
 package objectstorage
 
+import (
+	"encoding/json"
+)
+
+// checks if the DeleteBucketResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeleteBucketResponse{}
+
 // DeleteBucketResponse struct for DeleteBucketResponse
 type DeleteBucketResponse struct {
 	// Name of the bucket
@@ -18,4 +25,116 @@ type DeleteBucketResponse struct {
 	// Project ID
 	// REQUIRED
 	Project *string `json:"project"`
+}
+
+type _DeleteBucketResponse DeleteBucketResponse
+
+// NewDeleteBucketResponse instantiates a new DeleteBucketResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDeleteBucketResponse(bucket *string, project *string) *DeleteBucketResponse {
+	this := DeleteBucketResponse{}
+	this.Bucket = bucket
+	this.Project = project
+	return &this
+}
+
+// NewDeleteBucketResponseWithDefaults instantiates a new DeleteBucketResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeleteBucketResponseWithDefaults() *DeleteBucketResponse {
+	this := DeleteBucketResponse{}
+	return &this
+}
+
+// GetBucket returns the Bucket field value
+func (o *DeleteBucketResponse) GetBucket() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Bucket
+}
+
+// GetBucketOk returns a tuple with the Bucket field value
+// and a boolean to check if the value has been set.
+func (o *DeleteBucketResponse) GetBucketOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Bucket, true
+}
+
+// SetBucket sets field value
+func (o *DeleteBucketResponse) SetBucket(v *string) {
+	o.Bucket = v
+}
+
+// GetProject returns the Project field value
+func (o *DeleteBucketResponse) GetProject() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value
+// and a boolean to check if the value has been set.
+func (o *DeleteBucketResponse) GetProjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// SetProject sets field value
+func (o *DeleteBucketResponse) SetProject(v *string) {
+	o.Project = v
+}
+
+func (o DeleteBucketResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["bucket"] = o.Bucket
+	toSerialize["project"] = o.Project
+	return toSerialize, nil
+}
+
+type NullableDeleteBucketResponse struct {
+	value *DeleteBucketResponse
+	isSet bool
+}
+
+func (v NullableDeleteBucketResponse) Get() *DeleteBucketResponse {
+	return v.value
+}
+
+func (v *NullableDeleteBucketResponse) Set(val *DeleteBucketResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeleteBucketResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDeleteBucketResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDeleteBucketResponse(val *DeleteBucketResponse) *NullableDeleteBucketResponse {
+	return &NullableDeleteBucketResponse{value: val, isSet: true}
+}
+
+func (v NullableDeleteBucketResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDeleteBucketResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

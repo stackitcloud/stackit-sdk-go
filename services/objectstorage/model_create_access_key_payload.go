@@ -11,11 +11,108 @@ API version: 1.0.9
 package objectstorage
 
 import (
+	"encoding/json"
 	"time"
 )
+
+// checks if the CreateAccessKeyPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateAccessKeyPayload{}
 
 // CreateAccessKeyPayload struct for CreateAccessKeyPayload
 type CreateAccessKeyPayload struct {
 	// Expiration date. Null means never expires.
 	Expires *time.Time `json:"expires,omitempty"`
+}
+
+// NewCreateAccessKeyPayload instantiates a new CreateAccessKeyPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateAccessKeyPayload() *CreateAccessKeyPayload {
+	this := CreateAccessKeyPayload{}
+	return &this
+}
+
+// NewCreateAccessKeyPayloadWithDefaults instantiates a new CreateAccessKeyPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateAccessKeyPayloadWithDefaults() *CreateAccessKeyPayload {
+	this := CreateAccessKeyPayload{}
+	return &this
+}
+
+// GetExpires returns the Expires field value if set, zero value otherwise.
+func (o *CreateAccessKeyPayload) GetExpires() *time.Time {
+	if o == nil || IsNil(o.Expires) {
+		var ret *time.Time
+		return ret
+	}
+	return o.Expires
+}
+
+// GetExpiresOk returns a tuple with the Expires field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAccessKeyPayload) GetExpiresOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.Expires) {
+		return nil, false
+	}
+	return o.Expires, true
+}
+
+// HasExpires returns a boolean if a field has been set.
+func (o *CreateAccessKeyPayload) HasExpires() bool {
+	if o != nil && !IsNil(o.Expires) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpires gets a reference to the given time.Time and assigns it to the Expires field.
+func (o *CreateAccessKeyPayload) SetExpires(v *time.Time) {
+	o.Expires = v
+}
+
+func (o CreateAccessKeyPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Expires) {
+		toSerialize["expires"] = o.Expires
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateAccessKeyPayload struct {
+	value *CreateAccessKeyPayload
+	isSet bool
+}
+
+func (v NullableCreateAccessKeyPayload) Get() *CreateAccessKeyPayload {
+	return v.value
+}
+
+func (v *NullableCreateAccessKeyPayload) Set(val *CreateAccessKeyPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateAccessKeyPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateAccessKeyPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateAccessKeyPayload(val *CreateAccessKeyPayload) *NullableCreateAccessKeyPayload {
+	return &NullableCreateAccessKeyPayload{value: val, isSet: true}
+}
+
+func (v NullableCreateAccessKeyPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateAccessKeyPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
