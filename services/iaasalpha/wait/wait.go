@@ -17,12 +17,23 @@ const (
 	ErrorStatus           = "ERROR"
 	ServerActiveStatus    = "ACTIVE"
 	ServerResizingStatus  = "RESIZING"
+
+	RequestCreateAction  = "CREATE"
+	RequestUpdateAction  = "UPDATE"
+	RequestDeleteAction  = "DELETE"
+	RequestCreatedStatus = "CREATED"
+	RequestUpdatedStatus = "UPDATED"
+	RequestDeletedStatus = "DELETED"
+	RequestFailedStatus  = "FAILED"
+
+	XRequestIDHeader = "X-Request-Id"
 )
 
 // Interfaces needed for tests
 type APIClientInterface interface {
 	GetVolumeExecute(ctx context.Context, projectId string, volumeId string) (*iaasalpha.Volume, error)
 	GetServerExecute(ctx context.Context, projectId string, serverId string) (*iaasalpha.Server, error)
+	GetProjectRequestExecute(ctx context.Context, projectId string, requestId string) (*iaasalpha.Request, error)
 }
 
 // CreateVolumeWaitHandler will wait for volume creation
@@ -161,6 +172,54 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 			return false, server, err
 		}
 		return true, nil, nil
+	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// ProjectRequestWaitHandler will wait for a request to succeed
+// It receives a request id that can be obtained from the x-request-id header in the http response of any operation in the IaaS API
+func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projectId, requestId string) *wait.AsyncActionHandler[iaasalpha.Request] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Request, err error) {
+		request, err := a.GetProjectRequestExecute(ctx, projectId, requestId)
+		if err != nil {
+			return false, request, err
+		}
+
+		if request == nil {
+			return false, request, fmt.Errorf("request failed for request with id %s: nil response from GetProjectRequestExecute", requestId)
+		}
+
+		if request.RequestId == nil || request.RequestAction == nil || request.Status == nil {
+			return false, request, fmt.Errorf("request failed for request with id %s, the response is not valid: the id, the request action or the status are missing", requestId)
+		}
+
+		if *request.RequestId != requestId {
+			return false, request, fmt.Errorf("request failed for request with id %s: the response id doesn't match the request id", requestId)
+		}
+
+		switch *request.RequestAction {
+		case RequestCreateAction:
+			if *request.Status == RequestCreatedStatus {
+				return true, request, nil
+			}
+		case RequestUpdateAction:
+			if *request.Status == RequestUpdatedStatus {
+				return true, request, nil
+			}
+		case RequestDeleteAction:
+			if *request.Status == RequestDeletedStatus {
+				return true, request, nil
+			}
+		default:
+			return false, request, fmt.Errorf("request failed for request with id %s, the request action %s is not supported", requestId, *request.RequestAction)
+		}
+
+		if *request.Status == RequestFailedStatus {
+			return true, request, fmt.Errorf("request failed for request with id %s", requestId)
+		}
+
+		return false, request, nil
 	})
 	handler.SetTimeout(20 * time.Minute)
 	return handler

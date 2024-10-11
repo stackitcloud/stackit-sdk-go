@@ -12,11 +12,13 @@ import (
 )
 
 type apiClientMocked struct {
-	getVolumeFails bool
-	getServerFails bool
-	isDeleted      bool
-	resourceState  string
-	returnResizing bool
+	getVolumeFails         bool
+	getServerFails         bool
+	getProjectRequestFails bool
+	isDeleted              bool
+	resourceState          string
+	requestAction          string
+	returnResizing         bool
 }
 
 func (a *apiClientMocked) GetVolumeExecute(_ context.Context, _, _ string) (*iaasalpha.Volume, error) {
@@ -62,6 +64,20 @@ func (a *apiClientMocked) GetServerExecute(_ context.Context, _, _ string) (*iaa
 	return &iaasalpha.Server{
 		Id:     utils.Ptr("sid"),
 		Status: &a.resourceState,
+	}, nil
+}
+
+func (a *apiClientMocked) GetProjectRequestExecute(_ context.Context, _, _ string) (*iaasalpha.Request, error) {
+	if a.getProjectRequestFails {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 500,
+		}
+	}
+
+	return &iaasalpha.Request{
+		RequestId:     utils.Ptr("rid"),
+		RequestAction: &a.requestAction,
+		Status:        &a.resourceState,
 	}, nil
 }
 
@@ -386,6 +402,101 @@ func TestResizeServerWaitHandler(t *testing.T) {
 			handler := ResizeServerWaitHandler(context.Background(), apiClient, "pid", "sid")
 
 			gotRes, err := handler.SetThrottle(1 * time.Millisecond).SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestProjectRequestWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		requestState  string
+		requestAction string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "create_succeeded",
+			getFails:      false,
+			requestAction: RequestCreateAction,
+			requestState:  RequestCreatedStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "update_succeeded",
+			getFails:      false,
+			requestAction: RequestUpdateAction,
+			requestState:  RequestUpdatedStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "delete_succeeded",
+			getFails:      false,
+			requestAction: RequestDeleteAction,
+			requestState:  RequestDeletedStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "unsupported_action",
+			getFails:      false,
+			requestAction: "OTHER_ACTION",
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			requestAction: RequestCreateAction,
+			requestState:  ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:         "get_fails",
+			getFails:     true,
+			requestState: "",
+			wantErr:      true,
+			wantResp:     false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			requestAction: RequestCreateAction,
+			requestState:  "ANOTHER Status",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getProjectRequestFails: tt.getFails,
+				requestAction:          tt.requestAction,
+				resourceState:          tt.requestState,
+			}
+
+			var wantRes *iaasalpha.Request
+			if tt.wantResp {
+				wantRes = &iaasalpha.Request{
+					RequestId:     utils.Ptr("rid"),
+					RequestAction: &tt.requestAction,
+					Status:        &tt.requestState,
+				}
+			}
+
+			handler := ProjectRequestWaitHandler(context.Background(), apiClient, "pid", "rid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
