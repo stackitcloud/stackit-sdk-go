@@ -197,7 +197,7 @@ func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projec
 		}
 
 		if request == nil {
-			return false, request, fmt.Errorf("request failed for request with id %s: nil response from GetProjectRequestExecute", requestId)
+			return false, nil, fmt.Errorf("request failed for request with id %s: nil response from GetProjectRequestExecute", requestId)
 		}
 
 		if request.RequestId == nil || request.RequestAction == nil || request.Status == nil {
