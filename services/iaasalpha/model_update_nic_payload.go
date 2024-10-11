@@ -10,30 +10,16 @@ API version: 1alpha1
 
 package iaasalpha
 
-// UpdateNICPayload Object that represents a network interface.
+// UpdateNICPayload Object that represents a network interface update.
 type UpdateNICPayload struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses *[]AllowedAddressesInner `json:"allowedAddresses,omitempty"`
-	// Universally Unique Identifier (UUID).
-	Device *string `json:"device,omitempty"`
-	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
-	// Object that represents an IP address.
-	Ipv4 *string `json:"ipv4,omitempty"`
-	// Object that represents an IPv6 address.
-	Ipv6 *string `json:"ipv6,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
-	// Object that represents an MAC address.
-	Mac *string `json:"mac,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty"`
-	// Universally Unique Identifier (UUID).
-	NetworkId *string `json:"networkId,omitempty"`
 	// If this is set to false, then no security groups will apply to this network interface.
 	NicSecurity *bool `json:"nicSecurity,omitempty"`
 	// A list of UUIDs.
 	SecurityGroups *[]string `json:"securityGroups,omitempty"`
-	Status         *string   `json:"status,omitempty"`
-	Type           *string   `json:"type,omitempty"`
 }

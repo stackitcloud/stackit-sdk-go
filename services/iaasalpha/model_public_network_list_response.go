@@ -10,9 +10,9 @@ API version: 1alpha1
 
 package iaasalpha
 
-// KeyPairListResponse SSH keypair list response.
-type KeyPairListResponse struct {
-	// A list of SSH keypairs.
+// PublicNetworkListResponse Public network list response.
+type PublicNetworkListResponse struct {
+	// A list of public networks.
 	// REQUIRED
-	Items *[]Keypair `json:"items"`
+	Items *[]V1PublicNetwork `json:"items"`
 }

@@ -10,9 +10,9 @@ API version: 1alpha1
 
 package iaasalpha
 
-// KeyPairListResponse SSH keypair list response.
-type KeyPairListResponse struct {
-	// A list of SSH keypairs.
+// V1PublicNetwork Public network.
+type V1PublicNetwork struct {
+	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
-	Items *[]Keypair `json:"items"`
+	Cidr *string `json:"cidr"`
 }
