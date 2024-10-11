@@ -10,10 +10,8 @@ API version: 1alpha1
 
 package iaasalpha
 
-// V1alpha1UpdateServerPayload Object that represents an update request body of a server.
-type V1alpha1UpdateServerPayload struct {
+// UpdateKeyPairPayload Object that represents an update request body of a public key of an SSH keypair.
+type UpdateKeyPairPayload struct {
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
-	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty"`
 }

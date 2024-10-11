@@ -26,9 +26,9 @@ type Server struct {
 	// Universally Unique Identifier (UUID).
 	Id *string `json:"id,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Image *string `json:"image,omitempty"`
+	ImageId *string `json:"imageId,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Keypair *string `json:"keypair,omitempty"`
+	KeypairName *string `json:"keypairName,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// Date-time when resource was launched.
