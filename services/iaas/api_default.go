@@ -3496,9 +3496,17 @@ func (a *APIClient) ListNetworkAreasExecute(ctx context.Context, organizationId 
 }
 
 type ApiListNetworksRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
+	ctx           context.Context
+	apiService    *DefaultApiService
+	projectId     string
+	labelSelector *string
+}
+
+// Filter resources by labels.
+
+func (r ApiListNetworksRequest) LabelSelector(labelSelector string) ApiListNetworksRequest {
+	r.labelSelector = &labelSelector
+	return r
 }
 
 func (r ApiListNetworksRequest) Execute() (*NetworkListResponse, error) {
@@ -3527,6 +3535,9 @@ func (r ApiListNetworksRequest) Execute() (*NetworkListResponse, error) {
 		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
 	}
 
+	if r.labelSelector != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
