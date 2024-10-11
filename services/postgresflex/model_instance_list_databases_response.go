@@ -10,7 +10,107 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the InstanceListDatabasesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InstanceListDatabasesResponse{}
+
 // InstanceListDatabasesResponse struct for InstanceListDatabasesResponse
 type InstanceListDatabasesResponse struct {
 	Databases *[]InstanceDatabase `json:"databases,omitempty"`
+}
+
+// NewInstanceListDatabasesResponse instantiates a new InstanceListDatabasesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInstanceListDatabasesResponse() *InstanceListDatabasesResponse {
+	this := InstanceListDatabasesResponse{}
+	return &this
+}
+
+// NewInstanceListDatabasesResponseWithDefaults instantiates a new InstanceListDatabasesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInstanceListDatabasesResponseWithDefaults() *InstanceListDatabasesResponse {
+	this := InstanceListDatabasesResponse{}
+	return &this
+}
+
+// GetDatabases returns the Databases field value if set, zero value otherwise.
+func (o *InstanceListDatabasesResponse) GetDatabases() *[]InstanceDatabase {
+	if o == nil || IsNil(o.Databases) {
+		var ret *[]InstanceDatabase
+		return ret
+	}
+	return o.Databases
+}
+
+// GetDatabasesOk returns a tuple with the Databases field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceListDatabasesResponse) GetDatabasesOk() (*[]InstanceDatabase, bool) {
+	if o == nil || IsNil(o.Databases) {
+		return nil, false
+	}
+	return o.Databases, true
+}
+
+// HasDatabases returns a boolean if a field has been set.
+func (o *InstanceListDatabasesResponse) HasDatabases() bool {
+	if o != nil && !IsNil(o.Databases) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabases gets a reference to the given []InstanceDatabase and assigns it to the Databases field.
+func (o *InstanceListDatabasesResponse) SetDatabases(v *[]InstanceDatabase) {
+	o.Databases = v
+}
+
+func (o InstanceListDatabasesResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Databases) {
+		toSerialize["databases"] = o.Databases
+	}
+	return toSerialize, nil
+}
+
+type NullableInstanceListDatabasesResponse struct {
+	value *InstanceListDatabasesResponse
+	isSet bool
+}
+
+func (v NullableInstanceListDatabasesResponse) Get() *InstanceListDatabasesResponse {
+	return v.value
+}
+
+func (v *NullableInstanceListDatabasesResponse) Set(val *InstanceListDatabasesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceListDatabasesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceListDatabasesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceListDatabasesResponse(val *InstanceListDatabasesResponse) *NullableInstanceListDatabasesResponse {
+	return &NullableInstanceListDatabasesResponse{value: val, isSet: true}
+}
+
+func (v NullableInstanceListDatabasesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceListDatabasesResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,107 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the ExtensionsExtensionListResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExtensionsExtensionListResponse{}
+
 // ExtensionsExtensionListResponse struct for ExtensionsExtensionListResponse
 type ExtensionsExtensionListResponse struct {
 	List *[]ApiExtensionList `json:"list,omitempty"`
+}
+
+// NewExtensionsExtensionListResponse instantiates a new ExtensionsExtensionListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewExtensionsExtensionListResponse() *ExtensionsExtensionListResponse {
+	this := ExtensionsExtensionListResponse{}
+	return &this
+}
+
+// NewExtensionsExtensionListResponseWithDefaults instantiates a new ExtensionsExtensionListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewExtensionsExtensionListResponseWithDefaults() *ExtensionsExtensionListResponse {
+	this := ExtensionsExtensionListResponse{}
+	return &this
+}
+
+// GetList returns the List field value if set, zero value otherwise.
+func (o *ExtensionsExtensionListResponse) GetList() *[]ApiExtensionList {
+	if o == nil || IsNil(o.List) {
+		var ret *[]ApiExtensionList
+		return ret
+	}
+	return o.List
+}
+
+// GetListOk returns a tuple with the List field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExtensionsExtensionListResponse) GetListOk() (*[]ApiExtensionList, bool) {
+	if o == nil || IsNil(o.List) {
+		return nil, false
+	}
+	return o.List, true
+}
+
+// HasList returns a boolean if a field has been set.
+func (o *ExtensionsExtensionListResponse) HasList() bool {
+	if o != nil && !IsNil(o.List) {
+		return true
+	}
+
+	return false
+}
+
+// SetList gets a reference to the given []ApiExtensionList and assigns it to the List field.
+func (o *ExtensionsExtensionListResponse) SetList(v *[]ApiExtensionList) {
+	o.List = v
+}
+
+func (o ExtensionsExtensionListResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.List) {
+		toSerialize["list"] = o.List
+	}
+	return toSerialize, nil
+}
+
+type NullableExtensionsExtensionListResponse struct {
+	value *ExtensionsExtensionListResponse
+	isSet bool
+}
+
+func (v NullableExtensionsExtensionListResponse) Get() *ExtensionsExtensionListResponse {
+	return v.value
+}
+
+func (v *NullableExtensionsExtensionListResponse) Set(val *ExtensionsExtensionListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableExtensionsExtensionListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableExtensionsExtensionListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableExtensionsExtensionListResponse(val *ExtensionsExtensionListResponse) *NullableExtensionsExtensionListResponse {
+	return &NullableExtensionsExtensionListResponse{value: val, isSet: true}
+}
+
+func (v NullableExtensionsExtensionListResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableExtensionsExtensionListResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
