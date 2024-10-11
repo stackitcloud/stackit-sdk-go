@@ -10,7 +10,107 @@ API version: 1.7.2
 
 package loadbalancer
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateCredentialsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateCredentialsResponse{}
+
 // CreateCredentialsResponse struct for CreateCredentialsResponse
 type CreateCredentialsResponse struct {
 	Credential *CredentialsResponse `json:"credential,omitempty"`
+}
+
+// NewCreateCredentialsResponse instantiates a new CreateCredentialsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateCredentialsResponse() *CreateCredentialsResponse {
+	this := CreateCredentialsResponse{}
+	return &this
+}
+
+// NewCreateCredentialsResponseWithDefaults instantiates a new CreateCredentialsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateCredentialsResponseWithDefaults() *CreateCredentialsResponse {
+	this := CreateCredentialsResponse{}
+	return &this
+}
+
+// GetCredential returns the Credential field value if set, zero value otherwise.
+func (o *CreateCredentialsResponse) GetCredential() *CredentialsResponse {
+	if o == nil || IsNil(o.Credential) {
+		var ret *CredentialsResponse
+		return ret
+	}
+	return o.Credential
+}
+
+// GetCredentialOk returns a tuple with the Credential field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCredentialsResponse) GetCredentialOk() (*CredentialsResponse, bool) {
+	if o == nil || IsNil(o.Credential) {
+		return nil, false
+	}
+	return o.Credential, true
+}
+
+// HasCredential returns a boolean if a field has been set.
+func (o *CreateCredentialsResponse) HasCredential() bool {
+	if o != nil && !IsNil(o.Credential) {
+		return true
+	}
+
+	return false
+}
+
+// SetCredential gets a reference to the given CredentialsResponse and assigns it to the Credential field.
+func (o *CreateCredentialsResponse) SetCredential(v *CredentialsResponse) {
+	o.Credential = v
+}
+
+func (o CreateCredentialsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Credential) {
+		toSerialize["credential"] = o.Credential
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateCredentialsResponse struct {
+	value *CreateCredentialsResponse
+	isSet bool
+}
+
+func (v NullableCreateCredentialsResponse) Get() *CreateCredentialsResponse {
+	return v.value
+}
+
+func (v *NullableCreateCredentialsResponse) Set(val *CreateCredentialsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateCredentialsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateCredentialsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateCredentialsResponse(val *CreateCredentialsResponse) *NullableCreateCredentialsResponse {
+	return &NullableCreateCredentialsResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateCredentialsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateCredentialsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
