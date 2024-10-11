@@ -10,7 +10,107 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListRolesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListRolesResponse{}
+
 // ListRolesResponse struct for ListRolesResponse
 type ListRolesResponse struct {
 	Roles *[]string `json:"roles,omitempty"`
+}
+
+// NewListRolesResponse instantiates a new ListRolesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListRolesResponse() *ListRolesResponse {
+	this := ListRolesResponse{}
+	return &this
+}
+
+// NewListRolesResponseWithDefaults instantiates a new ListRolesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListRolesResponseWithDefaults() *ListRolesResponse {
+	this := ListRolesResponse{}
+	return &this
+}
+
+// GetRoles returns the Roles field value if set, zero value otherwise.
+func (o *ListRolesResponse) GetRoles() *[]string {
+	if o == nil || IsNil(o.Roles) {
+		var ret *[]string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListRolesResponse) GetRolesOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Roles) {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *ListRolesResponse) HasRoles() bool {
+	if o != nil && !IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *ListRolesResponse) SetRoles(v *[]string) {
+	o.Roles = v
+}
+
+func (o ListRolesResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	return toSerialize, nil
+}
+
+type NullableListRolesResponse struct {
+	value *ListRolesResponse
+	isSet bool
+}
+
+func (v NullableListRolesResponse) Get() *ListRolesResponse {
+	return v.value
+}
+
+func (v *NullableListRolesResponse) Set(val *ListRolesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListRolesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListRolesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListRolesResponse(val *ListRolesResponse) *NullableListRolesResponse {
+	return &NullableListRolesResponse{value: val, isSet: true}
+}
+
+func (v NullableListRolesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListRolesResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

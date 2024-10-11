@@ -10,10 +10,215 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the Flavor type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Flavor{}
+
 // Flavor struct for Flavor
 type Flavor struct {
 	Cpu         *int64  `json:"cpu,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Id          *string `json:"id,omitempty"`
 	Memory      *int64  `json:"memory,omitempty"`
+}
+
+// NewFlavor instantiates a new Flavor object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewFlavor() *Flavor {
+	this := Flavor{}
+	return &this
+}
+
+// NewFlavorWithDefaults instantiates a new Flavor object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewFlavorWithDefaults() *Flavor {
+	this := Flavor{}
+	return &this
+}
+
+// GetCpu returns the Cpu field value if set, zero value otherwise.
+func (o *Flavor) GetCpu() *int64 {
+	if o == nil || IsNil(o.Cpu) {
+		var ret *int64
+		return ret
+	}
+	return o.Cpu
+}
+
+// GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Flavor) GetCpuOk() (*int64, bool) {
+	if o == nil || IsNil(o.Cpu) {
+		return nil, false
+	}
+	return o.Cpu, true
+}
+
+// HasCpu returns a boolean if a field has been set.
+func (o *Flavor) HasCpu() bool {
+	if o != nil && !IsNil(o.Cpu) {
+		return true
+	}
+
+	return false
+}
+
+// SetCpu gets a reference to the given int64 and assigns it to the Cpu field.
+func (o *Flavor) SetCpu(v *int64) {
+	o.Cpu = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *Flavor) GetDescription() *string {
+	if o == nil || IsNil(o.Description) {
+		var ret *string
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Flavor) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *Flavor) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *Flavor) SetDescription(v *string) {
+	o.Description = v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Flavor) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Flavor) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Flavor) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Flavor) SetId(v *string) {
+	o.Id = v
+}
+
+// GetMemory returns the Memory field value if set, zero value otherwise.
+func (o *Flavor) GetMemory() *int64 {
+	if o == nil || IsNil(o.Memory) {
+		var ret *int64
+		return ret
+	}
+	return o.Memory
+}
+
+// GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Flavor) GetMemoryOk() (*int64, bool) {
+	if o == nil || IsNil(o.Memory) {
+		return nil, false
+	}
+	return o.Memory, true
+}
+
+// HasMemory returns a boolean if a field has been set.
+func (o *Flavor) HasMemory() bool {
+	if o != nil && !IsNil(o.Memory) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemory gets a reference to the given int64 and assigns it to the Memory field.
+func (o *Flavor) SetMemory(v *int64) {
+	o.Memory = v
+}
+
+func (o Flavor) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Cpu) {
+		toSerialize["cpu"] = o.Cpu
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
+	}
+	return toSerialize, nil
+}
+
+type NullableFlavor struct {
+	value *Flavor
+	isSet bool
+}
+
+func (v NullableFlavor) Get() *Flavor {
+	return v.value
+}
+
+func (v *NullableFlavor) Set(val *Flavor) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableFlavor) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableFlavor) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableFlavor(val *Flavor) *NullableFlavor {
+	return &NullableFlavor{value: val, isSet: true}
+}
+
+func (v NullableFlavor) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableFlavor) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

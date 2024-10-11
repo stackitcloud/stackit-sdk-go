@@ -10,10 +10,215 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the InstanceError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InstanceError{}
+
 // InstanceError struct for InstanceError
 type InstanceError struct {
 	Code    *int64               `json:"code,omitempty"`
 	Fields  *map[string][]string `json:"fields,omitempty"`
 	Message *string              `json:"message,omitempty"`
 	Type    *Type                `json:"type,omitempty"`
+}
+
+// NewInstanceError instantiates a new InstanceError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInstanceError() *InstanceError {
+	this := InstanceError{}
+	return &this
+}
+
+// NewInstanceErrorWithDefaults instantiates a new InstanceError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInstanceErrorWithDefaults() *InstanceError {
+	this := InstanceError{}
+	return &this
+}
+
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *InstanceError) GetCode() *int64 {
+	if o == nil || IsNil(o.Code) {
+		var ret *int64
+		return ret
+	}
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceError) GetCodeOk() (*int64, bool) {
+	if o == nil || IsNil(o.Code) {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *InstanceError) HasCode() bool {
+	if o != nil && !IsNil(o.Code) {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given int64 and assigns it to the Code field.
+func (o *InstanceError) SetCode(v *int64) {
+	o.Code = v
+}
+
+// GetFields returns the Fields field value if set, zero value otherwise.
+func (o *InstanceError) GetFields() *map[string][]string {
+	if o == nil || IsNil(o.Fields) {
+		var ret *map[string][]string
+		return ret
+	}
+	return o.Fields
+}
+
+// GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceError) GetFieldsOk() (*map[string][]string, bool) {
+	if o == nil || IsNil(o.Fields) {
+		return nil, false
+	}
+	return o.Fields, true
+}
+
+// HasFields returns a boolean if a field has been set.
+func (o *InstanceError) HasFields() bool {
+	if o != nil && !IsNil(o.Fields) {
+		return true
+	}
+
+	return false
+}
+
+// SetFields gets a reference to the given map[string][]string and assigns it to the Fields field.
+func (o *InstanceError) SetFields(v *map[string][]string) {
+	o.Fields = v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *InstanceError) GetMessage() *string {
+	if o == nil || IsNil(o.Message) {
+		var ret *string
+		return ret
+	}
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceError) GetMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.Message) {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *InstanceError) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *InstanceError) SetMessage(v *string) {
+	o.Message = v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *InstanceError) GetType() *Type {
+	if o == nil || IsNil(o.Type) {
+		var ret *Type
+		return ret
+	}
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceError) GetTypeOk() (*Type, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *InstanceError) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given Type and assigns it to the Type field.
+func (o *InstanceError) SetType(v *Type) {
+	o.Type = v
+}
+
+func (o InstanceError) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.Fields) {
+		toSerialize["fields"] = o.Fields
+	}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
+}
+
+type NullableInstanceError struct {
+	value *InstanceError
+	isSet bool
+}
+
+func (v NullableInstanceError) Get() *InstanceError {
+	return v.value
+}
+
+func (v *NullableInstanceError) Set(val *InstanceError) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceError) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceError) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceError(val *InstanceError) *NullableInstanceError {
+	return &NullableInstanceError{value: val, isSet: true}
+}
+
+func (v NullableInstanceError) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceError) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
