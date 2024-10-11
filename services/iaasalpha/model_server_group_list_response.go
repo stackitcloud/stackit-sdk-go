@@ -10,9 +10,9 @@ API version: 1alpha1
 
 package iaasalpha
 
-// KeyPairListResponse SSH keypair list response.
-type KeyPairListResponse struct {
-	// A list of SSH keypairs.
+// ServerGroupListResponse Response object for server-group list request.
+type ServerGroupListResponse struct {
+	// A list of servers-groups.
 	// REQUIRED
-	Items *[]Keypair `json:"items"`
+	Items *[]ServerGroup `json:"items"`
 }

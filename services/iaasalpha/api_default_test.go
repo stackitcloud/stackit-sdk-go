@@ -347,6 +347,56 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService CreateKeyPair", func(t *testing.T) {
+		path := "/v1alpha1/keypairs"
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Keypair{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		createKeyPairPayload := CreateKeyPairPayload{}
+
+		resp, reqErr := apiClient.CreateKeyPair(context.Background()).CreateKeyPairPayload(createKeyPairPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService CreateNIC", func(t *testing.T) {
 		path := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics"
 		projectIdValue := "projectId"
@@ -618,6 +668,59 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService CreateServerGroup", func(t *testing.T) {
+		path := "/v1alpha1/projects/{projectId}/server-groups"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ServerGroup{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		createServerGroupPayload := CreateServerGroupPayload{}
+
+		resp, reqErr := apiClient.CreateServerGroup(context.Background(), projectId).CreateServerGroupPayload(createServerGroupPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService CreateVolume", func(t *testing.T) {
 		path := "/v1alpha1/projects/{projectId}/volumes"
 		projectIdValue := "projectId"
@@ -714,6 +817,52 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		serverId := "serverId"
 
 		reqErr := apiClient.DeallocateServer(context.Background(), projectId, serverId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteKeyPair", func(t *testing.T) {
+		path := "/v1alpha1/keypairs/{keypairName}"
+		keypairNameValue := "keypairName"
+		path = strings.Replace(path, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		keypairName := "keypairName"
+
+		reqErr := apiClient.DeleteKeyPair(context.Background(), keypairName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -971,6 +1120,55 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService DeleteServerGroup", func(t *testing.T) {
+		path := "/v1alpha1/projects/{projectId}/server-groups/{serverGroupId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverGroupIdValue := "serverGroupId"
+		path = strings.Replace(path, "{"+"serverGroupId"+"}", url.PathEscape(ParameterValueToString(serverGroupIdValue, "serverGroupId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		serverGroupId := "serverGroupId"
+
+		reqErr := apiClient.DeleteServerGroup(context.Background(), projectId, serverGroupId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
 	t.Run("Test DefaultApiService DeleteVolume", func(t *testing.T) {
 		path := "/v1alpha1/projects/{projectId}/volumes/{volumeId}"
 		projectIdValue := "projectId"
@@ -1079,9 +1277,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetKeyPair", func(t *testing.T) {
-		path := "/v1alpha1/projects/{projectId}/keypairs/{keypairName}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		path := "/v1alpha1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName"
 		path = strings.Replace(path, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
@@ -1120,10 +1316,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
 		keypairName := "keypairName"
 
-		resp, reqErr := apiClient.GetKeyPair(context.Background(), projectId, keypairName).Execute()
+		resp, reqErr := apiClient.GetKeyPair(context.Background(), keypairName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1741,6 +1936,61 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService GetServerGroup", func(t *testing.T) {
+		path := "/v1alpha1/projects/{projectId}/server-groups/{serverGroupId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverGroupIdValue := "serverGroupId"
+		path = strings.Replace(path, "{"+"serverGroupId"+"}", url.PathEscape(ParameterValueToString(serverGroupIdValue, "serverGroupId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ServerGroup{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		serverGroupId := "serverGroupId"
+
+		resp, reqErr := apiClient.GetServerGroup(context.Background(), projectId, serverGroupId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService GetServerLog", func(t *testing.T) {
 		path := "/v1alpha1/projects/{projectId}/servers/{serverId}/log"
 		projectIdValue := "projectId"
@@ -1962,9 +2212,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListKeyPairs", func(t *testing.T) {
-		path := "/v1alpha1/projects/{projectId}/keypairs"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		path := "/v1alpha1/keypairs"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -2001,9 +2249,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-
-		resp, reqErr := apiClient.ListKeyPairs(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListKeyPairs(context.Background()).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2227,6 +2473,54 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService ListPublicIPRanges", func(t *testing.T) {
+		path := "/v1alpha1/networks/public-ip-ranges"
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := PublicNetworkListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		resp, reqErr := apiClient.ListPublicIPRanges(context.Background()).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService ListPublicIPs", func(t *testing.T) {
 		path := "/v1alpha1/projects/{projectId}/public-ips"
 		projectIdValue := "projectId"
@@ -2377,6 +2671,58 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 
 		resp, reqErr := apiClient.ListSecurityGroups(context.Background(), projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListServerGroups", func(t *testing.T) {
+		path := "/v1alpha1/projects/{projectId}/server-groups"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ServerGroupListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListServerGroups(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3374,6 +3720,59 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService UpdateKeyPair", func(t *testing.T) {
+		path := "/v1alpha1/keypairs/{keypairName}"
+		keypairNameValue := "keypairName"
+		path = strings.Replace(path, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Keypair{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		keypairName := "keypairName"
+		updateKeyPairPayload := UpdateKeyPairPayload{}
+
+		resp, reqErr := apiClient.UpdateKeyPair(context.Background(), keypairName).UpdateKeyPairPayload(updateKeyPairPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService UpdateNIC", func(t *testing.T) {
 		path := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := "projectId"
@@ -3489,6 +3888,118 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService UpdateSecurityGroup", func(t *testing.T) {
+		path := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		securityGroupIdValue := "securityGroupId"
+		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := SecurityGroup{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		securityGroupId := "securityGroupId"
+		updateSecurityGroupPayload := UpdateSecurityGroupPayload{}
+
+		resp, reqErr := apiClient.UpdateSecurityGroup(context.Background(), projectId, securityGroupId).UpdateSecurityGroupPayload(updateSecurityGroupPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateServer", func(t *testing.T) {
+		path := "/v1alpha1/projects/{projectId}/servers/{serverId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := "serverId"
+		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Server{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		serverId := "serverId"
+		updateServerPayload := UpdateServerPayload{}
+
+		resp, reqErr := apiClient.UpdateServer(context.Background(), projectId, serverId).UpdateServerPayload(updateServerPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService UpdateVolume", func(t *testing.T) {
 		path := "/v1alpha1/projects/{projectId}/volumes/{volumeId}"
 		projectIdValue := "projectId"
@@ -3536,173 +4047,6 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		updateVolumePayload := UpdateVolumePayload{}
 
 		resp, reqErr := apiClient.UpdateVolume(context.Background(), projectId, volumeId).UpdateVolumePayload(updateVolumePayload).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService V1alpha1GetOpenStackNetworkDetails", func(t *testing.T) {
-		path := "/v1alpha1/projects/{projectId}/openstack-networks/{networkId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := OpenStackNetwork{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := "projectId"
-		networkId := "networkId"
-
-		resp, reqErr := apiClient.V1alpha1GetOpenStackNetworkDetails(context.Background(), projectId, networkId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService V1alpha1UpdateSecurityGroup", func(t *testing.T) {
-		path := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := SecurityGroup{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := "projectId"
-		securityGroupId := "securityGroupId"
-		v1alpha1UpdateSecurityGroupPayload := V1alpha1UpdateSecurityGroupPayload{}
-
-		resp, reqErr := apiClient.V1alpha1UpdateSecurityGroup(context.Background(), projectId, securityGroupId).V1alpha1UpdateSecurityGroupPayload(v1alpha1UpdateSecurityGroupPayload).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-		if resp == nil {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService V1alpha1UpdateServer", func(t *testing.T) {
-		path := "/v1alpha1/projects/{projectId}/servers/{serverId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-			data := Server{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := "projectId"
-		serverId := "serverId"
-		v1alpha1UpdateServerPayload := V1alpha1UpdateServerPayload{}
-
-		resp, reqErr := apiClient.V1alpha1UpdateServer(context.Background(), projectId, serverId).V1alpha1UpdateServerPayload(v1alpha1UpdateServerPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)

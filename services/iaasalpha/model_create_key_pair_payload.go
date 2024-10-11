@@ -10,8 +10,8 @@ API version: 1alpha1
 
 package iaasalpha
 
-// Keypair Object that represents the public key of an SSH keypair and its name.
-type Keypair struct {
+// CreateKeyPairPayload Object that represents the public key of an SSH keypair and its name.
+type CreateKeyPairPayload struct {
 	// Object that represents an SSH keypair MD5 fingerprint.
 	Fingerprint *string `json:"fingerprint,omitempty"`
 	// Object that represents the labels of an object.
