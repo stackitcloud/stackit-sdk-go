@@ -10,9 +10,137 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the CloneInstancePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloneInstancePayload{}
+
 // CloneInstancePayload struct for CloneInstancePayload
 type CloneInstancePayload struct {
 	// REQUIRED
 	InstanceId *string `json:"instanceId"`
 	Timestamp  *string `json:"timestamp,omitempty"`
+}
+
+type _CloneInstancePayload CloneInstancePayload
+
+// NewCloneInstancePayload instantiates a new CloneInstancePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCloneInstancePayload(instanceId *string) *CloneInstancePayload {
+	this := CloneInstancePayload{}
+	this.InstanceId = instanceId
+	return &this
+}
+
+// NewCloneInstancePayloadWithDefaults instantiates a new CloneInstancePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCloneInstancePayloadWithDefaults() *CloneInstancePayload {
+	this := CloneInstancePayload{}
+	return &this
+}
+
+// GetInstanceId returns the InstanceId field value
+func (o *CloneInstancePayload) GetInstanceId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.InstanceId
+}
+
+// GetInstanceIdOk returns a tuple with the InstanceId field value
+// and a boolean to check if the value has been set.
+func (o *CloneInstancePayload) GetInstanceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InstanceId, true
+}
+
+// SetInstanceId sets field value
+func (o *CloneInstancePayload) SetInstanceId(v *string) {
+	o.InstanceId = v
+}
+
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
+func (o *CloneInstancePayload) GetTimestamp() *string {
+	if o == nil || IsNil(o.Timestamp) {
+		var ret *string
+		return ret
+	}
+	return o.Timestamp
+}
+
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloneInstancePayload) GetTimestampOk() (*string, bool) {
+	if o == nil || IsNil(o.Timestamp) {
+		return nil, false
+	}
+	return o.Timestamp, true
+}
+
+// HasTimestamp returns a boolean if a field has been set.
+func (o *CloneInstancePayload) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
+func (o *CloneInstancePayload) SetTimestamp(v *string) {
+	o.Timestamp = v
+}
+
+func (o CloneInstancePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["instanceId"] = o.InstanceId
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	return toSerialize, nil
+}
+
+type NullableCloneInstancePayload struct {
+	value *CloneInstancePayload
+	isSet bool
+}
+
+func (v NullableCloneInstancePayload) Get() *CloneInstancePayload {
+	return v.value
+}
+
+func (v *NullableCloneInstancePayload) Set(val *CloneInstancePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCloneInstancePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCloneInstancePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCloneInstancePayload(val *CloneInstancePayload) *NullableCloneInstancePayload {
+	return &NullableCloneInstancePayload{value: val, isSet: true}
+}
+
+func (v NullableCloneInstancePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCloneInstancePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
