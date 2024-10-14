@@ -10,6 +10,13 @@ API version: 1beta1
 
 package iaas
 
+import (
+	"encoding/json"
+)
+
+// checks if the Request type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Request{}
+
 // Request Object that represents a request.
 type Request struct {
 	Details *string `json:"details,omitempty"`
@@ -27,4 +34,229 @@ type Request struct {
 	// The state of a resource object.
 	// REQUIRED
 	Status *string `json:"status"`
+}
+
+type _Request Request
+
+// NewRequest instantiates a new Request object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRequest(requestAction *string, requestId *string, requestType *string, resources *[]RequestResource, status *string) *Request {
+	this := Request{}
+	this.RequestAction = requestAction
+	this.RequestId = requestId
+	this.RequestType = requestType
+	this.Resources = resources
+	this.Status = status
+	return &this
+}
+
+// NewRequestWithDefaults instantiates a new Request object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRequestWithDefaults() *Request {
+	this := Request{}
+	return &this
+}
+
+// GetDetails returns the Details field value if set, zero value otherwise.
+func (o *Request) GetDetails() *string {
+	if o == nil || IsNil(o.Details) {
+		var ret *string
+		return ret
+	}
+	return o.Details
+}
+
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Request) GetDetailsOk() (*string, bool) {
+	if o == nil || IsNil(o.Details) {
+		return nil, false
+	}
+	return o.Details, true
+}
+
+// HasDetails returns a boolean if a field has been set.
+func (o *Request) HasDetails() bool {
+	if o != nil && !IsNil(o.Details) {
+		return true
+	}
+
+	return false
+}
+
+// SetDetails gets a reference to the given string and assigns it to the Details field.
+func (o *Request) SetDetails(v *string) {
+	o.Details = v
+}
+
+// GetRequestAction returns the RequestAction field value
+func (o *Request) GetRequestAction() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.RequestAction
+}
+
+// GetRequestActionOk returns a tuple with the RequestAction field value
+// and a boolean to check if the value has been set.
+func (o *Request) GetRequestActionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RequestAction, true
+}
+
+// SetRequestAction sets field value
+func (o *Request) SetRequestAction(v *string) {
+	o.RequestAction = v
+}
+
+// GetRequestId returns the RequestId field value
+func (o *Request) GetRequestId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.RequestId
+}
+
+// GetRequestIdOk returns a tuple with the RequestId field value
+// and a boolean to check if the value has been set.
+func (o *Request) GetRequestIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RequestId, true
+}
+
+// SetRequestId sets field value
+func (o *Request) SetRequestId(v *string) {
+	o.RequestId = v
+}
+
+// GetRequestType returns the RequestType field value
+func (o *Request) GetRequestType() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.RequestType
+}
+
+// GetRequestTypeOk returns a tuple with the RequestType field value
+// and a boolean to check if the value has been set.
+func (o *Request) GetRequestTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RequestType, true
+}
+
+// SetRequestType sets field value
+func (o *Request) SetRequestType(v *string) {
+	o.RequestType = v
+}
+
+// GetResources returns the Resources field value
+func (o *Request) GetResources() *[]RequestResource {
+	if o == nil {
+		var ret *[]RequestResource
+		return ret
+	}
+
+	return o.Resources
+}
+
+// GetResourcesOk returns a tuple with the Resources field value
+// and a boolean to check if the value has been set.
+func (o *Request) GetResourcesOk() (*[]RequestResource, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Resources, true
+}
+
+// SetResources sets field value
+func (o *Request) SetResources(v *[]RequestResource) {
+	o.Resources = v
+}
+
+// GetStatus returns the Status field value
+func (o *Request) GetStatus() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *Request) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// SetStatus sets field value
+func (o *Request) SetStatus(v *string) {
+	o.Status = v
+}
+
+func (o Request) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Details) {
+		toSerialize["details"] = o.Details
+	}
+	toSerialize["requestAction"] = o.RequestAction
+	toSerialize["requestId"] = o.RequestId
+	toSerialize["requestType"] = o.RequestType
+	toSerialize["resources"] = o.Resources
+	toSerialize["status"] = o.Status
+	return toSerialize, nil
+}
+
+type NullableRequest struct {
+	value *Request
+	isSet bool
+}
+
+func (v NullableRequest) Get() *Request {
+	return v.value
+}
+
+func (v *NullableRequest) Set(val *Request) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRequest(val *Request) *NullableRequest {
+	return &NullableRequest{value: val, isSet: true}
+}
+
+func (v NullableRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

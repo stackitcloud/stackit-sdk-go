@@ -11,8 +11,12 @@ API version: 1beta1
 package iaas
 
 import (
+	"encoding/json"
 	"time"
 )
+
+// checks if the Route type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Route{}
 
 // Route Object represents a network route.
 type Route struct {
@@ -30,4 +34,256 @@ type Route struct {
 	RouteId *string `json:"routeId,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+}
+
+type _Route Route
+
+// NewRoute instantiates a new Route object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRoute(nexthop *string, prefix *string) *Route {
+	this := Route{}
+	this.Nexthop = nexthop
+	this.Prefix = prefix
+	return &this
+}
+
+// NewRouteWithDefaults instantiates a new Route object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRouteWithDefaults() *Route {
+	this := Route{}
+	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *Route) GetCreatedAt() *time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Route) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Route) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *Route) SetCreatedAt(v *time.Time) {
+	o.CreatedAt = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Route) GetLabels() *map[string]interface{} {
+	if o == nil || IsNil(o.Labels) {
+		var ret *map[string]interface{}
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Route) GetLabelsOk() (*map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return &map[string]interface{}{}, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Route) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
+func (o *Route) SetLabels(v *map[string]interface{}) {
+	o.Labels = v
+}
+
+// GetNexthop returns the Nexthop field value
+func (o *Route) GetNexthop() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Nexthop
+}
+
+// GetNexthopOk returns a tuple with the Nexthop field value
+// and a boolean to check if the value has been set.
+func (o *Route) GetNexthopOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Nexthop, true
+}
+
+// SetNexthop sets field value
+func (o *Route) SetNexthop(v *string) {
+	o.Nexthop = v
+}
+
+// GetPrefix returns the Prefix field value
+func (o *Route) GetPrefix() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Prefix
+}
+
+// GetPrefixOk returns a tuple with the Prefix field value
+// and a boolean to check if the value has been set.
+func (o *Route) GetPrefixOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Prefix, true
+}
+
+// SetPrefix sets field value
+func (o *Route) SetPrefix(v *string) {
+	o.Prefix = v
+}
+
+// GetRouteId returns the RouteId field value if set, zero value otherwise.
+func (o *Route) GetRouteId() *string {
+	if o == nil || IsNil(o.RouteId) {
+		var ret *string
+		return ret
+	}
+	return o.RouteId
+}
+
+// GetRouteIdOk returns a tuple with the RouteId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Route) GetRouteIdOk() (*string, bool) {
+	if o == nil || IsNil(o.RouteId) {
+		return nil, false
+	}
+	return o.RouteId, true
+}
+
+// HasRouteId returns a boolean if a field has been set.
+func (o *Route) HasRouteId() bool {
+	if o != nil && !IsNil(o.RouteId) {
+		return true
+	}
+
+	return false
+}
+
+// SetRouteId gets a reference to the given string and assigns it to the RouteId field.
+func (o *Route) SetRouteId(v *string) {
+	o.RouteId = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Route) GetUpdatedAt() *time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Route) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Route) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Route) SetUpdatedAt(v *time.Time) {
+	o.UpdatedAt = v
+}
+
+func (o Route) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	toSerialize["nexthop"] = o.Nexthop
+	toSerialize["prefix"] = o.Prefix
+	if !IsNil(o.RouteId) {
+		toSerialize["routeId"] = o.RouteId
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	return toSerialize, nil
+}
+
+type NullableRoute struct {
+	value *Route
+	isSet bool
+}
+
+func (v NullableRoute) Get() *Route {
+	return v.value
+}
+
+func (v *NullableRoute) Set(val *Route) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRoute) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRoute) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRoute(val *Route) *NullableRoute {
+	return &NullableRoute{value: val, isSet: true}
+}
+
+func (v NullableRoute) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRoute) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

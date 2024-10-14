@@ -1,3 +1,7 @@
+## v0.12.0 (2024-10-14)
+
+- **Feature:** Add support for nullable models
+
 ## v0.11.0 (2024-10-11)
 
 - **Feature:** Filter networks by labels using the new `LabelSelector` method on `ApiListNetworksRequest`
