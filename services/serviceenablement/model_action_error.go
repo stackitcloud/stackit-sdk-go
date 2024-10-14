@@ -10,6 +10,13 @@ API version: 1.1
 
 package serviceenablement
 
+import (
+	"encoding/json"
+)
+
+// checks if the ActionError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ActionError{}
+
 // ActionError the last error for this service.
 type ActionError struct {
 	// the last action which was triggered on this service
@@ -18,4 +25,167 @@ type ActionError struct {
 	Code *string `json:"code,omitempty"`
 	// the error reason provided by the service
 	Reason *string `json:"reason,omitempty"`
+}
+
+// NewActionError instantiates a new ActionError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewActionError() *ActionError {
+	this := ActionError{}
+	return &this
+}
+
+// NewActionErrorWithDefaults instantiates a new ActionError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewActionErrorWithDefaults() *ActionError {
+	this := ActionError{}
+	return &this
+}
+
+// GetAction returns the Action field value if set, zero value otherwise.
+func (o *ActionError) GetAction() *string {
+	if o == nil || IsNil(o.Action) {
+		var ret *string
+		return ret
+	}
+	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActionError) GetActionOk() (*string, bool) {
+	if o == nil || IsNil(o.Action) {
+		return nil, false
+	}
+	return o.Action, true
+}
+
+// HasAction returns a boolean if a field has been set.
+func (o *ActionError) HasAction() bool {
+	if o != nil && !IsNil(o.Action) {
+		return true
+	}
+
+	return false
+}
+
+// SetAction gets a reference to the given string and assigns it to the Action field.
+func (o *ActionError) SetAction(v *string) {
+	o.Action = v
+}
+
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *ActionError) GetCode() *string {
+	if o == nil || IsNil(o.Code) {
+		var ret *string
+		return ret
+	}
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActionError) GetCodeOk() (*string, bool) {
+	if o == nil || IsNil(o.Code) {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *ActionError) HasCode() bool {
+	if o != nil && !IsNil(o.Code) {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given string and assigns it to the Code field.
+func (o *ActionError) SetCode(v *string) {
+	o.Code = v
+}
+
+// GetReason returns the Reason field value if set, zero value otherwise.
+func (o *ActionError) GetReason() *string {
+	if o == nil || IsNil(o.Reason) {
+		var ret *string
+		return ret
+	}
+	return o.Reason
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActionError) GetReasonOk() (*string, bool) {
+	if o == nil || IsNil(o.Reason) {
+		return nil, false
+	}
+	return o.Reason, true
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *ActionError) HasReason() bool {
+	if o != nil && !IsNil(o.Reason) {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given string and assigns it to the Reason field.
+func (o *ActionError) SetReason(v *string) {
+	o.Reason = v
+}
+
+func (o ActionError) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Action) {
+		toSerialize["action"] = o.Action
+	}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.Reason) {
+		toSerialize["reason"] = o.Reason
+	}
+	return toSerialize, nil
+}
+
+type NullableActionError struct {
+	value *ActionError
+	isSet bool
+}
+
+func (v NullableActionError) Get() *ActionError {
+	return v.value
+}
+
+func (v *NullableActionError) Set(val *ActionError) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableActionError) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableActionError) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableActionError(val *ActionError) *NullableActionError {
+	return &NullableActionError{value: val, isSet: true}
+}
+
+func (v NullableActionError) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableActionError) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
