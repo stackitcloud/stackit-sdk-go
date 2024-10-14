@@ -10,9 +10,102 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the ValidateMoveCodePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ValidateMoveCodePayload{}
+
 // ValidateMoveCodePayload PostValidateMoveCodeRequest body to validate move code request.
 type ValidateMoveCodePayload struct {
 	// code that should be validated. It validates if it is valid, not expired and belongs to the zone.
 	// REQUIRED
 	Code *string `json:"code"`
+}
+
+type _ValidateMoveCodePayload ValidateMoveCodePayload
+
+// NewValidateMoveCodePayload instantiates a new ValidateMoveCodePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewValidateMoveCodePayload(code *string) *ValidateMoveCodePayload {
+	this := ValidateMoveCodePayload{}
+	this.Code = code
+	return &this
+}
+
+// NewValidateMoveCodePayloadWithDefaults instantiates a new ValidateMoveCodePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewValidateMoveCodePayloadWithDefaults() *ValidateMoveCodePayload {
+	this := ValidateMoveCodePayload{}
+	return &this
+}
+
+// GetCode returns the Code field value
+func (o *ValidateMoveCodePayload) GetCode() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *ValidateMoveCodePayload) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// SetCode sets field value
+func (o *ValidateMoveCodePayload) SetCode(v *string) {
+	o.Code = v
+}
+
+func (o ValidateMoveCodePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["code"] = o.Code
+	return toSerialize, nil
+}
+
+type NullableValidateMoveCodePayload struct {
+	value *ValidateMoveCodePayload
+	isSet bool
+}
+
+func (v NullableValidateMoveCodePayload) Get() *ValidateMoveCodePayload {
+	return v.value
+}
+
+func (v *NullableValidateMoveCodePayload) Set(val *ValidateMoveCodePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableValidateMoveCodePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableValidateMoveCodePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableValidateMoveCodePayload(val *ValidateMoveCodePayload) *NullableValidateMoveCodePayload {
+	return &NullableValidateMoveCodePayload{value: val, isSet: true}
+}
+
+func (v NullableValidateMoveCodePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableValidateMoveCodePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,6 +10,13 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListZonesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListZonesResponse{}
+
 // ListZonesResponse ResponseZoneAll for filtered zones.
 type ListZonesResponse struct {
 	// REQUIRED
@@ -21,4 +28,203 @@ type ListZonesResponse struct {
 	TotalPages *int64 `json:"totalPages"`
 	// REQUIRED
 	Zones *[]Zone `json:"zones"`
+}
+
+type _ListZonesResponse ListZonesResponse
+
+// NewListZonesResponse instantiates a new ListZonesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListZonesResponse(itemsPerPage *int64, totalItems *int64, totalPages *int64, zones *[]Zone) *ListZonesResponse {
+	this := ListZonesResponse{}
+	this.ItemsPerPage = itemsPerPage
+	this.TotalItems = totalItems
+	this.TotalPages = totalPages
+	this.Zones = zones
+	return &this
+}
+
+// NewListZonesResponseWithDefaults instantiates a new ListZonesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListZonesResponseWithDefaults() *ListZonesResponse {
+	this := ListZonesResponse{}
+	return &this
+}
+
+// GetItemsPerPage returns the ItemsPerPage field value
+func (o *ListZonesResponse) GetItemsPerPage() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.ItemsPerPage
+}
+
+// GetItemsPerPageOk returns a tuple with the ItemsPerPage field value
+// and a boolean to check if the value has been set.
+func (o *ListZonesResponse) GetItemsPerPageOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ItemsPerPage, true
+}
+
+// SetItemsPerPage sets field value
+func (o *ListZonesResponse) SetItemsPerPage(v *int64) {
+	o.ItemsPerPage = v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *ListZonesResponse) GetMessage() *string {
+	if o == nil || IsNil(o.Message) {
+		var ret *string
+		return ret
+	}
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListZonesResponse) GetMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.Message) {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *ListZonesResponse) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *ListZonesResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+// GetTotalItems returns the TotalItems field value
+func (o *ListZonesResponse) GetTotalItems() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.TotalItems
+}
+
+// GetTotalItemsOk returns a tuple with the TotalItems field value
+// and a boolean to check if the value has been set.
+func (o *ListZonesResponse) GetTotalItemsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TotalItems, true
+}
+
+// SetTotalItems sets field value
+func (o *ListZonesResponse) SetTotalItems(v *int64) {
+	o.TotalItems = v
+}
+
+// GetTotalPages returns the TotalPages field value
+func (o *ListZonesResponse) GetTotalPages() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.TotalPages
+}
+
+// GetTotalPagesOk returns a tuple with the TotalPages field value
+// and a boolean to check if the value has been set.
+func (o *ListZonesResponse) GetTotalPagesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TotalPages, true
+}
+
+// SetTotalPages sets field value
+func (o *ListZonesResponse) SetTotalPages(v *int64) {
+	o.TotalPages = v
+}
+
+// GetZones returns the Zones field value
+func (o *ListZonesResponse) GetZones() *[]Zone {
+	if o == nil {
+		var ret *[]Zone
+		return ret
+	}
+
+	return o.Zones
+}
+
+// GetZonesOk returns a tuple with the Zones field value
+// and a boolean to check if the value has been set.
+func (o *ListZonesResponse) GetZonesOk() (*[]Zone, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Zones, true
+}
+
+// SetZones sets field value
+func (o *ListZonesResponse) SetZones(v *[]Zone) {
+	o.Zones = v
+}
+
+func (o ListZonesResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["itemsPerPage"] = o.ItemsPerPage
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	toSerialize["totalItems"] = o.TotalItems
+	toSerialize["totalPages"] = o.TotalPages
+	toSerialize["zones"] = o.Zones
+	return toSerialize, nil
+}
+
+type NullableListZonesResponse struct {
+	value *ListZonesResponse
+	isSet bool
+}
+
+func (v NullableListZonesResponse) Get() *ListZonesResponse {
+	return v.value
+}
+
+func (v *NullableListZonesResponse) Set(val *ListZonesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListZonesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListZonesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListZonesResponse(val *ListZonesResponse) *NullableListZonesResponse {
+	return &NullableListZonesResponse{value: val, isSet: true}
+}
+
+func (v NullableListZonesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListZonesResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
