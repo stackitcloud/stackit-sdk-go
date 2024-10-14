@@ -17,7 +17,7 @@
   - **Feature:** Add support for nullable models
 - `dns`: [v0.11.0](services/dns/CHANGELOG.md#v0110-2024-10-14)
   - **Feature:** Add support for nullable models
-- `iaas`: [v0.16.0](services/iaas/CHANGELOG.md#v0120-2024-10-14)
+- `iaas`: [v0.16.0](services/iaas/CHANGELOG.md#v0160-2024-10-14)
   - **Feature:** Add support for nullable models
 - `loadbalancer`: [v0.17.0](services/loadbalancer/CHANGELOG.md#v0170-2024-10-14)
   - **Feature:** Add support for nullable models
