@@ -187,13 +187,11 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 // Example usage:
 //
 //	var httpResp *http.Response
-//
 //	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
 //
 //	err = iaasalphaClient.AddPublicIpToServer(ctxWithHTTPResp, projectId, serverId, publicIpId).Execute()
 //
 //	requestId := httpResp.Header[wait.XRequestIDHeader][0]
-//
 //	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())
 func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projectId, requestId string) *wait.AsyncActionHandler[iaasalpha.Request] {
 	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Request, err error) {
