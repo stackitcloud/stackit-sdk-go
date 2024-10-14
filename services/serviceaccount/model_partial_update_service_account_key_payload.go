@@ -11,8 +11,12 @@ API version: 2.0
 package serviceaccount
 
 import (
+	"encoding/json"
 	"time"
 )
+
+// checks if the PartialUpdateServiceAccountKeyPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartialUpdateServiceAccountKeyPayload{}
 
 // PartialUpdateServiceAccountKeyPayload struct for PartialUpdateServiceAccountKeyPayload
 type PartialUpdateServiceAccountKeyPayload struct {
@@ -20,4 +24,132 @@ type PartialUpdateServiceAccountKeyPayload struct {
 	Active *bool `json:"active,omitempty"`
 	// Optional, date of key expiration. To disable, set time to \"9999-01-01T01:01:01Z\"
 	ValidUntil *time.Time `json:"validUntil,omitempty"`
+}
+
+// NewPartialUpdateServiceAccountKeyPayload instantiates a new PartialUpdateServiceAccountKeyPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPartialUpdateServiceAccountKeyPayload() *PartialUpdateServiceAccountKeyPayload {
+	this := PartialUpdateServiceAccountKeyPayload{}
+	return &this
+}
+
+// NewPartialUpdateServiceAccountKeyPayloadWithDefaults instantiates a new PartialUpdateServiceAccountKeyPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPartialUpdateServiceAccountKeyPayloadWithDefaults() *PartialUpdateServiceAccountKeyPayload {
+	this := PartialUpdateServiceAccountKeyPayload{}
+	return &this
+}
+
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *PartialUpdateServiceAccountKeyPayload) GetActive() *bool {
+	if o == nil || IsNil(o.Active) {
+		var ret *bool
+		return ret
+	}
+	return o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateServiceAccountKeyPayload) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *PartialUpdateServiceAccountKeyPayload) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *PartialUpdateServiceAccountKeyPayload) SetActive(v *bool) {
+	o.Active = v
+}
+
+// GetValidUntil returns the ValidUntil field value if set, zero value otherwise.
+func (o *PartialUpdateServiceAccountKeyPayload) GetValidUntil() *time.Time {
+	if o == nil || IsNil(o.ValidUntil) {
+		var ret *time.Time
+		return ret
+	}
+	return o.ValidUntil
+}
+
+// GetValidUntilOk returns a tuple with the ValidUntil field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateServiceAccountKeyPayload) GetValidUntilOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.ValidUntil) {
+		return nil, false
+	}
+	return o.ValidUntil, true
+}
+
+// HasValidUntil returns a boolean if a field has been set.
+func (o *PartialUpdateServiceAccountKeyPayload) HasValidUntil() bool {
+	if o != nil && !IsNil(o.ValidUntil) {
+		return true
+	}
+
+	return false
+}
+
+// SetValidUntil gets a reference to the given time.Time and assigns it to the ValidUntil field.
+func (o *PartialUpdateServiceAccountKeyPayload) SetValidUntil(v *time.Time) {
+	o.ValidUntil = v
+}
+
+func (o PartialUpdateServiceAccountKeyPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.ValidUntil) {
+		toSerialize["validUntil"] = o.ValidUntil
+	}
+	return toSerialize, nil
+}
+
+type NullablePartialUpdateServiceAccountKeyPayload struct {
+	value *PartialUpdateServiceAccountKeyPayload
+	isSet bool
+}
+
+func (v NullablePartialUpdateServiceAccountKeyPayload) Get() *PartialUpdateServiceAccountKeyPayload {
+	return v.value
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyPayload) Set(val *PartialUpdateServiceAccountKeyPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateServiceAccountKeyPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateServiceAccountKeyPayload(val *PartialUpdateServiceAccountKeyPayload) *NullablePartialUpdateServiceAccountKeyPayload {
+	return &NullablePartialUpdateServiceAccountKeyPayload{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateServiceAccountKeyPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,8 +10,143 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateLabelResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateLabelResponse{}
+
 // CreateLabelResponse ResponseUpsertLabel.
 type CreateLabelResponse struct {
 	Label   *Label  `json:"label,omitempty"`
 	Message *string `json:"message,omitempty"`
+}
+
+// NewCreateLabelResponse instantiates a new CreateLabelResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateLabelResponse() *CreateLabelResponse {
+	this := CreateLabelResponse{}
+	return &this
+}
+
+// NewCreateLabelResponseWithDefaults instantiates a new CreateLabelResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateLabelResponseWithDefaults() *CreateLabelResponse {
+	this := CreateLabelResponse{}
+	return &this
+}
+
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *CreateLabelResponse) GetLabel() *Label {
+	if o == nil || IsNil(o.Label) {
+		var ret *Label
+		return ret
+	}
+	return o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLabelResponse) GetLabelOk() (*Label, bool) {
+	if o == nil || IsNil(o.Label) {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *CreateLabelResponse) HasLabel() bool {
+	if o != nil && !IsNil(o.Label) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabel gets a reference to the given Label and assigns it to the Label field.
+func (o *CreateLabelResponse) SetLabel(v *Label) {
+	o.Label = v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *CreateLabelResponse) GetMessage() *string {
+	if o == nil || IsNil(o.Message) {
+		var ret *string
+		return ret
+	}
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLabelResponse) GetMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.Message) {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *CreateLabelResponse) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *CreateLabelResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+func (o CreateLabelResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Label) {
+		toSerialize["label"] = o.Label
+	}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateLabelResponse struct {
+	value *CreateLabelResponse
+	isSet bool
+}
+
+func (v NullableCreateLabelResponse) Get() *CreateLabelResponse {
+	return v.value
+}
+
+func (v *NullableCreateLabelResponse) Set(val *CreateLabelResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateLabelResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateLabelResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateLabelResponse(val *CreateLabelResponse) *NullableCreateLabelResponse {
+	return &NullableCreateLabelResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateLabelResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateLabelResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

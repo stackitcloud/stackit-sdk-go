@@ -10,6 +10,13 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the Zone type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Zone{}
+
 // Zone Zone.
 type Zone struct {
 	// access control list
@@ -80,4 +87,812 @@ type Zone struct {
 	// visibility of the zone
 	// REQUIRED
 	Visibility *string `json:"visibility"`
+}
+
+type _Zone Zone
+
+// NewZone instantiates a new Zone object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewZone(acl *string, creationFinished *string, creationStarted *string, defaultTTL *int64, dnsName *string, expireTime *int64, id *string, name *string, negativeCache *int64, primaryNameServer *string, refreshTime *int64, retryTime *int64, serialNumber *int64, state *string, type_ *string, updateFinished *string, updateStarted *string, visibility *string) *Zone {
+	this := Zone{}
+	this.Acl = acl
+	this.CreationFinished = creationFinished
+	this.CreationStarted = creationStarted
+	this.DefaultTTL = defaultTTL
+	this.DnsName = dnsName
+	this.ExpireTime = expireTime
+	this.Id = id
+	this.Name = name
+	this.NegativeCache = negativeCache
+	this.PrimaryNameServer = primaryNameServer
+	this.RefreshTime = refreshTime
+	this.RetryTime = retryTime
+	this.SerialNumber = serialNumber
+	this.State = state
+	this.Type = type_
+	this.UpdateFinished = updateFinished
+	this.UpdateStarted = updateStarted
+	this.Visibility = visibility
+	return &this
+}
+
+// NewZoneWithDefaults instantiates a new Zone object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewZoneWithDefaults() *Zone {
+	this := Zone{}
+	return &this
+}
+
+// GetAcl returns the Acl field value
+func (o *Zone) GetAcl() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Acl
+}
+
+// GetAclOk returns a tuple with the Acl field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetAclOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Acl, true
+}
+
+// SetAcl sets field value
+func (o *Zone) SetAcl(v *string) {
+	o.Acl = v
+}
+
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *Zone) GetActive() *bool {
+	if o == nil || IsNil(o.Active) {
+		var ret *bool
+		return ret
+	}
+	return o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *Zone) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *Zone) SetActive(v *bool) {
+	o.Active = v
+}
+
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
+func (o *Zone) GetContactEmail() *string {
+	if o == nil || IsNil(o.ContactEmail) {
+		var ret *string
+		return ret
+	}
+	return o.ContactEmail
+}
+
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetContactEmailOk() (*string, bool) {
+	if o == nil || IsNil(o.ContactEmail) {
+		return nil, false
+	}
+	return o.ContactEmail, true
+}
+
+// HasContactEmail returns a boolean if a field has been set.
+func (o *Zone) HasContactEmail() bool {
+	if o != nil && !IsNil(o.ContactEmail) {
+		return true
+	}
+
+	return false
+}
+
+// SetContactEmail gets a reference to the given string and assigns it to the ContactEmail field.
+func (o *Zone) SetContactEmail(v *string) {
+	o.ContactEmail = v
+}
+
+// GetCreationFinished returns the CreationFinished field value
+func (o *Zone) GetCreationFinished() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.CreationFinished
+}
+
+// GetCreationFinishedOk returns a tuple with the CreationFinished field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetCreationFinishedOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreationFinished, true
+}
+
+// SetCreationFinished sets field value
+func (o *Zone) SetCreationFinished(v *string) {
+	o.CreationFinished = v
+}
+
+// GetCreationStarted returns the CreationStarted field value
+func (o *Zone) GetCreationStarted() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.CreationStarted
+}
+
+// GetCreationStartedOk returns a tuple with the CreationStarted field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetCreationStartedOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreationStarted, true
+}
+
+// SetCreationStarted sets field value
+func (o *Zone) SetCreationStarted(v *string) {
+	o.CreationStarted = v
+}
+
+// GetDefaultTTL returns the DefaultTTL field value
+func (o *Zone) GetDefaultTTL() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.DefaultTTL
+}
+
+// GetDefaultTTLOk returns a tuple with the DefaultTTL field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetDefaultTTLOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DefaultTTL, true
+}
+
+// SetDefaultTTL sets field value
+func (o *Zone) SetDefaultTTL(v *int64) {
+	o.DefaultTTL = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *Zone) GetDescription() *string {
+	if o == nil || IsNil(o.Description) {
+		var ret *string
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *Zone) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *Zone) SetDescription(v *string) {
+	o.Description = v
+}
+
+// GetDnsName returns the DnsName field value
+func (o *Zone) GetDnsName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.DnsName
+}
+
+// GetDnsNameOk returns a tuple with the DnsName field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetDnsNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DnsName, true
+}
+
+// SetDnsName sets field value
+func (o *Zone) SetDnsName(v *string) {
+	o.DnsName = v
+}
+
+// GetError returns the Error field value if set, zero value otherwise.
+func (o *Zone) GetError() *string {
+	if o == nil || IsNil(o.Error) {
+		var ret *string
+		return ret
+	}
+	return o.Error
+}
+
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetErrorOk() (*string, bool) {
+	if o == nil || IsNil(o.Error) {
+		return nil, false
+	}
+	return o.Error, true
+}
+
+// HasError returns a boolean if a field has been set.
+func (o *Zone) HasError() bool {
+	if o != nil && !IsNil(o.Error) {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given string and assigns it to the Error field.
+func (o *Zone) SetError(v *string) {
+	o.Error = v
+}
+
+// GetExpireTime returns the ExpireTime field value
+func (o *Zone) GetExpireTime() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.ExpireTime
+}
+
+// GetExpireTimeOk returns a tuple with the ExpireTime field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetExpireTimeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExpireTime, true
+}
+
+// SetExpireTime sets field value
+func (o *Zone) SetExpireTime(v *int64) {
+	o.ExpireTime = v
+}
+
+// GetId returns the Id field value
+func (o *Zone) GetId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// SetId sets field value
+func (o *Zone) SetId(v *string) {
+	o.Id = v
+}
+
+// GetIsReverseZone returns the IsReverseZone field value if set, zero value otherwise.
+func (o *Zone) GetIsReverseZone() *bool {
+	if o == nil || IsNil(o.IsReverseZone) {
+		var ret *bool
+		return ret
+	}
+	return o.IsReverseZone
+}
+
+// GetIsReverseZoneOk returns a tuple with the IsReverseZone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetIsReverseZoneOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsReverseZone) {
+		return nil, false
+	}
+	return o.IsReverseZone, true
+}
+
+// HasIsReverseZone returns a boolean if a field has been set.
+func (o *Zone) HasIsReverseZone() bool {
+	if o != nil && !IsNil(o.IsReverseZone) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsReverseZone gets a reference to the given bool and assigns it to the IsReverseZone field.
+func (o *Zone) SetIsReverseZone(v *bool) {
+	o.IsReverseZone = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Zone) GetLabels() *[]Label {
+	if o == nil || IsNil(o.Labels) {
+		var ret *[]Label
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetLabelsOk() (*[]Label, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Zone) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []Label and assigns it to the Labels field.
+func (o *Zone) SetLabels(v *[]Label) {
+	o.Labels = v
+}
+
+// GetName returns the Name field value
+func (o *Zone) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *Zone) SetName(v *string) {
+	o.Name = v
+}
+
+// GetNegativeCache returns the NegativeCache field value
+func (o *Zone) GetNegativeCache() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.NegativeCache
+}
+
+// GetNegativeCacheOk returns a tuple with the NegativeCache field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetNegativeCacheOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NegativeCache, true
+}
+
+// SetNegativeCache sets field value
+func (o *Zone) SetNegativeCache(v *int64) {
+	o.NegativeCache = v
+}
+
+// GetPrimaries returns the Primaries field value if set, zero value otherwise.
+func (o *Zone) GetPrimaries() *[]string {
+	if o == nil || IsNil(o.Primaries) {
+		var ret *[]string
+		return ret
+	}
+	return o.Primaries
+}
+
+// GetPrimariesOk returns a tuple with the Primaries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetPrimariesOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Primaries) {
+		return nil, false
+	}
+	return o.Primaries, true
+}
+
+// HasPrimaries returns a boolean if a field has been set.
+func (o *Zone) HasPrimaries() bool {
+	if o != nil && !IsNil(o.Primaries) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrimaries gets a reference to the given []string and assigns it to the Primaries field.
+func (o *Zone) SetPrimaries(v *[]string) {
+	o.Primaries = v
+}
+
+// GetPrimaryNameServer returns the PrimaryNameServer field value
+func (o *Zone) GetPrimaryNameServer() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.PrimaryNameServer
+}
+
+// GetPrimaryNameServerOk returns a tuple with the PrimaryNameServer field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetPrimaryNameServerOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PrimaryNameServer, true
+}
+
+// SetPrimaryNameServer sets field value
+func (o *Zone) SetPrimaryNameServer(v *string) {
+	o.PrimaryNameServer = v
+}
+
+// GetRecordCount returns the RecordCount field value if set, zero value otherwise.
+func (o *Zone) GetRecordCount() *int64 {
+	if o == nil || IsNil(o.RecordCount) {
+		var ret *int64
+		return ret
+	}
+	return o.RecordCount
+}
+
+// GetRecordCountOk returns a tuple with the RecordCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetRecordCountOk() (*int64, bool) {
+	if o == nil || IsNil(o.RecordCount) {
+		return nil, false
+	}
+	return o.RecordCount, true
+}
+
+// HasRecordCount returns a boolean if a field has been set.
+func (o *Zone) HasRecordCount() bool {
+	if o != nil && !IsNil(o.RecordCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecordCount gets a reference to the given int64 and assigns it to the RecordCount field.
+func (o *Zone) SetRecordCount(v *int64) {
+	o.RecordCount = v
+}
+
+// GetRefreshTime returns the RefreshTime field value
+func (o *Zone) GetRefreshTime() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.RefreshTime
+}
+
+// GetRefreshTimeOk returns a tuple with the RefreshTime field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetRefreshTimeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RefreshTime, true
+}
+
+// SetRefreshTime sets field value
+func (o *Zone) SetRefreshTime(v *int64) {
+	o.RefreshTime = v
+}
+
+// GetRetryTime returns the RetryTime field value
+func (o *Zone) GetRetryTime() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.RetryTime
+}
+
+// GetRetryTimeOk returns a tuple with the RetryTime field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetRetryTimeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetryTime, true
+}
+
+// SetRetryTime sets field value
+func (o *Zone) SetRetryTime(v *int64) {
+	o.RetryTime = v
+}
+
+// GetSerialNumber returns the SerialNumber field value
+func (o *Zone) GetSerialNumber() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.SerialNumber
+}
+
+// GetSerialNumberOk returns a tuple with the SerialNumber field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetSerialNumberOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SerialNumber, true
+}
+
+// SetSerialNumber sets field value
+func (o *Zone) SetSerialNumber(v *int64) {
+	o.SerialNumber = v
+}
+
+// GetState returns the State field value
+func (o *Zone) GetState() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// SetState sets field value
+func (o *Zone) SetState(v *string) {
+	o.State = v
+}
+
+// GetType returns the Type field value
+func (o *Zone) GetType() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// SetType sets field value
+func (o *Zone) SetType(v *string) {
+	o.Type = v
+}
+
+// GetUpdateFinished returns the UpdateFinished field value
+func (o *Zone) GetUpdateFinished() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.UpdateFinished
+}
+
+// GetUpdateFinishedOk returns a tuple with the UpdateFinished field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetUpdateFinishedOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UpdateFinished, true
+}
+
+// SetUpdateFinished sets field value
+func (o *Zone) SetUpdateFinished(v *string) {
+	o.UpdateFinished = v
+}
+
+// GetUpdateStarted returns the UpdateStarted field value
+func (o *Zone) GetUpdateStarted() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.UpdateStarted
+}
+
+// GetUpdateStartedOk returns a tuple with the UpdateStarted field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetUpdateStartedOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UpdateStarted, true
+}
+
+// SetUpdateStarted sets field value
+func (o *Zone) SetUpdateStarted(v *string) {
+	o.UpdateStarted = v
+}
+
+// GetVisibility returns the Visibility field value
+func (o *Zone) GetVisibility() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Visibility
+}
+
+// GetVisibilityOk returns a tuple with the Visibility field value
+// and a boolean to check if the value has been set.
+func (o *Zone) GetVisibilityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Visibility, true
+}
+
+// SetVisibility sets field value
+func (o *Zone) SetVisibility(v *string) {
+	o.Visibility = v
+}
+
+func (o Zone) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["acl"] = o.Acl
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.ContactEmail) {
+		toSerialize["contactEmail"] = o.ContactEmail
+	}
+	toSerialize["creationFinished"] = o.CreationFinished
+	toSerialize["creationStarted"] = o.CreationStarted
+	toSerialize["defaultTTL"] = o.DefaultTTL
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	toSerialize["dnsName"] = o.DnsName
+	if !IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
+	toSerialize["expireTime"] = o.ExpireTime
+	toSerialize["id"] = o.Id
+	if !IsNil(o.IsReverseZone) {
+		toSerialize["isReverseZone"] = o.IsReverseZone
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	toSerialize["name"] = o.Name
+	toSerialize["negativeCache"] = o.NegativeCache
+	if !IsNil(o.Primaries) {
+		toSerialize["primaries"] = o.Primaries
+	}
+	toSerialize["primaryNameServer"] = o.PrimaryNameServer
+	if !IsNil(o.RecordCount) {
+		toSerialize["recordCount"] = o.RecordCount
+	}
+	toSerialize["refreshTime"] = o.RefreshTime
+	toSerialize["retryTime"] = o.RetryTime
+	toSerialize["serialNumber"] = o.SerialNumber
+	toSerialize["state"] = o.State
+	toSerialize["type"] = o.Type
+	toSerialize["updateFinished"] = o.UpdateFinished
+	toSerialize["updateStarted"] = o.UpdateStarted
+	toSerialize["visibility"] = o.Visibility
+	return toSerialize, nil
+}
+
+type NullableZone struct {
+	value *Zone
+	isSet bool
+}
+
+func (v NullableZone) Get() *Zone {
+	return v.value
+}
+
+func (v *NullableZone) Set(val *Zone) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableZone) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableZone) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableZone(val *Zone) *NullableZone {
+	return &NullableZone{value: val, isSet: true}
+}
+
+func (v NullableZone) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableZone) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

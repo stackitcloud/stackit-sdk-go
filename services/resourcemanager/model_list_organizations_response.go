@@ -10,6 +10,13 @@ API version: 2.0
 
 package resourcemanager
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListOrganizationsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListOrganizationsResponse{}
+
 // ListOrganizationsResponse struct for ListOrganizationsResponse
 type ListOrganizationsResponse struct {
 	// REQUIRED
@@ -20,4 +27,146 @@ type ListOrganizationsResponse struct {
 	// The offset of the first item in the collection to return.
 	// REQUIRED
 	Offset *float64 `json:"offset"`
+}
+
+type _ListOrganizationsResponse ListOrganizationsResponse
+
+// NewListOrganizationsResponse instantiates a new ListOrganizationsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListOrganizationsResponse(items *[]ListOrganizationsResponseItemsInner, limit *float64, offset *float64) *ListOrganizationsResponse {
+	this := ListOrganizationsResponse{}
+	this.Items = items
+	this.Limit = limit
+	this.Offset = offset
+	return &this
+}
+
+// NewListOrganizationsResponseWithDefaults instantiates a new ListOrganizationsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListOrganizationsResponseWithDefaults() *ListOrganizationsResponse {
+	this := ListOrganizationsResponse{}
+	var limit float64 = 50
+	this.Limit = &limit
+	var offset float64 = 0
+	this.Offset = &offset
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *ListOrganizationsResponse) GetItems() *[]ListOrganizationsResponseItemsInner {
+	if o == nil {
+		var ret *[]ListOrganizationsResponseItemsInner
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *ListOrganizationsResponse) GetItemsOk() (*[]ListOrganizationsResponseItemsInner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *ListOrganizationsResponse) SetItems(v *[]ListOrganizationsResponseItemsInner) {
+	o.Items = v
+}
+
+// GetLimit returns the Limit field value
+func (o *ListOrganizationsResponse) GetLimit() *float64 {
+	if o == nil {
+		var ret *float64
+		return ret
+	}
+
+	return o.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field value
+// and a boolean to check if the value has been set.
+func (o *ListOrganizationsResponse) GetLimitOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Limit, true
+}
+
+// SetLimit sets field value
+func (o *ListOrganizationsResponse) SetLimit(v *float64) {
+	o.Limit = v
+}
+
+// GetOffset returns the Offset field value
+func (o *ListOrganizationsResponse) GetOffset() *float64 {
+	if o == nil {
+		var ret *float64
+		return ret
+	}
+
+	return o.Offset
+}
+
+// GetOffsetOk returns a tuple with the Offset field value
+// and a boolean to check if the value has been set.
+func (o *ListOrganizationsResponse) GetOffsetOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Offset, true
+}
+
+// SetOffset sets field value
+func (o *ListOrganizationsResponse) SetOffset(v *float64) {
+	o.Offset = v
+}
+
+func (o ListOrganizationsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["items"] = o.Items
+	toSerialize["limit"] = o.Limit
+	toSerialize["offset"] = o.Offset
+	return toSerialize, nil
+}
+
+type NullableListOrganizationsResponse struct {
+	value *ListOrganizationsResponse
+	isSet bool
+}
+
+func (v NullableListOrganizationsResponse) Get() *ListOrganizationsResponse {
+	return v.value
+}
+
+func (v *NullableListOrganizationsResponse) Set(val *ListOrganizationsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListOrganizationsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListOrganizationsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListOrganizationsResponse(val *ListOrganizationsResponse) *NullableListOrganizationsResponse {
+	return &NullableListOrganizationsResponse{value: val, isSet: true}
+}
+
+func (v NullableListOrganizationsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListOrganizationsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

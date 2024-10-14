@@ -10,6 +10,13 @@ API version: 2.0
 
 package serviceaccount
 
+import (
+	"encoding/json"
+)
+
+// checks if the AuthErrorError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AuthErrorError{}
+
 // AuthErrorError struct for AuthErrorError
 type AuthErrorError struct {
 	// REQUIRED
@@ -18,4 +25,142 @@ type AuthErrorError struct {
 	Message *string `json:"message"`
 	// REQUIRED
 	Status *string `json:"status"`
+}
+
+type _AuthErrorError AuthErrorError
+
+// NewAuthErrorError instantiates a new AuthErrorError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAuthErrorError(code *int64, message *string, status *string) *AuthErrorError {
+	this := AuthErrorError{}
+	this.Code = code
+	this.Message = message
+	this.Status = status
+	return &this
+}
+
+// NewAuthErrorErrorWithDefaults instantiates a new AuthErrorError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAuthErrorErrorWithDefaults() *AuthErrorError {
+	this := AuthErrorError{}
+	return &this
+}
+
+// GetCode returns the Code field value
+func (o *AuthErrorError) GetCode() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *AuthErrorError) GetCodeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// SetCode sets field value
+func (o *AuthErrorError) SetCode(v *int64) {
+	o.Code = v
+}
+
+// GetMessage returns the Message field value
+func (o *AuthErrorError) GetMessage() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *AuthErrorError) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// SetMessage sets field value
+func (o *AuthErrorError) SetMessage(v *string) {
+	o.Message = v
+}
+
+// GetStatus returns the Status field value
+func (o *AuthErrorError) GetStatus() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *AuthErrorError) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// SetStatus sets field value
+func (o *AuthErrorError) SetStatus(v *string) {
+	o.Status = v
+}
+
+func (o AuthErrorError) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["code"] = o.Code
+	toSerialize["message"] = o.Message
+	toSerialize["status"] = o.Status
+	return toSerialize, nil
+}
+
+type NullableAuthErrorError struct {
+	value *AuthErrorError
+	isSet bool
+}
+
+func (v NullableAuthErrorError) Get() *AuthErrorError {
+	return v.value
+}
+
+func (v *NullableAuthErrorError) Set(val *AuthErrorError) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAuthErrorError) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAuthErrorError) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAuthErrorError(val *AuthErrorError) *NullableAuthErrorError {
+	return &NullableAuthErrorError{value: val, isSet: true}
+}
+
+func (v NullableAuthErrorError) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAuthErrorError) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,8 +10,108 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the ApiExtensionConfigLoadResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiExtensionConfigLoadResponse{}
+
 // ApiExtensionConfigLoadResponse struct for ApiExtensionConfigLoadResponse
 type ApiExtensionConfigLoadResponse struct {
 	// Returns marshalled JSON of the new configuration of whatever extension is called
 	Configuration *[]ApiConfiguration `json:"configuration,omitempty"`
+}
+
+// NewApiExtensionConfigLoadResponse instantiates a new ApiExtensionConfigLoadResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApiExtensionConfigLoadResponse() *ApiExtensionConfigLoadResponse {
+	this := ApiExtensionConfigLoadResponse{}
+	return &this
+}
+
+// NewApiExtensionConfigLoadResponseWithDefaults instantiates a new ApiExtensionConfigLoadResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApiExtensionConfigLoadResponseWithDefaults() *ApiExtensionConfigLoadResponse {
+	this := ApiExtensionConfigLoadResponse{}
+	return &this
+}
+
+// GetConfiguration returns the Configuration field value if set, zero value otherwise.
+func (o *ApiExtensionConfigLoadResponse) GetConfiguration() *[]ApiConfiguration {
+	if o == nil || IsNil(o.Configuration) {
+		var ret *[]ApiConfiguration
+		return ret
+	}
+	return o.Configuration
+}
+
+// GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiExtensionConfigLoadResponse) GetConfigurationOk() (*[]ApiConfiguration, bool) {
+	if o == nil || IsNil(o.Configuration) {
+		return nil, false
+	}
+	return o.Configuration, true
+}
+
+// HasConfiguration returns a boolean if a field has been set.
+func (o *ApiExtensionConfigLoadResponse) HasConfiguration() bool {
+	if o != nil && !IsNil(o.Configuration) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfiguration gets a reference to the given []ApiConfiguration and assigns it to the Configuration field.
+func (o *ApiExtensionConfigLoadResponse) SetConfiguration(v *[]ApiConfiguration) {
+	o.Configuration = v
+}
+
+func (o ApiExtensionConfigLoadResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Configuration) {
+		toSerialize["configuration"] = o.Configuration
+	}
+	return toSerialize, nil
+}
+
+type NullableApiExtensionConfigLoadResponse struct {
+	value *ApiExtensionConfigLoadResponse
+	isSet bool
+}
+
+func (v NullableApiExtensionConfigLoadResponse) Get() *ApiExtensionConfigLoadResponse {
+	return v.value
+}
+
+func (v *NullableApiExtensionConfigLoadResponse) Set(val *ApiExtensionConfigLoadResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApiExtensionConfigLoadResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApiExtensionConfigLoadResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApiExtensionConfigLoadResponse(val *ApiExtensionConfigLoadResponse) *NullableApiExtensionConfigLoadResponse {
+	return &NullableApiExtensionConfigLoadResponse{value: val, isSet: true}
+}
+
+func (v NullableApiExtensionConfigLoadResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableApiExtensionConfigLoadResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

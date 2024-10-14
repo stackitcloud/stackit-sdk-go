@@ -10,10 +10,129 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the AlertConfigRouteResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AlertConfigRouteResponse{}
+
 // AlertConfigRouteResponse struct for AlertConfigRouteResponse
 type AlertConfigRouteResponse struct {
 	// REQUIRED
 	Data *Route `json:"data"`
 	// REQUIRED
 	Message *string `json:"message"`
+}
+
+type _AlertConfigRouteResponse AlertConfigRouteResponse
+
+// NewAlertConfigRouteResponse instantiates a new AlertConfigRouteResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAlertConfigRouteResponse(data *Route, message *string) *AlertConfigRouteResponse {
+	this := AlertConfigRouteResponse{}
+	this.Data = data
+	this.Message = message
+	return &this
+}
+
+// NewAlertConfigRouteResponseWithDefaults instantiates a new AlertConfigRouteResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAlertConfigRouteResponseWithDefaults() *AlertConfigRouteResponse {
+	this := AlertConfigRouteResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *AlertConfigRouteResponse) GetData() *Route {
+	if o == nil {
+		var ret *Route
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *AlertConfigRouteResponse) GetDataOk() (*Route, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *AlertConfigRouteResponse) SetData(v *Route) {
+	o.Data = v
+}
+
+// GetMessage returns the Message field value
+func (o *AlertConfigRouteResponse) GetMessage() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *AlertConfigRouteResponse) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// SetMessage sets field value
+func (o *AlertConfigRouteResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+func (o AlertConfigRouteResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["data"] = o.Data
+	toSerialize["message"] = o.Message
+	return toSerialize, nil
+}
+
+type NullableAlertConfigRouteResponse struct {
+	value *AlertConfigRouteResponse
+	isSet bool
+}
+
+func (v NullableAlertConfigRouteResponse) Get() *AlertConfigRouteResponse {
+	return v.value
+}
+
+func (v *NullableAlertConfigRouteResponse) Set(val *AlertConfigRouteResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAlertConfigRouteResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAlertConfigRouteResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAlertConfigRouteResponse(val *AlertConfigRouteResponse) *NullableAlertConfigRouteResponse {
+	return &NullableAlertConfigRouteResponse{value: val, isSet: true}
+}
+
+func (v NullableAlertConfigRouteResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAlertConfigRouteResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

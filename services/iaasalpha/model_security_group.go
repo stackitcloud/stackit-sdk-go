@@ -11,8 +11,12 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"encoding/json"
 	"time"
 )
+
+// checks if the SecurityGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SecurityGroup{}
 
 // SecurityGroup Object that represents a security group.
 type SecurityGroup struct {
@@ -33,4 +37,339 @@ type SecurityGroup struct {
 	Stateful *bool `json:"stateful,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+}
+
+type _SecurityGroup SecurityGroup
+
+// NewSecurityGroup instantiates a new SecurityGroup object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSecurityGroup(name *string) *SecurityGroup {
+	this := SecurityGroup{}
+	this.Name = name
+	var stateful bool = true
+	this.Stateful = &stateful
+	return &this
+}
+
+// NewSecurityGroupWithDefaults instantiates a new SecurityGroup object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSecurityGroupWithDefaults() *SecurityGroup {
+	this := SecurityGroup{}
+	var stateful bool = true
+	this.Stateful = &stateful
+	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *SecurityGroup) GetCreatedAt() *time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroup) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *SecurityGroup) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *SecurityGroup) SetCreatedAt(v *time.Time) {
+	o.CreatedAt = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *SecurityGroup) GetDescription() *string {
+	if o == nil || IsNil(o.Description) {
+		var ret *string
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroup) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *SecurityGroup) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *SecurityGroup) SetDescription(v *string) {
+	o.Description = v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SecurityGroup) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroup) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *SecurityGroup) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *SecurityGroup) SetId(v *string) {
+	o.Id = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *SecurityGroup) GetLabels() *map[string]interface{} {
+	if o == nil || IsNil(o.Labels) {
+		var ret *map[string]interface{}
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroup) GetLabelsOk() (*map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return &map[string]interface{}{}, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *SecurityGroup) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
+func (o *SecurityGroup) SetLabels(v *map[string]interface{}) {
+	o.Labels = v
+}
+
+// GetName returns the Name field value
+func (o *SecurityGroup) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SecurityGroup) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *SecurityGroup) SetName(v *string) {
+	o.Name = v
+}
+
+// GetRules returns the Rules field value if set, zero value otherwise.
+func (o *SecurityGroup) GetRules() *[]SecurityGroupRule {
+	if o == nil || IsNil(o.Rules) {
+		var ret *[]SecurityGroupRule
+		return ret
+	}
+	return o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroup) GetRulesOk() (*[]SecurityGroupRule, bool) {
+	if o == nil || IsNil(o.Rules) {
+		return nil, false
+	}
+	return o.Rules, true
+}
+
+// HasRules returns a boolean if a field has been set.
+func (o *SecurityGroup) HasRules() bool {
+	if o != nil && !IsNil(o.Rules) {
+		return true
+	}
+
+	return false
+}
+
+// SetRules gets a reference to the given []SecurityGroupRule and assigns it to the Rules field.
+func (o *SecurityGroup) SetRules(v *[]SecurityGroupRule) {
+	o.Rules = v
+}
+
+// GetStateful returns the Stateful field value if set, zero value otherwise.
+func (o *SecurityGroup) GetStateful() *bool {
+	if o == nil || IsNil(o.Stateful) {
+		var ret *bool
+		return ret
+	}
+	return o.Stateful
+}
+
+// GetStatefulOk returns a tuple with the Stateful field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroup) GetStatefulOk() (*bool, bool) {
+	if o == nil || IsNil(o.Stateful) {
+		return nil, false
+	}
+	return o.Stateful, true
+}
+
+// HasStateful returns a boolean if a field has been set.
+func (o *SecurityGroup) HasStateful() bool {
+	if o != nil && !IsNil(o.Stateful) {
+		return true
+	}
+
+	return false
+}
+
+// SetStateful gets a reference to the given bool and assigns it to the Stateful field.
+func (o *SecurityGroup) SetStateful(v *bool) {
+	o.Stateful = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *SecurityGroup) GetUpdatedAt() *time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroup) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *SecurityGroup) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *SecurityGroup) SetUpdatedAt(v *time.Time) {
+	o.UpdatedAt = v
+}
+
+func (o SecurityGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.Rules) {
+		toSerialize["rules"] = o.Rules
+	}
+	if !IsNil(o.Stateful) {
+		toSerialize["stateful"] = o.Stateful
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	return toSerialize, nil
+}
+
+type NullableSecurityGroup struct {
+	value *SecurityGroup
+	isSet bool
+}
+
+func (v NullableSecurityGroup) Get() *SecurityGroup {
+	return v.value
+}
+
+func (v *NullableSecurityGroup) Set(val *SecurityGroup) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSecurityGroup) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSecurityGroup) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSecurityGroup(val *SecurityGroup) *NullableSecurityGroup {
+	return &NullableSecurityGroup{value: val, isSet: true}
+}
+
+func (v NullableSecurityGroup) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableSecurityGroup) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

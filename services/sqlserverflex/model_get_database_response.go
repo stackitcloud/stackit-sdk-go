@@ -10,7 +10,107 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the GetDatabaseResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDatabaseResponse{}
+
 // GetDatabaseResponse struct for GetDatabaseResponse
 type GetDatabaseResponse struct {
 	Database *SingleDatabase `json:"database,omitempty"`
+}
+
+// NewGetDatabaseResponse instantiates a new GetDatabaseResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetDatabaseResponse() *GetDatabaseResponse {
+	this := GetDatabaseResponse{}
+	return &this
+}
+
+// NewGetDatabaseResponseWithDefaults instantiates a new GetDatabaseResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetDatabaseResponseWithDefaults() *GetDatabaseResponse {
+	this := GetDatabaseResponse{}
+	return &this
+}
+
+// GetDatabase returns the Database field value if set, zero value otherwise.
+func (o *GetDatabaseResponse) GetDatabase() *SingleDatabase {
+	if o == nil || IsNil(o.Database) {
+		var ret *SingleDatabase
+		return ret
+	}
+	return o.Database
+}
+
+// GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetDatabaseResponse) GetDatabaseOk() (*SingleDatabase, bool) {
+	if o == nil || IsNil(o.Database) {
+		return nil, false
+	}
+	return o.Database, true
+}
+
+// HasDatabase returns a boolean if a field has been set.
+func (o *GetDatabaseResponse) HasDatabase() bool {
+	if o != nil && !IsNil(o.Database) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabase gets a reference to the given SingleDatabase and assigns it to the Database field.
+func (o *GetDatabaseResponse) SetDatabase(v *SingleDatabase) {
+	o.Database = v
+}
+
+func (o GetDatabaseResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Database) {
+		toSerialize["database"] = o.Database
+	}
+	return toSerialize, nil
+}
+
+type NullableGetDatabaseResponse struct {
+	value *GetDatabaseResponse
+	isSet bool
+}
+
+func (v NullableGetDatabaseResponse) Get() *GetDatabaseResponse {
+	return v.value
+}
+
+func (v *NullableGetDatabaseResponse) Set(val *GetDatabaseResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetDatabaseResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetDatabaseResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetDatabaseResponse(val *GetDatabaseResponse) *NullableGetDatabaseResponse {
+	return &NullableGetDatabaseResponse{value: val, isSet: true}
+}
+
+func (v NullableGetDatabaseResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetDatabaseResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

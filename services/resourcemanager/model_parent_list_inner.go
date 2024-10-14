@@ -10,6 +10,13 @@ API version: 2.0
 
 package resourcemanager
 
+import (
+	"encoding/json"
+)
+
+// checks if the ParentListInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ParentListInner{}
+
 // ParentListInner struct for ParentListInner
 type ParentListInner struct {
 	// User-friendly identifier of either organization or folder (will replace id).
@@ -30,4 +37,220 @@ type ParentListInner struct {
 	// Parent container type.
 	// REQUIRED
 	Type *string `json:"type"`
+}
+
+type _ParentListInner ParentListInner
+
+// NewParentListInner instantiates a new ParentListInner object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewParentListInner(containerId *string, containerParentId *string, id *string, name *string, parentId *string, type_ *string) *ParentListInner {
+	this := ParentListInner{}
+	this.ContainerId = containerId
+	this.ContainerParentId = containerParentId
+	this.Id = id
+	this.Name = name
+	this.ParentId = parentId
+	this.Type = type_
+	return &this
+}
+
+// NewParentListInnerWithDefaults instantiates a new ParentListInner object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewParentListInnerWithDefaults() *ParentListInner {
+	this := ParentListInner{}
+	return &this
+}
+
+// GetContainerId returns the ContainerId field value
+func (o *ParentListInner) GetContainerId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ContainerId
+}
+
+// GetContainerIdOk returns a tuple with the ContainerId field value
+// and a boolean to check if the value has been set.
+func (o *ParentListInner) GetContainerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContainerId, true
+}
+
+// SetContainerId sets field value
+func (o *ParentListInner) SetContainerId(v *string) {
+	o.ContainerId = v
+}
+
+// GetContainerParentId returns the ContainerParentId field value
+func (o *ParentListInner) GetContainerParentId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ContainerParentId
+}
+
+// GetContainerParentIdOk returns a tuple with the ContainerParentId field value
+// and a boolean to check if the value has been set.
+func (o *ParentListInner) GetContainerParentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContainerParentId, true
+}
+
+// SetContainerParentId sets field value
+func (o *ParentListInner) SetContainerParentId(v *string) {
+	o.ContainerParentId = v
+}
+
+// GetId returns the Id field value
+func (o *ParentListInner) GetId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ParentListInner) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// SetId sets field value
+func (o *ParentListInner) SetId(v *string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *ParentListInner) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ParentListInner) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *ParentListInner) SetName(v *string) {
+	o.Name = v
+}
+
+// GetParentId returns the ParentId field value
+func (o *ParentListInner) GetParentId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ParentId
+}
+
+// GetParentIdOk returns a tuple with the ParentId field value
+// and a boolean to check if the value has been set.
+func (o *ParentListInner) GetParentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ParentId, true
+}
+
+// SetParentId sets field value
+func (o *ParentListInner) SetParentId(v *string) {
+	o.ParentId = v
+}
+
+// GetType returns the Type field value
+func (o *ParentListInner) GetType() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ParentListInner) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// SetType sets field value
+func (o *ParentListInner) SetType(v *string) {
+	o.Type = v
+}
+
+func (o ParentListInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["containerId"] = o.ContainerId
+	toSerialize["containerParentId"] = o.ContainerParentId
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["parentId"] = o.ParentId
+	toSerialize["type"] = o.Type
+	return toSerialize, nil
+}
+
+type NullableParentListInner struct {
+	value *ParentListInner
+	isSet bool
+}
+
+func (v NullableParentListInner) Get() *ParentListInner {
+	return v.value
+}
+
+func (v *NullableParentListInner) Set(val *ParentListInner) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableParentListInner) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableParentListInner) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableParentListInner(val *ParentListInner) *NullableParentListInner {
+	return &NullableParentListInner{value: val, isSet: true}
+}
+
+func (v NullableParentListInner) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableParentListInner) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

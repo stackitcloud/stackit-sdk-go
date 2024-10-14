@@ -10,7 +10,107 @@ API version: 1.1.0
 
 package redis
 
+import (
+	"encoding/json"
+)
+
+// checks if the UpdateBackupsConfigPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateBackupsConfigPayload{}
+
 // UpdateBackupsConfigPayload struct for UpdateBackupsConfigPayload
 type UpdateBackupsConfigPayload struct {
 	EncryptionKey *string `json:"encryption_key,omitempty"`
+}
+
+// NewUpdateBackupsConfigPayload instantiates a new UpdateBackupsConfigPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateBackupsConfigPayload() *UpdateBackupsConfigPayload {
+	this := UpdateBackupsConfigPayload{}
+	return &this
+}
+
+// NewUpdateBackupsConfigPayloadWithDefaults instantiates a new UpdateBackupsConfigPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateBackupsConfigPayloadWithDefaults() *UpdateBackupsConfigPayload {
+	this := UpdateBackupsConfigPayload{}
+	return &this
+}
+
+// GetEncryptionKey returns the EncryptionKey field value if set, zero value otherwise.
+func (o *UpdateBackupsConfigPayload) GetEncryptionKey() *string {
+	if o == nil || IsNil(o.EncryptionKey) {
+		var ret *string
+		return ret
+	}
+	return o.EncryptionKey
+}
+
+// GetEncryptionKeyOk returns a tuple with the EncryptionKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateBackupsConfigPayload) GetEncryptionKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.EncryptionKey) {
+		return nil, false
+	}
+	return o.EncryptionKey, true
+}
+
+// HasEncryptionKey returns a boolean if a field has been set.
+func (o *UpdateBackupsConfigPayload) HasEncryptionKey() bool {
+	if o != nil && !IsNil(o.EncryptionKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetEncryptionKey gets a reference to the given string and assigns it to the EncryptionKey field.
+func (o *UpdateBackupsConfigPayload) SetEncryptionKey(v *string) {
+	o.EncryptionKey = v
+}
+
+func (o UpdateBackupsConfigPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EncryptionKey) {
+		toSerialize["encryption_key"] = o.EncryptionKey
+	}
+	return toSerialize, nil
+}
+
+type NullableUpdateBackupsConfigPayload struct {
+	value *UpdateBackupsConfigPayload
+	isSet bool
+}
+
+func (v NullableUpdateBackupsConfigPayload) Get() *UpdateBackupsConfigPayload {
+	return v.value
+}
+
+func (v *NullableUpdateBackupsConfigPayload) Set(val *UpdateBackupsConfigPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateBackupsConfigPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateBackupsConfigPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateBackupsConfigPayload(val *UpdateBackupsConfigPayload) *NullableUpdateBackupsConfigPayload {
+	return &NullableUpdateBackupsConfigPayload{value: val, isSet: true}
+}
+
+func (v NullableUpdateBackupsConfigPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateBackupsConfigPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

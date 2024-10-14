@@ -10,8 +10,143 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the BackupListBackupsResponseGrouped type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BackupListBackupsResponseGrouped{}
+
 // BackupListBackupsResponseGrouped struct for BackupListBackupsResponseGrouped
 type BackupListBackupsResponseGrouped struct {
 	Backups *[]Backup `json:"backups,omitempty"`
 	Name    *string   `json:"name,omitempty"`
+}
+
+// NewBackupListBackupsResponseGrouped instantiates a new BackupListBackupsResponseGrouped object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBackupListBackupsResponseGrouped() *BackupListBackupsResponseGrouped {
+	this := BackupListBackupsResponseGrouped{}
+	return &this
+}
+
+// NewBackupListBackupsResponseGroupedWithDefaults instantiates a new BackupListBackupsResponseGrouped object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBackupListBackupsResponseGroupedWithDefaults() *BackupListBackupsResponseGrouped {
+	this := BackupListBackupsResponseGrouped{}
+	return &this
+}
+
+// GetBackups returns the Backups field value if set, zero value otherwise.
+func (o *BackupListBackupsResponseGrouped) GetBackups() *[]Backup {
+	if o == nil || IsNil(o.Backups) {
+		var ret *[]Backup
+		return ret
+	}
+	return o.Backups
+}
+
+// GetBackupsOk returns a tuple with the Backups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BackupListBackupsResponseGrouped) GetBackupsOk() (*[]Backup, bool) {
+	if o == nil || IsNil(o.Backups) {
+		return nil, false
+	}
+	return o.Backups, true
+}
+
+// HasBackups returns a boolean if a field has been set.
+func (o *BackupListBackupsResponseGrouped) HasBackups() bool {
+	if o != nil && !IsNil(o.Backups) {
+		return true
+	}
+
+	return false
+}
+
+// SetBackups gets a reference to the given []Backup and assigns it to the Backups field.
+func (o *BackupListBackupsResponseGrouped) SetBackups(v *[]Backup) {
+	o.Backups = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *BackupListBackupsResponseGrouped) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BackupListBackupsResponseGrouped) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *BackupListBackupsResponseGrouped) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *BackupListBackupsResponseGrouped) SetName(v *string) {
+	o.Name = v
+}
+
+func (o BackupListBackupsResponseGrouped) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Backups) {
+		toSerialize["backups"] = o.Backups
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
+}
+
+type NullableBackupListBackupsResponseGrouped struct {
+	value *BackupListBackupsResponseGrouped
+	isSet bool
+}
+
+func (v NullableBackupListBackupsResponseGrouped) Get() *BackupListBackupsResponseGrouped {
+	return v.value
+}
+
+func (v *NullableBackupListBackupsResponseGrouped) Set(val *BackupListBackupsResponseGrouped) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBackupListBackupsResponseGrouped) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBackupListBackupsResponseGrouped) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBackupListBackupsResponseGrouped(val *BackupListBackupsResponseGrouped) *NullableBackupListBackupsResponseGrouped {
+	return &NullableBackupListBackupsResponseGrouped{value: val, isSet: true}
+}
+
+func (v NullableBackupListBackupsResponseGrouped) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableBackupListBackupsResponseGrouped) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

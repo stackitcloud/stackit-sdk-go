@@ -10,6 +10,13 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"encoding/json"
+)
+
+// checks if the UpdateAttachedVolumePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateAttachedVolumePayload{}
+
 // UpdateAttachedVolumePayload Object that represents a Volume attachment to a server.
 type UpdateAttachedVolumePayload struct {
 	// Delete the volume during the termination of the server. Defaults to false.
@@ -18,4 +25,171 @@ type UpdateAttachedVolumePayload struct {
 	ServerId *string `json:"serverId,omitempty"`
 	// Universally Unique Identifier (UUID).
 	VolumeId *string `json:"volumeId,omitempty"`
+}
+
+// NewUpdateAttachedVolumePayload instantiates a new UpdateAttachedVolumePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateAttachedVolumePayload() *UpdateAttachedVolumePayload {
+	this := UpdateAttachedVolumePayload{}
+	var deleteOnTermination bool = false
+	this.DeleteOnTermination = &deleteOnTermination
+	return &this
+}
+
+// NewUpdateAttachedVolumePayloadWithDefaults instantiates a new UpdateAttachedVolumePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateAttachedVolumePayloadWithDefaults() *UpdateAttachedVolumePayload {
+	this := UpdateAttachedVolumePayload{}
+	var deleteOnTermination bool = false
+	this.DeleteOnTermination = &deleteOnTermination
+	return &this
+}
+
+// GetDeleteOnTermination returns the DeleteOnTermination field value if set, zero value otherwise.
+func (o *UpdateAttachedVolumePayload) GetDeleteOnTermination() *bool {
+	if o == nil || IsNil(o.DeleteOnTermination) {
+		var ret *bool
+		return ret
+	}
+	return o.DeleteOnTermination
+}
+
+// GetDeleteOnTerminationOk returns a tuple with the DeleteOnTermination field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateAttachedVolumePayload) GetDeleteOnTerminationOk() (*bool, bool) {
+	if o == nil || IsNil(o.DeleteOnTermination) {
+		return nil, false
+	}
+	return o.DeleteOnTermination, true
+}
+
+// HasDeleteOnTermination returns a boolean if a field has been set.
+func (o *UpdateAttachedVolumePayload) HasDeleteOnTermination() bool {
+	if o != nil && !IsNil(o.DeleteOnTermination) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeleteOnTermination gets a reference to the given bool and assigns it to the DeleteOnTermination field.
+func (o *UpdateAttachedVolumePayload) SetDeleteOnTermination(v *bool) {
+	o.DeleteOnTermination = v
+}
+
+// GetServerId returns the ServerId field value if set, zero value otherwise.
+func (o *UpdateAttachedVolumePayload) GetServerId() *string {
+	if o == nil || IsNil(o.ServerId) {
+		var ret *string
+		return ret
+	}
+	return o.ServerId
+}
+
+// GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateAttachedVolumePayload) GetServerIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ServerId) {
+		return nil, false
+	}
+	return o.ServerId, true
+}
+
+// HasServerId returns a boolean if a field has been set.
+func (o *UpdateAttachedVolumePayload) HasServerId() bool {
+	if o != nil && !IsNil(o.ServerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerId gets a reference to the given string and assigns it to the ServerId field.
+func (o *UpdateAttachedVolumePayload) SetServerId(v *string) {
+	o.ServerId = v
+}
+
+// GetVolumeId returns the VolumeId field value if set, zero value otherwise.
+func (o *UpdateAttachedVolumePayload) GetVolumeId() *string {
+	if o == nil || IsNil(o.VolumeId) {
+		var ret *string
+		return ret
+	}
+	return o.VolumeId
+}
+
+// GetVolumeIdOk returns a tuple with the VolumeId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateAttachedVolumePayload) GetVolumeIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VolumeId) {
+		return nil, false
+	}
+	return o.VolumeId, true
+}
+
+// HasVolumeId returns a boolean if a field has been set.
+func (o *UpdateAttachedVolumePayload) HasVolumeId() bool {
+	if o != nil && !IsNil(o.VolumeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVolumeId gets a reference to the given string and assigns it to the VolumeId field.
+func (o *UpdateAttachedVolumePayload) SetVolumeId(v *string) {
+	o.VolumeId = v
+}
+
+func (o UpdateAttachedVolumePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DeleteOnTermination) {
+		toSerialize["deleteOnTermination"] = o.DeleteOnTermination
+	}
+	if !IsNil(o.ServerId) {
+		toSerialize["serverId"] = o.ServerId
+	}
+	if !IsNil(o.VolumeId) {
+		toSerialize["volumeId"] = o.VolumeId
+	}
+	return toSerialize, nil
+}
+
+type NullableUpdateAttachedVolumePayload struct {
+	value *UpdateAttachedVolumePayload
+	isSet bool
+}
+
+func (v NullableUpdateAttachedVolumePayload) Get() *UpdateAttachedVolumePayload {
+	return v.value
+}
+
+func (v *NullableUpdateAttachedVolumePayload) Set(val *UpdateAttachedVolumePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateAttachedVolumePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateAttachedVolumePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateAttachedVolumePayload(val *UpdateAttachedVolumePayload) *NullableUpdateAttachedVolumePayload {
+	return &NullableUpdateAttachedVolumePayload{value: val, isSet: true}
+}
+
+func (v NullableUpdateAttachedVolumePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateAttachedVolumePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

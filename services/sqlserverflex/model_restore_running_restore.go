@@ -10,6 +10,13 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the RestoreRunningRestore type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RestoreRunningRestore{}
+
 // RestoreRunningRestore struct for RestoreRunningRestore
 type RestoreRunningRestore struct {
 	Command                 *string `json:"command,omitempty"`
@@ -17,4 +24,237 @@ type RestoreRunningRestore struct {
 	EstimatedCompletionTime *string `json:"estimated_completion_time,omitempty"`
 	PercentComplete         *int64  `json:"percent_complete,omitempty"`
 	StartTime               *string `json:"start_time,omitempty"`
+}
+
+// NewRestoreRunningRestore instantiates a new RestoreRunningRestore object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRestoreRunningRestore() *RestoreRunningRestore {
+	this := RestoreRunningRestore{}
+	return &this
+}
+
+// NewRestoreRunningRestoreWithDefaults instantiates a new RestoreRunningRestore object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRestoreRunningRestoreWithDefaults() *RestoreRunningRestore {
+	this := RestoreRunningRestore{}
+	return &this
+}
+
+// GetCommand returns the Command field value if set, zero value otherwise.
+func (o *RestoreRunningRestore) GetCommand() *string {
+	if o == nil || IsNil(o.Command) {
+		var ret *string
+		return ret
+	}
+	return o.Command
+}
+
+// GetCommandOk returns a tuple with the Command field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreRunningRestore) GetCommandOk() (*string, bool) {
+	if o == nil || IsNil(o.Command) {
+		return nil, false
+	}
+	return o.Command, true
+}
+
+// HasCommand returns a boolean if a field has been set.
+func (o *RestoreRunningRestore) HasCommand() bool {
+	if o != nil && !IsNil(o.Command) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommand gets a reference to the given string and assigns it to the Command field.
+func (o *RestoreRunningRestore) SetCommand(v *string) {
+	o.Command = v
+}
+
+// GetDatabaseName returns the DatabaseName field value if set, zero value otherwise.
+func (o *RestoreRunningRestore) GetDatabaseName() *string {
+	if o == nil || IsNil(o.DatabaseName) {
+		var ret *string
+		return ret
+	}
+	return o.DatabaseName
+}
+
+// GetDatabaseNameOk returns a tuple with the DatabaseName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreRunningRestore) GetDatabaseNameOk() (*string, bool) {
+	if o == nil || IsNil(o.DatabaseName) {
+		return nil, false
+	}
+	return o.DatabaseName, true
+}
+
+// HasDatabaseName returns a boolean if a field has been set.
+func (o *RestoreRunningRestore) HasDatabaseName() bool {
+	if o != nil && !IsNil(o.DatabaseName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabaseName gets a reference to the given string and assigns it to the DatabaseName field.
+func (o *RestoreRunningRestore) SetDatabaseName(v *string) {
+	o.DatabaseName = v
+}
+
+// GetEstimatedCompletionTime returns the EstimatedCompletionTime field value if set, zero value otherwise.
+func (o *RestoreRunningRestore) GetEstimatedCompletionTime() *string {
+	if o == nil || IsNil(o.EstimatedCompletionTime) {
+		var ret *string
+		return ret
+	}
+	return o.EstimatedCompletionTime
+}
+
+// GetEstimatedCompletionTimeOk returns a tuple with the EstimatedCompletionTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreRunningRestore) GetEstimatedCompletionTimeOk() (*string, bool) {
+	if o == nil || IsNil(o.EstimatedCompletionTime) {
+		return nil, false
+	}
+	return o.EstimatedCompletionTime, true
+}
+
+// HasEstimatedCompletionTime returns a boolean if a field has been set.
+func (o *RestoreRunningRestore) HasEstimatedCompletionTime() bool {
+	if o != nil && !IsNil(o.EstimatedCompletionTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetEstimatedCompletionTime gets a reference to the given string and assigns it to the EstimatedCompletionTime field.
+func (o *RestoreRunningRestore) SetEstimatedCompletionTime(v *string) {
+	o.EstimatedCompletionTime = v
+}
+
+// GetPercentComplete returns the PercentComplete field value if set, zero value otherwise.
+func (o *RestoreRunningRestore) GetPercentComplete() *int64 {
+	if o == nil || IsNil(o.PercentComplete) {
+		var ret *int64
+		return ret
+	}
+	return o.PercentComplete
+}
+
+// GetPercentCompleteOk returns a tuple with the PercentComplete field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreRunningRestore) GetPercentCompleteOk() (*int64, bool) {
+	if o == nil || IsNil(o.PercentComplete) {
+		return nil, false
+	}
+	return o.PercentComplete, true
+}
+
+// HasPercentComplete returns a boolean if a field has been set.
+func (o *RestoreRunningRestore) HasPercentComplete() bool {
+	if o != nil && !IsNil(o.PercentComplete) {
+		return true
+	}
+
+	return false
+}
+
+// SetPercentComplete gets a reference to the given int64 and assigns it to the PercentComplete field.
+func (o *RestoreRunningRestore) SetPercentComplete(v *int64) {
+	o.PercentComplete = v
+}
+
+// GetStartTime returns the StartTime field value if set, zero value otherwise.
+func (o *RestoreRunningRestore) GetStartTime() *string {
+	if o == nil || IsNil(o.StartTime) {
+		var ret *string
+		return ret
+	}
+	return o.StartTime
+}
+
+// GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RestoreRunningRestore) GetStartTimeOk() (*string, bool) {
+	if o == nil || IsNil(o.StartTime) {
+		return nil, false
+	}
+	return o.StartTime, true
+}
+
+// HasStartTime returns a boolean if a field has been set.
+func (o *RestoreRunningRestore) HasStartTime() bool {
+	if o != nil && !IsNil(o.StartTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartTime gets a reference to the given string and assigns it to the StartTime field.
+func (o *RestoreRunningRestore) SetStartTime(v *string) {
+	o.StartTime = v
+}
+
+func (o RestoreRunningRestore) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Command) {
+		toSerialize["command"] = o.Command
+	}
+	if !IsNil(o.DatabaseName) {
+		toSerialize["database_name"] = o.DatabaseName
+	}
+	if !IsNil(o.EstimatedCompletionTime) {
+		toSerialize["estimated_completion_time"] = o.EstimatedCompletionTime
+	}
+	if !IsNil(o.PercentComplete) {
+		toSerialize["percent_complete"] = o.PercentComplete
+	}
+	if !IsNil(o.StartTime) {
+		toSerialize["start_time"] = o.StartTime
+	}
+	return toSerialize, nil
+}
+
+type NullableRestoreRunningRestore struct {
+	value *RestoreRunningRestore
+	isSet bool
+}
+
+func (v NullableRestoreRunningRestore) Get() *RestoreRunningRestore {
+	return v.value
+}
+
+func (v *NullableRestoreRunningRestore) Set(val *RestoreRunningRestore) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRestoreRunningRestore) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRestoreRunningRestore) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRestoreRunningRestore(val *RestoreRunningRestore) *NullableRestoreRunningRestore {
+	return &NullableRestoreRunningRestore{value: val, isSet: true}
+}
+
+func (v NullableRestoreRunningRestore) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRestoreRunningRestore) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

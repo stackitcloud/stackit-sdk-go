@@ -10,8 +10,101 @@ API version: 1alpha1
 
 package iaasalpha
 
+import (
+	"encoding/json"
+)
+
+// checks if the ServerConsoleUrl type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerConsoleUrl{}
+
 // ServerConsoleUrl Object that represents a server console URL.
 type ServerConsoleUrl struct {
 	// REQUIRED
 	Url *string `json:"url"`
+}
+
+type _ServerConsoleUrl ServerConsoleUrl
+
+// NewServerConsoleUrl instantiates a new ServerConsoleUrl object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewServerConsoleUrl(url *string) *ServerConsoleUrl {
+	this := ServerConsoleUrl{}
+	this.Url = url
+	return &this
+}
+
+// NewServerConsoleUrlWithDefaults instantiates a new ServerConsoleUrl object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewServerConsoleUrlWithDefaults() *ServerConsoleUrl {
+	this := ServerConsoleUrl{}
+	return &this
+}
+
+// GetUrl returns the Url field value
+func (o *ServerConsoleUrl) GetUrl() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *ServerConsoleUrl) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Url, true
+}
+
+// SetUrl sets field value
+func (o *ServerConsoleUrl) SetUrl(v *string) {
+	o.Url = v
+}
+
+func (o ServerConsoleUrl) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["url"] = o.Url
+	return toSerialize, nil
+}
+
+type NullableServerConsoleUrl struct {
+	value *ServerConsoleUrl
+	isSet bool
+}
+
+func (v NullableServerConsoleUrl) Get() *ServerConsoleUrl {
+	return v.value
+}
+
+func (v *NullableServerConsoleUrl) Set(val *ServerConsoleUrl) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServerConsoleUrl) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableServerConsoleUrl) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServerConsoleUrl(val *ServerConsoleUrl) *NullableServerConsoleUrl {
+	return &NullableServerConsoleUrl{value: val, isSet: true}
+}
+
+func (v NullableServerConsoleUrl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableServerConsoleUrl) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

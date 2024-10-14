@@ -10,6 +10,13 @@ API version: 1.0.9
 
 package objectstorage
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateAccessKeyResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateAccessKeyResponse{}
+
 // CreateAccessKeyResponse struct for CreateAccessKeyResponse
 type CreateAccessKeyResponse struct {
 	// Access key
@@ -30,4 +37,220 @@ type CreateAccessKeyResponse struct {
 	// Secret access key
 	// REQUIRED
 	SecretAccessKey *string `json:"secretAccessKey"`
+}
+
+type _CreateAccessKeyResponse CreateAccessKeyResponse
+
+// NewCreateAccessKeyResponse instantiates a new CreateAccessKeyResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateAccessKeyResponse(accessKey *string, displayName *string, expires *string, keyId *string, project *string, secretAccessKey *string) *CreateAccessKeyResponse {
+	this := CreateAccessKeyResponse{}
+	this.AccessKey = accessKey
+	this.DisplayName = displayName
+	this.Expires = expires
+	this.KeyId = keyId
+	this.Project = project
+	this.SecretAccessKey = secretAccessKey
+	return &this
+}
+
+// NewCreateAccessKeyResponseWithDefaults instantiates a new CreateAccessKeyResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateAccessKeyResponseWithDefaults() *CreateAccessKeyResponse {
+	this := CreateAccessKeyResponse{}
+	return &this
+}
+
+// GetAccessKey returns the AccessKey field value
+func (o *CreateAccessKeyResponse) GetAccessKey() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.AccessKey
+}
+
+// GetAccessKeyOk returns a tuple with the AccessKey field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccessKeyResponse) GetAccessKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AccessKey, true
+}
+
+// SetAccessKey sets field value
+func (o *CreateAccessKeyResponse) SetAccessKey(v *string) {
+	o.AccessKey = v
+}
+
+// GetDisplayName returns the DisplayName field value
+func (o *CreateAccessKeyResponse) GetDisplayName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccessKeyResponse) GetDisplayNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// SetDisplayName sets field value
+func (o *CreateAccessKeyResponse) SetDisplayName(v *string) {
+	o.DisplayName = v
+}
+
+// GetExpires returns the Expires field value
+func (o *CreateAccessKeyResponse) GetExpires() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Expires
+}
+
+// GetExpiresOk returns a tuple with the Expires field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccessKeyResponse) GetExpiresOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Expires, true
+}
+
+// SetExpires sets field value
+func (o *CreateAccessKeyResponse) SetExpires(v *string) {
+	o.Expires = v
+}
+
+// GetKeyId returns the KeyId field value
+func (o *CreateAccessKeyResponse) GetKeyId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.KeyId
+}
+
+// GetKeyIdOk returns a tuple with the KeyId field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccessKeyResponse) GetKeyIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KeyId, true
+}
+
+// SetKeyId sets field value
+func (o *CreateAccessKeyResponse) SetKeyId(v *string) {
+	o.KeyId = v
+}
+
+// GetProject returns the Project field value
+func (o *CreateAccessKeyResponse) GetProject() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccessKeyResponse) GetProjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// SetProject sets field value
+func (o *CreateAccessKeyResponse) SetProject(v *string) {
+	o.Project = v
+}
+
+// GetSecretAccessKey returns the SecretAccessKey field value
+func (o *CreateAccessKeyResponse) GetSecretAccessKey() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.SecretAccessKey
+}
+
+// GetSecretAccessKeyOk returns a tuple with the SecretAccessKey field value
+// and a boolean to check if the value has been set.
+func (o *CreateAccessKeyResponse) GetSecretAccessKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SecretAccessKey, true
+}
+
+// SetSecretAccessKey sets field value
+func (o *CreateAccessKeyResponse) SetSecretAccessKey(v *string) {
+	o.SecretAccessKey = v
+}
+
+func (o CreateAccessKeyResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["accessKey"] = o.AccessKey
+	toSerialize["displayName"] = o.DisplayName
+	toSerialize["expires"] = o.Expires
+	toSerialize["keyId"] = o.KeyId
+	toSerialize["project"] = o.Project
+	toSerialize["secretAccessKey"] = o.SecretAccessKey
+	return toSerialize, nil
+}
+
+type NullableCreateAccessKeyResponse struct {
+	value *CreateAccessKeyResponse
+	isSet bool
+}
+
+func (v NullableCreateAccessKeyResponse) Get() *CreateAccessKeyResponse {
+	return v.value
+}
+
+func (v *NullableCreateAccessKeyResponse) Set(val *CreateAccessKeyResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateAccessKeyResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateAccessKeyResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateAccessKeyResponse(val *CreateAccessKeyResponse) *NullableCreateAccessKeyResponse {
+	return &NullableCreateAccessKeyResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateAccessKeyResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateAccessKeyResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
