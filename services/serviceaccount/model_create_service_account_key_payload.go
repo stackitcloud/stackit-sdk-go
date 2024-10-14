@@ -11,8 +11,12 @@ API version: 2.0
 package serviceaccount
 
 import (
+	"encoding/json"
 	"time"
 )
+
+// checks if the CreateServiceAccountKeyPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateServiceAccountKeyPayload{}
 
 // CreateServiceAccountKeyPayload struct for CreateServiceAccountKeyPayload
 type CreateServiceAccountKeyPayload struct {
@@ -20,4 +24,132 @@ type CreateServiceAccountKeyPayload struct {
 	PublicKey *string `json:"publicKey,omitempty"`
 	// Optional, date of key expiration. When omitted, key is valid until deleted
 	ValidUntil *time.Time `json:"validUntil,omitempty"`
+}
+
+// NewCreateServiceAccountKeyPayload instantiates a new CreateServiceAccountKeyPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateServiceAccountKeyPayload() *CreateServiceAccountKeyPayload {
+	this := CreateServiceAccountKeyPayload{}
+	return &this
+}
+
+// NewCreateServiceAccountKeyPayloadWithDefaults instantiates a new CreateServiceAccountKeyPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateServiceAccountKeyPayloadWithDefaults() *CreateServiceAccountKeyPayload {
+	this := CreateServiceAccountKeyPayload{}
+	return &this
+}
+
+// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
+func (o *CreateServiceAccountKeyPayload) GetPublicKey() *string {
+	if o == nil || IsNil(o.PublicKey) {
+		var ret *string
+		return ret
+	}
+	return o.PublicKey
+}
+
+// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServiceAccountKeyPayload) GetPublicKeyOk() (*string, bool) {
+	if o == nil || IsNil(o.PublicKey) {
+		return nil, false
+	}
+	return o.PublicKey, true
+}
+
+// HasPublicKey returns a boolean if a field has been set.
+func (o *CreateServiceAccountKeyPayload) HasPublicKey() bool {
+	if o != nil && !IsNil(o.PublicKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
+func (o *CreateServiceAccountKeyPayload) SetPublicKey(v *string) {
+	o.PublicKey = v
+}
+
+// GetValidUntil returns the ValidUntil field value if set, zero value otherwise.
+func (o *CreateServiceAccountKeyPayload) GetValidUntil() *time.Time {
+	if o == nil || IsNil(o.ValidUntil) {
+		var ret *time.Time
+		return ret
+	}
+	return o.ValidUntil
+}
+
+// GetValidUntilOk returns a tuple with the ValidUntil field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServiceAccountKeyPayload) GetValidUntilOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.ValidUntil) {
+		return nil, false
+	}
+	return o.ValidUntil, true
+}
+
+// HasValidUntil returns a boolean if a field has been set.
+func (o *CreateServiceAccountKeyPayload) HasValidUntil() bool {
+	if o != nil && !IsNil(o.ValidUntil) {
+		return true
+	}
+
+	return false
+}
+
+// SetValidUntil gets a reference to the given time.Time and assigns it to the ValidUntil field.
+func (o *CreateServiceAccountKeyPayload) SetValidUntil(v *time.Time) {
+	o.ValidUntil = v
+}
+
+func (o CreateServiceAccountKeyPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PublicKey) {
+		toSerialize["publicKey"] = o.PublicKey
+	}
+	if !IsNil(o.ValidUntil) {
+		toSerialize["validUntil"] = o.ValidUntil
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateServiceAccountKeyPayload struct {
+	value *CreateServiceAccountKeyPayload
+	isSet bool
+}
+
+func (v NullableCreateServiceAccountKeyPayload) Get() *CreateServiceAccountKeyPayload {
+	return v.value
+}
+
+func (v *NullableCreateServiceAccountKeyPayload) Set(val *CreateServiceAccountKeyPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateServiceAccountKeyPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateServiceAccountKeyPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateServiceAccountKeyPayload(val *CreateServiceAccountKeyPayload) *NullableCreateServiceAccountKeyPayload {
+	return &NullableCreateServiceAccountKeyPayload{value: val, isSet: true}
+}
+
+func (v NullableCreateServiceAccountKeyPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateServiceAccountKeyPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
