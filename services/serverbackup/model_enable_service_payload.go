@@ -10,7 +10,107 @@ API version: 1.0
 
 package serverbackup
 
+import (
+	"encoding/json"
+)
+
+// checks if the EnableServicePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EnableServicePayload{}
+
 // EnableServicePayload struct for EnableServicePayload
 type EnableServicePayload struct {
 	BackupPolicyId *string `json:"backupPolicyId,omitempty"`
+}
+
+// NewEnableServicePayload instantiates a new EnableServicePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEnableServicePayload() *EnableServicePayload {
+	this := EnableServicePayload{}
+	return &this
+}
+
+// NewEnableServicePayloadWithDefaults instantiates a new EnableServicePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEnableServicePayloadWithDefaults() *EnableServicePayload {
+	this := EnableServicePayload{}
+	return &this
+}
+
+// GetBackupPolicyId returns the BackupPolicyId field value if set, zero value otherwise.
+func (o *EnableServicePayload) GetBackupPolicyId() *string {
+	if o == nil || IsNil(o.BackupPolicyId) {
+		var ret *string
+		return ret
+	}
+	return o.BackupPolicyId
+}
+
+// GetBackupPolicyIdOk returns a tuple with the BackupPolicyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EnableServicePayload) GetBackupPolicyIdOk() (*string, bool) {
+	if o == nil || IsNil(o.BackupPolicyId) {
+		return nil, false
+	}
+	return o.BackupPolicyId, true
+}
+
+// HasBackupPolicyId returns a boolean if a field has been set.
+func (o *EnableServicePayload) HasBackupPolicyId() bool {
+	if o != nil && !IsNil(o.BackupPolicyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetBackupPolicyId gets a reference to the given string and assigns it to the BackupPolicyId field.
+func (o *EnableServicePayload) SetBackupPolicyId(v *string) {
+	o.BackupPolicyId = v
+}
+
+func (o EnableServicePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BackupPolicyId) {
+		toSerialize["backupPolicyId"] = o.BackupPolicyId
+	}
+	return toSerialize, nil
+}
+
+type NullableEnableServicePayload struct {
+	value *EnableServicePayload
+	isSet bool
+}
+
+func (v NullableEnableServicePayload) Get() *EnableServicePayload {
+	return v.value
+}
+
+func (v *NullableEnableServicePayload) Set(val *EnableServicePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEnableServicePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEnableServicePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableEnableServicePayload(val *EnableServicePayload) *NullableEnableServicePayload {
+	return &NullableEnableServicePayload{value: val, isSet: true}
+}
+
+func (v NullableEnableServicePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableEnableServicePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

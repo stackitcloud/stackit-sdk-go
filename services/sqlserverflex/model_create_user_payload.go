@@ -10,6 +10,13 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateUserPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateUserPayload{}
+
 // CreateUserPayload struct for CreateUserPayload
 type CreateUserPayload struct {
 	DefaultDatabase *string `json:"default_database,omitempty"`
@@ -17,4 +24,151 @@ type CreateUserPayload struct {
 	Roles *[]string `json:"roles"`
 	// REQUIRED
 	Username *string `json:"username"`
+}
+
+type _CreateUserPayload CreateUserPayload
+
+// NewCreateUserPayload instantiates a new CreateUserPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateUserPayload(roles *[]string, username *string) *CreateUserPayload {
+	this := CreateUserPayload{}
+	this.Roles = roles
+	this.Username = username
+	return &this
+}
+
+// NewCreateUserPayloadWithDefaults instantiates a new CreateUserPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateUserPayloadWithDefaults() *CreateUserPayload {
+	this := CreateUserPayload{}
+	return &this
+}
+
+// GetDefaultDatabase returns the DefaultDatabase field value if set, zero value otherwise.
+func (o *CreateUserPayload) GetDefaultDatabase() *string {
+	if o == nil || IsNil(o.DefaultDatabase) {
+		var ret *string
+		return ret
+	}
+	return o.DefaultDatabase
+}
+
+// GetDefaultDatabaseOk returns a tuple with the DefaultDatabase field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateUserPayload) GetDefaultDatabaseOk() (*string, bool) {
+	if o == nil || IsNil(o.DefaultDatabase) {
+		return nil, false
+	}
+	return o.DefaultDatabase, true
+}
+
+// HasDefaultDatabase returns a boolean if a field has been set.
+func (o *CreateUserPayload) HasDefaultDatabase() bool {
+	if o != nil && !IsNil(o.DefaultDatabase) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultDatabase gets a reference to the given string and assigns it to the DefaultDatabase field.
+func (o *CreateUserPayload) SetDefaultDatabase(v *string) {
+	o.DefaultDatabase = v
+}
+
+// GetRoles returns the Roles field value
+func (o *CreateUserPayload) GetRoles() *[]string {
+	if o == nil {
+		var ret *[]string
+		return ret
+	}
+
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value
+// and a boolean to check if the value has been set.
+func (o *CreateUserPayload) GetRolesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// SetRoles sets field value
+func (o *CreateUserPayload) SetRoles(v *[]string) {
+	o.Roles = v
+}
+
+// GetUsername returns the Username field value
+func (o *CreateUserPayload) GetUsername() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value
+// and a boolean to check if the value has been set.
+func (o *CreateUserPayload) GetUsernameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Username, true
+}
+
+// SetUsername sets field value
+func (o *CreateUserPayload) SetUsername(v *string) {
+	o.Username = v
+}
+
+func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultDatabase) {
+		toSerialize["default_database"] = o.DefaultDatabase
+	}
+	toSerialize["roles"] = o.Roles
+	toSerialize["username"] = o.Username
+	return toSerialize, nil
+}
+
+type NullableCreateUserPayload struct {
+	value *CreateUserPayload
+	isSet bool
+}
+
+func (v NullableCreateUserPayload) Get() *CreateUserPayload {
+	return v.value
+}
+
+func (v *NullableCreateUserPayload) Set(val *CreateUserPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateUserPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateUserPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateUserPayload(val *CreateUserPayload) *NullableCreateUserPayload {
+	return &NullableCreateUserPayload{value: val, isSet: true}
+}
+
+func (v NullableCreateUserPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateUserPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

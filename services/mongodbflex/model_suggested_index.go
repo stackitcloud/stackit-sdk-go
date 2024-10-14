@@ -10,6 +10,13 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the SuggestedIndex type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SuggestedIndex{}
+
 // SuggestedIndex struct for SuggestedIndex
 type SuggestedIndex struct {
 	// Unique id for this suggested index.
@@ -22,4 +29,237 @@ type SuggestedIndex struct {
 	Namespace *string `json:"namespace,omitempty"`
 	// Estimated percentage performance improvement that the suggested index would provide.
 	Weight *float64 `json:"weight,omitempty"`
+}
+
+// NewSuggestedIndex instantiates a new SuggestedIndex object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSuggestedIndex() *SuggestedIndex {
+	this := SuggestedIndex{}
+	return &this
+}
+
+// NewSuggestedIndexWithDefaults instantiates a new SuggestedIndex object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSuggestedIndexWithDefaults() *SuggestedIndex {
+	this := SuggestedIndex{}
+	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SuggestedIndex) GetId() *string {
+	if o == nil || IsNil(o.Id) {
+		var ret *string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SuggestedIndex) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *SuggestedIndex) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *SuggestedIndex) SetId(v *string) {
+	o.Id = v
+}
+
+// GetImpact returns the Impact field value if set, zero value otherwise.
+func (o *SuggestedIndex) GetImpact() *[]string {
+	if o == nil || IsNil(o.Impact) {
+		var ret *[]string
+		return ret
+	}
+	return o.Impact
+}
+
+// GetImpactOk returns a tuple with the Impact field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SuggestedIndex) GetImpactOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Impact) {
+		return nil, false
+	}
+	return o.Impact, true
+}
+
+// HasImpact returns a boolean if a field has been set.
+func (o *SuggestedIndex) HasImpact() bool {
+	if o != nil && !IsNil(o.Impact) {
+		return true
+	}
+
+	return false
+}
+
+// SetImpact gets a reference to the given []string and assigns it to the Impact field.
+func (o *SuggestedIndex) SetImpact(v *[]string) {
+	o.Impact = v
+}
+
+// GetIndex returns the Index field value if set, zero value otherwise.
+func (o *SuggestedIndex) GetIndex() *[]map[string]int32 {
+	if o == nil || IsNil(o.Index) {
+		var ret *[]map[string]int32
+		return ret
+	}
+	return o.Index
+}
+
+// GetIndexOk returns a tuple with the Index field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SuggestedIndex) GetIndexOk() (*[]map[string]int32, bool) {
+	if o == nil || IsNil(o.Index) {
+		return nil, false
+	}
+	return o.Index, true
+}
+
+// HasIndex returns a boolean if a field has been set.
+func (o *SuggestedIndex) HasIndex() bool {
+	if o != nil && !IsNil(o.Index) {
+		return true
+	}
+
+	return false
+}
+
+// SetIndex gets a reference to the given []map[string]int32 and assigns it to the Index field.
+func (o *SuggestedIndex) SetIndex(v *[]map[string]int32) {
+	o.Index = v
+}
+
+// GetNamespace returns the Namespace field value if set, zero value otherwise.
+func (o *SuggestedIndex) GetNamespace() *string {
+	if o == nil || IsNil(o.Namespace) {
+		var ret *string
+		return ret
+	}
+	return o.Namespace
+}
+
+// GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SuggestedIndex) GetNamespaceOk() (*string, bool) {
+	if o == nil || IsNil(o.Namespace) {
+		return nil, false
+	}
+	return o.Namespace, true
+}
+
+// HasNamespace returns a boolean if a field has been set.
+func (o *SuggestedIndex) HasNamespace() bool {
+	if o != nil && !IsNil(o.Namespace) {
+		return true
+	}
+
+	return false
+}
+
+// SetNamespace gets a reference to the given string and assigns it to the Namespace field.
+func (o *SuggestedIndex) SetNamespace(v *string) {
+	o.Namespace = v
+}
+
+// GetWeight returns the Weight field value if set, zero value otherwise.
+func (o *SuggestedIndex) GetWeight() *float64 {
+	if o == nil || IsNil(o.Weight) {
+		var ret *float64
+		return ret
+	}
+	return o.Weight
+}
+
+// GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SuggestedIndex) GetWeightOk() (*float64, bool) {
+	if o == nil || IsNil(o.Weight) {
+		return nil, false
+	}
+	return o.Weight, true
+}
+
+// HasWeight returns a boolean if a field has been set.
+func (o *SuggestedIndex) HasWeight() bool {
+	if o != nil && !IsNil(o.Weight) {
+		return true
+	}
+
+	return false
+}
+
+// SetWeight gets a reference to the given float64 and assigns it to the Weight field.
+func (o *SuggestedIndex) SetWeight(v *float64) {
+	o.Weight = v
+}
+
+func (o SuggestedIndex) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Impact) {
+		toSerialize["impact"] = o.Impact
+	}
+	if !IsNil(o.Index) {
+		toSerialize["index"] = o.Index
+	}
+	if !IsNil(o.Namespace) {
+		toSerialize["namespace"] = o.Namespace
+	}
+	if !IsNil(o.Weight) {
+		toSerialize["weight"] = o.Weight
+	}
+	return toSerialize, nil
+}
+
+type NullableSuggestedIndex struct {
+	value *SuggestedIndex
+	isSet bool
+}
+
+func (v NullableSuggestedIndex) Get() *SuggestedIndex {
+	return v.value
+}
+
+func (v *NullableSuggestedIndex) Set(val *SuggestedIndex) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSuggestedIndex) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSuggestedIndex) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSuggestedIndex(val *SuggestedIndex) *NullableSuggestedIndex {
+	return &NullableSuggestedIndex{value: val, isSet: true}
+}
+
+func (v NullableSuggestedIndex) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableSuggestedIndex) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

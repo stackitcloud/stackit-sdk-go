@@ -10,10 +10,145 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the HandlersInstancesSuggestedIndexesResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HandlersInstancesSuggestedIndexesResponse{}
+
 // HandlersInstancesSuggestedIndexesResponse struct for HandlersInstancesSuggestedIndexesResponse
 type HandlersInstancesSuggestedIndexesResponse struct {
 	// Documents with information about the query shapes that are served by the suggested indexes.
 	Shapes *[]Shape `json:"shapes,omitempty"`
 	// Documents with information about the indexes suggested by the Performance Advisor.
 	SuggestedIndexes *[]SuggestedIndex `json:"suggestedIndexes,omitempty"`
+}
+
+// NewHandlersInstancesSuggestedIndexesResponse instantiates a new HandlersInstancesSuggestedIndexesResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHandlersInstancesSuggestedIndexesResponse() *HandlersInstancesSuggestedIndexesResponse {
+	this := HandlersInstancesSuggestedIndexesResponse{}
+	return &this
+}
+
+// NewHandlersInstancesSuggestedIndexesResponseWithDefaults instantiates a new HandlersInstancesSuggestedIndexesResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHandlersInstancesSuggestedIndexesResponseWithDefaults() *HandlersInstancesSuggestedIndexesResponse {
+	this := HandlersInstancesSuggestedIndexesResponse{}
+	return &this
+}
+
+// GetShapes returns the Shapes field value if set, zero value otherwise.
+func (o *HandlersInstancesSuggestedIndexesResponse) GetShapes() *[]Shape {
+	if o == nil || IsNil(o.Shapes) {
+		var ret *[]Shape
+		return ret
+	}
+	return o.Shapes
+}
+
+// GetShapesOk returns a tuple with the Shapes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HandlersInstancesSuggestedIndexesResponse) GetShapesOk() (*[]Shape, bool) {
+	if o == nil || IsNil(o.Shapes) {
+		return nil, false
+	}
+	return o.Shapes, true
+}
+
+// HasShapes returns a boolean if a field has been set.
+func (o *HandlersInstancesSuggestedIndexesResponse) HasShapes() bool {
+	if o != nil && !IsNil(o.Shapes) {
+		return true
+	}
+
+	return false
+}
+
+// SetShapes gets a reference to the given []Shape and assigns it to the Shapes field.
+func (o *HandlersInstancesSuggestedIndexesResponse) SetShapes(v *[]Shape) {
+	o.Shapes = v
+}
+
+// GetSuggestedIndexes returns the SuggestedIndexes field value if set, zero value otherwise.
+func (o *HandlersInstancesSuggestedIndexesResponse) GetSuggestedIndexes() *[]SuggestedIndex {
+	if o == nil || IsNil(o.SuggestedIndexes) {
+		var ret *[]SuggestedIndex
+		return ret
+	}
+	return o.SuggestedIndexes
+}
+
+// GetSuggestedIndexesOk returns a tuple with the SuggestedIndexes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HandlersInstancesSuggestedIndexesResponse) GetSuggestedIndexesOk() (*[]SuggestedIndex, bool) {
+	if o == nil || IsNil(o.SuggestedIndexes) {
+		return nil, false
+	}
+	return o.SuggestedIndexes, true
+}
+
+// HasSuggestedIndexes returns a boolean if a field has been set.
+func (o *HandlersInstancesSuggestedIndexesResponse) HasSuggestedIndexes() bool {
+	if o != nil && !IsNil(o.SuggestedIndexes) {
+		return true
+	}
+
+	return false
+}
+
+// SetSuggestedIndexes gets a reference to the given []SuggestedIndex and assigns it to the SuggestedIndexes field.
+func (o *HandlersInstancesSuggestedIndexesResponse) SetSuggestedIndexes(v *[]SuggestedIndex) {
+	o.SuggestedIndexes = v
+}
+
+func (o HandlersInstancesSuggestedIndexesResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Shapes) {
+		toSerialize["shapes"] = o.Shapes
+	}
+	if !IsNil(o.SuggestedIndexes) {
+		toSerialize["suggestedIndexes"] = o.SuggestedIndexes
+	}
+	return toSerialize, nil
+}
+
+type NullableHandlersInstancesSuggestedIndexesResponse struct {
+	value *HandlersInstancesSuggestedIndexesResponse
+	isSet bool
+}
+
+func (v NullableHandlersInstancesSuggestedIndexesResponse) Get() *HandlersInstancesSuggestedIndexesResponse {
+	return v.value
+}
+
+func (v *NullableHandlersInstancesSuggestedIndexesResponse) Set(val *HandlersInstancesSuggestedIndexesResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHandlersInstancesSuggestedIndexesResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableHandlersInstancesSuggestedIndexesResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHandlersInstancesSuggestedIndexesResponse(val *HandlersInstancesSuggestedIndexesResponse) *NullableHandlersInstancesSuggestedIndexesResponse {
+	return &NullableHandlersInstancesSuggestedIndexesResponse{value: val, isSet: true}
+}
+
+func (v NullableHandlersInstancesSuggestedIndexesResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableHandlersInstancesSuggestedIndexesResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

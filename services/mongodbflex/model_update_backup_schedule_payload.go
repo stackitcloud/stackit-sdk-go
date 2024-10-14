@@ -10,6 +10,13 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the UpdateBackupSchedulePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateBackupSchedulePayload{}
+
 // UpdateBackupSchedulePayload struct for UpdateBackupSchedulePayload
 type UpdateBackupSchedulePayload struct {
 	BackupSchedule                 *string `json:"backupSchedule,omitempty"`
@@ -18,4 +25,272 @@ type UpdateBackupSchedulePayload struct {
 	PointInTimeWindowHours         *int64  `json:"pointInTimeWindowHours,omitempty"`
 	SnapshotRetentionDays          *int64  `json:"snapshotRetentionDays,omitempty"`
 	WeeklySnapshotRetentionWeeks   *int64  `json:"weeklySnapshotRetentionWeeks,omitempty"`
+}
+
+// NewUpdateBackupSchedulePayload instantiates a new UpdateBackupSchedulePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateBackupSchedulePayload() *UpdateBackupSchedulePayload {
+	this := UpdateBackupSchedulePayload{}
+	return &this
+}
+
+// NewUpdateBackupSchedulePayloadWithDefaults instantiates a new UpdateBackupSchedulePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateBackupSchedulePayloadWithDefaults() *UpdateBackupSchedulePayload {
+	this := UpdateBackupSchedulePayload{}
+	return &this
+}
+
+// GetBackupSchedule returns the BackupSchedule field value if set, zero value otherwise.
+func (o *UpdateBackupSchedulePayload) GetBackupSchedule() *string {
+	if o == nil || IsNil(o.BackupSchedule) {
+		var ret *string
+		return ret
+	}
+	return o.BackupSchedule
+}
+
+// GetBackupScheduleOk returns a tuple with the BackupSchedule field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateBackupSchedulePayload) GetBackupScheduleOk() (*string, bool) {
+	if o == nil || IsNil(o.BackupSchedule) {
+		return nil, false
+	}
+	return o.BackupSchedule, true
+}
+
+// HasBackupSchedule returns a boolean if a field has been set.
+func (o *UpdateBackupSchedulePayload) HasBackupSchedule() bool {
+	if o != nil && !IsNil(o.BackupSchedule) {
+		return true
+	}
+
+	return false
+}
+
+// SetBackupSchedule gets a reference to the given string and assigns it to the BackupSchedule field.
+func (o *UpdateBackupSchedulePayload) SetBackupSchedule(v *string) {
+	o.BackupSchedule = v
+}
+
+// GetDailySnapshotRetentionDays returns the DailySnapshotRetentionDays field value if set, zero value otherwise.
+func (o *UpdateBackupSchedulePayload) GetDailySnapshotRetentionDays() *int64 {
+	if o == nil || IsNil(o.DailySnapshotRetentionDays) {
+		var ret *int64
+		return ret
+	}
+	return o.DailySnapshotRetentionDays
+}
+
+// GetDailySnapshotRetentionDaysOk returns a tuple with the DailySnapshotRetentionDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateBackupSchedulePayload) GetDailySnapshotRetentionDaysOk() (*int64, bool) {
+	if o == nil || IsNil(o.DailySnapshotRetentionDays) {
+		return nil, false
+	}
+	return o.DailySnapshotRetentionDays, true
+}
+
+// HasDailySnapshotRetentionDays returns a boolean if a field has been set.
+func (o *UpdateBackupSchedulePayload) HasDailySnapshotRetentionDays() bool {
+	if o != nil && !IsNil(o.DailySnapshotRetentionDays) {
+		return true
+	}
+
+	return false
+}
+
+// SetDailySnapshotRetentionDays gets a reference to the given int64 and assigns it to the DailySnapshotRetentionDays field.
+func (o *UpdateBackupSchedulePayload) SetDailySnapshotRetentionDays(v *int64) {
+	o.DailySnapshotRetentionDays = v
+}
+
+// GetMonthlySnapshotRetentionMonths returns the MonthlySnapshotRetentionMonths field value if set, zero value otherwise.
+func (o *UpdateBackupSchedulePayload) GetMonthlySnapshotRetentionMonths() *int64 {
+	if o == nil || IsNil(o.MonthlySnapshotRetentionMonths) {
+		var ret *int64
+		return ret
+	}
+	return o.MonthlySnapshotRetentionMonths
+}
+
+// GetMonthlySnapshotRetentionMonthsOk returns a tuple with the MonthlySnapshotRetentionMonths field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateBackupSchedulePayload) GetMonthlySnapshotRetentionMonthsOk() (*int64, bool) {
+	if o == nil || IsNil(o.MonthlySnapshotRetentionMonths) {
+		return nil, false
+	}
+	return o.MonthlySnapshotRetentionMonths, true
+}
+
+// HasMonthlySnapshotRetentionMonths returns a boolean if a field has been set.
+func (o *UpdateBackupSchedulePayload) HasMonthlySnapshotRetentionMonths() bool {
+	if o != nil && !IsNil(o.MonthlySnapshotRetentionMonths) {
+		return true
+	}
+
+	return false
+}
+
+// SetMonthlySnapshotRetentionMonths gets a reference to the given int64 and assigns it to the MonthlySnapshotRetentionMonths field.
+func (o *UpdateBackupSchedulePayload) SetMonthlySnapshotRetentionMonths(v *int64) {
+	o.MonthlySnapshotRetentionMonths = v
+}
+
+// GetPointInTimeWindowHours returns the PointInTimeWindowHours field value if set, zero value otherwise.
+func (o *UpdateBackupSchedulePayload) GetPointInTimeWindowHours() *int64 {
+	if o == nil || IsNil(o.PointInTimeWindowHours) {
+		var ret *int64
+		return ret
+	}
+	return o.PointInTimeWindowHours
+}
+
+// GetPointInTimeWindowHoursOk returns a tuple with the PointInTimeWindowHours field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateBackupSchedulePayload) GetPointInTimeWindowHoursOk() (*int64, bool) {
+	if o == nil || IsNil(o.PointInTimeWindowHours) {
+		return nil, false
+	}
+	return o.PointInTimeWindowHours, true
+}
+
+// HasPointInTimeWindowHours returns a boolean if a field has been set.
+func (o *UpdateBackupSchedulePayload) HasPointInTimeWindowHours() bool {
+	if o != nil && !IsNil(o.PointInTimeWindowHours) {
+		return true
+	}
+
+	return false
+}
+
+// SetPointInTimeWindowHours gets a reference to the given int64 and assigns it to the PointInTimeWindowHours field.
+func (o *UpdateBackupSchedulePayload) SetPointInTimeWindowHours(v *int64) {
+	o.PointInTimeWindowHours = v
+}
+
+// GetSnapshotRetentionDays returns the SnapshotRetentionDays field value if set, zero value otherwise.
+func (o *UpdateBackupSchedulePayload) GetSnapshotRetentionDays() *int64 {
+	if o == nil || IsNil(o.SnapshotRetentionDays) {
+		var ret *int64
+		return ret
+	}
+	return o.SnapshotRetentionDays
+}
+
+// GetSnapshotRetentionDaysOk returns a tuple with the SnapshotRetentionDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateBackupSchedulePayload) GetSnapshotRetentionDaysOk() (*int64, bool) {
+	if o == nil || IsNil(o.SnapshotRetentionDays) {
+		return nil, false
+	}
+	return o.SnapshotRetentionDays, true
+}
+
+// HasSnapshotRetentionDays returns a boolean if a field has been set.
+func (o *UpdateBackupSchedulePayload) HasSnapshotRetentionDays() bool {
+	if o != nil && !IsNil(o.SnapshotRetentionDays) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnapshotRetentionDays gets a reference to the given int64 and assigns it to the SnapshotRetentionDays field.
+func (o *UpdateBackupSchedulePayload) SetSnapshotRetentionDays(v *int64) {
+	o.SnapshotRetentionDays = v
+}
+
+// GetWeeklySnapshotRetentionWeeks returns the WeeklySnapshotRetentionWeeks field value if set, zero value otherwise.
+func (o *UpdateBackupSchedulePayload) GetWeeklySnapshotRetentionWeeks() *int64 {
+	if o == nil || IsNil(o.WeeklySnapshotRetentionWeeks) {
+		var ret *int64
+		return ret
+	}
+	return o.WeeklySnapshotRetentionWeeks
+}
+
+// GetWeeklySnapshotRetentionWeeksOk returns a tuple with the WeeklySnapshotRetentionWeeks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateBackupSchedulePayload) GetWeeklySnapshotRetentionWeeksOk() (*int64, bool) {
+	if o == nil || IsNil(o.WeeklySnapshotRetentionWeeks) {
+		return nil, false
+	}
+	return o.WeeklySnapshotRetentionWeeks, true
+}
+
+// HasWeeklySnapshotRetentionWeeks returns a boolean if a field has been set.
+func (o *UpdateBackupSchedulePayload) HasWeeklySnapshotRetentionWeeks() bool {
+	if o != nil && !IsNil(o.WeeklySnapshotRetentionWeeks) {
+		return true
+	}
+
+	return false
+}
+
+// SetWeeklySnapshotRetentionWeeks gets a reference to the given int64 and assigns it to the WeeklySnapshotRetentionWeeks field.
+func (o *UpdateBackupSchedulePayload) SetWeeklySnapshotRetentionWeeks(v *int64) {
+	o.WeeklySnapshotRetentionWeeks = v
+}
+
+func (o UpdateBackupSchedulePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BackupSchedule) {
+		toSerialize["backupSchedule"] = o.BackupSchedule
+	}
+	if !IsNil(o.DailySnapshotRetentionDays) {
+		toSerialize["dailySnapshotRetentionDays"] = o.DailySnapshotRetentionDays
+	}
+	if !IsNil(o.MonthlySnapshotRetentionMonths) {
+		toSerialize["monthlySnapshotRetentionMonths"] = o.MonthlySnapshotRetentionMonths
+	}
+	if !IsNil(o.PointInTimeWindowHours) {
+		toSerialize["pointInTimeWindowHours"] = o.PointInTimeWindowHours
+	}
+	if !IsNil(o.SnapshotRetentionDays) {
+		toSerialize["snapshotRetentionDays"] = o.SnapshotRetentionDays
+	}
+	if !IsNil(o.WeeklySnapshotRetentionWeeks) {
+		toSerialize["weeklySnapshotRetentionWeeks"] = o.WeeklySnapshotRetentionWeeks
+	}
+	return toSerialize, nil
+}
+
+type NullableUpdateBackupSchedulePayload struct {
+	value *UpdateBackupSchedulePayload
+	isSet bool
+}
+
+func (v NullableUpdateBackupSchedulePayload) Get() *UpdateBackupSchedulePayload {
+	return v.value
+}
+
+func (v *NullableUpdateBackupSchedulePayload) Set(val *UpdateBackupSchedulePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateBackupSchedulePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateBackupSchedulePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateBackupSchedulePayload(val *UpdateBackupSchedulePayload) *NullableUpdateBackupSchedulePayload {
+	return &NullableUpdateBackupSchedulePayload{value: val, isSet: true}
+}
+
+func (v NullableUpdateBackupSchedulePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateBackupSchedulePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

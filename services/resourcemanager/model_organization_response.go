@@ -11,8 +11,12 @@ API version: 2.0
 package resourcemanager
 
 import (
+	"encoding/json"
 	"time"
 )
+
+// checks if the OrganizationResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OrganizationResponse{}
 
 // OrganizationResponse struct for OrganizationResponse
 type OrganizationResponse struct {
@@ -35,4 +39,255 @@ type OrganizationResponse struct {
 	// Timestamp at which the organization was last modified.
 	// REQUIRED
 	UpdateTime *time.Time `json:"updateTime"`
+}
+
+type _OrganizationResponse OrganizationResponse
+
+// NewOrganizationResponse instantiates a new OrganizationResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOrganizationResponse(containerId *string, creationTime *time.Time, lifecycleState *LifecycleState, name *string, organizationId *string, updateTime *time.Time) *OrganizationResponse {
+	this := OrganizationResponse{}
+	this.ContainerId = containerId
+	this.CreationTime = creationTime
+	this.LifecycleState = lifecycleState
+	this.Name = name
+	this.OrganizationId = organizationId
+	this.UpdateTime = updateTime
+	return &this
+}
+
+// NewOrganizationResponseWithDefaults instantiates a new OrganizationResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOrganizationResponseWithDefaults() *OrganizationResponse {
+	this := OrganizationResponse{}
+	return &this
+}
+
+// GetContainerId returns the ContainerId field value
+func (o *OrganizationResponse) GetContainerId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ContainerId
+}
+
+// GetContainerIdOk returns a tuple with the ContainerId field value
+// and a boolean to check if the value has been set.
+func (o *OrganizationResponse) GetContainerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContainerId, true
+}
+
+// SetContainerId sets field value
+func (o *OrganizationResponse) SetContainerId(v *string) {
+	o.ContainerId = v
+}
+
+// GetCreationTime returns the CreationTime field value
+func (o *OrganizationResponse) GetCreationTime() *time.Time {
+	if o == nil {
+		var ret *time.Time
+		return ret
+	}
+
+	return o.CreationTime
+}
+
+// GetCreationTimeOk returns a tuple with the CreationTime field value
+// and a boolean to check if the value has been set.
+func (o *OrganizationResponse) GetCreationTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreationTime, true
+}
+
+// SetCreationTime sets field value
+func (o *OrganizationResponse) SetCreationTime(v *time.Time) {
+	o.CreationTime = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *OrganizationResponse) GetLabels() *map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationResponse) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *OrganizationResponse) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *OrganizationResponse) SetLabels(v *map[string]string) {
+	o.Labels = v
+}
+
+// GetLifecycleState returns the LifecycleState field value
+func (o *OrganizationResponse) GetLifecycleState() *LifecycleState {
+	if o == nil {
+		var ret *LifecycleState
+		return ret
+	}
+
+	return o.LifecycleState
+}
+
+// GetLifecycleStateOk returns a tuple with the LifecycleState field value
+// and a boolean to check if the value has been set.
+func (o *OrganizationResponse) GetLifecycleStateOk() (*LifecycleState, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LifecycleState, true
+}
+
+// SetLifecycleState sets field value
+func (o *OrganizationResponse) SetLifecycleState(v *LifecycleState) {
+	o.LifecycleState = v
+}
+
+// GetName returns the Name field value
+func (o *OrganizationResponse) GetName() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *OrganizationResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *OrganizationResponse) SetName(v *string) {
+	o.Name = v
+}
+
+// GetOrganizationId returns the OrganizationId field value
+func (o *OrganizationResponse) GetOrganizationId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.OrganizationId
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value
+// and a boolean to check if the value has been set.
+func (o *OrganizationResponse) GetOrganizationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OrganizationId, true
+}
+
+// SetOrganizationId sets field value
+func (o *OrganizationResponse) SetOrganizationId(v *string) {
+	o.OrganizationId = v
+}
+
+// GetUpdateTime returns the UpdateTime field value
+func (o *OrganizationResponse) GetUpdateTime() *time.Time {
+	if o == nil {
+		var ret *time.Time
+		return ret
+	}
+
+	return o.UpdateTime
+}
+
+// GetUpdateTimeOk returns a tuple with the UpdateTime field value
+// and a boolean to check if the value has been set.
+func (o *OrganizationResponse) GetUpdateTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UpdateTime, true
+}
+
+// SetUpdateTime sets field value
+func (o *OrganizationResponse) SetUpdateTime(v *time.Time) {
+	o.UpdateTime = v
+}
+
+func (o OrganizationResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["containerId"] = o.ContainerId
+	toSerialize["creationTime"] = o.CreationTime
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	toSerialize["lifecycleState"] = o.LifecycleState
+	toSerialize["name"] = o.Name
+	toSerialize["organizationId"] = o.OrganizationId
+	toSerialize["updateTime"] = o.UpdateTime
+	return toSerialize, nil
+}
+
+type NullableOrganizationResponse struct {
+	value *OrganizationResponse
+	isSet bool
+}
+
+func (v NullableOrganizationResponse) Get() *OrganizationResponse {
+	return v.value
+}
+
+func (v *NullableOrganizationResponse) Set(val *OrganizationResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOrganizationResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOrganizationResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOrganizationResponse(val *OrganizationResponse) *NullableOrganizationResponse {
+	return &NullableOrganizationResponse{value: val, isSet: true}
+}
+
+func (v NullableOrganizationResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableOrganizationResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

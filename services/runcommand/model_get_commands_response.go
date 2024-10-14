@@ -10,7 +10,107 @@ API version: 1.0
 
 package runcommand
 
+import (
+	"encoding/json"
+)
+
+// checks if the GetCommandsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetCommandsResponse{}
+
 // GetCommandsResponse struct for GetCommandsResponse
 type GetCommandsResponse struct {
 	Items *[]Commands `json:"items,omitempty"`
+}
+
+// NewGetCommandsResponse instantiates a new GetCommandsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetCommandsResponse() *GetCommandsResponse {
+	this := GetCommandsResponse{}
+	return &this
+}
+
+// NewGetCommandsResponseWithDefaults instantiates a new GetCommandsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetCommandsResponseWithDefaults() *GetCommandsResponse {
+	this := GetCommandsResponse{}
+	return &this
+}
+
+// GetItems returns the Items field value if set, zero value otherwise.
+func (o *GetCommandsResponse) GetItems() *[]Commands {
+	if o == nil || IsNil(o.Items) {
+		var ret *[]Commands
+		return ret
+	}
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCommandsResponse) GetItemsOk() (*[]Commands, bool) {
+	if o == nil || IsNil(o.Items) {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// HasItems returns a boolean if a field has been set.
+func (o *GetCommandsResponse) HasItems() bool {
+	if o != nil && !IsNil(o.Items) {
+		return true
+	}
+
+	return false
+}
+
+// SetItems gets a reference to the given []Commands and assigns it to the Items field.
+func (o *GetCommandsResponse) SetItems(v *[]Commands) {
+	o.Items = v
+}
+
+func (o GetCommandsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Items) {
+		toSerialize["items"] = o.Items
+	}
+	return toSerialize, nil
+}
+
+type NullableGetCommandsResponse struct {
+	value *GetCommandsResponse
+	isSet bool
+}
+
+func (v NullableGetCommandsResponse) Get() *GetCommandsResponse {
+	return v.value
+}
+
+func (v *NullableGetCommandsResponse) Set(val *GetCommandsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetCommandsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetCommandsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetCommandsResponse(val *GetCommandsResponse) *NullableGetCommandsResponse {
+	return &NullableGetCommandsResponse{value: val, isSet: true}
+}
+
+func (v NullableGetCommandsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetCommandsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,107 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the ApiInstallResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ApiInstallResponse{}
+
 // ApiInstallResponse struct for ApiInstallResponse
 type ApiInstallResponse struct {
 	Extension *ApiExtensionList `json:"extension,omitempty"`
+}
+
+// NewApiInstallResponse instantiates a new ApiInstallResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApiInstallResponse() *ApiInstallResponse {
+	this := ApiInstallResponse{}
+	return &this
+}
+
+// NewApiInstallResponseWithDefaults instantiates a new ApiInstallResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApiInstallResponseWithDefaults() *ApiInstallResponse {
+	this := ApiInstallResponse{}
+	return &this
+}
+
+// GetExtension returns the Extension field value if set, zero value otherwise.
+func (o *ApiInstallResponse) GetExtension() *ApiExtensionList {
+	if o == nil || IsNil(o.Extension) {
+		var ret *ApiExtensionList
+		return ret
+	}
+	return o.Extension
+}
+
+// GetExtensionOk returns a tuple with the Extension field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiInstallResponse) GetExtensionOk() (*ApiExtensionList, bool) {
+	if o == nil || IsNil(o.Extension) {
+		return nil, false
+	}
+	return o.Extension, true
+}
+
+// HasExtension returns a boolean if a field has been set.
+func (o *ApiInstallResponse) HasExtension() bool {
+	if o != nil && !IsNil(o.Extension) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtension gets a reference to the given ApiExtensionList and assigns it to the Extension field.
+func (o *ApiInstallResponse) SetExtension(v *ApiExtensionList) {
+	o.Extension = v
+}
+
+func (o ApiInstallResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Extension) {
+		toSerialize["extension"] = o.Extension
+	}
+	return toSerialize, nil
+}
+
+type NullableApiInstallResponse struct {
+	value *ApiInstallResponse
+	isSet bool
+}
+
+func (v NullableApiInstallResponse) Get() *ApiInstallResponse {
+	return v.value
+}
+
+func (v *NullableApiInstallResponse) Set(val *ApiInstallResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApiInstallResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApiInstallResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApiInstallResponse(val *ApiInstallResponse) *NullableApiInstallResponse {
+	return &NullableApiInstallResponse{value: val, isSet: true}
+}
+
+func (v NullableApiInstallResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableApiInstallResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

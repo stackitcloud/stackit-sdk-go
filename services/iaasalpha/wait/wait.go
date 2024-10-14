@@ -17,12 +17,24 @@ const (
 	ErrorStatus           = "ERROR"
 	ServerActiveStatus    = "ACTIVE"
 	ServerResizingStatus  = "RESIZING"
+
+	RequestCreateAction  = "CREATE"
+	RequestUpdateAction  = "UPDATE"
+	RequestDeleteAction  = "DELETE"
+	RequestCreatedStatus = "CREATED"
+	RequestUpdatedStatus = "UPDATED"
+	RequestDeletedStatus = "DELETED"
+	RequestFailedStatus  = "FAILED"
+
+	XRequestIDHeader = "X-Request-Id"
 )
 
 // Interfaces needed for tests
 type APIClientInterface interface {
 	GetVolumeExecute(ctx context.Context, projectId string, volumeId string) (*iaasalpha.Volume, error)
 	GetServerExecute(ctx context.Context, projectId string, serverId string) (*iaasalpha.Server, error)
+	GetProjectRequestExecute(ctx context.Context, projectId string, requestId string) (*iaasalpha.Request, error)
+	GetAttachedVolumeExecute(ctx context.Context, projectId string, serverId string, volumeId string) (*iaasalpha.VolumeAttachment, error)
 }
 
 // CreateVolumeWaitHandler will wait for volume creation
@@ -163,5 +175,119 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		return true, nil, nil
 	})
 	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// ProjectRequestWaitHandler will wait for a request to succeed.
+//
+// It receives a request ID that can be obtained from the "X-Request-Id" header in the HTTP response of any operation in the IaaS API.
+// To get this response header, use the "runtime.WithCaptureHTTPResponse" method from the "core" packaghe to get the raw HTTP response of an SDK operation.
+// Then, the value of the request ID can be obtained by accessing the header key which is defined in the constant "XRequestIDHeader" of this package.
+//
+// Example usage:
+//
+//	var httpResp *http.Response
+//	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
+//
+//	err = iaasalphaClient.AddPublicIpToServer(ctxWithHTTPResp, projectId, serverId, publicIpId).Execute()
+//
+//	requestId := httpResp.Header[wait.XRequestIDHeader][0]
+//	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())
+func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projectId, requestId string) *wait.AsyncActionHandler[iaasalpha.Request] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Request, err error) {
+		request, err := a.GetProjectRequestExecute(ctx, projectId, requestId)
+		if err != nil {
+			return false, request, err
+		}
+
+		if request == nil {
+			return false, nil, fmt.Errorf("request failed for request with id %s: nil response from GetProjectRequestExecute", requestId)
+		}
+
+		if request.RequestId == nil || request.RequestAction == nil || request.Status == nil {
+			return false, request, fmt.Errorf("request failed for request with id %s, the response is not valid: the id, the request action or the status are missing", requestId)
+		}
+
+		if *request.RequestId != requestId {
+			return false, request, fmt.Errorf("request failed for request with id %s: the response id doesn't match the request id", requestId)
+		}
+
+		switch *request.RequestAction {
+		case RequestCreateAction:
+			if *request.Status == RequestCreatedStatus {
+				return true, request, nil
+			}
+		case RequestUpdateAction:
+			if *request.Status == RequestUpdatedStatus {
+				return true, request, nil
+			}
+		case RequestDeleteAction:
+			if *request.Status == RequestDeletedStatus {
+				return true, request, nil
+			}
+		default:
+			return false, request, fmt.Errorf("request failed for request with id %s, the request action %s is not supported", requestId, *request.RequestAction)
+		}
+
+		if *request.Status == RequestFailedStatus {
+			return true, request, fmt.Errorf("request failed for request with id %s", requestId)
+		}
+
+		return false, request, nil
+	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// AddVolumeToServerWaitHandler will wait for a volume to be attached to a server
+func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId, volumeId string) *wait.AsyncActionHandler[iaasalpha.VolumeAttachment] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.VolumeAttachment, err error) {
+		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, serverId, volumeId)
+		if err == nil {
+			if volumeAttachment != nil {
+				if volumeAttachment.VolumeId == nil {
+					return false, volumeAttachment, fmt.Errorf("attachment failed for server with id %s and volume with id %s, the response is not valid: the volume id is missing", serverId, volumeId)
+				}
+				if *volumeAttachment.VolumeId == volumeId {
+					return true, volumeAttachment, nil
+				}
+			}
+			return false, nil, nil
+		}
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, volumeAttachment, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
+		}
+		if oapiErr.StatusCode != http.StatusNotFound {
+			return false, volumeAttachment, err
+		}
+		return false, nil, nil
+	})
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// RemoveVolumeFromServerWaitHandler will wait for a volume to be attached to a server
+func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId, volumeId string) *wait.AsyncActionHandler[iaasalpha.VolumeAttachment] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.VolumeAttachment, err error) {
+		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, serverId, volumeId)
+		if err == nil {
+			if volumeAttachment != nil {
+				if volumeAttachment.VolumeId == nil {
+					return false, volumeAttachment, fmt.Errorf("remove volume failed for server with id %s and volume with id %s, the response is not valid: the volume id is missing", serverId, volumeId)
+				}
+			}
+			return false, nil, nil
+		}
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, volumeAttachment, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
+		}
+		if oapiErr.StatusCode != http.StatusNotFound {
+			return false, volumeAttachment, err
+		}
+		return true, nil, nil
+	})
+	handler.SetTimeout(10 * time.Minute)
 	return handler
 }

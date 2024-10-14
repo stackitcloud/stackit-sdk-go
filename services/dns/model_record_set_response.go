@@ -10,9 +10,137 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the RecordSetResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RecordSetResponse{}
+
 // RecordSetResponse ResponseRRSet for rr set info.
 type RecordSetResponse struct {
 	Message *string `json:"message,omitempty"`
 	// REQUIRED
 	Rrset *RecordSet `json:"rrset"`
+}
+
+type _RecordSetResponse RecordSetResponse
+
+// NewRecordSetResponse instantiates a new RecordSetResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRecordSetResponse(rrset *RecordSet) *RecordSetResponse {
+	this := RecordSetResponse{}
+	this.Rrset = rrset
+	return &this
+}
+
+// NewRecordSetResponseWithDefaults instantiates a new RecordSetResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRecordSetResponseWithDefaults() *RecordSetResponse {
+	this := RecordSetResponse{}
+	return &this
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *RecordSetResponse) GetMessage() *string {
+	if o == nil || IsNil(o.Message) {
+		var ret *string
+		return ret
+	}
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecordSetResponse) GetMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.Message) {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *RecordSetResponse) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *RecordSetResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+// GetRrset returns the Rrset field value
+func (o *RecordSetResponse) GetRrset() *RecordSet {
+	if o == nil {
+		var ret *RecordSet
+		return ret
+	}
+
+	return o.Rrset
+}
+
+// GetRrsetOk returns a tuple with the Rrset field value
+// and a boolean to check if the value has been set.
+func (o *RecordSetResponse) GetRrsetOk() (*RecordSet, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Rrset, true
+}
+
+// SetRrset sets field value
+func (o *RecordSetResponse) SetRrset(v *RecordSet) {
+	o.Rrset = v
+}
+
+func (o RecordSetResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	toSerialize["rrset"] = o.Rrset
+	return toSerialize, nil
+}
+
+type NullableRecordSetResponse struct {
+	value *RecordSetResponse
+	isSet bool
+}
+
+func (v NullableRecordSetResponse) Get() *RecordSetResponse {
+	return v.value
+}
+
+func (v *NullableRecordSetResponse) Set(val *RecordSetResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRecordSetResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRecordSetResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRecordSetResponse(val *RecordSetResponse) *NullableRecordSetResponse {
+	return &NullableRecordSetResponse{value: val, isSet: true}
+}
+
+func (v NullableRecordSetResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRecordSetResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

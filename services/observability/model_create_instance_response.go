@@ -10,6 +10,13 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateInstanceResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateInstanceResponse{}
+
 // CreateInstanceResponse struct for CreateInstanceResponse
 type CreateInstanceResponse struct {
 	// REQUIRED
@@ -18,4 +25,142 @@ type CreateInstanceResponse struct {
 	InstanceId *string `json:"instanceId"`
 	// REQUIRED
 	Message *string `json:"message"`
+}
+
+type _CreateInstanceResponse CreateInstanceResponse
+
+// NewCreateInstanceResponse instantiates a new CreateInstanceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateInstanceResponse(dashboardUrl *string, instanceId *string, message *string) *CreateInstanceResponse {
+	this := CreateInstanceResponse{}
+	this.DashboardUrl = dashboardUrl
+	this.InstanceId = instanceId
+	this.Message = message
+	return &this
+}
+
+// NewCreateInstanceResponseWithDefaults instantiates a new CreateInstanceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateInstanceResponseWithDefaults() *CreateInstanceResponse {
+	this := CreateInstanceResponse{}
+	return &this
+}
+
+// GetDashboardUrl returns the DashboardUrl field value
+func (o *CreateInstanceResponse) GetDashboardUrl() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.DashboardUrl
+}
+
+// GetDashboardUrlOk returns a tuple with the DashboardUrl field value
+// and a boolean to check if the value has been set.
+func (o *CreateInstanceResponse) GetDashboardUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DashboardUrl, true
+}
+
+// SetDashboardUrl sets field value
+func (o *CreateInstanceResponse) SetDashboardUrl(v *string) {
+	o.DashboardUrl = v
+}
+
+// GetInstanceId returns the InstanceId field value
+func (o *CreateInstanceResponse) GetInstanceId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.InstanceId
+}
+
+// GetInstanceIdOk returns a tuple with the InstanceId field value
+// and a boolean to check if the value has been set.
+func (o *CreateInstanceResponse) GetInstanceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InstanceId, true
+}
+
+// SetInstanceId sets field value
+func (o *CreateInstanceResponse) SetInstanceId(v *string) {
+	o.InstanceId = v
+}
+
+// GetMessage returns the Message field value
+func (o *CreateInstanceResponse) GetMessage() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *CreateInstanceResponse) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// SetMessage sets field value
+func (o *CreateInstanceResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+func (o CreateInstanceResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["dashboardUrl"] = o.DashboardUrl
+	toSerialize["instanceId"] = o.InstanceId
+	toSerialize["message"] = o.Message
+	return toSerialize, nil
+}
+
+type NullableCreateInstanceResponse struct {
+	value *CreateInstanceResponse
+	isSet bool
+}
+
+func (v NullableCreateInstanceResponse) Get() *CreateInstanceResponse {
+	return v.value
+}
+
+func (v *NullableCreateInstanceResponse) Set(val *CreateInstanceResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateInstanceResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateInstanceResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateInstanceResponse(val *CreateInstanceResponse) *NullableCreateInstanceResponse {
+	return &NullableCreateInstanceResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateInstanceResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateInstanceResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

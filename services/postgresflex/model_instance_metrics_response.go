@@ -10,7 +10,107 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the InstanceMetricsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InstanceMetricsResponse{}
+
 // InstanceMetricsResponse struct for InstanceMetricsResponse
 type InstanceMetricsResponse struct {
 	Hosts *[]InstanceHost `json:"hosts,omitempty"`
+}
+
+// NewInstanceMetricsResponse instantiates a new InstanceMetricsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInstanceMetricsResponse() *InstanceMetricsResponse {
+	this := InstanceMetricsResponse{}
+	return &this
+}
+
+// NewInstanceMetricsResponseWithDefaults instantiates a new InstanceMetricsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInstanceMetricsResponseWithDefaults() *InstanceMetricsResponse {
+	this := InstanceMetricsResponse{}
+	return &this
+}
+
+// GetHosts returns the Hosts field value if set, zero value otherwise.
+func (o *InstanceMetricsResponse) GetHosts() *[]InstanceHost {
+	if o == nil || IsNil(o.Hosts) {
+		var ret *[]InstanceHost
+		return ret
+	}
+	return o.Hosts
+}
+
+// GetHostsOk returns a tuple with the Hosts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceMetricsResponse) GetHostsOk() (*[]InstanceHost, bool) {
+	if o == nil || IsNil(o.Hosts) {
+		return nil, false
+	}
+	return o.Hosts, true
+}
+
+// HasHosts returns a boolean if a field has been set.
+func (o *InstanceMetricsResponse) HasHosts() bool {
+	if o != nil && !IsNil(o.Hosts) {
+		return true
+	}
+
+	return false
+}
+
+// SetHosts gets a reference to the given []InstanceHost and assigns it to the Hosts field.
+func (o *InstanceMetricsResponse) SetHosts(v *[]InstanceHost) {
+	o.Hosts = v
+}
+
+func (o InstanceMetricsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Hosts) {
+		toSerialize["hosts"] = o.Hosts
+	}
+	return toSerialize, nil
+}
+
+type NullableInstanceMetricsResponse struct {
+	value *InstanceMetricsResponse
+	isSet bool
+}
+
+func (v NullableInstanceMetricsResponse) Get() *InstanceMetricsResponse {
+	return v.value
+}
+
+func (v *NullableInstanceMetricsResponse) Set(val *InstanceMetricsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceMetricsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceMetricsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceMetricsResponse(val *InstanceMetricsResponse) *NullableInstanceMetricsResponse {
+	return &NullableInstanceMetricsResponse{value: val, isSet: true}
+}
+
+func (v NullableInstanceMetricsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceMetricsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

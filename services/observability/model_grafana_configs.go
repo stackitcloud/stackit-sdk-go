@@ -10,6 +10,13 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the GrafanaConfigs type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GrafanaConfigs{}
+
 // GrafanaConfigs struct for GrafanaConfigs
 type GrafanaConfigs struct {
 	GenericOauth *GrafanaOauth `json:"genericOauth,omitempty"`
@@ -17,4 +24,195 @@ type GrafanaConfigs struct {
 	Message          *string `json:"message"`
 	PublicReadAccess *bool   `json:"publicReadAccess,omitempty"`
 	UseStackitSso    *bool   `json:"useStackitSso,omitempty"`
+}
+
+type _GrafanaConfigs GrafanaConfigs
+
+// NewGrafanaConfigs instantiates a new GrafanaConfigs object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGrafanaConfigs(message *string) *GrafanaConfigs {
+	this := GrafanaConfigs{}
+	this.Message = message
+	return &this
+}
+
+// NewGrafanaConfigsWithDefaults instantiates a new GrafanaConfigs object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGrafanaConfigsWithDefaults() *GrafanaConfigs {
+	this := GrafanaConfigs{}
+	return &this
+}
+
+// GetGenericOauth returns the GenericOauth field value if set, zero value otherwise.
+func (o *GrafanaConfigs) GetGenericOauth() *GrafanaOauth {
+	if o == nil || IsNil(o.GenericOauth) {
+		var ret *GrafanaOauth
+		return ret
+	}
+	return o.GenericOauth
+}
+
+// GetGenericOauthOk returns a tuple with the GenericOauth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GrafanaConfigs) GetGenericOauthOk() (*GrafanaOauth, bool) {
+	if o == nil || IsNil(o.GenericOauth) {
+		return nil, false
+	}
+	return o.GenericOauth, true
+}
+
+// HasGenericOauth returns a boolean if a field has been set.
+func (o *GrafanaConfigs) HasGenericOauth() bool {
+	if o != nil && !IsNil(o.GenericOauth) {
+		return true
+	}
+
+	return false
+}
+
+// SetGenericOauth gets a reference to the given GrafanaOauth and assigns it to the GenericOauth field.
+func (o *GrafanaConfigs) SetGenericOauth(v *GrafanaOauth) {
+	o.GenericOauth = v
+}
+
+// GetMessage returns the Message field value
+func (o *GrafanaConfigs) GetMessage() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *GrafanaConfigs) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// SetMessage sets field value
+func (o *GrafanaConfigs) SetMessage(v *string) {
+	o.Message = v
+}
+
+// GetPublicReadAccess returns the PublicReadAccess field value if set, zero value otherwise.
+func (o *GrafanaConfigs) GetPublicReadAccess() *bool {
+	if o == nil || IsNil(o.PublicReadAccess) {
+		var ret *bool
+		return ret
+	}
+	return o.PublicReadAccess
+}
+
+// GetPublicReadAccessOk returns a tuple with the PublicReadAccess field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GrafanaConfigs) GetPublicReadAccessOk() (*bool, bool) {
+	if o == nil || IsNil(o.PublicReadAccess) {
+		return nil, false
+	}
+	return o.PublicReadAccess, true
+}
+
+// HasPublicReadAccess returns a boolean if a field has been set.
+func (o *GrafanaConfigs) HasPublicReadAccess() bool {
+	if o != nil && !IsNil(o.PublicReadAccess) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicReadAccess gets a reference to the given bool and assigns it to the PublicReadAccess field.
+func (o *GrafanaConfigs) SetPublicReadAccess(v *bool) {
+	o.PublicReadAccess = v
+}
+
+// GetUseStackitSso returns the UseStackitSso field value if set, zero value otherwise.
+func (o *GrafanaConfigs) GetUseStackitSso() *bool {
+	if o == nil || IsNil(o.UseStackitSso) {
+		var ret *bool
+		return ret
+	}
+	return o.UseStackitSso
+}
+
+// GetUseStackitSsoOk returns a tuple with the UseStackitSso field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GrafanaConfigs) GetUseStackitSsoOk() (*bool, bool) {
+	if o == nil || IsNil(o.UseStackitSso) {
+		return nil, false
+	}
+	return o.UseStackitSso, true
+}
+
+// HasUseStackitSso returns a boolean if a field has been set.
+func (o *GrafanaConfigs) HasUseStackitSso() bool {
+	if o != nil && !IsNil(o.UseStackitSso) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseStackitSso gets a reference to the given bool and assigns it to the UseStackitSso field.
+func (o *GrafanaConfigs) SetUseStackitSso(v *bool) {
+	o.UseStackitSso = v
+}
+
+func (o GrafanaConfigs) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.GenericOauth) {
+		toSerialize["genericOauth"] = o.GenericOauth
+	}
+	toSerialize["message"] = o.Message
+	if !IsNil(o.PublicReadAccess) {
+		toSerialize["publicReadAccess"] = o.PublicReadAccess
+	}
+	if !IsNil(o.UseStackitSso) {
+		toSerialize["useStackitSso"] = o.UseStackitSso
+	}
+	return toSerialize, nil
+}
+
+type NullableGrafanaConfigs struct {
+	value *GrafanaConfigs
+	isSet bool
+}
+
+func (v NullableGrafanaConfigs) Get() *GrafanaConfigs {
+	return v.value
+}
+
+func (v *NullableGrafanaConfigs) Set(val *GrafanaConfigs) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGrafanaConfigs) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGrafanaConfigs) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGrafanaConfigs(val *GrafanaConfigs) *NullableGrafanaConfigs {
+	return &NullableGrafanaConfigs{value: val, isSet: true}
+}
+
+func (v NullableGrafanaConfigs) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGrafanaConfigs) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,107 @@ API version: 1.4.0
 
 package secretsmanager
 
+import (
+	"encoding/json"
+)
+
+// checks if the UpdateACLsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateACLsPayload{}
+
 // UpdateACLsPayload struct for UpdateACLsPayload
 type UpdateACLsPayload struct {
 	Cidrs *[]UpdateACLPayload `json:"cidrs,omitempty"`
+}
+
+// NewUpdateACLsPayload instantiates a new UpdateACLsPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateACLsPayload() *UpdateACLsPayload {
+	this := UpdateACLsPayload{}
+	return &this
+}
+
+// NewUpdateACLsPayloadWithDefaults instantiates a new UpdateACLsPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateACLsPayloadWithDefaults() *UpdateACLsPayload {
+	this := UpdateACLsPayload{}
+	return &this
+}
+
+// GetCidrs returns the Cidrs field value if set, zero value otherwise.
+func (o *UpdateACLsPayload) GetCidrs() *[]UpdateACLPayload {
+	if o == nil || IsNil(o.Cidrs) {
+		var ret *[]UpdateACLPayload
+		return ret
+	}
+	return o.Cidrs
+}
+
+// GetCidrsOk returns a tuple with the Cidrs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateACLsPayload) GetCidrsOk() (*[]UpdateACLPayload, bool) {
+	if o == nil || IsNil(o.Cidrs) {
+		return nil, false
+	}
+	return o.Cidrs, true
+}
+
+// HasCidrs returns a boolean if a field has been set.
+func (o *UpdateACLsPayload) HasCidrs() bool {
+	if o != nil && !IsNil(o.Cidrs) {
+		return true
+	}
+
+	return false
+}
+
+// SetCidrs gets a reference to the given []UpdateACLPayload and assigns it to the Cidrs field.
+func (o *UpdateACLsPayload) SetCidrs(v *[]UpdateACLPayload) {
+	o.Cidrs = v
+}
+
+func (o UpdateACLsPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Cidrs) {
+		toSerialize["cidrs"] = o.Cidrs
+	}
+	return toSerialize, nil
+}
+
+type NullableUpdateACLsPayload struct {
+	value *UpdateACLsPayload
+	isSet bool
+}
+
+func (v NullableUpdateACLsPayload) Get() *UpdateACLsPayload {
+	return v.value
+}
+
+func (v *NullableUpdateACLsPayload) Set(val *UpdateACLsPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateACLsPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateACLsPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateACLsPayload(val *UpdateACLsPayload) *NullableUpdateACLsPayload {
+	return &NullableUpdateACLsPayload{value: val, isSet: true}
+}
+
+func (v NullableUpdateACLsPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateACLsPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

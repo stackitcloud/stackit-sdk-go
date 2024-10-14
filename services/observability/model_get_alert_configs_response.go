@@ -10,10 +10,129 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the GetAlertConfigsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetAlertConfigsResponse{}
+
 // GetAlertConfigsResponse struct for GetAlertConfigsResponse
 type GetAlertConfigsResponse struct {
 	// REQUIRED
 	Data *Alert `json:"data"`
 	// REQUIRED
 	Message *string `json:"message"`
+}
+
+type _GetAlertConfigsResponse GetAlertConfigsResponse
+
+// NewGetAlertConfigsResponse instantiates a new GetAlertConfigsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetAlertConfigsResponse(data *Alert, message *string) *GetAlertConfigsResponse {
+	this := GetAlertConfigsResponse{}
+	this.Data = data
+	this.Message = message
+	return &this
+}
+
+// NewGetAlertConfigsResponseWithDefaults instantiates a new GetAlertConfigsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetAlertConfigsResponseWithDefaults() *GetAlertConfigsResponse {
+	this := GetAlertConfigsResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetAlertConfigsResponse) GetData() *Alert {
+	if o == nil {
+		var ret *Alert
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetAlertConfigsResponse) GetDataOk() (*Alert, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *GetAlertConfigsResponse) SetData(v *Alert) {
+	o.Data = v
+}
+
+// GetMessage returns the Message field value
+func (o *GetAlertConfigsResponse) GetMessage() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *GetAlertConfigsResponse) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// SetMessage sets field value
+func (o *GetAlertConfigsResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+func (o GetAlertConfigsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["data"] = o.Data
+	toSerialize["message"] = o.Message
+	return toSerialize, nil
+}
+
+type NullableGetAlertConfigsResponse struct {
+	value *GetAlertConfigsResponse
+	isSet bool
+}
+
+func (v NullableGetAlertConfigsResponse) Get() *GetAlertConfigsResponse {
+	return v.value
+}
+
+func (v *NullableGetAlertConfigsResponse) Set(val *GetAlertConfigsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetAlertConfigsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetAlertConfigsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetAlertConfigsResponse(val *GetAlertConfigsResponse) *NullableGetAlertConfigsResponse {
+	return &NullableGetAlertConfigsResponse{value: val, isSet: true}
+}
+
+func (v NullableGetAlertConfigsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetAlertConfigsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
