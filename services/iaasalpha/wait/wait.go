@@ -178,18 +178,23 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 	return handler
 }
 
-// ProjectRequestWaitHandler will wait for a request to succeed
-// It receives a request id that can be obtained from the x-request-id header in the http response of any operation in the IaaS API.
-// To get the raw http response of an operation using the SDK, use the runtime.WithCaptureHTTPResponse method from the core pkg.
-// Then the value of the request id can be obtained by accessing the header key which is defined in the constant XRequestIDHeader in this package.
+// ProjectRequestWaitHandler will wait for a request to succeed.
+// 
+// It receives a request ID that can be obtained from the "X-Request-Id" header in the HTTP response of any operation in the IaaS API. 
+// To get this response header, use the "runtime.WithCaptureHTTPResponse" method from the "core" packaghe to get the raw HTTP response of an SDK operation. 
+// Then, the value of the request ID can be obtained by accessing the header key which is defined in the constant "XRequestIDHeader" of this package.
+// 
 // Example usage:
 //
 //	var httpResp *http.Response
+// 
 //	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
+// 
 //	err = iaasalphaClient.AddPublicIpToServer(ctxWithHTTPResp, projectId, serverId, publicIpId).Execute()
+// 
 //	requestId := httpResp.Header[wait.XRequestIDHeader][0]
-//
-// _, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())
+// 
+//	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())
 func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projectId, requestId string) *wait.AsyncActionHandler[iaasalpha.Request] {
 	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Request, err error) {
 		request, err := a.GetProjectRequestExecute(ctx, projectId, requestId)
