@@ -25,7 +25,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	_, err = iaasalphaClient.AddVolumeToServer(context.Background(), projectId, serverId, volumeId).Execute()
+	payload := iaasalpha.AddVolumeToServerPayload{}
+	_, err = iaasalphaClient.AddVolumeToServer(context.Background(), projectId, serverId, volumeId).AddVolumeToServerPayload(payload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when calling `AddVolumeToServer`: %v\n", err)
 	} else {
