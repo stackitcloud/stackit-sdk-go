@@ -10,6 +10,13 @@ API version: 2.0
 
 package resourcemanager
 
+import (
+	"encoding/json"
+)
+
+// checks if the PartialUpdateProjectPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartialUpdateProjectPayload{}
+
 // PartialUpdateProjectPayload struct for PartialUpdateProjectPayload
 type PartialUpdateProjectPayload struct {
 	// New parent identifier for the resource container - containerId as well as UUID identifier is supported.
@@ -18,4 +25,167 @@ type PartialUpdateProjectPayload struct {
 	Labels *map[string]string `json:"labels,omitempty"`
 	// New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
 	Name *string `json:"name,omitempty"`
+}
+
+// NewPartialUpdateProjectPayload instantiates a new PartialUpdateProjectPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPartialUpdateProjectPayload() *PartialUpdateProjectPayload {
+	this := PartialUpdateProjectPayload{}
+	return &this
+}
+
+// NewPartialUpdateProjectPayloadWithDefaults instantiates a new PartialUpdateProjectPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPartialUpdateProjectPayloadWithDefaults() *PartialUpdateProjectPayload {
+	this := PartialUpdateProjectPayload{}
+	return &this
+}
+
+// GetContainerParentId returns the ContainerParentId field value if set, zero value otherwise.
+func (o *PartialUpdateProjectPayload) GetContainerParentId() *string {
+	if o == nil || IsNil(o.ContainerParentId) {
+		var ret *string
+		return ret
+	}
+	return o.ContainerParentId
+}
+
+// GetContainerParentIdOk returns a tuple with the ContainerParentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateProjectPayload) GetContainerParentIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ContainerParentId) {
+		return nil, false
+	}
+	return o.ContainerParentId, true
+}
+
+// HasContainerParentId returns a boolean if a field has been set.
+func (o *PartialUpdateProjectPayload) HasContainerParentId() bool {
+	if o != nil && !IsNil(o.ContainerParentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetContainerParentId gets a reference to the given string and assigns it to the ContainerParentId field.
+func (o *PartialUpdateProjectPayload) SetContainerParentId(v *string) {
+	o.ContainerParentId = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *PartialUpdateProjectPayload) GetLabels() *map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateProjectPayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *PartialUpdateProjectPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *PartialUpdateProjectPayload) SetLabels(v *map[string]string) {
+	o.Labels = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PartialUpdateProjectPayload) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateProjectPayload) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PartialUpdateProjectPayload) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PartialUpdateProjectPayload) SetName(v *string) {
+	o.Name = v
+}
+
+func (o PartialUpdateProjectPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ContainerParentId) {
+		toSerialize["containerParentId"] = o.ContainerParentId
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
+}
+
+type NullablePartialUpdateProjectPayload struct {
+	value *PartialUpdateProjectPayload
+	isSet bool
+}
+
+func (v NullablePartialUpdateProjectPayload) Get() *PartialUpdateProjectPayload {
+	return v.value
+}
+
+func (v *NullablePartialUpdateProjectPayload) Set(val *PartialUpdateProjectPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateProjectPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateProjectPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateProjectPayload(val *PartialUpdateProjectPayload) *NullablePartialUpdateProjectPayload {
+	return &NullablePartialUpdateProjectPayload{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateProjectPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateProjectPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
