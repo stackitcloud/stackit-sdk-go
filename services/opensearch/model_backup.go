@@ -10,6 +10,13 @@ API version: 1.1.0
 
 package opensearch
 
+import (
+	"encoding/json"
+)
+
+// checks if the Backup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Backup{}
+
 // Backup struct for Backup
 type Backup struct {
 	Downloadable *bool `json:"downloadable,omitempty"`
@@ -21,4 +28,247 @@ type Backup struct {
 	// REQUIRED
 	Status      *string `json:"status"`
 	TriggeredAt *string `json:"triggered_at,omitempty"`
+}
+
+type _Backup Backup
+
+// NewBackup instantiates a new Backup object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBackup(finishedAt *string, id *int64, status *string) *Backup {
+	this := Backup{}
+	this.FinishedAt = finishedAt
+	this.Id = id
+	this.Status = status
+	return &this
+}
+
+// NewBackupWithDefaults instantiates a new Backup object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBackupWithDefaults() *Backup {
+	this := Backup{}
+	return &this
+}
+
+// GetDownloadable returns the Downloadable field value if set, zero value otherwise.
+func (o *Backup) GetDownloadable() *bool {
+	if o == nil || IsNil(o.Downloadable) {
+		var ret *bool
+		return ret
+	}
+	return o.Downloadable
+}
+
+// GetDownloadableOk returns a tuple with the Downloadable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetDownloadableOk() (*bool, bool) {
+	if o == nil || IsNil(o.Downloadable) {
+		return nil, false
+	}
+	return o.Downloadable, true
+}
+
+// HasDownloadable returns a boolean if a field has been set.
+func (o *Backup) HasDownloadable() bool {
+	if o != nil && !IsNil(o.Downloadable) {
+		return true
+	}
+
+	return false
+}
+
+// SetDownloadable gets a reference to the given bool and assigns it to the Downloadable field.
+func (o *Backup) SetDownloadable(v *bool) {
+	o.Downloadable = v
+}
+
+// GetFinishedAt returns the FinishedAt field value
+func (o *Backup) GetFinishedAt() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.FinishedAt
+}
+
+// GetFinishedAtOk returns a tuple with the FinishedAt field value
+// and a boolean to check if the value has been set.
+func (o *Backup) GetFinishedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FinishedAt, true
+}
+
+// SetFinishedAt sets field value
+func (o *Backup) SetFinishedAt(v *string) {
+	o.FinishedAt = v
+}
+
+// GetId returns the Id field value
+func (o *Backup) GetId() *int64 {
+	if o == nil {
+		var ret *int64
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Backup) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// SetId sets field value
+func (o *Backup) SetId(v *int64) {
+	o.Id = v
+}
+
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *Backup) GetSize() *int64 {
+	if o == nil || IsNil(o.Size) {
+		var ret *int64
+		return ret
+	}
+	return o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetSizeOk() (*int64, bool) {
+	if o == nil || IsNil(o.Size) {
+		return nil, false
+	}
+	return o.Size, true
+}
+
+// HasSize returns a boolean if a field has been set.
+func (o *Backup) HasSize() bool {
+	if o != nil && !IsNil(o.Size) {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *Backup) SetSize(v *int64) {
+	o.Size = v
+}
+
+// GetStatus returns the Status field value
+func (o *Backup) GetStatus() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *Backup) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// SetStatus sets field value
+func (o *Backup) SetStatus(v *string) {
+	o.Status = v
+}
+
+// GetTriggeredAt returns the TriggeredAt field value if set, zero value otherwise.
+func (o *Backup) GetTriggeredAt() *string {
+	if o == nil || IsNil(o.TriggeredAt) {
+		var ret *string
+		return ret
+	}
+	return o.TriggeredAt
+}
+
+// GetTriggeredAtOk returns a tuple with the TriggeredAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetTriggeredAtOk() (*string, bool) {
+	if o == nil || IsNil(o.TriggeredAt) {
+		return nil, false
+	}
+	return o.TriggeredAt, true
+}
+
+// HasTriggeredAt returns a boolean if a field has been set.
+func (o *Backup) HasTriggeredAt() bool {
+	if o != nil && !IsNil(o.TriggeredAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggeredAt gets a reference to the given string and assigns it to the TriggeredAt field.
+func (o *Backup) SetTriggeredAt(v *string) {
+	o.TriggeredAt = v
+}
+
+func (o Backup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Downloadable) {
+		toSerialize["downloadable"] = o.Downloadable
+	}
+	toSerialize["finished_at"] = o.FinishedAt
+	toSerialize["id"] = o.Id
+	if !IsNil(o.Size) {
+		toSerialize["size"] = o.Size
+	}
+	toSerialize["status"] = o.Status
+	if !IsNil(o.TriggeredAt) {
+		toSerialize["triggered_at"] = o.TriggeredAt
+	}
+	return toSerialize, nil
+}
+
+type NullableBackup struct {
+	value *Backup
+	isSet bool
+}
+
+func (v NullableBackup) Get() *Backup {
+	return v.value
+}
+
+func (v *NullableBackup) Set(val *Backup) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBackup) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBackup) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBackup(val *Backup) *NullableBackup {
+	return &NullableBackup{value: val, isSet: true}
+}
+
+func (v NullableBackup) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableBackup) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
