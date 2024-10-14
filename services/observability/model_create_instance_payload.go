@@ -10,6 +10,13 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateInstancePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateInstancePayload{}
+
 // CreateInstancePayload Create update instance body.
 type CreateInstancePayload struct {
 	// Name of the service
@@ -19,4 +26,160 @@ type CreateInstancePayload struct {
 	// uuid of the plan to create/update
 	// REQUIRED
 	PlanId *string `json:"planId"`
+}
+
+type _CreateInstancePayload CreateInstancePayload
+
+// NewCreateInstancePayload instantiates a new CreateInstancePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateInstancePayload(planId *string) *CreateInstancePayload {
+	this := CreateInstancePayload{}
+	this.PlanId = planId
+	return &this
+}
+
+// NewCreateInstancePayloadWithDefaults instantiates a new CreateInstancePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateInstancePayloadWithDefaults() *CreateInstancePayload {
+	this := CreateInstancePayload{}
+	return &this
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *CreateInstancePayload) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateInstancePayload) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *CreateInstancePayload) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *CreateInstancePayload) SetName(v *string) {
+	o.Name = v
+}
+
+// GetParameter returns the Parameter field value if set, zero value otherwise.
+func (o *CreateInstancePayload) GetParameter() *map[string]interface{} {
+	if o == nil || IsNil(o.Parameter) {
+		var ret *map[string]interface{}
+		return ret
+	}
+	return o.Parameter
+}
+
+// GetParameterOk returns a tuple with the Parameter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateInstancePayload) GetParameterOk() (*map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Parameter) {
+		return &map[string]interface{}{}, false
+	}
+	return o.Parameter, true
+}
+
+// HasParameter returns a boolean if a field has been set.
+func (o *CreateInstancePayload) HasParameter() bool {
+	if o != nil && !IsNil(o.Parameter) {
+		return true
+	}
+
+	return false
+}
+
+// SetParameter gets a reference to the given map[string]interface{} and assigns it to the Parameter field.
+func (o *CreateInstancePayload) SetParameter(v *map[string]interface{}) {
+	o.Parameter = v
+}
+
+// GetPlanId returns the PlanId field value
+func (o *CreateInstancePayload) GetPlanId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.PlanId
+}
+
+// GetPlanIdOk returns a tuple with the PlanId field value
+// and a boolean to check if the value has been set.
+func (o *CreateInstancePayload) GetPlanIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PlanId, true
+}
+
+// SetPlanId sets field value
+func (o *CreateInstancePayload) SetPlanId(v *string) {
+	o.PlanId = v
+}
+
+func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Parameter) {
+		toSerialize["parameter"] = o.Parameter
+	}
+	toSerialize["planId"] = o.PlanId
+	return toSerialize, nil
+}
+
+type NullableCreateInstancePayload struct {
+	value *CreateInstancePayload
+	isSet bool
+}
+
+func (v NullableCreateInstancePayload) Get() *CreateInstancePayload {
+	return v.value
+}
+
+func (v *NullableCreateInstancePayload) Set(val *CreateInstancePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateInstancePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateInstancePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateInstancePayload(val *CreateInstancePayload) *NullableCreateInstancePayload {
+	return &NullableCreateInstancePayload{value: val, isSet: true}
+}
+
+func (v NullableCreateInstancePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateInstancePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

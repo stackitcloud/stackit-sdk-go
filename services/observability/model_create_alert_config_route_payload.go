@@ -10,6 +10,13 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateAlertConfigRoutePayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateAlertConfigRoutePayload{}
+
 // CreateAlertConfigRoutePayload The root node of the routing tree.
 type CreateAlertConfigRoutePayload struct {
 	// The labels by which incoming alerts are grouped together. For example, multiple alerts coming in for cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels use the special value '...' as the sole label name, for example: group_by: ['...']. This effectively disables aggregation entirely, passing through all alerts as-is. This is unlikely to be what you want, unless you have a very low alert volume or your upstream notification system performs its own grouping.
@@ -31,4 +38,382 @@ type CreateAlertConfigRoutePayload struct {
 	RepeatInterval *string `json:"repeatInterval,omitempty"`
 	// Zero or more child routes.
 	Routes *[]CreateAlertConfigRoutePayloadRoutesInner `json:"routes,omitempty"`
+}
+
+type _CreateAlertConfigRoutePayload CreateAlertConfigRoutePayload
+
+// NewCreateAlertConfigRoutePayload instantiates a new CreateAlertConfigRoutePayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateAlertConfigRoutePayload(receiver *string) *CreateAlertConfigRoutePayload {
+	this := CreateAlertConfigRoutePayload{}
+	var groupInterval string = "5m"
+	this.GroupInterval = &groupInterval
+	var groupWait string = "30s"
+	this.GroupWait = &groupWait
+	this.Receiver = receiver
+	var repeatInterval string = "4h"
+	this.RepeatInterval = &repeatInterval
+	return &this
+}
+
+// NewCreateAlertConfigRoutePayloadWithDefaults instantiates a new CreateAlertConfigRoutePayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateAlertConfigRoutePayloadWithDefaults() *CreateAlertConfigRoutePayload {
+	this := CreateAlertConfigRoutePayload{}
+	var groupInterval string = "5m"
+	this.GroupInterval = &groupInterval
+	var groupWait string = "30s"
+	this.GroupWait = &groupWait
+	var repeatInterval string = "4h"
+	this.RepeatInterval = &repeatInterval
+	return &this
+}
+
+// GetGroupBy returns the GroupBy field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayload) GetGroupBy() *[]string {
+	if o == nil || IsNil(o.GroupBy) {
+		var ret *[]string
+		return ret
+	}
+	return o.GroupBy
+}
+
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayload) GetGroupByOk() (*[]string, bool) {
+	if o == nil || IsNil(o.GroupBy) {
+		return nil, false
+	}
+	return o.GroupBy, true
+}
+
+// HasGroupBy returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayload) HasGroupBy() bool {
+	if o != nil && !IsNil(o.GroupBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
+func (o *CreateAlertConfigRoutePayload) SetGroupBy(v *[]string) {
+	o.GroupBy = v
+}
+
+// GetGroupInterval returns the GroupInterval field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayload) GetGroupInterval() *string {
+	if o == nil || IsNil(o.GroupInterval) {
+		var ret *string
+		return ret
+	}
+	return o.GroupInterval
+}
+
+// GetGroupIntervalOk returns a tuple with the GroupInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayload) GetGroupIntervalOk() (*string, bool) {
+	if o == nil || IsNil(o.GroupInterval) {
+		return nil, false
+	}
+	return o.GroupInterval, true
+}
+
+// HasGroupInterval returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayload) HasGroupInterval() bool {
+	if o != nil && !IsNil(o.GroupInterval) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupInterval gets a reference to the given string and assigns it to the GroupInterval field.
+func (o *CreateAlertConfigRoutePayload) SetGroupInterval(v *string) {
+	o.GroupInterval = v
+}
+
+// GetGroupWait returns the GroupWait field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayload) GetGroupWait() *string {
+	if o == nil || IsNil(o.GroupWait) {
+		var ret *string
+		return ret
+	}
+	return o.GroupWait
+}
+
+// GetGroupWaitOk returns a tuple with the GroupWait field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayload) GetGroupWaitOk() (*string, bool) {
+	if o == nil || IsNil(o.GroupWait) {
+		return nil, false
+	}
+	return o.GroupWait, true
+}
+
+// HasGroupWait returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayload) HasGroupWait() bool {
+	if o != nil && !IsNil(o.GroupWait) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupWait gets a reference to the given string and assigns it to the GroupWait field.
+func (o *CreateAlertConfigRoutePayload) SetGroupWait(v *string) {
+	o.GroupWait = v
+}
+
+// GetMatch returns the Match field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayload) GetMatch() *map[string]interface{} {
+	if o == nil || IsNil(o.Match) {
+		var ret *map[string]interface{}
+		return ret
+	}
+	return o.Match
+}
+
+// GetMatchOk returns a tuple with the Match field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayload) GetMatchOk() (*map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Match) {
+		return &map[string]interface{}{}, false
+	}
+	return o.Match, true
+}
+
+// HasMatch returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayload) HasMatch() bool {
+	if o != nil && !IsNil(o.Match) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatch gets a reference to the given map[string]interface{} and assigns it to the Match field.
+func (o *CreateAlertConfigRoutePayload) SetMatch(v *map[string]interface{}) {
+	o.Match = v
+}
+
+// GetMatchRe returns the MatchRe field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayload) GetMatchRe() *map[string]interface{} {
+	if o == nil || IsNil(o.MatchRe) {
+		var ret *map[string]interface{}
+		return ret
+	}
+	return o.MatchRe
+}
+
+// GetMatchReOk returns a tuple with the MatchRe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayload) GetMatchReOk() (*map[string]interface{}, bool) {
+	if o == nil || IsNil(o.MatchRe) {
+		return &map[string]interface{}{}, false
+	}
+	return o.MatchRe, true
+}
+
+// HasMatchRe returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayload) HasMatchRe() bool {
+	if o != nil && !IsNil(o.MatchRe) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatchRe gets a reference to the given map[string]interface{} and assigns it to the MatchRe field.
+func (o *CreateAlertConfigRoutePayload) SetMatchRe(v *map[string]interface{}) {
+	o.MatchRe = v
+}
+
+// GetMatchers returns the Matchers field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayload) GetMatchers() *[]string {
+	if o == nil || IsNil(o.Matchers) {
+		var ret *[]string
+		return ret
+	}
+	return o.Matchers
+}
+
+// GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayload) GetMatchersOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Matchers) {
+		return nil, false
+	}
+	return o.Matchers, true
+}
+
+// HasMatchers returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayload) HasMatchers() bool {
+	if o != nil && !IsNil(o.Matchers) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatchers gets a reference to the given []string and assigns it to the Matchers field.
+func (o *CreateAlertConfigRoutePayload) SetMatchers(v *[]string) {
+	o.Matchers = v
+}
+
+// GetReceiver returns the Receiver field value
+func (o *CreateAlertConfigRoutePayload) GetReceiver() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Receiver
+}
+
+// GetReceiverOk returns a tuple with the Receiver field value
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayload) GetReceiverOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Receiver, true
+}
+
+// SetReceiver sets field value
+func (o *CreateAlertConfigRoutePayload) SetReceiver(v *string) {
+	o.Receiver = v
+}
+
+// GetRepeatInterval returns the RepeatInterval field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayload) GetRepeatInterval() *string {
+	if o == nil || IsNil(o.RepeatInterval) {
+		var ret *string
+		return ret
+	}
+	return o.RepeatInterval
+}
+
+// GetRepeatIntervalOk returns a tuple with the RepeatInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayload) GetRepeatIntervalOk() (*string, bool) {
+	if o == nil || IsNil(o.RepeatInterval) {
+		return nil, false
+	}
+	return o.RepeatInterval, true
+}
+
+// HasRepeatInterval returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayload) HasRepeatInterval() bool {
+	if o != nil && !IsNil(o.RepeatInterval) {
+		return true
+	}
+
+	return false
+}
+
+// SetRepeatInterval gets a reference to the given string and assigns it to the RepeatInterval field.
+func (o *CreateAlertConfigRoutePayload) SetRepeatInterval(v *string) {
+	o.RepeatInterval = v
+}
+
+// GetRoutes returns the Routes field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayload) GetRoutes() *[]CreateAlertConfigRoutePayloadRoutesInner {
+	if o == nil || IsNil(o.Routes) {
+		var ret *[]CreateAlertConfigRoutePayloadRoutesInner
+		return ret
+	}
+	return o.Routes
+}
+
+// GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayload) GetRoutesOk() (*[]CreateAlertConfigRoutePayloadRoutesInner, bool) {
+	if o == nil || IsNil(o.Routes) {
+		return nil, false
+	}
+	return o.Routes, true
+}
+
+// HasRoutes returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayload) HasRoutes() bool {
+	if o != nil && !IsNil(o.Routes) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoutes gets a reference to the given []CreateAlertConfigRoutePayloadRoutesInner and assigns it to the Routes field.
+func (o *CreateAlertConfigRoutePayload) SetRoutes(v *[]CreateAlertConfigRoutePayloadRoutesInner) {
+	o.Routes = v
+}
+
+func (o CreateAlertConfigRoutePayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.GroupBy) {
+		toSerialize["groupBy"] = o.GroupBy
+	}
+	if !IsNil(o.GroupInterval) {
+		toSerialize["groupInterval"] = o.GroupInterval
+	}
+	if !IsNil(o.GroupWait) {
+		toSerialize["groupWait"] = o.GroupWait
+	}
+	if !IsNil(o.Match) {
+		toSerialize["match"] = o.Match
+	}
+	if !IsNil(o.MatchRe) {
+		toSerialize["matchRe"] = o.MatchRe
+	}
+	if !IsNil(o.Matchers) {
+		toSerialize["matchers"] = o.Matchers
+	}
+	toSerialize["receiver"] = o.Receiver
+	if !IsNil(o.RepeatInterval) {
+		toSerialize["repeatInterval"] = o.RepeatInterval
+	}
+	if !IsNil(o.Routes) {
+		toSerialize["routes"] = o.Routes
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateAlertConfigRoutePayload struct {
+	value *CreateAlertConfigRoutePayload
+	isSet bool
+}
+
+func (v NullableCreateAlertConfigRoutePayload) Get() *CreateAlertConfigRoutePayload {
+	return v.value
+}
+
+func (v *NullableCreateAlertConfigRoutePayload) Set(val *CreateAlertConfigRoutePayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateAlertConfigRoutePayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateAlertConfigRoutePayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateAlertConfigRoutePayload(val *CreateAlertConfigRoutePayload) *NullableCreateAlertConfigRoutePayload {
+	return &NullableCreateAlertConfigRoutePayload{value: val, isSet: true}
+}
+
+func (v NullableCreateAlertConfigRoutePayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateAlertConfigRoutePayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,9 +10,102 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the UpdateACLPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateACLPayload{}
+
 // UpdateACLPayload List of cidr. Send empty string to remove acl.
 type UpdateACLPayload struct {
 	// list of cidr
 	// REQUIRED
 	Acl *[]string `json:"acl"`
+}
+
+type _UpdateACLPayload UpdateACLPayload
+
+// NewUpdateACLPayload instantiates a new UpdateACLPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateACLPayload(acl *[]string) *UpdateACLPayload {
+	this := UpdateACLPayload{}
+	this.Acl = acl
+	return &this
+}
+
+// NewUpdateACLPayloadWithDefaults instantiates a new UpdateACLPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateACLPayloadWithDefaults() *UpdateACLPayload {
+	this := UpdateACLPayload{}
+	return &this
+}
+
+// GetAcl returns the Acl field value
+func (o *UpdateACLPayload) GetAcl() *[]string {
+	if o == nil {
+		var ret *[]string
+		return ret
+	}
+
+	return o.Acl
+}
+
+// GetAclOk returns a tuple with the Acl field value
+// and a boolean to check if the value has been set.
+func (o *UpdateACLPayload) GetAclOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Acl, true
+}
+
+// SetAcl sets field value
+func (o *UpdateACLPayload) SetAcl(v *[]string) {
+	o.Acl = v
+}
+
+func (o UpdateACLPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["acl"] = o.Acl
+	return toSerialize, nil
+}
+
+type NullableUpdateACLPayload struct {
+	value *UpdateACLPayload
+	isSet bool
+}
+
+func (v NullableUpdateACLPayload) Get() *UpdateACLPayload {
+	return v.value
+}
+
+func (v *NullableUpdateACLPayload) Set(val *UpdateACLPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateACLPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateACLPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateACLPayload(val *UpdateACLPayload) *NullableUpdateACLPayload {
+	return &NullableUpdateACLPayload{value: val, isSet: true}
+}
+
+func (v NullableUpdateACLPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateACLPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

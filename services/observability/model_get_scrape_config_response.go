@@ -10,10 +10,129 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the GetScrapeConfigResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetScrapeConfigResponse{}
+
 // GetScrapeConfigResponse struct for GetScrapeConfigResponse
 type GetScrapeConfigResponse struct {
 	// REQUIRED
 	Data *Job `json:"data"`
 	// REQUIRED
 	Message *string `json:"message"`
+}
+
+type _GetScrapeConfigResponse GetScrapeConfigResponse
+
+// NewGetScrapeConfigResponse instantiates a new GetScrapeConfigResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetScrapeConfigResponse(data *Job, message *string) *GetScrapeConfigResponse {
+	this := GetScrapeConfigResponse{}
+	this.Data = data
+	this.Message = message
+	return &this
+}
+
+// NewGetScrapeConfigResponseWithDefaults instantiates a new GetScrapeConfigResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetScrapeConfigResponseWithDefaults() *GetScrapeConfigResponse {
+	this := GetScrapeConfigResponse{}
+	return &this
+}
+
+// GetData returns the Data field value
+func (o *GetScrapeConfigResponse) GetData() *Job {
+	if o == nil {
+		var ret *Job
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *GetScrapeConfigResponse) GetDataOk() (*Job, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// SetData sets field value
+func (o *GetScrapeConfigResponse) SetData(v *Job) {
+	o.Data = v
+}
+
+// GetMessage returns the Message field value
+func (o *GetScrapeConfigResponse) GetMessage() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *GetScrapeConfigResponse) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// SetMessage sets field value
+func (o *GetScrapeConfigResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+func (o GetScrapeConfigResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["data"] = o.Data
+	toSerialize["message"] = o.Message
+	return toSerialize, nil
+}
+
+type NullableGetScrapeConfigResponse struct {
+	value *GetScrapeConfigResponse
+	isSet bool
+}
+
+func (v NullableGetScrapeConfigResponse) Get() *GetScrapeConfigResponse {
+	return v.value
+}
+
+func (v *NullableGetScrapeConfigResponse) Set(val *GetScrapeConfigResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetScrapeConfigResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetScrapeConfigResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetScrapeConfigResponse(val *GetScrapeConfigResponse) *NullableGetScrapeConfigResponse {
+	return &NullableGetScrapeConfigResponse{value: val, isSet: true}
+}
+
+func (v NullableGetScrapeConfigResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetScrapeConfigResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
