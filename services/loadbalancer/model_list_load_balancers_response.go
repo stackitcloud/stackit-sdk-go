@@ -10,9 +10,144 @@ API version: 1.7.2
 
 package loadbalancer
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListLoadBalancersResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListLoadBalancersResponse{}
+
 // ListLoadBalancersResponse struct for ListLoadBalancersResponse
 type ListLoadBalancersResponse struct {
 	LoadBalancers *[]LoadBalancer `json:"loadBalancers,omitempty"`
 	// Continue token from the ListLoadBalancerResponse with Limit option
 	NextPageId *string `json:"nextPageId,omitempty"`
+}
+
+// NewListLoadBalancersResponse instantiates a new ListLoadBalancersResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListLoadBalancersResponse() *ListLoadBalancersResponse {
+	this := ListLoadBalancersResponse{}
+	return &this
+}
+
+// NewListLoadBalancersResponseWithDefaults instantiates a new ListLoadBalancersResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListLoadBalancersResponseWithDefaults() *ListLoadBalancersResponse {
+	this := ListLoadBalancersResponse{}
+	return &this
+}
+
+// GetLoadBalancers returns the LoadBalancers field value if set, zero value otherwise.
+func (o *ListLoadBalancersResponse) GetLoadBalancers() *[]LoadBalancer {
+	if o == nil || IsNil(o.LoadBalancers) {
+		var ret *[]LoadBalancer
+		return ret
+	}
+	return o.LoadBalancers
+}
+
+// GetLoadBalancersOk returns a tuple with the LoadBalancers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListLoadBalancersResponse) GetLoadBalancersOk() (*[]LoadBalancer, bool) {
+	if o == nil || IsNil(o.LoadBalancers) {
+		return nil, false
+	}
+	return o.LoadBalancers, true
+}
+
+// HasLoadBalancers returns a boolean if a field has been set.
+func (o *ListLoadBalancersResponse) HasLoadBalancers() bool {
+	if o != nil && !IsNil(o.LoadBalancers) {
+		return true
+	}
+
+	return false
+}
+
+// SetLoadBalancers gets a reference to the given []LoadBalancer and assigns it to the LoadBalancers field.
+func (o *ListLoadBalancersResponse) SetLoadBalancers(v *[]LoadBalancer) {
+	o.LoadBalancers = v
+}
+
+// GetNextPageId returns the NextPageId field value if set, zero value otherwise.
+func (o *ListLoadBalancersResponse) GetNextPageId() *string {
+	if o == nil || IsNil(o.NextPageId) {
+		var ret *string
+		return ret
+	}
+	return o.NextPageId
+}
+
+// GetNextPageIdOk returns a tuple with the NextPageId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListLoadBalancersResponse) GetNextPageIdOk() (*string, bool) {
+	if o == nil || IsNil(o.NextPageId) {
+		return nil, false
+	}
+	return o.NextPageId, true
+}
+
+// HasNextPageId returns a boolean if a field has been set.
+func (o *ListLoadBalancersResponse) HasNextPageId() bool {
+	if o != nil && !IsNil(o.NextPageId) {
+		return true
+	}
+
+	return false
+}
+
+// SetNextPageId gets a reference to the given string and assigns it to the NextPageId field.
+func (o *ListLoadBalancersResponse) SetNextPageId(v *string) {
+	o.NextPageId = v
+}
+
+func (o ListLoadBalancersResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LoadBalancers) {
+		toSerialize["loadBalancers"] = o.LoadBalancers
+	}
+	if !IsNil(o.NextPageId) {
+		toSerialize["nextPageId"] = o.NextPageId
+	}
+	return toSerialize, nil
+}
+
+type NullableListLoadBalancersResponse struct {
+	value *ListLoadBalancersResponse
+	isSet bool
+}
+
+func (v NullableListLoadBalancersResponse) Get() *ListLoadBalancersResponse {
+	return v.value
+}
+
+func (v *NullableListLoadBalancersResponse) Set(val *ListLoadBalancersResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListLoadBalancersResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListLoadBalancersResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListLoadBalancersResponse(val *ListLoadBalancersResponse) *NullableListLoadBalancersResponse {
+	return &NullableListLoadBalancersResponse{value: val, isSet: true}
+}
+
+func (v NullableListLoadBalancersResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListLoadBalancersResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

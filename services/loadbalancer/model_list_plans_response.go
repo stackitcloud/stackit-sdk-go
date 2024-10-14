@@ -10,7 +10,107 @@ API version: 1.7.2
 
 package loadbalancer
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListPlansResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListPlansResponse{}
+
 // ListPlansResponse struct for ListPlansResponse
 type ListPlansResponse struct {
 	ValidPlans *[]PlanDetails `json:"validPlans,omitempty"`
+}
+
+// NewListPlansResponse instantiates a new ListPlansResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListPlansResponse() *ListPlansResponse {
+	this := ListPlansResponse{}
+	return &this
+}
+
+// NewListPlansResponseWithDefaults instantiates a new ListPlansResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListPlansResponseWithDefaults() *ListPlansResponse {
+	this := ListPlansResponse{}
+	return &this
+}
+
+// GetValidPlans returns the ValidPlans field value if set, zero value otherwise.
+func (o *ListPlansResponse) GetValidPlans() *[]PlanDetails {
+	if o == nil || IsNil(o.ValidPlans) {
+		var ret *[]PlanDetails
+		return ret
+	}
+	return o.ValidPlans
+}
+
+// GetValidPlansOk returns a tuple with the ValidPlans field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListPlansResponse) GetValidPlansOk() (*[]PlanDetails, bool) {
+	if o == nil || IsNil(o.ValidPlans) {
+		return nil, false
+	}
+	return o.ValidPlans, true
+}
+
+// HasValidPlans returns a boolean if a field has been set.
+func (o *ListPlansResponse) HasValidPlans() bool {
+	if o != nil && !IsNil(o.ValidPlans) {
+		return true
+	}
+
+	return false
+}
+
+// SetValidPlans gets a reference to the given []PlanDetails and assigns it to the ValidPlans field.
+func (o *ListPlansResponse) SetValidPlans(v *[]PlanDetails) {
+	o.ValidPlans = v
+}
+
+func (o ListPlansResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ValidPlans) {
+		toSerialize["validPlans"] = o.ValidPlans
+	}
+	return toSerialize, nil
+}
+
+type NullableListPlansResponse struct {
+	value *ListPlansResponse
+	isSet bool
+}
+
+func (v NullableListPlansResponse) Get() *ListPlansResponse {
+	return v.value
+}
+
+func (v *NullableListPlansResponse) Set(val *ListPlansResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListPlansResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListPlansResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListPlansResponse(val *ListPlansResponse) *NullableListPlansResponse {
+	return &NullableListPlansResponse{value: val, isSet: true}
+}
+
+func (v NullableListPlansResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListPlansResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
