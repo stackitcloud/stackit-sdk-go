@@ -13,7 +13,7 @@
   - **Feature:** Filter networks by labels using the new `LabelSelector` method on `ApiListNetworksRequest`
 - `loadbalancer`: [v0.16.0](services/loadbalancer/CHANGELOG.md#v0160-2024-10-11)
   - **Feature:** Add pagination to `ListLoadBalancers` with the new fields `pageSize` and `pageId` on `ApiListLoadBalancersRequest` and the field `NextPageId` in `ListLoadBalancersResponse`
-- `authorization`: [v0.4.0](services/authorization/CHANGELOG.md#v050-2024-10-14)
+- `authorization`: [v0.4.0](services/authorization/CHANGELOG.md#v040-2024-10-14)
   - **Feature:** Add support for nullable models
   - **Feature:** New method `ListUserPermissions`
 - `dns`: [v0.11.0](services/dns/CHANGELOG.md#v0110-2024-10-14)
