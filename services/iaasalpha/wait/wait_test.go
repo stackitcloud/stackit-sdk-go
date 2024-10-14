@@ -15,7 +15,9 @@ type apiClientMocked struct {
 	getVolumeFails         bool
 	getServerFails         bool
 	getProjectRequestFails bool
+	getAttachedVolumeFails bool
 	isDeleted              bool
+	isAttached             bool
 	resourceState          string
 	requestAction          string
 	returnResizing         bool
@@ -78,6 +80,25 @@ func (a *apiClientMocked) GetProjectRequestExecute(_ context.Context, _, _ strin
 		RequestId:     utils.Ptr("rid"),
 		RequestAction: &a.requestAction,
 		Status:        &a.resourceState,
+	}, nil
+}
+
+func (a *apiClientMocked) GetAttachedVolumeExecute(_ context.Context, _, _, _ string) (*iaasalpha.VolumeAttachment, error) {
+	if a.getAttachedVolumeFails {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 500,
+		}
+	}
+
+	if !a.isAttached {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 404,
+		}
+	}
+
+	return &iaasalpha.VolumeAttachment{
+		ServerId: utils.Ptr("sid"),
+		VolumeId: utils.Ptr("vid"),
 	}, nil
 }
 
@@ -495,6 +516,122 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 			}
 
 			handler := ProjectRequestWaitHandler(context.Background(), apiClient, "pid", "rid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestAddVolumeToServerWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc       string
+		getFails   bool
+		isAttached bool
+		wantErr    bool
+		wantResp   bool
+	}{
+		{
+			desc:       "attachment_succeeded",
+			getFails:   false,
+			isAttached: true,
+			wantErr:    false,
+			wantResp:   true,
+		},
+		{
+			desc:     "get_fails",
+			getFails: true,
+			wantErr:  true,
+			wantResp: false,
+		},
+		{
+			desc:       "timeout",
+			getFails:   false,
+			isAttached: false,
+			wantErr:    true,
+			wantResp:   false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getAttachedVolumeFails: tt.getFails,
+				isAttached:             tt.isAttached,
+			}
+
+			var wantRes *iaasalpha.VolumeAttachment
+			if tt.wantResp {
+				wantRes = &iaasalpha.VolumeAttachment{
+					ServerId: utils.Ptr("sid"),
+					VolumeId: utils.Ptr("vid"),
+				}
+			}
+
+			handler := AddVolumeToServerWaitHandler(context.Background(), apiClient, "pid", "sid", "vid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestRemoveVolumeFromServerWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc       string
+		getFails   bool
+		isAttached bool
+		wantErr    bool
+		wantResp   bool
+	}{
+		{
+			desc:       "removal_succeeded",
+			getFails:   false,
+			isAttached: false,
+			wantErr:    false,
+			wantResp:   false,
+		},
+		{
+			desc:     "get_fails",
+			getFails: true,
+			wantErr:  true,
+			wantResp: false,
+		},
+		{
+			desc:       "timeout",
+			getFails:   false,
+			isAttached: true,
+			wantErr:    true,
+			wantResp:   false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getAttachedVolumeFails: tt.getFails,
+				isAttached:             tt.isAttached,
+			}
+
+			var wantRes *iaasalpha.VolumeAttachment
+			if tt.wantResp {
+				wantRes = &iaasalpha.VolumeAttachment{
+					ServerId: utils.Ptr("sid"),
+					VolumeId: utils.Ptr("vid"),
+				}
+			}
+
+			handler := RemoveVolumeFromServerWaitHandler(context.Background(), apiClient, "pid", "sid", "vid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 

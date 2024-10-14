@@ -34,6 +34,7 @@ type APIClientInterface interface {
 	GetVolumeExecute(ctx context.Context, projectId string, volumeId string) (*iaasalpha.Volume, error)
 	GetServerExecute(ctx context.Context, projectId string, serverId string) (*iaasalpha.Server, error)
 	GetProjectRequestExecute(ctx context.Context, projectId string, requestId string) (*iaasalpha.Request, error)
+	GetAttachedVolumeExecute(ctx context.Context, projectId string, serverId string, volumeId string) (*iaasalpha.VolumeAttachment, error)
 }
 
 // CreateVolumeWaitHandler will wait for volume creation
@@ -232,5 +233,58 @@ func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projec
 		return false, request, nil
 	})
 	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// AddVolumeToServerWaitHandler will wait for a volume to be attached to a server
+func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId, volumeId string) *wait.AsyncActionHandler[iaasalpha.VolumeAttachment] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.VolumeAttachment, err error) {
+		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, serverId, volumeId)
+		if err == nil {
+			if volumeAttachment != nil {
+				if volumeAttachment.VolumeId == nil {
+					return false, volumeAttachment, fmt.Errorf("attachment failed for server with id %s and volume with id %s, the response is not valid: the volume id is missing", serverId, volumeId)
+				}
+				if *volumeAttachment.VolumeId == volumeId {
+					return true, volumeAttachment, nil
+				}
+			}
+			return false, nil, nil
+		}
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, volumeAttachment, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
+		}
+		if oapiErr.StatusCode != http.StatusNotFound {
+			return false, volumeAttachment, err
+		}
+		return false, nil, nil
+	})
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// RemoveVolumeFromServerWaitHandler will wait for a volume to be attached to a server
+func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId, volumeId string) *wait.AsyncActionHandler[iaasalpha.VolumeAttachment] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.VolumeAttachment, err error) {
+		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, serverId, volumeId)
+		if err == nil {
+			if volumeAttachment != nil {
+				if volumeAttachment.VolumeId == nil {
+					return false, volumeAttachment, fmt.Errorf("remove volume failed for server with id %s and volume with id %s, the response is not valid: the volume id is missing", serverId, volumeId)
+				}
+			}
+			return false, nil, nil
+		}
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, volumeAttachment, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
+		}
+		if oapiErr.StatusCode != http.StatusNotFound {
+			return false, volumeAttachment, err
+		}
+		return true, nil, nil
+	})
+	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
