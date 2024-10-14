@@ -10,6 +10,13 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the InhibitRules type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InhibitRules{}
+
 // InhibitRules struct for InhibitRules
 type InhibitRules struct {
 	Equal          *[]string          `json:"equal,omitempty"`
@@ -19,4 +26,307 @@ type InhibitRules struct {
 	TargetMatch    *map[string]string `json:"targetMatch,omitempty"`
 	TargetMatchRe  *map[string]string `json:"targetMatchRe,omitempty"`
 	TargetMatchers *[]string          `json:"targetMatchers,omitempty"`
+}
+
+// NewInhibitRules instantiates a new InhibitRules object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInhibitRules() *InhibitRules {
+	this := InhibitRules{}
+	return &this
+}
+
+// NewInhibitRulesWithDefaults instantiates a new InhibitRules object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInhibitRulesWithDefaults() *InhibitRules {
+	this := InhibitRules{}
+	return &this
+}
+
+// GetEqual returns the Equal field value if set, zero value otherwise.
+func (o *InhibitRules) GetEqual() *[]string {
+	if o == nil || IsNil(o.Equal) {
+		var ret *[]string
+		return ret
+	}
+	return o.Equal
+}
+
+// GetEqualOk returns a tuple with the Equal field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InhibitRules) GetEqualOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Equal) {
+		return nil, false
+	}
+	return o.Equal, true
+}
+
+// HasEqual returns a boolean if a field has been set.
+func (o *InhibitRules) HasEqual() bool {
+	if o != nil && !IsNil(o.Equal) {
+		return true
+	}
+
+	return false
+}
+
+// SetEqual gets a reference to the given []string and assigns it to the Equal field.
+func (o *InhibitRules) SetEqual(v *[]string) {
+	o.Equal = v
+}
+
+// GetSourceMatch returns the SourceMatch field value if set, zero value otherwise.
+func (o *InhibitRules) GetSourceMatch() *map[string]string {
+	if o == nil || IsNil(o.SourceMatch) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.SourceMatch
+}
+
+// GetSourceMatchOk returns a tuple with the SourceMatch field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InhibitRules) GetSourceMatchOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.SourceMatch) {
+		return nil, false
+	}
+	return o.SourceMatch, true
+}
+
+// HasSourceMatch returns a boolean if a field has been set.
+func (o *InhibitRules) HasSourceMatch() bool {
+	if o != nil && !IsNil(o.SourceMatch) {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceMatch gets a reference to the given map[string]string and assigns it to the SourceMatch field.
+func (o *InhibitRules) SetSourceMatch(v *map[string]string) {
+	o.SourceMatch = v
+}
+
+// GetSourceMatchRe returns the SourceMatchRe field value if set, zero value otherwise.
+func (o *InhibitRules) GetSourceMatchRe() *map[string]string {
+	if o == nil || IsNil(o.SourceMatchRe) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.SourceMatchRe
+}
+
+// GetSourceMatchReOk returns a tuple with the SourceMatchRe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InhibitRules) GetSourceMatchReOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.SourceMatchRe) {
+		return nil, false
+	}
+	return o.SourceMatchRe, true
+}
+
+// HasSourceMatchRe returns a boolean if a field has been set.
+func (o *InhibitRules) HasSourceMatchRe() bool {
+	if o != nil && !IsNil(o.SourceMatchRe) {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceMatchRe gets a reference to the given map[string]string and assigns it to the SourceMatchRe field.
+func (o *InhibitRules) SetSourceMatchRe(v *map[string]string) {
+	o.SourceMatchRe = v
+}
+
+// GetSourceMatchers returns the SourceMatchers field value if set, zero value otherwise.
+func (o *InhibitRules) GetSourceMatchers() *[]string {
+	if o == nil || IsNil(o.SourceMatchers) {
+		var ret *[]string
+		return ret
+	}
+	return o.SourceMatchers
+}
+
+// GetSourceMatchersOk returns a tuple with the SourceMatchers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InhibitRules) GetSourceMatchersOk() (*[]string, bool) {
+	if o == nil || IsNil(o.SourceMatchers) {
+		return nil, false
+	}
+	return o.SourceMatchers, true
+}
+
+// HasSourceMatchers returns a boolean if a field has been set.
+func (o *InhibitRules) HasSourceMatchers() bool {
+	if o != nil && !IsNil(o.SourceMatchers) {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceMatchers gets a reference to the given []string and assigns it to the SourceMatchers field.
+func (o *InhibitRules) SetSourceMatchers(v *[]string) {
+	o.SourceMatchers = v
+}
+
+// GetTargetMatch returns the TargetMatch field value if set, zero value otherwise.
+func (o *InhibitRules) GetTargetMatch() *map[string]string {
+	if o == nil || IsNil(o.TargetMatch) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.TargetMatch
+}
+
+// GetTargetMatchOk returns a tuple with the TargetMatch field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InhibitRules) GetTargetMatchOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.TargetMatch) {
+		return nil, false
+	}
+	return o.TargetMatch, true
+}
+
+// HasTargetMatch returns a boolean if a field has been set.
+func (o *InhibitRules) HasTargetMatch() bool {
+	if o != nil && !IsNil(o.TargetMatch) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetMatch gets a reference to the given map[string]string and assigns it to the TargetMatch field.
+func (o *InhibitRules) SetTargetMatch(v *map[string]string) {
+	o.TargetMatch = v
+}
+
+// GetTargetMatchRe returns the TargetMatchRe field value if set, zero value otherwise.
+func (o *InhibitRules) GetTargetMatchRe() *map[string]string {
+	if o == nil || IsNil(o.TargetMatchRe) {
+		var ret *map[string]string
+		return ret
+	}
+	return o.TargetMatchRe
+}
+
+// GetTargetMatchReOk returns a tuple with the TargetMatchRe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InhibitRules) GetTargetMatchReOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.TargetMatchRe) {
+		return nil, false
+	}
+	return o.TargetMatchRe, true
+}
+
+// HasTargetMatchRe returns a boolean if a field has been set.
+func (o *InhibitRules) HasTargetMatchRe() bool {
+	if o != nil && !IsNil(o.TargetMatchRe) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetMatchRe gets a reference to the given map[string]string and assigns it to the TargetMatchRe field.
+func (o *InhibitRules) SetTargetMatchRe(v *map[string]string) {
+	o.TargetMatchRe = v
+}
+
+// GetTargetMatchers returns the TargetMatchers field value if set, zero value otherwise.
+func (o *InhibitRules) GetTargetMatchers() *[]string {
+	if o == nil || IsNil(o.TargetMatchers) {
+		var ret *[]string
+		return ret
+	}
+	return o.TargetMatchers
+}
+
+// GetTargetMatchersOk returns a tuple with the TargetMatchers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InhibitRules) GetTargetMatchersOk() (*[]string, bool) {
+	if o == nil || IsNil(o.TargetMatchers) {
+		return nil, false
+	}
+	return o.TargetMatchers, true
+}
+
+// HasTargetMatchers returns a boolean if a field has been set.
+func (o *InhibitRules) HasTargetMatchers() bool {
+	if o != nil && !IsNil(o.TargetMatchers) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetMatchers gets a reference to the given []string and assigns it to the TargetMatchers field.
+func (o *InhibitRules) SetTargetMatchers(v *[]string) {
+	o.TargetMatchers = v
+}
+
+func (o InhibitRules) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Equal) {
+		toSerialize["equal"] = o.Equal
+	}
+	if !IsNil(o.SourceMatch) {
+		toSerialize["sourceMatch"] = o.SourceMatch
+	}
+	if !IsNil(o.SourceMatchRe) {
+		toSerialize["sourceMatchRe"] = o.SourceMatchRe
+	}
+	if !IsNil(o.SourceMatchers) {
+		toSerialize["sourceMatchers"] = o.SourceMatchers
+	}
+	if !IsNil(o.TargetMatch) {
+		toSerialize["targetMatch"] = o.TargetMatch
+	}
+	if !IsNil(o.TargetMatchRe) {
+		toSerialize["targetMatchRe"] = o.TargetMatchRe
+	}
+	if !IsNil(o.TargetMatchers) {
+		toSerialize["targetMatchers"] = o.TargetMatchers
+	}
+	return toSerialize, nil
+}
+
+type NullableInhibitRules struct {
+	value *InhibitRules
+	isSet bool
+}
+
+func (v NullableInhibitRules) Get() *InhibitRules {
+	return v.value
+}
+
+func (v *NullableInhibitRules) Set(val *InhibitRules) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInhibitRules) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInhibitRules) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInhibitRules(val *InhibitRules) *NullableInhibitRules {
+	return &NullableInhibitRules{value: val, isSet: true}
+}
+
+func (v NullableInhibitRules) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInhibitRules) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,107 @@ API version: 1.0.0
 
 package sqlserverflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the GetInstanceResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetInstanceResponse{}
+
 // GetInstanceResponse struct for GetInstanceResponse
 type GetInstanceResponse struct {
 	Item *Instance `json:"item,omitempty"`
+}
+
+// NewGetInstanceResponse instantiates a new GetInstanceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetInstanceResponse() *GetInstanceResponse {
+	this := GetInstanceResponse{}
+	return &this
+}
+
+// NewGetInstanceResponseWithDefaults instantiates a new GetInstanceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetInstanceResponseWithDefaults() *GetInstanceResponse {
+	this := GetInstanceResponse{}
+	return &this
+}
+
+// GetItem returns the Item field value if set, zero value otherwise.
+func (o *GetInstanceResponse) GetItem() *Instance {
+	if o == nil || IsNil(o.Item) {
+		var ret *Instance
+		return ret
+	}
+	return o.Item
+}
+
+// GetItemOk returns a tuple with the Item field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetInstanceResponse) GetItemOk() (*Instance, bool) {
+	if o == nil || IsNil(o.Item) {
+		return nil, false
+	}
+	return o.Item, true
+}
+
+// HasItem returns a boolean if a field has been set.
+func (o *GetInstanceResponse) HasItem() bool {
+	if o != nil && !IsNil(o.Item) {
+		return true
+	}
+
+	return false
+}
+
+// SetItem gets a reference to the given Instance and assigns it to the Item field.
+func (o *GetInstanceResponse) SetItem(v *Instance) {
+	o.Item = v
+}
+
+func (o GetInstanceResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Item) {
+		toSerialize["item"] = o.Item
+	}
+	return toSerialize, nil
+}
+
+type NullableGetInstanceResponse struct {
+	value *GetInstanceResponse
+	isSet bool
+}
+
+func (v NullableGetInstanceResponse) Get() *GetInstanceResponse {
+	return v.value
+}
+
+func (v *NullableGetInstanceResponse) Set(val *GetInstanceResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetInstanceResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetInstanceResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetInstanceResponse(val *GetInstanceResponse) *NullableGetInstanceResponse {
+	return &NullableGetInstanceResponse{value: val, isSet: true}
+}
+
+func (v NullableGetInstanceResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetInstanceResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

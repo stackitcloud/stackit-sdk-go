@@ -15,6 +15,7 @@
   - **Feature:** Add pagination to `ListLoadBalancers` with the new fields `pageSize` and `pageId` on `ApiListLoadBalancersRequest` and the field `NextPageId` in `ListLoadBalancersResponse`
 - `authorization`: [v0.4.0](services/authorization/CHANGELOG.md#v050-2024-10-14)
   - **Feature:** Add support for nullable models
+  - **Feature:** New method `ListUserPermissions`
 - `dns`: [v0.11.0](services/dns/CHANGELOG.md#v0110-2024-10-14)
   - **Feature:** Add support for nullable models
 - `iaas`: [v0.12.0](services/iaas/CHANGELOG.md#v0120-2024-10-14)

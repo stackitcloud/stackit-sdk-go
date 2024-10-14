@@ -1,3 +1,7 @@
+## v0.17.0 (2024-10-14)
+
+- **Feature:** Add support for nullable models
+
 ## v0.16.0 (2024-10-11)
 
 - **Feature:** Add pagination to `ListLoadBalancers` with the new fields `pageSize` and `pageId` on `ApiListLoadBalancersRequest` and the field `NextPageId` in `ListLoadBalancersResponse`

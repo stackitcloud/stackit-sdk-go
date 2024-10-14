@@ -10,7 +10,107 @@ API version: 1.0.0
 
 package mongodbflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the HandlersInstancesGetInstanceResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HandlersInstancesGetInstanceResponse{}
+
 // HandlersInstancesGetInstanceResponse struct for HandlersInstancesGetInstanceResponse
 type HandlersInstancesGetInstanceResponse struct {
 	Item *Instance `json:"item,omitempty"`
+}
+
+// NewHandlersInstancesGetInstanceResponse instantiates a new HandlersInstancesGetInstanceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHandlersInstancesGetInstanceResponse() *HandlersInstancesGetInstanceResponse {
+	this := HandlersInstancesGetInstanceResponse{}
+	return &this
+}
+
+// NewHandlersInstancesGetInstanceResponseWithDefaults instantiates a new HandlersInstancesGetInstanceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHandlersInstancesGetInstanceResponseWithDefaults() *HandlersInstancesGetInstanceResponse {
+	this := HandlersInstancesGetInstanceResponse{}
+	return &this
+}
+
+// GetItem returns the Item field value if set, zero value otherwise.
+func (o *HandlersInstancesGetInstanceResponse) GetItem() *Instance {
+	if o == nil || IsNil(o.Item) {
+		var ret *Instance
+		return ret
+	}
+	return o.Item
+}
+
+// GetItemOk returns a tuple with the Item field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HandlersInstancesGetInstanceResponse) GetItemOk() (*Instance, bool) {
+	if o == nil || IsNil(o.Item) {
+		return nil, false
+	}
+	return o.Item, true
+}
+
+// HasItem returns a boolean if a field has been set.
+func (o *HandlersInstancesGetInstanceResponse) HasItem() bool {
+	if o != nil && !IsNil(o.Item) {
+		return true
+	}
+
+	return false
+}
+
+// SetItem gets a reference to the given Instance and assigns it to the Item field.
+func (o *HandlersInstancesGetInstanceResponse) SetItem(v *Instance) {
+	o.Item = v
+}
+
+func (o HandlersInstancesGetInstanceResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Item) {
+		toSerialize["item"] = o.Item
+	}
+	return toSerialize, nil
+}
+
+type NullableHandlersInstancesGetInstanceResponse struct {
+	value *HandlersInstancesGetInstanceResponse
+	isSet bool
+}
+
+func (v NullableHandlersInstancesGetInstanceResponse) Get() *HandlersInstancesGetInstanceResponse {
+	return v.value
+}
+
+func (v *NullableHandlersInstancesGetInstanceResponse) Set(val *HandlersInstancesGetInstanceResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHandlersInstancesGetInstanceResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableHandlersInstancesGetInstanceResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHandlersInstancesGetInstanceResponse(val *HandlersInstancesGetInstanceResponse) *NullableHandlersInstancesGetInstanceResponse {
+	return &NullableHandlersInstancesGetInstanceResponse{value: val, isSet: true}
+}
+
+func (v NullableHandlersInstancesGetInstanceResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableHandlersInstancesGetInstanceResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

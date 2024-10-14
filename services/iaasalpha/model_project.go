@@ -11,8 +11,12 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"encoding/json"
 	"time"
 )
+
+// checks if the Project type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Project{}
 
 // Project Object that represents a STACKIT project.
 type Project struct {
@@ -31,4 +35,282 @@ type Project struct {
 	State *string `json:"state"`
 	// Date-time when resource was last updated.
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+}
+
+type _Project Project
+
+// NewProject instantiates a new Project object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewProject(areaId *AreaId, projectId *string, state *string) *Project {
+	this := Project{}
+	this.AreaId = areaId
+	this.ProjectId = projectId
+	this.State = state
+	return &this
+}
+
+// NewProjectWithDefaults instantiates a new Project object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewProjectWithDefaults() *Project {
+	this := Project{}
+	return &this
+}
+
+// GetAreaId returns the AreaId field value
+func (o *Project) GetAreaId() *AreaId {
+	if o == nil {
+		var ret *AreaId
+		return ret
+	}
+
+	return o.AreaId
+}
+
+// GetAreaIdOk returns a tuple with the AreaId field value
+// and a boolean to check if the value has been set.
+func (o *Project) GetAreaIdOk() (*AreaId, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AreaId, true
+}
+
+// SetAreaId sets field value
+func (o *Project) SetAreaId(v *AreaId) {
+	o.AreaId = v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *Project) GetCreatedAt() *time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Project) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *Project) SetCreatedAt(v *time.Time) {
+	o.CreatedAt = v
+}
+
+// GetInternetAccess returns the InternetAccess field value if set, zero value otherwise.
+func (o *Project) GetInternetAccess() *bool {
+	if o == nil || IsNil(o.InternetAccess) {
+		var ret *bool
+		return ret
+	}
+	return o.InternetAccess
+}
+
+// GetInternetAccessOk returns a tuple with the InternetAccess field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetInternetAccessOk() (*bool, bool) {
+	if o == nil || IsNil(o.InternetAccess) {
+		return nil, false
+	}
+	return o.InternetAccess, true
+}
+
+// HasInternetAccess returns a boolean if a field has been set.
+func (o *Project) HasInternetAccess() bool {
+	if o != nil && !IsNil(o.InternetAccess) {
+		return true
+	}
+
+	return false
+}
+
+// SetInternetAccess gets a reference to the given bool and assigns it to the InternetAccess field.
+func (o *Project) SetInternetAccess(v *bool) {
+	o.InternetAccess = v
+}
+
+// GetOpenstackProjectId returns the OpenstackProjectId field value if set, zero value otherwise.
+func (o *Project) GetOpenstackProjectId() *string {
+	if o == nil || IsNil(o.OpenstackProjectId) {
+		var ret *string
+		return ret
+	}
+	return o.OpenstackProjectId
+}
+
+// GetOpenstackProjectIdOk returns a tuple with the OpenstackProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetOpenstackProjectIdOk() (*string, bool) {
+	if o == nil || IsNil(o.OpenstackProjectId) {
+		return nil, false
+	}
+	return o.OpenstackProjectId, true
+}
+
+// HasOpenstackProjectId returns a boolean if a field has been set.
+func (o *Project) HasOpenstackProjectId() bool {
+	if o != nil && !IsNil(o.OpenstackProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetOpenstackProjectId gets a reference to the given string and assigns it to the OpenstackProjectId field.
+func (o *Project) SetOpenstackProjectId(v *string) {
+	o.OpenstackProjectId = v
+}
+
+// GetProjectId returns the ProjectId field value
+func (o *Project) GetProjectId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value
+// and a boolean to check if the value has been set.
+func (o *Project) GetProjectIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ProjectId, true
+}
+
+// SetProjectId sets field value
+func (o *Project) SetProjectId(v *string) {
+	o.ProjectId = v
+}
+
+// GetState returns the State field value
+func (o *Project) GetState() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *Project) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// SetState sets field value
+func (o *Project) SetState(v *string) {
+	o.State = v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Project) GetUpdatedAt() *time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Project) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Project) SetUpdatedAt(v *time.Time) {
+	o.UpdatedAt = v
+}
+
+func (o Project) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["areaId"] = o.AreaId
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.InternetAccess) {
+		toSerialize["internetAccess"] = o.InternetAccess
+	}
+	if !IsNil(o.OpenstackProjectId) {
+		toSerialize["openstackProjectId"] = o.OpenstackProjectId
+	}
+	toSerialize["projectId"] = o.ProjectId
+	toSerialize["state"] = o.State
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+	return toSerialize, nil
+}
+
+type NullableProject struct {
+	value *Project
+	isSet bool
+}
+
+func (v NullableProject) Get() *Project {
+	return v.value
+}
+
+func (v *NullableProject) Set(val *Project) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProject) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProject) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableProject(val *Project) *NullableProject {
+	return &NullableProject{value: val, isSet: true}
+}
+
+func (v NullableProject) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableProject) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

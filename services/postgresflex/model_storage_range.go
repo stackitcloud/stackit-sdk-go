@@ -10,8 +10,143 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the StorageRange type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StorageRange{}
+
 // StorageRange struct for StorageRange
 type StorageRange struct {
 	Max *int64 `json:"max,omitempty"`
 	Min *int64 `json:"min,omitempty"`
+}
+
+// NewStorageRange instantiates a new StorageRange object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewStorageRange() *StorageRange {
+	this := StorageRange{}
+	return &this
+}
+
+// NewStorageRangeWithDefaults instantiates a new StorageRange object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewStorageRangeWithDefaults() *StorageRange {
+	this := StorageRange{}
+	return &this
+}
+
+// GetMax returns the Max field value if set, zero value otherwise.
+func (o *StorageRange) GetMax() *int64 {
+	if o == nil || IsNil(o.Max) {
+		var ret *int64
+		return ret
+	}
+	return o.Max
+}
+
+// GetMaxOk returns a tuple with the Max field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageRange) GetMaxOk() (*int64, bool) {
+	if o == nil || IsNil(o.Max) {
+		return nil, false
+	}
+	return o.Max, true
+}
+
+// HasMax returns a boolean if a field has been set.
+func (o *StorageRange) HasMax() bool {
+	if o != nil && !IsNil(o.Max) {
+		return true
+	}
+
+	return false
+}
+
+// SetMax gets a reference to the given int64 and assigns it to the Max field.
+func (o *StorageRange) SetMax(v *int64) {
+	o.Max = v
+}
+
+// GetMin returns the Min field value if set, zero value otherwise.
+func (o *StorageRange) GetMin() *int64 {
+	if o == nil || IsNil(o.Min) {
+		var ret *int64
+		return ret
+	}
+	return o.Min
+}
+
+// GetMinOk returns a tuple with the Min field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageRange) GetMinOk() (*int64, bool) {
+	if o == nil || IsNil(o.Min) {
+		return nil, false
+	}
+	return o.Min, true
+}
+
+// HasMin returns a boolean if a field has been set.
+func (o *StorageRange) HasMin() bool {
+	if o != nil && !IsNil(o.Min) {
+		return true
+	}
+
+	return false
+}
+
+// SetMin gets a reference to the given int64 and assigns it to the Min field.
+func (o *StorageRange) SetMin(v *int64) {
+	o.Min = v
+}
+
+func (o StorageRange) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Max) {
+		toSerialize["max"] = o.Max
+	}
+	if !IsNil(o.Min) {
+		toSerialize["min"] = o.Min
+	}
+	return toSerialize, nil
+}
+
+type NullableStorageRange struct {
+	value *StorageRange
+	isSet bool
+}
+
+func (v NullableStorageRange) Get() *StorageRange {
+	return v.value
+}
+
+func (v *NullableStorageRange) Set(val *StorageRange) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStorageRange) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStorageRange) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableStorageRange(val *StorageRange) *NullableStorageRange {
+	return &NullableStorageRange{value: val, isSet: true}
+}
+
+func (v NullableStorageRange) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableStorageRange) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

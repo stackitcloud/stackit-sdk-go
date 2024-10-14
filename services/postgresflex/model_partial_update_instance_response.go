@@ -10,7 +10,107 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the PartialUpdateInstanceResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PartialUpdateInstanceResponse{}
+
 // PartialUpdateInstanceResponse struct for PartialUpdateInstanceResponse
 type PartialUpdateInstanceResponse struct {
 	Item *Instance `json:"item,omitempty"`
+}
+
+// NewPartialUpdateInstanceResponse instantiates a new PartialUpdateInstanceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPartialUpdateInstanceResponse() *PartialUpdateInstanceResponse {
+	this := PartialUpdateInstanceResponse{}
+	return &this
+}
+
+// NewPartialUpdateInstanceResponseWithDefaults instantiates a new PartialUpdateInstanceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPartialUpdateInstanceResponseWithDefaults() *PartialUpdateInstanceResponse {
+	this := PartialUpdateInstanceResponse{}
+	return &this
+}
+
+// GetItem returns the Item field value if set, zero value otherwise.
+func (o *PartialUpdateInstanceResponse) GetItem() *Instance {
+	if o == nil || IsNil(o.Item) {
+		var ret *Instance
+		return ret
+	}
+	return o.Item
+}
+
+// GetItemOk returns a tuple with the Item field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateInstanceResponse) GetItemOk() (*Instance, bool) {
+	if o == nil || IsNil(o.Item) {
+		return nil, false
+	}
+	return o.Item, true
+}
+
+// HasItem returns a boolean if a field has been set.
+func (o *PartialUpdateInstanceResponse) HasItem() bool {
+	if o != nil && !IsNil(o.Item) {
+		return true
+	}
+
+	return false
+}
+
+// SetItem gets a reference to the given Instance and assigns it to the Item field.
+func (o *PartialUpdateInstanceResponse) SetItem(v *Instance) {
+	o.Item = v
+}
+
+func (o PartialUpdateInstanceResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Item) {
+		toSerialize["item"] = o.Item
+	}
+	return toSerialize, nil
+}
+
+type NullablePartialUpdateInstanceResponse struct {
+	value *PartialUpdateInstanceResponse
+	isSet bool
+}
+
+func (v NullablePartialUpdateInstanceResponse) Get() *PartialUpdateInstanceResponse {
+	return v.value
+}
+
+func (v *NullablePartialUpdateInstanceResponse) Set(val *PartialUpdateInstanceResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateInstanceResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateInstanceResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateInstanceResponse(val *PartialUpdateInstanceResponse) *NullablePartialUpdateInstanceResponse {
+	return &NullablePartialUpdateInstanceResponse{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateInstanceResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateInstanceResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

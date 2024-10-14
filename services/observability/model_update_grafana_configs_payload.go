@@ -10,6 +10,13 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the UpdateGrafanaConfigsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateGrafanaConfigsPayload{}
+
 // UpdateGrafanaConfigsPayload Sending any of the attributes results in a set of the attribute and overwrites any previous configuration.
 type UpdateGrafanaConfigsPayload struct {
 	GenericOauth *UpdateGrafanaConfigsPayloadGenericOauth `json:"genericOauth,omitempty"`
@@ -17,4 +24,167 @@ type UpdateGrafanaConfigsPayload struct {
 	PublicReadAccess *bool `json:"publicReadAccess,omitempty"`
 	// If it's true, it overwrites the current genericOauth config and configures STACKIT SSO for this instance.
 	UseStackitSso *bool `json:"useStackitSso,omitempty"`
+}
+
+// NewUpdateGrafanaConfigsPayload instantiates a new UpdateGrafanaConfigsPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateGrafanaConfigsPayload() *UpdateGrafanaConfigsPayload {
+	this := UpdateGrafanaConfigsPayload{}
+	return &this
+}
+
+// NewUpdateGrafanaConfigsPayloadWithDefaults instantiates a new UpdateGrafanaConfigsPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateGrafanaConfigsPayloadWithDefaults() *UpdateGrafanaConfigsPayload {
+	this := UpdateGrafanaConfigsPayload{}
+	return &this
+}
+
+// GetGenericOauth returns the GenericOauth field value if set, zero value otherwise.
+func (o *UpdateGrafanaConfigsPayload) GetGenericOauth() *UpdateGrafanaConfigsPayloadGenericOauth {
+	if o == nil || IsNil(o.GenericOauth) {
+		var ret *UpdateGrafanaConfigsPayloadGenericOauth
+		return ret
+	}
+	return o.GenericOauth
+}
+
+// GetGenericOauthOk returns a tuple with the GenericOauth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateGrafanaConfigsPayload) GetGenericOauthOk() (*UpdateGrafanaConfigsPayloadGenericOauth, bool) {
+	if o == nil || IsNil(o.GenericOauth) {
+		return nil, false
+	}
+	return o.GenericOauth, true
+}
+
+// HasGenericOauth returns a boolean if a field has been set.
+func (o *UpdateGrafanaConfigsPayload) HasGenericOauth() bool {
+	if o != nil && !IsNil(o.GenericOauth) {
+		return true
+	}
+
+	return false
+}
+
+// SetGenericOauth gets a reference to the given UpdateGrafanaConfigsPayloadGenericOauth and assigns it to the GenericOauth field.
+func (o *UpdateGrafanaConfigsPayload) SetGenericOauth(v *UpdateGrafanaConfigsPayloadGenericOauth) {
+	o.GenericOauth = v
+}
+
+// GetPublicReadAccess returns the PublicReadAccess field value if set, zero value otherwise.
+func (o *UpdateGrafanaConfigsPayload) GetPublicReadAccess() *bool {
+	if o == nil || IsNil(o.PublicReadAccess) {
+		var ret *bool
+		return ret
+	}
+	return o.PublicReadAccess
+}
+
+// GetPublicReadAccessOk returns a tuple with the PublicReadAccess field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateGrafanaConfigsPayload) GetPublicReadAccessOk() (*bool, bool) {
+	if o == nil || IsNil(o.PublicReadAccess) {
+		return nil, false
+	}
+	return o.PublicReadAccess, true
+}
+
+// HasPublicReadAccess returns a boolean if a field has been set.
+func (o *UpdateGrafanaConfigsPayload) HasPublicReadAccess() bool {
+	if o != nil && !IsNil(o.PublicReadAccess) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicReadAccess gets a reference to the given bool and assigns it to the PublicReadAccess field.
+func (o *UpdateGrafanaConfigsPayload) SetPublicReadAccess(v *bool) {
+	o.PublicReadAccess = v
+}
+
+// GetUseStackitSso returns the UseStackitSso field value if set, zero value otherwise.
+func (o *UpdateGrafanaConfigsPayload) GetUseStackitSso() *bool {
+	if o == nil || IsNil(o.UseStackitSso) {
+		var ret *bool
+		return ret
+	}
+	return o.UseStackitSso
+}
+
+// GetUseStackitSsoOk returns a tuple with the UseStackitSso field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateGrafanaConfigsPayload) GetUseStackitSsoOk() (*bool, bool) {
+	if o == nil || IsNil(o.UseStackitSso) {
+		return nil, false
+	}
+	return o.UseStackitSso, true
+}
+
+// HasUseStackitSso returns a boolean if a field has been set.
+func (o *UpdateGrafanaConfigsPayload) HasUseStackitSso() bool {
+	if o != nil && !IsNil(o.UseStackitSso) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseStackitSso gets a reference to the given bool and assigns it to the UseStackitSso field.
+func (o *UpdateGrafanaConfigsPayload) SetUseStackitSso(v *bool) {
+	o.UseStackitSso = v
+}
+
+func (o UpdateGrafanaConfigsPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.GenericOauth) {
+		toSerialize["genericOauth"] = o.GenericOauth
+	}
+	if !IsNil(o.PublicReadAccess) {
+		toSerialize["publicReadAccess"] = o.PublicReadAccess
+	}
+	if !IsNil(o.UseStackitSso) {
+		toSerialize["useStackitSso"] = o.UseStackitSso
+	}
+	return toSerialize, nil
+}
+
+type NullableUpdateGrafanaConfigsPayload struct {
+	value *UpdateGrafanaConfigsPayload
+	isSet bool
+}
+
+func (v NullableUpdateGrafanaConfigsPayload) Get() *UpdateGrafanaConfigsPayload {
+	return v.value
+}
+
+func (v *NullableUpdateGrafanaConfigsPayload) Set(val *UpdateGrafanaConfigsPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateGrafanaConfigsPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateGrafanaConfigsPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateGrafanaConfigsPayload(val *UpdateGrafanaConfigsPayload) *NullableUpdateGrafanaConfigsPayload {
+	return &NullableUpdateGrafanaConfigsPayload{value: val, isSet: true}
+}
+
+func (v NullableUpdateGrafanaConfigsPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateGrafanaConfigsPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

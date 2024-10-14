@@ -10,8 +10,101 @@ API version: 1.1.0
 
 package redis
 
+import (
+	"encoding/json"
+)
+
+// checks if the CredentialsListItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CredentialsListItem{}
+
 // CredentialsListItem struct for CredentialsListItem
 type CredentialsListItem struct {
 	// REQUIRED
 	Id *string `json:"id"`
+}
+
+type _CredentialsListItem CredentialsListItem
+
+// NewCredentialsListItem instantiates a new CredentialsListItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCredentialsListItem(id *string) *CredentialsListItem {
+	this := CredentialsListItem{}
+	this.Id = id
+	return &this
+}
+
+// NewCredentialsListItemWithDefaults instantiates a new CredentialsListItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCredentialsListItemWithDefaults() *CredentialsListItem {
+	this := CredentialsListItem{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *CredentialsListItem) GetId() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CredentialsListItem) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// SetId sets field value
+func (o *CredentialsListItem) SetId(v *string) {
+	o.Id = v
+}
+
+func (o CredentialsListItem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	return toSerialize, nil
+}
+
+type NullableCredentialsListItem struct {
+	value *CredentialsListItem
+	isSet bool
+}
+
+func (v NullableCredentialsListItem) Get() *CredentialsListItem {
+	return v.value
+}
+
+func (v *NullableCredentialsListItem) Set(val *CredentialsListItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCredentialsListItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCredentialsListItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCredentialsListItem(val *CredentialsListItem) *NullableCredentialsListItem {
+	return &NullableCredentialsListItem{value: val, isSet: true}
+}
+
+func (v NullableCredentialsListItem) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCredentialsListItem) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

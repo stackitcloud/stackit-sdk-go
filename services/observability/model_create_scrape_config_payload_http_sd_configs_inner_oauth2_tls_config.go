@@ -10,8 +10,112 @@ API version: 1.1.1
 
 package observability
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig{}
+
 // CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig Configures the scrape request's TLS settings.
 type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig struct {
 	// Disable validation of the server certificate.
 	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
+}
+
+// NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig instantiates a new CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig() *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig {
+	this := CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig{}
+	var insecureSkipVerify bool = false
+	this.InsecureSkipVerify = &insecureSkipVerify
+	return &this
+}
+
+// NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfigWithDefaults instantiates a new CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfigWithDefaults() *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig {
+	this := CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig{}
+	var insecureSkipVerify bool = false
+	this.InsecureSkipVerify = &insecureSkipVerify
+	return &this
+}
+
+// GetInsecureSkipVerify returns the InsecureSkipVerify field value if set, zero value otherwise.
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) GetInsecureSkipVerify() *bool {
+	if o == nil || IsNil(o.InsecureSkipVerify) {
+		var ret *bool
+		return ret
+	}
+	return o.InsecureSkipVerify
+}
+
+// GetInsecureSkipVerifyOk returns a tuple with the InsecureSkipVerify field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) GetInsecureSkipVerifyOk() (*bool, bool) {
+	if o == nil || IsNil(o.InsecureSkipVerify) {
+		return nil, false
+	}
+	return o.InsecureSkipVerify, true
+}
+
+// HasInsecureSkipVerify returns a boolean if a field has been set.
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) HasInsecureSkipVerify() bool {
+	if o != nil && !IsNil(o.InsecureSkipVerify) {
+		return true
+	}
+
+	return false
+}
+
+// SetInsecureSkipVerify gets a reference to the given bool and assigns it to the InsecureSkipVerify field.
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) SetInsecureSkipVerify(v *bool) {
+	o.InsecureSkipVerify = v
+}
+
+func (o CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.InsecureSkipVerify) {
+		toSerialize["insecureSkipVerify"] = o.InsecureSkipVerify
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig struct {
+	value *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+	isSet bool
+}
+
+func (v NullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) Get() *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig {
+	return v.value
+}
+
+func (v *NullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) Set(val *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig(val *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) *NullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig {
+	return &NullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig{value: val, isSet: true}
+}
+
+func (v NullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

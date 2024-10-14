@@ -10,6 +10,13 @@ API version: 1.0
 
 package runcommand
 
+import (
+	"encoding/json"
+)
+
+// checks if the Field type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Field{}
+
 // Field struct for Field
 type Field struct {
 	Default     *string `json:"default,omitempty"`
@@ -21,4 +28,307 @@ type Field struct {
 	ReadOnly *bool   `json:"readOnly,omitempty"`
 	Title    *string `json:"title,omitempty"`
 	Type     *string `json:"type,omitempty"`
+}
+
+// NewField instantiates a new Field object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewField() *Field {
+	this := Field{}
+	return &this
+}
+
+// NewFieldWithDefaults instantiates a new Field object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewFieldWithDefaults() *Field {
+	this := Field{}
+	return &this
+}
+
+// GetDefault returns the Default field value if set, zero value otherwise.
+func (o *Field) GetDefault() *string {
+	if o == nil || IsNil(o.Default) {
+		var ret *string
+		return ret
+	}
+	return o.Default
+}
+
+// GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Field) GetDefaultOk() (*string, bool) {
+	if o == nil || IsNil(o.Default) {
+		return nil, false
+	}
+	return o.Default, true
+}
+
+// HasDefault returns a boolean if a field has been set.
+func (o *Field) HasDefault() bool {
+	if o != nil && !IsNil(o.Default) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefault gets a reference to the given string and assigns it to the Default field.
+func (o *Field) SetDefault(v *string) {
+	o.Default = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *Field) GetDescription() *string {
+	if o == nil || IsNil(o.Description) {
+		var ret *string
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Field) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *Field) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *Field) SetDescription(v *string) {
+	o.Description = v
+}
+
+// GetMaxLen returns the MaxLen field value if set, zero value otherwise.
+func (o *Field) GetMaxLen() *int64 {
+	if o == nil || IsNil(o.MaxLen) {
+		var ret *int64
+		return ret
+	}
+	return o.MaxLen
+}
+
+// GetMaxLenOk returns a tuple with the MaxLen field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Field) GetMaxLenOk() (*int64, bool) {
+	if o == nil || IsNil(o.MaxLen) {
+		return nil, false
+	}
+	return o.MaxLen, true
+}
+
+// HasMaxLen returns a boolean if a field has been set.
+func (o *Field) HasMaxLen() bool {
+	if o != nil && !IsNil(o.MaxLen) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxLen gets a reference to the given int64 and assigns it to the MaxLen field.
+func (o *Field) SetMaxLen(v *int64) {
+	o.MaxLen = v
+}
+
+// GetMinLen returns the MinLen field value if set, zero value otherwise.
+func (o *Field) GetMinLen() *int64 {
+	if o == nil || IsNil(o.MinLen) {
+		var ret *int64
+		return ret
+	}
+	return o.MinLen
+}
+
+// GetMinLenOk returns a tuple with the MinLen field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Field) GetMinLenOk() (*int64, bool) {
+	if o == nil || IsNil(o.MinLen) {
+		return nil, false
+	}
+	return o.MinLen, true
+}
+
+// HasMinLen returns a boolean if a field has been set.
+func (o *Field) HasMinLen() bool {
+	if o != nil && !IsNil(o.MinLen) {
+		return true
+	}
+
+	return false
+}
+
+// SetMinLen gets a reference to the given int64 and assigns it to the MinLen field.
+func (o *Field) SetMinLen(v *int64) {
+	o.MinLen = v
+}
+
+// GetReadOnly returns the ReadOnly field value if set, zero value otherwise.
+func (o *Field) GetReadOnly() *bool {
+	if o == nil || IsNil(o.ReadOnly) {
+		var ret *bool
+		return ret
+	}
+	return o.ReadOnly
+}
+
+// GetReadOnlyOk returns a tuple with the ReadOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Field) GetReadOnlyOk() (*bool, bool) {
+	if o == nil || IsNil(o.ReadOnly) {
+		return nil, false
+	}
+	return o.ReadOnly, true
+}
+
+// HasReadOnly returns a boolean if a field has been set.
+func (o *Field) HasReadOnly() bool {
+	if o != nil && !IsNil(o.ReadOnly) {
+		return true
+	}
+
+	return false
+}
+
+// SetReadOnly gets a reference to the given bool and assigns it to the ReadOnly field.
+func (o *Field) SetReadOnly(v *bool) {
+	o.ReadOnly = v
+}
+
+// GetTitle returns the Title field value if set, zero value otherwise.
+func (o *Field) GetTitle() *string {
+	if o == nil || IsNil(o.Title) {
+		var ret *string
+		return ret
+	}
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Field) GetTitleOk() (*string, bool) {
+	if o == nil || IsNil(o.Title) {
+		return nil, false
+	}
+	return o.Title, true
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *Field) HasTitle() bool {
+	if o != nil && !IsNil(o.Title) {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
+func (o *Field) SetTitle(v *string) {
+	o.Title = v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Field) GetType() *string {
+	if o == nil || IsNil(o.Type) {
+		var ret *string
+		return ret
+	}
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Field) GetTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Field) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *Field) SetType(v *string) {
+	o.Type = v
+}
+
+func (o Field) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Default) {
+		toSerialize["default"] = o.Default
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.MaxLen) {
+		toSerialize["maxLen"] = o.MaxLen
+	}
+	if !IsNil(o.MinLen) {
+		toSerialize["minLen"] = o.MinLen
+	}
+	if !IsNil(o.ReadOnly) {
+		toSerialize["readOnly"] = o.ReadOnly
+	}
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
+}
+
+type NullableField struct {
+	value *Field
+	isSet bool
+}
+
+func (v NullableField) Get() *Field {
+	return v.value
+}
+
+func (v *NullableField) Set(val *Field) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableField) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableField) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableField(val *Field) *NullableField {
+	return &NullableField{value: val, isSet: true}
+}
+
+func (v NullableField) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableField) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

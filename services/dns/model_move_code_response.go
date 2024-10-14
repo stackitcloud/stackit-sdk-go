@@ -10,6 +10,13 @@ API version: 1.0
 
 package dns
 
+import (
+	"encoding/json"
+)
+
+// checks if the MoveCodeResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MoveCodeResponse{}
+
 // MoveCodeResponse struct for MoveCodeResponse
 type MoveCodeResponse struct {
 	// code to move the zone. It is one time shown so better keep it.
@@ -20,4 +27,151 @@ type MoveCodeResponse struct {
 	ExpiresAt *string `json:"expiresAt"`
 	// human readable message
 	Message *string `json:"message,omitempty"`
+}
+
+type _MoveCodeResponse MoveCodeResponse
+
+// NewMoveCodeResponse instantiates a new MoveCodeResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMoveCodeResponse(code *string, expiresAt *string) *MoveCodeResponse {
+	this := MoveCodeResponse{}
+	this.Code = code
+	this.ExpiresAt = expiresAt
+	return &this
+}
+
+// NewMoveCodeResponseWithDefaults instantiates a new MoveCodeResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMoveCodeResponseWithDefaults() *MoveCodeResponse {
+	this := MoveCodeResponse{}
+	return &this
+}
+
+// GetCode returns the Code field value
+func (o *MoveCodeResponse) GetCode() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *MoveCodeResponse) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// SetCode sets field value
+func (o *MoveCodeResponse) SetCode(v *string) {
+	o.Code = v
+}
+
+// GetExpiresAt returns the ExpiresAt field value
+func (o *MoveCodeResponse) GetExpiresAt() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ExpiresAt
+}
+
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// and a boolean to check if the value has been set.
+func (o *MoveCodeResponse) GetExpiresAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExpiresAt, true
+}
+
+// SetExpiresAt sets field value
+func (o *MoveCodeResponse) SetExpiresAt(v *string) {
+	o.ExpiresAt = v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *MoveCodeResponse) GetMessage() *string {
+	if o == nil || IsNil(o.Message) {
+		var ret *string
+		return ret
+	}
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MoveCodeResponse) GetMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.Message) {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *MoveCodeResponse) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *MoveCodeResponse) SetMessage(v *string) {
+	o.Message = v
+}
+
+func (o MoveCodeResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["code"] = o.Code
+	toSerialize["expiresAt"] = o.ExpiresAt
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	return toSerialize, nil
+}
+
+type NullableMoveCodeResponse struct {
+	value *MoveCodeResponse
+	isSet bool
+}
+
+func (v NullableMoveCodeResponse) Get() *MoveCodeResponse {
+	return v.value
+}
+
+func (v *NullableMoveCodeResponse) Set(val *MoveCodeResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMoveCodeResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMoveCodeResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMoveCodeResponse(val *MoveCodeResponse) *NullableMoveCodeResponse {
+	return &NullableMoveCodeResponse{value: val, isSet: true}
+}
+
+func (v NullableMoveCodeResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableMoveCodeResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

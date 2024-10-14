@@ -10,7 +10,107 @@ API version: 1.1.0
 
 package logme
 
+import (
+	"encoding/json"
+)
+
+// checks if the InstanceParametersGroksInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InstanceParametersGroksInner{}
+
 // InstanceParametersGroksInner struct for InstanceParametersGroksInner
 type InstanceParametersGroksInner struct {
 	Pattern *string `json:"pattern,omitempty"`
+}
+
+// NewInstanceParametersGroksInner instantiates a new InstanceParametersGroksInner object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInstanceParametersGroksInner() *InstanceParametersGroksInner {
+	this := InstanceParametersGroksInner{}
+	return &this
+}
+
+// NewInstanceParametersGroksInnerWithDefaults instantiates a new InstanceParametersGroksInner object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInstanceParametersGroksInnerWithDefaults() *InstanceParametersGroksInner {
+	this := InstanceParametersGroksInner{}
+	return &this
+}
+
+// GetPattern returns the Pattern field value if set, zero value otherwise.
+func (o *InstanceParametersGroksInner) GetPattern() *string {
+	if o == nil || IsNil(o.Pattern) {
+		var ret *string
+		return ret
+	}
+	return o.Pattern
+}
+
+// GetPatternOk returns a tuple with the Pattern field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceParametersGroksInner) GetPatternOk() (*string, bool) {
+	if o == nil || IsNil(o.Pattern) {
+		return nil, false
+	}
+	return o.Pattern, true
+}
+
+// HasPattern returns a boolean if a field has been set.
+func (o *InstanceParametersGroksInner) HasPattern() bool {
+	if o != nil && !IsNil(o.Pattern) {
+		return true
+	}
+
+	return false
+}
+
+// SetPattern gets a reference to the given string and assigns it to the Pattern field.
+func (o *InstanceParametersGroksInner) SetPattern(v *string) {
+	o.Pattern = v
+}
+
+func (o InstanceParametersGroksInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Pattern) {
+		toSerialize["pattern"] = o.Pattern
+	}
+	return toSerialize, nil
+}
+
+type NullableInstanceParametersGroksInner struct {
+	value *InstanceParametersGroksInner
+	isSet bool
+}
+
+func (v NullableInstanceParametersGroksInner) Get() *InstanceParametersGroksInner {
+	return v.value
+}
+
+func (v *NullableInstanceParametersGroksInner) Set(val *InstanceParametersGroksInner) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceParametersGroksInner) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceParametersGroksInner) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceParametersGroksInner(val *InstanceParametersGroksInner) *NullableInstanceParametersGroksInner {
+	return &NullableInstanceParametersGroksInner{value: val, isSet: true}
+}
+
+func (v NullableInstanceParametersGroksInner) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceParametersGroksInner) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

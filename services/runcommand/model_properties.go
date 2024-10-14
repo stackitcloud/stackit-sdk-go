@@ -10,6 +10,13 @@ API version: 1.0
 
 package runcommand
 
+import (
+	"encoding/json"
+)
+
+// checks if the Properties type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Properties{}
+
 // Properties struct for Properties
 type Properties struct {
 	ConfirmPassword *Field    `json:"ConfirmPassword,omitempty"`
@@ -18,4 +25,272 @@ type Properties struct {
 	Username        *Field    `json:"Username,omitempty"`
 	Required        *[]string `json:"required,omitempty"`
 	Type            *string   `json:"type,omitempty"`
+}
+
+// NewProperties instantiates a new Properties object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewProperties() *Properties {
+	this := Properties{}
+	return &this
+}
+
+// NewPropertiesWithDefaults instantiates a new Properties object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPropertiesWithDefaults() *Properties {
+	this := Properties{}
+	return &this
+}
+
+// GetConfirmPassword returns the ConfirmPassword field value if set, zero value otherwise.
+func (o *Properties) GetConfirmPassword() *Field {
+	if o == nil || IsNil(o.ConfirmPassword) {
+		var ret *Field
+		return ret
+	}
+	return o.ConfirmPassword
+}
+
+// GetConfirmPasswordOk returns a tuple with the ConfirmPassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Properties) GetConfirmPasswordOk() (*Field, bool) {
+	if o == nil || IsNil(o.ConfirmPassword) {
+		return nil, false
+	}
+	return o.ConfirmPassword, true
+}
+
+// HasConfirmPassword returns a boolean if a field has been set.
+func (o *Properties) HasConfirmPassword() bool {
+	if o != nil && !IsNil(o.ConfirmPassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfirmPassword gets a reference to the given Field and assigns it to the ConfirmPassword field.
+func (o *Properties) SetConfirmPassword(v *Field) {
+	o.ConfirmPassword = v
+}
+
+// GetPassword returns the Password field value if set, zero value otherwise.
+func (o *Properties) GetPassword() *Field {
+	if o == nil || IsNil(o.Password) {
+		var ret *Field
+		return ret
+	}
+	return o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Properties) GetPasswordOk() (*Field, bool) {
+	if o == nil || IsNil(o.Password) {
+		return nil, false
+	}
+	return o.Password, true
+}
+
+// HasPassword returns a boolean if a field has been set.
+func (o *Properties) HasPassword() bool {
+	if o != nil && !IsNil(o.Password) {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given Field and assigns it to the Password field.
+func (o *Properties) SetPassword(v *Field) {
+	o.Password = v
+}
+
+// GetScript returns the Script field value if set, zero value otherwise.
+func (o *Properties) GetScript() *Field {
+	if o == nil || IsNil(o.Script) {
+		var ret *Field
+		return ret
+	}
+	return o.Script
+}
+
+// GetScriptOk returns a tuple with the Script field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Properties) GetScriptOk() (*Field, bool) {
+	if o == nil || IsNil(o.Script) {
+		return nil, false
+	}
+	return o.Script, true
+}
+
+// HasScript returns a boolean if a field has been set.
+func (o *Properties) HasScript() bool {
+	if o != nil && !IsNil(o.Script) {
+		return true
+	}
+
+	return false
+}
+
+// SetScript gets a reference to the given Field and assigns it to the Script field.
+func (o *Properties) SetScript(v *Field) {
+	o.Script = v
+}
+
+// GetUsername returns the Username field value if set, zero value otherwise.
+func (o *Properties) GetUsername() *Field {
+	if o == nil || IsNil(o.Username) {
+		var ret *Field
+		return ret
+	}
+	return o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Properties) GetUsernameOk() (*Field, bool) {
+	if o == nil || IsNil(o.Username) {
+		return nil, false
+	}
+	return o.Username, true
+}
+
+// HasUsername returns a boolean if a field has been set.
+func (o *Properties) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given Field and assigns it to the Username field.
+func (o *Properties) SetUsername(v *Field) {
+	o.Username = v
+}
+
+// GetRequired returns the Required field value if set, zero value otherwise.
+func (o *Properties) GetRequired() *[]string {
+	if o == nil || IsNil(o.Required) {
+		var ret *[]string
+		return ret
+	}
+	return o.Required
+}
+
+// GetRequiredOk returns a tuple with the Required field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Properties) GetRequiredOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Required) {
+		return nil, false
+	}
+	return o.Required, true
+}
+
+// HasRequired returns a boolean if a field has been set.
+func (o *Properties) HasRequired() bool {
+	if o != nil && !IsNil(o.Required) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequired gets a reference to the given []string and assigns it to the Required field.
+func (o *Properties) SetRequired(v *[]string) {
+	o.Required = v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Properties) GetType() *string {
+	if o == nil || IsNil(o.Type) {
+		var ret *string
+		return ret
+	}
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Properties) GetTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Properties) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *Properties) SetType(v *string) {
+	o.Type = v
+}
+
+func (o Properties) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ConfirmPassword) {
+		toSerialize["ConfirmPassword"] = o.ConfirmPassword
+	}
+	if !IsNil(o.Password) {
+		toSerialize["Password"] = o.Password
+	}
+	if !IsNil(o.Script) {
+		toSerialize["Script"] = o.Script
+	}
+	if !IsNil(o.Username) {
+		toSerialize["Username"] = o.Username
+	}
+	if !IsNil(o.Required) {
+		toSerialize["required"] = o.Required
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
+}
+
+type NullableProperties struct {
+	value *Properties
+	isSet bool
+}
+
+func (v NullableProperties) Get() *Properties {
+	return v.value
+}
+
+func (v *NullableProperties) Set(val *Properties) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProperties) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProperties) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableProperties(val *Properties) *NullableProperties {
+	return &NullableProperties{value: val, isSet: true}
+}
+
+func (v NullableProperties) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableProperties) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
