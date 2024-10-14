@@ -10,8 +10,143 @@ API version: 1.0.0
 
 package postgresflex
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateUserPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateUserPayload{}
+
 // CreateUserPayload struct for CreateUserPayload
 type CreateUserPayload struct {
 	Roles    *[]string `json:"roles,omitempty"`
 	Username *string   `json:"username,omitempty"`
+}
+
+// NewCreateUserPayload instantiates a new CreateUserPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateUserPayload() *CreateUserPayload {
+	this := CreateUserPayload{}
+	return &this
+}
+
+// NewCreateUserPayloadWithDefaults instantiates a new CreateUserPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateUserPayloadWithDefaults() *CreateUserPayload {
+	this := CreateUserPayload{}
+	return &this
+}
+
+// GetRoles returns the Roles field value if set, zero value otherwise.
+func (o *CreateUserPayload) GetRoles() *[]string {
+	if o == nil || IsNil(o.Roles) {
+		var ret *[]string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateUserPayload) GetRolesOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Roles) {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *CreateUserPayload) HasRoles() bool {
+	if o != nil && !IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *CreateUserPayload) SetRoles(v *[]string) {
+	o.Roles = v
+}
+
+// GetUsername returns the Username field value if set, zero value otherwise.
+func (o *CreateUserPayload) GetUsername() *string {
+	if o == nil || IsNil(o.Username) {
+		var ret *string
+		return ret
+	}
+	return o.Username
+}
+
+// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateUserPayload) GetUsernameOk() (*string, bool) {
+	if o == nil || IsNil(o.Username) {
+		return nil, false
+	}
+	return o.Username, true
+}
+
+// HasUsername returns a boolean if a field has been set.
+func (o *CreateUserPayload) HasUsername() bool {
+	if o != nil && !IsNil(o.Username) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsername gets a reference to the given string and assigns it to the Username field.
+func (o *CreateUserPayload) SetUsername(v *string) {
+	o.Username = v
+}
+
+func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateUserPayload struct {
+	value *CreateUserPayload
+	isSet bool
+}
+
+func (v NullableCreateUserPayload) Get() *CreateUserPayload {
+	return v.value
+}
+
+func (v *NullableCreateUserPayload) Set(val *CreateUserPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateUserPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateUserPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateUserPayload(val *CreateUserPayload) *NullableCreateUserPayload {
+	return &NullableCreateUserPayload{value: val, isSet: true}
+}
+
+func (v NullableCreateUserPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateUserPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
