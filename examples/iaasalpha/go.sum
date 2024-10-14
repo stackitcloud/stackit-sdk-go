@@ -4,6 +4,6 @@ github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.14.0 h1:oBwwzrEHDTlZpRoQwmMQpNA8bWciTrtGkiN29nx14Z0=
-github.com/stackitcloud/stackit-sdk-go/core v0.14.0/go.mod h1:mDX1mSTsB3mP+tNBGcFNx6gH1mGBN4T+dVt+lcw7nlw=ackitcloud/stackit-sdk-go/services/iaasalpha v0.1.10-alpha/go.mod h1:nW/6vvumUHA7o1/JOOqsrEOBNrRHombEKB1U4jmg2wU=
+github.com/stackitcloud/stackit-sdk-go/core v0.14.0/go.mod h1:mDX1mSTsB3mP+tNBGcFNx6gH1mGBN4T+dVt+lcw7nlw=
 github.com/stackitcloud/stackit-sdk-go/services/iaasalpha v0.1.11-alpha h1:uYslPwq0euGkuH6kHIhoXUaB9w+yrrDKLd80eo/5GZU=
 github.com/stackitcloud/stackit-sdk-go/services/iaasalpha v0.1.11-alpha/go.mod h1:nW/6vvumUHA7o1/JOOqsrEOBNrRHombEKB1U4jmg2wU=
