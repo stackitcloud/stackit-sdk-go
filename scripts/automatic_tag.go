@@ -38,6 +38,8 @@ var (
 	deprecatedServices = []string{
 		"membership",
 		"postgresql",
+		"argus",
+		"archiving",
 	}
 )
 
