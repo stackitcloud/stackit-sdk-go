@@ -64,5 +64,4 @@ func main() {
 	}
 
 	fmt.Printf("[iaasalpha API] Service account %q has been successfully detacched from the server %s.\n", serviceAccountMail, serverId)
-
 }
