@@ -54,7 +54,7 @@ func main() {
 		fmt.Printf("[iaasalpha API] Triggered removal of attachment of nic with ID %q.\n", nicId)
 	}
 
-	requestId = httpResp.Header["wait.XRequestIDHeader"][0]
+	requestId = httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for dettachment of the nic
 	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())

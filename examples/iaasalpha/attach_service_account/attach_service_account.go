@@ -36,7 +36,7 @@ func main() {
 	} else {
 		fmt.Printf("[iaasalpha API] Triggered attachment of service account with mail %q.\n", serviceAccountMail)
 	}
-	requestId := httpResp.Header["wait.XRequestIDHeader"][0]
+	requestId := httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for attachment of the service account
 	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())
@@ -54,7 +54,7 @@ func main() {
 		fmt.Printf("[iaasalpha API] Triggered removal of attachment of service account with mail %q.\n", serviceAccountMail)
 	}
 
-	requestId = httpResp.Header["wait.XRequestIDHeader"][0]
+	requestId = httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for dettachment of the service account
 	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())

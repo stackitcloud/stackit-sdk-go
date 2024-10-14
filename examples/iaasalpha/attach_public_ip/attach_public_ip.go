@@ -36,7 +36,7 @@ func main() {
 	} else {
 		fmt.Printf("[iaasalpha API] Triggered attachment of public ip with ID %q.\n", publicIpId)
 	}
-	requestId := httpResp.Header["wait.XRequestIDHeader"][0]
+	requestId := httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for attachment of the public ip
 	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())
@@ -54,7 +54,7 @@ func main() {
 		fmt.Printf("[iaasalpha API] Triggered removal of attachment of public ip with ID %q.\n", publicIpId)
 	}
 
-	requestId = httpResp.Header["wait.XRequestIDHeader"][0]
+	requestId = httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for dettachment of the public ip
 	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasalphaClient, projectId, requestId).WaitWithContext(context.Background())
