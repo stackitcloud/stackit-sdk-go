@@ -1,5 +1,3 @@
-- **Feature:** Add support for nullable models
-
 ## v0.15.0 (2024-09-02)
 
 - **Feature**: New method `ListAdvisorSlowQueries` that gets slow queries from the Opsmanager performance advisor.

@@ -1,5 +1,3 @@
-- **Feature:** Add support for nullable models
-
 ## v0.15.0 (2024-06-28)
 
 - **Feature**: New API methods `CreateDatabase`, `DeleteDatabase`, `ListDatabase`, `ListDatabaseParameters` to manage PostgreSQL Flex databases

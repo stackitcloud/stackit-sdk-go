@@ -1,5 +1,3 @@
-- **Feature:** Add support for nullable models
-
 ## v0.10.0 (2024-06-14)
 
 - **Breaking change**: Remove unused data types.

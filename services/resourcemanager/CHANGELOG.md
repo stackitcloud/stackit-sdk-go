@@ -1,5 +1,3 @@
-- **Feature:** Add support for nullable models
-
 ## v0.9.0 (2024-06-14)
 
 - **Breaking Change**: Rename data types for uniformity
