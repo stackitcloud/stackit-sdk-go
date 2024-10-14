@@ -1,9 +1,6 @@
-## v0.5.0 (2024-10-14)
+## v0.4.0 (2024-10-14)
 
 - **Feature:** Add support for nullable models
-
-## v0.4.0 (2024-06-04)
-
 - **Feature:** New method `ListUserPermissions`
 
 ## v0.3.0 (2024-05-22)
