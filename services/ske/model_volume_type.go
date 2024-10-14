@@ -10,7 +10,107 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the VolumeType type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VolumeType{}
+
 // VolumeType struct for VolumeType
 type VolumeType struct {
 	Name *string `json:"name,omitempty"`
+}
+
+// NewVolumeType instantiates a new VolumeType object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewVolumeType() *VolumeType {
+	this := VolumeType{}
+	return &this
+}
+
+// NewVolumeTypeWithDefaults instantiates a new VolumeType object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewVolumeTypeWithDefaults() *VolumeType {
+	this := VolumeType{}
+	return &this
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *VolumeType) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VolumeType) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *VolumeType) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *VolumeType) SetName(v *string) {
+	o.Name = v
+}
+
+func (o VolumeType) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
+}
+
+type NullableVolumeType struct {
+	value *VolumeType
+	isSet bool
+}
+
+func (v NullableVolumeType) Get() *VolumeType {
+	return v.value
+}
+
+func (v *NullableVolumeType) Set(val *VolumeType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableVolumeType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableVolumeType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableVolumeType(val *VolumeType) *NullableVolumeType {
+	return &NullableVolumeType{value: val, isSet: true}
+}
+
+func (v NullableVolumeType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableVolumeType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

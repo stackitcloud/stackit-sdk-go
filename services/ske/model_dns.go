@@ -10,6 +10,13 @@ API version: 1.1
 
 package ske
 
+import (
+	"encoding/json"
+)
+
+// checks if the DNS type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DNS{}
+
 // DNS struct for DNS
 type DNS struct {
 	// Enables the dns extension.
@@ -17,4 +24,125 @@ type DNS struct {
 	Enabled *bool `json:"enabled"`
 	// Array of domain filters for externalDNS, e.g., *.runs.onstackit.cloud.
 	Zones *[]string `json:"zones,omitempty"`
+}
+
+type _DNS DNS
+
+// NewDNS instantiates a new DNS object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDNS(enabled *bool) *DNS {
+	this := DNS{}
+	this.Enabled = enabled
+	return &this
+}
+
+// NewDNSWithDefaults instantiates a new DNS object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDNSWithDefaults() *DNS {
+	this := DNS{}
+	return &this
+}
+
+// GetEnabled returns the Enabled field value
+func (o *DNS) GetEnabled() *bool {
+	if o == nil {
+		var ret *bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *DNS) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *DNS) SetEnabled(v *bool) {
+	o.Enabled = v
+}
+
+// GetZones returns the Zones field value if set, zero value otherwise.
+func (o *DNS) GetZones() *[]string {
+	if o == nil || IsNil(o.Zones) {
+		var ret *[]string
+		return ret
+	}
+	return o.Zones
+}
+
+// GetZonesOk returns a tuple with the Zones field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNS) GetZonesOk() (*[]string, bool) {
+	if o == nil || IsNil(o.Zones) {
+		return nil, false
+	}
+	return o.Zones, true
+}
+
+// HasZones returns a boolean if a field has been set.
+func (o *DNS) HasZones() bool {
+	if o != nil && !IsNil(o.Zones) {
+		return true
+	}
+
+	return false
+}
+
+// SetZones gets a reference to the given []string and assigns it to the Zones field.
+func (o *DNS) SetZones(v *[]string) {
+	o.Zones = v
+}
+
+func (o DNS) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["enabled"] = o.Enabled
+	if !IsNil(o.Zones) {
+		toSerialize["zones"] = o.Zones
+	}
+	return toSerialize, nil
+}
+
+type NullableDNS struct {
+	value *DNS
+	isSet bool
+}
+
+func (v NullableDNS) Get() *DNS {
+	return v.value
+}
+
+func (v *NullableDNS) Set(val *DNS) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDNS) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDNS) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDNS(val *DNS) *NullableDNS {
+	return &NullableDNS{value: val, isSet: true}
+}
+
+func (v NullableDNS) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDNS) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
