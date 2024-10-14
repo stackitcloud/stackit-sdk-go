@@ -10,9 +10,102 @@ API version: 1beta1
 
 package iaas
 
+import (
+	"encoding/json"
+)
+
+// checks if the NetworkListResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NetworkListResponse{}
+
 // NetworkListResponse Network list response.
 type NetworkListResponse struct {
 	// A list of networks.
 	// REQUIRED
 	Items *[]Network `json:"items"`
+}
+
+type _NetworkListResponse NetworkListResponse
+
+// NewNetworkListResponse instantiates a new NetworkListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNetworkListResponse(items *[]Network) *NetworkListResponse {
+	this := NetworkListResponse{}
+	this.Items = items
+	return &this
+}
+
+// NewNetworkListResponseWithDefaults instantiates a new NetworkListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNetworkListResponseWithDefaults() *NetworkListResponse {
+	this := NetworkListResponse{}
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *NetworkListResponse) GetItems() *[]Network {
+	if o == nil {
+		var ret *[]Network
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *NetworkListResponse) GetItemsOk() (*[]Network, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *NetworkListResponse) SetItems(v *[]Network) {
+	o.Items = v
+}
+
+func (o NetworkListResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["items"] = o.Items
+	return toSerialize, nil
+}
+
+type NullableNetworkListResponse struct {
+	value *NetworkListResponse
+	isSet bool
+}
+
+func (v NullableNetworkListResponse) Get() *NetworkListResponse {
+	return v.value
+}
+
+func (v *NullableNetworkListResponse) Set(val *NetworkListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNetworkListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNetworkListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNetworkListResponse(val *NetworkListResponse) *NullableNetworkListResponse {
+	return &NullableNetworkListResponse{value: val, isSet: true}
+}
+
+func (v NullableNetworkListResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableNetworkListResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
