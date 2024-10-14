@@ -13,11 +13,11 @@
   - **Feature:** Filter networks by labels using the new `LabelSelector` method on `ApiListNetworksRequest`
 - `loadbalancer`: [v0.16.0](services/loadbalancer/CHANGELOG.md#v0160-2024-10-11)
   - **Feature:** Add pagination to `ListLoadBalancers` with the new fields `pageSize` and `pageId` on `ApiListLoadBalancersRequest` and the field `NextPageId` in `ListLoadBalancersResponse`
-- `authorization`: [v0.5.0](services/authorization/CHANGELOG.md#v050-2024-10-14)
+- `authorization`: [v0.4.0](services/authorization/CHANGELOG.md#v050-2024-10-14)
   - **Feature:** Add support for nullable models
 - `dns`: [v0.11.0](services/dns/CHANGELOG.md#v0110-2024-10-14)
   - **Feature:** Add support for nullable models
-- `iaas`: [v0.16.0](services/iaas/CHANGELOG.md#v0160-2024-10-14)
+- `iaas`: [v0.12.0](services/iaas/CHANGELOG.md#v0120-2024-10-14)
   - **Feature:** Add support for nullable models
 - `loadbalancer`: [v0.17.0](services/loadbalancer/CHANGELOG.md#v0170-2024-10-14)
   - **Feature:** Add support for nullable models
@@ -47,7 +47,7 @@
   - **Feature:** Add support for nullable models
 - `serverbackup`: [v0.2.0](services/serverbackup/CHANGELOG.md#v020-2024-10-14)
   - **Feature:** Add support for nullable models
-- `serviceaccount`: [v0.4.0](services/serviceaccount/CHANGELOG.md#v040-2024-10-14)
+- `serviceaccount`: [v0.5.0](services/serviceaccount/CHANGELOG.md#v050-2024-10-14)
   - **Feature:** Add support for nullable models
 - `serviceenablement`: [v0.3.0](services/serviceenablement/CHANGELOG.md#v030-2024-10-14)
   - **Feature:** Add support for nullable models
@@ -214,8 +214,6 @@
   - **Breaking change**: `CreateNetwork` now returns the `Network` triggered by the operation.
 - `loadbalancer`: [v0.13.0](services/loadbalancer/CHANGELOG.md#v0130-2024-06-12)
   - **Feature:** `LoadBalancer`, `CreateLoadBalancerPayload` and `UpdateLoadBalancerPayload` have a new field `PlanId`
-- `authorization`: [v0.4.0](services/secretsmanager/CHANGELOG.md#v080-2024-06-04)
-  - **Feature:** New method `ListUserPermissions`
 - `secretsmanager`: [v0.8.0](services/secretsmanager/CHANGELOG.md#v080-2024-05-23)
   - **Breaking change**: Rename data types for uniformity
     - `Acl` is now `ACL`
