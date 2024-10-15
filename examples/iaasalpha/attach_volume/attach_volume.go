@@ -56,5 +56,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("[iaasalpha API] Volume %q has been successfully detacched from the server %s.\n", volumeId, serverId)
+	fmt.Printf("[iaasalpha API] Volume %q has been successfully detached from the server %s.\n", volumeId, serverId)
 }

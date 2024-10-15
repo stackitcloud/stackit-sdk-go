@@ -63,5 +63,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("[iaasalpha API] NIC %q has been successfully detacched from the server %s.\n", nicId, serverId)
+	fmt.Printf("[iaasalpha API] NIC %q has been successfully detached from the server %s.\n", nicId, serverId)
 }
