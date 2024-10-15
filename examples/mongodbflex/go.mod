@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.14.0
-	github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v0.15.0
+	github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v0.16.0
 )
 
 require (
