@@ -1,3 +1,7 @@
+## v0.14.0 (2024-10-18)
+
+- **Feature:** Add waiter methods for `Volume`, `Server` and `AttachedVolume`
+
 ## v0.13.0 (2024-10-18)
 
 - **Feature:** Add support for managing following resources
