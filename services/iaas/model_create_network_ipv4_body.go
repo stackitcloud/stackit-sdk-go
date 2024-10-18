@@ -19,7 +19,8 @@ var _ MappedNullable = &CreateNetworkIPv4Body{}
 
 // CreateNetworkIPv4Body The config object for an IPv4 network.
 type CreateNetworkIPv4Body struct {
-	Gateway *NullableV1NetworkGateway `json:"gateway,omitempty"`
+	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
+	Gateway *NullableString `json:"gateway,omitempty"`
 	// A list containing DNS Servers/Nameservers for IPv4.
 	Nameservers *[]string `json:"nameservers,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
@@ -45,9 +46,9 @@ func NewCreateNetworkIPv4BodyWithDefaults() *CreateNetworkIPv4Body {
 }
 
 // GetGateway returns the Gateway field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateNetworkIPv4Body) GetGateway() *V1NetworkGateway {
+func (o *CreateNetworkIPv4Body) GetGateway() *string {
 	if o == nil || IsNil(o.Gateway.Get()) {
-		var ret *V1NetworkGateway
+		var ret *string
 		return ret
 	}
 	return o.Gateway.Get()
@@ -56,7 +57,7 @@ func (o *CreateNetworkIPv4Body) GetGateway() *V1NetworkGateway {
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateNetworkIPv4Body) GetGatewayOk() (*V1NetworkGateway, bool) {
+func (o *CreateNetworkIPv4Body) GetGatewayOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,8 +73,8 @@ func (o *CreateNetworkIPv4Body) HasGateway() bool {
 	return false
 }
 
-// SetGateway gets a reference to the given V1NetworkGateway and assigns it to the Gateway field.
-func (o *CreateNetworkIPv4Body) SetGateway(v *V1NetworkGateway) {
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
+func (o *CreateNetworkIPv4Body) SetGateway(v *string) {
 	o.Gateway.Set(v)
 }
 
