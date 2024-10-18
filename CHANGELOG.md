@@ -1,4 +1,4 @@
-## Release (2024-XX-XX)
+## Release (2024-10-18)
 
 - `iaas`: [v0.13.0](services/iaas/CHANGELOG.md#v0130-2024-10-18)
   - **Feature:** Add support for managing following resources
