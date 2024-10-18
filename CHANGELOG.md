@@ -1,3 +1,8 @@
+## Release (2024-10-21)
+
+- `iaas`: [v0.14.0](services/iaas/CHANGELOG.md#v0140-2024-10-18)
+  - **Feature:** Add waiter methods for `Volume`, `Server` and `AttachedVolume`
+
 ## Release (2024-10-18)
 
 - `iaas`: [v0.13.0](services/iaas/CHANGELOG.md#v0130-2024-10-18)
