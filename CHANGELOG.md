@@ -1,3 +1,16 @@
+## Release (2024-XX-XX)
+
+- `iaas`: [v0.13.0](services/iaas/CHANGELOG.md#v0130-2024-10-18)
+  - **Feature:** Add support for managing following resources
+    - `Volume`
+    - `Server`
+    - `NetworkInterface`
+    - `PublicIP`
+    - `SecurityGroup`
+    - `SecurityGroupRule`
+  - **Breaking change**: Remove `V1NetworkGateway` data model
+  - **Bugfix**: network response json decoding
+
 ## Release (2024-10-14)
 
 - `sqlserverflex`: [v0.7.0](services/sqlserverflex/CHANGELOG.md#v070-2024-09-25)

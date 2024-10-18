@@ -1,3 +1,15 @@
+## v0.13.0 (2024-10-18)
+
+- **Feature:** Add support for managing following resources
+  - `Volume`
+  - `Server`
+  - `NetworkInterface`
+  - `PublicIP`
+  - `SecurityGroup`
+  - `SecurityGroupRule`
+- **Breaking change**: Remove `V1NetworkGateway` data model
+- **Bugfix**: network response json decoding
+
 ## v0.12.0 (2024-10-14)
 
 - **Feature:** Add support for nullable models
