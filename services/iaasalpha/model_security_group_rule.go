@@ -30,13 +30,13 @@ type SecurityGroupRule struct {
 	// Universally Unique Identifier (UUID).
 	Id *string `json:"id,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
-	IpRange   *string                      `json:"ipRange,omitempty"`
-	PortRange *PortRange                   `json:"portRange,omitempty"`
-	Protocol  *V1SecurityGroupRuleProtocol `json:"protocol,omitempty"`
+	IpRange   *string    `json:"ipRange,omitempty"`
+	PortRange *PortRange `json:"portRange,omitempty"`
 	// Universally Unique Identifier (UUID).
 	RemoteSecurityGroupId *string `json:"remoteSecurityGroupId,omitempty"`
 	// Universally Unique Identifier (UUID).
-	SecurityGroupId *string `json:"securityGroupId,omitempty"`
+	SecurityGroupId *string   `json:"securityGroupId,omitempty"`
+	Protocol        *Protocol `json:"protocol,omitempty"`
 }
 
 type _SecurityGroupRule SecurityGroupRule
@@ -279,38 +279,6 @@ func (o *SecurityGroupRule) SetPortRange(v *PortRange) {
 	o.PortRange = v
 }
 
-// GetProtocol returns the Protocol field value if set, zero value otherwise.
-func (o *SecurityGroupRule) GetProtocol() *V1SecurityGroupRuleProtocol {
-	if o == nil || IsNil(o.Protocol) {
-		var ret *V1SecurityGroupRuleProtocol
-		return ret
-	}
-	return o.Protocol
-}
-
-// GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SecurityGroupRule) GetProtocolOk() (*V1SecurityGroupRuleProtocol, bool) {
-	if o == nil || IsNil(o.Protocol) {
-		return nil, false
-	}
-	return o.Protocol, true
-}
-
-// HasProtocol returns a boolean if a field has been set.
-func (o *SecurityGroupRule) HasProtocol() bool {
-	if o != nil && !IsNil(o.Protocol) {
-		return true
-	}
-
-	return false
-}
-
-// SetProtocol gets a reference to the given V1SecurityGroupRuleProtocol and assigns it to the Protocol field.
-func (o *SecurityGroupRule) SetProtocol(v *V1SecurityGroupRuleProtocol) {
-	o.Protocol = v
-}
-
 // GetRemoteSecurityGroupId returns the RemoteSecurityGroupId field value if set, zero value otherwise.
 func (o *SecurityGroupRule) GetRemoteSecurityGroupId() *string {
 	if o == nil || IsNil(o.RemoteSecurityGroupId) {
@@ -375,6 +343,38 @@ func (o *SecurityGroupRule) SetSecurityGroupId(v *string) {
 	o.SecurityGroupId = v
 }
 
+// GetProtocol returns the Protocol field value if set, zero value otherwise.
+func (o *SecurityGroupRule) GetProtocol() *Protocol {
+	if o == nil || IsNil(o.Protocol) {
+		var ret *Protocol
+		return ret
+	}
+	return o.Protocol
+}
+
+// GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroupRule) GetProtocolOk() (*Protocol, bool) {
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
+	}
+	return o.Protocol, true
+}
+
+// HasProtocol returns a boolean if a field has been set.
+func (o *SecurityGroupRule) HasProtocol() bool {
+	if o != nil && !IsNil(o.Protocol) {
+		return true
+	}
+
+	return false
+}
+
+// SetProtocol gets a reference to the given Protocol and assigns it to the Protocol field.
+func (o *SecurityGroupRule) SetProtocol(v *Protocol) {
+	o.Protocol = v
+}
+
 func (o SecurityGroupRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Description) {
@@ -396,14 +396,14 @@ func (o SecurityGroupRule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PortRange) {
 		toSerialize["portRange"] = o.PortRange
 	}
-	if !IsNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
 	if !IsNil(o.RemoteSecurityGroupId) {
 		toSerialize["remoteSecurityGroupId"] = o.RemoteSecurityGroupId
 	}
 	if !IsNil(o.SecurityGroupId) {
 		toSerialize["securityGroupId"] = o.SecurityGroupId
+	}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
 	}
 	return toSerialize, nil
 }

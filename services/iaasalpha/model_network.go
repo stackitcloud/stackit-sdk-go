@@ -21,9 +21,11 @@ var _ MappedNullable = &Network{}
 // Network Object that represents a network.
 type Network struct {
 	// Date-time when resource was created.
-	CreatedAt *time.Time                `json:"createdAt,omitempty"`
-	Gateway   *NullableV1NetworkGateway `json:"gateway,omitempty"`
-	Gatewayv6 *NullableV1NetworkGateway `json:"gatewayv6,omitempty"`
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
+	Gateway *NullableString `json:"gateway,omitempty"`
+	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
+	Gatewayv6 *NullableString `json:"gatewayv6,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// REQUIRED
@@ -103,9 +105,9 @@ func (o *Network) SetCreatedAt(v *time.Time) {
 }
 
 // GetGateway returns the Gateway field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Network) GetGateway() *V1NetworkGateway {
+func (o *Network) GetGateway() *string {
 	if o == nil || IsNil(o.Gateway.Get()) {
-		var ret *V1NetworkGateway
+		var ret *string
 		return ret
 	}
 	return o.Gateway.Get()
@@ -114,7 +116,7 @@ func (o *Network) GetGateway() *V1NetworkGateway {
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Network) GetGatewayOk() (*V1NetworkGateway, bool) {
+func (o *Network) GetGatewayOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -130,8 +132,8 @@ func (o *Network) HasGateway() bool {
 	return false
 }
 
-// SetGateway gets a reference to the given V1NetworkGateway and assigns it to the Gateway field.
-func (o *Network) SetGateway(v *V1NetworkGateway) {
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
+func (o *Network) SetGateway(v *string) {
 	o.Gateway.Set(v)
 }
 
@@ -146,9 +148,9 @@ func (o *Network) UnsetGateway() {
 }
 
 // GetGatewayv6 returns the Gatewayv6 field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Network) GetGatewayv6() *V1NetworkGateway {
+func (o *Network) GetGatewayv6() *string {
 	if o == nil || IsNil(o.Gatewayv6.Get()) {
-		var ret *V1NetworkGateway
+		var ret *string
 		return ret
 	}
 	return o.Gatewayv6.Get()
@@ -157,7 +159,7 @@ func (o *Network) GetGatewayv6() *V1NetworkGateway {
 // GetGatewayv6Ok returns a tuple with the Gatewayv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Network) GetGatewayv6Ok() (*V1NetworkGateway, bool) {
+func (o *Network) GetGatewayv6Ok() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -173,8 +175,8 @@ func (o *Network) HasGatewayv6() bool {
 	return false
 }
 
-// SetGatewayv6 gets a reference to the given V1NetworkGateway and assigns it to the Gatewayv6 field.
-func (o *Network) SetGatewayv6(v *V1NetworkGateway) {
+// SetGatewayv6 gets a reference to the given string and assigns it to the Gatewayv6 field.
+func (o *Network) SetGatewayv6(v *string) {
 	o.Gatewayv6.Set(v)
 }
 

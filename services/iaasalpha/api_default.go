@@ -1658,7 +1658,7 @@ type ApiCreatePublicIPRequest struct {
 	createPublicIPPayload *CreatePublicIPPayload
 }
 
-// Request a public ip creation.
+// Request a public IP creation.
 
 func (r ApiCreatePublicIPRequest) CreatePublicIPPayload(createPublicIPPayload CreatePublicIPPayload) ApiCreatePublicIPRequest {
 	r.createPublicIPPayload = &createPublicIPPayload
@@ -1827,9 +1827,9 @@ func (r ApiCreatePublicIPRequest) Execute() (*PublicIp, error) {
 }
 
 /*
-CreatePublicIP: Create new public ip.
+CreatePublicIP: Create new public IP.
 
-Create a new public ip in a project.
+Create a new public IP in a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -2426,196 +2426,6 @@ func (a *APIClient) CreateServer(ctx context.Context, projectId string) ApiCreat
 
 func (a *APIClient) CreateServerExecute(ctx context.Context, projectId string) (*Server, error) {
 	r := ApiCreateServerRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiCreateServerGroupRequest struct {
-	ctx                      context.Context
-	apiService               *DefaultApiService
-	projectId                string
-	createServerGroupPayload *CreateServerGroupPayload
-}
-
-// Request a server group creation.
-
-func (r ApiCreateServerGroupRequest) CreateServerGroupPayload(createServerGroupPayload CreateServerGroupPayload) ApiCreateServerGroupRequest {
-	r.createServerGroupPayload = &createServerGroupPayload
-	return r
-}
-
-func (r ApiCreateServerGroupRequest) Execute() (*ServerGroup, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ServerGroup
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServerGroup")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/server-groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if r.createServerGroupPayload == nil {
-		return localVarReturnValue, fmt.Errorf("createServerGroupPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createServerGroupPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-CreateServerGroup: Create a new server group in a project.
-
-Create a new server server group in the given project ID.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@return ApiCreateServerGroupRequest
-*/
-func (a *APIClient) CreateServerGroup(ctx context.Context, projectId string) ApiCreateServerGroupRequest {
-	return ApiCreateServerGroupRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) CreateServerGroupExecute(ctx context.Context, projectId string) (*ServerGroup, error) {
-	r := ApiCreateServerGroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -3501,9 +3311,9 @@ func (r ApiDeletePublicIPRequest) Execute() error {
 }
 
 /*
-DeletePublicIP: Delete a public ip.
+DeletePublicIP: Delete a public IP.
 
-Delete a public ip that is part of the project.
+Delete a public IP that is part of the project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -4078,183 +3888,6 @@ func (a *APIClient) DeleteServerExecute(ctx context.Context, projectId string, s
 		ctx:        ctx,
 		projectId:  projectId,
 		serverId:   serverId,
-	}
-	return r.Execute()
-}
-
-type ApiDeleteServerGroupRequest struct {
-	ctx           context.Context
-	apiService    *DefaultApiService
-	projectId     string
-	serverGroupId string
-}
-
-func (r ApiDeleteServerGroupRequest) Execute() error {
-	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServerGroup")
-	if err != nil {
-		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/server-groups/{serverGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"serverGroupId"+"}", url.PathEscape(ParameterValueToString(r.serverGroupId, "serverGroupId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if strlen(r.serverGroupId) < 36 {
-		return fmt.Errorf("serverGroupId must have at least 36 elements")
-	}
-	if strlen(r.serverGroupId) > 36 {
-		return fmt.Errorf("serverGroupId must have less than 36 elements")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return newErr
-	}
-
-	return nil
-}
-
-/*
-DeleteServerGroup: Delete a server group in a project.
-
-Delete a server group in the given project.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@param serverGroupId The identifier (ID) of a STACKIT Server Group.
-	@return ApiDeleteServerGroupRequest
-*/
-func (a *APIClient) DeleteServerGroup(ctx context.Context, projectId string, serverGroupId string) ApiDeleteServerGroupRequest {
-	return ApiDeleteServerGroupRequest{
-		apiService:    a.defaultApi,
-		ctx:           ctx,
-		projectId:     projectId,
-		serverGroupId: serverGroupId,
-	}
-}
-
-func (a *APIClient) DeleteServerGroupExecute(ctx context.Context, projectId string, serverGroupId string) error {
-	r := ApiDeleteServerGroupRequest{
-		apiService:    a.defaultApi,
-		ctx:           ctx,
-		projectId:     projectId,
-		serverGroupId: serverGroupId,
 	}
 	return r.Execute()
 }
@@ -6108,9 +5741,9 @@ func (r ApiGetPublicIPRequest) Execute() (*PublicIp, error) {
 }
 
 /*
-GetPublicIP: Get details about a public ip.
+GetPublicIP: Get details about a public IP.
 
-Get details about a public ip inside a project.
+Get details about a public IP inside a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -6910,194 +6543,6 @@ func (a *APIClient) GetServerConsoleExecute(ctx context.Context, projectId strin
 	return r.Execute()
 }
 
-type ApiGetServerGroupRequest struct {
-	ctx           context.Context
-	apiService    *DefaultApiService
-	projectId     string
-	serverGroupId string
-}
-
-func (r ApiGetServerGroupRequest) Execute() (*ServerGroup, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ServerGroup
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServerGroup")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/server-groups/{serverGroupId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"serverGroupId"+"}", url.PathEscape(ParameterValueToString(r.serverGroupId, "serverGroupId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if strlen(r.serverGroupId) < 36 {
-		return localVarReturnValue, fmt.Errorf("serverGroupId must have at least 36 elements")
-	}
-	if strlen(r.serverGroupId) > 36 {
-		return localVarReturnValue, fmt.Errorf("serverGroupId must have less than 36 elements")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetServerGroup: Get the server group.
-
-Get the server group created in a project.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@param serverGroupId The identifier (ID) of a STACKIT Server Group.
-	@return ApiGetServerGroupRequest
-*/
-func (a *APIClient) GetServerGroup(ctx context.Context, projectId string, serverGroupId string) ApiGetServerGroupRequest {
-	return ApiGetServerGroupRequest{
-		apiService:    a.defaultApi,
-		ctx:           ctx,
-		projectId:     projectId,
-		serverGroupId: serverGroupId,
-	}
-}
-
-func (a *APIClient) GetServerGroupExecute(ctx context.Context, projectId string, serverGroupId string) (*ServerGroup, error) {
-	r := ApiGetServerGroupRequest{
-		apiService:    a.defaultApi,
-		ctx:           ctx,
-		projectId:     projectId,
-		serverGroupId: serverGroupId,
-	}
-	return r.Execute()
-}
-
 type ApiGetServerLogRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
@@ -7676,12 +7121,12 @@ type ApiListAttachedVolumesRequest struct {
 	serverId   string
 }
 
-func (r ApiListAttachedVolumesRequest) Execute() (*V1VolumeAttachmentListResponse, error) {
+func (r ApiListAttachedVolumesRequest) Execute() (*VolumeAttachmentListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *V1VolumeAttachmentListResponse
+		localVarReturnValue *VolumeAttachmentListResponse
 	)
 	a := r.apiService
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAttachedVolumes")
@@ -7847,7 +7292,7 @@ func (a *APIClient) ListAttachedVolumes(ctx context.Context, projectId string, s
 	}
 }
 
-func (a *APIClient) ListAttachedVolumesExecute(ctx context.Context, projectId string, serverId string) (*V1VolumeAttachmentListResponse, error) {
+func (a *APIClient) ListAttachedVolumesExecute(ctx context.Context, projectId string, serverId string) (*VolumeAttachmentListResponse, error) {
 	r := ApiListAttachedVolumesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -8941,9 +8386,9 @@ func (r ApiListPublicIPRangesRequest) Execute() (*PublicNetworkListResponse, err
 }
 
 /*
-ListPublicIPRanges: List all public ip ranges.
+ListPublicIPRanges: List all public IP ranges.
 
-Get a list of all public ip ranges that STACKIT uses.
+Get a list of all public IP ranges that STACKIT uses.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListPublicIPRangesRequest
@@ -9126,9 +8571,9 @@ func (r ApiListPublicIPsRequest) Execute() (*PublicIpListResponse, error) {
 }
 
 /*
-ListPublicIPs: List all public ips inside a project.
+ListPublicIPs: List all public IPs inside a project.
 
-Get a list of all public ips inside a project.
+Get a list of all public IPs inside a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
@@ -9520,194 +8965,6 @@ func (a *APIClient) ListSecurityGroups(ctx context.Context, projectId string) Ap
 
 func (a *APIClient) ListSecurityGroupsExecute(ctx context.Context, projectId string) (*SecurityGroupListResponse, error) {
 	r := ApiListSecurityGroupsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ApiListServerGroupsRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-}
-
-func (r ApiListServerGroupsRequest) Execute() (*ServerGroupListResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ServerGroupListResponse
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServerGroups")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/server-groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-ListServerGroups: Get the server groups setup for a project.
-
-Get the server groups created in a project. Server groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@return ApiListServerGroupsRequest
-*/
-func (a *APIClient) ListServerGroups(ctx context.Context, projectId string) ApiListServerGroupsRequest {
-	return ApiListServerGroupsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) ListServerGroupsExecute(ctx context.Context, projectId string) (*ServerGroupListResponse, error) {
-	r := ApiListServerGroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -13218,7 +12475,7 @@ type ApiUpdateAttachedVolumeRequest struct {
 	updateAttachedVolumePayload *UpdateAttachedVolumePayload
 }
 
-// Request a volume attachment Update.
+// Request a volume attachment update.
 
 func (r ApiUpdateAttachedVolumeRequest) UpdateAttachedVolumePayload(updateAttachedVolumePayload UpdateAttachedVolumePayload) ApiUpdateAttachedVolumeRequest {
 	r.updateAttachedVolumePayload = &updateAttachedVolumePayload
@@ -13617,7 +12874,7 @@ type ApiUpdateNICRequest struct {
 	updateNICPayload *UpdateNICPayload
 }
 
-// Request an Update of a network interface.
+// Request an update of a network interface.
 
 func (r ApiUpdateNICRequest) UpdateNICPayload(updateNICPayload UpdateNICPayload) ApiUpdateNICRequest {
 	r.updateNICPayload = &updateNICPayload
@@ -13839,7 +13096,7 @@ type ApiUpdatePublicIPRequest struct {
 	updatePublicIPPayload *UpdatePublicIPPayload
 }
 
-// Request an Update of a public IP.
+// Request an update of a public IP.
 
 func (r ApiUpdatePublicIPRequest) UpdatePublicIPPayload(updatePublicIPPayload UpdatePublicIPPayload) ApiUpdatePublicIPRequest {
 	r.updatePublicIPPayload = &updatePublicIPPayload
@@ -14004,9 +13261,9 @@ func (r ApiUpdatePublicIPRequest) Execute() (*PublicIp, error) {
 }
 
 /*
-UpdatePublicIP: Update a public ip.
+UpdatePublicIP: Update a public IP.
 
-Update the properties of an existing public ip inside a project.
+Update the properties of an existing public IP inside a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.

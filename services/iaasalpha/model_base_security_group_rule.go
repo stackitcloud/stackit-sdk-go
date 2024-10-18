@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the CreateSecurityGroupRulePayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateSecurityGroupRulePayload{}
+// checks if the BaseSecurityGroupRule type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BaseSecurityGroupRule{}
 
-// CreateSecurityGroupRulePayload Object that represents a request body for security group rule creation.
-type CreateSecurityGroupRulePayload struct {
+// BaseSecurityGroupRule The base schema for a security group rule.
+type BaseSecurityGroupRule struct {
 	// Description Object. Allows string up to 127 Characters.
 	Description *string `json:"description,omitempty"`
 	// The direction of the traffic which the rule should match.
@@ -35,36 +35,35 @@ type CreateSecurityGroupRulePayload struct {
 	// Universally Unique Identifier (UUID).
 	RemoteSecurityGroupId *string `json:"remoteSecurityGroupId,omitempty"`
 	// Universally Unique Identifier (UUID).
-	SecurityGroupId *string         `json:"securityGroupId,omitempty"`
-	Protocol        *CreateProtocol `json:"protocol,omitempty"`
+	SecurityGroupId *string `json:"securityGroupId,omitempty"`
 }
 
-type _CreateSecurityGroupRulePayload CreateSecurityGroupRulePayload
+type _BaseSecurityGroupRule BaseSecurityGroupRule
 
-// NewCreateSecurityGroupRulePayload instantiates a new CreateSecurityGroupRulePayload object
+// NewBaseSecurityGroupRule instantiates a new BaseSecurityGroupRule object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateSecurityGroupRulePayload(direction *string) *CreateSecurityGroupRulePayload {
-	this := CreateSecurityGroupRulePayload{}
+func NewBaseSecurityGroupRule(direction *string) *BaseSecurityGroupRule {
+	this := BaseSecurityGroupRule{}
 	this.Direction = direction
 	var ethertype string = "IPv4"
 	this.Ethertype = &ethertype
 	return &this
 }
 
-// NewCreateSecurityGroupRulePayloadWithDefaults instantiates a new CreateSecurityGroupRulePayload object
+// NewBaseSecurityGroupRuleWithDefaults instantiates a new BaseSecurityGroupRule object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateSecurityGroupRulePayloadWithDefaults() *CreateSecurityGroupRulePayload {
-	this := CreateSecurityGroupRulePayload{}
+func NewBaseSecurityGroupRuleWithDefaults() *BaseSecurityGroupRule {
+	this := BaseSecurityGroupRule{}
 	var ethertype string = "IPv4"
 	this.Ethertype = &ethertype
 	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRulePayload) GetDescription() *string {
+func (o *BaseSecurityGroupRule) GetDescription() *string {
 	if o == nil || IsNil(o.Description) {
 		var ret *string
 		return ret
@@ -74,7 +73,7 @@ func (o *CreateSecurityGroupRulePayload) GetDescription() *string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetDescriptionOk() (*string, bool) {
+func (o *BaseSecurityGroupRule) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -82,7 +81,7 @@ func (o *CreateSecurityGroupRulePayload) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *CreateSecurityGroupRulePayload) HasDescription() bool {
+func (o *BaseSecurityGroupRule) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -91,12 +90,12 @@ func (o *CreateSecurityGroupRulePayload) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *CreateSecurityGroupRulePayload) SetDescription(v *string) {
+func (o *BaseSecurityGroupRule) SetDescription(v *string) {
 	o.Description = v
 }
 
 // GetDirection returns the Direction field value
-func (o *CreateSecurityGroupRulePayload) GetDirection() *string {
+func (o *BaseSecurityGroupRule) GetDirection() *string {
 	if o == nil {
 		var ret *string
 		return ret
@@ -107,7 +106,7 @@ func (o *CreateSecurityGroupRulePayload) GetDirection() *string {
 
 // GetDirectionOk returns a tuple with the Direction field value
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetDirectionOk() (*string, bool) {
+func (o *BaseSecurityGroupRule) GetDirectionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -115,12 +114,12 @@ func (o *CreateSecurityGroupRulePayload) GetDirectionOk() (*string, bool) {
 }
 
 // SetDirection sets field value
-func (o *CreateSecurityGroupRulePayload) SetDirection(v *string) {
+func (o *BaseSecurityGroupRule) SetDirection(v *string) {
 	o.Direction = v
 }
 
 // GetEthertype returns the Ethertype field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRulePayload) GetEthertype() *string {
+func (o *BaseSecurityGroupRule) GetEthertype() *string {
 	if o == nil || IsNil(o.Ethertype) {
 		var ret *string
 		return ret
@@ -130,7 +129,7 @@ func (o *CreateSecurityGroupRulePayload) GetEthertype() *string {
 
 // GetEthertypeOk returns a tuple with the Ethertype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetEthertypeOk() (*string, bool) {
+func (o *BaseSecurityGroupRule) GetEthertypeOk() (*string, bool) {
 	if o == nil || IsNil(o.Ethertype) {
 		return nil, false
 	}
@@ -138,7 +137,7 @@ func (o *CreateSecurityGroupRulePayload) GetEthertypeOk() (*string, bool) {
 }
 
 // HasEthertype returns a boolean if a field has been set.
-func (o *CreateSecurityGroupRulePayload) HasEthertype() bool {
+func (o *BaseSecurityGroupRule) HasEthertype() bool {
 	if o != nil && !IsNil(o.Ethertype) {
 		return true
 	}
@@ -147,12 +146,12 @@ func (o *CreateSecurityGroupRulePayload) HasEthertype() bool {
 }
 
 // SetEthertype gets a reference to the given string and assigns it to the Ethertype field.
-func (o *CreateSecurityGroupRulePayload) SetEthertype(v *string) {
+func (o *BaseSecurityGroupRule) SetEthertype(v *string) {
 	o.Ethertype = v
 }
 
 // GetIcmpParameters returns the IcmpParameters field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRulePayload) GetIcmpParameters() *ICMPParameters {
+func (o *BaseSecurityGroupRule) GetIcmpParameters() *ICMPParameters {
 	if o == nil || IsNil(o.IcmpParameters) {
 		var ret *ICMPParameters
 		return ret
@@ -162,7 +161,7 @@ func (o *CreateSecurityGroupRulePayload) GetIcmpParameters() *ICMPParameters {
 
 // GetIcmpParametersOk returns a tuple with the IcmpParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetIcmpParametersOk() (*ICMPParameters, bool) {
+func (o *BaseSecurityGroupRule) GetIcmpParametersOk() (*ICMPParameters, bool) {
 	if o == nil || IsNil(o.IcmpParameters) {
 		return nil, false
 	}
@@ -170,7 +169,7 @@ func (o *CreateSecurityGroupRulePayload) GetIcmpParametersOk() (*ICMPParameters,
 }
 
 // HasIcmpParameters returns a boolean if a field has been set.
-func (o *CreateSecurityGroupRulePayload) HasIcmpParameters() bool {
+func (o *BaseSecurityGroupRule) HasIcmpParameters() bool {
 	if o != nil && !IsNil(o.IcmpParameters) {
 		return true
 	}
@@ -179,12 +178,12 @@ func (o *CreateSecurityGroupRulePayload) HasIcmpParameters() bool {
 }
 
 // SetIcmpParameters gets a reference to the given ICMPParameters and assigns it to the IcmpParameters field.
-func (o *CreateSecurityGroupRulePayload) SetIcmpParameters(v *ICMPParameters) {
+func (o *BaseSecurityGroupRule) SetIcmpParameters(v *ICMPParameters) {
 	o.IcmpParameters = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRulePayload) GetId() *string {
+func (o *BaseSecurityGroupRule) GetId() *string {
 	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
@@ -194,7 +193,7 @@ func (o *CreateSecurityGroupRulePayload) GetId() *string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetIdOk() (*string, bool) {
+func (o *BaseSecurityGroupRule) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -202,7 +201,7 @@ func (o *CreateSecurityGroupRulePayload) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *CreateSecurityGroupRulePayload) HasId() bool {
+func (o *BaseSecurityGroupRule) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -211,12 +210,12 @@ func (o *CreateSecurityGroupRulePayload) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateSecurityGroupRulePayload) SetId(v *string) {
+func (o *BaseSecurityGroupRule) SetId(v *string) {
 	o.Id = v
 }
 
 // GetIpRange returns the IpRange field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRulePayload) GetIpRange() *string {
+func (o *BaseSecurityGroupRule) GetIpRange() *string {
 	if o == nil || IsNil(o.IpRange) {
 		var ret *string
 		return ret
@@ -226,7 +225,7 @@ func (o *CreateSecurityGroupRulePayload) GetIpRange() *string {
 
 // GetIpRangeOk returns a tuple with the IpRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetIpRangeOk() (*string, bool) {
+func (o *BaseSecurityGroupRule) GetIpRangeOk() (*string, bool) {
 	if o == nil || IsNil(o.IpRange) {
 		return nil, false
 	}
@@ -234,7 +233,7 @@ func (o *CreateSecurityGroupRulePayload) GetIpRangeOk() (*string, bool) {
 }
 
 // HasIpRange returns a boolean if a field has been set.
-func (o *CreateSecurityGroupRulePayload) HasIpRange() bool {
+func (o *BaseSecurityGroupRule) HasIpRange() bool {
 	if o != nil && !IsNil(o.IpRange) {
 		return true
 	}
@@ -243,12 +242,12 @@ func (o *CreateSecurityGroupRulePayload) HasIpRange() bool {
 }
 
 // SetIpRange gets a reference to the given string and assigns it to the IpRange field.
-func (o *CreateSecurityGroupRulePayload) SetIpRange(v *string) {
+func (o *BaseSecurityGroupRule) SetIpRange(v *string) {
 	o.IpRange = v
 }
 
 // GetPortRange returns the PortRange field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRulePayload) GetPortRange() *PortRange {
+func (o *BaseSecurityGroupRule) GetPortRange() *PortRange {
 	if o == nil || IsNil(o.PortRange) {
 		var ret *PortRange
 		return ret
@@ -258,7 +257,7 @@ func (o *CreateSecurityGroupRulePayload) GetPortRange() *PortRange {
 
 // GetPortRangeOk returns a tuple with the PortRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetPortRangeOk() (*PortRange, bool) {
+func (o *BaseSecurityGroupRule) GetPortRangeOk() (*PortRange, bool) {
 	if o == nil || IsNil(o.PortRange) {
 		return nil, false
 	}
@@ -266,7 +265,7 @@ func (o *CreateSecurityGroupRulePayload) GetPortRangeOk() (*PortRange, bool) {
 }
 
 // HasPortRange returns a boolean if a field has been set.
-func (o *CreateSecurityGroupRulePayload) HasPortRange() bool {
+func (o *BaseSecurityGroupRule) HasPortRange() bool {
 	if o != nil && !IsNil(o.PortRange) {
 		return true
 	}
@@ -275,12 +274,12 @@ func (o *CreateSecurityGroupRulePayload) HasPortRange() bool {
 }
 
 // SetPortRange gets a reference to the given PortRange and assigns it to the PortRange field.
-func (o *CreateSecurityGroupRulePayload) SetPortRange(v *PortRange) {
+func (o *BaseSecurityGroupRule) SetPortRange(v *PortRange) {
 	o.PortRange = v
 }
 
 // GetRemoteSecurityGroupId returns the RemoteSecurityGroupId field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRulePayload) GetRemoteSecurityGroupId() *string {
+func (o *BaseSecurityGroupRule) GetRemoteSecurityGroupId() *string {
 	if o == nil || IsNil(o.RemoteSecurityGroupId) {
 		var ret *string
 		return ret
@@ -290,7 +289,7 @@ func (o *CreateSecurityGroupRulePayload) GetRemoteSecurityGroupId() *string {
 
 // GetRemoteSecurityGroupIdOk returns a tuple with the RemoteSecurityGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetRemoteSecurityGroupIdOk() (*string, bool) {
+func (o *BaseSecurityGroupRule) GetRemoteSecurityGroupIdOk() (*string, bool) {
 	if o == nil || IsNil(o.RemoteSecurityGroupId) {
 		return nil, false
 	}
@@ -298,7 +297,7 @@ func (o *CreateSecurityGroupRulePayload) GetRemoteSecurityGroupIdOk() (*string, 
 }
 
 // HasRemoteSecurityGroupId returns a boolean if a field has been set.
-func (o *CreateSecurityGroupRulePayload) HasRemoteSecurityGroupId() bool {
+func (o *BaseSecurityGroupRule) HasRemoteSecurityGroupId() bool {
 	if o != nil && !IsNil(o.RemoteSecurityGroupId) {
 		return true
 	}
@@ -307,12 +306,12 @@ func (o *CreateSecurityGroupRulePayload) HasRemoteSecurityGroupId() bool {
 }
 
 // SetRemoteSecurityGroupId gets a reference to the given string and assigns it to the RemoteSecurityGroupId field.
-func (o *CreateSecurityGroupRulePayload) SetRemoteSecurityGroupId(v *string) {
+func (o *BaseSecurityGroupRule) SetRemoteSecurityGroupId(v *string) {
 	o.RemoteSecurityGroupId = v
 }
 
 // GetSecurityGroupId returns the SecurityGroupId field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRulePayload) GetSecurityGroupId() *string {
+func (o *BaseSecurityGroupRule) GetSecurityGroupId() *string {
 	if o == nil || IsNil(o.SecurityGroupId) {
 		var ret *string
 		return ret
@@ -322,7 +321,7 @@ func (o *CreateSecurityGroupRulePayload) GetSecurityGroupId() *string {
 
 // GetSecurityGroupIdOk returns a tuple with the SecurityGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetSecurityGroupIdOk() (*string, bool) {
+func (o *BaseSecurityGroupRule) GetSecurityGroupIdOk() (*string, bool) {
 	if o == nil || IsNil(o.SecurityGroupId) {
 		return nil, false
 	}
@@ -330,7 +329,7 @@ func (o *CreateSecurityGroupRulePayload) GetSecurityGroupIdOk() (*string, bool) 
 }
 
 // HasSecurityGroupId returns a boolean if a field has been set.
-func (o *CreateSecurityGroupRulePayload) HasSecurityGroupId() bool {
+func (o *BaseSecurityGroupRule) HasSecurityGroupId() bool {
 	if o != nil && !IsNil(o.SecurityGroupId) {
 		return true
 	}
@@ -339,43 +338,11 @@ func (o *CreateSecurityGroupRulePayload) HasSecurityGroupId() bool {
 }
 
 // SetSecurityGroupId gets a reference to the given string and assigns it to the SecurityGroupId field.
-func (o *CreateSecurityGroupRulePayload) SetSecurityGroupId(v *string) {
+func (o *BaseSecurityGroupRule) SetSecurityGroupId(v *string) {
 	o.SecurityGroupId = v
 }
 
-// GetProtocol returns the Protocol field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRulePayload) GetProtocol() *CreateProtocol {
-	if o == nil || IsNil(o.Protocol) {
-		var ret *CreateProtocol
-		return ret
-	}
-	return o.Protocol
-}
-
-// GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRulePayload) GetProtocolOk() (*CreateProtocol, bool) {
-	if o == nil || IsNil(o.Protocol) {
-		return nil, false
-	}
-	return o.Protocol, true
-}
-
-// HasProtocol returns a boolean if a field has been set.
-func (o *CreateSecurityGroupRulePayload) HasProtocol() bool {
-	if o != nil && !IsNil(o.Protocol) {
-		return true
-	}
-
-	return false
-}
-
-// SetProtocol gets a reference to the given CreateProtocol and assigns it to the Protocol field.
-func (o *CreateSecurityGroupRulePayload) SetProtocol(v *CreateProtocol) {
-	o.Protocol = v
-}
-
-func (o CreateSecurityGroupRulePayload) ToMap() (map[string]interface{}, error) {
+func (o BaseSecurityGroupRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -402,44 +369,41 @@ func (o CreateSecurityGroupRulePayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.SecurityGroupId) {
 		toSerialize["securityGroupId"] = o.SecurityGroupId
 	}
-	if !IsNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
-	}
 	return toSerialize, nil
 }
 
-type NullableCreateSecurityGroupRulePayload struct {
-	value *CreateSecurityGroupRulePayload
+type NullableBaseSecurityGroupRule struct {
+	value *BaseSecurityGroupRule
 	isSet bool
 }
 
-func (v NullableCreateSecurityGroupRulePayload) Get() *CreateSecurityGroupRulePayload {
+func (v NullableBaseSecurityGroupRule) Get() *BaseSecurityGroupRule {
 	return v.value
 }
 
-func (v *NullableCreateSecurityGroupRulePayload) Set(val *CreateSecurityGroupRulePayload) {
+func (v *NullableBaseSecurityGroupRule) Set(val *BaseSecurityGroupRule) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateSecurityGroupRulePayload) IsSet() bool {
+func (v NullableBaseSecurityGroupRule) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateSecurityGroupRulePayload) Unset() {
+func (v *NullableBaseSecurityGroupRule) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateSecurityGroupRulePayload(val *CreateSecurityGroupRulePayload) *NullableCreateSecurityGroupRulePayload {
-	return &NullableCreateSecurityGroupRulePayload{value: val, isSet: true}
+func NewNullableBaseSecurityGroupRule(val *BaseSecurityGroupRule) *NullableBaseSecurityGroupRule {
+	return &NullableBaseSecurityGroupRule{value: val, isSet: true}
 }
 
-func (v NullableCreateSecurityGroupRulePayload) MarshalJSON() ([]byte, error) {
+func (v NullableBaseSecurityGroupRule) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateSecurityGroupRulePayload) UnmarshalJSON(src []byte) error {
+func (v *NullableBaseSecurityGroupRule) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

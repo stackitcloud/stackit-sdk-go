@@ -20,6 +20,8 @@ var _ MappedNullable = &Server{}
 
 // Server Representation of a single server object.
 type Server struct {
+	// Universally Unique Identifier (UUID).
+	AffinityGroup *string `json:"affinityGroup,omitempty"`
 	// Object that represents an availability zone.
 	AvailabilityZone *string                        `json:"availabilityZone,omitempty"`
 	BootVolume       *CreateServerPayloadBootVolume `json:"bootVolume,omitempty"`
@@ -51,8 +53,6 @@ type Server struct {
 	PowerStatus *string `json:"powerStatus,omitempty"`
 	// A list of General Objects.
 	SecurityGroups *[]string `json:"securityGroups,omitempty"`
-	// Universally Unique Identifier (UUID).
-	ServerGroup *string `json:"serverGroup,omitempty"`
 	// A list of service account mails.
 	ServiceAccountMails *[]string `json:"serviceAccountMails,omitempty"`
 	// The status of a server object.
@@ -84,6 +84,38 @@ func NewServer(machineType *string, name *string) *Server {
 func NewServerWithDefaults() *Server {
 	this := Server{}
 	return &this
+}
+
+// GetAffinityGroup returns the AffinityGroup field value if set, zero value otherwise.
+func (o *Server) GetAffinityGroup() *string {
+	if o == nil || IsNil(o.AffinityGroup) {
+		var ret *string
+		return ret
+	}
+	return o.AffinityGroup
+}
+
+// GetAffinityGroupOk returns a tuple with the AffinityGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetAffinityGroupOk() (*string, bool) {
+	if o == nil || IsNil(o.AffinityGroup) {
+		return nil, false
+	}
+	return o.AffinityGroup, true
+}
+
+// HasAffinityGroup returns a boolean if a field has been set.
+func (o *Server) HasAffinityGroup() bool {
+	if o != nil && !IsNil(o.AffinityGroup) {
+		return true
+	}
+
+	return false
+}
+
+// SetAffinityGroup gets a reference to the given string and assigns it to the AffinityGroup field.
+func (o *Server) SetAffinityGroup(v *string) {
+	o.AffinityGroup = v
 }
 
 // GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
@@ -582,38 +614,6 @@ func (o *Server) SetSecurityGroups(v *[]string) {
 	o.SecurityGroups = v
 }
 
-// GetServerGroup returns the ServerGroup field value if set, zero value otherwise.
-func (o *Server) GetServerGroup() *string {
-	if o == nil || IsNil(o.ServerGroup) {
-		var ret *string
-		return ret
-	}
-	return o.ServerGroup
-}
-
-// GetServerGroupOk returns a tuple with the ServerGroup field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Server) GetServerGroupOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerGroup) {
-		return nil, false
-	}
-	return o.ServerGroup, true
-}
-
-// HasServerGroup returns a boolean if a field has been set.
-func (o *Server) HasServerGroup() bool {
-	if o != nil && !IsNil(o.ServerGroup) {
-		return true
-	}
-
-	return false
-}
-
-// SetServerGroup gets a reference to the given string and assigns it to the ServerGroup field.
-func (o *Server) SetServerGroup(v *string) {
-	o.ServerGroup = v
-}
-
 // GetServiceAccountMails returns the ServiceAccountMails field value if set, zero value otherwise.
 func (o *Server) GetServiceAccountMails() *[]string {
 	if o == nil || IsNil(o.ServiceAccountMails) {
@@ -776,6 +776,9 @@ func (o *Server) SetVolumes(v *[]string) {
 
 func (o Server) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AffinityGroup) {
+		toSerialize["affinityGroup"] = o.AffinityGroup
+	}
 	if !IsNil(o.AvailabilityZone) {
 		toSerialize["availabilityZone"] = o.AvailabilityZone
 	}
@@ -819,9 +822,6 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SecurityGroups) {
 		toSerialize["securityGroups"] = o.SecurityGroups
-	}
-	if !IsNil(o.ServerGroup) {
-		toSerialize["serverGroup"] = o.ServerGroup
 	}
 	if !IsNil(o.ServiceAccountMails) {
 		toSerialize["serviceAccountMails"] = o.ServiceAccountMails
