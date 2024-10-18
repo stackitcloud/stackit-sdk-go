@@ -9,7 +9,7 @@
     - `SecurityGroup`
     - `SecurityGroupRule`
   - **Breaking change**: Remove `V1NetworkGateway` data model
-  - **Bugfix**: network response json decoding
+  - **Bugfix**: Network response JSON decoding
 
 ## Release (2024-10-14)
 
