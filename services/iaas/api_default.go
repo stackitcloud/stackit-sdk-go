@@ -8969,6 +8969,14 @@ type ApiListNetworkAreaRoutesRequest struct {
 	apiService     *DefaultApiService
 	organizationId string
 	areaId         string
+	labelSelector  *string
+}
+
+// Filter resources by labels.
+
+func (r ApiListNetworkAreaRoutesRequest) LabelSelector(labelSelector string) ApiListNetworkAreaRoutesRequest {
+	r.labelSelector = &labelSelector
+	return r
 }
 
 func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteListResponse, error) {
@@ -9004,6 +9012,9 @@ func (r ApiListNetworkAreaRoutesRequest) Execute() (*RouteListResponse, error) {
 		return localVarReturnValue, fmt.Errorf("areaId must have less than 36 elements")
 	}
 
+	if r.labelSelector != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -9156,6 +9167,14 @@ type ApiListNetworkAreasRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	organizationId string
+	labelSelector  *string
+}
+
+// Filter resources by labels.
+
+func (r ApiListNetworkAreasRequest) LabelSelector(labelSelector string) ApiListNetworkAreasRequest {
+	r.labelSelector = &labelSelector
+	return r
 }
 
 func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaListResponse, error) {
@@ -9184,6 +9203,9 @@ func (r ApiListNetworkAreasRequest) Execute() (*NetworkAreaListResponse, error) 
 		return localVarReturnValue, fmt.Errorf("organizationId must have less than 36 elements")
 	}
 
+	if r.labelSelector != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -14209,6 +14231,218 @@ func (a *APIClient) UpdateNICExecute(ctx context.Context, projectId string, netw
 		projectId:  projectId,
 		networkId:  networkId,
 		nicId:      nicId,
+	}
+	return r.Execute()
+}
+
+type ApiUpdateNetworkAreaRouteRequest struct {
+	ctx                           context.Context
+	apiService                    *DefaultApiService
+	organizationId                string
+	areaId                        string
+	routeId                       string
+	updateNetworkAreaRoutePayload *UpdateNetworkAreaRoutePayload
+}
+
+// Request an update of a network route.
+
+func (r ApiUpdateNetworkAreaRouteRequest) UpdateNetworkAreaRoutePayload(updateNetworkAreaRoutePayload UpdateNetworkAreaRoutePayload) ApiUpdateNetworkAreaRouteRequest {
+	r.updateNetworkAreaRoutePayload = &updateNetworkAreaRoutePayload
+	return r
+}
+
+func (r ApiUpdateNetworkAreaRouteRequest) Execute() (*Route, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Route
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateNetworkAreaRoute")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(r.areaId, "areaId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(r.routeId, "routeId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.organizationId) < 36 {
+		return localVarReturnValue, fmt.Errorf("organizationId must have at least 36 elements")
+	}
+	if strlen(r.organizationId) > 36 {
+		return localVarReturnValue, fmt.Errorf("organizationId must have less than 36 elements")
+	}
+	if strlen(r.areaId) < 36 {
+		return localVarReturnValue, fmt.Errorf("areaId must have at least 36 elements")
+	}
+	if strlen(r.areaId) > 36 {
+		return localVarReturnValue, fmt.Errorf("areaId must have less than 36 elements")
+	}
+	if strlen(r.routeId) < 36 {
+		return localVarReturnValue, fmt.Errorf("routeId must have at least 36 elements")
+	}
+	if strlen(r.routeId) > 36 {
+		return localVarReturnValue, fmt.Errorf("routeId must have less than 36 elements")
+	}
+	if r.updateNetworkAreaRoutePayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateNetworkAreaRoutePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateNetworkAreaRoutePayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateNetworkAreaRoute: Update a network route.
+
+Update a network route defined in a network area.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
+	@param routeId The identifier (ID) of a STACKIT Route.
+	@return ApiUpdateNetworkAreaRouteRequest
+*/
+func (a *APIClient) UpdateNetworkAreaRoute(ctx context.Context, organizationId string, areaId string, routeId string) ApiUpdateNetworkAreaRouteRequest {
+	return ApiUpdateNetworkAreaRouteRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		organizationId: organizationId,
+		areaId:         areaId,
+		routeId:        routeId,
+	}
+}
+
+func (a *APIClient) UpdateNetworkAreaRouteExecute(ctx context.Context, organizationId string, areaId string, routeId string) (*Route, error) {
+	r := ApiUpdateNetworkAreaRouteRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		organizationId: organizationId,
+		areaId:         areaId,
+		routeId:        routeId,
 	}
 	return r.Execute()
 }
