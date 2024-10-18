@@ -19,7 +19,7 @@ var _ MappedNullable = &PublicIpListResponse{}
 
 // PublicIpListResponse Public IP list response.
 type PublicIpListResponse struct {
-	// A list of public ips.
+	// A list of public IPs.
 	// REQUIRED
 	Items *[]PublicIp `json:"items"`
 }

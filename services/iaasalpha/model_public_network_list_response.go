@@ -21,7 +21,7 @@ var _ MappedNullable = &PublicNetworkListResponse{}
 type PublicNetworkListResponse struct {
 	// A list of public networks.
 	// REQUIRED
-	Items *[]V1PublicNetwork `json:"items"`
+	Items *[]PublicNetwork `json:"items"`
 }
 
 type _PublicNetworkListResponse PublicNetworkListResponse
@@ -30,7 +30,7 @@ type _PublicNetworkListResponse PublicNetworkListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPublicNetworkListResponse(items *[]V1PublicNetwork) *PublicNetworkListResponse {
+func NewPublicNetworkListResponse(items *[]PublicNetwork) *PublicNetworkListResponse {
 	this := PublicNetworkListResponse{}
 	this.Items = items
 	return &this
@@ -45,9 +45,9 @@ func NewPublicNetworkListResponseWithDefaults() *PublicNetworkListResponse {
 }
 
 // GetItems returns the Items field value
-func (o *PublicNetworkListResponse) GetItems() *[]V1PublicNetwork {
+func (o *PublicNetworkListResponse) GetItems() *[]PublicNetwork {
 	if o == nil {
-		var ret *[]V1PublicNetwork
+		var ret *[]PublicNetwork
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *PublicNetworkListResponse) GetItems() *[]V1PublicNetwork {
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *PublicNetworkListResponse) GetItemsOk() (*[]V1PublicNetwork, bool) {
+func (o *PublicNetworkListResponse) GetItemsOk() (*[]PublicNetwork, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *PublicNetworkListResponse) GetItemsOk() (*[]V1PublicNetwork, bool) {
 }
 
 // SetItems sets field value
-func (o *PublicNetworkListResponse) SetItems(v *[]V1PublicNetwork) {
+func (o *PublicNetworkListResponse) SetItems(v *[]PublicNetwork) {
 	o.Items = v
 }
 
