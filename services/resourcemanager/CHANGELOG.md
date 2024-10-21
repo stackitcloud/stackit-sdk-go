@@ -1,3 +1,7 @@
+## v0.11.0 (2024-10-21)
+- **Feature:** Get containers of a folder using the new method `BffGetContainersOfAFolder`
+- **Feature:** Get containers of an organization using the new method `BffGetContainersOfAnOrganization`
+
 ## v0.10.0 (2024-10-14)
 
 - **Feature:** Add support for nullable models
