@@ -2,6 +2,9 @@
 
 - `iaas`: [v0.14.0](services/iaas/CHANGELOG.md#v0140-2024-10-18)
   - **Feature:** Add waiter methods for `Volume`, `Server` and `AttachedVolume`
+- `resourcemanager`: [v0.11.0](services/iaas/CHANGELOG.md#v0110-2024-10-21)
+- **Feature:** Get containers of a folder using the new method `BffGetContainersOfAFolder`
+- **Feature:** Get containers of an organization using the new method `BffGetContainersOfAnOrganization`
 
 ## Release (2024-10-18)
 
