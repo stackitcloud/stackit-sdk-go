@@ -3919,6 +3919,65 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService UpdateNetworkAreaRoute", func(t *testing.T) {
+		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+		organizationIdValue := "organizationId"
+		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := "areaId"
+		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		routeIdValue := "routeId"
+		path = strings.Replace(path, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Route{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := "organizationId"
+		areaId := "areaId"
+		routeId := "routeId"
+		updateNetworkAreaRoutePayload := UpdateNetworkAreaRoutePayload{}
+
+		resp, reqErr := apiClient.UpdateNetworkAreaRoute(context.Background(), organizationId, areaId, routeId).UpdateNetworkAreaRoutePayload(updateNetworkAreaRoutePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService UpdatePublicIP", func(t *testing.T) {
 		path := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
 		projectIdValue := "projectId"

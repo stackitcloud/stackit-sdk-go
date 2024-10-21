@@ -5,6 +5,9 @@
 - `resourcemanager`: [v0.11.0](services/iaas/CHANGELOG.md#v0110-2024-10-21)
 - **Feature:** Get containers of a folder using the new method `BffGetContainersOfAFolder`
 - **Feature:** Get containers of an organization using the new method `BffGetContainersOfAnOrganization`
+- `iaas`: [v0.15.0](services/iaas/CHANGELOG.md#v0150-2024-10-21)
+  - **Feature:** Filter network area routes by labels using the new `LabelSelector` method on `ApiListNetworkAreaRoutesRequest`
+  - **Feature:** Update network area route using the new method `UpdateNetworkAreaRoute`
 
 ## Release (2024-10-18)
 

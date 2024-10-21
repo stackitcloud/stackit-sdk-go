@@ -1,3 +1,8 @@
+## v0.15.0 (2024-10-21)
+
+- **Feature:** Filter network area routes by labels using the new `LabelSelector` method on `ApiListNetworkAreaRoutesRequest`
+- **Feature:** Update network area route using the new method `UpdateNetworkAreaRoute`
+
 ## v0.14.0 (2024-10-18)
 
 - **Feature:** Add waiter methods for `Volume`, `Server` and `AttachedVolume`
