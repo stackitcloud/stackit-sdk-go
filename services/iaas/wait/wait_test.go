@@ -832,6 +832,336 @@ func TestResizeServerWaitHandler(t *testing.T) {
 	}
 }
 
+func TestStartServerWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "start_succeeded",
+			getFails:      false,
+			resourceState: ServerActiveStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER Status",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getServerFails: tt.getFails,
+				resourceState:  tt.resourceState,
+			}
+
+			var wantRes *iaas.Server
+			if tt.wantResp {
+				wantRes = &iaas.Server{
+					Id:     utils.Ptr("sid"),
+					Status: &tt.resourceState,
+				}
+			}
+
+			handler := StartServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestStopServerWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "stop_succeeded",
+			getFails:      false,
+			resourceState: ServerInactiveStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER Status",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getServerFails: tt.getFails,
+				resourceState:  tt.resourceState,
+			}
+
+			var wantRes *iaas.Server
+			if tt.wantResp {
+				wantRes = &iaas.Server{
+					Id:     utils.Ptr("sid"),
+					Status: &tt.resourceState,
+				}
+			}
+
+			handler := StopServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestDeallocateServerWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "deallocate_succeeded",
+			getFails:      false,
+			resourceState: ServerDeallocatedStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER Status",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getServerFails: tt.getFails,
+				resourceState:  tt.resourceState,
+			}
+
+			var wantRes *iaas.Server
+			if tt.wantResp {
+				wantRes = &iaas.Server{
+					Id:     utils.Ptr("sid"),
+					Status: &tt.resourceState,
+				}
+			}
+
+			handler := DeallocateServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestRescueServerWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "rescue_succeeded",
+			getFails:      false,
+			resourceState: ServerRescueStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER Status",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getServerFails: tt.getFails,
+				resourceState:  tt.resourceState,
+			}
+
+			var wantRes *iaas.Server
+			if tt.wantResp {
+				wantRes = &iaas.Server{
+					Id:     utils.Ptr("sid"),
+					Status: &tt.resourceState,
+				}
+			}
+
+			handler := RescueServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestUnrescueServerWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "unrescue_succeeded",
+			getFails:      false,
+			resourceState: ServerActiveStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER Status",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getServerFails: tt.getFails,
+				resourceState:  tt.resourceState,
+			}
+
+			var wantRes *iaas.Server
+			if tt.wantResp {
+				wantRes = &iaas.Server{
+					Id:     utils.Ptr("sid"),
+					Status: &tt.resourceState,
+				}
+			}
+
+			handler := UnrescueServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
 func TestProjectRequestWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string

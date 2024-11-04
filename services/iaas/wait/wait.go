@@ -15,9 +15,14 @@ const (
 	CreateSuccess         = "CREATED"
 	VolumeAvailableStatus = "AVAILABLE"
 	DeleteSuccess         = "DELETED"
-	ErrorStatus           = "ERROR"
-	ServerActiveStatus    = "ACTIVE"
-	ServerResizingStatus  = "RESIZING"
+
+	ErrorStatus = "ERROR"
+
+	ServerActiveStatus      = "ACTIVE"
+	ServerResizingStatus    = "RESIZING"
+	ServerInactiveStatus    = "INACTIVE"
+	ServerDeallocatedStatus = "DEALLOCATED"
+	ServerRescueStatus      = "RESCUE"
 
 	RequestCreateAction  = "CREATE"
 	RequestUpdateAction  = "UPDATE"
@@ -298,6 +303,131 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 			return false, server, err
 		}
 		return true, nil, nil
+	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// StartServerWaitHandler will wait for server start
+func StartServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
+		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		if err != nil {
+			return false, server, err
+		}
+		if server.Id == nil || server.Status == nil {
+			return false, server, fmt.Errorf("start failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
+		}
+		if *server.Id == serverId && *server.Status == ServerActiveStatus {
+			return true, server, nil
+		}
+		if *server.Id == serverId && *server.Status == ErrorStatus {
+			if server.ErrorMessage != nil {
+				return true, server, fmt.Errorf("start failed for server with id %s: %s", serverId, *server.ErrorMessage)
+			}
+			return true, server, fmt.Errorf("start failed for server with id %s", serverId)
+		}
+		return false, server, nil
+	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// StopServerWaitHandler will wait for server stop
+func StopServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
+		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		if err != nil {
+			return false, server, err
+		}
+		if server.Id == nil || server.Status == nil {
+			return false, server, fmt.Errorf("stop failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
+		}
+		if *server.Id == serverId && *server.Status == ServerInactiveStatus {
+			return true, server, nil
+		}
+		if *server.Id == serverId && *server.Status == ErrorStatus {
+			if server.ErrorMessage != nil {
+				return true, server, fmt.Errorf("stop failed for server with id %s: %s", serverId, *server.ErrorMessage)
+			}
+			return true, server, fmt.Errorf("stop failed for server with id %s", serverId)
+		}
+		return false, server, nil
+	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// DeallocateServerWaitHandler will wait for server deallocation
+func DeallocateServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
+		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		if err != nil {
+			return false, server, err
+		}
+		if server.Id == nil || server.Status == nil {
+			return false, server, fmt.Errorf("deallocate failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
+		}
+		if *server.Id == serverId && *server.Status == ServerDeallocatedStatus {
+			return true, server, nil
+		}
+		if *server.Id == serverId && *server.Status == ErrorStatus {
+			if server.ErrorMessage != nil {
+				return true, server, fmt.Errorf("deallocate failed for server with id %s: %s", serverId, *server.ErrorMessage)
+			}
+			return true, server, fmt.Errorf("deallocate failed for server with id %s", serverId)
+		}
+		return false, server, nil
+	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// RescueServerWaitHandler will wait for server rescue
+func RescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
+		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		if err != nil {
+			return false, server, err
+		}
+		if server.Id == nil || server.Status == nil {
+			return false, server, fmt.Errorf("rescue failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
+		}
+		if *server.Id == serverId && *server.Status == ServerRescueStatus {
+			return true, server, nil
+		}
+		if *server.Id == serverId && *server.Status == ErrorStatus {
+			if server.ErrorMessage != nil {
+				return true, server, fmt.Errorf("rescue failed for server with id %s: %s", serverId, *server.ErrorMessage)
+			}
+			return true, server, fmt.Errorf("rescue failed for server with id %s", serverId)
+		}
+		return false, server, nil
+	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// UnrescueServerWaitHandler will wait for server unrescue
+func UnrescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
+		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		if err != nil {
+			return false, server, err
+		}
+		if server.Id == nil || server.Status == nil {
+			return false, server, fmt.Errorf("unrescue failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
+		}
+		if *server.Id == serverId && *server.Status == ServerActiveStatus {
+			return true, server, nil
+		}
+		if *server.Id == serverId && *server.Status == ErrorStatus {
+			if server.ErrorMessage != nil {
+				return true, server, fmt.Errorf("unrescue failed for server with id %s: %s", serverId, *server.ErrorMessage)
+			}
+			return true, server, fmt.Errorf("unrescue failed for server with id %s", serverId)
+		}
+		return false, server, nil
 	})
 	handler.SetTimeout(20 * time.Minute)
 	return handler
