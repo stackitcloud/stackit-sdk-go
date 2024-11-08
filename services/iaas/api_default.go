@@ -26,205 +26,6 @@ import (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiAddNICToServerRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	serverId   string
-	nicId      string
-}
-
-func (r ApiAddNICToServerRequest) Execute() error {
-	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AddNICToServer")
-	if err != nil {
-		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(r.serverId, "serverId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if strlen(r.serverId) < 36 {
-		return fmt.Errorf("serverId must have at least 36 elements")
-	}
-	if strlen(r.serverId) > 36 {
-		return fmt.Errorf("serverId must have less than 36 elements")
-	}
-	if strlen(r.nicId) < 36 {
-		return fmt.Errorf("nicId must have at least 36 elements")
-	}
-	if strlen(r.nicId) > 36 {
-		return fmt.Errorf("nicId must have less than 36 elements")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return newErr
-	}
-
-	return nil
-}
-
-/*
-AddNICToServer: Attach an existing network interface.
-
-Attach an existing network interface to a server.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@param serverId The identifier (ID) of a STACKIT Server.
-	@param nicId The identifier (ID) of a network interface.
-	@return ApiAddNICToServerRequest
-*/
-func (a *APIClient) AddNICToServer(ctx context.Context, projectId string, serverId string, nicId string) ApiAddNICToServerRequest {
-	return ApiAddNICToServerRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		serverId:   serverId,
-		nicId:      nicId,
-	}
-}
-
-func (a *APIClient) AddNICToServerExecute(ctx context.Context, projectId string, serverId string, nicId string) error {
-	r := ApiAddNICToServerRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		serverId:   serverId,
-		nicId:      nicId,
-	}
-	return r.Execute()
-}
-
 type ApiAddNetworkToServerRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -409,6 +210,205 @@ func (a *APIClient) AddNetworkToServerExecute(ctx context.Context, projectId str
 		projectId:  projectId,
 		serverId:   serverId,
 		networkId:  networkId,
+	}
+	return r.Execute()
+}
+
+type ApiAddNicToServerRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	serverId   string
+	nicId      string
+}
+
+func (r ApiAddNicToServerRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AddNicToServer")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(r.serverId, "serverId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.serverId) < 36 {
+		return fmt.Errorf("serverId must have at least 36 elements")
+	}
+	if strlen(r.serverId) > 36 {
+		return fmt.Errorf("serverId must have less than 36 elements")
+	}
+	if strlen(r.nicId) < 36 {
+		return fmt.Errorf("nicId must have at least 36 elements")
+	}
+	if strlen(r.nicId) > 36 {
+		return fmt.Errorf("nicId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+AddNicToServer: Attach an existing network interface.
+
+Attach an existing network interface to a server.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param serverId The identifier (ID) of a STACKIT Server.
+	@param nicId The identifier (ID) of a network interface.
+	@return ApiAddNicToServerRequest
+*/
+func (a *APIClient) AddNicToServer(ctx context.Context, projectId string, serverId string, nicId string) ApiAddNicToServerRequest {
+	return ApiAddNicToServerRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		serverId:   serverId,
+		nicId:      nicId,
+	}
+}
+
+func (a *APIClient) AddNicToServerExecute(ctx context.Context, projectId string, serverId string, nicId string) error {
+	r := ApiAddNicToServerRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		serverId:   serverId,
+		nicId:      nicId,
 	}
 	return r.Execute()
 }
@@ -1238,55 +1238,39 @@ func (a *APIClient) AddVolumeToServerExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiCreateNICRequest struct {
-	ctx              context.Context
-	apiService       *DefaultApiService
-	projectId        string
-	networkId        string
-	createNICPayload *CreateNICPayload
+type ApiCreateKeyPairRequest struct {
+	ctx                  context.Context
+	apiService           *DefaultApiService
+	createKeyPairPayload *CreateKeyPairPayload
 }
 
-// Request a network interface creation.
+// Request a public key import.
 
-func (r ApiCreateNICRequest) CreateNICPayload(createNICPayload CreateNICPayload) ApiCreateNICRequest {
-	r.createNICPayload = &createNICPayload
+func (r ApiCreateKeyPairRequest) CreateKeyPairPayload(createKeyPairPayload CreateKeyPairPayload) ApiCreateKeyPairRequest {
+	r.createKeyPairPayload = &createKeyPairPayload
 	return r
 }
 
-func (r ApiCreateNICRequest) Execute() (*NIC, error) {
+func (r ApiCreateKeyPairRequest) Execute() (*Keypair, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *NIC
+		localVarReturnValue *Keypair
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateNIC")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateKeyPair")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath := localBasePath + "/v1beta1/keypairs"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if strlen(r.networkId) < 36 {
-		return localVarReturnValue, fmt.Errorf("networkId must have at least 36 elements")
-	}
-	if strlen(r.networkId) > 36 {
-		return localVarReturnValue, fmt.Errorf("networkId must have less than 36 elements")
-	}
-	if r.createNICPayload == nil {
-		return localVarReturnValue, fmt.Errorf("createNICPayload is required and must be specified")
+	if r.createKeyPairPayload == nil {
+		return localVarReturnValue, fmt.Errorf("createKeyPairPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1307,7 +1291,7 @@ func (r ApiCreateNICRequest) Execute() (*NIC, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createNICPayload
+	localVarPostBody = r.createKeyPairPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -1395,17 +1379,6 @@ func (r ApiCreateNICRequest) Execute() (*NIC, error) {
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1433,30 +1406,24 @@ func (r ApiCreateNICRequest) Execute() (*NIC, error) {
 }
 
 /*
-CreateNIC: Create new network interface.
+CreateKeyPair: Import a public key.
 
-Create a new network interface in a project.
+Import a new public key for the requesting user based on provided public key material. The creation will fail if an SSH keypair with the same name already exists. If a name is not provided it is autogenerated form the ssh-pubkey comment section. If that is also not present it will be the the MD5 fingerprint of the key. For autogenerated names invalid characters will be removed.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@param networkId The identifier (ID) of a STACKIT Network.
-	@return ApiCreateNICRequest
+	@return ApiCreateKeyPairRequest
 */
-func (a *APIClient) CreateNIC(ctx context.Context, projectId string, networkId string) ApiCreateNICRequest {
-	return ApiCreateNICRequest{
+func (a *APIClient) CreateKeyPair(ctx context.Context) ApiCreateKeyPairRequest {
+	return ApiCreateKeyPairRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
-		projectId:  projectId,
-		networkId:  networkId,
 	}
 }
 
-func (a *APIClient) CreateNICExecute(ctx context.Context, projectId string, networkId string) (*NIC, error) {
-	r := ApiCreateNICRequest{
+func (a *APIClient) CreateKeyPairExecute(ctx context.Context) (*Keypair, error) {
+	r := ApiCreateKeyPairRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
-		projectId:  projectId,
-		networkId:  networkId,
 	}
 	return r.Execute()
 }
@@ -2272,6 +2239,229 @@ func (a *APIClient) CreateNetworkAreaRouteExecute(ctx context.Context, organizat
 		ctx:            ctx,
 		organizationId: organizationId,
 		areaId:         areaId,
+	}
+	return r.Execute()
+}
+
+type ApiCreateNicRequest struct {
+	ctx              context.Context
+	apiService       *DefaultApiService
+	projectId        string
+	networkId        string
+	createNicPayload *CreateNicPayload
+}
+
+// Request a network interface creation.
+
+func (r ApiCreateNicRequest) CreateNicPayload(createNicPayload CreateNicPayload) ApiCreateNicRequest {
+	r.createNicPayload = &createNicPayload
+	return r
+}
+
+func (r ApiCreateNicRequest) Execute() (*NIC, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NIC
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateNic")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.networkId) < 36 {
+		return localVarReturnValue, fmt.Errorf("networkId must have at least 36 elements")
+	}
+	if strlen(r.networkId) > 36 {
+		return localVarReturnValue, fmt.Errorf("networkId must have less than 36 elements")
+	}
+	if r.createNicPayload == nil {
+		return localVarReturnValue, fmt.Errorf("createNicPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createNicPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateNic: Create new network interface.
+
+Create a new network interface in a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param networkId The identifier (ID) of a STACKIT Network.
+	@return ApiCreateNicRequest
+*/
+func (a *APIClient) CreateNic(ctx context.Context, projectId string, networkId string) ApiCreateNicRequest {
+	return ApiCreateNicRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+	}
+}
+
+func (a *APIClient) CreateNicExecute(ctx context.Context, projectId string, networkId string) (*NIC, error) {
+	r := ApiCreateNicRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
 	}
 	return r.Execute()
 }
@@ -3436,51 +3626,32 @@ func (a *APIClient) DeallocateServerExecute(ctx context.Context, projectId strin
 	return r.Execute()
 }
 
-type ApiDeleteNICRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	networkId  string
-	nicId      string
+type ApiDeleteKeyPairRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	keypairName string
 }
 
-func (r ApiDeleteNICRequest) Execute() error {
+func (r ApiDeleteKeyPairRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteNIC")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteKeyPair")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
+	localVarPath := localBasePath + "/v1beta1/keypairs/{keypairName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(r.keypairName, "keypairName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if strlen(r.networkId) < 36 {
-		return fmt.Errorf("networkId must have at least 36 elements")
-	}
-	if strlen(r.networkId) > 36 {
-		return fmt.Errorf("networkId must have less than 36 elements")
-	}
-	if strlen(r.nicId) < 36 {
-		return fmt.Errorf("nicId must have at least 36 elements")
-	}
-	if strlen(r.nicId) > 36 {
-		return fmt.Errorf("nicId must have less than 36 elements")
+	if strlen(r.keypairName) > 127 {
+		return fmt.Errorf("keypairName must have less than 127 elements")
 	}
 
 	// to determine the Content-Type header
@@ -3593,33 +3764,27 @@ func (r ApiDeleteNICRequest) Execute() error {
 }
 
 /*
-DeleteNIC: Delete a network interface.
+DeleteKeyPair: Delete an SSH keypair.
 
-Delete a network interface that is part of the project.
+Delete an SSH keypair from a user.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@param networkId The identifier (ID) of a STACKIT Network.
-	@param nicId The identifier (ID) of a network interface.
-	@return ApiDeleteNICRequest
+	@param keypairName The name of an SSH keypair.
+	@return ApiDeleteKeyPairRequest
 */
-func (a *APIClient) DeleteNIC(ctx context.Context, projectId string, networkId string, nicId string) ApiDeleteNICRequest {
-	return ApiDeleteNICRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		networkId:  networkId,
-		nicId:      nicId,
+func (a *APIClient) DeleteKeyPair(ctx context.Context, keypairName string) ApiDeleteKeyPairRequest {
+	return ApiDeleteKeyPairRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		keypairName: keypairName,
 	}
 }
 
-func (a *APIClient) DeleteNICExecute(ctx context.Context, projectId string, networkId string, nicId string) error {
-	r := ApiDeleteNICRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		networkId:  networkId,
-		nicId:      nicId,
+func (a *APIClient) DeleteKeyPairExecute(ctx context.Context, keypairName string) error {
+	r := ApiDeleteKeyPairRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		keypairName: keypairName,
 	}
 	return r.Execute()
 }
@@ -4383,6 +4548,194 @@ func (a *APIClient) DeleteNetworkAreaRouteExecute(ctx context.Context, organizat
 		organizationId: organizationId,
 		areaId:         areaId,
 		routeId:        routeId,
+	}
+	return r.Execute()
+}
+
+type ApiDeleteNicRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	networkId  string
+	nicId      string
+}
+
+func (r ApiDeleteNicRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteNic")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.networkId) < 36 {
+		return fmt.Errorf("networkId must have at least 36 elements")
+	}
+	if strlen(r.networkId) > 36 {
+		return fmt.Errorf("networkId must have less than 36 elements")
+	}
+	if strlen(r.nicId) < 36 {
+		return fmt.Errorf("nicId must have at least 36 elements")
+	}
+	if strlen(r.nicId) > 36 {
+		return fmt.Errorf("nicId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+DeleteNic: Delete a network interface.
+
+Delete a network interface that is part of the project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param networkId The identifier (ID) of a STACKIT Network.
+	@param nicId The identifier (ID) of a network interface.
+	@return ApiDeleteNicRequest
+*/
+func (a *APIClient) DeleteNic(ctx context.Context, projectId string, networkId string, nicId string) ApiDeleteNicRequest {
+	return ApiDeleteNicRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+		nicId:      nicId,
+	}
+}
+
+func (a *APIClient) DeleteNicExecute(ctx context.Context, projectId string, networkId string, nicId string) error {
+	r := ApiDeleteNicRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+		nicId:      nicId,
 	}
 	return r.Execute()
 }
@@ -5504,52 +5857,33 @@ func (a *APIClient) GetAttachedVolumeExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiGetNICRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	networkId  string
-	nicId      string
+type ApiGetKeyPairRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	keypairName string
 }
 
-func (r ApiGetNICRequest) Execute() (*NIC, error) {
+func (r ApiGetKeyPairRequest) Execute() (*Keypair, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *NIC
+		localVarReturnValue *Keypair
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetNIC")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetKeyPair")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
+	localVarPath := localBasePath + "/v1beta1/keypairs/{keypairName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(r.keypairName, "keypairName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if strlen(r.networkId) < 36 {
-		return localVarReturnValue, fmt.Errorf("networkId must have at least 36 elements")
-	}
-	if strlen(r.networkId) > 36 {
-		return localVarReturnValue, fmt.Errorf("networkId must have less than 36 elements")
-	}
-	if strlen(r.nicId) < 36 {
-		return localVarReturnValue, fmt.Errorf("nicId must have at least 36 elements")
-	}
-	if strlen(r.nicId) > 36 {
-		return localVarReturnValue, fmt.Errorf("nicId must have less than 36 elements")
+	if strlen(r.keypairName) > 127 {
+		return localVarReturnValue, fmt.Errorf("keypairName must have less than 127 elements")
 	}
 
 	// to determine the Content-Type header
@@ -5672,33 +6006,212 @@ func (r ApiGetNICRequest) Execute() (*NIC, error) {
 }
 
 /*
-GetNIC: Get details about a network interface.
+GetKeyPair: Get SSH keypair details.
 
-Get details about a network interface inside a network.
+Get details about an SSH keypair.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@param networkId The identifier (ID) of a STACKIT Network.
-	@param nicId The identifier (ID) of a network interface.
-	@return ApiGetNICRequest
+	@param keypairName The name of an SSH keypair.
+	@return ApiGetKeyPairRequest
 */
-func (a *APIClient) GetNIC(ctx context.Context, projectId string, networkId string, nicId string) ApiGetNICRequest {
-	return ApiGetNICRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		networkId:  networkId,
-		nicId:      nicId,
+func (a *APIClient) GetKeyPair(ctx context.Context, keypairName string) ApiGetKeyPairRequest {
+	return ApiGetKeyPairRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		keypairName: keypairName,
 	}
 }
 
-func (a *APIClient) GetNICExecute(ctx context.Context, projectId string, networkId string, nicId string) (*NIC, error) {
-	r := ApiGetNICRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		networkId:  networkId,
-		nicId:      nicId,
+func (a *APIClient) GetKeyPairExecute(ctx context.Context, keypairName string) (*Keypair, error) {
+	r := ApiGetKeyPairRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		keypairName: keypairName,
+	}
+	return r.Execute()
+}
+
+type ApiGetMachineTypeRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	projectId   string
+	machineType string
+}
+
+func (r ApiGetMachineTypeRequest) Execute() (*MachineType, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MachineType
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetMachineType")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/machine-types/{machineType}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"machineType"+"}", url.PathEscape(ParameterValueToString(r.machineType, "machineType")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.machineType) > 63 {
+		return localVarReturnValue, fmt.Errorf("machineType must have less than 63 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetMachineType: Get details about a machine type.
+
+Get details about a specific machine type.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param machineType STACKIT machine type Name.
+	@return ApiGetMachineTypeRequest
+*/
+func (a *APIClient) GetMachineType(ctx context.Context, projectId string, machineType string) ApiGetMachineTypeRequest {
+	return ApiGetMachineTypeRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		machineType: machineType,
+	}
+}
+
+func (a *APIClient) GetMachineTypeExecute(ctx context.Context, projectId string, machineType string) (*MachineType, error) {
+	r := ApiGetMachineTypeRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		machineType: machineType,
 	}
 	return r.Execute()
 }
@@ -6473,6 +6986,205 @@ func (a *APIClient) GetNetworkAreaRouteExecute(ctx context.Context, organization
 		organizationId: organizationId,
 		areaId:         areaId,
 		routeId:        routeId,
+	}
+	return r.Execute()
+}
+
+type ApiGetNicRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	networkId  string
+	nicId      string
+}
+
+func (r ApiGetNicRequest) Execute() (*NIC, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NIC
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetNic")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.networkId) < 36 {
+		return localVarReturnValue, fmt.Errorf("networkId must have at least 36 elements")
+	}
+	if strlen(r.networkId) > 36 {
+		return localVarReturnValue, fmt.Errorf("networkId must have less than 36 elements")
+	}
+	if strlen(r.nicId) < 36 {
+		return localVarReturnValue, fmt.Errorf("nicId must have at least 36 elements")
+	}
+	if strlen(r.nicId) > 36 {
+		return localVarReturnValue, fmt.Errorf("nicId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetNic: Get details about a network interface.
+
+Get details about a network interface inside a network.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param networkId The identifier (ID) of a STACKIT Network.
+	@param nicId The identifier (ID) of a network interface.
+	@return ApiGetNicRequest
+*/
+func (a *APIClient) GetNic(ctx context.Context, projectId string, networkId string, nicId string) ApiGetNicRequest {
+	return ApiGetNicRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+		nicId:      nicId,
+	}
+}
+
+func (a *APIClient) GetNicExecute(ctx context.Context, projectId string, networkId string, nicId string) (*NIC, error) {
+	r := ApiGetNicRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+		nicId:      nicId,
 	}
 	return r.Execute()
 }
@@ -8201,6 +8913,191 @@ func (a *APIClient) GetVolumeExecute(ctx context.Context, projectId string, volu
 	return r.Execute()
 }
 
+type ApiGetVolumePerformanceClassRequest struct {
+	ctx                    context.Context
+	apiService             *DefaultApiService
+	projectId              string
+	volumePerformanceClass string
+}
+
+func (r ApiGetVolumePerformanceClassRequest) Execute() (*VolumePerformanceClass, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *VolumePerformanceClass
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetVolumePerformanceClass")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"volumePerformanceClass"+"}", url.PathEscape(ParameterValueToString(r.volumePerformanceClass, "volumePerformanceClass")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.volumePerformanceClass) > 63 {
+		return localVarReturnValue, fmt.Errorf("volumePerformanceClass must have less than 63 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetVolumePerformanceClass: Get details about a volume performance class.
+
+Get details about a specific volume performance class.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param volumePerformanceClass The name of a STACKIT Volume performance class.
+	@return ApiGetVolumePerformanceClassRequest
+*/
+func (a *APIClient) GetVolumePerformanceClass(ctx context.Context, projectId string, volumePerformanceClass string) ApiGetVolumePerformanceClassRequest {
+	return ApiGetVolumePerformanceClassRequest{
+		apiService:             a.defaultApi,
+		ctx:                    ctx,
+		projectId:              projectId,
+		volumePerformanceClass: volumePerformanceClass,
+	}
+}
+
+func (a *APIClient) GetVolumePerformanceClassExecute(ctx context.Context, projectId string, volumePerformanceClass string) (*VolumePerformanceClass, error) {
+	r := ApiGetVolumePerformanceClassRequest{
+		apiService:             a.defaultApi,
+		ctx:                    ctx,
+		projectId:              projectId,
+		volumePerformanceClass: volumePerformanceClass,
+	}
+	return r.Execute()
+}
+
 type ApiListAttachedVolumesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -8389,53 +9286,37 @@ func (a *APIClient) ListAttachedVolumesExecute(ctx context.Context, projectId st
 	return r.Execute()
 }
 
-type ApiListNICsRequest struct {
+type ApiListKeyPairsRequest struct {
 	ctx           context.Context
 	apiService    *DefaultApiService
-	projectId     string
-	networkId     string
 	labelSelector *string
 }
 
 // Filter resources by labels.
 
-func (r ApiListNICsRequest) LabelSelector(labelSelector string) ApiListNICsRequest {
+func (r ApiListKeyPairsRequest) LabelSelector(labelSelector string) ApiListKeyPairsRequest {
 	r.labelSelector = &labelSelector
 	return r
 }
 
-func (r ApiListNICsRequest) Execute() (*NICListResponse, error) {
+func (r ApiListKeyPairsRequest) Execute() (*KeyPairListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *NICListResponse
+		localVarReturnValue *KeyPairListResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListNICs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListKeyPairs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath := localBasePath + "/v1beta1/keypairs"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if strlen(r.networkId) < 36 {
-		return localVarReturnValue, fmt.Errorf("networkId must have at least 36 elements")
-	}
-	if strlen(r.networkId) > 36 {
-		return localVarReturnValue, fmt.Errorf("networkId must have less than 36 elements")
-	}
 
 	if r.labelSelector != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "")
@@ -8560,30 +9441,201 @@ func (r ApiListNICsRequest) Execute() (*NICListResponse, error) {
 }
 
 /*
-ListNICs: List all network interfaces inside a network.
+ListKeyPairs: List all SSH keypairs for the requesting user.
 
-Get a list of all network interfaces inside a network.
+Get a list of all SSH keypairs assigned to the requesting user.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@param networkId The identifier (ID) of a STACKIT Network.
-	@return ApiListNICsRequest
+	@return ApiListKeyPairsRequest
 */
-func (a *APIClient) ListNICs(ctx context.Context, projectId string, networkId string) ApiListNICsRequest {
-	return ApiListNICsRequest{
+func (a *APIClient) ListKeyPairs(ctx context.Context) ApiListKeyPairsRequest {
+	return ApiListKeyPairsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
-		projectId:  projectId,
-		networkId:  networkId,
 	}
 }
 
-func (a *APIClient) ListNICsExecute(ctx context.Context, projectId string, networkId string) (*NICListResponse, error) {
-	r := ApiListNICsRequest{
+func (a *APIClient) ListKeyPairsExecute(ctx context.Context) (*KeyPairListResponse, error) {
+	r := ApiListKeyPairsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+	}
+	return r.Execute()
+}
+
+type ApiListMachineTypesRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+}
+
+func (r ApiListMachineTypesRequest) Execute() (*MachineTypeListResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MachineTypeListResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListMachineTypes")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/machine-types"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListMachineTypes: List all machine types available for a project.
+
+Get a list of all machine type available in a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@return ApiListMachineTypesRequest
+*/
+func (a *APIClient) ListMachineTypes(ctx context.Context, projectId string) ApiListMachineTypesRequest {
+	return ApiListMachineTypesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
-		networkId:  networkId,
+	}
+}
+
+func (a *APIClient) ListMachineTypesExecute(ctx context.Context, projectId string) (*MachineTypeListResponse, error) {
+	r := ApiListMachineTypesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
 	}
 	return r.Execute()
 }
@@ -9539,6 +10591,205 @@ func (a *APIClient) ListNetworksExecute(ctx context.Context, projectId string) (
 	return r.Execute()
 }
 
+type ApiListNicsRequest struct {
+	ctx           context.Context
+	apiService    *DefaultApiService
+	projectId     string
+	networkId     string
+	labelSelector *string
+}
+
+// Filter resources by labels.
+
+func (r ApiListNicsRequest) LabelSelector(labelSelector string) ApiListNicsRequest {
+	r.labelSelector = &labelSelector
+	return r
+}
+
+func (r ApiListNicsRequest) Execute() (*NICListResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NICListResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListNics")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.networkId) < 36 {
+		return localVarReturnValue, fmt.Errorf("networkId must have at least 36 elements")
+	}
+	if strlen(r.networkId) > 36 {
+		return localVarReturnValue, fmt.Errorf("networkId must have less than 36 elements")
+	}
+
+	if r.labelSelector != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListNics: List all network interfaces inside a network.
+
+Get a list of all network interfaces inside a network.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param networkId The identifier (ID) of a STACKIT Network.
+	@return ApiListNicsRequest
+*/
+func (a *APIClient) ListNics(ctx context.Context, projectId string, networkId string) ApiListNicsRequest {
+	return ApiListNicsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+	}
+}
+
+func (a *APIClient) ListNicsExecute(ctx context.Context, projectId string, networkId string) (*NICListResponse, error) {
+	r := ApiListNicsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+	}
+	return r.Execute()
+}
+
 type ApiListPublicIPsRequest struct {
 	ctx           context.Context
 	apiService    *DefaultApiService
@@ -10103,14 +11354,14 @@ func (a *APIClient) ListSecurityGroupsExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiListServerNICsRequest struct {
+type ApiListServerNicsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	serverId   string
 }
 
-func (r ApiListServerNICsRequest) Execute() (*NICListResponse, error) {
+func (r ApiListServerNicsRequest) Execute() (*NICListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -10118,7 +11369,7 @@ func (r ApiListServerNICsRequest) Execute() (*NICListResponse, error) {
 		localVarReturnValue *NICListResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServerNICs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServerNics")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -10263,17 +11514,17 @@ func (r ApiListServerNICsRequest) Execute() (*NICListResponse, error) {
 }
 
 /*
-ListServerNICs: Get all network interfaces.
+ListServerNics: Get all network interfaces.
 
 Get all network interfaces attached to the server.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The identifier (ID) of a STACKIT Project.
 	@param serverId The identifier (ID) of a STACKIT Server.
-	@return ApiListServerNICsRequest
+	@return ApiListServerNicsRequest
 */
-func (a *APIClient) ListServerNICs(ctx context.Context, projectId string, serverId string) ApiListServerNICsRequest {
-	return ApiListServerNICsRequest{
+func (a *APIClient) ListServerNics(ctx context.Context, projectId string, serverId string) ApiListServerNicsRequest {
+	return ApiListServerNicsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -10281,8 +11532,8 @@ func (a *APIClient) ListServerNICs(ctx context.Context, projectId string, server
 	}
 }
 
-func (a *APIClient) ListServerNICsExecute(ctx context.Context, projectId string, serverId string) (*NICListResponse, error) {
-	r := ApiListServerNICsRequest{
+func (a *APIClient) ListServerNicsExecute(ctx context.Context, projectId string, serverId string) (*NICListResponse, error) {
+	r := ApiListServerNicsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -10671,6 +11922,194 @@ func (a *APIClient) ListServers(ctx context.Context, projectId string) ApiListSe
 
 func (a *APIClient) ListServersExecute(ctx context.Context, projectId string) (*ServerListResponse, error) {
 	r := ApiListServersRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ApiListVolumePerformanceClassesRequest struct {
+	ctx           context.Context
+	apiService    *DefaultApiService
+	projectId     string
+	labelSelector *string
+}
+
+// Filter resources by labels.
+
+func (r ApiListVolumePerformanceClassesRequest) LabelSelector(labelSelector string) ApiListVolumePerformanceClassesRequest {
+	r.labelSelector = &labelSelector
+	return r
+}
+
+func (r ApiListVolumePerformanceClassesRequest) Execute() (*VolumePerformanceClassListResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *VolumePerformanceClassListResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListVolumePerformanceClasses")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/volume-performance-classes"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+
+	if r.labelSelector != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListVolumePerformanceClasses: List all volume performance classes available for a project.
+
+Get a list of all volume performance classes available inside a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@return ApiListVolumePerformanceClassesRequest
+*/
+func (a *APIClient) ListVolumePerformanceClasses(ctx context.Context, projectId string) ApiListVolumePerformanceClassesRequest {
+	return ApiListVolumePerformanceClassesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListVolumePerformanceClassesExecute(ctx context.Context, projectId string) (*VolumePerformanceClassListResponse, error) {
+	r := ApiListVolumePerformanceClassesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -11456,194 +12895,6 @@ func (a *APIClient) RebootServerExecute(ctx context.Context, projectId string, s
 	return r.Execute()
 }
 
-type ApiRemoveNICFromServerRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	serverId   string
-	nicId      string
-}
-
-func (r ApiRemoveNICFromServerRequest) Execute() error {
-	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
-	)
-	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RemoveNICFromServer")
-	if err != nil {
-		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(r.serverId, "serverId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return fmt.Errorf("projectId must have at least 36 elements")
-	}
-	if strlen(r.projectId) > 36 {
-		return fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if strlen(r.serverId) < 36 {
-		return fmt.Errorf("serverId must have at least 36 elements")
-	}
-	if strlen(r.serverId) > 36 {
-		return fmt.Errorf("serverId must have less than 36 elements")
-	}
-	if strlen(r.nicId) < 36 {
-		return fmt.Errorf("nicId must have at least 36 elements")
-	}
-	if strlen(r.nicId) > 36 {
-		return fmt.Errorf("nicId must have less than 36 elements")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return newErr
-	}
-
-	return nil
-}
-
-/*
-RemoveNICFromServer: Detach a network interface.
-
-Detach a network interface from a server.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@param serverId The identifier (ID) of a STACKIT Server.
-	@param nicId The identifier (ID) of a network interface.
-	@return ApiRemoveNICFromServerRequest
-*/
-func (a *APIClient) RemoveNICFromServer(ctx context.Context, projectId string, serverId string, nicId string) ApiRemoveNICFromServerRequest {
-	return ApiRemoveNICFromServerRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		serverId:   serverId,
-		nicId:      nicId,
-	}
-}
-
-func (a *APIClient) RemoveNICFromServerExecute(ctx context.Context, projectId string, serverId string, nicId string) error {
-	r := ApiRemoveNICFromServerRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		serverId:   serverId,
-		nicId:      nicId,
-	}
-	return r.Execute()
-}
-
 type ApiRemoveNetworkFromServerRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -11828,6 +13079,194 @@ func (a *APIClient) RemoveNetworkFromServerExecute(ctx context.Context, projectI
 		projectId:  projectId,
 		serverId:   serverId,
 		networkId:  networkId,
+	}
+	return r.Execute()
+}
+
+type ApiRemoveNicFromServerRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	serverId   string
+	nicId      string
+}
+
+func (r ApiRemoveNicFromServerRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RemoveNicFromServer")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(r.serverId, "serverId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.serverId) < 36 {
+		return fmt.Errorf("serverId must have at least 36 elements")
+	}
+	if strlen(r.serverId) > 36 {
+		return fmt.Errorf("serverId must have less than 36 elements")
+	}
+	if strlen(r.nicId) < 36 {
+		return fmt.Errorf("nicId must have at least 36 elements")
+	}
+	if strlen(r.nicId) > 36 {
+		return fmt.Errorf("nicId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+RemoveNicFromServer: Detach a network interface.
+
+Detach a network interface from a server.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param serverId The identifier (ID) of a STACKIT Server.
+	@param nicId The identifier (ID) of a network interface.
+	@return ApiRemoveNicFromServerRequest
+*/
+func (a *APIClient) RemoveNicFromServer(ctx context.Context, projectId string, serverId string, nicId string) ApiRemoveNicFromServerRequest {
+	return ApiRemoveNicFromServerRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		serverId:   serverId,
+		nicId:      nicId,
+	}
+}
+
+func (a *APIClient) RemoveNicFromServerExecute(ctx context.Context, projectId string, serverId string, nicId string) error {
+	r := ApiRemoveNicFromServerRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		serverId:   serverId,
+		nicId:      nicId,
 	}
 	return r.Execute()
 }
@@ -14012,63 +15451,44 @@ func (a *APIClient) UpdateAttachedVolumeExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiUpdateNICRequest struct {
-	ctx              context.Context
-	apiService       *DefaultApiService
-	projectId        string
-	networkId        string
-	nicId            string
-	updateNICPayload *UpdateNICPayload
+type ApiUpdateKeyPairRequest struct {
+	ctx                  context.Context
+	apiService           *DefaultApiService
+	keypairName          string
+	updateKeyPairPayload *UpdateKeyPairPayload
 }
 
-// Request an update of a network interface.
+// Request an update of an SSH keypair.
 
-func (r ApiUpdateNICRequest) UpdateNICPayload(updateNICPayload UpdateNICPayload) ApiUpdateNICRequest {
-	r.updateNICPayload = &updateNICPayload
+func (r ApiUpdateKeyPairRequest) UpdateKeyPairPayload(updateKeyPairPayload UpdateKeyPairPayload) ApiUpdateKeyPairRequest {
+	r.updateKeyPairPayload = &updateKeyPairPayload
 	return r
 }
 
-func (r ApiUpdateNICRequest) Execute() (*NIC, error) {
+func (r ApiUpdateKeyPairRequest) Execute() (*Keypair, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *NIC
+		localVarReturnValue *Keypair
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateNIC")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateKeyPair")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
+	localVarPath := localBasePath + "/v1beta1/keypairs/{keypairName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(r.keypairName, "keypairName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.projectId) < 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	if strlen(r.keypairName) > 127 {
+		return localVarReturnValue, fmt.Errorf("keypairName must have less than 127 elements")
 	}
-	if strlen(r.projectId) > 36 {
-		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
-	}
-	if strlen(r.networkId) < 36 {
-		return localVarReturnValue, fmt.Errorf("networkId must have at least 36 elements")
-	}
-	if strlen(r.networkId) > 36 {
-		return localVarReturnValue, fmt.Errorf("networkId must have less than 36 elements")
-	}
-	if strlen(r.nicId) < 36 {
-		return localVarReturnValue, fmt.Errorf("nicId must have at least 36 elements")
-	}
-	if strlen(r.nicId) > 36 {
-		return localVarReturnValue, fmt.Errorf("nicId must have less than 36 elements")
-	}
-	if r.updateNICPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateNICPayload is required and must be specified")
+	if r.updateKeyPairPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateKeyPairPayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -14089,7 +15509,7 @@ func (r ApiUpdateNICRequest) Execute() (*NIC, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateNICPayload
+	localVarPostBody = r.updateKeyPairPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -14166,17 +15586,6 @@ func (r ApiUpdateNICRequest) Execute() (*NIC, error) {
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -14204,33 +15613,27 @@ func (r ApiUpdateNICRequest) Execute() (*NIC, error) {
 }
 
 /*
-UpdateNIC: Update a network interface.
+UpdateKeyPair: Update information of an SSH keypair.
 
-Update the properties of an existing network interface inside a network.
+Update labels of the SSH keypair.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The identifier (ID) of a STACKIT Project.
-	@param networkId The identifier (ID) of a STACKIT Network.
-	@param nicId The identifier (ID) of a network interface.
-	@return ApiUpdateNICRequest
+	@param keypairName The name of an SSH keypair.
+	@return ApiUpdateKeyPairRequest
 */
-func (a *APIClient) UpdateNIC(ctx context.Context, projectId string, networkId string, nicId string) ApiUpdateNICRequest {
-	return ApiUpdateNICRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		networkId:  networkId,
-		nicId:      nicId,
+func (a *APIClient) UpdateKeyPair(ctx context.Context, keypairName string) ApiUpdateKeyPairRequest {
+	return ApiUpdateKeyPairRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		keypairName: keypairName,
 	}
 }
 
-func (a *APIClient) UpdateNICExecute(ctx context.Context, projectId string, networkId string, nicId string) (*NIC, error) {
-	r := ApiUpdateNICRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		networkId:  networkId,
-		nicId:      nicId,
+func (a *APIClient) UpdateKeyPairExecute(ctx context.Context, keypairName string) (*Keypair, error) {
+	r := ApiUpdateKeyPairRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		keypairName: keypairName,
 	}
 	return r.Execute()
 }
@@ -14443,6 +15846,229 @@ func (a *APIClient) UpdateNetworkAreaRouteExecute(ctx context.Context, organizat
 		organizationId: organizationId,
 		areaId:         areaId,
 		routeId:        routeId,
+	}
+	return r.Execute()
+}
+
+type ApiUpdateNicRequest struct {
+	ctx              context.Context
+	apiService       *DefaultApiService
+	projectId        string
+	networkId        string
+	nicId            string
+	updateNicPayload *UpdateNicPayload
+}
+
+// Request an update of a network interface.
+
+func (r ApiUpdateNicRequest) UpdateNicPayload(updateNicPayload UpdateNicPayload) ApiUpdateNicRequest {
+	r.updateNicPayload = &updateNicPayload
+	return r
+}
+
+func (r ApiUpdateNicRequest) Execute() (*NIC, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NIC
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateNic")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(r.networkId, "networkId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(r.nicId, "nicId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.networkId) < 36 {
+		return localVarReturnValue, fmt.Errorf("networkId must have at least 36 elements")
+	}
+	if strlen(r.networkId) > 36 {
+		return localVarReturnValue, fmt.Errorf("networkId must have less than 36 elements")
+	}
+	if strlen(r.nicId) < 36 {
+		return localVarReturnValue, fmt.Errorf("nicId must have at least 36 elements")
+	}
+	if strlen(r.nicId) > 36 {
+		return localVarReturnValue, fmt.Errorf("nicId must have less than 36 elements")
+	}
+	if r.updateNicPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateNicPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateNicPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateNic: Update a network interface.
+
+Update the properties of an existing network interface inside a network.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param networkId The identifier (ID) of a STACKIT Network.
+	@param nicId The identifier (ID) of a network interface.
+	@return ApiUpdateNicRequest
+*/
+func (a *APIClient) UpdateNic(ctx context.Context, projectId string, networkId string, nicId string) ApiUpdateNicRequest {
+	return ApiUpdateNicRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+		nicId:      nicId,
+	}
+}
+
+func (a *APIClient) UpdateNicExecute(ctx context.Context, projectId string, networkId string, nicId string) (*NIC, error) {
+	r := ApiUpdateNicRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		networkId:  networkId,
+		nicId:      nicId,
 	}
 	return r.Execute()
 }

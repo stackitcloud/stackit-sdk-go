@@ -23,6 +23,8 @@ type CreateVolumePayload struct {
 	// Object that represents an availability zone.
 	// REQUIRED
 	AvailabilityZone *string `json:"availabilityZone"`
+	// Indicates if a volume is bootable.
+	Bootable *bool `json:"bootable,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 127 Characters.
@@ -88,6 +90,38 @@ func (o *CreateVolumePayload) GetAvailabilityZoneOk() (*string, bool) {
 // SetAvailabilityZone sets field value
 func (o *CreateVolumePayload) SetAvailabilityZone(v *string) {
 	o.AvailabilityZone = v
+}
+
+// GetBootable returns the Bootable field value if set, zero value otherwise.
+func (o *CreateVolumePayload) GetBootable() *bool {
+	if o == nil || IsNil(o.Bootable) {
+		var ret *bool
+		return ret
+	}
+	return o.Bootable
+}
+
+// GetBootableOk returns a tuple with the Bootable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateVolumePayload) GetBootableOk() (*bool, bool) {
+	if o == nil || IsNil(o.Bootable) {
+		return nil, false
+	}
+	return o.Bootable, true
+}
+
+// HasBootable returns a boolean if a field has been set.
+func (o *CreateVolumePayload) HasBootable() bool {
+	if o != nil && !IsNil(o.Bootable) {
+		return true
+	}
+
+	return false
+}
+
+// SetBootable gets a reference to the given bool and assigns it to the Bootable field.
+func (o *CreateVolumePayload) SetBootable(v *bool) {
+	o.Bootable = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -445,6 +479,9 @@ func (o *CreateVolumePayload) SetUpdatedAt(v *time.Time) {
 func (o CreateVolumePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["availabilityZone"] = o.AvailabilityZone
+	if !IsNil(o.Bootable) {
+		toSerialize["bootable"] = o.Bootable
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["createdAt"] = o.CreatedAt
 	}

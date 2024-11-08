@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateNICPayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateNICPayload{}
+// checks if the UpdateNicPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateNicPayload{}
 
-// UpdateNICPayload Object that represents a network interface update.
-type UpdateNICPayload struct {
+// UpdateNicPayload Object that represents a network interface update.
+type UpdateNicPayload struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses *[]AllowedAddressesInner `json:"allowedAddresses,omitempty"`
 	// Object that represents the labels of an object.
@@ -31,25 +31,25 @@ type UpdateNICPayload struct {
 	SecurityGroups *[]string `json:"securityGroups,omitempty"`
 }
 
-// NewUpdateNICPayload instantiates a new UpdateNICPayload object
+// NewUpdateNicPayload instantiates a new UpdateNicPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateNICPayload() *UpdateNICPayload {
-	this := UpdateNICPayload{}
+func NewUpdateNicPayload() *UpdateNicPayload {
+	this := UpdateNicPayload{}
 	return &this
 }
 
-// NewUpdateNICPayloadWithDefaults instantiates a new UpdateNICPayload object
+// NewUpdateNicPayloadWithDefaults instantiates a new UpdateNicPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateNICPayloadWithDefaults() *UpdateNICPayload {
-	this := UpdateNICPayload{}
+func NewUpdateNicPayloadWithDefaults() *UpdateNicPayload {
+	this := UpdateNicPayload{}
 	return &this
 }
 
 // GetAllowedAddresses returns the AllowedAddresses field value if set, zero value otherwise.
-func (o *UpdateNICPayload) GetAllowedAddresses() *[]AllowedAddressesInner {
+func (o *UpdateNicPayload) GetAllowedAddresses() *[]AllowedAddressesInner {
 	if o == nil || IsNil(o.AllowedAddresses) {
 		var ret *[]AllowedAddressesInner
 		return ret
@@ -59,7 +59,7 @@ func (o *UpdateNICPayload) GetAllowedAddresses() *[]AllowedAddressesInner {
 
 // GetAllowedAddressesOk returns a tuple with the AllowedAddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNICPayload) GetAllowedAddressesOk() (*[]AllowedAddressesInner, bool) {
+func (o *UpdateNicPayload) GetAllowedAddressesOk() (*[]AllowedAddressesInner, bool) {
 	if o == nil || IsNil(o.AllowedAddresses) {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *UpdateNICPayload) GetAllowedAddressesOk() (*[]AllowedAddressesInner, bo
 }
 
 // HasAllowedAddresses returns a boolean if a field has been set.
-func (o *UpdateNICPayload) HasAllowedAddresses() bool {
+func (o *UpdateNicPayload) HasAllowedAddresses() bool {
 	if o != nil && !IsNil(o.AllowedAddresses) {
 		return true
 	}
@@ -76,12 +76,12 @@ func (o *UpdateNICPayload) HasAllowedAddresses() bool {
 }
 
 // SetAllowedAddresses gets a reference to the given []AllowedAddressesInner and assigns it to the AllowedAddresses field.
-func (o *UpdateNICPayload) SetAllowedAddresses(v *[]AllowedAddressesInner) {
+func (o *UpdateNicPayload) SetAllowedAddresses(v *[]AllowedAddressesInner) {
 	o.AllowedAddresses = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateNICPayload) GetLabels() *map[string]interface{} {
+func (o *UpdateNicPayload) GetLabels() *map[string]interface{} {
 	if o == nil || IsNil(o.Labels) {
 		var ret *map[string]interface{}
 		return ret
@@ -91,7 +91,7 @@ func (o *UpdateNICPayload) GetLabels() *map[string]interface{} {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNICPayload) GetLabelsOk() (*map[string]interface{}, bool) {
+func (o *UpdateNicPayload) GetLabelsOk() (*map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return &map[string]interface{}{}, false
 	}
@@ -99,7 +99,7 @@ func (o *UpdateNICPayload) GetLabelsOk() (*map[string]interface{}, bool) {
 }
 
 // HasLabels returns a boolean if a field has been set.
-func (o *UpdateNICPayload) HasLabels() bool {
+func (o *UpdateNicPayload) HasLabels() bool {
 	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
@@ -108,12 +108,12 @@ func (o *UpdateNICPayload) HasLabels() bool {
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *UpdateNICPayload) SetLabels(v *map[string]interface{}) {
+func (o *UpdateNicPayload) SetLabels(v *map[string]interface{}) {
 	o.Labels = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateNICPayload) GetName() *string {
+func (o *UpdateNicPayload) GetName() *string {
 	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
@@ -123,7 +123,7 @@ func (o *UpdateNICPayload) GetName() *string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNICPayload) GetNameOk() (*string, bool) {
+func (o *UpdateNicPayload) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -131,7 +131,7 @@ func (o *UpdateNICPayload) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *UpdateNICPayload) HasName() bool {
+func (o *UpdateNicPayload) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -140,12 +140,12 @@ func (o *UpdateNICPayload) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateNICPayload) SetName(v *string) {
+func (o *UpdateNicPayload) SetName(v *string) {
 	o.Name = v
 }
 
 // GetNicSecurity returns the NicSecurity field value if set, zero value otherwise.
-func (o *UpdateNICPayload) GetNicSecurity() *bool {
+func (o *UpdateNicPayload) GetNicSecurity() *bool {
 	if o == nil || IsNil(o.NicSecurity) {
 		var ret *bool
 		return ret
@@ -155,7 +155,7 @@ func (o *UpdateNICPayload) GetNicSecurity() *bool {
 
 // GetNicSecurityOk returns a tuple with the NicSecurity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNICPayload) GetNicSecurityOk() (*bool, bool) {
+func (o *UpdateNicPayload) GetNicSecurityOk() (*bool, bool) {
 	if o == nil || IsNil(o.NicSecurity) {
 		return nil, false
 	}
@@ -163,7 +163,7 @@ func (o *UpdateNICPayload) GetNicSecurityOk() (*bool, bool) {
 }
 
 // HasNicSecurity returns a boolean if a field has been set.
-func (o *UpdateNICPayload) HasNicSecurity() bool {
+func (o *UpdateNicPayload) HasNicSecurity() bool {
 	if o != nil && !IsNil(o.NicSecurity) {
 		return true
 	}
@@ -172,12 +172,12 @@ func (o *UpdateNICPayload) HasNicSecurity() bool {
 }
 
 // SetNicSecurity gets a reference to the given bool and assigns it to the NicSecurity field.
-func (o *UpdateNICPayload) SetNicSecurity(v *bool) {
+func (o *UpdateNicPayload) SetNicSecurity(v *bool) {
 	o.NicSecurity = v
 }
 
 // GetSecurityGroups returns the SecurityGroups field value if set, zero value otherwise.
-func (o *UpdateNICPayload) GetSecurityGroups() *[]string {
+func (o *UpdateNicPayload) GetSecurityGroups() *[]string {
 	if o == nil || IsNil(o.SecurityGroups) {
 		var ret *[]string
 		return ret
@@ -187,7 +187,7 @@ func (o *UpdateNICPayload) GetSecurityGroups() *[]string {
 
 // GetSecurityGroupsOk returns a tuple with the SecurityGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNICPayload) GetSecurityGroupsOk() (*[]string, bool) {
+func (o *UpdateNicPayload) GetSecurityGroupsOk() (*[]string, bool) {
 	if o == nil || IsNil(o.SecurityGroups) {
 		return nil, false
 	}
@@ -195,7 +195,7 @@ func (o *UpdateNICPayload) GetSecurityGroupsOk() (*[]string, bool) {
 }
 
 // HasSecurityGroups returns a boolean if a field has been set.
-func (o *UpdateNICPayload) HasSecurityGroups() bool {
+func (o *UpdateNicPayload) HasSecurityGroups() bool {
 	if o != nil && !IsNil(o.SecurityGroups) {
 		return true
 	}
@@ -204,11 +204,11 @@ func (o *UpdateNICPayload) HasSecurityGroups() bool {
 }
 
 // SetSecurityGroups gets a reference to the given []string and assigns it to the SecurityGroups field.
-func (o *UpdateNICPayload) SetSecurityGroups(v *[]string) {
+func (o *UpdateNicPayload) SetSecurityGroups(v *[]string) {
 	o.SecurityGroups = v
 }
 
-func (o UpdateNICPayload) ToMap() (map[string]interface{}, error) {
+func (o UpdateNicPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AllowedAddresses) {
 		toSerialize["allowedAddresses"] = o.AllowedAddresses
@@ -228,38 +228,38 @@ func (o UpdateNICPayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableUpdateNICPayload struct {
-	value *UpdateNICPayload
+type NullableUpdateNicPayload struct {
+	value *UpdateNicPayload
 	isSet bool
 }
 
-func (v NullableUpdateNICPayload) Get() *UpdateNICPayload {
+func (v NullableUpdateNicPayload) Get() *UpdateNicPayload {
 	return v.value
 }
 
-func (v *NullableUpdateNICPayload) Set(val *UpdateNICPayload) {
+func (v *NullableUpdateNicPayload) Set(val *UpdateNicPayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateNICPayload) IsSet() bool {
+func (v NullableUpdateNicPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateNICPayload) Unset() {
+func (v *NullableUpdateNicPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateNICPayload(val *UpdateNICPayload) *NullableUpdateNICPayload {
-	return &NullableUpdateNICPayload{value: val, isSet: true}
+func NewNullableUpdateNicPayload(val *UpdateNicPayload) *NullableUpdateNicPayload {
+	return &NullableUpdateNicPayload{value: val, isSet: true}
 }
 
-func (v NullableUpdateNICPayload) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateNicPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateNICPayload) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateNicPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
