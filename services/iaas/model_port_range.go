@@ -22,7 +22,7 @@ type PortRange struct {
 	// The maximum port number. Should be greater or equal to the minimum.
 	// REQUIRED
 	Max *int64 `json:"max"`
-	// The minimum port number. Should be less or equal to the minimum.
+	// The minimum port number. Should be less or equal to the maximum.
 	// REQUIRED
 	Min *int64 `json:"min"`
 }
