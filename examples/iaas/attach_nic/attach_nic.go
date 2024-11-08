@@ -30,7 +30,7 @@ func main() {
 	// Attach an existing network interface to an existing server
 	var httpResp *http.Response
 	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
-	err = iaasClient.AddNICToServer(ctxWithHTTPResp, projectId, serverId, nicId).Execute()
+	err = iaasClient.AddNicToServer(ctxWithHTTPResp, projectId, serverId, nicId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `AddNICToServer`: %v\n", err)
 	} else {
@@ -47,7 +47,7 @@ func main() {
 
 	fmt.Printf("[iaas API] Nic %q has been successfully attached to the server %s.\n", nicId, serverId)
 
-	err = iaasClient.RemoveNICFromServer(ctxWithHTTPResp, projectId, serverId, nicId).Execute()
+	err = iaasClient.RemoveNicFromServer(ctxWithHTTPResp, projectId, serverId, nicId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `RemoveNICFromServer`: %v\n", err)
 	} else {
