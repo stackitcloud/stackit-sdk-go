@@ -2,7 +2,7 @@
 
 - **Feature:** Add new methods to manage key pairs: `CreateKeyPair`, `UpdateKeyPair`, `DeleteKeyPair`, `GetKeyPair`, and `ListKeyPairs`
 - **Feature:** Add new field `Bootable` to `Volume`, `CreateVolumePayload`, and `UpdateVolumePayload` data models
-- **Breaking change:** Rename methods `AddNICToServer` and `RemoveNICFromServer` to `AddNicToServer` and `RemoveNicFromServer`, respectively
+- **Breaking change:** Rename `NIC` to `Nic` in all network interface methods (e.g. `CreateNIC` to `CreateNic`, `AddNICToServer` to `AddNicToServer`, etc)
 
 ## v0.15.0 (2024-10-21)
 
