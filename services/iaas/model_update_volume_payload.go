@@ -19,6 +19,8 @@ var _ MappedNullable = &UpdateVolumePayload{}
 
 // UpdateVolumePayload Object that represents an update request body of a  volume.
 type UpdateVolumePayload struct {
+	// Indicates if a volume is bootable.
+	Bootable *bool `json:"bootable,omitempty"`
 	// Description Object. Allows string up to 127 Characters.
 	Description *string `json:"description,omitempty"`
 	// Object that represents the labels of an object.
@@ -33,6 +35,8 @@ type UpdateVolumePayload struct {
 // will change when the set of required properties is changed
 func NewUpdateVolumePayload() *UpdateVolumePayload {
 	this := UpdateVolumePayload{}
+	var bootable bool = false
+	this.Bootable = &bootable
 	return &this
 }
 
@@ -41,7 +45,41 @@ func NewUpdateVolumePayload() *UpdateVolumePayload {
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateVolumePayloadWithDefaults() *UpdateVolumePayload {
 	this := UpdateVolumePayload{}
+	var bootable bool = false
+	this.Bootable = &bootable
 	return &this
+}
+
+// GetBootable returns the Bootable field value if set, zero value otherwise.
+func (o *UpdateVolumePayload) GetBootable() *bool {
+	if o == nil || IsNil(o.Bootable) {
+		var ret *bool
+		return ret
+	}
+	return o.Bootable
+}
+
+// GetBootableOk returns a tuple with the Bootable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVolumePayload) GetBootableOk() (*bool, bool) {
+	if o == nil || IsNil(o.Bootable) {
+		return nil, false
+	}
+	return o.Bootable, true
+}
+
+// HasBootable returns a boolean if a field has been set.
+func (o *UpdateVolumePayload) HasBootable() bool {
+	if o != nil && !IsNil(o.Bootable) {
+		return true
+	}
+
+	return false
+}
+
+// SetBootable gets a reference to the given bool and assigns it to the Bootable field.
+func (o *UpdateVolumePayload) SetBootable(v *bool) {
+	o.Bootable = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -142,6 +180,9 @@ func (o *UpdateVolumePayload) SetName(v *string) {
 
 func (o UpdateVolumePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Bootable) {
+		toSerialize["bootable"] = o.Bootable
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
