@@ -1,3 +1,9 @@
+## v0.16.0 (2024-11-08)
+
+- **Feature:** Add new methods to manage key pairs: `CreateKeyPair`, `UpdateKeyPair`, `DeleteKeyPair`, `GetKeyPair`, and `ListKeyPairs`
+- **Feature:** Add new field `Bootable` to `Volume`, `CreateVolumePayload`, and `UpdateVolumePayload` data models
+- **Breaking change:** Rename methods `AddNICToServer` and `RemoveNICFromServer` to `AddNicToServer` and `RemoveNicFromServer`, respectively
+
 ## v0.15.0 (2024-10-21)
 
 - **Feature:** Filter network area routes by labels using the new `LabelSelector` method on `ApiListNetworkAreaRoutesRequest`
