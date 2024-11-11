@@ -3,7 +3,7 @@
 - `iaas`: [v0.16.0](services/iaas/CHANGELOG.md#v0160-2024-11-08)
   - **Feature:** Add new methods to manage key pairs: `CreateKeyPair`, `UpdateKeyPair`, `DeleteKeyPair`, `GetKeyPair`, and `ListKeyPairs`
   - **Feature:** Add new field `Bootable` to `Volume`, `CreateVolumePayload`, and `UpdateVolumePayload` data models
-  - **Breaking change:** Rename methods `AddNICToServer` and `RemoveNICFromServer` to `AddNicToServer` and `RemoveNicFromServer`, respectively
+  - **Breaking change:** Rename `NIC` to `Nic` in all network interface methods (e.g. `CreateNIC` to `CreateNic`, `AddNICToServer` to `AddNicToServer`, etc)
 
 ## Release (2024-10-21)
 
