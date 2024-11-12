@@ -10,10 +10,129 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the AddMembersPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AddMembersPayload{}
+
 // AddMembersPayload struct for AddMembersPayload
 type AddMembersPayload struct {
 	// REQUIRED
 	Members *[]Member `json:"members"`
 	// REQUIRED
 	ResourceType *string `json:"resourceType"`
+}
+
+type _AddMembersPayload AddMembersPayload
+
+// NewAddMembersPayload instantiates a new AddMembersPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAddMembersPayload(members *[]Member, resourceType *string) *AddMembersPayload {
+	this := AddMembersPayload{}
+	this.Members = members
+	this.ResourceType = resourceType
+	return &this
+}
+
+// NewAddMembersPayloadWithDefaults instantiates a new AddMembersPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAddMembersPayloadWithDefaults() *AddMembersPayload {
+	this := AddMembersPayload{}
+	return &this
+}
+
+// GetMembers returns the Members field value
+func (o *AddMembersPayload) GetMembers() *[]Member {
+	if o == nil {
+		var ret *[]Member
+		return ret
+	}
+
+	return o.Members
+}
+
+// GetMembersOk returns a tuple with the Members field value
+// and a boolean to check if the value has been set.
+func (o *AddMembersPayload) GetMembersOk() (*[]Member, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Members, true
+}
+
+// SetMembers sets field value
+func (o *AddMembersPayload) SetMembers(v *[]Member) {
+	o.Members = v
+}
+
+// GetResourceType returns the ResourceType field value
+func (o *AddMembersPayload) GetResourceType() *string {
+	if o == nil {
+		var ret *string
+		return ret
+	}
+
+	return o.ResourceType
+}
+
+// GetResourceTypeOk returns a tuple with the ResourceType field value
+// and a boolean to check if the value has been set.
+func (o *AddMembersPayload) GetResourceTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ResourceType, true
+}
+
+// SetResourceType sets field value
+func (o *AddMembersPayload) SetResourceType(v *string) {
+	o.ResourceType = v
+}
+
+func (o AddMembersPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["members"] = o.Members
+	toSerialize["resourceType"] = o.ResourceType
+	return toSerialize, nil
+}
+
+type NullableAddMembersPayload struct {
+	value *AddMembersPayload
+	isSet bool
+}
+
+func (v NullableAddMembersPayload) Get() *AddMembersPayload {
+	return v.value
+}
+
+func (v *NullableAddMembersPayload) Set(val *AddMembersPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAddMembersPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAddMembersPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAddMembersPayload(val *AddMembersPayload) *NullableAddMembersPayload {
+	return &NullableAddMembersPayload{value: val, isSet: true}
+}
+
+func (v NullableAddMembersPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAddMembersPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
