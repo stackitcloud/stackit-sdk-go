@@ -28,8 +28,7 @@ type Backup struct {
 	LastRestoredAt *string `json:"lastRestoredAt,omitempty"`
 	// REQUIRED
 	Name *string `json:"name"`
-	// Can be cast to int32 without loss of precision.
-	Size *int64 `json:"size,omitempty"`
+	Size *int64  `json:"size,omitempty"`
 	// REQUIRED
 	Status        *string                     `json:"status"`
 	VolumeBackups *[]BackupVolumeBackupsInner `json:"volumeBackups,omitempty"`
