@@ -18,20 +18,19 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
       - name: Install project tools and dependencies
-        if: ${{ matrix.go-version != '1.18' }}
+        if: ${{ matrix.go-version == '1.23' }}
         run: make project-tools
       - name: Lint
-        if: ${{ matrix.go-version != '1.18' }}
+        if: ${{ matrix.go-version == '1.23' }}
         run: |
           make lint
           scripts/check-sync-tidy.sh
       - name: Lint scripts
-        if: ${{ matrix.go-version == '1.22' }}
+        if: ${{ matrix.go-version == '1.23' }}
         run: |
           make lint-scripts
       - name: Test
         run: make test
       - name: Test scripts
-        if: ${{ matrix.go-version == '1.22' }}
-        run: |
-          make test-scripts
+        if: ${{ matrix.go-version >= '1.22' }}
+        run: make test-scripts
