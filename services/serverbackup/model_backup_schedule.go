@@ -22,7 +22,6 @@ type BackupSchedule struct {
 	BackupProperties *BackupProperties `json:"backupProperties,omitempty"`
 	// REQUIRED
 	Enabled *bool `json:"enabled"`
-	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	Id *int64 `json:"id"`
 	// REQUIRED
