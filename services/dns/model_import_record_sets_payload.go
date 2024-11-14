@@ -19,7 +19,7 @@ var _ MappedNullable = &ImportRecordSetsPayload{}
 
 // ImportRecordSetsPayload struct for ImportRecordSetsPayload
 type ImportRecordSetsPayload struct {
-	RrSets *[]RecordDataExchange `json:"rrSets,omitempty"`
+	RrSets *[]ZoneModelsImportRecordModel `json:"rrSets,omitempty"`
 }
 
 // NewImportRecordSetsPayload instantiates a new ImportRecordSetsPayload object
@@ -40,9 +40,9 @@ func NewImportRecordSetsPayloadWithDefaults() *ImportRecordSetsPayload {
 }
 
 // GetRrSets returns the RrSets field value if set, zero value otherwise.
-func (o *ImportRecordSetsPayload) GetRrSets() *[]RecordDataExchange {
+func (o *ImportRecordSetsPayload) GetRrSets() *[]ZoneModelsImportRecordModel {
 	if o == nil || IsNil(o.RrSets) {
-		var ret *[]RecordDataExchange
+		var ret *[]ZoneModelsImportRecordModel
 		return ret
 	}
 	return o.RrSets
@@ -50,7 +50,7 @@ func (o *ImportRecordSetsPayload) GetRrSets() *[]RecordDataExchange {
 
 // GetRrSetsOk returns a tuple with the RrSets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportRecordSetsPayload) GetRrSetsOk() (*[]RecordDataExchange, bool) {
+func (o *ImportRecordSetsPayload) GetRrSetsOk() (*[]ZoneModelsImportRecordModel, bool) {
 	if o == nil || IsNil(o.RrSets) {
 		return nil, false
 	}
@@ -66,8 +66,8 @@ func (o *ImportRecordSetsPayload) HasRrSets() bool {
 	return false
 }
 
-// SetRrSets gets a reference to the given []RecordDataExchange and assigns it to the RrSets field.
-func (o *ImportRecordSetsPayload) SetRrSets(v *[]RecordDataExchange) {
+// SetRrSets gets a reference to the given []ZoneModelsImportRecordModel and assigns it to the RrSets field.
+func (o *ImportRecordSetsPayload) SetRrSets(v *[]ZoneModelsImportRecordModel) {
 	o.RrSets = v
 }
 
