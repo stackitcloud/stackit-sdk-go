@@ -14,33 +14,33 @@ import (
 	"encoding/json"
 )
 
-// checks if the ListBackups200Response type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListBackups200Response{}
+// checks if the GetBackupsListResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetBackupsListResponse{}
 
-// ListBackups200Response struct for ListBackups200Response
-type ListBackups200Response struct {
+// GetBackupsListResponse struct for GetBackupsListResponse
+type GetBackupsListResponse struct {
 	Items *[]Backup `json:"items,omitempty"`
 }
 
-// NewListBackups200Response instantiates a new ListBackups200Response object
+// NewGetBackupsListResponse instantiates a new GetBackupsListResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBackups200Response() *ListBackups200Response {
-	this := ListBackups200Response{}
+func NewGetBackupsListResponse() *GetBackupsListResponse {
+	this := GetBackupsListResponse{}
 	return &this
 }
 
-// NewListBackups200ResponseWithDefaults instantiates a new ListBackups200Response object
+// NewGetBackupsListResponseWithDefaults instantiates a new GetBackupsListResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListBackups200ResponseWithDefaults() *ListBackups200Response {
-	this := ListBackups200Response{}
+func NewGetBackupsListResponseWithDefaults() *GetBackupsListResponse {
+	this := GetBackupsListResponse{}
 	return &this
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *ListBackups200Response) GetItems() *[]Backup {
+func (o *GetBackupsListResponse) GetItems() *[]Backup {
 	if o == nil || IsNil(o.Items) {
 		var ret *[]Backup
 		return ret
@@ -50,7 +50,7 @@ func (o *ListBackups200Response) GetItems() *[]Backup {
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListBackups200Response) GetItemsOk() (*[]Backup, bool) {
+func (o *GetBackupsListResponse) GetItemsOk() (*[]Backup, bool) {
 	if o == nil || IsNil(o.Items) {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *ListBackups200Response) GetItemsOk() (*[]Backup, bool) {
 }
 
 // HasItems returns a boolean if a field has been set.
-func (o *ListBackups200Response) HasItems() bool {
+func (o *GetBackupsListResponse) HasItems() bool {
 	if o != nil && !IsNil(o.Items) {
 		return true
 	}
@@ -67,11 +67,11 @@ func (o *ListBackups200Response) HasItems() bool {
 }
 
 // SetItems gets a reference to the given []Backup and assigns it to the Items field.
-func (o *ListBackups200Response) SetItems(v *[]Backup) {
+func (o *GetBackupsListResponse) SetItems(v *[]Backup) {
 	o.Items = v
 }
 
-func (o ListBackups200Response) ToMap() (map[string]interface{}, error) {
+func (o GetBackupsListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
@@ -79,38 +79,38 @@ func (o ListBackups200Response) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableListBackups200Response struct {
-	value *ListBackups200Response
+type NullableGetBackupsListResponse struct {
+	value *GetBackupsListResponse
 	isSet bool
 }
 
-func (v NullableListBackups200Response) Get() *ListBackups200Response {
+func (v NullableGetBackupsListResponse) Get() *GetBackupsListResponse {
 	return v.value
 }
 
-func (v *NullableListBackups200Response) Set(val *ListBackups200Response) {
+func (v *NullableGetBackupsListResponse) Set(val *GetBackupsListResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListBackups200Response) IsSet() bool {
+func (v NullableGetBackupsListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListBackups200Response) Unset() {
+func (v *NullableGetBackupsListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListBackups200Response(val *ListBackups200Response) *NullableListBackups200Response {
-	return &NullableListBackups200Response{value: val, isSet: true}
+func NewNullableGetBackupsListResponse(val *GetBackupsListResponse) *NullableGetBackupsListResponse {
+	return &NullableGetBackupsListResponse{value: val, isSet: true}
 }
 
-func (v NullableListBackups200Response) MarshalJSON() ([]byte, error) {
+func (v NullableGetBackupsListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListBackups200Response) UnmarshalJSON(src []byte) error {
+func (v *NullableGetBackupsListResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
