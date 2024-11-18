@@ -1,5 +1,7 @@
 ## Release (2024-XX-XX)
 
+- `dns`: [v0.12.0](services/dns/CHANGELOG.md#v0120-2024-11-20)
+  - **Feature:** New models `ZoneModelsImportRecordModel` and `ZoneModelsImportZoneJson`
 - `iaas`: [v0.16.0](services/iaas/CHANGELOG.md#v0160-2024-11-08)
   - **Feature:** Add new methods to manage key pairs: `CreateKeyPair`, `UpdateKeyPair`, `DeleteKeyPair`, `GetKeyPair`, and `ListKeyPairs`
   - **Feature:** Add new field `Bootable` to `Volume`, `CreateVolumePayload`, and `UpdateVolumePayload` data models
