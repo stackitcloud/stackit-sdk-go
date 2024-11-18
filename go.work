@@ -50,6 +50,7 @@ use (
 	./services/runcommand
 	./services/secretsmanager
 	./services/serverbackup
+	./services/serverupdate
 	./services/serviceaccount
 	./services/serviceenablement
 	./services/ske
