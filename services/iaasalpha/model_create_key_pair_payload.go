@@ -12,6 +12,7 @@ package iaasalpha
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the CreateKeyPairPayload type satisfies the MappedNullable interface at compile time
@@ -19,6 +20,8 @@ var _ MappedNullable = &CreateKeyPairPayload{}
 
 // CreateKeyPairPayload Object that represents the public key of an SSH keypair and its name.
 type CreateKeyPairPayload struct {
+	// Date-time when resource was created.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Object that represents an SSH keypair MD5 fingerprint.
 	Fingerprint *string `json:"fingerprint,omitempty"`
 	// Object that represents the labels of an object.
@@ -28,6 +31,8 @@ type CreateKeyPairPayload struct {
 	// Object that represents a public SSH key.
 	// REQUIRED
 	PublicKey *string `json:"publicKey"`
+	// Date-time when resource was last updated.
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 }
 
 type _CreateKeyPairPayload CreateKeyPairPayload
@@ -48,6 +53,38 @@ func NewCreateKeyPairPayload(publicKey *string) *CreateKeyPairPayload {
 func NewCreateKeyPairPayloadWithDefaults() *CreateKeyPairPayload {
 	this := CreateKeyPairPayload{}
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *CreateKeyPairPayload) GetCreatedAt() *time.Time {
+	if o == nil || IsNil(o.CreatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateKeyPairPayload) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CreateKeyPairPayload) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *CreateKeyPairPayload) SetCreatedAt(v *time.Time) {
+	o.CreatedAt = v
 }
 
 // GetFingerprint returns the Fingerprint field value if set, zero value otherwise.
@@ -170,8 +207,43 @@ func (o *CreateKeyPairPayload) SetPublicKey(v *string) {
 	o.PublicKey = v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *CreateKeyPairPayload) GetUpdatedAt() *time.Time {
+	if o == nil || IsNil(o.UpdatedAt) {
+		var ret *time.Time
+		return ret
+	}
+	return o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateKeyPairPayload) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *CreateKeyPairPayload) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *CreateKeyPairPayload) SetUpdatedAt(v *time.Time) {
+	o.UpdatedAt = v
+}
+
 func (o CreateKeyPairPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
 	if !IsNil(o.Fingerprint) {
 		toSerialize["fingerprint"] = o.Fingerprint
 	}
@@ -182,6 +254,9 @@ func (o CreateKeyPairPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["name"] = o.Name
 	}
 	toSerialize["publicKey"] = o.PublicKey
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updatedAt"] = o.UpdatedAt
+	}
 	return toSerialize, nil
 }
 

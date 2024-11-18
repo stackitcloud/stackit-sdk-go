@@ -56,13 +56,12 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 			return nil, fmt.Errorf("configuring token authentication: %w", err)
 		}
 		return tokenRoundTripper, nil
-	} else {
-		authRoundTripper, err := DefaultAuth(cfg)
-		if err != nil {
-			return nil, fmt.Errorf("configuring default authentication: %w", err)
-		}
-		return authRoundTripper, nil
 	}
+	authRoundTripper, err := DefaultAuth(cfg)
+	if err != nil {
+		return nil, fmt.Errorf("configuring default authentication: %w", err)
+	}
+	return authRoundTripper, nil
 }
 
 // DefaultAuth will search for a valid service account key or token in several locations.

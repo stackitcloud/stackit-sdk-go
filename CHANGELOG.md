@@ -2,6 +2,15 @@
 
 - `dns`: [v0.12.0](services/dns/CHANGELOG.md#v0120-2024-11-20)
   - **Feature:** New models `ZoneModelsImportRecordModel` and `ZoneModelsImportZoneJson`
+- `serverbackup`: [v0.3.0](services/serverbackup/CHANGELOG.md#v030-2024-11-20)
+  - **Breaking changes**:
+    - `ListBackups200Response` type renamed to `GetBackupsListResponse`
+    - `GetBackupsListResponse` has been removed
+    - `ErrorResponse` has been removed
+    - Added new method `GetBackupSchedulesResponse`
+    - Added new type `EnableServiceResourcePayload`
+- `serverupdate`: [v0.1.0](services/serverupdate/CHANGELOG.md#v010-2024-11-20)
+  - Manage your STACKIT Server Updates: `Update`, `UpdateSchedule`, `BackupProperties`
 - `iaas`: [v0.16.0](services/iaas/CHANGELOG.md#v0160-2024-11-08)
   - **Feature:** Add new methods to manage key pairs: `CreateKeyPair`, `UpdateKeyPair`, `DeleteKeyPair`, `GetKeyPair`, and `ListKeyPairs`
   - **Feature:** Add new field `Bootable` to `Volume`, `CreateVolumePayload`, and `UpdateVolumePayload` data models

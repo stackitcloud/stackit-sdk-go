@@ -7,6 +7,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/serviceenablement"
 )
 
@@ -88,7 +89,7 @@ func TestEnableServiceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &serviceenablement.ServiceStatus{
 					ServiceId: &serviceId,
-					State:     &tt.serviceState,
+					State:     utils.Ptr(tt.serviceState),
 				}
 			}
 
@@ -170,7 +171,7 @@ func TestDisableServiceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &serviceenablement.ServiceStatus{
 					ServiceId: &serviceId,
-					State:     &tt.serviceState,
+					State:     utils.Ptr(tt.serviceState),
 				}
 			}
 

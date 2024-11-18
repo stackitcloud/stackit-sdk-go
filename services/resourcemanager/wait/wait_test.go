@@ -84,7 +84,7 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 			var wantRes *resourcemanager.GetProjectResponse
 			if tt.wantResp {
 				wantRes = &resourcemanager.GetProjectResponse{
-					LifecycleState: &tt.projectState,
+					LifecycleState: utils.Ptr(tt.projectState),
 					ContainerId:    utils.Ptr("cid"),
 				}
 			}

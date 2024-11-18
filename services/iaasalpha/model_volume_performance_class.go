@@ -21,11 +21,15 @@ var _ MappedNullable = &VolumePerformanceClass{}
 type VolumePerformanceClass struct {
 	// Description Object. Allows string up to 127 Characters.
 	Description *string `json:"description,omitempty"`
+	// Input/Output Operations per second.
+	Iops *int64 `json:"iops,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
 	Name *string `json:"name"`
+	// Throughput in Megabyte per second.
+	Throughput *int64 `json:"throughput,omitempty"`
 }
 
 type _VolumePerformanceClass VolumePerformanceClass
@@ -78,6 +82,38 @@ func (o *VolumePerformanceClass) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *VolumePerformanceClass) SetDescription(v *string) {
 	o.Description = v
+}
+
+// GetIops returns the Iops field value if set, zero value otherwise.
+func (o *VolumePerformanceClass) GetIops() *int64 {
+	if o == nil || IsNil(o.Iops) {
+		var ret *int64
+		return ret
+	}
+	return o.Iops
+}
+
+// GetIopsOk returns a tuple with the Iops field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VolumePerformanceClass) GetIopsOk() (*int64, bool) {
+	if o == nil || IsNil(o.Iops) {
+		return nil, false
+	}
+	return o.Iops, true
+}
+
+// HasIops returns a boolean if a field has been set.
+func (o *VolumePerformanceClass) HasIops() bool {
+	if o != nil && !IsNil(o.Iops) {
+		return true
+	}
+
+	return false
+}
+
+// SetIops gets a reference to the given int64 and assigns it to the Iops field.
+func (o *VolumePerformanceClass) SetIops(v *int64) {
+	o.Iops = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -136,15 +172,53 @@ func (o *VolumePerformanceClass) SetName(v *string) {
 	o.Name = v
 }
 
+// GetThroughput returns the Throughput field value if set, zero value otherwise.
+func (o *VolumePerformanceClass) GetThroughput() *int64 {
+	if o == nil || IsNil(o.Throughput) {
+		var ret *int64
+		return ret
+	}
+	return o.Throughput
+}
+
+// GetThroughputOk returns a tuple with the Throughput field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VolumePerformanceClass) GetThroughputOk() (*int64, bool) {
+	if o == nil || IsNil(o.Throughput) {
+		return nil, false
+	}
+	return o.Throughput, true
+}
+
+// HasThroughput returns a boolean if a field has been set.
+func (o *VolumePerformanceClass) HasThroughput() bool {
+	if o != nil && !IsNil(o.Throughput) {
+		return true
+	}
+
+	return false
+}
+
+// SetThroughput gets a reference to the given int64 and assigns it to the Throughput field.
+func (o *VolumePerformanceClass) SetThroughput(v *int64) {
+	o.Throughput = v
+}
+
 func (o VolumePerformanceClass) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !IsNil(o.Iops) {
+		toSerialize["iops"] = o.Iops
+	}
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Throughput) {
+		toSerialize["throughput"] = o.Throughput
+	}
 	return toSerialize, nil
 }
 

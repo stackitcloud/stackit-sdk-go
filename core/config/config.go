@@ -237,21 +237,21 @@ func WithToken(token string) ConfigurationOption {
 
 // Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. This option has no effect, and will be removed in a later update
 func WithMaxRetries(_ int) ConfigurationOption {
-	return func(config *Configuration) error {
+	return func(_ *Configuration) error {
 		return nil
 	}
 }
 
 // Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. This option has no effect, and will be removed in a later update
 func WithWaitBetweenCalls(_ time.Duration) ConfigurationOption {
-	return func(config *Configuration) error {
+	return func(_ *Configuration) error {
 		return nil
 	}
 }
 
 // Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client. This option has no effect, and will be removed in a later update
 func WithRetryTimeout(_ time.Duration) ConfigurationOption {
-	return func(config *Configuration) error {
+	return func(_ *Configuration) error {
 		return nil
 	}
 }

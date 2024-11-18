@@ -100,7 +100,7 @@ func TestContinuousRefreshToken(t *testing.T) {
 			}
 
 			numberDoCalls := 0
-			mockDo := func(req *http.Request) (resp *http.Response, err error) {
+			mockDo := func(_ *http.Request) (resp *http.Response, err error) {
 				numberDoCalls++
 
 				if tt.doError != nil {

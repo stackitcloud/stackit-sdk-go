@@ -71,10 +71,10 @@ func TestTokenFlow_Do(t *testing.T) {
 				client: tt.fields.client,
 				config: tt.fields.config,
 			}
-			handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			handler := http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 				w.Header().Set("Content-Type", "application/json")
 				w.WriteHeader(http.StatusOK)
-				fmt.Fprintln(w, `{"status":"ok"}`)
+				_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
 			})
 			server := httptest.NewServer(handler)
 			defer server.Close()
