@@ -7,6 +7,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/mongodbflex"
 )
 
@@ -119,7 +120,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 				wantRes = &mongodbflex.GetInstanceResponse{
 					Item: &mongodbflex.Instance{
 						Id:     &instanceId,
-						Status: &tt.instanceState,
+						Status: utils.Ptr(tt.instanceState),
 					},
 				}
 			}
@@ -196,7 +197,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				wantRes = &mongodbflex.GetInstanceResponse{
 					Item: &mongodbflex.Instance{
 						Id:     &instanceId,
-						Status: &tt.instanceState,
+						Status: utils.Ptr(tt.instanceState),
 					},
 				}
 			}
@@ -320,7 +321,7 @@ func TestRestoreInstanceWaitHandler(t *testing.T) {
 				wantRes = &mongodbflex.ListRestoreJobsResponse{
 					Items: &[]mongodbflex.RestoreInstanceStatus{
 						{
-							Status:   &tt.restoreState,
+							Status:   utils.Ptr(tt.restoreState),
 							BackupID: &backupId,
 						},
 					},

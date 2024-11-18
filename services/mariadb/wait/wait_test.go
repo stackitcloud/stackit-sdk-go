@@ -138,7 +138,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 					InstanceId: &instanceId,
 					LastOperation: &mariadb.InstanceLastOperation{
 						Type:        &instanceTypeCreate,
-						State:       &tt.resourceState,
+						State:       utils.Ptr(tt.resourceState),
 						Description: utils.Ptr(""),
 					},
 				}
@@ -212,7 +212,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 					InstanceId: &instanceId,
 					LastOperation: &mariadb.InstanceLastOperation{
 						Type:        &instanceTypeUpdate,
-						State:       &tt.resourceState,
+						State:       utils.Ptr(tt.resourceState),
 						Description: utils.Ptr(""),
 					},
 				}

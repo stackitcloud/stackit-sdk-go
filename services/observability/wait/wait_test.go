@@ -288,7 +288,7 @@ func TestCreateScrapeConfigWaitHandler(t *testing.T) {
 			var wantRes *observability.ListScrapeConfigsResponse
 			if tt.wantResp {
 				wantRes = &observability.ListScrapeConfigsResponse{
-					Data: &tt.jobs,
+					Data: utils.Ptr(tt.jobs),
 				}
 			}
 
@@ -346,7 +346,7 @@ func TestDeleteScrapeConfigWaitHandler(t *testing.T) {
 			var wantRes *observability.ListScrapeConfigsResponse
 			if tt.wantResp {
 				wantRes = &observability.ListScrapeConfigsResponse{
-					Data: &tt.jobs,
+					Data: utils.Ptr(tt.jobs),
 				}
 			}
 
