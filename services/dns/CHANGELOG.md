@@ -1,7 +1,3 @@
-## v0.12.0 (2024-11-20)
-
-- **Feature:** New models `ZoneModelsImportRecordModel` and `ZoneModelsImportZoneJson`
-
 ## v0.11.0 (2024-10-14)
 
 - **Feature:** Add support for nullable models
