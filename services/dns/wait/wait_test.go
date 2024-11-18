@@ -94,7 +94,7 @@ func TestCreateZoneWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &dns.ZoneResponse{
 					Zone: &dns.Zone{
-						State: &tt.resourceState,
+						State: utils.Ptr(tt.resourceState),
 						Id:    utils.Ptr("zid"),
 					},
 				}
@@ -162,7 +162,7 @@ func TestUpdateZoneWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &dns.ZoneResponse{
 					Zone: &dns.Zone{
-						State: &tt.resourceState,
+						State: utils.Ptr(tt.resourceState),
 						Id:    utils.Ptr("zid"),
 					},
 				}
@@ -230,7 +230,7 @@ func TestDeleteZoneWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &dns.ZoneResponse{
 					Zone: &dns.Zone{
-						State: &tt.resourceState,
+						State: utils.Ptr(tt.resourceState),
 						Id:    utils.Ptr("zid"),
 					},
 				}
@@ -300,7 +300,7 @@ func TestCreateRecordSetWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &dns.RecordSetResponse{
 					Rrset: &dns.RecordSet{
-						State: &tt.resourceState,
+						State: utils.Ptr(tt.resourceState),
 						Id:    utils.Ptr("rid"),
 					},
 				}
@@ -368,7 +368,7 @@ func TestUpdateRecordSetWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &dns.RecordSetResponse{
 					Rrset: &dns.RecordSet{
-						State: &tt.resourceState,
+						State: utils.Ptr(tt.resourceState),
 						Id:    utils.Ptr("rid"),
 					},
 				}
@@ -436,7 +436,7 @@ func TestDeleteRecordSetWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &dns.RecordSetResponse{
 					Rrset: &dns.RecordSet{
-						State: &tt.resourceState,
+						State: utils.Ptr(tt.resourceState),
 						Id:    utils.Ptr("rid"),
 					},
 				}

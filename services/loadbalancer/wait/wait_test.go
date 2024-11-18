@@ -7,6 +7,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/loadbalancer"
 )
 
@@ -107,7 +108,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &loadbalancer.LoadBalancer{
 					Name:   &instanceName,
-					Status: &tt.instanceStatus,
+					Status: utils.Ptr(tt.instanceStatus),
 				}
 			}
 
@@ -218,7 +219,7 @@ func TestEnableServiceWaitHandler(t *testing.T) {
 			var wantRes *loadbalancer.GetServiceStatusResponse
 			if tt.wantResp {
 				wantRes = &loadbalancer.GetServiceStatusResponse{
-					Status: &tt.functionalityStatus,
+					Status: utils.Ptr(tt.functionalityStatus),
 				}
 			}
 

@@ -7,6 +7,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex"
 )
 
@@ -97,7 +98,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 				wantRes = &sqlserverflex.GetInstanceResponse{
 					Item: &sqlserverflex.Instance{
 						Id:     &instanceId,
-						Status: &tt.instanceState,
+						Status: utils.Ptr(tt.instanceState),
 					},
 				}
 			}
@@ -174,7 +175,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				wantRes = &sqlserverflex.GetInstanceResponse{
 					Item: &sqlserverflex.Instance{
 						Id:     &instanceId,
-						Status: &tt.instanceState,
+						Status: utils.Ptr(tt.instanceState),
 					},
 				}
 			}

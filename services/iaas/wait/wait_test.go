@@ -183,7 +183,7 @@ func TestCreateNetworkAreaWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.NetworkArea{
 					AreaId: utils.Ptr("naid"),
-					State:  &tt.resourceState,
+					State:  utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -242,7 +242,7 @@ func TestUpdateNetworkAreaWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.NetworkArea{
 					AreaId: utils.Ptr("naid"),
-					State:  &tt.resourceState,
+					State:  utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -303,7 +303,7 @@ func TestDeleteNetworkAreaWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.NetworkArea{
 					AreaId: utils.Ptr("naid"),
-					State:  &tt.resourceState,
+					State:  utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -362,7 +362,7 @@ func TestCreateNetworkWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Network{
 					NetworkId: utils.Ptr("nid"),
-					State:     &tt.resourceState,
+					State:     utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -421,7 +421,7 @@ func TestUpdateNetworkWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Network{
 					NetworkId: utils.Ptr("nid"),
-					State:     &tt.resourceState,
+					State:     utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -482,7 +482,7 @@ func TestDeleteNetworkWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Network{
 					NetworkId: utils.Ptr("nid"),
-					State:     &tt.resourceState,
+					State:     utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -548,7 +548,7 @@ func TestCreateVolumeWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Volume{
 					Id:     utils.Ptr("vid"),
-					Status: &tt.resourceState,
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -609,7 +609,7 @@ func TestDeleteVolumeWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Volume{
 					Id:     utils.Ptr("vid"),
-					Status: &tt.resourceState,
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -675,7 +675,7 @@ func TestCreateServerWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Server{
 					Id:     utils.Ptr("sid"),
-					Status: &tt.resourceState,
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -736,7 +736,7 @@ func TestDeleteServerWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Server{
 					Id:     utils.Ptr("sid"),
-					Status: &tt.resourceState,
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -814,7 +814,7 @@ func TestResizeServerWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Server{
 					Id:     utils.Ptr("sid"),
-					Status: &tt.finalResourceState,
+					Status: utils.Ptr(tt.finalResourceState),
 				}
 			}
 
@@ -880,7 +880,7 @@ func TestStartServerWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Server{
 					Id:     utils.Ptr("sid"),
-					Status: &tt.resourceState,
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -946,7 +946,7 @@ func TestStopServerWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Server{
 					Id:     utils.Ptr("sid"),
-					Status: &tt.resourceState,
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -1012,7 +1012,7 @@ func TestDeallocateServerWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Server{
 					Id:     utils.Ptr("sid"),
-					Status: &tt.resourceState,
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -1078,7 +1078,7 @@ func TestRescueServerWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Server{
 					Id:     utils.Ptr("sid"),
-					Status: &tt.resourceState,
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -1144,7 +1144,7 @@ func TestUnrescueServerWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Server{
 					Id:     utils.Ptr("sid"),
-					Status: &tt.resourceState,
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -1238,8 +1238,8 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &iaas.Request{
 					RequestId:     utils.Ptr("rid"),
-					RequestAction: &tt.requestAction,
-					Status:        &tt.requestState,
+					RequestAction: utils.Ptr(tt.requestAction),
+					Status:        utils.Ptr(tt.requestState),
 				}
 			}
 
