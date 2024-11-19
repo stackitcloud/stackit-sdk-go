@@ -130,8 +130,8 @@ func (r ApiCreateBackupRequest) Execute() (*BackupJob, error) {
 CreateBackup: create backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiCreateBackupRequest
 */
 func (a *APIClient) CreateBackup(ctx context.Context, projectId string, serverId string) ApiCreateBackupRequest {
@@ -258,8 +258,8 @@ func (r ApiCreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 CreateBackupSchedule: create backup schedule
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiCreateBackupScheduleRequest
 */
 func (a *APIClient) CreateBackupSchedule(ctx context.Context, projectId string, serverId string) ApiCreateBackupScheduleRequest {
@@ -369,8 +369,8 @@ func (r ApiDeleteBackupRequest) Execute() error {
 DeleteBackup: delete backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param backupId id of the backup
 	@return ApiDeleteBackupRequest
 */
@@ -483,8 +483,8 @@ func (r ApiDeleteBackupScheduleRequest) Execute() error {
 DeleteBackupSchedule: delete backup schedule
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param backupScheduleId backup schedule id
 	@return ApiDeleteBackupScheduleRequest
 */
@@ -599,8 +599,8 @@ func (r ApiDeleteVolumeBackupRequest) Execute() error {
 DeleteVolumeBackup: delete volume backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param backupId id of the backup
 	@param volumeBackupId id of the volume backup
 	@return ApiDeleteVolumeBackupRequest
@@ -714,8 +714,8 @@ func (r ApiDisableServiceRequest) Execute() error {
 DisableService: disable backup service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiDisableServiceRequest
 */
 func (a *APIClient) DisableService(ctx context.Context, projectId string, serverId string) ApiDisableServiceRequest {
@@ -826,8 +826,8 @@ func (r ApiDisableServiceResourceRequest) Execute() error {
 DisableServiceResource: disable backup service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiDisableServiceResourceRequest
 */
 func (a *APIClient) DisableServiceResource(ctx context.Context, projectId string, serverId string) ApiDisableServiceResourceRequest {
@@ -943,8 +943,8 @@ func (r ApiEnableServiceRequest) Execute() error {
 EnableService: enable backup service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiEnableServiceRequest
 */
 func (a *APIClient) EnableService(ctx context.Context, projectId string, serverId string) ApiEnableServiceRequest {
@@ -1063,8 +1063,8 @@ func (r ApiEnableServiceResourceRequest) Execute() error {
 EnableServiceResource: enable backup service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiEnableServiceResourceRequest
 */
 func (a *APIClient) EnableServiceResource(ctx context.Context, projectId string, serverId string) ApiEnableServiceResourceRequest {
@@ -1185,8 +1185,8 @@ func (r ApiGetBackupRequest) Execute() (*Backup, error) {
 GetBackup: get backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param backupId id of the backup
 	@return ApiGetBackupRequest
 */
@@ -1310,8 +1310,8 @@ func (r ApiGetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 GetBackupSchedule: get single backup schedule details
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param backupScheduleId backup schedule id
 	@return ApiGetBackupScheduleRequest
 */
@@ -1433,8 +1433,8 @@ func (r ApiListBackupSchedulesRequest) Execute() (*GetBackupSchedulesResponse, e
 ListBackupSchedules: get list of backup schedules
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiListBackupSchedulesRequest
 */
 func (a *APIClient) ListBackupSchedules(ctx context.Context, projectId string, serverId string) ApiListBackupSchedulesRequest {
@@ -1553,8 +1553,8 @@ func (r ApiListBackupsRequest) Execute() (*GetBackupsListResponse, error) {
 ListBackups: get list of backups
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiListBackupsRequest
 */
 func (a *APIClient) ListBackups(ctx context.Context, projectId string, serverId string) ApiListBackupsRequest {
@@ -1672,8 +1672,8 @@ func (r ApiRestoreBackupRequest) Execute() error {
 RestoreBackup: trigger restore of the requested backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param backupId id of the backup
 	@return ApiRestoreBackupRequest
 */
@@ -1796,8 +1796,8 @@ func (r ApiRestoreVolumeBackupRequest) Execute() error {
 RestoreVolumeBackup: trigger restore of the requested volume backup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param backupId id of the backup
 	@param volumeBackupId id of the volume backup
 	@return ApiRestoreVolumeBackupRequest
@@ -1932,8 +1932,8 @@ func (r ApiUpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 UpdateBackupSchedule: update backup schedule
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param backupScheduleId backup schedule id
 	@return ApiUpdateBackupScheduleRequest
 */
