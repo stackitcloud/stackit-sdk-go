@@ -1,5 +1,7 @@
 ## Release (2024-XX-XX)
 
+- `serverbackup`: [v0.4.0](services/serverbackup/CHANGELOG.md#v040-2024-11-26)
+  - **Feature:** Add support for managing `BackupPolicy` resources
 - `dns`: [v0.12.0](services/dns/CHANGELOG.md#v0120-2024-11-20)
   - **Feature:** New models `ZoneModelsImportRecordModel` and `ZoneModelsImportZoneJson`
 - `serverbackup`: [v0.3.0](services/serverbackup/CHANGELOG.md#v030-2024-11-20)
