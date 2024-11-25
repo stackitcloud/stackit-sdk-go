@@ -16,6 +16,7 @@ type apiClientMocked struct {
 	getServerFails         bool
 	getProjectRequestFails bool
 	getAttachedVolumeFails bool
+	getVirtualIPFails      bool
 	isDeleted              bool
 	isAttached             bool
 	resourceState          string
@@ -99,6 +100,25 @@ func (a *apiClientMocked) GetAttachedVolumeExecute(_ context.Context, _, _, _ st
 	return &iaasalpha.VolumeAttachment{
 		ServerId: utils.Ptr("sid"),
 		VolumeId: utils.Ptr("vid"),
+	}, nil
+}
+
+func (a *apiClientMocked) GetVirtualIPExecute(_ context.Context, _, _, _ string) (*iaasalpha.VirtualIp, error) {
+	if a.getVirtualIPFails {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 500,
+		}
+	}
+
+	if a.isDeleted {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 404,
+		}
+	}
+
+	return &iaasalpha.VirtualIp{
+		Id:     utils.Ptr("vipid"),
+		Status: &a.resourceState,
 	}, nil
 }
 
@@ -632,6 +652,133 @@ func TestRemoveVolumeFromServerWaitHandler(t *testing.T) {
 			}
 
 			handler := RemoveVolumeFromServerWaitHandler(context.Background(), apiClient, "pid", "sid", "vid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestCreateVirtualIPWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "create_succeeded",
+			getFails:      false,
+			resourceState: VirtualIpCreatedStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER Status",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getVirtualIPFails: tt.getFails,
+				resourceState:     tt.resourceState,
+			}
+
+			var wantRes *iaasalpha.VirtualIp
+			if tt.wantResp {
+				wantRes = &iaasalpha.VirtualIp{
+					Id:     utils.Ptr("vipid"),
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := CreateVirtualIPWaitHandler(context.Background(), apiClient, "pid", "nid", "vipid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestDeleteVirtualIPWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		isDeleted     bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:      "delete_succeeded",
+			getFails:  false,
+			isDeleted: true,
+			wantErr:   false,
+			wantResp:  false,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER Status",
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getVolumeFails: tt.getFails,
+				isDeleted:      tt.isDeleted,
+				resourceState:  tt.resourceState,
+			}
+
+			var wantRes *iaasalpha.VirtualIp
+			if tt.wantResp {
+				wantRes = &iaasalpha.VirtualIp{
+					Id:     utils.Ptr("vipid"),
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := DeleteVirtualIPWaitHandler(context.Background(), apiClient, "pid", "nid", "vipid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
