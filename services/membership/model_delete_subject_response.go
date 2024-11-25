@@ -10,9 +10,137 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the DeleteSubjectResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeleteSubjectResponse{}
+
 // DeleteSubjectResponse struct for DeleteSubjectResponse
 type DeleteSubjectResponse struct {
 	DeletedAt *Zookie `json:"deletedAt,omitempty"`
 	// REQUIRED
 	DeletedFromResourceIds *[]string `json:"deletedFromResourceIds"`
+}
+
+type _DeleteSubjectResponse DeleteSubjectResponse
+
+// NewDeleteSubjectResponse instantiates a new DeleteSubjectResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDeleteSubjectResponse(deletedFromResourceIds *[]string) *DeleteSubjectResponse {
+	this := DeleteSubjectResponse{}
+	this.DeletedFromResourceIds = deletedFromResourceIds
+	return &this
+}
+
+// NewDeleteSubjectResponseWithDefaults instantiates a new DeleteSubjectResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeleteSubjectResponseWithDefaults() *DeleteSubjectResponse {
+	this := DeleteSubjectResponse{}
+	return &this
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *DeleteSubjectResponse) GetDeletedAt() *Zookie {
+	if o == nil || IsNil(o.DeletedAt) {
+		var ret *Zookie
+		return ret
+	}
+	return o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteSubjectResponse) GetDeletedAtOk() (*Zookie, bool) {
+	if o == nil || IsNil(o.DeletedAt) {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *DeleteSubjectResponse) HasDeletedAt() bool {
+	if o != nil && !IsNil(o.DeletedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given Zookie and assigns it to the DeletedAt field.
+func (o *DeleteSubjectResponse) SetDeletedAt(v *Zookie) {
+	o.DeletedAt = v
+}
+
+// GetDeletedFromResourceIds returns the DeletedFromResourceIds field value
+func (o *DeleteSubjectResponse) GetDeletedFromResourceIds() *[]string {
+	if o == nil {
+		var ret *[]string
+		return ret
+	}
+
+	return o.DeletedFromResourceIds
+}
+
+// GetDeletedFromResourceIdsOk returns a tuple with the DeletedFromResourceIds field value
+// and a boolean to check if the value has been set.
+func (o *DeleteSubjectResponse) GetDeletedFromResourceIdsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeletedFromResourceIds, true
+}
+
+// SetDeletedFromResourceIds sets field value
+func (o *DeleteSubjectResponse) SetDeletedFromResourceIds(v *[]string) {
+	o.DeletedFromResourceIds = v
+}
+
+func (o DeleteSubjectResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DeletedAt) {
+		toSerialize["deletedAt"] = o.DeletedAt
+	}
+	toSerialize["deletedFromResourceIds"] = o.DeletedFromResourceIds
+	return toSerialize, nil
+}
+
+type NullableDeleteSubjectResponse struct {
+	value *DeleteSubjectResponse
+	isSet bool
+}
+
+func (v NullableDeleteSubjectResponse) Get() *DeleteSubjectResponse {
+	return v.value
+}
+
+func (v *NullableDeleteSubjectResponse) Set(val *DeleteSubjectResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeleteSubjectResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDeleteSubjectResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDeleteSubjectResponse(val *DeleteSubjectResponse) *NullableDeleteSubjectResponse {
+	return &NullableDeleteSubjectResponse{value: val, isSet: true}
+}
+
+func (v NullableDeleteSubjectResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDeleteSubjectResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
