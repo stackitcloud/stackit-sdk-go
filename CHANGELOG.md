@@ -1,5 +1,7 @@
 ## Release (2024-XX-XX)
 
+- `serverbackup`: [v0.4.0](services/serverbackup/CHANGELOG.md#v040-2024-11-26)
+  - **Feature:** Add support for managing `BackupPolicy` resources
 - `serverupdate`: [v0.2.0](services/serverupdate/CHANGELOG.md#v020-2024-11-26)
   - **Feature:** Add support for managing `UpdatePolicy` resources
 - `dns`: [v0.12.0](services/dns/CHANGELOG.md#v0120-2024-11-20)
