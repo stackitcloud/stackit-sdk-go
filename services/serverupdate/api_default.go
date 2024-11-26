@@ -141,8 +141,8 @@ func (r ApiCreateUpdateRequest) Execute() (*Update, error) {
 CreateUpdate: create update
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiCreateUpdateRequest
 */
 func (a *APIClient) CreateUpdate(ctx context.Context, projectId string, serverId string) ApiCreateUpdateRequest {
@@ -280,8 +280,8 @@ func (r ApiCreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 CreateUpdateSchedule: create update schedule
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiCreateUpdateScheduleRequest
 */
 func (a *APIClient) CreateUpdateSchedule(ctx context.Context, projectId string, serverId string) ApiCreateUpdateScheduleRequest {
@@ -402,8 +402,8 @@ func (r ApiDeleteUpdateScheduleRequest) Execute() error {
 DeleteUpdateSchedule: delete update schedule
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param scheduleId update schedule id
 	@return ApiDeleteUpdateScheduleRequest
 */
@@ -525,8 +525,8 @@ func (r ApiDisableServiceRequest) Execute() error {
 DisableService: disable update service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiDisableServiceRequest
 */
 func (a *APIClient) DisableService(ctx context.Context, projectId string, serverId string) ApiDisableServiceRequest {
@@ -648,8 +648,8 @@ func (r ApiDisableServiceResourceRequest) Execute() error {
 DisableServiceResource: disable update service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiDisableServiceResourceRequest
 */
 func (a *APIClient) DisableServiceResource(ctx context.Context, projectId string, serverId string) ApiDisableServiceResourceRequest {
@@ -776,8 +776,8 @@ func (r ApiEnableServiceRequest) Execute() error {
 EnableService: enable update service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiEnableServiceRequest
 */
 func (a *APIClient) EnableService(ctx context.Context, projectId string, serverId string) ApiEnableServiceRequest {
@@ -907,8 +907,8 @@ func (r ApiEnableServiceResourceRequest) Execute() error {
 EnableServiceResource: enable update service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiEnableServiceResourceRequest
 */
 func (a *APIClient) EnableServiceResource(ctx context.Context, projectId string, serverId string) ApiEnableServiceResourceRequest {
@@ -1040,8 +1040,8 @@ func (r ApiGetUpdateRequest) Execute() (*Update, error) {
 GetUpdate: get update
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param updateId id of the update
 	@return ApiGetUpdateRequest
 */
@@ -1176,8 +1176,8 @@ func (r ApiGetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 GetUpdateSchedule: get single update schedule details
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param scheduleId update schedule id
 	@return ApiGetUpdateScheduleRequest
 */
@@ -1198,6 +1198,121 @@ func (a *APIClient) GetUpdateScheduleExecute(ctx context.Context, projectId stri
 		projectId:  projectId,
 		serverId:   serverId,
 		scheduleId: scheduleId,
+	}
+	return r.Execute()
+}
+
+type ApiListUpdatePoliciesRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+}
+
+func (r ApiListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetUpdatePoliciesResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdatePolicies")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/update-policies"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListUpdatePolicies: get list of update policies
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId project id
+	@return ApiListUpdatePoliciesRequest
+*/
+func (a *APIClient) ListUpdatePolicies(ctx context.Context, projectId string) ApiListUpdatePoliciesRequest {
+	return ApiListUpdatePoliciesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListUpdatePoliciesExecute(ctx context.Context, projectId string) (*GetUpdatePoliciesResponse, error) {
+	r := ApiListUpdatePoliciesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
 	}
 	return r.Execute()
 }
@@ -1310,8 +1425,8 @@ func (r ApiListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, e
 ListUpdateSchedules: get list of update schedules
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiListUpdateSchedulesRequest
 */
 func (a *APIClient) ListUpdateSchedules(ctx context.Context, projectId string, serverId string) ApiListUpdateSchedulesRequest {
@@ -1441,8 +1556,8 @@ func (r ApiListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
 ListUpdates: get list of updates
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@return ApiListUpdatesRequest
 */
 func (a *APIClient) ListUpdates(ctx context.Context, projectId string, serverId string) ApiListUpdatesRequest {
@@ -1582,8 +1697,8 @@ func (r ApiUpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 UpdateUpdateSchedule: update update schedule
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId portal project id
-	@param serverId openstack server id
+	@param projectId project id
+	@param serverId server id
 	@param scheduleId update schedule id
 	@return ApiUpdateUpdateScheduleRequest
 */
