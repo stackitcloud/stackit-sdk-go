@@ -12,11 +12,15 @@ import (
 )
 
 const (
+	DeleteSuccess = "DELETED"
+	ErrorStatus   = "ERROR"
+
 	VolumeAvailableStatus = "AVAILABLE"
-	DeleteSuccess         = "DELETED"
-	ErrorStatus           = "ERROR"
-	ServerActiveStatus    = "ACTIVE"
-	ServerResizingStatus  = "RESIZING"
+
+	ServerActiveStatus   = "ACTIVE"
+	ServerResizingStatus = "RESIZING"
+
+	VirtualIpCreatedStatus = "CREATED"
 
 	RequestCreateAction  = "CREATE"
 	RequestUpdateAction  = "UPDATE"
@@ -35,6 +39,7 @@ type APIClientInterface interface {
 	GetServerExecute(ctx context.Context, projectId string, serverId string) (*iaasalpha.Server, error)
 	GetProjectRequestExecute(ctx context.Context, projectId string, requestId string) (*iaasalpha.Request, error)
 	GetAttachedVolumeExecute(ctx context.Context, projectId string, serverId string, volumeId string) (*iaasalpha.VolumeAttachment, error)
+	GetVirtualIPExecute(ctx context.Context, projectId string, networkId string, virtualIpId string) (*iaasalpha.VirtualIp, error)
 }
 
 // CreateVolumeWaitHandler will wait for volume creation
@@ -289,5 +294,55 @@ func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface
 		return true, nil, nil
 	})
 	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// CreateVirtualIPWaitHandler will wait for server creation
+func CreateVirtualIPWaitHandler(ctx context.Context, a APIClientInterface, projectId, networkId, virtualIpId string) *wait.AsyncActionHandler[iaasalpha.VirtualIp] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.VirtualIp, err error) {
+		virtualIp, err := a.GetVirtualIPExecute(ctx, projectId, networkId, virtualIpId)
+		if err != nil {
+			return false, virtualIp, err
+		}
+		if virtualIp.Id == nil || virtualIp.Status == nil {
+			return false, virtualIp, fmt.Errorf("create failed for virtual ip with id %s, the response is not valid: the id or the status are missing", networkId)
+		}
+		if *virtualIp.Id == virtualIpId && *virtualIp.Status == VirtualIpCreatedStatus {
+			return true, virtualIp, nil
+		}
+		if *virtualIp.Id == virtualIpId && *virtualIp.Status == ErrorStatus {
+			return true, virtualIp, fmt.Errorf("create failed for virtual ip with id %s", networkId)
+		}
+		return false, virtualIp, nil
+	})
+	handler.SetTimeout(15 * time.Minute)
+	return handler
+}
+
+// DeleteVirtualIPWaitHandler will wait for volume deletion
+func DeleteVirtualIPWaitHandler(ctx context.Context, a APIClientInterface, projectId, networkId, virtualIpId string) *wait.AsyncActionHandler[iaasalpha.VirtualIp] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.VirtualIp, err error) {
+		virtualIp, err := a.GetVirtualIPExecute(ctx, projectId, networkId, virtualIpId)
+		if err == nil {
+			if virtualIp != nil {
+				if virtualIp.Id == nil || virtualIp.Status == nil {
+					return false, virtualIp, fmt.Errorf("delete failed for virtual ip with id %s, the response is not valid: the id or the status are missing", virtualIpId)
+				}
+				if *virtualIp.Id == virtualIpId && *virtualIp.Status == DeleteSuccess {
+					return true, virtualIp, nil
+				}
+			}
+			return false, nil, nil
+		}
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, virtualIp, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
+		}
+		if oapiErr.StatusCode != http.StatusNotFound {
+			return false, virtualIp, err
+		}
+		return true, nil, nil
+	})
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
