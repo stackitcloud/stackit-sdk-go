@@ -28,15 +28,21 @@ else
     exit 1
 fi
 
-# If a service is specified, only lint that service
-if [ ! -z "${SERVICE}" ]; then
-    echo ">> Linting service ${SERVICE}"
-    cd ${SERVICES_PATH}/${SERVICE}
+lint_service() {
+    service=$1
+
+    echo ">> Linting service ${service}"
+    cd ${SERVICES_PATH}/${service}
     if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
         golangci-lint run ${GOLANG_CI_ARGS} --skip-dirs wait # All manually maintained files are in subfolders
     else
         golangci-lint run ${GOLANG_CI_ARGS}
     fi
+}
+
+# If a service is specified, only lint that service
+if [ ! -z "${SERVICE}" ]; then
+    lint_service ${SERVICE}
 # Otherwise, lint all modules and examples
 else
     if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
@@ -47,13 +53,7 @@ else
 
     for service_dir in ${SERVICES_PATH}/*; do
         service=$(basename ${service_dir})
-        echo ">> Linting service ${service}"
-        cd ${service_dir}
-        if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
-            golangci-lint run ${GOLANG_CI_ARGS} --skip-dirs wait # All manually maintained files are in subfolders
-        else
-            golangci-lint run ${GOLANG_CI_ARGS}
-        fi
+        lint_service ${service}
     done
 
     if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then

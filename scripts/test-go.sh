@@ -25,23 +25,25 @@ else
     exit 1
 fi
 
+test_service() {
+    service=$1
+
+    echo ">> Testing services/${service}"
+    if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
+        go test ${SERVICES_PATH}/${service}/... ${GOTEST_ARGS} # All manually maintained files are in subfolders
+    else
+        go test ${SERVICES_PATH}/${service}/... ${GOTEST_ARGS}
+    fi
+}
+
 # If a service is specified, only test that service
 if [ ! -z "${SERVICE}" ]; then
-    echo ">> Testing services/${SERVICE}"
-    cd ${SERVICES_PATH}/${SERVICE}
-    if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
-        go test ./ ${GOTEST_ARGS} # All manually maintained files are in subfolders
-    else
-        go test ./... ${GOTEST_ARGS}
-    fi
-    exit 0
-# Otherwise, test all modules
+    test_service ${SERVICE}
+# Otherwise, test all services and core
 else
-
     if [ "${SKIP_NON_GENERATED_FILES}" = false ]; then
         echo ">> Testing core"
-        cd ${CORE_PATH}
-        go test ./... ${GOTEST_ARGS}
+        go test ${CORE_PATH}/... ${GOTEST_ARGS}
     fi
 
     for service_dir in ${SERVICES_PATH}/*; do
@@ -54,12 +56,6 @@ else
             continue
         fi
 
-        echo ">> Testing services/${service}"
-        cd ${service_dir}
-        if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
-            go test ./ ${GOTEST_ARGS} # All manually maintained files are in subfolders
-        else
-            go test ./... ${GOTEST_ARGS}
-        fi
+        test_service ${service}
     done
 fi
