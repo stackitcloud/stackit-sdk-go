@@ -1457,7 +1457,7 @@ func (r ApiGetServiceStatusRequest) Execute() (*GetServiceStatusResponse, error)
 /*
 GetServiceStatus: Return the status of load balancer functionality for the project specified.
 
-Deprecated: DEPRECATED! Projects are auto-enabled on SE side, meaning status is always enabled.
+Deprecated: DEPRECATED! Checking the status is now obsolete. The endpoint is kept for compatibility.
 
 	Status will return the load balancer functionality status for the project specified.
 
@@ -1474,7 +1474,7 @@ func (a *APIClient) GetServiceStatus(ctx context.Context, projectId string) ApiG
 }
 
 /*
-Deprecated: DEPRECATED! Projects are auto-enabled on SE side, meaning status is always enabled.
+Deprecated: DEPRECATED! Checking the status is now obsolete. The endpoint is kept for compatibility.
 
 	Status will return the load balancer functionality status for the project specified.
 */
