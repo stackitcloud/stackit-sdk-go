@@ -30,7 +30,7 @@ test_service() {
 
     echo ">> Testing services/${service}"
     if [ "${SKIP_NON_GENERATED_FILES}" = true ]; then
-        go test ${SERVICES_PATH}/${service}/... ${GOTEST_ARGS} # All manually maintained files are in subfolders
+        go test ${SERVICES_PATH}/${service} ${GOTEST_ARGS} # All manually maintained files are in subfolders
     else
         go test ${SERVICES_PATH}/${service}/... ${GOTEST_ARGS}
     fi
