@@ -10,8 +10,101 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListUserPermissionsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListUserPermissionsResponse{}
+
 // ListUserPermissionsResponse struct for ListUserPermissionsResponse
 type ListUserPermissionsResponse struct {
 	// REQUIRED
 	Items *[]UserPermission `json:"items"`
+}
+
+type _ListUserPermissionsResponse ListUserPermissionsResponse
+
+// NewListUserPermissionsResponse instantiates a new ListUserPermissionsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListUserPermissionsResponse(items *[]UserPermission) *ListUserPermissionsResponse {
+	this := ListUserPermissionsResponse{}
+	this.Items = items
+	return &this
+}
+
+// NewListUserPermissionsResponseWithDefaults instantiates a new ListUserPermissionsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListUserPermissionsResponseWithDefaults() *ListUserPermissionsResponse {
+	this := ListUserPermissionsResponse{}
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *ListUserPermissionsResponse) GetItems() *[]UserPermission {
+	if o == nil {
+		var ret *[]UserPermission
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *ListUserPermissionsResponse) GetItemsOk() (*[]UserPermission, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *ListUserPermissionsResponse) SetItems(v *[]UserPermission) {
+	o.Items = v
+}
+
+func (o ListUserPermissionsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["items"] = o.Items
+	return toSerialize, nil
+}
+
+type NullableListUserPermissionsResponse struct {
+	value *ListUserPermissionsResponse
+	isSet bool
+}
+
+func (v NullableListUserPermissionsResponse) Get() *ListUserPermissionsResponse {
+	return v.value
+}
+
+func (v *NullableListUserPermissionsResponse) Set(val *ListUserPermissionsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListUserPermissionsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListUserPermissionsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListUserPermissionsResponse(val *ListUserPermissionsResponse) *NullableListUserPermissionsResponse {
+	return &NullableListUserPermissionsResponse{value: val, isSet: true}
+}
+
+func (v NullableListUserPermissionsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListUserPermissionsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
