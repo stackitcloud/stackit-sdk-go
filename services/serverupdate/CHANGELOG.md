@@ -1,6 +1,6 @@
 ## v0.2.1 (2024-11-28)
 
-- **Bugfix:** Fix Accept header types
+- **Bugfix:** Fix `Accept` header types
 
 ## v0.2.0 (2024-11-26)
 
