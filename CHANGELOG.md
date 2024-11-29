@@ -1,4 +1,4 @@
-## Release (2024-XX-XX)
+## Release (2024-11-29)
 
 - `serverbackup`: [v0.4.0](services/serverbackup/CHANGELOG.md#v040-2024-11-26)
   - **Feature:** Add support for managing `BackupPolicy` resources
