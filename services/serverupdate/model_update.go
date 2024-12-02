@@ -19,17 +19,15 @@ var _ MappedNullable = &Update{}
 
 // Update struct for Update
 type Update struct {
-	// REQUIRED
-	EndDate    *string `json:"endDate"`
+	EndDate    *string `json:"endDate,omitempty"`
 	FailReason *string `json:"failReason,omitempty"`
 	// Can be cast to int32 without loss of precision.
 	FailedUpdates *int64 `json:"failedUpdates,omitempty"`
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Id *string `json:"id"`
+	Id *int64 `json:"id"`
 	// Can be cast to int32 without loss of precision.
 	InstalledUpdates *int64 `json:"installedUpdates,omitempty"`
-	// REQUIRED
-	OsServerId *string `json:"osServerId"`
 	// REQUIRED
 	StartDate *string `json:"startDate"`
 	// REQUIRED
@@ -42,11 +40,9 @@ type _Update Update
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdate(endDate *string, id *string, osServerId *string, startDate *string, status *string) *Update {
+func NewUpdate(id *int64, startDate *string, status *string) *Update {
 	this := Update{}
-	this.EndDate = endDate
 	this.Id = id
-	this.OsServerId = osServerId
 	this.StartDate = startDate
 	this.Status = status
 	return &this
@@ -60,26 +56,34 @@ func NewUpdateWithDefaults() *Update {
 	return &this
 }
 
-// GetEndDate returns the EndDate field value
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *Update) GetEndDate() *string {
-	if o == nil {
+	if o == nil || IsNil(o.EndDate) {
 		var ret *string
 		return ret
 	}
-
 	return o.EndDate
 }
 
-// GetEndDateOk returns a tuple with the EndDate field value
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Update) GetEndDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
 	return o.EndDate, true
 }
 
-// SetEndDate sets field value
+// HasEndDate returns a boolean if a field has been set.
+func (o *Update) HasEndDate() bool {
+	if o != nil && !IsNil(o.EndDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
 func (o *Update) SetEndDate(v *string) {
 	o.EndDate = v
 }
@@ -149,9 +153,9 @@ func (o *Update) SetFailedUpdates(v *int64) {
 }
 
 // GetId returns the Id field value
-func (o *Update) GetId() *string {
+func (o *Update) GetId() *int64 {
 	if o == nil {
-		var ret *string
+		var ret *int64
 		return ret
 	}
 
@@ -160,7 +164,7 @@ func (o *Update) GetId() *string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Update) GetIdOk() (*string, bool) {
+func (o *Update) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -168,7 +172,7 @@ func (o *Update) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *Update) SetId(v *string) {
+func (o *Update) SetId(v *int64) {
 	o.Id = v
 }
 
@@ -202,30 +206,6 @@ func (o *Update) HasInstalledUpdates() bool {
 // SetInstalledUpdates gets a reference to the given int64 and assigns it to the InstalledUpdates field.
 func (o *Update) SetInstalledUpdates(v *int64) {
 	o.InstalledUpdates = v
-}
-
-// GetOsServerId returns the OsServerId field value
-func (o *Update) GetOsServerId() *string {
-	if o == nil {
-		var ret *string
-		return ret
-	}
-
-	return o.OsServerId
-}
-
-// GetOsServerIdOk returns a tuple with the OsServerId field value
-// and a boolean to check if the value has been set.
-func (o *Update) GetOsServerIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OsServerId, true
-}
-
-// SetOsServerId sets field value
-func (o *Update) SetOsServerId(v *string) {
-	o.OsServerId = v
 }
 
 // GetStartDate returns the StartDate field value
@@ -278,7 +258,9 @@ func (o *Update) SetStatus(v *string) {
 
 func (o Update) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["endDate"] = o.EndDate
+	if !IsNil(o.EndDate) {
+		toSerialize["endDate"] = o.EndDate
+	}
 	if !IsNil(o.FailReason) {
 		toSerialize["failReason"] = o.FailReason
 	}
@@ -289,7 +271,6 @@ func (o Update) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InstalledUpdates) {
 		toSerialize["installedUpdates"] = o.InstalledUpdates
 	}
-	toSerialize["osServerId"] = o.OsServerId
 	toSerialize["startDate"] = o.StartDate
 	toSerialize["status"] = o.Status
 	return toSerialize, nil
