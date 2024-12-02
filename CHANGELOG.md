@@ -1,8 +1,13 @@
+## Release (XXXX-XX-XX)
+
+- `serverupdate`: [v0.2.2](services/serverupdate/CHANGELOG.md#v022-2024-12-02)
+  - **Bugfix:** `Id` field of `Update` model is now of type `int64` (was `string`)
+
 ## Release (2024-11-29)
 
 - `serverbackup`: [v0.4.0](services/serverbackup/CHANGELOG.md#v040-2024-11-26)
   - **Feature:** Add support for managing `BackupPolicy` resources
-- `serverupdate`: [v0.2.1](services/serverupdate/CHANGELOG.md#v020-2024-11-28)
+- `serverupdate`: [v0.2.1](services/serverupdate/CHANGELOG.md#v021-2024-11-28)
   - **Bugfix:** Fix `Accept` header types
 - `serverupdate`: [v0.2.0](services/serverupdate/CHANGELOG.md#v020-2024-11-26)
   - **Feature:** Add support for managing `UpdatePolicy` resources
