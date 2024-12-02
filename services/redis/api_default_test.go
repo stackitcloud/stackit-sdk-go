@@ -289,7 +289,7 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DownloadBackup", func(t *testing.T) {
 		path := "/v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}/download"
-		backupIdValue := int32(12345)
+		backupIdValue := int32(123)
 		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
@@ -331,7 +331,7 @@ func Test_redis_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		backupId := int32(12345)
+		backupId := int32(123)
 		instanceId := "instanceId"
 		projectId := "projectId"
 
@@ -948,7 +948,7 @@ func Test_redis_DefaultApiService(t *testing.T) {
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		backupIdValue := int32(12345)
+		backupIdValue := int32(123)
 		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -988,7 +988,7 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 		instanceId := "instanceId"
 		projectId := "projectId"
-		backupId := int32(12345)
+		backupId := int32(123)
 
 		resp, reqErr := apiClient.TriggerRestore(context.Background(), instanceId, projectId, backupId).Execute()
 
