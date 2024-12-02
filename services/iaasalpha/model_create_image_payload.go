@@ -20,7 +20,8 @@ var _ MappedNullable = &CreateImagePayload{}
 
 // CreateImagePayload Object that represents an Image and its parameters. Used for Creating and returning (get/list).
 type CreateImagePayload struct {
-	Config *ImageConfig `json:"config,omitempty"`
+	Checksum *ImageChecksum `json:"checksum,omitempty"`
+	Config   *ImageConfig   `json:"config,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Object that represents a disk format.
@@ -38,6 +39,8 @@ type CreateImagePayload struct {
 	// REQUIRED
 	Name      *string `json:"name"`
 	Protected *bool   `json:"protected,omitempty"`
+	// Scope of an Image.
+	Scope *string `json:"scope,omitempty"`
 	// The status of an image object.
 	Status *string `json:"status,omitempty"`
 	// Date-time when resource was last updated.
@@ -63,6 +66,38 @@ func NewCreateImagePayload(diskFormat *string, name *string) *CreateImagePayload
 func NewCreateImagePayloadWithDefaults() *CreateImagePayload {
 	this := CreateImagePayload{}
 	return &this
+}
+
+// GetChecksum returns the Checksum field value if set, zero value otherwise.
+func (o *CreateImagePayload) GetChecksum() *ImageChecksum {
+	if o == nil || IsNil(o.Checksum) {
+		var ret *ImageChecksum
+		return ret
+	}
+	return o.Checksum
+}
+
+// GetChecksumOk returns a tuple with the Checksum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateImagePayload) GetChecksumOk() (*ImageChecksum, bool) {
+	if o == nil || IsNil(o.Checksum) {
+		return nil, false
+	}
+	return o.Checksum, true
+}
+
+// HasChecksum returns a boolean if a field has been set.
+func (o *CreateImagePayload) HasChecksum() bool {
+	if o != nil && !IsNil(o.Checksum) {
+		return true
+	}
+
+	return false
+}
+
+// SetChecksum gets a reference to the given ImageChecksum and assigns it to the Checksum field.
+func (o *CreateImagePayload) SetChecksum(v *ImageChecksum) {
+	o.Checksum = v
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
@@ -337,6 +372,38 @@ func (o *CreateImagePayload) SetProtected(v *bool) {
 	o.Protected = v
 }
 
+// GetScope returns the Scope field value if set, zero value otherwise.
+func (o *CreateImagePayload) GetScope() *string {
+	if o == nil || IsNil(o.Scope) {
+		var ret *string
+		return ret
+	}
+	return o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateImagePayload) GetScopeOk() (*string, bool) {
+	if o == nil || IsNil(o.Scope) {
+		return nil, false
+	}
+	return o.Scope, true
+}
+
+// HasScope returns a boolean if a field has been set.
+func (o *CreateImagePayload) HasScope() bool {
+	if o != nil && !IsNil(o.Scope) {
+		return true
+	}
+
+	return false
+}
+
+// SetScope gets a reference to the given string and assigns it to the Scope field.
+func (o *CreateImagePayload) SetScope(v *string) {
+	o.Scope = v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CreateImagePayload) GetStatus() *string {
 	if o == nil || IsNil(o.Status) {
@@ -403,6 +470,9 @@ func (o *CreateImagePayload) SetUpdatedAt(v *time.Time) {
 
 func (o CreateImagePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Checksum) {
+		toSerialize["checksum"] = o.Checksum
+	}
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
 	}
@@ -425,6 +495,9 @@ func (o CreateImagePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Protected) {
 		toSerialize["protected"] = o.Protected
+	}
+	if !IsNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
