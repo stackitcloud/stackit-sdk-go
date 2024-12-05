@@ -864,7 +864,7 @@ func TestImageUploadWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := ImageUploadWaitHandler(context.Background(), apiClient, "pid", "iid")
+			handler := UploadImageWaitHandler(context.Background(), apiClient, "pid", "iid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 

@@ -55,7 +55,7 @@ func main() {
 	}
 	req.Header.Set("Content-Type", "application/octet-stream")
 
-	fmt.Printf("[iaasalpha API] Uploading image %q...\n", *imageCreateResp.Id)
+	fmt.Printf("[iaasalpha API] Uploading image contents to %q...\n", *imageCreateResp.Id)
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
@@ -68,10 +68,10 @@ func main() {
 		os.Exit(1)
 	}
 	_ = resp.Body.Close()
-	fmt.Printf("[iaasalpha API] Image %q has been successfully uploaded.\n", *imageCreateResp.Id)
+	fmt.Printf("[iaasalpha API] Image %q has been uploaded.\n", *imageCreateResp.Id)
 
 	// Wait for image to become available
-	image, err := wait.ImageUploadWaitHandler(ctx, iaasalphaClient, projectId, *imageCreateResp.Id).WaitWithContext(ctx)
+	image, err := wait.UploadImageWaitHandler(ctx, iaasalphaClient, projectId, *imageCreateResp.Id).WaitWithContext(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when waiting for upload: %v\n", err)
 		os.Exit(1)

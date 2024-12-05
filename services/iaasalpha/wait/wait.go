@@ -350,8 +350,8 @@ func DeleteVirtualIPWaitHandler(ctx context.Context, a APIClientInterface, proje
 	return handler
 }
 
-// ImageUploadWaitHandler will wait for server creation
-func ImageUploadWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaasalpha.Image] {
+// UploadImageWaitHandler will wait for the status image to become AVAILABLE, which indicates the upload of the image has been completed successfully
+func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaasalpha.Image] {
 	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Image, err error) {
 		image, err := a.GetImageExecute(ctx, projectId, imageId)
 		if err != nil {
@@ -368,7 +368,7 @@ func ImageUploadWaitHandler(ctx context.Context, a APIClientInterface, projectId
 		}
 		return false, image, nil
 	})
-	handler.SetTimeout(15 * time.Minute)
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
