@@ -364,7 +364,7 @@ func ImageUploadWaitHandler(ctx context.Context, a APIClientInterface, projectId
 			return true, image, nil
 		}
 		if *image.Id == imageId && *image.Status == ErrorStatus {
-			return true, image, fmt.Errorf("create failed for image with id %s", imageId)
+			return true, image, fmt.Errorf("upload failed for image with id %s", imageId)
 		}
 		return false, image, nil
 	})
