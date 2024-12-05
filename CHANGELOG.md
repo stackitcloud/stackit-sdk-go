@@ -2,6 +2,8 @@
 
 - `serverupdate`: [v0.2.2](services/serverupdate/CHANGELOG.md#v022-2024-12-02)
   - **Bugfix:** `Id` field of `Update` model is now of type `int64` (was `string`)
+- `serviceenablement`: [v0.4.0](services/serviceenablement/CHANGELOG.md#v040-2024-12-05)
+  - **Feature:** Add support for region eu02
 
 ## Release (2024-11-29)
 

@@ -1,3 +1,7 @@
+## v0.4.0 (2024-12-05)
+
+- **Feature:** Add support for region eu02
+
 ## v0.3.0 (2024-10-14)
 
 - **Feature:** Add support for nullable models
