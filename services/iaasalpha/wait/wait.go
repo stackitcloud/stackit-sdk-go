@@ -358,7 +358,7 @@ func ImageUploadWaitHandler(ctx context.Context, a APIClientInterface, projectId
 			return false, image, err
 		}
 		if image.Id == nil || image.Status == nil {
-			return false, image, fmt.Errorf("create failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
+			return false, image, fmt.Errorf("upload failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
 		}
 		if *image.Id == imageId && *image.Status == ImageAvailableStatus {
 			return true, image, nil
