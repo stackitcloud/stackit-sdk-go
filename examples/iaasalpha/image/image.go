@@ -38,9 +38,8 @@ func main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when calling `CreateImage`: %v\n", err)
 		os.Exit(1)
-	} else {
-		fmt.Printf("[iaasalpha API] Image %q has been successfully created.\n", *imageCreateResp.Id)
 	}
+	fmt.Printf("[iaasalpha API] Image %q has been successfully created.\n", *imageCreateResp.Id)
 
 	// Upload the image by making a PUT request to upload URL
 	fileContents, err := os.ReadFile(imageFilePath)
@@ -63,13 +62,13 @@ func main() {
 		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when making request: %v\n", err)
 		os.Exit(1)
 	}
-	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
 		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when uploading image: %v\n", resp.Status)
+		_ = resp.Body.Close()
 		os.Exit(1)
-	} else {
-		fmt.Printf("[iaasalpha API] Image %q has been successfully uploaded.\n", *imageCreateResp.Id)
 	}
+	_ = resp.Body.Close()
+	fmt.Printf("[iaasalpha API] Image %q has been successfully uploaded.\n", *imageCreateResp.Id)
 
 	// Wait for image to become available
 	image, err := wait.ImageUploadWaitHandler(ctx, iaasalphaClient, projectId, *imageCreateResp.Id).WaitWithContext(ctx)
@@ -84,9 +83,8 @@ func main() {
 	err = iaasalphaClient.DeleteImage(ctx, projectId, *imageCreateResp.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when calling `DeleteImage`: %v\n", err)
-	} else {
-		fmt.Printf("[iaasalpha API] public IP %q has been successfully deleted.\n", *imageCreateResp.Id)
 	}
+	fmt.Printf("[iaasalpha API] Triggered deletion of image with ID %q.\n", *image.Id)
 
 	// Wait for image to be deleted
 	_, err = wait.DeleteImageWaitHandler(ctx, iaasalphaClient, projectId, *imageCreateResp.Id).WaitWithContext(ctx)
