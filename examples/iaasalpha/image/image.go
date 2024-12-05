@@ -73,7 +73,7 @@ func main() {
 	// Wait for image to become available
 	image, err := wait.ImageUploadWaitHandler(ctx, iaasalphaClient, projectId, *imageCreateResp.Id).WaitWithContext(ctx)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when waiting for creation: %v\n", err)
+		fmt.Fprintf(os.Stderr, "[iaasalpha API] Error when waiting for upload: %v\n", err)
 		os.Exit(1)
 	}
 
