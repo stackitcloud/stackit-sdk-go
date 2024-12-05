@@ -372,7 +372,7 @@ func ImageUploadWaitHandler(ctx context.Context, a APIClientInterface, projectId
 	return handler
 }
 
-// DeleteImageWaitHandler will wait for volume deletion
+// DeleteImageWaitHandler will wait for image deletion
 func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaasalpha.Image] {
 	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Image, err error) {
 		image, err := a.GetImageExecute(ctx, projectId, imageId)
