@@ -10,7 +10,107 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the DeleteResourceResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeleteResourceResponse{}
+
 // DeleteResourceResponse struct for DeleteResourceResponse
 type DeleteResourceResponse struct {
 	WrittenAt *Zookie `json:"writtenAt,omitempty"`
+}
+
+// NewDeleteResourceResponse instantiates a new DeleteResourceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDeleteResourceResponse() *DeleteResourceResponse {
+	this := DeleteResourceResponse{}
+	return &this
+}
+
+// NewDeleteResourceResponseWithDefaults instantiates a new DeleteResourceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeleteResourceResponseWithDefaults() *DeleteResourceResponse {
+	this := DeleteResourceResponse{}
+	return &this
+}
+
+// GetWrittenAt returns the WrittenAt field value if set, zero value otherwise.
+func (o *DeleteResourceResponse) GetWrittenAt() *Zookie {
+	if o == nil || IsNil(o.WrittenAt) {
+		var ret *Zookie
+		return ret
+	}
+	return o.WrittenAt
+}
+
+// GetWrittenAtOk returns a tuple with the WrittenAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeleteResourceResponse) GetWrittenAtOk() (*Zookie, bool) {
+	if o == nil || IsNil(o.WrittenAt) {
+		return nil, false
+	}
+	return o.WrittenAt, true
+}
+
+// HasWrittenAt returns a boolean if a field has been set.
+func (o *DeleteResourceResponse) HasWrittenAt() bool {
+	if o != nil && !IsNil(o.WrittenAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetWrittenAt gets a reference to the given Zookie and assigns it to the WrittenAt field.
+func (o *DeleteResourceResponse) SetWrittenAt(v *Zookie) {
+	o.WrittenAt = v
+}
+
+func (o DeleteResourceResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WrittenAt) {
+		toSerialize["writtenAt"] = o.WrittenAt
+	}
+	return toSerialize, nil
+}
+
+type NullableDeleteResourceResponse struct {
+	value *DeleteResourceResponse
+	isSet bool
+}
+
+func (v NullableDeleteResourceResponse) Get() *DeleteResourceResponse {
+	return v.value
+}
+
+func (v *NullableDeleteResourceResponse) Set(val *DeleteResourceResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeleteResourceResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDeleteResourceResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDeleteResourceResponse(val *DeleteResourceResponse) *NullableDeleteResourceResponse {
+	return &NullableDeleteResourceResponse{value: val, isSet: true}
+}
+
+func (v NullableDeleteResourceResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDeleteResourceResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
