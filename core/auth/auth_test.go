@@ -170,8 +170,6 @@ func TestSetupAuth(t *testing.T) {
 				t.Setenv("STACKIT_CREDENTIALS_PATH", "")
 			}
 
-			t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "test-email")
-
 			authRoundTripper, err := SetupAuth(test.config)
 
 			if err != nil && test.isValid {
@@ -565,78 +563,6 @@ func TestNoAuth(t *testing.T) {
 
 			if authClient == nil {
 				t.Fatalf("Client returned is nil for valid test case")
-			}
-		})
-	}
-}
-
-func TestGetServiceAccountEmail(t *testing.T) {
-	for _, test := range []struct {
-		description   string
-		cfg           *config.Configuration
-		envEmailSet   bool
-		path          string
-		expectedEmail string
-		isValid       bool
-	}{
-		{
-			description: "custom_config",
-			cfg: &config.Configuration{
-				ServiceAccountEmail: "test_email",
-			},
-			path:          "",
-			expectedEmail: "test_email",
-			isValid:       true,
-		},
-		{
-			description:   "config_over_env_var",
-			cfg:           &config.Configuration{},
-			envEmailSet:   true,
-			path:          "",
-			expectedEmail: "env_email",
-			isValid:       true,
-		},
-		{
-			description: "env_variable",
-			cfg: &config.Configuration{
-				ServiceAccountEmail: "test_email",
-			},
-			envEmailSet:   true,
-			path:          "",
-			expectedEmail: "test_email",
-			isValid:       true,
-		},
-		{
-			description:   "path",
-			cfg:           &config.Configuration{},
-			envEmailSet:   false,
-			path:          "test_resources/test_credentials_bar.json",
-			expectedEmail: "bar_email",
-			isValid:       true,
-		},
-		{
-			description:   "invalid_structure",
-			cfg:           &config.Configuration{},
-			envEmailSet:   false,
-			path:          "test_resources/test_invalid_structure.json",
-			expectedEmail: "",
-			isValid:       false,
-		},
-	} {
-		t.Run(test.description, func(t *testing.T) {
-			if test.envEmailSet {
-				t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "env_email")
-			} else {
-				t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "")
-			}
-			t.Setenv("STACKIT_CREDENTIALS_PATH", test.path)
-			got := getServiceAccountEmail(test.cfg)
-			if (got != "") && !test.isValid {
-				t.Errorf("getServiceAccountEmail() did not return empty value for invalid test case")
-				return
-			}
-			if got != test.expectedEmail {
-				t.Errorf("getServiceAccountEmail() = %v, want %v", got, test.expectedEmail)
 			}
 		})
 	}
