@@ -59,7 +59,7 @@ func (o *Zookie) GetZookieOk() (*string, bool) {
 
 // HasZookie returns a boolean if a field has been set.
 func (o *Zookie) HasZookie() bool {
-	if o != nil && !IsNil(o.Zookie) {
+	if o != nil && !IsNil(o.Zookie) && !IsNil(o.Zookie) {
 		return true
 	}
 

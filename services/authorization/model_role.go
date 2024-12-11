@@ -52,7 +52,7 @@ func NewRoleWithDefaults() *Role {
 
 // GetDescription returns the Description field value
 func (o *Role) GetDescription() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret *string
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *Role) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Role) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -108,7 +108,7 @@ func (o *Role) SetId(v *string) {
 
 // GetName returns the Name field value
 func (o *Role) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *Role) SetName(v *string) {
 
 // GetPermissions returns the Permissions field value
 func (o *Role) GetPermissions() *[]Permission {
-	if o == nil {
+	if o == nil || IsNil(o.Permissions) {
 		var ret *[]Permission
 		return ret
 	}
