@@ -50,7 +50,7 @@ func NewArgusWithDefaults() *Argus {
 
 // GetArgusInstanceId returns the ArgusInstanceId field value
 func (o *Argus) GetArgusInstanceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ArgusInstanceId) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *Argus) SetArgusInstanceId(v *string) {
 
 // GetEnabled returns the Enabled field value
 func (o *Argus) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}

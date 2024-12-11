@@ -63,7 +63,7 @@ func (o *MachineType) GetArchitectureOk() (*string, bool) {
 
 // HasArchitecture returns a boolean if a field has been set.
 func (o *MachineType) HasArchitecture() bool {
-	if o != nil && !IsNil(o.Architecture) {
+	if o != nil && !IsNil(o.Architecture) && !IsNil(o.Architecture) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *MachineType) GetCpuOk() (*int64, bool) {
 
 // HasCpu returns a boolean if a field has been set.
 func (o *MachineType) HasCpu() bool {
-	if o != nil && !IsNil(o.Cpu) {
+	if o != nil && !IsNil(o.Cpu) && !IsNil(o.Cpu) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *MachineType) GetGpuOk() (*int64, bool) {
 
 // HasGpu returns a boolean if a field has been set.
 func (o *MachineType) HasGpu() bool {
-	if o != nil && !IsNil(o.Gpu) {
+	if o != nil && !IsNil(o.Gpu) && !IsNil(o.Gpu) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *MachineType) GetMemoryOk() (*int64, bool) {
 
 // HasMemory returns a boolean if a field has been set.
 func (o *MachineType) HasMemory() bool {
-	if o != nil && !IsNil(o.Memory) {
+	if o != nil && !IsNil(o.Memory) && !IsNil(o.Memory) {
 		return true
 	}
 
@@ -191,7 +191,7 @@ func (o *MachineType) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MachineType) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 

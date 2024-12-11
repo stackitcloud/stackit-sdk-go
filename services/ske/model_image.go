@@ -48,7 +48,7 @@ func NewImageWithDefaults() *Image {
 
 // GetName returns the Name field value
 func (o *Image) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *Image) SetName(v *string) {
 
 // GetVersion returns the Version field value
 func (o *Image) GetVersion() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret *string
 		return ret
 	}

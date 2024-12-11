@@ -59,7 +59,7 @@ func (o *LoginKubeconfig) GetKubeconfigOk() (*string, bool) {
 
 // HasKubeconfig returns a boolean if a field has been set.
 func (o *LoginKubeconfig) HasKubeconfig() bool {
-	if o != nil && !IsNil(o.Kubeconfig) {
+	if o != nil && !IsNil(o.Kubeconfig) && !IsNil(o.Kubeconfig) {
 		return true
 	}
 

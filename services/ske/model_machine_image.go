@@ -60,7 +60,7 @@ func (o *MachineImage) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MachineImage) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *MachineImage) GetVersionsOk() (*[]MachineImageVersion, bool) {
 
 // HasVersions returns a boolean if a field has been set.
 func (o *MachineImage) HasVersions() bool {
-	if o != nil && !IsNil(o.Versions) {
+	if o != nil && !IsNil(o.Versions) && !IsNil(o.Versions) {
 		return true
 	}
 

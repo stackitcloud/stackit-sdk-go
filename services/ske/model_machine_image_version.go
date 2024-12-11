@@ -62,7 +62,7 @@ func (o *MachineImageVersion) GetCriOk() (*[]CRI, bool) {
 
 // HasCri returns a boolean if a field has been set.
 func (o *MachineImageVersion) HasCri() bool {
-	if o != nil && !IsNil(o.Cri) {
+	if o != nil && !IsNil(o.Cri) && !IsNil(o.Cri) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *MachineImageVersion) GetExpirationDateOk() (*string, bool) {
 
 // HasExpirationDate returns a boolean if a field has been set.
 func (o *MachineImageVersion) HasExpirationDate() bool {
-	if o != nil && !IsNil(o.ExpirationDate) {
+	if o != nil && !IsNil(o.ExpirationDate) && !IsNil(o.ExpirationDate) {
 		return true
 	}
 
@@ -126,7 +126,7 @@ func (o *MachineImageVersion) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *MachineImageVersion) HasState() bool {
-	if o != nil && !IsNil(o.State) {
+	if o != nil && !IsNil(o.State) && !IsNil(o.State) {
 		return true
 	}
 
@@ -158,7 +158,7 @@ func (o *MachineImageVersion) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *MachineImageVersion) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
+	if o != nil && !IsNil(o.Version) && !IsNil(o.Version) {
 		return true
 	}
 

@@ -86,7 +86,7 @@ func (o *Nodepool) GetAllowSystemComponentsOk() (*bool, bool) {
 
 // HasAllowSystemComponents returns a boolean if a field has been set.
 func (o *Nodepool) HasAllowSystemComponents() bool {
-	if o != nil && !IsNil(o.AllowSystemComponents) {
+	if o != nil && !IsNil(o.AllowSystemComponents) && !IsNil(o.AllowSystemComponents) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *Nodepool) SetAllowSystemComponents(v *bool) {
 
 // GetAvailabilityZones returns the AvailabilityZones field value
 func (o *Nodepool) GetAvailabilityZones() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.AvailabilityZones) {
 		var ret *[]string
 		return ret
 	}
@@ -142,7 +142,7 @@ func (o *Nodepool) GetCriOk() (*CRI, bool) {
 
 // HasCri returns a boolean if a field has been set.
 func (o *Nodepool) HasCri() bool {
-	if o != nil && !IsNil(o.Cri) {
+	if o != nil && !IsNil(o.Cri) && !IsNil(o.Cri) {
 		return true
 	}
 
@@ -174,7 +174,7 @@ func (o *Nodepool) GetLabelsOk() (*map[string]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Nodepool) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -188,7 +188,7 @@ func (o *Nodepool) SetLabels(v *map[string]string) {
 
 // GetMachine returns the Machine field value
 func (o *Nodepool) GetMachine() *Machine {
-	if o == nil {
+	if o == nil || IsNil(o.Machine) {
 		var ret *Machine
 		return ret
 	}
@@ -230,7 +230,7 @@ func (o *Nodepool) GetMaxSurgeOk() (*int64, bool) {
 
 // HasMaxSurge returns a boolean if a field has been set.
 func (o *Nodepool) HasMaxSurge() bool {
-	if o != nil && !IsNil(o.MaxSurge) {
+	if o != nil && !IsNil(o.MaxSurge) && !IsNil(o.MaxSurge) {
 		return true
 	}
 
@@ -262,7 +262,7 @@ func (o *Nodepool) GetMaxUnavailableOk() (*int64, bool) {
 
 // HasMaxUnavailable returns a boolean if a field has been set.
 func (o *Nodepool) HasMaxUnavailable() bool {
-	if o != nil && !IsNil(o.MaxUnavailable) {
+	if o != nil && !IsNil(o.MaxUnavailable) && !IsNil(o.MaxUnavailable) {
 		return true
 	}
 
@@ -276,7 +276,7 @@ func (o *Nodepool) SetMaxUnavailable(v *int64) {
 
 // GetMaximum returns the Maximum field value
 func (o *Nodepool) GetMaximum() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Maximum) {
 		var ret *int64
 		return ret
 	}
@@ -300,7 +300,7 @@ func (o *Nodepool) SetMaximum(v *int64) {
 
 // GetMinimum returns the Minimum field value
 func (o *Nodepool) GetMinimum() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Minimum) {
 		var ret *int64
 		return ret
 	}
@@ -324,7 +324,7 @@ func (o *Nodepool) SetMinimum(v *int64) {
 
 // GetName returns the Name field value
 func (o *Nodepool) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -366,7 +366,7 @@ func (o *Nodepool) GetTaintsOk() (*[]Taint, bool) {
 
 // HasTaints returns a boolean if a field has been set.
 func (o *Nodepool) HasTaints() bool {
-	if o != nil && !IsNil(o.Taints) {
+	if o != nil && !IsNil(o.Taints) && !IsNil(o.Taints) {
 		return true
 	}
 
@@ -380,7 +380,7 @@ func (o *Nodepool) SetTaints(v *[]Taint) {
 
 // GetVolume returns the Volume field value
 func (o *Nodepool) GetVolume() *Volume {
-	if o == nil {
+	if o == nil || IsNil(o.Volume) {
 		var ret *Volume
 		return ret
 	}

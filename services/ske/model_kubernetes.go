@@ -65,7 +65,7 @@ func (o *Kubernetes) GetAllowPrivilegedContainersOk() (*bool, bool) {
 
 // HasAllowPrivilegedContainers returns a boolean if a field has been set.
 func (o *Kubernetes) HasAllowPrivilegedContainers() bool {
-	if o != nil && !IsNil(o.AllowPrivilegedContainers) {
+	if o != nil && !IsNil(o.AllowPrivilegedContainers) && !IsNil(o.AllowPrivilegedContainers) {
 		return true
 	}
 
@@ -79,7 +79,7 @@ func (o *Kubernetes) SetAllowPrivilegedContainers(v *bool) {
 
 // GetVersion returns the Version field value
 func (o *Kubernetes) GetVersion() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret *string
 		return ret
 	}

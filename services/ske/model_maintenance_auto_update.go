@@ -60,7 +60,7 @@ func (o *MaintenanceAutoUpdate) GetKubernetesVersionOk() (*bool, bool) {
 
 // HasKubernetesVersion returns a boolean if a field has been set.
 func (o *MaintenanceAutoUpdate) HasKubernetesVersion() bool {
-	if o != nil && !IsNil(o.KubernetesVersion) {
+	if o != nil && !IsNil(o.KubernetesVersion) && !IsNil(o.KubernetesVersion) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *MaintenanceAutoUpdate) GetMachineImageVersionOk() (*bool, bool) {
 
 // HasMachineImageVersion returns a boolean if a field has been set.
 func (o *MaintenanceAutoUpdate) HasMachineImageVersion() bool {
-	if o != nil && !IsNil(o.MachineImageVersion) {
+	if o != nil && !IsNil(o.MachineImageVersion) && !IsNil(o.MachineImageVersion) {
 		return true
 	}
 

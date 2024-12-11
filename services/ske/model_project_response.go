@@ -64,7 +64,7 @@ func (o *ProjectResponse) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *ProjectResponse) HasProjectId() bool {
-	if o != nil && !IsNil(o.ProjectId) {
+	if o != nil && !IsNil(o.ProjectId) && !IsNil(o.ProjectId) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *ProjectResponse) GetStateOk() (*ProjectState, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *ProjectResponse) HasState() bool {
-	if o != nil && !IsNil(o.State) {
+	if o != nil && !IsNil(o.State) && !IsNil(o.State) {
 		return true
 	}
 

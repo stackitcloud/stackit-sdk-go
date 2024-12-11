@@ -71,7 +71,7 @@ func (o *CreateOrUpdateClusterPayload) GetExtensionsOk() (*Extension, bool) {
 
 // HasExtensions returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasExtensions() bool {
-	if o != nil && !IsNil(o.Extensions) {
+	if o != nil && !IsNil(o.Extensions) && !IsNil(o.Extensions) {
 		return true
 	}
 
@@ -103,7 +103,7 @@ func (o *CreateOrUpdateClusterPayload) GetHibernationOk() (*Hibernation, bool) {
 
 // HasHibernation returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasHibernation() bool {
-	if o != nil && !IsNil(o.Hibernation) {
+	if o != nil && !IsNil(o.Hibernation) && !IsNil(o.Hibernation) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *CreateOrUpdateClusterPayload) SetHibernation(v *Hibernation) {
 
 // GetKubernetes returns the Kubernetes field value
 func (o *CreateOrUpdateClusterPayload) GetKubernetes() *Kubernetes {
-	if o == nil {
+	if o == nil || IsNil(o.Kubernetes) {
 		var ret *Kubernetes
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *CreateOrUpdateClusterPayload) GetMaintenanceOk() (*Maintenance, bool) {
 
 // HasMaintenance returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasMaintenance() bool {
-	if o != nil && !IsNil(o.Maintenance) {
+	if o != nil && !IsNil(o.Maintenance) && !IsNil(o.Maintenance) {
 		return true
 	}
 
@@ -191,7 +191,7 @@ func (o *CreateOrUpdateClusterPayload) GetNetworkOk() (*Network, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasNetwork() bool {
-	if o != nil && !IsNil(o.Network) {
+	if o != nil && !IsNil(o.Network) && !IsNil(o.Network) {
 		return true
 	}
 
@@ -205,7 +205,7 @@ func (o *CreateOrUpdateClusterPayload) SetNetwork(v *Network) {
 
 // GetNodepools returns the Nodepools field value
 func (o *CreateOrUpdateClusterPayload) GetNodepools() *[]Nodepool {
-	if o == nil {
+	if o == nil || IsNil(o.Nodepools) {
 		var ret *[]Nodepool
 		return ret
 	}
@@ -247,7 +247,7 @@ func (o *CreateOrUpdateClusterPayload) GetStatusOk() (*ClusterStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 

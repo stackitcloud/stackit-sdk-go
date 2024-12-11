@@ -68,7 +68,7 @@ func (o *ClusterStatus) GetAggregatedOk() (*ClusterStatusState, bool) {
 
 // HasAggregated returns a boolean if a field has been set.
 func (o *ClusterStatus) HasAggregated() bool {
-	if o != nil && !IsNil(o.Aggregated) {
+	if o != nil && !IsNil(o.Aggregated) && !IsNil(o.Aggregated) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *ClusterStatus) GetCreationTimeOk() (*string, bool) {
 
 // HasCreationTime returns a boolean if a field has been set.
 func (o *ClusterStatus) HasCreationTime() bool {
-	if o != nil && !IsNil(o.CreationTime) {
+	if o != nil && !IsNil(o.CreationTime) && !IsNil(o.CreationTime) {
 		return true
 	}
 
@@ -132,7 +132,7 @@ func (o *ClusterStatus) GetCredentialsRotationOk() (*CredentialsRotationState, b
 
 // HasCredentialsRotation returns a boolean if a field has been set.
 func (o *ClusterStatus) HasCredentialsRotation() bool {
-	if o != nil && !IsNil(o.CredentialsRotation) {
+	if o != nil && !IsNil(o.CredentialsRotation) && !IsNil(o.CredentialsRotation) {
 		return true
 	}
 
@@ -164,7 +164,7 @@ func (o *ClusterStatus) GetErrorOk() (*RuntimeError, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *ClusterStatus) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
+	if o != nil && !IsNil(o.Error) && !IsNil(o.Error) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *ClusterStatus) GetHibernatedOk() (*bool, bool) {
 
 // HasHibernated returns a boolean if a field has been set.
 func (o *ClusterStatus) HasHibernated() bool {
-	if o != nil && !IsNil(o.Hibernated) {
+	if o != nil && !IsNil(o.Hibernated) && !IsNil(o.Hibernated) {
 		return true
 	}
 

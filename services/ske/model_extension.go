@@ -61,7 +61,7 @@ func (o *Extension) GetAclOk() (*ACL, bool) {
 
 // HasAcl returns a boolean if a field has been set.
 func (o *Extension) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
+	if o != nil && !IsNil(o.Acl) && !IsNil(o.Acl) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *Extension) GetArgusOk() (*Argus, bool) {
 
 // HasArgus returns a boolean if a field has been set.
 func (o *Extension) HasArgus() bool {
-	if o != nil && !IsNil(o.Argus) {
+	if o != nil && !IsNil(o.Argus) && !IsNil(o.Argus) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *Extension) GetDnsOk() (*DNS, bool) {
 
 // HasDns returns a boolean if a field has been set.
 func (o *Extension) HasDns() bool {
-	if o != nil && !IsNil(o.Dns) {
+	if o != nil && !IsNil(o.Dns) && !IsNil(o.Dns) {
 		return true
 	}
 

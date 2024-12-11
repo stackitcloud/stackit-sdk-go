@@ -62,7 +62,7 @@ func (o *RuntimeError) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *RuntimeError) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
+	if o != nil && !IsNil(o.Code) && !IsNil(o.Code) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *RuntimeError) GetDetailsOk() (*string, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *RuntimeError) HasDetails() bool {
-	if o != nil && !IsNil(o.Details) {
+	if o != nil && !IsNil(o.Details) && !IsNil(o.Details) {
 		return true
 	}
 
@@ -126,7 +126,7 @@ func (o *RuntimeError) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *RuntimeError) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 

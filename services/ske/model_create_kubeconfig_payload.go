@@ -59,7 +59,7 @@ func (o *CreateKubeconfigPayload) GetExpirationSecondsOk() (*string, bool) {
 
 // HasExpirationSeconds returns a boolean if a field has been set.
 func (o *CreateKubeconfigPayload) HasExpirationSeconds() bool {
-	if o != nil && !IsNil(o.ExpirationSeconds) {
+	if o != nil && !IsNil(o.ExpirationSeconds) && !IsNil(o.ExpirationSeconds) {
 		return true
 	}
 

@@ -64,7 +64,7 @@ func (o *CredentialsRotationState) GetLastCompletionTimeOk() (*string, bool) {
 
 // HasLastCompletionTime returns a boolean if a field has been set.
 func (o *CredentialsRotationState) HasLastCompletionTime() bool {
-	if o != nil && !IsNil(o.LastCompletionTime) {
+	if o != nil && !IsNil(o.LastCompletionTime) && !IsNil(o.LastCompletionTime) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *CredentialsRotationState) GetLastInitiationTimeOk() (*string, bool) {
 
 // HasLastInitiationTime returns a boolean if a field has been set.
 func (o *CredentialsRotationState) HasLastInitiationTime() bool {
-	if o != nil && !IsNil(o.LastInitiationTime) {
+	if o != nil && !IsNil(o.LastInitiationTime) && !IsNil(o.LastInitiationTime) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *CredentialsRotationState) GetPhaseOk() (*string, bool) {
 
 // HasPhase returns a boolean if a field has been set.
 func (o *CredentialsRotationState) HasPhase() bool {
-	if o != nil && !IsNil(o.Phase) {
+	if o != nil && !IsNil(o.Phase) && !IsNil(o.Phase) {
 		return true
 	}
 

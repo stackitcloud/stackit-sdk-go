@@ -48,7 +48,7 @@ func NewDNSWithDefaults() *DNS {
 
 // GetEnabled returns the Enabled field value
 func (o *DNS) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *DNS) GetZonesOk() (*[]string, bool) {
 
 // HasZones returns a boolean if a field has been set.
 func (o *DNS) HasZones() bool {
-	if o != nil && !IsNil(o.Zones) {
+	if o != nil && !IsNil(o.Zones) && !IsNil(o.Zones) {
 		return true
 	}
 

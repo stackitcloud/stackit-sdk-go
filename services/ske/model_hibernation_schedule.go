@@ -49,7 +49,7 @@ func NewHibernationScheduleWithDefaults() *HibernationSchedule {
 
 // GetEnd returns the End field value
 func (o *HibernationSchedule) GetEnd() *string {
-	if o == nil {
+	if o == nil || IsNil(o.End) {
 		var ret *string
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *HibernationSchedule) SetEnd(v *string) {
 
 // GetStart returns the Start field value
 func (o *HibernationSchedule) GetStart() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Start) {
 		var ret *string
 		return ret
 	}
@@ -115,7 +115,7 @@ func (o *HibernationSchedule) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *HibernationSchedule) HasTimezone() bool {
-	if o != nil && !IsNil(o.Timezone) {
+	if o != nil && !IsNil(o.Timezone) && !IsNil(o.Timezone) {
 		return true
 	}
 

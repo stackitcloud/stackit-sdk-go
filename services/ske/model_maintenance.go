@@ -48,7 +48,7 @@ func NewMaintenanceWithDefaults() *Maintenance {
 
 // GetAutoUpdate returns the AutoUpdate field value
 func (o *Maintenance) GetAutoUpdate() *MaintenanceAutoUpdate {
-	if o == nil {
+	if o == nil || IsNil(o.AutoUpdate) {
 		var ret *MaintenanceAutoUpdate
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *Maintenance) SetAutoUpdate(v *MaintenanceAutoUpdate) {
 
 // GetTimeWindow returns the TimeWindow field value
 func (o *Maintenance) GetTimeWindow() *TimeWindow {
-	if o == nil {
+	if o == nil || IsNil(o.TimeWindow) {
 		var ret *TimeWindow
 		return ret
 	}

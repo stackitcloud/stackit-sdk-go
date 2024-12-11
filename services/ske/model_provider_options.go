@@ -63,7 +63,7 @@ func (o *ProviderOptions) GetAvailabilityZonesOk() (*[]AvailabilityZone, bool) {
 
 // HasAvailabilityZones returns a boolean if a field has been set.
 func (o *ProviderOptions) HasAvailabilityZones() bool {
-	if o != nil && !IsNil(o.AvailabilityZones) {
+	if o != nil && !IsNil(o.AvailabilityZones) && !IsNil(o.AvailabilityZones) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *ProviderOptions) GetKubernetesVersionsOk() (*[]KubernetesVersion, bool)
 
 // HasKubernetesVersions returns a boolean if a field has been set.
 func (o *ProviderOptions) HasKubernetesVersions() bool {
-	if o != nil && !IsNil(o.KubernetesVersions) {
+	if o != nil && !IsNil(o.KubernetesVersions) && !IsNil(o.KubernetesVersions) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *ProviderOptions) GetMachineImagesOk() (*[]MachineImage, bool) {
 
 // HasMachineImages returns a boolean if a field has been set.
 func (o *ProviderOptions) HasMachineImages() bool {
-	if o != nil && !IsNil(o.MachineImages) {
+	if o != nil && !IsNil(o.MachineImages) && !IsNil(o.MachineImages) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *ProviderOptions) GetMachineTypesOk() (*[]MachineType, bool) {
 
 // HasMachineTypes returns a boolean if a field has been set.
 func (o *ProviderOptions) HasMachineTypes() bool {
-	if o != nil && !IsNil(o.MachineTypes) {
+	if o != nil && !IsNil(o.MachineTypes) && !IsNil(o.MachineTypes) {
 		return true
 	}
 
@@ -191,7 +191,7 @@ func (o *ProviderOptions) GetVolumeTypesOk() (*[]VolumeType, bool) {
 
 // HasVolumeTypes returns a boolean if a field has been set.
 func (o *ProviderOptions) HasVolumeTypes() bool {
-	if o != nil && !IsNil(o.VolumeTypes) {
+	if o != nil && !IsNil(o.VolumeTypes) && !IsNil(o.VolumeTypes) {
 		return true
 	}
 

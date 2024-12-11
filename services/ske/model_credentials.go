@@ -63,7 +63,7 @@ func (o *Credentials) GetCertificateAuthorityDataOk() (*string, bool) {
 
 // HasCertificateAuthorityData returns a boolean if a field has been set.
 func (o *Credentials) HasCertificateAuthorityData() bool {
-	if o != nil && !IsNil(o.CertificateAuthorityData) {
+	if o != nil && !IsNil(o.CertificateAuthorityData) && !IsNil(o.CertificateAuthorityData) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *Credentials) GetKubeconfigOk() (*string, bool) {
 
 // HasKubeconfig returns a boolean if a field has been set.
 func (o *Credentials) HasKubeconfig() bool {
-	if o != nil && !IsNil(o.Kubeconfig) {
+	if o != nil && !IsNil(o.Kubeconfig) && !IsNil(o.Kubeconfig) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *Credentials) GetServerOk() (*string, bool) {
 
 // HasServer returns a boolean if a field has been set.
 func (o *Credentials) HasServer() bool {
-	if o != nil && !IsNil(o.Server) {
+	if o != nil && !IsNil(o.Server) && !IsNil(o.Server) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *Credentials) GetTokenOk() (*string, bool) {
 
 // HasToken returns a boolean if a field has been set.
 func (o *Credentials) HasToken() bool {
-	if o != nil && !IsNil(o.Token) {
+	if o != nil && !IsNil(o.Token) && !IsNil(o.Token) {
 		return true
 	}
 

@@ -62,7 +62,7 @@ func (o *KubernetesVersion) GetExpirationDateOk() (*string, bool) {
 
 // HasExpirationDate returns a boolean if a field has been set.
 func (o *KubernetesVersion) HasExpirationDate() bool {
-	if o != nil && !IsNil(o.ExpirationDate) {
+	if o != nil && !IsNil(o.ExpirationDate) && !IsNil(o.ExpirationDate) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *KubernetesVersion) GetFeatureGatesOk() (*map[string]string, bool) {
 
 // HasFeatureGates returns a boolean if a field has been set.
 func (o *KubernetesVersion) HasFeatureGates() bool {
-	if o != nil && !IsNil(o.FeatureGates) {
+	if o != nil && !IsNil(o.FeatureGates) && !IsNil(o.FeatureGates) {
 		return true
 	}
 
@@ -126,7 +126,7 @@ func (o *KubernetesVersion) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *KubernetesVersion) HasState() bool {
-	if o != nil && !IsNil(o.State) {
+	if o != nil && !IsNil(o.State) && !IsNil(o.State) {
 		return true
 	}
 
@@ -158,7 +158,7 @@ func (o *KubernetesVersion) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *KubernetesVersion) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
+	if o != nil && !IsNil(o.Version) && !IsNil(o.Version) {
 		return true
 	}
 

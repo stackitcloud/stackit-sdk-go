@@ -47,7 +47,7 @@ func NewVolumeWithDefaults() *Volume {
 
 // GetSize returns the Size field value
 func (o *Volume) GetSize() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Size) {
 		var ret *int64
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *Volume) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Volume) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+	if o != nil && !IsNil(o.Type) && !IsNil(o.Type) {
 		return true
 	}
 

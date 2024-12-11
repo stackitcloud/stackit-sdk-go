@@ -59,7 +59,7 @@ func (o *VolumeType) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *VolumeType) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 

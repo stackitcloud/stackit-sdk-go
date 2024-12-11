@@ -72,7 +72,7 @@ func (o *Cluster) GetExtensionsOk() (*Extension, bool) {
 
 // HasExtensions returns a boolean if a field has been set.
 func (o *Cluster) HasExtensions() bool {
-	if o != nil && !IsNil(o.Extensions) {
+	if o != nil && !IsNil(o.Extensions) && !IsNil(o.Extensions) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *Cluster) GetHibernationOk() (*Hibernation, bool) {
 
 // HasHibernation returns a boolean if a field has been set.
 func (o *Cluster) HasHibernation() bool {
-	if o != nil && !IsNil(o.Hibernation) {
+	if o != nil && !IsNil(o.Hibernation) && !IsNil(o.Hibernation) {
 		return true
 	}
 
@@ -118,7 +118,7 @@ func (o *Cluster) SetHibernation(v *Hibernation) {
 
 // GetKubernetes returns the Kubernetes field value
 func (o *Cluster) GetKubernetes() *Kubernetes {
-	if o == nil {
+	if o == nil || IsNil(o.Kubernetes) {
 		var ret *Kubernetes
 		return ret
 	}
@@ -160,7 +160,7 @@ func (o *Cluster) GetMaintenanceOk() (*Maintenance, bool) {
 
 // HasMaintenance returns a boolean if a field has been set.
 func (o *Cluster) HasMaintenance() bool {
-	if o != nil && !IsNil(o.Maintenance) {
+	if o != nil && !IsNil(o.Maintenance) && !IsNil(o.Maintenance) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *Cluster) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Cluster) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *Cluster) GetNetworkOk() (*Network, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *Cluster) HasNetwork() bool {
-	if o != nil && !IsNil(o.Network) {
+	if o != nil && !IsNil(o.Network) && !IsNil(o.Network) {
 		return true
 	}
 
@@ -238,7 +238,7 @@ func (o *Cluster) SetNetwork(v *Network) {
 
 // GetNodepools returns the Nodepools field value
 func (o *Cluster) GetNodepools() *[]Nodepool {
-	if o == nil {
+	if o == nil || IsNil(o.Nodepools) {
 		var ret *[]Nodepool
 		return ret
 	}
@@ -280,7 +280,7 @@ func (o *Cluster) GetStatusOk() (*ClusterStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Cluster) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
