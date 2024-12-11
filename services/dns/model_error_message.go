@@ -60,7 +60,7 @@ func (o *ErrorMessage) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *ErrorMessage) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
+	if o != nil && !IsNil(o.Error) && !IsNil(o.Error) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *ErrorMessage) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ErrorMessage) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 

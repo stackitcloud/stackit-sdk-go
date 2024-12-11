@@ -86,7 +86,7 @@ func (o *PartialUpdateZonePayload) GetAclOk() (*string, bool) {
 
 // HasAcl returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
+	if o != nil && !IsNil(o.Acl) && !IsNil(o.Acl) {
 		return true
 	}
 
@@ -118,7 +118,7 @@ func (o *PartialUpdateZonePayload) GetContactEmailOk() (*string, bool) {
 
 // HasContactEmail returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasContactEmail() bool {
-	if o != nil && !IsNil(o.ContactEmail) {
+	if o != nil && !IsNil(o.ContactEmail) && !IsNil(o.ContactEmail) {
 		return true
 	}
 
@@ -150,7 +150,7 @@ func (o *PartialUpdateZonePayload) GetDefaultTTLOk() (*int64, bool) {
 
 // HasDefaultTTL returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasDefaultTTL() bool {
-	if o != nil && !IsNil(o.DefaultTTL) {
+	if o != nil && !IsNil(o.DefaultTTL) && !IsNil(o.DefaultTTL) {
 		return true
 	}
 
@@ -182,7 +182,7 @@ func (o *PartialUpdateZonePayload) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -214,7 +214,7 @@ func (o *PartialUpdateZonePayload) GetExpireTimeOk() (*int64, bool) {
 
 // HasExpireTime returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasExpireTime() bool {
-	if o != nil && !IsNil(o.ExpireTime) {
+	if o != nil && !IsNil(o.ExpireTime) && !IsNil(o.ExpireTime) {
 		return true
 	}
 
@@ -246,7 +246,7 @@ func (o *PartialUpdateZonePayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -278,7 +278,7 @@ func (o *PartialUpdateZonePayload) GetNegativeCacheOk() (*int64, bool) {
 
 // HasNegativeCache returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasNegativeCache() bool {
-	if o != nil && !IsNil(o.NegativeCache) {
+	if o != nil && !IsNil(o.NegativeCache) && !IsNil(o.NegativeCache) {
 		return true
 	}
 
@@ -310,7 +310,7 @@ func (o *PartialUpdateZonePayload) GetPrimariesOk() (*[]string, bool) {
 
 // HasPrimaries returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasPrimaries() bool {
-	if o != nil && !IsNil(o.Primaries) {
+	if o != nil && !IsNil(o.Primaries) && !IsNil(o.Primaries) {
 		return true
 	}
 
@@ -342,7 +342,7 @@ func (o *PartialUpdateZonePayload) GetRefreshTimeOk() (*int64, bool) {
 
 // HasRefreshTime returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasRefreshTime() bool {
-	if o != nil && !IsNil(o.RefreshTime) {
+	if o != nil && !IsNil(o.RefreshTime) && !IsNil(o.RefreshTime) {
 		return true
 	}
 
@@ -374,7 +374,7 @@ func (o *PartialUpdateZonePayload) GetRetryTimeOk() (*int64, bool) {
 
 // HasRetryTime returns a boolean if a field has been set.
 func (o *PartialUpdateZonePayload) HasRetryTime() bool {
-	if o != nil && !IsNil(o.RetryTime) {
+	if o != nil && !IsNil(o.RetryTime) && !IsNil(o.RetryTime) {
 		return true
 	}
 

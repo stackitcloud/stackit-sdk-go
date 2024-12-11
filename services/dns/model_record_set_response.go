@@ -64,7 +64,7 @@ func (o *RecordSetResponse) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *RecordSetResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *RecordSetResponse) SetMessage(v *string) {
 
 // GetRrset returns the Rrset field value
 func (o *RecordSetResponse) GetRrset() *RecordSet {
-	if o == nil {
+	if o == nil || IsNil(o.Rrset) {
 		var ret *RecordSet
 		return ret
 	}

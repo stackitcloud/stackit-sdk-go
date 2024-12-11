@@ -76,7 +76,7 @@ func (o *CreateRecordSetPayload) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *CreateRecordSetPayload) HasComment() bool {
-	if o != nil && !IsNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -90,7 +90,7 @@ func (o *CreateRecordSetPayload) SetComment(v *string) {
 
 // GetName returns the Name field value
 func (o *CreateRecordSetPayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -114,7 +114,7 @@ func (o *CreateRecordSetPayload) SetName(v *string) {
 
 // GetRecords returns the Records field value
 func (o *CreateRecordSetPayload) GetRecords() *[]RecordPayload {
-	if o == nil {
+	if o == nil || IsNil(o.Records) {
 		var ret *[]RecordPayload
 		return ret
 	}
@@ -156,7 +156,7 @@ func (o *CreateRecordSetPayload) GetTtlOk() (*int64, bool) {
 
 // HasTtl returns a boolean if a field has been set.
 func (o *CreateRecordSetPayload) HasTtl() bool {
-	if o != nil && !IsNil(o.Ttl) {
+	if o != nil && !IsNil(o.Ttl) && !IsNil(o.Ttl) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *CreateRecordSetPayload) SetTtl(v *int64) {
 
 // GetType returns the Type field value
 func (o *CreateRecordSetPayload) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}

@@ -64,7 +64,7 @@ func (o *ImportRecordSetsResponse) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ImportRecordSetsResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *ImportRecordSetsResponse) SetMessage(v *string) {
 
 // GetSummary returns the Summary field value
 func (o *ImportRecordSetsResponse) GetSummary() *ImportSummary {
-	if o == nil {
+	if o == nil || IsNil(o.Summary) {
 		var ret *ImportSummary
 		return ret
 	}

@@ -70,7 +70,7 @@ func (o *CloneZonePayload) GetAdjustRecordsOk() (*bool, bool) {
 
 // HasAdjustRecords returns a boolean if a field has been set.
 func (o *CloneZonePayload) HasAdjustRecords() bool {
-	if o != nil && !IsNil(o.AdjustRecords) {
+	if o != nil && !IsNil(o.AdjustRecords) && !IsNil(o.AdjustRecords) {
 		return true
 	}
 
@@ -102,7 +102,7 @@ func (o *CloneZonePayload) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CloneZonePayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *CloneZonePayload) SetDescription(v *string) {
 
 // GetDnsName returns the DnsName field value
 func (o *CloneZonePayload) GetDnsName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DnsName) {
 		var ret *string
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *CloneZonePayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *CloneZonePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 

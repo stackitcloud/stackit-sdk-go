@@ -106,7 +106,7 @@ func (o *RecordSet) GetActiveOk() (*bool, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *RecordSet) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
+	if o != nil && !IsNil(o.Active) && !IsNil(o.Active) {
 		return true
 	}
 
@@ -138,7 +138,7 @@ func (o *RecordSet) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *RecordSet) HasComment() bool {
-	if o != nil && !IsNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *RecordSet) SetComment(v *string) {
 
 // GetCreationFinished returns the CreationFinished field value
 func (o *RecordSet) GetCreationFinished() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CreationFinished) {
 		var ret *string
 		return ret
 	}
@@ -176,7 +176,7 @@ func (o *RecordSet) SetCreationFinished(v *string) {
 
 // GetCreationStarted returns the CreationStarted field value
 func (o *RecordSet) GetCreationStarted() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CreationStarted) {
 		var ret *string
 		return ret
 	}
@@ -218,7 +218,7 @@ func (o *RecordSet) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *RecordSet) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
+	if o != nil && !IsNil(o.Error) && !IsNil(o.Error) {
 		return true
 	}
 
@@ -232,7 +232,7 @@ func (o *RecordSet) SetError(v *string) {
 
 // GetId returns the Id field value
 func (o *RecordSet) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -256,7 +256,7 @@ func (o *RecordSet) SetId(v *string) {
 
 // GetName returns the Name field value
 func (o *RecordSet) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -280,7 +280,7 @@ func (o *RecordSet) SetName(v *string) {
 
 // GetRecords returns the Records field value
 func (o *RecordSet) GetRecords() *[]Record {
-	if o == nil {
+	if o == nil || IsNil(o.Records) {
 		var ret *[]Record
 		return ret
 	}
@@ -304,7 +304,7 @@ func (o *RecordSet) SetRecords(v *[]Record) {
 
 // GetState returns the State field value
 func (o *RecordSet) GetState() *string {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret *string
 		return ret
 	}
@@ -328,7 +328,7 @@ func (o *RecordSet) SetState(v *string) {
 
 // GetTtl returns the Ttl field value
 func (o *RecordSet) GetTtl() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Ttl) {
 		var ret *int64
 		return ret
 	}
@@ -352,7 +352,7 @@ func (o *RecordSet) SetTtl(v *int64) {
 
 // GetType returns the Type field value
 func (o *RecordSet) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}
@@ -376,7 +376,7 @@ func (o *RecordSet) SetType(v *string) {
 
 // GetUpdateFinished returns the UpdateFinished field value
 func (o *RecordSet) GetUpdateFinished() *string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdateFinished) {
 		var ret *string
 		return ret
 	}
@@ -400,7 +400,7 @@ func (o *RecordSet) SetUpdateFinished(v *string) {
 
 // GetUpdateStarted returns the UpdateStarted field value
 func (o *RecordSet) GetUpdateStarted() *string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdateStarted) {
 		var ret *string
 		return ret
 	}

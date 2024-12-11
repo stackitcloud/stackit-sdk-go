@@ -66,7 +66,7 @@ func (o *PartialUpdateRecordSetPayload) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *PartialUpdateRecordSetPayload) HasComment() bool {
-	if o != nil && !IsNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *PartialUpdateRecordSetPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateRecordSetPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *PartialUpdateRecordSetPayload) GetRecordsOk() (*[]RecordPayload, bool) 
 
 // HasRecords returns a boolean if a field has been set.
 func (o *PartialUpdateRecordSetPayload) HasRecords() bool {
-	if o != nil && !IsNil(o.Records) {
+	if o != nil && !IsNil(o.Records) && !IsNil(o.Records) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *PartialUpdateRecordSetPayload) GetTtlOk() (*int64, bool) {
 
 // HasTtl returns a boolean if a field has been set.
 func (o *PartialUpdateRecordSetPayload) HasTtl() bool {
-	if o != nil && !IsNil(o.Ttl) {
+	if o != nil && !IsNil(o.Ttl) && !IsNil(o.Ttl) {
 		return true
 	}
 

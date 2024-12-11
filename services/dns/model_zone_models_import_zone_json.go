@@ -59,7 +59,7 @@ func (o *ZoneModelsImportZoneJson) GetRrSetsOk() (*[]ZoneModelsImportRecordModel
 
 // HasRrSets returns a boolean if a field has been set.
 func (o *ZoneModelsImportZoneJson) HasRrSets() bool {
-	if o != nil && !IsNil(o.RrSets) {
+	if o != nil && !IsNil(o.RrSets) && !IsNil(o.RrSets) {
 		return true
 	}
 

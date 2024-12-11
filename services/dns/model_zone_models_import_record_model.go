@@ -63,7 +63,7 @@ func (o *ZoneModelsImportRecordModel) GetCommentOk() (*string, bool) {
 
 // HasComment returns a boolean if a field has been set.
 func (o *ZoneModelsImportRecordModel) HasComment() bool {
-	if o != nil && !IsNil(o.Comment) {
+	if o != nil && !IsNil(o.Comment) && !IsNil(o.Comment) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *ZoneModelsImportRecordModel) GetContentOk() (*[]string, bool) {
 
 // HasContent returns a boolean if a field has been set.
 func (o *ZoneModelsImportRecordModel) HasContent() bool {
-	if o != nil && !IsNil(o.Content) {
+	if o != nil && !IsNil(o.Content) && !IsNil(o.Content) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *ZoneModelsImportRecordModel) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ZoneModelsImportRecordModel) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *ZoneModelsImportRecordModel) GetTtlOk() (*int64, bool) {
 
 // HasTtl returns a boolean if a field has been set.
 func (o *ZoneModelsImportRecordModel) HasTtl() bool {
-	if o != nil && !IsNil(o.Ttl) {
+	if o != nil && !IsNil(o.Ttl) && !IsNil(o.Ttl) {
 		return true
 	}
 
@@ -191,7 +191,7 @@ func (o *ZoneModelsImportRecordModel) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ZoneModelsImportRecordModel) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+	if o != nil && !IsNil(o.Type) && !IsNil(o.Type) {
 		return true
 	}
 

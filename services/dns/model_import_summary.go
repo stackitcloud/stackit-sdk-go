@@ -64,7 +64,7 @@ func (o *ImportSummary) GetCreatedRRSetsOk() (*int64, bool) {
 
 // HasCreatedRRSets returns a boolean if a field has been set.
 func (o *ImportSummary) HasCreatedRRSets() bool {
-	if o != nil && !IsNil(o.CreatedRRSets) {
+	if o != nil && !IsNil(o.CreatedRRSets) && !IsNil(o.CreatedRRSets) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *ImportSummary) GetCreatedRecordsOk() (*int64, bool) {
 
 // HasCreatedRecords returns a boolean if a field has been set.
 func (o *ImportSummary) HasCreatedRecords() bool {
-	if o != nil && !IsNil(o.CreatedRecords) {
+	if o != nil && !IsNil(o.CreatedRecords) && !IsNil(o.CreatedRecords) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *ImportSummary) GetDeletedRRSetsOk() (*int64, bool) {
 
 // HasDeletedRRSets returns a boolean if a field has been set.
 func (o *ImportSummary) HasDeletedRRSets() bool {
-	if o != nil && !IsNil(o.DeletedRRSets) {
+	if o != nil && !IsNil(o.DeletedRRSets) && !IsNil(o.DeletedRRSets) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *ImportSummary) GetDeletedRecordsOk() (*int64, bool) {
 
 // HasDeletedRecords returns a boolean if a field has been set.
 func (o *ImportSummary) HasDeletedRecords() bool {
-	if o != nil && !IsNil(o.DeletedRecords) {
+	if o != nil && !IsNil(o.DeletedRecords) && !IsNil(o.DeletedRecords) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *ImportSummary) GetUpdatedRRSetsOk() (*int64, bool) {
 
 // HasUpdatedRRSets returns a boolean if a field has been set.
 func (o *ImportSummary) HasUpdatedRRSets() bool {
-	if o != nil && !IsNil(o.UpdatedRRSets) {
+	if o != nil && !IsNil(o.UpdatedRRSets) && !IsNil(o.UpdatedRRSets) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *ImportSummary) GetUpdatedRecordsOk() (*int64, bool) {
 
 // HasUpdatedRecords returns a boolean if a field has been set.
 func (o *ImportSummary) HasUpdatedRecords() bool {
-	if o != nil && !IsNil(o.UpdatedRecords) {
+	if o != nil && !IsNil(o.UpdatedRecords) && !IsNil(o.UpdatedRecords) {
 		return true
 	}
 

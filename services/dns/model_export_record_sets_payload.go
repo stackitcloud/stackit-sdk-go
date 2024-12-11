@@ -68,7 +68,7 @@ func (o *ExportRecordSetsPayload) GetExportAsFQDNOk() (*bool, bool) {
 
 // HasExportAsFQDN returns a boolean if a field has been set.
 func (o *ExportRecordSetsPayload) HasExportAsFQDN() bool {
-	if o != nil && !IsNil(o.ExportAsFQDN) {
+	if o != nil && !IsNil(o.ExportAsFQDN) && !IsNil(o.ExportAsFQDN) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *ExportRecordSetsPayload) GetFormatOk() (*string, bool) {
 
 // HasFormat returns a boolean if a field has been set.
 func (o *ExportRecordSetsPayload) HasFormat() bool {
-	if o != nil && !IsNil(o.Format) {
+	if o != nil && !IsNil(o.Format) && !IsNil(o.Format) {
 		return true
 	}
 

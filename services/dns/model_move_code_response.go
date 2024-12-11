@@ -52,7 +52,7 @@ func NewMoveCodeResponseWithDefaults() *MoveCodeResponse {
 
 // GetCode returns the Code field value
 func (o *MoveCodeResponse) GetCode() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret *string
 		return ret
 	}
@@ -76,7 +76,7 @@ func (o *MoveCodeResponse) SetCode(v *string) {
 
 // GetExpiresAt returns the ExpiresAt field value
 func (o *MoveCodeResponse) GetExpiresAt() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret *string
 		return ret
 	}
@@ -118,7 +118,7 @@ func (o *MoveCodeResponse) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *MoveCodeResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 

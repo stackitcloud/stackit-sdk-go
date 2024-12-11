@@ -128,7 +128,7 @@ func NewZoneWithDefaults() *Zone {
 
 // GetAcl returns the Acl field value
 func (o *Zone) GetAcl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Acl) {
 		var ret *string
 		return ret
 	}
@@ -170,7 +170,7 @@ func (o *Zone) GetActiveOk() (*bool, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *Zone) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
+	if o != nil && !IsNil(o.Active) && !IsNil(o.Active) {
 		return true
 	}
 
@@ -202,7 +202,7 @@ func (o *Zone) GetContactEmailOk() (*string, bool) {
 
 // HasContactEmail returns a boolean if a field has been set.
 func (o *Zone) HasContactEmail() bool {
-	if o != nil && !IsNil(o.ContactEmail) {
+	if o != nil && !IsNil(o.ContactEmail) && !IsNil(o.ContactEmail) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *Zone) SetContactEmail(v *string) {
 
 // GetCreationFinished returns the CreationFinished field value
 func (o *Zone) GetCreationFinished() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CreationFinished) {
 		var ret *string
 		return ret
 	}
@@ -240,7 +240,7 @@ func (o *Zone) SetCreationFinished(v *string) {
 
 // GetCreationStarted returns the CreationStarted field value
 func (o *Zone) GetCreationStarted() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CreationStarted) {
 		var ret *string
 		return ret
 	}
@@ -264,7 +264,7 @@ func (o *Zone) SetCreationStarted(v *string) {
 
 // GetDefaultTTL returns the DefaultTTL field value
 func (o *Zone) GetDefaultTTL() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.DefaultTTL) {
 		var ret *int64
 		return ret
 	}
@@ -306,7 +306,7 @@ func (o *Zone) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Zone) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -320,7 +320,7 @@ func (o *Zone) SetDescription(v *string) {
 
 // GetDnsName returns the DnsName field value
 func (o *Zone) GetDnsName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DnsName) {
 		var ret *string
 		return ret
 	}
@@ -362,7 +362,7 @@ func (o *Zone) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *Zone) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
+	if o != nil && !IsNil(o.Error) && !IsNil(o.Error) {
 		return true
 	}
 
@@ -376,7 +376,7 @@ func (o *Zone) SetError(v *string) {
 
 // GetExpireTime returns the ExpireTime field value
 func (o *Zone) GetExpireTime() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ExpireTime) {
 		var ret *int64
 		return ret
 	}
@@ -400,7 +400,7 @@ func (o *Zone) SetExpireTime(v *int64) {
 
 // GetId returns the Id field value
 func (o *Zone) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -442,7 +442,7 @@ func (o *Zone) GetIsReverseZoneOk() (*bool, bool) {
 
 // HasIsReverseZone returns a boolean if a field has been set.
 func (o *Zone) HasIsReverseZone() bool {
-	if o != nil && !IsNil(o.IsReverseZone) {
+	if o != nil && !IsNil(o.IsReverseZone) && !IsNil(o.IsReverseZone) {
 		return true
 	}
 
@@ -474,7 +474,7 @@ func (o *Zone) GetLabelsOk() (*[]Label, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Zone) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -488,7 +488,7 @@ func (o *Zone) SetLabels(v *[]Label) {
 
 // GetName returns the Name field value
 func (o *Zone) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -512,7 +512,7 @@ func (o *Zone) SetName(v *string) {
 
 // GetNegativeCache returns the NegativeCache field value
 func (o *Zone) GetNegativeCache() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.NegativeCache) {
 		var ret *int64
 		return ret
 	}
@@ -554,7 +554,7 @@ func (o *Zone) GetPrimariesOk() (*[]string, bool) {
 
 // HasPrimaries returns a boolean if a field has been set.
 func (o *Zone) HasPrimaries() bool {
-	if o != nil && !IsNil(o.Primaries) {
+	if o != nil && !IsNil(o.Primaries) && !IsNil(o.Primaries) {
 		return true
 	}
 
@@ -568,7 +568,7 @@ func (o *Zone) SetPrimaries(v *[]string) {
 
 // GetPrimaryNameServer returns the PrimaryNameServer field value
 func (o *Zone) GetPrimaryNameServer() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PrimaryNameServer) {
 		var ret *string
 		return ret
 	}
@@ -610,7 +610,7 @@ func (o *Zone) GetRecordCountOk() (*int64, bool) {
 
 // HasRecordCount returns a boolean if a field has been set.
 func (o *Zone) HasRecordCount() bool {
-	if o != nil && !IsNil(o.RecordCount) {
+	if o != nil && !IsNil(o.RecordCount) && !IsNil(o.RecordCount) {
 		return true
 	}
 
@@ -624,7 +624,7 @@ func (o *Zone) SetRecordCount(v *int64) {
 
 // GetRefreshTime returns the RefreshTime field value
 func (o *Zone) GetRefreshTime() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.RefreshTime) {
 		var ret *int64
 		return ret
 	}
@@ -648,7 +648,7 @@ func (o *Zone) SetRefreshTime(v *int64) {
 
 // GetRetryTime returns the RetryTime field value
 func (o *Zone) GetRetryTime() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.RetryTime) {
 		var ret *int64
 		return ret
 	}
@@ -672,7 +672,7 @@ func (o *Zone) SetRetryTime(v *int64) {
 
 // GetSerialNumber returns the SerialNumber field value
 func (o *Zone) GetSerialNumber() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.SerialNumber) {
 		var ret *int64
 		return ret
 	}
@@ -696,7 +696,7 @@ func (o *Zone) SetSerialNumber(v *int64) {
 
 // GetState returns the State field value
 func (o *Zone) GetState() *string {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret *string
 		return ret
 	}
@@ -720,7 +720,7 @@ func (o *Zone) SetState(v *string) {
 
 // GetType returns the Type field value
 func (o *Zone) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}
@@ -744,7 +744,7 @@ func (o *Zone) SetType(v *string) {
 
 // GetUpdateFinished returns the UpdateFinished field value
 func (o *Zone) GetUpdateFinished() *string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdateFinished) {
 		var ret *string
 		return ret
 	}
@@ -768,7 +768,7 @@ func (o *Zone) SetUpdateFinished(v *string) {
 
 // GetUpdateStarted returns the UpdateStarted field value
 func (o *Zone) GetUpdateStarted() *string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdateStarted) {
 		var ret *string
 		return ret
 	}
@@ -792,7 +792,7 @@ func (o *Zone) SetUpdateStarted(v *string) {
 
 // GetVisibility returns the Visibility field value
 func (o *Zone) GetVisibility() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Visibility) {
 		var ret *string
 		return ret
 	}

@@ -60,7 +60,7 @@ func (o *DeleteLabelResponse) GetLabelOk() (*Label, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *DeleteLabelResponse) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
+	if o != nil && !IsNil(o.Label) && !IsNil(o.Label) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *DeleteLabelResponse) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *DeleteLabelResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 

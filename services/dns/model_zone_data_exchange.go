@@ -59,7 +59,7 @@ func (o *ZoneDataExchange) GetRrSetsOk() (*[]RecordDataExchange, bool) {
 
 // HasRrSets returns a boolean if a field has been set.
 func (o *ZoneDataExchange) HasRrSets() bool {
-	if o != nil && !IsNil(o.RrSets) {
+	if o != nil && !IsNil(o.RrSets) && !IsNil(o.RrSets) {
 		return true
 	}
 

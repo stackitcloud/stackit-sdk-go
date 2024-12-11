@@ -60,7 +60,7 @@ func (o *ListLabelsResponse) GetLabelsOk() (*[]Label, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *ListLabelsResponse) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *ListLabelsResponse) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ListLabelsResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 

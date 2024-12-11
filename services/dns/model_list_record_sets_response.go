@@ -55,7 +55,7 @@ func NewListRecordSetsResponseWithDefaults() *ListRecordSetsResponse {
 
 // GetItemsPerPage returns the ItemsPerPage field value
 func (o *ListRecordSetsResponse) GetItemsPerPage() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ItemsPerPage) {
 		var ret *int64
 		return ret
 	}
@@ -97,7 +97,7 @@ func (o *ListRecordSetsResponse) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ListRecordSetsResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 
@@ -111,7 +111,7 @@ func (o *ListRecordSetsResponse) SetMessage(v *string) {
 
 // GetRrSets returns the RrSets field value
 func (o *ListRecordSetsResponse) GetRrSets() *[]RecordSet {
-	if o == nil {
+	if o == nil || IsNil(o.RrSets) {
 		var ret *[]RecordSet
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *ListRecordSetsResponse) SetRrSets(v *[]RecordSet) {
 
 // GetTotalItems returns the TotalItems field value
 func (o *ListRecordSetsResponse) GetTotalItems() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalItems) {
 		var ret *int64
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *ListRecordSetsResponse) SetTotalItems(v *int64) {
 
 // GetTotalPages returns the TotalPages field value
 func (o *ListRecordSetsResponse) GetTotalPages() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalPages) {
 		var ret *int64
 		return ret
 	}

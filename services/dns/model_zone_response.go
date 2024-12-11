@@ -64,7 +64,7 @@ func (o *ZoneResponse) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ZoneResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *ZoneResponse) SetMessage(v *string) {
 
 // GetZone returns the Zone field value
 func (o *ZoneResponse) GetZone() *Zone {
-	if o == nil {
+	if o == nil || IsNil(o.Zone) {
 		var ret *Zone
 		return ret
 	}

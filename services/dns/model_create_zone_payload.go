@@ -106,7 +106,7 @@ func (o *CreateZonePayload) GetAclOk() (*string, bool) {
 
 // HasAcl returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
+	if o != nil && !IsNil(o.Acl) && !IsNil(o.Acl) {
 		return true
 	}
 
@@ -138,7 +138,7 @@ func (o *CreateZonePayload) GetContactEmailOk() (*string, bool) {
 
 // HasContactEmail returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasContactEmail() bool {
-	if o != nil && !IsNil(o.ContactEmail) {
+	if o != nil && !IsNil(o.ContactEmail) && !IsNil(o.ContactEmail) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *CreateZonePayload) GetDefaultTTLOk() (*int64, bool) {
 
 // HasDefaultTTL returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasDefaultTTL() bool {
-	if o != nil && !IsNil(o.DefaultTTL) {
+	if o != nil && !IsNil(o.DefaultTTL) && !IsNil(o.DefaultTTL) {
 		return true
 	}
 
@@ -202,7 +202,7 @@ func (o *CreateZonePayload) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *CreateZonePayload) SetDescription(v *string) {
 
 // GetDnsName returns the DnsName field value
 func (o *CreateZonePayload) GetDnsName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DnsName) {
 		var ret *string
 		return ret
 	}
@@ -258,7 +258,7 @@ func (o *CreateZonePayload) GetExpireTimeOk() (*int64, bool) {
 
 // HasExpireTime returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasExpireTime() bool {
-	if o != nil && !IsNil(o.ExpireTime) {
+	if o != nil && !IsNil(o.ExpireTime) && !IsNil(o.ExpireTime) {
 		return true
 	}
 
@@ -290,7 +290,7 @@ func (o *CreateZonePayload) GetIsReverseZoneOk() (*bool, bool) {
 
 // HasIsReverseZone returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasIsReverseZone() bool {
-	if o != nil && !IsNil(o.IsReverseZone) {
+	if o != nil && !IsNil(o.IsReverseZone) && !IsNil(o.IsReverseZone) {
 		return true
 	}
 
@@ -304,7 +304,7 @@ func (o *CreateZonePayload) SetIsReverseZone(v *bool) {
 
 // GetName returns the Name field value
 func (o *CreateZonePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -346,7 +346,7 @@ func (o *CreateZonePayload) GetNegativeCacheOk() (*int64, bool) {
 
 // HasNegativeCache returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasNegativeCache() bool {
-	if o != nil && !IsNil(o.NegativeCache) {
+	if o != nil && !IsNil(o.NegativeCache) && !IsNil(o.NegativeCache) {
 		return true
 	}
 
@@ -378,7 +378,7 @@ func (o *CreateZonePayload) GetPrimariesOk() (*[]string, bool) {
 
 // HasPrimaries returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasPrimaries() bool {
-	if o != nil && !IsNil(o.Primaries) {
+	if o != nil && !IsNil(o.Primaries) && !IsNil(o.Primaries) {
 		return true
 	}
 
@@ -410,7 +410,7 @@ func (o *CreateZonePayload) GetRefreshTimeOk() (*int64, bool) {
 
 // HasRefreshTime returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasRefreshTime() bool {
-	if o != nil && !IsNil(o.RefreshTime) {
+	if o != nil && !IsNil(o.RefreshTime) && !IsNil(o.RefreshTime) {
 		return true
 	}
 
@@ -442,7 +442,7 @@ func (o *CreateZonePayload) GetRetryTimeOk() (*int64, bool) {
 
 // HasRetryTime returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasRetryTime() bool {
-	if o != nil && !IsNil(o.RetryTime) {
+	if o != nil && !IsNil(o.RetryTime) && !IsNil(o.RetryTime) {
 		return true
 	}
 
@@ -474,7 +474,7 @@ func (o *CreateZonePayload) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+	if o != nil && !IsNil(o.Type) && !IsNil(o.Type) {
 		return true
 	}
 
