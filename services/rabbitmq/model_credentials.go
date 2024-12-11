@@ -61,7 +61,7 @@ func NewCredentialsWithDefaults() *Credentials {
 
 // GetHost returns the Host field value
 func (o *Credentials) GetHost() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Host) {
 		var ret *string
 		return ret
 	}
@@ -103,7 +103,7 @@ func (o *Credentials) GetHostsOk() (*[]string, bool) {
 
 // HasHosts returns a boolean if a field has been set.
 func (o *Credentials) HasHosts() bool {
-	if o != nil && !IsNil(o.Hosts) {
+	if o != nil && !IsNil(o.Hosts) && !IsNil(o.Hosts) {
 		return true
 	}
 
@@ -135,7 +135,7 @@ func (o *Credentials) GetHttpApiUriOk() (*string, bool) {
 
 // HasHttpApiUri returns a boolean if a field has been set.
 func (o *Credentials) HasHttpApiUri() bool {
-	if o != nil && !IsNil(o.HttpApiUri) {
+	if o != nil && !IsNil(o.HttpApiUri) && !IsNil(o.HttpApiUri) {
 		return true
 	}
 
@@ -167,7 +167,7 @@ func (o *Credentials) GetHttpApiUrisOk() (*[]string, bool) {
 
 // HasHttpApiUris returns a boolean if a field has been set.
 func (o *Credentials) HasHttpApiUris() bool {
-	if o != nil && !IsNil(o.HttpApiUris) {
+	if o != nil && !IsNil(o.HttpApiUris) && !IsNil(o.HttpApiUris) {
 		return true
 	}
 
@@ -199,7 +199,7 @@ func (o *Credentials) GetManagementOk() (*string, bool) {
 
 // HasManagement returns a boolean if a field has been set.
 func (o *Credentials) HasManagement() bool {
-	if o != nil && !IsNil(o.Management) {
+	if o != nil && !IsNil(o.Management) && !IsNil(o.Management) {
 		return true
 	}
 
@@ -231,7 +231,7 @@ func (o *Credentials) GetMqttOk() (*string, bool) {
 
 // HasMqtt returns a boolean if a field has been set.
 func (o *Credentials) HasMqtt() bool {
-	if o != nil && !IsNil(o.Mqtt) {
+	if o != nil && !IsNil(o.Mqtt) && !IsNil(o.Mqtt) {
 		return true
 	}
 
@@ -245,7 +245,7 @@ func (o *Credentials) SetMqtt(v *string) {
 
 // GetPassword returns the Password field value
 func (o *Credentials) GetPassword() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret *string
 		return ret
 	}
@@ -287,7 +287,7 @@ func (o *Credentials) GetPortOk() (*int64, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *Credentials) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
+	if o != nil && !IsNil(o.Port) && !IsNil(o.Port) {
 		return true
 	}
 
@@ -319,7 +319,7 @@ func (o *Credentials) GetStompOk() (*string, bool) {
 
 // HasStomp returns a boolean if a field has been set.
 func (o *Credentials) HasStomp() bool {
-	if o != nil && !IsNil(o.Stomp) {
+	if o != nil && !IsNil(o.Stomp) && !IsNil(o.Stomp) {
 		return true
 	}
 
@@ -351,7 +351,7 @@ func (o *Credentials) GetUriOk() (*string, bool) {
 
 // HasUri returns a boolean if a field has been set.
 func (o *Credentials) HasUri() bool {
-	if o != nil && !IsNil(o.Uri) {
+	if o != nil && !IsNil(o.Uri) && !IsNil(o.Uri) {
 		return true
 	}
 
@@ -383,7 +383,7 @@ func (o *Credentials) GetUrisOk() (*[]string, bool) {
 
 // HasUris returns a boolean if a field has been set.
 func (o *Credentials) HasUris() bool {
-	if o != nil && !IsNil(o.Uris) {
+	if o != nil && !IsNil(o.Uris) && !IsNil(o.Uris) {
 		return true
 	}
 
@@ -397,7 +397,7 @@ func (o *Credentials) SetUris(v *[]string) {
 
 // GetUsername returns the Username field value
 func (o *Credentials) GetUsername() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret *string
 		return ret
 	}

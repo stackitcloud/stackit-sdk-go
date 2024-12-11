@@ -59,7 +59,7 @@ func (o *UpdateBackupsConfigPayload) GetEncryptionKeyOk() (*string, bool) {
 
 // HasEncryptionKey returns a boolean if a field has been set.
 func (o *UpdateBackupsConfigPayload) HasEncryptionKey() bool {
-	if o != nil && !IsNil(o.EncryptionKey) {
+	if o != nil && !IsNil(o.EncryptionKey) && !IsNil(o.EncryptionKey) {
 		return true
 	}
 

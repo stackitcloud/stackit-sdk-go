@@ -68,7 +68,7 @@ func NewOfferingWithDefaults() *Offering {
 
 // GetDescription returns the Description field value
 func (o *Offering) GetDescription() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret *string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *Offering) SetDescription(v *string) {
 
 // GetDocumentationUrl returns the DocumentationUrl field value
 func (o *Offering) GetDocumentationUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DocumentationUrl) {
 		var ret *string
 		return ret
 	}
@@ -116,7 +116,7 @@ func (o *Offering) SetDocumentationUrl(v *string) {
 
 // GetImageUrl returns the ImageUrl field value
 func (o *Offering) GetImageUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ImageUrl) {
 		var ret *string
 		return ret
 	}
@@ -140,7 +140,7 @@ func (o *Offering) SetImageUrl(v *string) {
 
 // GetLatest returns the Latest field value
 func (o *Offering) GetLatest() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Latest) {
 		var ret *bool
 		return ret
 	}
@@ -182,7 +182,7 @@ func (o *Offering) GetLifecycleOk() (*string, bool) {
 
 // HasLifecycle returns a boolean if a field has been set.
 func (o *Offering) HasLifecycle() bool {
-	if o != nil && !IsNil(o.Lifecycle) {
+	if o != nil && !IsNil(o.Lifecycle) && !IsNil(o.Lifecycle) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *Offering) SetLifecycle(v *string) {
 
 // GetName returns the Name field value
 func (o *Offering) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *Offering) SetName(v *string) {
 
 // GetPlans returns the Plans field value
 func (o *Offering) GetPlans() *[]Plan {
-	if o == nil {
+	if o == nil || IsNil(o.Plans) {
 		var ret *[]Plan
 		return ret
 	}
@@ -244,7 +244,7 @@ func (o *Offering) SetPlans(v *[]Plan) {
 
 // GetQuotaCount returns the QuotaCount field value
 func (o *Offering) GetQuotaCount() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.QuotaCount) {
 		var ret *int64
 		return ret
 	}
@@ -286,7 +286,7 @@ func (o *Offering) GetSchemaOk() (*InstanceSchema, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Offering) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && !IsNil(o.Schema) && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -300,7 +300,7 @@ func (o *Offering) SetSchema(v *InstanceSchema) {
 
 // GetVersion returns the Version field value
 func (o *Offering) GetVersion() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret *string
 		return ret
 	}

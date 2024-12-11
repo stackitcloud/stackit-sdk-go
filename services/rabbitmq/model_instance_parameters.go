@@ -93,7 +93,7 @@ func (o *InstanceParameters) GetConsumerTimeoutOk() (*int64, bool) {
 
 // HasConsumerTimeout returns a boolean if a field has been set.
 func (o *InstanceParameters) HasConsumerTimeout() bool {
-	if o != nil && !IsNil(o.ConsumerTimeout) {
+	if o != nil && !IsNil(o.ConsumerTimeout) && !IsNil(o.ConsumerTimeout) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *InstanceParameters) GetEnableMonitoringOk() (*bool, bool) {
 
 // HasEnableMonitoring returns a boolean if a field has been set.
 func (o *InstanceParameters) HasEnableMonitoring() bool {
-	if o != nil && !IsNil(o.EnableMonitoring) {
+	if o != nil && !IsNil(o.EnableMonitoring) && !IsNil(o.EnableMonitoring) {
 		return true
 	}
 
@@ -157,7 +157,7 @@ func (o *InstanceParameters) GetGraphiteOk() (*string, bool) {
 
 // HasGraphite returns a boolean if a field has been set.
 func (o *InstanceParameters) HasGraphite() bool {
-	if o != nil && !IsNil(o.Graphite) {
+	if o != nil && !IsNil(o.Graphite) && !IsNil(o.Graphite) {
 		return true
 	}
 
@@ -189,7 +189,7 @@ func (o *InstanceParameters) GetMaxDiskThresholdOk() (*int64, bool) {
 
 // HasMaxDiskThreshold returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxDiskThreshold() bool {
-	if o != nil && !IsNil(o.MaxDiskThreshold) {
+	if o != nil && !IsNil(o.MaxDiskThreshold) && !IsNil(o.MaxDiskThreshold) {
 		return true
 	}
 
@@ -221,7 +221,7 @@ func (o *InstanceParameters) GetMetricsFrequencyOk() (*int64, bool) {
 
 // HasMetricsFrequency returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsFrequency() bool {
-	if o != nil && !IsNil(o.MetricsFrequency) {
+	if o != nil && !IsNil(o.MetricsFrequency) && !IsNil(o.MetricsFrequency) {
 		return true
 	}
 
@@ -253,7 +253,7 @@ func (o *InstanceParameters) GetMetricsPrefixOk() (*string, bool) {
 
 // HasMetricsPrefix returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsPrefix() bool {
-	if o != nil && !IsNil(o.MetricsPrefix) {
+	if o != nil && !IsNil(o.MetricsPrefix) && !IsNil(o.MetricsPrefix) {
 		return true
 	}
 
@@ -285,7 +285,7 @@ func (o *InstanceParameters) GetMonitoringInstanceIdOk() (*string, bool) {
 
 // HasMonitoringInstanceId returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMonitoringInstanceId() bool {
-	if o != nil && !IsNil(o.MonitoringInstanceId) {
+	if o != nil && !IsNil(o.MonitoringInstanceId) && !IsNil(o.MonitoringInstanceId) {
 		return true
 	}
 
@@ -317,7 +317,7 @@ func (o *InstanceParameters) GetPluginsOk() (*[]string, bool) {
 
 // HasPlugins returns a boolean if a field has been set.
 func (o *InstanceParameters) HasPlugins() bool {
-	if o != nil && !IsNil(o.Plugins) {
+	if o != nil && !IsNil(o.Plugins) && !IsNil(o.Plugins) {
 		return true
 	}
 
@@ -349,7 +349,7 @@ func (o *InstanceParameters) GetRolesOk() (*[]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *InstanceParameters) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -381,7 +381,7 @@ func (o *InstanceParameters) GetSgwAclOk() (*string, bool) {
 
 // HasSgwAcl returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSgwAcl() bool {
-	if o != nil && !IsNil(o.SgwAcl) {
+	if o != nil && !IsNil(o.SgwAcl) && !IsNil(o.SgwAcl) {
 		return true
 	}
 
@@ -413,7 +413,7 @@ func (o *InstanceParameters) GetSyslogOk() (*[]string, bool) {
 
 // HasSyslog returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSyslog() bool {
-	if o != nil && !IsNil(o.Syslog) {
+	if o != nil && !IsNil(o.Syslog) && !IsNil(o.Syslog) {
 		return true
 	}
 
@@ -445,7 +445,7 @@ func (o *InstanceParameters) GetTlsCiphersOk() (*[]string, bool) {
 
 // HasTlsCiphers returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsCiphers() bool {
-	if o != nil && !IsNil(o.TlsCiphers) {
+	if o != nil && !IsNil(o.TlsCiphers) && !IsNil(o.TlsCiphers) {
 		return true
 	}
 
@@ -477,7 +477,7 @@ func (o *InstanceParameters) GetTlsProtocolsOk() (*string, bool) {
 
 // HasTlsProtocols returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsProtocols() bool {
-	if o != nil && !IsNil(o.TlsProtocols) {
+	if o != nil && !IsNil(o.TlsProtocols) && !IsNil(o.TlsProtocols) {
 		return true
 	}
 
