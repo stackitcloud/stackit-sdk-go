@@ -46,7 +46,7 @@ func NewRestoreBackupPayloadWithDefaults() *RestoreBackupPayload {
 
 // GetStartServerAfterRestore returns the StartServerAfterRestore field value
 func (o *RestoreBackupPayload) GetStartServerAfterRestore() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.StartServerAfterRestore) {
 		var ret *bool
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *RestoreBackupPayload) GetVolumeIdsOk() (*[]string, bool) {
 
 // HasVolumeIds returns a boolean if a field has been set.
 func (o *RestoreBackupPayload) HasVolumeIds() bool {
-	if o != nil && !IsNil(o.VolumeIds) {
+	if o != nil && !IsNil(o.VolumeIds) && !IsNil(o.VolumeIds) {
 		return true
 	}
 

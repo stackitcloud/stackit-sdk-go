@@ -65,7 +65,7 @@ func (o *BackupPolicy) GetBackupPropertiesOk() (*BackupPolicyBackupProperties, b
 
 // HasBackupProperties returns a boolean if a field has been set.
 func (o *BackupPolicy) HasBackupProperties() bool {
-	if o != nil && !IsNil(o.BackupProperties) {
+	if o != nil && !IsNil(o.BackupProperties) && !IsNil(o.BackupProperties) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *BackupPolicy) GetDefaultOk() (*bool, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *BackupPolicy) HasDefault() bool {
-	if o != nil && !IsNil(o.Default) {
+	if o != nil && !IsNil(o.Default) && !IsNil(o.Default) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *BackupPolicy) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *BackupPolicy) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -161,7 +161,7 @@ func (o *BackupPolicy) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *BackupPolicy) HasEnabled() bool {
-	if o != nil && !IsNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -193,7 +193,7 @@ func (o *BackupPolicy) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *BackupPolicy) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -225,7 +225,7 @@ func (o *BackupPolicy) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *BackupPolicy) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -257,7 +257,7 @@ func (o *BackupPolicy) GetRruleOk() (*string, bool) {
 
 // HasRrule returns a boolean if a field has been set.
 func (o *BackupPolicy) HasRrule() bool {
-	if o != nil && !IsNil(o.Rrule) {
+	if o != nil && !IsNil(o.Rrule) && !IsNil(o.Rrule) {
 		return true
 	}
 

@@ -59,7 +59,7 @@ func (o *EnableServiceResourcePayload) GetBackupPolicyIdOk() (*string, bool) {
 
 // HasBackupPolicyId returns a boolean if a field has been set.
 func (o *EnableServiceResourcePayload) HasBackupPolicyId() bool {
-	if o != nil && !IsNil(o.BackupPolicyId) {
+	if o != nil && !IsNil(o.BackupPolicyId) && !IsNil(o.BackupPolicyId) {
 		return true
 	}
 

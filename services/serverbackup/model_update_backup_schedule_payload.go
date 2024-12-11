@@ -71,7 +71,7 @@ func (o *UpdateBackupSchedulePayload) GetBackupPropertiesOk() (*BackupProperties
 
 // HasBackupProperties returns a boolean if a field has been set.
 func (o *UpdateBackupSchedulePayload) HasBackupProperties() bool {
-	if o != nil && !IsNil(o.BackupProperties) {
+	if o != nil && !IsNil(o.BackupProperties) && !IsNil(o.BackupProperties) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *UpdateBackupSchedulePayload) SetBackupProperties(v *BackupProperties) {
 
 // GetEnabled returns the Enabled field value
 func (o *UpdateBackupSchedulePayload) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}
@@ -109,7 +109,7 @@ func (o *UpdateBackupSchedulePayload) SetEnabled(v *bool) {
 
 // GetName returns the Name field value
 func (o *UpdateBackupSchedulePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -133,7 +133,7 @@ func (o *UpdateBackupSchedulePayload) SetName(v *string) {
 
 // GetRrule returns the Rrule field value
 func (o *UpdateBackupSchedulePayload) GetRrule() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Rrule) {
 		var ret *string
 		return ret
 	}

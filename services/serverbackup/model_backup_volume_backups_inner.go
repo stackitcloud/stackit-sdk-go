@@ -64,7 +64,7 @@ func (o *BackupVolumeBackupsInner) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *BackupVolumeBackupsInner) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *BackupVolumeBackupsInner) GetLastRestoredAtOk() (*string, bool) {
 
 // HasLastRestoredAt returns a boolean if a field has been set.
 func (o *BackupVolumeBackupsInner) HasLastRestoredAt() bool {
-	if o != nil && !IsNil(o.LastRestoredAt) {
+	if o != nil && !IsNil(o.LastRestoredAt) && !IsNil(o.LastRestoredAt) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *BackupVolumeBackupsInner) GetLastRestoredVolumeIdOk() (*string, bool) {
 
 // HasLastRestoredVolumeId returns a boolean if a field has been set.
 func (o *BackupVolumeBackupsInner) HasLastRestoredVolumeId() bool {
-	if o != nil && !IsNil(o.LastRestoredVolumeId) {
+	if o != nil && !IsNil(o.LastRestoredVolumeId) && !IsNil(o.LastRestoredVolumeId) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *BackupVolumeBackupsInner) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *BackupVolumeBackupsInner) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
+	if o != nil && !IsNil(o.Size) && !IsNil(o.Size) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *BackupVolumeBackupsInner) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *BackupVolumeBackupsInner) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *BackupVolumeBackupsInner) GetVolumeIdOk() (*string, bool) {
 
 // HasVolumeId returns a boolean if a field has been set.
 func (o *BackupVolumeBackupsInner) HasVolumeId() bool {
-	if o != nil && !IsNil(o.VolumeId) {
+	if o != nil && !IsNil(o.VolumeId) && !IsNil(o.VolumeId) {
 		return true
 	}
 

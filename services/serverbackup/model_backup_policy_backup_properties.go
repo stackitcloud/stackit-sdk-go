@@ -60,7 +60,7 @@ func (o *BackupPolicyBackupProperties) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *BackupPolicyBackupProperties) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *BackupPolicyBackupProperties) GetRetentionPeriodOk() (*int64, bool) {
 
 // HasRetentionPeriod returns a boolean if a field has been set.
 func (o *BackupPolicyBackupProperties) HasRetentionPeriod() bool {
-	if o != nil && !IsNil(o.RetentionPeriod) {
+	if o != nil && !IsNil(o.RetentionPeriod) && !IsNil(o.RetentionPeriod) {
 		return true
 	}
 
