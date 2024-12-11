@@ -81,7 +81,7 @@ func NewInstanceWithDefaults() *Instance {
 
 // GetCfGuid returns the CfGuid field value
 func (o *Instance) GetCfGuid() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CfGuid) {
 		var ret *string
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *Instance) SetCfGuid(v *string) {
 
 // GetCfOrganizationGuid returns the CfOrganizationGuid field value
 func (o *Instance) GetCfOrganizationGuid() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CfOrganizationGuid) {
 		var ret *string
 		return ret
 	}
@@ -129,7 +129,7 @@ func (o *Instance) SetCfOrganizationGuid(v *string) {
 
 // GetCfSpaceGuid returns the CfSpaceGuid field value
 func (o *Instance) GetCfSpaceGuid() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CfSpaceGuid) {
 		var ret *string
 		return ret
 	}
@@ -153,7 +153,7 @@ func (o *Instance) SetCfSpaceGuid(v *string) {
 
 // GetDashboardUrl returns the DashboardUrl field value
 func (o *Instance) GetDashboardUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DashboardUrl) {
 		var ret *string
 		return ret
 	}
@@ -177,7 +177,7 @@ func (o *Instance) SetDashboardUrl(v *string) {
 
 // GetImageUrl returns the ImageUrl field value
 func (o *Instance) GetImageUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ImageUrl) {
 		var ret *string
 		return ret
 	}
@@ -219,7 +219,7 @@ func (o *Instance) GetInstanceIdOk() (*string, bool) {
 
 // HasInstanceId returns a boolean if a field has been set.
 func (o *Instance) HasInstanceId() bool {
-	if o != nil && !IsNil(o.InstanceId) {
+	if o != nil && !IsNil(o.InstanceId) && !IsNil(o.InstanceId) {
 		return true
 	}
 
@@ -233,7 +233,7 @@ func (o *Instance) SetInstanceId(v *string) {
 
 // GetLastOperation returns the LastOperation field value
 func (o *Instance) GetLastOperation() *InstanceLastOperation {
-	if o == nil {
+	if o == nil || IsNil(o.LastOperation) {
 		var ret *InstanceLastOperation
 		return ret
 	}
@@ -257,7 +257,7 @@ func (o *Instance) SetLastOperation(v *InstanceLastOperation) {
 
 // GetName returns the Name field value
 func (o *Instance) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -282,7 +282,7 @@ func (o *Instance) SetName(v *string) {
 // GetOfferingName returns the OfferingName field value
 // Deprecated
 func (o *Instance) GetOfferingName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OfferingName) {
 		var ret *string
 		return ret
 	}
@@ -308,7 +308,7 @@ func (o *Instance) SetOfferingName(v *string) {
 
 // GetOfferingVersion returns the OfferingVersion field value
 func (o *Instance) GetOfferingVersion() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OfferingVersion) {
 		var ret *string
 		return ret
 	}
@@ -332,7 +332,7 @@ func (o *Instance) SetOfferingVersion(v *string) {
 
 // GetParameters returns the Parameters field value
 func (o *Instance) GetParameters() *map[string]interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.Parameters) {
 		var ret *map[string]interface{}
 		return ret
 	}
@@ -356,7 +356,7 @@ func (o *Instance) SetParameters(v *map[string]interface{}) {
 
 // GetPlanId returns the PlanId field value
 func (o *Instance) GetPlanId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanId) {
 		var ret *string
 		return ret
 	}
@@ -380,7 +380,7 @@ func (o *Instance) SetPlanId(v *string) {
 
 // GetPlanName returns the PlanName field value
 func (o *Instance) GetPlanName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanName) {
 		var ret *string
 		return ret
 	}
@@ -422,7 +422,7 @@ func (o *Instance) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Instance) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 

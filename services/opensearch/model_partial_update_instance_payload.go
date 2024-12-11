@@ -61,7 +61,7 @@ func (o *PartialUpdateInstancePayload) GetInstanceNameOk() (*string, bool) {
 
 // HasInstanceName returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasInstanceName() bool {
-	if o != nil && !IsNil(o.InstanceName) {
+	if o != nil && !IsNil(o.InstanceName) && !IsNil(o.InstanceName) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *PartialUpdateInstancePayload) GetParametersOk() (*InstanceParameters, b
 
 // HasParameters returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasParameters() bool {
-	if o != nil && !IsNil(o.Parameters) {
+	if o != nil && !IsNil(o.Parameters) && !IsNil(o.Parameters) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *PartialUpdateInstancePayload) GetPlanIdOk() (*string, bool) {
 
 // HasPlanId returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasPlanId() bool {
-	if o != nil && !IsNil(o.PlanId) {
+	if o != nil && !IsNil(o.PlanId) && !IsNil(o.PlanId) {
 		return true
 	}
 
