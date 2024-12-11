@@ -48,7 +48,7 @@ func NewAlertConfigReceiversResponseWithDefaults() *AlertConfigReceiversResponse
 
 // GetData returns the Data field value
 func (o *AlertConfigReceiversResponse) GetData() *[]Receivers {
-	if o == nil {
+	if o == nil || IsNil(o.Data) {
 		var ret *[]Receivers
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *AlertConfigReceiversResponse) SetData(v *[]Receivers) {
 
 // GetMessage returns the Message field value
 func (o *AlertConfigReceiversResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

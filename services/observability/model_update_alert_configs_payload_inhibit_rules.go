@@ -68,7 +68,7 @@ func (o *UpdateAlertConfigsPayloadInhibitRules) GetEqualOk() (*[]string, bool) {
 
 // HasEqual returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasEqual() bool {
-	if o != nil && !IsNil(o.Equal) {
+	if o != nil && !IsNil(o.Equal) && !IsNil(o.Equal) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatchOk() (*map[string]
 
 // HasSourceMatch returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasSourceMatch() bool {
-	if o != nil && !IsNil(o.SourceMatch) {
+	if o != nil && !IsNil(o.SourceMatch) && !IsNil(o.SourceMatch) {
 		return true
 	}
 
@@ -132,7 +132,7 @@ func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatchReOk() (*map[strin
 
 // HasSourceMatchRe returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasSourceMatchRe() bool {
-	if o != nil && !IsNil(o.SourceMatchRe) {
+	if o != nil && !IsNil(o.SourceMatchRe) && !IsNil(o.SourceMatchRe) {
 		return true
 	}
 
@@ -164,7 +164,7 @@ func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatchOk() (*map[string]
 
 // HasTargetMatch returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasTargetMatch() bool {
-	if o != nil && !IsNil(o.TargetMatch) {
+	if o != nil && !IsNil(o.TargetMatch) && !IsNil(o.TargetMatch) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatchReOk() (*map[strin
 
 // HasTargetMatchRe returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasTargetMatchRe() bool {
-	if o != nil && !IsNil(o.TargetMatchRe) {
+	if o != nil && !IsNil(o.TargetMatchRe) && !IsNil(o.TargetMatchRe) {
 		return true
 	}
 

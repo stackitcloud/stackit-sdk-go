@@ -60,7 +60,7 @@ func (o *UpdateCredentialsRemoteWriteConfigPayload) GetMaxLimitOk() (*float64, b
 
 // HasMaxLimit returns a boolean if a field has been set.
 func (o *UpdateCredentialsRemoteWriteConfigPayload) HasMaxLimit() bool {
-	if o != nil && !IsNil(o.MaxLimit) {
+	if o != nil && !IsNil(o.MaxLimit) && !IsNil(o.MaxLimit) {
 		return true
 	}
 

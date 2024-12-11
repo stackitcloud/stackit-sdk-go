@@ -78,7 +78,7 @@ func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiKeyOk() (*string, bool) 
 
 // HasOpsgenieApiKey returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasOpsgenieApiKey() bool {
-	if o != nil && !IsNil(o.OpsgenieApiKey) {
+	if o != nil && !IsNil(o.OpsgenieApiKey) && !IsNil(o.OpsgenieApiKey) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiUrlOk() (*string, bool) 
 
 // HasOpsgenieApiUrl returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasOpsgenieApiUrl() bool {
-	if o != nil && !IsNil(o.OpsgenieApiUrl) {
+	if o != nil && !IsNil(o.OpsgenieApiUrl) && !IsNil(o.OpsgenieApiUrl) {
 		return true
 	}
 
@@ -142,7 +142,7 @@ func (o *UpdateAlertConfigsPayloadGlobal) GetResolveTimeoutOk() (*string, bool) 
 
 // HasResolveTimeout returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasResolveTimeout() bool {
-	if o != nil && !IsNil(o.ResolveTimeout) {
+	if o != nil && !IsNil(o.ResolveTimeout) && !IsNil(o.ResolveTimeout) {
 		return true
 	}
 
@@ -174,7 +174,7 @@ func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthIdentityOk() (*string, bool
 
 // HasSmtpAuthIdentity returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpAuthIdentity() bool {
-	if o != nil && !IsNil(o.SmtpAuthIdentity) {
+	if o != nil && !IsNil(o.SmtpAuthIdentity) && !IsNil(o.SmtpAuthIdentity) {
 		return true
 	}
 
@@ -206,7 +206,7 @@ func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthPasswordOk() (*string, bool
 
 // HasSmtpAuthPassword returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpAuthPassword() bool {
-	if o != nil && !IsNil(o.SmtpAuthPassword) {
+	if o != nil && !IsNil(o.SmtpAuthPassword) && !IsNil(o.SmtpAuthPassword) {
 		return true
 	}
 
@@ -238,7 +238,7 @@ func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthUsernameOk() (*string, bool
 
 // HasSmtpAuthUsername returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpAuthUsername() bool {
-	if o != nil && !IsNil(o.SmtpAuthUsername) {
+	if o != nil && !IsNil(o.SmtpAuthUsername) && !IsNil(o.SmtpAuthUsername) {
 		return true
 	}
 
@@ -270,7 +270,7 @@ func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpFromOk() (*string, bool) {
 
 // HasSmtpFrom returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpFrom() bool {
-	if o != nil && !IsNil(o.SmtpFrom) {
+	if o != nil && !IsNil(o.SmtpFrom) && !IsNil(o.SmtpFrom) {
 		return true
 	}
 
@@ -302,7 +302,7 @@ func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpSmarthostOk() (*string, bool) {
 
 // HasSmtpSmarthost returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpSmarthost() bool {
-	if o != nil && !IsNil(o.SmtpSmarthost) {
+	if o != nil && !IsNil(o.SmtpSmarthost) && !IsNil(o.SmtpSmarthost) {
 		return true
 	}
 

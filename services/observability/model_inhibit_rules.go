@@ -65,7 +65,7 @@ func (o *InhibitRules) GetEqualOk() (*[]string, bool) {
 
 // HasEqual returns a boolean if a field has been set.
 func (o *InhibitRules) HasEqual() bool {
-	if o != nil && !IsNil(o.Equal) {
+	if o != nil && !IsNil(o.Equal) && !IsNil(o.Equal) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *InhibitRules) GetSourceMatchOk() (*map[string]string, bool) {
 
 // HasSourceMatch returns a boolean if a field has been set.
 func (o *InhibitRules) HasSourceMatch() bool {
-	if o != nil && !IsNil(o.SourceMatch) {
+	if o != nil && !IsNil(o.SourceMatch) && !IsNil(o.SourceMatch) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *InhibitRules) GetSourceMatchReOk() (*map[string]string, bool) {
 
 // HasSourceMatchRe returns a boolean if a field has been set.
 func (o *InhibitRules) HasSourceMatchRe() bool {
-	if o != nil && !IsNil(o.SourceMatchRe) {
+	if o != nil && !IsNil(o.SourceMatchRe) && !IsNil(o.SourceMatchRe) {
 		return true
 	}
 
@@ -161,7 +161,7 @@ func (o *InhibitRules) GetSourceMatchersOk() (*[]string, bool) {
 
 // HasSourceMatchers returns a boolean if a field has been set.
 func (o *InhibitRules) HasSourceMatchers() bool {
-	if o != nil && !IsNil(o.SourceMatchers) {
+	if o != nil && !IsNil(o.SourceMatchers) && !IsNil(o.SourceMatchers) {
 		return true
 	}
 
@@ -193,7 +193,7 @@ func (o *InhibitRules) GetTargetMatchOk() (*map[string]string, bool) {
 
 // HasTargetMatch returns a boolean if a field has been set.
 func (o *InhibitRules) HasTargetMatch() bool {
-	if o != nil && !IsNil(o.TargetMatch) {
+	if o != nil && !IsNil(o.TargetMatch) && !IsNil(o.TargetMatch) {
 		return true
 	}
 
@@ -225,7 +225,7 @@ func (o *InhibitRules) GetTargetMatchReOk() (*map[string]string, bool) {
 
 // HasTargetMatchRe returns a boolean if a field has been set.
 func (o *InhibitRules) HasTargetMatchRe() bool {
-	if o != nil && !IsNil(o.TargetMatchRe) {
+	if o != nil && !IsNil(o.TargetMatchRe) && !IsNil(o.TargetMatchRe) {
 		return true
 	}
 
@@ -257,7 +257,7 @@ func (o *InhibitRules) GetTargetMatchersOk() (*[]string, bool) {
 
 // HasTargetMatchers returns a boolean if a field has been set.
 func (o *InhibitRules) HasTargetMatchers() bool {
-	if o != nil && !IsNil(o.TargetMatchers) {
+	if o != nil && !IsNil(o.TargetMatchers) && !IsNil(o.TargetMatchers) {
 		return true
 	}
 

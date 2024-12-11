@@ -73,7 +73,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetGroupByOk() (*[]string, bo
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *CreateAlertConfigRoutePayloadRoutesInner) HasGroupBy() bool {
-	if o != nil && !IsNil(o.GroupBy) {
+	if o != nil && !IsNil(o.GroupBy) && !IsNil(o.GroupBy) {
 		return true
 	}
 
@@ -105,7 +105,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetGroupIntervalOk() (*string
 
 // HasGroupInterval returns a boolean if a field has been set.
 func (o *CreateAlertConfigRoutePayloadRoutesInner) HasGroupInterval() bool {
-	if o != nil && !IsNil(o.GroupInterval) {
+	if o != nil && !IsNil(o.GroupInterval) && !IsNil(o.GroupInterval) {
 		return true
 	}
 
@@ -137,7 +137,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetGroupWaitOk() (*string, bo
 
 // HasGroupWait returns a boolean if a field has been set.
 func (o *CreateAlertConfigRoutePayloadRoutesInner) HasGroupWait() bool {
-	if o != nil && !IsNil(o.GroupWait) {
+	if o != nil && !IsNil(o.GroupWait) && !IsNil(o.GroupWait) {
 		return true
 	}
 
@@ -169,7 +169,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatchOk() (*map[string]int
 
 // HasMatch returns a boolean if a field has been set.
 func (o *CreateAlertConfigRoutePayloadRoutesInner) HasMatch() bool {
-	if o != nil && !IsNil(o.Match) {
+	if o != nil && !IsNil(o.Match) && !IsNil(o.Match) {
 		return true
 	}
 
@@ -201,7 +201,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatchReOk() (*map[string]i
 
 // HasMatchRe returns a boolean if a field has been set.
 func (o *CreateAlertConfigRoutePayloadRoutesInner) HasMatchRe() bool {
-	if o != nil && !IsNil(o.MatchRe) {
+	if o != nil && !IsNil(o.MatchRe) && !IsNil(o.MatchRe) {
 		return true
 	}
 
@@ -233,7 +233,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetReceiverOk() (*string, boo
 
 // HasReceiver returns a boolean if a field has been set.
 func (o *CreateAlertConfigRoutePayloadRoutesInner) HasReceiver() bool {
-	if o != nil && !IsNil(o.Receiver) {
+	if o != nil && !IsNil(o.Receiver) && !IsNil(o.Receiver) {
 		return true
 	}
 
@@ -265,7 +265,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetRepeatIntervalOk() (*strin
 
 // HasRepeatInterval returns a boolean if a field has been set.
 func (o *CreateAlertConfigRoutePayloadRoutesInner) HasRepeatInterval() bool {
-	if o != nil && !IsNil(o.RepeatInterval) {
+	if o != nil && !IsNil(o.RepeatInterval) && !IsNil(o.RepeatInterval) {
 		return true
 	}
 
@@ -297,7 +297,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetRoutesOk() (*[]map[string]
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *CreateAlertConfigRoutePayloadRoutesInner) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
+	if o != nil && !IsNil(o.Routes) && !IsNil(o.Routes) {
 		return true
 	}
 

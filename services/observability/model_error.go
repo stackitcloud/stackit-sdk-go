@@ -64,7 +64,7 @@ func (o *Error) GetErrorsOk() (*[]map[string]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *Error) HasErrors() bool {
-	if o != nil && !IsNil(o.Errors) {
+	if o != nil && !IsNil(o.Errors) && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *Error) SetErrors(v *[]map[string]string) {
 
 // GetMessage returns the Message field value
 func (o *Error) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

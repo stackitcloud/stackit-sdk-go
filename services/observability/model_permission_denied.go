@@ -45,7 +45,7 @@ func NewPermissionDeniedWithDefaults() *PermissionDenied {
 
 // GetDetail returns the Detail field value
 func (o *PermissionDenied) GetDetail() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Detail) {
 		var ret *string
 		return ret
 	}

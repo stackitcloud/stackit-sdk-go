@@ -68,7 +68,7 @@ func (o *UpdateInstancePayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateInstancePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *UpdateInstancePayload) GetParameterOk() (*map[string]interface{}, bool)
 
 // HasParameter returns a boolean if a field has been set.
 func (o *UpdateInstancePayload) HasParameter() bool {
-	if o != nil && !IsNil(o.Parameter) {
+	if o != nil && !IsNil(o.Parameter) && !IsNil(o.Parameter) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *UpdateInstancePayload) SetParameter(v *map[string]interface{}) {
 
 // GetPlanId returns the PlanId field value
 func (o *UpdateInstancePayload) GetPlanId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanId) {
 		var ret *string
 		return ret
 	}

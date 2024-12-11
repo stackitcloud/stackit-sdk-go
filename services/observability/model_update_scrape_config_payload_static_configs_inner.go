@@ -66,7 +66,7 @@ func (o *UpdateScrapeConfigPayloadStaticConfigsInner) GetLabelsOk() (*map[string
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateScrapeConfigPayloadStaticConfigsInner) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *UpdateScrapeConfigPayloadStaticConfigsInner) SetLabels(v *map[string]in
 
 // GetTargets returns the Targets field value
 func (o *UpdateScrapeConfigPayloadStaticConfigsInner) GetTargets() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Targets) {
 		var ret *[]string
 		return ret
 	}

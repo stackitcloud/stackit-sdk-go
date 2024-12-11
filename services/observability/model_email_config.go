@@ -73,7 +73,7 @@ func (o *EmailConfig) GetAuthIdentityOk() (*string, bool) {
 
 // HasAuthIdentity returns a boolean if a field has been set.
 func (o *EmailConfig) HasAuthIdentity() bool {
-	if o != nil && !IsNil(o.AuthIdentity) {
+	if o != nil && !IsNil(o.AuthIdentity) && !IsNil(o.AuthIdentity) {
 		return true
 	}
 
@@ -105,7 +105,7 @@ func (o *EmailConfig) GetAuthPasswordOk() (*string, bool) {
 
 // HasAuthPassword returns a boolean if a field has been set.
 func (o *EmailConfig) HasAuthPassword() bool {
-	if o != nil && !IsNil(o.AuthPassword) {
+	if o != nil && !IsNil(o.AuthPassword) && !IsNil(o.AuthPassword) {
 		return true
 	}
 
@@ -137,7 +137,7 @@ func (o *EmailConfig) GetAuthUsernameOk() (*string, bool) {
 
 // HasAuthUsername returns a boolean if a field has been set.
 func (o *EmailConfig) HasAuthUsername() bool {
-	if o != nil && !IsNil(o.AuthUsername) {
+	if o != nil && !IsNil(o.AuthUsername) && !IsNil(o.AuthUsername) {
 		return true
 	}
 
@@ -169,7 +169,7 @@ func (o *EmailConfig) GetFromOk() (*string, bool) {
 
 // HasFrom returns a boolean if a field has been set.
 func (o *EmailConfig) HasFrom() bool {
-	if o != nil && !IsNil(o.From) {
+	if o != nil && !IsNil(o.From) && !IsNil(o.From) {
 		return true
 	}
 
@@ -201,7 +201,7 @@ func (o *EmailConfig) GetSendResolvedOk() (*bool, bool) {
 
 // HasSendResolved returns a boolean if a field has been set.
 func (o *EmailConfig) HasSendResolved() bool {
-	if o != nil && !IsNil(o.SendResolved) {
+	if o != nil && !IsNil(o.SendResolved) && !IsNil(o.SendResolved) {
 		return true
 	}
 
@@ -233,7 +233,7 @@ func (o *EmailConfig) GetSmarthostOk() (*string, bool) {
 
 // HasSmarthost returns a boolean if a field has been set.
 func (o *EmailConfig) HasSmarthost() bool {
-	if o != nil && !IsNil(o.Smarthost) {
+	if o != nil && !IsNil(o.Smarthost) && !IsNil(o.Smarthost) {
 		return true
 	}
 
@@ -247,7 +247,7 @@ func (o *EmailConfig) SetSmarthost(v *string) {
 
 // GetTo returns the To field value
 func (o *EmailConfig) GetTo() *string {
-	if o == nil {
+	if o == nil || IsNil(o.To) {
 		var ret *string
 		return ret
 	}

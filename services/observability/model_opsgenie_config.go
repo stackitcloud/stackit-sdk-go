@@ -67,7 +67,7 @@ func (o *OpsgenieConfig) GetApiKeyOk() (*string, bool) {
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasApiKey() bool {
-	if o != nil && !IsNil(o.ApiKey) {
+	if o != nil && !IsNil(o.ApiKey) && !IsNil(o.ApiKey) {
 		return true
 	}
 
@@ -99,7 +99,7 @@ func (o *OpsgenieConfig) GetApiUrlOk() (*string, bool) {
 
 // HasApiUrl returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasApiUrl() bool {
-	if o != nil && !IsNil(o.ApiUrl) {
+	if o != nil && !IsNil(o.ApiUrl) && !IsNil(o.ApiUrl) {
 		return true
 	}
 
@@ -131,7 +131,7 @@ func (o *OpsgenieConfig) GetPriorityOk() (*string, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasPriority() bool {
-	if o != nil && !IsNil(o.Priority) {
+	if o != nil && !IsNil(o.Priority) && !IsNil(o.Priority) {
 		return true
 	}
 
@@ -163,7 +163,7 @@ func (o *OpsgenieConfig) GetSendResolvedOk() (*bool, bool) {
 
 // HasSendResolved returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasSendResolved() bool {
-	if o != nil && !IsNil(o.SendResolved) {
+	if o != nil && !IsNil(o.SendResolved) && !IsNil(o.SendResolved) {
 		return true
 	}
 
@@ -195,7 +195,7 @@ func (o *OpsgenieConfig) GetTagsOk() (*string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) && !IsNil(o.Tags) {
 		return true
 	}
 

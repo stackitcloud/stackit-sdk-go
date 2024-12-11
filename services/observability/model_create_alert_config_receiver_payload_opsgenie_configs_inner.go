@@ -64,7 +64,7 @@ func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiKeyOk() (*s
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasApiKey() bool {
-	if o != nil && !IsNil(o.ApiKey) {
+	if o != nil && !IsNil(o.ApiKey) && !IsNil(o.ApiKey) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiUrlOk() (*s
 
 // HasApiUrl returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasApiUrl() bool {
-	if o != nil && !IsNil(o.ApiUrl) {
+	if o != nil && !IsNil(o.ApiUrl) && !IsNil(o.ApiUrl) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetTagsOk() (*str
 
 // HasTags returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) && !IsNil(o.Tags) {
 		return true
 	}
 

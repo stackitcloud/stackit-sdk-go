@@ -87,7 +87,7 @@ func (o *Route) GetContinueOk() (*bool, bool) {
 
 // HasContinue returns a boolean if a field has been set.
 func (o *Route) HasContinue() bool {
-	if o != nil && !IsNil(o.Continue) {
+	if o != nil && !IsNil(o.Continue) && !IsNil(o.Continue) {
 		return true
 	}
 
@@ -119,7 +119,7 @@ func (o *Route) GetGroupByOk() (*[]string, bool) {
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *Route) HasGroupBy() bool {
-	if o != nil && !IsNil(o.GroupBy) {
+	if o != nil && !IsNil(o.GroupBy) && !IsNil(o.GroupBy) {
 		return true
 	}
 
@@ -151,7 +151,7 @@ func (o *Route) GetGroupIntervalOk() (*string, bool) {
 
 // HasGroupInterval returns a boolean if a field has been set.
 func (o *Route) HasGroupInterval() bool {
-	if o != nil && !IsNil(o.GroupInterval) {
+	if o != nil && !IsNil(o.GroupInterval) && !IsNil(o.GroupInterval) {
 		return true
 	}
 
@@ -183,7 +183,7 @@ func (o *Route) GetGroupWaitOk() (*string, bool) {
 
 // HasGroupWait returns a boolean if a field has been set.
 func (o *Route) HasGroupWait() bool {
-	if o != nil && !IsNil(o.GroupWait) {
+	if o != nil && !IsNil(o.GroupWait) && !IsNil(o.GroupWait) {
 		return true
 	}
 
@@ -215,7 +215,7 @@ func (o *Route) GetMatchOk() (*map[string]string, bool) {
 
 // HasMatch returns a boolean if a field has been set.
 func (o *Route) HasMatch() bool {
-	if o != nil && !IsNil(o.Match) {
+	if o != nil && !IsNil(o.Match) && !IsNil(o.Match) {
 		return true
 	}
 
@@ -247,7 +247,7 @@ func (o *Route) GetMatchReOk() (*map[string]string, bool) {
 
 // HasMatchRe returns a boolean if a field has been set.
 func (o *Route) HasMatchRe() bool {
-	if o != nil && !IsNil(o.MatchRe) {
+	if o != nil && !IsNil(o.MatchRe) && !IsNil(o.MatchRe) {
 		return true
 	}
 
@@ -261,7 +261,7 @@ func (o *Route) SetMatchRe(v *map[string]string) {
 
 // GetReceiver returns the Receiver field value
 func (o *Route) GetReceiver() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Receiver) {
 		var ret *string
 		return ret
 	}
@@ -303,7 +303,7 @@ func (o *Route) GetRepeatIntervalOk() (*string, bool) {
 
 // HasRepeatInterval returns a boolean if a field has been set.
 func (o *Route) HasRepeatInterval() bool {
-	if o != nil && !IsNil(o.RepeatInterval) {
+	if o != nil && !IsNil(o.RepeatInterval) && !IsNil(o.RepeatInterval) {
 		return true
 	}
 
@@ -335,7 +335,7 @@ func (o *Route) GetRoutesOk() (*[]RouteSerializer, bool) {
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *Route) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
+	if o != nil && !IsNil(o.Routes) && !IsNil(o.Routes) {
 		return true
 	}
 

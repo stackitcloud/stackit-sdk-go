@@ -63,7 +63,7 @@ func (o *TLSConfig) GetInsecureSkipVerifyOk() (*bool, bool) {
 
 // HasInsecureSkipVerify returns a boolean if a field has been set.
 func (o *TLSConfig) HasInsecureSkipVerify() bool {
-	if o != nil && !IsNil(o.InsecureSkipVerify) {
+	if o != nil && !IsNil(o.InsecureSkipVerify) && !IsNil(o.InsecureSkipVerify) {
 		return true
 	}
 

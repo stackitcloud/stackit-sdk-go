@@ -68,7 +68,7 @@ func (o *Alert) GetGlobalOk() (*Global, bool) {
 
 // HasGlobal returns a boolean if a field has been set.
 func (o *Alert) HasGlobal() bool {
-	if o != nil && !IsNil(o.Global) {
+	if o != nil && !IsNil(o.Global) && !IsNil(o.Global) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *Alert) GetInhibitRulesOk() (*[]InhibitRules, bool) {
 
 // HasInhibitRules returns a boolean if a field has been set.
 func (o *Alert) HasInhibitRules() bool {
-	if o != nil && !IsNil(o.InhibitRules) {
+	if o != nil && !IsNil(o.InhibitRules) && !IsNil(o.InhibitRules) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *Alert) SetInhibitRules(v *[]InhibitRules) {
 
 // GetReceivers returns the Receivers field value
 func (o *Alert) GetReceivers() *[]Receivers {
-	if o == nil {
+	if o == nil || IsNil(o.Receivers) {
 		var ret *[]Receivers
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *Alert) SetReceivers(v *[]Receivers) {
 
 // GetRoute returns the Route field value
 func (o *Alert) GetRoute() *Route {
-	if o == nil {
+	if o == nil || IsNil(o.Route) {
 		var ret *Route
 		return ret
 	}

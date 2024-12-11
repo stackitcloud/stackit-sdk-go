@@ -66,7 +66,7 @@ func (o *Receivers) GetEmailConfigsOk() (*[]EmailConfig, bool) {
 
 // HasEmailConfigs returns a boolean if a field has been set.
 func (o *Receivers) HasEmailConfigs() bool {
-	if o != nil && !IsNil(o.EmailConfigs) {
+	if o != nil && !IsNil(o.EmailConfigs) && !IsNil(o.EmailConfigs) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *Receivers) SetEmailConfigs(v *[]EmailConfig) {
 
 // GetName returns the Name field value
 func (o *Receivers) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *Receivers) GetOpsgenieConfigsOk() (*[]OpsgenieConfig, bool) {
 
 // HasOpsgenieConfigs returns a boolean if a field has been set.
 func (o *Receivers) HasOpsgenieConfigs() bool {
-	if o != nil && !IsNil(o.OpsgenieConfigs) {
+	if o != nil && !IsNil(o.OpsgenieConfigs) && !IsNil(o.OpsgenieConfigs) {
 		return true
 	}
 
@@ -154,7 +154,7 @@ func (o *Receivers) GetWebHookConfigsOk() (*[]WebHook, bool) {
 
 // HasWebHookConfigs returns a boolean if a field has been set.
 func (o *Receivers) HasWebHookConfigs() bool {
-	if o != nil && !IsNil(o.WebHookConfigs) {
+	if o != nil && !IsNil(o.WebHookConfigs) && !IsNil(o.WebHookConfigs) {
 		return true
 	}
 

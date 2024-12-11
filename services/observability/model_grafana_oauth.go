@@ -75,7 +75,7 @@ func NewGrafanaOauthWithDefaults() *GrafanaOauth {
 
 // GetApiUrl returns the ApiUrl field value
 func (o *GrafanaOauth) GetApiUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ApiUrl) {
 		var ret *string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *GrafanaOauth) SetApiUrl(v *string) {
 
 // GetAuthUrl returns the AuthUrl field value
 func (o *GrafanaOauth) GetAuthUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.AuthUrl) {
 		var ret *string
 		return ret
 	}
@@ -123,7 +123,7 @@ func (o *GrafanaOauth) SetAuthUrl(v *string) {
 
 // GetEnabled returns the Enabled field value
 func (o *GrafanaOauth) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}
@@ -165,7 +165,7 @@ func (o *GrafanaOauth) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *GrafanaOauth) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *GrafanaOauth) SetName(v *string) {
 
 // GetOauthClientId returns the OauthClientId field value
 func (o *GrafanaOauth) GetOauthClientId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OauthClientId) {
 		var ret *string
 		return ret
 	}
@@ -203,7 +203,7 @@ func (o *GrafanaOauth) SetOauthClientId(v *string) {
 
 // GetOauthClientSecret returns the OauthClientSecret field value
 func (o *GrafanaOauth) GetOauthClientSecret() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OauthClientSecret) {
 		var ret *string
 		return ret
 	}
@@ -227,7 +227,7 @@ func (o *GrafanaOauth) SetOauthClientSecret(v *string) {
 
 // GetRoleAttributePath returns the RoleAttributePath field value
 func (o *GrafanaOauth) GetRoleAttributePath() *string {
-	if o == nil {
+	if o == nil || IsNil(o.RoleAttributePath) {
 		var ret *string
 		return ret
 	}
@@ -269,7 +269,7 @@ func (o *GrafanaOauth) GetRoleAttributeStrictOk() (*bool, bool) {
 
 // HasRoleAttributeStrict returns a boolean if a field has been set.
 func (o *GrafanaOauth) HasRoleAttributeStrict() bool {
-	if o != nil && !IsNil(o.RoleAttributeStrict) {
+	if o != nil && !IsNil(o.RoleAttributeStrict) && !IsNil(o.RoleAttributeStrict) {
 		return true
 	}
 
@@ -301,7 +301,7 @@ func (o *GrafanaOauth) GetScopesOk() (*string, bool) {
 
 // HasScopes returns a boolean if a field has been set.
 func (o *GrafanaOauth) HasScopes() bool {
-	if o != nil && !IsNil(o.Scopes) {
+	if o != nil && !IsNil(o.Scopes) && !IsNil(o.Scopes) {
 		return true
 	}
 
@@ -315,7 +315,7 @@ func (o *GrafanaOauth) SetScopes(v *string) {
 
 // GetTokenUrl returns the TokenUrl field value
 func (o *GrafanaOauth) GetTokenUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.TokenUrl) {
 		var ret *string
 		return ret
 	}
@@ -357,7 +357,7 @@ func (o *GrafanaOauth) GetUsePkceOk() (*bool, bool) {
 
 // HasUsePkce returns a boolean if a field has been set.
 func (o *GrafanaOauth) HasUsePkce() bool {
-	if o != nil && !IsNil(o.UsePkce) {
+	if o != nil && !IsNil(o.UsePkce) && !IsNil(o.UsePkce) {
 		return true
 	}
 

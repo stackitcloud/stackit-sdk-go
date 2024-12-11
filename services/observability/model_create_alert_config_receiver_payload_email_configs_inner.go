@@ -70,7 +70,7 @@ func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) GetAuthIdentityOk() 
 
 // HasAuthIdentity returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) HasAuthIdentity() bool {
-	if o != nil && !IsNil(o.AuthIdentity) {
+	if o != nil && !IsNil(o.AuthIdentity) && !IsNil(o.AuthIdentity) {
 		return true
 	}
 
@@ -102,7 +102,7 @@ func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) GetAuthPasswordOk() 
 
 // HasAuthPassword returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) HasAuthPassword() bool {
-	if o != nil && !IsNil(o.AuthPassword) {
+	if o != nil && !IsNil(o.AuthPassword) && !IsNil(o.AuthPassword) {
 		return true
 	}
 
@@ -134,7 +134,7 @@ func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) GetAuthUsernameOk() 
 
 // HasAuthUsername returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) HasAuthUsername() bool {
-	if o != nil && !IsNil(o.AuthUsername) {
+	if o != nil && !IsNil(o.AuthUsername) && !IsNil(o.AuthUsername) {
 		return true
 	}
 
@@ -166,7 +166,7 @@ func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) GetFromOk() (*string
 
 // HasFrom returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) HasFrom() bool {
-	if o != nil && !IsNil(o.From) {
+	if o != nil && !IsNil(o.From) && !IsNil(o.From) {
 		return true
 	}
 
@@ -198,7 +198,7 @@ func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) GetSmarthostOk() (*s
 
 // HasSmarthost returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) HasSmarthost() bool {
-	if o != nil && !IsNil(o.Smarthost) {
+	if o != nil && !IsNil(o.Smarthost) && !IsNil(o.Smarthost) {
 		return true
 	}
 
@@ -230,7 +230,7 @@ func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) GetToOk() (*string, 
 
 // HasTo returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) HasTo() bool {
-	if o != nil && !IsNil(o.To) {
+	if o != nil && !IsNil(o.To) && !IsNil(o.To) {
 		return true
 	}
 

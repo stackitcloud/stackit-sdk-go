@@ -88,7 +88,7 @@ func (o *RouteSerializer) GetContinueOk() (*bool, bool) {
 
 // HasContinue returns a boolean if a field has been set.
 func (o *RouteSerializer) HasContinue() bool {
-	if o != nil && !IsNil(o.Continue) {
+	if o != nil && !IsNil(o.Continue) && !IsNil(o.Continue) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *RouteSerializer) GetGroupByOk() (*[]string, bool) {
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *RouteSerializer) HasGroupBy() bool {
-	if o != nil && !IsNil(o.GroupBy) {
+	if o != nil && !IsNil(o.GroupBy) && !IsNil(o.GroupBy) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *RouteSerializer) GetGroupIntervalOk() (*string, bool) {
 
 // HasGroupInterval returns a boolean if a field has been set.
 func (o *RouteSerializer) HasGroupInterval() bool {
-	if o != nil && !IsNil(o.GroupInterval) {
+	if o != nil && !IsNil(o.GroupInterval) && !IsNil(o.GroupInterval) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *RouteSerializer) GetGroupWaitOk() (*string, bool) {
 
 // HasGroupWait returns a boolean if a field has been set.
 func (o *RouteSerializer) HasGroupWait() bool {
-	if o != nil && !IsNil(o.GroupWait) {
+	if o != nil && !IsNil(o.GroupWait) && !IsNil(o.GroupWait) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *RouteSerializer) GetMatchOk() (*map[string]string, bool) {
 
 // HasMatch returns a boolean if a field has been set.
 func (o *RouteSerializer) HasMatch() bool {
-	if o != nil && !IsNil(o.Match) {
+	if o != nil && !IsNil(o.Match) && !IsNil(o.Match) {
 		return true
 	}
 
@@ -248,7 +248,7 @@ func (o *RouteSerializer) GetMatchReOk() (*map[string]string, bool) {
 
 // HasMatchRe returns a boolean if a field has been set.
 func (o *RouteSerializer) HasMatchRe() bool {
-	if o != nil && !IsNil(o.MatchRe) {
+	if o != nil && !IsNil(o.MatchRe) && !IsNil(o.MatchRe) {
 		return true
 	}
 
@@ -280,7 +280,7 @@ func (o *RouteSerializer) GetMatchersOk() (*[]string, bool) {
 
 // HasMatchers returns a boolean if a field has been set.
 func (o *RouteSerializer) HasMatchers() bool {
-	if o != nil && !IsNil(o.Matchers) {
+	if o != nil && !IsNil(o.Matchers) && !IsNil(o.Matchers) {
 		return true
 	}
 
@@ -294,7 +294,7 @@ func (o *RouteSerializer) SetMatchers(v *[]string) {
 
 // GetReceiver returns the Receiver field value
 func (o *RouteSerializer) GetReceiver() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Receiver) {
 		var ret *string
 		return ret
 	}
@@ -336,7 +336,7 @@ func (o *RouteSerializer) GetRepeatIntervalOk() (*string, bool) {
 
 // HasRepeatInterval returns a boolean if a field has been set.
 func (o *RouteSerializer) HasRepeatInterval() bool {
-	if o != nil && !IsNil(o.RepeatInterval) {
+	if o != nil && !IsNil(o.RepeatInterval) && !IsNil(o.RepeatInterval) {
 		return true
 	}
 
@@ -368,7 +368,7 @@ func (o *RouteSerializer) GetRoutesOk() (*[]map[string]string, bool) {
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *RouteSerializer) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
+	if o != nil && !IsNil(o.Routes) && !IsNil(o.Routes) {
 		return true
 	}
 

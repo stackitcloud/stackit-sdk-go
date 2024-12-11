@@ -100,7 +100,7 @@ func (o *Job) GetBasicAuthOk() (*BasicAuth, bool) {
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *Job) HasBasicAuth() bool {
-	if o != nil && !IsNil(o.BasicAuth) {
+	if o != nil && !IsNil(o.BasicAuth) && !IsNil(o.BasicAuth) {
 		return true
 	}
 
@@ -132,7 +132,7 @@ func (o *Job) GetBearerTokenOk() (*string, bool) {
 
 // HasBearerToken returns a boolean if a field has been set.
 func (o *Job) HasBearerToken() bool {
-	if o != nil && !IsNil(o.BearerToken) {
+	if o != nil && !IsNil(o.BearerToken) && !IsNil(o.BearerToken) {
 		return true
 	}
 
@@ -164,7 +164,7 @@ func (o *Job) GetHonorLabelsOk() (*bool, bool) {
 
 // HasHonorLabels returns a boolean if a field has been set.
 func (o *Job) HasHonorLabels() bool {
-	if o != nil && !IsNil(o.HonorLabels) {
+	if o != nil && !IsNil(o.HonorLabels) && !IsNil(o.HonorLabels) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *Job) GetHonorTimeStampsOk() (*bool, bool) {
 
 // HasHonorTimeStamps returns a boolean if a field has been set.
 func (o *Job) HasHonorTimeStamps() bool {
-	if o != nil && !IsNil(o.HonorTimeStamps) {
+	if o != nil && !IsNil(o.HonorTimeStamps) && !IsNil(o.HonorTimeStamps) {
 		return true
 	}
 
@@ -228,7 +228,7 @@ func (o *Job) GetHttpSdConfigsOk() (*[]HTTPServiceSD, bool) {
 
 // HasHttpSdConfigs returns a boolean if a field has been set.
 func (o *Job) HasHttpSdConfigs() bool {
-	if o != nil && !IsNil(o.HttpSdConfigs) {
+	if o != nil && !IsNil(o.HttpSdConfigs) && !IsNil(o.HttpSdConfigs) {
 		return true
 	}
 
@@ -242,7 +242,7 @@ func (o *Job) SetHttpSdConfigs(v *[]HTTPServiceSD) {
 
 // GetJobName returns the JobName field value
 func (o *Job) GetJobName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.JobName) {
 		var ret *string
 		return ret
 	}
@@ -284,7 +284,7 @@ func (o *Job) GetMetricsPathOk() (*string, bool) {
 
 // HasMetricsPath returns a boolean if a field has been set.
 func (o *Job) HasMetricsPath() bool {
-	if o != nil && !IsNil(o.MetricsPath) {
+	if o != nil && !IsNil(o.MetricsPath) && !IsNil(o.MetricsPath) {
 		return true
 	}
 
@@ -316,7 +316,7 @@ func (o *Job) GetMetricsRelabelConfigsOk() (*[]MetricsRelabelConfig, bool) {
 
 // HasMetricsRelabelConfigs returns a boolean if a field has been set.
 func (o *Job) HasMetricsRelabelConfigs() bool {
-	if o != nil && !IsNil(o.MetricsRelabelConfigs) {
+	if o != nil && !IsNil(o.MetricsRelabelConfigs) && !IsNil(o.MetricsRelabelConfigs) {
 		return true
 	}
 
@@ -348,7 +348,7 @@ func (o *Job) GetOauth2Ok() (*OAuth2, bool) {
 
 // HasOauth2 returns a boolean if a field has been set.
 func (o *Job) HasOauth2() bool {
-	if o != nil && !IsNil(o.Oauth2) {
+	if o != nil && !IsNil(o.Oauth2) && !IsNil(o.Oauth2) {
 		return true
 	}
 
@@ -380,7 +380,7 @@ func (o *Job) GetParamsOk() (*map[string][]string, bool) {
 
 // HasParams returns a boolean if a field has been set.
 func (o *Job) HasParams() bool {
-	if o != nil && !IsNil(o.Params) {
+	if o != nil && !IsNil(o.Params) && !IsNil(o.Params) {
 		return true
 	}
 
@@ -412,7 +412,7 @@ func (o *Job) GetSampleLimitOk() (*int64, bool) {
 
 // HasSampleLimit returns a boolean if a field has been set.
 func (o *Job) HasSampleLimit() bool {
-	if o != nil && !IsNil(o.SampleLimit) {
+	if o != nil && !IsNil(o.SampleLimit) && !IsNil(o.SampleLimit) {
 		return true
 	}
 
@@ -444,7 +444,7 @@ func (o *Job) GetSchemeOk() (*string, bool) {
 
 // HasScheme returns a boolean if a field has been set.
 func (o *Job) HasScheme() bool {
-	if o != nil && !IsNil(o.Scheme) {
+	if o != nil && !IsNil(o.Scheme) && !IsNil(o.Scheme) {
 		return true
 	}
 
@@ -458,7 +458,7 @@ func (o *Job) SetScheme(v *string) {
 
 // GetScrapeInterval returns the ScrapeInterval field value
 func (o *Job) GetScrapeInterval() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeInterval) {
 		var ret *string
 		return ret
 	}
@@ -482,7 +482,7 @@ func (o *Job) SetScrapeInterval(v *string) {
 
 // GetScrapeTimeout returns the ScrapeTimeout field value
 func (o *Job) GetScrapeTimeout() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeTimeout) {
 		var ret *string
 		return ret
 	}
@@ -506,7 +506,7 @@ func (o *Job) SetScrapeTimeout(v *string) {
 
 // GetStaticConfigs returns the StaticConfigs field value
 func (o *Job) GetStaticConfigs() *[]StaticConfigs {
-	if o == nil {
+	if o == nil || IsNil(o.StaticConfigs) {
 		var ret *[]StaticConfigs
 		return ret
 	}
@@ -548,7 +548,7 @@ func (o *Job) GetTlsConfigOk() (*TLSConfig, bool) {
 
 // HasTlsConfig returns a boolean if a field has been set.
 func (o *Job) HasTlsConfig() bool {
-	if o != nil && !IsNil(o.TlsConfig) {
+	if o != nil && !IsNil(o.TlsConfig) && !IsNil(o.TlsConfig) {
 		return true
 	}
 

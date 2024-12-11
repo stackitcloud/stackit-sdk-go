@@ -73,7 +73,7 @@ func (o *WebHook) GetMsTeamsOk() (*bool, bool) {
 
 // HasMsTeams returns a boolean if a field has been set.
 func (o *WebHook) HasMsTeams() bool {
-	if o != nil && !IsNil(o.MsTeams) {
+	if o != nil && !IsNil(o.MsTeams) && !IsNil(o.MsTeams) {
 		return true
 	}
 
@@ -105,7 +105,7 @@ func (o *WebHook) GetSendResolvedOk() (*bool, bool) {
 
 // HasSendResolved returns a boolean if a field has been set.
 func (o *WebHook) HasSendResolved() bool {
-	if o != nil && !IsNil(o.SendResolved) {
+	if o != nil && !IsNil(o.SendResolved) && !IsNil(o.SendResolved) {
 		return true
 	}
 
@@ -119,7 +119,7 @@ func (o *WebHook) SetSendResolved(v *bool) {
 
 // GetUrl returns the Url field value
 func (o *WebHook) GetUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret *string
 		return ret
 	}

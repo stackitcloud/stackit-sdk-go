@@ -64,7 +64,7 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) GetInsecure
 
 // HasInsecureSkipVerify returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) HasInsecureSkipVerify() bool {
-	if o != nil && !IsNil(o.InsecureSkipVerify) {
+	if o != nil && !IsNil(o.InsecureSkipVerify) && !IsNil(o.InsecureSkipVerify) {
 		return true
 	}
 

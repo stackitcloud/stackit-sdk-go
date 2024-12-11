@@ -85,7 +85,7 @@ func (o *MetricsRelabelConfig) GetActionOk() (*string, bool) {
 
 // HasAction returns a boolean if a field has been set.
 func (o *MetricsRelabelConfig) HasAction() bool {
-	if o != nil && !IsNil(o.Action) {
+	if o != nil && !IsNil(o.Action) && !IsNil(o.Action) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *MetricsRelabelConfig) GetModulusOk() (*int64, bool) {
 
 // HasModulus returns a boolean if a field has been set.
 func (o *MetricsRelabelConfig) HasModulus() bool {
-	if o != nil && !IsNil(o.Modulus) {
+	if o != nil && !IsNil(o.Modulus) && !IsNil(o.Modulus) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *MetricsRelabelConfig) GetRegexOk() (*string, bool) {
 
 // HasRegex returns a boolean if a field has been set.
 func (o *MetricsRelabelConfig) HasRegex() bool {
-	if o != nil && !IsNil(o.Regex) {
+	if o != nil && !IsNil(o.Regex) && !IsNil(o.Regex) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *MetricsRelabelConfig) GetReplacementOk() (*string, bool) {
 
 // HasReplacement returns a boolean if a field has been set.
 func (o *MetricsRelabelConfig) HasReplacement() bool {
-	if o != nil && !IsNil(o.Replacement) {
+	if o != nil && !IsNil(o.Replacement) && !IsNil(o.Replacement) {
 		return true
 	}
 
@@ -213,7 +213,7 @@ func (o *MetricsRelabelConfig) GetSeparatorOk() (*string, bool) {
 
 // HasSeparator returns a boolean if a field has been set.
 func (o *MetricsRelabelConfig) HasSeparator() bool {
-	if o != nil && !IsNil(o.Separator) {
+	if o != nil && !IsNil(o.Separator) && !IsNil(o.Separator) {
 		return true
 	}
 
@@ -227,7 +227,7 @@ func (o *MetricsRelabelConfig) SetSeparator(v *string) {
 
 // GetSourceLabels returns the SourceLabels field value
 func (o *MetricsRelabelConfig) GetSourceLabels() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.SourceLabels) {
 		var ret *[]string
 		return ret
 	}
@@ -269,7 +269,7 @@ func (o *MetricsRelabelConfig) GetTargetLabelOk() (*string, bool) {
 
 // HasTargetLabel returns a boolean if a field has been set.
 func (o *MetricsRelabelConfig) HasTargetLabel() bool {
-	if o != nil && !IsNil(o.TargetLabel) {
+	if o != nil && !IsNil(o.TargetLabel) && !IsNil(o.TargetLabel) {
 		return true
 	}
 

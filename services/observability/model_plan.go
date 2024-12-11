@@ -108,7 +108,7 @@ func NewPlanWithDefaults() *Plan {
 
 // GetAlertMatchers returns the AlertMatchers field value
 func (o *Plan) GetAlertMatchers() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.AlertMatchers) {
 		var ret *int64
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *Plan) SetAlertMatchers(v *int64) {
 
 // GetAlertReceivers returns the AlertReceivers field value
 func (o *Plan) GetAlertReceivers() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.AlertReceivers) {
 		var ret *int64
 		return ret
 	}
@@ -156,7 +156,7 @@ func (o *Plan) SetAlertReceivers(v *int64) {
 
 // GetAlertRules returns the AlertRules field value
 func (o *Plan) GetAlertRules() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.AlertRules) {
 		var ret *int64
 		return ret
 	}
@@ -198,7 +198,7 @@ func (o *Plan) GetAmountOk() (*float64, bool) {
 
 // HasAmount returns a boolean if a field has been set.
 func (o *Plan) HasAmount() bool {
-	if o != nil && !IsNil(o.Amount) {
+	if o != nil && !IsNil(o.Amount) && !IsNil(o.Amount) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *Plan) SetAmount(v *float64) {
 
 // GetBucketSize returns the BucketSize field value
 func (o *Plan) GetBucketSize() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.BucketSize) {
 		var ret *int64
 		return ret
 	}
@@ -254,7 +254,7 @@ func (o *Plan) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Plan) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -268,7 +268,7 @@ func (o *Plan) SetDescription(v *string) {
 
 // GetGrafanaGlobalDashboards returns the GrafanaGlobalDashboards field value
 func (o *Plan) GetGrafanaGlobalDashboards() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaGlobalDashboards) {
 		var ret *int64
 		return ret
 	}
@@ -292,7 +292,7 @@ func (o *Plan) SetGrafanaGlobalDashboards(v *int64) {
 
 // GetGrafanaGlobalOrgs returns the GrafanaGlobalOrgs field value
 func (o *Plan) GetGrafanaGlobalOrgs() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaGlobalOrgs) {
 		var ret *int64
 		return ret
 	}
@@ -316,7 +316,7 @@ func (o *Plan) SetGrafanaGlobalOrgs(v *int64) {
 
 // GetGrafanaGlobalSessions returns the GrafanaGlobalSessions field value
 func (o *Plan) GetGrafanaGlobalSessions() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaGlobalSessions) {
 		var ret *int64
 		return ret
 	}
@@ -340,7 +340,7 @@ func (o *Plan) SetGrafanaGlobalSessions(v *int64) {
 
 // GetGrafanaGlobalUsers returns the GrafanaGlobalUsers field value
 func (o *Plan) GetGrafanaGlobalUsers() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaGlobalUsers) {
 		var ret *int64
 		return ret
 	}
@@ -364,7 +364,7 @@ func (o *Plan) SetGrafanaGlobalUsers(v *int64) {
 
 // GetId returns the Id field value
 func (o *Plan) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -406,7 +406,7 @@ func (o *Plan) GetIsFreeOk() (*bool, bool) {
 
 // HasIsFree returns a boolean if a field has been set.
 func (o *Plan) HasIsFree() bool {
-	if o != nil && !IsNil(o.IsFree) {
+	if o != nil && !IsNil(o.IsFree) && !IsNil(o.IsFree) {
 		return true
 	}
 
@@ -438,7 +438,7 @@ func (o *Plan) GetIsPublicOk() (*bool, bool) {
 
 // HasIsPublic returns a boolean if a field has been set.
 func (o *Plan) HasIsPublic() bool {
-	if o != nil && !IsNil(o.IsPublic) {
+	if o != nil && !IsNil(o.IsPublic) && !IsNil(o.IsPublic) {
 		return true
 	}
 
@@ -452,7 +452,7 @@ func (o *Plan) SetIsPublic(v *bool) {
 
 // GetLogsAlert returns the LogsAlert field value
 func (o *Plan) GetLogsAlert() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.LogsAlert) {
 		var ret *int64
 		return ret
 	}
@@ -476,7 +476,7 @@ func (o *Plan) SetLogsAlert(v *int64) {
 
 // GetLogsStorage returns the LogsStorage field value
 func (o *Plan) GetLogsStorage() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.LogsStorage) {
 		var ret *int64
 		return ret
 	}
@@ -518,7 +518,7 @@ func (o *Plan) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Plan) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -532,7 +532,7 @@ func (o *Plan) SetName(v *string) {
 
 // GetPlanId returns the PlanId field value
 func (o *Plan) GetPlanId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanId) {
 		var ret *string
 		return ret
 	}
@@ -556,7 +556,7 @@ func (o *Plan) SetPlanId(v *string) {
 
 // GetSamplesPerScrape returns the SamplesPerScrape field value
 func (o *Plan) GetSamplesPerScrape() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.SamplesPerScrape) {
 		var ret *int64
 		return ret
 	}
@@ -598,7 +598,7 @@ func (o *Plan) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Plan) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && !IsNil(o.Schema) && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -612,7 +612,7 @@ func (o *Plan) SetSchema(v *string) {
 
 // GetTargetNumber returns the TargetNumber field value
 func (o *Plan) GetTargetNumber() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TargetNumber) {
 		var ret *int64
 		return ret
 	}
@@ -636,7 +636,7 @@ func (o *Plan) SetTargetNumber(v *int64) {
 
 // GetTotalMetricSamples returns the TotalMetricSamples field value
 func (o *Plan) GetTotalMetricSamples() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalMetricSamples) {
 		var ret *int64
 		return ret
 	}
@@ -660,7 +660,7 @@ func (o *Plan) SetTotalMetricSamples(v *int64) {
 
 // GetTracesStorage returns the TracesStorage field value
 func (o *Plan) GetTracesStorage() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TracesStorage) {
 		var ret *int64
 		return ret
 	}

@@ -69,7 +69,7 @@ func (o *UpdateAlertConfigsPayloadReceiversInner) GetEmailConfigsOk() (*[]Create
 
 // HasEmailConfigs returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadReceiversInner) HasEmailConfigs() bool {
-	if o != nil && !IsNil(o.EmailConfigs) {
+	if o != nil && !IsNil(o.EmailConfigs) && !IsNil(o.EmailConfigs) {
 		return true
 	}
 
@@ -83,7 +83,7 @@ func (o *UpdateAlertConfigsPayloadReceiversInner) SetEmailConfigs(v *[]CreateAle
 
 // GetName returns the Name field value
 func (o *UpdateAlertConfigsPayloadReceiversInner) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -125,7 +125,7 @@ func (o *UpdateAlertConfigsPayloadReceiversInner) GetOpsgenieConfigsOk() (*[]Cre
 
 // HasOpsgenieConfigs returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadReceiversInner) HasOpsgenieConfigs() bool {
-	if o != nil && !IsNil(o.OpsgenieConfigs) {
+	if o != nil && !IsNil(o.OpsgenieConfigs) && !IsNil(o.OpsgenieConfigs) {
 		return true
 	}
 
@@ -157,7 +157,7 @@ func (o *UpdateAlertConfigsPayloadReceiversInner) GetWebHookConfigsOk() (*[]Crea
 
 // HasWebHookConfigs returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadReceiversInner) HasWebHookConfigs() bool {
-	if o != nil && !IsNil(o.WebHookConfigs) {
+	if o != nil && !IsNil(o.WebHookConfigs) && !IsNil(o.WebHookConfigs) {
 		return true
 	}
 

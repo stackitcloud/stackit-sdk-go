@@ -62,7 +62,7 @@ func (o *CreateScrapeConfigPayloadBasicAuth) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadBasicAuth) HasPassword() bool {
-	if o != nil && !IsNil(o.Password) {
+	if o != nil && !IsNil(o.Password) && !IsNil(o.Password) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *CreateScrapeConfigPayloadBasicAuth) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadBasicAuth) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && !IsNil(o.Username) && !IsNil(o.Username) {
 		return true
 	}
 

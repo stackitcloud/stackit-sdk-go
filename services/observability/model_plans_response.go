@@ -48,7 +48,7 @@ func NewPlansResponseWithDefaults() *PlansResponse {
 
 // GetMessage returns the Message field value
 func (o *PlansResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *PlansResponse) SetMessage(v *string) {
 
 // GetPlans returns the Plans field value
 func (o *PlansResponse) GetPlans() *[]Plan {
-	if o == nil {
+	if o == nil || IsNil(o.Plans) {
 		var ret *[]Plan
 		return ret
 	}

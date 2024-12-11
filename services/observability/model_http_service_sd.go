@@ -71,7 +71,7 @@ func (o *HTTPServiceSD) GetBasicAuthOk() (*BasicAuth, bool) {
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *HTTPServiceSD) HasBasicAuth() bool {
-	if o != nil && !IsNil(o.BasicAuth) {
+	if o != nil && !IsNil(o.BasicAuth) && !IsNil(o.BasicAuth) {
 		return true
 	}
 
@@ -103,7 +103,7 @@ func (o *HTTPServiceSD) GetOauth2Ok() (*OAuth2, bool) {
 
 // HasOauth2 returns a boolean if a field has been set.
 func (o *HTTPServiceSD) HasOauth2() bool {
-	if o != nil && !IsNil(o.Oauth2) {
+	if o != nil && !IsNil(o.Oauth2) && !IsNil(o.Oauth2) {
 		return true
 	}
 
@@ -135,7 +135,7 @@ func (o *HTTPServiceSD) GetRefreshIntervalOk() (*string, bool) {
 
 // HasRefreshInterval returns a boolean if a field has been set.
 func (o *HTTPServiceSD) HasRefreshInterval() bool {
-	if o != nil && !IsNil(o.RefreshInterval) {
+	if o != nil && !IsNil(o.RefreshInterval) && !IsNil(o.RefreshInterval) {
 		return true
 	}
 
@@ -167,7 +167,7 @@ func (o *HTTPServiceSD) GetTlsConfigOk() (*TLSConfig, bool) {
 
 // HasTlsConfig returns a boolean if a field has been set.
 func (o *HTTPServiceSD) HasTlsConfig() bool {
-	if o != nil && !IsNil(o.TlsConfig) {
+	if o != nil && !IsNil(o.TlsConfig) && !IsNil(o.TlsConfig) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *HTTPServiceSD) SetTlsConfig(v *TLSConfig) {
 
 // GetUrl returns the Url field value
 func (o *HTTPServiceSD) GetUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret *string
 		return ret
 	}

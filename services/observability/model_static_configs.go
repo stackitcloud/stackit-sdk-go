@@ -64,7 +64,7 @@ func (o *StaticConfigs) GetLabelsOk() (*map[string]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *StaticConfigs) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *StaticConfigs) SetLabels(v *map[string]string) {
 
 // GetTargets returns the Targets field value
 func (o *StaticConfigs) GetTargets() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Targets) {
 		var ret *[]string
 		return ret
 	}

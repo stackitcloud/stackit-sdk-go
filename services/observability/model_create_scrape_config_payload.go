@@ -111,7 +111,7 @@ func (o *CreateScrapeConfigPayload) GetBasicAuthOk() (*CreateScrapeConfigPayload
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasBasicAuth() bool {
-	if o != nil && !IsNil(o.BasicAuth) {
+	if o != nil && !IsNil(o.BasicAuth) && !IsNil(o.BasicAuth) {
 		return true
 	}
 
@@ -143,7 +143,7 @@ func (o *CreateScrapeConfigPayload) GetBearerTokenOk() (*string, bool) {
 
 // HasBearerToken returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasBearerToken() bool {
-	if o != nil && !IsNil(o.BearerToken) {
+	if o != nil && !IsNil(o.BearerToken) && !IsNil(o.BearerToken) {
 		return true
 	}
 
@@ -175,7 +175,7 @@ func (o *CreateScrapeConfigPayload) GetHonorLabelsOk() (*bool, bool) {
 
 // HasHonorLabels returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasHonorLabels() bool {
-	if o != nil && !IsNil(o.HonorLabels) {
+	if o != nil && !IsNil(o.HonorLabels) && !IsNil(o.HonorLabels) {
 		return true
 	}
 
@@ -207,7 +207,7 @@ func (o *CreateScrapeConfigPayload) GetHonorTimeStampsOk() (*bool, bool) {
 
 // HasHonorTimeStamps returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasHonorTimeStamps() bool {
-	if o != nil && !IsNil(o.HonorTimeStamps) {
+	if o != nil && !IsNil(o.HonorTimeStamps) && !IsNil(o.HonorTimeStamps) {
 		return true
 	}
 
@@ -239,7 +239,7 @@ func (o *CreateScrapeConfigPayload) GetHttpSdConfigsOk() (*[]CreateScrapeConfigP
 
 // HasHttpSdConfigs returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasHttpSdConfigs() bool {
-	if o != nil && !IsNil(o.HttpSdConfigs) {
+	if o != nil && !IsNil(o.HttpSdConfigs) && !IsNil(o.HttpSdConfigs) {
 		return true
 	}
 
@@ -253,7 +253,7 @@ func (o *CreateScrapeConfigPayload) SetHttpSdConfigs(v *[]CreateScrapeConfigPayl
 
 // GetJobName returns the JobName field value
 func (o *CreateScrapeConfigPayload) GetJobName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.JobName) {
 		var ret *string
 		return ret
 	}
@@ -295,7 +295,7 @@ func (o *CreateScrapeConfigPayload) GetMetricsPathOk() (*string, bool) {
 
 // HasMetricsPath returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasMetricsPath() bool {
-	if o != nil && !IsNil(o.MetricsPath) {
+	if o != nil && !IsNil(o.MetricsPath) && !IsNil(o.MetricsPath) {
 		return true
 	}
 
@@ -327,7 +327,7 @@ func (o *CreateScrapeConfigPayload) GetMetricsRelabelConfigsOk() (*[]CreateScrap
 
 // HasMetricsRelabelConfigs returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasMetricsRelabelConfigs() bool {
-	if o != nil && !IsNil(o.MetricsRelabelConfigs) {
+	if o != nil && !IsNil(o.MetricsRelabelConfigs) && !IsNil(o.MetricsRelabelConfigs) {
 		return true
 	}
 
@@ -359,7 +359,7 @@ func (o *CreateScrapeConfigPayload) GetOauth2Ok() (*CreateScrapeConfigPayloadHtt
 
 // HasOauth2 returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasOauth2() bool {
-	if o != nil && !IsNil(o.Oauth2) {
+	if o != nil && !IsNil(o.Oauth2) && !IsNil(o.Oauth2) {
 		return true
 	}
 
@@ -391,7 +391,7 @@ func (o *CreateScrapeConfigPayload) GetParamsOk() (*map[string]interface{}, bool
 
 // HasParams returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasParams() bool {
-	if o != nil && !IsNil(o.Params) {
+	if o != nil && !IsNil(o.Params) && !IsNil(o.Params) {
 		return true
 	}
 
@@ -423,7 +423,7 @@ func (o *CreateScrapeConfigPayload) GetSampleLimitOk() (*float64, bool) {
 
 // HasSampleLimit returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasSampleLimit() bool {
-	if o != nil && !IsNil(o.SampleLimit) {
+	if o != nil && !IsNil(o.SampleLimit) && !IsNil(o.SampleLimit) {
 		return true
 	}
 
@@ -437,7 +437,7 @@ func (o *CreateScrapeConfigPayload) SetSampleLimit(v *float64) {
 
 // GetScheme returns the Scheme field value
 func (o *CreateScrapeConfigPayload) GetScheme() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Scheme) {
 		var ret *string
 		return ret
 	}
@@ -461,7 +461,7 @@ func (o *CreateScrapeConfigPayload) SetScheme(v *string) {
 
 // GetScrapeInterval returns the ScrapeInterval field value
 func (o *CreateScrapeConfigPayload) GetScrapeInterval() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeInterval) {
 		var ret *string
 		return ret
 	}
@@ -485,7 +485,7 @@ func (o *CreateScrapeConfigPayload) SetScrapeInterval(v *string) {
 
 // GetScrapeTimeout returns the ScrapeTimeout field value
 func (o *CreateScrapeConfigPayload) GetScrapeTimeout() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeTimeout) {
 		var ret *string
 		return ret
 	}
@@ -509,7 +509,7 @@ func (o *CreateScrapeConfigPayload) SetScrapeTimeout(v *string) {
 
 // GetStaticConfigs returns the StaticConfigs field value
 func (o *CreateScrapeConfigPayload) GetStaticConfigs() *[]CreateScrapeConfigPayloadStaticConfigsInner {
-	if o == nil {
+	if o == nil || IsNil(o.StaticConfigs) {
 		var ret *[]CreateScrapeConfigPayloadStaticConfigsInner
 		return ret
 	}
@@ -551,7 +551,7 @@ func (o *CreateScrapeConfigPayload) GetTlsConfigOk() (*CreateScrapeConfigPayload
 
 // HasTlsConfig returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasTlsConfig() bool {
-	if o != nil && !IsNil(o.TlsConfig) {
+	if o != nil && !IsNil(o.TlsConfig) && !IsNil(o.TlsConfig) {
 		return true
 	}
 

@@ -88,7 +88,7 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetActionOk() (*st
 
 // HasAction returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasAction() bool {
-	if o != nil && !IsNil(o.Action) {
+	if o != nil && !IsNil(o.Action) && !IsNil(o.Action) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetModulusOk() (*f
 
 // HasModulus returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasModulus() bool {
-	if o != nil && !IsNil(o.Modulus) {
+	if o != nil && !IsNil(o.Modulus) && !IsNil(o.Modulus) {
 		return true
 	}
 
@@ -152,7 +152,7 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetRegexOk() (*str
 
 // HasRegex returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasRegex() bool {
-	if o != nil && !IsNil(o.Regex) {
+	if o != nil && !IsNil(o.Regex) && !IsNil(o.Regex) {
 		return true
 	}
 
@@ -184,7 +184,7 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetReplacementOk()
 
 // HasReplacement returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasReplacement() bool {
-	if o != nil && !IsNil(o.Replacement) {
+	if o != nil && !IsNil(o.Replacement) && !IsNil(o.Replacement) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetSeparatorOk() (
 
 // HasSeparator returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasSeparator() bool {
-	if o != nil && !IsNil(o.Separator) {
+	if o != nil && !IsNil(o.Separator) && !IsNil(o.Separator) {
 		return true
 	}
 
@@ -248,7 +248,7 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetSourceLabelsOk(
 
 // HasSourceLabels returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasSourceLabels() bool {
-	if o != nil && !IsNil(o.SourceLabels) {
+	if o != nil && !IsNil(o.SourceLabels) && !IsNil(o.SourceLabels) {
 		return true
 	}
 
@@ -280,7 +280,7 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) GetTargetLabelOk()
 
 // HasTargetLabel returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasTargetLabel() bool {
-	if o != nil && !IsNil(o.TargetLabel) {
+	if o != nil && !IsNil(o.TargetLabel) && !IsNil(o.TargetLabel) {
 		return true
 	}
 

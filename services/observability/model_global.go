@@ -70,7 +70,7 @@ func (o *Global) GetOpsgenieApiKeyOk() (*string, bool) {
 
 // HasOpsgenieApiKey returns a boolean if a field has been set.
 func (o *Global) HasOpsgenieApiKey() bool {
-	if o != nil && !IsNil(o.OpsgenieApiKey) {
+	if o != nil && !IsNil(o.OpsgenieApiKey) && !IsNil(o.OpsgenieApiKey) {
 		return true
 	}
 
@@ -102,7 +102,7 @@ func (o *Global) GetOpsgenieApiUrlOk() (*string, bool) {
 
 // HasOpsgenieApiUrl returns a boolean if a field has been set.
 func (o *Global) HasOpsgenieApiUrl() bool {
-	if o != nil && !IsNil(o.OpsgenieApiUrl) {
+	if o != nil && !IsNil(o.OpsgenieApiUrl) && !IsNil(o.OpsgenieApiUrl) {
 		return true
 	}
 
@@ -134,7 +134,7 @@ func (o *Global) GetResolveTimeoutOk() (*string, bool) {
 
 // HasResolveTimeout returns a boolean if a field has been set.
 func (o *Global) HasResolveTimeout() bool {
-	if o != nil && !IsNil(o.ResolveTimeout) {
+	if o != nil && !IsNil(o.ResolveTimeout) && !IsNil(o.ResolveTimeout) {
 		return true
 	}
 
@@ -166,7 +166,7 @@ func (o *Global) GetSmtpAuthIdentityOk() (*string, bool) {
 
 // HasSmtpAuthIdentity returns a boolean if a field has been set.
 func (o *Global) HasSmtpAuthIdentity() bool {
-	if o != nil && !IsNil(o.SmtpAuthIdentity) {
+	if o != nil && !IsNil(o.SmtpAuthIdentity) && !IsNil(o.SmtpAuthIdentity) {
 		return true
 	}
 
@@ -198,7 +198,7 @@ func (o *Global) GetSmtpAuthPasswordOk() (*string, bool) {
 
 // HasSmtpAuthPassword returns a boolean if a field has been set.
 func (o *Global) HasSmtpAuthPassword() bool {
-	if o != nil && !IsNil(o.SmtpAuthPassword) {
+	if o != nil && !IsNil(o.SmtpAuthPassword) && !IsNil(o.SmtpAuthPassword) {
 		return true
 	}
 
@@ -230,7 +230,7 @@ func (o *Global) GetSmtpAuthUsernameOk() (*string, bool) {
 
 // HasSmtpAuthUsername returns a boolean if a field has been set.
 func (o *Global) HasSmtpAuthUsername() bool {
-	if o != nil && !IsNil(o.SmtpAuthUsername) {
+	if o != nil && !IsNil(o.SmtpAuthUsername) && !IsNil(o.SmtpAuthUsername) {
 		return true
 	}
 
@@ -262,7 +262,7 @@ func (o *Global) GetSmtpFromOk() (*string, bool) {
 
 // HasSmtpFrom returns a boolean if a field has been set.
 func (o *Global) HasSmtpFrom() bool {
-	if o != nil && !IsNil(o.SmtpFrom) {
+	if o != nil && !IsNil(o.SmtpFrom) && !IsNil(o.SmtpFrom) {
 		return true
 	}
 
@@ -294,7 +294,7 @@ func (o *Global) GetSmtpSmarthostOk() (*string, bool) {
 
 // HasSmtpSmarthost returns a boolean if a field has been set.
 func (o *Global) HasSmtpSmarthost() bool {
-	if o != nil && !IsNil(o.SmtpSmarthost) {
+	if o != nil && !IsNil(o.SmtpSmarthost) && !IsNil(o.SmtpSmarthost) {
 		return true
 	}
 

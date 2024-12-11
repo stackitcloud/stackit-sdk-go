@@ -66,7 +66,7 @@ func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetMsTeamsOk() (*b
 
 // HasMsTeams returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) HasMsTeams() bool {
-	if o != nil && !IsNil(o.MsTeams) {
+	if o != nil && !IsNil(o.MsTeams) && !IsNil(o.MsTeams) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetUrlOk() (*strin
 
 // HasUrl returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) HasUrl() bool {
-	if o != nil && !IsNil(o.Url) {
+	if o != nil && !IsNil(o.Url) && !IsNil(o.Url) {
 		return true
 	}
 

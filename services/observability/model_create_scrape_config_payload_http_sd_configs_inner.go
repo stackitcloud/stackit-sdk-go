@@ -73,7 +73,7 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetBasicAuthOk() (*CreateS
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) HasBasicAuth() bool {
-	if o != nil && !IsNil(o.BasicAuth) {
+	if o != nil && !IsNil(o.BasicAuth) && !IsNil(o.BasicAuth) {
 		return true
 	}
 
@@ -105,7 +105,7 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetOauth2Ok() (*CreateScra
 
 // HasOauth2 returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) HasOauth2() bool {
-	if o != nil && !IsNil(o.Oauth2) {
+	if o != nil && !IsNil(o.Oauth2) && !IsNil(o.Oauth2) {
 		return true
 	}
 
@@ -137,7 +137,7 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetRefreshIntervalOk() (*s
 
 // HasRefreshInterval returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) HasRefreshInterval() bool {
-	if o != nil && !IsNil(o.RefreshInterval) {
+	if o != nil && !IsNil(o.RefreshInterval) && !IsNil(o.RefreshInterval) {
 		return true
 	}
 
@@ -169,7 +169,7 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetTlsConfigOk() (*CreateS
 
 // HasTlsConfig returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) HasTlsConfig() bool {
-	if o != nil && !IsNil(o.TlsConfig) {
+	if o != nil && !IsNil(o.TlsConfig) && !IsNil(o.TlsConfig) {
 		return true
 	}
 
@@ -183,7 +183,7 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetTlsConfig(v *CreateScra
 
 // GetUrl returns the Url field value
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret *string
 		return ret
 	}

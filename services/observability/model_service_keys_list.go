@@ -67,7 +67,7 @@ func (o *ServiceKeysList) GetCredentialsInfoOk() (*map[string]string, bool) {
 
 // HasCredentialsInfo returns a boolean if a field has been set.
 func (o *ServiceKeysList) HasCredentialsInfo() bool {
-	if o != nil && !IsNil(o.CredentialsInfo) {
+	if o != nil && !IsNil(o.CredentialsInfo) && !IsNil(o.CredentialsInfo) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *ServiceKeysList) SetCredentialsInfo(v *map[string]string) {
 
 // GetId returns the Id field value
 func (o *ServiceKeysList) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *ServiceKeysList) SetId(v *string) {
 
 // GetName returns the Name field value
 func (o *ServiceKeysList) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

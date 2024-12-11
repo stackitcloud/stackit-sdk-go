@@ -66,7 +66,7 @@ func (o *GrafanaConfigs) GetGenericOauthOk() (*GrafanaOauth, bool) {
 
 // HasGenericOauth returns a boolean if a field has been set.
 func (o *GrafanaConfigs) HasGenericOauth() bool {
-	if o != nil && !IsNil(o.GenericOauth) {
+	if o != nil && !IsNil(o.GenericOauth) && !IsNil(o.GenericOauth) {
 		return true
 	}
 
@@ -80,7 +80,7 @@ func (o *GrafanaConfigs) SetGenericOauth(v *GrafanaOauth) {
 
 // GetMessage returns the Message field value
 func (o *GrafanaConfigs) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
@@ -122,7 +122,7 @@ func (o *GrafanaConfigs) GetPublicReadAccessOk() (*bool, bool) {
 
 // HasPublicReadAccess returns a boolean if a field has been set.
 func (o *GrafanaConfigs) HasPublicReadAccess() bool {
-	if o != nil && !IsNil(o.PublicReadAccess) {
+	if o != nil && !IsNil(o.PublicReadAccess) && !IsNil(o.PublicReadAccess) {
 		return true
 	}
 
@@ -154,7 +154,7 @@ func (o *GrafanaConfigs) GetUseStackitSsoOk() (*bool, bool) {
 
 // HasUseStackitSso returns a boolean if a field has been set.
 func (o *GrafanaConfigs) HasUseStackitSso() bool {
-	if o != nil && !IsNil(o.UseStackitSso) {
+	if o != nil && !IsNil(o.UseStackitSso) && !IsNil(o.UseStackitSso) {
 		return true
 	}
 
