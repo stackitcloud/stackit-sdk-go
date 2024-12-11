@@ -60,7 +60,7 @@ func (o *NewCommandResponse) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *NewCommandResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 

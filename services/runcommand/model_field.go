@@ -67,7 +67,7 @@ func (o *Field) GetDefaultOk() (*string, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *Field) HasDefault() bool {
-	if o != nil && !IsNil(o.Default) {
+	if o != nil && !IsNil(o.Default) && !IsNil(o.Default) {
 		return true
 	}
 
@@ -99,7 +99,7 @@ func (o *Field) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Field) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -131,7 +131,7 @@ func (o *Field) GetMaxLenOk() (*int64, bool) {
 
 // HasMaxLen returns a boolean if a field has been set.
 func (o *Field) HasMaxLen() bool {
-	if o != nil && !IsNil(o.MaxLen) {
+	if o != nil && !IsNil(o.MaxLen) && !IsNil(o.MaxLen) {
 		return true
 	}
 
@@ -163,7 +163,7 @@ func (o *Field) GetMinLenOk() (*int64, bool) {
 
 // HasMinLen returns a boolean if a field has been set.
 func (o *Field) HasMinLen() bool {
-	if o != nil && !IsNil(o.MinLen) {
+	if o != nil && !IsNil(o.MinLen) && !IsNil(o.MinLen) {
 		return true
 	}
 
@@ -195,7 +195,7 @@ func (o *Field) GetReadOnlyOk() (*bool, bool) {
 
 // HasReadOnly returns a boolean if a field has been set.
 func (o *Field) HasReadOnly() bool {
-	if o != nil && !IsNil(o.ReadOnly) {
+	if o != nil && !IsNil(o.ReadOnly) && !IsNil(o.ReadOnly) {
 		return true
 	}
 
@@ -227,7 +227,7 @@ func (o *Field) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *Field) HasTitle() bool {
-	if o != nil && !IsNil(o.Title) {
+	if o != nil && !IsNil(o.Title) && !IsNil(o.Title) {
 		return true
 	}
 
@@ -259,7 +259,7 @@ func (o *Field) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Field) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+	if o != nil && !IsNil(o.Type) && !IsNil(o.Type) {
 		return true
 	}
 

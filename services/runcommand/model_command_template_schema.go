@@ -63,7 +63,7 @@ func (o *CommandTemplateSchema) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CommandTemplateSchema) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *CommandTemplateSchema) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *CommandTemplateSchema) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *CommandTemplateSchema) GetOsTypeOk() (*[]string, bool) {
 
 // HasOsType returns a boolean if a field has been set.
 func (o *CommandTemplateSchema) HasOsType() bool {
-	if o != nil && !IsNil(o.OsType) {
+	if o != nil && !IsNil(o.OsType) && !IsNil(o.OsType) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *CommandTemplateSchema) GetParameterSchemaOk() (*ParametersSchema, bool)
 
 // HasParameterSchema returns a boolean if a field has been set.
 func (o *CommandTemplateSchema) HasParameterSchema() bool {
-	if o != nil && !IsNil(o.ParameterSchema) {
+	if o != nil && !IsNil(o.ParameterSchema) && !IsNil(o.ParameterSchema) {
 		return true
 	}
 
@@ -191,7 +191,7 @@ func (o *CommandTemplateSchema) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *CommandTemplateSchema) HasTitle() bool {
-	if o != nil && !IsNil(o.Title) {
+	if o != nil && !IsNil(o.Title) && !IsNil(o.Title) {
 		return true
 	}
 

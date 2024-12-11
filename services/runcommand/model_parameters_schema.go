@@ -59,7 +59,7 @@ func (o *ParametersSchema) GetPropertiesOk() (*Properties, bool) {
 
 // HasProperties returns a boolean if a field has been set.
 func (o *ParametersSchema) HasProperties() bool {
-	if o != nil && !IsNil(o.Properties) {
+	if o != nil && !IsNil(o.Properties) && !IsNil(o.Properties) {
 		return true
 	}
 

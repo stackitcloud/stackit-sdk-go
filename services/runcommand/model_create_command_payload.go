@@ -46,7 +46,7 @@ func NewCreateCommandPayloadWithDefaults() *CreateCommandPayload {
 
 // GetCommandTemplateName returns the CommandTemplateName field value
 func (o *CreateCommandPayload) GetCommandTemplateName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CommandTemplateName) {
 		var ret *string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *CreateCommandPayload) GetParametersOk() (*map[string]string, bool) {
 
 // HasParameters returns a boolean if a field has been set.
 func (o *CreateCommandPayload) HasParameters() bool {
-	if o != nil && !IsNil(o.Parameters) {
+	if o != nil && !IsNil(o.Parameters) && !IsNil(o.Parameters) {
 		return true
 	}
 

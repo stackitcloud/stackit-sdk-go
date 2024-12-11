@@ -65,7 +65,7 @@ func (o *Commands) GetCommandTemplateNameOk() (*string, bool) {
 
 // HasCommandTemplateName returns a boolean if a field has been set.
 func (o *Commands) HasCommandTemplateName() bool {
-	if o != nil && !IsNil(o.CommandTemplateName) {
+	if o != nil && !IsNil(o.CommandTemplateName) && !IsNil(o.CommandTemplateName) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *Commands) GetCommandTemplateTitleOk() (*string, bool) {
 
 // HasCommandTemplateTitle returns a boolean if a field has been set.
 func (o *Commands) HasCommandTemplateTitle() bool {
-	if o != nil && !IsNil(o.CommandTemplateTitle) {
+	if o != nil && !IsNil(o.CommandTemplateTitle) && !IsNil(o.CommandTemplateTitle) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *Commands) GetFinishedAtOk() (*string, bool) {
 
 // HasFinishedAt returns a boolean if a field has been set.
 func (o *Commands) HasFinishedAt() bool {
-	if o != nil && !IsNil(o.FinishedAt) {
+	if o != nil && !IsNil(o.FinishedAt) && !IsNil(o.FinishedAt) {
 		return true
 	}
 
@@ -161,7 +161,7 @@ func (o *Commands) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Commands) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -193,7 +193,7 @@ func (o *Commands) GetStartedAtOk() (*string, bool) {
 
 // HasStartedAt returns a boolean if a field has been set.
 func (o *Commands) HasStartedAt() bool {
-	if o != nil && !IsNil(o.StartedAt) {
+	if o != nil && !IsNil(o.StartedAt) && !IsNil(o.StartedAt) {
 		return true
 	}
 
@@ -225,7 +225,7 @@ func (o *Commands) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Commands) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 

@@ -64,7 +64,7 @@ func (o *Properties) GetConfirmPasswordOk() (*Field, bool) {
 
 // HasConfirmPassword returns a boolean if a field has been set.
 func (o *Properties) HasConfirmPassword() bool {
-	if o != nil && !IsNil(o.ConfirmPassword) {
+	if o != nil && !IsNil(o.ConfirmPassword) && !IsNil(o.ConfirmPassword) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *Properties) GetPasswordOk() (*Field, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *Properties) HasPassword() bool {
-	if o != nil && !IsNil(o.Password) {
+	if o != nil && !IsNil(o.Password) && !IsNil(o.Password) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *Properties) GetScriptOk() (*Field, bool) {
 
 // HasScript returns a boolean if a field has been set.
 func (o *Properties) HasScript() bool {
-	if o != nil && !IsNil(o.Script) {
+	if o != nil && !IsNil(o.Script) && !IsNil(o.Script) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *Properties) GetUsernameOk() (*Field, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *Properties) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && !IsNil(o.Username) && !IsNil(o.Username) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *Properties) GetRequiredOk() (*[]string, bool) {
 
 // HasRequired returns a boolean if a field has been set.
 func (o *Properties) HasRequired() bool {
-	if o != nil && !IsNil(o.Required) {
+	if o != nil && !IsNil(o.Required) && !IsNil(o.Required) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *Properties) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Properties) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+	if o != nil && !IsNil(o.Type) && !IsNil(o.Type) {
 		return true
 	}
 

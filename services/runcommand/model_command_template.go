@@ -61,7 +61,7 @@ func (o *CommandTemplate) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *CommandTemplate) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *CommandTemplate) GetOsTypeOk() (*[]string, bool) {
 
 // HasOsType returns a boolean if a field has been set.
 func (o *CommandTemplate) HasOsType() bool {
-	if o != nil && !IsNil(o.OsType) {
+	if o != nil && !IsNil(o.OsType) && !IsNil(o.OsType) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *CommandTemplate) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *CommandTemplate) HasTitle() bool {
-	if o != nil && !IsNil(o.Title) {
+	if o != nil && !IsNil(o.Title) && !IsNil(o.Title) {
 		return true
 	}
 

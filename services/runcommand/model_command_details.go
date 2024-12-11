@@ -69,7 +69,7 @@ func (o *CommandDetails) GetCommandTemplateNameOk() (*string, bool) {
 
 // HasCommandTemplateName returns a boolean if a field has been set.
 func (o *CommandDetails) HasCommandTemplateName() bool {
-	if o != nil && !IsNil(o.CommandTemplateName) {
+	if o != nil && !IsNil(o.CommandTemplateName) && !IsNil(o.CommandTemplateName) {
 		return true
 	}
 
@@ -101,7 +101,7 @@ func (o *CommandDetails) GetCommandTemplateTitleOk() (*string, bool) {
 
 // HasCommandTemplateTitle returns a boolean if a field has been set.
 func (o *CommandDetails) HasCommandTemplateTitle() bool {
-	if o != nil && !IsNil(o.CommandTemplateTitle) {
+	if o != nil && !IsNil(o.CommandTemplateTitle) && !IsNil(o.CommandTemplateTitle) {
 		return true
 	}
 
@@ -133,7 +133,7 @@ func (o *CommandDetails) GetExitCodeOk() (*int64, bool) {
 
 // HasExitCode returns a boolean if a field has been set.
 func (o *CommandDetails) HasExitCode() bool {
-	if o != nil && !IsNil(o.ExitCode) {
+	if o != nil && !IsNil(o.ExitCode) && !IsNil(o.ExitCode) {
 		return true
 	}
 
@@ -165,7 +165,7 @@ func (o *CommandDetails) GetFinishedAtOk() (*string, bool) {
 
 // HasFinishedAt returns a boolean if a field has been set.
 func (o *CommandDetails) HasFinishedAt() bool {
-	if o != nil && !IsNil(o.FinishedAt) {
+	if o != nil && !IsNil(o.FinishedAt) && !IsNil(o.FinishedAt) {
 		return true
 	}
 
@@ -197,7 +197,7 @@ func (o *CommandDetails) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *CommandDetails) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -229,7 +229,7 @@ func (o *CommandDetails) GetOutputOk() (*string, bool) {
 
 // HasOutput returns a boolean if a field has been set.
 func (o *CommandDetails) HasOutput() bool {
-	if o != nil && !IsNil(o.Output) {
+	if o != nil && !IsNil(o.Output) && !IsNil(o.Output) {
 		return true
 	}
 
@@ -261,7 +261,7 @@ func (o *CommandDetails) GetScriptOk() (*string, bool) {
 
 // HasScript returns a boolean if a field has been set.
 func (o *CommandDetails) HasScript() bool {
-	if o != nil && !IsNil(o.Script) {
+	if o != nil && !IsNil(o.Script) && !IsNil(o.Script) {
 		return true
 	}
 
@@ -293,7 +293,7 @@ func (o *CommandDetails) GetStartedAtOk() (*string, bool) {
 
 // HasStartedAt returns a boolean if a field has been set.
 func (o *CommandDetails) HasStartedAt() bool {
-	if o != nil && !IsNil(o.StartedAt) {
+	if o != nil && !IsNil(o.StartedAt) && !IsNil(o.StartedAt) {
 		return true
 	}
 
@@ -325,7 +325,7 @@ func (o *CommandDetails) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CommandDetails) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
