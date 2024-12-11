@@ -49,7 +49,7 @@ func NewCreateInstancePayloadWithDefaults() *CreateInstancePayload {
 
 // GetInstanceName returns the InstanceName field value
 func (o *CreateInstancePayload) GetInstanceName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceName) {
 		var ret *string
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *CreateInstancePayload) GetParametersOk() (*InstanceParameters, bool) {
 
 // HasParameters returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasParameters() bool {
-	if o != nil && !IsNil(o.Parameters) {
+	if o != nil && !IsNil(o.Parameters) && !IsNil(o.Parameters) {
 		return true
 	}
 
@@ -105,7 +105,7 @@ func (o *CreateInstancePayload) SetParameters(v *InstanceParameters) {
 
 // GetPlanId returns the PlanId field value
 func (o *CreateInstancePayload) GetPlanId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanId) {
 		var ret *string
 		return ret
 	}
