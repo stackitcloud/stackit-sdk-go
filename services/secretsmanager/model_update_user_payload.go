@@ -60,7 +60,7 @@ func (o *UpdateUserPayload) GetWriteOk() (*bool, bool) {
 
 // HasWrite returns a boolean if a field has been set.
 func (o *UpdateUserPayload) HasWrite() bool {
-	if o != nil && !IsNil(o.Write) {
+	if o != nil && !IsNil(o.Write) && !IsNil(o.Write) {
 		return true
 	}
 

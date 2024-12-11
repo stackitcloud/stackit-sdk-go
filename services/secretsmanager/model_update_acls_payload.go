@@ -59,7 +59,7 @@ func (o *UpdateACLsPayload) GetCidrsOk() (*[]UpdateACLPayload, bool) {
 
 // HasCidrs returns a boolean if a field has been set.
 func (o *UpdateACLsPayload) HasCidrs() bool {
-	if o != nil && !IsNil(o.Cidrs) {
+	if o != nil && !IsNil(o.Cidrs) && !IsNil(o.Cidrs) {
 		return true
 	}
 
