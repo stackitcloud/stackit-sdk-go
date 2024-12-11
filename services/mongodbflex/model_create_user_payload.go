@@ -49,7 +49,7 @@ func NewCreateUserPayloadWithDefaults() *CreateUserPayload {
 
 // GetDatabase returns the Database field value
 func (o *CreateUserPayload) GetDatabase() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Database) {
 		var ret *string
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *CreateUserPayload) SetDatabase(v *string) {
 
 // GetRoles returns the Roles field value
 func (o *CreateUserPayload) GetRoles() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret *[]string
 		return ret
 	}
@@ -115,7 +115,7 @@ func (o *CreateUserPayload) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CreateUserPayload) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && !IsNil(o.Username) && !IsNil(o.Username) {
 		return true
 	}
 

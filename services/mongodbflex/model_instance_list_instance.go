@@ -61,7 +61,7 @@ func (o *InstanceListInstance) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *InstanceListInstance) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *InstanceListInstance) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *InstanceListInstance) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *InstanceListInstance) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *InstanceListInstance) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 

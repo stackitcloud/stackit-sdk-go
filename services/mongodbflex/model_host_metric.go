@@ -61,7 +61,7 @@ func (o *HostMetric) GetDatapointsOk() (*[]DataPoint, bool) {
 
 // HasDatapoints returns a boolean if a field has been set.
 func (o *HostMetric) HasDatapoints() bool {
-	if o != nil && !IsNil(o.Datapoints) {
+	if o != nil && !IsNil(o.Datapoints) && !IsNil(o.Datapoints) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *HostMetric) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *HostMetric) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *HostMetric) GetUnitsOk() (*string, bool) {
 
 // HasUnits returns a boolean if a field has been set.
 func (o *HostMetric) HasUnits() bool {
-	if o != nil && !IsNil(o.Units) {
+	if o != nil && !IsNil(o.Units) && !IsNil(o.Units) {
 		return true
 	}
 

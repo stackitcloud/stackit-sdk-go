@@ -59,7 +59,7 @@ func (o *RestoreInstanceResponse) GetItemOk() (*RestoreInstanceStatus, bool) {
 
 // HasItem returns a boolean if a field has been set.
 func (o *RestoreInstanceResponse) HasItem() bool {
-	if o != nil && !IsNil(o.Item) {
+	if o != nil && !IsNil(o.Item) && !IsNil(o.Item) {
 		return true
 	}
 

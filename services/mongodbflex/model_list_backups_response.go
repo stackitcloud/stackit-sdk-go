@@ -60,7 +60,7 @@ func (o *ListBackupsResponse) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListBackupsResponse) HasCount() bool {
-	if o != nil && !IsNil(o.Count) {
+	if o != nil && !IsNil(o.Count) && !IsNil(o.Count) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *ListBackupsResponse) GetItemsOk() (*[]Backup, bool) {
 
 // HasItems returns a boolean if a field has been set.
 func (o *ListBackupsResponse) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
+	if o != nil && !IsNil(o.Items) && !IsNil(o.Items) {
 		return true
 	}
 

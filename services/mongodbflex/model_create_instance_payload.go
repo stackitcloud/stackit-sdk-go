@@ -68,7 +68,7 @@ func NewCreateInstancePayloadWithDefaults() *CreateInstancePayload {
 
 // GetAcl returns the Acl field value
 func (o *CreateInstancePayload) GetAcl() *ACL {
-	if o == nil {
+	if o == nil || IsNil(o.Acl) {
 		var ret *ACL
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *CreateInstancePayload) SetAcl(v *ACL) {
 
 // GetBackupSchedule returns the BackupSchedule field value
 func (o *CreateInstancePayload) GetBackupSchedule() *string {
-	if o == nil {
+	if o == nil || IsNil(o.BackupSchedule) {
 		var ret *string
 		return ret
 	}
@@ -116,7 +116,7 @@ func (o *CreateInstancePayload) SetBackupSchedule(v *string) {
 
 // GetFlavorId returns the FlavorId field value
 func (o *CreateInstancePayload) GetFlavorId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.FlavorId) {
 		var ret *string
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *CreateInstancePayload) GetLabelsOk() (*map[string]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -172,7 +172,7 @@ func (o *CreateInstancePayload) SetLabels(v *map[string]string) {
 
 // GetName returns the Name field value
 func (o *CreateInstancePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *CreateInstancePayload) SetName(v *string) {
 
 // GetOptions returns the Options field value
 func (o *CreateInstancePayload) GetOptions() *map[string]string {
-	if o == nil {
+	if o == nil || IsNil(o.Options) {
 		var ret *map[string]string
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *CreateInstancePayload) SetOptions(v *map[string]string) {
 
 // GetReplicas returns the Replicas field value
 func (o *CreateInstancePayload) GetReplicas() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Replicas) {
 		var ret *int64
 		return ret
 	}
@@ -244,7 +244,7 @@ func (o *CreateInstancePayload) SetReplicas(v *int64) {
 
 // GetStorage returns the Storage field value
 func (o *CreateInstancePayload) GetStorage() *Storage {
-	if o == nil {
+	if o == nil || IsNil(o.Storage) {
 		var ret *Storage
 		return ret
 	}
@@ -268,7 +268,7 @@ func (o *CreateInstancePayload) SetStorage(v *Storage) {
 
 // GetVersion returns the Version field value
 func (o *CreateInstancePayload) GetVersion() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret *string
 		return ret
 	}

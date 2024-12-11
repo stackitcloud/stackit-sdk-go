@@ -59,7 +59,7 @@ func (o *CreateInstanceResponse) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateInstanceResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 

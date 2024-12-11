@@ -64,7 +64,7 @@ func (o *InstanceResponseUser) GetDatabaseOk() (*string, bool) {
 
 // HasDatabase returns a boolean if a field has been set.
 func (o *InstanceResponseUser) HasDatabase() bool {
-	if o != nil && !IsNil(o.Database) {
+	if o != nil && !IsNil(o.Database) && !IsNil(o.Database) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *InstanceResponseUser) GetHostOk() (*string, bool) {
 
 // HasHost returns a boolean if a field has been set.
 func (o *InstanceResponseUser) HasHost() bool {
-	if o != nil && !IsNil(o.Host) {
+	if o != nil && !IsNil(o.Host) && !IsNil(o.Host) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *InstanceResponseUser) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *InstanceResponseUser) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *InstanceResponseUser) GetPortOk() (*int64, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *InstanceResponseUser) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
+	if o != nil && !IsNil(o.Port) && !IsNil(o.Port) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *InstanceResponseUser) GetRolesOk() (*[]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *InstanceResponseUser) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *InstanceResponseUser) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *InstanceResponseUser) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && !IsNil(o.Username) && !IsNil(o.Username) {
 		return true
 	}
 

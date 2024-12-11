@@ -63,7 +63,7 @@ func (o *HandlersInfraFlavor) GetCategoriesOk() (*[]string, bool) {
 
 // HasCategories returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasCategories() bool {
-	if o != nil && !IsNil(o.Categories) {
+	if o != nil && !IsNil(o.Categories) && !IsNil(o.Categories) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *HandlersInfraFlavor) GetCpuOk() (*int64, bool) {
 
 // HasCpu returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasCpu() bool {
-	if o != nil && !IsNil(o.Cpu) {
+	if o != nil && !IsNil(o.Cpu) && !IsNil(o.Cpu) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *HandlersInfraFlavor) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *HandlersInfraFlavor) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -191,7 +191,7 @@ func (o *HandlersInfraFlavor) GetMemoryOk() (*int64, bool) {
 
 // HasMemory returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasMemory() bool {
-	if o != nil && !IsNil(o.Memory) {
+	if o != nil && !IsNil(o.Memory) && !IsNil(o.Memory) {
 		return true
 	}
 

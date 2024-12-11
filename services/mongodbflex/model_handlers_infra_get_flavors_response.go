@@ -59,7 +59,7 @@ func (o *HandlersInfraGetFlavorsResponse) GetFlavorsOk() (*[]HandlersInfraFlavor
 
 // HasFlavors returns a boolean if a field has been set.
 func (o *HandlersInfraGetFlavorsResponse) HasFlavors() bool {
-	if o != nil && !IsNil(o.Flavors) {
+	if o != nil && !IsNil(o.Flavors) && !IsNil(o.Flavors) {
 		return true
 	}
 

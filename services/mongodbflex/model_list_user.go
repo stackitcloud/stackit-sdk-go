@@ -60,7 +60,7 @@ func (o *ListUser) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ListUser) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *ListUser) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *ListUser) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && !IsNil(o.Username) && !IsNil(o.Username) {
 		return true
 	}
 

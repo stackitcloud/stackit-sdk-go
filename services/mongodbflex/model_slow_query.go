@@ -62,7 +62,7 @@ func (o *SlowQuery) GetLineOk() (*string, bool) {
 
 // HasLine returns a boolean if a field has been set.
 func (o *SlowQuery) HasLine() bool {
-	if o != nil && !IsNil(o.Line) {
+	if o != nil && !IsNil(o.Line) && !IsNil(o.Line) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *SlowQuery) GetNamespaceOk() (*string, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *SlowQuery) HasNamespace() bool {
-	if o != nil && !IsNil(o.Namespace) {
+	if o != nil && !IsNil(o.Namespace) && !IsNil(o.Namespace) {
 		return true
 	}
 

@@ -64,7 +64,7 @@ func (o *BackupSchedule) GetBackupScheduleOk() (*string, bool) {
 
 // HasBackupSchedule returns a boolean if a field has been set.
 func (o *BackupSchedule) HasBackupSchedule() bool {
-	if o != nil && !IsNil(o.BackupSchedule) {
+	if o != nil && !IsNil(o.BackupSchedule) && !IsNil(o.BackupSchedule) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *BackupSchedule) GetDailySnapshotRetentionDaysOk() (*int64, bool) {
 
 // HasDailySnapshotRetentionDays returns a boolean if a field has been set.
 func (o *BackupSchedule) HasDailySnapshotRetentionDays() bool {
-	if o != nil && !IsNil(o.DailySnapshotRetentionDays) {
+	if o != nil && !IsNil(o.DailySnapshotRetentionDays) && !IsNil(o.DailySnapshotRetentionDays) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *BackupSchedule) GetMonthlySnapshotRetentionMonthsOk() (*int64, bool) {
 
 // HasMonthlySnapshotRetentionMonths returns a boolean if a field has been set.
 func (o *BackupSchedule) HasMonthlySnapshotRetentionMonths() bool {
-	if o != nil && !IsNil(o.MonthlySnapshotRetentionMonths) {
+	if o != nil && !IsNil(o.MonthlySnapshotRetentionMonths) && !IsNil(o.MonthlySnapshotRetentionMonths) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *BackupSchedule) GetPointInTimeWindowHoursOk() (*int64, bool) {
 
 // HasPointInTimeWindowHours returns a boolean if a field has been set.
 func (o *BackupSchedule) HasPointInTimeWindowHours() bool {
-	if o != nil && !IsNil(o.PointInTimeWindowHours) {
+	if o != nil && !IsNil(o.PointInTimeWindowHours) && !IsNil(o.PointInTimeWindowHours) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *BackupSchedule) GetSnapshotRetentionDaysOk() (*int64, bool) {
 
 // HasSnapshotRetentionDays returns a boolean if a field has been set.
 func (o *BackupSchedule) HasSnapshotRetentionDays() bool {
-	if o != nil && !IsNil(o.SnapshotRetentionDays) {
+	if o != nil && !IsNil(o.SnapshotRetentionDays) && !IsNil(o.SnapshotRetentionDays) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *BackupSchedule) GetWeeklySnapshotRetentionWeeksOk() (*int64, bool) {
 
 // HasWeeklySnapshotRetentionWeeks returns a boolean if a field has been set.
 func (o *BackupSchedule) HasWeeklySnapshotRetentionWeeks() bool {
-	if o != nil && !IsNil(o.WeeklySnapshotRetentionWeeks) {
+	if o != nil && !IsNil(o.WeeklySnapshotRetentionWeeks) && !IsNil(o.WeeklySnapshotRetentionWeeks) {
 		return true
 	}
 

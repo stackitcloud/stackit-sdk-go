@@ -60,7 +60,7 @@ func (o *PartialUpdateUserPayload) GetDatabaseOk() (*string, bool) {
 
 // HasDatabase returns a boolean if a field has been set.
 func (o *PartialUpdateUserPayload) HasDatabase() bool {
-	if o != nil && !IsNil(o.Database) {
+	if o != nil && !IsNil(o.Database) && !IsNil(o.Database) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *PartialUpdateUserPayload) GetRolesOk() (*[]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *PartialUpdateUserPayload) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) && !IsNil(o.Roles) {
 		return true
 	}
 

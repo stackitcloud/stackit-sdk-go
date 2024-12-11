@@ -60,7 +60,7 @@ func (o *HandlersInstancesSlowQueriesResponse) GetSlowQueriesOk() (*[]SlowQuery,
 
 // HasSlowQueries returns a boolean if a field has been set.
 func (o *HandlersInstancesSlowQueriesResponse) HasSlowQueries() bool {
-	if o != nil && !IsNil(o.SlowQueries) {
+	if o != nil && !IsNil(o.SlowQueries) && !IsNil(o.SlowQueries) {
 		return true
 	}
 

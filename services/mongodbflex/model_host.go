@@ -60,7 +60,7 @@ func (o *Host) GetHostMetricsOk() (*[]HostMetric, bool) {
 
 // HasHostMetrics returns a boolean if a field has been set.
 func (o *Host) HasHostMetrics() bool {
-	if o != nil && !IsNil(o.HostMetrics) {
+	if o != nil && !IsNil(o.HostMetrics) && !IsNil(o.HostMetrics) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *Host) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Host) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 

@@ -68,7 +68,7 @@ func (o *PartialUpdateInstancePayload) GetAclOk() (*ACL, bool) {
 
 // HasAcl returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
+	if o != nil && !IsNil(o.Acl) && !IsNil(o.Acl) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *PartialUpdateInstancePayload) GetBackupScheduleOk() (*string, bool) {
 
 // HasBackupSchedule returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasBackupSchedule() bool {
-	if o != nil && !IsNil(o.BackupSchedule) {
+	if o != nil && !IsNil(o.BackupSchedule) && !IsNil(o.BackupSchedule) {
 		return true
 	}
 
@@ -132,7 +132,7 @@ func (o *PartialUpdateInstancePayload) GetFlavorIdOk() (*string, bool) {
 
 // HasFlavorId returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasFlavorId() bool {
-	if o != nil && !IsNil(o.FlavorId) {
+	if o != nil && !IsNil(o.FlavorId) && !IsNil(o.FlavorId) {
 		return true
 	}
 
@@ -164,7 +164,7 @@ func (o *PartialUpdateInstancePayload) GetLabelsOk() (*map[string]string, bool) 
 
 // HasLabels returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *PartialUpdateInstancePayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -228,7 +228,7 @@ func (o *PartialUpdateInstancePayload) GetOptionsOk() (*map[string]string, bool)
 
 // HasOptions returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
+	if o != nil && !IsNil(o.Options) && !IsNil(o.Options) {
 		return true
 	}
 
@@ -260,7 +260,7 @@ func (o *PartialUpdateInstancePayload) GetReplicasOk() (*int64, bool) {
 
 // HasReplicas returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasReplicas() bool {
-	if o != nil && !IsNil(o.Replicas) {
+	if o != nil && !IsNil(o.Replicas) && !IsNil(o.Replicas) {
 		return true
 	}
 
@@ -292,7 +292,7 @@ func (o *PartialUpdateInstancePayload) GetStorageOk() (*Storage, bool) {
 
 // HasStorage returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasStorage() bool {
-	if o != nil && !IsNil(o.Storage) {
+	if o != nil && !IsNil(o.Storage) && !IsNil(o.Storage) {
 		return true
 	}
 
@@ -324,7 +324,7 @@ func (o *PartialUpdateInstancePayload) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
+	if o != nil && !IsNil(o.Version) && !IsNil(o.Version) {
 		return true
 	}
 

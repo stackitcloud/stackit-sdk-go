@@ -63,7 +63,7 @@ func (o *MongodbatlasOperation) GetPredicatesOk() (*[]map[string]interface{}, bo
 
 // HasPredicates returns a boolean if a field has been set.
 func (o *MongodbatlasOperation) HasPredicates() bool {
-	if o != nil && !IsNil(o.Predicates) {
+	if o != nil && !IsNil(o.Predicates) && !IsNil(o.Predicates) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *MongodbatlasOperation) GetRawOk() (*string, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *MongodbatlasOperation) HasRaw() bool {
-	if o != nil && !IsNil(o.Raw) {
+	if o != nil && !IsNil(o.Raw) && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *MongodbatlasOperation) GetStatsOk() (*MongodbatlasOperationStats, bool)
 
 // HasStats returns a boolean if a field has been set.
 func (o *MongodbatlasOperation) HasStats() bool {
-	if o != nil && !IsNil(o.Stats) {
+	if o != nil && !IsNil(o.Stats) && !IsNil(o.Stats) {
 		return true
 	}
 

@@ -66,7 +66,7 @@ func (o *MongodbatlasOperationStats) GetMsOk() (*float64, bool) {
 
 // HasMs returns a boolean if a field has been set.
 func (o *MongodbatlasOperationStats) HasMs() bool {
-	if o != nil && !IsNil(o.Ms) {
+	if o != nil && !IsNil(o.Ms) && !IsNil(o.Ms) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *MongodbatlasOperationStats) GetNReturnedOk() (*int64, bool) {
 
 // HasNReturned returns a boolean if a field has been set.
 func (o *MongodbatlasOperationStats) HasNReturned() bool {
-	if o != nil && !IsNil(o.NReturned) {
+	if o != nil && !IsNil(o.NReturned) && !IsNil(o.NReturned) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *MongodbatlasOperationStats) GetNScannedOk() (*int64, bool) {
 
 // HasNScanned returns a boolean if a field has been set.
 func (o *MongodbatlasOperationStats) HasNScanned() bool {
-	if o != nil && !IsNil(o.NScanned) {
+	if o != nil && !IsNil(o.NScanned) && !IsNil(o.NScanned) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *MongodbatlasOperationStats) GetTsOk() (*int64, bool) {
 
 // HasTs returns a boolean if a field has been set.
 func (o *MongodbatlasOperationStats) HasTs() bool {
-	if o != nil && !IsNil(o.Ts) {
+	if o != nil && !IsNil(o.Ts) && !IsNil(o.Ts) {
 		return true
 	}
 

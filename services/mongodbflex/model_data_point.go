@@ -60,7 +60,7 @@ func (o *DataPoint) GetTimestampOk() (*string, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *DataPoint) HasTimestamp() bool {
-	if o != nil && !IsNil(o.Timestamp) {
+	if o != nil && !IsNil(o.Timestamp) && !IsNil(o.Timestamp) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *DataPoint) GetValueOk() (*float64, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *DataPoint) HasValue() bool {
-	if o != nil && !IsNil(o.Value) {
+	if o != nil && !IsNil(o.Value) && !IsNil(o.Value) {
 		return true
 	}
 

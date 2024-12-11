@@ -59,7 +59,7 @@ func (o *GetInstanceResponse) GetItemOk() (*Instance, bool) {
 
 // HasItem returns a boolean if a field has been set.
 func (o *GetInstanceResponse) HasItem() bool {
-	if o != nil && !IsNil(o.Item) {
+	if o != nil && !IsNil(o.Item) && !IsNil(o.Item) {
 		return true
 	}
 

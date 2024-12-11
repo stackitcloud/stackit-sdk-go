@@ -68,7 +68,7 @@ func (o *SuggestedIndex) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *SuggestedIndex) GetImpactOk() (*[]string, bool) {
 
 // HasImpact returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasImpact() bool {
-	if o != nil && !IsNil(o.Impact) {
+	if o != nil && !IsNil(o.Impact) && !IsNil(o.Impact) {
 		return true
 	}
 
@@ -132,7 +132,7 @@ func (o *SuggestedIndex) GetIndexOk() (*[]map[string]int32, bool) {
 
 // HasIndex returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasIndex() bool {
-	if o != nil && !IsNil(o.Index) {
+	if o != nil && !IsNil(o.Index) && !IsNil(o.Index) {
 		return true
 	}
 
@@ -164,7 +164,7 @@ func (o *SuggestedIndex) GetNamespaceOk() (*string, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasNamespace() bool {
-	if o != nil && !IsNil(o.Namespace) {
+	if o != nil && !IsNil(o.Namespace) && !IsNil(o.Namespace) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *SuggestedIndex) GetWeightOk() (*float64, bool) {
 
 // HasWeight returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasWeight() bool {
-	if o != nil && !IsNil(o.Weight) {
+	if o != nil && !IsNil(o.Weight) && !IsNil(o.Weight) {
 		return true
 	}
 

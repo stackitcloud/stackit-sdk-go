@@ -60,7 +60,7 @@ func (o *ListStoragesResponse) GetStorageClassesOk() (*[]string, bool) {
 
 // HasStorageClasses returns a boolean if a field has been set.
 func (o *ListStoragesResponse) HasStorageClasses() bool {
-	if o != nil && !IsNil(o.StorageClasses) {
+	if o != nil && !IsNil(o.StorageClasses) && !IsNil(o.StorageClasses) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *ListStoragesResponse) GetStorageRangeOk() (*StorageRange, bool) {
 
 // HasStorageRange returns a boolean if a field has been set.
 func (o *ListStoragesResponse) HasStorageRange() bool {
-	if o != nil && !IsNil(o.StorageRange) {
+	if o != nil && !IsNil(o.StorageRange) && !IsNil(o.StorageRange) {
 		return true
 	}
 

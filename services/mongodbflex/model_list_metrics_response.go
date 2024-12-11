@@ -59,7 +59,7 @@ func (o *ListMetricsResponse) GetHostsOk() (*[]Host, bool) {
 
 // HasHosts returns a boolean if a field has been set.
 func (o *ListMetricsResponse) HasHosts() bool {
-	if o != nil && !IsNil(o.Hosts) {
+	if o != nil && !IsNil(o.Hosts) && !IsNil(o.Hosts) {
 		return true
 	}
 

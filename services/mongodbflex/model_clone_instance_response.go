@@ -59,7 +59,7 @@ func (o *CloneInstanceResponse) GetInstanceIdOk() (*string, bool) {
 
 // HasInstanceId returns a boolean if a field has been set.
 func (o *CloneInstanceResponse) HasInstanceId() bool {
-	if o != nil && !IsNil(o.InstanceId) {
+	if o != nil && !IsNil(o.InstanceId) && !IsNil(o.InstanceId) {
 		return true
 	}
 

@@ -62,7 +62,7 @@ func (o *HandlersInstancesSuggestedIndexesResponse) GetShapesOk() (*[]Shape, boo
 
 // HasShapes returns a boolean if a field has been set.
 func (o *HandlersInstancesSuggestedIndexesResponse) HasShapes() bool {
-	if o != nil && !IsNil(o.Shapes) {
+	if o != nil && !IsNil(o.Shapes) && !IsNil(o.Shapes) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *HandlersInstancesSuggestedIndexesResponse) GetSuggestedIndexesOk() (*[]
 
 // HasSuggestedIndexes returns a boolean if a field has been set.
 func (o *HandlersInstancesSuggestedIndexesResponse) HasSuggestedIndexes() bool {
-	if o != nil && !IsNil(o.SuggestedIndexes) {
+	if o != nil && !IsNil(o.SuggestedIndexes) && !IsNil(o.SuggestedIndexes) {
 		return true
 	}
 

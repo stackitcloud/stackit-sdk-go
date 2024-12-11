@@ -46,7 +46,7 @@ func NewCloneInstancePayloadWithDefaults() *CloneInstancePayload {
 
 // GetInstanceId returns the InstanceId field value
 func (o *CloneInstancePayload) GetInstanceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceId) {
 		var ret *string
 		return ret
 	}
@@ -88,7 +88,7 @@ func (o *CloneInstancePayload) GetTimestampOk() (*string, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *CloneInstancePayload) HasTimestamp() bool {
-	if o != nil && !IsNil(o.Timestamp) {
+	if o != nil && !IsNil(o.Timestamp) && !IsNil(o.Timestamp) {
 		return true
 	}
 

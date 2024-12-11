@@ -63,7 +63,7 @@ func (o *RestoreInstanceStatus) GetBackupIDOk() (*string, bool) {
 
 // HasBackupID returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasBackupID() bool {
-	if o != nil && !IsNil(o.BackupID) {
+	if o != nil && !IsNil(o.BackupID) && !IsNil(o.BackupID) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *RestoreInstanceStatus) GetDateOk() (*string, bool) {
 
 // HasDate returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasDate() bool {
-	if o != nil && !IsNil(o.Date) {
+	if o != nil && !IsNil(o.Date) && !IsNil(o.Date) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *RestoreInstanceStatus) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *RestoreInstanceStatus) GetInstanceIdOk() (*string, bool) {
 
 // HasInstanceId returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasInstanceId() bool {
-	if o != nil && !IsNil(o.InstanceId) {
+	if o != nil && !IsNil(o.InstanceId) && !IsNil(o.InstanceId) {
 		return true
 	}
 
@@ -191,7 +191,7 @@ func (o *RestoreInstanceStatus) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 

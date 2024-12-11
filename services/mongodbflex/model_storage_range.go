@@ -60,7 +60,7 @@ func (o *StorageRange) GetMaxOk() (*int64, bool) {
 
 // HasMax returns a boolean if a field has been set.
 func (o *StorageRange) HasMax() bool {
-	if o != nil && !IsNil(o.Max) {
+	if o != nil && !IsNil(o.Max) && !IsNil(o.Max) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *StorageRange) GetMinOk() (*int64, bool) {
 
 // HasMin returns a boolean if a field has been set.
 func (o *StorageRange) HasMin() bool {
-	if o != nil && !IsNil(o.Min) {
+	if o != nil && !IsNil(o.Min) && !IsNil(o.Min) {
 		return true
 	}
 

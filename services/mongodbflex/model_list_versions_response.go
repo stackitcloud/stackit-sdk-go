@@ -59,7 +59,7 @@ func (o *ListVersionsResponse) GetVersionsOk() (*[]string, bool) {
 
 // HasVersions returns a boolean if a field has been set.
 func (o *ListVersionsResponse) HasVersions() bool {
-	if o != nil && !IsNil(o.Versions) {
+	if o != nil && !IsNil(o.Versions) && !IsNil(o.Versions) {
 		return true
 	}
 

@@ -70,7 +70,7 @@ func (o *Shape) GetAvgMsOk() (*float64, bool) {
 
 // HasAvgMs returns a boolean if a field has been set.
 func (o *Shape) HasAvgMs() bool {
-	if o != nil && !IsNil(o.AvgMs) {
+	if o != nil && !IsNil(o.AvgMs) && !IsNil(o.AvgMs) {
 		return true
 	}
 
@@ -102,7 +102,7 @@ func (o *Shape) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *Shape) HasCount() bool {
-	if o != nil && !IsNil(o.Count) {
+	if o != nil && !IsNil(o.Count) && !IsNil(o.Count) {
 		return true
 	}
 
@@ -134,7 +134,7 @@ func (o *Shape) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Shape) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -166,7 +166,7 @@ func (o *Shape) GetInefficiencyScoreOk() (*int64, bool) {
 
 // HasInefficiencyScore returns a boolean if a field has been set.
 func (o *Shape) HasInefficiencyScore() bool {
-	if o != nil && !IsNil(o.InefficiencyScore) {
+	if o != nil && !IsNil(o.InefficiencyScore) && !IsNil(o.InefficiencyScore) {
 		return true
 	}
 
@@ -198,7 +198,7 @@ func (o *Shape) GetNamespaceOk() (*string, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *Shape) HasNamespace() bool {
-	if o != nil && !IsNil(o.Namespace) {
+	if o != nil && !IsNil(o.Namespace) && !IsNil(o.Namespace) {
 		return true
 	}
 
@@ -230,7 +230,7 @@ func (o *Shape) GetOperationsOk() (*[]MongodbatlasOperation, bool) {
 
 // HasOperations returns a boolean if a field has been set.
 func (o *Shape) HasOperations() bool {
-	if o != nil && !IsNil(o.Operations) {
+	if o != nil && !IsNil(o.Operations) && !IsNil(o.Operations) {
 		return true
 	}
 

@@ -68,7 +68,7 @@ func (o *Instance) GetAclOk() (*ACL, bool) {
 
 // HasAcl returns a boolean if a field has been set.
 func (o *Instance) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
+	if o != nil && !IsNil(o.Acl) && !IsNil(o.Acl) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *Instance) GetBackupScheduleOk() (*string, bool) {
 
 // HasBackupSchedule returns a boolean if a field has been set.
 func (o *Instance) HasBackupSchedule() bool {
-	if o != nil && !IsNil(o.BackupSchedule) {
+	if o != nil && !IsNil(o.BackupSchedule) && !IsNil(o.BackupSchedule) {
 		return true
 	}
 
@@ -132,7 +132,7 @@ func (o *Instance) GetFlavorOk() (*Flavor, bool) {
 
 // HasFlavor returns a boolean if a field has been set.
 func (o *Instance) HasFlavor() bool {
-	if o != nil && !IsNil(o.Flavor) {
+	if o != nil && !IsNil(o.Flavor) && !IsNil(o.Flavor) {
 		return true
 	}
 
@@ -164,7 +164,7 @@ func (o *Instance) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Instance) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *Instance) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Instance) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -228,7 +228,7 @@ func (o *Instance) GetOptionsOk() (*map[string]string, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Instance) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
+	if o != nil && !IsNil(o.Options) && !IsNil(o.Options) {
 		return true
 	}
 
@@ -260,7 +260,7 @@ func (o *Instance) GetReplicasOk() (*int64, bool) {
 
 // HasReplicas returns a boolean if a field has been set.
 func (o *Instance) HasReplicas() bool {
-	if o != nil && !IsNil(o.Replicas) {
+	if o != nil && !IsNil(o.Replicas) && !IsNil(o.Replicas) {
 		return true
 	}
 
@@ -292,7 +292,7 @@ func (o *Instance) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Instance) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
@@ -324,7 +324,7 @@ func (o *Instance) GetStorageOk() (*Storage, bool) {
 
 // HasStorage returns a boolean if a field has been set.
 func (o *Instance) HasStorage() bool {
-	if o != nil && !IsNil(o.Storage) {
+	if o != nil && !IsNil(o.Storage) && !IsNil(o.Storage) {
 		return true
 	}
 
@@ -356,7 +356,7 @@ func (o *Instance) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *Instance) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
+	if o != nil && !IsNil(o.Version) && !IsNil(o.Version) {
 		return true
 	}
 
