@@ -56,7 +56,7 @@ func NewCreateProjectPayloadWithDefaults() *CreateProjectPayload {
 
 // GetContainerParentId returns the ContainerParentId field value
 func (o *CreateProjectPayload) GetContainerParentId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ContainerParentId) {
 		var ret *string
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *CreateProjectPayload) GetLabelsOk() (*map[string]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateProjectPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *CreateProjectPayload) SetLabels(v *map[string]string) {
 
 // GetMembers returns the Members field value
 func (o *CreateProjectPayload) GetMembers() *[]Member {
-	if o == nil {
+	if o == nil || IsNil(o.Members) {
 		var ret *[]Member
 		return ret
 	}
@@ -136,7 +136,7 @@ func (o *CreateProjectPayload) SetMembers(v *[]Member) {
 
 // GetName returns the Name field value
 func (o *CreateProjectPayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

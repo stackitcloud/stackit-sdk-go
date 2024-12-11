@@ -64,7 +64,7 @@ func (o *PartialUpdateProjectPayload) GetContainerParentIdOk() (*string, bool) {
 
 // HasContainerParentId returns a boolean if a field has been set.
 func (o *PartialUpdateProjectPayload) HasContainerParentId() bool {
-	if o != nil && !IsNil(o.ContainerParentId) {
+	if o != nil && !IsNil(o.ContainerParentId) && !IsNil(o.ContainerParentId) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *PartialUpdateProjectPayload) GetLabelsOk() (*map[string]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *PartialUpdateProjectPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *PartialUpdateProjectPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateProjectPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 

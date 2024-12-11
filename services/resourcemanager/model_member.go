@@ -50,7 +50,7 @@ func NewMemberWithDefaults() *Member {
 
 // GetRole returns the Role field value
 func (o *Member) GetRole() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Role) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *Member) SetRole(v *string) {
 
 // GetSubject returns the Subject field value
 func (o *Member) GetSubject() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Subject) {
 		var ret *string
 		return ret
 	}

@@ -68,7 +68,7 @@ func NewListOrganizationsResponseItemsInnerWithDefaults() *ListOrganizationsResp
 
 // GetContainerId returns the ContainerId field value
 func (o *ListOrganizationsResponseItemsInner) GetContainerId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ContainerId) {
 		var ret *string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *ListOrganizationsResponseItemsInner) SetContainerId(v *string) {
 
 // GetCreationTime returns the CreationTime field value
 func (o *ListOrganizationsResponseItemsInner) GetCreationTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreationTime) {
 		var ret *time.Time
 		return ret
 	}
@@ -134,7 +134,7 @@ func (o *ListOrganizationsResponseItemsInner) GetLabelsOk() (*map[string]string,
 
 // HasLabels returns a boolean if a field has been set.
 func (o *ListOrganizationsResponseItemsInner) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -148,7 +148,7 @@ func (o *ListOrganizationsResponseItemsInner) SetLabels(v *map[string]string) {
 
 // GetLifecycleState returns the LifecycleState field value
 func (o *ListOrganizationsResponseItemsInner) GetLifecycleState() *LifecycleState {
-	if o == nil {
+	if o == nil || IsNil(o.LifecycleState) {
 		var ret *LifecycleState
 		return ret
 	}
@@ -172,7 +172,7 @@ func (o *ListOrganizationsResponseItemsInner) SetLifecycleState(v *LifecycleStat
 
 // GetName returns the Name field value
 func (o *ListOrganizationsResponseItemsInner) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *ListOrganizationsResponseItemsInner) SetName(v *string) {
 
 // GetOrganizationId returns the OrganizationId field value
 func (o *ListOrganizationsResponseItemsInner) GetOrganizationId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret *string
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *ListOrganizationsResponseItemsInner) SetOrganizationId(v *string) {
 
 // GetUpdateTime returns the UpdateTime field value
 func (o *ListOrganizationsResponseItemsInner) GetUpdateTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.UpdateTime) {
 		var ret *time.Time
 		return ret
 	}

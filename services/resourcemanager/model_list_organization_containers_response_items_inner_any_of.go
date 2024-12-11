@@ -49,7 +49,7 @@ func NewListOrganizationContainersResponseItemsInnerAnyOfWithDefaults() *ListOrg
 
 // GetItem returns the Item field value
 func (o *ListOrganizationContainersResponseItemsInnerAnyOf) GetItem() *FolderResponse {
-	if o == nil {
+	if o == nil || IsNil(o.Item) {
 		var ret *FolderResponse
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *ListOrganizationContainersResponseItemsInnerAnyOf) SetItem(v *FolderRes
 
 // GetType returns the Type field value
 func (o *ListOrganizationContainersResponseItemsInnerAnyOf) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}
