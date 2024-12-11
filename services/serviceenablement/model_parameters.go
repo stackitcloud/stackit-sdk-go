@@ -59,7 +59,7 @@ func (o *Parameters) GetGeneralOk() (*ParametersGeneral, bool) {
 
 // HasGeneral returns a boolean if a field has been set.
 func (o *Parameters) HasGeneral() bool {
-	if o != nil && !IsNil(o.General) {
+	if o != nil && !IsNil(o.General) && !IsNil(o.General) {
 		return true
 	}
 

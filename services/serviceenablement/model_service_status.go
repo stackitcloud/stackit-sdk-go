@@ -85,7 +85,7 @@ func (o *ServiceStatus) GetDependenciesOk() (*Dependencies, bool) {
 
 // HasDependencies returns a boolean if a field has been set.
 func (o *ServiceStatus) HasDependencies() bool {
-	if o != nil && !IsNil(o.Dependencies) {
+	if o != nil && !IsNil(o.Dependencies) && !IsNil(o.Dependencies) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *ServiceStatus) GetEnablementOk() (*string, bool) {
 
 // HasEnablement returns a boolean if a field has been set.
 func (o *ServiceStatus) HasEnablement() bool {
-	if o != nil && !IsNil(o.Enablement) {
+	if o != nil && !IsNil(o.Enablement) && !IsNil(o.Enablement) {
 		return true
 	}
 
@@ -149,7 +149,7 @@ func (o *ServiceStatus) GetErrorOk() (*ActionError, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *ServiceStatus) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
+	if o != nil && !IsNil(o.Error) && !IsNil(o.Error) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *ServiceStatus) GetLabelsOk() (*map[string]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *ServiceStatus) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -213,7 +213,7 @@ func (o *ServiceStatus) GetLifecycleOk() (*string, bool) {
 
 // HasLifecycle returns a boolean if a field has been set.
 func (o *ServiceStatus) HasLifecycle() bool {
-	if o != nil && !IsNil(o.Lifecycle) {
+	if o != nil && !IsNil(o.Lifecycle) && !IsNil(o.Lifecycle) {
 		return true
 	}
 
@@ -245,7 +245,7 @@ func (o *ServiceStatus) GetParametersOk() (*Parameters, bool) {
 
 // HasParameters returns a boolean if a field has been set.
 func (o *ServiceStatus) HasParameters() bool {
-	if o != nil && !IsNil(o.Parameters) {
+	if o != nil && !IsNil(o.Parameters) && !IsNil(o.Parameters) {
 		return true
 	}
 
@@ -277,7 +277,7 @@ func (o *ServiceStatus) GetScopeOk() (*string, bool) {
 
 // HasScope returns a boolean if a field has been set.
 func (o *ServiceStatus) HasScope() bool {
-	if o != nil && !IsNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -309,7 +309,7 @@ func (o *ServiceStatus) GetServiceIdOk() (*string, bool) {
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *ServiceStatus) HasServiceId() bool {
-	if o != nil && !IsNil(o.ServiceId) {
+	if o != nil && !IsNil(o.ServiceId) && !IsNil(o.ServiceId) {
 		return true
 	}
 
@@ -341,7 +341,7 @@ func (o *ServiceStatus) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *ServiceStatus) HasState() bool {
-	if o != nil && !IsNil(o.State) {
+	if o != nil && !IsNil(o.State) && !IsNil(o.State) {
 		return true
 	}
 

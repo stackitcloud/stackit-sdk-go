@@ -62,7 +62,7 @@ func (o *Dependencies) GetHardOk() (*[]string, bool) {
 
 // HasHard returns a boolean if a field has been set.
 func (o *Dependencies) HasHard() bool {
-	if o != nil && !IsNil(o.Hard) {
+	if o != nil && !IsNil(o.Hard) && !IsNil(o.Hard) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *Dependencies) GetSoftOk() (*[]string, bool) {
 
 // HasSoft returns a boolean if a field has been set.
 func (o *Dependencies) HasSoft() bool {
-	if o != nil && !IsNil(o.Soft) {
+	if o != nil && !IsNil(o.Soft) && !IsNil(o.Soft) {
 		return true
 	}
 

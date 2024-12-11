@@ -64,7 +64,7 @@ func (o *ActionError) GetActionOk() (*string, bool) {
 
 // HasAction returns a boolean if a field has been set.
 func (o *ActionError) HasAction() bool {
-	if o != nil && !IsNil(o.Action) {
+	if o != nil && !IsNil(o.Action) && !IsNil(o.Action) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *ActionError) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *ActionError) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
+	if o != nil && !IsNil(o.Code) && !IsNil(o.Code) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *ActionError) GetReasonOk() (*string, bool) {
 
 // HasReason returns a boolean if a field has been set.
 func (o *ActionError) HasReason() bool {
-	if o != nil && !IsNil(o.Reason) {
+	if o != nil && !IsNil(o.Reason) && !IsNil(o.Reason) {
 		return true
 	}
 

@@ -67,7 +67,7 @@ func (o *CloudService) GetDependenciesOk() (*Dependencies, bool) {
 
 // HasDependencies returns a boolean if a field has been set.
 func (o *CloudService) HasDependencies() bool {
-	if o != nil && !IsNil(o.Dependencies) {
+	if o != nil && !IsNil(o.Dependencies) && !IsNil(o.Dependencies) {
 		return true
 	}
 
@@ -99,7 +99,7 @@ func (o *CloudService) GetLabelsOk() (*map[string]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CloudService) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -131,7 +131,7 @@ func (o *CloudService) GetScopeOk() (*string, bool) {
 
 // HasScope returns a boolean if a field has been set.
 func (o *CloudService) HasScope() bool {
-	if o != nil && !IsNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -163,7 +163,7 @@ func (o *CloudService) GetServiceIdOk() (*string, bool) {
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *CloudService) HasServiceId() bool {
-	if o != nil && !IsNil(o.ServiceId) {
+	if o != nil && !IsNil(o.ServiceId) && !IsNil(o.ServiceId) {
 		return true
 	}
 

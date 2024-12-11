@@ -65,7 +65,7 @@ func (o *ParametersGeneral) GetOrganizationIdOk() (*string, bool) {
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *ParametersGeneral) HasOrganizationId() bool {
-	if o != nil && !IsNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *ParametersGeneral) GetProjectNameOk() (*string, bool) {
 
 // HasProjectName returns a boolean if a field has been set.
 func (o *ParametersGeneral) HasProjectName() bool {
-	if o != nil && !IsNil(o.ProjectName) {
+	if o != nil && !IsNil(o.ProjectName) && !IsNil(o.ProjectName) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *ParametersGeneral) GetProjectScopeOk() (*string, bool) {
 
 // HasProjectScope returns a boolean if a field has been set.
 func (o *ParametersGeneral) HasProjectScope() bool {
-	if o != nil && !IsNil(o.ProjectScope) {
+	if o != nil && !IsNil(o.ProjectScope) && !IsNil(o.ProjectScope) {
 		return true
 	}
 

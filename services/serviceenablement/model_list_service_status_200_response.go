@@ -60,7 +60,7 @@ func (o *ListServiceStatus200Response) GetItemsOk() (*[]ServiceStatus, bool) {
 
 // HasItems returns a boolean if a field has been set.
 func (o *ListServiceStatus200Response) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
+	if o != nil && !IsNil(o.Items) && !IsNil(o.Items) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *ListServiceStatus200Response) GetNextCursorOk() (*string, bool) {
 
 // HasNextCursor returns a boolean if a field has been set.
 func (o *ListServiceStatus200Response) HasNextCursor() bool {
-	if o != nil && !IsNil(o.NextCursor) {
+	if o != nil && !IsNil(o.NextCursor) && !IsNil(o.NextCursor) {
 		return true
 	}
 
