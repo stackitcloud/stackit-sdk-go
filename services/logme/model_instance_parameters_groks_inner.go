@@ -59,7 +59,7 @@ func (o *InstanceParametersGroksInner) GetPatternOk() (*string, bool) {
 
 // HasPattern returns a boolean if a field has been set.
 func (o *InstanceParametersGroksInner) HasPattern() bool {
-	if o != nil && !IsNil(o.Pattern) {
+	if o != nil && !IsNil(o.Pattern) && !IsNil(o.Pattern) {
 		return true
 	}
 

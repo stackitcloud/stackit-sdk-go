@@ -130,7 +130,7 @@ func (o *InstanceParameters) GetEnableMonitoringOk() (*bool, bool) {
 
 // HasEnableMonitoring returns a boolean if a field has been set.
 func (o *InstanceParameters) HasEnableMonitoring() bool {
-	if o != nil && !IsNil(o.EnableMonitoring) {
+	if o != nil && !IsNil(o.EnableMonitoring) && !IsNil(o.EnableMonitoring) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *InstanceParameters) GetFluentdTcpOk() (*int64, bool) {
 
 // HasFluentdTcp returns a boolean if a field has been set.
 func (o *InstanceParameters) HasFluentdTcp() bool {
-	if o != nil && !IsNil(o.FluentdTcp) {
+	if o != nil && !IsNil(o.FluentdTcp) && !IsNil(o.FluentdTcp) {
 		return true
 	}
 
@@ -194,7 +194,7 @@ func (o *InstanceParameters) GetFluentdTlsOk() (*int64, bool) {
 
 // HasFluentdTls returns a boolean if a field has been set.
 func (o *InstanceParameters) HasFluentdTls() bool {
-	if o != nil && !IsNil(o.FluentdTls) {
+	if o != nil && !IsNil(o.FluentdTls) && !IsNil(o.FluentdTls) {
 		return true
 	}
 
@@ -226,7 +226,7 @@ func (o *InstanceParameters) GetFluentdTlsCiphersOk() (*string, bool) {
 
 // HasFluentdTlsCiphers returns a boolean if a field has been set.
 func (o *InstanceParameters) HasFluentdTlsCiphers() bool {
-	if o != nil && !IsNil(o.FluentdTlsCiphers) {
+	if o != nil && !IsNil(o.FluentdTlsCiphers) && !IsNil(o.FluentdTlsCiphers) {
 		return true
 	}
 
@@ -258,7 +258,7 @@ func (o *InstanceParameters) GetFluentdTlsMaxVersionOk() (*string, bool) {
 
 // HasFluentdTlsMaxVersion returns a boolean if a field has been set.
 func (o *InstanceParameters) HasFluentdTlsMaxVersion() bool {
-	if o != nil && !IsNil(o.FluentdTlsMaxVersion) {
+	if o != nil && !IsNil(o.FluentdTlsMaxVersion) && !IsNil(o.FluentdTlsMaxVersion) {
 		return true
 	}
 
@@ -290,7 +290,7 @@ func (o *InstanceParameters) GetFluentdTlsMinVersionOk() (*string, bool) {
 
 // HasFluentdTlsMinVersion returns a boolean if a field has been set.
 func (o *InstanceParameters) HasFluentdTlsMinVersion() bool {
-	if o != nil && !IsNil(o.FluentdTlsMinVersion) {
+	if o != nil && !IsNil(o.FluentdTlsMinVersion) && !IsNil(o.FluentdTlsMinVersion) {
 		return true
 	}
 
@@ -322,7 +322,7 @@ func (o *InstanceParameters) GetFluentdTlsVersionOk() (*string, bool) {
 
 // HasFluentdTlsVersion returns a boolean if a field has been set.
 func (o *InstanceParameters) HasFluentdTlsVersion() bool {
-	if o != nil && !IsNil(o.FluentdTlsVersion) {
+	if o != nil && !IsNil(o.FluentdTlsVersion) && !IsNil(o.FluentdTlsVersion) {
 		return true
 	}
 
@@ -354,7 +354,7 @@ func (o *InstanceParameters) GetFluentdUdpOk() (*int64, bool) {
 
 // HasFluentdUdp returns a boolean if a field has been set.
 func (o *InstanceParameters) HasFluentdUdp() bool {
-	if o != nil && !IsNil(o.FluentdUdp) {
+	if o != nil && !IsNil(o.FluentdUdp) && !IsNil(o.FluentdUdp) {
 		return true
 	}
 
@@ -386,7 +386,7 @@ func (o *InstanceParameters) GetGraphiteOk() (*string, bool) {
 
 // HasGraphite returns a boolean if a field has been set.
 func (o *InstanceParameters) HasGraphite() bool {
-	if o != nil && !IsNil(o.Graphite) {
+	if o != nil && !IsNil(o.Graphite) && !IsNil(o.Graphite) {
 		return true
 	}
 
@@ -418,7 +418,7 @@ func (o *InstanceParameters) GetGroksOk() (*[]InstanceParametersGroksInner, bool
 
 // HasGroks returns a boolean if a field has been set.
 func (o *InstanceParameters) HasGroks() bool {
-	if o != nil && !IsNil(o.Groks) {
+	if o != nil && !IsNil(o.Groks) && !IsNil(o.Groks) {
 		return true
 	}
 
@@ -450,7 +450,7 @@ func (o *InstanceParameters) GetIsmDeletionAfterOk() (*string, bool) {
 
 // HasIsmDeletionAfter returns a boolean if a field has been set.
 func (o *InstanceParameters) HasIsmDeletionAfter() bool {
-	if o != nil && !IsNil(o.IsmDeletionAfter) {
+	if o != nil && !IsNil(o.IsmDeletionAfter) && !IsNil(o.IsmDeletionAfter) {
 		return true
 	}
 
@@ -482,7 +482,7 @@ func (o *InstanceParameters) GetIsmJitterOk() (*float64, bool) {
 
 // HasIsmJitter returns a boolean if a field has been set.
 func (o *InstanceParameters) HasIsmJitter() bool {
-	if o != nil && !IsNil(o.IsmJitter) {
+	if o != nil && !IsNil(o.IsmJitter) && !IsNil(o.IsmJitter) {
 		return true
 	}
 
@@ -514,7 +514,7 @@ func (o *InstanceParameters) GetIsmJobIntervalOk() (*int64, bool) {
 
 // HasIsmJobInterval returns a boolean if a field has been set.
 func (o *InstanceParameters) HasIsmJobInterval() bool {
-	if o != nil && !IsNil(o.IsmJobInterval) {
+	if o != nil && !IsNil(o.IsmJobInterval) && !IsNil(o.IsmJobInterval) {
 		return true
 	}
 
@@ -546,7 +546,7 @@ func (o *InstanceParameters) GetJavaHeapspaceOk() (*int64, bool) {
 
 // HasJavaHeapspace returns a boolean if a field has been set.
 func (o *InstanceParameters) HasJavaHeapspace() bool {
-	if o != nil && !IsNil(o.JavaHeapspace) {
+	if o != nil && !IsNil(o.JavaHeapspace) && !IsNil(o.JavaHeapspace) {
 		return true
 	}
 
@@ -578,7 +578,7 @@ func (o *InstanceParameters) GetJavaMaxmetaspaceOk() (*int64, bool) {
 
 // HasJavaMaxmetaspace returns a boolean if a field has been set.
 func (o *InstanceParameters) HasJavaMaxmetaspace() bool {
-	if o != nil && !IsNil(o.JavaMaxmetaspace) {
+	if o != nil && !IsNil(o.JavaMaxmetaspace) && !IsNil(o.JavaMaxmetaspace) {
 		return true
 	}
 
@@ -610,7 +610,7 @@ func (o *InstanceParameters) GetMaxDiskThresholdOk() (*int64, bool) {
 
 // HasMaxDiskThreshold returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxDiskThreshold() bool {
-	if o != nil && !IsNil(o.MaxDiskThreshold) {
+	if o != nil && !IsNil(o.MaxDiskThreshold) && !IsNil(o.MaxDiskThreshold) {
 		return true
 	}
 
@@ -642,7 +642,7 @@ func (o *InstanceParameters) GetMetricsFrequencyOk() (*int64, bool) {
 
 // HasMetricsFrequency returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsFrequency() bool {
-	if o != nil && !IsNil(o.MetricsFrequency) {
+	if o != nil && !IsNil(o.MetricsFrequency) && !IsNil(o.MetricsFrequency) {
 		return true
 	}
 
@@ -674,7 +674,7 @@ func (o *InstanceParameters) GetMetricsPrefixOk() (*string, bool) {
 
 // HasMetricsPrefix returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsPrefix() bool {
-	if o != nil && !IsNil(o.MetricsPrefix) {
+	if o != nil && !IsNil(o.MetricsPrefix) && !IsNil(o.MetricsPrefix) {
 		return true
 	}
 
@@ -706,7 +706,7 @@ func (o *InstanceParameters) GetMonitoringInstanceIdOk() (*string, bool) {
 
 // HasMonitoringInstanceId returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMonitoringInstanceId() bool {
-	if o != nil && !IsNil(o.MonitoringInstanceId) {
+	if o != nil && !IsNil(o.MonitoringInstanceId) && !IsNil(o.MonitoringInstanceId) {
 		return true
 	}
 
@@ -738,7 +738,7 @@ func (o *InstanceParameters) GetOpensearchTlsCiphersOk() (*[]string, bool) {
 
 // HasOpensearchTlsCiphers returns a boolean if a field has been set.
 func (o *InstanceParameters) HasOpensearchTlsCiphers() bool {
-	if o != nil && !IsNil(o.OpensearchTlsCiphers) {
+	if o != nil && !IsNil(o.OpensearchTlsCiphers) && !IsNil(o.OpensearchTlsCiphers) {
 		return true
 	}
 
@@ -770,7 +770,7 @@ func (o *InstanceParameters) GetOpensearchTlsProtocolsOk() (*[]string, bool) {
 
 // HasOpensearchTlsProtocols returns a boolean if a field has been set.
 func (o *InstanceParameters) HasOpensearchTlsProtocols() bool {
-	if o != nil && !IsNil(o.OpensearchTlsProtocols) {
+	if o != nil && !IsNil(o.OpensearchTlsProtocols) && !IsNil(o.OpensearchTlsProtocols) {
 		return true
 	}
 
@@ -802,7 +802,7 @@ func (o *InstanceParameters) GetSgwAclOk() (*string, bool) {
 
 // HasSgwAcl returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSgwAcl() bool {
-	if o != nil && !IsNil(o.SgwAcl) {
+	if o != nil && !IsNil(o.SgwAcl) && !IsNil(o.SgwAcl) {
 		return true
 	}
 
@@ -834,7 +834,7 @@ func (o *InstanceParameters) GetSyslogOk() (*[]string, bool) {
 
 // HasSyslog returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSyslog() bool {
-	if o != nil && !IsNil(o.Syslog) {
+	if o != nil && !IsNil(o.Syslog) && !IsNil(o.Syslog) {
 		return true
 	}
 
@@ -866,7 +866,7 @@ func (o *InstanceParameters) GetSyslogUseUdpOk() (*string, bool) {
 
 // HasSyslogUseUdp returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSyslogUseUdp() bool {
-	if o != nil && !IsNil(o.SyslogUseUdp) {
+	if o != nil && !IsNil(o.SyslogUseUdp) && !IsNil(o.SyslogUseUdp) {
 		return true
 	}
 
