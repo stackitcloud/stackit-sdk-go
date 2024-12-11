@@ -80,7 +80,7 @@ func (o *CreateInstancePayload) GetAclOk() (*CreateInstancePayloadAcl, bool) {
 
 // HasAcl returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
+	if o != nil && !IsNil(o.Acl) && !IsNil(o.Acl) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *CreateInstancePayload) GetBackupScheduleOk() (*string, bool) {
 
 // HasBackupSchedule returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasBackupSchedule() bool {
-	if o != nil && !IsNil(o.BackupSchedule) {
+	if o != nil && !IsNil(o.BackupSchedule) && !IsNil(o.BackupSchedule) {
 		return true
 	}
 
@@ -126,7 +126,7 @@ func (o *CreateInstancePayload) SetBackupSchedule(v *string) {
 
 // GetFlavorId returns the FlavorId field value
 func (o *CreateInstancePayload) GetFlavorId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.FlavorId) {
 		var ret *string
 		return ret
 	}
@@ -168,7 +168,7 @@ func (o *CreateInstancePayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -182,7 +182,7 @@ func (o *CreateInstancePayload) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *CreateInstancePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -224,7 +224,7 @@ func (o *CreateInstancePayload) GetOptionsOk() (*CreateInstancePayloadOptions, b
 
 // HasOptions returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
+	if o != nil && !IsNil(o.Options) && !IsNil(o.Options) {
 		return true
 	}
 
@@ -256,7 +256,7 @@ func (o *CreateInstancePayload) GetStorageOk() (*CreateInstancePayloadStorage, b
 
 // HasStorage returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasStorage() bool {
-	if o != nil && !IsNil(o.Storage) {
+	if o != nil && !IsNil(o.Storage) && !IsNil(o.Storage) {
 		return true
 	}
 
@@ -288,7 +288,7 @@ func (o *CreateInstancePayload) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
+	if o != nil && !IsNil(o.Version) && !IsNil(o.Version) {
 		return true
 	}
 

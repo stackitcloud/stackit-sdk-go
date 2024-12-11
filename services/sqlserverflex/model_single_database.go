@@ -63,7 +63,7 @@ func (o *SingleDatabase) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SingleDatabase) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *SingleDatabase) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SingleDatabase) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *SingleDatabase) GetOptionsOk() (*SingleDatabaseOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *SingleDatabase) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
+	if o != nil && !IsNil(o.Options) && !IsNil(o.Options) {
 		return true
 	}
 

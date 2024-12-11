@@ -64,7 +64,7 @@ func (o *UserResponseUser) GetDefaultDatabaseOk() (*string, bool) {
 
 // HasDefaultDatabase returns a boolean if a field has been set.
 func (o *UserResponseUser) HasDefaultDatabase() bool {
-	if o != nil && !IsNil(o.DefaultDatabase) {
+	if o != nil && !IsNil(o.DefaultDatabase) && !IsNil(o.DefaultDatabase) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *UserResponseUser) GetHostOk() (*string, bool) {
 
 // HasHost returns a boolean if a field has been set.
 func (o *UserResponseUser) HasHost() bool {
-	if o != nil && !IsNil(o.Host) {
+	if o != nil && !IsNil(o.Host) && !IsNil(o.Host) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *UserResponseUser) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *UserResponseUser) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -160,7 +160,7 @@ func (o *UserResponseUser) GetPortOk() (*int64, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *UserResponseUser) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
+	if o != nil && !IsNil(o.Port) && !IsNil(o.Port) {
 		return true
 	}
 
@@ -192,7 +192,7 @@ func (o *UserResponseUser) GetRolesOk() (*[]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *UserResponseUser) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -224,7 +224,7 @@ func (o *UserResponseUser) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *UserResponseUser) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && !IsNil(o.Username) && !IsNil(o.Username) {
 		return true
 	}
 

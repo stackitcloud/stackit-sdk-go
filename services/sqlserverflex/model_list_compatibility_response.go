@@ -59,7 +59,7 @@ func (o *ListCompatibilityResponse) GetCompatibilitiesOk() (*[]MssqlDatabaseComp
 
 // HasCompatibilities returns a boolean if a field has been set.
 func (o *ListCompatibilityResponse) HasCompatibilities() bool {
-	if o != nil && !IsNil(o.Compatibilities) {
+	if o != nil && !IsNil(o.Compatibilities) && !IsNil(o.Compatibilities) {
 		return true
 	}
 

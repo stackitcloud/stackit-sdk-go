@@ -60,7 +60,7 @@ func (o *MssqlDatabaseCompatibility) GetCompatibilityLevelOk() (*int64, bool) {
 
 // HasCompatibilityLevel returns a boolean if a field has been set.
 func (o *MssqlDatabaseCompatibility) HasCompatibilityLevel() bool {
-	if o != nil && !IsNil(o.CompatibilityLevel) {
+	if o != nil && !IsNil(o.CompatibilityLevel) && !IsNil(o.CompatibilityLevel) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *MssqlDatabaseCompatibility) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *MssqlDatabaseCompatibility) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 

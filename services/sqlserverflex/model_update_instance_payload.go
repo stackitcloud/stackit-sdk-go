@@ -66,7 +66,7 @@ func NewUpdateInstancePayloadWithDefaults() *UpdateInstancePayload {
 
 // GetAcl returns the Acl field value
 func (o *UpdateInstancePayload) GetAcl() *CreateInstancePayloadAcl {
-	if o == nil {
+	if o == nil || IsNil(o.Acl) {
 		var ret *CreateInstancePayloadAcl
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *UpdateInstancePayload) SetAcl(v *CreateInstancePayloadAcl) {
 
 // GetBackupSchedule returns the BackupSchedule field value
 func (o *UpdateInstancePayload) GetBackupSchedule() *string {
-	if o == nil {
+	if o == nil || IsNil(o.BackupSchedule) {
 		var ret *string
 		return ret
 	}
@@ -114,7 +114,7 @@ func (o *UpdateInstancePayload) SetBackupSchedule(v *string) {
 
 // GetFlavorId returns the FlavorId field value
 func (o *UpdateInstancePayload) GetFlavorId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.FlavorId) {
 		var ret *string
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *UpdateInstancePayload) SetFlavorId(v *string) {
 
 // GetLabels returns the Labels field value
 func (o *UpdateInstancePayload) GetLabels() *map[string]interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.Labels) {
 		var ret *map[string]interface{}
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *UpdateInstancePayload) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *UpdateInstancePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -186,7 +186,7 @@ func (o *UpdateInstancePayload) SetName(v *string) {
 
 // GetVersion returns the Version field value
 func (o *UpdateInstancePayload) GetVersion() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret *string
 		return ret
 	}

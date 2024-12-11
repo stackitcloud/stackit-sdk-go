@@ -60,7 +60,7 @@ func (o *ListUsersResponse) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListUsersResponse) HasCount() bool {
-	if o != nil && !IsNil(o.Count) {
+	if o != nil && !IsNil(o.Count) && !IsNil(o.Count) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *ListUsersResponse) GetItemsOk() (*[]InstanceListUser, bool) {
 
 // HasItems returns a boolean if a field has been set.
 func (o *ListUsersResponse) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
+	if o != nil && !IsNil(o.Items) && !IsNil(o.Items) {
 		return true
 	}
 

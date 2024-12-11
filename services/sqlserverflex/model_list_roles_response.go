@@ -59,7 +59,7 @@ func (o *ListRolesResponse) GetRolesOk() (*[]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *ListRolesResponse) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) && !IsNil(o.Roles) {
 		return true
 	}
 

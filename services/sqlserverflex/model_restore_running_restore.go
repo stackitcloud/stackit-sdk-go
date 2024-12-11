@@ -63,7 +63,7 @@ func (o *RestoreRunningRestore) GetCommandOk() (*string, bool) {
 
 // HasCommand returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasCommand() bool {
-	if o != nil && !IsNil(o.Command) {
+	if o != nil && !IsNil(o.Command) && !IsNil(o.Command) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *RestoreRunningRestore) GetDatabaseNameOk() (*string, bool) {
 
 // HasDatabaseName returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasDatabaseName() bool {
-	if o != nil && !IsNil(o.DatabaseName) {
+	if o != nil && !IsNil(o.DatabaseName) && !IsNil(o.DatabaseName) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *RestoreRunningRestore) GetEstimatedCompletionTimeOk() (*string, bool) {
 
 // HasEstimatedCompletionTime returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasEstimatedCompletionTime() bool {
-	if o != nil && !IsNil(o.EstimatedCompletionTime) {
+	if o != nil && !IsNil(o.EstimatedCompletionTime) && !IsNil(o.EstimatedCompletionTime) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *RestoreRunningRestore) GetPercentCompleteOk() (*int64, bool) {
 
 // HasPercentComplete returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasPercentComplete() bool {
-	if o != nil && !IsNil(o.PercentComplete) {
+	if o != nil && !IsNil(o.PercentComplete) && !IsNil(o.PercentComplete) {
 		return true
 	}
 
@@ -191,7 +191,7 @@ func (o *RestoreRunningRestore) GetStartTimeOk() (*string, bool) {
 
 // HasStartTime returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasStartTime() bool {
-	if o != nil && !IsNil(o.StartTime) {
+	if o != nil && !IsNil(o.StartTime) && !IsNil(o.StartTime) {
 		return true
 	}
 

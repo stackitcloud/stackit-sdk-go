@@ -59,7 +59,7 @@ func (o *ListRestoreJobsResponse) GetRunningRestoresOk() (*[]RestoreRunningResto
 
 // HasRunningRestores returns a boolean if a field has been set.
 func (o *ListRestoreJobsResponse) HasRunningRestores() bool {
-	if o != nil && !IsNil(o.RunningRestores) {
+	if o != nil && !IsNil(o.RunningRestores) && !IsNil(o.RunningRestores) {
 		return true
 	}
 

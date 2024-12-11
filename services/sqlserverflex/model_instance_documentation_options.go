@@ -70,7 +70,7 @@ func (o *InstanceDocumentationOptions) GetEditionOk() (*string, bool) {
 
 // HasEdition returns a boolean if a field has been set.
 func (o *InstanceDocumentationOptions) HasEdition() bool {
-	if o != nil && !IsNil(o.Edition) {
+	if o != nil && !IsNil(o.Edition) && !IsNil(o.Edition) {
 		return true
 	}
 
@@ -102,7 +102,7 @@ func (o *InstanceDocumentationOptions) GetRetentionDaysOk() (*string, bool) {
 
 // HasRetentionDays returns a boolean if a field has been set.
 func (o *InstanceDocumentationOptions) HasRetentionDays() bool {
-	if o != nil && !IsNil(o.RetentionDays) {
+	if o != nil && !IsNil(o.RetentionDays) && !IsNil(o.RetentionDays) {
 		return true
 	}
 

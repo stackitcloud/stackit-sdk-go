@@ -62,7 +62,7 @@ func (o *InstanceError) GetCodeOk() (*int64, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *InstanceError) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
+	if o != nil && !IsNil(o.Code) && !IsNil(o.Code) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *InstanceError) GetFieldsOk() (*map[string][]string, bool) {
 
 // HasFields returns a boolean if a field has been set.
 func (o *InstanceError) HasFields() bool {
-	if o != nil && !IsNil(o.Fields) {
+	if o != nil && !IsNil(o.Fields) && !IsNil(o.Fields) {
 		return true
 	}
 
@@ -126,7 +126,7 @@ func (o *InstanceError) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *InstanceError) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 
@@ -158,7 +158,7 @@ func (o *InstanceError) GetTypeOk() (*Type, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *InstanceError) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+	if o != nil && !IsNil(o.Type) && !IsNil(o.Type) {
 		return true
 	}
 

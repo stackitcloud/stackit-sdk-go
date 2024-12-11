@@ -59,7 +59,7 @@ func (o *ListFlavorsResponse) GetFlavorsOk() (*[]InstanceFlavorEntry, bool) {
 
 // HasFlavors returns a boolean if a field has been set.
 func (o *ListFlavorsResponse) HasFlavors() bool {
-	if o != nil && !IsNil(o.Flavors) {
+	if o != nil && !IsNil(o.Flavors) && !IsNil(o.Flavors) {
 		return true
 	}
 

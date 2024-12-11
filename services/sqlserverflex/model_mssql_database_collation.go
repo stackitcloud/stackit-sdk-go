@@ -60,7 +60,7 @@ func (o *MssqlDatabaseCollation) GetCollationNameOk() (*string, bool) {
 
 // HasCollationName returns a boolean if a field has been set.
 func (o *MssqlDatabaseCollation) HasCollationName() bool {
-	if o != nil && !IsNil(o.CollationName) {
+	if o != nil && !IsNil(o.CollationName) && !IsNil(o.CollationName) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *MssqlDatabaseCollation) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *MssqlDatabaseCollation) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 

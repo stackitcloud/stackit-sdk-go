@@ -59,7 +59,7 @@ func (o *GetDatabaseResponse) GetDatabaseOk() (*SingleDatabase, bool) {
 
 // HasDatabase returns a boolean if a field has been set.
 func (o *GetDatabaseResponse) HasDatabase() bool {
-	if o != nil && !IsNil(o.Database) {
+	if o != nil && !IsNil(o.Database) && !IsNil(o.Database) {
 		return true
 	}
 

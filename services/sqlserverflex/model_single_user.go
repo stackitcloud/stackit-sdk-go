@@ -66,7 +66,7 @@ func (o *SingleUser) GetDefaultDatabaseOk() (*string, bool) {
 
 // HasDefaultDatabase returns a boolean if a field has been set.
 func (o *SingleUser) HasDefaultDatabase() bool {
-	if o != nil && !IsNil(o.DefaultDatabase) {
+	if o != nil && !IsNil(o.DefaultDatabase) && !IsNil(o.DefaultDatabase) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *SingleUser) GetHostOk() (*string, bool) {
 
 // HasHost returns a boolean if a field has been set.
 func (o *SingleUser) HasHost() bool {
-	if o != nil && !IsNil(o.Host) {
+	if o != nil && !IsNil(o.Host) && !IsNil(o.Host) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *SingleUser) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SingleUser) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *SingleUser) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *SingleUser) HasPassword() bool {
-	if o != nil && !IsNil(o.Password) {
+	if o != nil && !IsNil(o.Password) && !IsNil(o.Password) {
 		return true
 	}
 
@@ -194,7 +194,7 @@ func (o *SingleUser) GetPortOk() (*int64, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *SingleUser) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
+	if o != nil && !IsNil(o.Port) && !IsNil(o.Port) {
 		return true
 	}
 
@@ -226,7 +226,7 @@ func (o *SingleUser) GetRolesOk() (*[]string, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *SingleUser) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
+	if o != nil && !IsNil(o.Roles) && !IsNil(o.Roles) {
 		return true
 	}
 
@@ -258,7 +258,7 @@ func (o *SingleUser) GetUriOk() (*string, bool) {
 
 // HasUri returns a boolean if a field has been set.
 func (o *SingleUser) HasUri() bool {
-	if o != nil && !IsNil(o.Uri) {
+	if o != nil && !IsNil(o.Uri) && !IsNil(o.Uri) {
 		return true
 	}
 
@@ -290,7 +290,7 @@ func (o *SingleUser) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *SingleUser) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && !IsNil(o.Username) && !IsNil(o.Username) {
 		return true
 	}
 

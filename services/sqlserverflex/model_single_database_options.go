@@ -64,7 +64,7 @@ func (o *SingleDatabaseOptions) GetCollationNameOk() (*string, bool) {
 
 // HasCollationName returns a boolean if a field has been set.
 func (o *SingleDatabaseOptions) HasCollationName() bool {
-	if o != nil && !IsNil(o.CollationName) {
+	if o != nil && !IsNil(o.CollationName) && !IsNil(o.CollationName) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *SingleDatabaseOptions) GetCompatibilityLevelOk() (*int64, bool) {
 
 // HasCompatibilityLevel returns a boolean if a field has been set.
 func (o *SingleDatabaseOptions) HasCompatibilityLevel() bool {
-	if o != nil && !IsNil(o.CompatibilityLevel) {
+	if o != nil && !IsNil(o.CompatibilityLevel) && !IsNil(o.CompatibilityLevel) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *SingleDatabaseOptions) GetOwnerOk() (*string, bool) {
 
 // HasOwner returns a boolean if a field has been set.
 func (o *SingleDatabaseOptions) HasOwner() bool {
-	if o != nil && !IsNil(o.Owner) {
+	if o != nil && !IsNil(o.Owner) && !IsNil(o.Owner) {
 		return true
 	}
 

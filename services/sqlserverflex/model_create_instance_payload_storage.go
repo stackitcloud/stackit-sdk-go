@@ -66,7 +66,7 @@ func (o *CreateInstancePayloadStorage) GetClassOk() (*string, bool) {
 
 // HasClass returns a boolean if a field has been set.
 func (o *CreateInstancePayloadStorage) HasClass() bool {
-	if o != nil && !IsNil(o.Class) {
+	if o != nil && !IsNil(o.Class) && !IsNil(o.Class) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *CreateInstancePayloadStorage) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *CreateInstancePayloadStorage) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
+	if o != nil && !IsNil(o.Size) && !IsNil(o.Size) {
 		return true
 	}
 

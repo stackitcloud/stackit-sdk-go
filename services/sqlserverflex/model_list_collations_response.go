@@ -59,7 +59,7 @@ func (o *ListCollationsResponse) GetCollationsOk() (*[]MssqlDatabaseCollation, b
 
 // HasCollations returns a boolean if a field has been set.
 func (o *ListCollationsResponse) HasCollations() bool {
-	if o != nil && !IsNil(o.Collations) {
+	if o != nil && !IsNil(o.Collations) && !IsNil(o.Collations) {
 		return true
 	}
 

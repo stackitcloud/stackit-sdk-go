@@ -60,7 +60,7 @@ func (o *BackupListBackupsResponseGrouped) GetBackupsOk() (*[]Backup, bool) {
 
 // HasBackups returns a boolean if a field has been set.
 func (o *BackupListBackupsResponseGrouped) HasBackups() bool {
-	if o != nil && !IsNil(o.Backups) {
+	if o != nil && !IsNil(o.Backups) && !IsNil(o.Backups) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *BackupListBackupsResponseGrouped) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *BackupListBackupsResponseGrouped) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 

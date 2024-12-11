@@ -74,7 +74,7 @@ func (o *GetBackupResponse) GetEndTimeOk() (*string, bool) {
 
 // HasEndTime returns a boolean if a field has been set.
 func (o *GetBackupResponse) HasEndTime() bool {
-	if o != nil && !IsNil(o.EndTime) {
+	if o != nil && !IsNil(o.EndTime) && !IsNil(o.EndTime) {
 		return true
 	}
 
@@ -106,7 +106,7 @@ func (o *GetBackupResponse) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *GetBackupResponse) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
+	if o != nil && !IsNil(o.Error) && !IsNil(o.Error) {
 		return true
 	}
 
@@ -138,7 +138,7 @@ func (o *GetBackupResponse) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GetBackupResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *GetBackupResponse) GetLabelsOk() (*[]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *GetBackupResponse) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -202,7 +202,7 @@ func (o *GetBackupResponse) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *GetBackupResponse) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -234,7 +234,7 @@ func (o *GetBackupResponse) GetOptionsOk() (*map[string]string, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *GetBackupResponse) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
+	if o != nil && !IsNil(o.Options) && !IsNil(o.Options) {
 		return true
 	}
 
@@ -266,7 +266,7 @@ func (o *GetBackupResponse) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *GetBackupResponse) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
+	if o != nil && !IsNil(o.Size) && !IsNil(o.Size) {
 		return true
 	}
 
@@ -298,7 +298,7 @@ func (o *GetBackupResponse) GetStartTimeOk() (*string, bool) {
 
 // HasStartTime returns a boolean if a field has been set.
 func (o *GetBackupResponse) HasStartTime() bool {
-	if o != nil && !IsNil(o.StartTime) {
+	if o != nil && !IsNil(o.StartTime) && !IsNil(o.StartTime) {
 		return true
 	}
 

@@ -62,7 +62,7 @@ func (o *Database) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Database) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *Database) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Database) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -126,7 +126,7 @@ func (o *Database) GetOptionsOk() (*map[string]interface{}, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Database) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
+	if o != nil && !IsNil(o.Options) && !IsNil(o.Options) {
 		return true
 	}
 

@@ -59,7 +59,7 @@ func (o *ListDatabasesResponse) GetDatabasesOk() (*[]Database, bool) {
 
 // HasDatabases returns a boolean if a field has been set.
 func (o *ListDatabasesResponse) HasDatabases() bool {
-	if o != nil && !IsNil(o.Databases) {
+	if o != nil && !IsNil(o.Databases) && !IsNil(o.Databases) {
 		return true
 	}
 

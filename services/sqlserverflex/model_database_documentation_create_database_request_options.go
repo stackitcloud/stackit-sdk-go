@@ -68,7 +68,7 @@ func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCollationOk() (*s
 
 // HasCollation returns a boolean if a field has been set.
 func (o *DatabaseDocumentationCreateDatabaseRequestOptions) HasCollation() bool {
-	if o != nil && !IsNil(o.Collation) {
+	if o != nil && !IsNil(o.Collation) && !IsNil(o.Collation) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCompatibilityLeve
 
 // HasCompatibilityLevel returns a boolean if a field has been set.
 func (o *DatabaseDocumentationCreateDatabaseRequestOptions) HasCompatibilityLevel() bool {
-	if o != nil && !IsNil(o.CompatibilityLevel) {
+	if o != nil && !IsNil(o.CompatibilityLevel) && !IsNil(o.CompatibilityLevel) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *DatabaseDocumentationCreateDatabaseRequestOptions) SetCompatibilityLeve
 
 // GetOwner returns the Owner field value
 func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetOwner() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Owner) {
 		var ret *string
 		return ret
 	}
