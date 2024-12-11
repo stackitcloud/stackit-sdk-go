@@ -64,7 +64,7 @@ func (o *UpdateSecurityGroupPayload) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *UpdateSecurityGroupPayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *UpdateSecurityGroupPayload) GetLabelsOk() (*map[string]interface{}, boo
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateSecurityGroupPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *UpdateSecurityGroupPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateSecurityGroupPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 

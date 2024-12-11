@@ -77,7 +77,7 @@ func (o *Route) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Route) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -109,7 +109,7 @@ func (o *Route) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Route) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -123,7 +123,7 @@ func (o *Route) SetLabels(v *map[string]interface{}) {
 
 // GetNexthop returns the Nexthop field value
 func (o *Route) GetNexthop() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Nexthop) {
 		var ret *string
 		return ret
 	}
@@ -147,7 +147,7 @@ func (o *Route) SetNexthop(v *string) {
 
 // GetPrefix returns the Prefix field value
 func (o *Route) GetPrefix() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Prefix) {
 		var ret *string
 		return ret
 	}
@@ -189,7 +189,7 @@ func (o *Route) GetRouteIdOk() (*string, bool) {
 
 // HasRouteId returns a boolean if a field has been set.
 func (o *Route) HasRouteId() bool {
-	if o != nil && !IsNil(o.RouteId) {
+	if o != nil && !IsNil(o.RouteId) && !IsNil(o.RouteId) {
 		return true
 	}
 
@@ -221,7 +221,7 @@ func (o *Route) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Route) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 

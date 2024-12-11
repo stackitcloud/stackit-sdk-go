@@ -45,7 +45,7 @@ func NewServerConsoleUrlWithDefaults() *ServerConsoleUrl {
 
 // GetUrl returns the Url field value
 func (o *ServerConsoleUrl) GetUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret *string
 		return ret
 	}

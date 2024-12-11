@@ -84,7 +84,7 @@ func (o *NetworkAreaIPv4) GetDefaultNameserversOk() (*[]string, bool) {
 
 // HasDefaultNameservers returns a boolean if a field has been set.
 func (o *NetworkAreaIPv4) HasDefaultNameservers() bool {
-	if o != nil && !IsNil(o.DefaultNameservers) {
+	if o != nil && !IsNil(o.DefaultNameservers) && !IsNil(o.DefaultNameservers) {
 		return true
 	}
 
@@ -116,7 +116,7 @@ func (o *NetworkAreaIPv4) GetNetworkRangesOk() (*[]NetworkRange, bool) {
 
 // HasNetworkRanges returns a boolean if a field has been set.
 func (o *NetworkAreaIPv4) HasNetworkRanges() bool {
-	if o != nil && !IsNil(o.NetworkRanges) {
+	if o != nil && !IsNil(o.NetworkRanges) && !IsNil(o.NetworkRanges) {
 		return true
 	}
 
@@ -148,7 +148,7 @@ func (o *NetworkAreaIPv4) GetRoutesOk() (*[]Route, bool) {
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *NetworkAreaIPv4) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
+	if o != nil && !IsNil(o.Routes) && !IsNil(o.Routes) {
 		return true
 	}
 
@@ -180,7 +180,7 @@ func (o *NetworkAreaIPv4) GetTransferNetworkOk() (*string, bool) {
 
 // HasTransferNetwork returns a boolean if a field has been set.
 func (o *NetworkAreaIPv4) HasTransferNetwork() bool {
-	if o != nil && !IsNil(o.TransferNetwork) {
+	if o != nil && !IsNil(o.TransferNetwork) && !IsNil(o.TransferNetwork) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *NetworkAreaIPv4) GetDefaultPrefixLenOk() (*int64, bool) {
 
 // HasDefaultPrefixLen returns a boolean if a field has been set.
 func (o *NetworkAreaIPv4) HasDefaultPrefixLen() bool {
-	if o != nil && !IsNil(o.DefaultPrefixLen) {
+	if o != nil && !IsNil(o.DefaultPrefixLen) && !IsNil(o.DefaultPrefixLen) {
 		return true
 	}
 
@@ -244,7 +244,7 @@ func (o *NetworkAreaIPv4) GetMaxPrefixLenOk() (*int64, bool) {
 
 // HasMaxPrefixLen returns a boolean if a field has been set.
 func (o *NetworkAreaIPv4) HasMaxPrefixLen() bool {
-	if o != nil && !IsNil(o.MaxPrefixLen) {
+	if o != nil && !IsNil(o.MaxPrefixLen) && !IsNil(o.MaxPrefixLen) {
 		return true
 	}
 
@@ -276,7 +276,7 @@ func (o *NetworkAreaIPv4) GetMinPrefixLenOk() (*int64, bool) {
 
 // HasMinPrefixLen returns a boolean if a field has been set.
 func (o *NetworkAreaIPv4) HasMinPrefixLen() bool {
-	if o != nil && !IsNil(o.MinPrefixLen) {
+	if o != nil && !IsNil(o.MinPrefixLen) && !IsNil(o.MinPrefixLen) {
 		return true
 	}
 

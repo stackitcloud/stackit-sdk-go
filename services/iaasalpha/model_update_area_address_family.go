@@ -59,7 +59,7 @@ func (o *UpdateAreaAddressFamily) GetIpv4Ok() (*UpdateAreaIPv4, bool) {
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *UpdateAreaAddressFamily) HasIpv4() bool {
-	if o != nil && !IsNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) && !IsNil(o.Ipv4) {
 		return true
 	}
 

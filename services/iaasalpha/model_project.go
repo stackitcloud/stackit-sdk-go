@@ -61,7 +61,7 @@ func NewProjectWithDefaults() *Project {
 
 // GetAreaId returns the AreaId field value
 func (o *Project) GetAreaId() *AreaId {
-	if o == nil {
+	if o == nil || IsNil(o.AreaId) {
 		var ret *AreaId
 		return ret
 	}
@@ -103,7 +103,7 @@ func (o *Project) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Project) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -135,7 +135,7 @@ func (o *Project) GetInternetAccessOk() (*bool, bool) {
 
 // HasInternetAccess returns a boolean if a field has been set.
 func (o *Project) HasInternetAccess() bool {
-	if o != nil && !IsNil(o.InternetAccess) {
+	if o != nil && !IsNil(o.InternetAccess) && !IsNil(o.InternetAccess) {
 		return true
 	}
 
@@ -167,7 +167,7 @@ func (o *Project) GetOpenstackProjectIdOk() (*string, bool) {
 
 // HasOpenstackProjectId returns a boolean if a field has been set.
 func (o *Project) HasOpenstackProjectId() bool {
-	if o != nil && !IsNil(o.OpenstackProjectId) {
+	if o != nil && !IsNil(o.OpenstackProjectId) && !IsNil(o.OpenstackProjectId) {
 		return true
 	}
 
@@ -181,7 +181,7 @@ func (o *Project) SetOpenstackProjectId(v *string) {
 
 // GetProjectId returns the ProjectId field value
 func (o *Project) GetProjectId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret *string
 		return ret
 	}
@@ -205,7 +205,7 @@ func (o *Project) SetProjectId(v *string) {
 
 // GetState returns the State field value
 func (o *Project) GetState() *string {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret *string
 		return ret
 	}
@@ -247,7 +247,7 @@ func (o *Project) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Project) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 

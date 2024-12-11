@@ -64,7 +64,7 @@ func (o *UpdateVirtualIPPayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateVirtualIPPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (o *UpdateVirtualIPPayload) SetLabels(v *map[string]interface{}) {
 
 // GetMembers returns the Members field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateVirtualIPPayload) GetMembers() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Members) {
 		var ret *[]string
 		return ret
 	}
@@ -97,7 +97,7 @@ func (o *UpdateVirtualIPPayload) GetMembersOk() (*[]string, bool) {
 
 // HasMembers returns a boolean if a field has been set.
 func (o *UpdateVirtualIPPayload) HasMembers() bool {
-	if o != nil && !IsNil(o.Members) {
+	if o != nil && !IsNil(o.Members) && !IsNil(o.Members) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *UpdateVirtualIPPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateVirtualIPPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 

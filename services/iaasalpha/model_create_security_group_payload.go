@@ -83,7 +83,7 @@ func (o *CreateSecurityGroupPayload) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *CreateSecurityGroupPayload) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -147,7 +147,7 @@ func (o *CreateSecurityGroupPayload) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *CreateSecurityGroupPayload) GetLabelsOk() (*map[string]interface{}, boo
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -193,7 +193,7 @@ func (o *CreateSecurityGroupPayload) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *CreateSecurityGroupPayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -235,7 +235,7 @@ func (o *CreateSecurityGroupPayload) GetRulesOk() (*[]SecurityGroupRule, bool) {
 
 // HasRules returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasRules() bool {
-	if o != nil && !IsNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -267,7 +267,7 @@ func (o *CreateSecurityGroupPayload) GetStatefulOk() (*bool, bool) {
 
 // HasStateful returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasStateful() bool {
-	if o != nil && !IsNil(o.Stateful) {
+	if o != nil && !IsNil(o.Stateful) && !IsNil(o.Stateful) {
 		return true
 	}
 
@@ -299,7 +299,7 @@ func (o *CreateSecurityGroupPayload) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 

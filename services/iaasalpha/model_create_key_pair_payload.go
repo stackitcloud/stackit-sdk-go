@@ -75,7 +75,7 @@ func (o *CreateKeyPairPayload) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *CreateKeyPairPayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -107,7 +107,7 @@ func (o *CreateKeyPairPayload) GetFingerprintOk() (*string, bool) {
 
 // HasFingerprint returns a boolean if a field has been set.
 func (o *CreateKeyPairPayload) HasFingerprint() bool {
-	if o != nil && !IsNil(o.Fingerprint) {
+	if o != nil && !IsNil(o.Fingerprint) && !IsNil(o.Fingerprint) {
 		return true
 	}
 
@@ -139,7 +139,7 @@ func (o *CreateKeyPairPayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateKeyPairPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -171,7 +171,7 @@ func (o *CreateKeyPairPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateKeyPairPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *CreateKeyPairPayload) SetName(v *string) {
 
 // GetPublicKey returns the PublicKey field value
 func (o *CreateKeyPairPayload) GetPublicKey() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret *string
 		return ret
 	}
@@ -227,7 +227,7 @@ func (o *CreateKeyPairPayload) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *CreateKeyPairPayload) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 

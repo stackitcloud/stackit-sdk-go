@@ -68,7 +68,7 @@ func (o *UpdateAttachedVolumePayload) GetDeleteOnTerminationOk() (*bool, bool) {
 
 // HasDeleteOnTermination returns a boolean if a field has been set.
 func (o *UpdateAttachedVolumePayload) HasDeleteOnTermination() bool {
-	if o != nil && !IsNil(o.DeleteOnTermination) {
+	if o != nil && !IsNil(o.DeleteOnTermination) && !IsNil(o.DeleteOnTermination) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *UpdateAttachedVolumePayload) GetServerIdOk() (*string, bool) {
 
 // HasServerId returns a boolean if a field has been set.
 func (o *UpdateAttachedVolumePayload) HasServerId() bool {
-	if o != nil && !IsNil(o.ServerId) {
+	if o != nil && !IsNil(o.ServerId) && !IsNil(o.ServerId) {
 		return true
 	}
 
@@ -132,7 +132,7 @@ func (o *UpdateAttachedVolumePayload) GetVolumeIdOk() (*string, bool) {
 
 // HasVolumeId returns a boolean if a field has been set.
 func (o *UpdateAttachedVolumePayload) HasVolumeId() bool {
-	if o != nil && !IsNil(o.VolumeId) {
+	if o != nil && !IsNil(o.VolumeId) && !IsNil(o.VolumeId) {
 		return true
 	}
 

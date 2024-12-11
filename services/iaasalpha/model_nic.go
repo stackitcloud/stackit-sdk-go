@@ -86,7 +86,7 @@ func (o *NIC) GetAllowedAddressesOk() (*[]AllowedAddressesInner, bool) {
 
 // HasAllowedAddresses returns a boolean if a field has been set.
 func (o *NIC) HasAllowedAddresses() bool {
-	if o != nil && !IsNil(o.AllowedAddresses) {
+	if o != nil && !IsNil(o.AllowedAddresses) && !IsNil(o.AllowedAddresses) {
 		return true
 	}
 
@@ -118,7 +118,7 @@ func (o *NIC) GetDeviceOk() (*string, bool) {
 
 // HasDevice returns a boolean if a field has been set.
 func (o *NIC) HasDevice() bool {
-	if o != nil && !IsNil(o.Device) {
+	if o != nil && !IsNil(o.Device) && !IsNil(o.Device) {
 		return true
 	}
 
@@ -150,7 +150,7 @@ func (o *NIC) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *NIC) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -182,7 +182,7 @@ func (o *NIC) GetIpv4Ok() (*string, bool) {
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *NIC) HasIpv4() bool {
-	if o != nil && !IsNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) && !IsNil(o.Ipv4) {
 		return true
 	}
 
@@ -214,7 +214,7 @@ func (o *NIC) GetIpv6Ok() (*string, bool) {
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *NIC) HasIpv6() bool {
-	if o != nil && !IsNil(o.Ipv6) {
+	if o != nil && !IsNil(o.Ipv6) && !IsNil(o.Ipv6) {
 		return true
 	}
 
@@ -246,7 +246,7 @@ func (o *NIC) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *NIC) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -278,7 +278,7 @@ func (o *NIC) GetMacOk() (*string, bool) {
 
 // HasMac returns a boolean if a field has been set.
 func (o *NIC) HasMac() bool {
-	if o != nil && !IsNil(o.Mac) {
+	if o != nil && !IsNil(o.Mac) && !IsNil(o.Mac) {
 		return true
 	}
 
@@ -310,7 +310,7 @@ func (o *NIC) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *NIC) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -342,7 +342,7 @@ func (o *NIC) GetNetworkIdOk() (*string, bool) {
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *NIC) HasNetworkId() bool {
-	if o != nil && !IsNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -374,7 +374,7 @@ func (o *NIC) GetNicSecurityOk() (*bool, bool) {
 
 // HasNicSecurity returns a boolean if a field has been set.
 func (o *NIC) HasNicSecurity() bool {
-	if o != nil && !IsNil(o.NicSecurity) {
+	if o != nil && !IsNil(o.NicSecurity) && !IsNil(o.NicSecurity) {
 		return true
 	}
 
@@ -406,7 +406,7 @@ func (o *NIC) GetSecurityGroupsOk() (*[]string, bool) {
 
 // HasSecurityGroups returns a boolean if a field has been set.
 func (o *NIC) HasSecurityGroups() bool {
-	if o != nil && !IsNil(o.SecurityGroups) {
+	if o != nil && !IsNil(o.SecurityGroups) && !IsNil(o.SecurityGroups) {
 		return true
 	}
 
@@ -438,7 +438,7 @@ func (o *NIC) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *NIC) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
@@ -470,7 +470,7 @@ func (o *NIC) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *NIC) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+	if o != nil && !IsNil(o.Type) && !IsNil(o.Type) {
 		return true
 	}
 

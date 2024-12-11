@@ -71,7 +71,7 @@ func (o *AreaConfig) GetDefaultNameserversOk() (*[]string, bool) {
 
 // HasDefaultNameservers returns a boolean if a field has been set.
 func (o *AreaConfig) HasDefaultNameservers() bool {
-	if o != nil && !IsNil(o.DefaultNameservers) {
+	if o != nil && !IsNil(o.DefaultNameservers) && !IsNil(o.DefaultNameservers) {
 		return true
 	}
 
@@ -85,7 +85,7 @@ func (o *AreaConfig) SetDefaultNameservers(v *[]string) {
 
 // GetNetworkRanges returns the NetworkRanges field value
 func (o *AreaConfig) GetNetworkRanges() *[]NetworkRange {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkRanges) {
 		var ret *[]NetworkRange
 		return ret
 	}
@@ -127,7 +127,7 @@ func (o *AreaConfig) GetRoutesOk() (*[]Route, bool) {
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *AreaConfig) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
+	if o != nil && !IsNil(o.Routes) && !IsNil(o.Routes) {
 		return true
 	}
 
@@ -141,7 +141,7 @@ func (o *AreaConfig) SetRoutes(v *[]Route) {
 
 // GetTransferNetwork returns the TransferNetwork field value
 func (o *AreaConfig) GetTransferNetwork() *string {
-	if o == nil {
+	if o == nil || IsNil(o.TransferNetwork) {
 		var ret *string
 		return ret
 	}

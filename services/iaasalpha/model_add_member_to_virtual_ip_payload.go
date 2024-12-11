@@ -46,7 +46,7 @@ func NewAddMemberToVirtualIPPayloadWithDefaults() *AddMemberToVirtualIPPayload {
 
 // GetMember returns the Member field value
 func (o *AddMemberToVirtualIPPayload) GetMember() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Member) {
 		var ret *string
 		return ret
 	}

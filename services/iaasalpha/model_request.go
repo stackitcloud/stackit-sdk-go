@@ -80,7 +80,7 @@ func (o *Request) GetDetailsOk() (*string, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *Request) HasDetails() bool {
-	if o != nil && !IsNil(o.Details) {
+	if o != nil && !IsNil(o.Details) && !IsNil(o.Details) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *Request) SetDetails(v *string) {
 
 // GetRequestAction returns the RequestAction field value
 func (o *Request) GetRequestAction() *string {
-	if o == nil {
+	if o == nil || IsNil(o.RequestAction) {
 		var ret *string
 		return ret
 	}
@@ -118,7 +118,7 @@ func (o *Request) SetRequestAction(v *string) {
 
 // GetRequestId returns the RequestId field value
 func (o *Request) GetRequestId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.RequestId) {
 		var ret *string
 		return ret
 	}
@@ -142,7 +142,7 @@ func (o *Request) SetRequestId(v *string) {
 
 // GetRequestType returns the RequestType field value
 func (o *Request) GetRequestType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.RequestType) {
 		var ret *string
 		return ret
 	}
@@ -166,7 +166,7 @@ func (o *Request) SetRequestType(v *string) {
 
 // GetResources returns the Resources field value
 func (o *Request) GetResources() *[]RequestResource {
-	if o == nil {
+	if o == nil || IsNil(o.Resources) {
 		var ret *[]RequestResource
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *Request) SetResources(v *[]RequestResource) {
 
 // GetStatus returns the Status field value
 func (o *Request) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}

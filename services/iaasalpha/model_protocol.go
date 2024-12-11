@@ -62,7 +62,7 @@ func (o *Protocol) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Protocol) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *Protocol) GetNumberOk() (*int64, bool) {
 
 // HasNumber returns a boolean if a field has been set.
 func (o *Protocol) HasNumber() bool {
-	if o != nil && !IsNil(o.Number) {
+	if o != nil && !IsNil(o.Number) && !IsNil(o.Number) {
 		return true
 	}
 

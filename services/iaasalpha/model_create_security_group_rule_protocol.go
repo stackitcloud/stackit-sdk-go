@@ -59,7 +59,7 @@ func (o *CreateSecurityGroupRuleProtocol) GetProtocolOk() (*CreateProtocol, bool
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *CreateSecurityGroupRuleProtocol) HasProtocol() bool {
-	if o != nil && !IsNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) && !IsNil(o.Protocol) {
 		return true
 	}
 

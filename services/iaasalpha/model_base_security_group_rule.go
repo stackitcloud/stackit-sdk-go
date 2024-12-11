@@ -82,7 +82,7 @@ func (o *BaseSecurityGroupRule) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *BaseSecurityGroupRule) SetDescription(v *string) {
 
 // GetDirection returns the Direction field value
 func (o *BaseSecurityGroupRule) GetDirection() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Direction) {
 		var ret *string
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *BaseSecurityGroupRule) GetEthertypeOk() (*string, bool) {
 
 // HasEthertype returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasEthertype() bool {
-	if o != nil && !IsNil(o.Ethertype) {
+	if o != nil && !IsNil(o.Ethertype) && !IsNil(o.Ethertype) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *BaseSecurityGroupRule) GetIcmpParametersOk() (*ICMPParameters, bool) {
 
 // HasIcmpParameters returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasIcmpParameters() bool {
-	if o != nil && !IsNil(o.IcmpParameters) {
+	if o != nil && !IsNil(o.IcmpParameters) && !IsNil(o.IcmpParameters) {
 		return true
 	}
 
@@ -202,7 +202,7 @@ func (o *BaseSecurityGroupRule) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -234,7 +234,7 @@ func (o *BaseSecurityGroupRule) GetIpRangeOk() (*string, bool) {
 
 // HasIpRange returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasIpRange() bool {
-	if o != nil && !IsNil(o.IpRange) {
+	if o != nil && !IsNil(o.IpRange) && !IsNil(o.IpRange) {
 		return true
 	}
 
@@ -266,7 +266,7 @@ func (o *BaseSecurityGroupRule) GetPortRangeOk() (*PortRange, bool) {
 
 // HasPortRange returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasPortRange() bool {
-	if o != nil && !IsNil(o.PortRange) {
+	if o != nil && !IsNil(o.PortRange) && !IsNil(o.PortRange) {
 		return true
 	}
 
@@ -298,7 +298,7 @@ func (o *BaseSecurityGroupRule) GetRemoteSecurityGroupIdOk() (*string, bool) {
 
 // HasRemoteSecurityGroupId returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasRemoteSecurityGroupId() bool {
-	if o != nil && !IsNil(o.RemoteSecurityGroupId) {
+	if o != nil && !IsNil(o.RemoteSecurityGroupId) && !IsNil(o.RemoteSecurityGroupId) {
 		return true
 	}
 
@@ -330,7 +330,7 @@ func (o *BaseSecurityGroupRule) GetSecurityGroupIdOk() (*string, bool) {
 
 // HasSecurityGroupId returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasSecurityGroupId() bool {
-	if o != nil && !IsNil(o.SecurityGroupId) {
+	if o != nil && !IsNil(o.SecurityGroupId) && !IsNil(o.SecurityGroupId) {
 		return true
 	}
 

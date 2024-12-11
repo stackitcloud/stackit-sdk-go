@@ -72,7 +72,7 @@ func (o *VirtualIp) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *VirtualIp) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *VirtualIp) GetIpOk() (*string, bool) {
 
 // HasIp returns a boolean if a field has been set.
 func (o *VirtualIp) HasIp() bool {
-	if o != nil && !IsNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -136,7 +136,7 @@ func (o *VirtualIp) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *VirtualIp) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -168,7 +168,7 @@ func (o *VirtualIp) GetMembersOk() (*[]string, bool) {
 
 // HasMembers returns a boolean if a field has been set.
 func (o *VirtualIp) HasMembers() bool {
-	if o != nil && !IsNil(o.Members) {
+	if o != nil && !IsNil(o.Members) && !IsNil(o.Members) {
 		return true
 	}
 
@@ -200,7 +200,7 @@ func (o *VirtualIp) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *VirtualIp) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -232,7 +232,7 @@ func (o *VirtualIp) GetNetworkOk() (*string, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *VirtualIp) HasNetwork() bool {
-	if o != nil && !IsNil(o.Network) {
+	if o != nil && !IsNil(o.Network) && !IsNil(o.Network) {
 		return true
 	}
 
@@ -264,7 +264,7 @@ func (o *VirtualIp) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *VirtualIp) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 

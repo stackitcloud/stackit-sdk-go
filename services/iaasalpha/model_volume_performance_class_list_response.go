@@ -46,7 +46,7 @@ func NewVolumePerformanceClassListResponseWithDefaults() *VolumePerformanceClass
 
 // GetItems returns the Items field value
 func (o *VolumePerformanceClassListResponse) GetItems() *[]VolumePerformanceClass {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]VolumePerformanceClass
 		return ret
 	}

@@ -66,7 +66,7 @@ func (o *Area) GetDefaultNameserversOk() (*[]string, bool) {
 
 // HasDefaultNameservers returns a boolean if a field has been set.
 func (o *Area) HasDefaultNameservers() bool {
-	if o != nil && !IsNil(o.DefaultNameservers) {
+	if o != nil && !IsNil(o.DefaultNameservers) && !IsNil(o.DefaultNameservers) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *Area) GetNetworkRangesOk() (*[]NetworkRange, bool) {
 
 // HasNetworkRanges returns a boolean if a field has been set.
 func (o *Area) HasNetworkRanges() bool {
-	if o != nil && !IsNil(o.NetworkRanges) {
+	if o != nil && !IsNil(o.NetworkRanges) && !IsNil(o.NetworkRanges) {
 		return true
 	}
 
@@ -130,7 +130,7 @@ func (o *Area) GetRoutesOk() (*[]Route, bool) {
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *Area) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
+	if o != nil && !IsNil(o.Routes) && !IsNil(o.Routes) {
 		return true
 	}
 
@@ -162,7 +162,7 @@ func (o *Area) GetTransferNetworkOk() (*string, bool) {
 
 // HasTransferNetwork returns a boolean if a field has been set.
 func (o *Area) HasTransferNetwork() bool {
-	if o != nil && !IsNil(o.TransferNetwork) {
+	if o != nil && !IsNil(o.TransferNetwork) && !IsNil(o.TransferNetwork) {
 		return true
 	}
 

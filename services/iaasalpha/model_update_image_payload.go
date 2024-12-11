@@ -70,7 +70,7 @@ func (o *UpdateImagePayload) GetConfigOk() (*ImageConfig, bool) {
 
 // HasConfig returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasConfig() bool {
-	if o != nil && !IsNil(o.Config) {
+	if o != nil && !IsNil(o.Config) && !IsNil(o.Config) {
 		return true
 	}
 
@@ -102,7 +102,7 @@ func (o *UpdateImagePayload) GetDiskFormatOk() (*string, bool) {
 
 // HasDiskFormat returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasDiskFormat() bool {
-	if o != nil && !IsNil(o.DiskFormat) {
+	if o != nil && !IsNil(o.DiskFormat) && !IsNil(o.DiskFormat) {
 		return true
 	}
 
@@ -134,7 +134,7 @@ func (o *UpdateImagePayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -166,7 +166,7 @@ func (o *UpdateImagePayload) GetMinDiskSizeOk() (*int64, bool) {
 
 // HasMinDiskSize returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasMinDiskSize() bool {
-	if o != nil && !IsNil(o.MinDiskSize) {
+	if o != nil && !IsNil(o.MinDiskSize) && !IsNil(o.MinDiskSize) {
 		return true
 	}
 
@@ -198,7 +198,7 @@ func (o *UpdateImagePayload) GetMinRamOk() (*int64, bool) {
 
 // HasMinRam returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasMinRam() bool {
-	if o != nil && !IsNil(o.MinRam) {
+	if o != nil && !IsNil(o.MinRam) && !IsNil(o.MinRam) {
 		return true
 	}
 
@@ -230,7 +230,7 @@ func (o *UpdateImagePayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -262,7 +262,7 @@ func (o *UpdateImagePayload) GetProtectedOk() (*bool, bool) {
 
 // HasProtected returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasProtected() bool {
-	if o != nil && !IsNil(o.Protected) {
+	if o != nil && !IsNil(o.Protected) && !IsNil(o.Protected) {
 		return true
 	}
 

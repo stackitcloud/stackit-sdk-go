@@ -37,7 +37,9 @@ type CreateImagePayload struct {
 	MinRam *int64 `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name      *string `json:"name"`
+	Name *string `json:"name"`
+	// Universally Unique Identifier (UUID).
+	Owner     *string `json:"owner,omitempty"`
 	Protected *bool   `json:"protected,omitempty"`
 	// Scope of an Image.
 	Scope *string `json:"scope,omitempty"`
@@ -88,7 +90,7 @@ func (o *CreateImagePayload) GetChecksumOk() (*ImageChecksum, bool) {
 
 // HasChecksum returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasChecksum() bool {
-	if o != nil && !IsNil(o.Checksum) {
+	if o != nil && !IsNil(o.Checksum) && !IsNil(o.Checksum) {
 		return true
 	}
 
@@ -120,7 +122,7 @@ func (o *CreateImagePayload) GetConfigOk() (*ImageConfig, bool) {
 
 // HasConfig returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasConfig() bool {
-	if o != nil && !IsNil(o.Config) {
+	if o != nil && !IsNil(o.Config) && !IsNil(o.Config) {
 		return true
 	}
 
@@ -152,7 +154,7 @@ func (o *CreateImagePayload) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -166,7 +168,7 @@ func (o *CreateImagePayload) SetCreatedAt(v *time.Time) {
 
 // GetDiskFormat returns the DiskFormat field value
 func (o *CreateImagePayload) GetDiskFormat() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DiskFormat) {
 		var ret *string
 		return ret
 	}
@@ -208,7 +210,7 @@ func (o *CreateImagePayload) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -240,7 +242,7 @@ func (o *CreateImagePayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -272,7 +274,7 @@ func (o *CreateImagePayload) GetMinDiskSizeOk() (*int64, bool) {
 
 // HasMinDiskSize returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasMinDiskSize() bool {
-	if o != nil && !IsNil(o.MinDiskSize) {
+	if o != nil && !IsNil(o.MinDiskSize) && !IsNil(o.MinDiskSize) {
 		return true
 	}
 
@@ -304,7 +306,7 @@ func (o *CreateImagePayload) GetMinRamOk() (*int64, bool) {
 
 // HasMinRam returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasMinRam() bool {
-	if o != nil && !IsNil(o.MinRam) {
+	if o != nil && !IsNil(o.MinRam) && !IsNil(o.MinRam) {
 		return true
 	}
 
@@ -318,7 +320,7 @@ func (o *CreateImagePayload) SetMinRam(v *int64) {
 
 // GetName returns the Name field value
 func (o *CreateImagePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -338,6 +340,38 @@ func (o *CreateImagePayload) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *CreateImagePayload) SetName(v *string) {
 	o.Name = v
+}
+
+// GetOwner returns the Owner field value if set, zero value otherwise.
+func (o *CreateImagePayload) GetOwner() *string {
+	if o == nil || IsNil(o.Owner) {
+		var ret *string
+		return ret
+	}
+	return o.Owner
+}
+
+// GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateImagePayload) GetOwnerOk() (*string, bool) {
+	if o == nil || IsNil(o.Owner) {
+		return nil, false
+	}
+	return o.Owner, true
+}
+
+// HasOwner returns a boolean if a field has been set.
+func (o *CreateImagePayload) HasOwner() bool {
+	if o != nil && !IsNil(o.Owner) && !IsNil(o.Owner) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwner gets a reference to the given string and assigns it to the Owner field.
+func (o *CreateImagePayload) SetOwner(v *string) {
+	o.Owner = v
 }
 
 // GetProtected returns the Protected field value if set, zero value otherwise.
@@ -360,7 +394,7 @@ func (o *CreateImagePayload) GetProtectedOk() (*bool, bool) {
 
 // HasProtected returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasProtected() bool {
-	if o != nil && !IsNil(o.Protected) {
+	if o != nil && !IsNil(o.Protected) && !IsNil(o.Protected) {
 		return true
 	}
 
@@ -392,7 +426,7 @@ func (o *CreateImagePayload) GetScopeOk() (*string, bool) {
 
 // HasScope returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasScope() bool {
-	if o != nil && !IsNil(o.Scope) {
+	if o != nil && !IsNil(o.Scope) && !IsNil(o.Scope) {
 		return true
 	}
 
@@ -424,7 +458,7 @@ func (o *CreateImagePayload) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
@@ -456,7 +490,7 @@ func (o *CreateImagePayload) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -493,6 +527,9 @@ func (o CreateImagePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["minRam"] = o.MinRam
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Owner) {
+		toSerialize["owner"] = o.Owner
+	}
 	if !IsNil(o.Protected) {
 		toSerialize["protected"] = o.Protected
 	}

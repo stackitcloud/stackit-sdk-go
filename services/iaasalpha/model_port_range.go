@@ -50,7 +50,7 @@ func NewPortRangeWithDefaults() *PortRange {
 
 // GetMax returns the Max field value
 func (o *PortRange) GetMax() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Max) {
 		var ret *int64
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *PortRange) SetMax(v *int64) {
 
 // GetMin returns the Min field value
 func (o *PortRange) GetMin() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Min) {
 		var ret *int64
 		return ret
 	}

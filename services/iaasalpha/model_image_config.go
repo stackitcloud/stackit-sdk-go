@@ -100,7 +100,7 @@ func (o *ImageConfig) GetBootMenuOk() (*bool, bool) {
 
 // HasBootMenu returns a boolean if a field has been set.
 func (o *ImageConfig) HasBootMenu() bool {
-	if o != nil && !IsNil(o.BootMenu) {
+	if o != nil && !IsNil(o.BootMenu) && !IsNil(o.BootMenu) {
 		return true
 	}
 
@@ -114,7 +114,7 @@ func (o *ImageConfig) SetBootMenu(v *bool) {
 
 // GetCdromBus returns the CdromBus field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ImageConfig) GetCdromBus() *string {
-	if o == nil || IsNil(o.CdromBus.Get()) {
+	if o == nil || IsNil(o.CdromBus) || IsNil(o.CdromBus.Get()) {
 		var ret *string
 		return ret
 	}
@@ -125,7 +125,7 @@ func (o *ImageConfig) GetCdromBus() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ImageConfig) GetCdromBusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CdromBus) {
 		return nil, false
 	}
 	return o.CdromBus.Get(), o.CdromBus.IsSet()
@@ -133,7 +133,7 @@ func (o *ImageConfig) GetCdromBusOk() (*string, bool) {
 
 // HasCdromBus returns a boolean if a field has been set.
 func (o *ImageConfig) HasCdromBus() bool {
-	if o != nil && o.CdromBus.IsSet() {
+	if o != nil && !IsNil(o.CdromBus) && !IsNil(o.CdromBus) && o.CdromBus.IsSet() {
 		return true
 	}
 
@@ -142,22 +142,31 @@ func (o *ImageConfig) HasCdromBus() bool {
 
 // SetCdromBus gets a reference to the given string and assigns it to the CdromBus field.
 func (o *ImageConfig) SetCdromBus(v *string) {
+	if IsNil(o.CdromBus) {
+		o.CdromBus = new(NullableString)
+	}
 	o.CdromBus.Set(v)
 }
 
 // SetCdromBusNil sets the value for CdromBus to be an explicit nil
 func (o *ImageConfig) SetCdromBusNil() {
+	if IsNil(o.CdromBus) {
+		o.CdromBus = new(NullableString)
+	}
 	o.CdromBus.Set(nil)
 }
 
 // UnsetCdromBus ensures that no value is present for CdromBus, not even an explicit nil
 func (o *ImageConfig) UnsetCdromBus() {
+	if IsNil(o.CdromBus) {
+		o.CdromBus = new(NullableString)
+	}
 	o.CdromBus.Unset()
 }
 
 // GetDiskBus returns the DiskBus field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ImageConfig) GetDiskBus() *string {
-	if o == nil || IsNil(o.DiskBus.Get()) {
+	if o == nil || IsNil(o.DiskBus) || IsNil(o.DiskBus.Get()) {
 		var ret *string
 		return ret
 	}
@@ -168,7 +177,7 @@ func (o *ImageConfig) GetDiskBus() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ImageConfig) GetDiskBusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DiskBus) {
 		return nil, false
 	}
 	return o.DiskBus.Get(), o.DiskBus.IsSet()
@@ -176,7 +185,7 @@ func (o *ImageConfig) GetDiskBusOk() (*string, bool) {
 
 // HasDiskBus returns a boolean if a field has been set.
 func (o *ImageConfig) HasDiskBus() bool {
-	if o != nil && o.DiskBus.IsSet() {
+	if o != nil && !IsNil(o.DiskBus) && !IsNil(o.DiskBus) && o.DiskBus.IsSet() {
 		return true
 	}
 
@@ -185,22 +194,31 @@ func (o *ImageConfig) HasDiskBus() bool {
 
 // SetDiskBus gets a reference to the given string and assigns it to the DiskBus field.
 func (o *ImageConfig) SetDiskBus(v *string) {
+	if IsNil(o.DiskBus) {
+		o.DiskBus = new(NullableString)
+	}
 	o.DiskBus.Set(v)
 }
 
 // SetDiskBusNil sets the value for DiskBus to be an explicit nil
 func (o *ImageConfig) SetDiskBusNil() {
+	if IsNil(o.DiskBus) {
+		o.DiskBus = new(NullableString)
+	}
 	o.DiskBus.Set(nil)
 }
 
 // UnsetDiskBus ensures that no value is present for DiskBus, not even an explicit nil
 func (o *ImageConfig) UnsetDiskBus() {
+	if IsNil(o.DiskBus) {
+		o.DiskBus = new(NullableString)
+	}
 	o.DiskBus.Unset()
 }
 
 // GetNicModel returns the NicModel field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ImageConfig) GetNicModel() *string {
-	if o == nil || IsNil(o.NicModel.Get()) {
+	if o == nil || IsNil(o.NicModel) || IsNil(o.NicModel.Get()) {
 		var ret *string
 		return ret
 	}
@@ -211,7 +229,7 @@ func (o *ImageConfig) GetNicModel() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ImageConfig) GetNicModelOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NicModel) {
 		return nil, false
 	}
 	return o.NicModel.Get(), o.NicModel.IsSet()
@@ -219,7 +237,7 @@ func (o *ImageConfig) GetNicModelOk() (*string, bool) {
 
 // HasNicModel returns a boolean if a field has been set.
 func (o *ImageConfig) HasNicModel() bool {
-	if o != nil && o.NicModel.IsSet() {
+	if o != nil && !IsNil(o.NicModel) && !IsNil(o.NicModel) && o.NicModel.IsSet() {
 		return true
 	}
 
@@ -228,16 +246,25 @@ func (o *ImageConfig) HasNicModel() bool {
 
 // SetNicModel gets a reference to the given string and assigns it to the NicModel field.
 func (o *ImageConfig) SetNicModel(v *string) {
+	if IsNil(o.NicModel) {
+		o.NicModel = new(NullableString)
+	}
 	o.NicModel.Set(v)
 }
 
 // SetNicModelNil sets the value for NicModel to be an explicit nil
 func (o *ImageConfig) SetNicModelNil() {
+	if IsNil(o.NicModel) {
+		o.NicModel = new(NullableString)
+	}
 	o.NicModel.Set(nil)
 }
 
 // UnsetNicModel ensures that no value is present for NicModel, not even an explicit nil
 func (o *ImageConfig) UnsetNicModel() {
+	if IsNil(o.NicModel) {
+		o.NicModel = new(NullableString)
+	}
 	o.NicModel.Unset()
 }
 
@@ -261,7 +288,7 @@ func (o *ImageConfig) GetOperatingSystemOk() (*string, bool) {
 
 // HasOperatingSystem returns a boolean if a field has been set.
 func (o *ImageConfig) HasOperatingSystem() bool {
-	if o != nil && !IsNil(o.OperatingSystem) {
+	if o != nil && !IsNil(o.OperatingSystem) && !IsNil(o.OperatingSystem) {
 		return true
 	}
 
@@ -275,7 +302,7 @@ func (o *ImageConfig) SetOperatingSystem(v *string) {
 
 // GetOperatingSystemDistro returns the OperatingSystemDistro field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ImageConfig) GetOperatingSystemDistro() *string {
-	if o == nil || IsNil(o.OperatingSystemDistro.Get()) {
+	if o == nil || IsNil(o.OperatingSystemDistro) || IsNil(o.OperatingSystemDistro.Get()) {
 		var ret *string
 		return ret
 	}
@@ -286,7 +313,7 @@ func (o *ImageConfig) GetOperatingSystemDistro() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ImageConfig) GetOperatingSystemDistroOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OperatingSystemDistro) {
 		return nil, false
 	}
 	return o.OperatingSystemDistro.Get(), o.OperatingSystemDistro.IsSet()
@@ -294,7 +321,7 @@ func (o *ImageConfig) GetOperatingSystemDistroOk() (*string, bool) {
 
 // HasOperatingSystemDistro returns a boolean if a field has been set.
 func (o *ImageConfig) HasOperatingSystemDistro() bool {
-	if o != nil && o.OperatingSystemDistro.IsSet() {
+	if o != nil && !IsNil(o.OperatingSystemDistro) && !IsNil(o.OperatingSystemDistro) && o.OperatingSystemDistro.IsSet() {
 		return true
 	}
 
@@ -303,22 +330,31 @@ func (o *ImageConfig) HasOperatingSystemDistro() bool {
 
 // SetOperatingSystemDistro gets a reference to the given string and assigns it to the OperatingSystemDistro field.
 func (o *ImageConfig) SetOperatingSystemDistro(v *string) {
+	if IsNil(o.OperatingSystemDistro) {
+		o.OperatingSystemDistro = new(NullableString)
+	}
 	o.OperatingSystemDistro.Set(v)
 }
 
 // SetOperatingSystemDistroNil sets the value for OperatingSystemDistro to be an explicit nil
 func (o *ImageConfig) SetOperatingSystemDistroNil() {
+	if IsNil(o.OperatingSystemDistro) {
+		o.OperatingSystemDistro = new(NullableString)
+	}
 	o.OperatingSystemDistro.Set(nil)
 }
 
 // UnsetOperatingSystemDistro ensures that no value is present for OperatingSystemDistro, not even an explicit nil
 func (o *ImageConfig) UnsetOperatingSystemDistro() {
+	if IsNil(o.OperatingSystemDistro) {
+		o.OperatingSystemDistro = new(NullableString)
+	}
 	o.OperatingSystemDistro.Unset()
 }
 
 // GetOperatingSystemVersion returns the OperatingSystemVersion field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ImageConfig) GetOperatingSystemVersion() *string {
-	if o == nil || IsNil(o.OperatingSystemVersion.Get()) {
+	if o == nil || IsNil(o.OperatingSystemVersion) || IsNil(o.OperatingSystemVersion.Get()) {
 		var ret *string
 		return ret
 	}
@@ -329,7 +365,7 @@ func (o *ImageConfig) GetOperatingSystemVersion() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ImageConfig) GetOperatingSystemVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OperatingSystemVersion) {
 		return nil, false
 	}
 	return o.OperatingSystemVersion.Get(), o.OperatingSystemVersion.IsSet()
@@ -337,7 +373,7 @@ func (o *ImageConfig) GetOperatingSystemVersionOk() (*string, bool) {
 
 // HasOperatingSystemVersion returns a boolean if a field has been set.
 func (o *ImageConfig) HasOperatingSystemVersion() bool {
-	if o != nil && o.OperatingSystemVersion.IsSet() {
+	if o != nil && !IsNil(o.OperatingSystemVersion) && !IsNil(o.OperatingSystemVersion) && o.OperatingSystemVersion.IsSet() {
 		return true
 	}
 
@@ -346,22 +382,31 @@ func (o *ImageConfig) HasOperatingSystemVersion() bool {
 
 // SetOperatingSystemVersion gets a reference to the given string and assigns it to the OperatingSystemVersion field.
 func (o *ImageConfig) SetOperatingSystemVersion(v *string) {
+	if IsNil(o.OperatingSystemVersion) {
+		o.OperatingSystemVersion = new(NullableString)
+	}
 	o.OperatingSystemVersion.Set(v)
 }
 
 // SetOperatingSystemVersionNil sets the value for OperatingSystemVersion to be an explicit nil
 func (o *ImageConfig) SetOperatingSystemVersionNil() {
+	if IsNil(o.OperatingSystemVersion) {
+		o.OperatingSystemVersion = new(NullableString)
+	}
 	o.OperatingSystemVersion.Set(nil)
 }
 
 // UnsetOperatingSystemVersion ensures that no value is present for OperatingSystemVersion, not even an explicit nil
 func (o *ImageConfig) UnsetOperatingSystemVersion() {
+	if IsNil(o.OperatingSystemVersion) {
+		o.OperatingSystemVersion = new(NullableString)
+	}
 	o.OperatingSystemVersion.Unset()
 }
 
 // GetRescueBus returns the RescueBus field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ImageConfig) GetRescueBus() *string {
-	if o == nil || IsNil(o.RescueBus.Get()) {
+	if o == nil || IsNil(o.RescueBus) || IsNil(o.RescueBus.Get()) {
 		var ret *string
 		return ret
 	}
@@ -372,7 +417,7 @@ func (o *ImageConfig) GetRescueBus() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ImageConfig) GetRescueBusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RescueBus) {
 		return nil, false
 	}
 	return o.RescueBus.Get(), o.RescueBus.IsSet()
@@ -380,7 +425,7 @@ func (o *ImageConfig) GetRescueBusOk() (*string, bool) {
 
 // HasRescueBus returns a boolean if a field has been set.
 func (o *ImageConfig) HasRescueBus() bool {
-	if o != nil && o.RescueBus.IsSet() {
+	if o != nil && !IsNil(o.RescueBus) && !IsNil(o.RescueBus) && o.RescueBus.IsSet() {
 		return true
 	}
 
@@ -389,22 +434,31 @@ func (o *ImageConfig) HasRescueBus() bool {
 
 // SetRescueBus gets a reference to the given string and assigns it to the RescueBus field.
 func (o *ImageConfig) SetRescueBus(v *string) {
+	if IsNil(o.RescueBus) {
+		o.RescueBus = new(NullableString)
+	}
 	o.RescueBus.Set(v)
 }
 
 // SetRescueBusNil sets the value for RescueBus to be an explicit nil
 func (o *ImageConfig) SetRescueBusNil() {
+	if IsNil(o.RescueBus) {
+		o.RescueBus = new(NullableString)
+	}
 	o.RescueBus.Set(nil)
 }
 
 // UnsetRescueBus ensures that no value is present for RescueBus, not even an explicit nil
 func (o *ImageConfig) UnsetRescueBus() {
+	if IsNil(o.RescueBus) {
+		o.RescueBus = new(NullableString)
+	}
 	o.RescueBus.Unset()
 }
 
 // GetRescueDevice returns the RescueDevice field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ImageConfig) GetRescueDevice() *string {
-	if o == nil || IsNil(o.RescueDevice.Get()) {
+	if o == nil || IsNil(o.RescueDevice) || IsNil(o.RescueDevice.Get()) {
 		var ret *string
 		return ret
 	}
@@ -415,7 +469,7 @@ func (o *ImageConfig) GetRescueDevice() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ImageConfig) GetRescueDeviceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RescueDevice) {
 		return nil, false
 	}
 	return o.RescueDevice.Get(), o.RescueDevice.IsSet()
@@ -423,7 +477,7 @@ func (o *ImageConfig) GetRescueDeviceOk() (*string, bool) {
 
 // HasRescueDevice returns a boolean if a field has been set.
 func (o *ImageConfig) HasRescueDevice() bool {
-	if o != nil && o.RescueDevice.IsSet() {
+	if o != nil && !IsNil(o.RescueDevice) && !IsNil(o.RescueDevice) && o.RescueDevice.IsSet() {
 		return true
 	}
 
@@ -432,16 +486,25 @@ func (o *ImageConfig) HasRescueDevice() bool {
 
 // SetRescueDevice gets a reference to the given string and assigns it to the RescueDevice field.
 func (o *ImageConfig) SetRescueDevice(v *string) {
+	if IsNil(o.RescueDevice) {
+		o.RescueDevice = new(NullableString)
+	}
 	o.RescueDevice.Set(v)
 }
 
 // SetRescueDeviceNil sets the value for RescueDevice to be an explicit nil
 func (o *ImageConfig) SetRescueDeviceNil() {
+	if IsNil(o.RescueDevice) {
+		o.RescueDevice = new(NullableString)
+	}
 	o.RescueDevice.Set(nil)
 }
 
 // UnsetRescueDevice ensures that no value is present for RescueDevice, not even an explicit nil
 func (o *ImageConfig) UnsetRescueDevice() {
+	if IsNil(o.RescueDevice) {
+		o.RescueDevice = new(NullableString)
+	}
 	o.RescueDevice.Unset()
 }
 
@@ -465,7 +528,7 @@ func (o *ImageConfig) GetSecureBootOk() (*bool, bool) {
 
 // HasSecureBoot returns a boolean if a field has been set.
 func (o *ImageConfig) HasSecureBoot() bool {
-	if o != nil && !IsNil(o.SecureBoot) {
+	if o != nil && !IsNil(o.SecureBoot) && !IsNil(o.SecureBoot) {
 		return true
 	}
 
@@ -497,7 +560,7 @@ func (o *ImageConfig) GetUefiOk() (*bool, bool) {
 
 // HasUefi returns a boolean if a field has been set.
 func (o *ImageConfig) HasUefi() bool {
-	if o != nil && !IsNil(o.Uefi) {
+	if o != nil && !IsNil(o.Uefi) && !IsNil(o.Uefi) {
 		return true
 	}
 
@@ -511,7 +574,7 @@ func (o *ImageConfig) SetUefi(v *bool) {
 
 // GetVideoModel returns the VideoModel field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ImageConfig) GetVideoModel() *string {
-	if o == nil || IsNil(o.VideoModel.Get()) {
+	if o == nil || IsNil(o.VideoModel) || IsNil(o.VideoModel.Get()) {
 		var ret *string
 		return ret
 	}
@@ -522,7 +585,7 @@ func (o *ImageConfig) GetVideoModel() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ImageConfig) GetVideoModelOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.VideoModel) {
 		return nil, false
 	}
 	return o.VideoModel.Get(), o.VideoModel.IsSet()
@@ -530,7 +593,7 @@ func (o *ImageConfig) GetVideoModelOk() (*string, bool) {
 
 // HasVideoModel returns a boolean if a field has been set.
 func (o *ImageConfig) HasVideoModel() bool {
-	if o != nil && o.VideoModel.IsSet() {
+	if o != nil && !IsNil(o.VideoModel) && !IsNil(o.VideoModel) && o.VideoModel.IsSet() {
 		return true
 	}
 
@@ -539,16 +602,25 @@ func (o *ImageConfig) HasVideoModel() bool {
 
 // SetVideoModel gets a reference to the given string and assigns it to the VideoModel field.
 func (o *ImageConfig) SetVideoModel(v *string) {
+	if IsNil(o.VideoModel) {
+		o.VideoModel = new(NullableString)
+	}
 	o.VideoModel.Set(v)
 }
 
 // SetVideoModelNil sets the value for VideoModel to be an explicit nil
 func (o *ImageConfig) SetVideoModelNil() {
+	if IsNil(o.VideoModel) {
+		o.VideoModel = new(NullableString)
+	}
 	o.VideoModel.Set(nil)
 }
 
 // UnsetVideoModel ensures that no value is present for VideoModel, not even an explicit nil
 func (o *ImageConfig) UnsetVideoModel() {
+	if IsNil(o.VideoModel) {
+		o.VideoModel = new(NullableString)
+	}
 	o.VideoModel.Unset()
 }
 
@@ -572,7 +644,7 @@ func (o *ImageConfig) GetVirtioScsiOk() (*bool, bool) {
 
 // HasVirtioScsi returns a boolean if a field has been set.
 func (o *ImageConfig) HasVirtioScsi() bool {
-	if o != nil && !IsNil(o.VirtioScsi) {
+	if o != nil && !IsNil(o.VirtioScsi) && !IsNil(o.VirtioScsi) {
 		return true
 	}
 

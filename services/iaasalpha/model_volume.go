@@ -30,7 +30,8 @@ type Volume struct {
 	// Description Object. Allows string up to 127 Characters.
 	Description *string `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id          *string      `json:"id,omitempty"`
+	ImageConfig *ImageConfig `json:"imageConfig,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
@@ -70,7 +71,7 @@ func NewVolumeWithDefaults() *Volume {
 
 // GetAvailabilityZone returns the AvailabilityZone field value
 func (o *Volume) GetAvailabilityZone() *string {
-	if o == nil {
+	if o == nil || IsNil(o.AvailabilityZone) {
 		var ret *string
 		return ret
 	}
@@ -112,7 +113,7 @@ func (o *Volume) GetBootableOk() (*bool, bool) {
 
 // HasBootable returns a boolean if a field has been set.
 func (o *Volume) HasBootable() bool {
-	if o != nil && !IsNil(o.Bootable) {
+	if o != nil && !IsNil(o.Bootable) && !IsNil(o.Bootable) {
 		return true
 	}
 
@@ -144,7 +145,7 @@ func (o *Volume) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Volume) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -176,7 +177,7 @@ func (o *Volume) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Volume) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -208,7 +209,7 @@ func (o *Volume) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Volume) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -218,6 +219,38 @@ func (o *Volume) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Volume) SetId(v *string) {
 	o.Id = v
+}
+
+// GetImageConfig returns the ImageConfig field value if set, zero value otherwise.
+func (o *Volume) GetImageConfig() *ImageConfig {
+	if o == nil || IsNil(o.ImageConfig) {
+		var ret *ImageConfig
+		return ret
+	}
+	return o.ImageConfig
+}
+
+// GetImageConfigOk returns a tuple with the ImageConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Volume) GetImageConfigOk() (*ImageConfig, bool) {
+	if o == nil || IsNil(o.ImageConfig) {
+		return nil, false
+	}
+	return o.ImageConfig, true
+}
+
+// HasImageConfig returns a boolean if a field has been set.
+func (o *Volume) HasImageConfig() bool {
+	if o != nil && !IsNil(o.ImageConfig) && !IsNil(o.ImageConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageConfig gets a reference to the given ImageConfig and assigns it to the ImageConfig field.
+func (o *Volume) SetImageConfig(v *ImageConfig) {
+	o.ImageConfig = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -240,7 +273,7 @@ func (o *Volume) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Volume) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -272,7 +305,7 @@ func (o *Volume) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Volume) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -304,7 +337,7 @@ func (o *Volume) GetPerformanceClassOk() (*string, bool) {
 
 // HasPerformanceClass returns a boolean if a field has been set.
 func (o *Volume) HasPerformanceClass() bool {
-	if o != nil && !IsNil(o.PerformanceClass) {
+	if o != nil && !IsNil(o.PerformanceClass) && !IsNil(o.PerformanceClass) {
 		return true
 	}
 
@@ -336,7 +369,7 @@ func (o *Volume) GetServerIdOk() (*string, bool) {
 
 // HasServerId returns a boolean if a field has been set.
 func (o *Volume) HasServerId() bool {
-	if o != nil && !IsNil(o.ServerId) {
+	if o != nil && !IsNil(o.ServerId) && !IsNil(o.ServerId) {
 		return true
 	}
 
@@ -368,7 +401,7 @@ func (o *Volume) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *Volume) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
+	if o != nil && !IsNil(o.Size) && !IsNil(o.Size) {
 		return true
 	}
 
@@ -400,7 +433,7 @@ func (o *Volume) GetSourceOk() (*VolumeSource, bool) {
 
 // HasSource returns a boolean if a field has been set.
 func (o *Volume) HasSource() bool {
-	if o != nil && !IsNil(o.Source) {
+	if o != nil && !IsNil(o.Source) && !IsNil(o.Source) {
 		return true
 	}
 
@@ -432,7 +465,7 @@ func (o *Volume) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Volume) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
@@ -464,7 +497,7 @@ func (o *Volume) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Volume) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -490,6 +523,9 @@ func (o Volume) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.ImageConfig) {
+		toSerialize["imageConfig"] = o.ImageConfig
 	}
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels

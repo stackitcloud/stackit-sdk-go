@@ -65,7 +65,7 @@ func NewNetworkAreaWithDefaults() *NetworkArea {
 
 // GetAreaId returns the AreaId field value
 func (o *NetworkArea) GetAreaId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.AreaId) {
 		var ret *string
 		return ret
 	}
@@ -107,7 +107,7 @@ func (o *NetworkArea) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *NetworkArea) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -139,7 +139,7 @@ func (o *NetworkArea) GetIpv4Ok() (*NetworkAreaIPv4, bool) {
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *NetworkArea) HasIpv4() bool {
-	if o != nil && !IsNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) && !IsNil(o.Ipv4) {
 		return true
 	}
 
@@ -171,7 +171,7 @@ func (o *NetworkArea) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *NetworkArea) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -185,7 +185,7 @@ func (o *NetworkArea) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *NetworkArea) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -209,7 +209,7 @@ func (o *NetworkArea) SetName(v *string) {
 
 // GetProjectCount returns the ProjectCount field value
 func (o *NetworkArea) GetProjectCount() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectCount) {
 		var ret *int64
 		return ret
 	}
@@ -233,7 +233,7 @@ func (o *NetworkArea) SetProjectCount(v *int64) {
 
 // GetState returns the State field value
 func (o *NetworkArea) GetState() *string {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret *string
 		return ret
 	}
@@ -275,7 +275,7 @@ func (o *NetworkArea) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *NetworkArea) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 

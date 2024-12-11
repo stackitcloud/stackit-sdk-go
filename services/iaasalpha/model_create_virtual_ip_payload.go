@@ -72,7 +72,7 @@ func (o *CreateVirtualIPPayload) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateVirtualIPPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *CreateVirtualIPPayload) GetIpOk() (*string, bool) {
 
 // HasIp returns a boolean if a field has been set.
 func (o *CreateVirtualIPPayload) HasIp() bool {
-	if o != nil && !IsNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) && !IsNil(o.Ip) {
 		return true
 	}
 
@@ -136,7 +136,7 @@ func (o *CreateVirtualIPPayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateVirtualIPPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -168,7 +168,7 @@ func (o *CreateVirtualIPPayload) GetMembersOk() (*[]string, bool) {
 
 // HasMembers returns a boolean if a field has been set.
 func (o *CreateVirtualIPPayload) HasMembers() bool {
-	if o != nil && !IsNil(o.Members) {
+	if o != nil && !IsNil(o.Members) && !IsNil(o.Members) {
 		return true
 	}
 
@@ -200,7 +200,7 @@ func (o *CreateVirtualIPPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateVirtualIPPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -232,7 +232,7 @@ func (o *CreateVirtualIPPayload) GetNetworkOk() (*string, bool) {
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *CreateVirtualIPPayload) HasNetwork() bool {
-	if o != nil && !IsNil(o.Network) {
+	if o != nil && !IsNil(o.Network) && !IsNil(o.Network) {
 		return true
 	}
 
@@ -264,7 +264,7 @@ func (o *CreateVirtualIPPayload) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateVirtualIPPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
