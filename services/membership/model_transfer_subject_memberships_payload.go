@@ -10,8 +10,101 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the TransferSubjectMembershipsPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TransferSubjectMembershipsPayload{}
+
 // TransferSubjectMembershipsPayload struct for TransferSubjectMembershipsPayload
 type TransferSubjectMembershipsPayload struct {
 	// REQUIRED
 	TargetSubjectId *string `json:"targetSubjectId"`
+}
+
+type _TransferSubjectMembershipsPayload TransferSubjectMembershipsPayload
+
+// NewTransferSubjectMembershipsPayload instantiates a new TransferSubjectMembershipsPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTransferSubjectMembershipsPayload(targetSubjectId *string) *TransferSubjectMembershipsPayload {
+	this := TransferSubjectMembershipsPayload{}
+	this.TargetSubjectId = targetSubjectId
+	return &this
+}
+
+// NewTransferSubjectMembershipsPayloadWithDefaults instantiates a new TransferSubjectMembershipsPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTransferSubjectMembershipsPayloadWithDefaults() *TransferSubjectMembershipsPayload {
+	this := TransferSubjectMembershipsPayload{}
+	return &this
+}
+
+// GetTargetSubjectId returns the TargetSubjectId field value
+func (o *TransferSubjectMembershipsPayload) GetTargetSubjectId() *string {
+	if o == nil || IsNil(o.TargetSubjectId) {
+		var ret *string
+		return ret
+	}
+
+	return o.TargetSubjectId
+}
+
+// GetTargetSubjectIdOk returns a tuple with the TargetSubjectId field value
+// and a boolean to check if the value has been set.
+func (o *TransferSubjectMembershipsPayload) GetTargetSubjectIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TargetSubjectId, true
+}
+
+// SetTargetSubjectId sets field value
+func (o *TransferSubjectMembershipsPayload) SetTargetSubjectId(v *string) {
+	o.TargetSubjectId = v
+}
+
+func (o TransferSubjectMembershipsPayload) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["targetSubjectId"] = o.TargetSubjectId
+	return toSerialize, nil
+}
+
+type NullableTransferSubjectMembershipsPayload struct {
+	value *TransferSubjectMembershipsPayload
+	isSet bool
+}
+
+func (v NullableTransferSubjectMembershipsPayload) Get() *TransferSubjectMembershipsPayload {
+	return v.value
+}
+
+func (v *NullableTransferSubjectMembershipsPayload) Set(val *TransferSubjectMembershipsPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTransferSubjectMembershipsPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTransferSubjectMembershipsPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTransferSubjectMembershipsPayload(val *TransferSubjectMembershipsPayload) *NullableTransferSubjectMembershipsPayload {
+	return &NullableTransferSubjectMembershipsPayload{value: val, isSet: true}
+}
+
+func (v NullableTransferSubjectMembershipsPayload) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableTransferSubjectMembershipsPayload) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

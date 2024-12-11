@@ -10,6 +10,13 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the CreateResourceResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateResourceResponse{}
+
 // CreateResourceResponse struct for CreateResourceResponse
 type CreateResourceResponse struct {
 	Members *[]Member `json:"members,omitempty"`
@@ -23,4 +30,273 @@ type CreateResourceResponse struct {
 	// REQUIRED
 	ResourceType *string `json:"resourceType"`
 	WrittenAt    *Zookie `json:"writtenAt,omitempty"`
+}
+
+type _CreateResourceResponse CreateResourceResponse
+
+// NewCreateResourceResponse instantiates a new CreateResourceResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateResourceResponse(parentId *string, parentType *string, resourceId *string, resourceType *string) *CreateResourceResponse {
+	this := CreateResourceResponse{}
+	this.ParentId = parentId
+	this.ParentType = parentType
+	this.ResourceId = resourceId
+	this.ResourceType = resourceType
+	return &this
+}
+
+// NewCreateResourceResponseWithDefaults instantiates a new CreateResourceResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateResourceResponseWithDefaults() *CreateResourceResponse {
+	this := CreateResourceResponse{}
+	return &this
+}
+
+// GetMembers returns the Members field value if set, zero value otherwise.
+func (o *CreateResourceResponse) GetMembers() *[]Member {
+	if o == nil || IsNil(o.Members) {
+		var ret *[]Member
+		return ret
+	}
+	return o.Members
+}
+
+// GetMembersOk returns a tuple with the Members field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateResourceResponse) GetMembersOk() (*[]Member, bool) {
+	if o == nil || IsNil(o.Members) {
+		return nil, false
+	}
+	return o.Members, true
+}
+
+// HasMembers returns a boolean if a field has been set.
+func (o *CreateResourceResponse) HasMembers() bool {
+	if o != nil && !IsNil(o.Members) && !IsNil(o.Members) {
+		return true
+	}
+
+	return false
+}
+
+// SetMembers gets a reference to the given []Member and assigns it to the Members field.
+func (o *CreateResourceResponse) SetMembers(v *[]Member) {
+	o.Members = v
+}
+
+// GetParentId returns the ParentId field value
+func (o *CreateResourceResponse) GetParentId() *string {
+	if o == nil || IsNil(o.ParentId) {
+		var ret *string
+		return ret
+	}
+
+	return o.ParentId
+}
+
+// GetParentIdOk returns a tuple with the ParentId field value
+// and a boolean to check if the value has been set.
+func (o *CreateResourceResponse) GetParentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ParentId, true
+}
+
+// SetParentId sets field value
+func (o *CreateResourceResponse) SetParentId(v *string) {
+	o.ParentId = v
+}
+
+// GetParentType returns the ParentType field value
+func (o *CreateResourceResponse) GetParentType() *string {
+	if o == nil || IsNil(o.ParentType) {
+		var ret *string
+		return ret
+	}
+
+	return o.ParentType
+}
+
+// GetParentTypeOk returns a tuple with the ParentType field value
+// and a boolean to check if the value has been set.
+func (o *CreateResourceResponse) GetParentTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ParentType, true
+}
+
+// SetParentType sets field value
+func (o *CreateResourceResponse) SetParentType(v *string) {
+	o.ParentType = v
+}
+
+// GetResourceAlias returns the ResourceAlias field value if set, zero value otherwise.
+func (o *CreateResourceResponse) GetResourceAlias() *string {
+	if o == nil || IsNil(o.ResourceAlias) {
+		var ret *string
+		return ret
+	}
+	return o.ResourceAlias
+}
+
+// GetResourceAliasOk returns a tuple with the ResourceAlias field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateResourceResponse) GetResourceAliasOk() (*string, bool) {
+	if o == nil || IsNil(o.ResourceAlias) {
+		return nil, false
+	}
+	return o.ResourceAlias, true
+}
+
+// HasResourceAlias returns a boolean if a field has been set.
+func (o *CreateResourceResponse) HasResourceAlias() bool {
+	if o != nil && !IsNil(o.ResourceAlias) && !IsNil(o.ResourceAlias) {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceAlias gets a reference to the given string and assigns it to the ResourceAlias field.
+func (o *CreateResourceResponse) SetResourceAlias(v *string) {
+	o.ResourceAlias = v
+}
+
+// GetResourceId returns the ResourceId field value
+func (o *CreateResourceResponse) GetResourceId() *string {
+	if o == nil || IsNil(o.ResourceId) {
+		var ret *string
+		return ret
+	}
+
+	return o.ResourceId
+}
+
+// GetResourceIdOk returns a tuple with the ResourceId field value
+// and a boolean to check if the value has been set.
+func (o *CreateResourceResponse) GetResourceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ResourceId, true
+}
+
+// SetResourceId sets field value
+func (o *CreateResourceResponse) SetResourceId(v *string) {
+	o.ResourceId = v
+}
+
+// GetResourceType returns the ResourceType field value
+func (o *CreateResourceResponse) GetResourceType() *string {
+	if o == nil || IsNil(o.ResourceType) {
+		var ret *string
+		return ret
+	}
+
+	return o.ResourceType
+}
+
+// GetResourceTypeOk returns a tuple with the ResourceType field value
+// and a boolean to check if the value has been set.
+func (o *CreateResourceResponse) GetResourceTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ResourceType, true
+}
+
+// SetResourceType sets field value
+func (o *CreateResourceResponse) SetResourceType(v *string) {
+	o.ResourceType = v
+}
+
+// GetWrittenAt returns the WrittenAt field value if set, zero value otherwise.
+func (o *CreateResourceResponse) GetWrittenAt() *Zookie {
+	if o == nil || IsNil(o.WrittenAt) {
+		var ret *Zookie
+		return ret
+	}
+	return o.WrittenAt
+}
+
+// GetWrittenAtOk returns a tuple with the WrittenAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateResourceResponse) GetWrittenAtOk() (*Zookie, bool) {
+	if o == nil || IsNil(o.WrittenAt) {
+		return nil, false
+	}
+	return o.WrittenAt, true
+}
+
+// HasWrittenAt returns a boolean if a field has been set.
+func (o *CreateResourceResponse) HasWrittenAt() bool {
+	if o != nil && !IsNil(o.WrittenAt) && !IsNil(o.WrittenAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetWrittenAt gets a reference to the given Zookie and assigns it to the WrittenAt field.
+func (o *CreateResourceResponse) SetWrittenAt(v *Zookie) {
+	o.WrittenAt = v
+}
+
+func (o CreateResourceResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Members) {
+		toSerialize["members"] = o.Members
+	}
+	toSerialize["parentId"] = o.ParentId
+	toSerialize["parentType"] = o.ParentType
+	if !IsNil(o.ResourceAlias) {
+		toSerialize["resourceAlias"] = o.ResourceAlias
+	}
+	toSerialize["resourceId"] = o.ResourceId
+	toSerialize["resourceType"] = o.ResourceType
+	if !IsNil(o.WrittenAt) {
+		toSerialize["writtenAt"] = o.WrittenAt
+	}
+	return toSerialize, nil
+}
+
+type NullableCreateResourceResponse struct {
+	value *CreateResourceResponse
+	isSet bool
+}
+
+func (v NullableCreateResourceResponse) Get() *CreateResourceResponse {
+	return v.value
+}
+
+func (v *NullableCreateResourceResponse) Set(val *CreateResourceResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateResourceResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateResourceResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateResourceResponse(val *CreateResourceResponse) *NullableCreateResourceResponse {
+	return &NullableCreateResourceResponse{value: val, isSet: true}
+}
+
+func (v NullableCreateResourceResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateResourceResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,8 +10,101 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the ListSubjectsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListSubjectsResponse{}
+
 // ListSubjectsResponse struct for ListSubjectsResponse
 type ListSubjectsResponse struct {
 	// REQUIRED
 	Items *[]Subject `json:"items"`
+}
+
+type _ListSubjectsResponse ListSubjectsResponse
+
+// NewListSubjectsResponse instantiates a new ListSubjectsResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListSubjectsResponse(items *[]Subject) *ListSubjectsResponse {
+	this := ListSubjectsResponse{}
+	this.Items = items
+	return &this
+}
+
+// NewListSubjectsResponseWithDefaults instantiates a new ListSubjectsResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListSubjectsResponseWithDefaults() *ListSubjectsResponse {
+	this := ListSubjectsResponse{}
+	return &this
+}
+
+// GetItems returns the Items field value
+func (o *ListSubjectsResponse) GetItems() *[]Subject {
+	if o == nil || IsNil(o.Items) {
+		var ret *[]Subject
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *ListSubjectsResponse) GetItemsOk() (*[]Subject, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *ListSubjectsResponse) SetItems(v *[]Subject) {
+	o.Items = v
+}
+
+func (o ListSubjectsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["items"] = o.Items
+	return toSerialize, nil
+}
+
+type NullableListSubjectsResponse struct {
+	value *ListSubjectsResponse
+	isSet bool
+}
+
+func (v NullableListSubjectsResponse) Get() *ListSubjectsResponse {
+	return v.value
+}
+
+func (v *NullableListSubjectsResponse) Set(val *ListSubjectsResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListSubjectsResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListSubjectsResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListSubjectsResponse(val *ListSubjectsResponse) *NullableListSubjectsResponse {
+	return &NullableListSubjectsResponse{value: val, isSet: true}
+}
+
+func (v NullableListSubjectsResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListSubjectsResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

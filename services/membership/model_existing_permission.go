@@ -10,10 +10,129 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the ExistingPermission type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExistingPermission{}
+
 // ExistingPermission struct for ExistingPermission
 type ExistingPermission struct {
 	// REQUIRED
 	Description *string `json:"description"`
 	// REQUIRED
 	Name *string `json:"name"`
+}
+
+type _ExistingPermission ExistingPermission
+
+// NewExistingPermission instantiates a new ExistingPermission object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewExistingPermission(description *string, name *string) *ExistingPermission {
+	this := ExistingPermission{}
+	this.Description = description
+	this.Name = name
+	return &this
+}
+
+// NewExistingPermissionWithDefaults instantiates a new ExistingPermission object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewExistingPermissionWithDefaults() *ExistingPermission {
+	this := ExistingPermission{}
+	return &this
+}
+
+// GetDescription returns the Description field value
+func (o *ExistingPermission) GetDescription() *string {
+	if o == nil || IsNil(o.Description) {
+		var ret *string
+		return ret
+	}
+
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *ExistingPermission) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// SetDescription sets field value
+func (o *ExistingPermission) SetDescription(v *string) {
+	o.Description = v
+}
+
+// GetName returns the Name field value
+func (o *ExistingPermission) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ExistingPermission) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *ExistingPermission) SetName(v *string) {
+	o.Name = v
+}
+
+func (o ExistingPermission) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["description"] = o.Description
+	toSerialize["name"] = o.Name
+	return toSerialize, nil
+}
+
+type NullableExistingPermission struct {
+	value *ExistingPermission
+	isSet bool
+}
+
+func (v NullableExistingPermission) Get() *ExistingPermission {
+	return v.value
+}
+
+func (v *NullableExistingPermission) Set(val *ExistingPermission) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableExistingPermission) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableExistingPermission) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableExistingPermission(val *ExistingPermission) *NullableExistingPermission {
+	return &NullableExistingPermission{value: val, isSet: true}
+}
+
+func (v NullableExistingPermission) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableExistingPermission) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

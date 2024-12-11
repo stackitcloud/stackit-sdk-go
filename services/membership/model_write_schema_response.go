@@ -10,8 +10,101 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the WriteSchemaResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &WriteSchemaResponse{}
+
 // WriteSchemaResponse struct for WriteSchemaResponse
 type WriteSchemaResponse struct {
 	// REQUIRED
 	WrittenAt *Zookie `json:"writtenAt"`
+}
+
+type _WriteSchemaResponse WriteSchemaResponse
+
+// NewWriteSchemaResponse instantiates a new WriteSchemaResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewWriteSchemaResponse(writtenAt *Zookie) *WriteSchemaResponse {
+	this := WriteSchemaResponse{}
+	this.WrittenAt = writtenAt
+	return &this
+}
+
+// NewWriteSchemaResponseWithDefaults instantiates a new WriteSchemaResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewWriteSchemaResponseWithDefaults() *WriteSchemaResponse {
+	this := WriteSchemaResponse{}
+	return &this
+}
+
+// GetWrittenAt returns the WrittenAt field value
+func (o *WriteSchemaResponse) GetWrittenAt() *Zookie {
+	if o == nil || IsNil(o.WrittenAt) {
+		var ret *Zookie
+		return ret
+	}
+
+	return o.WrittenAt
+}
+
+// GetWrittenAtOk returns a tuple with the WrittenAt field value
+// and a boolean to check if the value has been set.
+func (o *WriteSchemaResponse) GetWrittenAtOk() (*Zookie, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.WrittenAt, true
+}
+
+// SetWrittenAt sets field value
+func (o *WriteSchemaResponse) SetWrittenAt(v *Zookie) {
+	o.WrittenAt = v
+}
+
+func (o WriteSchemaResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["writtenAt"] = o.WrittenAt
+	return toSerialize, nil
+}
+
+type NullableWriteSchemaResponse struct {
+	value *WriteSchemaResponse
+	isSet bool
+}
+
+func (v NullableWriteSchemaResponse) Get() *WriteSchemaResponse {
+	return v.value
+}
+
+func (v *NullableWriteSchemaResponse) Set(val *WriteSchemaResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableWriteSchemaResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableWriteSchemaResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableWriteSchemaResponse(val *WriteSchemaResponse) *NullableWriteSchemaResponse {
+	return &NullableWriteSchemaResponse{value: val, isSet: true}
+}
+
+func (v NullableWriteSchemaResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableWriteSchemaResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

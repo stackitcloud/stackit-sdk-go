@@ -10,8 +10,101 @@ API version: 2.0
 
 package membership
 
+import (
+	"encoding/json"
+)
+
+// checks if the PermissionRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PermissionRequest{}
+
 // PermissionRequest struct for PermissionRequest
 type PermissionRequest struct {
 	// REQUIRED
 	Name *string `json:"name"`
+}
+
+type _PermissionRequest PermissionRequest
+
+// NewPermissionRequest instantiates a new PermissionRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPermissionRequest(name *string) *PermissionRequest {
+	this := PermissionRequest{}
+	this.Name = name
+	return &this
+}
+
+// NewPermissionRequestWithDefaults instantiates a new PermissionRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPermissionRequestWithDefaults() *PermissionRequest {
+	this := PermissionRequest{}
+	return &this
+}
+
+// GetName returns the Name field value
+func (o *PermissionRequest) GetName() *string {
+	if o == nil || IsNil(o.Name) {
+		var ret *string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *PermissionRequest) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// SetName sets field value
+func (o *PermissionRequest) SetName(v *string) {
+	o.Name = v
+}
+
+func (o PermissionRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	return toSerialize, nil
+}
+
+type NullablePermissionRequest struct {
+	value *PermissionRequest
+	isSet bool
+}
+
+func (v NullablePermissionRequest) Get() *PermissionRequest {
+	return v.value
+}
+
+func (v *NullablePermissionRequest) Set(val *PermissionRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePermissionRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePermissionRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePermissionRequest(val *PermissionRequest) *NullablePermissionRequest {
+	return &NullablePermissionRequest{value: val, isSet: true}
+}
+
+func (v NullablePermissionRequest) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePermissionRequest) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
