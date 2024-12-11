@@ -68,7 +68,7 @@ func (o *UpdateNicPayload) GetAllowedAddressesOk() (*[]AllowedAddressesInner, bo
 
 // HasAllowedAddresses returns a boolean if a field has been set.
 func (o *UpdateNicPayload) HasAllowedAddresses() bool {
-	if o != nil && !IsNil(o.AllowedAddresses) {
+	if o != nil && !IsNil(o.AllowedAddresses) && !IsNil(o.AllowedAddresses) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *UpdateNicPayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateNicPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -132,7 +132,7 @@ func (o *UpdateNicPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateNicPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -164,7 +164,7 @@ func (o *UpdateNicPayload) GetNicSecurityOk() (*bool, bool) {
 
 // HasNicSecurity returns a boolean if a field has been set.
 func (o *UpdateNicPayload) HasNicSecurity() bool {
-	if o != nil && !IsNil(o.NicSecurity) {
+	if o != nil && !IsNil(o.NicSecurity) && !IsNil(o.NicSecurity) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *UpdateNicPayload) GetSecurityGroupsOk() (*[]string, bool) {
 
 // HasSecurityGroups returns a boolean if a field has been set.
 func (o *UpdateNicPayload) HasSecurityGroups() bool {
-	if o != nil && !IsNil(o.SecurityGroups) {
+	if o != nil && !IsNil(o.SecurityGroups) && !IsNil(o.SecurityGroups) {
 		return true
 	}
 

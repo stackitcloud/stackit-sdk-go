@@ -46,7 +46,7 @@ func NewServerListResponseWithDefaults() *ServerListResponse {
 
 // GetItems returns the Items field value
 func (o *ServerListResponse) GetItems() *[]Server {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]Server
 		return ret
 	}

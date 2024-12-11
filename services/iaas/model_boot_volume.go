@@ -71,7 +71,7 @@ func (o *BootVolume) GetDeleteOnTerminationOk() (*bool, bool) {
 
 // HasDeleteOnTermination returns a boolean if a field has been set.
 func (o *BootVolume) HasDeleteOnTermination() bool {
-	if o != nil && !IsNil(o.DeleteOnTermination) {
+	if o != nil && !IsNil(o.DeleteOnTermination) && !IsNil(o.DeleteOnTermination) {
 		return true
 	}
 
@@ -103,7 +103,7 @@ func (o *BootVolume) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *BootVolume) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -135,7 +135,7 @@ func (o *BootVolume) GetPerformanceClassOk() (*string, bool) {
 
 // HasPerformanceClass returns a boolean if a field has been set.
 func (o *BootVolume) HasPerformanceClass() bool {
-	if o != nil && !IsNil(o.PerformanceClass) {
+	if o != nil && !IsNil(o.PerformanceClass) && !IsNil(o.PerformanceClass) {
 		return true
 	}
 
@@ -167,7 +167,7 @@ func (o *BootVolume) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *BootVolume) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
+	if o != nil && !IsNil(o.Size) && !IsNil(o.Size) {
 		return true
 	}
 
@@ -199,7 +199,7 @@ func (o *BootVolume) GetSourceOk() (*BootVolumeSource, bool) {
 
 // HasSource returns a boolean if a field has been set.
 func (o *BootVolume) HasSource() bool {
-	if o != nil && !IsNil(o.Source) {
+	if o != nil && !IsNil(o.Source) && !IsNil(o.Source) {
 		return true
 	}
 

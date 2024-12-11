@@ -60,7 +60,7 @@ func (o *CreateServerNetworking) GetNetworkIdOk() (*string, bool) {
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *CreateServerNetworking) HasNetworkId() bool {
-	if o != nil && !IsNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) && !IsNil(o.NetworkId) {
 		return true
 	}
 

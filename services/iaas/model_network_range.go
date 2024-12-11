@@ -71,7 +71,7 @@ func (o *NetworkRange) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *NetworkRange) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -103,7 +103,7 @@ func (o *NetworkRange) GetNetworkRangeIdOk() (*string, bool) {
 
 // HasNetworkRangeId returns a boolean if a field has been set.
 func (o *NetworkRange) HasNetworkRangeId() bool {
-	if o != nil && !IsNil(o.NetworkRangeId) {
+	if o != nil && !IsNil(o.NetworkRangeId) && !IsNil(o.NetworkRangeId) {
 		return true
 	}
 
@@ -117,7 +117,7 @@ func (o *NetworkRange) SetNetworkRangeId(v *string) {
 
 // GetPrefix returns the Prefix field value
 func (o *NetworkRange) GetPrefix() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Prefix) {
 		var ret *string
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *NetworkRange) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *NetworkRange) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 

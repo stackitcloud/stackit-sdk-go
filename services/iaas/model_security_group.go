@@ -83,7 +83,7 @@ func (o *SecurityGroup) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SecurityGroup) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *SecurityGroup) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *SecurityGroup) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -147,7 +147,7 @@ func (o *SecurityGroup) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SecurityGroup) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -179,7 +179,7 @@ func (o *SecurityGroup) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *SecurityGroup) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -193,7 +193,7 @@ func (o *SecurityGroup) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *SecurityGroup) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -235,7 +235,7 @@ func (o *SecurityGroup) GetRulesOk() (*[]SecurityGroupRule, bool) {
 
 // HasRules returns a boolean if a field has been set.
 func (o *SecurityGroup) HasRules() bool {
-	if o != nil && !IsNil(o.Rules) {
+	if o != nil && !IsNil(o.Rules) && !IsNil(o.Rules) {
 		return true
 	}
 
@@ -267,7 +267,7 @@ func (o *SecurityGroup) GetStatefulOk() (*bool, bool) {
 
 // HasStateful returns a boolean if a field has been set.
 func (o *SecurityGroup) HasStateful() bool {
-	if o != nil && !IsNil(o.Stateful) {
+	if o != nil && !IsNil(o.Stateful) && !IsNil(o.Stateful) {
 		return true
 	}
 
@@ -299,7 +299,7 @@ func (o *SecurityGroup) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *SecurityGroup) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 

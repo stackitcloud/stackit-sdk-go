@@ -65,7 +65,7 @@ func (o *UpdateAreaIPv4) GetDefaultNameserversOk() (*[]string, bool) {
 
 // HasDefaultNameservers returns a boolean if a field has been set.
 func (o *UpdateAreaIPv4) HasDefaultNameservers() bool {
-	if o != nil && !IsNil(o.DefaultNameservers) {
+	if o != nil && !IsNil(o.DefaultNameservers) && !IsNil(o.DefaultNameservers) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *UpdateAreaIPv4) GetDefaultPrefixLenOk() (*int64, bool) {
 
 // HasDefaultPrefixLen returns a boolean if a field has been set.
 func (o *UpdateAreaIPv4) HasDefaultPrefixLen() bool {
-	if o != nil && !IsNil(o.DefaultPrefixLen) {
+	if o != nil && !IsNil(o.DefaultPrefixLen) && !IsNil(o.DefaultPrefixLen) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *UpdateAreaIPv4) GetMaxPrefixLenOk() (*int64, bool) {
 
 // HasMaxPrefixLen returns a boolean if a field has been set.
 func (o *UpdateAreaIPv4) HasMaxPrefixLen() bool {
-	if o != nil && !IsNil(o.MaxPrefixLen) {
+	if o != nil && !IsNil(o.MaxPrefixLen) && !IsNil(o.MaxPrefixLen) {
 		return true
 	}
 
@@ -161,7 +161,7 @@ func (o *UpdateAreaIPv4) GetMinPrefixLenOk() (*int64, bool) {
 
 // HasMinPrefixLen returns a boolean if a field has been set.
 func (o *UpdateAreaIPv4) HasMinPrefixLen() bool {
-	if o != nil && !IsNil(o.MinPrefixLen) {
+	if o != nil && !IsNil(o.MinPrefixLen) && !IsNil(o.MinPrefixLen) {
 		return true
 	}
 

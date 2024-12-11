@@ -60,7 +60,7 @@ func (o *CreateNetworkAddressFamily) GetIpv4Ok() (*CreateNetworkIPv4Body, bool) 
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *CreateNetworkAddressFamily) HasIpv4() bool {
-	if o != nil && !IsNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) && !IsNil(o.Ipv4) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *CreateNetworkAddressFamily) GetIpv6Ok() (*CreateNetworkIPv6Body, bool) 
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *CreateNetworkAddressFamily) HasIpv6() bool {
-	if o != nil && !IsNil(o.Ipv6) {
+	if o != nil && !IsNil(o.Ipv6) && !IsNil(o.Ipv6) {
 		return true
 	}
 

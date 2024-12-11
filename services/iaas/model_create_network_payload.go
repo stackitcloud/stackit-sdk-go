@@ -69,7 +69,7 @@ func (o *CreateNetworkPayload) GetAddressFamilyOk() (*CreateNetworkAddressFamily
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *CreateNetworkPayload) HasAddressFamily() bool {
-	if o != nil && !IsNil(o.AddressFamily) {
+	if o != nil && !IsNil(o.AddressFamily) && !IsNil(o.AddressFamily) {
 		return true
 	}
 
@@ -101,7 +101,7 @@ func (o *CreateNetworkPayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateNetworkPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func (o *CreateNetworkPayload) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *CreateNetworkPayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -157,7 +157,7 @@ func (o *CreateNetworkPayload) GetRoutedOk() (*bool, bool) {
 
 // HasRouted returns a boolean if a field has been set.
 func (o *CreateNetworkPayload) HasRouted() bool {
-	if o != nil && !IsNil(o.Routed) {
+	if o != nil && !IsNil(o.Routed) && !IsNil(o.Routed) {
 		return true
 	}
 

@@ -80,7 +80,7 @@ func (o *MachineType) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *MachineType) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *MachineType) SetDescription(v *string) {
 
 // GetDisk returns the Disk field value
 func (o *MachineType) GetDisk() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Disk) {
 		var ret *int64
 		return ret
 	}
@@ -136,7 +136,7 @@ func (o *MachineType) GetExtraSpecsOk() (*map[string]interface{}, bool) {
 
 // HasExtraSpecs returns a boolean if a field has been set.
 func (o *MachineType) HasExtraSpecs() bool {
-	if o != nil && !IsNil(o.ExtraSpecs) {
+	if o != nil && !IsNil(o.ExtraSpecs) && !IsNil(o.ExtraSpecs) {
 		return true
 	}
 
@@ -150,7 +150,7 @@ func (o *MachineType) SetExtraSpecs(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *MachineType) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -174,7 +174,7 @@ func (o *MachineType) SetName(v *string) {
 
 // GetRam returns the Ram field value
 func (o *MachineType) GetRam() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Ram) {
 		var ret *int64
 		return ret
 	}
@@ -198,7 +198,7 @@ func (o *MachineType) SetRam(v *int64) {
 
 // GetVcpus returns the Vcpus field value
 func (o *MachineType) GetVcpus() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Vcpus) {
 		var ret *int64
 		return ret
 	}

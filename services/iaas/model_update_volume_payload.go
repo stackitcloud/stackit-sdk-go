@@ -22,7 +22,8 @@ type UpdateVolumePayload struct {
 	// Indicates if a volume is bootable.
 	Bootable *bool `json:"bootable,omitempty"`
 	// Description Object. Allows string up to 127 Characters.
-	Description *string `json:"description,omitempty"`
+	Description *string      `json:"description,omitempty"`
+	ImageConfig *ImageConfig `json:"imageConfig,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
@@ -70,7 +71,7 @@ func (o *UpdateVolumePayload) GetBootableOk() (*bool, bool) {
 
 // HasBootable returns a boolean if a field has been set.
 func (o *UpdateVolumePayload) HasBootable() bool {
-	if o != nil && !IsNil(o.Bootable) {
+	if o != nil && !IsNil(o.Bootable) && !IsNil(o.Bootable) {
 		return true
 	}
 
@@ -102,7 +103,7 @@ func (o *UpdateVolumePayload) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *UpdateVolumePayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -112,6 +113,38 @@ func (o *UpdateVolumePayload) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *UpdateVolumePayload) SetDescription(v *string) {
 	o.Description = v
+}
+
+// GetImageConfig returns the ImageConfig field value if set, zero value otherwise.
+func (o *UpdateVolumePayload) GetImageConfig() *ImageConfig {
+	if o == nil || IsNil(o.ImageConfig) {
+		var ret *ImageConfig
+		return ret
+	}
+	return o.ImageConfig
+}
+
+// GetImageConfigOk returns a tuple with the ImageConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateVolumePayload) GetImageConfigOk() (*ImageConfig, bool) {
+	if o == nil || IsNil(o.ImageConfig) {
+		return nil, false
+	}
+	return o.ImageConfig, true
+}
+
+// HasImageConfig returns a boolean if a field has been set.
+func (o *UpdateVolumePayload) HasImageConfig() bool {
+	if o != nil && !IsNil(o.ImageConfig) && !IsNil(o.ImageConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageConfig gets a reference to the given ImageConfig and assigns it to the ImageConfig field.
+func (o *UpdateVolumePayload) SetImageConfig(v *ImageConfig) {
+	o.ImageConfig = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -134,7 +167,7 @@ func (o *UpdateVolumePayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateVolumePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -166,7 +199,7 @@ func (o *UpdateVolumePayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateVolumePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -185,6 +218,9 @@ func (o UpdateVolumePayload) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.ImageConfig) {
+		toSerialize["imageConfig"] = o.ImageConfig
 	}
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels

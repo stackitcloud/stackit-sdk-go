@@ -60,7 +60,7 @@ func (o *CreateNetworkAreaRangePayload) GetIpv4Ok() (*[]NetworkRange, bool) {
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *CreateNetworkAreaRangePayload) HasIpv4() bool {
-	if o != nil && !IsNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) && !IsNil(o.Ipv4) {
 		return true
 	}
 

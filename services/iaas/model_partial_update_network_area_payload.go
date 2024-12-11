@@ -63,7 +63,7 @@ func (o *PartialUpdateNetworkAreaPayload) GetAddressFamilyOk() (*UpdateAreaAddre
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *PartialUpdateNetworkAreaPayload) HasAddressFamily() bool {
-	if o != nil && !IsNil(o.AddressFamily) {
+	if o != nil && !IsNil(o.AddressFamily) && !IsNil(o.AddressFamily) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *PartialUpdateNetworkAreaPayload) GetLabelsOk() (*map[string]interface{}
 
 // HasLabels returns a boolean if a field has been set.
 func (o *PartialUpdateNetworkAreaPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *PartialUpdateNetworkAreaPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateNetworkAreaPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 

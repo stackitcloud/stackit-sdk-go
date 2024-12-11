@@ -47,7 +47,7 @@ func NewCreateNetworkIPv4BodyWithDefaults() *CreateNetworkIPv4Body {
 
 // GetGateway returns the Gateway field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateNetworkIPv4Body) GetGateway() *string {
-	if o == nil || IsNil(o.Gateway.Get()) {
+	if o == nil || IsNil(o.Gateway) || IsNil(o.Gateway.Get()) {
 		var ret *string
 		return ret
 	}
@@ -58,7 +58,7 @@ func (o *CreateNetworkIPv4Body) GetGateway() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateNetworkIPv4Body) GetGatewayOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Gateway) {
 		return nil, false
 	}
 	return o.Gateway.Get(), o.Gateway.IsSet()
@@ -66,7 +66,7 @@ func (o *CreateNetworkIPv4Body) GetGatewayOk() (*string, bool) {
 
 // HasGateway returns a boolean if a field has been set.
 func (o *CreateNetworkIPv4Body) HasGateway() bool {
-	if o != nil && o.Gateway.IsSet() {
+	if o != nil && !IsNil(o.Gateway) && !IsNil(o.Gateway) && o.Gateway.IsSet() {
 		return true
 	}
 
@@ -75,16 +75,25 @@ func (o *CreateNetworkIPv4Body) HasGateway() bool {
 
 // SetGateway gets a reference to the given string and assigns it to the Gateway field.
 func (o *CreateNetworkIPv4Body) SetGateway(v *string) {
+	if IsNil(o.Gateway) {
+		o.Gateway = new(NullableString)
+	}
 	o.Gateway.Set(v)
 }
 
 // SetGatewayNil sets the value for Gateway to be an explicit nil
 func (o *CreateNetworkIPv4Body) SetGatewayNil() {
+	if IsNil(o.Gateway) {
+		o.Gateway = new(NullableString)
+	}
 	o.Gateway.Set(nil)
 }
 
 // UnsetGateway ensures that no value is present for Gateway, not even an explicit nil
 func (o *CreateNetworkIPv4Body) UnsetGateway() {
+	if IsNil(o.Gateway) {
+		o.Gateway = new(NullableString)
+	}
 	o.Gateway.Unset()
 }
 
@@ -108,7 +117,7 @@ func (o *CreateNetworkIPv4Body) GetNameserversOk() (*[]string, bool) {
 
 // HasNameservers returns a boolean if a field has been set.
 func (o *CreateNetworkIPv4Body) HasNameservers() bool {
-	if o != nil && !IsNil(o.Nameservers) {
+	if o != nil && !IsNil(o.Nameservers) && !IsNil(o.Nameservers) {
 		return true
 	}
 
@@ -140,7 +149,7 @@ func (o *CreateNetworkIPv4Body) GetPrefixOk() (*string, bool) {
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *CreateNetworkIPv4Body) HasPrefix() bool {
-	if o != nil && !IsNil(o.Prefix) {
+	if o != nil && !IsNil(o.Prefix) && !IsNil(o.Prefix) {
 		return true
 	}
 
@@ -172,7 +181,7 @@ func (o *CreateNetworkIPv4Body) GetPrefixLengthOk() (*int64, bool) {
 
 // HasPrefixLength returns a boolean if a field has been set.
 func (o *CreateNetworkIPv4Body) HasPrefixLength() bool {
-	if o != nil && !IsNil(o.PrefixLength) {
+	if o != nil && !IsNil(o.PrefixLength) && !IsNil(o.PrefixLength) {
 		return true
 	}
 

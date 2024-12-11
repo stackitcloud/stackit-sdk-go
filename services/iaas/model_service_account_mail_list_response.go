@@ -46,7 +46,7 @@ func NewServiceAccountMailListResponseWithDefaults() *ServiceAccountMailListResp
 
 // GetItems returns the Items field value
 func (o *ServiceAccountMailListResponse) GetItems() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]string
 		return ret
 	}

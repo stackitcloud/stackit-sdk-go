@@ -59,7 +59,7 @@ func (o *GetServerLog200Response) GetOutputOk() (*string, bool) {
 
 // HasOutput returns a boolean if a field has been set.
 func (o *GetServerLog200Response) HasOutput() bool {
-	if o != nil && !IsNil(o.Output) {
+	if o != nil && !IsNil(o.Output) && !IsNil(o.Output) {
 		return true
 	}
 

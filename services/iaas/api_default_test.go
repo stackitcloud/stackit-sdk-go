@@ -347,6 +347,165 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService CreateAffinityGroup", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/affinity-groups"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AffinityGroup{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		createAffinityGroupPayload := CreateAffinityGroupPayload{}
+
+		resp, reqErr := apiClient.CreateAffinityGroup(context.Background(), projectId).CreateAffinityGroupPayload(createAffinityGroupPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService CreateBackup", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/backups"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Backup{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		createBackupPayload := CreateBackupPayload{}
+
+		resp, reqErr := apiClient.CreateBackup(context.Background(), projectId).CreateBackupPayload(createBackupPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService CreateImage", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ImageCreateResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		createImagePayload := CreateImagePayload{}
+
+		resp, reqErr := apiClient.CreateImage(context.Background(), projectId).CreateImagePayload(createImagePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService CreateKeyPair", func(t *testing.T) {
 		path := "/v1beta1/keypairs"
 
@@ -988,6 +1147,254 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService DeleteAffinityGroup", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/affinity-groups/{affinityGroupId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		affinityGroupIdValue := "affinityGroupId"
+		path = strings.Replace(path, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		affinityGroupId := "affinityGroupId"
+
+		reqErr := apiClient.DeleteAffinityGroup(context.Background(), projectId, affinityGroupId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteBackup", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/backups/{backupId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		backupIdValue := "backupId"
+		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		backupId := "backupId"
+
+		reqErr := apiClient.DeleteBackup(context.Background(), projectId, backupId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteImage", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images/{imageId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := "imageId"
+		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		imageId := "imageId"
+
+		reqErr := apiClient.DeleteImage(context.Background(), projectId, imageId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteImageShare", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := "imageId"
+		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		imageId := "imageId"
+
+		reqErr := apiClient.DeleteImageShare(context.Background(), projectId, imageId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteImageShareConsumer", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := "imageId"
+		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		consumerProjectIdValue := "consumerProjectId"
+		path = strings.Replace(path, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		imageId := "imageId"
+		consumerProjectId := "consumerProjectId"
+
+		reqErr := apiClient.DeleteImageShareConsumer(context.Background(), projectId, imageId, consumerProjectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
 	t.Run("Test DefaultApiService DeleteKeyPair", func(t *testing.T) {
 		path := "/v1beta1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName"
@@ -1536,6 +1943,61 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService GetAffinityGroup", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/affinity-groups/{affinityGroupId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		affinityGroupIdValue := "affinityGroupId"
+		path = strings.Replace(path, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AffinityGroup{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		affinityGroupId := "affinityGroupId"
+
+		resp, reqErr := apiClient.GetAffinityGroup(context.Background(), projectId, affinityGroupId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService GetAttachedVolume", func(t *testing.T) {
 		path := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := "projectId"
@@ -1585,6 +2047,229 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		volumeId := "volumeId"
 
 		resp, reqErr := apiClient.GetAttachedVolume(context.Background(), projectId, serverId, volumeId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/backups/{backupId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		backupIdValue := "backupId"
+		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Backup{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		backupId := "backupId"
+
+		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, backupId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetImage", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images/{imageId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := "imageId"
+		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Image{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		imageId := "imageId"
+
+		resp, reqErr := apiClient.GetImage(context.Background(), projectId, imageId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetImageShare", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := "imageId"
+		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ImageShare{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		imageId := "imageId"
+
+		resp, reqErr := apiClient.GetImageShare(context.Background(), projectId, imageId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetImageShareConsumer", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := "imageId"
+		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		consumerProjectIdValue := "consumerProjectId"
+		path = strings.Replace(path, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ImageShareConsumer{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		imageId := "imageId"
+		consumerProjectId := "consumerProjectId"
+
+		resp, reqErr := apiClient.GetImageShareConsumer(context.Background(), projectId, imageId, consumerProjectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2031,6 +2716,61 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		requestId := "requestId"
 
 		resp, reqErr := apiClient.GetOrganizationRequest(context.Background(), organizationId, requestId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetProjectNIC", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/nics/{nicId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		nicIdValue := "nicId"
+		path = strings.Replace(path, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := NIC{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		nicId := "nicId"
+
+		resp, reqErr := apiClient.GetProjectNIC(context.Background(), projectId, nicId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2538,6 +3278,58 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService ListAffinityGroups", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/affinity-groups"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AffinityGroupListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListAffinityGroups(context.Background(), projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService ListAttachedVolumes", func(t *testing.T) {
 		path := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments"
 		projectIdValue := "projectId"
@@ -2584,6 +3376,158 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		serverId := "serverId"
 
 		resp, reqErr := apiClient.ListAttachedVolumes(context.Background(), projectId, serverId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListAvailabilityZones", func(t *testing.T) {
+		path := "/v1beta1/availability-zones"
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := AvailabilityZoneListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		resp, reqErr := apiClient.ListAvailabilityZones(context.Background()).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/backups"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := BackupListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListBackups(context.Background(), projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListImages", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ImageListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListImages(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3008,6 +3952,58 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		networkId := "networkId"
 
 		resp, reqErr := apiClient.ListNics(context.Background(), projectId, networkId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListProjectNICs", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/nics"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := NICListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.ListProjectNICs(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4064,6 +5060,111 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService RestoreBackup", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/backups/{backupId}/restore"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		backupIdValue := "backupId"
+		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		backupId := "backupId"
+
+		reqErr := apiClient.RestoreBackup(context.Background(), projectId, backupId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService SetImageShare", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := "imageId"
+		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ImageShare{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		imageId := "imageId"
+		setImageSharePayload := SetImageSharePayload{}
+
+		resp, reqErr := apiClient.SetImageShare(context.Background(), projectId, imageId).SetImageSharePayload(setImageSharePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService StartServer", func(t *testing.T) {
 		path := "/v1beta1/projects/{projectId}/servers/{serverId}/start"
 		projectIdValue := "projectId"
@@ -4261,6 +5362,118 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		updateAttachedVolumePayload := UpdateAttachedVolumePayload{}
 
 		resp, reqErr := apiClient.UpdateAttachedVolume(context.Background(), projectId, serverId, volumeId).UpdateAttachedVolumePayload(updateAttachedVolumePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateImage", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images/{imageId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := "imageId"
+		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Image{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		imageId := "imageId"
+		updateImagePayload := UpdateImagePayload{}
+
+		resp, reqErr := apiClient.UpdateImage(context.Background(), projectId, imageId).UpdateImagePayload(updateImagePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateImageShare", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := "imageId"
+		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := ImageShare{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		imageId := "imageId"
+		updateImageSharePayload := UpdateImageSharePayload{}
+
+		resp, reqErr := apiClient.UpdateImageShare(context.Background(), projectId, imageId).UpdateImageSharePayload(updateImageSharePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4656,6 +5869,327 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		updateVolumePayload := UpdateVolumePayload{}
 
 		resp, reqErr := apiClient.UpdateVolume(context.Background(), projectId, volumeId).UpdateVolumePayload(updateVolumePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService V1beta1CreateSnapshot", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/snapshots"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Snapshot{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		v1beta1CreateSnapshotPayload := V1beta1CreateSnapshotPayload{}
+
+		resp, reqErr := apiClient.V1beta1CreateSnapshot(context.Background(), projectId).V1beta1CreateSnapshotPayload(v1beta1CreateSnapshotPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService V1beta1DeleteSnapshot", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		snapshotIdValue := "snapshotId"
+		path = strings.Replace(path, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		snapshotId := "snapshotId"
+
+		reqErr := apiClient.V1beta1DeleteSnapshot(context.Background(), projectId, snapshotId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService V1beta1GetSnapshot", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		snapshotIdValue := "snapshotId"
+		path = strings.Replace(path, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Snapshot{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		snapshotId := "snapshotId"
+
+		resp, reqErr := apiClient.V1beta1GetSnapshot(context.Background(), projectId, snapshotId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService V1beta1ListSnapshotsInProject", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/snapshots"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := SnapshotListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+
+		resp, reqErr := apiClient.V1beta1ListSnapshotsInProject(context.Background(), projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService V1beta1UpdateBackup", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/backups/{backupId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		backupIdValue := "backupId"
+		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Backup{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		backupId := "backupId"
+		v1beta1UpdateBackupPayload := V1beta1UpdateBackupPayload{}
+
+		resp, reqErr := apiClient.V1beta1UpdateBackup(context.Background(), projectId, backupId).V1beta1UpdateBackupPayload(v1beta1UpdateBackupPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if resp == nil {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService V1beta1UpdateSnapshot", func(t *testing.T) {
+		path := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		snapshotIdValue := "snapshotId"
+		path = strings.Replace(path, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+			data := Snapshot{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		snapshotId := "snapshotId"
+		v1beta1UpdateSnapshotPayload := V1beta1UpdateSnapshotPayload{}
+
+		resp, reqErr := apiClient.V1beta1UpdateSnapshot(context.Background(), projectId, snapshotId).V1beta1UpdateSnapshotPayload(v1beta1UpdateSnapshotPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)

@@ -60,7 +60,7 @@ func (o *CreateServerNetworkingWithNics) GetNicIdsOk() (*[]string, bool) {
 
 // HasNicIds returns a boolean if a field has been set.
 func (o *CreateServerNetworkingWithNics) HasNicIds() bool {
-	if o != nil && !IsNil(o.NicIds) {
+	if o != nil && !IsNil(o.NicIds) && !IsNil(o.NicIds) {
 		return true
 	}
 

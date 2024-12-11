@@ -92,7 +92,7 @@ func (o *ServerNetwork) GetAllowedAddressesOk() (*[]AllowedAddressesInner, bool)
 
 // HasAllowedAddresses returns a boolean if a field has been set.
 func (o *ServerNetwork) HasAllowedAddresses() bool {
-	if o != nil && !IsNil(o.AllowedAddresses) {
+	if o != nil && !IsNil(o.AllowedAddresses) && !IsNil(o.AllowedAddresses) {
 		return true
 	}
 
@@ -124,7 +124,7 @@ func (o *ServerNetwork) GetIpv4Ok() (*string, bool) {
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *ServerNetwork) HasIpv4() bool {
-	if o != nil && !IsNil(o.Ipv4) {
+	if o != nil && !IsNil(o.Ipv4) && !IsNil(o.Ipv4) {
 		return true
 	}
 
@@ -156,7 +156,7 @@ func (o *ServerNetwork) GetIpv6Ok() (*string, bool) {
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *ServerNetwork) HasIpv6() bool {
-	if o != nil && !IsNil(o.Ipv6) {
+	if o != nil && !IsNil(o.Ipv6) && !IsNil(o.Ipv6) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *ServerNetwork) SetIpv6(v *string) {
 
 // GetMac returns the Mac field value
 func (o *ServerNetwork) GetMac() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Mac) {
 		var ret *string
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *ServerNetwork) SetMac(v *string) {
 
 // GetNetworkId returns the NetworkId field value
 func (o *ServerNetwork) GetNetworkId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret *string
 		return ret
 	}
@@ -218,7 +218,7 @@ func (o *ServerNetwork) SetNetworkId(v *string) {
 
 // GetNetworkName returns the NetworkName field value
 func (o *ServerNetwork) GetNetworkName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkName) {
 		var ret *string
 		return ret
 	}
@@ -242,7 +242,7 @@ func (o *ServerNetwork) SetNetworkName(v *string) {
 
 // GetNicId returns the NicId field value
 func (o *ServerNetwork) GetNicId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.NicId) {
 		var ret *string
 		return ret
 	}
@@ -266,7 +266,7 @@ func (o *ServerNetwork) SetNicId(v *string) {
 
 // GetNicSecurity returns the NicSecurity field value
 func (o *ServerNetwork) GetNicSecurity() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.NicSecurity) {
 		var ret *bool
 		return ret
 	}
@@ -308,7 +308,7 @@ func (o *ServerNetwork) GetPublicIpOk() (*string, bool) {
 
 // HasPublicIp returns a boolean if a field has been set.
 func (o *ServerNetwork) HasPublicIp() bool {
-	if o != nil && !IsNil(o.PublicIp) {
+	if o != nil && !IsNil(o.PublicIp) && !IsNil(o.PublicIp) {
 		return true
 	}
 
@@ -340,7 +340,7 @@ func (o *ServerNetwork) GetSecurityGroupsOk() (*[]string, bool) {
 
 // HasSecurityGroups returns a boolean if a field has been set.
 func (o *ServerNetwork) HasSecurityGroups() bool {
-	if o != nil && !IsNil(o.SecurityGroups) {
+	if o != nil && !IsNil(o.SecurityGroups) && !IsNil(o.SecurityGroups) {
 		return true
 	}
 

@@ -60,7 +60,7 @@ func (o *UpdateNetworkAreaRoutePayload) GetLabelsOk() (*map[string]interface{}, 
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateNetworkAreaRoutePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 

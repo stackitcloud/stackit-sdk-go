@@ -106,7 +106,7 @@ func (o *CreateServerPayload) GetAffinityGroupOk() (*string, bool) {
 
 // HasAffinityGroup returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasAffinityGroup() bool {
-	if o != nil && !IsNil(o.AffinityGroup) {
+	if o != nil && !IsNil(o.AffinityGroup) && !IsNil(o.AffinityGroup) {
 		return true
 	}
 
@@ -138,7 +138,7 @@ func (o *CreateServerPayload) GetAvailabilityZoneOk() (*string, bool) {
 
 // HasAvailabilityZone returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasAvailabilityZone() bool {
-	if o != nil && !IsNil(o.AvailabilityZone) {
+	if o != nil && !IsNil(o.AvailabilityZone) && !IsNil(o.AvailabilityZone) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *CreateServerPayload) GetBootVolumeOk() (*CreateServerPayloadBootVolume,
 
 // HasBootVolume returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasBootVolume() bool {
-	if o != nil && !IsNil(o.BootVolume) {
+	if o != nil && !IsNil(o.BootVolume) && !IsNil(o.BootVolume) {
 		return true
 	}
 
@@ -202,7 +202,7 @@ func (o *CreateServerPayload) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -234,7 +234,7 @@ func (o *CreateServerPayload) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasErrorMessage() bool {
-	if o != nil && !IsNil(o.ErrorMessage) {
+	if o != nil && !IsNil(o.ErrorMessage) && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -266,7 +266,7 @@ func (o *CreateServerPayload) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -298,7 +298,7 @@ func (o *CreateServerPayload) GetImageIdOk() (*string, bool) {
 
 // HasImageId returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasImageId() bool {
-	if o != nil && !IsNil(o.ImageId) {
+	if o != nil && !IsNil(o.ImageId) && !IsNil(o.ImageId) {
 		return true
 	}
 
@@ -330,7 +330,7 @@ func (o *CreateServerPayload) GetKeypairNameOk() (*string, bool) {
 
 // HasKeypairName returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasKeypairName() bool {
-	if o != nil && !IsNil(o.KeypairName) {
+	if o != nil && !IsNil(o.KeypairName) && !IsNil(o.KeypairName) {
 		return true
 	}
 
@@ -362,7 +362,7 @@ func (o *CreateServerPayload) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -394,7 +394,7 @@ func (o *CreateServerPayload) GetLaunchedAtOk() (*time.Time, bool) {
 
 // HasLaunchedAt returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasLaunchedAt() bool {
-	if o != nil && !IsNil(o.LaunchedAt) {
+	if o != nil && !IsNil(o.LaunchedAt) && !IsNil(o.LaunchedAt) {
 		return true
 	}
 
@@ -408,7 +408,7 @@ func (o *CreateServerPayload) SetLaunchedAt(v *time.Time) {
 
 // GetMachineType returns the MachineType field value
 func (o *CreateServerPayload) GetMachineType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MachineType) {
 		var ret *string
 		return ret
 	}
@@ -450,7 +450,7 @@ func (o *CreateServerPayload) GetMaintenanceWindowOk() (*ServerMaintenance, bool
 
 // HasMaintenanceWindow returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasMaintenanceWindow() bool {
-	if o != nil && !IsNil(o.MaintenanceWindow) {
+	if o != nil && !IsNil(o.MaintenanceWindow) && !IsNil(o.MaintenanceWindow) {
 		return true
 	}
 
@@ -464,7 +464,7 @@ func (o *CreateServerPayload) SetMaintenanceWindow(v *ServerMaintenance) {
 
 // GetName returns the Name field value
 func (o *CreateServerPayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -506,7 +506,7 @@ func (o *CreateServerPayload) GetNetworkingOk() (*CreateServerPayloadNetworking,
 
 // HasNetworking returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasNetworking() bool {
-	if o != nil && !IsNil(o.Networking) {
+	if o != nil && !IsNil(o.Networking) && !IsNil(o.Networking) {
 		return true
 	}
 
@@ -538,7 +538,7 @@ func (o *CreateServerPayload) GetNicsOk() (*[]ServerNetwork, bool) {
 
 // HasNics returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasNics() bool {
-	if o != nil && !IsNil(o.Nics) {
+	if o != nil && !IsNil(o.Nics) && !IsNil(o.Nics) {
 		return true
 	}
 
@@ -570,7 +570,7 @@ func (o *CreateServerPayload) GetPowerStatusOk() (*string, bool) {
 
 // HasPowerStatus returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasPowerStatus() bool {
-	if o != nil && !IsNil(o.PowerStatus) {
+	if o != nil && !IsNil(o.PowerStatus) && !IsNil(o.PowerStatus) {
 		return true
 	}
 
@@ -602,7 +602,7 @@ func (o *CreateServerPayload) GetSecurityGroupsOk() (*[]string, bool) {
 
 // HasSecurityGroups returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasSecurityGroups() bool {
-	if o != nil && !IsNil(o.SecurityGroups) {
+	if o != nil && !IsNil(o.SecurityGroups) && !IsNil(o.SecurityGroups) {
 		return true
 	}
 
@@ -634,7 +634,7 @@ func (o *CreateServerPayload) GetServiceAccountMailsOk() (*[]string, bool) {
 
 // HasServiceAccountMails returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasServiceAccountMails() bool {
-	if o != nil && !IsNil(o.ServiceAccountMails) {
+	if o != nil && !IsNil(o.ServiceAccountMails) && !IsNil(o.ServiceAccountMails) {
 		return true
 	}
 
@@ -666,7 +666,7 @@ func (o *CreateServerPayload) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
@@ -698,7 +698,7 @@ func (o *CreateServerPayload) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -730,7 +730,7 @@ func (o *CreateServerPayload) GetUserDataOk() (*string, bool) {
 
 // HasUserData returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasUserData() bool {
-	if o != nil && !IsNil(o.UserData) {
+	if o != nil && !IsNil(o.UserData) && !IsNil(o.UserData) {
 		return true
 	}
 
@@ -762,7 +762,7 @@ func (o *CreateServerPayload) GetVolumesOk() (*[]string, bool) {
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasVolumes() bool {
-	if o != nil && !IsNil(o.Volumes) {
+	if o != nil && !IsNil(o.Volumes) && !IsNil(o.Volumes) {
 		return true
 	}
 

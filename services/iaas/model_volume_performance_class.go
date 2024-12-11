@@ -72,7 +72,7 @@ func (o *VolumePerformanceClass) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *VolumePerformanceClass) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *VolumePerformanceClass) GetIopsOk() (*int64, bool) {
 
 // HasIops returns a boolean if a field has been set.
 func (o *VolumePerformanceClass) HasIops() bool {
-	if o != nil && !IsNil(o.Iops) {
+	if o != nil && !IsNil(o.Iops) && !IsNil(o.Iops) {
 		return true
 	}
 
@@ -136,7 +136,7 @@ func (o *VolumePerformanceClass) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *VolumePerformanceClass) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -150,7 +150,7 @@ func (o *VolumePerformanceClass) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *VolumePerformanceClass) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -192,7 +192,7 @@ func (o *VolumePerformanceClass) GetThroughputOk() (*int64, bool) {
 
 // HasThroughput returns a boolean if a field has been set.
 func (o *VolumePerformanceClass) HasThroughput() bool {
-	if o != nil && !IsNil(o.Throughput) {
+	if o != nil && !IsNil(o.Throughput) && !IsNil(o.Throughput) {
 		return true
 	}
 

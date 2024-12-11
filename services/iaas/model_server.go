@@ -106,7 +106,7 @@ func (o *Server) GetAffinityGroupOk() (*string, bool) {
 
 // HasAffinityGroup returns a boolean if a field has been set.
 func (o *Server) HasAffinityGroup() bool {
-	if o != nil && !IsNil(o.AffinityGroup) {
+	if o != nil && !IsNil(o.AffinityGroup) && !IsNil(o.AffinityGroup) {
 		return true
 	}
 
@@ -138,7 +138,7 @@ func (o *Server) GetAvailabilityZoneOk() (*string, bool) {
 
 // HasAvailabilityZone returns a boolean if a field has been set.
 func (o *Server) HasAvailabilityZone() bool {
-	if o != nil && !IsNil(o.AvailabilityZone) {
+	if o != nil && !IsNil(o.AvailabilityZone) && !IsNil(o.AvailabilityZone) {
 		return true
 	}
 
@@ -170,7 +170,7 @@ func (o *Server) GetBootVolumeOk() (*CreateServerPayloadBootVolume, bool) {
 
 // HasBootVolume returns a boolean if a field has been set.
 func (o *Server) HasBootVolume() bool {
-	if o != nil && !IsNil(o.BootVolume) {
+	if o != nil && !IsNil(o.BootVolume) && !IsNil(o.BootVolume) {
 		return true
 	}
 
@@ -202,7 +202,7 @@ func (o *Server) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Server) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -234,7 +234,7 @@ func (o *Server) GetErrorMessageOk() (*string, bool) {
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *Server) HasErrorMessage() bool {
-	if o != nil && !IsNil(o.ErrorMessage) {
+	if o != nil && !IsNil(o.ErrorMessage) && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -266,7 +266,7 @@ func (o *Server) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Server) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -298,7 +298,7 @@ func (o *Server) GetImageIdOk() (*string, bool) {
 
 // HasImageId returns a boolean if a field has been set.
 func (o *Server) HasImageId() bool {
-	if o != nil && !IsNil(o.ImageId) {
+	if o != nil && !IsNil(o.ImageId) && !IsNil(o.ImageId) {
 		return true
 	}
 
@@ -330,7 +330,7 @@ func (o *Server) GetKeypairNameOk() (*string, bool) {
 
 // HasKeypairName returns a boolean if a field has been set.
 func (o *Server) HasKeypairName() bool {
-	if o != nil && !IsNil(o.KeypairName) {
+	if o != nil && !IsNil(o.KeypairName) && !IsNil(o.KeypairName) {
 		return true
 	}
 
@@ -362,7 +362,7 @@ func (o *Server) GetLabelsOk() (*map[string]interface{}, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Server) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -394,7 +394,7 @@ func (o *Server) GetLaunchedAtOk() (*time.Time, bool) {
 
 // HasLaunchedAt returns a boolean if a field has been set.
 func (o *Server) HasLaunchedAt() bool {
-	if o != nil && !IsNil(o.LaunchedAt) {
+	if o != nil && !IsNil(o.LaunchedAt) && !IsNil(o.LaunchedAt) {
 		return true
 	}
 
@@ -408,7 +408,7 @@ func (o *Server) SetLaunchedAt(v *time.Time) {
 
 // GetMachineType returns the MachineType field value
 func (o *Server) GetMachineType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MachineType) {
 		var ret *string
 		return ret
 	}
@@ -450,7 +450,7 @@ func (o *Server) GetMaintenanceWindowOk() (*ServerMaintenance, bool) {
 
 // HasMaintenanceWindow returns a boolean if a field has been set.
 func (o *Server) HasMaintenanceWindow() bool {
-	if o != nil && !IsNil(o.MaintenanceWindow) {
+	if o != nil && !IsNil(o.MaintenanceWindow) && !IsNil(o.MaintenanceWindow) {
 		return true
 	}
 
@@ -464,7 +464,7 @@ func (o *Server) SetMaintenanceWindow(v *ServerMaintenance) {
 
 // GetName returns the Name field value
 func (o *Server) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -506,7 +506,7 @@ func (o *Server) GetNetworkingOk() (*CreateServerPayloadNetworking, bool) {
 
 // HasNetworking returns a boolean if a field has been set.
 func (o *Server) HasNetworking() bool {
-	if o != nil && !IsNil(o.Networking) {
+	if o != nil && !IsNil(o.Networking) && !IsNil(o.Networking) {
 		return true
 	}
 
@@ -538,7 +538,7 @@ func (o *Server) GetNicsOk() (*[]ServerNetwork, bool) {
 
 // HasNics returns a boolean if a field has been set.
 func (o *Server) HasNics() bool {
-	if o != nil && !IsNil(o.Nics) {
+	if o != nil && !IsNil(o.Nics) && !IsNil(o.Nics) {
 		return true
 	}
 
@@ -570,7 +570,7 @@ func (o *Server) GetPowerStatusOk() (*string, bool) {
 
 // HasPowerStatus returns a boolean if a field has been set.
 func (o *Server) HasPowerStatus() bool {
-	if o != nil && !IsNil(o.PowerStatus) {
+	if o != nil && !IsNil(o.PowerStatus) && !IsNil(o.PowerStatus) {
 		return true
 	}
 
@@ -602,7 +602,7 @@ func (o *Server) GetSecurityGroupsOk() (*[]string, bool) {
 
 // HasSecurityGroups returns a boolean if a field has been set.
 func (o *Server) HasSecurityGroups() bool {
-	if o != nil && !IsNil(o.SecurityGroups) {
+	if o != nil && !IsNil(o.SecurityGroups) && !IsNil(o.SecurityGroups) {
 		return true
 	}
 
@@ -634,7 +634,7 @@ func (o *Server) GetServiceAccountMailsOk() (*[]string, bool) {
 
 // HasServiceAccountMails returns a boolean if a field has been set.
 func (o *Server) HasServiceAccountMails() bool {
-	if o != nil && !IsNil(o.ServiceAccountMails) {
+	if o != nil && !IsNil(o.ServiceAccountMails) && !IsNil(o.ServiceAccountMails) {
 		return true
 	}
 
@@ -666,7 +666,7 @@ func (o *Server) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Server) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
@@ -698,7 +698,7 @@ func (o *Server) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Server) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -730,7 +730,7 @@ func (o *Server) GetUserDataOk() (*string, bool) {
 
 // HasUserData returns a boolean if a field has been set.
 func (o *Server) HasUserData() bool {
-	if o != nil && !IsNil(o.UserData) {
+	if o != nil && !IsNil(o.UserData) && !IsNil(o.UserData) {
 		return true
 	}
 
@@ -762,7 +762,7 @@ func (o *Server) GetVolumesOk() (*[]string, bool) {
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *Server) HasVolumes() bool {
-	if o != nil && !IsNil(o.Volumes) {
+	if o != nil && !IsNil(o.Volumes) && !IsNil(o.Volumes) {
 		return true
 	}
 
