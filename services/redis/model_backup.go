@@ -72,7 +72,7 @@ func (o *Backup) GetDownloadableOk() (*bool, bool) {
 
 // HasDownloadable returns a boolean if a field has been set.
 func (o *Backup) HasDownloadable() bool {
-	if o != nil && !IsNil(o.Downloadable) {
+	if o != nil && !IsNil(o.Downloadable) && !IsNil(o.Downloadable) {
 		return true
 	}
 
@@ -86,7 +86,7 @@ func (o *Backup) SetDownloadable(v *bool) {
 
 // GetFinishedAt returns the FinishedAt field value
 func (o *Backup) GetFinishedAt() *string {
-	if o == nil {
+	if o == nil || IsNil(o.FinishedAt) {
 		var ret *string
 		return ret
 	}
@@ -110,7 +110,7 @@ func (o *Backup) SetFinishedAt(v *string) {
 
 // GetId returns the Id field value
 func (o *Backup) GetId() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *int64
 		return ret
 	}
@@ -152,7 +152,7 @@ func (o *Backup) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *Backup) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
+	if o != nil && !IsNil(o.Size) && !IsNil(o.Size) {
 		return true
 	}
 
@@ -166,7 +166,7 @@ func (o *Backup) SetSize(v *int64) {
 
 // GetStatus returns the Status field value
 func (o *Backup) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}
@@ -208,7 +208,7 @@ func (o *Backup) GetTriggeredAtOk() (*string, bool) {
 
 // HasTriggeredAt returns a boolean if a field has been set.
 func (o *Backup) HasTriggeredAt() bool {
-	if o != nil && !IsNil(o.TriggeredAt) {
+	if o != nil && !IsNil(o.TriggeredAt) && !IsNil(o.TriggeredAt) {
 		return true
 	}
 

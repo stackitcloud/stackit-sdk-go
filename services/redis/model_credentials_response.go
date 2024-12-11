@@ -49,7 +49,7 @@ func NewCredentialsResponseWithDefaults() *CredentialsResponse {
 
 // GetId returns the Id field value
 func (o *CredentialsResponse) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *CredentialsResponse) GetRawOk() (*RawCredentials, bool) {
 
 // HasRaw returns a boolean if a field has been set.
 func (o *CredentialsResponse) HasRaw() bool {
-	if o != nil && !IsNil(o.Raw) {
+	if o != nil && !IsNil(o.Raw) && !IsNil(o.Raw) {
 		return true
 	}
 
@@ -105,7 +105,7 @@ func (o *CredentialsResponse) SetRaw(v *RawCredentials) {
 
 // GetUri returns the Uri field value
 func (o *CredentialsResponse) GetUri() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Uri) {
 		var ret *string
 		return ret
 	}

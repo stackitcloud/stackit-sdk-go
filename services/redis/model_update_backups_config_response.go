@@ -45,7 +45,7 @@ func NewUpdateBackupsConfigResponseWithDefaults() *UpdateBackupsConfigResponse {
 
 // GetMessage returns the Message field value
 func (o *UpdateBackupsConfigResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

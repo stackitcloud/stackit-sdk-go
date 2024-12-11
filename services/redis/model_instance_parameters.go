@@ -142,7 +142,7 @@ func (o *InstanceParameters) GetDownAfterMillisecondsOk() (*int64, bool) {
 
 // HasDownAfterMilliseconds returns a boolean if a field has been set.
 func (o *InstanceParameters) HasDownAfterMilliseconds() bool {
-	if o != nil && !IsNil(o.DownAfterMilliseconds) {
+	if o != nil && !IsNil(o.DownAfterMilliseconds) && !IsNil(o.DownAfterMilliseconds) {
 		return true
 	}
 
@@ -174,7 +174,7 @@ func (o *InstanceParameters) GetEnableMonitoringOk() (*bool, bool) {
 
 // HasEnableMonitoring returns a boolean if a field has been set.
 func (o *InstanceParameters) HasEnableMonitoring() bool {
-	if o != nil && !IsNil(o.EnableMonitoring) {
+	if o != nil && !IsNil(o.EnableMonitoring) && !IsNil(o.EnableMonitoring) {
 		return true
 	}
 
@@ -206,7 +206,7 @@ func (o *InstanceParameters) GetFailoverTimeoutOk() (*int64, bool) {
 
 // HasFailoverTimeout returns a boolean if a field has been set.
 func (o *InstanceParameters) HasFailoverTimeout() bool {
-	if o != nil && !IsNil(o.FailoverTimeout) {
+	if o != nil && !IsNil(o.FailoverTimeout) && !IsNil(o.FailoverTimeout) {
 		return true
 	}
 
@@ -238,7 +238,7 @@ func (o *InstanceParameters) GetGraphiteOk() (*string, bool) {
 
 // HasGraphite returns a boolean if a field has been set.
 func (o *InstanceParameters) HasGraphite() bool {
-	if o != nil && !IsNil(o.Graphite) {
+	if o != nil && !IsNil(o.Graphite) && !IsNil(o.Graphite) {
 		return true
 	}
 
@@ -270,7 +270,7 @@ func (o *InstanceParameters) GetLazyfreeLazyEvictionOk() (*string, bool) {
 
 // HasLazyfreeLazyEviction returns a boolean if a field has been set.
 func (o *InstanceParameters) HasLazyfreeLazyEviction() bool {
-	if o != nil && !IsNil(o.LazyfreeLazyEviction) {
+	if o != nil && !IsNil(o.LazyfreeLazyEviction) && !IsNil(o.LazyfreeLazyEviction) {
 		return true
 	}
 
@@ -302,7 +302,7 @@ func (o *InstanceParameters) GetLazyfreeLazyExpireOk() (*string, bool) {
 
 // HasLazyfreeLazyExpire returns a boolean if a field has been set.
 func (o *InstanceParameters) HasLazyfreeLazyExpire() bool {
-	if o != nil && !IsNil(o.LazyfreeLazyExpire) {
+	if o != nil && !IsNil(o.LazyfreeLazyExpire) && !IsNil(o.LazyfreeLazyExpire) {
 		return true
 	}
 
@@ -334,7 +334,7 @@ func (o *InstanceParameters) GetLuaTimeLimitOk() (*int64, bool) {
 
 // HasLuaTimeLimit returns a boolean if a field has been set.
 func (o *InstanceParameters) HasLuaTimeLimit() bool {
-	if o != nil && !IsNil(o.LuaTimeLimit) {
+	if o != nil && !IsNil(o.LuaTimeLimit) && !IsNil(o.LuaTimeLimit) {
 		return true
 	}
 
@@ -366,7 +366,7 @@ func (o *InstanceParameters) GetMaxDiskThresholdOk() (*int64, bool) {
 
 // HasMaxDiskThreshold returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxDiskThreshold() bool {
-	if o != nil && !IsNil(o.MaxDiskThreshold) {
+	if o != nil && !IsNil(o.MaxDiskThreshold) && !IsNil(o.MaxDiskThreshold) {
 		return true
 	}
 
@@ -398,7 +398,7 @@ func (o *InstanceParameters) GetMaxclientsOk() (*int64, bool) {
 
 // HasMaxclients returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxclients() bool {
-	if o != nil && !IsNil(o.Maxclients) {
+	if o != nil && !IsNil(o.Maxclients) && !IsNil(o.Maxclients) {
 		return true
 	}
 
@@ -430,7 +430,7 @@ func (o *InstanceParameters) GetMaxmemoryPolicyOk() (*string, bool) {
 
 // HasMaxmemoryPolicy returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxmemoryPolicy() bool {
-	if o != nil && !IsNil(o.MaxmemoryPolicy) {
+	if o != nil && !IsNil(o.MaxmemoryPolicy) && !IsNil(o.MaxmemoryPolicy) {
 		return true
 	}
 
@@ -462,7 +462,7 @@ func (o *InstanceParameters) GetMaxmemorySamplesOk() (*int64, bool) {
 
 // HasMaxmemorySamples returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxmemorySamples() bool {
-	if o != nil && !IsNil(o.MaxmemorySamples) {
+	if o != nil && !IsNil(o.MaxmemorySamples) && !IsNil(o.MaxmemorySamples) {
 		return true
 	}
 
@@ -494,7 +494,7 @@ func (o *InstanceParameters) GetMetricsFrequencyOk() (*int64, bool) {
 
 // HasMetricsFrequency returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsFrequency() bool {
-	if o != nil && !IsNil(o.MetricsFrequency) {
+	if o != nil && !IsNil(o.MetricsFrequency) && !IsNil(o.MetricsFrequency) {
 		return true
 	}
 
@@ -526,7 +526,7 @@ func (o *InstanceParameters) GetMetricsPrefixOk() (*string, bool) {
 
 // HasMetricsPrefix returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsPrefix() bool {
-	if o != nil && !IsNil(o.MetricsPrefix) {
+	if o != nil && !IsNil(o.MetricsPrefix) && !IsNil(o.MetricsPrefix) {
 		return true
 	}
 
@@ -558,7 +558,7 @@ func (o *InstanceParameters) GetMinReplicasMaxLagOk() (*int64, bool) {
 
 // HasMinReplicasMaxLag returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMinReplicasMaxLag() bool {
-	if o != nil && !IsNil(o.MinReplicasMaxLag) {
+	if o != nil && !IsNil(o.MinReplicasMaxLag) && !IsNil(o.MinReplicasMaxLag) {
 		return true
 	}
 
@@ -590,7 +590,7 @@ func (o *InstanceParameters) GetMonitoringInstanceIdOk() (*string, bool) {
 
 // HasMonitoringInstanceId returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMonitoringInstanceId() bool {
-	if o != nil && !IsNil(o.MonitoringInstanceId) {
+	if o != nil && !IsNil(o.MonitoringInstanceId) && !IsNil(o.MonitoringInstanceId) {
 		return true
 	}
 
@@ -622,7 +622,7 @@ func (o *InstanceParameters) GetNotifyKeyspaceEventsOk() (*string, bool) {
 
 // HasNotifyKeyspaceEvents returns a boolean if a field has been set.
 func (o *InstanceParameters) HasNotifyKeyspaceEvents() bool {
-	if o != nil && !IsNil(o.NotifyKeyspaceEvents) {
+	if o != nil && !IsNil(o.NotifyKeyspaceEvents) && !IsNil(o.NotifyKeyspaceEvents) {
 		return true
 	}
 
@@ -654,7 +654,7 @@ func (o *InstanceParameters) GetSgwAclOk() (*string, bool) {
 
 // HasSgwAcl returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSgwAcl() bool {
-	if o != nil && !IsNil(o.SgwAcl) {
+	if o != nil && !IsNil(o.SgwAcl) && !IsNil(o.SgwAcl) {
 		return true
 	}
 
@@ -686,7 +686,7 @@ func (o *InstanceParameters) GetSnapshotOk() (*string, bool) {
 
 // HasSnapshot returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSnapshot() bool {
-	if o != nil && !IsNil(o.Snapshot) {
+	if o != nil && !IsNil(o.Snapshot) && !IsNil(o.Snapshot) {
 		return true
 	}
 
@@ -718,7 +718,7 @@ func (o *InstanceParameters) GetSyslogOk() (*[]string, bool) {
 
 // HasSyslog returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSyslog() bool {
-	if o != nil && !IsNil(o.Syslog) {
+	if o != nil && !IsNil(o.Syslog) && !IsNil(o.Syslog) {
 		return true
 	}
 
@@ -750,7 +750,7 @@ func (o *InstanceParameters) GetTlsCiphersOk() (*[]string, bool) {
 
 // HasTlsCiphers returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsCiphers() bool {
-	if o != nil && !IsNil(o.TlsCiphers) {
+	if o != nil && !IsNil(o.TlsCiphers) && !IsNil(o.TlsCiphers) {
 		return true
 	}
 
@@ -782,7 +782,7 @@ func (o *InstanceParameters) GetTlsCiphersuitesOk() (*string, bool) {
 
 // HasTlsCiphersuites returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsCiphersuites() bool {
-	if o != nil && !IsNil(o.TlsCiphersuites) {
+	if o != nil && !IsNil(o.TlsCiphersuites) && !IsNil(o.TlsCiphersuites) {
 		return true
 	}
 
@@ -814,7 +814,7 @@ func (o *InstanceParameters) GetTlsProtocolsOk() (*string, bool) {
 
 // HasTlsProtocols returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsProtocols() bool {
-	if o != nil && !IsNil(o.TlsProtocols) {
+	if o != nil && !IsNil(o.TlsProtocols) && !IsNil(o.TlsProtocols) {
 		return true
 	}
 
