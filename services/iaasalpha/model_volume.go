@@ -30,7 +30,8 @@ type Volume struct {
 	// Description Object. Allows string up to 127 Characters.
 	Description *string `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id          *string      `json:"id,omitempty"`
+	ImageConfig *ImageConfig `json:"imageConfig,omitempty"`
 	// Object that represents the labels of an object.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
@@ -218,6 +219,38 @@ func (o *Volume) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Volume) SetId(v *string) {
 	o.Id = v
+}
+
+// GetImageConfig returns the ImageConfig field value if set, zero value otherwise.
+func (o *Volume) GetImageConfig() *ImageConfig {
+	if o == nil || IsNil(o.ImageConfig) {
+		var ret *ImageConfig
+		return ret
+	}
+	return o.ImageConfig
+}
+
+// GetImageConfigOk returns a tuple with the ImageConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Volume) GetImageConfigOk() (*ImageConfig, bool) {
+	if o == nil || IsNil(o.ImageConfig) {
+		return nil, false
+	}
+	return o.ImageConfig, true
+}
+
+// HasImageConfig returns a boolean if a field has been set.
+func (o *Volume) HasImageConfig() bool {
+	if o != nil && !IsNil(o.ImageConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageConfig gets a reference to the given ImageConfig and assigns it to the ImageConfig field.
+func (o *Volume) SetImageConfig(v *ImageConfig) {
+	o.ImageConfig = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -490,6 +523,9 @@ func (o Volume) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.ImageConfig) {
+		toSerialize["imageConfig"] = o.ImageConfig
 	}
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
