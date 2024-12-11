@@ -60,7 +60,7 @@ func (o *LoadbalancerOptionObservability) GetLogsOk() (*LoadbalancerOptionLogs, 
 
 // HasLogs returns a boolean if a field has been set.
 func (o *LoadbalancerOptionObservability) HasLogs() bool {
-	if o != nil && !IsNil(o.Logs) {
+	if o != nil && !IsNil(o.Logs) && !IsNil(o.Logs) {
 		return true
 	}
 
@@ -92,7 +92,7 @@ func (o *LoadbalancerOptionObservability) GetMetricsOk() (*LoadbalancerOptionMet
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *LoadbalancerOptionObservability) HasMetrics() bool {
-	if o != nil && !IsNil(o.Metrics) {
+	if o != nil && !IsNil(o.Metrics) && !IsNil(o.Metrics) {
 		return true
 	}
 

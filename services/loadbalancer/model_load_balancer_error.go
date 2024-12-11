@@ -62,7 +62,7 @@ func (o *LoadBalancerError) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *LoadBalancerError) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *LoadBalancerError) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *LoadBalancerError) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+	if o != nil && !IsNil(o.Type) && !IsNil(o.Type) {
 		return true
 	}
 

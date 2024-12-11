@@ -60,7 +60,7 @@ func (o *OptionsTCP) GetIdleTimeoutOk() (*string, bool) {
 
 // HasIdleTimeout returns a boolean if a field has been set.
 func (o *OptionsTCP) HasIdleTimeout() bool {
-	if o != nil && !IsNil(o.IdleTimeout) {
+	if o != nil && !IsNil(o.IdleTimeout) && !IsNil(o.IdleTimeout) {
 		return true
 	}
 

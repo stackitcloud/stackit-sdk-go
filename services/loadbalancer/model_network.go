@@ -62,7 +62,7 @@ func (o *Network) GetNetworkIdOk() (*string, bool) {
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *Network) HasNetworkId() bool {
-	if o != nil && !IsNil(o.NetworkId) {
+	if o != nil && !IsNil(o.NetworkId) && !IsNil(o.NetworkId) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *Network) GetRoleOk() (*string, bool) {
 
 // HasRole returns a boolean if a field has been set.
 func (o *Network) HasRole() bool {
-	if o != nil && !IsNil(o.Role) {
+	if o != nil && !IsNil(o.Role) && !IsNil(o.Role) {
 		return true
 	}
 

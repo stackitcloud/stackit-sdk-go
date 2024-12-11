@@ -62,7 +62,7 @@ func (o *Target) GetDisplayNameOk() (*string, bool) {
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *Target) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+	if o != nil && !IsNil(o.DisplayName) && !IsNil(o.DisplayName) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *Target) GetIpOk() (*string, bool) {
 
 // HasIp returns a boolean if a field has been set.
 func (o *Target) HasIp() bool {
-	if o != nil && !IsNil(o.Ip) {
+	if o != nil && !IsNil(o.Ip) && !IsNil(o.Ip) {
 		return true
 	}
 

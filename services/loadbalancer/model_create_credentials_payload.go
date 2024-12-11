@@ -64,7 +64,7 @@ func (o *CreateCredentialsPayload) GetDisplayNameOk() (*string, bool) {
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *CreateCredentialsPayload) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+	if o != nil && !IsNil(o.DisplayName) && !IsNil(o.DisplayName) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *CreateCredentialsPayload) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *CreateCredentialsPayload) HasPassword() bool {
-	if o != nil && !IsNil(o.Password) {
+	if o != nil && !IsNil(o.Password) && !IsNil(o.Password) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *CreateCredentialsPayload) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CreateCredentialsPayload) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && !IsNil(o.Username) && !IsNil(o.Username) {
 		return true
 	}
 

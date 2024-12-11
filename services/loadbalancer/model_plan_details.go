@@ -69,7 +69,7 @@ func (o *PlanDetails) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PlanDetails) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -101,7 +101,7 @@ func (o *PlanDetails) GetFlavorNameOk() (*string, bool) {
 
 // HasFlavorName returns a boolean if a field has been set.
 func (o *PlanDetails) HasFlavorName() bool {
-	if o != nil && !IsNil(o.FlavorName) {
+	if o != nil && !IsNil(o.FlavorName) && !IsNil(o.FlavorName) {
 		return true
 	}
 
@@ -133,7 +133,7 @@ func (o *PlanDetails) GetMaxConnectionsOk() (*int64, bool) {
 
 // HasMaxConnections returns a boolean if a field has been set.
 func (o *PlanDetails) HasMaxConnections() bool {
-	if o != nil && !IsNil(o.MaxConnections) {
+	if o != nil && !IsNil(o.MaxConnections) && !IsNil(o.MaxConnections) {
 		return true
 	}
 
@@ -165,7 +165,7 @@ func (o *PlanDetails) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PlanDetails) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -197,7 +197,7 @@ func (o *PlanDetails) GetPlanIdOk() (*string, bool) {
 
 // HasPlanId returns a boolean if a field has been set.
 func (o *PlanDetails) HasPlanId() bool {
-	if o != nil && !IsNil(o.PlanId) {
+	if o != nil && !IsNil(o.PlanId) && !IsNil(o.PlanId) {
 		return true
 	}
 

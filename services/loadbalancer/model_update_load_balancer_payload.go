@@ -78,7 +78,7 @@ func (o *UpdateLoadBalancerPayload) GetErrorsOk() (*[]LoadBalancerError, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasErrors() bool {
-	if o != nil && !IsNil(o.Errors) {
+	if o != nil && !IsNil(o.Errors) && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -110,7 +110,7 @@ func (o *UpdateLoadBalancerPayload) GetExternalAddressOk() (*string, bool) {
 
 // HasExternalAddress returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasExternalAddress() bool {
-	if o != nil && !IsNil(o.ExternalAddress) {
+	if o != nil && !IsNil(o.ExternalAddress) && !IsNil(o.ExternalAddress) {
 		return true
 	}
 
@@ -142,7 +142,7 @@ func (o *UpdateLoadBalancerPayload) GetListenersOk() (*[]Listener, bool) {
 
 // HasListeners returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasListeners() bool {
-	if o != nil && !IsNil(o.Listeners) {
+	if o != nil && !IsNil(o.Listeners) && !IsNil(o.Listeners) {
 		return true
 	}
 
@@ -174,7 +174,7 @@ func (o *UpdateLoadBalancerPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -206,7 +206,7 @@ func (o *UpdateLoadBalancerPayload) GetNetworksOk() (*[]Network, bool) {
 
 // HasNetworks returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasNetworks() bool {
-	if o != nil && !IsNil(o.Networks) {
+	if o != nil && !IsNil(o.Networks) && !IsNil(o.Networks) {
 		return true
 	}
 
@@ -238,7 +238,7 @@ func (o *UpdateLoadBalancerPayload) GetOptionsOk() (*LoadBalancerOptions, bool) 
 
 // HasOptions returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
+	if o != nil && !IsNil(o.Options) && !IsNil(o.Options) {
 		return true
 	}
 
@@ -270,7 +270,7 @@ func (o *UpdateLoadBalancerPayload) GetPlanIdOk() (*string, bool) {
 
 // HasPlanId returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasPlanId() bool {
-	if o != nil && !IsNil(o.PlanId) {
+	if o != nil && !IsNil(o.PlanId) && !IsNil(o.PlanId) {
 		return true
 	}
 
@@ -302,7 +302,7 @@ func (o *UpdateLoadBalancerPayload) GetPrivateAddressOk() (*string, bool) {
 
 // HasPrivateAddress returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasPrivateAddress() bool {
-	if o != nil && !IsNil(o.PrivateAddress) {
+	if o != nil && !IsNil(o.PrivateAddress) && !IsNil(o.PrivateAddress) {
 		return true
 	}
 
@@ -334,7 +334,7 @@ func (o *UpdateLoadBalancerPayload) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) && !IsNil(o.Status) {
 		return true
 	}
 
@@ -366,7 +366,7 @@ func (o *UpdateLoadBalancerPayload) GetTargetPoolsOk() (*[]TargetPool, bool) {
 
 // HasTargetPools returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasTargetPools() bool {
-	if o != nil && !IsNil(o.TargetPools) {
+	if o != nil && !IsNil(o.TargetPools) && !IsNil(o.TargetPools) {
 		return true
 	}
 
@@ -398,7 +398,7 @@ func (o *UpdateLoadBalancerPayload) GetVersionOk() (*string, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
+	if o != nil && !IsNil(o.Version) && !IsNil(o.Version) {
 		return true
 	}
 

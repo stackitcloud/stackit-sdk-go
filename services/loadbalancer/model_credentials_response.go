@@ -64,7 +64,7 @@ func (o *CredentialsResponse) GetCredentialsRefOk() (*string, bool) {
 
 // HasCredentialsRef returns a boolean if a field has been set.
 func (o *CredentialsResponse) HasCredentialsRef() bool {
-	if o != nil && !IsNil(o.CredentialsRef) {
+	if o != nil && !IsNil(o.CredentialsRef) && !IsNil(o.CredentialsRef) {
 		return true
 	}
 
@@ -96,7 +96,7 @@ func (o *CredentialsResponse) GetDisplayNameOk() (*string, bool) {
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *CredentialsResponse) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+	if o != nil && !IsNil(o.DisplayName) && !IsNil(o.DisplayName) {
 		return true
 	}
 
@@ -128,7 +128,7 @@ func (o *CredentialsResponse) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CredentialsResponse) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
+	if o != nil && !IsNil(o.Username) && !IsNil(o.Username) {
 		return true
 	}
 

@@ -59,7 +59,7 @@ func (o *ListPlansResponse) GetValidPlansOk() (*[]PlanDetails, bool) {
 
 // HasValidPlans returns a boolean if a field has been set.
 func (o *ListPlansResponse) HasValidPlans() bool {
-	if o != nil && !IsNil(o.ValidPlans) {
+	if o != nil && !IsNil(o.ValidPlans) && !IsNil(o.ValidPlans) {
 		return true
 	}
 

@@ -59,7 +59,7 @@ func (o *ListCredentialsResponse) GetCredentialsOk() (*[]CredentialsResponse, bo
 
 // HasCredentials returns a boolean if a field has been set.
 func (o *ListCredentialsResponse) HasCredentials() bool {
-	if o != nil && !IsNil(o.Credentials) {
+	if o != nil && !IsNil(o.Credentials) && !IsNil(o.Credentials) {
 		return true
 	}
 

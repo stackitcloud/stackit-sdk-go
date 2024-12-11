@@ -63,7 +63,7 @@ func (o *GetQuotaResponse) GetMaxLoadBalancersOk() (*int64, bool) {
 
 // HasMaxLoadBalancers returns a boolean if a field has been set.
 func (o *GetQuotaResponse) HasMaxLoadBalancers() bool {
-	if o != nil && !IsNil(o.MaxLoadBalancers) {
+	if o != nil && !IsNil(o.MaxLoadBalancers) && !IsNil(o.MaxLoadBalancers) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *GetQuotaResponse) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *GetQuotaResponse) HasProjectId() bool {
-	if o != nil && !IsNil(o.ProjectId) {
+	if o != nil && !IsNil(o.ProjectId) && !IsNil(o.ProjectId) {
 		return true
 	}
 

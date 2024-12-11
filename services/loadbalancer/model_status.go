@@ -65,7 +65,7 @@ func (o *Status) GetCodeOk() (*int64, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *Status) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
+	if o != nil && !IsNil(o.Code) && !IsNil(o.Code) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *Status) GetDetailsOk() (*[]GoogleProtobufAny, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *Status) HasDetails() bool {
-	if o != nil && !IsNil(o.Details) {
+	if o != nil && !IsNil(o.Details) && !IsNil(o.Details) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *Status) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *Status) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) && !IsNil(o.Message) {
 		return true
 	}
 

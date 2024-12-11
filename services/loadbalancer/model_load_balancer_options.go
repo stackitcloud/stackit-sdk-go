@@ -63,7 +63,7 @@ func (o *LoadBalancerOptions) GetAccessControlOk() (*LoadbalancerOptionAccessCon
 
 // HasAccessControl returns a boolean if a field has been set.
 func (o *LoadBalancerOptions) HasAccessControl() bool {
-	if o != nil && !IsNil(o.AccessControl) {
+	if o != nil && !IsNil(o.AccessControl) && !IsNil(o.AccessControl) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *LoadBalancerOptions) GetEphemeralAddressOk() (*bool, bool) {
 
 // HasEphemeralAddress returns a boolean if a field has been set.
 func (o *LoadBalancerOptions) HasEphemeralAddress() bool {
-	if o != nil && !IsNil(o.EphemeralAddress) {
+	if o != nil && !IsNil(o.EphemeralAddress) && !IsNil(o.EphemeralAddress) {
 		return true
 	}
 
@@ -127,7 +127,7 @@ func (o *LoadBalancerOptions) GetObservabilityOk() (*LoadbalancerOptionObservabi
 
 // HasObservability returns a boolean if a field has been set.
 func (o *LoadBalancerOptions) HasObservability() bool {
-	if o != nil && !IsNil(o.Observability) {
+	if o != nil && !IsNil(o.Observability) && !IsNil(o.Observability) {
 		return true
 	}
 
@@ -159,7 +159,7 @@ func (o *LoadBalancerOptions) GetPrivateNetworkOnlyOk() (*bool, bool) {
 
 // HasPrivateNetworkOnly returns a boolean if a field has been set.
 func (o *LoadBalancerOptions) HasPrivateNetworkOnly() bool {
-	if o != nil && !IsNil(o.PrivateNetworkOnly) {
+	if o != nil && !IsNil(o.PrivateNetworkOnly) && !IsNil(o.PrivateNetworkOnly) {
 		return true
 	}
 

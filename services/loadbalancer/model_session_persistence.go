@@ -60,7 +60,7 @@ func (o *SessionPersistence) GetUseSourceIpAddressOk() (*bool, bool) {
 
 // HasUseSourceIpAddress returns a boolean if a field has been set.
 func (o *SessionPersistence) HasUseSourceIpAddress() bool {
-	if o != nil && !IsNil(o.UseSourceIpAddress) {
+	if o != nil && !IsNil(o.UseSourceIpAddress) && !IsNil(o.UseSourceIpAddress) {
 		return true
 	}
 

@@ -60,7 +60,7 @@ func (o *LoadbalancerOptionAccessControl) GetAllowedSourceRangesOk() (*[]string,
 
 // HasAllowedSourceRanges returns a boolean if a field has been set.
 func (o *LoadbalancerOptionAccessControl) HasAllowedSourceRanges() bool {
-	if o != nil && !IsNil(o.AllowedSourceRanges) {
+	if o != nil && !IsNil(o.AllowedSourceRanges) && !IsNil(o.AllowedSourceRanges) {
 		return true
 	}
 

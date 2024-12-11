@@ -68,7 +68,7 @@ func (o *ActiveHealthCheck) GetHealthyThresholdOk() (*int64, bool) {
 
 // HasHealthyThreshold returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasHealthyThreshold() bool {
-	if o != nil && !IsNil(o.HealthyThreshold) {
+	if o != nil && !IsNil(o.HealthyThreshold) && !IsNil(o.HealthyThreshold) {
 		return true
 	}
 
@@ -100,7 +100,7 @@ func (o *ActiveHealthCheck) GetIntervalOk() (*string, bool) {
 
 // HasInterval returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasInterval() bool {
-	if o != nil && !IsNil(o.Interval) {
+	if o != nil && !IsNil(o.Interval) && !IsNil(o.Interval) {
 		return true
 	}
 
@@ -132,7 +132,7 @@ func (o *ActiveHealthCheck) GetIntervalJitterOk() (*string, bool) {
 
 // HasIntervalJitter returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasIntervalJitter() bool {
-	if o != nil && !IsNil(o.IntervalJitter) {
+	if o != nil && !IsNil(o.IntervalJitter) && !IsNil(o.IntervalJitter) {
 		return true
 	}
 
@@ -164,7 +164,7 @@ func (o *ActiveHealthCheck) GetTimeoutOk() (*string, bool) {
 
 // HasTimeout returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasTimeout() bool {
-	if o != nil && !IsNil(o.Timeout) {
+	if o != nil && !IsNil(o.Timeout) && !IsNil(o.Timeout) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *ActiveHealthCheck) GetUnhealthyThresholdOk() (*int64, bool) {
 
 // HasUnhealthyThreshold returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasUnhealthyThreshold() bool {
-	if o != nil && !IsNil(o.UnhealthyThreshold) {
+	if o != nil && !IsNil(o.UnhealthyThreshold) && !IsNil(o.UnhealthyThreshold) {
 		return true
 	}
 

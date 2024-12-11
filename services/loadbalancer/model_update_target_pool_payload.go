@@ -67,7 +67,7 @@ func (o *UpdateTargetPoolPayload) GetActiveHealthCheckOk() (*ActiveHealthCheck, 
 
 // HasActiveHealthCheck returns a boolean if a field has been set.
 func (o *UpdateTargetPoolPayload) HasActiveHealthCheck() bool {
-	if o != nil && !IsNil(o.ActiveHealthCheck) {
+	if o != nil && !IsNil(o.ActiveHealthCheck) && !IsNil(o.ActiveHealthCheck) {
 		return true
 	}
 
@@ -99,7 +99,7 @@ func (o *UpdateTargetPoolPayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateTargetPoolPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -131,7 +131,7 @@ func (o *UpdateTargetPoolPayload) GetSessionPersistenceOk() (*SessionPersistence
 
 // HasSessionPersistence returns a boolean if a field has been set.
 func (o *UpdateTargetPoolPayload) HasSessionPersistence() bool {
-	if o != nil && !IsNil(o.SessionPersistence) {
+	if o != nil && !IsNil(o.SessionPersistence) && !IsNil(o.SessionPersistence) {
 		return true
 	}
 
@@ -163,7 +163,7 @@ func (o *UpdateTargetPoolPayload) GetTargetPortOk() (*int64, bool) {
 
 // HasTargetPort returns a boolean if a field has been set.
 func (o *UpdateTargetPoolPayload) HasTargetPort() bool {
-	if o != nil && !IsNil(o.TargetPort) {
+	if o != nil && !IsNil(o.TargetPort) && !IsNil(o.TargetPort) {
 		return true
 	}
 
@@ -195,7 +195,7 @@ func (o *UpdateTargetPoolPayload) GetTargetsOk() (*[]Target, bool) {
 
 // HasTargets returns a boolean if a field has been set.
 func (o *UpdateTargetPoolPayload) HasTargets() bool {
-	if o != nil && !IsNil(o.Targets) {
+	if o != nil && !IsNil(o.Targets) && !IsNil(o.Targets) {
 		return true
 	}
 

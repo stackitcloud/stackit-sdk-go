@@ -72,7 +72,7 @@ func (o *Listener) GetDisplayNameOk() (*string, bool) {
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *Listener) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+	if o != nil && !IsNil(o.DisplayName) && !IsNil(o.DisplayName) {
 		return true
 	}
 
@@ -104,7 +104,7 @@ func (o *Listener) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Listener) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -136,7 +136,7 @@ func (o *Listener) GetPortOk() (*int64, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *Listener) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
+	if o != nil && !IsNil(o.Port) && !IsNil(o.Port) {
 		return true
 	}
 
@@ -168,7 +168,7 @@ func (o *Listener) GetProtocolOk() (*string, bool) {
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *Listener) HasProtocol() bool {
-	if o != nil && !IsNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -200,7 +200,7 @@ func (o *Listener) GetServerNameIndicatorsOk() (*[]ServerNameIndicator, bool) {
 
 // HasServerNameIndicators returns a boolean if a field has been set.
 func (o *Listener) HasServerNameIndicators() bool {
-	if o != nil && !IsNil(o.ServerNameIndicators) {
+	if o != nil && !IsNil(o.ServerNameIndicators) && !IsNil(o.ServerNameIndicators) {
 		return true
 	}
 
@@ -232,7 +232,7 @@ func (o *Listener) GetTargetPoolOk() (*string, bool) {
 
 // HasTargetPool returns a boolean if a field has been set.
 func (o *Listener) HasTargetPool() bool {
-	if o != nil && !IsNil(o.TargetPool) {
+	if o != nil && !IsNil(o.TargetPool) && !IsNil(o.TargetPool) {
 		return true
 	}
 
@@ -264,7 +264,7 @@ func (o *Listener) GetTcpOk() (*OptionsTCP, bool) {
 
 // HasTcp returns a boolean if a field has been set.
 func (o *Listener) HasTcp() bool {
-	if o != nil && !IsNil(o.Tcp) {
+	if o != nil && !IsNil(o.Tcp) && !IsNil(o.Tcp) {
 		return true
 	}
 
@@ -296,7 +296,7 @@ func (o *Listener) GetUdpOk() (*OptionsUDP, bool) {
 
 // HasUdp returns a boolean if a field has been set.
 func (o *Listener) HasUdp() bool {
-	if o != nil && !IsNil(o.Udp) {
+	if o != nil && !IsNil(o.Udp) && !IsNil(o.Udp) {
 		return true
 	}
 

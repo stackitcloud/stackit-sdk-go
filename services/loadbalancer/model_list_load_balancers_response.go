@@ -61,7 +61,7 @@ func (o *ListLoadBalancersResponse) GetLoadBalancersOk() (*[]LoadBalancer, bool)
 
 // HasLoadBalancers returns a boolean if a field has been set.
 func (o *ListLoadBalancersResponse) HasLoadBalancers() bool {
-	if o != nil && !IsNil(o.LoadBalancers) {
+	if o != nil && !IsNil(o.LoadBalancers) && !IsNil(o.LoadBalancers) {
 		return true
 	}
 
@@ -93,7 +93,7 @@ func (o *ListLoadBalancersResponse) GetNextPageIdOk() (*string, bool) {
 
 // HasNextPageId returns a boolean if a field has been set.
 func (o *ListLoadBalancersResponse) HasNextPageId() bool {
-	if o != nil && !IsNil(o.NextPageId) {
+	if o != nil && !IsNil(o.NextPageId) && !IsNil(o.NextPageId) {
 		return true
 	}
 

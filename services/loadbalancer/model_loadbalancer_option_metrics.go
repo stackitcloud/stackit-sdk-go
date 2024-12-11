@@ -62,7 +62,7 @@ func (o *LoadbalancerOptionMetrics) GetCredentialsRefOk() (*string, bool) {
 
 // HasCredentialsRef returns a boolean if a field has been set.
 func (o *LoadbalancerOptionMetrics) HasCredentialsRef() bool {
-	if o != nil && !IsNil(o.CredentialsRef) {
+	if o != nil && !IsNil(o.CredentialsRef) && !IsNil(o.CredentialsRef) {
 		return true
 	}
 
@@ -94,7 +94,7 @@ func (o *LoadbalancerOptionMetrics) GetPushUrlOk() (*string, bool) {
 
 // HasPushUrl returns a boolean if a field has been set.
 func (o *LoadbalancerOptionMetrics) HasPushUrl() bool {
-	if o != nil && !IsNil(o.PushUrl) {
+	if o != nil && !IsNil(o.PushUrl) && !IsNil(o.PushUrl) {
 		return true
 	}
 
