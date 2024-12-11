@@ -76,7 +76,7 @@ func (o *Update) GetEndDateOk() (*string, bool) {
 
 // HasEndDate returns a boolean if a field has been set.
 func (o *Update) HasEndDate() bool {
-	if o != nil && !IsNil(o.EndDate) {
+	if o != nil && !IsNil(o.EndDate) && !IsNil(o.EndDate) {
 		return true
 	}
 
@@ -108,7 +108,7 @@ func (o *Update) GetFailReasonOk() (*string, bool) {
 
 // HasFailReason returns a boolean if a field has been set.
 func (o *Update) HasFailReason() bool {
-	if o != nil && !IsNil(o.FailReason) {
+	if o != nil && !IsNil(o.FailReason) && !IsNil(o.FailReason) {
 		return true
 	}
 
@@ -140,7 +140,7 @@ func (o *Update) GetFailedUpdatesOk() (*int64, bool) {
 
 // HasFailedUpdates returns a boolean if a field has been set.
 func (o *Update) HasFailedUpdates() bool {
-	if o != nil && !IsNil(o.FailedUpdates) {
+	if o != nil && !IsNil(o.FailedUpdates) && !IsNil(o.FailedUpdates) {
 		return true
 	}
 
@@ -154,7 +154,7 @@ func (o *Update) SetFailedUpdates(v *int64) {
 
 // GetId returns the Id field value
 func (o *Update) GetId() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *int64
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *Update) GetInstalledUpdatesOk() (*int64, bool) {
 
 // HasInstalledUpdates returns a boolean if a field has been set.
 func (o *Update) HasInstalledUpdates() bool {
-	if o != nil && !IsNil(o.InstalledUpdates) {
+	if o != nil && !IsNil(o.InstalledUpdates) && !IsNil(o.InstalledUpdates) {
 		return true
 	}
 
@@ -210,7 +210,7 @@ func (o *Update) SetInstalledUpdates(v *int64) {
 
 // GetStartDate returns the StartDate field value
 func (o *Update) GetStartDate() *string {
-	if o == nil {
+	if o == nil || IsNil(o.StartDate) {
 		var ret *string
 		return ret
 	}
@@ -234,7 +234,7 @@ func (o *Update) SetStartDate(v *string) {
 
 // GetStatus returns the Status field value
 func (o *Update) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}

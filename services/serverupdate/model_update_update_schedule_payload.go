@@ -57,7 +57,7 @@ func NewUpdateUpdateSchedulePayloadWithDefaults() *UpdateUpdateSchedulePayload {
 
 // GetEnabled returns the Enabled field value
 func (o *UpdateUpdateSchedulePayload) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *UpdateUpdateSchedulePayload) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdateUpdateSchedulePayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o *UpdateUpdateSchedulePayload) SetId(v *int64) {
 
 // GetMaintenanceWindow returns the MaintenanceWindow field value
 func (o *UpdateUpdateSchedulePayload) GetMaintenanceWindow() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MaintenanceWindow) {
 		var ret *int64
 		return ret
 	}
@@ -137,7 +137,7 @@ func (o *UpdateUpdateSchedulePayload) SetMaintenanceWindow(v *int64) {
 
 // GetName returns the Name field value
 func (o *UpdateUpdateSchedulePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -161,7 +161,7 @@ func (o *UpdateUpdateSchedulePayload) SetName(v *string) {
 
 // GetRrule returns the Rrule field value
 func (o *UpdateUpdateSchedulePayload) GetRrule() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Rrule) {
 		var ret *string
 		return ret
 	}

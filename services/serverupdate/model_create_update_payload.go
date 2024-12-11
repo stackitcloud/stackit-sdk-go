@@ -66,7 +66,7 @@ func (o *CreateUpdatePayload) GetBackupBeforeUpdateOk() (*bool, bool) {
 
 // HasBackupBeforeUpdate returns a boolean if a field has been set.
 func (o *CreateUpdatePayload) HasBackupBeforeUpdate() bool {
-	if o != nil && !IsNil(o.BackupBeforeUpdate) {
+	if o != nil && !IsNil(o.BackupBeforeUpdate) && !IsNil(o.BackupBeforeUpdate) {
 		return true
 	}
 
@@ -98,7 +98,7 @@ func (o *CreateUpdatePayload) GetBackupPropertiesOk() (*BackupProperties, bool) 
 
 // HasBackupProperties returns a boolean if a field has been set.
 func (o *CreateUpdatePayload) HasBackupProperties() bool {
-	if o != nil && !IsNil(o.BackupProperties) {
+	if o != nil && !IsNil(o.BackupProperties) && !IsNil(o.BackupProperties) {
 		return true
 	}
 
@@ -112,7 +112,7 @@ func (o *CreateUpdatePayload) SetBackupProperties(v *BackupProperties) {
 
 // GetMaintenanceWindow returns the MaintenanceWindow field value
 func (o *CreateUpdatePayload) GetMaintenanceWindow() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MaintenanceWindow) {
 		var ret *int64
 		return ret
 	}

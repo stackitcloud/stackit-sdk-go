@@ -59,7 +59,7 @@ func (o *EnableServiceResourcePayload) GetUpdatePolicyIdOk() (*string, bool) {
 
 // HasUpdatePolicyId returns a boolean if a field has been set.
 func (o *EnableServiceResourcePayload) HasUpdatePolicyId() bool {
-	if o != nil && !IsNil(o.UpdatePolicyId) {
+	if o != nil && !IsNil(o.UpdatePolicyId) && !IsNil(o.UpdatePolicyId) {
 		return true
 	}
 

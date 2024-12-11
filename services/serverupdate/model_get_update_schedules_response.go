@@ -59,7 +59,7 @@ func (o *GetUpdateSchedulesResponse) GetItemsOk() (*[]UpdateSchedule, bool) {
 
 // HasItems returns a boolean if a field has been set.
 func (o *GetUpdateSchedulesResponse) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
+	if o != nil && !IsNil(o.Items) && !IsNil(o.Items) {
 		return true
 	}
 

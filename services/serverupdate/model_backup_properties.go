@@ -52,7 +52,7 @@ func NewBackupPropertiesWithDefaults() *BackupProperties {
 
 // GetName returns the Name field value
 func (o *BackupProperties) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -76,7 +76,7 @@ func (o *BackupProperties) SetName(v *string) {
 
 // GetRetentionPeriod returns the RetentionPeriod field value
 func (o *BackupProperties) GetRetentionPeriod() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.RetentionPeriod) {
 		var ret *int64
 		return ret
 	}
@@ -118,7 +118,7 @@ func (o *BackupProperties) GetVolumeIdsOk() (*[]string, bool) {
 
 // HasVolumeIds returns a boolean if a field has been set.
 func (o *BackupProperties) HasVolumeIds() bool {
-	if o != nil && !IsNil(o.VolumeIds) {
+	if o != nil && !IsNil(o.VolumeIds) && !IsNil(o.VolumeIds) {
 		return true
 	}
 

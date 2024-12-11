@@ -65,7 +65,7 @@ func (o *UpdatePolicy) GetDefaultOk() (*bool, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *UpdatePolicy) HasDefault() bool {
-	if o != nil && !IsNil(o.Default) {
+	if o != nil && !IsNil(o.Default) && !IsNil(o.Default) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *UpdatePolicy) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *UpdatePolicy) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && !IsNil(o.Description) && !IsNil(o.Description) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *UpdatePolicy) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *UpdatePolicy) HasEnabled() bool {
-	if o != nil && !IsNil(o.Enabled) {
+	if o != nil && !IsNil(o.Enabled) && !IsNil(o.Enabled) {
 		return true
 	}
 
@@ -161,7 +161,7 @@ func (o *UpdatePolicy) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdatePolicy) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && !IsNil(o.Id) && !IsNil(o.Id) {
 		return true
 	}
 
@@ -193,7 +193,7 @@ func (o *UpdatePolicy) GetMaintenanceWindowOk() (*int64, bool) {
 
 // HasMaintenanceWindow returns a boolean if a field has been set.
 func (o *UpdatePolicy) HasMaintenanceWindow() bool {
-	if o != nil && !IsNil(o.MaintenanceWindow) {
+	if o != nil && !IsNil(o.MaintenanceWindow) && !IsNil(o.MaintenanceWindow) {
 		return true
 	}
 
@@ -225,7 +225,7 @@ func (o *UpdatePolicy) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdatePolicy) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && !IsNil(o.Name) && !IsNil(o.Name) {
 		return true
 	}
 
@@ -257,7 +257,7 @@ func (o *UpdatePolicy) GetRruleOk() (*string, bool) {
 
 // HasRrule returns a boolean if a field has been set.
 func (o *UpdatePolicy) HasRrule() bool {
-	if o != nil && !IsNil(o.Rrule) {
+	if o != nil && !IsNil(o.Rrule) && !IsNil(o.Rrule) {
 		return true
 	}
 
