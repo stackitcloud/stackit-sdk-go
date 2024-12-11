@@ -63,7 +63,7 @@ func (o *CreateServiceAccountKeyPayload) GetPublicKeyOk() (*string, bool) {
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *CreateServiceAccountKeyPayload) HasPublicKey() bool {
-	if o != nil && !IsNil(o.PublicKey) {
+	if o != nil && !IsNil(o.PublicKey) && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *CreateServiceAccountKeyPayload) GetValidUntilOk() (*time.Time, bool) {
 
 // HasValidUntil returns a boolean if a field has been set.
 func (o *CreateServiceAccountKeyPayload) HasValidUntil() bool {
-	if o != nil && !IsNil(o.ValidUntil) {
+	if o != nil && !IsNil(o.ValidUntil) && !IsNil(o.ValidUntil) {
 		return true
 	}
 

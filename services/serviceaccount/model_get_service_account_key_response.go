@@ -70,7 +70,7 @@ func NewGetServiceAccountKeyResponseWithDefaults() *GetServiceAccountKeyResponse
 
 // GetActive returns the Active field value
 func (o *GetServiceAccountKeyResponse) GetActive() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret *bool
 		return ret
 	}
@@ -94,7 +94,7 @@ func (o *GetServiceAccountKeyResponse) SetActive(v *bool) {
 
 // GetCreatedAt returns the CreatedAt field value
 func (o *GetServiceAccountKeyResponse) GetCreatedAt() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret *time.Time
 		return ret
 	}
@@ -118,7 +118,7 @@ func (o *GetServiceAccountKeyResponse) SetCreatedAt(v *time.Time) {
 
 // GetCredentials returns the Credentials field value
 func (o *GetServiceAccountKeyResponse) GetCredentials() *GetServiceAccountKeyResponseCredentials {
-	if o == nil {
+	if o == nil || IsNil(o.Credentials) {
 		var ret *GetServiceAccountKeyResponseCredentials
 		return ret
 	}
@@ -142,7 +142,7 @@ func (o *GetServiceAccountKeyResponse) SetCredentials(v *GetServiceAccountKeyRes
 
 // GetId returns the Id field value
 func (o *GetServiceAccountKeyResponse) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -166,7 +166,7 @@ func (o *GetServiceAccountKeyResponse) SetId(v *string) {
 
 // GetKeyAlgorithm returns the KeyAlgorithm field value
 func (o *GetServiceAccountKeyResponse) GetKeyAlgorithm() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyAlgorithm) {
 		var ret *string
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *GetServiceAccountKeyResponse) SetKeyAlgorithm(v *string) {
 
 // GetKeyOrigin returns the KeyOrigin field value
 func (o *GetServiceAccountKeyResponse) GetKeyOrigin() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyOrigin) {
 		var ret *string
 		return ret
 	}
@@ -214,7 +214,7 @@ func (o *GetServiceAccountKeyResponse) SetKeyOrigin(v *string) {
 
 // GetKeyType returns the KeyType field value
 func (o *GetServiceAccountKeyResponse) GetKeyType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyType) {
 		var ret *string
 		return ret
 	}
@@ -256,7 +256,7 @@ func (o *GetServiceAccountKeyResponse) GetPublicKeyOk() (*string, bool) {
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *GetServiceAccountKeyResponse) HasPublicKey() bool {
-	if o != nil && !IsNil(o.PublicKey) {
+	if o != nil && !IsNil(o.PublicKey) && !IsNil(o.PublicKey) {
 		return true
 	}
 
@@ -288,7 +288,7 @@ func (o *GetServiceAccountKeyResponse) GetValidUntilOk() (*time.Time, bool) {
 
 // HasValidUntil returns a boolean if a field has been set.
 func (o *GetServiceAccountKeyResponse) HasValidUntil() bool {
-	if o != nil && !IsNil(o.ValidUntil) {
+	if o != nil && !IsNil(o.ValidUntil) && !IsNil(o.ValidUntil) {
 		return true
 	}
 

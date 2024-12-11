@@ -58,7 +58,7 @@ func NewServiceAccountWithDefaults() *ServiceAccount {
 
 // GetEmail returns the Email field value
 func (o *ServiceAccount) GetEmail() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret *string
 		return ret
 	}
@@ -82,7 +82,7 @@ func (o *ServiceAccount) SetEmail(v *string) {
 
 // GetId returns the Id field value
 func (o *ServiceAccount) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -106,7 +106,7 @@ func (o *ServiceAccount) SetId(v *string) {
 
 // GetInternal returns the Internal field value
 func (o *ServiceAccount) GetInternal() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Internal) {
 		var ret *bool
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *ServiceAccount) SetInternal(v *bool) {
 
 // GetProjectId returns the ProjectId field value
 func (o *ServiceAccount) GetProjectId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret *string
 		return ret
 	}

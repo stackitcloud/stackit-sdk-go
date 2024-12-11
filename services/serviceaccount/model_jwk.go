@@ -75,7 +75,7 @@ func (o *JWK) GetAlgOk() (*string, bool) {
 
 // HasAlg returns a boolean if a field has been set.
 func (o *JWK) HasAlg() bool {
-	if o != nil && !IsNil(o.Alg) {
+	if o != nil && !IsNil(o.Alg) && !IsNil(o.Alg) {
 		return true
 	}
 
@@ -89,7 +89,7 @@ func (o *JWK) SetAlg(v *string) {
 
 // GetE returns the E field value
 func (o *JWK) GetE() *string {
-	if o == nil {
+	if o == nil || IsNil(o.E) {
 		var ret *string
 		return ret
 	}
@@ -131,7 +131,7 @@ func (o *JWK) GetKidOk() (*string, bool) {
 
 // HasKid returns a boolean if a field has been set.
 func (o *JWK) HasKid() bool {
-	if o != nil && !IsNil(o.Kid) {
+	if o != nil && !IsNil(o.Kid) && !IsNil(o.Kid) {
 		return true
 	}
 
@@ -163,7 +163,7 @@ func (o *JWK) GetKsOk() (*string, bool) {
 
 // HasKs returns a boolean if a field has been set.
 func (o *JWK) HasKs() bool {
-	if o != nil && !IsNil(o.Ks) {
+	if o != nil && !IsNil(o.Ks) && !IsNil(o.Ks) {
 		return true
 	}
 
@@ -177,7 +177,7 @@ func (o *JWK) SetKs(v *string) {
 
 // GetN returns the N field value
 func (o *JWK) GetN() *string {
-	if o == nil {
+	if o == nil || IsNil(o.N) {
 		var ret *string
 		return ret
 	}
@@ -219,7 +219,7 @@ func (o *JWK) GetOpsOk() (*string, bool) {
 
 // HasOps returns a boolean if a field has been set.
 func (o *JWK) HasOps() bool {
-	if o != nil && !IsNil(o.Ops) {
+	if o != nil && !IsNil(o.Ops) && !IsNil(o.Ops) {
 		return true
 	}
 
@@ -251,7 +251,7 @@ func (o *JWK) GetUseOk() (*string, bool) {
 
 // HasUse returns a boolean if a field has been set.
 func (o *JWK) HasUse() bool {
-	if o != nil && !IsNil(o.Use) {
+	if o != nil && !IsNil(o.Use) && !IsNil(o.Use) {
 		return true
 	}
 
@@ -283,7 +283,7 @@ func (o *JWK) GetX5cOk() (*string, bool) {
 
 // HasX5c returns a boolean if a field has been set.
 func (o *JWK) HasX5c() bool {
-	if o != nil && !IsNil(o.X5c) {
+	if o != nil && !IsNil(o.X5c) && !IsNil(o.X5c) {
 		return true
 	}
 
@@ -315,7 +315,7 @@ func (o *JWK) GetX5tOk() (*string, bool) {
 
 // HasX5t returns a boolean if a field has been set.
 func (o *JWK) HasX5t() bool {
-	if o != nil && !IsNil(o.X5t) {
+	if o != nil && !IsNil(o.X5t) && !IsNil(o.X5t) {
 		return true
 	}
 
@@ -347,7 +347,7 @@ func (o *JWK) GetX5t256Ok() (*string, bool) {
 
 // HasX5t256 returns a boolean if a field has been set.
 func (o *JWK) HasX5t256() bool {
-	if o != nil && !IsNil(o.X5t256) {
+	if o != nil && !IsNil(o.X5t256) && !IsNil(o.X5t256) {
 		return true
 	}
 
@@ -379,7 +379,7 @@ func (o *JWK) GetX5uOk() (*string, bool) {
 
 // HasX5u returns a boolean if a field has been set.
 func (o *JWK) HasX5u() bool {
-	if o != nil && !IsNil(o.X5u) {
+	if o != nil && !IsNil(o.X5u) && !IsNil(o.X5u) {
 		return true
 	}
 

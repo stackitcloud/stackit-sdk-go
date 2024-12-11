@@ -45,7 +45,7 @@ func NewListServiceAccountsResponseWithDefaults() *ListServiceAccountsResponse {
 
 // GetItems returns the Items field value
 func (o *ListServiceAccountsResponse) GetItems() *[]ServiceAccount {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]ServiceAccount
 		return ret
 	}

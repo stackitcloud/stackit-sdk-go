@@ -63,7 +63,7 @@ func (o *PartialUpdateServiceAccountKeyPayload) GetActiveOk() (*bool, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *PartialUpdateServiceAccountKeyPayload) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
+	if o != nil && !IsNil(o.Active) && !IsNil(o.Active) {
 		return true
 	}
 
@@ -95,7 +95,7 @@ func (o *PartialUpdateServiceAccountKeyPayload) GetValidUntilOk() (*time.Time, b
 
 // HasValidUntil returns a boolean if a field has been set.
 func (o *PartialUpdateServiceAccountKeyPayload) HasValidUntil() bool {
-	if o != nil && !IsNil(o.ValidUntil) {
+	if o != nil && !IsNil(o.ValidUntil) && !IsNil(o.ValidUntil) {
 		return true
 	}
 

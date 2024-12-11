@@ -65,7 +65,7 @@ func NewServiceAccountKeyListResponseWithDefaults() *ServiceAccountKeyListRespon
 
 // GetActive returns the Active field value
 func (o *ServiceAccountKeyListResponse) GetActive() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret *bool
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *ServiceAccountKeyListResponse) SetActive(v *bool) {
 
 // GetCreatedAt returns the CreatedAt field value
 func (o *ServiceAccountKeyListResponse) GetCreatedAt() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret *time.Time
 		return ret
 	}
@@ -113,7 +113,7 @@ func (o *ServiceAccountKeyListResponse) SetCreatedAt(v *time.Time) {
 
 // GetId returns the Id field value
 func (o *ServiceAccountKeyListResponse) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -137,7 +137,7 @@ func (o *ServiceAccountKeyListResponse) SetId(v *string) {
 
 // GetKeyAlgorithm returns the KeyAlgorithm field value
 func (o *ServiceAccountKeyListResponse) GetKeyAlgorithm() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyAlgorithm) {
 		var ret *string
 		return ret
 	}
@@ -161,7 +161,7 @@ func (o *ServiceAccountKeyListResponse) SetKeyAlgorithm(v *string) {
 
 // GetKeyOrigin returns the KeyOrigin field value
 func (o *ServiceAccountKeyListResponse) GetKeyOrigin() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyOrigin) {
 		var ret *string
 		return ret
 	}
@@ -185,7 +185,7 @@ func (o *ServiceAccountKeyListResponse) SetKeyOrigin(v *string) {
 
 // GetKeyType returns the KeyType field value
 func (o *ServiceAccountKeyListResponse) GetKeyType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyType) {
 		var ret *string
 		return ret
 	}
@@ -227,7 +227,7 @@ func (o *ServiceAccountKeyListResponse) GetValidUntilOk() (*time.Time, bool) {
 
 // HasValidUntil returns a boolean if a field has been set.
 func (o *ServiceAccountKeyListResponse) HasValidUntil() bool {
-	if o != nil && !IsNil(o.ValidUntil) {
+	if o != nil && !IsNil(o.ValidUntil) && !IsNil(o.ValidUntil) {
 		return true
 	}
 
