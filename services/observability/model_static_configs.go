@@ -78,7 +78,7 @@ func (o *StaticConfigs) SetLabels(v *map[string]string) {
 
 // GetTargets returns the Targets field value
 func (o *StaticConfigs) GetTargets() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Targets) {
 		var ret *[]string
 		return ret
 	}

@@ -80,7 +80,7 @@ func (o *CreateScrapeConfigPayloadStaticConfigsInner) SetLabels(v *map[string]in
 
 // GetTargets returns the Targets field value
 func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetTargets() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Targets) {
 		var ret *[]string
 		return ret
 	}

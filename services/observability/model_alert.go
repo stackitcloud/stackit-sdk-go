@@ -114,7 +114,7 @@ func (o *Alert) SetInhibitRules(v *[]InhibitRules) {
 
 // GetReceivers returns the Receivers field value
 func (o *Alert) GetReceivers() *[]Receivers {
-	if o == nil {
+	if o == nil || IsNil(o.Receivers) {
 		var ret *[]Receivers
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *Alert) SetReceivers(v *[]Receivers) {
 
 // GetRoute returns the Route field value
 func (o *Alert) GetRoute() *Route {
-	if o == nil {
+	if o == nil || IsNil(o.Route) {
 		var ret *Route
 		return ret
 	}

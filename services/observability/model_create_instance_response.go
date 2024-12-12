@@ -51,7 +51,7 @@ func NewCreateInstanceResponseWithDefaults() *CreateInstanceResponse {
 
 // GetDashboardUrl returns the DashboardUrl field value
 func (o *CreateInstanceResponse) GetDashboardUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DashboardUrl) {
 		var ret *string
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *CreateInstanceResponse) SetDashboardUrl(v *string) {
 
 // GetInstanceId returns the InstanceId field value
 func (o *CreateInstanceResponse) GetInstanceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceId) {
 		var ret *string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *CreateInstanceResponse) SetInstanceId(v *string) {
 
 // GetMessage returns the Message field value
 func (o *CreateInstanceResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
