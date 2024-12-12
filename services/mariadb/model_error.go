@@ -48,7 +48,7 @@ func NewErrorWithDefaults() *Error {
 
 // GetDescription returns the Description field value
 func (o *Error) GetDescription() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *Error) SetDescription(v *string) {
 
 // GetError returns the Error field value
 func (o *Error) GetError() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret *string
 		return ret
 	}
