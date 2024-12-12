@@ -32,6 +32,8 @@ const (
 func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg == nil {
 		cfg = &config.Configuration{}
+		email := getServiceAccountEmail(cfg)
+		cfg.ServiceAccountEmail = email
 	}
 
 	if cfg.CustomAuth != nil {
@@ -240,6 +242,27 @@ func readCredential(cred credentialType, credentials *Credentials) (string, erro
 	}
 
 	return credentialValue, nil
+}
+
+// getServiceAccountEmail searches for an email in the following order: client configuration, environment variable, credentials file.
+// is not required for authentication, so it can be empty.
+//
+// Deprecated: ServiceAccountEmail is not required and will be removed after 12th June 2025.
+func getServiceAccountEmail(cfg *config.Configuration) string {
+	if cfg.ServiceAccountEmail != "" {
+		return cfg.ServiceAccountEmail
+	}
+
+	email, emailSet := os.LookupEnv("STACKIT_SERVICE_ACCOUNT_EMAIL")
+	if !emailSet || email == "" {
+		credentials, err := readCredentialsFile(cfg.CredentialsFilePath)
+		if err != nil {
+			// email is not required for authentication, so it shouldnt block it
+			return ""
+		}
+		return credentials.STACKIT_SERVICE_ACCOUNT_EMAIL
+	}
+	return email
 }
 
 // getKey searches for a key in the following order: client configuration, environment variable, credentials file.

@@ -178,8 +178,9 @@ func WithTokenEndpoint(url string) ConfigurationOption {
 // WithServiceAccountEmail returns a ConfigurationOption that sets the service account email
 //
 // Deprecated: WithServiceAccountEmail is not required and will be removed after 12th June 2025.
-func WithServiceAccountEmail(_ string) ConfigurationOption {
-	return func(_ *Configuration) error {
+func WithServiceAccountEmail(serviceAccountEmail string) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.ServiceAccountEmail = serviceAccountEmail
 		return nil
 	}
 }
