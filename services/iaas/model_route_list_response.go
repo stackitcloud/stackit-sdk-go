@@ -46,7 +46,7 @@ func NewRouteListResponseWithDefaults() *RouteListResponse {
 
 // GetItems returns the Items field value
 func (o *RouteListResponse) GetItems() *[]Route {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]Route
 		return ret
 	}

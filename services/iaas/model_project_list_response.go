@@ -46,7 +46,7 @@ func NewProjectListResponseWithDefaults() *ProjectListResponse {
 
 // GetItems returns the Items field value
 func (o *ProjectListResponse) GetItems() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]string
 		return ret
 	}

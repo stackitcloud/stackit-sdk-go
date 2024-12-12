@@ -46,7 +46,7 @@ func NewKeyPairListResponseWithDefaults() *KeyPairListResponse {
 
 // GetItems returns the Items field value
 func (o *KeyPairListResponse) GetItems() *[]Keypair {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]Keypair
 		return ret
 	}

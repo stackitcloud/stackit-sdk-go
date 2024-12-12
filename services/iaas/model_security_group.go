@@ -193,7 +193,7 @@ func (o *SecurityGroup) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *SecurityGroup) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

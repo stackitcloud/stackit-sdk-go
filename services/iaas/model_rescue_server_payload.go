@@ -46,7 +46,7 @@ func NewRescueServerPayloadWithDefaults() *RescueServerPayload {
 
 // GetImage returns the Image field value
 func (o *RescueServerPayload) GetImage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		var ret *string
 		return ret
 	}
