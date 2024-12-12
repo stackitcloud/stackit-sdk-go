@@ -48,7 +48,7 @@ func NewUpdateUserPayloadWithDefaults() *UpdateUserPayload {
 
 // GetDatabase returns the Database field value
 func (o *UpdateUserPayload) GetDatabase() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Database) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *UpdateUserPayload) SetDatabase(v *string) {
 
 // GetRoles returns the Roles field value
 func (o *UpdateUserPayload) GetRoles() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret *[]string
 		return ret
 	}
