@@ -154,7 +154,7 @@ func (o *Update) SetFailedUpdates(v *int64) {
 
 // GetId returns the Id field value
 func (o *Update) GetId() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *int64
 		return ret
 	}
@@ -210,7 +210,7 @@ func (o *Update) SetInstalledUpdates(v *int64) {
 
 // GetStartDate returns the StartDate field value
 func (o *Update) GetStartDate() *string {
-	if o == nil {
+	if o == nil || IsNil(o.StartDate) {
 		var ret *string
 		return ret
 	}
@@ -234,7 +234,7 @@ func (o *Update) SetStartDate(v *string) {
 
 // GetStatus returns the Status field value
 func (o *Update) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}
