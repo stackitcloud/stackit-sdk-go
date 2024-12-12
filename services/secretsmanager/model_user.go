@@ -62,7 +62,7 @@ func NewUserWithDefaults() *User {
 
 // GetDescription returns the Description field value
 func (o *User) GetDescription() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret *string
 		return ret
 	}
@@ -86,7 +86,7 @@ func (o *User) SetDescription(v *string) {
 
 // GetId returns the Id field value
 func (o *User) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -110,7 +110,7 @@ func (o *User) SetId(v *string) {
 
 // GetPassword returns the Password field value
 func (o *User) GetPassword() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret *string
 		return ret
 	}
@@ -134,7 +134,7 @@ func (o *User) SetPassword(v *string) {
 
 // GetUsername returns the Username field value
 func (o *User) GetUsername() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret *string
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *User) SetUsername(v *string) {
 
 // GetWrite returns the Write field value
 func (o *User) GetWrite() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Write) {
 		var ret *bool
 		return ret
 	}

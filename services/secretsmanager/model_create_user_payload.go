@@ -50,7 +50,7 @@ func NewCreateUserPayloadWithDefaults() *CreateUserPayload {
 
 // GetDescription returns the Description field value
 func (o *CreateUserPayload) GetDescription() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *CreateUserPayload) SetDescription(v *string) {
 
 // GetWrite returns the Write field value
 func (o *CreateUserPayload) GetWrite() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Write) {
 		var ret *bool
 		return ret
 	}
