@@ -46,7 +46,7 @@ func NewSecurityGroupListResponseWithDefaults() *SecurityGroupListResponse {
 
 // GetItems returns the Items field value
 func (o *SecurityGroupListResponse) GetItems() *[]SecurityGroup {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]SecurityGroup
 		return ret
 	}

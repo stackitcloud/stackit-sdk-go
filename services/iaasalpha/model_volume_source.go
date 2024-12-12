@@ -50,7 +50,7 @@ func NewVolumeSourceWithDefaults() *VolumeSource {
 
 // GetId returns the Id field value
 func (o *VolumeSource) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *VolumeSource) SetId(v *string) {
 
 // GetType returns the Type field value
 func (o *VolumeSource) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}

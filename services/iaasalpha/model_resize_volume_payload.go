@@ -46,7 +46,7 @@ func NewResizeVolumePayloadWithDefaults() *ResizeVolumePayload {
 
 // GetSize returns the Size field value
 func (o *ResizeVolumePayload) GetSize() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Size) {
 		var ret *int64
 		return ret
 	}

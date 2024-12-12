@@ -61,7 +61,7 @@ func NewProjectWithDefaults() *Project {
 
 // GetAreaId returns the AreaId field value
 func (o *Project) GetAreaId() *AreaId {
-	if o == nil {
+	if o == nil || IsNil(o.AreaId) {
 		var ret *AreaId
 		return ret
 	}
@@ -181,7 +181,7 @@ func (o *Project) SetOpenstackProjectId(v *string) {
 
 // GetProjectId returns the ProjectId field value
 func (o *Project) GetProjectId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret *string
 		return ret
 	}
@@ -205,7 +205,7 @@ func (o *Project) SetProjectId(v *string) {
 
 // GetState returns the State field value
 func (o *Project) GetState() *string {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret *string
 		return ret
 	}

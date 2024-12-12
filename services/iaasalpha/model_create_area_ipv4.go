@@ -103,7 +103,7 @@ func (o *CreateAreaIPv4) SetDefaultNameservers(v *[]string) {
 
 // GetNetworkRanges returns the NetworkRanges field value
 func (o *CreateAreaIPv4) GetNetworkRanges() *[]NetworkRange {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkRanges) {
 		var ret *[]NetworkRange
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *CreateAreaIPv4) SetRoutes(v *[]Route) {
 
 // GetTransferNetwork returns the TransferNetwork field value
 func (o *CreateAreaIPv4) GetTransferNetwork() *string {
-	if o == nil {
+	if o == nil || IsNil(o.TransferNetwork) {
 		var ret *string
 		return ret
 	}

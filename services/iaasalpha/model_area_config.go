@@ -85,7 +85,7 @@ func (o *AreaConfig) SetDefaultNameservers(v *[]string) {
 
 // GetNetworkRanges returns the NetworkRanges field value
 func (o *AreaConfig) GetNetworkRanges() *[]NetworkRange {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkRanges) {
 		var ret *[]NetworkRange
 		return ret
 	}
@@ -141,7 +141,7 @@ func (o *AreaConfig) SetRoutes(v *[]Route) {
 
 // GetTransferNetwork returns the TransferNetwork field value
 func (o *AreaConfig) GetTransferNetwork() *string {
-	if o == nil {
+	if o == nil || IsNil(o.TransferNetwork) {
 		var ret *string
 		return ret
 	}
