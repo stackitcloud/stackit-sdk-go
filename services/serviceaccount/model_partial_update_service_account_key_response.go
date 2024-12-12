@@ -65,7 +65,7 @@ func NewPartialUpdateServiceAccountKeyResponseWithDefaults() *PartialUpdateServi
 
 // GetActive returns the Active field value
 func (o *PartialUpdateServiceAccountKeyResponse) GetActive() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret *bool
 		return ret
 	}
@@ -89,7 +89,7 @@ func (o *PartialUpdateServiceAccountKeyResponse) SetActive(v *bool) {
 
 // GetCreatedAt returns the CreatedAt field value
 func (o *PartialUpdateServiceAccountKeyResponse) GetCreatedAt() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret *time.Time
 		return ret
 	}
@@ -113,7 +113,7 @@ func (o *PartialUpdateServiceAccountKeyResponse) SetCreatedAt(v *time.Time) {
 
 // GetId returns the Id field value
 func (o *PartialUpdateServiceAccountKeyResponse) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -137,7 +137,7 @@ func (o *PartialUpdateServiceAccountKeyResponse) SetId(v *string) {
 
 // GetKeyAlgorithm returns the KeyAlgorithm field value
 func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithm() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyAlgorithm) {
 		var ret *string
 		return ret
 	}
@@ -161,7 +161,7 @@ func (o *PartialUpdateServiceAccountKeyResponse) SetKeyAlgorithm(v *string) {
 
 // GetKeyOrigin returns the KeyOrigin field value
 func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOrigin() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyOrigin) {
 		var ret *string
 		return ret
 	}
@@ -185,7 +185,7 @@ func (o *PartialUpdateServiceAccountKeyResponse) SetKeyOrigin(v *string) {
 
 // GetKeyType returns the KeyType field value
 func (o *PartialUpdateServiceAccountKeyResponse) GetKeyType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyType) {
 		var ret *string
 		return ret
 	}

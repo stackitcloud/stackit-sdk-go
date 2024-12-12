@@ -89,7 +89,7 @@ func (o *JWK) SetAlg(v *string) {
 
 // GetE returns the E field value
 func (o *JWK) GetE() *string {
-	if o == nil {
+	if o == nil || IsNil(o.E) {
 		var ret *string
 		return ret
 	}
@@ -177,7 +177,7 @@ func (o *JWK) SetKs(v *string) {
 
 // GetN returns the N field value
 func (o *JWK) GetN() *string {
-	if o == nil {
+	if o == nil || IsNil(o.N) {
 		var ret *string
 		return ret
 	}

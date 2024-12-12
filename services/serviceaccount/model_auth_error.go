@@ -45,7 +45,7 @@ func NewAuthErrorWithDefaults() *AuthError {
 
 // GetError returns the Error field value
 func (o *AuthError) GetError() *AuthErrorError {
-	if o == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret *AuthErrorError
 		return ret
 	}

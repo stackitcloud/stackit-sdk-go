@@ -60,7 +60,7 @@ func NewCreateShortLivedAccessTokenResponseWithDefaults() *CreateShortLivedAcces
 
 // GetAccessToken returns the AccessToken field value
 func (o *CreateShortLivedAccessTokenResponse) GetAccessToken() *string {
-	if o == nil {
+	if o == nil || IsNil(o.AccessToken) {
 		var ret *string
 		return ret
 	}
@@ -84,7 +84,7 @@ func (o *CreateShortLivedAccessTokenResponse) SetAccessToken(v *string) {
 
 // GetExpiresIn returns the ExpiresIn field value
 func (o *CreateShortLivedAccessTokenResponse) GetExpiresIn() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiresIn) {
 		var ret *int64
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *CreateShortLivedAccessTokenResponse) SetExpiresIn(v *int64) {
 
 // GetRefreshToken returns the RefreshToken field value
 func (o *CreateShortLivedAccessTokenResponse) GetRefreshToken() *string {
-	if o == nil {
+	if o == nil || IsNil(o.RefreshToken) {
 		var ret *string
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *CreateShortLivedAccessTokenResponse) SetRefreshToken(v *string) {
 
 // GetScope returns the Scope field value
 func (o *CreateShortLivedAccessTokenResponse) GetScope() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Scope) {
 		var ret *string
 		return ret
 	}
@@ -156,7 +156,7 @@ func (o *CreateShortLivedAccessTokenResponse) SetScope(v *string) {
 
 // GetTokenType returns the TokenType field value
 func (o *CreateShortLivedAccessTokenResponse) GetTokenType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.TokenType) {
 		var ret *string
 		return ret
 	}
