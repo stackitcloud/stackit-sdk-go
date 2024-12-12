@@ -45,7 +45,7 @@ func NewListPermissionsResponseWithDefaults() *ListPermissionsResponse {
 
 // GetPermissions returns the Permissions field value
 func (o *ListPermissionsResponse) GetPermissions() *[]Permission {
-	if o == nil {
+	if o == nil || IsNil(o.Permissions) {
 		var ret *[]Permission
 		return ret
 	}
