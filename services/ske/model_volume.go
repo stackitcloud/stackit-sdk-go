@@ -47,7 +47,7 @@ func NewVolumeWithDefaults() *Volume {
 
 // GetSize returns the Size field value
 func (o *Volume) GetSize() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Size) {
 		var ret *int64
 		return ret
 	}
