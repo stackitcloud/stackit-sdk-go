@@ -140,7 +140,7 @@ func (o *GetMetricsResponse) SetCpuIdleTime(v *int64) {
 
 // GetCpuLoadPercent returns the CpuLoadPercent field value
 func (o *GetMetricsResponse) GetCpuLoadPercent() *float64 {
-	if o == nil {
+	if o == nil || IsNil(o.CpuLoadPercent) {
 		var ret *float64
 		return ret
 	}
@@ -228,7 +228,7 @@ func (o *GetMetricsResponse) SetCpuUserTime(v *int64) {
 
 // GetDiskEphemeralTotal returns the DiskEphemeralTotal field value
 func (o *GetMetricsResponse) GetDiskEphemeralTotal() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.DiskEphemeralTotal) {
 		var ret *int64
 		return ret
 	}
@@ -252,7 +252,7 @@ func (o *GetMetricsResponse) SetDiskEphemeralTotal(v *int64) {
 
 // GetDiskEphemeralUsed returns the DiskEphemeralUsed field value
 func (o *GetMetricsResponse) GetDiskEphemeralUsed() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.DiskEphemeralUsed) {
 		var ret *int64
 		return ret
 	}
@@ -276,7 +276,7 @@ func (o *GetMetricsResponse) SetDiskEphemeralUsed(v *int64) {
 
 // GetDiskPersistentTotal returns the DiskPersistentTotal field value
 func (o *GetMetricsResponse) GetDiskPersistentTotal() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.DiskPersistentTotal) {
 		var ret *int64
 		return ret
 	}
@@ -300,7 +300,7 @@ func (o *GetMetricsResponse) SetDiskPersistentTotal(v *int64) {
 
 // GetDiskPersistentUsed returns the DiskPersistentUsed field value
 func (o *GetMetricsResponse) GetDiskPersistentUsed() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.DiskPersistentUsed) {
 		var ret *int64
 		return ret
 	}
@@ -324,7 +324,7 @@ func (o *GetMetricsResponse) SetDiskPersistentUsed(v *int64) {
 
 // GetLoad1 returns the Load1 field value
 func (o *GetMetricsResponse) GetLoad1() *float64 {
-	if o == nil {
+	if o == nil || IsNil(o.Load1) {
 		var ret *float64
 		return ret
 	}
@@ -348,7 +348,7 @@ func (o *GetMetricsResponse) SetLoad1(v *float64) {
 
 // GetLoad15 returns the Load15 field value
 func (o *GetMetricsResponse) GetLoad15() *float64 {
-	if o == nil {
+	if o == nil || IsNil(o.Load15) {
 		var ret *float64
 		return ret
 	}
@@ -372,7 +372,7 @@ func (o *GetMetricsResponse) SetLoad15(v *float64) {
 
 // GetLoad5 returns the Load5 field value
 func (o *GetMetricsResponse) GetLoad5() *float64 {
-	if o == nil {
+	if o == nil || IsNil(o.Load5) {
 		var ret *float64
 		return ret
 	}
@@ -396,7 +396,7 @@ func (o *GetMetricsResponse) SetLoad5(v *float64) {
 
 // GetMemoryTotal returns the MemoryTotal field value
 func (o *GetMetricsResponse) GetMemoryTotal() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MemoryTotal) {
 		var ret *int64
 		return ret
 	}
@@ -420,7 +420,7 @@ func (o *GetMetricsResponse) SetMemoryTotal(v *int64) {
 
 // GetMemoryUsed returns the MemoryUsed field value
 func (o *GetMetricsResponse) GetMemoryUsed() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MemoryUsed) {
 		var ret *int64
 		return ret
 	}
@@ -444,7 +444,7 @@ func (o *GetMetricsResponse) SetMemoryUsed(v *int64) {
 
 // GetOpensearchDashboardURL returns the OpensearchDashboardURL field value
 func (o *GetMetricsResponse) GetOpensearchDashboardURL() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OpensearchDashboardURL) {
 		var ret *string
 		return ret
 	}
@@ -468,7 +468,7 @@ func (o *GetMetricsResponse) SetOpensearchDashboardURL(v *string) {
 
 // GetParachuteDiskEphemeralActivated returns the ParachuteDiskEphemeralActivated field value
 func (o *GetMetricsResponse) GetParachuteDiskEphemeralActivated() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskEphemeralActivated) {
 		var ret *bool
 		return ret
 	}
@@ -492,7 +492,7 @@ func (o *GetMetricsResponse) SetParachuteDiskEphemeralActivated(v *bool) {
 
 // GetParachuteDiskEphemeralTotal returns the ParachuteDiskEphemeralTotal field value
 func (o *GetMetricsResponse) GetParachuteDiskEphemeralTotal() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskEphemeralTotal) {
 		var ret *int64
 		return ret
 	}
@@ -516,7 +516,7 @@ func (o *GetMetricsResponse) SetParachuteDiskEphemeralTotal(v *int64) {
 
 // GetParachuteDiskEphemeralUsed returns the ParachuteDiskEphemeralUsed field value
 func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsed() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskEphemeralUsed) {
 		var ret *int64
 		return ret
 	}
@@ -540,7 +540,7 @@ func (o *GetMetricsResponse) SetParachuteDiskEphemeralUsed(v *int64) {
 
 // GetParachuteDiskEphemeralUsedPercent returns the ParachuteDiskEphemeralUsedPercent field value
 func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedPercent() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskEphemeralUsedPercent) {
 		var ret *int64
 		return ret
 	}
@@ -564,7 +564,7 @@ func (o *GetMetricsResponse) SetParachuteDiskEphemeralUsedPercent(v *int64) {
 
 // GetParachuteDiskEphemeralUsedThreshold returns the ParachuteDiskEphemeralUsedThreshold field value
 func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedThreshold() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskEphemeralUsedThreshold) {
 		var ret *int64
 		return ret
 	}
@@ -588,7 +588,7 @@ func (o *GetMetricsResponse) SetParachuteDiskEphemeralUsedThreshold(v *int64) {
 
 // GetParachuteDiskPersistentActivated returns the ParachuteDiskPersistentActivated field value
 func (o *GetMetricsResponse) GetParachuteDiskPersistentActivated() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskPersistentActivated) {
 		var ret *bool
 		return ret
 	}
@@ -612,7 +612,7 @@ func (o *GetMetricsResponse) SetParachuteDiskPersistentActivated(v *bool) {
 
 // GetParachuteDiskPersistentTotal returns the ParachuteDiskPersistentTotal field value
 func (o *GetMetricsResponse) GetParachuteDiskPersistentTotal() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskPersistentTotal) {
 		var ret *int64
 		return ret
 	}
@@ -636,7 +636,7 @@ func (o *GetMetricsResponse) SetParachuteDiskPersistentTotal(v *int64) {
 
 // GetParachuteDiskPersistentUsed returns the ParachuteDiskPersistentUsed field value
 func (o *GetMetricsResponse) GetParachuteDiskPersistentUsed() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskPersistentUsed) {
 		var ret *int64
 		return ret
 	}
@@ -660,7 +660,7 @@ func (o *GetMetricsResponse) SetParachuteDiskPersistentUsed(v *int64) {
 
 // GetParachuteDiskPersistentUsedPercent returns the ParachuteDiskPersistentUsedPercent field value
 func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedPercent() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskPersistentUsedPercent) {
 		var ret *int64
 		return ret
 	}
@@ -684,7 +684,7 @@ func (o *GetMetricsResponse) SetParachuteDiskPersistentUsedPercent(v *int64) {
 
 // GetParachuteDiskPersistentUsedThreshold returns the ParachuteDiskPersistentUsedThreshold field value
 func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedThreshold() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ParachuteDiskPersistentUsedThreshold) {
 		var ret *int64
 		return ret
 	}
