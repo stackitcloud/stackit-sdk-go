@@ -67,7 +67,7 @@ func (o *RemoveMembersPayload) GetForceRemoveOk() (*bool, bool) {
 
 // HasForceRemove returns a boolean if a field has been set.
 func (o *RemoveMembersPayload) HasForceRemove() bool {
-	if o != nil && !IsNil(o.ForceRemove) {
+	if o != nil && !IsNil(o.ForceRemove) && !IsNil(o.ForceRemove) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *RemoveMembersPayload) SetForceRemove(v *bool) {
 
 // GetMembers returns the Members field value
 func (o *RemoveMembersPayload) GetMembers() *[]Member {
-	if o == nil {
+	if o == nil || IsNil(o.Members) {
 		var ret *[]Member
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *RemoveMembersPayload) SetMembers(v *[]Member) {
 
 // GetResourceType returns the ResourceType field value
 func (o *RemoveMembersPayload) GetResourceType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceType) {
 		var ret *string
 		return ret
 	}

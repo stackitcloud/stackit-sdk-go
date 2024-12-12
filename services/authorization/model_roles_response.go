@@ -51,7 +51,7 @@ func NewRolesResponseWithDefaults() *RolesResponse {
 
 // GetResourceId returns the ResourceId field value
 func (o *RolesResponse) GetResourceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceId) {
 		var ret *string
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *RolesResponse) SetResourceId(v *string) {
 
 // GetResourceType returns the ResourceType field value
 func (o *RolesResponse) GetResourceType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceType) {
 		var ret *string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *RolesResponse) SetResourceType(v *string) {
 
 // GetRoles returns the Roles field value
 func (o *RolesResponse) GetRoles() *[]Role {
-	if o == nil {
+	if o == nil || IsNil(o.Roles) {
 		var ret *[]Role
 		return ret
 	}

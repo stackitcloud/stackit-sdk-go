@@ -45,7 +45,7 @@ func NewListUserMembershipsResponseWithDefaults() *ListUserMembershipsResponse {
 
 // GetItems returns the Items field value
 func (o *ListUserMembershipsResponse) GetItems() *[]UserMembership {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]UserMembership
 		return ret
 	}

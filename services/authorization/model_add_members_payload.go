@@ -48,7 +48,7 @@ func NewAddMembersPayloadWithDefaults() *AddMembersPayload {
 
 // GetMembers returns the Members field value
 func (o *AddMembersPayload) GetMembers() *[]Member {
-	if o == nil {
+	if o == nil || IsNil(o.Members) {
 		var ret *[]Member
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *AddMembersPayload) SetMembers(v *[]Member) {
 
 // GetResourceType returns the ResourceType field value
 func (o *AddMembersPayload) GetResourceType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceType) {
 		var ret *string
 		return ret
 	}

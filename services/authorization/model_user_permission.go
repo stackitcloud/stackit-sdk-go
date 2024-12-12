@@ -51,7 +51,7 @@ func NewUserPermissionWithDefaults() *UserPermission {
 
 // GetPermissions returns the Permissions field value
 func (o *UserPermission) GetPermissions() *[]ExistingPermission {
-	if o == nil {
+	if o == nil || IsNil(o.Permissions) {
 		var ret *[]ExistingPermission
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *UserPermission) SetPermissions(v *[]ExistingPermission) {
 
 // GetResourceId returns the ResourceId field value
 func (o *UserPermission) GetResourceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceId) {
 		var ret *string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *UserPermission) SetResourceId(v *string) {
 
 // GetResourceType returns the ResourceType field value
 func (o *UserPermission) GetResourceType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceType) {
 		var ret *string
 		return ret
 	}
