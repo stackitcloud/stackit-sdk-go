@@ -49,7 +49,7 @@ func NewPartialUpdateRecordPayloadWithDefaults() *PartialUpdateRecordPayload {
 
 // GetAction returns the Action field value
 func (o *PartialUpdateRecordPayload) GetAction() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Action) {
 		var ret *string
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *PartialUpdateRecordPayload) SetAction(v *string) {
 
 // GetRecords returns the Records field value
 func (o *PartialUpdateRecordPayload) GetRecords() *[]RecordPayload {
-	if o == nil {
+	if o == nil || IsNil(o.Records) {
 		var ret *[]RecordPayload
 		return ret
 	}

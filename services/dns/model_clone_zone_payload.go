@@ -116,7 +116,7 @@ func (o *CloneZonePayload) SetDescription(v *string) {
 
 // GetDnsName returns the DnsName field value
 func (o *CloneZonePayload) GetDnsName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DnsName) {
 		var ret *string
 		return ret
 	}

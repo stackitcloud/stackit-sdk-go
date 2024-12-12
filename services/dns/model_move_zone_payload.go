@@ -50,7 +50,7 @@ func NewMoveZonePayloadWithDefaults() *MoveZonePayload {
 
 // GetCode returns the Code field value
 func (o *MoveZonePayload) GetCode() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *MoveZonePayload) SetCode(v *string) {
 
 // GetZoneDnsName returns the ZoneDnsName field value
 func (o *MoveZonePayload) GetZoneDnsName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ZoneDnsName) {
 		var ret *string
 		return ret
 	}

@@ -78,7 +78,7 @@ func (o *ZoneResponse) SetMessage(v *string) {
 
 // GetZone returns the Zone field value
 func (o *ZoneResponse) GetZone() *Zone {
-	if o == nil {
+	if o == nil || IsNil(o.Zone) {
 		var ret *Zone
 		return ret
 	}

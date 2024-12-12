@@ -48,7 +48,7 @@ func NewCreateLabelPayloadWithDefaults() *CreateLabelPayload {
 
 // GetKey returns the Key field value
 func (o *CreateLabelPayload) GetKey() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Key) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *CreateLabelPayload) SetKey(v *string) {
 
 // GetValue returns the Value field value
 func (o *CreateLabelPayload) GetValue() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Value) {
 		var ret *string
 		return ret
 	}
