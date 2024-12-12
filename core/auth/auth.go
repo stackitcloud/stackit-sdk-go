@@ -14,7 +14,7 @@ import (
 type credentialType string
 
 type Credentials struct {
-	STACKIT_SERVICE_ACCOUNT_EMAIL    string // Deprecated: ServiceAccountEmail is not required anymore.
+	STACKIT_SERVICE_ACCOUNT_EMAIL    string // Deprecated: ServiceAccountEmail is not required and will be removed after 12th June 2025.
 	STACKIT_SERVICE_ACCOUNT_TOKEN    string
 	STACKIT_SERVICE_ACCOUNT_KEY_PATH string
 	STACKIT_PRIVATE_KEY_PATH         string

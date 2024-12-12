@@ -19,7 +19,7 @@ type TokenFlow struct {
 
 // TokenFlowConfig is the flow config
 type TokenFlowConfig struct {
-	// Deprecated: ServiceAccountEmail is not required anymore.
+	// Deprecated: ServiceAccountEmail is not required and will be removed after 12th June 2025.
 	ServiceAccountEmail string
 	ServiceAccountToken string
 	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
