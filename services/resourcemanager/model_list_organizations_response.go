@@ -57,7 +57,7 @@ func NewListOrganizationsResponseWithDefaults() *ListOrganizationsResponse {
 
 // GetItems returns the Items field value
 func (o *ListOrganizationsResponse) GetItems() *[]ListOrganizationsResponseItemsInner {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]ListOrganizationsResponseItemsInner
 		return ret
 	}
@@ -81,7 +81,7 @@ func (o *ListOrganizationsResponse) SetItems(v *[]ListOrganizationsResponseItems
 
 // GetLimit returns the Limit field value
 func (o *ListOrganizationsResponse) GetLimit() *float64 {
-	if o == nil {
+	if o == nil || IsNil(o.Limit) {
 		var ret *float64
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *ListOrganizationsResponse) SetLimit(v *float64) {
 
 // GetOffset returns the Offset field value
 func (o *ListOrganizationsResponse) GetOffset() *float64 {
-	if o == nil {
+	if o == nil || IsNil(o.Offset) {
 		var ret *float64
 		return ret
 	}

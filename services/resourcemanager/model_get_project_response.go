@@ -72,7 +72,7 @@ func NewGetProjectResponseWithDefaults() *GetProjectResponse {
 
 // GetContainerId returns the ContainerId field value
 func (o *GetProjectResponse) GetContainerId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ContainerId) {
 		var ret *string
 		return ret
 	}
@@ -96,7 +96,7 @@ func (o *GetProjectResponse) SetContainerId(v *string) {
 
 // GetCreationTime returns the CreationTime field value
 func (o *GetProjectResponse) GetCreationTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreationTime) {
 		var ret *time.Time
 		return ret
 	}
@@ -152,7 +152,7 @@ func (o *GetProjectResponse) SetLabels(v *map[string]string) {
 
 // GetLifecycleState returns the LifecycleState field value
 func (o *GetProjectResponse) GetLifecycleState() *LifecycleState {
-	if o == nil {
+	if o == nil || IsNil(o.LifecycleState) {
 		var ret *LifecycleState
 		return ret
 	}
@@ -176,7 +176,7 @@ func (o *GetProjectResponse) SetLifecycleState(v *LifecycleState) {
 
 // GetName returns the Name field value
 func (o *GetProjectResponse) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -200,7 +200,7 @@ func (o *GetProjectResponse) SetName(v *string) {
 
 // GetParent returns the Parent field value
 func (o *GetProjectResponse) GetParent() *Parent {
-	if o == nil {
+	if o == nil || IsNil(o.Parent) {
 		var ret *Parent
 		return ret
 	}
@@ -256,7 +256,7 @@ func (o *GetProjectResponse) SetParents(v *[]ParentListInner) {
 
 // GetProjectId returns the ProjectId field value
 func (o *GetProjectResponse) GetProjectId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret *string
 		return ret
 	}
@@ -280,7 +280,7 @@ func (o *GetProjectResponse) SetProjectId(v *string) {
 
 // GetUpdateTime returns the UpdateTime field value
 func (o *GetProjectResponse) GetUpdateTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.UpdateTime) {
 		var ret *time.Time
 		return ret
 	}
