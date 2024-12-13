@@ -48,7 +48,7 @@ func NewCreateBackupResponseItemWithDefaults() *CreateBackupResponseItem {
 
 // GetId returns the Id field value
 func (o *CreateBackupResponseItem) GetId() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *int64
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *CreateBackupResponseItem) SetId(v *int64) {
 
 // GetMessage returns the Message field value
 func (o *CreateBackupResponseItem) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
