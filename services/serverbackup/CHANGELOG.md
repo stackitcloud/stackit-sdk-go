@@ -1,6 +1,7 @@
 ## v0.4.0 (2024-11-26)
 
 - **Feature:** Add support for managing `BackupPolicy` resources
+- **Bugfix:** Correctly handle nullable attributes in model types
 
 ## v0.3.0 (2024-11-20)
 
