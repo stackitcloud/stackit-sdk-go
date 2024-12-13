@@ -68,7 +68,7 @@ func NewUpdateInstancePayloadWithDefaults() *UpdateInstancePayload {
 
 // GetAcl returns the Acl field value
 func (o *UpdateInstancePayload) GetAcl() *ACL {
-	if o == nil {
+	if o == nil || IsNil(o.Acl) {
 		var ret *ACL
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *UpdateInstancePayload) SetAcl(v *ACL) {
 
 // GetBackupSchedule returns the BackupSchedule field value
 func (o *UpdateInstancePayload) GetBackupSchedule() *string {
-	if o == nil {
+	if o == nil || IsNil(o.BackupSchedule) {
 		var ret *string
 		return ret
 	}
@@ -116,7 +116,7 @@ func (o *UpdateInstancePayload) SetBackupSchedule(v *string) {
 
 // GetFlavorId returns the FlavorId field value
 func (o *UpdateInstancePayload) GetFlavorId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.FlavorId) {
 		var ret *string
 		return ret
 	}
@@ -172,7 +172,7 @@ func (o *UpdateInstancePayload) SetLabels(v *map[string]string) {
 
 // GetName returns the Name field value
 func (o *UpdateInstancePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *UpdateInstancePayload) SetName(v *string) {
 
 // GetOptions returns the Options field value
 func (o *UpdateInstancePayload) GetOptions() *map[string]string {
-	if o == nil {
+	if o == nil || IsNil(o.Options) {
 		var ret *map[string]string
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *UpdateInstancePayload) SetOptions(v *map[string]string) {
 
 // GetReplicas returns the Replicas field value
 func (o *UpdateInstancePayload) GetReplicas() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Replicas) {
 		var ret *int64
 		return ret
 	}
@@ -244,7 +244,7 @@ func (o *UpdateInstancePayload) SetReplicas(v *int64) {
 
 // GetStorage returns the Storage field value
 func (o *UpdateInstancePayload) GetStorage() *Storage {
-	if o == nil {
+	if o == nil || IsNil(o.Storage) {
 		var ret *Storage
 		return ret
 	}
@@ -268,7 +268,7 @@ func (o *UpdateInstancePayload) SetStorage(v *Storage) {
 
 // GetVersion returns the Version field value
 func (o *UpdateInstancePayload) GetVersion() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret *string
 		return ret
 	}
