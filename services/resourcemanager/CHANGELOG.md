@@ -1,3 +1,7 @@
+## v0.11.1 (2024-12-16)
+
+- **Bugfix:** Correctly handle nullable attributes in model types
+
 ## v0.11.0 (2024-10-21)
 - **Feature:** Get containers of a folder using the new method `BffGetContainersOfAFolder`
 - **Feature:** Get containers of an organization using the new method `BffGetContainersOfAnOrganization`
