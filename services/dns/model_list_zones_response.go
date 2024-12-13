@@ -55,7 +55,7 @@ func NewListZonesResponseWithDefaults() *ListZonesResponse {
 
 // GetItemsPerPage returns the ItemsPerPage field value
 func (o *ListZonesResponse) GetItemsPerPage() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ItemsPerPage) {
 		var ret *int64
 		return ret
 	}
@@ -111,7 +111,7 @@ func (o *ListZonesResponse) SetMessage(v *string) {
 
 // GetTotalItems returns the TotalItems field value
 func (o *ListZonesResponse) GetTotalItems() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalItems) {
 		var ret *int64
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *ListZonesResponse) SetTotalItems(v *int64) {
 
 // GetTotalPages returns the TotalPages field value
 func (o *ListZonesResponse) GetTotalPages() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalPages) {
 		var ret *int64
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *ListZonesResponse) SetTotalPages(v *int64) {
 
 // GetZones returns the Zones field value
 func (o *ListZonesResponse) GetZones() *[]Zone {
-	if o == nil {
+	if o == nil || IsNil(o.Zones) {
 		var ret *[]Zone
 		return ret
 	}
