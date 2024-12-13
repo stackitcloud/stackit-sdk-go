@@ -1,3 +1,35 @@
+## v0.17.0 (2024-12-16)
+
+- **breaking changes**: Multiple functions now require a region parameter:
+  - `CloneInstanceExecute`
+  - `CreateDatabaseExecute`
+  - `CreateInstanceExecute`
+  - `CreateUserExecute`
+  - `DeleteDatabaseExecute`
+  - `DeleteInstanceExecute`
+  - `DeleteUserExecute`
+  - `DisableServiceExecute`
+  - `ForceDeleteInstanceExecute`
+  - `GetBackupExecute`
+  - `GetInstanceExecute`
+  - `GetUserExecute`
+  - `ListBackupsExecute`
+  - `ListDatabaseParametersExecute`
+  - `ListDatabasesExecute`
+  - `ListFlavorsExecute`
+  - `ListInstancesExecute`
+  - `ListMetricsExecute`
+  - `ListStoragesExecute`
+  - `ListUsersExecute`
+  - `ListVersionsExecute`
+  - `PartialUpdateInstanceExecute`
+  - `PartialUpdateUserExecute`
+  - `ResetUserExecute`
+  - `UpdateBackupScheduleExecute`
+  - `UpdateInstanceExecute`
+  - `UpdateUserExecute`
+- **Bugfix:** Correctly handle nullable attributes in model types
+
 ## v0.16.0 (2024-10-14)
 
 - **Feature:** Add support for nullable models
