@@ -46,7 +46,7 @@ func NewRecordPayloadWithDefaults() *RecordPayload {
 
 // GetContent returns the Content field value
 func (o *RecordPayload) GetContent() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Content) {
 		var ret *string
 		return ret
 	}

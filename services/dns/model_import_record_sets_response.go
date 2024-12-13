@@ -78,7 +78,7 @@ func (o *ImportRecordSetsResponse) SetMessage(v *string) {
 
 // GetSummary returns the Summary field value
 func (o *ImportRecordSetsResponse) GetSummary() *ImportSummary {
-	if o == nil {
+	if o == nil || IsNil(o.Summary) {
 		var ret *ImportSummary
 		return ret
 	}

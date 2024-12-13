@@ -90,7 +90,7 @@ func (o *CreateRecordSetPayload) SetComment(v *string) {
 
 // GetName returns the Name field value
 func (o *CreateRecordSetPayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -114,7 +114,7 @@ func (o *CreateRecordSetPayload) SetName(v *string) {
 
 // GetRecords returns the Records field value
 func (o *CreateRecordSetPayload) GetRecords() *[]RecordPayload {
-	if o == nil {
+	if o == nil || IsNil(o.Records) {
 		var ret *[]RecordPayload
 		return ret
 	}
@@ -170,7 +170,7 @@ func (o *CreateRecordSetPayload) SetTtl(v *int64) {
 
 // GetType returns the Type field value
 func (o *CreateRecordSetPayload) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}

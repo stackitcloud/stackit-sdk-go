@@ -46,7 +46,7 @@ func NewValidateMoveCodePayloadWithDefaults() *ValidateMoveCodePayload {
 
 // GetCode returns the Code field value
 func (o *ValidateMoveCodePayload) GetCode() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret *string
 		return ret
 	}
