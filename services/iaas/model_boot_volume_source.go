@@ -50,7 +50,7 @@ func NewBootVolumeSourceWithDefaults() *BootVolumeSource {
 
 // GetId returns the Id field value
 func (o *BootVolumeSource) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *BootVolumeSource) SetId(v *string) {
 
 // GetType returns the Type field value
 func (o *BootVolumeSource) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}

@@ -408,7 +408,7 @@ func (o *Server) SetLaunchedAt(v *time.Time) {
 
 // GetMachineType returns the MachineType field value
 func (o *Server) GetMachineType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MachineType) {
 		var ret *string
 		return ret
 	}
@@ -464,7 +464,7 @@ func (o *Server) SetMaintenanceWindow(v *ServerMaintenance) {
 
 // GetName returns the Name field value
 func (o *Server) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

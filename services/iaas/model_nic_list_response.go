@@ -46,7 +46,7 @@ func NewNICListResponseWithDefaults() *NICListResponse {
 
 // GetItems returns the Items field value
 func (o *NICListResponse) GetItems() *[]NIC {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]NIC
 		return ret
 	}
