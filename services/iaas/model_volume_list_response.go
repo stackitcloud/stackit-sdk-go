@@ -46,7 +46,7 @@ func NewVolumeListResponseWithDefaults() *VolumeListResponse {
 
 // GetItems returns the Items field value
 func (o *VolumeListResponse) GetItems() *[]Volume {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]Volume
 		return ret
 	}

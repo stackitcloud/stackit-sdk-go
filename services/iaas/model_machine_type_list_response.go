@@ -46,7 +46,7 @@ func NewMachineTypeListResponseWithDefaults() *MachineTypeListResponse {
 
 // GetItems returns the Items field value
 func (o *MachineTypeListResponse) GetItems() *[]MachineType {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]MachineType
 		return ret
 	}

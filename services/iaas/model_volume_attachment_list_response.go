@@ -46,7 +46,7 @@ func NewVolumeAttachmentListResponseWithDefaults() *VolumeAttachmentListResponse
 
 // GetItems returns the Items field value
 func (o *VolumeAttachmentListResponse) GetItems() *[]VolumeAttachment {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]VolumeAttachment
 		return ret
 	}
