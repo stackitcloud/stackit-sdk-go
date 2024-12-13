@@ -48,7 +48,7 @@ func NewListCredentialsResponseWithDefaults() *ListCredentialsResponse {
 
 // GetCredentials returns the Credentials field value
 func (o *ListCredentialsResponse) GetCredentials() *[]ServiceKeysList {
-	if o == nil {
+	if o == nil || IsNil(o.Credentials) {
 		var ret *[]ServiceKeysList
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *ListCredentialsResponse) SetCredentials(v *[]ServiceKeysList) {
 
 // GetMessage returns the Message field value
 func (o *ListCredentialsResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

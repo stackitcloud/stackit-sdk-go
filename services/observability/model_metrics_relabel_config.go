@@ -227,7 +227,7 @@ func (o *MetricsRelabelConfig) SetSeparator(v *string) {
 
 // GetSourceLabels returns the SourceLabels field value
 func (o *MetricsRelabelConfig) GetSourceLabels() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.SourceLabels) {
 		var ret *[]string
 		return ret
 	}

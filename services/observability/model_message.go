@@ -45,7 +45,7 @@ func NewMessageWithDefaults() *Message {
 
 // GetMessage returns the Message field value
 func (o *Message) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

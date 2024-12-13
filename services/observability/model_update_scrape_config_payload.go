@@ -214,7 +214,7 @@ func (o *UpdateScrapeConfigPayload) SetHonorTimeStamps(v *bool) {
 
 // GetMetricsPath returns the MetricsPath field value
 func (o *UpdateScrapeConfigPayload) GetMetricsPath() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsPath) {
 		var ret *string
 		return ret
 	}
@@ -334,7 +334,7 @@ func (o *UpdateScrapeConfigPayload) SetSampleLimit(v *float64) {
 
 // GetScheme returns the Scheme field value
 func (o *UpdateScrapeConfigPayload) GetScheme() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Scheme) {
 		var ret *string
 		return ret
 	}
@@ -358,7 +358,7 @@ func (o *UpdateScrapeConfigPayload) SetScheme(v *string) {
 
 // GetScrapeInterval returns the ScrapeInterval field value
 func (o *UpdateScrapeConfigPayload) GetScrapeInterval() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeInterval) {
 		var ret *string
 		return ret
 	}
@@ -382,7 +382,7 @@ func (o *UpdateScrapeConfigPayload) SetScrapeInterval(v *string) {
 
 // GetScrapeTimeout returns the ScrapeTimeout field value
 func (o *UpdateScrapeConfigPayload) GetScrapeTimeout() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeTimeout) {
 		var ret *string
 		return ret
 	}
@@ -406,7 +406,7 @@ func (o *UpdateScrapeConfigPayload) SetScrapeTimeout(v *string) {
 
 // GetStaticConfigs returns the StaticConfigs field value
 func (o *UpdateScrapeConfigPayload) GetStaticConfigs() *[]UpdateScrapeConfigPayloadStaticConfigsInner {
-	if o == nil {
+	if o == nil || IsNil(o.StaticConfigs) {
 		var ret *[]UpdateScrapeConfigPayloadStaticConfigsInner
 		return ret
 	}

@@ -59,7 +59,7 @@ func NewProjectInstanceFullWithDefaults() *ProjectInstanceFull {
 
 // GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ProjectInstanceFull) GetError() *string {
-	if o == nil || IsNil(o.Error.Get()) {
+	if o == nil || IsNil(o.Error) || IsNil(o.Error.Get()) {
 		var ret *string
 		return ret
 	}
@@ -70,7 +70,7 @@ func (o *ProjectInstanceFull) GetError() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ProjectInstanceFull) GetErrorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
 	return o.Error.Get(), o.Error.IsSet()
@@ -78,7 +78,7 @@ func (o *ProjectInstanceFull) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *ProjectInstanceFull) HasError() bool {
-	if o != nil && o.Error.IsSet() {
+	if o != nil && !IsNil(o.Error) && o.Error.IsSet() {
 		return true
 	}
 
@@ -87,22 +87,31 @@ func (o *ProjectInstanceFull) HasError() bool {
 
 // SetError gets a reference to the given string and assigns it to the Error field.
 func (o *ProjectInstanceFull) SetError(v *string) {
+	if IsNil(o.Error) {
+		o.Error = new(NullableString)
+	}
 	o.Error.Set(v)
 }
 
 // SetErrorNil sets the value for Error to be an explicit nil
 func (o *ProjectInstanceFull) SetErrorNil() {
+	if IsNil(o.Error) {
+		o.Error = new(NullableString)
+	}
 	o.Error.Set(nil)
 }
 
 // UnsetError ensures that no value is present for Error, not even an explicit nil
 func (o *ProjectInstanceFull) UnsetError() {
+	if IsNil(o.Error) {
+		o.Error = new(NullableString)
+	}
 	o.Error.Unset()
 }
 
 // GetId returns the Id field value
 func (o *ProjectInstanceFull) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -126,7 +135,7 @@ func (o *ProjectInstanceFull) SetId(v *string) {
 
 // GetInstance returns the Instance field value
 func (o *ProjectInstanceFull) GetInstance() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Instance) {
 		var ret *string
 		return ret
 	}
@@ -182,7 +191,7 @@ func (o *ProjectInstanceFull) SetName(v *string) {
 
 // GetPlanName returns the PlanName field value
 func (o *ProjectInstanceFull) GetPlanName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanName) {
 		var ret *string
 		return ret
 	}
@@ -206,7 +215,7 @@ func (o *ProjectInstanceFull) SetPlanName(v *string) {
 
 // GetServiceName returns the ServiceName field value
 func (o *ProjectInstanceFull) GetServiceName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ServiceName) {
 		var ret *string
 		return ret
 	}
@@ -230,7 +239,7 @@ func (o *ProjectInstanceFull) SetServiceName(v *string) {
 
 // GetStatus returns the Status field value
 func (o *ProjectInstanceFull) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}

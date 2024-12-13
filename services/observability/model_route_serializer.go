@@ -294,7 +294,7 @@ func (o *RouteSerializer) SetMatchers(v *[]string) {
 
 // GetReceiver returns the Receiver field value
 func (o *RouteSerializer) GetReceiver() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Receiver) {
 		var ret *string
 		return ret
 	}

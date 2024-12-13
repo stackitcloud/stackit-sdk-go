@@ -93,7 +93,7 @@ func NewPlanModelWithDefaults() *PlanModel {
 
 // GetAlertMatchers returns the AlertMatchers field value
 func (o *PlanModel) GetAlertMatchers() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.AlertMatchers) {
 		var ret *int64
 		return ret
 	}
@@ -117,7 +117,7 @@ func (o *PlanModel) SetAlertMatchers(v *int64) {
 
 // GetAlertReceivers returns the AlertReceivers field value
 func (o *PlanModel) GetAlertReceivers() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.AlertReceivers) {
 		var ret *int64
 		return ret
 	}
@@ -141,7 +141,7 @@ func (o *PlanModel) SetAlertReceivers(v *int64) {
 
 // GetAlertRules returns the AlertRules field value
 func (o *PlanModel) GetAlertRules() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.AlertRules) {
 		var ret *int64
 		return ret
 	}
@@ -197,7 +197,7 @@ func (o *PlanModel) SetAmount(v *float64) {
 
 // GetBucketSize returns the BucketSize field value
 func (o *PlanModel) GetBucketSize() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.BucketSize) {
 		var ret *int64
 		return ret
 	}
@@ -253,7 +253,7 @@ func (o *PlanModel) SetDescription(v *string) {
 
 // GetGrafanaGlobalDashboards returns the GrafanaGlobalDashboards field value
 func (o *PlanModel) GetGrafanaGlobalDashboards() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaGlobalDashboards) {
 		var ret *int64
 		return ret
 	}
@@ -277,7 +277,7 @@ func (o *PlanModel) SetGrafanaGlobalDashboards(v *int64) {
 
 // GetGrafanaGlobalOrgs returns the GrafanaGlobalOrgs field value
 func (o *PlanModel) GetGrafanaGlobalOrgs() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaGlobalOrgs) {
 		var ret *int64
 		return ret
 	}
@@ -301,7 +301,7 @@ func (o *PlanModel) SetGrafanaGlobalOrgs(v *int64) {
 
 // GetGrafanaGlobalSessions returns the GrafanaGlobalSessions field value
 func (o *PlanModel) GetGrafanaGlobalSessions() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaGlobalSessions) {
 		var ret *int64
 		return ret
 	}
@@ -325,7 +325,7 @@ func (o *PlanModel) SetGrafanaGlobalSessions(v *int64) {
 
 // GetGrafanaGlobalUsers returns the GrafanaGlobalUsers field value
 func (o *PlanModel) GetGrafanaGlobalUsers() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaGlobalUsers) {
 		var ret *int64
 		return ret
 	}
@@ -349,7 +349,7 @@ func (o *PlanModel) SetGrafanaGlobalUsers(v *int64) {
 
 // GetId returns the Id field value
 func (o *PlanModel) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -373,7 +373,7 @@ func (o *PlanModel) SetId(v *string) {
 
 // GetLogsAlert returns the LogsAlert field value
 func (o *PlanModel) GetLogsAlert() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.LogsAlert) {
 		var ret *int64
 		return ret
 	}
@@ -397,7 +397,7 @@ func (o *PlanModel) SetLogsAlert(v *int64) {
 
 // GetLogsStorage returns the LogsStorage field value
 func (o *PlanModel) GetLogsStorage() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.LogsStorage) {
 		var ret *int64
 		return ret
 	}
@@ -453,7 +453,7 @@ func (o *PlanModel) SetName(v *string) {
 
 // GetPlanId returns the PlanId field value
 func (o *PlanModel) GetPlanId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanId) {
 		var ret *string
 		return ret
 	}
@@ -477,7 +477,7 @@ func (o *PlanModel) SetPlanId(v *string) {
 
 // GetSamplesPerScrape returns the SamplesPerScrape field value
 func (o *PlanModel) GetSamplesPerScrape() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.SamplesPerScrape) {
 		var ret *int64
 		return ret
 	}
@@ -501,7 +501,7 @@ func (o *PlanModel) SetSamplesPerScrape(v *int64) {
 
 // GetTargetNumber returns the TargetNumber field value
 func (o *PlanModel) GetTargetNumber() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TargetNumber) {
 		var ret *int64
 		return ret
 	}
@@ -525,7 +525,7 @@ func (o *PlanModel) SetTargetNumber(v *int64) {
 
 // GetTotalMetricSamples returns the TotalMetricSamples field value
 func (o *PlanModel) GetTotalMetricSamples() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalMetricSamples) {
 		var ret *int64
 		return ret
 	}
@@ -549,7 +549,7 @@ func (o *PlanModel) SetTotalMetricSamples(v *int64) {
 
 // GetTracesStorage returns the TracesStorage field value
 func (o *PlanModel) GetTracesStorage() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TracesStorage) {
 		var ret *int64
 		return ret
 	}

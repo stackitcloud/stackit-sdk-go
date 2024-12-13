@@ -48,7 +48,7 @@ func NewListACLResponseWithDefaults() *ListACLResponse {
 
 // GetAcl returns the Acl field value
 func (o *ListACLResponse) GetAcl() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Acl) {
 		var ret *[]string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *ListACLResponse) SetAcl(v *[]string) {
 
 // GetMessage returns the Message field value
 func (o *ListACLResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
