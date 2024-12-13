@@ -1,3 +1,7 @@
+## v0.4.1 (2024-12-16)
+
+- **Bugfix:** Correctly handle nullable attributes in model types
+
 ## v0.4.0 (2024-10-14)
 
 - **Feature:** Add support for nullable models
