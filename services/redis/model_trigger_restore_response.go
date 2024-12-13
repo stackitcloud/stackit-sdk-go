@@ -45,7 +45,7 @@ func NewTriggerRestoreResponseWithDefaults() *TriggerRestoreResponse {
 
 // GetId returns the Id field value
 func (o *TriggerRestoreResponse) GetId() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *int64
 		return ret
 	}
