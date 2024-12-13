@@ -57,7 +57,7 @@ func NewCreateUpdateSchedulePayloadWithDefaults() *CreateUpdateSchedulePayload {
 
 // GetEnabled returns the Enabled field value
 func (o *CreateUpdateSchedulePayload) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}
@@ -113,7 +113,7 @@ func (o *CreateUpdateSchedulePayload) SetId(v *int64) {
 
 // GetMaintenanceWindow returns the MaintenanceWindow field value
 func (o *CreateUpdateSchedulePayload) GetMaintenanceWindow() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MaintenanceWindow) {
 		var ret *int64
 		return ret
 	}
@@ -137,7 +137,7 @@ func (o *CreateUpdateSchedulePayload) SetMaintenanceWindow(v *int64) {
 
 // GetName returns the Name field value
 func (o *CreateUpdateSchedulePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -161,7 +161,7 @@ func (o *CreateUpdateSchedulePayload) SetName(v *string) {
 
 // GetRrule returns the Rrule field value
 func (o *CreateUpdateSchedulePayload) GetRrule() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Rrule) {
 		var ret *string
 		return ret
 	}
