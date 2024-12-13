@@ -81,7 +81,7 @@ type Configuration struct {
 	UserAgent             string            `json:"userAgent,omitempty"`
 	Debug                 bool              `json:"debug,omitempty"`
 	NoAuth                bool              `json:"noAuth,omitempty"`
-	ServiceAccountEmail   string            `json:"serviceAccountEmail,omitempty"`
+	ServiceAccountEmail   string            `json:"serviceAccountEmail,omitempty"` // Deprecated: ServiceAccountEmail is not required and will be removed after 12th June 2025.
 	Token                 string            `json:"token,omitempty"`
 	ServiceAccountKey     string            `json:"serviceAccountKey,omitempty"`
 	PrivateKey            string            `json:"privateKey,omitempty"`
@@ -176,6 +176,8 @@ func WithTokenEndpoint(url string) ConfigurationOption {
 }
 
 // WithServiceAccountEmail returns a ConfigurationOption that sets the service account email
+//
+// Deprecated: WithServiceAccountEmail is not required and will be removed after 12th June 2025.
 func WithServiceAccountEmail(serviceAccountEmail string) ConfigurationOption {
 	return func(config *Configuration) error {
 		config.ServiceAccountEmail = serviceAccountEmail
@@ -319,7 +321,6 @@ func WithCustomConfiguration(cfg *Configuration) ConfigurationOption {
 		config.NoAuth = cfg.NoAuth
 		config.Token = cfg.Token
 		config.ServiceAccountKey = cfg.ServiceAccountKey
-		config.ServiceAccountEmail = cfg.ServiceAccountEmail
 		config.ServiceAccountKeyPath = cfg.ServiceAccountKeyPath
 		config.PrivateKey = cfg.PrivateKey
 		config.PrivateKeyPath = cfg.PrivateKeyPath
