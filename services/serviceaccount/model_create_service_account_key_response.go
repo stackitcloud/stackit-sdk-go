@@ -72,7 +72,7 @@ func NewCreateServiceAccountKeyResponseWithDefaults() *CreateServiceAccountKeyRe
 
 // GetActive returns the Active field value
 func (o *CreateServiceAccountKeyResponse) GetActive() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret *bool
 		return ret
 	}
@@ -96,7 +96,7 @@ func (o *CreateServiceAccountKeyResponse) SetActive(v *bool) {
 
 // GetCreatedAt returns the CreatedAt field value
 func (o *CreateServiceAccountKeyResponse) GetCreatedAt() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret *time.Time
 		return ret
 	}
@@ -120,7 +120,7 @@ func (o *CreateServiceAccountKeyResponse) SetCreatedAt(v *time.Time) {
 
 // GetCredentials returns the Credentials field value
 func (o *CreateServiceAccountKeyResponse) GetCredentials() *CreateServiceAccountKeyResponseCredentials {
-	if o == nil {
+	if o == nil || IsNil(o.Credentials) {
 		var ret *CreateServiceAccountKeyResponseCredentials
 		return ret
 	}
@@ -144,7 +144,7 @@ func (o *CreateServiceAccountKeyResponse) SetCredentials(v *CreateServiceAccount
 
 // GetId returns the Id field value
 func (o *CreateServiceAccountKeyResponse) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -168,7 +168,7 @@ func (o *CreateServiceAccountKeyResponse) SetId(v *string) {
 
 // GetKeyAlgorithm returns the KeyAlgorithm field value
 func (o *CreateServiceAccountKeyResponse) GetKeyAlgorithm() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyAlgorithm) {
 		var ret *string
 		return ret
 	}
@@ -192,7 +192,7 @@ func (o *CreateServiceAccountKeyResponse) SetKeyAlgorithm(v *string) {
 
 // GetKeyOrigin returns the KeyOrigin field value
 func (o *CreateServiceAccountKeyResponse) GetKeyOrigin() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyOrigin) {
 		var ret *string
 		return ret
 	}
@@ -216,7 +216,7 @@ func (o *CreateServiceAccountKeyResponse) SetKeyOrigin(v *string) {
 
 // GetKeyType returns the KeyType field value
 func (o *CreateServiceAccountKeyResponse) GetKeyType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.KeyType) {
 		var ret *string
 		return ret
 	}
@@ -240,7 +240,7 @@ func (o *CreateServiceAccountKeyResponse) SetKeyType(v *string) {
 
 // GetPublicKey returns the PublicKey field value
 func (o *CreateServiceAccountKeyResponse) GetPublicKey() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret *string
 		return ret
 	}

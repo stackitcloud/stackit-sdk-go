@@ -63,7 +63,7 @@ func NewAccessTokenWithDefaults() *AccessToken {
 
 // GetActive returns the Active field value
 func (o *AccessToken) GetActive() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret *bool
 		return ret
 	}
@@ -87,7 +87,7 @@ func (o *AccessToken) SetActive(v *bool) {
 
 // GetCreatedAt returns the CreatedAt field value
 func (o *AccessToken) GetCreatedAt() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret *time.Time
 		return ret
 	}
@@ -111,7 +111,7 @@ func (o *AccessToken) SetCreatedAt(v *time.Time) {
 
 // GetId returns the Id field value
 func (o *AccessToken) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *AccessToken) SetId(v *string) {
 
 // GetToken returns the Token field value
 func (o *AccessToken) GetToken() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		var ret *string
 		return ret
 	}
@@ -159,7 +159,7 @@ func (o *AccessToken) SetToken(v *string) {
 
 // GetValidUntil returns the ValidUntil field value
 func (o *AccessToken) GetValidUntil() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.ValidUntil) {
 		var ret *time.Time
 		return ret
 	}

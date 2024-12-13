@@ -51,7 +51,7 @@ func NewAuthErrorErrorWithDefaults() *AuthErrorError {
 
 // GetCode returns the Code field value
 func (o *AuthErrorError) GetCode() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret *int64
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *AuthErrorError) SetCode(v *int64) {
 
 // GetMessage returns the Message field value
 func (o *AuthErrorError) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *AuthErrorError) SetMessage(v *string) {
 
 // GetStatus returns the Status field value
 func (o *AuthErrorError) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}
