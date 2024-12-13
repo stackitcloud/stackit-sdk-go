@@ -45,7 +45,7 @@ func NewListBackupsResponseWithDefaults() *ListBackupsResponse {
 
 // GetInstanceBackups returns the InstanceBackups field value
 func (o *ListBackupsResponse) GetInstanceBackups() *[]Backup {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceBackups) {
 		var ret *[]Backup
 		return ret
 	}
