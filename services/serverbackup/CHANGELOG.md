@@ -1,4 +1,4 @@
-## v0.4.0 (2024-11-26)
+## v0.4.0 (2024-12-16)
 
 - **Feature:** Add support for managing `BackupPolicy` resources
 
