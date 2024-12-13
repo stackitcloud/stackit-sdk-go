@@ -45,7 +45,7 @@ func NewListACLsResponseWithDefaults() *ListACLsResponse {
 
 // GetAcls returns the Acls field value
 func (o *ListACLsResponse) GetAcls() *[]ACL {
-	if o == nil {
+	if o == nil || IsNil(o.Acls) {
 		var ret *[]ACL
 		return ret
 	}

@@ -50,7 +50,7 @@ func NewACLWithDefaults() *ACL {
 
 // GetCidr returns the Cidr field value
 func (o *ACL) GetCidr() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Cidr) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *ACL) SetCidr(v *string) {
 
 // GetId returns the Id field value
 func (o *ACL) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
