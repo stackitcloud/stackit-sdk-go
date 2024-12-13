@@ -51,7 +51,7 @@ func NewListMembersResponseWithDefaults() *ListMembersResponse {
 
 // GetMembers returns the Members field value
 func (o *ListMembersResponse) GetMembers() *[]Member {
-	if o == nil {
+	if o == nil || IsNil(o.Members) {
 		var ret *[]Member
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *ListMembersResponse) SetMembers(v *[]Member) {
 
 // GetResourceId returns the ResourceId field value
 func (o *ListMembersResponse) GetResourceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceId) {
 		var ret *string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *ListMembersResponse) SetResourceId(v *string) {
 
 // GetResourceType returns the ResourceType field value
 func (o *ListMembersResponse) GetResourceType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceType) {
 		var ret *string
 		return ret
 	}

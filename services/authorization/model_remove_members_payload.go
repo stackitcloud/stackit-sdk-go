@@ -81,7 +81,7 @@ func (o *RemoveMembersPayload) SetForceRemove(v *bool) {
 
 // GetMembers returns the Members field value
 func (o *RemoveMembersPayload) GetMembers() *[]Member {
-	if o == nil {
+	if o == nil || IsNil(o.Members) {
 		var ret *[]Member
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *RemoveMembersPayload) SetMembers(v *[]Member) {
 
 // GetResourceType returns the ResourceType field value
 func (o *RemoveMembersPayload) GetResourceType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceType) {
 		var ret *string
 		return ret
 	}

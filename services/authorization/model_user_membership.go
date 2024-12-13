@@ -54,7 +54,7 @@ func NewUserMembershipWithDefaults() *UserMembership {
 
 // GetResourceId returns the ResourceId field value
 func (o *UserMembership) GetResourceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceId) {
 		var ret *string
 		return ret
 	}
@@ -78,7 +78,7 @@ func (o *UserMembership) SetResourceId(v *string) {
 
 // GetResourceType returns the ResourceType field value
 func (o *UserMembership) GetResourceType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ResourceType) {
 		var ret *string
 		return ret
 	}
@@ -102,7 +102,7 @@ func (o *UserMembership) SetResourceType(v *string) {
 
 // GetRole returns the Role field value
 func (o *UserMembership) GetRole() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Role) {
 		var ret *string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *UserMembership) SetRole(v *string) {
 
 // GetSubject returns the Subject field value
 func (o *UserMembership) GetSubject() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Subject) {
 		var ret *string
 		return ret
 	}

@@ -58,7 +58,7 @@ func NewErrorResponseWithDefaults() *ErrorResponse {
 
 // GetError returns the Error field value
 func (o *ErrorResponse) GetError() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Error) {
 		var ret *string
 		return ret
 	}
@@ -82,7 +82,7 @@ func (o *ErrorResponse) SetError(v *string) {
 
 // GetMessage returns the Message field value
 func (o *ErrorResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
@@ -106,7 +106,7 @@ func (o *ErrorResponse) SetMessage(v *string) {
 
 // GetPath returns the Path field value
 func (o *ErrorResponse) GetPath() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Path) {
 		var ret *string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *ErrorResponse) SetPath(v *string) {
 
 // GetStatus returns the Status field value
 func (o *ErrorResponse) GetStatus() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *int64
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *ErrorResponse) SetStatus(v *int64) {
 
 // GetTimeStamp returns the TimeStamp field value
 func (o *ErrorResponse) GetTimeStamp() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.TimeStamp) {
 		var ret *time.Time
 		return ret
 	}
