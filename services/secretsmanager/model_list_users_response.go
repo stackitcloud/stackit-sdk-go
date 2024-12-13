@@ -45,7 +45,7 @@ func NewListUsersResponseWithDefaults() *ListUsersResponse {
 
 // GetUsers returns the Users field value
 func (o *ListUsersResponse) GetUsers() *[]User {
-	if o == nil {
+	if o == nil || IsNil(o.Users) {
 		var ret *[]User
 		return ret
 	}

@@ -74,7 +74,7 @@ func NewInstanceWithDefaults() *Instance {
 
 // GetApiUrl returns the ApiUrl field value
 func (o *Instance) GetApiUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ApiUrl) {
 		var ret *string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *Instance) SetCreationFinishedDate(v *string) {
 
 // GetCreationStartDate returns the CreationStartDate field value
 func (o *Instance) GetCreationStartDate() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CreationStartDate) {
 		var ret *string
 		return ret
 	}
@@ -154,7 +154,7 @@ func (o *Instance) SetCreationStartDate(v *string) {
 
 // GetId returns the Id field value
 func (o *Instance) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -178,7 +178,7 @@ func (o *Instance) SetId(v *string) {
 
 // GetName returns the Name field value
 func (o *Instance) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -202,7 +202,7 @@ func (o *Instance) SetName(v *string) {
 
 // GetSecretCount returns the SecretCount field value
 func (o *Instance) GetSecretCount() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.SecretCount) {
 		var ret *int64
 		return ret
 	}
@@ -226,7 +226,7 @@ func (o *Instance) SetSecretCount(v *int64) {
 
 // GetSecretsEngine returns the SecretsEngine field value
 func (o *Instance) GetSecretsEngine() *string {
-	if o == nil {
+	if o == nil || IsNil(o.SecretsEngine) {
 		var ret *string
 		return ret
 	}
@@ -250,7 +250,7 @@ func (o *Instance) SetSecretsEngine(v *string) {
 
 // GetState returns the State field value
 func (o *Instance) GetState() *string {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret *string
 		return ret
 	}
