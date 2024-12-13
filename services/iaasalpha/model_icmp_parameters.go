@@ -50,7 +50,7 @@ func NewICMPParametersWithDefaults() *ICMPParameters {
 
 // GetCode returns the Code field value
 func (o *ICMPParameters) GetCode() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret *int64
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *ICMPParameters) SetCode(v *int64) {
 
 // GetType returns the Type field value
 func (o *ICMPParameters) GetType() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *int64
 		return ret
 	}

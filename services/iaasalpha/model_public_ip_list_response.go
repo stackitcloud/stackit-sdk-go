@@ -46,7 +46,7 @@ func NewPublicIpListResponseWithDefaults() *PublicIpListResponse {
 
 // GetItems returns the Items field value
 func (o *PublicIpListResponse) GetItems() *[]PublicIp {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]PublicIp
 		return ret
 	}

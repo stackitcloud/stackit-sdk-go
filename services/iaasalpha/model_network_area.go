@@ -65,7 +65,7 @@ func NewNetworkAreaWithDefaults() *NetworkArea {
 
 // GetAreaId returns the AreaId field value
 func (o *NetworkArea) GetAreaId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.AreaId) {
 		var ret *string
 		return ret
 	}
@@ -185,7 +185,7 @@ func (o *NetworkArea) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *NetworkArea) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -209,7 +209,7 @@ func (o *NetworkArea) SetName(v *string) {
 
 // GetProjectCount returns the ProjectCount field value
 func (o *NetworkArea) GetProjectCount() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectCount) {
 		var ret *int64
 		return ret
 	}
@@ -233,7 +233,7 @@ func (o *NetworkArea) SetProjectCount(v *int64) {
 
 // GetState returns the State field value
 func (o *NetworkArea) GetState() *string {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret *string
 		return ret
 	}

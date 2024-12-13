@@ -106,7 +106,7 @@ func (o *Network) SetCreatedAt(v *time.Time) {
 
 // GetGateway returns the Gateway field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Network) GetGateway() *string {
-	if o == nil || IsNil(o.Gateway.Get()) {
+	if o == nil || IsNil(o.Gateway) || IsNil(o.Gateway.Get()) {
 		var ret *string
 		return ret
 	}
@@ -117,7 +117,7 @@ func (o *Network) GetGateway() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Network) GetGatewayOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Gateway) {
 		return nil, false
 	}
 	return o.Gateway.Get(), o.Gateway.IsSet()
@@ -125,7 +125,7 @@ func (o *Network) GetGatewayOk() (*string, bool) {
 
 // HasGateway returns a boolean if a field has been set.
 func (o *Network) HasGateway() bool {
-	if o != nil && o.Gateway.IsSet() {
+	if o != nil && !IsNil(o.Gateway) && o.Gateway.IsSet() {
 		return true
 	}
 
@@ -134,22 +134,31 @@ func (o *Network) HasGateway() bool {
 
 // SetGateway gets a reference to the given string and assigns it to the Gateway field.
 func (o *Network) SetGateway(v *string) {
+	if IsNil(o.Gateway) {
+		o.Gateway = new(NullableString)
+	}
 	o.Gateway.Set(v)
 }
 
 // SetGatewayNil sets the value for Gateway to be an explicit nil
 func (o *Network) SetGatewayNil() {
+	if IsNil(o.Gateway) {
+		o.Gateway = new(NullableString)
+	}
 	o.Gateway.Set(nil)
 }
 
 // UnsetGateway ensures that no value is present for Gateway, not even an explicit nil
 func (o *Network) UnsetGateway() {
+	if IsNil(o.Gateway) {
+		o.Gateway = new(NullableString)
+	}
 	o.Gateway.Unset()
 }
 
 // GetGatewayv6 returns the Gatewayv6 field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Network) GetGatewayv6() *string {
-	if o == nil || IsNil(o.Gatewayv6.Get()) {
+	if o == nil || IsNil(o.Gatewayv6) || IsNil(o.Gatewayv6.Get()) {
 		var ret *string
 		return ret
 	}
@@ -160,7 +169,7 @@ func (o *Network) GetGatewayv6() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Network) GetGatewayv6Ok() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Gatewayv6) {
 		return nil, false
 	}
 	return o.Gatewayv6.Get(), o.Gatewayv6.IsSet()
@@ -168,7 +177,7 @@ func (o *Network) GetGatewayv6Ok() (*string, bool) {
 
 // HasGatewayv6 returns a boolean if a field has been set.
 func (o *Network) HasGatewayv6() bool {
-	if o != nil && o.Gatewayv6.IsSet() {
+	if o != nil && !IsNil(o.Gatewayv6) && o.Gatewayv6.IsSet() {
 		return true
 	}
 
@@ -177,16 +186,25 @@ func (o *Network) HasGatewayv6() bool {
 
 // SetGatewayv6 gets a reference to the given string and assigns it to the Gatewayv6 field.
 func (o *Network) SetGatewayv6(v *string) {
+	if IsNil(o.Gatewayv6) {
+		o.Gatewayv6 = new(NullableString)
+	}
 	o.Gatewayv6.Set(v)
 }
 
 // SetGatewayv6Nil sets the value for Gatewayv6 to be an explicit nil
 func (o *Network) SetGatewayv6Nil() {
+	if IsNil(o.Gatewayv6) {
+		o.Gatewayv6 = new(NullableString)
+	}
 	o.Gatewayv6.Set(nil)
 }
 
 // UnsetGatewayv6 ensures that no value is present for Gatewayv6, not even an explicit nil
 func (o *Network) UnsetGatewayv6() {
+	if IsNil(o.Gatewayv6) {
+		o.Gatewayv6 = new(NullableString)
+	}
 	o.Gatewayv6.Unset()
 }
 
@@ -224,7 +242,7 @@ func (o *Network) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *Network) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -312,7 +330,7 @@ func (o *Network) SetNameserversV6(v *[]string) {
 
 // GetNetworkId returns the NetworkId field value
 func (o *Network) GetNetworkId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkId) {
 		var ret *string
 		return ret
 	}
@@ -464,7 +482,7 @@ func (o *Network) SetRouted(v *bool) {
 
 // GetState returns the State field value
 func (o *Network) GetState() *string {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret *string
 		return ret
 	}
