@@ -68,7 +68,7 @@ func NewFolderResponseWithDefaults() *FolderResponse {
 
 // GetContainerId returns the ContainerId field value
 func (o *FolderResponse) GetContainerId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ContainerId) {
 		var ret *string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *FolderResponse) SetContainerId(v *string) {
 
 // GetCreationTime returns the CreationTime field value
 func (o *FolderResponse) GetCreationTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreationTime) {
 		var ret *time.Time
 		return ret
 	}
@@ -116,7 +116,7 @@ func (o *FolderResponse) SetCreationTime(v *time.Time) {
 
 // GetFolderId returns the FolderId field value
 func (o *FolderResponse) GetFolderId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.FolderId) {
 		var ret *string
 		return ret
 	}
@@ -172,7 +172,7 @@ func (o *FolderResponse) SetLabels(v *map[string]string) {
 
 // GetName returns the Name field value
 func (o *FolderResponse) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *FolderResponse) SetName(v *string) {
 
 // GetParent returns the Parent field value
 func (o *FolderResponse) GetParent() *Parent {
-	if o == nil {
+	if o == nil || IsNil(o.Parent) {
 		var ret *Parent
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *FolderResponse) SetParent(v *Parent) {
 
 // GetUpdateTime returns the UpdateTime field value
 func (o *FolderResponse) GetUpdateTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.UpdateTime) {
 		var ret *time.Time
 		return ret
 	}
