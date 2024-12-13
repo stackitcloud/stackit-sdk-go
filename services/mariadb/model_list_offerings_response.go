@@ -45,7 +45,7 @@ func NewListOfferingsResponseWithDefaults() *ListOfferingsResponse {
 
 // GetOfferings returns the Offerings field value
 func (o *ListOfferingsResponse) GetOfferings() *[]Offering {
-	if o == nil {
+	if o == nil || IsNil(o.Offerings) {
 		var ret *[]Offering
 		return ret
 	}
