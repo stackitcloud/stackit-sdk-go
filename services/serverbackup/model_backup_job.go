@@ -45,7 +45,7 @@ func NewBackupJobWithDefaults() *BackupJob {
 
 // GetId returns the Id field value
 func (o *BackupJob) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
