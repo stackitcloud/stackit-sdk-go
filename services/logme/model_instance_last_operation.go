@@ -51,7 +51,7 @@ func NewInstanceLastOperationWithDefaults() *InstanceLastOperation {
 
 // GetDescription returns the Description field value
 func (o *InstanceLastOperation) GetDescription() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret *string
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *InstanceLastOperation) SetDescription(v *string) {
 
 // GetState returns the State field value
 func (o *InstanceLastOperation) GetState() *string {
-	if o == nil {
+	if o == nil || IsNil(o.State) {
 		var ret *string
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *InstanceLastOperation) SetState(v *string) {
 
 // GetType returns the Type field value
 func (o *InstanceLastOperation) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}
