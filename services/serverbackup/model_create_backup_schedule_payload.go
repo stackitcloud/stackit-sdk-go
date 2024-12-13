@@ -85,7 +85,7 @@ func (o *CreateBackupSchedulePayload) SetBackupProperties(v *BackupProperties) {
 
 // GetEnabled returns the Enabled field value
 func (o *CreateBackupSchedulePayload) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}
@@ -109,7 +109,7 @@ func (o *CreateBackupSchedulePayload) SetEnabled(v *bool) {
 
 // GetName returns the Name field value
 func (o *CreateBackupSchedulePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -133,7 +133,7 @@ func (o *CreateBackupSchedulePayload) SetName(v *string) {
 
 // GetRrule returns the Rrule field value
 func (o *CreateBackupSchedulePayload) GetRrule() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Rrule) {
 		var ret *string
 		return ret
 	}

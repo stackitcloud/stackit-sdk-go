@@ -46,7 +46,7 @@ func NewRestoreBackupPayloadWithDefaults() *RestoreBackupPayload {
 
 // GetStartServerAfterRestore returns the StartServerAfterRestore field value
 func (o *RestoreBackupPayload) GetStartServerAfterRestore() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.StartServerAfterRestore) {
 		var ret *bool
 		return ret
 	}
