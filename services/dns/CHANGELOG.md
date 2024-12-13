@@ -1,3 +1,7 @@
+## v0.12.1 (2024-12-16)
+
+- **Bugfix:** Correctly handle nullable attributes in model types
+
 ## v0.12.0 (2024-11-20)
 
 - **Feature:** New models `ZoneModelsImportRecordModel` and `ZoneModelsImportZoneJson`
