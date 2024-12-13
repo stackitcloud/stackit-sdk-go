@@ -49,7 +49,7 @@ func NewTaintWithDefaults() *Taint {
 
 // GetEffect returns the Effect field value
 func (o *Taint) GetEffect() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Effect) {
 		var ret *string
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *Taint) SetEffect(v *string) {
 
 // GetKey returns the Key field value
 func (o *Taint) GetKey() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Key) {
 		var ret *string
 		return ret
 	}

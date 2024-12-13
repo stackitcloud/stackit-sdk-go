@@ -100,7 +100,7 @@ func (o *Nodepool) SetAllowSystemComponents(v *bool) {
 
 // GetAvailabilityZones returns the AvailabilityZones field value
 func (o *Nodepool) GetAvailabilityZones() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.AvailabilityZones) {
 		var ret *[]string
 		return ret
 	}
@@ -188,7 +188,7 @@ func (o *Nodepool) SetLabels(v *map[string]string) {
 
 // GetMachine returns the Machine field value
 func (o *Nodepool) GetMachine() *Machine {
-	if o == nil {
+	if o == nil || IsNil(o.Machine) {
 		var ret *Machine
 		return ret
 	}
@@ -276,7 +276,7 @@ func (o *Nodepool) SetMaxUnavailable(v *int64) {
 
 // GetMaximum returns the Maximum field value
 func (o *Nodepool) GetMaximum() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Maximum) {
 		var ret *int64
 		return ret
 	}
@@ -300,7 +300,7 @@ func (o *Nodepool) SetMaximum(v *int64) {
 
 // GetMinimum returns the Minimum field value
 func (o *Nodepool) GetMinimum() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Minimum) {
 		var ret *int64
 		return ret
 	}
@@ -324,7 +324,7 @@ func (o *Nodepool) SetMinimum(v *int64) {
 
 // GetName returns the Name field value
 func (o *Nodepool) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -380,7 +380,7 @@ func (o *Nodepool) SetTaints(v *[]Taint) {
 
 // GetVolume returns the Volume field value
 func (o *Nodepool) GetVolume() *Volume {
-	if o == nil {
+	if o == nil || IsNil(o.Volume) {
 		var ret *Volume
 		return ret
 	}

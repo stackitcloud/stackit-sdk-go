@@ -79,7 +79,7 @@ func (o *Kubernetes) SetAllowPrivilegedContainers(v *bool) {
 
 // GetVersion returns the Version field value
 func (o *Kubernetes) GetVersion() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret *string
 		return ret
 	}

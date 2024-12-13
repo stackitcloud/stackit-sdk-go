@@ -49,7 +49,7 @@ func NewHibernationScheduleWithDefaults() *HibernationSchedule {
 
 // GetEnd returns the End field value
 func (o *HibernationSchedule) GetEnd() *string {
-	if o == nil {
+	if o == nil || IsNil(o.End) {
 		var ret *string
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *HibernationSchedule) SetEnd(v *string) {
 
 // GetStart returns the Start field value
 func (o *HibernationSchedule) GetStart() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Start) {
 		var ret *string
 		return ret
 	}
