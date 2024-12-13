@@ -49,7 +49,7 @@ func NewImageCreateResponseWithDefaults() *ImageCreateResponse {
 
 // GetId returns the Id field value
 func (o *ImageCreateResponse) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *ImageCreateResponse) SetId(v *string) {
 
 // GetUploadUrl returns the UploadUrl field value
 func (o *ImageCreateResponse) GetUploadUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.UploadUrl) {
 		var ret *string
 		return ret
 	}

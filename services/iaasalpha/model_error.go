@@ -49,7 +49,7 @@ func NewErrorWithDefaults() *Error {
 
 // GetCode returns the Code field value
 func (o *Error) GetCode() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret *int64
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *Error) SetCode(v *int64) {
 
 // GetMsg returns the Msg field value
 func (o *Error) GetMsg() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Msg) {
 		var ret *string
 		return ret
 	}

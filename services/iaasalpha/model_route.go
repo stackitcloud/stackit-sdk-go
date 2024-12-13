@@ -123,7 +123,7 @@ func (o *Route) SetLabels(v *map[string]interface{}) {
 
 // GetNexthop returns the Nexthop field value
 func (o *Route) GetNexthop() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Nexthop) {
 		var ret *string
 		return ret
 	}
@@ -147,7 +147,7 @@ func (o *Route) SetNexthop(v *string) {
 
 // GetPrefix returns the Prefix field value
 func (o *Route) GetPrefix() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Prefix) {
 		var ret *string
 		return ret
 	}
