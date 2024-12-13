@@ -45,7 +45,7 @@ func NewListInstancesResponseWithDefaults() *ListInstancesResponse {
 
 // GetInstances returns the Instances field value
 func (o *ListInstancesResponse) GetInstances() *[]Instance {
-	if o == nil {
+	if o == nil || IsNil(o.Instances) {
 		var ret *[]Instance
 		return ret
 	}

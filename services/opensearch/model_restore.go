@@ -55,7 +55,7 @@ func NewRestoreWithDefaults() *Restore {
 
 // GetBackupId returns the BackupId field value
 func (o *Restore) GetBackupId() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.BackupId) {
 		var ret *int64
 		return ret
 	}
@@ -79,7 +79,7 @@ func (o *Restore) SetBackupId(v *int64) {
 
 // GetFinishedAt returns the FinishedAt field value
 func (o *Restore) GetFinishedAt() *string {
-	if o == nil {
+	if o == nil || IsNil(o.FinishedAt) {
 		var ret *string
 		return ret
 	}
@@ -103,7 +103,7 @@ func (o *Restore) SetFinishedAt(v *string) {
 
 // GetId returns the Id field value
 func (o *Restore) GetId() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *int64
 		return ret
 	}
@@ -127,7 +127,7 @@ func (o *Restore) SetId(v *int64) {
 
 // GetStatus returns the Status field value
 func (o *Restore) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}
