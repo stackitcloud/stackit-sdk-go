@@ -1,2 +1,0 @@
-STACKIT Membership SDK for Go
-Copyright 2024 Schwarz IT KG

@@ -1,5 +1,10 @@
 ## Release (XXXX-XX-XX)
 
+> **The membership service has reached its end of support on August 07th 2024.**
+>
+> Use `github.com/stackitcloud/stackit-sdk-go/services/authorization` instead.
+
+
 - `serverupdate`: [v0.2.2](services/serverupdate/CHANGELOG.md#v022-2024-12-02)
   - **Bugfix:** `Id` field of `Update` model is now of type `int64` (was `string`)
 - `serviceenablement`: [v0.4.0](services/serviceenablement/CHANGELOG.md#v040-2024-12-05)
