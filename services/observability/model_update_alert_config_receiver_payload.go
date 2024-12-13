@@ -83,7 +83,7 @@ func (o *UpdateAlertConfigReceiverPayload) SetEmailConfigs(v *[]CreateAlertConfi
 
 // GetName returns the Name field value
 func (o *UpdateAlertConfigReceiverPayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

@@ -261,7 +261,7 @@ func (o *Route) SetMatchRe(v *map[string]string) {
 
 // GetReceiver returns the Receiver field value
 func (o *Route) GetReceiver() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Receiver) {
 		var ret *string
 		return ret
 	}

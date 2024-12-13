@@ -48,7 +48,7 @@ func NewCredentialsRemoteWriteDeleteResponseWithDefaults() *CredentialsRemoteWri
 
 // GetMaxLimit returns the MaxLimit field value
 func (o *CredentialsRemoteWriteDeleteResponse) GetMaxLimit() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MaxLimit) {
 		var ret *int64
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *CredentialsRemoteWriteDeleteResponse) SetMaxLimit(v *int64) {
 
 // GetMessage returns the Message field value
 func (o *CredentialsRemoteWriteDeleteResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

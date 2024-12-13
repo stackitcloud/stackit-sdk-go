@@ -48,7 +48,7 @@ func NewUpdateAlertConfigsResponseWithDefaults() *UpdateAlertConfigsResponse {
 
 // GetData returns the Data field value
 func (o *UpdateAlertConfigsResponse) GetData() *Alert {
-	if o == nil {
+	if o == nil || IsNil(o.Data) {
 		var ret *Alert
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *UpdateAlertConfigsResponse) SetData(v *Alert) {
 
 // GetMessage returns the Message field value
 func (o *UpdateAlertConfigsResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

@@ -57,7 +57,7 @@ func NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2WithDefaults() *CreateS
 
 // GetClientId returns the ClientId field value
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ClientId) {
 		var ret *string
 		return ret
 	}
@@ -81,7 +81,7 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetClientId(v *strin
 
 // GetClientSecret returns the ClientSecret field value
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientSecret() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ClientSecret) {
 		var ret *string
 		return ret
 	}
@@ -169,7 +169,7 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetTlsConfig(v *Crea
 
 // GetTokenUrl returns the TokenUrl field value
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetTokenUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.TokenUrl) {
 		var ret *string
 		return ret
 	}
