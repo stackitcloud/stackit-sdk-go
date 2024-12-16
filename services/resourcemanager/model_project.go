@@ -71,7 +71,7 @@ func NewProjectWithDefaults() *Project {
 
 // GetContainerId returns the ContainerId field value
 func (o *Project) GetContainerId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ContainerId) {
 		var ret *string
 		return ret
 	}
@@ -95,7 +95,7 @@ func (o *Project) SetContainerId(v *string) {
 
 // GetCreationTime returns the CreationTime field value
 func (o *Project) GetCreationTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreationTime) {
 		var ret *time.Time
 		return ret
 	}
@@ -151,7 +151,7 @@ func (o *Project) SetLabels(v *map[string]string) {
 
 // GetLifecycleState returns the LifecycleState field value
 func (o *Project) GetLifecycleState() *LifecycleState {
-	if o == nil {
+	if o == nil || IsNil(o.LifecycleState) {
 		var ret *LifecycleState
 		return ret
 	}
@@ -175,7 +175,7 @@ func (o *Project) SetLifecycleState(v *LifecycleState) {
 
 // GetName returns the Name field value
 func (o *Project) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -199,7 +199,7 @@ func (o *Project) SetName(v *string) {
 
 // GetParent returns the Parent field value
 func (o *Project) GetParent() *Parent {
-	if o == nil {
+	if o == nil || IsNil(o.Parent) {
 		var ret *Parent
 		return ret
 	}
@@ -223,7 +223,7 @@ func (o *Project) SetParent(v *Parent) {
 
 // GetProjectId returns the ProjectId field value
 func (o *Project) GetProjectId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ProjectId) {
 		var ret *string
 		return ret
 	}
@@ -247,7 +247,7 @@ func (o *Project) SetProjectId(v *string) {
 
 // GetUpdateTime returns the UpdateTime field value
 func (o *Project) GetUpdateTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.UpdateTime) {
 		var ret *time.Time
 		return ret
 	}

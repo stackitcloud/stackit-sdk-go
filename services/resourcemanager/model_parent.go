@@ -54,7 +54,7 @@ func NewParentWithDefaults() *Parent {
 
 // GetContainerId returns the ContainerId field value
 func (o *Parent) GetContainerId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ContainerId) {
 		var ret *string
 		return ret
 	}
@@ -78,7 +78,7 @@ func (o *Parent) SetContainerId(v *string) {
 
 // GetId returns the Id field value
 func (o *Parent) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -102,7 +102,7 @@ func (o *Parent) SetId(v *string) {
 
 // GetType returns the Type field value
 func (o *Parent) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}

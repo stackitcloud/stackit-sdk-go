@@ -49,7 +49,7 @@ func NewListOrganizationContainersResponseItemsInnerAnyOf1WithDefaults() *ListOr
 
 // GetItem returns the Item field value
 func (o *ListOrganizationContainersResponseItemsInnerAnyOf1) GetItem() *Project {
-	if o == nil {
+	if o == nil || IsNil(o.Item) {
 		var ret *Project
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *ListOrganizationContainersResponseItemsInnerAnyOf1) SetItem(v *Project)
 
 // GetType returns the Type field value
 func (o *ListOrganizationContainersResponseItemsInnerAnyOf1) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}

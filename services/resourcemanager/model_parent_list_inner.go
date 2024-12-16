@@ -66,7 +66,7 @@ func NewParentListInnerWithDefaults() *ParentListInner {
 
 // GetContainerId returns the ContainerId field value
 func (o *ParentListInner) GetContainerId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ContainerId) {
 		var ret *string
 		return ret
 	}
@@ -90,7 +90,7 @@ func (o *ParentListInner) SetContainerId(v *string) {
 
 // GetContainerParentId returns the ContainerParentId field value
 func (o *ParentListInner) GetContainerParentId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ContainerParentId) {
 		var ret *string
 		return ret
 	}
@@ -114,7 +114,7 @@ func (o *ParentListInner) SetContainerParentId(v *string) {
 
 // GetId returns the Id field value
 func (o *ParentListInner) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *ParentListInner) SetId(v *string) {
 
 // GetName returns the Name field value
 func (o *ParentListInner) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *ParentListInner) SetName(v *string) {
 
 // GetParentId returns the ParentId field value
 func (o *ParentListInner) GetParentId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ParentId) {
 		var ret *string
 		return ret
 	}
@@ -186,7 +186,7 @@ func (o *ParentListInner) SetParentId(v *string) {
 
 // GetType returns the Type field value
 func (o *ParentListInner) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}
