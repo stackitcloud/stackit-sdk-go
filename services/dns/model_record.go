@@ -50,7 +50,7 @@ func NewRecordWithDefaults() *Record {
 
 // GetContent returns the Content field value
 func (o *Record) GetContent() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Content) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *Record) SetContent(v *string) {
 
 // GetId returns the Id field value
 func (o *Record) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
