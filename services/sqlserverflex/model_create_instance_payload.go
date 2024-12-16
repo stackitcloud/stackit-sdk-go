@@ -126,7 +126,7 @@ func (o *CreateInstancePayload) SetBackupSchedule(v *string) {
 
 // GetFlavorId returns the FlavorId field value
 func (o *CreateInstancePayload) GetFlavorId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.FlavorId) {
 		var ret *string
 		return ret
 	}
@@ -182,7 +182,7 @@ func (o *CreateInstancePayload) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *CreateInstancePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

@@ -48,7 +48,7 @@ func NewCreateDatabasePayloadWithDefaults() *CreateDatabasePayload {
 
 // GetName returns the Name field value
 func (o *CreateDatabasePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *CreateDatabasePayload) SetName(v *string) {
 
 // GetOptions returns the Options field value
 func (o *CreateDatabasePayload) GetOptions() *DatabaseDocumentationCreateDatabaseRequestOptions {
-	if o == nil {
+	if o == nil || IsNil(o.Options) {
 		var ret *DatabaseDocumentationCreateDatabaseRequestOptions
 		return ret
 	}
