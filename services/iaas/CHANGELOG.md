@@ -1,3 +1,7 @@
+## v0.18.0 (2024-12-16)
+
+- **Feature:** Add waiters for async operations: `UploadImageWaitHandler` and `DeleteImageWaitHandler`
+
 ## v0.17.0 (2024-12-16)
 
 - **Feature:** Add new methods to manage affinity groups: `CreateAffinityGroup`, `DeleteAffinityGroup`, `GetAffinityGroup`, and `ListAffinityGroup`

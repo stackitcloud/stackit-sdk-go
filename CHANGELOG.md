@@ -6,6 +6,8 @@
 >
 > Use `github.com/stackitcloud/stackit-sdk-go/services/authorization` instead.
 
+- `iaas`: [v0.18](services/iaas/CHANGELOG.md#v0180-2024-12-16)
+  - **Feature:** Add waiters for async operations: `UploadImageWaitHandler` and `DeleteImageWaitHandler`
 - `iaas`: [v0.17.0](services/iaas/CHANGELOG.md#v0170-2024-12-16)
   - **Feature:** Add new methods to manage affinity groups: `CreateAffinityGroup`, `DeleteAffinityGroup`, `GetAffinityGroup`, and `ListAffinityGroup`
   - **Feature:** Add new methods to manage backups: `CreateBackup`, `DeleteBackup`, `GetBackup`, `ListBackup`, `RestoreBackup`, `ExecuteBackup`,`UpdateBackup`
