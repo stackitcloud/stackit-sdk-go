@@ -216,7 +216,7 @@ func (o *CreateZonePayload) SetDescription(v *string) {
 
 // GetDnsName returns the DnsName field value
 func (o *CreateZonePayload) GetDnsName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DnsName) {
 		var ret *string
 		return ret
 	}
@@ -304,7 +304,7 @@ func (o *CreateZonePayload) SetIsReverseZone(v *bool) {
 
 // GetName returns the Name field value
 func (o *CreateZonePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

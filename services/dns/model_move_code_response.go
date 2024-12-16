@@ -52,7 +52,7 @@ func NewMoveCodeResponseWithDefaults() *MoveCodeResponse {
 
 // GetCode returns the Code field value
 func (o *MoveCodeResponse) GetCode() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret *string
 		return ret
 	}
@@ -76,7 +76,7 @@ func (o *MoveCodeResponse) SetCode(v *string) {
 
 // GetExpiresAt returns the ExpiresAt field value
 func (o *MoveCodeResponse) GetExpiresAt() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ExpiresAt) {
 		var ret *string
 		return ret
 	}
