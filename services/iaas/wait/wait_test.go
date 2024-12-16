@@ -9,7 +9,6 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaasalpha"
 )
 
 type apiClientMocked struct {
@@ -144,7 +143,7 @@ func (a *apiClientMocked) GetAttachedVolumeExecute(_ context.Context, _, _, _ st
 	}, nil
 }
 
-func (a *apiClientMocked) GetImageExecute(_ context.Context, _, _ string) (*iaasalpha.Image, error) {
+func (a *apiClientMocked) GetImageExecute(_ context.Context, _, _ string) (*iaas.Image, error) {
 	if a.getImageFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -157,7 +156,7 @@ func (a *apiClientMocked) GetImageExecute(_ context.Context, _, _ string) (*iaas
 		}
 	}
 
-	return &iaasalpha.Image{
+	return &iaas.Image{
 		Id:     utils.Ptr("iid"),
 		Status: &a.resourceState,
 	}, nil
@@ -1438,9 +1437,9 @@ func TestUploadImageWaitHandler(t *testing.T) {
 				resourceState: tt.resourceState,
 			}
 
-			var wantRes *iaasalpha.Image
+			var wantRes *iaas.Image
 			if tt.wantResp {
-				wantRes = &iaasalpha.Image{
+				wantRes = &iaas.Image{
 					Id:     utils.Ptr("iid"),
 					Status: utils.Ptr(tt.resourceState),
 				}

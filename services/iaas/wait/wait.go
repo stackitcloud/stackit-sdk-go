@@ -9,7 +9,6 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaasalpha"
 )
 
 const (
@@ -46,7 +45,7 @@ type APIClientInterface interface {
 	GetVolumeExecute(ctx context.Context, projectId string, volumeId string) (*iaas.Volume, error)
 	GetServerExecute(ctx context.Context, projectId string, serverId string) (*iaas.Server, error)
 	GetAttachedVolumeExecute(ctx context.Context, projectId string, serverId string, volumeId string) (*iaas.VolumeAttachment, error)
-	GetImageExecute(ctx context.Context, projectId string, imageId string) (*iaasalpha.Image, error)
+	GetImageExecute(ctx context.Context, projectId string, imageId string) (*iaas.Image, error)
 }
 
 // CreateNetworkAreaWaitHandler will wait for network area creation
@@ -552,8 +551,8 @@ func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface
 }
 
 // UploadImageWaitHandler will wait for the status image to become AVAILABLE, which indicates the upload of the image has been completed successfully
-func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaasalpha.Image] {
-	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Image, err error) {
+func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaas.Image] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
 		image, err := a.GetImageExecute(ctx, projectId, imageId)
 		if err != nil {
 			return false, image, err
@@ -574,8 +573,8 @@ func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // DeleteImageWaitHandler will wait for image deletion
-func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaasalpha.Image] {
-	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Image, err error) {
+func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaas.Image] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
 		image, err := a.GetImageExecute(ctx, projectId, imageId)
 		if err == nil {
 			if image != nil {
