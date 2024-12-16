@@ -45,7 +45,7 @@ func NewHibernationWithDefaults() *Hibernation {
 
 // GetSchedules returns the Schedules field value
 func (o *Hibernation) GetSchedules() *[]HibernationSchedule {
-	if o == nil {
+	if o == nil || IsNil(o.Schedules) {
 		var ret *[]HibernationSchedule
 		return ret
 	}
