@@ -119,7 +119,7 @@ func (o *WebHook) SetSendResolved(v *bool) {
 
 // GetUrl returns the Url field value
 func (o *WebHook) GetUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret *string
 		return ret
 	}

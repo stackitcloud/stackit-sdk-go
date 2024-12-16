@@ -113,7 +113,7 @@ func NewInstanceSensitiveDataWithDefaults() *InstanceSensitiveData {
 
 // GetAlertingUrl returns the AlertingUrl field value
 func (o *InstanceSensitiveData) GetAlertingUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.AlertingUrl) {
 		var ret *string
 		return ret
 	}
@@ -137,7 +137,7 @@ func (o *InstanceSensitiveData) SetAlertingUrl(v *string) {
 
 // GetCluster returns the Cluster field value
 func (o *InstanceSensitiveData) GetCluster() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Cluster) {
 		var ret *string
 		return ret
 	}
@@ -161,7 +161,7 @@ func (o *InstanceSensitiveData) SetCluster(v *string) {
 
 // GetDashboardUrl returns the DashboardUrl field value
 func (o *InstanceSensitiveData) GetDashboardUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DashboardUrl) {
 		var ret *string
 		return ret
 	}
@@ -185,7 +185,7 @@ func (o *InstanceSensitiveData) SetDashboardUrl(v *string) {
 
 // GetGrafanaAdminPassword returns the GrafanaAdminPassword field value
 func (o *InstanceSensitiveData) GetGrafanaAdminPassword() *string {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaAdminPassword) {
 		var ret *string
 		return ret
 	}
@@ -209,7 +209,7 @@ func (o *InstanceSensitiveData) SetGrafanaAdminPassword(v *string) {
 
 // GetGrafanaAdminUser returns the GrafanaAdminUser field value
 func (o *InstanceSensitiveData) GetGrafanaAdminUser() *string {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaAdminUser) {
 		var ret *string
 		return ret
 	}
@@ -233,7 +233,7 @@ func (o *InstanceSensitiveData) SetGrafanaAdminUser(v *string) {
 
 // GetGrafanaPublicReadAccess returns the GrafanaPublicReadAccess field value
 func (o *InstanceSensitiveData) GetGrafanaPublicReadAccess() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaPublicReadAccess) {
 		var ret *bool
 		return ret
 	}
@@ -257,7 +257,7 @@ func (o *InstanceSensitiveData) SetGrafanaPublicReadAccess(v *bool) {
 
 // GetGrafanaUrl returns the GrafanaUrl field value
 func (o *InstanceSensitiveData) GetGrafanaUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaUrl) {
 		var ret *string
 		return ret
 	}
@@ -281,7 +281,7 @@ func (o *InstanceSensitiveData) SetGrafanaUrl(v *string) {
 
 // GetGrafanaUseStackitSso returns the GrafanaUseStackitSso field value
 func (o *InstanceSensitiveData) GetGrafanaUseStackitSso() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaUseStackitSso) {
 		var ret *bool
 		return ret
 	}
@@ -305,7 +305,7 @@ func (o *InstanceSensitiveData) SetGrafanaUseStackitSso(v *bool) {
 
 // GetInstance returns the Instance field value
 func (o *InstanceSensitiveData) GetInstance() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Instance) {
 		var ret *string
 		return ret
 	}
@@ -329,7 +329,7 @@ func (o *InstanceSensitiveData) SetInstance(v *string) {
 
 // GetJaegerTracesUrl returns the JaegerTracesUrl field value
 func (o *InstanceSensitiveData) GetJaegerTracesUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.JaegerTracesUrl) {
 		var ret *string
 		return ret
 	}
@@ -353,7 +353,7 @@ func (o *InstanceSensitiveData) SetJaegerTracesUrl(v *string) {
 
 // GetJaegerUiUrl returns the JaegerUiUrl field value
 func (o *InstanceSensitiveData) GetJaegerUiUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.JaegerUiUrl) {
 		var ret *string
 		return ret
 	}
@@ -377,7 +377,7 @@ func (o *InstanceSensitiveData) SetJaegerUiUrl(v *string) {
 
 // GetLogsPushUrl returns the LogsPushUrl field value
 func (o *InstanceSensitiveData) GetLogsPushUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.LogsPushUrl) {
 		var ret *string
 		return ret
 	}
@@ -401,7 +401,7 @@ func (o *InstanceSensitiveData) SetLogsPushUrl(v *string) {
 
 // GetLogsUrl returns the LogsUrl field value
 func (o *InstanceSensitiveData) GetLogsUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.LogsUrl) {
 		var ret *string
 		return ret
 	}
@@ -425,7 +425,7 @@ func (o *InstanceSensitiveData) SetLogsUrl(v *string) {
 
 // GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
 func (o *InstanceSensitiveData) GetMetricsRetentionTime1h() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTime1h) {
 		var ret *int64
 		return ret
 	}
@@ -449,7 +449,7 @@ func (o *InstanceSensitiveData) SetMetricsRetentionTime1h(v *int64) {
 
 // GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
 func (o *InstanceSensitiveData) GetMetricsRetentionTime5m() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTime5m) {
 		var ret *int64
 		return ret
 	}
@@ -473,7 +473,7 @@ func (o *InstanceSensitiveData) SetMetricsRetentionTime5m(v *int64) {
 
 // GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
 func (o *InstanceSensitiveData) GetMetricsRetentionTimeRaw() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTimeRaw) {
 		var ret *int64
 		return ret
 	}
@@ -497,7 +497,7 @@ func (o *InstanceSensitiveData) SetMetricsRetentionTimeRaw(v *int64) {
 
 // GetMetricsUrl returns the MetricsUrl field value
 func (o *InstanceSensitiveData) GetMetricsUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsUrl) {
 		var ret *string
 		return ret
 	}
@@ -553,7 +553,7 @@ func (o *InstanceSensitiveData) SetName(v *string) {
 
 // GetOtlpTracesUrl returns the OtlpTracesUrl field value
 func (o *InstanceSensitiveData) GetOtlpTracesUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OtlpTracesUrl) {
 		var ret *string
 		return ret
 	}
@@ -577,7 +577,7 @@ func (o *InstanceSensitiveData) SetOtlpTracesUrl(v *string) {
 
 // GetPlan returns the Plan field value
 func (o *InstanceSensitiveData) GetPlan() *PlanModel {
-	if o == nil {
+	if o == nil || IsNil(o.Plan) {
 		var ret *PlanModel
 		return ret
 	}
@@ -601,7 +601,7 @@ func (o *InstanceSensitiveData) SetPlan(v *PlanModel) {
 
 // GetPushMetricsUrl returns the PushMetricsUrl field value
 func (o *InstanceSensitiveData) GetPushMetricsUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PushMetricsUrl) {
 		var ret *string
 		return ret
 	}
@@ -625,7 +625,7 @@ func (o *InstanceSensitiveData) SetPushMetricsUrl(v *string) {
 
 // GetTargetsUrl returns the TargetsUrl field value
 func (o *InstanceSensitiveData) GetTargetsUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.TargetsUrl) {
 		var ret *string
 		return ret
 	}
@@ -649,7 +649,7 @@ func (o *InstanceSensitiveData) SetTargetsUrl(v *string) {
 
 // GetZipkinSpansUrl returns the ZipkinSpansUrl field value
 func (o *InstanceSensitiveData) GetZipkinSpansUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ZipkinSpansUrl) {
 		var ret *string
 		return ret
 	}

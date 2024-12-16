@@ -114,7 +114,7 @@ func (o *CreateInstancePayload) SetParameter(v *map[string]interface{}) {
 
 // GetPlanId returns the PlanId field value
 func (o *CreateInstancePayload) GetPlanId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanId) {
 		var ret *string
 		return ret
 	}

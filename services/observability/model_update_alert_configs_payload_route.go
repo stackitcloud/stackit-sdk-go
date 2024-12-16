@@ -266,7 +266,7 @@ func (o *UpdateAlertConfigsPayloadRoute) SetMatchers(v *[]string) {
 
 // GetReceiver returns the Receiver field value
 func (o *UpdateAlertConfigsPayloadRoute) GetReceiver() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Receiver) {
 		var ret *string
 		return ret
 	}

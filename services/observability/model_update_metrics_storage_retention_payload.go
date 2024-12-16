@@ -54,7 +54,7 @@ func NewUpdateMetricsStorageRetentionPayloadWithDefaults() *UpdateMetricsStorage
 
 // GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
 func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime1h() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTime1h) {
 		var ret *string
 		return ret
 	}
@@ -78,7 +78,7 @@ func (o *UpdateMetricsStorageRetentionPayload) SetMetricsRetentionTime1h(v *stri
 
 // GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
 func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime5m() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTime5m) {
 		var ret *string
 		return ret
 	}
@@ -102,7 +102,7 @@ func (o *UpdateMetricsStorageRetentionPayload) SetMetricsRetentionTime5m(v *stri
 
 // GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
 func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTimeRaw() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTimeRaw) {
 		var ret *string
 		return ret
 	}

@@ -48,7 +48,7 @@ func NewCredentialsWithDefaults() *Credentials {
 
 // GetPassword returns the Password field value
 func (o *Credentials) GetPassword() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *Credentials) SetPassword(v *string) {
 
 // GetUsername returns the Username field value
 func (o *Credentials) GetUsername() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret *string
 		return ret
 	}

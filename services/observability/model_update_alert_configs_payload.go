@@ -115,7 +115,7 @@ func (o *UpdateAlertConfigsPayload) SetInhibitRules(v *UpdateAlertConfigsPayload
 
 // GetReceivers returns the Receivers field value
 func (o *UpdateAlertConfigsPayload) GetReceivers() *[]UpdateAlertConfigsPayloadReceiversInner {
-	if o == nil {
+	if o == nil || IsNil(o.Receivers) {
 		var ret *[]UpdateAlertConfigsPayloadReceiversInner
 		return ret
 	}
@@ -139,7 +139,7 @@ func (o *UpdateAlertConfigsPayload) SetReceivers(v *[]UpdateAlertConfigsPayloadR
 
 // GetRoute returns the Route field value
 func (o *UpdateAlertConfigsPayload) GetRoute() *UpdateAlertConfigsPayloadRoute {
-	if o == nil {
+	if o == nil || IsNil(o.Route) {
 		var ret *UpdateAlertConfigsPayloadRoute
 		return ret
 	}
