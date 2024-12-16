@@ -58,7 +58,7 @@ func NewGetServiceAccountKeyResponseCredentialsWithDefaults() *GetServiceAccount
 
 // GetAud returns the Aud field value
 func (o *GetServiceAccountKeyResponseCredentials) GetAud() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Aud) {
 		var ret *string
 		return ret
 	}
@@ -82,7 +82,7 @@ func (o *GetServiceAccountKeyResponseCredentials) SetAud(v *string) {
 
 // GetIss returns the Iss field value
 func (o *GetServiceAccountKeyResponseCredentials) GetIss() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Iss) {
 		var ret *string
 		return ret
 	}
@@ -106,7 +106,7 @@ func (o *GetServiceAccountKeyResponseCredentials) SetIss(v *string) {
 
 // GetKid returns the Kid field value
 func (o *GetServiceAccountKeyResponseCredentials) GetKid() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Kid) {
 		var ret *string
 		return ret
 	}
@@ -130,7 +130,7 @@ func (o *GetServiceAccountKeyResponseCredentials) SetKid(v *string) {
 
 // GetSub returns the Sub field value
 func (o *GetServiceAccountKeyResponseCredentials) GetSub() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Sub) {
 		var ret *string
 		return ret
 	}
