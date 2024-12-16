@@ -9,6 +9,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
+	"github.com/stackitcloud/stackit-sdk-go/services/iaasalpha"
 )
 
 type apiClientMocked struct {
@@ -20,6 +21,7 @@ type apiClientMocked struct {
 	getVolumeFails         bool
 	getServerFails         bool
 	getAttachedVolumeFails bool
+	getImageFails          bool
 	isAttached             bool
 	requestAction          string
 	returnResizing         bool
@@ -139,6 +141,25 @@ func (a *apiClientMocked) GetAttachedVolumeExecute(_ context.Context, _, _, _ st
 	return &iaas.VolumeAttachment{
 		ServerId: utils.Ptr("sid"),
 		VolumeId: utils.Ptr("vid"),
+	}, nil
+}
+
+func (a *apiClientMocked) GetImageExecute(_ context.Context, _, _ string) (*iaasalpha.Image, error) {
+	if a.getImageFails {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 500,
+		}
+	}
+
+	if a.isDeleted {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 404,
+		}
+	}
+
+	return &iaasalpha.Image{
+		Id:     utils.Ptr("iid"),
+		Status: &a.resourceState,
 	}, nil
 }
 
@@ -1368,6 +1389,118 @@ func TestRemoveVolumeFromServerWaitHandler(t *testing.T) {
 			}
 			if !cmp.Equal(gotRes, wantRes) {
 				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestUploadImageWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "upload_succeeded",
+			getFails:      false,
+			resourceState: ImageAvailableStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER Status",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getImageFails: tt.getFails,
+				resourceState: tt.resourceState,
+			}
+
+			var wantRes *iaasalpha.Image
+			if tt.wantResp {
+				wantRes = &iaasalpha.Image{
+					Id:     utils.Ptr("iid"),
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := UploadImageWaitHandler(context.Background(), apiClient, "pid", "iid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestDeleteImageWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		isDeleted     bool
+		resourceState string
+		wantErr       bool
+	}{
+		{
+			desc:      "delete_succeeded",
+			getFails:  false,
+			isDeleted: true,
+			wantErr:   false,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER Status",
+			wantErr:       true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getImageFails: tt.getFails,
+				isDeleted:     tt.isDeleted,
+				resourceState: tt.resourceState,
+			}
+
+			handler := DeleteImageWaitHandler(context.Background(), apiClient, "pid", "iid")
+
+			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}

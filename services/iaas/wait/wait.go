@@ -9,6 +9,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
+	"github.com/stackitcloud/stackit-sdk-go/services/iaasalpha"
 )
 
 const (
@@ -23,6 +24,8 @@ const (
 	ServerInactiveStatus    = "INACTIVE"
 	ServerDeallocatedStatus = "DEALLOCATED"
 	ServerRescueStatus      = "RESCUE"
+
+	ImageAvailableStatus = "AVAILABLE"
 
 	RequestCreateAction  = "CREATE"
 	RequestUpdateAction  = "UPDATE"
@@ -43,6 +46,7 @@ type APIClientInterface interface {
 	GetVolumeExecute(ctx context.Context, projectId string, volumeId string) (*iaas.Volume, error)
 	GetServerExecute(ctx context.Context, projectId string, serverId string) (*iaas.Server, error)
 	GetAttachedVolumeExecute(ctx context.Context, projectId string, serverId string, volumeId string) (*iaas.VolumeAttachment, error)
+	GetImageExecute(ctx context.Context, projectId string, imageId string) (*iaasalpha.Image, error)
 }
 
 // CreateNetworkAreaWaitHandler will wait for network area creation
@@ -544,5 +548,55 @@ func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface
 		return true, nil, nil
 	})
 	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+// UploadImageWaitHandler will wait for the status image to become AVAILABLE, which indicates the upload of the image has been completed successfully
+func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaasalpha.Image] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Image, err error) {
+		image, err := a.GetImageExecute(ctx, projectId, imageId)
+		if err != nil {
+			return false, image, err
+		}
+		if image.Id == nil || image.Status == nil {
+			return false, image, fmt.Errorf("upload failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
+		}
+		if *image.Id == imageId && *image.Status == ImageAvailableStatus {
+			return true, image, nil
+		}
+		if *image.Id == imageId && *image.Status == ErrorStatus {
+			return true, image, fmt.Errorf("upload failed for image with id %s", imageId)
+		}
+		return false, image, nil
+	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+// DeleteImageWaitHandler will wait for image deletion
+func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaasalpha.Image] {
+	handler := wait.New(func() (waitFinished bool, response *iaasalpha.Image, err error) {
+		image, err := a.GetImageExecute(ctx, projectId, imageId)
+		if err == nil {
+			if image != nil {
+				if image.Id == nil || image.Status == nil {
+					return false, image, fmt.Errorf("delete failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
+				}
+				if *image.Id == imageId && *image.Status == DeleteSuccess {
+					return true, image, nil
+				}
+			}
+			return false, nil, nil
+		}
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, image, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
+		}
+		if oapiErr.StatusCode != http.StatusNotFound {
+			return false, image, err
+		}
+		return true, nil, nil
+	})
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
