@@ -112,7 +112,7 @@ func (o *CreateUpdatePayload) SetBackupProperties(v *BackupProperties) {
 
 // GetMaintenanceWindow returns the MaintenanceWindow field value
 func (o *CreateUpdatePayload) GetMaintenanceWindow() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MaintenanceWindow) {
 		var ret *int64
 		return ret
 	}
