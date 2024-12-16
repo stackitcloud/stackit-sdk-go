@@ -1,10 +1,20 @@
 ## Release (XXXX-XX-XX)
 
+> [!WARNING]
+>
 > **The membership service has reached its end of support on August 07th 2024.**
 >
 > Use `github.com/stackitcloud/stackit-sdk-go/services/authorization` instead.
 
-
+- `iaas`: [v0.17.0](services/iaas/CHANGELOG.md#v0170-2024-12-16)
+  - **Feature:** Add new methods to manage affinity groups: `CreateAffinityGroup`, `DeleteAffinityGroup`, `GetAffinityGroup`, and `ListAffinityGroup`
+  - **Feature:** Add new methods to manage backups: `CreateBackup`, `DeleteBackup`, `GetBackup`, `ListBackup`, `RestoreBackup`, `ExecuteBackup`,`UpdateBackup`
+  - **Feature:** Add new methods to manage images: `CreateImage`, `DeleteImage`, `GetImage`, `ListImage`,`UpdateImage`
+  - **Feature:** Add new methods to manage imageshares: `DeleteImageShare`, `GetImageShare`, `SetImageShare`,`UpdateImageShare`
+  - **Feature:** Add new methods to manage imageshare consumers: `DeleteImageShareConsumer`, `GetImageShareConsumer`, `SetImageShare`,`UpdateImageShare`
+  - **Feature:** Add new methods to manage project NICs: `GetProjectNIC`, `ListProjectNICs`
+  - **Feature:** Add new methods to manage snapshots: `CreateSnapshot`, `DeleteSnapshot`, `GetSnapshot`, `ListSnapshot`, `UpdateSnapshot`
+  - **Bugfix:** Correctly handle nullable attributes in model types
 - `serverupdate`: [v0.2.2](services/serverupdate/CHANGELOG.md#v022-2024-12-02)
   - **Bugfix:** `Id` field of `Update` model is now of type `int64` (was `string`)
 - `serviceenablement`: [v0.4.0](services/serviceenablement/CHANGELOG.md#v040-2024-12-05)
