@@ -55,7 +55,7 @@ func NewCredentialsWithDefaults() *Credentials {
 
 // GetHost returns the Host field value
 func (o *Credentials) GetHost() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Host) {
 		var ret *string
 		return ret
 	}
@@ -143,7 +143,7 @@ func (o *Credentials) SetName(v *string) {
 
 // GetPassword returns the Password field value
 func (o *Credentials) GetPassword() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret *string
 		return ret
 	}
@@ -231,7 +231,7 @@ func (o *Credentials) SetUri(v *string) {
 
 // GetUsername returns the Username field value
 func (o *Credentials) GetUsername() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret *string
 		return ret
 	}

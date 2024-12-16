@@ -45,7 +45,7 @@ func NewSchemaWithDefaults() *Schema {
 
 // GetParameters returns the Parameters field value
 func (o *Schema) GetParameters() *map[string]interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.Parameters) {
 		var ret *map[string]interface{}
 		return ret
 	}
