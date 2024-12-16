@@ -48,7 +48,7 @@ func NewTimeWindowWithDefaults() *TimeWindow {
 
 // GetEnd returns the End field value
 func (o *TimeWindow) GetEnd() *string {
-	if o == nil {
+	if o == nil || IsNil(o.End) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *TimeWindow) SetEnd(v *string) {
 
 // GetStart returns the Start field value
 func (o *TimeWindow) GetStart() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Start) {
 		var ret *string
 		return ret
 	}

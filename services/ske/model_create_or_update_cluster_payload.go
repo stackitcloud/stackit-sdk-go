@@ -117,7 +117,7 @@ func (o *CreateOrUpdateClusterPayload) SetHibernation(v *Hibernation) {
 
 // GetKubernetes returns the Kubernetes field value
 func (o *CreateOrUpdateClusterPayload) GetKubernetes() *Kubernetes {
-	if o == nil {
+	if o == nil || IsNil(o.Kubernetes) {
 		var ret *Kubernetes
 		return ret
 	}
@@ -205,7 +205,7 @@ func (o *CreateOrUpdateClusterPayload) SetNetwork(v *Network) {
 
 // GetNodepools returns the Nodepools field value
 func (o *CreateOrUpdateClusterPayload) GetNodepools() *[]Nodepool {
-	if o == nil {
+	if o == nil || IsNil(o.Nodepools) {
 		var ret *[]Nodepool
 		return ret
 	}

@@ -49,7 +49,7 @@ func NewMachineWithDefaults() *Machine {
 
 // GetImage returns the Image field value
 func (o *Machine) GetImage() *Image {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		var ret *Image
 		return ret
 	}
@@ -73,7 +73,7 @@ func (o *Machine) SetImage(v *Image) {
 
 // GetType returns the Type field value
 func (o *Machine) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}

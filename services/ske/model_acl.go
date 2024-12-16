@@ -50,7 +50,7 @@ func NewACLWithDefaults() *ACL {
 
 // GetAllowedCidrs returns the AllowedCidrs field value
 func (o *ACL) GetAllowedCidrs() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.AllowedCidrs) {
 		var ret *[]string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *ACL) SetAllowedCidrs(v *[]string) {
 
 // GetEnabled returns the Enabled field value
 func (o *ACL) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}
