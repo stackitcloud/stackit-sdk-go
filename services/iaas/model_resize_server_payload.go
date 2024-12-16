@@ -46,7 +46,7 @@ func NewResizeServerPayloadWithDefaults() *ResizeServerPayload {
 
 // GetMachineType returns the MachineType field value
 func (o *ResizeServerPayload) GetMachineType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MachineType) {
 		var ret *string
 		return ret
 	}

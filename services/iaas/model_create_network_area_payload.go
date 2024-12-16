@@ -51,7 +51,7 @@ func NewCreateNetworkAreaPayloadWithDefaults() *CreateNetworkAreaPayload {
 
 // GetAddressFamily returns the AddressFamily field value
 func (o *CreateNetworkAreaPayload) GetAddressFamily() *CreateAreaAddressFamily {
-	if o == nil {
+	if o == nil || IsNil(o.AddressFamily) {
 		var ret *CreateAreaAddressFamily
 		return ret
 	}
@@ -107,7 +107,7 @@ func (o *CreateNetworkAreaPayload) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *CreateNetworkAreaPayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
