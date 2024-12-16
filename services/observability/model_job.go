@@ -242,7 +242,7 @@ func (o *Job) SetHttpSdConfigs(v *[]HTTPServiceSD) {
 
 // GetJobName returns the JobName field value
 func (o *Job) GetJobName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.JobName) {
 		var ret *string
 		return ret
 	}
@@ -458,7 +458,7 @@ func (o *Job) SetScheme(v *string) {
 
 // GetScrapeInterval returns the ScrapeInterval field value
 func (o *Job) GetScrapeInterval() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeInterval) {
 		var ret *string
 		return ret
 	}
@@ -482,7 +482,7 @@ func (o *Job) SetScrapeInterval(v *string) {
 
 // GetScrapeTimeout returns the ScrapeTimeout field value
 func (o *Job) GetScrapeTimeout() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeTimeout) {
 		var ret *string
 		return ret
 	}
@@ -506,7 +506,7 @@ func (o *Job) SetScrapeTimeout(v *string) {
 
 // GetStaticConfigs returns the StaticConfigs field value
 func (o *Job) GetStaticConfigs() *[]StaticConfigs {
-	if o == nil {
+	if o == nil || IsNil(o.StaticConfigs) {
 		var ret *[]StaticConfigs
 		return ret
 	}

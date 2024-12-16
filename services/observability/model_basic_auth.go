@@ -48,7 +48,7 @@ func NewBasicAuthWithDefaults() *BasicAuth {
 
 // GetPassword returns the Password field value
 func (o *BasicAuth) GetPassword() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *BasicAuth) SetPassword(v *string) {
 
 // GetUsername returns the Username field value
 func (o *BasicAuth) GetUsername() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret *string
 		return ret
 	}

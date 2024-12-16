@@ -86,7 +86,7 @@ func NewUpdateGrafanaConfigsPayloadGenericOauthWithDefaults() *UpdateGrafanaConf
 
 // GetApiUrl returns the ApiUrl field value
 func (o *UpdateGrafanaConfigsPayloadGenericOauth) GetApiUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ApiUrl) {
 		var ret *string
 		return ret
 	}
@@ -110,7 +110,7 @@ func (o *UpdateGrafanaConfigsPayloadGenericOauth) SetApiUrl(v *string) {
 
 // GetAuthUrl returns the AuthUrl field value
 func (o *UpdateGrafanaConfigsPayloadGenericOauth) GetAuthUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.AuthUrl) {
 		var ret *string
 		return ret
 	}
@@ -134,7 +134,7 @@ func (o *UpdateGrafanaConfigsPayloadGenericOauth) SetAuthUrl(v *string) {
 
 // GetEnabled returns the Enabled field value
 func (o *UpdateGrafanaConfigsPayloadGenericOauth) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *UpdateGrafanaConfigsPayloadGenericOauth) SetName(v *string) {
 
 // GetOauthClientId returns the OauthClientId field value
 func (o *UpdateGrafanaConfigsPayloadGenericOauth) GetOauthClientId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OauthClientId) {
 		var ret *string
 		return ret
 	}
@@ -214,7 +214,7 @@ func (o *UpdateGrafanaConfigsPayloadGenericOauth) SetOauthClientId(v *string) {
 
 // GetOauthClientSecret returns the OauthClientSecret field value
 func (o *UpdateGrafanaConfigsPayloadGenericOauth) GetOauthClientSecret() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OauthClientSecret) {
 		var ret *string
 		return ret
 	}
@@ -238,7 +238,7 @@ func (o *UpdateGrafanaConfigsPayloadGenericOauth) SetOauthClientSecret(v *string
 
 // GetRoleAttributePath returns the RoleAttributePath field value
 func (o *UpdateGrafanaConfigsPayloadGenericOauth) GetRoleAttributePath() *string {
-	if o == nil {
+	if o == nil || IsNil(o.RoleAttributePath) {
 		var ret *string
 		return ret
 	}
@@ -326,7 +326,7 @@ func (o *UpdateGrafanaConfigsPayloadGenericOauth) SetScopes(v *string) {
 
 // GetTokenUrl returns the TokenUrl field value
 func (o *UpdateGrafanaConfigsPayloadGenericOauth) GetTokenUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.TokenUrl) {
 		var ret *string
 		return ret
 	}

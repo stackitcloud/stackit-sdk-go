@@ -48,7 +48,7 @@ func NewAlertConfigRouteResponseWithDefaults() *AlertConfigRouteResponse {
 
 // GetData returns the Data field value
 func (o *AlertConfigRouteResponse) GetData() *Route {
-	if o == nil {
+	if o == nil || IsNil(o.Data) {
 		var ret *Route
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *AlertConfigRouteResponse) SetData(v *Route) {
 
 // GetMessage returns the Message field value
 func (o *AlertConfigRouteResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

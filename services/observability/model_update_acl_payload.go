@@ -46,7 +46,7 @@ func NewUpdateACLPayloadWithDefaults() *UpdateACLPayload {
 
 // GetAcl returns the Acl field value
 func (o *UpdateACLPayload) GetAcl() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Acl) {
 		var ret *[]string
 		return ret
 	}

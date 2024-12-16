@@ -53,7 +53,7 @@ func NewOAuth2WithDefaults() *OAuth2 {
 
 // GetClientId returns the ClientId field value
 func (o *OAuth2) GetClientId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ClientId) {
 		var ret *string
 		return ret
 	}
@@ -77,7 +77,7 @@ func (o *OAuth2) SetClientId(v *string) {
 
 // GetClientSecret returns the ClientSecret field value
 func (o *OAuth2) GetClientSecret() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ClientSecret) {
 		var ret *string
 		return ret
 	}
@@ -165,7 +165,7 @@ func (o *OAuth2) SetTlsConfig(v *TLSConfig) {
 
 // GetTokenUrl returns the TokenUrl field value
 func (o *OAuth2) GetTokenUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.TokenUrl) {
 		var ret *string
 		return ret
 	}
