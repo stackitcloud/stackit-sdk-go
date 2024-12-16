@@ -86,7 +86,7 @@ func (o *Backup) SetDownloadable(v *bool) {
 
 // GetFinishedAt returns the FinishedAt field value
 func (o *Backup) GetFinishedAt() *string {
-	if o == nil {
+	if o == nil || IsNil(o.FinishedAt) {
 		var ret *string
 		return ret
 	}
@@ -110,7 +110,7 @@ func (o *Backup) SetFinishedAt(v *string) {
 
 // GetId returns the Id field value
 func (o *Backup) GetId() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *int64
 		return ret
 	}
@@ -166,7 +166,7 @@ func (o *Backup) SetSize(v *int64) {
 
 // GetStatus returns the Status field value
 func (o *Backup) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}
