@@ -117,7 +117,7 @@ func (o *NetworkRange) SetNetworkRangeId(v *string) {
 
 // GetPrefix returns the Prefix field value
 func (o *NetworkRange) GetPrefix() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Prefix) {
 		var ret *string
 		return ret
 	}

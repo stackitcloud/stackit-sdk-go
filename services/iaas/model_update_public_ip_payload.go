@@ -144,7 +144,7 @@ func (o *UpdatePublicIPPayload) SetLabels(v *map[string]interface{}) {
 
 // GetNetworkInterface returns the NetworkInterface field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdatePublicIPPayload) GetNetworkInterface() *string {
-	if o == nil || IsNil(o.NetworkInterface.Get()) {
+	if o == nil || IsNil(o.NetworkInterface) || IsNil(o.NetworkInterface.Get()) {
 		var ret *string
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *UpdatePublicIPPayload) GetNetworkInterface() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdatePublicIPPayload) GetNetworkInterfaceOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NetworkInterface) {
 		return nil, false
 	}
 	return o.NetworkInterface.Get(), o.NetworkInterface.IsSet()
@@ -163,7 +163,7 @@ func (o *UpdatePublicIPPayload) GetNetworkInterfaceOk() (*string, bool) {
 
 // HasNetworkInterface returns a boolean if a field has been set.
 func (o *UpdatePublicIPPayload) HasNetworkInterface() bool {
-	if o != nil && o.NetworkInterface.IsSet() {
+	if o != nil && !IsNil(o.NetworkInterface) && o.NetworkInterface.IsSet() {
 		return true
 	}
 
@@ -172,16 +172,25 @@ func (o *UpdatePublicIPPayload) HasNetworkInterface() bool {
 
 // SetNetworkInterface gets a reference to the given string and assigns it to the NetworkInterface field.
 func (o *UpdatePublicIPPayload) SetNetworkInterface(v *string) {
+	if IsNil(o.NetworkInterface) {
+		o.NetworkInterface = new(NullableString)
+	}
 	o.NetworkInterface.Set(v)
 }
 
 // SetNetworkInterfaceNil sets the value for NetworkInterface to be an explicit nil
 func (o *UpdatePublicIPPayload) SetNetworkInterfaceNil() {
+	if IsNil(o.NetworkInterface) {
+		o.NetworkInterface = new(NullableString)
+	}
 	o.NetworkInterface.Set(nil)
 }
 
 // UnsetNetworkInterface ensures that no value is present for NetworkInterface, not even an explicit nil
 func (o *UpdatePublicIPPayload) UnsetNetworkInterface() {
+	if IsNil(o.NetworkInterface) {
+		o.NetworkInterface = new(NullableString)
+	}
 	o.NetworkInterface.Unset()
 }
 

@@ -96,7 +96,7 @@ func (o *BaseSecurityGroupRule) SetDescription(v *string) {
 
 // GetDirection returns the Direction field value
 func (o *BaseSecurityGroupRule) GetDirection() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Direction) {
 		var ret *string
 		return ret
 	}

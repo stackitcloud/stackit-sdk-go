@@ -150,7 +150,7 @@ func (o *VolumePerformanceClass) SetLabels(v *map[string]interface{}) {
 
 // GetName returns the Name field value
 func (o *VolumePerformanceClass) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
