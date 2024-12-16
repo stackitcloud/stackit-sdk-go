@@ -45,7 +45,7 @@ func NewJWKSWithDefaults() *JWKS {
 
 // GetKeys returns the Keys field value
 func (o *JWKS) GetKeys() *[]JWK {
-	if o == nil {
+	if o == nil || IsNil(o.Keys) {
 		var ret *[]JWK
 		return ret
 	}

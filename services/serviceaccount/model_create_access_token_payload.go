@@ -46,7 +46,7 @@ func NewCreateAccessTokenPayloadWithDefaults() *CreateAccessTokenPayload {
 
 // GetTtlDays returns the TtlDays field value
 func (o *CreateAccessTokenPayload) GetTtlDays() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.TtlDays) {
 		var ret *int64
 		return ret
 	}
