@@ -60,7 +60,7 @@ func NewBackupWithDefaults() *Backup {
 
 // GetCreatedAt returns the CreatedAt field value
 func (o *Backup) GetCreatedAt() *string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret *string
 		return ret
 	}
@@ -84,7 +84,7 @@ func (o *Backup) SetCreatedAt(v *string) {
 
 // GetExpireAt returns the ExpireAt field value
 func (o *Backup) GetExpireAt() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ExpireAt) {
 		var ret *string
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *Backup) SetExpireAt(v *string) {
 
 // GetId returns the Id field value
 func (o *Backup) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -164,7 +164,7 @@ func (o *Backup) SetLastRestoredAt(v *string) {
 
 // GetName returns the Name field value
 func (o *Backup) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *Backup) SetSize(v *int64) {
 
 // GetStatus returns the Status field value
 func (o *Backup) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}
