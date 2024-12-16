@@ -37,7 +37,9 @@ type Image struct {
 	MinRam *int64 `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name      *string `json:"name"`
+	Name *string `json:"name"`
+	// Universally Unique Identifier (UUID).
+	Owner     *string `json:"owner,omitempty"`
 	Protected *bool   `json:"protected,omitempty"`
 	// Scope of an Image.
 	Scope *string `json:"scope,omitempty"`
@@ -166,7 +168,7 @@ func (o *Image) SetCreatedAt(v *time.Time) {
 
 // GetDiskFormat returns the DiskFormat field value
 func (o *Image) GetDiskFormat() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DiskFormat) {
 		var ret *string
 		return ret
 	}
@@ -318,7 +320,7 @@ func (o *Image) SetMinRam(v *int64) {
 
 // GetName returns the Name field value
 func (o *Image) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -338,6 +340,38 @@ func (o *Image) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *Image) SetName(v *string) {
 	o.Name = v
+}
+
+// GetOwner returns the Owner field value if set, zero value otherwise.
+func (o *Image) GetOwner() *string {
+	if o == nil || IsNil(o.Owner) {
+		var ret *string
+		return ret
+	}
+	return o.Owner
+}
+
+// GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Image) GetOwnerOk() (*string, bool) {
+	if o == nil || IsNil(o.Owner) {
+		return nil, false
+	}
+	return o.Owner, true
+}
+
+// HasOwner returns a boolean if a field has been set.
+func (o *Image) HasOwner() bool {
+	if o != nil && !IsNil(o.Owner) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwner gets a reference to the given string and assigns it to the Owner field.
+func (o *Image) SetOwner(v *string) {
+	o.Owner = v
 }
 
 // GetProtected returns the Protected field value if set, zero value otherwise.
@@ -493,6 +527,9 @@ func (o Image) ToMap() (map[string]interface{}, error) {
 		toSerialize["minRam"] = o.MinRam
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Owner) {
+		toSerialize["owner"] = o.Owner
+	}
 	if !IsNil(o.Protected) {
 		toSerialize["protected"] = o.Protected
 	}

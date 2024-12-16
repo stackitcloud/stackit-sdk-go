@@ -46,7 +46,7 @@ func NewNetworkListResponseWithDefaults() *NetworkListResponse {
 
 // GetItems returns the Items field value
 func (o *NetworkListResponse) GetItems() *[]Network {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]Network
 		return ret
 	}

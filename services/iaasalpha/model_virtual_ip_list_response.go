@@ -46,7 +46,7 @@ func NewVirtualIpListResponseWithDefaults() *VirtualIpListResponse {
 
 // GetItems returns the Items field value
 func (o *VirtualIpListResponse) GetItems() *[]VirtualIp {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]VirtualIp
 		return ret
 	}

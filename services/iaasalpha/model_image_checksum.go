@@ -50,7 +50,7 @@ func NewImageChecksumWithDefaults() *ImageChecksum {
 
 // GetAlgorithm returns the Algorithm field value
 func (o *ImageChecksum) GetAlgorithm() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Algorithm) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *ImageChecksum) SetAlgorithm(v *string) {
 
 // GetDigest returns the Digest field value
 func (o *ImageChecksum) GetDigest() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Digest) {
 		var ret *string
 		return ret
 	}

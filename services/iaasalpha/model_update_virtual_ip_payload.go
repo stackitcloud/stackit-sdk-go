@@ -78,7 +78,7 @@ func (o *UpdateVirtualIPPayload) SetLabels(v *map[string]interface{}) {
 
 // GetMembers returns the Members field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateVirtualIPPayload) GetMembers() *[]string {
-	if o == nil {
+	if o == nil || IsNil(o.Members) {
 		var ret *[]string
 		return ret
 	}

@@ -54,7 +54,7 @@ func NewRequestResourceWithDefaults() *RequestResource {
 
 // GetId returns the Id field value
 func (o *RequestResource) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -78,7 +78,7 @@ func (o *RequestResource) SetId(v *string) {
 
 // GetStatus returns the Status field value
 func (o *RequestResource) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}
@@ -102,7 +102,7 @@ func (o *RequestResource) SetStatus(v *string) {
 
 // GetType returns the Type field value
 func (o *RequestResource) GetType() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret *string
 		return ret
 	}
