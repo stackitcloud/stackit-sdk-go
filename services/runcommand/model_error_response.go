@@ -50,7 +50,7 @@ func NewErrorResponseWithDefaults() *ErrorResponse {
 
 // GetMessage returns the Message field value
 func (o *ErrorResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *ErrorResponse) SetMessage(v *string) {
 
 // GetStatus returns the Status field value
 func (o *ErrorResponse) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}
