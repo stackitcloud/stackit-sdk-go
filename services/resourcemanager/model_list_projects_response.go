@@ -57,7 +57,7 @@ func NewListProjectsResponseWithDefaults() *ListProjectsResponse {
 
 // GetItems returns the Items field value
 func (o *ListProjectsResponse) GetItems() *[]Project {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]Project
 		return ret
 	}
@@ -81,7 +81,7 @@ func (o *ListProjectsResponse) SetItems(v *[]Project) {
 
 // GetLimit returns the Limit field value
 func (o *ListProjectsResponse) GetLimit() *float64 {
-	if o == nil {
+	if o == nil || IsNil(o.Limit) {
 		var ret *float64
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *ListProjectsResponse) SetLimit(v *float64) {
 
 // GetOffset returns the Offset field value
 func (o *ListProjectsResponse) GetOffset() *float64 {
-	if o == nil {
+	if o == nil || IsNil(o.Offset) {
 		var ret *float64
 		return ret
 	}

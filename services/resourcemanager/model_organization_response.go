@@ -68,7 +68,7 @@ func NewOrganizationResponseWithDefaults() *OrganizationResponse {
 
 // GetContainerId returns the ContainerId field value
 func (o *OrganizationResponse) GetContainerId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ContainerId) {
 		var ret *string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *OrganizationResponse) SetContainerId(v *string) {
 
 // GetCreationTime returns the CreationTime field value
 func (o *OrganizationResponse) GetCreationTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreationTime) {
 		var ret *time.Time
 		return ret
 	}
@@ -148,7 +148,7 @@ func (o *OrganizationResponse) SetLabels(v *map[string]string) {
 
 // GetLifecycleState returns the LifecycleState field value
 func (o *OrganizationResponse) GetLifecycleState() *LifecycleState {
-	if o == nil {
+	if o == nil || IsNil(o.LifecycleState) {
 		var ret *LifecycleState
 		return ret
 	}
@@ -172,7 +172,7 @@ func (o *OrganizationResponse) SetLifecycleState(v *LifecycleState) {
 
 // GetName returns the Name field value
 func (o *OrganizationResponse) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -196,7 +196,7 @@ func (o *OrganizationResponse) SetName(v *string) {
 
 // GetOrganizationId returns the OrganizationId field value
 func (o *OrganizationResponse) GetOrganizationId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret *string
 		return ret
 	}
@@ -220,7 +220,7 @@ func (o *OrganizationResponse) SetOrganizationId(v *string) {
 
 // GetUpdateTime returns the UpdateTime field value
 func (o *OrganizationResponse) GetUpdateTime() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.UpdateTime) {
 		var ret *time.Time
 		return ret
 	}
