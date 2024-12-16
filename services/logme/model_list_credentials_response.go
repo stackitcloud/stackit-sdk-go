@@ -45,7 +45,7 @@ func NewListCredentialsResponseWithDefaults() *ListCredentialsResponse {
 
 // GetCredentialsList returns the CredentialsList field value
 func (o *ListCredentialsResponse) GetCredentialsList() *[]CredentialsListItem {
-	if o == nil {
+	if o == nil || IsNil(o.CredentialsList) {
 		var ret *[]CredentialsListItem
 		return ret
 	}
