@@ -87,7 +87,7 @@ func (o *ServerMaintenance) SetDetails(v *string) {
 
 // GetEndsAt returns the EndsAt field value
 func (o *ServerMaintenance) GetEndsAt() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.EndsAt) {
 		var ret *time.Time
 		return ret
 	}
@@ -111,7 +111,7 @@ func (o *ServerMaintenance) SetEndsAt(v *time.Time) {
 
 // GetStartsAt returns the StartsAt field value
 func (o *ServerMaintenance) GetStartsAt() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.StartsAt) {
 		var ret *time.Time
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *ServerMaintenance) SetStartsAt(v *time.Time) {
 
 // GetStatus returns the Status field value
 func (o *ServerMaintenance) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}

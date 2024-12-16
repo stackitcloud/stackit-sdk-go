@@ -185,7 +185,7 @@ func (o *CreateKeyPairPayload) SetName(v *string) {
 
 // GetPublicKey returns the PublicKey field value
 func (o *CreateKeyPairPayload) GetPublicKey() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret *string
 		return ret
 	}

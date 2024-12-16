@@ -46,7 +46,7 @@ func NewRemoveMemberFromVirtualIPPayloadWithDefaults() *RemoveMemberFromVirtualI
 
 // GetMember returns the Member field value
 func (o *RemoveMemberFromVirtualIPPayload) GetMember() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Member) {
 		var ret *string
 		return ret
 	}

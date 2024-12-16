@@ -46,7 +46,7 @@ func NewPublicNetworkWithDefaults() *PublicNetwork {
 
 // GetCidr returns the Cidr field value
 func (o *PublicNetwork) GetCidr() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Cidr) {
 		var ret *string
 		return ret
 	}

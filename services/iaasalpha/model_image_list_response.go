@@ -46,7 +46,7 @@ func NewImageListResponseWithDefaults() *ImageListResponse {
 
 // GetItems returns the Items field value
 func (o *ImageListResponse) GetItems() *[]Image {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]Image
 		return ret
 	}
