@@ -48,7 +48,7 @@ func NewInstanceSchemaWithDefaults() *InstanceSchema {
 
 // GetCreate returns the Create field value
 func (o *InstanceSchema) GetCreate() *Schema {
-	if o == nil {
+	if o == nil || IsNil(o.Create) {
 		var ret *Schema
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *InstanceSchema) SetCreate(v *Schema) {
 
 // GetUpdate returns the Update field value
 func (o *InstanceSchema) GetUpdate() *Schema {
-	if o == nil {
+	if o == nil || IsNil(o.Update) {
 		var ret *Schema
 		return ret
 	}
