@@ -17,10 +17,12 @@ import (
 // checks if the UpdateImageSharePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateImageSharePayload{}
 
-// UpdateImageSharePayload Share details of an Image. ParentOrganization and Projects are mutually exclusive.
+// UpdateImageSharePayload Share details of an Image. For requests ParentOrganization and Projects are mutually exclusive.
 type UpdateImageSharePayload struct {
-	ParentOrganization *bool     `json:"parentOrganization,omitempty"`
-	Projects           *[]string `json:"projects,omitempty"`
+	// Image is shared with all projects inside the image owners organization.
+	ParentOrganization *bool `json:"parentOrganization,omitempty"`
+	// List of all projects the Image is shared with.
+	Projects *[]string `json:"projects,omitempty"`
 }
 
 // NewUpdateImageSharePayload instantiates a new UpdateImageSharePayload object
