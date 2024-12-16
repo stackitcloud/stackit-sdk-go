@@ -45,7 +45,7 @@ func NewListRestoresResponseWithDefaults() *ListRestoresResponse {
 
 // GetInstanceRestores returns the InstanceRestores field value
 func (o *ListRestoresResponse) GetInstanceRestores() *[]Restore {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceRestores) {
 		var ret *[]Restore
 		return ret
 	}
