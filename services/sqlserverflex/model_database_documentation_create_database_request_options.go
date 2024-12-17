@@ -114,7 +114,7 @@ func (o *DatabaseDocumentationCreateDatabaseRequestOptions) SetCompatibilityLeve
 
 // GetOwner returns the Owner field value
 func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetOwner() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Owner) {
 		var ret *string
 		return ret
 	}

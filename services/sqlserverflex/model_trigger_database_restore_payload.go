@@ -50,7 +50,7 @@ func NewTriggerDatabaseRestorePayloadWithDefaults() *TriggerDatabaseRestorePaylo
 
 // GetName returns the Name field value
 func (o *TriggerDatabaseRestorePayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -74,7 +74,7 @@ func (o *TriggerDatabaseRestorePayload) SetName(v *string) {
 
 // GetRestoreDateTime returns the RestoreDateTime field value
 func (o *TriggerDatabaseRestorePayload) GetRestoreDateTime() *string {
-	if o == nil {
+	if o == nil || IsNil(o.RestoreDateTime) {
 		var ret *string
 		return ret
 	}
