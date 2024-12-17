@@ -48,7 +48,7 @@ func NewPermissionWithDefaults() *Permission {
 
 // GetDescription returns the Description field value
 func (o *Permission) GetDescription() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *Permission) SetDescription(v *string) {
 
 // GetName returns the Name field value
 func (o *Permission) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
