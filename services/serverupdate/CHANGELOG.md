@@ -1,3 +1,7 @@
+## v0.2.3 (2024-12-17)
+
+- **Bugfix:** Correctly handle nullable attributes in model types
+
 ## v0.2.2 (2024-12-02)
 
 - **Bugfix:** `Id` field of `Update` model is now of type `int64` (was `string`)
