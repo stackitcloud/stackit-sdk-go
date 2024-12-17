@@ -45,7 +45,7 @@ func NewRawCredentialsWithDefaults() *RawCredentials {
 
 // GetCredentials returns the Credentials field value
 func (o *RawCredentials) GetCredentials() *Credentials {
-	if o == nil {
+	if o == nil || IsNil(o.Credentials) {
 		var ret *Credentials
 		return ret
 	}
