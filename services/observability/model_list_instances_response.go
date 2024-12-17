@@ -48,7 +48,7 @@ func NewListInstancesResponseWithDefaults() *ListInstancesResponse {
 
 // GetInstances returns the Instances field value
 func (o *ListInstancesResponse) GetInstances() *[]ProjectInstanceFull {
-	if o == nil {
+	if o == nil || IsNil(o.Instances) {
 		var ret *[]ProjectInstanceFull
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *ListInstancesResponse) SetInstances(v *[]ProjectInstanceFull) {
 
 // GetMessage returns the Message field value
 func (o *ListInstancesResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

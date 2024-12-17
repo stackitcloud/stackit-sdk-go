@@ -183,7 +183,7 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetTlsConfig(v *CreateScra
 
 // GetUrl returns the Url field value
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret *string
 		return ret
 	}

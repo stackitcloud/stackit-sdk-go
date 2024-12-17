@@ -68,7 +68,7 @@ func NewInstanceWithDefaults() *Instance {
 
 // GetCluster returns the Cluster field value
 func (o *Instance) GetCluster() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Cluster) {
 		var ret *string
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *Instance) SetCluster(v *string) {
 
 // GetGrafanaPublicReadAccess returns the GrafanaPublicReadAccess field value
 func (o *Instance) GetGrafanaPublicReadAccess() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaPublicReadAccess) {
 		var ret *bool
 		return ret
 	}
@@ -116,7 +116,7 @@ func (o *Instance) SetGrafanaPublicReadAccess(v *bool) {
 
 // GetGrafanaUseStackitSso returns the GrafanaUseStackitSso field value
 func (o *Instance) GetGrafanaUseStackitSso() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.GrafanaUseStackitSso) {
 		var ret *bool
 		return ret
 	}
@@ -140,7 +140,7 @@ func (o *Instance) SetGrafanaUseStackitSso(v *bool) {
 
 // GetInstance returns the Instance field value
 func (o *Instance) GetInstance() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Instance) {
 		var ret *string
 		return ret
 	}
@@ -164,7 +164,7 @@ func (o *Instance) SetInstance(v *string) {
 
 // GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
 func (o *Instance) GetMetricsRetentionTime1h() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTime1h) {
 		var ret *int64
 		return ret
 	}
@@ -188,7 +188,7 @@ func (o *Instance) SetMetricsRetentionTime1h(v *int64) {
 
 // GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
 func (o *Instance) GetMetricsRetentionTime5m() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTime5m) {
 		var ret *int64
 		return ret
 	}
@@ -212,7 +212,7 @@ func (o *Instance) SetMetricsRetentionTime5m(v *int64) {
 
 // GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
 func (o *Instance) GetMetricsRetentionTimeRaw() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTimeRaw) {
 		var ret *int64
 		return ret
 	}
@@ -268,7 +268,7 @@ func (o *Instance) SetName(v *string) {
 
 // GetPlan returns the Plan field value
 func (o *Instance) GetPlan() *PlanModel {
-	if o == nil {
+	if o == nil || IsNil(o.Plan) {
 		var ret *PlanModel
 		return ret
 	}

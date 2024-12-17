@@ -253,7 +253,7 @@ func (o *CreateScrapeConfigPayload) SetHttpSdConfigs(v *[]CreateScrapeConfigPayl
 
 // GetJobName returns the JobName field value
 func (o *CreateScrapeConfigPayload) GetJobName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.JobName) {
 		var ret *string
 		return ret
 	}
@@ -437,7 +437,7 @@ func (o *CreateScrapeConfigPayload) SetSampleLimit(v *float64) {
 
 // GetScheme returns the Scheme field value
 func (o *CreateScrapeConfigPayload) GetScheme() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Scheme) {
 		var ret *string
 		return ret
 	}
@@ -461,7 +461,7 @@ func (o *CreateScrapeConfigPayload) SetScheme(v *string) {
 
 // GetScrapeInterval returns the ScrapeInterval field value
 func (o *CreateScrapeConfigPayload) GetScrapeInterval() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeInterval) {
 		var ret *string
 		return ret
 	}
@@ -485,7 +485,7 @@ func (o *CreateScrapeConfigPayload) SetScrapeInterval(v *string) {
 
 // GetScrapeTimeout returns the ScrapeTimeout field value
 func (o *CreateScrapeConfigPayload) GetScrapeTimeout() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ScrapeTimeout) {
 		var ret *string
 		return ret
 	}
@@ -509,7 +509,7 @@ func (o *CreateScrapeConfigPayload) SetScrapeTimeout(v *string) {
 
 // GetStaticConfigs returns the StaticConfigs field value
 func (o *CreateScrapeConfigPayload) GetStaticConfigs() *[]CreateScrapeConfigPayloadStaticConfigsInner {
-	if o == nil {
+	if o == nil || IsNil(o.StaticConfigs) {
 		var ret *[]CreateScrapeConfigPayloadStaticConfigsInner
 		return ret
 	}

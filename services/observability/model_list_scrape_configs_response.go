@@ -48,7 +48,7 @@ func NewListScrapeConfigsResponseWithDefaults() *ListScrapeConfigsResponse {
 
 // GetData returns the Data field value
 func (o *ListScrapeConfigsResponse) GetData() *[]Job {
-	if o == nil {
+	if o == nil || IsNil(o.Data) {
 		var ret *[]Job
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *ListScrapeConfigsResponse) SetData(v *[]Job) {
 
 // GetMessage returns the Message field value
 func (o *ListScrapeConfigsResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

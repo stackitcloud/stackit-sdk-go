@@ -48,7 +48,7 @@ func NewCreateCredentialsResponseWithDefaults() *CreateCredentialsResponse {
 
 // GetCredentials returns the Credentials field value
 func (o *CreateCredentialsResponse) GetCredentials() *Credentials {
-	if o == nil {
+	if o == nil || IsNil(o.Credentials) {
 		var ret *Credentials
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *CreateCredentialsResponse) SetCredentials(v *Credentials) {
 
 // GetMessage returns the Message field value
 func (o *CreateCredentialsResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}

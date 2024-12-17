@@ -80,7 +80,7 @@ func (o *Receivers) SetEmailConfigs(v *[]EmailConfig) {
 
 // GetName returns the Name field value
 func (o *Receivers) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

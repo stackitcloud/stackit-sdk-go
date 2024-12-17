@@ -181,7 +181,7 @@ func (o *HTTPServiceSD) SetTlsConfig(v *TLSConfig) {
 
 // GetUrl returns the Url field value
 func (o *HTTPServiceSD) GetUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret *string
 		return ret
 	}

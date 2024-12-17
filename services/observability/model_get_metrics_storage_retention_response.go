@@ -54,7 +54,7 @@ func NewGetMetricsStorageRetentionResponseWithDefaults() *GetMetricsStorageReten
 
 // GetMessage returns the Message field value
 func (o *GetMetricsStorageRetentionResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
@@ -78,7 +78,7 @@ func (o *GetMetricsStorageRetentionResponse) SetMessage(v *string) {
 
 // GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
 func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime1h() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTime1h) {
 		var ret *string
 		return ret
 	}
@@ -102,7 +102,7 @@ func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTime1h(v *string
 
 // GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
 func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime5m() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTime5m) {
 		var ret *string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTime5m(v *string
 
 // GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
 func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTimeRaw() *string {
-	if o == nil {
+	if o == nil || IsNil(o.MetricsRetentionTimeRaw) {
 		var ret *string
 		return ret
 	}

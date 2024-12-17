@@ -79,7 +79,7 @@ func NewGetInstanceResponseWithDefaults() *GetInstanceResponse {
 
 // GetDashboardUrl returns the DashboardUrl field value
 func (o *GetInstanceResponse) GetDashboardUrl() *string {
-	if o == nil {
+	if o == nil || IsNil(o.DashboardUrl) {
 		var ret *string
 		return ret
 	}
@@ -103,7 +103,7 @@ func (o *GetInstanceResponse) SetDashboardUrl(v *string) {
 
 // GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GetInstanceResponse) GetError() *string {
-	if o == nil || IsNil(o.Error.Get()) {
+	if o == nil || IsNil(o.Error) || IsNil(o.Error.Get()) {
 		var ret *string
 		return ret
 	}
@@ -114,7 +114,7 @@ func (o *GetInstanceResponse) GetError() *string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GetInstanceResponse) GetErrorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Error) {
 		return nil, false
 	}
 	return o.Error.Get(), o.Error.IsSet()
@@ -122,7 +122,7 @@ func (o *GetInstanceResponse) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *GetInstanceResponse) HasError() bool {
-	if o != nil && o.Error.IsSet() {
+	if o != nil && !IsNil(o.Error) && o.Error.IsSet() {
 		return true
 	}
 
@@ -131,22 +131,31 @@ func (o *GetInstanceResponse) HasError() bool {
 
 // SetError gets a reference to the given string and assigns it to the Error field.
 func (o *GetInstanceResponse) SetError(v *string) {
+	if IsNil(o.Error) {
+		o.Error = new(NullableString)
+	}
 	o.Error.Set(v)
 }
 
 // SetErrorNil sets the value for Error to be an explicit nil
 func (o *GetInstanceResponse) SetErrorNil() {
+	if IsNil(o.Error) {
+		o.Error = new(NullableString)
+	}
 	o.Error.Set(nil)
 }
 
 // UnsetError ensures that no value is present for Error, not even an explicit nil
 func (o *GetInstanceResponse) UnsetError() {
+	if IsNil(o.Error) {
+		o.Error = new(NullableString)
+	}
 	o.Error.Unset()
 }
 
 // GetId returns the Id field value
 func (o *GetInstanceResponse) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -170,7 +179,7 @@ func (o *GetInstanceResponse) SetId(v *string) {
 
 // GetInstance returns the Instance field value
 func (o *GetInstanceResponse) GetInstance() *InstanceSensitiveData {
-	if o == nil {
+	if o == nil || IsNil(o.Instance) {
 		var ret *InstanceSensitiveData
 		return ret
 	}
@@ -226,7 +235,7 @@ func (o *GetInstanceResponse) SetIsUpdatable(v *bool) {
 
 // GetMessage returns the Message field value
 func (o *GetInstanceResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
@@ -314,7 +323,7 @@ func (o *GetInstanceResponse) SetParameters(v *map[string]string) {
 
 // GetPlanId returns the PlanId field value
 func (o *GetInstanceResponse) GetPlanId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanId) {
 		var ret *string
 		return ret
 	}
@@ -338,7 +347,7 @@ func (o *GetInstanceResponse) SetPlanId(v *string) {
 
 // GetPlanName returns the PlanName field value
 func (o *GetInstanceResponse) GetPlanName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.PlanName) {
 		var ret *string
 		return ret
 	}
@@ -394,7 +403,7 @@ func (o *GetInstanceResponse) SetPlanSchema(v *string) {
 
 // GetServiceName returns the ServiceName field value
 func (o *GetInstanceResponse) GetServiceName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.ServiceName) {
 		var ret *string
 		return ret
 	}
@@ -418,7 +427,7 @@ func (o *GetInstanceResponse) SetServiceName(v *string) {
 
 // GetStatus returns the Status field value
 func (o *GetInstanceResponse) GetStatus() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret *string
 		return ret
 	}

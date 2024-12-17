@@ -84,7 +84,7 @@ func (o *GetCredentialsResponse) SetCredentialsInfo(v *map[string]string) {
 
 // GetId returns the Id field value
 func (o *GetCredentialsResponse) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -108,7 +108,7 @@ func (o *GetCredentialsResponse) SetId(v *string) {
 
 // GetMessage returns the Message field value
 func (o *GetCredentialsResponse) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *GetCredentialsResponse) SetMessage(v *string) {
 
 // GetName returns the Name field value
 func (o *GetCredentialsResponse) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

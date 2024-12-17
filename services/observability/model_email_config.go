@@ -247,7 +247,7 @@ func (o *EmailConfig) SetSmarthost(v *string) {
 
 // GetTo returns the To field value
 func (o *EmailConfig) GetTo() *string {
-	if o == nil {
+	if o == nil || IsNil(o.To) {
 		var ret *string
 		return ret
 	}

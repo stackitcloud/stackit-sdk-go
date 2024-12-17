@@ -51,7 +51,7 @@ func NewCredentialsRemoteWriteConfigWithDefaults() *CredentialsRemoteWriteConfig
 
 // GetCredentialsMaxLimit returns the CredentialsMaxLimit field value
 func (o *CredentialsRemoteWriteConfig) GetCredentialsMaxLimit() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.CredentialsMaxLimit) {
 		var ret *int64
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *CredentialsRemoteWriteConfig) SetCredentialsMaxLimit(v *int64) {
 
 // GetMaxLimit returns the MaxLimit field value
 func (o *CredentialsRemoteWriteConfig) GetMaxLimit() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MaxLimit) {
 		var ret *int64
 		return ret
 	}
@@ -99,7 +99,7 @@ func (o *CredentialsRemoteWriteConfig) SetMaxLimit(v *int64) {
 
 // GetMessage returns the Message field value
 func (o *CredentialsRemoteWriteConfig) GetMessage() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret *string
 		return ret
 	}
