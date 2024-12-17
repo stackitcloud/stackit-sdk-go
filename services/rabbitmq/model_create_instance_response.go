@@ -45,7 +45,7 @@ func NewCreateInstanceResponseWithDefaults() *CreateInstanceResponse {
 
 // GetInstanceId returns the InstanceId field value
 func (o *CreateInstanceResponse) GetInstanceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceId) {
 		var ret *string
 		return ret
 	}
