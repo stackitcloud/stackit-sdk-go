@@ -48,7 +48,7 @@ func NewRestoreInstancePayloadWithDefaults() *RestoreInstancePayload {
 
 // GetBackupId returns the BackupId field value
 func (o *RestoreInstancePayload) GetBackupId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.BackupId) {
 		var ret *string
 		return ret
 	}
@@ -72,7 +72,7 @@ func (o *RestoreInstancePayload) SetBackupId(v *string) {
 
 // GetInstanceId returns the InstanceId field value
 func (o *RestoreInstancePayload) GetInstanceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceId) {
 		var ret *string
 		return ret
 	}

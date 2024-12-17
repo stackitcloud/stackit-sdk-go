@@ -46,7 +46,7 @@ func NewCloneInstancePayloadWithDefaults() *CloneInstancePayload {
 
 // GetInstanceId returns the InstanceId field value
 func (o *CloneInstancePayload) GetInstanceId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.InstanceId) {
 		var ret *string
 		return ret
 	}
