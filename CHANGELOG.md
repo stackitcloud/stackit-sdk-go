@@ -1,4 +1,4 @@
-## Release (XXXX-XX-XX)
+## Release (2024-12-17)
 
 > [!WARNING]
 >
@@ -21,6 +21,41 @@
   - **Bugfix:** `Id` field of `Update` model is now of type `int64` (was `string`)
 - `serviceenablement`: [v0.4.0](services/serviceenablement/CHANGELOG.md#v040-2024-12-05)
   - **Feature:** Add support for region eu02
+- `sqlserverflex`: [v0.8.1](services/sqlserverflex/CHANGELOG.md#v081-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `ske`: [v0.20.1](services/ske/CHANGELOG.md#v0201-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `serverupdate`: [v0.2.3](services/serverupdate/CHANGELOG.md#v023-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `serverbackup`: [v0.4.0](services/serverbackup/CHANGELOG.md#v040-2024-12-17)
+  - **Feature:** Add support for managing `BackupPolicy` resources
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `secretsmanager`: [v0.10.1](services/secretsmanager/CHANGELOG.md#v0101-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `runcommand`: [v0.2.1](services/runcommand/CHANGELOG.md#v021-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `resourcemanager`: [v0.11.1](services/resourcemanager/CHANGELOG.md#v0111-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `redis`: [v0.20.1](services/redis/CHANGELOG.md#v0201-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `rabbitmq`: [v0.20.1](services/rabbitmq/CHANGELOG.md#v0201-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `opensearch`: [v0.19.1](services/opensearch/CHANGELOG.md#v0191-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `observability`: [v0.2.1](services/observability/CHANGELOG.md#v021-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `objectstorage`: [v0.11.1](services/objectstorage/CHANGELOG.md#v0111-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `mongodbflex`: [v0.16.1](services/mongodbflex/CHANGELOG.md#v0161-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `mariadb`: [v0.20.1](services/mariadb/CHANGELOG.md#v0201-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `logme`: [v0.20.1](services/logme/CHANGELOG.md#v0201-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `dns`: [v0.12.1](services/dns/CHANGELOG.md#v0121-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+- `authorization`: [v0.4.1](services/authorization/CHANGELOG.md#v041-2024-12-17)
+  - **Bugfix:** Correctly handle nullable attributes in model types
 
 ## Release (2024-11-29)
 
