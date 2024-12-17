@@ -57,7 +57,7 @@ func NewPlanWithDefaults() *Plan {
 
 // GetDescription returns the Description field value
 func (o *Plan) GetDescription() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret *string
 		return ret
 	}
@@ -81,7 +81,7 @@ func (o *Plan) SetDescription(v *string) {
 
 // GetFree returns the Free field value
 func (o *Plan) GetFree() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Free) {
 		var ret *bool
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *Plan) SetFree(v *bool) {
 
 // GetId returns the Id field value
 func (o *Plan) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -129,7 +129,7 @@ func (o *Plan) SetId(v *string) {
 
 // GetName returns the Name field value
 func (o *Plan) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -153,7 +153,7 @@ func (o *Plan) SetName(v *string) {
 
 // GetSkuName returns the SkuName field value
 func (o *Plan) GetSkuName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.SkuName) {
 		var ret *string
 		return ret
 	}
