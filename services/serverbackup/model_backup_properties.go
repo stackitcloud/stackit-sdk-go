@@ -51,7 +51,7 @@ func NewBackupPropertiesWithDefaults() *BackupProperties {
 
 // GetName returns the Name field value
 func (o *BackupProperties) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}
@@ -75,7 +75,7 @@ func (o *BackupProperties) SetName(v *string) {
 
 // GetRetentionPeriod returns the RetentionPeriod field value
 func (o *BackupProperties) GetRetentionPeriod() *int64 {
-	if o == nil {
+	if o == nil || IsNil(o.RetentionPeriod) {
 		var ret *int64
 		return ret
 	}

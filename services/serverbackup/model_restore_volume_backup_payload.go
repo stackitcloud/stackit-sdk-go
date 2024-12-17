@@ -45,7 +45,7 @@ func NewRestoreVolumeBackupPayloadWithDefaults() *RestoreVolumeBackupPayload {
 
 // GetRestoreVolumeId returns the RestoreVolumeId field value
 func (o *RestoreVolumeBackupPayload) GetRestoreVolumeId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.RestoreVolumeId) {
 		var ret *string
 		return ret
 	}
