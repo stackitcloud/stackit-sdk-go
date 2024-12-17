@@ -55,7 +55,7 @@ func NewListOrganizationContainersResponseWithDefaults() *ListOrganizationContai
 
 // GetCursor returns the Cursor field value
 func (o *ListOrganizationContainersResponse) GetCursor() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Cursor) {
 		var ret *string
 		return ret
 	}
@@ -79,7 +79,7 @@ func (o *ListOrganizationContainersResponse) SetCursor(v *string) {
 
 // GetItems returns the Items field value
 func (o *ListOrganizationContainersResponse) GetItems() *[]ListOrganizationContainersResponseItemsInner {
-	if o == nil {
+	if o == nil || IsNil(o.Items) {
 		var ret *[]ListOrganizationContainersResponseItemsInner
 		return ret
 	}
@@ -103,7 +103,7 @@ func (o *ListOrganizationContainersResponse) SetItems(v *[]ListOrganizationConta
 
 // GetLimit returns the Limit field value
 func (o *ListOrganizationContainersResponse) GetLimit() *float64 {
-	if o == nil {
+	if o == nil || IsNil(o.Limit) {
 		var ret *float64
 		return ret
 	}
