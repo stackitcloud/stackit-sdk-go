@@ -48,7 +48,7 @@ func NewDNSWithDefaults() *DNS {
 
 // GetEnabled returns the Enabled field value
 func (o *DNS) GetEnabled() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
 	}
