@@ -46,7 +46,7 @@ func NewCreateServiceAccountPayloadWithDefaults() *CreateServiceAccountPayload {
 
 // GetName returns the Name field value
 func (o *CreateServiceAccountPayload) GetName() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
 	}

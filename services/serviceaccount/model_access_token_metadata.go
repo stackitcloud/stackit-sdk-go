@@ -59,7 +59,7 @@ func NewAccessTokenMetadataWithDefaults() *AccessTokenMetadata {
 
 // GetActive returns the Active field value
 func (o *AccessTokenMetadata) GetActive() *bool {
-	if o == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret *bool
 		return ret
 	}
@@ -83,7 +83,7 @@ func (o *AccessTokenMetadata) SetActive(v *bool) {
 
 // GetCreatedAt returns the CreatedAt field value
 func (o *AccessTokenMetadata) GetCreatedAt() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret *time.Time
 		return ret
 	}
@@ -107,7 +107,7 @@ func (o *AccessTokenMetadata) SetCreatedAt(v *time.Time) {
 
 // GetId returns the Id field value
 func (o *AccessTokenMetadata) GetId() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret *string
 		return ret
 	}
@@ -131,7 +131,7 @@ func (o *AccessTokenMetadata) SetId(v *string) {
 
 // GetValidUntil returns the ValidUntil field value
 func (o *AccessTokenMetadata) GetValidUntil() *time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.ValidUntil) {
 		var ret *time.Time
 		return ret
 	}
