@@ -46,7 +46,7 @@ func NewCreateACLPayloadWithDefaults() *CreateACLPayload {
 
 // GetCidr returns the Cidr field value
 func (o *CreateACLPayload) GetCidr() *string {
-	if o == nil {
+	if o == nil || IsNil(o.Cidr) {
 		var ret *string
 		return ret
 	}
