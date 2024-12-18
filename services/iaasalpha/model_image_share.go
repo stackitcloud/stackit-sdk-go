@@ -17,10 +17,12 @@ import (
 // checks if the ImageShare type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ImageShare{}
 
-// ImageShare Share details of an Image. ParentOrganization and Projects are mutually exclusive.
+// ImageShare Share details of an Image. For requests ParentOrganization and Projects are mutually exclusive.
 type ImageShare struct {
-	ParentOrganization *bool     `json:"parentOrganization,omitempty"`
-	Projects           *[]string `json:"projects,omitempty"`
+	// Image is shared with all projects inside the image owners organization.
+	ParentOrganization *bool `json:"parentOrganization,omitempty"`
+	// List of all projects the Image is shared with.
+	Projects *[]string `json:"projects,omitempty"`
 }
 
 // NewImageShare instantiates a new ImageShare object
