@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.14.0
-	github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.19.0
+	github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.19.1
 )
 
 require (
