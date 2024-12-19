@@ -1,3 +1,7 @@
+## Release (2025-xx-yy)
+- `postgresflex`: [0.16.1](services/postgresflex/CHANGELOG.md#v0161-2025-xx-yy)
+  - **Bugfix:** Correctly handle nullable attributes in model types
+
 ## Release (2024-12-17)
 
 > [!WARNING]
