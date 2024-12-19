@@ -45,7 +45,7 @@ func NewUpdateBackupSchedulePayloadWithDefaults() *UpdateBackupSchedulePayload {
 
 // GetBackupSchedule returns the BackupSchedule field value
 func (o *UpdateBackupSchedulePayload) GetBackupSchedule() *string {
-	if o == nil {
+	if o == nil || IsNil(o.BackupSchedule) {
 		var ret *string
 		return ret
 	}
