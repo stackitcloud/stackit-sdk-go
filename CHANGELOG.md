@@ -1,6 +1,10 @@
 ## Release (2025-xx-yy)
+
 - `postgresflex`: [0.16.1](services/postgresflex/CHANGELOG.md#v0161-2025-xx-yy)
   - **Bugfix:** Correctly handle nullable attributes in model types
+- `iaas`: [v0.19.0](services/iaas/CHANGELOG.md#v0190-2024-12-20)
+  - **Feature:** Add method to list quotas: `ListQuotas`
+  - **Feature:** Add methods to change image scope: `UpdateImageScopeLocal` and `UpdateImageScopePublic`
 
 ## Release (2024-12-17)
 
@@ -10,7 +14,7 @@
 >
 > Use `github.com/stackitcloud/stackit-sdk-go/services/authorization` instead.
 
-- `iaas`: [v0.18](services/iaas/CHANGELOG.md#v0180-2024-12-16)
+- `iaas`: [v0.18.0](services/iaas/CHANGELOG.md#v0180-2024-12-16)
   - **Feature:** Add waiters for async operations: `UploadImageWaitHandler` and `DeleteImageWaitHandler`
 - `iaas`: [v0.17.0](services/iaas/CHANGELOG.md#v0170-2024-12-16)
   - **Feature:** Add new methods to manage affinity groups: `CreateAffinityGroup`, `DeleteAffinityGroup`, `GetAffinityGroup`, and `ListAffinityGroup`
