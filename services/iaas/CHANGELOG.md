@@ -1,3 +1,8 @@
+## v0.19.0 (2024-12-20)
+
+- **Feature:** Add method to list quotas: `ListQuotas`
+- **Feature:** Add methods to change image scope: `UpdateImageScopeLocal` and `UpdateImageScopePublic`
+ 
 ## v0.18.0 (2024-12-16)
 
 - **Feature:** Add waiters for async operations: `UploadImageWaitHandler` and `DeleteImageWaitHandler`
