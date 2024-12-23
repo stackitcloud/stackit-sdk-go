@@ -2501,12 +2501,12 @@ func (r ApiListMetricsRequest) Execute() (*InstanceMetricsResponse, error) {
 /*
 ListMetrics: Get Metric
 
-Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in max-connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
+Returns a metric for an instance. The metric will only be for the master pod if needed. Granularity parameter is always needed. If start and end time is provided, period is not considered in connections and disk-use. If you provide start time, you have to provide end time as well and vice versa.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The UUID of the project.
 	@param instanceId The UUID of the instance.
-	@param metric The name of the metric. Valid metrics are 'cpu', 'memory', 'max-connections', 'connections' and 'disk-use'.
+	@param metric The name of the metric. Valid metrics are 'cpu', 'memory', 'disk-use', 'disk-size' and 'connections'.
 	@return ApiListMetricsRequest
 */
 func (a *APIClient) ListMetrics(ctx context.Context, projectId string, instanceId string, metric string) ApiListMetricsRequest {
