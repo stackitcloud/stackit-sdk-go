@@ -5,6 +5,7 @@ package config
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -478,7 +479,10 @@ func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint strin
 // ConfigureRegion configures the API server urls with the user specified region.
 // Does nothing if a custom endpoint is provided.
 // Throws an error if no region is given or if the region is not valid
+// Throws an error if a region is given for a global url.
 func ConfigureRegion(cfg *Configuration) error {
+	log.Println("WARNING: STACKIT will move to a new way of specifying regions, where the region is provided as a function argument instead of being set in the client configuration." +
+		" Once all services have migrated, the methods to specify the region in the client configuration will be removed.")
 	if cfg.setCustomEndpoint {
 		return nil
 	}
@@ -519,7 +523,12 @@ func ConfigureRegion(cfg *Configuration) error {
 		// Region is not available.
 		return fmt.Errorf("the provided region is not available for this API, available regions are: %s", availableRegions)
 	}
-	// Global API. The provided region is ignored.
+	// Global API.
+	// If a region is provided by the user via WithRegion() or via environment variable return an error.
+	// The region is provided as a function argument instead of being set in the client configuration.
+	if cfg.Region != "" {
+		return fmt.Errorf("this API does not support setting a region in the the client configuration, please check if the region can be specified as a function parameter")
+	}
 	// If the url is a template, generated using deprecated config.json, the region variable is replaced
 	// If the url is already configured, there is no region variable and it remains the same
 	cfgUrl := strings.Replace(servers[0].URL, "{region}", "", -1)
