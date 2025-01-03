@@ -1,3 +1,9 @@
+## v0.15.0 (2025-01-02)
+
+- **Breaking Change:**: `ConfigureRegion` returns an error if a region is specified for a global URL.
+
+STACKIT will move to a new way of specifying regions, where the region is provided as a function argument instead of being set in the client configuration. Once all services have migrated, the methods to specify the region in the client configuration will be removed.
+
 ## v0.14.0 (2024-10-10)
 
 - **Feature:**: Added `IntermediateStateReached` to `AsyncActionHandler` that can be used to check for an intermediate state when executing the wait function of a wait handler.
