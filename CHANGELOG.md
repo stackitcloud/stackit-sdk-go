@@ -1,10 +1,12 @@
-## Release (2025-xx-yy)
+## Release (2025-01-07)
 
 - `postgresflex`: [0.16.1](services/postgresflex/CHANGELOG.md#v0161-2025-xx-yy)
   - **Bugfix:** Correctly handle nullable attributes in model types
 - `iaas`: [v0.19.0](services/iaas/CHANGELOG.md#v0190-2024-12-20)
   - **Feature:** Add method to list quotas: `ListQuotas`
   - **Feature:** Add methods to change image scope: `UpdateImageScopeLocal` and `UpdateImageScopePublic`
+- `core`: [v0.15.0](core/CHANGELOG.md#v0150-2025-01-02)
+  - **Breaking Change:**: `ConfigureRegion` returns an error if a region is specified for a global URL.
 
 ## Release (2024-12-17)
 
