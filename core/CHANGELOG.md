@@ -1,3 +1,7 @@
+## v0.15.1 (2025-01-08)
+
+- **Bugfix:** `ConfigureRegion` does not return an error if a region is set by an enviroment variable.
+
 ## v0.15.0 (2025-01-02)
 
 - **Breaking Change:**: `ConfigureRegion` returns an error if a region is specified for a global URL.
