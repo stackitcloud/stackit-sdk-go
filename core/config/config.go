@@ -499,10 +499,12 @@ func ConfigureRegion(cfg *Configuration) error {
 		availableRegions = append(availableRegions, strings.TrimSuffix(regionWithDotSuffix, "."))
 	}
 
+	isRegionSetByEnv := false
 	if cfg.Region == "" {
 		// Check region
 		envVarRegion, _ := os.LookupEnv("STACKIT_REGION")
 		cfg.Region = envVarRegion
+		isRegionSetByEnv = true
 	}
 
 	if oasRegion.DefaultValue != "" && oasRegion.DefaultValue != global {
@@ -524,9 +526,9 @@ func ConfigureRegion(cfg *Configuration) error {
 		return fmt.Errorf("the provided region is not available for this API, available regions are: %s", availableRegions)
 	}
 	// Global API.
-	// If a region is provided by the user via WithRegion() or via environment variable return an error.
+	// If a region is provided by the user via WithRegion() return an error.
 	// The region is provided as a function argument instead of being set in the client configuration.
-	if cfg.Region != "" {
+	if cfg.Region != "" && !isRegionSetByEnv {
 		return fmt.Errorf("this API does not support setting a region in the the client configuration, please check if the region can be specified as a function parameter")
 	}
 	// If the url is a template, generated using deprecated config.json, the region variable is replaced
