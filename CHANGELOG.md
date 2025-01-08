@@ -1,4 +1,4 @@
-## Release (2025-01-08)
+## Release (2025-XX-XX)
 
 - **Bugfix:** `ConfigureRegion` does not return an error if a region is set by an enviroment variable.
 
