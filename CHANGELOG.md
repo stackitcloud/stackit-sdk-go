@@ -1,3 +1,7 @@
+## Release (2025-01-08)
+
+- **Bugfix:** `ConfigureRegion` does not return an error if a region is set by an enviroment variable.
+
 ## Release (2025-01-07)
 
 - `postgresflex`: [0.16.1](services/postgresflex/CHANGELOG.md#v0161-2025-xx-yy)
