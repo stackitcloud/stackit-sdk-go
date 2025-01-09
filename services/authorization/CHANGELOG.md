@@ -1,3 +1,7 @@
+## v0.5.0 (2025-01-09)
+
+- Add support for regions in `APIClient`
+
 ## v0.4.1 (2024-12-17)
 
 - **Bugfix:** Correctly handle nullable attributes in model types

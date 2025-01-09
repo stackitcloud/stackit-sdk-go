@@ -1,3 +1,8 @@
+## Release (2025-XX-XX)
+
+- `authorization`: [v0.5.0](services/authorization/CHANGELOG.md#v050-2025-01-09)
+  - **Feature:** Add support for regions in `APIClient`
+
 ## Release (2025-01-07)
 
 - `postgresflex`: [0.16.1](services/postgresflex/CHANGELOG.md#v0161-2025-xx-yy)
