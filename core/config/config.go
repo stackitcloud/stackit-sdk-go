@@ -5,7 +5,6 @@ package config
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -481,8 +480,6 @@ func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint strin
 // Throws an error if no region is given or if the region is not valid
 // Throws an error if a region is given for a global url.
 func ConfigureRegion(cfg *Configuration) error {
-	log.Println("WARNING: STACKIT will move to a new way of specifying regions, where the region is provided as a function argument instead of being set in the client configuration." +
-		" Once all services have migrated, the methods to specify the region in the client configuration will be removed.")
 	if cfg.setCustomEndpoint {
 		return nil
 	}
