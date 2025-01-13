@@ -32,6 +32,7 @@ use (
 	./scripts
 	./services/archiving
 	./services/authorization
+	./services/certificates
 	./services/dns
 	./services/iaas
 	./services/iaasalpha
