@@ -6,6 +6,8 @@
   - **Feature:** Add support for regions in `APIClient`
 - `stackitmarketplace`: [v0.1.0](services/stackitmarketplace/CHANGELOG.md#v010-2025-01-10)
   - **New**: STACKIT Marketplace module can be used to manage the STACKIT Marketplace.
+- `lbapplication` [v0.1.0](services/lbapplication/CHANGELOG.md#v010-2025-01-13)
+  - **New**: STACKIT Load Balancer Application module can be used to manage the STACKIT Load Balancer Application
 
 ## Release (2025-01-07)
 
