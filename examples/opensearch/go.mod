@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/opensearch
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.15.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.15.1
 	github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.19.1
 )
 

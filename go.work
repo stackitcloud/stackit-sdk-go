@@ -36,6 +36,7 @@ use (
 	./services/dns
 	./services/iaas
 	./services/iaasalpha
+	./services/lbapplication
 	./services/loadbalancer
 	./services/logme
 	./services/mariadb
@@ -55,4 +56,5 @@ use (
 	./services/serviceenablement
 	./services/ske
 	./services/sqlserverflex
+	./services/stackitmarketplace
 )

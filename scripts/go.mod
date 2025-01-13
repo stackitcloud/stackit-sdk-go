@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/go-git/go-git/v5 v5.12.0
-	github.com/stackitcloud/stackit-sdk-go/core v0.15.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.15.1
 	golang.org/x/term v0.28.0
 )
 

@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/middleware
 go 1.18
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.15.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.15.1
 	github.com/stackitcloud/stackit-sdk-go/services/argus v0.11.0
 )
 
