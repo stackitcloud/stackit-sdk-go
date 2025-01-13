@@ -55,4 +55,5 @@ use (
 	./services/serviceenablement
 	./services/ske
 	./services/sqlserverflex
+	./services/stackitmarketplace
 )
