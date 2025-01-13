@@ -4,6 +4,8 @@
   - **Bugfix:** `ConfigureRegion` does not return an error if a region is set by an environment variable.
 - `authorization`: [v0.5.0](services/authorization/CHANGELOG.md#v050-2025-01-09)
   - **Feature:** Add support for regions in `APIClient`
+- `certificates`: [v0.1.0](services/certificates/CHANGELOG.md#v010-2025-01-13)
+  - **New**: STACKIT Certificates module can be used to manage the STACKIT Load Balancer Certificates
 
 ## Release (2025-01-07)
 
