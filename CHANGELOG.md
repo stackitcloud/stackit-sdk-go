@@ -9,7 +9,9 @@
 - `lbapplication` [v0.1.0](services/lbapplication/CHANGELOG.md#v010-2025-01-13)
   - **New**: STACKIT Load Balancer Application module can be used to manage the STACKIT Load Balancer Application
 - `certificates`: [v0.1.0](services/certificates/CHANGELOG.md#v010-2025-01-13)
-  - **New**: STACKIT Certificates module can be used to manage the STACKIT Load Balancer Certificates
+  - **New**: STACKIT Certificates module can be used to manage the STACKIT Load Balancer Certificates## v0.5.0 (2025-01-14)
+- `serverbackup`: [v0.5.0](services/serverbackup/CHANGELOG.md#v050-2025-01-14)
+  - **Feature:** Add new method: `GetServiceResource` 
 
 ## Release (2025-01-07)
 
