@@ -9,10 +9,12 @@
 - `lbapplication` [v0.1.0](services/lbapplication/CHANGELOG.md#v010-2025-01-13)
   - **New**: STACKIT Load Balancer Application module can be used to manage the STACKIT Load Balancer Application
 - `certificates`: [v0.1.0](services/certificates/CHANGELOG.md#v010-2025-01-13)
-  - **New**: STACKIT Certificates module can be used to manage the STACKIT Load Balancer Certificates## v0.5.0 (2025-01-14)
+  - **New**: STACKIT Certificates module can be used to manage the STACKIT Load Balancer Certificates
 - `serverbackup`: [v0.5.0](services/serverbackup/CHANGELOG.md#v050-2025-01-14)
   - **Feature:** Add new method: `GetServiceResource` 
-
+- `serverupdate`: [v0.3.0](services/serverupdate/CHANGELOG.md#v030-2025-01-14)
+  - **Feature:** Add new method: `GetServiceResource`
+  
 ## Release (2025-01-07)
 
 - `postgresflex`: [0.16.1](services/postgresflex/CHANGELOG.md#v0161-2025-xx-yy)

@@ -1,3 +1,7 @@
+## v0.3.0 (2025-01-14)
+
+- **Feature:** Add new method: `GetServiceResource` 
+
 ## v0.2.3 (2024-12-17)
 
 - **Bugfix:** Correctly handle nullable attributes in model types
