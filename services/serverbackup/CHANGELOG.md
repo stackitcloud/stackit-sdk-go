@@ -1,3 +1,7 @@
+## v0.5.0 (2025-01-14)
+
+- **Feature:** Add new method: `GetServiceResource` 
+
 ## v0.4.0 (2024-12-17)
 
 - **Feature:** Add support for managing `BackupPolicy` resources
