@@ -48,9 +48,8 @@ type InstanceParameters struct {
 	OpensearchTlsCiphers   *[]string `json:"opensearch-tls-ciphers,omitempty"`
 	OpensearchTlsProtocols *[]string `json:"opensearch-tls-protocols,omitempty"`
 	// Comma separated list of IP networks in CIDR notation which are allowed to access this instance.
-	SgwAcl       *string   `json:"sgw_acl,omitempty"`
-	Syslog       *[]string `json:"syslog,omitempty"`
-	SyslogUseUdp *string   `json:"syslog-use-udp,omitempty"`
+	SgwAcl *string   `json:"sgw_acl,omitempty"`
+	Syslog *[]string `json:"syslog,omitempty"`
 }
 
 // NewInstanceParameters instantiates a new InstanceParameters object
@@ -846,38 +845,6 @@ func (o *InstanceParameters) SetSyslog(v *[]string) {
 	o.Syslog = v
 }
 
-// GetSyslogUseUdp returns the SyslogUseUdp field value if set, zero value otherwise.
-func (o *InstanceParameters) GetSyslogUseUdp() *string {
-	if o == nil || IsNil(o.SyslogUseUdp) {
-		var ret *string
-		return ret
-	}
-	return o.SyslogUseUdp
-}
-
-// GetSyslogUseUdpOk returns a tuple with the SyslogUseUdp field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetSyslogUseUdpOk() (*string, bool) {
-	if o == nil || IsNil(o.SyslogUseUdp) {
-		return nil, false
-	}
-	return o.SyslogUseUdp, true
-}
-
-// HasSyslogUseUdp returns a boolean if a field has been set.
-func (o *InstanceParameters) HasSyslogUseUdp() bool {
-	if o != nil && !IsNil(o.SyslogUseUdp) {
-		return true
-	}
-
-	return false
-}
-
-// SetSyslogUseUdp gets a reference to the given string and assigns it to the SyslogUseUdp field.
-func (o *InstanceParameters) SetSyslogUseUdp(v *string) {
-	o.SyslogUseUdp = v
-}
-
 func (o InstanceParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.EnableMonitoring) {
@@ -948,9 +915,6 @@ func (o InstanceParameters) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Syslog) {
 		toSerialize["syslog"] = o.Syslog
-	}
-	if !IsNil(o.SyslogUseUdp) {
-		toSerialize["syslog-use-udp"] = o.SyslogUseUdp
 	}
 	return toSerialize, nil
 }
