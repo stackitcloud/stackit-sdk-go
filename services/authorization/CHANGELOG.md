@@ -1,3 +1,7 @@
+## v0.5.1 (2025-01-17)
+
+- **Bugfix:** Revert back to global URL configuration 
+
 ## v0.5.0 (2025-01-09)
 
 - Add support for regions in `APIClient`

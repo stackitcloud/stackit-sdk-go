@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `authorization`: [v0.5.1](services/authorization/CHANGELOG.md#v051-2025-01-17)
+  - **Bugfix:** Revert back to global URL configuration
 - `core`: [v0.15.1](core/CHANGELOG.md#v0151-2025-01-08)
   - **Bugfix:** `ConfigureRegion` does not return an error if a region is set by an environment variable.
 - `authorization`: [v0.5.0](services/authorization/CHANGELOG.md#v050-2025-01-09)
