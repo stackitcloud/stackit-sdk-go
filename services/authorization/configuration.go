@@ -22,16 +22,12 @@ func NewConfiguration() *config.Configuration {
 		Debug:         false,
 		Servers: config.ServerConfigurations{
 			{
-				URL:         "https://authorization.api.{region}stackit.cloud",
+				URL:         "https://authorization.api.stackit.cloud",
 				Description: "No description provided",
 				Variables: map[string]config.ServerVariable{
 					"region": {
 						Description:  "No description provided",
-						DefaultValue: "eu01.",
-						EnumValues: []string{
-							"eu01.",
-							"eu02.",
-						},
+						DefaultValue: "global",
 					},
 				},
 			},
