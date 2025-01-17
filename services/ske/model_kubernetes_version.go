@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the KubernetesVersion type satisfies the MappedNullable interface at compile time
@@ -19,7 +20,7 @@ var _ MappedNullable = &KubernetesVersion{}
 
 // KubernetesVersion struct for KubernetesVersion
 type KubernetesVersion struct {
-	ExpirationDate *string            `json:"expirationDate,omitempty"`
+	ExpirationDate *time.Time         `json:"expirationDate,omitempty"`
 	FeatureGates   *map[string]string `json:"featureGates,omitempty"`
 	State          *string            `json:"state,omitempty"`
 	Version        *string            `json:"version,omitempty"`
@@ -43,9 +44,9 @@ func NewKubernetesVersionWithDefaults() *KubernetesVersion {
 }
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
-func (o *KubernetesVersion) GetExpirationDate() *string {
+func (o *KubernetesVersion) GetExpirationDate() *time.Time {
 	if o == nil || IsNil(o.ExpirationDate) {
-		var ret *string
+		var ret *time.Time
 		return ret
 	}
 	return o.ExpirationDate
@@ -53,7 +54,7 @@ func (o *KubernetesVersion) GetExpirationDate() *string {
 
 // GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KubernetesVersion) GetExpirationDateOk() (*string, bool) {
+func (o *KubernetesVersion) GetExpirationDateOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.ExpirationDate) {
 		return nil, false
 	}
@@ -69,8 +70,8 @@ func (o *KubernetesVersion) HasExpirationDate() bool {
 	return false
 }
 
-// SetExpirationDate gets a reference to the given string and assigns it to the ExpirationDate field.
-func (o *KubernetesVersion) SetExpirationDate(v *string) {
+// SetExpirationDate gets a reference to the given time.Time and assigns it to the ExpirationDate field.
+func (o *KubernetesVersion) SetExpirationDate(v *time.Time) {
 	o.ExpirationDate = v
 }
 

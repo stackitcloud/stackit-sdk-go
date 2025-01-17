@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the ClusterStatus type satisfies the MappedNullable interface at compile time
@@ -21,7 +22,7 @@ var _ MappedNullable = &ClusterStatus{}
 type ClusterStatus struct {
 	Aggregated *ClusterStatusState `json:"aggregated,omitempty"`
 	// Format: `2024-02-15T11:06:29Z`
-	CreationTime        *string                   `json:"creationTime,omitempty"`
+	CreationTime        *time.Time                `json:"creationTime,omitempty"`
 	CredentialsRotation *CredentialsRotationState `json:"credentialsRotation,omitempty"`
 	Error               *RuntimeError             `json:"error,omitempty"`
 	Hibernated          *bool                     `json:"hibernated,omitempty"`
@@ -81,9 +82,9 @@ func (o *ClusterStatus) SetAggregated(v *ClusterStatusState) {
 }
 
 // GetCreationTime returns the CreationTime field value if set, zero value otherwise.
-func (o *ClusterStatus) GetCreationTime() *string {
+func (o *ClusterStatus) GetCreationTime() *time.Time {
 	if o == nil || IsNil(o.CreationTime) {
-		var ret *string
+		var ret *time.Time
 		return ret
 	}
 	return o.CreationTime
@@ -91,7 +92,7 @@ func (o *ClusterStatus) GetCreationTime() *string {
 
 // GetCreationTimeOk returns a tuple with the CreationTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ClusterStatus) GetCreationTimeOk() (*string, bool) {
+func (o *ClusterStatus) GetCreationTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.CreationTime) {
 		return nil, false
 	}
@@ -107,8 +108,8 @@ func (o *ClusterStatus) HasCreationTime() bool {
 	return false
 }
 
-// SetCreationTime gets a reference to the given string and assigns it to the CreationTime field.
-func (o *ClusterStatus) SetCreationTime(v *string) {
+// SetCreationTime gets a reference to the given time.Time and assigns it to the CreationTime field.
+func (o *ClusterStatus) SetCreationTime(v *time.Time) {
 	o.CreationTime = v
 }
 

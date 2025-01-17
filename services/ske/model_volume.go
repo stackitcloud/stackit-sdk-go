@@ -19,6 +19,7 @@ var _ MappedNullable = &Volume{}
 
 // Volume struct for Volume
 type Volume struct {
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	Size *int64 `json:"size"`
 	// For valid values please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `volumeTypes`.

@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the MachineImageVersion type satisfies the MappedNullable interface at compile time
@@ -19,10 +20,10 @@ var _ MappedNullable = &MachineImageVersion{}
 
 // MachineImageVersion struct for MachineImageVersion
 type MachineImageVersion struct {
-	Cri            *[]CRI  `json:"cri,omitempty"`
-	ExpirationDate *string `json:"expirationDate,omitempty"`
-	State          *string `json:"state,omitempty"`
-	Version        *string `json:"version,omitempty"`
+	Cri            *[]CRI     `json:"cri,omitempty"`
+	ExpirationDate *time.Time `json:"expirationDate,omitempty"`
+	State          *string    `json:"state,omitempty"`
+	Version        *string    `json:"version,omitempty"`
 }
 
 // NewMachineImageVersion instantiates a new MachineImageVersion object
@@ -75,9 +76,9 @@ func (o *MachineImageVersion) SetCri(v *[]CRI) {
 }
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
-func (o *MachineImageVersion) GetExpirationDate() *string {
+func (o *MachineImageVersion) GetExpirationDate() *time.Time {
 	if o == nil || IsNil(o.ExpirationDate) {
-		var ret *string
+		var ret *time.Time
 		return ret
 	}
 	return o.ExpirationDate
@@ -85,7 +86,7 @@ func (o *MachineImageVersion) GetExpirationDate() *string {
 
 // GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineImageVersion) GetExpirationDateOk() (*string, bool) {
+func (o *MachineImageVersion) GetExpirationDateOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.ExpirationDate) {
 		return nil, false
 	}
@@ -101,8 +102,8 @@ func (o *MachineImageVersion) HasExpirationDate() bool {
 	return false
 }
 
-// SetExpirationDate gets a reference to the given string and assigns it to the ExpirationDate field.
-func (o *MachineImageVersion) SetExpirationDate(v *string) {
+// SetExpirationDate gets a reference to the given time.Time and assigns it to the ExpirationDate field.
+func (o *MachineImageVersion) SetExpirationDate(v *time.Time) {
 	o.ExpirationDate = v
 }
 
