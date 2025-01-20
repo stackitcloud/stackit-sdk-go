@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `logme`: [v0.20.2](services/logme/CHANGELOG.md#v0202-2025-01-20)
+  - **Bugfix:** Remove mistakenly implemented `syslog-use-udp`. Does not exist.
 - `authorization`: [v0.5.1](services/authorization/CHANGELOG.md#v051-2025-01-17)
   - **Bugfix:** Revert back to global URL configuration
 - `core`: [v0.15.1](core/CHANGELOG.md#v0151-2025-01-08)
