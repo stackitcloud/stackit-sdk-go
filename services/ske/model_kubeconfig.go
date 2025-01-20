@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the Kubeconfig type satisfies the MappedNullable interface at compile time
@@ -19,8 +20,8 @@ var _ MappedNullable = &Kubeconfig{}
 
 // Kubeconfig struct for Kubeconfig
 type Kubeconfig struct {
-	ExpirationTimestamp *string `json:"expirationTimestamp,omitempty"`
-	Kubeconfig          *string `json:"kubeconfig,omitempty"`
+	ExpirationTimestamp *time.Time `json:"expirationTimestamp,omitempty"`
+	Kubeconfig          *string    `json:"kubeconfig,omitempty"`
 }
 
 // NewKubeconfig instantiates a new Kubeconfig object
@@ -41,9 +42,9 @@ func NewKubeconfigWithDefaults() *Kubeconfig {
 }
 
 // GetExpirationTimestamp returns the ExpirationTimestamp field value if set, zero value otherwise.
-func (o *Kubeconfig) GetExpirationTimestamp() *string {
+func (o *Kubeconfig) GetExpirationTimestamp() *time.Time {
 	if o == nil || IsNil(o.ExpirationTimestamp) {
-		var ret *string
+		var ret *time.Time
 		return ret
 	}
 	return o.ExpirationTimestamp
@@ -51,7 +52,7 @@ func (o *Kubeconfig) GetExpirationTimestamp() *string {
 
 // GetExpirationTimestampOk returns a tuple with the ExpirationTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Kubeconfig) GetExpirationTimestampOk() (*string, bool) {
+func (o *Kubeconfig) GetExpirationTimestampOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.ExpirationTimestamp) {
 		return nil, false
 	}
@@ -67,8 +68,8 @@ func (o *Kubeconfig) HasExpirationTimestamp() bool {
 	return false
 }
 
-// SetExpirationTimestamp gets a reference to the given string and assigns it to the ExpirationTimestamp field.
-func (o *Kubeconfig) SetExpirationTimestamp(v *string) {
+// SetExpirationTimestamp gets a reference to the given time.Time and assigns it to the ExpirationTimestamp field.
+func (o *Kubeconfig) SetExpirationTimestamp(v *time.Time) {
 	o.ExpirationTimestamp = v
 }
 
