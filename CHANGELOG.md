@@ -1,5 +1,11 @@
 ## Release (2025-XX-XX)
 
+- `sqlserverflex`: [v0.9.0](services/sqlserverflex/CHANGELOG.md#v090-2025-01-20)
+  - **Breaking change**: Delete endpoint made private.
+- `postgresflex`: [0.17.0](services/postgresflex/CHANGELOG.md#v0170-2025-01-20)
+  - **Breaking change**: Delete endpoint made private.
+- `mongodbflex`: [v0.17.0](services/mongodbflex/CHANGELOG.md#v0170-2025-01-20)
+  - **Breaking change**: Delete endpoint made private.
 - `logme`: [v0.20.2](services/logme/CHANGELOG.md#v0202-2025-01-20)
   - **Bugfix:** Remove mistakenly implemented `syslog-use-udp`. Does not exist.
 - `authorization`: [v0.5.1](services/authorization/CHANGELOG.md#v051-2025-01-17)
