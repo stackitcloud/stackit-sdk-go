@@ -24,7 +24,7 @@ type PlanDetails struct {
 	// Flavor Name
 	FlavorName *string `json:"flavorName,omitempty"`
 	// Maximum number of concurrent connections per application load balancer VM instance.
-	MaxConnections *interface{} `json:"maxConnections,omitempty"`
+	MaxConnections *int64 `json:"maxConnections,omitempty"`
 	// Service Plan Name
 	Name *string `json:"name,omitempty"`
 	// Service Plan Identifier
@@ -112,10 +112,10 @@ func (o *PlanDetails) SetFlavorName(v *string) {
 	o.FlavorName = v
 }
 
-// GetMaxConnections returns the MaxConnections field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PlanDetails) GetMaxConnections() *interface{} {
+// GetMaxConnections returns the MaxConnections field value if set, zero value otherwise.
+func (o *PlanDetails) GetMaxConnections() *int64 {
 	if o == nil || IsNil(o.MaxConnections) {
-		var ret *interface{}
+		var ret *int64
 		return ret
 	}
 	return o.MaxConnections
@@ -123,8 +123,7 @@ func (o *PlanDetails) GetMaxConnections() *interface{} {
 
 // GetMaxConnectionsOk returns a tuple with the MaxConnections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PlanDetails) GetMaxConnectionsOk() (*interface{}, bool) {
+func (o *PlanDetails) GetMaxConnectionsOk() (*int64, bool) {
 	if o == nil || IsNil(o.MaxConnections) {
 		return nil, false
 	}
@@ -140,8 +139,8 @@ func (o *PlanDetails) HasMaxConnections() bool {
 	return false
 }
 
-// SetMaxConnections gets a reference to the given interface{} and assigns it to the MaxConnections field.
-func (o *PlanDetails) SetMaxConnections(v *interface{}) {
+// SetMaxConnections gets a reference to the given int64 and assigns it to the MaxConnections field.
+func (o *PlanDetails) SetMaxConnections(v *int64) {
 	o.MaxConnections = v
 }
 
@@ -217,7 +216,7 @@ func (o PlanDetails) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FlavorName) {
 		toSerialize["flavorName"] = o.FlavorName
 	}
-	if o.MaxConnections != nil {
+	if !IsNil(o.MaxConnections) {
 		toSerialize["maxConnections"] = o.MaxConnections
 	}
 	if !IsNil(o.Name) {
