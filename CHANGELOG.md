@@ -27,7 +27,7 @@
   
 ## Release (2025-01-07)
 
-- `postgresflex`: [0.16.1](services/postgresflex/CHANGELOG.md#v0161-2025-xx-yy)
+- `postgresflex`: [0.16.1](services/postgresflex/CHANGELOG.md#v0161-2024-12-19)
   - **Bugfix:** Correctly handle nullable attributes in model types
 - `iaas`: [v0.19.0](services/iaas/CHANGELOG.md#v0190-2024-12-20)
   - **Feature:** Add method to list quotas: `ListQuotas`
