@@ -1,3 +1,7 @@
+## v0.20.2 (2025-01-20)
+
+- **Bugfix:** Remove mistakenly implemented `syslog-use-udp`. Does not exist.
+
 ## v0.20.1 (2024-12-17)
 
 - **Bugfix:** Correctly handle nullable attributes in model types
