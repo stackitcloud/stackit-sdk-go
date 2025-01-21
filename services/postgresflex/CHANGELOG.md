@@ -1,3 +1,6 @@
+## v0.17.0 (2025-01-20)
+- **Breaking change**: Delete endpoint made private.
+
 ## v0.16.1 (2025-xx-yy)
 - **Bugfix:** Correctly handle nullable attributes in model types
 
