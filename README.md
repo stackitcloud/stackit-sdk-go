@@ -99,7 +99,7 @@ More examples on other services, configuration and authentication possibilities 
 
 ## Authentication
 
-To authenticate with the SDK, you need a [service account](https://docs.stackit.cloud/stackit/en/service-accounts-134415819.html) with appropriate permissions (e.g., `project.owner`). This service account can for example be created in the Portal, please check the documentation for further details.
+To authenticate with the SDK, you need a [service account](https://docs.stackit.cloud/stackit/en/service-accounts-134415819.html) with appropriate permissions (e.g., `project.owner`). You can create a service account through the STACKIT Portal.
 
 ### Authentication Methods
 
@@ -115,69 +115,108 @@ The SDK supports two authentication methods:
    - Uses long-lived service account tokens
    - Simpler but less secure
 
-### Configuration Options
-
-You can configure authentication using any of these methods:
-
-1. **Explicit Configuration in Code**
-
-   ```go
-   config.WithServiceAccountKeyPath("path/to/sa_key.json")
-   config.WithToken("your-token")
-   ```
-
-2. **Environment Variables**
-
-   ```bash
-   STACKIT_SERVICE_ACCOUNT_KEY_PATH=/path/to/sa_key.json
-   STACKIT_SERVICE_ACCOUNT_TOKEN=your-token
-   ```
-
-3. **Credentials File**
-   - Default location: `$HOME/.stackit/credentials.json`
-   - Custom location: Set via `STACKIT_CREDENTIALS_PATH`
-   - Format:
-     ```json
-     {
-       "STACKIT_SERVICE_ACCOUNT_KEY_PATH": "path/to/sa_key.json",
-       "STACKIT_SERVICE_ACCOUNT_TOKEN": "your-token"
-     }
-     ```
-
-### Configuration Reference
-
-1. **Explicit Configuration**
-
-   - `config.WithServiceAccountKey(string)` - Set the service account key JSON directly
-   - `config.WithServiceAccountKeyPath(string)` - Set the path to the service account key JSON file
-   - `config.WithPrivateKey(string)` - Set the service account private key directly (for custom key pairs)
-   - `config.WithPrivateKeyPath(string)` - Set the path to the service account private key file
-   - `config.WithToken(string)` - Set the service account access token directly
-
-2. **Environment Variables**
-
-   - `STACKIT_SERVICE_ACCOUNT_KEY` - Service account key JSON as string
-   - `STACKIT_SERVICE_ACCOUNT_KEY_PATH` - Path to service account key JSON file
-   - `STACKIT_PRIVATE_KEY` - Service account private key as string
-   - `STACKIT_PRIVATE_KEY_PATH` - Path to service account private key file
-   - `STACKIT_SERVICE_ACCOUNT_TOKEN` - Service account access token
-   - `STACKIT_CREDENTIALS_PATH` - Custom path to credentials file
-
-3. **Credentials File**
-   - JSON file containing any of the above environment variable names as keys
-   - Default location: `$HOME/.stackit/credentials.json`
-
 ### Configuration Priority
 
 The SDK searches for credentials in the following order:
 
 1. Explicit configuration in code
 2. Environment variables
-3. Credentials file
+3. Credentials file (`$HOME/.stackit/credentials.json`)
 
 For each authentication method, the key flow is attempted first, followed by the token flow.
 
-Check the [authentication example](examples/authentication/authentication.go) for implementation details.
+### Using the Key Flow
+
+1. Create a service account key in the STACKIT Portal:
+
+   - Navigate to `Service Accounts` → Select account → `Service Account Keys` → Create key
+   - You can either let STACKIT generate the key pair or provide your own RSA key pair
+
+2. Save the service account key JSON:
+
+```json
+{
+  "id": "uuid",
+  "publicKey": "public key",
+  "credentials": {
+    "kid": "string",
+    "iss": "my-sa@sa.stackit.cloud",
+    "sub": "uuid",
+    "aud": "string",
+    "privateKey": "private key (if STACKIT-generated)"
+  }
+  // ... other fields ...
+}
+```
+
+3. Configure authentication using any of these methods:
+
+   **A. Code Configuration**
+
+   ```go
+   // Using service account key file
+   config.WithServiceAccountKeyPath("path/to/sa_key.json")
+   // Or using key content directly
+   config.WithServiceAccountKey(keyJSON)
+
+   // Optional: For custom key pairs
+   config.WithPrivateKeyPath("path/to/private.pem")
+   // Or using private key content directly
+   config.WithPrivateKey(privateKeyJSON)
+   ```
+
+   **B. Environment Variables**
+
+   ```bash
+   # Using service account key
+   STACKIT_SERVICE_ACCOUNT_KEY_PATH=/path/to/sa_key.json
+   # or
+   STACKIT_SERVICE_ACCOUNT_KEY=<sa-key-content>
+
+   # Optional: For custom key pairs
+   STACKIT_PRIVATE_KEY_PATH=/path/to/private.pem
+   # or
+   STACKIT_PRIVATE_KEY=<private-key-content>
+   ```
+
+   **C. Credentials File** (`$HOME/.stackit/credentials.json`)
+
+   ```json
+   {
+     "STACKIT_SERVICE_ACCOUNT_KEY_PATH": "/path/to/sa_key.json",
+     "STACKIT_PRIVATE_KEY_PATH": "/path/to/private.pem"
+   }
+   ```
+
+### Using the Token Flow
+
+1. Create an access token in the STACKIT Portal:
+
+   - Navigate to `Service Accounts` → Select account → `Access Tokens` → Create token
+
+2. Configure authentication using any of these methods:
+
+   **A. Code Configuration**
+
+   ```go
+   config.WithToken("your-token")
+   ```
+
+   **B. Environment Variables**
+
+   ```bash
+   STACKIT_SERVICE_ACCOUNT_TOKEN=your-token
+   ```
+
+   **C. Credentials File** (`$HOME/.stackit/credentials.json`)
+
+   ```json
+   {
+     "STACKIT_SERVICE_ACCOUNT_TOKEN": "your-token"
+   }
+   ```
+
+For detailed implementation examples, see the [authentication example](examples/authentication/authentication.go).
 
 ## Reporting issues
 
