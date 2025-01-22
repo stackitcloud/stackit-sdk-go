@@ -130,7 +130,8 @@ For each authentication method, the key flow is attempted first, followed by the
 1. Create a service account key in the STACKIT Portal:
 
    - Navigate to `Service Accounts` → Select account → `Service Account Keys` → Create key
-   - You can either let STACKIT generate the key pair or provide your own RSA key pair
+   - You can either let STACKIT generate the key pair or provide your own RSA key pair (see [Creating an RSA key-pair](https://docs.stackit.cloud/stackit/en/usage-of-the-service-account-keys-in-stackit-175112464.html#UsageoftheserviceaccountkeysinSTACKIT-CreatinganRSAkey-pair) for more details)
+   - **Note**: it's also possible to create the service account key in other ways (see [Tutorials for Service Accounts](https://docs.stackit.cloud/stackit/en/tutorials-for-service-accounts-134415861.html) for more details)
 
 2. Save the service account key JSON:
 
@@ -193,6 +194,7 @@ For each authentication method, the key flow is attempted first, followed by the
 1. Create an access token in the STACKIT Portal:
 
    - Navigate to `Service Accounts` → Select account → `Access Tokens` → Create token
+   - **Note**: it's also possible to create the service account access tokens in other ways (see [Tutorials for Service Accounts](https://docs.stackit.cloud/stackit/en/tutorials-for-service-accounts-134415861.html) for more details)
 
 2. Configure authentication using any of these methods:
 
