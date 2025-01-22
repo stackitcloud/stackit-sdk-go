@@ -503,6 +503,7 @@ func TestKeyAuth(t *testing.T) {
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", "")
 			t.Setenv("STACKIT_PRIVATE_KEY", "")
 			t.Setenv("STACKIT_PRIVATE_KEY_PATH", "")
+			t.Setenv("HOME", t.TempDir())
 
 			var saKey string
 			if test.serviceAccountKey != nil {
@@ -843,6 +844,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 		},
 	} {
 		t.Run(test.name, func(t *testing.T) {
+			t.Setenv("HOME", t.TempDir())
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.credentialsFilePath)
 
 			if test.envServiceAccountKeyPathSet {
