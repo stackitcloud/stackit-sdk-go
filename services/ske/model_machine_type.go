@@ -20,10 +20,13 @@ var _ MappedNullable = &MachineType{}
 // MachineType struct for MachineType
 type MachineType struct {
 	Architecture *string `json:"architecture,omitempty"`
-	Cpu          *int64  `json:"cpu,omitempty"`
-	Gpu          *int64  `json:"gpu,omitempty"`
-	Memory       *int64  `json:"memory,omitempty"`
-	Name         *string `json:"name,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	Cpu *int64 `json:"cpu,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	Gpu *int64 `json:"gpu,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	Memory *int64  `json:"memory,omitempty"`
+	Name   *string `json:"name,omitempty"`
 }
 
 // NewMachineType instantiates a new MachineType object
