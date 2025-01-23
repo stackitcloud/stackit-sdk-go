@@ -26,11 +26,15 @@ type Nodepool struct {
 	Cri               *CRI               `json:"cri,omitempty"`
 	Labels            *map[string]string `json:"labels,omitempty"`
 	// REQUIRED
-	Machine        *Machine `json:"machine"`
-	MaxSurge       *int64   `json:"maxSurge,omitempty"`
-	MaxUnavailable *int64   `json:"maxUnavailable,omitempty"`
+	Machine *Machine `json:"machine"`
+	// Can be cast to int32 without loss of precision.
+	MaxSurge *int64 `json:"maxSurge,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	MaxUnavailable *int64 `json:"maxUnavailable,omitempty"`
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	Maximum *int64 `json:"maximum"`
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	Minimum *int64 `json:"minimum"`
 	// Maximum 15 chars

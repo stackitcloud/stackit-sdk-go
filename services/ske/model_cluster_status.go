@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the ClusterStatus type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,12 @@ var _ MappedNullable = &ClusterStatus{}
 type ClusterStatus struct {
 	Aggregated *ClusterStatusState `json:"aggregated,omitempty"`
 	// Format: `2024-02-15T11:06:29Z`
-	CreationTime        *string                   `json:"creationTime,omitempty"`
+	CreationTime        *time.Time                `json:"creationTime,omitempty"`
 	CredentialsRotation *CredentialsRotationState `json:"credentialsRotation,omitempty"`
-	Error               *RuntimeError             `json:"error,omitempty"`
-	Hibernated          *bool                     `json:"hibernated,omitempty"`
+	// The outgoing network ranges (in CIDR notation) of traffic originating from workload on the cluster.
+	EgressAddressRanges *[]string     `json:"egressAddressRanges,omitempty"`
+	Error               *RuntimeError `json:"error,omitempty"`
+	Hibernated          *bool         `json:"hibernated,omitempty"`
 }
 
 // NewClusterStatus instantiates a new ClusterStatus object
@@ -81,9 +84,9 @@ func (o *ClusterStatus) SetAggregated(v *ClusterStatusState) {
 }
 
 // GetCreationTime returns the CreationTime field value if set, zero value otherwise.
-func (o *ClusterStatus) GetCreationTime() *string {
+func (o *ClusterStatus) GetCreationTime() *time.Time {
 	if o == nil || IsNil(o.CreationTime) {
-		var ret *string
+		var ret *time.Time
 		return ret
 	}
 	return o.CreationTime
@@ -91,7 +94,7 @@ func (o *ClusterStatus) GetCreationTime() *string {
 
 // GetCreationTimeOk returns a tuple with the CreationTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ClusterStatus) GetCreationTimeOk() (*string, bool) {
+func (o *ClusterStatus) GetCreationTimeOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.CreationTime) {
 		return nil, false
 	}
@@ -107,8 +110,8 @@ func (o *ClusterStatus) HasCreationTime() bool {
 	return false
 }
 
-// SetCreationTime gets a reference to the given string and assigns it to the CreationTime field.
-func (o *ClusterStatus) SetCreationTime(v *string) {
+// SetCreationTime gets a reference to the given time.Time and assigns it to the CreationTime field.
+func (o *ClusterStatus) SetCreationTime(v *time.Time) {
 	o.CreationTime = v
 }
 
@@ -142,6 +145,38 @@ func (o *ClusterStatus) HasCredentialsRotation() bool {
 // SetCredentialsRotation gets a reference to the given CredentialsRotationState and assigns it to the CredentialsRotation field.
 func (o *ClusterStatus) SetCredentialsRotation(v *CredentialsRotationState) {
 	o.CredentialsRotation = v
+}
+
+// GetEgressAddressRanges returns the EgressAddressRanges field value if set, zero value otherwise.
+func (o *ClusterStatus) GetEgressAddressRanges() *[]string {
+	if o == nil || IsNil(o.EgressAddressRanges) {
+		var ret *[]string
+		return ret
+	}
+	return o.EgressAddressRanges
+}
+
+// GetEgressAddressRangesOk returns a tuple with the EgressAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterStatus) GetEgressAddressRangesOk() (*[]string, bool) {
+	if o == nil || IsNil(o.EgressAddressRanges) {
+		return nil, false
+	}
+	return o.EgressAddressRanges, true
+}
+
+// HasEgressAddressRanges returns a boolean if a field has been set.
+func (o *ClusterStatus) HasEgressAddressRanges() bool {
+	if o != nil && !IsNil(o.EgressAddressRanges) {
+		return true
+	}
+
+	return false
+}
+
+// SetEgressAddressRanges gets a reference to the given []string and assigns it to the EgressAddressRanges field.
+func (o *ClusterStatus) SetEgressAddressRanges(v *[]string) {
+	o.EgressAddressRanges = v
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
@@ -218,6 +253,9 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.CredentialsRotation) {
 		toSerialize["credentialsRotation"] = o.CredentialsRotation
+	}
+	if !IsNil(o.EgressAddressRanges) {
+		toSerialize["egressAddressRanges"] = o.EgressAddressRanges
 	}
 	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error

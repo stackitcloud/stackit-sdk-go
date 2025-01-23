@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the TimeWindow type satisfies the MappedNullable interface at compile time
@@ -20,9 +21,9 @@ var _ MappedNullable = &TimeWindow{}
 // TimeWindow struct for TimeWindow
 type TimeWindow struct {
 	// REQUIRED
-	End *string `json:"end"`
+	End *time.Time `json:"end"`
 	// REQUIRED
-	Start *string `json:"start"`
+	Start *time.Time `json:"start"`
 }
 
 type _TimeWindow TimeWindow
@@ -31,7 +32,7 @@ type _TimeWindow TimeWindow
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTimeWindow(end *string, start *string) *TimeWindow {
+func NewTimeWindow(end *time.Time, start *time.Time) *TimeWindow {
 	this := TimeWindow{}
 	this.End = end
 	this.Start = start
@@ -47,9 +48,9 @@ func NewTimeWindowWithDefaults() *TimeWindow {
 }
 
 // GetEnd returns the End field value
-func (o *TimeWindow) GetEnd() *string {
+func (o *TimeWindow) GetEnd() *time.Time {
 	if o == nil || IsNil(o.End) {
-		var ret *string
+		var ret *time.Time
 		return ret
 	}
 
@@ -58,7 +59,7 @@ func (o *TimeWindow) GetEnd() *string {
 
 // GetEndOk returns a tuple with the End field value
 // and a boolean to check if the value has been set.
-func (o *TimeWindow) GetEndOk() (*string, bool) {
+func (o *TimeWindow) GetEndOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,14 +67,14 @@ func (o *TimeWindow) GetEndOk() (*string, bool) {
 }
 
 // SetEnd sets field value
-func (o *TimeWindow) SetEnd(v *string) {
+func (o *TimeWindow) SetEnd(v *time.Time) {
 	o.End = v
 }
 
 // GetStart returns the Start field value
-func (o *TimeWindow) GetStart() *string {
+func (o *TimeWindow) GetStart() *time.Time {
 	if o == nil || IsNil(o.Start) {
-		var ret *string
+		var ret *time.Time
 		return ret
 	}
 
@@ -82,7 +83,7 @@ func (o *TimeWindow) GetStart() *string {
 
 // GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
-func (o *TimeWindow) GetStartOk() (*string, bool) {
+func (o *TimeWindow) GetStartOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,7 +91,7 @@ func (o *TimeWindow) GetStartOk() (*string, bool) {
 }
 
 // SetStart sets field value
-func (o *TimeWindow) SetStart(v *string) {
+func (o *TimeWindow) SetStart(v *time.Time) {
 	o.Start = v
 }
 
