@@ -25,7 +25,7 @@ type Listener struct {
 	// Will be used to reference a listener and will replace display name in the future. Currently uses <protocol>-<port> as the name if no display name is given.
 	Name *string `json:"name,omitempty"`
 	// Port number where we listen for traffic
-	Port *interface{} `json:"port,omitempty"`
+	Port *int64 `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.
 	Protocol *string `json:"protocol,omitempty"`
 	// Rules define the routing parameters for the HTTP and HTTPS listeners.
@@ -177,10 +177,10 @@ func (o *Listener) SetName(v *string) {
 	o.Name = v
 }
 
-// GetPort returns the Port field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Listener) GetPort() *interface{} {
+// GetPort returns the Port field value if set, zero value otherwise.
+func (o *Listener) GetPort() *int64 {
 	if o == nil || IsNil(o.Port) {
-		var ret *interface{}
+		var ret *int64
 		return ret
 	}
 	return o.Port
@@ -188,8 +188,7 @@ func (o *Listener) GetPort() *interface{} {
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Listener) GetPortOk() (*interface{}, bool) {
+func (o *Listener) GetPortOk() (*int64, bool) {
 	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
@@ -205,8 +204,8 @@ func (o *Listener) HasPort() bool {
 	return false
 }
 
-// SetPort gets a reference to the given interface{} and assigns it to the Port field.
-func (o *Listener) SetPort(v *interface{}) {
+// SetPort gets a reference to the given int64 and assigns it to the Port field.
+func (o *Listener) SetPort(v *int64) {
 	o.Port = v
 }
 
@@ -288,7 +287,7 @@ func (o Listener) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Port != nil {
+	if !IsNil(o.Port) {
 		toSerialize["port"] = o.Port
 	}
 	if !IsNil(o.Protocol) {
