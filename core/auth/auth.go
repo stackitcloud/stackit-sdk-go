@@ -27,6 +27,8 @@ const (
 	privateKeyPathCredentialType        credentialType = "private_key_path"
 )
 
+var userHomeDir = os.UserHomeDir
+
 // SetupAuth sets up authentication based on the configuration. The different options are
 // custom authentication, no authentication, explicit key flow, explicit token flow or default authentication
 func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
@@ -195,7 +197,7 @@ func readCredentialsFile(path string) (*Credentials, error) {
 		customPath, customPathSet := os.LookupEnv("STACKIT_CREDENTIALS_PATH")
 		if !customPathSet || customPath == "" {
 			path = credentialsFilePath
-			home, err := os.UserHomeDir()
+			home, err := userHomeDir()
 			if err != nil {
 				return nil, fmt.Errorf("getting home directory: %w", err)
 			}
