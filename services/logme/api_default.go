@@ -1740,7 +1740,7 @@ ListOfferings: get the service offerings
 Get the service offerings that the service broker offers.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId
+	@param projectId Project id on which user has permissions
 	@return ApiListOfferingsRequest
 */
 func (a *APIClient) ListOfferings(ctx context.Context, projectId string) ApiListOfferingsRequest {
