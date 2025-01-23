@@ -1,3 +1,10 @@
+## v0.21.0 (2025-01-21)
+
+- **Removal:** The following methods were removed after deprecation (2024-04-16) and [`serviceenablement` SDK](https://github.com/stackitcloud/stackit-sdk-go/tree/main/services/serviceenablement) must be used instead.
+  - `DisableService`
+  - `EnableService`
+  - `GetServiceStatus`
+
 ## v0.20.1 (2024-12-17)
 
 - **Bugfix:** Correctly handle nullable attributes in model types

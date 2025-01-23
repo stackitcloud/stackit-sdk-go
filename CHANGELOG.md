@@ -1,5 +1,10 @@
 ## Release (2025-XX-XX)
 
+- `ske`: [v0.21.0](services/ske/CHANGELOG.md#v0210-2025-01-21)
+  - **Removal:** The following methods were removed after deprecation (2024-04-16) and [`serviceenablement` SDK](https://github.com/stackitcloud/stackit-sdk-go/tree/main/services/serviceenablement) must be used instead.
+  - `DisableService`
+  - `EnableService`
+  - `GetServiceStatus`
 - `sqlserverflex`: [v0.9.0](services/sqlserverflex/CHANGELOG.md#v090-2025-01-20)
   - **Breaking change**: Delete endpoint made private.
 - `postgresflex`: [0.17.0](services/postgresflex/CHANGELOG.md#v0170-2025-01-20)
