@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `ske`: [v0.21.1](services/ske/CHANGELOG.md#v0211-2025-01-23)
+  - Use current SKE API
 - `ske`: [v0.21.0](services/ske/CHANGELOG.md#v0210-2025-01-21)
   - **Removal:** The following methods were removed after deprecation (2024-04-16) and [`serviceenablement` SDK](https://github.com/stackitcloud/stackit-sdk-go/tree/main/services/serviceenablement) must be used instead.
   - `DisableService`
