@@ -448,6 +448,7 @@ func TestKeyAuth(t *testing.T) {
 		envVarPrivateKey     string
 		expectedPrivateKey   string
 		isValid              bool
+		homeDir              func(*testing.T) string
 	}{
 		{
 			desc:                 "configured_private_key",
@@ -484,6 +485,7 @@ func TestKeyAuth(t *testing.T) {
 			serviceAccountKey:    nil,
 			configuredPrivateKey: configuredPrivateKey,
 			isValid:              false,
+			homeDir:              func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			desc:                 "missing_private_key",
@@ -496,6 +498,7 @@ func TestKeyAuth(t *testing.T) {
 			serviceAccountKey:    nil,
 			configuredPrivateKey: "",
 			isValid:              false,
+			homeDir:              func(t *testing.T) string { return t.TempDir() },
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
@@ -503,7 +506,15 @@ func TestKeyAuth(t *testing.T) {
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", "")
 			t.Setenv("STACKIT_PRIVATE_KEY", "")
 			t.Setenv("STACKIT_PRIVATE_KEY_PATH", "")
-			t.Setenv("HOME", t.TempDir())
+			if homeDir := test.homeDir; homeDir != nil {
+				old := userHomeDir
+				t.Cleanup(func() {
+					userHomeDir = old
+				})
+				userHomeDir = func() (string, error) {
+					return test.homeDir(t), nil
+				}
+			}
 
 			var saKey string
 			if test.serviceAccountKey != nil {
@@ -770,6 +781,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 		credentialsFilePath         string
 		wantErr                     bool
 		expectedKey                 string
+		userHomeDir                 func(*testing.T) string
 	}{
 		{
 			name: "cfg_sa_key",
@@ -841,11 +853,20 @@ func TestGetServiceAccountKey(t *testing.T) {
 			cfg:         &config.Configuration{},
 			wantErr:     true,
 			expectedKey: "",
+			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 	} {
 		t.Run(test.name, func(t *testing.T) {
-			t.Setenv("HOME", t.TempDir())
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.credentialsFilePath)
+			if homeDir := test.userHomeDir; homeDir != nil {
+				old := userHomeDir
+				t.Cleanup(func() {
+					userHomeDir = old
+				})
+				userHomeDir = func() (string, error) {
+					return homeDir(t), nil
+				}
+			}
 
 			if test.envServiceAccountKeyPathSet {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", "test_resources/test_string_key.txt")
