@@ -20,7 +20,8 @@ var _ MappedNullable = &Status{}
 // Status The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
 type Status struct {
 	// The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
-	Code *interface{} `json:"code,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	Code *int64 `json:"code,omitempty"`
 	// A list of messages that carry the error details.  There is a common set of message types for APIs to use.
 	Details *[]GoogleProtobufAny `json:"details,omitempty"`
 	// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
@@ -44,10 +45,10 @@ func NewStatusWithDefaults() *Status {
 	return &this
 }
 
-// GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Status) GetCode() *interface{} {
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *Status) GetCode() *int64 {
 	if o == nil || IsNil(o.Code) {
-		var ret *interface{}
+		var ret *int64
 		return ret
 	}
 	return o.Code
@@ -55,8 +56,7 @@ func (o *Status) GetCode() *interface{} {
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Status) GetCodeOk() (*interface{}, bool) {
+func (o *Status) GetCodeOk() (*int64, bool) {
 	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
@@ -72,8 +72,8 @@ func (o *Status) HasCode() bool {
 	return false
 }
 
-// SetCode gets a reference to the given interface{} and assigns it to the Code field.
-func (o *Status) SetCode(v *interface{}) {
+// SetCode gets a reference to the given int64 and assigns it to the Code field.
+func (o *Status) SetCode(v *int64) {
 	o.Code = v
 }
 
@@ -143,7 +143,7 @@ func (o *Status) SetMessage(v *string) {
 
 func (o Status) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
+	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
 	if !IsNil(o.Details) {
