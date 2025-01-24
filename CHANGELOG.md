@@ -1,4 +1,4 @@
-## Release (2025-XX-XX)
+## Release (2025-01-24)
 
 - `ske`: [v0.21.1](services/ske/CHANGELOG.md#v0211-2025-01-23)
   - Use current SKE API
