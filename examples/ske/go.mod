@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.15.1
-	github.com/stackitcloud/stackit-sdk-go/services/ske v0.20.1
+	github.com/stackitcloud/stackit-sdk-go/services/ske v0.21.1
 )
 
 require (
