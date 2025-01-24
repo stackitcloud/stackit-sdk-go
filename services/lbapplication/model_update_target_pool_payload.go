@@ -23,7 +23,7 @@ type UpdateTargetPoolPayload struct {
 	// Target pool name
 	Name *string `json:"name,omitempty"`
 	// The number identifying the port where each target listens for traffic.
-	TargetPort *interface{} `json:"targetPort,omitempty"`
+	TargetPort *int64 `json:"targetPort,omitempty"`
 	// List of all targets which will be used in the pool. Limited to 250.
 	Targets *[]Target `json:"targets,omitempty"`
 }
@@ -109,10 +109,10 @@ func (o *UpdateTargetPoolPayload) SetName(v *string) {
 	o.Name = v
 }
 
-// GetTargetPort returns the TargetPort field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateTargetPoolPayload) GetTargetPort() *interface{} {
+// GetTargetPort returns the TargetPort field value if set, zero value otherwise.
+func (o *UpdateTargetPoolPayload) GetTargetPort() *int64 {
 	if o == nil || IsNil(o.TargetPort) {
-		var ret *interface{}
+		var ret *int64
 		return ret
 	}
 	return o.TargetPort
@@ -120,8 +120,7 @@ func (o *UpdateTargetPoolPayload) GetTargetPort() *interface{} {
 
 // GetTargetPortOk returns a tuple with the TargetPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateTargetPoolPayload) GetTargetPortOk() (*interface{}, bool) {
+func (o *UpdateTargetPoolPayload) GetTargetPortOk() (*int64, bool) {
 	if o == nil || IsNil(o.TargetPort) {
 		return nil, false
 	}
@@ -137,8 +136,8 @@ func (o *UpdateTargetPoolPayload) HasTargetPort() bool {
 	return false
 }
 
-// SetTargetPort gets a reference to the given interface{} and assigns it to the TargetPort field.
-func (o *UpdateTargetPoolPayload) SetTargetPort(v *interface{}) {
+// SetTargetPort gets a reference to the given int64 and assigns it to the TargetPort field.
+func (o *UpdateTargetPoolPayload) SetTargetPort(v *int64) {
 	o.TargetPort = v
 }
 
@@ -182,7 +181,7 @@ func (o UpdateTargetPoolPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.TargetPort != nil {
+	if !IsNil(o.TargetPort) {
 		toSerialize["targetPort"] = o.TargetPort
 	}
 	if !IsNil(o.Targets) {
