@@ -20,7 +20,7 @@ var _ MappedNullable = &ActiveHealthCheck{}
 // ActiveHealthCheck struct for ActiveHealthCheck
 type ActiveHealthCheck struct {
 	// Healthy threshold of the health checking
-	HealthyThreshold *interface{}      `json:"healthyThreshold,omitempty"`
+	HealthyThreshold *int64            `json:"healthyThreshold,omitempty"`
 	HttpHealthChecks *HttpHealthChecks `json:"httpHealthChecks,omitempty"`
 	// Interval duration of health checking in seconds
 	Interval *string `json:"interval,omitempty"`
@@ -29,7 +29,7 @@ type ActiveHealthCheck struct {
 	// Active health checking timeout duration in seconds
 	Timeout *string `json:"timeout,omitempty"`
 	// Unhealthy threshold of the health checking
-	UnhealthyThreshold *interface{} `json:"unhealthyThreshold,omitempty"`
+	UnhealthyThreshold *int64 `json:"unhealthyThreshold,omitempty"`
 }
 
 // NewActiveHealthCheck instantiates a new ActiveHealthCheck object
@@ -49,10 +49,10 @@ func NewActiveHealthCheckWithDefaults() *ActiveHealthCheck {
 	return &this
 }
 
-// GetHealthyThreshold returns the HealthyThreshold field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ActiveHealthCheck) GetHealthyThreshold() *interface{} {
+// GetHealthyThreshold returns the HealthyThreshold field value if set, zero value otherwise.
+func (o *ActiveHealthCheck) GetHealthyThreshold() *int64 {
 	if o == nil || IsNil(o.HealthyThreshold) {
-		var ret *interface{}
+		var ret *int64
 		return ret
 	}
 	return o.HealthyThreshold
@@ -60,8 +60,7 @@ func (o *ActiveHealthCheck) GetHealthyThreshold() *interface{} {
 
 // GetHealthyThresholdOk returns a tuple with the HealthyThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ActiveHealthCheck) GetHealthyThresholdOk() (*interface{}, bool) {
+func (o *ActiveHealthCheck) GetHealthyThresholdOk() (*int64, bool) {
 	if o == nil || IsNil(o.HealthyThreshold) {
 		return nil, false
 	}
@@ -77,8 +76,8 @@ func (o *ActiveHealthCheck) HasHealthyThreshold() bool {
 	return false
 }
 
-// SetHealthyThreshold gets a reference to the given interface{} and assigns it to the HealthyThreshold field.
-func (o *ActiveHealthCheck) SetHealthyThreshold(v *interface{}) {
+// SetHealthyThreshold gets a reference to the given int64 and assigns it to the HealthyThreshold field.
+func (o *ActiveHealthCheck) SetHealthyThreshold(v *int64) {
 	o.HealthyThreshold = v
 }
 
@@ -210,10 +209,10 @@ func (o *ActiveHealthCheck) SetTimeout(v *string) {
 	o.Timeout = v
 }
 
-// GetUnhealthyThreshold returns the UnhealthyThreshold field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ActiveHealthCheck) GetUnhealthyThreshold() *interface{} {
+// GetUnhealthyThreshold returns the UnhealthyThreshold field value if set, zero value otherwise.
+func (o *ActiveHealthCheck) GetUnhealthyThreshold() *int64 {
 	if o == nil || IsNil(o.UnhealthyThreshold) {
-		var ret *interface{}
+		var ret *int64
 		return ret
 	}
 	return o.UnhealthyThreshold
@@ -221,8 +220,7 @@ func (o *ActiveHealthCheck) GetUnhealthyThreshold() *interface{} {
 
 // GetUnhealthyThresholdOk returns a tuple with the UnhealthyThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ActiveHealthCheck) GetUnhealthyThresholdOk() (*interface{}, bool) {
+func (o *ActiveHealthCheck) GetUnhealthyThresholdOk() (*int64, bool) {
 	if o == nil || IsNil(o.UnhealthyThreshold) {
 		return nil, false
 	}
@@ -238,14 +236,14 @@ func (o *ActiveHealthCheck) HasUnhealthyThreshold() bool {
 	return false
 }
 
-// SetUnhealthyThreshold gets a reference to the given interface{} and assigns it to the UnhealthyThreshold field.
-func (o *ActiveHealthCheck) SetUnhealthyThreshold(v *interface{}) {
+// SetUnhealthyThreshold gets a reference to the given int64 and assigns it to the UnhealthyThreshold field.
+func (o *ActiveHealthCheck) SetUnhealthyThreshold(v *int64) {
 	o.UnhealthyThreshold = v
 }
 
 func (o ActiveHealthCheck) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.HealthyThreshold != nil {
+	if !IsNil(o.HealthyThreshold) {
 		toSerialize["healthyThreshold"] = o.HealthyThreshold
 	}
 	if !IsNil(o.HttpHealthChecks) {
@@ -260,7 +258,7 @@ func (o ActiveHealthCheck) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Timeout) {
 		toSerialize["timeout"] = o.Timeout
 	}
-	if o.UnhealthyThreshold != nil {
+	if !IsNil(o.UnhealthyThreshold) {
 		toSerialize["unhealthyThreshold"] = o.UnhealthyThreshold
 	}
 	return toSerialize, nil

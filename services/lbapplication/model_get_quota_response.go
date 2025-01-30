@@ -20,7 +20,7 @@ var _ MappedNullable = &GetQuotaResponse{}
 // GetQuotaResponse struct for GetQuotaResponse
 type GetQuotaResponse struct {
 	// The maximum number of load balancing servers in this project. Unlimited if set to -1.
-	MaxLoadBalancers *interface{} `json:"maxLoadBalancers,omitempty"`
+	MaxLoadBalancers *int64 `json:"maxLoadBalancers,omitempty"`
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty"`
 }
@@ -42,10 +42,10 @@ func NewGetQuotaResponseWithDefaults() *GetQuotaResponse {
 	return &this
 }
 
-// GetMaxLoadBalancers returns the MaxLoadBalancers field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetQuotaResponse) GetMaxLoadBalancers() *interface{} {
+// GetMaxLoadBalancers returns the MaxLoadBalancers field value if set, zero value otherwise.
+func (o *GetQuotaResponse) GetMaxLoadBalancers() *int64 {
 	if o == nil || IsNil(o.MaxLoadBalancers) {
-		var ret *interface{}
+		var ret *int64
 		return ret
 	}
 	return o.MaxLoadBalancers
@@ -53,8 +53,7 @@ func (o *GetQuotaResponse) GetMaxLoadBalancers() *interface{} {
 
 // GetMaxLoadBalancersOk returns a tuple with the MaxLoadBalancers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetQuotaResponse) GetMaxLoadBalancersOk() (*interface{}, bool) {
+func (o *GetQuotaResponse) GetMaxLoadBalancersOk() (*int64, bool) {
 	if o == nil || IsNil(o.MaxLoadBalancers) {
 		return nil, false
 	}
@@ -70,8 +69,8 @@ func (o *GetQuotaResponse) HasMaxLoadBalancers() bool {
 	return false
 }
 
-// SetMaxLoadBalancers gets a reference to the given interface{} and assigns it to the MaxLoadBalancers field.
-func (o *GetQuotaResponse) SetMaxLoadBalancers(v *interface{}) {
+// SetMaxLoadBalancers gets a reference to the given int64 and assigns it to the MaxLoadBalancers field.
+func (o *GetQuotaResponse) SetMaxLoadBalancers(v *int64) {
 	o.MaxLoadBalancers = v
 }
 
@@ -109,7 +108,7 @@ func (o *GetQuotaResponse) SetProjectId(v *string) {
 
 func (o GetQuotaResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.MaxLoadBalancers != nil {
+	if !IsNil(o.MaxLoadBalancers) {
 		toSerialize["maxLoadBalancers"] = o.MaxLoadBalancers
 	}
 	if !IsNil(o.ProjectId) {
