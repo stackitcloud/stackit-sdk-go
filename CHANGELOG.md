@@ -2,6 +2,8 @@
 
 - `lbapplication`: [v0.2.0](services/lbapplication/CHANGELOG.md#v020-2025-01-30)
   - **Bugfix**: Set type from interface to int64 of `HealthyThreshold`, `UnhealthyThreshold`, `MaxLoadBalancers`, `Port`, `MaxConnections`, `Code` and `TargetPort`
+- `resourcemanager`: [v0.12.0](services/resourcemanager/CHANGELOG.md#v0120-2025-01-31)
+  - **Breaking Change**: Remove the methods `BffGetContainersOfAFolder` and `BffGetContainersOfAnOrganization`
 
 
 ## Release (2025-01-24)

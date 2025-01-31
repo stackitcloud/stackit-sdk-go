@@ -1,3 +1,7 @@
+## v0.12.0 (2025-01-31)
+
+- **Breaking Change**: Remove the methods `BffGetContainersOfAFolder` and `BffGetContainersOfAnOrganization`
+
 ## v0.11.1 (2024-12-17)
 
 - **Bugfix:** Correctly handle nullable attributes in model types
