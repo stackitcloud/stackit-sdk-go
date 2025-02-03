@@ -24,9 +24,11 @@ import (
 func Test_objectstorage_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateAccessKey", func(t *testing.T) {
-		path := "/v1/project/{projectId}/access-key"
+		path := "/v2/project/{projectId}/regions/{region}/access-key"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -64,9 +66,10 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		createAccessKeyPayload := CreateAccessKeyPayload{}
 
-		resp, reqErr := apiClient.CreateAccessKey(context.Background(), projectId).CreateAccessKeyPayload(createAccessKeyPayload).Execute()
+		resp, reqErr := apiClient.CreateAccessKey(context.Background(), projectId, region).CreateAccessKeyPayload(createAccessKeyPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -77,9 +80,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateBucket", func(t *testing.T) {
-		path := "/v1/project/{projectId}/bucket/{bucketName}"
+		path := "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		bucketNameValue := "bucketName"
 		path = strings.Replace(path, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(bucketNameValue, "bucketName")), -1)
 
@@ -119,9 +124,10 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		bucketName := "bucketName"
 
-		resp, reqErr := apiClient.CreateBucket(context.Background(), projectId, bucketName).Execute()
+		resp, reqErr := apiClient.CreateBucket(context.Background(), projectId, region, bucketName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -132,9 +138,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateCredentialsGroup", func(t *testing.T) {
-		path := "/v1/project/{projectId}/credentials-group"
+		path := "/v2/project/{projectId}/regions/{region}/credentials-group"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -172,9 +180,10 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		createCredentialsGroupPayload := CreateCredentialsGroupPayload{}
 
-		resp, reqErr := apiClient.CreateCredentialsGroup(context.Background(), projectId).CreateCredentialsGroupPayload(createCredentialsGroupPayload).Execute()
+		resp, reqErr := apiClient.CreateCredentialsGroup(context.Background(), projectId, region).CreateCredentialsGroupPayload(createCredentialsGroupPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -185,9 +194,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteAccessKey", func(t *testing.T) {
-		path := "/v1/project/{projectId}/access-key/{keyId}"
+		path := "/v2/project/{projectId}/regions/{region}/access-key/{keyId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		keyIdValue := "keyId"
 		path = strings.Replace(path, "{"+"keyId"+"}", url.PathEscape(ParameterValueToString(keyIdValue, "keyId")), -1)
 
@@ -227,9 +238,10 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		keyId := "keyId"
 
-		resp, reqErr := apiClient.DeleteAccessKey(context.Background(), projectId, keyId).Execute()
+		resp, reqErr := apiClient.DeleteAccessKey(context.Background(), projectId, region, keyId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -240,9 +252,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteBucket", func(t *testing.T) {
-		path := "/v1/project/{projectId}/bucket/{bucketName}"
+		path := "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		bucketNameValue := "bucketName"
 		path = strings.Replace(path, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(bucketNameValue, "bucketName")), -1)
 
@@ -282,9 +296,10 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		bucketName := "bucketName"
 
-		resp, reqErr := apiClient.DeleteBucket(context.Background(), projectId, bucketName).Execute()
+		resp, reqErr := apiClient.DeleteBucket(context.Background(), projectId, region, bucketName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -295,9 +310,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteCredentialsGroup", func(t *testing.T) {
-		path := "/v1/project/{projectId}/credentials-group/{groupId}"
+		path := "/v2/project/{projectId}/regions/{region}/credentials-group/{groupId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		groupIdValue := "groupId"
 		path = strings.Replace(path, "{"+"groupId"+"}", url.PathEscape(ParameterValueToString(groupIdValue, "groupId")), -1)
 
@@ -337,9 +354,10 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		groupId := "groupId"
 
-		resp, reqErr := apiClient.DeleteCredentialsGroup(context.Background(), projectId, groupId).Execute()
+		resp, reqErr := apiClient.DeleteCredentialsGroup(context.Background(), projectId, region, groupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -350,9 +368,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DisableService", func(t *testing.T) {
-		path := "/v1/project/{projectId}"
+		path := "/v2/project/{projectId}/regions/{region}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -390,8 +410,9 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.DisableService(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.DisableService(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -402,9 +423,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService EnableService", func(t *testing.T) {
-		path := "/v1/project/{projectId}"
+		path := "/v2/project/{projectId}/regions/{region}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -442,8 +465,9 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.EnableService(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.EnableService(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -454,9 +478,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetBucket", func(t *testing.T) {
-		path := "/v1/project/{projectId}/bucket/{bucketName}"
+		path := "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		bucketNameValue := "bucketName"
 		path = strings.Replace(path, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(bucketNameValue, "bucketName")), -1)
 
@@ -496,9 +522,10 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		bucketName := "bucketName"
 
-		resp, reqErr := apiClient.GetBucket(context.Background(), projectId, bucketName).Execute()
+		resp, reqErr := apiClient.GetBucket(context.Background(), projectId, region, bucketName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -509,9 +536,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetServiceStatus", func(t *testing.T) {
-		path := "/v1/project/{projectId}"
+		path := "/v2/project/{projectId}/regions/{region}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -549,8 +578,9 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.GetServiceStatus(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.GetServiceStatus(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -561,9 +591,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListAccessKeys", func(t *testing.T) {
-		path := "/v1/project/{projectId}/access-keys"
+		path := "/v2/project/{projectId}/regions/{region}/access-keys"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -601,8 +633,9 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListAccessKeys(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListAccessKeys(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -613,9 +646,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListBuckets", func(t *testing.T) {
-		path := "/v1/project/{projectId}/buckets"
+		path := "/v2/project/{projectId}/regions/{region}/buckets"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -653,8 +688,9 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListBuckets(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListBuckets(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -665,9 +701,11 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListCredentialsGroups", func(t *testing.T) {
-		path := "/v1/project/{projectId}/credentials-groups"
+		path := "/v2/project/{projectId}/regions/{region}/credentials-groups"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -705,8 +743,9 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListCredentialsGroups(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListCredentialsGroups(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
