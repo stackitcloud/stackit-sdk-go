@@ -16,7 +16,7 @@ type apiClientBucketMocked struct {
 	bucketGetFails  bool
 }
 
-func (a *apiClientBucketMocked) GetBucketExecute(_ context.Context, _, _ string) (*objectstorage.GetBucketResponse, error) {
+func (a *apiClientBucketMocked) GetBucketExecute(_ context.Context, _, _, _ string) (*objectstorage.GetBucketResponse, error) {
 	if a.bucketGetFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -63,7 +63,7 @@ func TestCreateBucketWaitHandler(t *testing.T) {
 				wantRes = &objectstorage.GetBucketResponse{}
 			}
 
-			handler := CreateBucketWaitHandler(context.Background(), apiClient, "", "")
+			handler := CreateBucketWaitHandler(context.Background(), apiClient, "", "", "")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -101,7 +101,7 @@ func TestDeleteBucketWaitHandler(t *testing.T) {
 				bucketGetFails:  tt.bucketGetFails,
 			}
 
-			handler := DeleteBucketWaitHandler(context.Background(), apiClient, "", "")
+			handler := DeleteBucketWaitHandler(context.Background(), apiClient, "", "", "")
 
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 

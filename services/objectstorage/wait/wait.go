@@ -13,13 +13,13 @@ import (
 
 // Interface needed for tests
 type APIClientBucketInterface interface {
-	GetBucketExecute(ctx context.Context, projectId string, bucketName string) (*objectstorage.GetBucketResponse, error)
+	GetBucketExecute(ctx context.Context, projectId string, region, bucketName string) (*objectstorage.GetBucketResponse, error)
 }
 
 // CreateBucketWaitHandler will wait for bucket creation
-func CreateBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.AsyncActionHandler[objectstorage.GetBucketResponse] {
+func CreateBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, region, bucketName string) *wait.AsyncActionHandler[objectstorage.GetBucketResponse] {
 	handler := wait.New(func() (waitFinished bool, response *objectstorage.GetBucketResponse, err error) {
-		s, err := a.GetBucketExecute(ctx, projectId, bucketName)
+		s, err := a.GetBucketExecute(ctx, projectId, region, bucketName)
 		if err != nil {
 			return false, nil, err
 		}
@@ -30,9 +30,9 @@ func CreateBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, pr
 }
 
 // DeleteBucketWaitHandler will wait for bucket deletion
-func DeleteBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, bucketName string) *wait.AsyncActionHandler[struct{}] {
+func DeleteBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, region, bucketName string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		_, err = a.GetBucketExecute(ctx, projectId, bucketName)
+		_, err = a.GetBucketExecute(ctx, projectId, region, bucketName)
 		if err == nil {
 			return false, nil, nil
 		}
