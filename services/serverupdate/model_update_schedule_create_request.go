@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateSchedule type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateSchedule{}
+// checks if the UpdateScheduleCreateRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateScheduleCreateRequest{}
 
-// UpdateSchedule struct for UpdateSchedule
-type UpdateSchedule struct {
+// UpdateScheduleCreateRequest struct for UpdateScheduleCreateRequest
+type UpdateScheduleCreateRequest struct {
 	// REQUIRED
 	Enabled *bool `json:"enabled"`
 	// Can be cast to int32 without loss of precision.
@@ -28,37 +28,33 @@ type UpdateSchedule struct {
 	Name *string `json:"name"`
 	// REQUIRED
 	Rrule *string `json:"rrule"`
-	// Can be cast to int32 without loss of precision.
-	// REQUIRED
-	Id *int64 `json:"id"`
 }
 
-type _UpdateSchedule UpdateSchedule
+type _UpdateScheduleCreateRequest UpdateScheduleCreateRequest
 
-// NewUpdateSchedule instantiates a new UpdateSchedule object
+// NewUpdateScheduleCreateRequest instantiates a new UpdateScheduleCreateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateSchedule(enabled *bool, maintenanceWindow *int64, name *string, rrule *string, id *int64) *UpdateSchedule {
-	this := UpdateSchedule{}
+func NewUpdateScheduleCreateRequest(enabled *bool, maintenanceWindow *int64, name *string, rrule *string) *UpdateScheduleCreateRequest {
+	this := UpdateScheduleCreateRequest{}
 	this.Enabled = enabled
 	this.MaintenanceWindow = maintenanceWindow
 	this.Name = name
 	this.Rrule = rrule
-	this.Id = id
 	return &this
 }
 
-// NewUpdateScheduleWithDefaults instantiates a new UpdateSchedule object
+// NewUpdateScheduleCreateRequestWithDefaults instantiates a new UpdateScheduleCreateRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateScheduleWithDefaults() *UpdateSchedule {
-	this := UpdateSchedule{}
+func NewUpdateScheduleCreateRequestWithDefaults() *UpdateScheduleCreateRequest {
+	this := UpdateScheduleCreateRequest{}
 	return &this
 }
 
 // GetEnabled returns the Enabled field value
-func (o *UpdateSchedule) GetEnabled() *bool {
+func (o *UpdateScheduleCreateRequest) GetEnabled() *bool {
 	if o == nil || IsNil(o.Enabled) {
 		var ret *bool
 		return ret
@@ -69,7 +65,7 @@ func (o *UpdateSchedule) GetEnabled() *bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *UpdateSchedule) GetEnabledOk() (*bool, bool) {
+func (o *UpdateScheduleCreateRequest) GetEnabledOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,12 +73,12 @@ func (o *UpdateSchedule) GetEnabledOk() (*bool, bool) {
 }
 
 // SetEnabled sets field value
-func (o *UpdateSchedule) SetEnabled(v *bool) {
+func (o *UpdateScheduleCreateRequest) SetEnabled(v *bool) {
 	o.Enabled = v
 }
 
 // GetMaintenanceWindow returns the MaintenanceWindow field value
-func (o *UpdateSchedule) GetMaintenanceWindow() *int64 {
+func (o *UpdateScheduleCreateRequest) GetMaintenanceWindow() *int64 {
 	if o == nil || IsNil(o.MaintenanceWindow) {
 		var ret *int64
 		return ret
@@ -93,7 +89,7 @@ func (o *UpdateSchedule) GetMaintenanceWindow() *int64 {
 
 // GetMaintenanceWindowOk returns a tuple with the MaintenanceWindow field value
 // and a boolean to check if the value has been set.
-func (o *UpdateSchedule) GetMaintenanceWindowOk() (*int64, bool) {
+func (o *UpdateScheduleCreateRequest) GetMaintenanceWindowOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,12 +97,12 @@ func (o *UpdateSchedule) GetMaintenanceWindowOk() (*int64, bool) {
 }
 
 // SetMaintenanceWindow sets field value
-func (o *UpdateSchedule) SetMaintenanceWindow(v *int64) {
+func (o *UpdateScheduleCreateRequest) SetMaintenanceWindow(v *int64) {
 	o.MaintenanceWindow = v
 }
 
 // GetName returns the Name field value
-func (o *UpdateSchedule) GetName() *string {
+func (o *UpdateScheduleCreateRequest) GetName() *string {
 	if o == nil || IsNil(o.Name) {
 		var ret *string
 		return ret
@@ -117,7 +113,7 @@ func (o *UpdateSchedule) GetName() *string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *UpdateSchedule) GetNameOk() (*string, bool) {
+func (o *UpdateScheduleCreateRequest) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -125,12 +121,12 @@ func (o *UpdateSchedule) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *UpdateSchedule) SetName(v *string) {
+func (o *UpdateScheduleCreateRequest) SetName(v *string) {
 	o.Name = v
 }
 
 // GetRrule returns the Rrule field value
-func (o *UpdateSchedule) GetRrule() *string {
+func (o *UpdateScheduleCreateRequest) GetRrule() *string {
 	if o == nil || IsNil(o.Rrule) {
 		var ret *string
 		return ret
@@ -141,7 +137,7 @@ func (o *UpdateSchedule) GetRrule() *string {
 
 // GetRruleOk returns a tuple with the Rrule field value
 // and a boolean to check if the value has been set.
-func (o *UpdateSchedule) GetRruleOk() (*string, bool) {
+func (o *UpdateScheduleCreateRequest) GetRruleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,76 +145,51 @@ func (o *UpdateSchedule) GetRruleOk() (*string, bool) {
 }
 
 // SetRrule sets field value
-func (o *UpdateSchedule) SetRrule(v *string) {
+func (o *UpdateScheduleCreateRequest) SetRrule(v *string) {
 	o.Rrule = v
 }
 
-// GetId returns the Id field value
-func (o *UpdateSchedule) GetId() *int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *UpdateSchedule) GetIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// SetId sets field value
-func (o *UpdateSchedule) SetId(v *int64) {
-	o.Id = v
-}
-
-func (o UpdateSchedule) ToMap() (map[string]interface{}, error) {
+func (o UpdateScheduleCreateRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["maintenanceWindow"] = o.MaintenanceWindow
 	toSerialize["name"] = o.Name
 	toSerialize["rrule"] = o.Rrule
-	toSerialize["id"] = o.Id
 	return toSerialize, nil
 }
 
-type NullableUpdateSchedule struct {
-	value *UpdateSchedule
+type NullableUpdateScheduleCreateRequest struct {
+	value *UpdateScheduleCreateRequest
 	isSet bool
 }
 
-func (v NullableUpdateSchedule) Get() *UpdateSchedule {
+func (v NullableUpdateScheduleCreateRequest) Get() *UpdateScheduleCreateRequest {
 	return v.value
 }
 
-func (v *NullableUpdateSchedule) Set(val *UpdateSchedule) {
+func (v *NullableUpdateScheduleCreateRequest) Set(val *UpdateScheduleCreateRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateSchedule) IsSet() bool {
+func (v NullableUpdateScheduleCreateRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateSchedule) Unset() {
+func (v *NullableUpdateScheduleCreateRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateSchedule(val *UpdateSchedule) *NullableUpdateSchedule {
-	return &NullableUpdateSchedule{value: val, isSet: true}
+func NewNullableUpdateScheduleCreateRequest(val *UpdateScheduleCreateRequest) *NullableUpdateScheduleCreateRequest {
+	return &NullableUpdateScheduleCreateRequest{value: val, isSet: true}
 }
 
-func (v NullableUpdateSchedule) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateScheduleCreateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateSchedule) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateScheduleCreateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
