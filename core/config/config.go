@@ -144,7 +144,6 @@ func WithUserAgent(userAgent string) ConfigurationOption {
 }
 
 // WithRegion returns a ConfigurationOption that specifies the region to be used
-// [Deprecated]: The region should be set on the individual calls
 func WithRegion(region string) ConfigurationOption {
 	return func(config *Configuration) error {
 		config.Region = region
