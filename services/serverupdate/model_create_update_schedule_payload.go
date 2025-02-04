@@ -22,8 +22,6 @@ type CreateUpdateSchedulePayload struct {
 	// REQUIRED
 	Enabled *bool `json:"enabled"`
 	// Can be cast to int32 without loss of precision.
-	Id *int64 `json:"id,omitempty"`
-	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	MaintenanceWindow *int64 `json:"maintenanceWindow"`
 	// REQUIRED
@@ -77,38 +75,6 @@ func (o *CreateUpdateSchedulePayload) GetEnabledOk() (*bool, bool) {
 // SetEnabled sets field value
 func (o *CreateUpdateSchedulePayload) SetEnabled(v *bool) {
 	o.Enabled = v
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateUpdateSchedulePayload) GetId() *int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret *int64
-		return ret
-	}
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateUpdateSchedulePayload) GetIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *CreateUpdateSchedulePayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *CreateUpdateSchedulePayload) SetId(v *int64) {
-	o.Id = v
 }
 
 // GetMaintenanceWindow returns the MaintenanceWindow field value
@@ -186,9 +152,6 @@ func (o *CreateUpdateSchedulePayload) SetRrule(v *string) {
 func (o CreateUpdateSchedulePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabled"] = o.Enabled
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
 	toSerialize["maintenanceWindow"] = o.MaintenanceWindow
 	toSerialize["name"] = o.Name
 	toSerialize["rrule"] = o.Rrule
