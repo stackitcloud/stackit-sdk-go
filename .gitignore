@@ -13,3 +13,5 @@ bin/
 ## IDE
 *.idea/
 *.vscode/
+
+go.work.sum
