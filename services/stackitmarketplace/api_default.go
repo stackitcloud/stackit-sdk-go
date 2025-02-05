@@ -522,6 +522,7 @@ type ApiListCatalogProductsRequest struct {
 	cursor     *string
 	limit      *float32
 	locale     *string
+	filter     *string
 }
 
 // A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
@@ -542,6 +543,13 @@ func (r ApiListCatalogProductsRequest) Limit(limit float32) ApiListCatalogProduc
 
 func (r ApiListCatalogProductsRequest) Locale(locale string) ApiListCatalogProductsRequest {
 	r.locale = &locale
+	return r
+}
+
+// Filter the products based on attributes. E.g &#x60;deliveryMethod eq \&quot;SAAS\&quot;&#x60;. The supported attributes are &#x60;deliveryMethod&#x60;, &#x60;priceType&#x60;, &#x60;category&#x60;, &#x60;vendorId&#x60;, &#x60;vendorName&#x60;, and &#x60;name&#x60;. The supported operators are &#x60;eq&#x60;. Filters can be joined with &#x60;and&#x60; or &#x60;or&#x60;.
+
+func (r ApiListCatalogProductsRequest) Filter(filter string) ApiListCatalogProductsRequest {
+	r.filter = &filter
 	return r
 }
 
@@ -572,6 +580,9 @@ func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, 
 	}
 	if r.locale != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "locale", r.locale, "")
+	}
+	if r.filter != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "filter", r.filter, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
