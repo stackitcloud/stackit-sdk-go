@@ -19,8 +19,7 @@ var _ MappedNullable = &CreateUpdatePayload{}
 
 // CreateUpdatePayload struct for CreateUpdatePayload
 type CreateUpdatePayload struct {
-	BackupBeforeUpdate *bool             `json:"backupBeforeUpdate,omitempty"`
-	BackupProperties   *BackupProperties `json:"backupProperties,omitempty"`
+	BackupBeforeUpdate *bool `json:"backupBeforeUpdate,omitempty"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	MaintenanceWindow *int64 `json:"maintenanceWindow"`
@@ -78,38 +77,6 @@ func (o *CreateUpdatePayload) SetBackupBeforeUpdate(v *bool) {
 	o.BackupBeforeUpdate = v
 }
 
-// GetBackupProperties returns the BackupProperties field value if set, zero value otherwise.
-func (o *CreateUpdatePayload) GetBackupProperties() *BackupProperties {
-	if o == nil || IsNil(o.BackupProperties) {
-		var ret *BackupProperties
-		return ret
-	}
-	return o.BackupProperties
-}
-
-// GetBackupPropertiesOk returns a tuple with the BackupProperties field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateUpdatePayload) GetBackupPropertiesOk() (*BackupProperties, bool) {
-	if o == nil || IsNil(o.BackupProperties) {
-		return nil, false
-	}
-	return o.BackupProperties, true
-}
-
-// HasBackupProperties returns a boolean if a field has been set.
-func (o *CreateUpdatePayload) HasBackupProperties() bool {
-	if o != nil && !IsNil(o.BackupProperties) {
-		return true
-	}
-
-	return false
-}
-
-// SetBackupProperties gets a reference to the given BackupProperties and assigns it to the BackupProperties field.
-func (o *CreateUpdatePayload) SetBackupProperties(v *BackupProperties) {
-	o.BackupProperties = v
-}
-
 // GetMaintenanceWindow returns the MaintenanceWindow field value
 func (o *CreateUpdatePayload) GetMaintenanceWindow() *int64 {
 	if o == nil || IsNil(o.MaintenanceWindow) {
@@ -138,9 +105,6 @@ func (o CreateUpdatePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.BackupBeforeUpdate) {
 		toSerialize["backupBeforeUpdate"] = o.BackupBeforeUpdate
-	}
-	if !IsNil(o.BackupProperties) {
-		toSerialize["backupProperties"] = o.BackupProperties
 	}
 	toSerialize["maintenanceWindow"] = o.MaintenanceWindow
 	return toSerialize, nil
