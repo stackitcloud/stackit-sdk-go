@@ -4,6 +4,8 @@
   - **Bugfix**: Set type from interface to int64 of `HealthyThreshold`, `UnhealthyThreshold`, `MaxLoadBalancers`, `Port`, `MaxConnections`, `Code` and `TargetPort`
 - `resourcemanager`: [v0.12.0](services/resourcemanager/CHANGELOG.md#v0120-2025-01-31)
   - **Breaking Change**: Remove the methods `BffGetContainersOfAFolder` and `BffGetContainersOfAnOrganization`
+- `objectstorage`: [v1.0.0](services/objectstorage/CHANGELOG.md#v100-2025-02-05)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
 
 ## Release (2025-01-24)

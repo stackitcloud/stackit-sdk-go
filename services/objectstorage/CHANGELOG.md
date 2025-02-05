@@ -1,3 +1,6 @@
+## v1.0.0 (2025-02-05)
+- **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+
 ## v0.11.1 (2024-12-17)
 
 - **Bugfix:** Correctly handle nullable attributes in model types
