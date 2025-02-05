@@ -1,3 +1,8 @@
+## v0.4.0 (2025-02-05)
+
+- **Breaking Change**: Remove field `BackupProperties` from `CreateUpdatePayload` model
+- **Fix**: Remove field `Id` from `CreateUpdateSchedulePayload` model
+
 ## v0.3.0 (2025-01-14)
 
 - **Feature:** Add new method: `GetServiceResource` 
