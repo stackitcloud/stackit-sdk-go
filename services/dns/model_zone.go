@@ -43,7 +43,8 @@ type Zone struct {
 	Error *string `json:"error,omitempty"`
 	// expire time
 	// REQUIRED
-	ExpireTime *int64 `json:"expireTime"`
+	ExpireTime *int64            `json:"expireTime"`
+	Extensions *DomainExtensions `json:"extensions,omitempty"`
 	// zone id
 	// REQUIRED
 	Id *string `json:"id"`
@@ -396,6 +397,38 @@ func (o *Zone) GetExpireTimeOk() (*int64, bool) {
 // SetExpireTime sets field value
 func (o *Zone) SetExpireTime(v *int64) {
 	o.ExpireTime = v
+}
+
+// GetExtensions returns the Extensions field value if set, zero value otherwise.
+func (o *Zone) GetExtensions() *DomainExtensions {
+	if o == nil || IsNil(o.Extensions) {
+		var ret *DomainExtensions
+		return ret
+	}
+	return o.Extensions
+}
+
+// GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Zone) GetExtensionsOk() (*DomainExtensions, bool) {
+	if o == nil || IsNil(o.Extensions) {
+		return nil, false
+	}
+	return o.Extensions, true
+}
+
+// HasExtensions returns a boolean if a field has been set.
+func (o *Zone) HasExtensions() bool {
+	if o != nil && !IsNil(o.Extensions) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensions gets a reference to the given DomainExtensions and assigns it to the Extensions field.
+func (o *Zone) SetExtensions(v *DomainExtensions) {
+	o.Extensions = v
 }
 
 // GetId returns the Id field value
@@ -834,6 +867,9 @@ func (o Zone) ToMap() (map[string]interface{}, error) {
 		toSerialize["error"] = o.Error
 	}
 	toSerialize["expireTime"] = o.ExpireTime
+	if !IsNil(o.Extensions) {
+		toSerialize["extensions"] = o.Extensions
+	}
 	toSerialize["id"] = o.Id
 	if !IsNil(o.IsReverseZone) {
 		toSerialize["isReverseZone"] = o.IsReverseZone

@@ -31,7 +31,8 @@ type CreateZonePayload struct {
 	// REQUIRED
 	DnsName *string `json:"dnsName"`
 	// expire time
-	ExpireTime *int64 `json:"expireTime,omitempty"`
+	ExpireTime *int64                       `json:"expireTime,omitempty"`
+	Extensions *CreateZonePayloadExtensions `json:"extensions,omitempty"`
 	// if the zone is a reverse zone or not
 	IsReverseZone *bool `json:"isReverseZone,omitempty"`
 	// user given name
@@ -270,6 +271,38 @@ func (o *CreateZonePayload) SetExpireTime(v *int64) {
 	o.ExpireTime = v
 }
 
+// GetExtensions returns the Extensions field value if set, zero value otherwise.
+func (o *CreateZonePayload) GetExtensions() *CreateZonePayloadExtensions {
+	if o == nil || IsNil(o.Extensions) {
+		var ret *CreateZonePayloadExtensions
+		return ret
+	}
+	return o.Extensions
+}
+
+// GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateZonePayload) GetExtensionsOk() (*CreateZonePayloadExtensions, bool) {
+	if o == nil || IsNil(o.Extensions) {
+		return nil, false
+	}
+	return o.Extensions, true
+}
+
+// HasExtensions returns a boolean if a field has been set.
+func (o *CreateZonePayload) HasExtensions() bool {
+	if o != nil && !IsNil(o.Extensions) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensions gets a reference to the given CreateZonePayloadExtensions and assigns it to the Extensions field.
+func (o *CreateZonePayload) SetExtensions(v *CreateZonePayloadExtensions) {
+	o.Extensions = v
+}
+
 // GetIsReverseZone returns the IsReverseZone field value if set, zero value otherwise.
 func (o *CreateZonePayload) GetIsReverseZone() *bool {
 	if o == nil || IsNil(o.IsReverseZone) {
@@ -503,6 +536,9 @@ func (o CreateZonePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["dnsName"] = o.DnsName
 	if !IsNil(o.ExpireTime) {
 		toSerialize["expireTime"] = o.ExpireTime
+	}
+	if !IsNil(o.Extensions) {
+		toSerialize["extensions"] = o.Extensions
 	}
 	if !IsNil(o.IsReverseZone) {
 		toSerialize["isReverseZone"] = o.IsReverseZone
