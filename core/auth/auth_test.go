@@ -456,6 +456,8 @@ func TestKeyAuth(t *testing.T) {
 			configuredPrivateKey: string(configuredPrivateKey),
 			expectedPrivateKey:   string(configuredPrivateKey),
 			isValid:              true,
+			homeDir:              func(t *testing.T) string { return t.TempDir() },
+
 		},
 		{
 			desc:               "included_private_key",
@@ -463,6 +465,8 @@ func TestKeyAuth(t *testing.T) {
 			includedPrivateKey: &includedPrivateKey,
 			expectedPrivateKey: includedPrivateKey,
 			isValid:            true,
+			homeDir:              func(t *testing.T) string { return t.TempDir() },
+
 		},
 		{
 			desc:                 "empty_configured_use_included_private_key",
@@ -471,6 +475,8 @@ func TestKeyAuth(t *testing.T) {
 			configuredPrivateKey: "",
 			expectedPrivateKey:   includedPrivateKey,
 			isValid:              true,
+			homeDir:              func(t *testing.T) string { return t.TempDir() },
+
 		},
 		{
 			desc:                 "configured_over_included_private_key",
@@ -479,6 +485,8 @@ func TestKeyAuth(t *testing.T) {
 			configuredPrivateKey: configuredPrivateKey,
 			expectedPrivateKey:   configuredPrivateKey,
 			isValid:              true,
+			homeDir:              func(t *testing.T) string { return t.TempDir() },
+
 		},
 		{
 			desc:                 "no_sa_key",
@@ -492,6 +500,7 @@ func TestKeyAuth(t *testing.T) {
 			serviceAccountKey:    fixtureServiceAccountKey(),
 			configuredPrivateKey: "",
 			isValid:              false,
+			homeDir:              func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			desc:                 "no_keys",
@@ -790,6 +799,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 			},
 			wantErr:     false,
 			expectedKey: "key",
+			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name: "cfg_sa_key_path",
@@ -798,6 +808,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 			},
 			wantErr:     false,
 			expectedKey: "key",
+			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name:                        "env_sa_key_path",
@@ -805,6 +816,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 			envServiceAccountKeyPathSet: true,
 			wantErr:                     false,
 			expectedKey:                 "key",
+			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name:                "credentials_file_sa_key_path",
@@ -812,6 +824,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 			credentialsFilePath: "test_resources/test_credentials_foo.json",
 			wantErr:             false,
 			expectedKey:         "foo_key",
+			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name: "cfg_sa_key_precedes_path",
@@ -821,6 +834,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 			},
 			wantErr:     false,
 			expectedKey: "cfg_key",
+			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name: "cfg_sa_key_precedes_env",
@@ -830,6 +844,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 			envServiceAccountKeyPathSet: true,
 			wantErr:                     false,
 			expectedKey:                 "cfg_key",
+			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name: "cfg_sa_key_precedes_creds_file",
@@ -839,6 +854,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 			credentialsFilePath: "test_resources/test_credentials_foo.json",
 			wantErr:             false,
 			expectedKey:         "cfg_key",
+			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name:                        "env_sa_key_precedes_creds_file",
@@ -846,6 +862,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 			envServiceAccountKeyPathSet: true,
 			credentialsFilePath:         "test_resources/test_credentials_foo.json",
 			wantErr:                     false,
+			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 			expectedKey:                 "key",
 		},
 		{
