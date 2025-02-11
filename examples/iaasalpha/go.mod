@@ -1,6 +1,6 @@
 module github.com/stackitcloud/stackit-sdk-go/examples/iaasalpha
 
-go 1.18
+go 1.20
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.15.1

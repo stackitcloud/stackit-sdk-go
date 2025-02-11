@@ -1,6 +1,6 @@
 module github.com/stackitcloud/stackit-sdk-go/core
 
-go 1.18
+go 1.20
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.2.1
