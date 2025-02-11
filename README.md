@@ -15,7 +15,7 @@ The usage of the SDK is shown in some [examples](https://github.com/stackitcloud
 
 ## Getting started
 
-Requires `Go 1.18` or higher.
+Requires `Go 1.20` or higher.
 
 To download the `core` module:
 
