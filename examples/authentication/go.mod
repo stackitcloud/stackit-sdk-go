@@ -1,6 +1,6 @@
 module github.com/stackitcloud/stackit-sdk-go/examples/authentication
 
-go 1.20
+go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.15.1

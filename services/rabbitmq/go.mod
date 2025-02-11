@@ -1,6 +1,6 @@
 module github.com/stackitcloud/stackit-sdk-go/services/rabbitmq
 
-go 1.20
+go 1.21
 
 require (
 	github.com/google/go-cmp v0.6.0
