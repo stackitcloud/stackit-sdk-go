@@ -1,4 +1,4 @@
-## Release (XXXX-XX-XX)
+## Release (2025-02-11)
 
 - `lbapplication`: [v0.2.0](services/lbapplication/CHANGELOG.md#v020-2025-01-30)
   - **Bugfix**: Set type from interface to int64 of `HealthyThreshold`, `UnhealthyThreshold`, `MaxLoadBalancers`, `Port`, `MaxConnections`, `Code` and `TargetPort`
