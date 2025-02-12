@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Go ${{ matrix.go-version }}
+      - name: Install Go
         uses: actions/setup-go@v5
         with:
           go-version: 1.21
