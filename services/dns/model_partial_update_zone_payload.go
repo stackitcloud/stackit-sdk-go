@@ -28,7 +28,8 @@ type PartialUpdateZonePayload struct {
 	// description of the zone
 	Description *string `json:"description,omitempty"`
 	// expire time
-	ExpireTime *int64 `json:"expireTime,omitempty"`
+	ExpireTime *int64                       `json:"expireTime,omitempty"`
+	Extensions *CreateZonePayloadExtensions `json:"extensions,omitempty"`
 	// user given name
 	Name *string `json:"name,omitempty"`
 	// negative caching
@@ -226,6 +227,38 @@ func (o *PartialUpdateZonePayload) SetExpireTime(v *int64) {
 	o.ExpireTime = v
 }
 
+// GetExtensions returns the Extensions field value if set, zero value otherwise.
+func (o *PartialUpdateZonePayload) GetExtensions() *CreateZonePayloadExtensions {
+	if o == nil || IsNil(o.Extensions) {
+		var ret *CreateZonePayloadExtensions
+		return ret
+	}
+	return o.Extensions
+}
+
+// GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateZonePayload) GetExtensionsOk() (*CreateZonePayloadExtensions, bool) {
+	if o == nil || IsNil(o.Extensions) {
+		return nil, false
+	}
+	return o.Extensions, true
+}
+
+// HasExtensions returns a boolean if a field has been set.
+func (o *PartialUpdateZonePayload) HasExtensions() bool {
+	if o != nil && !IsNil(o.Extensions) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensions gets a reference to the given CreateZonePayloadExtensions and assigns it to the Extensions field.
+func (o *PartialUpdateZonePayload) SetExtensions(v *CreateZonePayloadExtensions) {
+	o.Extensions = v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PartialUpdateZonePayload) GetName() *string {
 	if o == nil || IsNil(o.Name) {
@@ -402,6 +435,9 @@ func (o PartialUpdateZonePayload) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ExpireTime) {
 		toSerialize["expireTime"] = o.ExpireTime
+	}
+	if !IsNil(o.Extensions) {
+		toSerialize["extensions"] = o.Extensions
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
