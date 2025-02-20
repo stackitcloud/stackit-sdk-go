@@ -24,11 +24,13 @@ import (
 func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateDatabase", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/databases"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -67,9 +69,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 		createDatabasePayload := CreateDatabasePayload{}
 
-		resp, reqErr := apiClient.CreateDatabase(context.Background(), projectId, instanceId).CreateDatabasePayload(createDatabasePayload).Execute()
+		resp, reqErr := apiClient.CreateDatabase(context.Background(), projectId, instanceId, region).CreateDatabasePayload(createDatabasePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -80,9 +83,11 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances"
+		path := "/v2/projects/{projectId}/regions/{region}/instances"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -120,9 +125,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		createInstancePayload := CreateInstancePayload{}
 
-		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
+		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId, region).CreateInstancePayload(createInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -133,11 +139,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -176,9 +184,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 		createUserPayload := CreateUserPayload{}
 
-		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
+		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, instanceId, region).CreateUserPayload(createUserPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -189,13 +198,15 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteDatabase", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/databases/{databaseName}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases/{databaseName}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		databaseNameValue := "databaseName"
 		path = strings.Replace(path, "{"+"databaseName"+"}", url.PathEscape(ParameterValueToString(databaseNameValue, "databaseName")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -232,8 +243,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		instanceId := "instanceId"
 		databaseName := "databaseName"
+		region := "region"
 
-		reqErr := apiClient.DeleteDatabase(context.Background(), projectId, instanceId, databaseName).Execute()
+		reqErr := apiClient.DeleteDatabase(context.Background(), projectId, instanceId, databaseName, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -241,11 +253,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -281,8 +295,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 
-		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId).Execute()
+		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -290,13 +305,15 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
 		path = strings.Replace(path, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -333,8 +350,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		instanceId := "instanceId"
 		userId := "userId"
+		region := "region"
 
-		reqErr := apiClient.DeleteUser(context.Background(), projectId, instanceId, userId).Execute()
+		reqErr := apiClient.DeleteUser(context.Background(), projectId, instanceId, userId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -342,13 +360,15 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/{backupId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		backupIdValue := "backupId"
 		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -388,8 +408,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		instanceId := "instanceId"
 		backupId := "backupId"
+		region := "region"
 
-		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, instanceId, backupId).Execute()
+		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, instanceId, backupId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -400,13 +421,15 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetDatabase", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/databases/{databaseName}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases/{databaseName}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		databaseNameValue := "databaseName"
 		path = strings.Replace(path, "{"+"databaseName"+"}", url.PathEscape(ParameterValueToString(databaseNameValue, "databaseName")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -446,8 +469,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		instanceId := "instanceId"
 		databaseName := "databaseName"
+		region := "region"
 
-		resp, reqErr := apiClient.GetDatabase(context.Background(), projectId, instanceId, databaseName).Execute()
+		resp, reqErr := apiClient.GetDatabase(context.Background(), projectId, instanceId, databaseName, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -458,11 +482,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -501,8 +527,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 
-		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -513,13 +540,15 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
 		path = strings.Replace(path, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -559,8 +588,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		instanceId := "instanceId"
 		userId := "userId"
+		region := "region"
 
-		resp, reqErr := apiClient.GetUser(context.Background(), projectId, instanceId, userId).Execute()
+		resp, reqErr := apiClient.GetUser(context.Background(), projectId, instanceId, userId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -571,11 +601,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -614,8 +646,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -626,11 +659,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListCollations", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/collation"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/collation"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -669,8 +704,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListCollations(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListCollations(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -681,11 +717,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListCompatibility", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/compatibility"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/compatibility"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -724,8 +762,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListCompatibility(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListCompatibility(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -736,11 +775,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListDatabases", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/databases"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -779,8 +820,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListDatabases(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListDatabases(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -791,9 +833,11 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListFlavors", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/flavors"
+		path := "/v2/projects/{projectId}/regions/{region}/flavors"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -831,8 +875,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListFlavors(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListFlavors(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -843,9 +888,11 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances"
+		path := "/v2/projects/{projectId}/regions/{region}/instances"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -883,8 +930,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListInstances(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -895,11 +943,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListRestoreJobs", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/restores"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/restores"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -938,8 +988,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListRestoreJobs(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListRestoreJobs(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -950,11 +1001,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListRoles", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/roles"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/roles"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -993,8 +1046,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListRoles(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListRoles(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1005,11 +1059,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListStorages", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/storages/{flavorId}"
+		path := "/v2/projects/{projectId}/regions/{region}/storages/{flavorId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		flavorIdValue := "flavorId"
 		path = strings.Replace(path, "{"+"flavorId"+"}", url.PathEscape(ParameterValueToString(flavorIdValue, "flavorId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -1048,8 +1104,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		flavorId := "flavorId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListStorages(context.Background(), projectId, flavorId).Execute()
+		resp, reqErr := apiClient.ListStorages(context.Background(), projectId, flavorId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1060,11 +1117,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListUsers", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -1103,8 +1162,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1115,9 +1175,11 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListVersions", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/versions"
+		path := "/v2/projects/{projectId}/regions/{region}/versions"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -1155,8 +1217,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListVersions(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListVersions(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1167,11 +1230,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -1210,9 +1275,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 		partialUpdateInstancePayload := PartialUpdateInstancePayload{}
 
-		resp, reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, instanceId).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
+		resp, reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, instanceId, region).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1223,13 +1289,15 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResetUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}/reset"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}/reset"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
 		path = strings.Replace(path, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -1269,8 +1337,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		instanceId := "instanceId"
 		userId := "userId"
+		region := "region"
 
-		resp, reqErr := apiClient.ResetUser(context.Background(), projectId, instanceId, userId).Execute()
+		resp, reqErr := apiClient.ResetUser(context.Background(), projectId, instanceId, userId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1280,14 +1349,65 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService TerminateProject", func(t *testing.T) {
+		path := "/v2/projects/{projectId}/regions/{region}"
+		projectIdValue := "projectId"
+		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for sqlserverflex_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := "projectId"
+		region := "region"
+
+		reqErr := apiClient.TerminateProject(context.Background(), projectId, region).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
 	t.Run("Test DefaultApiService TriggerDatabaseBackup", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups/databases/{databaseName}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/databases/{databaseName}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		databaseNameValue := "databaseName"
 		path = strings.Replace(path, "{"+"databaseName"+"}", url.PathEscape(ParameterValueToString(databaseNameValue, "databaseName")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -1324,8 +1444,9 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		instanceId := "instanceId"
 		databaseName := "databaseName"
+		region := "region"
 
-		reqErr := apiClient.TriggerDatabaseBackup(context.Background(), projectId, instanceId, databaseName).Execute()
+		reqErr := apiClient.TriggerDatabaseBackup(context.Background(), projectId, instanceId, databaseName, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1333,13 +1454,15 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService TriggerDatabaseRestore", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups/databases/{databaseName}/restores"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/databases/{databaseName}/restores"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		databaseNameValue := "databaseName"
 		path = strings.Replace(path, "{"+"databaseName"+"}", url.PathEscape(ParameterValueToString(databaseNameValue, "databaseName")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -1376,9 +1499,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		instanceId := "instanceId"
 		databaseName := "databaseName"
+		region := "region"
 		triggerDatabaseRestorePayload := TriggerDatabaseRestorePayload{}
 
-		reqErr := apiClient.TriggerDatabaseRestore(context.Background(), projectId, instanceId, databaseName).TriggerDatabaseRestorePayload(triggerDatabaseRestorePayload).Execute()
+		reqErr := apiClient.TriggerDatabaseRestore(context.Background(), projectId, instanceId, databaseName, region).TriggerDatabaseRestorePayload(triggerDatabaseRestorePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1386,11 +1510,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -1429,9 +1555,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		instanceId := "instanceId"
+		region := "region"
 		updateInstancePayload := UpdateInstancePayload{}
 
-		resp, reqErr := apiClient.UpdateInstance(context.Background(), projectId, instanceId).UpdateInstancePayload(updateInstancePayload).Execute()
+		resp, reqErr := apiClient.UpdateInstance(context.Background(), projectId, instanceId, region).UpdateInstancePayload(updateInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
