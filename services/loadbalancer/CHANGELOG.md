@@ -1,3 +1,6 @@
+## v0.18.0 (2025-02-21)
+- **New:** Minimal go version is now Go 1.21
+
 ## v0.17.0 (2024-10-14)
 
 - **Feature:** Add support for nullable models
