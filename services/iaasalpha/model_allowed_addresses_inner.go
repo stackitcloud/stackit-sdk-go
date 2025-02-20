@@ -62,7 +62,7 @@ func (src AllowedAddressesInner) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.String)
 	}
 
-	return nil, nil // no data in oneOf schemas
+	return []byte("{}"), nil // no data in oneOf schemas => empty JSON object
 }
 
 // Get the actual instance
