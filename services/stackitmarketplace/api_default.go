@@ -516,6 +516,161 @@ func (a *APIClient) GetVendorSubscriptionExecute(ctx context.Context, projectId 
 	return r.Execute()
 }
 
+type ApiInquiriesCreateInquiryRequest struct {
+	ctx                           context.Context
+	apiService                    *DefaultApiService
+	inquiriesCreateInquiryPayload *InquiriesCreateInquiryPayload
+}
+
+func (r ApiInquiriesCreateInquiryRequest) InquiriesCreateInquiryPayload(inquiriesCreateInquiryPayload InquiriesCreateInquiryPayload) ApiInquiriesCreateInquiryRequest {
+	r.inquiriesCreateInquiryPayload = &inquiriesCreateInquiryPayload
+	return r
+}
+
+func (r ApiInquiriesCreateInquiryRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InquiriesCreateInquiry")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/inquiries"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.inquiriesCreateInquiryPayload == nil {
+		return fmt.Errorf("inquiriesCreateInquiryPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.inquiriesCreateInquiryPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+InquiriesCreateInquiry: Create inquiry
+
+Create an inquiry to contact sales, become a vendor, or suggest a product. Requests are limited to 10 per 5 minutes.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInquiriesCreateInquiryRequest
+*/
+func (a *APIClient) InquiriesCreateInquiry(ctx context.Context) ApiInquiriesCreateInquiryRequest {
+	return ApiInquiriesCreateInquiryRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+	}
+}
+
+func (a *APIClient) InquiriesCreateInquiryExecute(ctx context.Context) error {
+	r := ApiInquiriesCreateInquiryRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+	}
+	return r.Execute()
+}
+
 type ApiListCatalogProductsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -523,6 +678,7 @@ type ApiListCatalogProductsRequest struct {
 	limit      *float32
 	locale     *string
 	filter     *string
+	sort       *string
 }
 
 // A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
@@ -550,6 +706,13 @@ func (r ApiListCatalogProductsRequest) Locale(locale string) ApiListCatalogProdu
 
 func (r ApiListCatalogProductsRequest) Filter(filter string) ApiListCatalogProductsRequest {
 	r.filter = &filter
+	return r
+}
+
+// Sort the products based on attributes and order (if specified). E.g &#x60;name:asc&#x60;. The supported attributes are &#x60;name&#x60;, &#x60;price&#x60;, and &#x60;deliveryMethod&#x60;. To set the sort order, append &#x60;asc&#x60; (ascending) or &#x60;desc&#x60; (descending) to the attribute, e.g. &#x60;name:asc&#x60;. To sort by multiple attributes, separate them with a comma. E.g &#x60;name,price:desc&#x60;. The order can be ommited to sort by the default order. E.g &#x60;name&#x60;.
+
+func (r ApiListCatalogProductsRequest) Sort(sort string) ApiListCatalogProductsRequest {
+	r.sort = &sort
 	return r
 }
 
@@ -583,6 +746,9 @@ func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, 
 	}
 	if r.filter != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "filter", r.filter, "")
+	}
+	if r.sort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
