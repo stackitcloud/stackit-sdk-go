@@ -31,9 +31,11 @@ type Nodepool struct {
 	MaxSurge *int64 `json:"maxSurge,omitempty"`
 	// Can be cast to int32 without loss of precision.
 	MaxUnavailable *int64 `json:"maxUnavailable,omitempty"`
+	// Maximum number of nodes in the pool. During runtime, the cluster will never scale beyond 1000 nodes, even if the total maximum would allow for a larger cluster.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	Maximum *int64 `json:"maximum"`
+	// Minimum number of nodes in the pool. The sum of all minima must not exceed 1000.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	Minimum *int64 `json:"minimum"`
