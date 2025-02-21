@@ -1,4 +1,9 @@
 ## Release (2025-02-21)
+> [!WARNING]
+>
+> **The lowest supported go version is now 1.21. In the future, only the two most recent versions will be supported.**
+
+
 - `core`: [0.16.0](core/CHANGELOG.md#v0160-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
 - `archiving`: [0.2.0](services/archiving/CHANGELOG.md#v020-2025-02-21)
@@ -53,14 +58,6 @@
   - **New**: Minimal go version is now Go 1.21
 - `stackitmarketplace`: [0.2.0](services/stackitmarketplace/CHANGELOG.md#v020-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-
-
-
-
-
-
-
-
 
 
 ## Release (2025-02-11)
