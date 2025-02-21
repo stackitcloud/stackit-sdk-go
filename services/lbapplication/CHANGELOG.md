@@ -1,3 +1,6 @@
+## v0.3.0 (2025-02-21)
+- **New:** Minimal go version is now Go 1.21
+
 ## v0.2.0 (2025-01-30)
 
 - **Bugfix**: Set type from interface to int64 of `HealthyThreshold`, `UnhealthyThreshold`, `MaxLoadBalancers`, `Port`, `MaxConnections`, `Code` and `TargetPort`

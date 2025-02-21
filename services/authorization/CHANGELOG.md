@@ -1,3 +1,6 @@
+## v0.6.0 (2025-02-21)
+- **New:** Minimal go version is now Go 1.21
+
 ## v0.5.1 (2025-01-17)
 
 - **Bugfix:** Revert back to global URL configuration 

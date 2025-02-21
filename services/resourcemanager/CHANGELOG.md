@@ -1,3 +1,6 @@
+## v0.13.0 (2025-02-21)
+- **New:** Minimal go version is now Go 1.21
+
 ## v0.12.0 (2025-01-31)
 
 - **Breaking Change**: Remove the methods `BffGetContainersOfAFolder` and `BffGetContainersOfAnOrganization`

@@ -1,3 +1,6 @@
+## v0.5.0 (2025-02-21)
+- **New:** Minimal go version is now Go 1.21
+
 ## v0.4.0 (2025-02-05)
 
 - **Breaking Change**: Remove field `BackupProperties` from `CreateUpdatePayload` model

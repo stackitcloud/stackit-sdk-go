@@ -1,3 +1,6 @@
+## v0.21.0 (2025-02-21)
+- **New:** Minimal go version is now Go 1.21
+
 ## v0.20.1 (2024-12-17)
 
 - **Bugfix:** Correctly handle nullable attributes in model types

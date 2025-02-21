@@ -1,3 +1,6 @@
+## v0.10.0 (2025-02-21)
+- **New:** Minimal go version is now Go 1.21
+
 ## v0.9.0 (2025-01-20)
 
 - **Breaking change**: Delete endpoint made private.

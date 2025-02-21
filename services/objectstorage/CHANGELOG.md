@@ -1,3 +1,6 @@
+## v1.1.0 (2025-02-21)
+- **New:** Minimal go version is now Go 1.21
+
 ## v1.0.0 (2025-02-05)
 - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 

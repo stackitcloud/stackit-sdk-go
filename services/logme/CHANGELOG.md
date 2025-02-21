@@ -1,3 +1,6 @@
+## v0.21.0 (2025-02-21)
+- **New:** Minimal go version is now Go 1.21
+
 ## v0.20.2 (2025-01-20)
 
 - **Bugfix:** Remove mistakenly implemented `syslog-use-udp`. Does not exist.
