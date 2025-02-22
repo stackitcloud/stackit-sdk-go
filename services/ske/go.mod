@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/services/ske
 go 1.21
 
 require (
-	github.com/google/go-cmp v0.6.0
+	github.com/google/go-cmp v0.7.0
 	github.com/stackitcloud/stackit-sdk-go/core v0.16.0
 )
 
