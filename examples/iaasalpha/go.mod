@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/iaasalpha
 go 1.21
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.15.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.16.0
 	github.com/stackitcloud/stackit-sdk-go/services/iaasalpha v0.1.11-alpha
 )
 

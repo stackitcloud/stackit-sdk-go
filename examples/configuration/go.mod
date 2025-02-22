@@ -3,8 +3,8 @@ module github.com/stackitcloud/stackit-sdk-go/examples/configuration
 go 1.21
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.15.1
-	github.com/stackitcloud/stackit-sdk-go/services/dns v0.12.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.16.0
+	github.com/stackitcloud/stackit-sdk-go/services/dns v0.13.0
 	github.com/stackitcloud/stackit-sdk-go/services/postgresql v0.12.1
 )
 

@@ -3,8 +3,8 @@ module github.com/stackitcloud/stackit-sdk-go/examples/serviceenablement
 go 1.21
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.15.1
-	github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v0.4.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.16.0
+	github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v0.5.0
 )
 
 require (
