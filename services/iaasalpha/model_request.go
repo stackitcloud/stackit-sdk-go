@@ -20,18 +20,18 @@ var _ MappedNullable = &Request{}
 // Request Object that represents a request.
 type Request struct {
 	Details *string `json:"details,omitempty"`
-	// Object that represents a resource action.
+	// Object that represents a resource action. Possible values: `CREATE`, `DELETE`, `UPDATE`.
 	// REQUIRED
 	RequestAction *string `json:"requestAction"`
 	// Identifier (ID) representing a single API request.
 	// REQUIRED
 	RequestId *string `json:"requestId"`
-	// Object that represents a resource type.
+	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.
 	// REQUIRED
 	RequestType *string `json:"requestType"`
 	// REQUIRED
 	Resources *[]RequestResource `json:"resources"`
-	// The state of a resource object.
+	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
 	Status *string `json:"status"`
 }
