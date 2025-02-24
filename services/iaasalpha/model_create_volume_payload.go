@@ -32,7 +32,7 @@ type CreateVolumePayload struct {
 	// Universally Unique Identifier (UUID).
 	Id          *string      `json:"id,omitempty"`
 	ImageConfig *ImageConfig `json:"imageConfig,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty"`
@@ -43,7 +43,7 @@ type CreateVolumePayload struct {
 	// Size in Gigabyte.
 	Size   *int64        `json:"size,omitempty"`
 	Source *VolumeSource `json:"source,omitempty"`
-	// The status of a volume object.
+	// The status of a volume object. Possible values: `ATTACHED`, `ATTACHING`, `AVAILABLE`, `AWAITING-TRANSFER`, `BACKING-UP`, `CREATING`, `DELETED`, `DELETING`, `DETACHING`, `DOWNLOADING`, `ERROR`, `ERROR_BACKING-UP`, `ERROR_DELETING`, `ERROR_RESIZING`, `ERROR_RESTORING-BACKUP`, `MAINTENANCE`, `RESERVED`, `RESIZING`, `RESTORING-BACKUP`, `RETYPING`, `UPLOADING`.
 	Status *string `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
