@@ -20,9 +20,9 @@ var _ MappedNullable = &UpdateImagePayload{}
 // UpdateImagePayload Object that represents an update request body of an Image.
 type UpdateImagePayload struct {
 	Config *ImageConfig `json:"config,omitempty"`
-	// Object that represents a disk format.
+	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	DiskFormat *string `json:"diskFormat,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// Size in Gigabyte.
 	MinDiskSize *int64 `json:"minDiskSize,omitempty"`

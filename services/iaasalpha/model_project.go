@@ -30,7 +30,7 @@ type Project struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
 	ProjectId *string `json:"projectId"`
-	// The state of a resource object.
+	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
 	State *string `json:"state"`
 	// Date-time when resource was last updated.
