@@ -1,3 +1,9 @@
+## Release (2025-XX-XX)
+
+- `sqlserverflex`: [v1.0.0](services/sqlserverflex/CHANGELOG.md#v100-2025-02-24)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+  - **Feature:** Add method to delete all instances for a project: `TerminateProject`
+
 ## Release (2025-02-21)
 > [!WARNING]
 >
