@@ -26,14 +26,14 @@ type NetworkArea struct {
 	// Date-time when resource was created.
 	CreatedAt *time.Time       `json:"createdAt,omitempty"`
 	Ipv4      *NetworkAreaIPv4 `json:"ipv4,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// REQUIRED
 	Name *string `json:"name"`
 	// The amount of projects currently referencing a specific area.
 	// REQUIRED
 	ProjectCount *int64 `json:"projectCount"`
-	// The state of a resource object.
+	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
 	State *string `json:"state"`
 	// Date-time when resource was last updated.
