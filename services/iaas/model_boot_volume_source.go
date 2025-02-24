@@ -22,7 +22,7 @@ type BootVolumeSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
 	Id *string `json:"id"`
-	// The source types of a boot volume.
+	// The source types of a boot volume. Possible values: `image`, `volume`.
 	// REQUIRED
 	Type *string `json:"type"`
 }
