@@ -1,3 +1,8 @@
+## v0.3.0 (2025-02-24)
+- **Feature:** Add method to create inquiries: `InquiriesCreateInquiry`
+- **Feature:** Add `sort` property to `ApiListCatalogProductsRequest`
+- **Feature:** Add payload `ApproveSubscriptionPayload` for `ApiApproveSubscriptionRequest`
+
 ## v0.2.0 (2025-02-21)
 - **New:** Minimal go version is now Go 1.21
 
