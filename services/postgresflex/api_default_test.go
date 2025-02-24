@@ -24,9 +24,11 @@ import (
 func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CloneInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/clone"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/clone"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -66,10 +68,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		cloneInstancePayload := CloneInstancePayload{}
 
-		resp, reqErr := apiClient.CloneInstance(context.Background(), projectId, instanceId).CloneInstancePayload(cloneInstancePayload).Execute()
+		resp, reqErr := apiClient.CloneInstance(context.Background(), projectId, region, instanceId).CloneInstancePayload(cloneInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -80,9 +83,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateDatabase", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/databases"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -122,10 +127,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		createDatabasePayload := CreateDatabasePayload{}
 
-		resp, reqErr := apiClient.CreateDatabase(context.Background(), projectId, instanceId).CreateDatabasePayload(createDatabasePayload).Execute()
+		resp, reqErr := apiClient.CreateDatabase(context.Background(), projectId, region, instanceId).CreateDatabasePayload(createDatabasePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -136,9 +142,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances"
+		path := "/v2/projects/{projectId}/regions/{region}/instances"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -176,9 +184,10 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		createInstancePayload := CreateInstancePayload{}
 
-		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
+		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId, region).CreateInstancePayload(createInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -189,9 +198,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -231,10 +242,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		createUserPayload := CreateUserPayload{}
 
-		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
+		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, region, instanceId).CreateUserPayload(createUserPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -245,9 +257,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteDatabase", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/databases/{databaseId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases/{databaseId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		databaseIdValue := "databaseId"
@@ -286,10 +300,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		databaseId := "databaseId"
 
-		reqErr := apiClient.DeleteDatabase(context.Background(), projectId, instanceId, databaseId).Execute()
+		reqErr := apiClient.DeleteDatabase(context.Background(), projectId, region, instanceId, databaseId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -297,9 +312,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -336,9 +353,10 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 
-		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId).Execute()
+		reqErr := apiClient.DeleteInstance(context.Background(), projectId, region, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -346,9 +364,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
@@ -387,10 +407,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		userId := "userId"
 
-		reqErr := apiClient.DeleteUser(context.Background(), projectId, instanceId, userId).Execute()
+		reqErr := apiClient.DeleteUser(context.Background(), projectId, region, instanceId, userId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -398,9 +419,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ForceDeleteInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/force"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/force"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -437,9 +460,10 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 
-		reqErr := apiClient.ForceDeleteInstance(context.Background(), projectId, instanceId).Execute()
+		reqErr := apiClient.ForceDeleteInstance(context.Background(), projectId, region, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -447,9 +471,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/{backupId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		backupIdValue := "backupId"
@@ -491,10 +517,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		backupId := "backupId"
 
-		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, instanceId, backupId).Execute()
+		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, region, instanceId, backupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -505,9 +532,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -547,9 +576,10 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 
-		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, region, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -560,9 +590,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
@@ -604,10 +636,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		userId := "userId"
 
-		resp, reqErr := apiClient.GetUser(context.Background(), projectId, instanceId, userId).Execute()
+		resp, reqErr := apiClient.GetUser(context.Background(), projectId, region, instanceId, userId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -618,9 +651,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -660,9 +695,10 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 
-		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, region, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -673,9 +709,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListDatabaseParameters", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/parameter"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/parameter"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -715,9 +753,10 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 
-		resp, reqErr := apiClient.ListDatabaseParameters(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListDatabaseParameters(context.Background(), projectId, region, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -728,9 +767,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListDatabases", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/databases"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -770,9 +811,10 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 
-		resp, reqErr := apiClient.ListDatabases(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListDatabases(context.Background(), projectId, region, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -783,9 +825,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListFlavors", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/flavors"
+		path := "/v2/projects/{projectId}/regions/{region}/flavors"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -823,8 +867,9 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListFlavors(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListFlavors(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -835,9 +880,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances"
+		path := "/v2/projects/{projectId}/regions/{region}/instances"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -875,8 +922,9 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListInstances(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -887,9 +935,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListMetrics", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/metrics/{metric}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/metrics/{metric}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		metricValue := "metric"
@@ -931,11 +981,12 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		metric := "metric"
 		var granularity string
 
-		resp, reqErr := apiClient.ListMetrics(context.Background(), projectId, instanceId, metric).Granularity(granularity).Execute()
+		resp, reqErr := apiClient.ListMetrics(context.Background(), projectId, region, instanceId, metric).Granularity(granularity).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -946,9 +997,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListStorages", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/storages/{flavorId}"
+		path := "/v2/projects/{projectId}/regions/{region}/storages/{flavorId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		flavorIdValue := "flavorId"
 		path = strings.Replace(path, "{"+"flavorId"+"}", url.PathEscape(ParameterValueToString(flavorIdValue, "flavorId")), -1)
 
@@ -988,9 +1041,10 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		flavorId := "flavorId"
 
-		resp, reqErr := apiClient.ListStorages(context.Background(), projectId, flavorId).Execute()
+		resp, reqErr := apiClient.ListStorages(context.Background(), projectId, region, flavorId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1001,9 +1055,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListUsers", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -1043,9 +1099,10 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 
-		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, region, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1056,9 +1113,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListVersions", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/versions"
+		path := "/v2/projects/{projectId}/regions/{region}/versions"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -1096,8 +1155,9 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListVersions(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListVersions(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1108,9 +1168,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -1150,10 +1212,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		partialUpdateInstancePayload := PartialUpdateInstancePayload{}
 
-		resp, reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, instanceId).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
+		resp, reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, region, instanceId).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1164,9 +1227,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
@@ -1205,10 +1270,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		userId := "userId"
 
-		reqErr := apiClient.PartialUpdateUser(context.Background(), projectId, instanceId, userId).Execute()
+		reqErr := apiClient.PartialUpdateUser(context.Background(), projectId, region, instanceId, userId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1216,9 +1282,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResetUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}/reset"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}/reset"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
@@ -1260,10 +1328,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		userId := "userId"
 
-		resp, reqErr := apiClient.ResetUser(context.Background(), projectId, instanceId, userId).Execute()
+		resp, reqErr := apiClient.ResetUser(context.Background(), projectId, region, instanceId, userId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1274,9 +1343,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateBackupSchedule", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -1313,10 +1384,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		updateBackupSchedulePayload := UpdateBackupSchedulePayload{}
 
-		reqErr := apiClient.UpdateBackupSchedule(context.Background(), projectId, instanceId).UpdateBackupSchedulePayload(updateBackupSchedulePayload).Execute()
+		reqErr := apiClient.UpdateBackupSchedule(context.Background(), projectId, region, instanceId).UpdateBackupSchedulePayload(updateBackupSchedulePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1324,9 +1396,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
@@ -1366,10 +1440,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		updateInstancePayload := UpdateInstancePayload{}
 
-		resp, reqErr := apiClient.UpdateInstance(context.Background(), projectId, instanceId).UpdateInstancePayload(updateInstancePayload).Execute()
+		resp, reqErr := apiClient.UpdateInstance(context.Background(), projectId, region, instanceId).UpdateInstancePayload(updateInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1380,9 +1455,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		path := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		instanceIdValue := "instanceId"
 		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
@@ -1421,10 +1498,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		instanceId := "instanceId"
 		userId := "userId"
 
-		reqErr := apiClient.UpdateUser(context.Background(), projectId, instanceId, userId).Execute()
+		reqErr := apiClient.UpdateUser(context.Background(), projectId, region, instanceId, userId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
