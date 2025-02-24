@@ -20,25 +20,33 @@ var _ MappedNullable = &InstanceParameters{}
 // InstanceParameters struct for InstanceParameters
 type InstanceParameters struct {
 	// The unit is milliseconds.
+	// Can be cast to int32 without loss of precision.
 	DownAfterMilliseconds *int64 `json:"down-after-milliseconds,omitempty"`
 	EnableMonitoring      *bool  `json:"enable_monitoring,omitempty"`
 	// The unit is milliseconds.
+	// Can be cast to int32 without loss of precision.
 	FailoverTimeout *int64 `json:"failover-timeout,omitempty"`
 	// If you want to monitor your service with Graphite, you can set the custom parameter graphite. It expects the host and port where the Graphite metrics should be sent to.
 	Graphite             *string `json:"graphite,omitempty"`
 	LazyfreeLazyEviction *string `json:"lazyfree-lazy-eviction,omitempty"`
 	LazyfreeLazyExpire   *string `json:"lazyfree-lazy-expire,omitempty"`
-	LuaTimeLimit         *int64  `json:"lua-time-limit,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	LuaTimeLimit *int64 `json:"lua-time-limit,omitempty"`
 	// This component monitors ephemeral and persistent disk usage. If one of these disk usages reaches the default configured threshold of 80%, the a9s Parachute stops all processes on that node.
-	MaxDiskThreshold *int64  `json:"max_disk_threshold,omitempty"`
-	Maxclients       *int64  `json:"maxclients,omitempty"`
-	MaxmemoryPolicy  *string `json:"maxmemory-policy,omitempty"`
-	MaxmemorySamples *int64  `json:"maxmemory-samples,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	MaxDiskThreshold *int64 `json:"max_disk_threshold,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	Maxclients      *int64  `json:"maxclients,omitempty"`
+	MaxmemoryPolicy *string `json:"maxmemory-policy,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	MaxmemorySamples *int64 `json:"maxmemory-samples,omitempty"`
 	// Frequency of metrics being emitted in seconds
+	// Can be cast to int32 without loss of precision.
 	MetricsFrequency *int64 `json:"metrics_frequency,omitempty"`
 	// Depending on your graphite provider, you might need to prefix the metrics with a certain value, like an API key for example.
 	MetricsPrefix *string `json:"metrics_prefix,omitempty"`
 	// The unit is seconds.
+	// Can be cast to int32 without loss of precision.
 	MinReplicasMaxLag    *int64  `json:"min_replicas_max_lag,omitempty"`
 	MonitoringInstanceId *string `json:"monitoring_instance_id,omitempty"`
 	// The allowed value must include the following characters only: [K,E,g,$,l,s,h,z,x,e,A,t]
