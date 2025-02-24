@@ -24,9 +24,10 @@ type Credentials struct {
 	Hosts *[]string `json:"hosts,omitempty"`
 	// REQUIRED
 	Password *string `json:"password"`
-	Port     *int64  `json:"port,omitempty"`
-	Scheme   *string `json:"scheme,omitempty"`
-	Uri      *string `json:"uri,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	Port   *int64  `json:"port,omitempty"`
+	Scheme *string `json:"scheme,omitempty"`
+	Uri    *string `json:"uri,omitempty"`
 	// REQUIRED
 	Username *string `json:"username"`
 }
