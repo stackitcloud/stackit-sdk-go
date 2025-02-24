@@ -22,7 +22,8 @@ type Credentials struct {
 	// REQUIRED
 	Host *string `json:"host"`
 	// REQUIRED
-	Password       *string `json:"password"`
+	Password *string `json:"password"`
+	// Can be cast to int32 without loss of precision.
 	Port           *int64  `json:"port,omitempty"`
 	SyslogDrainUrl *string `json:"syslog_drain_url,omitempty"`
 	Uri            *string `json:"uri,omitempty"`
