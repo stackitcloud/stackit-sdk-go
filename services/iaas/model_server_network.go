@@ -67,8 +67,6 @@ func NewServerNetwork(mac *string, networkId *string, networkName *string, nicId
 // but it doesn't guarantee that properties required by API are set
 func NewServerNetworkWithDefaults() *ServerNetwork {
 	this := ServerNetwork{}
-	var nicSecurity bool = true
-	this.NicSecurity = &nicSecurity
 	return &this
 }
 

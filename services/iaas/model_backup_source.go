@@ -22,7 +22,7 @@ type BackupSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
 	Id *string `json:"id"`
-	// The source types of a backup.
+	// The source types of a backup. Possible values: `volume`, `snapshot`.
 	// REQUIRED
 	Type *string `json:"type"`
 }

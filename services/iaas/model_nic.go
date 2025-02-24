@@ -29,7 +29,7 @@ type NIC struct {
 	Ipv4 *string `json:"ipv4,omitempty"`
 	// Object that represents an IPv6 address.
 	Ipv6 *string `json:"ipv6,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// Object that represents an MAC address.
 	Mac *string `json:"mac,omitempty"`

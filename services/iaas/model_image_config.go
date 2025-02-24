@@ -19,7 +19,9 @@ var _ MappedNullable = &ImageConfig{}
 
 // ImageConfig Properties to set hardware and scheduling settings for an Image.
 type ImageConfig struct {
-	// Enables the BIOS bootmenu.
+	// Represents CPU architecture. The default for new images is x86.
+	Architecture *string `json:"architecture,omitempty"`
+	// Enables the BIOS bootmenu. The default for new images is disabled.
 	BootMenu *bool `json:"bootMenu,omitempty"`
 	// Sets CDROM bus controller type.
 	CdromBus *NullableString `json:"cdromBus,omitempty"`
@@ -37,13 +39,13 @@ type ImageConfig struct {
 	RescueBus *NullableString `json:"rescueBus,omitempty"`
 	// Sets the device when the image is used as a rescue image.
 	RescueDevice *NullableString `json:"rescueDevice,omitempty"`
-	// Enables Secure Boot.
+	// Enables Secure Boot. The default for new images is disabled.
 	SecureBoot *bool `json:"secureBoot,omitempty"`
-	// Enables UEFI boot.
+	// Configure UEFI boot. The default for new images is enabled.
 	Uefi *bool `json:"uefi,omitempty"`
 	// Sets Graphic device model.
 	VideoModel *NullableString `json:"videoModel,omitempty"`
-	// Enables the use of VirtIO SCSI to provide block device access. By default instances use VirtIO Block.
+	// Enables the use of VirtIO SCSI to provide block device access. By default servers use VirtIO Block.
 	VirtioScsi *bool `json:"virtioScsi,omitempty"`
 }
 
@@ -53,14 +55,6 @@ type ImageConfig struct {
 // will change when the set of required properties is changed
 func NewImageConfig() *ImageConfig {
 	this := ImageConfig{}
-	var bootMenu bool = false
-	this.BootMenu = &bootMenu
-	var secureBoot bool = false
-	this.SecureBoot = &secureBoot
-	var uefi bool = false
-	this.Uefi = &uefi
-	var virtioScsi bool = false
-	this.VirtioScsi = &virtioScsi
 	return &this
 }
 
@@ -69,15 +63,39 @@ func NewImageConfig() *ImageConfig {
 // but it doesn't guarantee that properties required by API are set
 func NewImageConfigWithDefaults() *ImageConfig {
 	this := ImageConfig{}
-	var bootMenu bool = false
-	this.BootMenu = &bootMenu
-	var secureBoot bool = false
-	this.SecureBoot = &secureBoot
-	var uefi bool = false
-	this.Uefi = &uefi
-	var virtioScsi bool = false
-	this.VirtioScsi = &virtioScsi
 	return &this
+}
+
+// GetArchitecture returns the Architecture field value if set, zero value otherwise.
+func (o *ImageConfig) GetArchitecture() *string {
+	if o == nil || IsNil(o.Architecture) {
+		var ret *string
+		return ret
+	}
+	return o.Architecture
+}
+
+// GetArchitectureOk returns a tuple with the Architecture field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ImageConfig) GetArchitectureOk() (*string, bool) {
+	if o == nil || IsNil(o.Architecture) {
+		return nil, false
+	}
+	return o.Architecture, true
+}
+
+// HasArchitecture returns a boolean if a field has been set.
+func (o *ImageConfig) HasArchitecture() bool {
+	if o != nil && !IsNil(o.Architecture) {
+		return true
+	}
+
+	return false
+}
+
+// SetArchitecture gets a reference to the given string and assigns it to the Architecture field.
+func (o *ImageConfig) SetArchitecture(v *string) {
+	o.Architecture = v
 }
 
 // GetBootMenu returns the BootMenu field value if set, zero value otherwise.
@@ -658,6 +676,9 @@ func (o *ImageConfig) SetVirtioScsi(v *bool) {
 
 func (o ImageConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Architecture) {
+		toSerialize["architecture"] = o.Architecture
+	}
 	if !IsNil(o.BootMenu) {
 		toSerialize["bootMenu"] = o.BootMenu
 	}
