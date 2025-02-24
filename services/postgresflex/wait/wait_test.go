@@ -20,7 +20,7 @@ type apiClientInstanceMocked struct {
 	usersGetErrorStatus    int
 }
 
-func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*postgresflex.InstanceResponse, error) {
+func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _, _ string) (*postgresflex.InstanceResponse, error) {
 	if a.instanceGetFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -41,7 +41,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 	}, nil
 }
 
-func (a *apiClientInstanceMocked) ListUsersExecute(_ context.Context, _, _ string) (*postgresflex.ListUsersResponse, error) {
+func (a *apiClientInstanceMocked) ListUsersExecute(_ context.Context, _, _, _ string) (*postgresflex.ListUsersResponse, error) {
 	if a.usersGetErrorStatus != 0 {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: a.usersGetErrorStatus,
@@ -163,7 +163,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -240,7 +240,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := PartialUpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+			handler := PartialUpdateInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -289,7 +289,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				instanceState:    tt.instanceState,
 			}
 
-			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
 
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -336,7 +336,7 @@ func TestForceDeleteInstanceWaitHandler(t *testing.T) {
 				instanceState:          tt.instanceState,
 			}
 
-			handler := ForceDeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+			handler := ForceDeleteInstanceWaitHandler(context.Background(), apiClient, "", "", instanceId)
 
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
