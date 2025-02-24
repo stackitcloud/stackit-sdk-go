@@ -24,12 +24,16 @@ type InstanceParameters struct {
 	Graphite             *string `json:"graphite,omitempty"`
 	JavaGarbageCollector *string `json:"java_garbage_collector,omitempty"`
 	// Default: not set, 46% of available memory will be used. The amount of memory (in MB) allocated as heap by the JVM for OpenSearch.
+	// Can be cast to int32 without loss of precision.
 	JavaHeapspace *int64 `json:"java_heapspace,omitempty"`
 	// The amount of memory (in MB) used by the JVM to store metadata for OpenSearch.
+	// Can be cast to int32 without loss of precision.
 	JavaMaxmetaspace *int64 `json:"java_maxmetaspace,omitempty"`
 	// This component monitors ephemeral and persistent disk usage. If one of these disk usages reaches the default configured threshold of 80%, the a9s Parachute stops all processes on that node.
+	// Can be cast to int32 without loss of precision.
 	MaxDiskThreshold *int64 `json:"max_disk_threshold,omitempty"`
 	// Frequency of metrics being emitted in seconds
+	// Can be cast to int32 without loss of precision.
 	MetricsFrequency *int64 `json:"metrics_frequency,omitempty"`
 	// Depending on your graphite provider, you might need to prefix the metrics with a certain value, like an API key for example.
 	MetricsPrefix        *string `json:"metrics_prefix,omitempty"`
