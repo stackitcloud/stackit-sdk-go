@@ -26,7 +26,7 @@ type Network struct {
 	Gateway *NullableString `json:"gateway,omitempty"`
 	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gatewayv6 *NullableString `json:"gatewayv6,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// REQUIRED
 	Name *string `json:"name"`
@@ -43,7 +43,7 @@ type Network struct {
 	PublicIp *string `json:"publicIp,omitempty"`
 	// Shows if the network is routed and therefore accessible from other networks.
 	Routed *bool `json:"routed,omitempty"`
-	// The state of a resource object.
+	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
 	State *string `json:"state"`
 	// Date-time when resource was last updated.
