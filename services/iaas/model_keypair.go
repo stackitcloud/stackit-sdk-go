@@ -24,7 +24,7 @@ type Keypair struct {
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Object that represents an SSH keypair MD5 fingerprint.
 	Fingerprint *string `json:"fingerprint,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
 	Name *string `json:"name,omitempty"`

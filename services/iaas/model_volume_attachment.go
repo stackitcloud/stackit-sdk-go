@@ -33,8 +33,6 @@ type VolumeAttachment struct {
 // will change when the set of required properties is changed
 func NewVolumeAttachment() *VolumeAttachment {
 	this := VolumeAttachment{}
-	var deleteOnTermination bool = false
-	this.DeleteOnTermination = &deleteOnTermination
 	return &this
 }
 
@@ -43,8 +41,6 @@ func NewVolumeAttachment() *VolumeAttachment {
 // but it doesn't guarantee that properties required by API are set
 func NewVolumeAttachmentWithDefaults() *VolumeAttachment {
 	this := VolumeAttachment{}
-	var deleteOnTermination bool = false
-	this.DeleteOnTermination = &deleteOnTermination
 	return &this
 }
 
