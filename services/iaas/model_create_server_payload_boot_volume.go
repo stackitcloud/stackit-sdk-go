@@ -36,8 +36,6 @@ type CreateServerPayloadBootVolume struct {
 // will change when the set of required properties is changed
 func NewCreateServerPayloadBootVolume() *CreateServerPayloadBootVolume {
 	this := CreateServerPayloadBootVolume{}
-	var deleteOnTermination bool = false
-	this.DeleteOnTermination = &deleteOnTermination
 	return &this
 }
 
@@ -46,8 +44,6 @@ func NewCreateServerPayloadBootVolume() *CreateServerPayloadBootVolume {
 // but it doesn't guarantee that properties required by API are set
 func NewCreateServerPayloadBootVolumeWithDefaults() *CreateServerPayloadBootVolume {
 	this := CreateServerPayloadBootVolume{}
-	var deleteOnTermination bool = false
-	this.DeleteOnTermination = &deleteOnTermination
 	return &this
 }
 

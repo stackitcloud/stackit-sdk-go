@@ -22,7 +22,7 @@ type VolumeSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
 	Id *string `json:"id"`
-	// The source types of a volume.
+	// The source types of a volume. Possible values: `image`, `volume`, `snapshot`, `backup`.
 	// REQUIRED
 	Type *string `json:"type"`
 }
