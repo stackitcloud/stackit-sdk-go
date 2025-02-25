@@ -16,6 +16,16 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
+func setTemporaryHome(t *testing.T) {
+	old := userHomeDir
+	t.Cleanup(func() {
+		userHomeDir = old
+	})
+	userHomeDir = func() (string, error) {
+		return t.TempDir(), nil
+	}
+}
+
 func fixtureServiceAccountKey(mods ...func(*clients.ServiceAccountKeyResponse)) *clients.ServiceAccountKeyResponse {
 	validUntil := time.Now().Add(time.Hour)
 	serviceAccountKeyResponse := &clients.ServiceAccountKeyResponse{
@@ -150,6 +160,7 @@ func TestSetupAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			if test.setKeys {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", saKeyFile.Name())
 				t.Setenv("STACKIT_PRIVATE_KEY_PATH", privateKeyFile.Name())
@@ -232,6 +243,7 @@ func TestReadCredentials(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.pathEnv)
 
 			var credential string
@@ -342,6 +354,7 @@ func TestDefaultAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			if test.setKeys {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", saKeyFile.Name())
 				t.Setenv("STACKIT_PRIVATE_KEY_PATH", privateKeyFile.Name())
@@ -406,6 +419,7 @@ func TestTokenAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "")
 			t.Setenv("STACKIT_CREDENTIALS_PATH", "test-path")
 
@@ -499,6 +513,7 @@ func TestKeyAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", "")
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", "")
 			t.Setenv("STACKIT_PRIVATE_KEY", "")
@@ -557,7 +572,7 @@ func TestNoAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
-			// Get the default authentication client and ensure that it's not nil
+			setTemporaryHome(t) // Get the default authentication client and ensure that it's not nil
 			authClient, err := NoAuth()
 			if err != nil {
 				t.Fatalf("Test returned error on valid test case: %v", err)
@@ -624,6 +639,7 @@ func TestGetServiceAccountEmail(t *testing.T) {
 		},
 	} {
 		t.Run(test.description, func(t *testing.T) {
+			setTemporaryHome(t)
 			if test.envEmailSet {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "env_email")
 			} else {
@@ -742,6 +758,7 @@ func TestGetPrivateKey(t *testing.T) {
 		},
 	} {
 		t.Run(test.name, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.credentialsFilePath)
 
 			if test.envPrivateKeyPathSet {
@@ -843,6 +860,7 @@ func TestGetServiceAccountKey(t *testing.T) {
 		},
 	} {
 		t.Run(test.name, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.credentialsFilePath)
 
 			if test.envServiceAccountKeyPathSet {

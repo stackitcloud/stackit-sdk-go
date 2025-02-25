@@ -20,8 +20,8 @@ const (
 
 // Interface needed for tests
 type APIClientInstanceInterface interface {
-	GetInstanceExecute(ctx context.Context, projectId, instanceId string) (*postgresflex.InstanceResponse, error)
-	ListUsersExecute(ctx context.Context, projectId string, instanceId string) (*postgresflex.ListUsersResponse, error)
+	GetInstanceExecute(ctx context.Context, projectId, region, instanceId string) (*postgresflex.InstanceResponse, error)
+	ListUsersExecute(ctx context.Context, projectId, region, instanceId string) (*postgresflex.ListUsersResponse, error)
 }
 
 // Interface needed for tests
@@ -30,13 +30,13 @@ type APIClientUserInterface interface {
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
+func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
 	instanceCreated := false
 	var instanceGetResponse *postgresflex.InstanceResponse
 
 	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
 		if !instanceCreated {
-			s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
+			s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
 			if err != nil {
 				return false, nil, err
 			}
@@ -60,7 +60,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 
 		// User operations aren't available right after an instance is deemed successful
 		// To check if they are, perform a users request
-		_, err = a.ListUsersExecute(ctx, projectId, instanceId)
+		_, err = a.ListUsersExecute(ctx, projectId, region, instanceId)
 		if err == nil {
 			return true, instanceGetResponse, nil
 		}
@@ -79,9 +79,9 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
-		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
+		s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
 		if err != nil {
 			return false, nil, err
 		}
@@ -106,9 +106,9 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceIn
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
+func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
+		s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
 		if err != nil {
 			return false, nil, err
 		}
@@ -129,9 +129,9 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // ForceDeleteInstanceWaitHandler will wait for instance deletion
-func ForceDeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
+func ForceDeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		_, err = a.GetInstanceExecute(ctx, projectId, instanceId)
+		_, err = a.GetInstanceExecute(ctx, projectId, region, instanceId)
 		if err == nil {
 			return false, nil, nil
 		}

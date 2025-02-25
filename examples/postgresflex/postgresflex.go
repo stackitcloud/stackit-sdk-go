@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex"
 	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex/wait"
 )
@@ -14,17 +13,18 @@ func main() {
 	// Specify the project ID
 	projectId := "PROJECT_ID"
 
+	// Specify the region
+	region := "REGION"
+
 	// Create a new API client, that uses default authentication and configuration
-	postgresflexClient, err := postgresflex.NewAPIClient(
-		config.WithRegion("eu01"),
-	)
+	postgresflexClient, err := postgresflex.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
 	}
 
 	// Get the postgresql instances for your project
-	getInstancesResp, err := postgresflexClient.ListInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := postgresflexClient.ListInstances(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListInstances`: %v\n", err)
 		os.Exit(1)
@@ -44,7 +44,7 @@ func main() {
 		Username: &username,
 		Roles:    &[]string{"login"},
 	}
-	_, err = postgresflexClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
+	_, err = postgresflexClient.CreateUser(context.Background(), projectId, region, instanceId).CreateUserPayload(createUserPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateUser`: %v\n", err)
 		os.Exit(1)
@@ -53,13 +53,13 @@ func main() {
 	fmt.Printf("Created user \"%s\" associated to instance \"%s\".\n", username, *items[0].Name)
 
 	// Delete an instance
-	err = postgresflexClient.DeleteInstance(context.Background(), projectId, instanceId).Execute()
+	err = postgresflexClient.DeleteInstance(context.Background(), projectId, region, instanceId).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when delete PostgreSQL Flex instance: %v", err)
 	}
 
-	_, err = wait.DeleteInstanceWaitHandler(context.Background(), postgresflexClient, projectId, instanceId).WaitWithContext(context.Background())
+	_, err = wait.DeleteInstanceWaitHandler(context.Background(), postgresflexClient, projectId, region, instanceId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when waiting for PostgreSQL Flex instance deletion: %v", err)
 	}
@@ -67,13 +67,13 @@ func main() {
 	fmt.Printf("Deleted PostgreSQL Flex instance \"%s\".\n", instanceId)
 
 	// Force delete an instance
-	err = postgresflexClient.ForceDeleteInstance(context.Background(), projectId, instanceId).Execute()
+	err = postgresflexClient.ForceDeleteInstance(context.Background(), projectId, region, instanceId).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when force delete PostgreSQL Flex instance: %v", err)
 	}
 
-	_, err = wait.ForceDeleteInstanceWaitHandler(context.Background(), postgresflexClient, projectId, instanceId).WaitWithContext(context.Background())
+	_, err = wait.ForceDeleteInstanceWaitHandler(context.Background(), postgresflexClient, projectId, region, instanceId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when waiting for PostgreSQL Flex instance force deletion: %v", err)
 	}
