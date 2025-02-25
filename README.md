@@ -120,7 +120,7 @@ The SDK supports two authentication methods:
 The SDK searches for credentials in the following order:
 
 1. Explicit configuration in code
-2. Environment variables
+2. Environment variables (KEY_PATH for KEY)
 3. Credentials file (`$HOME/.stackit/credentials.json`)
 
 For each authentication method, the key flow is attempted first, followed by the token flow.
