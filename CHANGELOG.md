@@ -1,62 +1,69 @@
+## Release (2025-XX-XX)
+
+- `stackitmarketplace`: [v0.3.0](services/stackitmarketplace/CHANGELOG.md#v030-2025-02-25)
+  - **Feature:** Add method to create inquiries: `InquiriesCreateInquiry`
+  - **Feature:** Add `sort` property to `ApiListCatalogProductsRequest`
+  - **Feature:** Add payload `ApproveSubscriptionPayload` for `ApiApproveSubscriptionRequest`
+
 ## Release (2025-02-21)
 > [!WARNING]
 >
 > **The lowest supported go version is now 1.21. In the future, only the two most recent versions will be supported.**
 
 
-- `core`: [0.16.0](core/CHANGELOG.md#v0160-2025-02-21)
+- `core`: [v0.16.0](core/CHANGELOG.md#v0160-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `archiving`: [0.2.0](services/archiving/CHANGELOG.md#v020-2025-02-21)
+- `archiving`: [v0.2.0](services/archiving/CHANGELOG.md#v020-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `authorization`: [0.6.0](services/authorization/CHANGELOG.md#v060-2025-02-21)
+- `authorization`: [v0.6.0](services/authorization/CHANGELOG.md#v060-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `certificates`: [0.2.0](services/certificates/CHANGELOG.md#v020-2025-02-21)
+- `certificates`: [v0.2.0](services/certificates/CHANGELOG.md#v020-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `dns`: [0.13.0](services/dns/CHANGELOG.md#v0130-2025-02-21)
+- `dns`: [v0.13.0](services/dns/CHANGELOG.md#v0130-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `iaas`: [0.20.0](services/iaas/CHANGELOG.md#v0200-2025-02-21)
+- `iaas`: [v0.20.0](services/iaas/CHANGELOG.md#v0200-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `lbapplication`: [0.3.0](services/lbapplication/CHANGELOG.md#v030-2025-02-21)
+- `lbapplication`: [v0.3.0](services/lbapplication/CHANGELOG.md#v030-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `loadbalancer`: [0.18.0](services/loadbalancer/CHANGELOG.md#v0180-2025-02-21)
+- `loadbalancer`: [v0.18.0](services/loadbalancer/CHANGELOG.md#v0180-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `logme`: [0.21.0](services/logme/CHANGELOG.md#v0210-2025-02-21)
+- `logme`: [v0.21.0](services/logme/CHANGELOG.md#v0210-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `mariadb`: [0.21.0](services/mariadb/CHANGELOG.md#v0210-2025-02-21)
+- `mariadb`: [v0.21.0](services/mariadb/CHANGELOG.md#v0210-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `mongodbflex`: [0.18.0](services/mongodbflex/CHANGELOG.md#v0180-2025-02-21)
+- `mongodbflex`: [v0.18.0](services/mongodbflex/CHANGELOG.md#v0180-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `objectstorage`: [1.1.0](services/objectstorage/CHANGELOG.md#v110-2025-02-21)
+- `objectstorage`: [v1.1.0](services/objectstorage/CHANGELOG.md#v110-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `observability`: [0.14.0](services/observability/CHANGELOG.md#v0140-2025-02-21)
+- `observability`: [v0.3.0](services/observability/CHANGELOG.md#v030-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `opensearch`: [0.20.0](services/opensearch/CHANGELOG.md#v0200-2025-02-21)
+- `opensearch`: [v0.20.0](services/opensearch/CHANGELOG.md#v0200-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `postgresflex`: [0.18.0](services/postgresflex/CHANGELOG.md#v0180-2025-02-21)
+- `postgresflex`: [v0.18.0](services/postgresflex/CHANGELOG.md#v0180-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `rabbitmq`: [0.21.0](services/rabbitmq/CHANGELOG.md#v0210-2025-02-21)
+- `rabbitmq`: [v0.21.0](services/rabbitmq/CHANGELOG.md#v0210-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `redis`: [0.21.0](services/redis/CHANGELOG.md#v0210-2025-02-21)
+- `redis`: [v0.21.0](services/redis/CHANGELOG.md#v0210-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `resourcemanager`: [0.13.0](services/resourcemanager/CHANGELOG.md#v0130-2025-02-21)
+- `resourcemanager`: [v0.13.0](services/resourcemanager/CHANGELOG.md#v0130-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `runcommand`: [0.3.0](services/runcommand/CHANGELOG.md#v030-2025-02-21)
+- `runcommand`: [v0.3.0](services/runcommand/CHANGELOG.md#v030-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `secretsmanager`: [0.11.0](services/secretsmanager/CHANGELOG.md#v0110-2025-02-21)
+- `secretsmanager`: [v0.11.0](services/secretsmanager/CHANGELOG.md#v0110-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `serverbackup`: [0.6.0](services/serverbackup/CHANGELOG.md#v060-2025-02-21)
+- `serverbackup`: [v0.6.0](services/serverbackup/CHANGELOG.md#v060-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `serverupdate`: [0.5.0](services/serverupdate/CHANGELOG.md#v050-2025-02-21)
+- `serverupdate`: [v0.5.0](services/serverupdate/CHANGELOG.md#v050-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `serviceaccount`: [0.6.0](services/serviceaccount/CHANGELOG.md#v060-2025-02-21)
+- `serviceaccount`: [v0.6.0](services/serviceaccount/CHANGELOG.md#v060-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `serviceenablement`: [0.5.0](services/serviceenablement/CHANGELOG.md#v050-2025-02-21)
+- `serviceenablement`: [v0.5.0](services/serviceenablement/CHANGELOG.md#v050-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `ske`: [0.22.0](services/ske/CHANGELOG.md#v0220-2025-02-21)
+- `ske`: [v0.22.0](services/ske/CHANGELOG.md#v0220-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `sqlserverflex`: [0.10.0](services/sqlserverflex/CHANGELOG.md#v0100-2025-02-21)
+- `sqlserverflex`: [v0.10.0](services/sqlserverflex/CHANGELOG.md#v0100-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
-- `stackitmarketplace`: [0.2.0](services/stackitmarketplace/CHANGELOG.md#v020-2025-02-21)
+- `stackitmarketplace`: [v0.2.0](services/stackitmarketplace/CHANGELOG.md#v020-2025-02-21)
   - **New**: Minimal go version is now Go 1.21
 
 
