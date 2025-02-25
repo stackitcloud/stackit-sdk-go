@@ -33,8 +33,6 @@ type UpdateAttachedVolumePayload struct {
 // will change when the set of required properties is changed
 func NewUpdateAttachedVolumePayload() *UpdateAttachedVolumePayload {
 	this := UpdateAttachedVolumePayload{}
-	var deleteOnTermination bool = false
-	this.DeleteOnTermination = &deleteOnTermination
 	return &this
 }
 
@@ -43,8 +41,6 @@ func NewUpdateAttachedVolumePayload() *UpdateAttachedVolumePayload {
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateAttachedVolumePayloadWithDefaults() *UpdateAttachedVolumePayload {
 	this := UpdateAttachedVolumePayload{}
-	var deleteOnTermination bool = false
-	this.DeleteOnTermination = &deleteOnTermination
 	return &this
 }
 
