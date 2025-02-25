@@ -16,6 +16,16 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
+func setTemporaryHome(t *testing.T) {
+	old := userHomeDir
+	t.Cleanup(func() {
+		userHomeDir = old
+	})
+	userHomeDir = func() (string, error) {
+		return t.TempDir(), nil
+	}
+}
+
 func fixtureServiceAccountKey(mods ...func(*clients.ServiceAccountKeyResponse)) *clients.ServiceAccountKeyResponse {
 	validUntil := time.Now().Add(time.Hour)
 	serviceAccountKeyResponse := &clients.ServiceAccountKeyResponse{
@@ -150,6 +160,7 @@ func TestSetupAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			if test.setKeys {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", saKeyFile.Name())
 				t.Setenv("STACKIT_PRIVATE_KEY_PATH", privateKeyFile.Name())
@@ -232,6 +243,7 @@ func TestReadCredentials(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.pathEnv)
 
 			var credential string
@@ -342,6 +354,7 @@ func TestDefaultAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			if test.setKeys {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", saKeyFile.Name())
 				t.Setenv("STACKIT_PRIVATE_KEY_PATH", privateKeyFile.Name())
@@ -406,6 +419,7 @@ func TestTokenAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "")
 			t.Setenv("STACKIT_CREDENTIALS_PATH", "test-path")
 
@@ -448,7 +462,6 @@ func TestKeyAuth(t *testing.T) {
 		envVarPrivateKey     string
 		expectedPrivateKey   string
 		isValid              bool
-		homeDir              func(*testing.T) string
 	}{
 		{
 			desc:                 "configured_private_key",
@@ -456,7 +469,6 @@ func TestKeyAuth(t *testing.T) {
 			configuredPrivateKey: string(configuredPrivateKey),
 			expectedPrivateKey:   string(configuredPrivateKey),
 			isValid:              true,
-			homeDir:              func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			desc:               "included_private_key",
@@ -464,7 +476,6 @@ func TestKeyAuth(t *testing.T) {
 			includedPrivateKey: &includedPrivateKey,
 			expectedPrivateKey: includedPrivateKey,
 			isValid:            true,
-			homeDir:            func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			desc:                 "empty_configured_use_included_private_key",
@@ -473,7 +484,6 @@ func TestKeyAuth(t *testing.T) {
 			configuredPrivateKey: "",
 			expectedPrivateKey:   includedPrivateKey,
 			isValid:              true,
-			homeDir:              func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			desc:                 "configured_over_included_private_key",
@@ -482,44 +492,32 @@ func TestKeyAuth(t *testing.T) {
 			configuredPrivateKey: configuredPrivateKey,
 			expectedPrivateKey:   configuredPrivateKey,
 			isValid:              true,
-			homeDir:              func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			desc:                 "no_sa_key",
 			serviceAccountKey:    nil,
 			configuredPrivateKey: configuredPrivateKey,
 			isValid:              false,
-			homeDir:              func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			desc:                 "missing_private_key",
 			serviceAccountKey:    fixtureServiceAccountKey(),
 			configuredPrivateKey: "",
 			isValid:              false,
-			homeDir:              func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			desc:                 "no_keys",
 			serviceAccountKey:    nil,
 			configuredPrivateKey: "",
 			isValid:              false,
-			homeDir:              func(t *testing.T) string { return t.TempDir() },
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", "")
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", "")
 			t.Setenv("STACKIT_PRIVATE_KEY", "")
 			t.Setenv("STACKIT_PRIVATE_KEY_PATH", "")
-			if homeDir := test.homeDir; homeDir != nil {
-				old := userHomeDir
-				t.Cleanup(func() {
-					userHomeDir = old
-				})
-				userHomeDir = func() (string, error) {
-					return test.homeDir(t), nil
-				}
-			}
 
 			var saKey string
 			if test.serviceAccountKey != nil {
@@ -574,7 +572,7 @@ func TestNoAuth(t *testing.T) {
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
-			// Get the default authentication client and ensure that it's not nil
+			setTemporaryHome(t) // Get the default authentication client and ensure that it's not nil
 			authClient, err := NoAuth()
 			if err != nil {
 				t.Fatalf("Test returned error on valid test case: %v", err)
@@ -641,6 +639,7 @@ func TestGetServiceAccountEmail(t *testing.T) {
 		},
 	} {
 		t.Run(test.description, func(t *testing.T) {
+			setTemporaryHome(t)
 			if test.envEmailSet {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "env_email")
 			} else {
@@ -759,6 +758,7 @@ func TestGetPrivateKey(t *testing.T) {
 		},
 	} {
 		t.Run(test.name, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.credentialsFilePath)
 
 			if test.envPrivateKeyPathSet {
@@ -786,7 +786,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 		credentialsFilePath         string
 		wantErr                     bool
 		expectedKey                 string
-		userHomeDir                 func(*testing.T) string
 	}{
 		{
 			name: "cfg_sa_key",
@@ -795,7 +794,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 			},
 			wantErr:     false,
 			expectedKey: "key",
-			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name: "cfg_sa_key_path",
@@ -804,7 +802,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 			},
 			wantErr:     false,
 			expectedKey: "key",
-			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name:                        "env_sa_key_path",
@@ -812,7 +809,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 			envServiceAccountKeyPathSet: true,
 			wantErr:                     false,
 			expectedKey:                 "key",
-			userHomeDir:                 func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name:                "credentials_file_sa_key_path",
@@ -820,7 +816,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 			credentialsFilePath: "test_resources/test_credentials_foo.json",
 			wantErr:             false,
 			expectedKey:         "foo_key",
-			userHomeDir:         func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name: "cfg_sa_key_precedes_path",
@@ -830,7 +825,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 			},
 			wantErr:     false,
 			expectedKey: "cfg_key",
-			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name: "cfg_sa_key_precedes_env",
@@ -840,7 +834,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 			envServiceAccountKeyPathSet: true,
 			wantErr:                     false,
 			expectedKey:                 "cfg_key",
-			userHomeDir:                 func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name: "cfg_sa_key_precedes_creds_file",
@@ -850,7 +843,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 			credentialsFilePath: "test_resources/test_credentials_foo.json",
 			wantErr:             false,
 			expectedKey:         "cfg_key",
-			userHomeDir:         func(t *testing.T) string { return t.TempDir() },
 		},
 		{
 			name:                        "env_sa_key_precedes_creds_file",
@@ -858,7 +850,6 @@ func TestGetServiceAccountKey(t *testing.T) {
 			envServiceAccountKeyPathSet: true,
 			credentialsFilePath:         "test_resources/test_credentials_foo.json",
 			wantErr:                     false,
-			userHomeDir:                 func(t *testing.T) string { return t.TempDir() },
 			expectedKey:                 "key",
 		},
 		{
@@ -866,20 +857,11 @@ func TestGetServiceAccountKey(t *testing.T) {
 			cfg:         &config.Configuration{},
 			wantErr:     true,
 			expectedKey: "",
-			userHomeDir: func(t *testing.T) string { return t.TempDir() },
 		},
 	} {
 		t.Run(test.name, func(t *testing.T) {
+			setTemporaryHome(t)
 			t.Setenv("STACKIT_CREDENTIALS_PATH", test.credentialsFilePath)
-			if homeDir := test.userHomeDir; homeDir != nil {
-				old := userHomeDir
-				t.Cleanup(func() {
-					userHomeDir = old
-				})
-				userHomeDir = func() (string, error) {
-					return homeDir(t), nil
-				}
-			}
 
 			if test.envServiceAccountKeyPathSet {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", "test_resources/test_string_key.txt")
