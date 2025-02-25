@@ -1,3 +1,7 @@
+## v0.16.1 (2025-02-25)
+
+- **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.
+
 ## v0.16.0 (2025-02-21)
 - **New:** Minimal go version is now Go 1.21
 
