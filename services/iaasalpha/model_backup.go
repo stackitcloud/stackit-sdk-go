@@ -26,7 +26,7 @@ type Backup struct {
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id *string `json:"id,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty"`
@@ -34,7 +34,7 @@ type Backup struct {
 	Size *int64 `json:"size,omitempty"`
 	// Universally Unique Identifier (UUID).
 	SnapshotId *string `json:"snapshotId,omitempty"`
-	// The status of a backup object.
+	// The status of a backup object. Possible values: `AVAILABLE`, `CREATING`, `DELETED`, `DELETING`, `ERROR`, `RESTORING`.
 	Status *string `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
