@@ -20,7 +20,7 @@ var _ MappedNullable = &CreateNetworkPayload{}
 // CreateNetworkPayload Object that represents the request body for a network create.
 type CreateNetworkPayload struct {
 	AddressFamily *CreateNetworkAddressFamily `json:"addressFamily,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED

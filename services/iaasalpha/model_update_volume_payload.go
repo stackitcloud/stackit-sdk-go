@@ -24,7 +24,7 @@ type UpdateVolumePayload struct {
 	// Description Object. Allows string up to 127 Characters.
 	Description *string      `json:"description,omitempty"`
 	ImageConfig *ImageConfig `json:"imageConfig,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty"`
@@ -36,8 +36,6 @@ type UpdateVolumePayload struct {
 // will change when the set of required properties is changed
 func NewUpdateVolumePayload() *UpdateVolumePayload {
 	this := UpdateVolumePayload{}
-	var bootable bool = false
-	this.Bootable = &bootable
 	return &this
 }
 
@@ -46,8 +44,6 @@ func NewUpdateVolumePayload() *UpdateVolumePayload {
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateVolumePayloadWithDefaults() *UpdateVolumePayload {
 	this := UpdateVolumePayload{}
-	var bootable bool = false
-	this.Bootable = &bootable
 	return &this
 }
 
