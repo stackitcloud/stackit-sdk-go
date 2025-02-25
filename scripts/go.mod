@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/scripts
 go 1.21
 
 require (
-	github.com/go-git/go-git/v5 v5.12.0
+	github.com/go-git/go-git/v5 v5.13.0
 	github.com/stackitcloud/stackit-sdk-go/core v0.16.0
 	golang.org/x/mod v0.20.0
 	golang.org/x/term v0.29.0
@@ -18,7 +18,7 @@ require (
 	github.com/go-git/go-billy/v5 v5.6.2 // indirect
 	github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8 // indirect
 	github.com/pjbgf/sha1cd v0.3.2 // indirect
-	github.com/skeema/knownhosts v1.2.2 // indirect
+	github.com/skeema/knownhosts v1.3.0 // indirect
 )
 
 require (
