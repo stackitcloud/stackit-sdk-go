@@ -4,6 +4,8 @@
   - **Feature:** Add method to create inquiries: `InquiriesCreateInquiry`
   - **Feature:** Add `sort` property to `ApiListCatalogProductsRequest`
   - **Feature:** Add payload `ApproveSubscriptionPayload` for `ApiApproveSubscriptionRequest`
+- `postgresflex`: [v1.0.0](services/postgresflex/CHANGELOG.md#v100-2025-02-24)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
 ## Release (2025-02-21)
 > [!WARNING]
