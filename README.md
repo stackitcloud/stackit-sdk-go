@@ -32,7 +32,7 @@ go mod download github.com/stackitcloud/stackit-sdk-go/services/dns
 ## Examples
 
 This is an example on how to do create a client and interact with the STACKIT DNS service for reading and creating DNS zones. As prerequisite, you need a STACKIT project with its project ID.
-The setup of the authentication is describe below in section [Authentication](#authentication) in more detail.
+The setup of the authentication is described below in section [Authentication](#authentication) in more detail.
 
 ```go
 package main
