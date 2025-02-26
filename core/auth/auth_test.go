@@ -50,6 +50,14 @@ func fixtureServiceAccountKey(mods ...func(*clients.ServiceAccountKeyResponse)) 
 	return serviceAccountKeyResponse
 }
 
+// helper function to create a credentials.json file with saKey and private key
+func createCredentialsKeyJson(serviceAccountKey, privateKey string) ([]byte, error) {
+	tempMap := map[string]interface{}{}
+	tempMap["STACKIT_SERVICE_ACCOUNT_KEY"] = serviceAccountKey
+	tempMap["STACKIT_PRIVATE_KEY"] = privateKey
+	return json.Marshal(tempMap)
+}
+
 // Error cases are tested in the NoAuth, KeyAuth, TokenAuth and DefaultAuth functions
 func TestSetupAuth(t *testing.T) {
 	privateKey, err := generatePrivateKey()
@@ -111,57 +119,104 @@ func TestSetupAuth(t *testing.T) {
 		}
 	}()
 
+	// create a credentials file with saKey and private key
+	credentialsKeyFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary file: %s", err)
+	}
+	defer func() {
+		err := os.Remove(credentialsKeyFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
+	credKeyJson, err := createCredentialsKeyJson(string(saKey), privateKey)
+	if err != nil {
+		t.Fatalf("createCredentialsKeyJson: %s", err)
+	}
+	_, errs = credentialsKeyFile.WriteString(string(credKeyJson))
+	if errs != nil {
+		t.Fatalf("Writing credentials json to temporary file: %s", err)
+	}
+
 	for _, test := range []struct {
-		desc     string
-		config   *config.Configuration
-		setToken bool
-		setKeys  bool
-		setPath  bool
-		isValid  bool
+		desc                        string
+		config                      *config.Configuration
+		setToken                    bool
+		setKeys                     bool
+		setKeyPaths                 bool
+		setCredentialsFilePathToken bool
+		setCredentialsFilePathKey   bool
+		isValid                     bool
 	}{
 		{
-			desc:     "token_config",
-			config:   nil,
-			setToken: true,
-			setPath:  false,
-			isValid:  true,
+			desc:                        "token_config",
+			config:                      nil,
+			setToken:                    true,
+			setCredentialsFilePathToken: false,
+			isValid:                     true,
 		},
 		{
-			desc:    "key_config",
-			config:  nil,
-			setKeys: true,
-			setPath: false,
-			isValid: true,
+			desc:                        "key_config",
+			config:                      nil,
+			setKeys:                     true,
+			setCredentialsFilePathToken: false,
+			isValid:                     true,
 		},
 		{
-			desc:     "valid_path_to_file",
-			config:   nil,
-			setToken: false,
-			setPath:  true,
-			isValid:  true,
+			desc:                        "key_config_path",
+			config:                      nil,
+			setKeys:                     false,
+			setKeyPaths:                 true,
+			setCredentialsFilePathToken: false,
+			isValid:                     true,
+		},
+		{
+			desc:                      "key_config_credentials_path",
+			config:                    nil,
+			setKeys:                   false,
+			setKeyPaths:               false,
+			setCredentialsFilePathKey: true,
+			isValid:                   true,
+		},
+		{
+			desc:                        "valid_path_to_file",
+			config:                      nil,
+			setToken:                    false,
+			setCredentialsFilePathToken: true,
+			isValid:                     true,
 		},
 		{
 			desc: "custom_config_token",
 			config: &config.Configuration{
 				Token: "token",
 			},
-			setToken: false,
-			setPath:  false,
-			isValid:  true,
+			setToken:                    false,
+			setCredentialsFilePathToken: false,
+			isValid:                     true,
 		},
 		{
 			desc: "custom_config_path",
 			config: &config.Configuration{
 				CredentialsFilePath: "test_resources/test_credentials_bar.json",
 			},
-			setToken: false,
-			setPath:  false,
-			isValid:  true,
+			setToken:                    false,
+			setCredentialsFilePathToken: false,
+			isValid:                     true,
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
 			setTemporaryHome(t)
 			if test.setKeys {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", string(saKey))
+				t.Setenv("STACKIT_PRIVATE_KEY", privateKey)
+			} else {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", "")
+				t.Setenv("STACKIT_PRIVATE_KEY", "")
+			}
+
+			if test.setKeyPaths {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", saKeyFile.Name())
 				t.Setenv("STACKIT_PRIVATE_KEY_PATH", privateKeyFile.Name())
 			} else {
@@ -175,8 +230,10 @@ func TestSetupAuth(t *testing.T) {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "")
 			}
 
-			if test.setPath {
+			if test.setCredentialsFilePathToken {
 				t.Setenv("STACKIT_CREDENTIALS_PATH", "test_resources/test_credentials_bar.json")
+			} else if test.setCredentialsFilePathKey {
+				t.Setenv("STACKIT_CREDENTIALS_PATH", credentialsKeyFile.Name())
 			} else {
 				t.Setenv("STACKIT_CREDENTIALS_PATH", "")
 			}
@@ -327,12 +384,35 @@ func TestDefaultAuth(t *testing.T) {
 		}
 	}()
 
+	// create a credentials file with saKey and private key
+	credentialsKeyFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary file: %s", err)
+	}
+	defer func() {
+		err := os.Remove(credentialsKeyFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
+	credKeyJson, err := createCredentialsKeyJson(string(saKey), privateKey)
+	if err != nil {
+		t.Fatalf("createCredentialsKeyJson: %s", err)
+	}
+	_, errs = credentialsKeyFile.WriteString(string(credKeyJson))
+	if errs != nil {
+		t.Fatalf("Writing credentials json to temporary file: %s", err)
+	}
+
 	for _, test := range []struct {
-		desc         string
-		setToken     bool
-		setKeys      bool
-		isValid      bool
-		expectedFlow string
+		desc                      string
+		setToken                  bool
+		setKeyPaths               bool
+		setKeys                   bool
+		setCredentialsFilePathKey bool
+		isValid                   bool
+		expectedFlow              string
 	}{
 		{
 			desc:         "token",
@@ -343,7 +423,7 @@ func TestDefaultAuth(t *testing.T) {
 		{
 			desc:         "key_precedes_token",
 			setToken:     true,
-			setKeys:      true,
+			setKeyPaths:  true,
 			isValid:      true,
 			expectedFlow: "key",
 		},
@@ -352,10 +432,25 @@ func TestDefaultAuth(t *testing.T) {
 			setToken: false,
 			isValid:  false,
 		},
+		{
+			desc:         "use keys via environment",
+			setKeys:      true,
+			setToken:     false,
+			isValid:      true,
+			expectedFlow: "key",
+		},
+		{
+			desc:                      "use keys via credentials file",
+			setKeys:                   false,
+			setToken:                  false,
+			setCredentialsFilePathKey: true,
+			isValid:                   true,
+			expectedFlow:              "key",
+		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
 			setTemporaryHome(t)
-			if test.setKeys {
+			if test.setKeyPaths {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY_PATH", saKeyFile.Name())
 				t.Setenv("STACKIT_PRIVATE_KEY_PATH", privateKeyFile.Name())
 			} else {
@@ -363,12 +458,25 @@ func TestDefaultAuth(t *testing.T) {
 				t.Setenv("STACKIT_PRIVATE_KEY_PATH", "")
 			}
 
+			if test.setKeys {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", string(saKey))
+				t.Setenv("STACKIT_PRIVATE_KEY", privateKey)
+			} else {
+				t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", "")
+				t.Setenv("STACKIT_PRIVATE_KEY", "")
+			}
+
+			if test.setCredentialsFilePathKey {
+				t.Setenv("STACKIT_CREDENTIALS_PATH", credentialsKeyFile.Name())
+			} else {
+				t.Setenv("STACKIT_CREDENTIALS_PATH", "test-path")
+			}
+
 			if test.setToken {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "test-token")
 			} else {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "")
 			}
-			t.Setenv("STACKIT_CREDENTIALS_PATH", "test-path")
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "test-email")
 
 			// Get the default authentication client and ensure that it's not nil

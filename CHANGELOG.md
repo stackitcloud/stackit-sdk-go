@@ -1,5 +1,7 @@
 ## Release (2025-XX-XX)
 
+- `core`: [v0.16.1](core/CHANGELOG.md#v0161-2025-02-25)
+  - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.
 - `stackitmarketplace`: [v0.3.0](services/stackitmarketplace/CHANGELOG.md#v030-2025-02-25)
   - **Feature:** Add method to create inquiries: `InquiriesCreateInquiry`
   - **Feature:** Add `sort` property to `ApiListCatalogProductsRequest`
