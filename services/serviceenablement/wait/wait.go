@@ -18,12 +18,12 @@ const (
 
 // Interface needed for tests
 type APIClientInstanceInterface interface {
-	GetServiceStatusExecute(ctx context.Context, projectId, serviceId string) (*serviceenablement.ServiceStatus, error)
+	GetServiceStatusRegionalExecute(ctx context.Context, region, projectId, serviceId string) (*serviceenablement.ServiceStatus, error)
 }
 
-func EnableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
+func EnableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface, region, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
 	handler := wait.New(func() (waitFinished bool, response *serviceenablement.ServiceStatus, err error) {
-		s, err := a.GetServiceStatusExecute(ctx, projectId, serviceId)
+		s, err := a.GetServiceStatusRegionalExecute(ctx, region, projectId, serviceId)
 		if err != nil {
 			return false, nil, err
 		}
@@ -48,9 +48,9 @@ func EnableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface,
 	return handler
 }
 
-func DisableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
+func DisableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface, region, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
 	handler := wait.New(func() (waitFinished bool, response *serviceenablement.ServiceStatus, err error) {
-		s, err := a.GetServiceStatusExecute(ctx, projectId, serviceId)
+		s, err := a.GetServiceStatusRegionalExecute(ctx, region, projectId, serviceId)
 		if err != nil {
 			return false, nil, err
 		}
