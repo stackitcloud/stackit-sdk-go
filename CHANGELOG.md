@@ -1,4 +1,4 @@
-## Release (2025-XX-XX)
+## Release (2025-02-27)
 
 - `core`: [v0.16.1](core/CHANGELOG.md#v0161-2025-02-25)
   - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.
@@ -17,6 +17,9 @@
   - **Feature:** Add method to list all public ip ranges: `ListPublicIpRanges`
   - Add size attribute to image model
   - Add CPU architecture attribute to image config model
+- `serviceenablement: [v0.6.0](services/serviceenablement/CHANGELOG.md#v060-2025-02-27)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+
 
 ## Release (2025-02-21)
 > [!WARNING]
