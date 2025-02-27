@@ -33,9 +33,9 @@ type CreateServerPayload struct {
 	Id *string `json:"id,omitempty"`
 	// Universally Unique Identifier (UUID).
 	ImageId *string `json:"imageId,omitempty"`
-	// The name for a General Object. Matches Names and also UUIDs.
+	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
 	KeypairName *string `json:"keypairName,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// Date-time when resource was launched.
 	LaunchedAt *time.Time `json:"launchedAt,omitempty"`
@@ -49,13 +49,13 @@ type CreateServerPayload struct {
 	Networking *CreateServerPayloadNetworking `json:"networking,omitempty"`
 	// A list of networks attached to a server.
 	Nics *[]ServerNetwork `json:"nics,omitempty"`
-	// The power status of a server.
+	// The power status of a server. Possible values: `CRASHED`, `ERROR`, `RUNNING`, `STOPPED`.
 	PowerStatus *string `json:"powerStatus,omitempty"`
 	// A list of General Objects.
 	SecurityGroups *[]string `json:"securityGroups,omitempty"`
 	// A list of service account mails.
 	ServiceAccountMails *[]string `json:"serviceAccountMails,omitempty"`
-	// The status of a server object.
+	// The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.
 	Status *string `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
