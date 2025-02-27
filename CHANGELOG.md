@@ -13,6 +13,10 @@
   - **Feature:** Add method to delete all instances for a project: `TerminateProject`
 - `modelserving`: [v0.1.0](services/modelserving/CHANGELOG.md#v010-2025-02-25)
   - **New**: STACKIT Model Serving module can be used to manage the STACKIT Model Serving.
+- `iaas`: [v0.21.0](services/iaas/CHANGELOG.md#v0210-2025-02-27)
+  - **Feature:** Add method to list all public ip ranges: `ListPublicIpRanges`
+  - Add size attribute to image model
+  - Add CPU architecture attribute to image config model
 
 ## Release (2025-02-21)
 > [!WARNING]

@@ -1,3 +1,9 @@
+## v0.21.0 (2025-02-27)
+
+- **Feature:** Add method to list all public ip ranges: `ListPublicIpRanges`
+- Add size attribute to image model
+- Add CPU architecture attribute to image config model
+
 ## v0.20.0 (2025-02-21)
 - **New:** Minimal go version is now Go 1.21
 
