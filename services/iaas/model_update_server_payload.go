@@ -19,9 +19,9 @@ var _ MappedNullable = &UpdateServerPayload{}
 
 // UpdateServerPayload Object that represents an update request body of a server.
 type UpdateServerPayload struct {
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
-	// The name for a General Object. Matches Names and also UUIDs.
+	// The name for a Server.
 	Name *string `json:"name,omitempty"`
 }
 

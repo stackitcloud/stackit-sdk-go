@@ -22,10 +22,10 @@ type RequestResource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
 	Id *string `json:"id"`
-	// The state of a resource object.
+	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
 	Status *string `json:"status"`
-	// Object that represents a resource type.
+	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.
 	// REQUIRED
 	Type *string `json:"type"`
 }

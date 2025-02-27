@@ -24,12 +24,12 @@ type Image struct {
 	Config   *ImageConfig   `json:"config,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
-	// Object that represents a disk format.
+	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	// REQUIRED
 	DiskFormat *string `json:"diskFormat"`
 	// Universally Unique Identifier (UUID).
 	Id *string `json:"id,omitempty"`
-	// Object that represents the labels of an object.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels *map[string]interface{} `json:"labels,omitempty"`
 	// Size in Gigabyte.
 	MinDiskSize *int64 `json:"minDiskSize,omitempty"`
@@ -41,9 +41,11 @@ type Image struct {
 	// Universally Unique Identifier (UUID).
 	Owner     *string `json:"owner,omitempty"`
 	Protected *bool   `json:"protected,omitempty"`
-	// Scope of an Image.
+	// Scope of an Image. Possible values: `public`, `local`, `projects`, `organization`.
 	Scope *string `json:"scope,omitempty"`
-	// The status of an image object.
+	// Size in bytes.
+	Size *int64 `json:"size,omitempty"`
+	// The status of an image object. Possible values: `AVAILABLE`, `CREATING`, `DEACTIVATED`, `DELETED`, `DELETING`, `ERROR`.
 	Status *string `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
@@ -438,6 +440,38 @@ func (o *Image) SetScope(v *string) {
 	o.Scope = v
 }
 
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *Image) GetSize() *int64 {
+	if o == nil || IsNil(o.Size) {
+		var ret *int64
+		return ret
+	}
+	return o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Image) GetSizeOk() (*int64, bool) {
+	if o == nil || IsNil(o.Size) {
+		return nil, false
+	}
+	return o.Size, true
+}
+
+// HasSize returns a boolean if a field has been set.
+func (o *Image) HasSize() bool {
+	if o != nil && !IsNil(o.Size) {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *Image) SetSize(v *int64) {
+	o.Size = v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Image) GetStatus() *string {
 	if o == nil || IsNil(o.Status) {
@@ -535,6 +569,9 @@ func (o Image) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Scope) {
 		toSerialize["scope"] = o.Scope
+	}
+	if !IsNil(o.Size) {
+		toSerialize["size"] = o.Size
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
