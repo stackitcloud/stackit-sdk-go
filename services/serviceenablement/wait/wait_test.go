@@ -18,7 +18,7 @@ type apiClientServiceMocked struct {
 	getServiceFails bool
 }
 
-func (a *apiClientServiceMocked) GetServiceStatusExecute(_ context.Context, _, _ string) (*serviceenablement.ServiceStatus, error) {
+func (a *apiClientServiceMocked) GetServiceStatusRegionalExecute(_ context.Context, _, _, _ string) (*serviceenablement.ServiceStatus, error) {
 	if a.getServiceFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -95,7 +95,7 @@ func TestEnableServiceWaitHandler(t *testing.T) {
 
 			ctx := context.Background()
 
-			handler := EnableServiceWaitHandler(ctx, apiClient, "projectId", serviceId)
+			handler := EnableServiceWaitHandler(ctx, apiClient, "eu01", "projectId", serviceId)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(ctx)
 
@@ -177,7 +177,7 @@ func TestDisableServiceWaitHandler(t *testing.T) {
 
 			ctx := context.Background()
 
-			handler := DisableServiceWaitHandler(ctx, apiClient, "projectId", serviceId)
+			handler := DisableServiceWaitHandler(ctx, apiClient, "eu01", "projectId", serviceId)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(ctx)
 
