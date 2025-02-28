@@ -1,19 +1,36 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "ignorePresets": [":ignoreModulesAndTests"],
+  "extends": [
+    "config:recommended"
+  ],
+  "ignorePresets": [
+    ":ignoreModulesAndTests"
+  ],
   "prHourlyLimit": 10,
-  "labels": ["renovate"],
-  "repositories": ["stackitcloud/stackit-sdk-go"],
-  "enabledManagers": ["gomod", "github-actions"],
+  "labels": [
+    "renovate"
+  ],
+  "repositories": [
+    "stackitcloud/stackit-sdk-go"
+  ],
+  "enabledManagers": [
+    "gomod",
+    "github-actions"
+  ],
   "packageRules": [
     {
-      "matchSourceUrls": ["https://github.com/stackitcloud/stackit-sdk-go"],
+      "matchSourceUrls": [
+        "https://github.com/stackitcloud/stackit-sdk-go"
+      ],
       "groupName": "SDK"
     }
   ],
-  "allowedPostUpgradeCommands": ["^cd .* && make sync-tidy$"],
+  "allowedCommands": [
+    "^cd .* && make sync-tidy$"
+  ],
   "postUpgradeTasks": {
-    "commands": ["cd $(git rev-parse --show-toplevel) && make sync-tidy"]
+    "commands": [
+      "cd $(git rev-parse --show-toplevel) && make sync-tidy"
+    ]
   }
 }
