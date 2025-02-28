@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.16.0 h1:9caGZwGLZDyBBe6ojk9VR4B2m3/0H5It6znBz76sH1w=
 github.com/stackitcloud/stackit-sdk-go/core v0.16.0/go.mod h1:LRheSoXTFRHWAyA8Q9skWtWBp3ZZ+bFAKiKuf4lTDkE=
-github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v0.5.0 h1:QG+rGBHsyXOlJ3ZIeOgExGqu9PoTlGY1rltW/VpG6lw=
-github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v0.5.0/go.mod h1:16dOVT052cMuHhUJ3NIcPuY7TrpCr9QlxmvvfjLZubA=
+github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v0.6.0 h1:bo5/c/J7ei8t5N2ZkJCLeHZ+BRG17WACisdUAQXmCtI=
+github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v0.6.0/go.mod h1:EMqjiq/72WKXSwnJGLpumUJS4Uwlyhg5vtNg7qWoGtc=
