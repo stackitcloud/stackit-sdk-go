@@ -17,7 +17,9 @@
   - **Feature:** Add method to list all public ip ranges: `ListPublicIpRanges`
   - Add size attribute to image model
   - Add CPU architecture attribute to image config model
-- `serviceenablement: [v0.6.0](services/serviceenablement/CHANGELOG.md#v060-2025-02-27)
+- `iaas`: [v0.21.1](services/iaas/CHANGELOG.md#v0211-2025-03-02)
+  - Increase Timeouts for volume and network wait handlers
+- `serviceenablement`: [v0.6.0](services/serviceenablement/CHANGELOG.md#v060-2025-02-27)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
 
