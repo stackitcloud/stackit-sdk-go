@@ -1,3 +1,7 @@
+## v0.21.1 (2025-03-02)
+
+- Increase Timeouts for volume and network wait handlers
+
 ## v0.21.0 (2025-02-27)
 
 - **Feature:** Add method to list all public ip ranges: `ListPublicIpRanges`
@@ -5,6 +9,7 @@
 - Add CPU architecture attribute to image config model
 
 ## v0.20.0 (2025-02-21)
+
 - **New:** Minimal go version is now Go 1.21
 
 ## v0.19.0 (2024-12-20)
