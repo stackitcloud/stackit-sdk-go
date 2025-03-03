@@ -63,7 +63,7 @@ func CreateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 		}
 		return false, area, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
@@ -84,7 +84,7 @@ func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 		return false, area, nil
 	})
 	handler.SetSleepBeforeWait(2 * time.Second)
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
@@ -104,7 +104,7 @@ func DeleteNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 		}
 		return true, nil, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
@@ -125,7 +125,7 @@ func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 		return false, network, nil
 	})
 	handler.SetSleepBeforeWait(2 * time.Second)
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
@@ -146,7 +146,7 @@ func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 		return false, network, nil
 	})
 	handler.SetSleepBeforeWait(2 * time.Second)
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
@@ -166,7 +166,7 @@ func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 		}
 		return true, nil, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
