@@ -188,7 +188,7 @@ func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		}
 		return false, volume, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
@@ -216,7 +216,7 @@ func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		}
 		return true, nil, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
@@ -521,7 +521,7 @@ func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, pro
 		}
 		return false, nil, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
@@ -546,7 +546,7 @@ func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface
 		}
 		return true, nil, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
