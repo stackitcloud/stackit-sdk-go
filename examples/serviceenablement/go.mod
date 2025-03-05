@@ -2,7 +2,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/serviceenablement
 
 go 1.21
 
-require github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v0.6.0
+require github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v1.0.0
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.2.1 // indirect
