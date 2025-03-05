@@ -1,4 +1,4 @@
-## Release (2025-XX-XX)
+## Release (2025-03-05)
 
 - `core`: [v0.16.1](core/CHANGELOG.md#v0161-2025-02-25)
   - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.
