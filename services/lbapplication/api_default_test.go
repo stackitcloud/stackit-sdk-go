@@ -64,10 +64,9 @@ func Test_lbapplication_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
-		var xRequestID string
 		createCredentialsPayload := CreateCredentialsPayload{}
 
-		resp, reqErr := apiClient.CreateCredentials(context.Background(), projectId).XRequestID(xRequestID).CreateCredentialsPayload(createCredentialsPayload).Execute()
+		resp, reqErr := apiClient.CreateCredentials(context.Background(), projectId).CreateCredentialsPayload(createCredentialsPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -118,10 +117,9 @@ func Test_lbapplication_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
-		var xRequestID string
 		createLoadBalancerPayload := CreateLoadBalancerPayload{}
 
-		resp, reqErr := apiClient.CreateLoadBalancer(context.Background(), projectId).XRequestID(xRequestID).CreateLoadBalancerPayload(createLoadBalancerPayload).Execute()
+		resp, reqErr := apiClient.CreateLoadBalancer(context.Background(), projectId).CreateLoadBalancerPayload(createLoadBalancerPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -334,9 +332,8 @@ func Test_lbapplication_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
-		var xRequestID string
 
-		resp, reqErr := apiClient.EnableService(context.Background(), projectId).XRequestID(xRequestID).Execute()
+		resp, reqErr := apiClient.EnableService(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
