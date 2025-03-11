@@ -30,17 +30,17 @@ type ApiCreateCredentialsRequest struct {
 	ctx                      context.Context
 	apiService               *DefaultApiService
 	projectId                string
-	xRequestID               *string
 	createCredentialsPayload *CreateCredentialsPayload
-}
-
-func (r ApiCreateCredentialsRequest) XRequestID(xRequestID string) ApiCreateCredentialsRequest {
-	r.xRequestID = &xRequestID
-	return r
+	xRequestID               *string
 }
 
 func (r ApiCreateCredentialsRequest) CreateCredentialsPayload(createCredentialsPayload CreateCredentialsPayload) ApiCreateCredentialsRequest {
 	r.createCredentialsPayload = &createCredentialsPayload
+	return r
+}
+
+func (r ApiCreateCredentialsRequest) XRequestID(xRequestID string) ApiCreateCredentialsRequest {
+	r.xRequestID = &xRequestID
 	return r
 }
 
@@ -63,9 +63,6 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.xRequestID == nil {
-		return localVarReturnValue, fmt.Errorf("xRequestID is required and must be specified")
-	}
 	if r.createCredentialsPayload == nil {
 		return localVarReturnValue, fmt.Errorf("createCredentialsPayload is required and must be specified")
 	}
@@ -87,7 +84,9 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Request-ID", r.xRequestID, "")
+	if r.xRequestID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Request-ID", r.xRequestID, "")
+	}
 	// body params
 	localVarPostBody = r.createCredentialsPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -190,17 +189,17 @@ type ApiCreateLoadBalancerRequest struct {
 	ctx                       context.Context
 	apiService                *DefaultApiService
 	projectId                 string
-	xRequestID                *string
 	createLoadBalancerPayload *CreateLoadBalancerPayload
-}
-
-func (r ApiCreateLoadBalancerRequest) XRequestID(xRequestID string) ApiCreateLoadBalancerRequest {
-	r.xRequestID = &xRequestID
-	return r
+	xRequestID                *string
 }
 
 func (r ApiCreateLoadBalancerRequest) CreateLoadBalancerPayload(createLoadBalancerPayload CreateLoadBalancerPayload) ApiCreateLoadBalancerRequest {
 	r.createLoadBalancerPayload = &createLoadBalancerPayload
+	return r
+}
+
+func (r ApiCreateLoadBalancerRequest) XRequestID(xRequestID string) ApiCreateLoadBalancerRequest {
+	r.xRequestID = &xRequestID
 	return r
 }
 
@@ -223,9 +222,6 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.xRequestID == nil {
-		return localVarReturnValue, fmt.Errorf("xRequestID is required and must be specified")
-	}
 	if r.createLoadBalancerPayload == nil {
 		return localVarReturnValue, fmt.Errorf("createLoadBalancerPayload is required and must be specified")
 	}
@@ -247,7 +243,9 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Request-ID", r.xRequestID, "")
+	if r.xRequestID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Request-ID", r.xRequestID, "")
+	}
 	// body params
 	localVarPostBody = r.createLoadBalancerPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -801,9 +799,6 @@ func (r ApiEnableServiceRequest) Execute() (map[string]interface{}, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.xRequestID == nil {
-		return localVarReturnValue, fmt.Errorf("xRequestID is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -822,7 +817,9 @@ func (r ApiEnableServiceRequest) Execute() (map[string]interface{}, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Request-ID", r.xRequestID, "")
+	if r.xRequestID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Request-ID", r.xRequestID, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
