@@ -24,9 +24,11 @@ import (
 func Test_certificates_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCertificate", func(t *testing.T) {
-		path := "/v1beta/projects/{projectId}/certificates"
+		path := "/v2beta/projects/{projectId}/regions/{region}/certificates"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -64,9 +66,10 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		createCertificatePayload := CreateCertificatePayload{}
 
-		resp, reqErr := apiClient.CreateCertificate(context.Background(), projectId).CreateCertificatePayload(createCertificatePayload).Execute()
+		resp, reqErr := apiClient.CreateCertificate(context.Background(), projectId, region).CreateCertificatePayload(createCertificatePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -77,9 +80,11 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteCertificate", func(t *testing.T) {
-		path := "/v1beta/projects/{projectId}/certificates/{id}"
+		path := "/v2beta/projects/{projectId}/regions/{region}/certificates/{id}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		idValue := "id"
 		path = strings.Replace(path, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
@@ -119,9 +124,10 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		id := "id"
 
-		resp, reqErr := apiClient.DeleteCertificate(context.Background(), projectId, id).Execute()
+		resp, reqErr := apiClient.DeleteCertificate(context.Background(), projectId, region, id).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -132,9 +138,11 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetCertificate", func(t *testing.T) {
-		path := "/v1beta/projects/{projectId}/certificates/{id}"
+		path := "/v2beta/projects/{projectId}/regions/{region}/certificates/{id}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		idValue := "id"
 		path = strings.Replace(path, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
@@ -174,9 +182,10 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		id := "id"
 
-		resp, reqErr := apiClient.GetCertificate(context.Background(), projectId, id).Execute()
+		resp, reqErr := apiClient.GetCertificate(context.Background(), projectId, region, id).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -187,9 +196,11 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListCertificates", func(t *testing.T) {
-		path := "/v1beta/projects/{projectId}/certificates"
+		path := "/v2beta/projects/{projectId}/regions/{region}/certificates"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -227,8 +238,9 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListCertificates(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListCertificates(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
