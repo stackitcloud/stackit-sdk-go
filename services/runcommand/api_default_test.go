@@ -24,11 +24,13 @@ import (
 func Test_runcommand_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCommand", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/commands"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/commands"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -67,8 +69,9 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		serverId := "serverId"
+		region := "region"
 
-		resp, reqErr := apiClient.CreateCommand(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.CreateCommand(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -79,9 +82,11 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetCommand", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/commands/{commandId}"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/commands/{commandId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		commandIdValue := "commandId"
@@ -123,10 +128,11 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := "projectId"
+		region := "region"
 		serverId := "serverId"
 		commandId := "commandId"
 
-		resp, reqErr := apiClient.GetCommand(context.Background(), projectId, serverId, commandId).Execute()
+		resp, reqErr := apiClient.GetCommand(context.Background(), projectId, region, serverId, commandId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -137,13 +143,15 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetCommandTemplate", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/command-templates/{commandTemplateName}"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/command-templates/{commandTemplateName}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		commandTemplateNameValue := "commandTemplateName"
 		path = strings.Replace(path, "{"+"commandTemplateName"+"}", url.PathEscape(ParameterValueToString(commandTemplateNameValue, "commandTemplateName")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -183,8 +191,9 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		serverId := "serverId"
 		commandTemplateName := "commandTemplateName"
+		region := "region"
 
-		resp, reqErr := apiClient.GetCommandTemplate(context.Background(), projectId, serverId, commandTemplateName).Execute()
+		resp, reqErr := apiClient.GetCommandTemplate(context.Background(), projectId, serverId, commandTemplateName, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -195,7 +204,7 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListCommandTemplates", func(t *testing.T) {
-		path := "/v1/command-templates"
+		path := "/v2/command-templates"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -243,11 +252,13 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListCommands", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/commands"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/commands"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -286,8 +297,9 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		serverId := "serverId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListCommands(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.ListCommands(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
