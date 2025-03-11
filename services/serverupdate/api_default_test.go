@@ -24,11 +24,13 @@ import (
 func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateUpdate", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/updates"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/updates"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -67,8 +69,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		serverId := "serverId"
+		region := "region"
 
-		resp, reqErr := apiClient.CreateUpdate(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.CreateUpdate(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -79,11 +82,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateUpdateSchedule", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/update-schedules"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -122,8 +127,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		serverId := "serverId"
+		region := "region"
 
-		resp, reqErr := apiClient.CreateUpdateSchedule(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.CreateUpdateSchedule(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -134,13 +140,15 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteUpdateSchedule", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/update-schedules/{scheduleId}"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules/{scheduleId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		scheduleIdValue := "scheduleId"
 		path = strings.Replace(path, "{"+"scheduleId"+"}", url.PathEscape(ParameterValueToString(scheduleIdValue, "scheduleId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -177,57 +185,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		serverId := "serverId"
 		scheduleId := "scheduleId"
+		region := "region"
 
-		reqErr := apiClient.DeleteUpdateSchedule(context.Background(), projectId, serverId, scheduleId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-	})
-
-	t.Run("Test DefaultApiService DisableService", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for serverupdate_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := "projectId"
-		serverId := "serverId"
-
-		reqErr := apiClient.DisableService(context.Background(), projectId, serverId).Execute()
+		reqErr := apiClient.DeleteUpdateSchedule(context.Background(), projectId, serverId, scheduleId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -235,11 +195,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DisableServiceResource", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/service"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -275,57 +237,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		serverId := "serverId"
+		region := "region"
 
-		reqErr := apiClient.DisableServiceResource(context.Background(), projectId, serverId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-	})
-
-	t.Run("Test DefaultApiService EnableService", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for serverupdate_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := "projectId"
-		serverId := "serverId"
-
-		reqErr := apiClient.EnableService(context.Background(), projectId, serverId).Execute()
+		reqErr := apiClient.DisableServiceResource(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -333,11 +247,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService EnableServiceResource", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/service"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -373,8 +289,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		serverId := "serverId"
+		region := "region"
 
-		reqErr := apiClient.EnableServiceResource(context.Background(), projectId, serverId).Execute()
+		reqErr := apiClient.EnableServiceResource(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -382,11 +299,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetServiceResource", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/service"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -425,8 +344,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		serverId := "serverId"
+		region := "region"
 
-		resp, reqErr := apiClient.GetServiceResource(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.GetServiceResource(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -437,13 +357,15 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetUpdate", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/updates/{updateId}"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/updates/{updateId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		updateIdValue := "updateId"
 		path = strings.Replace(path, "{"+"updateId"+"}", url.PathEscape(ParameterValueToString(updateIdValue, "updateId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -483,8 +405,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		serverId := "serverId"
 		updateId := "updateId"
+		region := "region"
 
-		resp, reqErr := apiClient.GetUpdate(context.Background(), projectId, serverId, updateId).Execute()
+		resp, reqErr := apiClient.GetUpdate(context.Background(), projectId, serverId, updateId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -495,13 +418,15 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetUpdateSchedule", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/update-schedules/{scheduleId}"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules/{scheduleId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		scheduleIdValue := "scheduleId"
 		path = strings.Replace(path, "{"+"scheduleId"+"}", url.PathEscape(ParameterValueToString(scheduleIdValue, "scheduleId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -541,8 +466,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		serverId := "serverId"
 		scheduleId := "scheduleId"
+		region := "region"
 
-		resp, reqErr := apiClient.GetUpdateSchedule(context.Background(), projectId, serverId, scheduleId).Execute()
+		resp, reqErr := apiClient.GetUpdateSchedule(context.Background(), projectId, serverId, scheduleId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -553,7 +479,7 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListUpdatePolicies", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/update-policies"
+		path := "/v2/projects/{projectId}/update-policies"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -605,11 +531,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListUpdateSchedules", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/update-schedules"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -648,8 +576,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		serverId := "serverId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListUpdateSchedules(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.ListUpdateSchedules(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -660,11 +589,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListUpdates", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/updates"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/updates"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -703,8 +634,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 		projectId := "projectId"
 		serverId := "serverId"
+		region := "region"
 
-		resp, reqErr := apiClient.ListUpdates(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.ListUpdates(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -715,13 +647,15 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateUpdateSchedule", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/update-schedules/{scheduleId}"
+		path := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules/{scheduleId}"
 		projectIdValue := "projectId"
 		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := "serverId"
 		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		scheduleIdValue := "scheduleId"
 		path = strings.Replace(path, "{"+"scheduleId"+"}", url.PathEscape(ParameterValueToString(scheduleIdValue, "scheduleId")), -1)
+		regionValue := "region"
+		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
@@ -761,8 +695,9 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 		projectId := "projectId"
 		serverId := "serverId"
 		scheduleId := "scheduleId"
+		region := "region"
 
-		resp, reqErr := apiClient.UpdateUpdateSchedule(context.Background(), projectId, serverId, scheduleId).Execute()
+		resp, reqErr := apiClient.UpdateUpdateSchedule(context.Background(), projectId, serverId, scheduleId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
