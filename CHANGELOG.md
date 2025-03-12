@@ -1,3 +1,8 @@
+## Release (2025-XX-XX)
+
+- `postgresflex`: [v1.0.1](services/postgresflex/CHANGELOG.md#v101-2025-03-12)
+  - **Bugfix:** `DeleteUserWaitHandler` is now also using the region as parameter.
+
 ## Release (2025-03-05)
 
 - `core`: [v0.16.1](core/CHANGELOG.md#v0161-2025-02-25)
