@@ -62,7 +62,7 @@ type apiClientUserMocked struct {
 	isUserDeleted bool
 }
 
-func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _ string) (*postgresflex.GetUserResponse, error) {
+func (a *apiClientUserMocked) GetUserExecute(_ context.Context, _, _, _, _ string) (*postgresflex.GetUserResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -383,7 +383,7 @@ func TestDeleteUserWaitHandler(t *testing.T) {
 				isUserDeleted: !tt.deleteFails,
 			}
 
-			handler := DeleteUserWaitHandler(context.Background(), apiClient, "", "", userId)
+			handler := DeleteUserWaitHandler(context.Background(), apiClient, "", "", "", userId)
 
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
