@@ -99,7 +99,7 @@ More examples on other services, configuration and authentication possibilities 
 
 ## Authentication
 
-To authenticate with the SDK, you need a [service account](https://docs.stackit.cloud/stackit/en/service-accounts-134415819.html) with appropriate permissions (e.g., `project.owner`). You can create a service account through the STACKIT Portal.
+To authenticate with the SDK, you need a [service account](https://docs.stackit.cloud/stackit/en/service-accounts-134415819.html) with appropriate permissions (e.g., `project.owner`, see [here](https://docs.stackit.cloud/stackit/en/assign-permissions-to-a-service-account-134415855.html)). You can create a service account through the STACKIT Portal.
 
 ### Authentication Methods
 
