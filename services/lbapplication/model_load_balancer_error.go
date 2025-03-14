@@ -17,12 +17,53 @@ import (
 // checks if the LoadBalancerError type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &LoadBalancerError{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type LoadBalancerErrorGetDescriptionAttributeType = *string
+
+func getLoadBalancerErrorGetDescriptionAttributeTypeOk(arg LoadBalancerErrorGetDescriptionAttributeType) (ret LoadBalancerErrorGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadBalancerErrorGetDescriptionAttributeType(arg *LoadBalancerErrorGetDescriptionAttributeType, val LoadBalancerErrorGetDescriptionRetType) {
+	*arg = &val
+}
+
+type LoadBalancerErrorGetDescriptionArgType = string
+type LoadBalancerErrorGetDescriptionRetType = string
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type LoadBalancerErrorGetTypeAttributeType = *string
+type LoadBalancerErrorGetTypeArgType = string
+type LoadBalancerErrorGetTypeRetType = string
+
+func getLoadBalancerErrorGetTypeAttributeTypeOk(arg LoadBalancerErrorGetTypeAttributeType) (ret LoadBalancerErrorGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadBalancerErrorGetTypeAttributeType(arg *LoadBalancerErrorGetTypeAttributeType, val LoadBalancerErrorGetTypeRetType) {
+	*arg = &val
+}
+
 // LoadBalancerError struct for LoadBalancerError
 type LoadBalancerError struct {
 	// The error description contains additional helpful user information to fix the error state of the application load balancer. For example the IP 45.135.247.139 does not exist in the project, then the description will report: Floating IP \"45.135.247.139\" could not be found.
-	Description *string `json:"description,omitempty"`
+	Description LoadBalancerErrorGetDescriptionAttributeType `json:"description,omitempty"`
 	// The error type specifies which part of the application load balancer encountered the error. I.e. the API will not check if a provided public IP is actually available in the project. Instead the application load balancer with try to use the provided IP and if not available reports TYPE_FIP_NOT_CONFIGURED error.
-	Type *string `json:"type,omitempty"`
+	Type LoadBalancerErrorGetTypeAttributeType `json:"type,omitempty"`
 }
 
 // NewLoadBalancerError instantiates a new LoadBalancerError object
@@ -43,76 +84,58 @@ func NewLoadBalancerErrorWithDefaults() *LoadBalancerError {
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *LoadBalancerError) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *LoadBalancerError) GetDescription() (res LoadBalancerErrorGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadBalancerError) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *LoadBalancerError) GetDescriptionOk() (ret LoadBalancerErrorGetDescriptionRetType, ok bool) {
+	return getLoadBalancerErrorGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *LoadBalancerError) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *LoadBalancerError) SetDescription(v *string) {
-	o.Description = v
+func (o *LoadBalancerError) SetDescription(v LoadBalancerErrorGetDescriptionRetType) {
+	setLoadBalancerErrorGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *LoadBalancerError) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-	return o.Type
+func (o *LoadBalancerError) GetType() (res LoadBalancerErrorGetTypeRetType) {
+	res, _ = o.GetTypeOk()
+	return
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadBalancerError) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
+func (o *LoadBalancerError) GetTypeOk() (ret LoadBalancerErrorGetTypeRetType, ok bool) {
+	return getLoadBalancerErrorGetTypeAttributeTypeOk(o.Type)
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *LoadBalancerError) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTypeOk()
+	return ok
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *LoadBalancerError) SetType(v *string) {
-	o.Type = v
+func (o *LoadBalancerError) SetType(v LoadBalancerErrorGetTypeRetType) {
+	setLoadBalancerErrorGetTypeAttributeType(&o.Type, v)
 }
 
 func (o LoadBalancerError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getLoadBalancerErrorGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if val, ok := getLoadBalancerErrorGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
 }
