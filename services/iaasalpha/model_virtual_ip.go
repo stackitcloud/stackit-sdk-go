@@ -17,22 +17,167 @@ import (
 // checks if the VirtualIp type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VirtualIp{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type VirtualIpGetIdAttributeType = *string
+
+func getVirtualIpGetIdAttributeTypeOk(arg VirtualIpGetIdAttributeType) (ret VirtualIpGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVirtualIpGetIdAttributeType(arg *VirtualIpGetIdAttributeType, val VirtualIpGetIdRetType) {
+	*arg = &val
+}
+
+type VirtualIpGetIdArgType = string
+type VirtualIpGetIdRetType = string
+
+/*
+	types and functions for ip
+*/
+
+// isNotNullableString
+type VirtualIpGetIpAttributeType = *string
+
+func getVirtualIpGetIpAttributeTypeOk(arg VirtualIpGetIpAttributeType) (ret VirtualIpGetIpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVirtualIpGetIpAttributeType(arg *VirtualIpGetIpAttributeType, val VirtualIpGetIpRetType) {
+	*arg = &val
+}
+
+type VirtualIpGetIpArgType = string
+type VirtualIpGetIpRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type VirtualIpGetLabelsAttributeType = *map[string]interface{}
+type VirtualIpGetLabelsArgType = map[string]interface{}
+type VirtualIpGetLabelsRetType = map[string]interface{}
+
+func getVirtualIpGetLabelsAttributeTypeOk(arg VirtualIpGetLabelsAttributeType) (ret VirtualIpGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVirtualIpGetLabelsAttributeType(arg *VirtualIpGetLabelsAttributeType, val VirtualIpGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for members
+*/
+
+// isArray
+type VirtualIpGetMembersAttributeType = *[]string
+type VirtualIpGetMembersArgType = []string
+type VirtualIpGetMembersRetType = []string
+
+func getVirtualIpGetMembersAttributeTypeOk(arg VirtualIpGetMembersAttributeType) (ret VirtualIpGetMembersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVirtualIpGetMembersAttributeType(arg *VirtualIpGetMembersAttributeType, val VirtualIpGetMembersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type VirtualIpGetNameAttributeType = *string
+
+func getVirtualIpGetNameAttributeTypeOk(arg VirtualIpGetNameAttributeType) (ret VirtualIpGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVirtualIpGetNameAttributeType(arg *VirtualIpGetNameAttributeType, val VirtualIpGetNameRetType) {
+	*arg = &val
+}
+
+type VirtualIpGetNameArgType = string
+type VirtualIpGetNameRetType = string
+
+/*
+	types and functions for network
+*/
+
+// isNotNullableString
+type VirtualIpGetNetworkAttributeType = *string
+
+func getVirtualIpGetNetworkAttributeTypeOk(arg VirtualIpGetNetworkAttributeType) (ret VirtualIpGetNetworkRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVirtualIpGetNetworkAttributeType(arg *VirtualIpGetNetworkAttributeType, val VirtualIpGetNetworkRetType) {
+	*arg = &val
+}
+
+type VirtualIpGetNetworkArgType = string
+type VirtualIpGetNetworkRetType = string
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type VirtualIpGetStatusAttributeType = *string
+
+func getVirtualIpGetStatusAttributeTypeOk(arg VirtualIpGetStatusAttributeType) (ret VirtualIpGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVirtualIpGetStatusAttributeType(arg *VirtualIpGetStatusAttributeType, val VirtualIpGetStatusRetType) {
+	*arg = &val
+}
+
+type VirtualIpGetStatusArgType = string
+type VirtualIpGetStatusRetType = string
+
 // VirtualIp Object that represents a virtual IP.
 type VirtualIp struct {
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id VirtualIpGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents an IP address.
-	Ip *string `json:"ip,omitempty"`
+	Ip VirtualIpGetIpAttributeType `json:"ip,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels VirtualIpGetLabelsAttributeType `json:"labels,omitempty"`
 	// A list of UUIDs.
-	Members *[]string `json:"members,omitempty"`
+	Members VirtualIpGetMembersAttributeType `json:"members,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty"`
+	Name VirtualIpGetNameAttributeType `json:"name,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Network *string `json:"network,omitempty"`
+	Network VirtualIpGetNetworkAttributeType `json:"network,omitempty"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
-	Status *string `json:"status,omitempty"`
+	Status VirtualIpGetStatusAttributeType `json:"status,omitempty"`
 }
 
 // NewVirtualIp instantiates a new VirtualIp object
@@ -53,251 +198,188 @@ func NewVirtualIpWithDefaults() *VirtualIp {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *VirtualIp) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *VirtualIp) GetId() (res VirtualIpGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualIp) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *VirtualIp) GetIdOk() (ret VirtualIpGetIdRetType, ok bool) {
+	return getVirtualIpGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *VirtualIp) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *VirtualIp) SetId(v *string) {
-	o.Id = v
+func (o *VirtualIp) SetId(v VirtualIpGetIdRetType) {
+	setVirtualIpGetIdAttributeType(&o.Id, v)
 }
 
 // GetIp returns the Ip field value if set, zero value otherwise.
-func (o *VirtualIp) GetIp() *string {
-	if o == nil || IsNil(o.Ip) {
-		var ret *string
-		return ret
-	}
-	return o.Ip
+func (o *VirtualIp) GetIp() (res VirtualIpGetIpRetType) {
+	res, _ = o.GetIpOk()
+	return
 }
 
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualIp) GetIpOk() (*string, bool) {
-	if o == nil || IsNil(o.Ip) {
-		return nil, false
-	}
-	return o.Ip, true
+func (o *VirtualIp) GetIpOk() (ret VirtualIpGetIpRetType, ok bool) {
+	return getVirtualIpGetIpAttributeTypeOk(o.Ip)
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *VirtualIp) HasIp() bool {
-	if o != nil && !IsNil(o.Ip) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIpOk()
+	return ok
 }
 
 // SetIp gets a reference to the given string and assigns it to the Ip field.
-func (o *VirtualIp) SetIp(v *string) {
-	o.Ip = v
+func (o *VirtualIp) SetIp(v VirtualIpGetIpRetType) {
+	setVirtualIpGetIpAttributeType(&o.Ip, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *VirtualIp) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *VirtualIp) GetLabels() (res VirtualIpGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualIp) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *VirtualIp) GetLabelsOk() (ret VirtualIpGetLabelsRetType, ok bool) {
+	return getVirtualIpGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *VirtualIp) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *VirtualIp) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *VirtualIp) SetLabels(v VirtualIpGetLabelsRetType) {
+	setVirtualIpGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
-func (o *VirtualIp) GetMembers() *[]string {
-	if o == nil || IsNil(o.Members) {
-		var ret *[]string
-		return ret
-	}
-	return o.Members
+func (o *VirtualIp) GetMembers() (res VirtualIpGetMembersRetType) {
+	res, _ = o.GetMembersOk()
+	return
 }
 
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualIp) GetMembersOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Members) {
-		return nil, false
-	}
-	return o.Members, true
+func (o *VirtualIp) GetMembersOk() (ret VirtualIpGetMembersRetType, ok bool) {
+	return getVirtualIpGetMembersAttributeTypeOk(o.Members)
 }
 
 // HasMembers returns a boolean if a field has been set.
 func (o *VirtualIp) HasMembers() bool {
-	if o != nil && !IsNil(o.Members) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMembersOk()
+	return ok
 }
 
 // SetMembers gets a reference to the given []string and assigns it to the Members field.
-func (o *VirtualIp) SetMembers(v *[]string) {
-	o.Members = v
+func (o *VirtualIp) SetMembers(v VirtualIpGetMembersRetType) {
+	setVirtualIpGetMembersAttributeType(&o.Members, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *VirtualIp) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *VirtualIp) GetName() (res VirtualIpGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualIp) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *VirtualIp) GetNameOk() (ret VirtualIpGetNameRetType, ok bool) {
+	return getVirtualIpGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *VirtualIp) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *VirtualIp) SetName(v *string) {
-	o.Name = v
+func (o *VirtualIp) SetName(v VirtualIpGetNameRetType) {
+	setVirtualIpGetNameAttributeType(&o.Name, v)
 }
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
-func (o *VirtualIp) GetNetwork() *string {
-	if o == nil || IsNil(o.Network) {
-		var ret *string
-		return ret
-	}
-	return o.Network
+func (o *VirtualIp) GetNetwork() (res VirtualIpGetNetworkRetType) {
+	res, _ = o.GetNetworkOk()
+	return
 }
 
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualIp) GetNetworkOk() (*string, bool) {
-	if o == nil || IsNil(o.Network) {
-		return nil, false
-	}
-	return o.Network, true
+func (o *VirtualIp) GetNetworkOk() (ret VirtualIpGetNetworkRetType, ok bool) {
+	return getVirtualIpGetNetworkAttributeTypeOk(o.Network)
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *VirtualIp) HasNetwork() bool {
-	if o != nil && !IsNil(o.Network) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNetworkOk()
+	return ok
 }
 
 // SetNetwork gets a reference to the given string and assigns it to the Network field.
-func (o *VirtualIp) SetNetwork(v *string) {
-	o.Network = v
+func (o *VirtualIp) SetNetwork(v VirtualIpGetNetworkRetType) {
+	setVirtualIpGetNetworkAttributeType(&o.Network, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *VirtualIp) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *VirtualIp) GetStatus() (res VirtualIpGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VirtualIp) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *VirtualIp) GetStatusOk() (ret VirtualIpGetStatusRetType, ok bool) {
+	return getVirtualIpGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *VirtualIp) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *VirtualIp) SetStatus(v *string) {
-	o.Status = v
+func (o *VirtualIp) SetStatus(v VirtualIpGetStatusRetType) {
+	setVirtualIpGetStatusAttributeType(&o.Status, v)
 }
 
 func (o VirtualIp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getVirtualIpGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
+	if val, ok := getVirtualIpGetIpAttributeTypeOk(o.Ip); ok {
+		toSerialize["Ip"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getVirtualIpGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Members) {
-		toSerialize["members"] = o.Members
+	if val, ok := getVirtualIpGetMembersAttributeTypeOk(o.Members); ok {
+		toSerialize["Members"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getVirtualIpGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Network) {
-		toSerialize["network"] = o.Network
+	if val, ok := getVirtualIpGetNetworkAttributeTypeOk(o.Network); ok {
+		toSerialize["Network"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getVirtualIpGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,11 +17,31 @@ import (
 // checks if the VirtualIpListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VirtualIpListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type VirtualIpListResponseGetItemsAttributeType = *[]VirtualIp
+type VirtualIpListResponseGetItemsArgType = []VirtualIp
+type VirtualIpListResponseGetItemsRetType = []VirtualIp
+
+func getVirtualIpListResponseGetItemsAttributeTypeOk(arg VirtualIpListResponseGetItemsAttributeType) (ret VirtualIpListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVirtualIpListResponseGetItemsAttributeType(arg *VirtualIpListResponseGetItemsAttributeType, val VirtualIpListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // VirtualIpListResponse Virtual IPs list response.
 type VirtualIpListResponse struct {
 	// A list of virtual IPs.
 	// REQUIRED
-	Items *[]VirtualIp `json:"items"`
+	Items VirtualIpListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _VirtualIpListResponse VirtualIpListResponse
@@ -30,9 +50,9 @@ type _VirtualIpListResponse VirtualIpListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVirtualIpListResponse(items *[]VirtualIp) *VirtualIpListResponse {
+func NewVirtualIpListResponse(items VirtualIpListResponseGetItemsArgType) *VirtualIpListResponse {
 	this := VirtualIpListResponse{}
-	this.Items = items
+	setVirtualIpListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewVirtualIpListResponseWithDefaults() *VirtualIpListResponse {
 }
 
 // GetItems returns the Items field value
-func (o *VirtualIpListResponse) GetItems() *[]VirtualIp {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]VirtualIp
-		return ret
-	}
-
-	return o.Items
+func (o *VirtualIpListResponse) GetItems() (ret VirtualIpListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *VirtualIpListResponse) GetItemsOk() (*[]VirtualIp, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *VirtualIpListResponse) GetItemsOk() (ret VirtualIpListResponseGetItemsRetType, ok bool) {
+	return getVirtualIpListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *VirtualIpListResponse) SetItems(v *[]VirtualIp) {
-	o.Items = v
+func (o *VirtualIpListResponse) SetItems(v VirtualIpListResponseGetItemsRetType) {
+	setVirtualIpListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o VirtualIpListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getVirtualIpListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 

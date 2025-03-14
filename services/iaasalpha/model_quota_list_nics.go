@@ -17,12 +17,52 @@ import (
 // checks if the QuotaListNics type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &QuotaListNics{}
 
+/*
+	types and functions for limit
+*/
+
+// isLong
+type QuotaListNicsGetLimitAttributeType = *int64
+type QuotaListNicsGetLimitArgType = int64
+type QuotaListNicsGetLimitRetType = int64
+
+func getQuotaListNicsGetLimitAttributeTypeOk(arg QuotaListNicsGetLimitAttributeType) (ret QuotaListNicsGetLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setQuotaListNicsGetLimitAttributeType(arg *QuotaListNicsGetLimitAttributeType, val QuotaListNicsGetLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for usage
+*/
+
+// isLong
+type QuotaListNicsGetUsageAttributeType = *int64
+type QuotaListNicsGetUsageArgType = int64
+type QuotaListNicsGetUsageRetType = int64
+
+func getQuotaListNicsGetUsageAttributeTypeOk(arg QuotaListNicsGetUsageAttributeType) (ret QuotaListNicsGetUsageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setQuotaListNicsGetUsageAttributeType(arg *QuotaListNicsGetUsageAttributeType, val QuotaListNicsGetUsageRetType) {
+	*arg = &val
+}
+
 // QuotaListNics Number of network interfaces.
 type QuotaListNics struct {
 	// REQUIRED
-	Limit *int64 `json:"limit"`
+	Limit QuotaListNicsGetLimitAttributeType `json:"limit"`
 	// REQUIRED
-	Usage *int64 `json:"usage"`
+	Usage QuotaListNicsGetUsageAttributeType `json:"usage"`
 }
 
 type _QuotaListNics QuotaListNics
@@ -31,10 +71,10 @@ type _QuotaListNics QuotaListNics
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuotaListNics(limit *int64, usage *int64) *QuotaListNics {
+func NewQuotaListNics(limit QuotaListNicsGetLimitArgType, usage QuotaListNicsGetUsageArgType) *QuotaListNics {
 	this := QuotaListNics{}
-	this.Limit = limit
-	this.Usage = usage
+	setQuotaListNicsGetLimitAttributeType(&this.Limit, limit)
+	setQuotaListNicsGetUsageAttributeType(&this.Usage, usage)
 	return &this
 }
 
@@ -47,57 +87,47 @@ func NewQuotaListNicsWithDefaults() *QuotaListNics {
 }
 
 // GetLimit returns the Limit field value
-func (o *QuotaListNics) GetLimit() *int64 {
-	if o == nil || IsNil(o.Limit) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Limit
+func (o *QuotaListNics) GetLimit() (ret QuotaListNicsGetLimitRetType) {
+	ret, _ = o.GetLimitOk()
+	return ret
 }
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
-func (o *QuotaListNics) GetLimitOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Limit, true
+func (o *QuotaListNics) GetLimitOk() (ret QuotaListNicsGetLimitRetType, ok bool) {
+	return getQuotaListNicsGetLimitAttributeTypeOk(o.Limit)
 }
 
 // SetLimit sets field value
-func (o *QuotaListNics) SetLimit(v *int64) {
-	o.Limit = v
+func (o *QuotaListNics) SetLimit(v QuotaListNicsGetLimitRetType) {
+	setQuotaListNicsGetLimitAttributeType(&o.Limit, v)
 }
 
 // GetUsage returns the Usage field value
-func (o *QuotaListNics) GetUsage() *int64 {
-	if o == nil || IsNil(o.Usage) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Usage
+func (o *QuotaListNics) GetUsage() (ret QuotaListNicsGetUsageRetType) {
+	ret, _ = o.GetUsageOk()
+	return ret
 }
 
 // GetUsageOk returns a tuple with the Usage field value
 // and a boolean to check if the value has been set.
-func (o *QuotaListNics) GetUsageOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Usage, true
+func (o *QuotaListNics) GetUsageOk() (ret QuotaListNicsGetUsageRetType, ok bool) {
+	return getQuotaListNicsGetUsageAttributeTypeOk(o.Usage)
 }
 
 // SetUsage sets field value
-func (o *QuotaListNics) SetUsage(v *int64) {
-	o.Usage = v
+func (o *QuotaListNics) SetUsage(v QuotaListNicsGetUsageRetType) {
+	setQuotaListNicsGetUsageAttributeType(&o.Usage, v)
 }
 
 func (o QuotaListNics) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["limit"] = o.Limit
-	toSerialize["usage"] = o.Usage
+	if val, ok := getQuotaListNicsGetLimitAttributeTypeOk(o.Limit); ok {
+		toSerialize["Limit"] = val
+	}
+	if val, ok := getQuotaListNicsGetUsageAttributeTypeOk(o.Usage); ok {
+		toSerialize["Usage"] = val
+	}
 	return toSerialize, nil
 }
 
