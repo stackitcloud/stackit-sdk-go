@@ -17,9 +17,29 @@ import (
 // checks if the HTTPConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HTTPConfig{}
 
+/*
+	types and functions for matcher
+*/
+
+// isArray
+type HTTPConfigGetMatcherAttributeType = *[]Matcher
+type HTTPConfigGetMatcherArgType = []Matcher
+type HTTPConfigGetMatcherRetType = []Matcher
+
+func getHTTPConfigGetMatcherAttributeTypeOk(arg HTTPConfigGetMatcherAttributeType) (ret HTTPConfigGetMatcherRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHTTPConfigGetMatcherAttributeType(arg *HTTPConfigGetMatcherAttributeType, val HTTPConfigGetMatcherRetType) {
+	*arg = &val
+}
+
 // HTTPConfig struct for HTTPConfig
 type HTTPConfig struct {
-	Matcher *[]Matcher `json:"matcher,omitempty"`
+	Matcher HTTPConfigGetMatcherAttributeType `json:"matcher,omitempty"`
 }
 
 // NewHTTPConfig instantiates a new HTTPConfig object
@@ -40,41 +60,32 @@ func NewHTTPConfigWithDefaults() *HTTPConfig {
 }
 
 // GetMatcher returns the Matcher field value if set, zero value otherwise.
-func (o *HTTPConfig) GetMatcher() *[]Matcher {
-	if o == nil || IsNil(o.Matcher) {
-		var ret *[]Matcher
-		return ret
-	}
-	return o.Matcher
+func (o *HTTPConfig) GetMatcher() (res HTTPConfigGetMatcherRetType) {
+	res, _ = o.GetMatcherOk()
+	return
 }
 
 // GetMatcherOk returns a tuple with the Matcher field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HTTPConfig) GetMatcherOk() (*[]Matcher, bool) {
-	if o == nil || IsNil(o.Matcher) {
-		return nil, false
-	}
-	return o.Matcher, true
+func (o *HTTPConfig) GetMatcherOk() (ret HTTPConfigGetMatcherRetType, ok bool) {
+	return getHTTPConfigGetMatcherAttributeTypeOk(o.Matcher)
 }
 
 // HasMatcher returns a boolean if a field has been set.
 func (o *HTTPConfig) HasMatcher() bool {
-	if o != nil && !IsNil(o.Matcher) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMatcherOk()
+	return ok
 }
 
 // SetMatcher gets a reference to the given []Matcher and assigns it to the Matcher field.
-func (o *HTTPConfig) SetMatcher(v *[]Matcher) {
-	o.Matcher = v
+func (o *HTTPConfig) SetMatcher(v HTTPConfigGetMatcherRetType) {
+	setHTTPConfigGetMatcherAttributeType(&o.Matcher, v)
 }
 
 func (o HTTPConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Matcher) {
-		toSerialize["matcher"] = o.Matcher
+	if val, ok := getHTTPConfigGetMatcherAttributeTypeOk(o.Matcher); ok {
+		toSerialize["Matcher"] = val
 	}
 	return toSerialize, nil
 }

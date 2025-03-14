@@ -17,10 +17,30 @@ import (
 // checks if the CertificateConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CertificateConfig{}
 
+/*
+	types and functions for certificateIds
+*/
+
+// isArray
+type CertificateConfigGetCertificateIdsAttributeType = *[]string
+type CertificateConfigGetCertificateIdsArgType = []string
+type CertificateConfigGetCertificateIdsRetType = []string
+
+func getCertificateConfigGetCertificateIdsAttributeTypeOk(arg CertificateConfigGetCertificateIdsAttributeType) (ret CertificateConfigGetCertificateIdsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCertificateConfigGetCertificateIdsAttributeType(arg *CertificateConfigGetCertificateIdsAttributeType, val CertificateConfigGetCertificateIdsRetType) {
+	*arg = &val
+}
+
 // CertificateConfig struct for CertificateConfig
 type CertificateConfig struct {
 	// Certificate IDs for TLS termination
-	CertificateIds *[]string `json:"certificateIds,omitempty"`
+	CertificateIds CertificateConfigGetCertificateIdsAttributeType `json:"certificateIds,omitempty"`
 }
 
 // NewCertificateConfig instantiates a new CertificateConfig object
@@ -41,41 +61,32 @@ func NewCertificateConfigWithDefaults() *CertificateConfig {
 }
 
 // GetCertificateIds returns the CertificateIds field value if set, zero value otherwise.
-func (o *CertificateConfig) GetCertificateIds() *[]string {
-	if o == nil || IsNil(o.CertificateIds) {
-		var ret *[]string
-		return ret
-	}
-	return o.CertificateIds
+func (o *CertificateConfig) GetCertificateIds() (res CertificateConfigGetCertificateIdsRetType) {
+	res, _ = o.GetCertificateIdsOk()
+	return
 }
 
 // GetCertificateIdsOk returns a tuple with the CertificateIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CertificateConfig) GetCertificateIdsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.CertificateIds) {
-		return nil, false
-	}
-	return o.CertificateIds, true
+func (o *CertificateConfig) GetCertificateIdsOk() (ret CertificateConfigGetCertificateIdsRetType, ok bool) {
+	return getCertificateConfigGetCertificateIdsAttributeTypeOk(o.CertificateIds)
 }
 
 // HasCertificateIds returns a boolean if a field has been set.
 func (o *CertificateConfig) HasCertificateIds() bool {
-	if o != nil && !IsNil(o.CertificateIds) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCertificateIdsOk()
+	return ok
 }
 
 // SetCertificateIds gets a reference to the given []string and assigns it to the CertificateIds field.
-func (o *CertificateConfig) SetCertificateIds(v *[]string) {
-	o.CertificateIds = v
+func (o *CertificateConfig) SetCertificateIds(v CertificateConfigGetCertificateIdsRetType) {
+	setCertificateConfigGetCertificateIdsAttributeType(&o.CertificateIds, v)
 }
 
 func (o CertificateConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CertificateIds) {
-		toSerialize["certificateIds"] = o.CertificateIds
+	if val, ok := getCertificateConfigGetCertificateIdsAttributeTypeOk(o.CertificateIds); ok {
+		toSerialize["CertificateIds"] = val
 	}
 	return toSerialize, nil
 }

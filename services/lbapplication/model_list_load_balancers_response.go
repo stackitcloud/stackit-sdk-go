@@ -17,11 +17,52 @@ import (
 // checks if the ListLoadBalancersResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListLoadBalancersResponse{}
 
+/*
+	types and functions for loadBalancers
+*/
+
+// isArray
+type ListLoadBalancersResponseGetLoadBalancersAttributeType = *[]LoadBalancer
+type ListLoadBalancersResponseGetLoadBalancersArgType = []LoadBalancer
+type ListLoadBalancersResponseGetLoadBalancersRetType = []LoadBalancer
+
+func getListLoadBalancersResponseGetLoadBalancersAttributeTypeOk(arg ListLoadBalancersResponseGetLoadBalancersAttributeType) (ret ListLoadBalancersResponseGetLoadBalancersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListLoadBalancersResponseGetLoadBalancersAttributeType(arg *ListLoadBalancersResponseGetLoadBalancersAttributeType, val ListLoadBalancersResponseGetLoadBalancersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nextPageId
+*/
+
+// isNotNullableString
+type ListLoadBalancersResponseGetNextPageIdAttributeType = *string
+
+func getListLoadBalancersResponseGetNextPageIdAttributeTypeOk(arg ListLoadBalancersResponseGetNextPageIdAttributeType) (ret ListLoadBalancersResponseGetNextPageIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListLoadBalancersResponseGetNextPageIdAttributeType(arg *ListLoadBalancersResponseGetNextPageIdAttributeType, val ListLoadBalancersResponseGetNextPageIdRetType) {
+	*arg = &val
+}
+
+type ListLoadBalancersResponseGetNextPageIdArgType = string
+type ListLoadBalancersResponseGetNextPageIdRetType = string
+
 // ListLoadBalancersResponse struct for ListLoadBalancersResponse
 type ListLoadBalancersResponse struct {
-	LoadBalancers *[]LoadBalancer `json:"loadBalancers,omitempty"`
+	LoadBalancers ListLoadBalancersResponseGetLoadBalancersAttributeType `json:"loadBalancers,omitempty"`
 	// Continue token from the ListLoadBalancerResponse with Limit option
-	NextPageId *string `json:"nextPageId,omitempty"`
+	NextPageId ListLoadBalancersResponseGetNextPageIdAttributeType `json:"nextPageId,omitempty"`
 }
 
 // NewListLoadBalancersResponse instantiates a new ListLoadBalancersResponse object
@@ -42,76 +83,58 @@ func NewListLoadBalancersResponseWithDefaults() *ListLoadBalancersResponse {
 }
 
 // GetLoadBalancers returns the LoadBalancers field value if set, zero value otherwise.
-func (o *ListLoadBalancersResponse) GetLoadBalancers() *[]LoadBalancer {
-	if o == nil || IsNil(o.LoadBalancers) {
-		var ret *[]LoadBalancer
-		return ret
-	}
-	return o.LoadBalancers
+func (o *ListLoadBalancersResponse) GetLoadBalancers() (res ListLoadBalancersResponseGetLoadBalancersRetType) {
+	res, _ = o.GetLoadBalancersOk()
+	return
 }
 
 // GetLoadBalancersOk returns a tuple with the LoadBalancers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListLoadBalancersResponse) GetLoadBalancersOk() (*[]LoadBalancer, bool) {
-	if o == nil || IsNil(o.LoadBalancers) {
-		return nil, false
-	}
-	return o.LoadBalancers, true
+func (o *ListLoadBalancersResponse) GetLoadBalancersOk() (ret ListLoadBalancersResponseGetLoadBalancersRetType, ok bool) {
+	return getListLoadBalancersResponseGetLoadBalancersAttributeTypeOk(o.LoadBalancers)
 }
 
 // HasLoadBalancers returns a boolean if a field has been set.
 func (o *ListLoadBalancersResponse) HasLoadBalancers() bool {
-	if o != nil && !IsNil(o.LoadBalancers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLoadBalancersOk()
+	return ok
 }
 
 // SetLoadBalancers gets a reference to the given []LoadBalancer and assigns it to the LoadBalancers field.
-func (o *ListLoadBalancersResponse) SetLoadBalancers(v *[]LoadBalancer) {
-	o.LoadBalancers = v
+func (o *ListLoadBalancersResponse) SetLoadBalancers(v ListLoadBalancersResponseGetLoadBalancersRetType) {
+	setListLoadBalancersResponseGetLoadBalancersAttributeType(&o.LoadBalancers, v)
 }
 
 // GetNextPageId returns the NextPageId field value if set, zero value otherwise.
-func (o *ListLoadBalancersResponse) GetNextPageId() *string {
-	if o == nil || IsNil(o.NextPageId) {
-		var ret *string
-		return ret
-	}
-	return o.NextPageId
+func (o *ListLoadBalancersResponse) GetNextPageId() (res ListLoadBalancersResponseGetNextPageIdRetType) {
+	res, _ = o.GetNextPageIdOk()
+	return
 }
 
 // GetNextPageIdOk returns a tuple with the NextPageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListLoadBalancersResponse) GetNextPageIdOk() (*string, bool) {
-	if o == nil || IsNil(o.NextPageId) {
-		return nil, false
-	}
-	return o.NextPageId, true
+func (o *ListLoadBalancersResponse) GetNextPageIdOk() (ret ListLoadBalancersResponseGetNextPageIdRetType, ok bool) {
+	return getListLoadBalancersResponseGetNextPageIdAttributeTypeOk(o.NextPageId)
 }
 
 // HasNextPageId returns a boolean if a field has been set.
 func (o *ListLoadBalancersResponse) HasNextPageId() bool {
-	if o != nil && !IsNil(o.NextPageId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNextPageIdOk()
+	return ok
 }
 
 // SetNextPageId gets a reference to the given string and assigns it to the NextPageId field.
-func (o *ListLoadBalancersResponse) SetNextPageId(v *string) {
-	o.NextPageId = v
+func (o *ListLoadBalancersResponse) SetNextPageId(v ListLoadBalancersResponseGetNextPageIdRetType) {
+	setListLoadBalancersResponseGetNextPageIdAttributeType(&o.NextPageId, v)
 }
 
 func (o ListLoadBalancersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.LoadBalancers) {
-		toSerialize["loadBalancers"] = o.LoadBalancers
+	if val, ok := getListLoadBalancersResponseGetLoadBalancersAttributeTypeOk(o.LoadBalancers); ok {
+		toSerialize["LoadBalancers"] = val
 	}
-	if !IsNil(o.NextPageId) {
-		toSerialize["nextPageId"] = o.NextPageId
+	if val, ok := getListLoadBalancersResponseGetNextPageIdAttributeTypeOk(o.NextPageId); ok {
+		toSerialize["NextPageId"] = val
 	}
 	return toSerialize, nil
 }

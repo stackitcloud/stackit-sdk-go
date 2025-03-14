@@ -17,19 +17,161 @@ import (
 // checks if the Listener type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Listener{}
 
+/*
+	types and functions for displayName
+*/
+
+// isNotNullableString
+type ListenerGetDisplayNameAttributeType = *string
+
+func getListenerGetDisplayNameAttributeTypeOk(arg ListenerGetDisplayNameAttributeType) (ret ListenerGetDisplayNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetDisplayNameAttributeType(arg *ListenerGetDisplayNameAttributeType, val ListenerGetDisplayNameRetType) {
+	*arg = &val
+}
+
+type ListenerGetDisplayNameArgType = string
+type ListenerGetDisplayNameRetType = string
+
+/*
+	types and functions for http
+*/
+
+// isFreeform
+type ListenerGetHttpAttributeType = *map[string]interface{}
+type ListenerGetHttpArgType = map[string]interface{}
+type ListenerGetHttpRetType = map[string]interface{}
+
+func getListenerGetHttpAttributeTypeOk(arg ListenerGetHttpAttributeType) (ret ListenerGetHttpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetHttpAttributeType(arg *ListenerGetHttpAttributeType, val ListenerGetHttpRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for https
+*/
+
+// isModel
+type ListenerGetHttpsAttributeType = *ProtocolOptionsHTTPS
+type ListenerGetHttpsArgType = ProtocolOptionsHTTPS
+type ListenerGetHttpsRetType = ProtocolOptionsHTTPS
+
+func getListenerGetHttpsAttributeTypeOk(arg ListenerGetHttpsAttributeType) (ret ListenerGetHttpsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetHttpsAttributeType(arg *ListenerGetHttpsAttributeType, val ListenerGetHttpsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ListenerGetNameAttributeType = *string
+
+func getListenerGetNameAttributeTypeOk(arg ListenerGetNameAttributeType) (ret ListenerGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetNameAttributeType(arg *ListenerGetNameAttributeType, val ListenerGetNameRetType) {
+	*arg = &val
+}
+
+type ListenerGetNameArgType = string
+type ListenerGetNameRetType = string
+
+/*
+	types and functions for port
+*/
+
+// isInteger
+type ListenerGetPortAttributeType = *int64
+type ListenerGetPortArgType = int64
+type ListenerGetPortRetType = int64
+
+func getListenerGetPortAttributeTypeOk(arg ListenerGetPortAttributeType) (ret ListenerGetPortRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetPortAttributeType(arg *ListenerGetPortAttributeType, val ListenerGetPortRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for protocol
+*/
+
+// isEnumRef
+type ListenerGetProtocolAttributeType = *string
+type ListenerGetProtocolArgType = string
+type ListenerGetProtocolRetType = string
+
+func getListenerGetProtocolAttributeTypeOk(arg ListenerGetProtocolAttributeType) (ret ListenerGetProtocolRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetProtocolAttributeType(arg *ListenerGetProtocolAttributeType, val ListenerGetProtocolRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for rules
+*/
+
+// isArray
+type ListenerGetRulesAttributeType = *[]Rule
+type ListenerGetRulesArgType = []Rule
+type ListenerGetRulesRetType = []Rule
+
+func getListenerGetRulesAttributeTypeOk(arg ListenerGetRulesAttributeType) (ret ListenerGetRulesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetRulesAttributeType(arg *ListenerGetRulesAttributeType, val ListenerGetRulesRetType) {
+	*arg = &val
+}
+
 // Listener struct for Listener
 type Listener struct {
-	DisplayName *string                 `json:"displayName,omitempty"`
-	Http        *map[string]interface{} `json:"http,omitempty"`
-	Https       *ProtocolOptionsHTTPS   `json:"https,omitempty"`
+	DisplayName ListenerGetDisplayNameAttributeType `json:"displayName,omitempty"`
+	Http        ListenerGetHttpAttributeType        `json:"http,omitempty"`
+	Https       ListenerGetHttpsAttributeType       `json:"https,omitempty"`
 	// Will be used to reference a listener and will replace display name in the future. Currently uses <protocol>-<port> as the name if no display name is given.
-	Name *string `json:"name,omitempty"`
+	Name ListenerGetNameAttributeType `json:"name,omitempty"`
 	// Port number where we listen for traffic
-	Port *int64 `json:"port,omitempty"`
+	Port ListenerGetPortAttributeType `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.
-	Protocol *string `json:"protocol,omitempty"`
+	Protocol ListenerGetProtocolAttributeType `json:"protocol,omitempty"`
 	// Rules define the routing parameters for the HTTP and HTTPS listeners.
-	Rules *[]Rule `json:"rules,omitempty"`
+	Rules ListenerGetRulesAttributeType `json:"rules,omitempty"`
 }
 
 // NewListener instantiates a new Listener object
@@ -50,251 +192,188 @@ func NewListenerWithDefaults() *Listener {
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *Listener) GetDisplayName() *string {
-	if o == nil || IsNil(o.DisplayName) {
-		var ret *string
-		return ret
-	}
-	return o.DisplayName
+func (o *Listener) GetDisplayName() (res ListenerGetDisplayNameRetType) {
+	res, _ = o.GetDisplayNameOk()
+	return
 }
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetDisplayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
+func (o *Listener) GetDisplayNameOk() (ret ListenerGetDisplayNameRetType, ok bool) {
+	return getListenerGetDisplayNameAttributeTypeOk(o.DisplayName)
 }
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *Listener) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDisplayNameOk()
+	return ok
 }
 
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *Listener) SetDisplayName(v *string) {
-	o.DisplayName = v
+func (o *Listener) SetDisplayName(v ListenerGetDisplayNameRetType) {
+	setListenerGetDisplayNameAttributeType(&o.DisplayName, v)
 }
 
 // GetHttp returns the Http field value if set, zero value otherwise.
-func (o *Listener) GetHttp() *map[string]interface{} {
-	if o == nil || IsNil(o.Http) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Http
+func (o *Listener) GetHttp() (res ListenerGetHttpRetType) {
+	res, _ = o.GetHttpOk()
+	return
 }
 
 // GetHttpOk returns a tuple with the Http field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetHttpOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Http) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Http, true
+func (o *Listener) GetHttpOk() (ret ListenerGetHttpRetType, ok bool) {
+	return getListenerGetHttpAttributeTypeOk(o.Http)
 }
 
 // HasHttp returns a boolean if a field has been set.
 func (o *Listener) HasHttp() bool {
-	if o != nil && !IsNil(o.Http) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHttpOk()
+	return ok
 }
 
 // SetHttp gets a reference to the given map[string]interface{} and assigns it to the Http field.
-func (o *Listener) SetHttp(v *map[string]interface{}) {
-	o.Http = v
+func (o *Listener) SetHttp(v ListenerGetHttpRetType) {
+	setListenerGetHttpAttributeType(&o.Http, v)
 }
 
 // GetHttps returns the Https field value if set, zero value otherwise.
-func (o *Listener) GetHttps() *ProtocolOptionsHTTPS {
-	if o == nil || IsNil(o.Https) {
-		var ret *ProtocolOptionsHTTPS
-		return ret
-	}
-	return o.Https
+func (o *Listener) GetHttps() (res ListenerGetHttpsRetType) {
+	res, _ = o.GetHttpsOk()
+	return
 }
 
 // GetHttpsOk returns a tuple with the Https field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetHttpsOk() (*ProtocolOptionsHTTPS, bool) {
-	if o == nil || IsNil(o.Https) {
-		return nil, false
-	}
-	return o.Https, true
+func (o *Listener) GetHttpsOk() (ret ListenerGetHttpsRetType, ok bool) {
+	return getListenerGetHttpsAttributeTypeOk(o.Https)
 }
 
 // HasHttps returns a boolean if a field has been set.
 func (o *Listener) HasHttps() bool {
-	if o != nil && !IsNil(o.Https) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHttpsOk()
+	return ok
 }
 
 // SetHttps gets a reference to the given ProtocolOptionsHTTPS and assigns it to the Https field.
-func (o *Listener) SetHttps(v *ProtocolOptionsHTTPS) {
-	o.Https = v
+func (o *Listener) SetHttps(v ListenerGetHttpsRetType) {
+	setListenerGetHttpsAttributeType(&o.Https, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Listener) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Listener) GetName() (res ListenerGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Listener) GetNameOk() (ret ListenerGetNameRetType, ok bool) {
+	return getListenerGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Listener) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Listener) SetName(v *string) {
-	o.Name = v
+func (o *Listener) SetName(v ListenerGetNameRetType) {
+	setListenerGetNameAttributeType(&o.Name, v)
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *Listener) GetPort() *int64 {
-	if o == nil || IsNil(o.Port) {
-		var ret *int64
-		return ret
-	}
-	return o.Port
+func (o *Listener) GetPort() (res ListenerGetPortRetType) {
+	res, _ = o.GetPortOk()
+	return
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetPortOk() (*int64, bool) {
-	if o == nil || IsNil(o.Port) {
-		return nil, false
-	}
-	return o.Port, true
+func (o *Listener) GetPortOk() (ret ListenerGetPortRetType, ok bool) {
+	return getListenerGetPortAttributeTypeOk(o.Port)
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *Listener) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPortOk()
+	return ok
 }
 
 // SetPort gets a reference to the given int64 and assigns it to the Port field.
-func (o *Listener) SetPort(v *int64) {
-	o.Port = v
+func (o *Listener) SetPort(v ListenerGetPortRetType) {
+	setListenerGetPortAttributeType(&o.Port, v)
 }
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
-func (o *Listener) GetProtocol() *string {
-	if o == nil || IsNil(o.Protocol) {
-		var ret *string
-		return ret
-	}
-	return o.Protocol
+func (o *Listener) GetProtocol() (res ListenerGetProtocolRetType) {
+	res, _ = o.GetProtocolOk()
+	return
 }
 
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetProtocolOk() (*string, bool) {
-	if o == nil || IsNil(o.Protocol) {
-		return nil, false
-	}
-	return o.Protocol, true
+func (o *Listener) GetProtocolOk() (ret ListenerGetProtocolRetType, ok bool) {
+	return getListenerGetProtocolAttributeTypeOk(o.Protocol)
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *Listener) HasProtocol() bool {
-	if o != nil && !IsNil(o.Protocol) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProtocolOk()
+	return ok
 }
 
 // SetProtocol gets a reference to the given string and assigns it to the Protocol field.
-func (o *Listener) SetProtocol(v *string) {
-	o.Protocol = v
+func (o *Listener) SetProtocol(v ListenerGetProtocolRetType) {
+	setListenerGetProtocolAttributeType(&o.Protocol, v)
 }
 
 // GetRules returns the Rules field value if set, zero value otherwise.
-func (o *Listener) GetRules() *[]Rule {
-	if o == nil || IsNil(o.Rules) {
-		var ret *[]Rule
-		return ret
-	}
-	return o.Rules
+func (o *Listener) GetRules() (res ListenerGetRulesRetType) {
+	res, _ = o.GetRulesOk()
+	return
 }
 
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetRulesOk() (*[]Rule, bool) {
-	if o == nil || IsNil(o.Rules) {
-		return nil, false
-	}
-	return o.Rules, true
+func (o *Listener) GetRulesOk() (ret ListenerGetRulesRetType, ok bool) {
+	return getListenerGetRulesAttributeTypeOk(o.Rules)
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *Listener) HasRules() bool {
-	if o != nil && !IsNil(o.Rules) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRulesOk()
+	return ok
 }
 
 // SetRules gets a reference to the given []Rule and assigns it to the Rules field.
-func (o *Listener) SetRules(v *[]Rule) {
-	o.Rules = v
+func (o *Listener) SetRules(v ListenerGetRulesRetType) {
+	setListenerGetRulesAttributeType(&o.Rules, v)
 }
 
 func (o Listener) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
+	if val, ok := getListenerGetDisplayNameAttributeTypeOk(o.DisplayName); ok {
+		toSerialize["DisplayName"] = val
 	}
-	if !IsNil(o.Http) {
-		toSerialize["http"] = o.Http
+	if val, ok := getListenerGetHttpAttributeTypeOk(o.Http); ok {
+		toSerialize["Http"] = val
 	}
-	if !IsNil(o.Https) {
-		toSerialize["https"] = o.Https
+	if val, ok := getListenerGetHttpsAttributeTypeOk(o.Https); ok {
+		toSerialize["Https"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getListenerGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Port) {
-		toSerialize["port"] = o.Port
+	if val, ok := getListenerGetPortAttributeTypeOk(o.Port); ok {
+		toSerialize["Port"] = val
 	}
-	if !IsNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
+	if val, ok := getListenerGetProtocolAttributeTypeOk(o.Protocol); ok {
+		toSerialize["Protocol"] = val
 	}
-	if !IsNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	if val, ok := getListenerGetRulesAttributeTypeOk(o.Rules); ok {
+		toSerialize["Rules"] = val
 	}
 	return toSerialize, nil
 }
