@@ -17,13 +17,54 @@ import (
 // checks if the ListBucketsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListBucketsResponse{}
 
+/*
+	types and functions for buckets
+*/
+
+// isArray
+type ListBucketsResponseGetBucketsAttributeType = *[]Bucket
+type ListBucketsResponseGetBucketsArgType = []Bucket
+type ListBucketsResponseGetBucketsRetType = []Bucket
+
+func getListBucketsResponseGetBucketsAttributeTypeOk(arg ListBucketsResponseGetBucketsAttributeType) (ret ListBucketsResponseGetBucketsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListBucketsResponseGetBucketsAttributeType(arg *ListBucketsResponseGetBucketsAttributeType, val ListBucketsResponseGetBucketsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for project
+*/
+
+// isNotNullableString
+type ListBucketsResponseGetProjectAttributeType = *string
+
+func getListBucketsResponseGetProjectAttributeTypeOk(arg ListBucketsResponseGetProjectAttributeType) (ret ListBucketsResponseGetProjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListBucketsResponseGetProjectAttributeType(arg *ListBucketsResponseGetProjectAttributeType, val ListBucketsResponseGetProjectRetType) {
+	*arg = &val
+}
+
+type ListBucketsResponseGetProjectArgType = string
+type ListBucketsResponseGetProjectRetType = string
+
 // ListBucketsResponse struct for ListBucketsResponse
 type ListBucketsResponse struct {
 	// REQUIRED
-	Buckets *[]Bucket `json:"buckets"`
+	Buckets ListBucketsResponseGetBucketsAttributeType `json:"buckets"`
 	// Project ID
 	// REQUIRED
-	Project *string `json:"project"`
+	Project ListBucketsResponseGetProjectAttributeType `json:"project"`
 }
 
 type _ListBucketsResponse ListBucketsResponse
@@ -32,10 +73,10 @@ type _ListBucketsResponse ListBucketsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBucketsResponse(buckets *[]Bucket, project *string) *ListBucketsResponse {
+func NewListBucketsResponse(buckets ListBucketsResponseGetBucketsArgType, project ListBucketsResponseGetProjectArgType) *ListBucketsResponse {
 	this := ListBucketsResponse{}
-	this.Buckets = buckets
-	this.Project = project
+	setListBucketsResponseGetBucketsAttributeType(&this.Buckets, buckets)
+	setListBucketsResponseGetProjectAttributeType(&this.Project, project)
 	return &this
 }
 
@@ -48,57 +89,47 @@ func NewListBucketsResponseWithDefaults() *ListBucketsResponse {
 }
 
 // GetBuckets returns the Buckets field value
-func (o *ListBucketsResponse) GetBuckets() *[]Bucket {
-	if o == nil || IsNil(o.Buckets) {
-		var ret *[]Bucket
-		return ret
-	}
-
-	return o.Buckets
+func (o *ListBucketsResponse) GetBuckets() (ret ListBucketsResponseGetBucketsRetType) {
+	ret, _ = o.GetBucketsOk()
+	return ret
 }
 
 // GetBucketsOk returns a tuple with the Buckets field value
 // and a boolean to check if the value has been set.
-func (o *ListBucketsResponse) GetBucketsOk() (*[]Bucket, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Buckets, true
+func (o *ListBucketsResponse) GetBucketsOk() (ret ListBucketsResponseGetBucketsRetType, ok bool) {
+	return getListBucketsResponseGetBucketsAttributeTypeOk(o.Buckets)
 }
 
 // SetBuckets sets field value
-func (o *ListBucketsResponse) SetBuckets(v *[]Bucket) {
-	o.Buckets = v
+func (o *ListBucketsResponse) SetBuckets(v ListBucketsResponseGetBucketsRetType) {
+	setListBucketsResponseGetBucketsAttributeType(&o.Buckets, v)
 }
 
 // GetProject returns the Project field value
-func (o *ListBucketsResponse) GetProject() *string {
-	if o == nil || IsNil(o.Project) {
-		var ret *string
-		return ret
-	}
-
-	return o.Project
+func (o *ListBucketsResponse) GetProject() (ret ListBucketsResponseGetProjectRetType) {
+	ret, _ = o.GetProjectOk()
+	return ret
 }
 
 // GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *ListBucketsResponse) GetProjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Project, true
+func (o *ListBucketsResponse) GetProjectOk() (ret ListBucketsResponseGetProjectRetType, ok bool) {
+	return getListBucketsResponseGetProjectAttributeTypeOk(o.Project)
 }
 
 // SetProject sets field value
-func (o *ListBucketsResponse) SetProject(v *string) {
-	o.Project = v
+func (o *ListBucketsResponse) SetProject(v ListBucketsResponseGetProjectRetType) {
+	setListBucketsResponseGetProjectAttributeType(&o.Project, v)
 }
 
 func (o ListBucketsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["buckets"] = o.Buckets
-	toSerialize["project"] = o.Project
+	if val, ok := getListBucketsResponseGetBucketsAttributeTypeOk(o.Buckets); ok {
+		toSerialize["Buckets"] = val
+	}
+	if val, ok := getListBucketsResponseGetProjectAttributeTypeOk(o.Project); ok {
+		toSerialize["Project"] = val
+	}
 	return toSerialize, nil
 }
 

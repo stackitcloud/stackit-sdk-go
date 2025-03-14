@@ -17,9 +17,29 @@ import (
 // checks if the HTTPValidationError type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HTTPValidationError{}
 
+/*
+	types and functions for detail
+*/
+
+// isArray
+type HTTPValidationErrorGetDetailAttributeType = *[]ValidationError
+type HTTPValidationErrorGetDetailArgType = []ValidationError
+type HTTPValidationErrorGetDetailRetType = []ValidationError
+
+func getHTTPValidationErrorGetDetailAttributeTypeOk(arg HTTPValidationErrorGetDetailAttributeType) (ret HTTPValidationErrorGetDetailRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHTTPValidationErrorGetDetailAttributeType(arg *HTTPValidationErrorGetDetailAttributeType, val HTTPValidationErrorGetDetailRetType) {
+	*arg = &val
+}
+
 // HTTPValidationError struct for HTTPValidationError
 type HTTPValidationError struct {
-	Detail *[]ValidationError `json:"detail,omitempty"`
+	Detail HTTPValidationErrorGetDetailAttributeType `json:"detail,omitempty"`
 }
 
 // NewHTTPValidationError instantiates a new HTTPValidationError object
@@ -40,41 +60,32 @@ func NewHTTPValidationErrorWithDefaults() *HTTPValidationError {
 }
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
-func (o *HTTPValidationError) GetDetail() *[]ValidationError {
-	if o == nil || IsNil(o.Detail) {
-		var ret *[]ValidationError
-		return ret
-	}
-	return o.Detail
+func (o *HTTPValidationError) GetDetail() (res HTTPValidationErrorGetDetailRetType) {
+	res, _ = o.GetDetailOk()
+	return
 }
 
 // GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HTTPValidationError) GetDetailOk() (*[]ValidationError, bool) {
-	if o == nil || IsNil(o.Detail) {
-		return nil, false
-	}
-	return o.Detail, true
+func (o *HTTPValidationError) GetDetailOk() (ret HTTPValidationErrorGetDetailRetType, ok bool) {
+	return getHTTPValidationErrorGetDetailAttributeTypeOk(o.Detail)
 }
 
 // HasDetail returns a boolean if a field has been set.
 func (o *HTTPValidationError) HasDetail() bool {
-	if o != nil && !IsNil(o.Detail) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDetailOk()
+	return ok
 }
 
 // SetDetail gets a reference to the given []ValidationError and assigns it to the Detail field.
-func (o *HTTPValidationError) SetDetail(v *[]ValidationError) {
-	o.Detail = v
+func (o *HTTPValidationError) SetDetail(v HTTPValidationErrorGetDetailRetType) {
+	setHTTPValidationErrorGetDetailAttributeType(&o.Detail, v)
 }
 
 func (o HTTPValidationError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Detail) {
-		toSerialize["detail"] = o.Detail
+	if val, ok := getHTTPValidationErrorGetDetailAttributeTypeOk(o.Detail); ok {
+		toSerialize["Detail"] = val
 	}
 	return toSerialize, nil
 }

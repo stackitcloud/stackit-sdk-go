@@ -17,13 +17,54 @@ import (
 // checks if the ListAccessKeysResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListAccessKeysResponse{}
 
+/*
+	types and functions for accessKeys
+*/
+
+// isArray
+type ListAccessKeysResponseGetAccessKeysAttributeType = *[]AccessKey
+type ListAccessKeysResponseGetAccessKeysArgType = []AccessKey
+type ListAccessKeysResponseGetAccessKeysRetType = []AccessKey
+
+func getListAccessKeysResponseGetAccessKeysAttributeTypeOk(arg ListAccessKeysResponseGetAccessKeysAttributeType) (ret ListAccessKeysResponseGetAccessKeysRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListAccessKeysResponseGetAccessKeysAttributeType(arg *ListAccessKeysResponseGetAccessKeysAttributeType, val ListAccessKeysResponseGetAccessKeysRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for project
+*/
+
+// isNotNullableString
+type ListAccessKeysResponseGetProjectAttributeType = *string
+
+func getListAccessKeysResponseGetProjectAttributeTypeOk(arg ListAccessKeysResponseGetProjectAttributeType) (ret ListAccessKeysResponseGetProjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListAccessKeysResponseGetProjectAttributeType(arg *ListAccessKeysResponseGetProjectAttributeType, val ListAccessKeysResponseGetProjectRetType) {
+	*arg = &val
+}
+
+type ListAccessKeysResponseGetProjectArgType = string
+type ListAccessKeysResponseGetProjectRetType = string
+
 // ListAccessKeysResponse struct for ListAccessKeysResponse
 type ListAccessKeysResponse struct {
 	// REQUIRED
-	AccessKeys *[]AccessKey `json:"accessKeys"`
+	AccessKeys ListAccessKeysResponseGetAccessKeysAttributeType `json:"accessKeys"`
 	// Project ID
 	// REQUIRED
-	Project *string `json:"project"`
+	Project ListAccessKeysResponseGetProjectAttributeType `json:"project"`
 }
 
 type _ListAccessKeysResponse ListAccessKeysResponse
@@ -32,10 +73,10 @@ type _ListAccessKeysResponse ListAccessKeysResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListAccessKeysResponse(accessKeys *[]AccessKey, project *string) *ListAccessKeysResponse {
+func NewListAccessKeysResponse(accessKeys ListAccessKeysResponseGetAccessKeysArgType, project ListAccessKeysResponseGetProjectArgType) *ListAccessKeysResponse {
 	this := ListAccessKeysResponse{}
-	this.AccessKeys = accessKeys
-	this.Project = project
+	setListAccessKeysResponseGetAccessKeysAttributeType(&this.AccessKeys, accessKeys)
+	setListAccessKeysResponseGetProjectAttributeType(&this.Project, project)
 	return &this
 }
 
@@ -48,57 +89,47 @@ func NewListAccessKeysResponseWithDefaults() *ListAccessKeysResponse {
 }
 
 // GetAccessKeys returns the AccessKeys field value
-func (o *ListAccessKeysResponse) GetAccessKeys() *[]AccessKey {
-	if o == nil || IsNil(o.AccessKeys) {
-		var ret *[]AccessKey
-		return ret
-	}
-
-	return o.AccessKeys
+func (o *ListAccessKeysResponse) GetAccessKeys() (ret ListAccessKeysResponseGetAccessKeysRetType) {
+	ret, _ = o.GetAccessKeysOk()
+	return ret
 }
 
 // GetAccessKeysOk returns a tuple with the AccessKeys field value
 // and a boolean to check if the value has been set.
-func (o *ListAccessKeysResponse) GetAccessKeysOk() (*[]AccessKey, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AccessKeys, true
+func (o *ListAccessKeysResponse) GetAccessKeysOk() (ret ListAccessKeysResponseGetAccessKeysRetType, ok bool) {
+	return getListAccessKeysResponseGetAccessKeysAttributeTypeOk(o.AccessKeys)
 }
 
 // SetAccessKeys sets field value
-func (o *ListAccessKeysResponse) SetAccessKeys(v *[]AccessKey) {
-	o.AccessKeys = v
+func (o *ListAccessKeysResponse) SetAccessKeys(v ListAccessKeysResponseGetAccessKeysRetType) {
+	setListAccessKeysResponseGetAccessKeysAttributeType(&o.AccessKeys, v)
 }
 
 // GetProject returns the Project field value
-func (o *ListAccessKeysResponse) GetProject() *string {
-	if o == nil || IsNil(o.Project) {
-		var ret *string
-		return ret
-	}
-
-	return o.Project
+func (o *ListAccessKeysResponse) GetProject() (ret ListAccessKeysResponseGetProjectRetType) {
+	ret, _ = o.GetProjectOk()
+	return ret
 }
 
 // GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *ListAccessKeysResponse) GetProjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Project, true
+func (o *ListAccessKeysResponse) GetProjectOk() (ret ListAccessKeysResponseGetProjectRetType, ok bool) {
+	return getListAccessKeysResponseGetProjectAttributeTypeOk(o.Project)
 }
 
 // SetProject sets field value
-func (o *ListAccessKeysResponse) SetProject(v *string) {
-	o.Project = v
+func (o *ListAccessKeysResponse) SetProject(v ListAccessKeysResponseGetProjectRetType) {
+	setListAccessKeysResponseGetProjectAttributeType(&o.Project, v)
 }
 
 func (o ListAccessKeysResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["accessKeys"] = o.AccessKeys
-	toSerialize["project"] = o.Project
+	if val, ok := getListAccessKeysResponseGetAccessKeysAttributeTypeOk(o.AccessKeys); ok {
+		toSerialize["AccessKeys"] = val
+	}
+	if val, ok := getListAccessKeysResponseGetProjectAttributeTypeOk(o.Project); ok {
+		toSerialize["Project"] = val
+	}
 	return toSerialize, nil
 }
 
