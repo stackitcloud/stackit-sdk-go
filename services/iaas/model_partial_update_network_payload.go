@@ -17,15 +17,96 @@ import (
 // checks if the PartialUpdateNetworkPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateNetworkPayload{}
 
+/*
+	types and functions for addressFamily
+*/
+
+// isModel
+type PartialUpdateNetworkPayloadGetAddressFamilyAttributeType = *UpdateNetworkAddressFamily
+type PartialUpdateNetworkPayloadGetAddressFamilyArgType = UpdateNetworkAddressFamily
+type PartialUpdateNetworkPayloadGetAddressFamilyRetType = UpdateNetworkAddressFamily
+
+func getPartialUpdateNetworkPayloadGetAddressFamilyAttributeTypeOk(arg PartialUpdateNetworkPayloadGetAddressFamilyAttributeType) (ret PartialUpdateNetworkPayloadGetAddressFamilyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateNetworkPayloadGetAddressFamilyAttributeType(arg *PartialUpdateNetworkPayloadGetAddressFamilyAttributeType, val PartialUpdateNetworkPayloadGetAddressFamilyRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type PartialUpdateNetworkPayloadGetLabelsAttributeType = *map[string]interface{}
+type PartialUpdateNetworkPayloadGetLabelsArgType = map[string]interface{}
+type PartialUpdateNetworkPayloadGetLabelsRetType = map[string]interface{}
+
+func getPartialUpdateNetworkPayloadGetLabelsAttributeTypeOk(arg PartialUpdateNetworkPayloadGetLabelsAttributeType) (ret PartialUpdateNetworkPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateNetworkPayloadGetLabelsAttributeType(arg *PartialUpdateNetworkPayloadGetLabelsAttributeType, val PartialUpdateNetworkPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type PartialUpdateNetworkPayloadGetNameAttributeType = *string
+
+func getPartialUpdateNetworkPayloadGetNameAttributeTypeOk(arg PartialUpdateNetworkPayloadGetNameAttributeType) (ret PartialUpdateNetworkPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateNetworkPayloadGetNameAttributeType(arg *PartialUpdateNetworkPayloadGetNameAttributeType, val PartialUpdateNetworkPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type PartialUpdateNetworkPayloadGetNameArgType = string
+type PartialUpdateNetworkPayloadGetNameRetType = string
+
+/*
+	types and functions for routed
+*/
+
+// isBoolean
+type PartialUpdateNetworkPayloadgetRoutedAttributeType = *bool
+type PartialUpdateNetworkPayloadgetRoutedArgType = bool
+type PartialUpdateNetworkPayloadgetRoutedRetType = bool
+
+func getPartialUpdateNetworkPayloadgetRoutedAttributeTypeOk(arg PartialUpdateNetworkPayloadgetRoutedAttributeType) (ret PartialUpdateNetworkPayloadgetRoutedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateNetworkPayloadgetRoutedAttributeType(arg *PartialUpdateNetworkPayloadgetRoutedAttributeType, val PartialUpdateNetworkPayloadgetRoutedRetType) {
+	*arg = &val
+}
+
 // PartialUpdateNetworkPayload Object that represents the request body for a network update.
 type PartialUpdateNetworkPayload struct {
-	AddressFamily *UpdateNetworkAddressFamily `json:"addressFamily,omitempty"`
+	AddressFamily PartialUpdateNetworkPayloadGetAddressFamilyAttributeType `json:"addressFamily,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels PartialUpdateNetworkPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty"`
+	Name PartialUpdateNetworkPayloadGetNameAttributeType `json:"name,omitempty"`
 	// Shows if the network is routed and therefore accessible from other networks.
-	Routed *bool `json:"routed,omitempty"`
+	Routed PartialUpdateNetworkPayloadgetRoutedAttributeType `json:"routed,omitempty"`
 }
 
 // NewPartialUpdateNetworkPayload instantiates a new PartialUpdateNetworkPayload object
@@ -46,146 +127,110 @@ func NewPartialUpdateNetworkPayloadWithDefaults() *PartialUpdateNetworkPayload {
 }
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
-func (o *PartialUpdateNetworkPayload) GetAddressFamily() *UpdateNetworkAddressFamily {
-	if o == nil || IsNil(o.AddressFamily) {
-		var ret *UpdateNetworkAddressFamily
-		return ret
-	}
-	return o.AddressFamily
+func (o *PartialUpdateNetworkPayload) GetAddressFamily() (res PartialUpdateNetworkPayloadGetAddressFamilyRetType) {
+	res, _ = o.GetAddressFamilyOk()
+	return
 }
 
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateNetworkPayload) GetAddressFamilyOk() (*UpdateNetworkAddressFamily, bool) {
-	if o == nil || IsNil(o.AddressFamily) {
-		return nil, false
-	}
-	return o.AddressFamily, true
+func (o *PartialUpdateNetworkPayload) GetAddressFamilyOk() (ret PartialUpdateNetworkPayloadGetAddressFamilyRetType, ok bool) {
+	return getPartialUpdateNetworkPayloadGetAddressFamilyAttributeTypeOk(o.AddressFamily)
 }
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *PartialUpdateNetworkPayload) HasAddressFamily() bool {
-	if o != nil && !IsNil(o.AddressFamily) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAddressFamilyOk()
+	return ok
 }
 
 // SetAddressFamily gets a reference to the given UpdateNetworkAddressFamily and assigns it to the AddressFamily field.
-func (o *PartialUpdateNetworkPayload) SetAddressFamily(v *UpdateNetworkAddressFamily) {
-	o.AddressFamily = v
+func (o *PartialUpdateNetworkPayload) SetAddressFamily(v PartialUpdateNetworkPayloadGetAddressFamilyRetType) {
+	setPartialUpdateNetworkPayloadGetAddressFamilyAttributeType(&o.AddressFamily, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *PartialUpdateNetworkPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *PartialUpdateNetworkPayload) GetLabels() (res PartialUpdateNetworkPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateNetworkPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *PartialUpdateNetworkPayload) GetLabelsOk() (ret PartialUpdateNetworkPayloadGetLabelsRetType, ok bool) {
+	return getPartialUpdateNetworkPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *PartialUpdateNetworkPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *PartialUpdateNetworkPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *PartialUpdateNetworkPayload) SetLabels(v PartialUpdateNetworkPayloadGetLabelsRetType) {
+	setPartialUpdateNetworkPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PartialUpdateNetworkPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *PartialUpdateNetworkPayload) GetName() (res PartialUpdateNetworkPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateNetworkPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *PartialUpdateNetworkPayload) GetNameOk() (ret PartialUpdateNetworkPayloadGetNameRetType, ok bool) {
+	return getPartialUpdateNetworkPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateNetworkPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PartialUpdateNetworkPayload) SetName(v *string) {
-	o.Name = v
+func (o *PartialUpdateNetworkPayload) SetName(v PartialUpdateNetworkPayloadGetNameRetType) {
+	setPartialUpdateNetworkPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetRouted returns the Routed field value if set, zero value otherwise.
-func (o *PartialUpdateNetworkPayload) GetRouted() *bool {
-	if o == nil || IsNil(o.Routed) {
-		var ret *bool
-		return ret
-	}
-	return o.Routed
+func (o *PartialUpdateNetworkPayload) GetRouted() (res PartialUpdateNetworkPayloadgetRoutedRetType) {
+	res, _ = o.GetRoutedOk()
+	return
 }
 
 // GetRoutedOk returns a tuple with the Routed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateNetworkPayload) GetRoutedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Routed) {
-		return nil, false
-	}
-	return o.Routed, true
+func (o *PartialUpdateNetworkPayload) GetRoutedOk() (ret PartialUpdateNetworkPayloadgetRoutedRetType, ok bool) {
+	return getPartialUpdateNetworkPayloadgetRoutedAttributeTypeOk(o.Routed)
 }
 
 // HasRouted returns a boolean if a field has been set.
 func (o *PartialUpdateNetworkPayload) HasRouted() bool {
-	if o != nil && !IsNil(o.Routed) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRoutedOk()
+	return ok
 }
 
 // SetRouted gets a reference to the given bool and assigns it to the Routed field.
-func (o *PartialUpdateNetworkPayload) SetRouted(v *bool) {
-	o.Routed = v
+func (o *PartialUpdateNetworkPayload) SetRouted(v PartialUpdateNetworkPayloadgetRoutedRetType) {
+	setPartialUpdateNetworkPayloadgetRoutedAttributeType(&o.Routed, v)
 }
 
 func (o PartialUpdateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AddressFamily) {
-		toSerialize["addressFamily"] = o.AddressFamily
+	if val, ok := getPartialUpdateNetworkPayloadGetAddressFamilyAttributeTypeOk(o.AddressFamily); ok {
+		toSerialize["AddressFamily"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getPartialUpdateNetworkPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getPartialUpdateNetworkPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Routed) {
-		toSerialize["routed"] = o.Routed
+	if val, ok := getPartialUpdateNetworkPayloadgetRoutedAttributeTypeOk(o.Routed); ok {
+		toSerialize["Routed"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,12 +17,52 @@ import (
 // checks if the QuotaListSecurityGroupRules type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &QuotaListSecurityGroupRules{}
 
+/*
+	types and functions for limit
+*/
+
+// isLong
+type QuotaListSecurityGroupRulesGetLimitAttributeType = *int64
+type QuotaListSecurityGroupRulesGetLimitArgType = int64
+type QuotaListSecurityGroupRulesGetLimitRetType = int64
+
+func getQuotaListSecurityGroupRulesGetLimitAttributeTypeOk(arg QuotaListSecurityGroupRulesGetLimitAttributeType) (ret QuotaListSecurityGroupRulesGetLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setQuotaListSecurityGroupRulesGetLimitAttributeType(arg *QuotaListSecurityGroupRulesGetLimitAttributeType, val QuotaListSecurityGroupRulesGetLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for usage
+*/
+
+// isLong
+type QuotaListSecurityGroupRulesGetUsageAttributeType = *int64
+type QuotaListSecurityGroupRulesGetUsageArgType = int64
+type QuotaListSecurityGroupRulesGetUsageRetType = int64
+
+func getQuotaListSecurityGroupRulesGetUsageAttributeTypeOk(arg QuotaListSecurityGroupRulesGetUsageAttributeType) (ret QuotaListSecurityGroupRulesGetUsageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setQuotaListSecurityGroupRulesGetUsageAttributeType(arg *QuotaListSecurityGroupRulesGetUsageAttributeType, val QuotaListSecurityGroupRulesGetUsageRetType) {
+	*arg = &val
+}
+
 // QuotaListSecurityGroupRules Number of security group rules.
 type QuotaListSecurityGroupRules struct {
 	// REQUIRED
-	Limit *int64 `json:"limit"`
+	Limit QuotaListSecurityGroupRulesGetLimitAttributeType `json:"limit"`
 	// REQUIRED
-	Usage *int64 `json:"usage"`
+	Usage QuotaListSecurityGroupRulesGetUsageAttributeType `json:"usage"`
 }
 
 type _QuotaListSecurityGroupRules QuotaListSecurityGroupRules
@@ -31,10 +71,10 @@ type _QuotaListSecurityGroupRules QuotaListSecurityGroupRules
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuotaListSecurityGroupRules(limit *int64, usage *int64) *QuotaListSecurityGroupRules {
+func NewQuotaListSecurityGroupRules(limit QuotaListSecurityGroupRulesGetLimitArgType, usage QuotaListSecurityGroupRulesGetUsageArgType) *QuotaListSecurityGroupRules {
 	this := QuotaListSecurityGroupRules{}
-	this.Limit = limit
-	this.Usage = usage
+	setQuotaListSecurityGroupRulesGetLimitAttributeType(&this.Limit, limit)
+	setQuotaListSecurityGroupRulesGetUsageAttributeType(&this.Usage, usage)
 	return &this
 }
 
@@ -47,57 +87,47 @@ func NewQuotaListSecurityGroupRulesWithDefaults() *QuotaListSecurityGroupRules {
 }
 
 // GetLimit returns the Limit field value
-func (o *QuotaListSecurityGroupRules) GetLimit() *int64 {
-	if o == nil || IsNil(o.Limit) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Limit
+func (o *QuotaListSecurityGroupRules) GetLimit() (ret QuotaListSecurityGroupRulesGetLimitRetType) {
+	ret, _ = o.GetLimitOk()
+	return ret
 }
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
-func (o *QuotaListSecurityGroupRules) GetLimitOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Limit, true
+func (o *QuotaListSecurityGroupRules) GetLimitOk() (ret QuotaListSecurityGroupRulesGetLimitRetType, ok bool) {
+	return getQuotaListSecurityGroupRulesGetLimitAttributeTypeOk(o.Limit)
 }
 
 // SetLimit sets field value
-func (o *QuotaListSecurityGroupRules) SetLimit(v *int64) {
-	o.Limit = v
+func (o *QuotaListSecurityGroupRules) SetLimit(v QuotaListSecurityGroupRulesGetLimitRetType) {
+	setQuotaListSecurityGroupRulesGetLimitAttributeType(&o.Limit, v)
 }
 
 // GetUsage returns the Usage field value
-func (o *QuotaListSecurityGroupRules) GetUsage() *int64 {
-	if o == nil || IsNil(o.Usage) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Usage
+func (o *QuotaListSecurityGroupRules) GetUsage() (ret QuotaListSecurityGroupRulesGetUsageRetType) {
+	ret, _ = o.GetUsageOk()
+	return ret
 }
 
 // GetUsageOk returns a tuple with the Usage field value
 // and a boolean to check if the value has been set.
-func (o *QuotaListSecurityGroupRules) GetUsageOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Usage, true
+func (o *QuotaListSecurityGroupRules) GetUsageOk() (ret QuotaListSecurityGroupRulesGetUsageRetType, ok bool) {
+	return getQuotaListSecurityGroupRulesGetUsageAttributeTypeOk(o.Usage)
 }
 
 // SetUsage sets field value
-func (o *QuotaListSecurityGroupRules) SetUsage(v *int64) {
-	o.Usage = v
+func (o *QuotaListSecurityGroupRules) SetUsage(v QuotaListSecurityGroupRulesGetUsageRetType) {
+	setQuotaListSecurityGroupRulesGetUsageAttributeType(&o.Usage, v)
 }
 
 func (o QuotaListSecurityGroupRules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["limit"] = o.Limit
-	toSerialize["usage"] = o.Usage
+	if val, ok := getQuotaListSecurityGroupRulesGetLimitAttributeTypeOk(o.Limit); ok {
+		toSerialize["Limit"] = val
+	}
+	if val, ok := getQuotaListSecurityGroupRulesGetUsageAttributeTypeOk(o.Usage); ok {
+		toSerialize["Usage"] = val
+	}
 	return toSerialize, nil
 }
 

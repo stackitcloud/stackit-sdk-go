@@ -17,36 +17,358 @@ import (
 // checks if the ImageConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ImageConfig{}
 
+/*
+	types and functions for architecture
+*/
+
+// isNotNullableString
+type ImageConfigGetArchitectureAttributeType = *string
+
+func getImageConfigGetArchitectureAttributeTypeOk(arg ImageConfigGetArchitectureAttributeType) (ret ImageConfigGetArchitectureRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageConfigGetArchitectureAttributeType(arg *ImageConfigGetArchitectureAttributeType, val ImageConfigGetArchitectureRetType) {
+	*arg = &val
+}
+
+type ImageConfigGetArchitectureArgType = string
+type ImageConfigGetArchitectureRetType = string
+
+/*
+	types and functions for bootMenu
+*/
+
+// isBoolean
+type ImageConfiggetBootMenuAttributeType = *bool
+type ImageConfiggetBootMenuArgType = bool
+type ImageConfiggetBootMenuRetType = bool
+
+func getImageConfiggetBootMenuAttributeTypeOk(arg ImageConfiggetBootMenuAttributeType) (ret ImageConfiggetBootMenuRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageConfiggetBootMenuAttributeType(arg *ImageConfiggetBootMenuAttributeType, val ImageConfiggetBootMenuRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for cdromBus
+*/
+
+// isNullableString
+type ImageConfigGetCdromBusAttributeType = *NullableString
+
+func getImageConfigGetCdromBusAttributeTypeOk(arg ImageConfigGetCdromBusAttributeType) (ret ImageConfigGetCdromBusRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setImageConfigGetCdromBusAttributeType(arg *ImageConfigGetCdromBusAttributeType, val ImageConfigGetCdromBusRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ImageConfigGetCdromBusArgType = *string
+type ImageConfigGetCdromBusRetType = *string
+
+/*
+	types and functions for diskBus
+*/
+
+// isNullableString
+type ImageConfigGetDiskBusAttributeType = *NullableString
+
+func getImageConfigGetDiskBusAttributeTypeOk(arg ImageConfigGetDiskBusAttributeType) (ret ImageConfigGetDiskBusRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setImageConfigGetDiskBusAttributeType(arg *ImageConfigGetDiskBusAttributeType, val ImageConfigGetDiskBusRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ImageConfigGetDiskBusArgType = *string
+type ImageConfigGetDiskBusRetType = *string
+
+/*
+	types and functions for nicModel
+*/
+
+// isNullableString
+type ImageConfigGetNicModelAttributeType = *NullableString
+
+func getImageConfigGetNicModelAttributeTypeOk(arg ImageConfigGetNicModelAttributeType) (ret ImageConfigGetNicModelRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setImageConfigGetNicModelAttributeType(arg *ImageConfigGetNicModelAttributeType, val ImageConfigGetNicModelRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ImageConfigGetNicModelArgType = *string
+type ImageConfigGetNicModelRetType = *string
+
+/*
+	types and functions for operatingSystem
+*/
+
+// isNotNullableString
+type ImageConfigGetOperatingSystemAttributeType = *string
+
+func getImageConfigGetOperatingSystemAttributeTypeOk(arg ImageConfigGetOperatingSystemAttributeType) (ret ImageConfigGetOperatingSystemRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageConfigGetOperatingSystemAttributeType(arg *ImageConfigGetOperatingSystemAttributeType, val ImageConfigGetOperatingSystemRetType) {
+	*arg = &val
+}
+
+type ImageConfigGetOperatingSystemArgType = string
+type ImageConfigGetOperatingSystemRetType = string
+
+/*
+	types and functions for operatingSystemDistro
+*/
+
+// isNullableString
+type ImageConfigGetOperatingSystemDistroAttributeType = *NullableString
+
+func getImageConfigGetOperatingSystemDistroAttributeTypeOk(arg ImageConfigGetOperatingSystemDistroAttributeType) (ret ImageConfigGetOperatingSystemDistroRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setImageConfigGetOperatingSystemDistroAttributeType(arg *ImageConfigGetOperatingSystemDistroAttributeType, val ImageConfigGetOperatingSystemDistroRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ImageConfigGetOperatingSystemDistroArgType = *string
+type ImageConfigGetOperatingSystemDistroRetType = *string
+
+/*
+	types and functions for operatingSystemVersion
+*/
+
+// isNullableString
+type ImageConfigGetOperatingSystemVersionAttributeType = *NullableString
+
+func getImageConfigGetOperatingSystemVersionAttributeTypeOk(arg ImageConfigGetOperatingSystemVersionAttributeType) (ret ImageConfigGetOperatingSystemVersionRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setImageConfigGetOperatingSystemVersionAttributeType(arg *ImageConfigGetOperatingSystemVersionAttributeType, val ImageConfigGetOperatingSystemVersionRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ImageConfigGetOperatingSystemVersionArgType = *string
+type ImageConfigGetOperatingSystemVersionRetType = *string
+
+/*
+	types and functions for rescueBus
+*/
+
+// isNullableString
+type ImageConfigGetRescueBusAttributeType = *NullableString
+
+func getImageConfigGetRescueBusAttributeTypeOk(arg ImageConfigGetRescueBusAttributeType) (ret ImageConfigGetRescueBusRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setImageConfigGetRescueBusAttributeType(arg *ImageConfigGetRescueBusAttributeType, val ImageConfigGetRescueBusRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ImageConfigGetRescueBusArgType = *string
+type ImageConfigGetRescueBusRetType = *string
+
+/*
+	types and functions for rescueDevice
+*/
+
+// isNullableString
+type ImageConfigGetRescueDeviceAttributeType = *NullableString
+
+func getImageConfigGetRescueDeviceAttributeTypeOk(arg ImageConfigGetRescueDeviceAttributeType) (ret ImageConfigGetRescueDeviceRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setImageConfigGetRescueDeviceAttributeType(arg *ImageConfigGetRescueDeviceAttributeType, val ImageConfigGetRescueDeviceRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ImageConfigGetRescueDeviceArgType = *string
+type ImageConfigGetRescueDeviceRetType = *string
+
+/*
+	types and functions for secureBoot
+*/
+
+// isBoolean
+type ImageConfiggetSecureBootAttributeType = *bool
+type ImageConfiggetSecureBootArgType = bool
+type ImageConfiggetSecureBootRetType = bool
+
+func getImageConfiggetSecureBootAttributeTypeOk(arg ImageConfiggetSecureBootAttributeType) (ret ImageConfiggetSecureBootRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageConfiggetSecureBootAttributeType(arg *ImageConfiggetSecureBootAttributeType, val ImageConfiggetSecureBootRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for uefi
+*/
+
+// isBoolean
+type ImageConfiggetUefiAttributeType = *bool
+type ImageConfiggetUefiArgType = bool
+type ImageConfiggetUefiRetType = bool
+
+func getImageConfiggetUefiAttributeTypeOk(arg ImageConfiggetUefiAttributeType) (ret ImageConfiggetUefiRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageConfiggetUefiAttributeType(arg *ImageConfiggetUefiAttributeType, val ImageConfiggetUefiRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for videoModel
+*/
+
+// isNullableString
+type ImageConfigGetVideoModelAttributeType = *NullableString
+
+func getImageConfigGetVideoModelAttributeTypeOk(arg ImageConfigGetVideoModelAttributeType) (ret ImageConfigGetVideoModelRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setImageConfigGetVideoModelAttributeType(arg *ImageConfigGetVideoModelAttributeType, val ImageConfigGetVideoModelRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ImageConfigGetVideoModelArgType = *string
+type ImageConfigGetVideoModelRetType = *string
+
+/*
+	types and functions for virtioScsi
+*/
+
+// isBoolean
+type ImageConfiggetVirtioScsiAttributeType = *bool
+type ImageConfiggetVirtioScsiArgType = bool
+type ImageConfiggetVirtioScsiRetType = bool
+
+func getImageConfiggetVirtioScsiAttributeTypeOk(arg ImageConfiggetVirtioScsiAttributeType) (ret ImageConfiggetVirtioScsiRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageConfiggetVirtioScsiAttributeType(arg *ImageConfiggetVirtioScsiAttributeType, val ImageConfiggetVirtioScsiRetType) {
+	*arg = &val
+}
+
 // ImageConfig Properties to set hardware and scheduling settings for an Image.
 type ImageConfig struct {
 	// Represents CPU architecture. The default for new images is x86.
-	Architecture *string `json:"architecture,omitempty"`
+	Architecture ImageConfigGetArchitectureAttributeType `json:"architecture,omitempty"`
 	// Enables the BIOS bootmenu. The default for new images is disabled.
-	BootMenu *bool `json:"bootMenu,omitempty"`
+	BootMenu ImageConfiggetBootMenuAttributeType `json:"bootMenu,omitempty"`
 	// Sets CDROM bus controller type.
-	CdromBus *NullableString `json:"cdromBus,omitempty"`
+	CdromBus ImageConfigGetCdromBusAttributeType `json:"cdromBus,omitempty"`
 	// Sets Disk bus controller type.
-	DiskBus *NullableString `json:"diskBus,omitempty"`
+	DiskBus ImageConfigGetDiskBusAttributeType `json:"diskBus,omitempty"`
 	// Sets virtual nic model.
-	NicModel *NullableString `json:"nicModel,omitempty"`
+	NicModel ImageConfigGetNicModelAttributeType `json:"nicModel,omitempty"`
 	// Enables OS specific optimizations.
-	OperatingSystem *string `json:"operatingSystem,omitempty"`
+	OperatingSystem ImageConfigGetOperatingSystemAttributeType `json:"operatingSystem,omitempty"`
 	// Operating System Distribution.
-	OperatingSystemDistro *NullableString `json:"operatingSystemDistro,omitempty"`
+	OperatingSystemDistro ImageConfigGetOperatingSystemDistroAttributeType `json:"operatingSystemDistro,omitempty"`
 	// Version of the OS.
-	OperatingSystemVersion *NullableString `json:"operatingSystemVersion,omitempty"`
+	OperatingSystemVersion ImageConfigGetOperatingSystemVersionAttributeType `json:"operatingSystemVersion,omitempty"`
 	// Sets the device bus when the image is used as a rescue image.
-	RescueBus *NullableString `json:"rescueBus,omitempty"`
+	RescueBus ImageConfigGetRescueBusAttributeType `json:"rescueBus,omitempty"`
 	// Sets the device when the image is used as a rescue image.
-	RescueDevice *NullableString `json:"rescueDevice,omitempty"`
+	RescueDevice ImageConfigGetRescueDeviceAttributeType `json:"rescueDevice,omitempty"`
 	// Enables Secure Boot. The default for new images is disabled.
-	SecureBoot *bool `json:"secureBoot,omitempty"`
+	SecureBoot ImageConfiggetSecureBootAttributeType `json:"secureBoot,omitempty"`
 	// Configure UEFI boot. The default for new images is enabled.
-	Uefi *bool `json:"uefi,omitempty"`
+	Uefi ImageConfiggetUefiAttributeType `json:"uefi,omitempty"`
 	// Sets Graphic device model.
-	VideoModel *NullableString `json:"videoModel,omitempty"`
+	VideoModel ImageConfigGetVideoModelAttributeType `json:"videoModel,omitempty"`
 	// Enables the use of VirtIO SCSI to provide block device access. By default servers use VirtIO Block.
-	VirtioScsi *bool `json:"virtioScsi,omitempty"`
+	VirtioScsi ImageConfiggetVirtioScsiAttributeType `json:"virtioScsi,omitempty"`
 }
 
 // NewImageConfig instantiates a new ImageConfig object
@@ -67,656 +389,458 @@ func NewImageConfigWithDefaults() *ImageConfig {
 }
 
 // GetArchitecture returns the Architecture field value if set, zero value otherwise.
-func (o *ImageConfig) GetArchitecture() *string {
-	if o == nil || IsNil(o.Architecture) {
-		var ret *string
-		return ret
-	}
-	return o.Architecture
+func (o *ImageConfig) GetArchitecture() (res ImageConfigGetArchitectureRetType) {
+	res, _ = o.GetArchitectureOk()
+	return
 }
 
 // GetArchitectureOk returns a tuple with the Architecture field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageConfig) GetArchitectureOk() (*string, bool) {
-	if o == nil || IsNil(o.Architecture) {
-		return nil, false
-	}
-	return o.Architecture, true
+func (o *ImageConfig) GetArchitectureOk() (ret ImageConfigGetArchitectureRetType, ok bool) {
+	return getImageConfigGetArchitectureAttributeTypeOk(o.Architecture)
 }
 
 // HasArchitecture returns a boolean if a field has been set.
 func (o *ImageConfig) HasArchitecture() bool {
-	if o != nil && !IsNil(o.Architecture) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetArchitectureOk()
+	return ok
 }
 
 // SetArchitecture gets a reference to the given string and assigns it to the Architecture field.
-func (o *ImageConfig) SetArchitecture(v *string) {
-	o.Architecture = v
+func (o *ImageConfig) SetArchitecture(v ImageConfigGetArchitectureRetType) {
+	setImageConfigGetArchitectureAttributeType(&o.Architecture, v)
 }
 
 // GetBootMenu returns the BootMenu field value if set, zero value otherwise.
-func (o *ImageConfig) GetBootMenu() *bool {
-	if o == nil || IsNil(o.BootMenu) {
-		var ret *bool
-		return ret
-	}
-	return o.BootMenu
+func (o *ImageConfig) GetBootMenu() (res ImageConfiggetBootMenuRetType) {
+	res, _ = o.GetBootMenuOk()
+	return
 }
 
 // GetBootMenuOk returns a tuple with the BootMenu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageConfig) GetBootMenuOk() (*bool, bool) {
-	if o == nil || IsNil(o.BootMenu) {
-		return nil, false
-	}
-	return o.BootMenu, true
+func (o *ImageConfig) GetBootMenuOk() (ret ImageConfiggetBootMenuRetType, ok bool) {
+	return getImageConfiggetBootMenuAttributeTypeOk(o.BootMenu)
 }
 
 // HasBootMenu returns a boolean if a field has been set.
 func (o *ImageConfig) HasBootMenu() bool {
-	if o != nil && !IsNil(o.BootMenu) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBootMenuOk()
+	return ok
 }
 
 // SetBootMenu gets a reference to the given bool and assigns it to the BootMenu field.
-func (o *ImageConfig) SetBootMenu(v *bool) {
-	o.BootMenu = v
+func (o *ImageConfig) SetBootMenu(v ImageConfiggetBootMenuRetType) {
+	setImageConfiggetBootMenuAttributeType(&o.BootMenu, v)
 }
 
 // GetCdromBus returns the CdromBus field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ImageConfig) GetCdromBus() *string {
-	if o == nil || IsNil(o.CdromBus) || IsNil(o.CdromBus.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.CdromBus.Get()
+func (o *ImageConfig) GetCdromBus() (res ImageConfigGetCdromBusRetType) {
+	res, _ = o.GetCdromBusOk()
+	return
 }
 
 // GetCdromBusOk returns a tuple with the CdromBus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ImageConfig) GetCdromBusOk() (*string, bool) {
-	if o == nil || IsNil(o.CdromBus) {
-		return nil, false
-	}
-	return o.CdromBus.Get(), o.CdromBus.IsSet()
+func (o *ImageConfig) GetCdromBusOk() (ret ImageConfigGetCdromBusRetType, ok bool) {
+	return getImageConfigGetCdromBusAttributeTypeOk(o.CdromBus)
 }
 
 // HasCdromBus returns a boolean if a field has been set.
 func (o *ImageConfig) HasCdromBus() bool {
-	if o != nil && !IsNil(o.CdromBus) && o.CdromBus.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCdromBusOk()
+	return ok
 }
 
 // SetCdromBus gets a reference to the given string and assigns it to the CdromBus field.
-func (o *ImageConfig) SetCdromBus(v *string) {
-	if IsNil(o.CdromBus) {
-		o.CdromBus = new(NullableString)
-	}
-	o.CdromBus.Set(v)
+func (o *ImageConfig) SetCdromBus(v ImageConfigGetCdromBusRetType) {
+	setImageConfigGetCdromBusAttributeType(&o.CdromBus, v)
 }
 
 // SetCdromBusNil sets the value for CdromBus to be an explicit nil
 func (o *ImageConfig) SetCdromBusNil() {
-	if IsNil(o.CdromBus) {
-		o.CdromBus = new(NullableString)
-	}
-	o.CdromBus.Set(nil)
+	o.CdromBus = nil
 }
 
 // UnsetCdromBus ensures that no value is present for CdromBus, not even an explicit nil
 func (o *ImageConfig) UnsetCdromBus() {
-	if IsNil(o.CdromBus) {
-		o.CdromBus = new(NullableString)
-	}
-	o.CdromBus.Unset()
+	o.CdromBus = nil
 }
 
 // GetDiskBus returns the DiskBus field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ImageConfig) GetDiskBus() *string {
-	if o == nil || IsNil(o.DiskBus) || IsNil(o.DiskBus.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.DiskBus.Get()
+func (o *ImageConfig) GetDiskBus() (res ImageConfigGetDiskBusRetType) {
+	res, _ = o.GetDiskBusOk()
+	return
 }
 
 // GetDiskBusOk returns a tuple with the DiskBus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ImageConfig) GetDiskBusOk() (*string, bool) {
-	if o == nil || IsNil(o.DiskBus) {
-		return nil, false
-	}
-	return o.DiskBus.Get(), o.DiskBus.IsSet()
+func (o *ImageConfig) GetDiskBusOk() (ret ImageConfigGetDiskBusRetType, ok bool) {
+	return getImageConfigGetDiskBusAttributeTypeOk(o.DiskBus)
 }
 
 // HasDiskBus returns a boolean if a field has been set.
 func (o *ImageConfig) HasDiskBus() bool {
-	if o != nil && !IsNil(o.DiskBus) && o.DiskBus.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDiskBusOk()
+	return ok
 }
 
 // SetDiskBus gets a reference to the given string and assigns it to the DiskBus field.
-func (o *ImageConfig) SetDiskBus(v *string) {
-	if IsNil(o.DiskBus) {
-		o.DiskBus = new(NullableString)
-	}
-	o.DiskBus.Set(v)
+func (o *ImageConfig) SetDiskBus(v ImageConfigGetDiskBusRetType) {
+	setImageConfigGetDiskBusAttributeType(&o.DiskBus, v)
 }
 
 // SetDiskBusNil sets the value for DiskBus to be an explicit nil
 func (o *ImageConfig) SetDiskBusNil() {
-	if IsNil(o.DiskBus) {
-		o.DiskBus = new(NullableString)
-	}
-	o.DiskBus.Set(nil)
+	o.DiskBus = nil
 }
 
 // UnsetDiskBus ensures that no value is present for DiskBus, not even an explicit nil
 func (o *ImageConfig) UnsetDiskBus() {
-	if IsNil(o.DiskBus) {
-		o.DiskBus = new(NullableString)
-	}
-	o.DiskBus.Unset()
+	o.DiskBus = nil
 }
 
 // GetNicModel returns the NicModel field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ImageConfig) GetNicModel() *string {
-	if o == nil || IsNil(o.NicModel) || IsNil(o.NicModel.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.NicModel.Get()
+func (o *ImageConfig) GetNicModel() (res ImageConfigGetNicModelRetType) {
+	res, _ = o.GetNicModelOk()
+	return
 }
 
 // GetNicModelOk returns a tuple with the NicModel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ImageConfig) GetNicModelOk() (*string, bool) {
-	if o == nil || IsNil(o.NicModel) {
-		return nil, false
-	}
-	return o.NicModel.Get(), o.NicModel.IsSet()
+func (o *ImageConfig) GetNicModelOk() (ret ImageConfigGetNicModelRetType, ok bool) {
+	return getImageConfigGetNicModelAttributeTypeOk(o.NicModel)
 }
 
 // HasNicModel returns a boolean if a field has been set.
 func (o *ImageConfig) HasNicModel() bool {
-	if o != nil && !IsNil(o.NicModel) && o.NicModel.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNicModelOk()
+	return ok
 }
 
 // SetNicModel gets a reference to the given string and assigns it to the NicModel field.
-func (o *ImageConfig) SetNicModel(v *string) {
-	if IsNil(o.NicModel) {
-		o.NicModel = new(NullableString)
-	}
-	o.NicModel.Set(v)
+func (o *ImageConfig) SetNicModel(v ImageConfigGetNicModelRetType) {
+	setImageConfigGetNicModelAttributeType(&o.NicModel, v)
 }
 
 // SetNicModelNil sets the value for NicModel to be an explicit nil
 func (o *ImageConfig) SetNicModelNil() {
-	if IsNil(o.NicModel) {
-		o.NicModel = new(NullableString)
-	}
-	o.NicModel.Set(nil)
+	o.NicModel = nil
 }
 
 // UnsetNicModel ensures that no value is present for NicModel, not even an explicit nil
 func (o *ImageConfig) UnsetNicModel() {
-	if IsNil(o.NicModel) {
-		o.NicModel = new(NullableString)
-	}
-	o.NicModel.Unset()
+	o.NicModel = nil
 }
 
 // GetOperatingSystem returns the OperatingSystem field value if set, zero value otherwise.
-func (o *ImageConfig) GetOperatingSystem() *string {
-	if o == nil || IsNil(o.OperatingSystem) {
-		var ret *string
-		return ret
-	}
-	return o.OperatingSystem
+func (o *ImageConfig) GetOperatingSystem() (res ImageConfigGetOperatingSystemRetType) {
+	res, _ = o.GetOperatingSystemOk()
+	return
 }
 
 // GetOperatingSystemOk returns a tuple with the OperatingSystem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageConfig) GetOperatingSystemOk() (*string, bool) {
-	if o == nil || IsNil(o.OperatingSystem) {
-		return nil, false
-	}
-	return o.OperatingSystem, true
+func (o *ImageConfig) GetOperatingSystemOk() (ret ImageConfigGetOperatingSystemRetType, ok bool) {
+	return getImageConfigGetOperatingSystemAttributeTypeOk(o.OperatingSystem)
 }
 
 // HasOperatingSystem returns a boolean if a field has been set.
 func (o *ImageConfig) HasOperatingSystem() bool {
-	if o != nil && !IsNil(o.OperatingSystem) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOperatingSystemOk()
+	return ok
 }
 
 // SetOperatingSystem gets a reference to the given string and assigns it to the OperatingSystem field.
-func (o *ImageConfig) SetOperatingSystem(v *string) {
-	o.OperatingSystem = v
+func (o *ImageConfig) SetOperatingSystem(v ImageConfigGetOperatingSystemRetType) {
+	setImageConfigGetOperatingSystemAttributeType(&o.OperatingSystem, v)
 }
 
 // GetOperatingSystemDistro returns the OperatingSystemDistro field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ImageConfig) GetOperatingSystemDistro() *string {
-	if o == nil || IsNil(o.OperatingSystemDistro) || IsNil(o.OperatingSystemDistro.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.OperatingSystemDistro.Get()
+func (o *ImageConfig) GetOperatingSystemDistro() (res ImageConfigGetOperatingSystemDistroRetType) {
+	res, _ = o.GetOperatingSystemDistroOk()
+	return
 }
 
 // GetOperatingSystemDistroOk returns a tuple with the OperatingSystemDistro field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ImageConfig) GetOperatingSystemDistroOk() (*string, bool) {
-	if o == nil || IsNil(o.OperatingSystemDistro) {
-		return nil, false
-	}
-	return o.OperatingSystemDistro.Get(), o.OperatingSystemDistro.IsSet()
+func (o *ImageConfig) GetOperatingSystemDistroOk() (ret ImageConfigGetOperatingSystemDistroRetType, ok bool) {
+	return getImageConfigGetOperatingSystemDistroAttributeTypeOk(o.OperatingSystemDistro)
 }
 
 // HasOperatingSystemDistro returns a boolean if a field has been set.
 func (o *ImageConfig) HasOperatingSystemDistro() bool {
-	if o != nil && !IsNil(o.OperatingSystemDistro) && o.OperatingSystemDistro.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOperatingSystemDistroOk()
+	return ok
 }
 
 // SetOperatingSystemDistro gets a reference to the given string and assigns it to the OperatingSystemDistro field.
-func (o *ImageConfig) SetOperatingSystemDistro(v *string) {
-	if IsNil(o.OperatingSystemDistro) {
-		o.OperatingSystemDistro = new(NullableString)
-	}
-	o.OperatingSystemDistro.Set(v)
+func (o *ImageConfig) SetOperatingSystemDistro(v ImageConfigGetOperatingSystemDistroRetType) {
+	setImageConfigGetOperatingSystemDistroAttributeType(&o.OperatingSystemDistro, v)
 }
 
 // SetOperatingSystemDistroNil sets the value for OperatingSystemDistro to be an explicit nil
 func (o *ImageConfig) SetOperatingSystemDistroNil() {
-	if IsNil(o.OperatingSystemDistro) {
-		o.OperatingSystemDistro = new(NullableString)
-	}
-	o.OperatingSystemDistro.Set(nil)
+	o.OperatingSystemDistro = nil
 }
 
 // UnsetOperatingSystemDistro ensures that no value is present for OperatingSystemDistro, not even an explicit nil
 func (o *ImageConfig) UnsetOperatingSystemDistro() {
-	if IsNil(o.OperatingSystemDistro) {
-		o.OperatingSystemDistro = new(NullableString)
-	}
-	o.OperatingSystemDistro.Unset()
+	o.OperatingSystemDistro = nil
 }
 
 // GetOperatingSystemVersion returns the OperatingSystemVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ImageConfig) GetOperatingSystemVersion() *string {
-	if o == nil || IsNil(o.OperatingSystemVersion) || IsNil(o.OperatingSystemVersion.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.OperatingSystemVersion.Get()
+func (o *ImageConfig) GetOperatingSystemVersion() (res ImageConfigGetOperatingSystemVersionRetType) {
+	res, _ = o.GetOperatingSystemVersionOk()
+	return
 }
 
 // GetOperatingSystemVersionOk returns a tuple with the OperatingSystemVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ImageConfig) GetOperatingSystemVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.OperatingSystemVersion) {
-		return nil, false
-	}
-	return o.OperatingSystemVersion.Get(), o.OperatingSystemVersion.IsSet()
+func (o *ImageConfig) GetOperatingSystemVersionOk() (ret ImageConfigGetOperatingSystemVersionRetType, ok bool) {
+	return getImageConfigGetOperatingSystemVersionAttributeTypeOk(o.OperatingSystemVersion)
 }
 
 // HasOperatingSystemVersion returns a boolean if a field has been set.
 func (o *ImageConfig) HasOperatingSystemVersion() bool {
-	if o != nil && !IsNil(o.OperatingSystemVersion) && o.OperatingSystemVersion.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOperatingSystemVersionOk()
+	return ok
 }
 
 // SetOperatingSystemVersion gets a reference to the given string and assigns it to the OperatingSystemVersion field.
-func (o *ImageConfig) SetOperatingSystemVersion(v *string) {
-	if IsNil(o.OperatingSystemVersion) {
-		o.OperatingSystemVersion = new(NullableString)
-	}
-	o.OperatingSystemVersion.Set(v)
+func (o *ImageConfig) SetOperatingSystemVersion(v ImageConfigGetOperatingSystemVersionRetType) {
+	setImageConfigGetOperatingSystemVersionAttributeType(&o.OperatingSystemVersion, v)
 }
 
 // SetOperatingSystemVersionNil sets the value for OperatingSystemVersion to be an explicit nil
 func (o *ImageConfig) SetOperatingSystemVersionNil() {
-	if IsNil(o.OperatingSystemVersion) {
-		o.OperatingSystemVersion = new(NullableString)
-	}
-	o.OperatingSystemVersion.Set(nil)
+	o.OperatingSystemVersion = nil
 }
 
 // UnsetOperatingSystemVersion ensures that no value is present for OperatingSystemVersion, not even an explicit nil
 func (o *ImageConfig) UnsetOperatingSystemVersion() {
-	if IsNil(o.OperatingSystemVersion) {
-		o.OperatingSystemVersion = new(NullableString)
-	}
-	o.OperatingSystemVersion.Unset()
+	o.OperatingSystemVersion = nil
 }
 
 // GetRescueBus returns the RescueBus field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ImageConfig) GetRescueBus() *string {
-	if o == nil || IsNil(o.RescueBus) || IsNil(o.RescueBus.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.RescueBus.Get()
+func (o *ImageConfig) GetRescueBus() (res ImageConfigGetRescueBusRetType) {
+	res, _ = o.GetRescueBusOk()
+	return
 }
 
 // GetRescueBusOk returns a tuple with the RescueBus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ImageConfig) GetRescueBusOk() (*string, bool) {
-	if o == nil || IsNil(o.RescueBus) {
-		return nil, false
-	}
-	return o.RescueBus.Get(), o.RescueBus.IsSet()
+func (o *ImageConfig) GetRescueBusOk() (ret ImageConfigGetRescueBusRetType, ok bool) {
+	return getImageConfigGetRescueBusAttributeTypeOk(o.RescueBus)
 }
 
 // HasRescueBus returns a boolean if a field has been set.
 func (o *ImageConfig) HasRescueBus() bool {
-	if o != nil && !IsNil(o.RescueBus) && o.RescueBus.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRescueBusOk()
+	return ok
 }
 
 // SetRescueBus gets a reference to the given string and assigns it to the RescueBus field.
-func (o *ImageConfig) SetRescueBus(v *string) {
-	if IsNil(o.RescueBus) {
-		o.RescueBus = new(NullableString)
-	}
-	o.RescueBus.Set(v)
+func (o *ImageConfig) SetRescueBus(v ImageConfigGetRescueBusRetType) {
+	setImageConfigGetRescueBusAttributeType(&o.RescueBus, v)
 }
 
 // SetRescueBusNil sets the value for RescueBus to be an explicit nil
 func (o *ImageConfig) SetRescueBusNil() {
-	if IsNil(o.RescueBus) {
-		o.RescueBus = new(NullableString)
-	}
-	o.RescueBus.Set(nil)
+	o.RescueBus = nil
 }
 
 // UnsetRescueBus ensures that no value is present for RescueBus, not even an explicit nil
 func (o *ImageConfig) UnsetRescueBus() {
-	if IsNil(o.RescueBus) {
-		o.RescueBus = new(NullableString)
-	}
-	o.RescueBus.Unset()
+	o.RescueBus = nil
 }
 
 // GetRescueDevice returns the RescueDevice field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ImageConfig) GetRescueDevice() *string {
-	if o == nil || IsNil(o.RescueDevice) || IsNil(o.RescueDevice.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.RescueDevice.Get()
+func (o *ImageConfig) GetRescueDevice() (res ImageConfigGetRescueDeviceRetType) {
+	res, _ = o.GetRescueDeviceOk()
+	return
 }
 
 // GetRescueDeviceOk returns a tuple with the RescueDevice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ImageConfig) GetRescueDeviceOk() (*string, bool) {
-	if o == nil || IsNil(o.RescueDevice) {
-		return nil, false
-	}
-	return o.RescueDevice.Get(), o.RescueDevice.IsSet()
+func (o *ImageConfig) GetRescueDeviceOk() (ret ImageConfigGetRescueDeviceRetType, ok bool) {
+	return getImageConfigGetRescueDeviceAttributeTypeOk(o.RescueDevice)
 }
 
 // HasRescueDevice returns a boolean if a field has been set.
 func (o *ImageConfig) HasRescueDevice() bool {
-	if o != nil && !IsNil(o.RescueDevice) && o.RescueDevice.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRescueDeviceOk()
+	return ok
 }
 
 // SetRescueDevice gets a reference to the given string and assigns it to the RescueDevice field.
-func (o *ImageConfig) SetRescueDevice(v *string) {
-	if IsNil(o.RescueDevice) {
-		o.RescueDevice = new(NullableString)
-	}
-	o.RescueDevice.Set(v)
+func (o *ImageConfig) SetRescueDevice(v ImageConfigGetRescueDeviceRetType) {
+	setImageConfigGetRescueDeviceAttributeType(&o.RescueDevice, v)
 }
 
 // SetRescueDeviceNil sets the value for RescueDevice to be an explicit nil
 func (o *ImageConfig) SetRescueDeviceNil() {
-	if IsNil(o.RescueDevice) {
-		o.RescueDevice = new(NullableString)
-	}
-	o.RescueDevice.Set(nil)
+	o.RescueDevice = nil
 }
 
 // UnsetRescueDevice ensures that no value is present for RescueDevice, not even an explicit nil
 func (o *ImageConfig) UnsetRescueDevice() {
-	if IsNil(o.RescueDevice) {
-		o.RescueDevice = new(NullableString)
-	}
-	o.RescueDevice.Unset()
+	o.RescueDevice = nil
 }
 
 // GetSecureBoot returns the SecureBoot field value if set, zero value otherwise.
-func (o *ImageConfig) GetSecureBoot() *bool {
-	if o == nil || IsNil(o.SecureBoot) {
-		var ret *bool
-		return ret
-	}
-	return o.SecureBoot
+func (o *ImageConfig) GetSecureBoot() (res ImageConfiggetSecureBootRetType) {
+	res, _ = o.GetSecureBootOk()
+	return
 }
 
 // GetSecureBootOk returns a tuple with the SecureBoot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageConfig) GetSecureBootOk() (*bool, bool) {
-	if o == nil || IsNil(o.SecureBoot) {
-		return nil, false
-	}
-	return o.SecureBoot, true
+func (o *ImageConfig) GetSecureBootOk() (ret ImageConfiggetSecureBootRetType, ok bool) {
+	return getImageConfiggetSecureBootAttributeTypeOk(o.SecureBoot)
 }
 
 // HasSecureBoot returns a boolean if a field has been set.
 func (o *ImageConfig) HasSecureBoot() bool {
-	if o != nil && !IsNil(o.SecureBoot) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSecureBootOk()
+	return ok
 }
 
 // SetSecureBoot gets a reference to the given bool and assigns it to the SecureBoot field.
-func (o *ImageConfig) SetSecureBoot(v *bool) {
-	o.SecureBoot = v
+func (o *ImageConfig) SetSecureBoot(v ImageConfiggetSecureBootRetType) {
+	setImageConfiggetSecureBootAttributeType(&o.SecureBoot, v)
 }
 
 // GetUefi returns the Uefi field value if set, zero value otherwise.
-func (o *ImageConfig) GetUefi() *bool {
-	if o == nil || IsNil(o.Uefi) {
-		var ret *bool
-		return ret
-	}
-	return o.Uefi
+func (o *ImageConfig) GetUefi() (res ImageConfiggetUefiRetType) {
+	res, _ = o.GetUefiOk()
+	return
 }
 
 // GetUefiOk returns a tuple with the Uefi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageConfig) GetUefiOk() (*bool, bool) {
-	if o == nil || IsNil(o.Uefi) {
-		return nil, false
-	}
-	return o.Uefi, true
+func (o *ImageConfig) GetUefiOk() (ret ImageConfiggetUefiRetType, ok bool) {
+	return getImageConfiggetUefiAttributeTypeOk(o.Uefi)
 }
 
 // HasUefi returns a boolean if a field has been set.
 func (o *ImageConfig) HasUefi() bool {
-	if o != nil && !IsNil(o.Uefi) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUefiOk()
+	return ok
 }
 
 // SetUefi gets a reference to the given bool and assigns it to the Uefi field.
-func (o *ImageConfig) SetUefi(v *bool) {
-	o.Uefi = v
+func (o *ImageConfig) SetUefi(v ImageConfiggetUefiRetType) {
+	setImageConfiggetUefiAttributeType(&o.Uefi, v)
 }
 
 // GetVideoModel returns the VideoModel field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ImageConfig) GetVideoModel() *string {
-	if o == nil || IsNil(o.VideoModel) || IsNil(o.VideoModel.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.VideoModel.Get()
+func (o *ImageConfig) GetVideoModel() (res ImageConfigGetVideoModelRetType) {
+	res, _ = o.GetVideoModelOk()
+	return
 }
 
 // GetVideoModelOk returns a tuple with the VideoModel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ImageConfig) GetVideoModelOk() (*string, bool) {
-	if o == nil || IsNil(o.VideoModel) {
-		return nil, false
-	}
-	return o.VideoModel.Get(), o.VideoModel.IsSet()
+func (o *ImageConfig) GetVideoModelOk() (ret ImageConfigGetVideoModelRetType, ok bool) {
+	return getImageConfigGetVideoModelAttributeTypeOk(o.VideoModel)
 }
 
 // HasVideoModel returns a boolean if a field has been set.
 func (o *ImageConfig) HasVideoModel() bool {
-	if o != nil && !IsNil(o.VideoModel) && o.VideoModel.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVideoModelOk()
+	return ok
 }
 
 // SetVideoModel gets a reference to the given string and assigns it to the VideoModel field.
-func (o *ImageConfig) SetVideoModel(v *string) {
-	if IsNil(o.VideoModel) {
-		o.VideoModel = new(NullableString)
-	}
-	o.VideoModel.Set(v)
+func (o *ImageConfig) SetVideoModel(v ImageConfigGetVideoModelRetType) {
+	setImageConfigGetVideoModelAttributeType(&o.VideoModel, v)
 }
 
 // SetVideoModelNil sets the value for VideoModel to be an explicit nil
 func (o *ImageConfig) SetVideoModelNil() {
-	if IsNil(o.VideoModel) {
-		o.VideoModel = new(NullableString)
-	}
-	o.VideoModel.Set(nil)
+	o.VideoModel = nil
 }
 
 // UnsetVideoModel ensures that no value is present for VideoModel, not even an explicit nil
 func (o *ImageConfig) UnsetVideoModel() {
-	if IsNil(o.VideoModel) {
-		o.VideoModel = new(NullableString)
-	}
-	o.VideoModel.Unset()
+	o.VideoModel = nil
 }
 
 // GetVirtioScsi returns the VirtioScsi field value if set, zero value otherwise.
-func (o *ImageConfig) GetVirtioScsi() *bool {
-	if o == nil || IsNil(o.VirtioScsi) {
-		var ret *bool
-		return ret
-	}
-	return o.VirtioScsi
+func (o *ImageConfig) GetVirtioScsi() (res ImageConfiggetVirtioScsiRetType) {
+	res, _ = o.GetVirtioScsiOk()
+	return
 }
 
 // GetVirtioScsiOk returns a tuple with the VirtioScsi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageConfig) GetVirtioScsiOk() (*bool, bool) {
-	if o == nil || IsNil(o.VirtioScsi) {
-		return nil, false
-	}
-	return o.VirtioScsi, true
+func (o *ImageConfig) GetVirtioScsiOk() (ret ImageConfiggetVirtioScsiRetType, ok bool) {
+	return getImageConfiggetVirtioScsiAttributeTypeOk(o.VirtioScsi)
 }
 
 // HasVirtioScsi returns a boolean if a field has been set.
 func (o *ImageConfig) HasVirtioScsi() bool {
-	if o != nil && !IsNil(o.VirtioScsi) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVirtioScsiOk()
+	return ok
 }
 
 // SetVirtioScsi gets a reference to the given bool and assigns it to the VirtioScsi field.
-func (o *ImageConfig) SetVirtioScsi(v *bool) {
-	o.VirtioScsi = v
+func (o *ImageConfig) SetVirtioScsi(v ImageConfiggetVirtioScsiRetType) {
+	setImageConfiggetVirtioScsiAttributeType(&o.VirtioScsi, v)
 }
 
 func (o ImageConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Architecture) {
-		toSerialize["architecture"] = o.Architecture
+	if val, ok := getImageConfigGetArchitectureAttributeTypeOk(o.Architecture); ok {
+		toSerialize["Architecture"] = val
 	}
-	if !IsNil(o.BootMenu) {
-		toSerialize["bootMenu"] = o.BootMenu
+	if val, ok := getImageConfiggetBootMenuAttributeTypeOk(o.BootMenu); ok {
+		toSerialize["BootMenu"] = val
 	}
-	if o.CdromBus.IsSet() {
-		toSerialize["cdromBus"] = o.CdromBus.Get()
+	if val, ok := getImageConfigGetCdromBusAttributeTypeOk(o.CdromBus); ok {
+		toSerialize["CdromBus"] = val
 	}
-	if o.DiskBus.IsSet() {
-		toSerialize["diskBus"] = o.DiskBus.Get()
+	if val, ok := getImageConfigGetDiskBusAttributeTypeOk(o.DiskBus); ok {
+		toSerialize["DiskBus"] = val
 	}
-	if o.NicModel.IsSet() {
-		toSerialize["nicModel"] = o.NicModel.Get()
+	if val, ok := getImageConfigGetNicModelAttributeTypeOk(o.NicModel); ok {
+		toSerialize["NicModel"] = val
 	}
-	if !IsNil(o.OperatingSystem) {
-		toSerialize["operatingSystem"] = o.OperatingSystem
+	if val, ok := getImageConfigGetOperatingSystemAttributeTypeOk(o.OperatingSystem); ok {
+		toSerialize["OperatingSystem"] = val
 	}
-	if o.OperatingSystemDistro.IsSet() {
-		toSerialize["operatingSystemDistro"] = o.OperatingSystemDistro.Get()
+	if val, ok := getImageConfigGetOperatingSystemDistroAttributeTypeOk(o.OperatingSystemDistro); ok {
+		toSerialize["OperatingSystemDistro"] = val
 	}
-	if o.OperatingSystemVersion.IsSet() {
-		toSerialize["operatingSystemVersion"] = o.OperatingSystemVersion.Get()
+	if val, ok := getImageConfigGetOperatingSystemVersionAttributeTypeOk(o.OperatingSystemVersion); ok {
+		toSerialize["OperatingSystemVersion"] = val
 	}
-	if o.RescueBus.IsSet() {
-		toSerialize["rescueBus"] = o.RescueBus.Get()
+	if val, ok := getImageConfigGetRescueBusAttributeTypeOk(o.RescueBus); ok {
+		toSerialize["RescueBus"] = val
 	}
-	if o.RescueDevice.IsSet() {
-		toSerialize["rescueDevice"] = o.RescueDevice.Get()
+	if val, ok := getImageConfigGetRescueDeviceAttributeTypeOk(o.RescueDevice); ok {
+		toSerialize["RescueDevice"] = val
 	}
-	if !IsNil(o.SecureBoot) {
-		toSerialize["secureBoot"] = o.SecureBoot
+	if val, ok := getImageConfiggetSecureBootAttributeTypeOk(o.SecureBoot); ok {
+		toSerialize["SecureBoot"] = val
 	}
-	if !IsNil(o.Uefi) {
-		toSerialize["uefi"] = o.Uefi
+	if val, ok := getImageConfiggetUefiAttributeTypeOk(o.Uefi); ok {
+		toSerialize["Uefi"] = val
 	}
-	if o.VideoModel.IsSet() {
-		toSerialize["videoModel"] = o.VideoModel.Get()
+	if val, ok := getImageConfigGetVideoModelAttributeTypeOk(o.VideoModel); ok {
+		toSerialize["VideoModel"] = val
 	}
-	if !IsNil(o.VirtioScsi) {
-		toSerialize["virtioScsi"] = o.VirtioScsi
+	if val, ok := getImageConfiggetVirtioScsiAttributeTypeOk(o.VirtioScsi); ok {
+		toSerialize["VirtioScsi"] = val
 	}
 	return toSerialize, nil
 }
