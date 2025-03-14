@@ -17,10 +17,30 @@ import (
 // checks if the UpdateUserPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateUserPayload{}
 
+/*
+	types and functions for write
+*/
+
+// isBoolean
+type UpdateUserPayloadgetWriteAttributeType = *bool
+type UpdateUserPayloadgetWriteArgType = bool
+type UpdateUserPayloadgetWriteRetType = bool
+
+func getUpdateUserPayloadgetWriteAttributeTypeOk(arg UpdateUserPayloadgetWriteAttributeType) (ret UpdateUserPayloadgetWriteRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateUserPayloadgetWriteAttributeType(arg *UpdateUserPayloadgetWriteAttributeType, val UpdateUserPayloadgetWriteRetType) {
+	*arg = &val
+}
+
 // UpdateUserPayload struct for UpdateUserPayload
 type UpdateUserPayload struct {
 	// Is true if the user has write access to the secrets engine. Is false for a read-only user.
-	Write *bool `json:"write,omitempty"`
+	Write UpdateUserPayloadgetWriteAttributeType `json:"write,omitempty"`
 }
 
 // NewUpdateUserPayload instantiates a new UpdateUserPayload object
@@ -41,41 +61,32 @@ func NewUpdateUserPayloadWithDefaults() *UpdateUserPayload {
 }
 
 // GetWrite returns the Write field value if set, zero value otherwise.
-func (o *UpdateUserPayload) GetWrite() *bool {
-	if o == nil || IsNil(o.Write) {
-		var ret *bool
-		return ret
-	}
-	return o.Write
+func (o *UpdateUserPayload) GetWrite() (res UpdateUserPayloadgetWriteRetType) {
+	res, _ = o.GetWriteOk()
+	return
 }
 
 // GetWriteOk returns a tuple with the Write field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUserPayload) GetWriteOk() (*bool, bool) {
-	if o == nil || IsNil(o.Write) {
-		return nil, false
-	}
-	return o.Write, true
+func (o *UpdateUserPayload) GetWriteOk() (ret UpdateUserPayloadgetWriteRetType, ok bool) {
+	return getUpdateUserPayloadgetWriteAttributeTypeOk(o.Write)
 }
 
 // HasWrite returns a boolean if a field has been set.
 func (o *UpdateUserPayload) HasWrite() bool {
-	if o != nil && !IsNil(o.Write) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetWriteOk()
+	return ok
 }
 
 // SetWrite gets a reference to the given bool and assigns it to the Write field.
-func (o *UpdateUserPayload) SetWrite(v *bool) {
-	o.Write = v
+func (o *UpdateUserPayload) SetWrite(v UpdateUserPayloadgetWriteRetType) {
+	setUpdateUserPayloadgetWriteAttributeType(&o.Write, v)
 }
 
 func (o UpdateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Write) {
-		toSerialize["write"] = o.Write
+	if val, ok := getUpdateUserPayloadgetWriteAttributeTypeOk(o.Write); ok {
+		toSerialize["Write"] = val
 	}
 	return toSerialize, nil
 }
