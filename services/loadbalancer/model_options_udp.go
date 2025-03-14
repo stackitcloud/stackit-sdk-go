@@ -17,10 +17,31 @@ import (
 // checks if the OptionsUDP type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OptionsUDP{}
 
+/*
+	types and functions for idleTimeout
+*/
+
+// isNotNullableString
+type OptionsUDPGetIdleTimeoutAttributeType = *string
+
+func getOptionsUDPGetIdleTimeoutAttributeTypeOk(arg OptionsUDPGetIdleTimeoutAttributeType) (ret OptionsUDPGetIdleTimeoutRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOptionsUDPGetIdleTimeoutAttributeType(arg *OptionsUDPGetIdleTimeoutAttributeType, val OptionsUDPGetIdleTimeoutRetType) {
+	*arg = &val
+}
+
+type OptionsUDPGetIdleTimeoutArgType = string
+type OptionsUDPGetIdleTimeoutRetType = string
+
 // OptionsUDP struct for OptionsUDP
 type OptionsUDP struct {
 	// The connection idle timeout to be used with the protocol. The default value is set to 1 minute, and the maximum value is 2 minutes.
-	IdleTimeout *string `json:"idleTimeout,omitempty"`
+	IdleTimeout OptionsUDPGetIdleTimeoutAttributeType `json:"idleTimeout,omitempty"`
 }
 
 // NewOptionsUDP instantiates a new OptionsUDP object
@@ -41,41 +62,32 @@ func NewOptionsUDPWithDefaults() *OptionsUDP {
 }
 
 // GetIdleTimeout returns the IdleTimeout field value if set, zero value otherwise.
-func (o *OptionsUDP) GetIdleTimeout() *string {
-	if o == nil || IsNil(o.IdleTimeout) {
-		var ret *string
-		return ret
-	}
-	return o.IdleTimeout
+func (o *OptionsUDP) GetIdleTimeout() (res OptionsUDPGetIdleTimeoutRetType) {
+	res, _ = o.GetIdleTimeoutOk()
+	return
 }
 
 // GetIdleTimeoutOk returns a tuple with the IdleTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OptionsUDP) GetIdleTimeoutOk() (*string, bool) {
-	if o == nil || IsNil(o.IdleTimeout) {
-		return nil, false
-	}
-	return o.IdleTimeout, true
+func (o *OptionsUDP) GetIdleTimeoutOk() (ret OptionsUDPGetIdleTimeoutRetType, ok bool) {
+	return getOptionsUDPGetIdleTimeoutAttributeTypeOk(o.IdleTimeout)
 }
 
 // HasIdleTimeout returns a boolean if a field has been set.
 func (o *OptionsUDP) HasIdleTimeout() bool {
-	if o != nil && !IsNil(o.IdleTimeout) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdleTimeoutOk()
+	return ok
 }
 
 // SetIdleTimeout gets a reference to the given string and assigns it to the IdleTimeout field.
-func (o *OptionsUDP) SetIdleTimeout(v *string) {
-	o.IdleTimeout = v
+func (o *OptionsUDP) SetIdleTimeout(v OptionsUDPGetIdleTimeoutRetType) {
+	setOptionsUDPGetIdleTimeoutAttributeType(&o.IdleTimeout, v)
 }
 
 func (o OptionsUDP) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.IdleTimeout) {
-		toSerialize["idleTimeout"] = o.IdleTimeout
+	if val, ok := getOptionsUDPGetIdleTimeoutAttributeTypeOk(o.IdleTimeout); ok {
+		toSerialize["IdleTimeout"] = val
 	}
 	return toSerialize, nil
 }

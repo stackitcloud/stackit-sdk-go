@@ -24,14 +24,14 @@ import (
 func Test_loadbalancer_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCredentials", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/credentials"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/credentials"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateCredentialsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -65,8 +65,8 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
+		projectId := projectIdValue
+		region := regionValue
 		createCredentialsPayload := CreateCredentialsPayload{}
 
 		resp, reqErr := apiClient.CreateCredentials(context.Background(), projectId, region).CreateCredentialsPayload(createCredentialsPayload).Execute()
@@ -74,20 +74,20 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateLoadBalancer", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/load-balancers"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/load-balancers"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := LoadBalancer{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -121,8 +121,8 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
+		projectId := projectIdValue
+		region := regionValue
 		createLoadBalancerPayload := CreateLoadBalancerPayload{}
 
 		resp, reqErr := apiClient.CreateLoadBalancer(context.Background(), projectId, region).CreateLoadBalancerPayload(createLoadBalancerPayload).Execute()
@@ -130,22 +130,22 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteCredentials", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/credentials/{credentialsRef}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/credentials/{credentialsRef}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		credentialsRefValue := "credentialsRef"
-		path = strings.Replace(path, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(credentialsRefValue, "credentialsRef")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(credentialsRefValue, "credentialsRef")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := map[string]interface{}{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -179,31 +179,31 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
-		credentialsRef := "credentialsRef"
+		projectId := projectIdValue
+		region := regionValue
+		credentialsRef := credentialsRefValue
 
 		resp, reqErr := apiClient.DeleteCredentials(context.Background(), projectId, region, credentialsRef).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteLoadBalancer", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/load-balancers/{name}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/load-balancers/{name}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		nameValue := "name"
-		path = strings.Replace(path, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := map[string]interface{}{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -237,31 +237,31 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
-		name := "name"
+		projectId := projectIdValue
+		region := regionValue
+		name := nameValue
 
 		resp, reqErr := apiClient.DeleteLoadBalancer(context.Background(), projectId, region, name).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetCredentials", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/credentials/{credentialsRef}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/credentials/{credentialsRef}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		credentialsRefValue := "credentialsRef"
-		path = strings.Replace(path, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(credentialsRefValue, "credentialsRef")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(credentialsRefValue, "credentialsRef")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetCredentialsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -295,31 +295,31 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
-		credentialsRef := "credentialsRef"
+		projectId := projectIdValue
+		region := regionValue
+		credentialsRef := credentialsRefValue
 
 		resp, reqErr := apiClient.GetCredentials(context.Background(), projectId, region, credentialsRef).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetLoadBalancer", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/load-balancers/{name}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/load-balancers/{name}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		nameValue := "name"
-		path = strings.Replace(path, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := LoadBalancer{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -353,29 +353,29 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
-		name := "name"
+		projectId := projectIdValue
+		region := regionValue
+		name := nameValue
 
 		resp, reqErr := apiClient.GetLoadBalancer(context.Background(), projectId, region, name).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetQuota", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/quota"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/quota"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetQuotaResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -409,28 +409,28 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
+		projectId := projectIdValue
+		region := regionValue
 
 		resp, reqErr := apiClient.GetQuota(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListCredentials", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/credentials"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/credentials"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListCredentialsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -464,28 +464,28 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
+		projectId := projectIdValue
+		region := regionValue
 
 		resp, reqErr := apiClient.ListCredentials(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListLoadBalancers", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/load-balancers"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/load-balancers"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListLoadBalancersResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -519,26 +519,26 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
+		projectId := projectIdValue
+		region := regionValue
 
 		resp, reqErr := apiClient.ListLoadBalancers(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListPlans", func(t *testing.T) {
-		path := "/v2/regions/{region}/plans"
+		_apiUrlPath := "/v2/regions/{region}/plans"
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListPlansResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -572,29 +572,29 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		region := "region"
+		region := regionValue
 
 		resp, reqErr := apiClient.ListPlans(context.Background(), region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateCredentials", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/credentials/{credentialsRef}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/credentials/{credentialsRef}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		credentialsRefValue := "credentialsRef"
-		path = strings.Replace(path, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(credentialsRefValue, "credentialsRef")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(credentialsRefValue, "credentialsRef")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := UpdateCredentialsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -628,9 +628,9 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
-		credentialsRef := "credentialsRef"
+		projectId := projectIdValue
+		region := regionValue
+		credentialsRef := credentialsRefValue
 		updateCredentialsPayload := UpdateCredentialsPayload{}
 
 		resp, reqErr := apiClient.UpdateCredentials(context.Background(), projectId, region, credentialsRef).UpdateCredentialsPayload(updateCredentialsPayload).Execute()
@@ -638,22 +638,22 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateLoadBalancer", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/load-balancers/{name}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/load-balancers/{name}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		nameValue := "name"
-		path = strings.Replace(path, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := LoadBalancer{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -687,9 +687,9 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
-		name := "name"
+		projectId := projectIdValue
+		region := regionValue
+		name := nameValue
 		updateLoadBalancerPayload := UpdateLoadBalancerPayload{}
 
 		resp, reqErr := apiClient.UpdateLoadBalancer(context.Background(), projectId, region, name).UpdateLoadBalancerPayload(updateLoadBalancerPayload).Execute()
@@ -697,24 +697,24 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateTargetPool", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/load-balancers/{name}/target-pools/{targetPoolName}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/load-balancers/{name}/target-pools/{targetPoolName}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		nameValue := "name"
-		path = strings.Replace(path, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
 		targetPoolNameValue := "targetPoolName"
-		path = strings.Replace(path, "{"+"targetPoolName"+"}", url.PathEscape(ParameterValueToString(targetPoolNameValue, "targetPoolName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"targetPoolName"+"}", url.PathEscape(ParameterValueToString(targetPoolNameValue, "targetPoolName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := TargetPool{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -748,10 +748,10 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
-		name := "name"
-		targetPoolName := "targetPoolName"
+		projectId := projectIdValue
+		region := regionValue
+		name := nameValue
+		targetPoolName := targetPoolNameValue
 		updateTargetPoolPayload := UpdateTargetPoolPayload{}
 
 		resp, reqErr := apiClient.UpdateTargetPool(context.Background(), projectId, region, name, targetPoolName).UpdateTargetPoolPayload(updateTargetPoolPayload).Execute()
@@ -759,7 +759,7 @@ func Test_loadbalancer_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})

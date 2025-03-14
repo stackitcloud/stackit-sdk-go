@@ -17,20 +17,123 @@ import (
 // checks if the ActiveHealthCheck type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ActiveHealthCheck{}
 
+/*
+	types and functions for healthyThreshold
+*/
+
+// isInteger
+type ActiveHealthCheckGetHealthyThresholdAttributeType = *int64
+type ActiveHealthCheckGetHealthyThresholdArgType = int64
+type ActiveHealthCheckGetHealthyThresholdRetType = int64
+
+func getActiveHealthCheckGetHealthyThresholdAttributeTypeOk(arg ActiveHealthCheckGetHealthyThresholdAttributeType) (ret ActiveHealthCheckGetHealthyThresholdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActiveHealthCheckGetHealthyThresholdAttributeType(arg *ActiveHealthCheckGetHealthyThresholdAttributeType, val ActiveHealthCheckGetHealthyThresholdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for interval
+*/
+
+// isNotNullableString
+type ActiveHealthCheckGetIntervalAttributeType = *string
+
+func getActiveHealthCheckGetIntervalAttributeTypeOk(arg ActiveHealthCheckGetIntervalAttributeType) (ret ActiveHealthCheckGetIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActiveHealthCheckGetIntervalAttributeType(arg *ActiveHealthCheckGetIntervalAttributeType, val ActiveHealthCheckGetIntervalRetType) {
+	*arg = &val
+}
+
+type ActiveHealthCheckGetIntervalArgType = string
+type ActiveHealthCheckGetIntervalRetType = string
+
+/*
+	types and functions for intervalJitter
+*/
+
+// isNotNullableString
+type ActiveHealthCheckGetIntervalJitterAttributeType = *string
+
+func getActiveHealthCheckGetIntervalJitterAttributeTypeOk(arg ActiveHealthCheckGetIntervalJitterAttributeType) (ret ActiveHealthCheckGetIntervalJitterRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActiveHealthCheckGetIntervalJitterAttributeType(arg *ActiveHealthCheckGetIntervalJitterAttributeType, val ActiveHealthCheckGetIntervalJitterRetType) {
+	*arg = &val
+}
+
+type ActiveHealthCheckGetIntervalJitterArgType = string
+type ActiveHealthCheckGetIntervalJitterRetType = string
+
+/*
+	types and functions for timeout
+*/
+
+// isNotNullableString
+type ActiveHealthCheckGetTimeoutAttributeType = *string
+
+func getActiveHealthCheckGetTimeoutAttributeTypeOk(arg ActiveHealthCheckGetTimeoutAttributeType) (ret ActiveHealthCheckGetTimeoutRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActiveHealthCheckGetTimeoutAttributeType(arg *ActiveHealthCheckGetTimeoutAttributeType, val ActiveHealthCheckGetTimeoutRetType) {
+	*arg = &val
+}
+
+type ActiveHealthCheckGetTimeoutArgType = string
+type ActiveHealthCheckGetTimeoutRetType = string
+
+/*
+	types and functions for unhealthyThreshold
+*/
+
+// isInteger
+type ActiveHealthCheckGetUnhealthyThresholdAttributeType = *int64
+type ActiveHealthCheckGetUnhealthyThresholdArgType = int64
+type ActiveHealthCheckGetUnhealthyThresholdRetType = int64
+
+func getActiveHealthCheckGetUnhealthyThresholdAttributeTypeOk(arg ActiveHealthCheckGetUnhealthyThresholdAttributeType) (ret ActiveHealthCheckGetUnhealthyThresholdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActiveHealthCheckGetUnhealthyThresholdAttributeType(arg *ActiveHealthCheckGetUnhealthyThresholdAttributeType, val ActiveHealthCheckGetUnhealthyThresholdRetType) {
+	*arg = &val
+}
+
 // ActiveHealthCheck struct for ActiveHealthCheck
 type ActiveHealthCheck struct {
 	// Healthy threshold of the health checking
 	// Can be cast to int32 without loss of precision.
-	HealthyThreshold *int64 `json:"healthyThreshold,omitempty"`
+	HealthyThreshold ActiveHealthCheckGetHealthyThresholdAttributeType `json:"healthyThreshold,omitempty"`
 	// Interval duration of health checking in seconds
-	Interval *string `json:"interval,omitempty"`
+	Interval ActiveHealthCheckGetIntervalAttributeType `json:"interval,omitempty"`
 	// Interval duration threshold of the health checking in seconds
-	IntervalJitter *string `json:"intervalJitter,omitempty"`
+	IntervalJitter ActiveHealthCheckGetIntervalJitterAttributeType `json:"intervalJitter,omitempty"`
 	// Active health checking timeout duration in seconds
-	Timeout *string `json:"timeout,omitempty"`
+	Timeout ActiveHealthCheckGetTimeoutAttributeType `json:"timeout,omitempty"`
 	// Unhealthy threshold of the health checking
 	// Can be cast to int32 without loss of precision.
-	UnhealthyThreshold *int64 `json:"unhealthyThreshold,omitempty"`
+	UnhealthyThreshold ActiveHealthCheckGetUnhealthyThresholdAttributeType `json:"unhealthyThreshold,omitempty"`
 }
 
 // NewActiveHealthCheck instantiates a new ActiveHealthCheck object
@@ -51,181 +154,136 @@ func NewActiveHealthCheckWithDefaults() *ActiveHealthCheck {
 }
 
 // GetHealthyThreshold returns the HealthyThreshold field value if set, zero value otherwise.
-func (o *ActiveHealthCheck) GetHealthyThreshold() *int64 {
-	if o == nil || IsNil(o.HealthyThreshold) {
-		var ret *int64
-		return ret
-	}
-	return o.HealthyThreshold
+func (o *ActiveHealthCheck) GetHealthyThreshold() (res ActiveHealthCheckGetHealthyThresholdRetType) {
+	res, _ = o.GetHealthyThresholdOk()
+	return
 }
 
 // GetHealthyThresholdOk returns a tuple with the HealthyThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActiveHealthCheck) GetHealthyThresholdOk() (*int64, bool) {
-	if o == nil || IsNil(o.HealthyThreshold) {
-		return nil, false
-	}
-	return o.HealthyThreshold, true
+func (o *ActiveHealthCheck) GetHealthyThresholdOk() (ret ActiveHealthCheckGetHealthyThresholdRetType, ok bool) {
+	return getActiveHealthCheckGetHealthyThresholdAttributeTypeOk(o.HealthyThreshold)
 }
 
 // HasHealthyThreshold returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasHealthyThreshold() bool {
-	if o != nil && !IsNil(o.HealthyThreshold) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHealthyThresholdOk()
+	return ok
 }
 
 // SetHealthyThreshold gets a reference to the given int64 and assigns it to the HealthyThreshold field.
-func (o *ActiveHealthCheck) SetHealthyThreshold(v *int64) {
-	o.HealthyThreshold = v
+func (o *ActiveHealthCheck) SetHealthyThreshold(v ActiveHealthCheckGetHealthyThresholdRetType) {
+	setActiveHealthCheckGetHealthyThresholdAttributeType(&o.HealthyThreshold, v)
 }
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
-func (o *ActiveHealthCheck) GetInterval() *string {
-	if o == nil || IsNil(o.Interval) {
-		var ret *string
-		return ret
-	}
-	return o.Interval
+func (o *ActiveHealthCheck) GetInterval() (res ActiveHealthCheckGetIntervalRetType) {
+	res, _ = o.GetIntervalOk()
+	return
 }
 
 // GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActiveHealthCheck) GetIntervalOk() (*string, bool) {
-	if o == nil || IsNil(o.Interval) {
-		return nil, false
-	}
-	return o.Interval, true
+func (o *ActiveHealthCheck) GetIntervalOk() (ret ActiveHealthCheckGetIntervalRetType, ok bool) {
+	return getActiveHealthCheckGetIntervalAttributeTypeOk(o.Interval)
 }
 
 // HasInterval returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasInterval() bool {
-	if o != nil && !IsNil(o.Interval) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIntervalOk()
+	return ok
 }
 
 // SetInterval gets a reference to the given string and assigns it to the Interval field.
-func (o *ActiveHealthCheck) SetInterval(v *string) {
-	o.Interval = v
+func (o *ActiveHealthCheck) SetInterval(v ActiveHealthCheckGetIntervalRetType) {
+	setActiveHealthCheckGetIntervalAttributeType(&o.Interval, v)
 }
 
 // GetIntervalJitter returns the IntervalJitter field value if set, zero value otherwise.
-func (o *ActiveHealthCheck) GetIntervalJitter() *string {
-	if o == nil || IsNil(o.IntervalJitter) {
-		var ret *string
-		return ret
-	}
-	return o.IntervalJitter
+func (o *ActiveHealthCheck) GetIntervalJitter() (res ActiveHealthCheckGetIntervalJitterRetType) {
+	res, _ = o.GetIntervalJitterOk()
+	return
 }
 
 // GetIntervalJitterOk returns a tuple with the IntervalJitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActiveHealthCheck) GetIntervalJitterOk() (*string, bool) {
-	if o == nil || IsNil(o.IntervalJitter) {
-		return nil, false
-	}
-	return o.IntervalJitter, true
+func (o *ActiveHealthCheck) GetIntervalJitterOk() (ret ActiveHealthCheckGetIntervalJitterRetType, ok bool) {
+	return getActiveHealthCheckGetIntervalJitterAttributeTypeOk(o.IntervalJitter)
 }
 
 // HasIntervalJitter returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasIntervalJitter() bool {
-	if o != nil && !IsNil(o.IntervalJitter) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIntervalJitterOk()
+	return ok
 }
 
 // SetIntervalJitter gets a reference to the given string and assigns it to the IntervalJitter field.
-func (o *ActiveHealthCheck) SetIntervalJitter(v *string) {
-	o.IntervalJitter = v
+func (o *ActiveHealthCheck) SetIntervalJitter(v ActiveHealthCheckGetIntervalJitterRetType) {
+	setActiveHealthCheckGetIntervalJitterAttributeType(&o.IntervalJitter, v)
 }
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
-func (o *ActiveHealthCheck) GetTimeout() *string {
-	if o == nil || IsNil(o.Timeout) {
-		var ret *string
-		return ret
-	}
-	return o.Timeout
+func (o *ActiveHealthCheck) GetTimeout() (res ActiveHealthCheckGetTimeoutRetType) {
+	res, _ = o.GetTimeoutOk()
+	return
 }
 
 // GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActiveHealthCheck) GetTimeoutOk() (*string, bool) {
-	if o == nil || IsNil(o.Timeout) {
-		return nil, false
-	}
-	return o.Timeout, true
+func (o *ActiveHealthCheck) GetTimeoutOk() (ret ActiveHealthCheckGetTimeoutRetType, ok bool) {
+	return getActiveHealthCheckGetTimeoutAttributeTypeOk(o.Timeout)
 }
 
 // HasTimeout returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasTimeout() bool {
-	if o != nil && !IsNil(o.Timeout) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTimeoutOk()
+	return ok
 }
 
 // SetTimeout gets a reference to the given string and assigns it to the Timeout field.
-func (o *ActiveHealthCheck) SetTimeout(v *string) {
-	o.Timeout = v
+func (o *ActiveHealthCheck) SetTimeout(v ActiveHealthCheckGetTimeoutRetType) {
+	setActiveHealthCheckGetTimeoutAttributeType(&o.Timeout, v)
 }
 
 // GetUnhealthyThreshold returns the UnhealthyThreshold field value if set, zero value otherwise.
-func (o *ActiveHealthCheck) GetUnhealthyThreshold() *int64 {
-	if o == nil || IsNil(o.UnhealthyThreshold) {
-		var ret *int64
-		return ret
-	}
-	return o.UnhealthyThreshold
+func (o *ActiveHealthCheck) GetUnhealthyThreshold() (res ActiveHealthCheckGetUnhealthyThresholdRetType) {
+	res, _ = o.GetUnhealthyThresholdOk()
+	return
 }
 
 // GetUnhealthyThresholdOk returns a tuple with the UnhealthyThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActiveHealthCheck) GetUnhealthyThresholdOk() (*int64, bool) {
-	if o == nil || IsNil(o.UnhealthyThreshold) {
-		return nil, false
-	}
-	return o.UnhealthyThreshold, true
+func (o *ActiveHealthCheck) GetUnhealthyThresholdOk() (ret ActiveHealthCheckGetUnhealthyThresholdRetType, ok bool) {
+	return getActiveHealthCheckGetUnhealthyThresholdAttributeTypeOk(o.UnhealthyThreshold)
 }
 
 // HasUnhealthyThreshold returns a boolean if a field has been set.
 func (o *ActiveHealthCheck) HasUnhealthyThreshold() bool {
-	if o != nil && !IsNil(o.UnhealthyThreshold) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUnhealthyThresholdOk()
+	return ok
 }
 
 // SetUnhealthyThreshold gets a reference to the given int64 and assigns it to the UnhealthyThreshold field.
-func (o *ActiveHealthCheck) SetUnhealthyThreshold(v *int64) {
-	o.UnhealthyThreshold = v
+func (o *ActiveHealthCheck) SetUnhealthyThreshold(v ActiveHealthCheckGetUnhealthyThresholdRetType) {
+	setActiveHealthCheckGetUnhealthyThresholdAttributeType(&o.UnhealthyThreshold, v)
 }
 
 func (o ActiveHealthCheck) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.HealthyThreshold) {
-		toSerialize["healthyThreshold"] = o.HealthyThreshold
+	if val, ok := getActiveHealthCheckGetHealthyThresholdAttributeTypeOk(o.HealthyThreshold); ok {
+		toSerialize["HealthyThreshold"] = val
 	}
-	if !IsNil(o.Interval) {
-		toSerialize["interval"] = o.Interval
+	if val, ok := getActiveHealthCheckGetIntervalAttributeTypeOk(o.Interval); ok {
+		toSerialize["Interval"] = val
 	}
-	if !IsNil(o.IntervalJitter) {
-		toSerialize["intervalJitter"] = o.IntervalJitter
+	if val, ok := getActiveHealthCheckGetIntervalJitterAttributeTypeOk(o.IntervalJitter); ok {
+		toSerialize["IntervalJitter"] = val
 	}
-	if !IsNil(o.Timeout) {
-		toSerialize["timeout"] = o.Timeout
+	if val, ok := getActiveHealthCheckGetTimeoutAttributeTypeOk(o.Timeout); ok {
+		toSerialize["Timeout"] = val
 	}
-	if !IsNil(o.UnhealthyThreshold) {
-		toSerialize["unhealthyThreshold"] = o.UnhealthyThreshold
+	if val, ok := getActiveHealthCheckGetUnhealthyThresholdAttributeTypeOk(o.UnhealthyThreshold); ok {
+		toSerialize["UnhealthyThreshold"] = val
 	}
 	return toSerialize, nil
 }

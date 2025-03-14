@@ -17,21 +17,146 @@ import (
 // checks if the PlanDetails type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PlanDetails{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type PlanDetailsGetDescriptionAttributeType = *string
+
+func getPlanDetailsGetDescriptionAttributeTypeOk(arg PlanDetailsGetDescriptionAttributeType) (ret PlanDetailsGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanDetailsGetDescriptionAttributeType(arg *PlanDetailsGetDescriptionAttributeType, val PlanDetailsGetDescriptionRetType) {
+	*arg = &val
+}
+
+type PlanDetailsGetDescriptionArgType = string
+type PlanDetailsGetDescriptionRetType = string
+
+/*
+	types and functions for flavorName
+*/
+
+// isNotNullableString
+type PlanDetailsGetFlavorNameAttributeType = *string
+
+func getPlanDetailsGetFlavorNameAttributeTypeOk(arg PlanDetailsGetFlavorNameAttributeType) (ret PlanDetailsGetFlavorNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanDetailsGetFlavorNameAttributeType(arg *PlanDetailsGetFlavorNameAttributeType, val PlanDetailsGetFlavorNameRetType) {
+	*arg = &val
+}
+
+type PlanDetailsGetFlavorNameArgType = string
+type PlanDetailsGetFlavorNameRetType = string
+
+/*
+	types and functions for maxConnections
+*/
+
+// isInteger
+type PlanDetailsGetMaxConnectionsAttributeType = *int64
+type PlanDetailsGetMaxConnectionsArgType = int64
+type PlanDetailsGetMaxConnectionsRetType = int64
+
+func getPlanDetailsGetMaxConnectionsAttributeTypeOk(arg PlanDetailsGetMaxConnectionsAttributeType) (ret PlanDetailsGetMaxConnectionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanDetailsGetMaxConnectionsAttributeType(arg *PlanDetailsGetMaxConnectionsAttributeType, val PlanDetailsGetMaxConnectionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type PlanDetailsGetNameAttributeType = *string
+
+func getPlanDetailsGetNameAttributeTypeOk(arg PlanDetailsGetNameAttributeType) (ret PlanDetailsGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanDetailsGetNameAttributeType(arg *PlanDetailsGetNameAttributeType, val PlanDetailsGetNameRetType) {
+	*arg = &val
+}
+
+type PlanDetailsGetNameArgType = string
+type PlanDetailsGetNameRetType = string
+
+/*
+	types and functions for planId
+*/
+
+// isNotNullableString
+type PlanDetailsGetPlanIdAttributeType = *string
+
+func getPlanDetailsGetPlanIdAttributeTypeOk(arg PlanDetailsGetPlanIdAttributeType) (ret PlanDetailsGetPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanDetailsGetPlanIdAttributeType(arg *PlanDetailsGetPlanIdAttributeType, val PlanDetailsGetPlanIdRetType) {
+	*arg = &val
+}
+
+type PlanDetailsGetPlanIdArgType = string
+type PlanDetailsGetPlanIdRetType = string
+
+/*
+	types and functions for region
+*/
+
+// isNotNullableString
+type PlanDetailsGetRegionAttributeType = *string
+
+func getPlanDetailsGetRegionAttributeTypeOk(arg PlanDetailsGetRegionAttributeType) (ret PlanDetailsGetRegionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanDetailsGetRegionAttributeType(arg *PlanDetailsGetRegionAttributeType, val PlanDetailsGetRegionRetType) {
+	*arg = &val
+}
+
+type PlanDetailsGetRegionArgType = string
+type PlanDetailsGetRegionRetType = string
+
 // PlanDetails struct for PlanDetails
 type PlanDetails struct {
 	// Description
-	Description *string `json:"description,omitempty"`
+	Description PlanDetailsGetDescriptionAttributeType `json:"description,omitempty"`
 	// Flavor Name
-	FlavorName *string `json:"flavorName,omitempty"`
+	FlavorName PlanDetailsGetFlavorNameAttributeType `json:"flavorName,omitempty"`
 	// Maximum number of concurrent connections per load balancer VM instance.
 	// Can be cast to int32 without loss of precision.
-	MaxConnections *int64 `json:"maxConnections,omitempty"`
+	MaxConnections PlanDetailsGetMaxConnectionsAttributeType `json:"maxConnections,omitempty"`
 	// Service Plan Name
-	Name *string `json:"name,omitempty"`
+	Name PlanDetailsGetNameAttributeType `json:"name,omitempty"`
 	// Service Plan Identifier
-	PlanId *string `json:"planId,omitempty"`
+	PlanId PlanDetailsGetPlanIdAttributeType `json:"planId,omitempty"`
 	// Region this Plan is available in
-	Region *string `json:"region,omitempty"`
+	Region PlanDetailsGetRegionAttributeType `json:"region,omitempty"`
 }
 
 // NewPlanDetails instantiates a new PlanDetails object
@@ -52,216 +177,162 @@ func NewPlanDetailsWithDefaults() *PlanDetails {
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *PlanDetails) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *PlanDetails) GetDescription() (res PlanDetailsGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *PlanDetails) GetDescriptionOk() (ret PlanDetailsGetDescriptionRetType, ok bool) {
+	return getPlanDetailsGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PlanDetails) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *PlanDetails) SetDescription(v *string) {
-	o.Description = v
+func (o *PlanDetails) SetDescription(v PlanDetailsGetDescriptionRetType) {
+	setPlanDetailsGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetFlavorName returns the FlavorName field value if set, zero value otherwise.
-func (o *PlanDetails) GetFlavorName() *string {
-	if o == nil || IsNil(o.FlavorName) {
-		var ret *string
-		return ret
-	}
-	return o.FlavorName
+func (o *PlanDetails) GetFlavorName() (res PlanDetailsGetFlavorNameRetType) {
+	res, _ = o.GetFlavorNameOk()
+	return
 }
 
 // GetFlavorNameOk returns a tuple with the FlavorName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetFlavorNameOk() (*string, bool) {
-	if o == nil || IsNil(o.FlavorName) {
-		return nil, false
-	}
-	return o.FlavorName, true
+func (o *PlanDetails) GetFlavorNameOk() (ret PlanDetailsGetFlavorNameRetType, ok bool) {
+	return getPlanDetailsGetFlavorNameAttributeTypeOk(o.FlavorName)
 }
 
 // HasFlavorName returns a boolean if a field has been set.
 func (o *PlanDetails) HasFlavorName() bool {
-	if o != nil && !IsNil(o.FlavorName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFlavorNameOk()
+	return ok
 }
 
 // SetFlavorName gets a reference to the given string and assigns it to the FlavorName field.
-func (o *PlanDetails) SetFlavorName(v *string) {
-	o.FlavorName = v
+func (o *PlanDetails) SetFlavorName(v PlanDetailsGetFlavorNameRetType) {
+	setPlanDetailsGetFlavorNameAttributeType(&o.FlavorName, v)
 }
 
 // GetMaxConnections returns the MaxConnections field value if set, zero value otherwise.
-func (o *PlanDetails) GetMaxConnections() *int64 {
-	if o == nil || IsNil(o.MaxConnections) {
-		var ret *int64
-		return ret
-	}
-	return o.MaxConnections
+func (o *PlanDetails) GetMaxConnections() (res PlanDetailsGetMaxConnectionsRetType) {
+	res, _ = o.GetMaxConnectionsOk()
+	return
 }
 
 // GetMaxConnectionsOk returns a tuple with the MaxConnections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetMaxConnectionsOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxConnections) {
-		return nil, false
-	}
-	return o.MaxConnections, true
+func (o *PlanDetails) GetMaxConnectionsOk() (ret PlanDetailsGetMaxConnectionsRetType, ok bool) {
+	return getPlanDetailsGetMaxConnectionsAttributeTypeOk(o.MaxConnections)
 }
 
 // HasMaxConnections returns a boolean if a field has been set.
 func (o *PlanDetails) HasMaxConnections() bool {
-	if o != nil && !IsNil(o.MaxConnections) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxConnectionsOk()
+	return ok
 }
 
 // SetMaxConnections gets a reference to the given int64 and assigns it to the MaxConnections field.
-func (o *PlanDetails) SetMaxConnections(v *int64) {
-	o.MaxConnections = v
+func (o *PlanDetails) SetMaxConnections(v PlanDetailsGetMaxConnectionsRetType) {
+	setPlanDetailsGetMaxConnectionsAttributeType(&o.MaxConnections, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PlanDetails) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *PlanDetails) GetName() (res PlanDetailsGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *PlanDetails) GetNameOk() (ret PlanDetailsGetNameRetType, ok bool) {
+	return getPlanDetailsGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PlanDetails) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PlanDetails) SetName(v *string) {
-	o.Name = v
+func (o *PlanDetails) SetName(v PlanDetailsGetNameRetType) {
+	setPlanDetailsGetNameAttributeType(&o.Name, v)
 }
 
 // GetPlanId returns the PlanId field value if set, zero value otherwise.
-func (o *PlanDetails) GetPlanId() *string {
-	if o == nil || IsNil(o.PlanId) {
-		var ret *string
-		return ret
-	}
-	return o.PlanId
+func (o *PlanDetails) GetPlanId() (res PlanDetailsGetPlanIdRetType) {
+	res, _ = o.GetPlanIdOk()
+	return
 }
 
 // GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetPlanIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PlanId) {
-		return nil, false
-	}
-	return o.PlanId, true
+func (o *PlanDetails) GetPlanIdOk() (ret PlanDetailsGetPlanIdRetType, ok bool) {
+	return getPlanDetailsGetPlanIdAttributeTypeOk(o.PlanId)
 }
 
 // HasPlanId returns a boolean if a field has been set.
 func (o *PlanDetails) HasPlanId() bool {
-	if o != nil && !IsNil(o.PlanId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPlanIdOk()
+	return ok
 }
 
 // SetPlanId gets a reference to the given string and assigns it to the PlanId field.
-func (o *PlanDetails) SetPlanId(v *string) {
-	o.PlanId = v
+func (o *PlanDetails) SetPlanId(v PlanDetailsGetPlanIdRetType) {
+	setPlanDetailsGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
-func (o *PlanDetails) GetRegion() *string {
-	if o == nil || IsNil(o.Region) {
-		var ret *string
-		return ret
-	}
-	return o.Region
+func (o *PlanDetails) GetRegion() (res PlanDetailsGetRegionRetType) {
+	res, _ = o.GetRegionOk()
+	return
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanDetails) GetRegionOk() (*string, bool) {
-	if o == nil || IsNil(o.Region) {
-		return nil, false
-	}
-	return o.Region, true
+func (o *PlanDetails) GetRegionOk() (ret PlanDetailsGetRegionRetType, ok bool) {
+	return getPlanDetailsGetRegionAttributeTypeOk(o.Region)
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *PlanDetails) HasRegion() bool {
-	if o != nil && !IsNil(o.Region) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRegionOk()
+	return ok
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *PlanDetails) SetRegion(v *string) {
-	o.Region = v
+func (o *PlanDetails) SetRegion(v PlanDetailsGetRegionRetType) {
+	setPlanDetailsGetRegionAttributeType(&o.Region, v)
 }
 
 func (o PlanDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getPlanDetailsGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.FlavorName) {
-		toSerialize["flavorName"] = o.FlavorName
+	if val, ok := getPlanDetailsGetFlavorNameAttributeTypeOk(o.FlavorName); ok {
+		toSerialize["FlavorName"] = val
 	}
-	if !IsNil(o.MaxConnections) {
-		toSerialize["maxConnections"] = o.MaxConnections
+	if val, ok := getPlanDetailsGetMaxConnectionsAttributeTypeOk(o.MaxConnections); ok {
+		toSerialize["MaxConnections"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getPlanDetailsGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.PlanId) {
-		toSerialize["planId"] = o.PlanId
+	if val, ok := getPlanDetailsGetPlanIdAttributeTypeOk(o.PlanId); ok {
+		toSerialize["PlanId"] = val
 	}
-	if !IsNil(o.Region) {
-		toSerialize["region"] = o.Region
+	if val, ok := getPlanDetailsGetRegionAttributeTypeOk(o.Region); ok {
+		toSerialize["Region"] = val
 	}
 	return toSerialize, nil
 }
