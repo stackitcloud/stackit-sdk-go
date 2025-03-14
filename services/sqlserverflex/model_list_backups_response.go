@@ -17,9 +17,29 @@ import (
 // checks if the ListBackupsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListBackupsResponse{}
 
+/*
+	types and functions for databases
+*/
+
+// isArray
+type ListBackupsResponseGetDatabasesAttributeType = *[]BackupListBackupsResponseGrouped
+type ListBackupsResponseGetDatabasesArgType = []BackupListBackupsResponseGrouped
+type ListBackupsResponseGetDatabasesRetType = []BackupListBackupsResponseGrouped
+
+func getListBackupsResponseGetDatabasesAttributeTypeOk(arg ListBackupsResponseGetDatabasesAttributeType) (ret ListBackupsResponseGetDatabasesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListBackupsResponseGetDatabasesAttributeType(arg *ListBackupsResponseGetDatabasesAttributeType, val ListBackupsResponseGetDatabasesRetType) {
+	*arg = &val
+}
+
 // ListBackupsResponse struct for ListBackupsResponse
 type ListBackupsResponse struct {
-	Databases *[]BackupListBackupsResponseGrouped `json:"databases,omitempty"`
+	Databases ListBackupsResponseGetDatabasesAttributeType `json:"databases,omitempty"`
 }
 
 // NewListBackupsResponse instantiates a new ListBackupsResponse object
@@ -40,41 +60,32 @@ func NewListBackupsResponseWithDefaults() *ListBackupsResponse {
 }
 
 // GetDatabases returns the Databases field value if set, zero value otherwise.
-func (o *ListBackupsResponse) GetDatabases() *[]BackupListBackupsResponseGrouped {
-	if o == nil || IsNil(o.Databases) {
-		var ret *[]BackupListBackupsResponseGrouped
-		return ret
-	}
-	return o.Databases
+func (o *ListBackupsResponse) GetDatabases() (res ListBackupsResponseGetDatabasesRetType) {
+	res, _ = o.GetDatabasesOk()
+	return
 }
 
 // GetDatabasesOk returns a tuple with the Databases field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListBackupsResponse) GetDatabasesOk() (*[]BackupListBackupsResponseGrouped, bool) {
-	if o == nil || IsNil(o.Databases) {
-		return nil, false
-	}
-	return o.Databases, true
+func (o *ListBackupsResponse) GetDatabasesOk() (ret ListBackupsResponseGetDatabasesRetType, ok bool) {
+	return getListBackupsResponseGetDatabasesAttributeTypeOk(o.Databases)
 }
 
 // HasDatabases returns a boolean if a field has been set.
 func (o *ListBackupsResponse) HasDatabases() bool {
-	if o != nil && !IsNil(o.Databases) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDatabasesOk()
+	return ok
 }
 
 // SetDatabases gets a reference to the given []BackupListBackupsResponseGrouped and assigns it to the Databases field.
-func (o *ListBackupsResponse) SetDatabases(v *[]BackupListBackupsResponseGrouped) {
-	o.Databases = v
+func (o *ListBackupsResponse) SetDatabases(v ListBackupsResponseGetDatabasesRetType) {
+	setListBackupsResponseGetDatabasesAttributeType(&o.Databases, v)
 }
 
 func (o ListBackupsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Databases) {
-		toSerialize["databases"] = o.Databases
+	if val, ok := getListBackupsResponseGetDatabasesAttributeTypeOk(o.Databases); ok {
+		toSerialize["Databases"] = val
 	}
 	return toSerialize, nil
 }
