@@ -17,10 +17,31 @@ import (
 // checks if the OptionsTCP type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OptionsTCP{}
 
+/*
+	types and functions for idleTimeout
+*/
+
+// isNotNullableString
+type OptionsTCPGetIdleTimeoutAttributeType = *string
+
+func getOptionsTCPGetIdleTimeoutAttributeTypeOk(arg OptionsTCPGetIdleTimeoutAttributeType) (ret OptionsTCPGetIdleTimeoutRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOptionsTCPGetIdleTimeoutAttributeType(arg *OptionsTCPGetIdleTimeoutAttributeType, val OptionsTCPGetIdleTimeoutRetType) {
+	*arg = &val
+}
+
+type OptionsTCPGetIdleTimeoutArgType = string
+type OptionsTCPGetIdleTimeoutRetType = string
+
 // OptionsTCP struct for OptionsTCP
 type OptionsTCP struct {
 	// The connection idle timeout to be used with the protocol. The default value is set to 5 minutes, and the maximum value is one hour.
-	IdleTimeout *string `json:"idleTimeout,omitempty"`
+	IdleTimeout OptionsTCPGetIdleTimeoutAttributeType `json:"idleTimeout,omitempty"`
 }
 
 // NewOptionsTCP instantiates a new OptionsTCP object
@@ -41,41 +62,32 @@ func NewOptionsTCPWithDefaults() *OptionsTCP {
 }
 
 // GetIdleTimeout returns the IdleTimeout field value if set, zero value otherwise.
-func (o *OptionsTCP) GetIdleTimeout() *string {
-	if o == nil || IsNil(o.IdleTimeout) {
-		var ret *string
-		return ret
-	}
-	return o.IdleTimeout
+func (o *OptionsTCP) GetIdleTimeout() (res OptionsTCPGetIdleTimeoutRetType) {
+	res, _ = o.GetIdleTimeoutOk()
+	return
 }
 
 // GetIdleTimeoutOk returns a tuple with the IdleTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OptionsTCP) GetIdleTimeoutOk() (*string, bool) {
-	if o == nil || IsNil(o.IdleTimeout) {
-		return nil, false
-	}
-	return o.IdleTimeout, true
+func (o *OptionsTCP) GetIdleTimeoutOk() (ret OptionsTCPGetIdleTimeoutRetType, ok bool) {
+	return getOptionsTCPGetIdleTimeoutAttributeTypeOk(o.IdleTimeout)
 }
 
 // HasIdleTimeout returns a boolean if a field has been set.
 func (o *OptionsTCP) HasIdleTimeout() bool {
-	if o != nil && !IsNil(o.IdleTimeout) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdleTimeoutOk()
+	return ok
 }
 
 // SetIdleTimeout gets a reference to the given string and assigns it to the IdleTimeout field.
-func (o *OptionsTCP) SetIdleTimeout(v *string) {
-	o.IdleTimeout = v
+func (o *OptionsTCP) SetIdleTimeout(v OptionsTCPGetIdleTimeoutRetType) {
+	setOptionsTCPGetIdleTimeoutAttributeType(&o.IdleTimeout, v)
 }
 
 func (o OptionsTCP) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.IdleTimeout) {
-		toSerialize["idleTimeout"] = o.IdleTimeout
+	if val, ok := getOptionsTCPGetIdleTimeoutAttributeTypeOk(o.IdleTimeout); ok {
+		toSerialize["IdleTimeout"] = val
 	}
 	return toSerialize, nil
 }
