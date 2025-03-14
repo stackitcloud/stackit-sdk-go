@@ -17,15 +17,97 @@ import (
 // checks if the MembersResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MembersResponse{}
 
+/*
+	types and functions for members
+*/
+
+// isArray
+type MembersResponseGetMembersAttributeType = *[]Member
+type MembersResponseGetMembersArgType = []Member
+type MembersResponseGetMembersRetType = []Member
+
+func getMembersResponseGetMembersAttributeTypeOk(arg MembersResponseGetMembersAttributeType) (ret MembersResponseGetMembersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMembersResponseGetMembersAttributeType(arg *MembersResponseGetMembersAttributeType, val MembersResponseGetMembersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for resourceId
+*/
+
+// isNotNullableString
+type MembersResponseGetResourceIdAttributeType = *string
+
+func getMembersResponseGetResourceIdAttributeTypeOk(arg MembersResponseGetResourceIdAttributeType) (ret MembersResponseGetResourceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMembersResponseGetResourceIdAttributeType(arg *MembersResponseGetResourceIdAttributeType, val MembersResponseGetResourceIdRetType) {
+	*arg = &val
+}
+
+type MembersResponseGetResourceIdArgType = string
+type MembersResponseGetResourceIdRetType = string
+
+/*
+	types and functions for resourceType
+*/
+
+// isNotNullableString
+type MembersResponseGetResourceTypeAttributeType = *string
+
+func getMembersResponseGetResourceTypeAttributeTypeOk(arg MembersResponseGetResourceTypeAttributeType) (ret MembersResponseGetResourceTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMembersResponseGetResourceTypeAttributeType(arg *MembersResponseGetResourceTypeAttributeType, val MembersResponseGetResourceTypeRetType) {
+	*arg = &val
+}
+
+type MembersResponseGetResourceTypeArgType = string
+type MembersResponseGetResourceTypeRetType = string
+
+/*
+	types and functions for writtenAt
+*/
+
+// isModel
+type MembersResponseGetWrittenAtAttributeType = *Zookie
+type MembersResponseGetWrittenAtArgType = Zookie
+type MembersResponseGetWrittenAtRetType = Zookie
+
+func getMembersResponseGetWrittenAtAttributeTypeOk(arg MembersResponseGetWrittenAtAttributeType) (ret MembersResponseGetWrittenAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMembersResponseGetWrittenAtAttributeType(arg *MembersResponseGetWrittenAtAttributeType, val MembersResponseGetWrittenAtRetType) {
+	*arg = &val
+}
+
 // MembersResponse struct for MembersResponse
 type MembersResponse struct {
 	// REQUIRED
-	Members *[]Member `json:"members"`
+	Members MembersResponseGetMembersAttributeType `json:"members"`
 	// REQUIRED
-	ResourceId *string `json:"resourceId"`
+	ResourceId MembersResponseGetResourceIdAttributeType `json:"resourceId"`
 	// REQUIRED
-	ResourceType *string `json:"resourceType"`
-	WrittenAt    *Zookie `json:"writtenAt,omitempty"`
+	ResourceType MembersResponseGetResourceTypeAttributeType `json:"resourceType"`
+	WrittenAt    MembersResponseGetWrittenAtAttributeType    `json:"writtenAt,omitempty"`
 }
 
 type _MembersResponse MembersResponse
@@ -34,11 +116,11 @@ type _MembersResponse MembersResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMembersResponse(members *[]Member, resourceId *string, resourceType *string) *MembersResponse {
+func NewMembersResponse(members MembersResponseGetMembersArgType, resourceId MembersResponseGetResourceIdArgType, resourceType MembersResponseGetResourceTypeArgType) *MembersResponse {
 	this := MembersResponse{}
-	this.Members = members
-	this.ResourceId = resourceId
-	this.ResourceType = resourceType
+	setMembersResponseGetMembersAttributeType(&this.Members, members)
+	setMembersResponseGetResourceIdAttributeType(&this.ResourceId, resourceId)
+	setMembersResponseGetResourceTypeAttributeType(&this.ResourceType, resourceType)
 	return &this
 }
 
@@ -51,116 +133,92 @@ func NewMembersResponseWithDefaults() *MembersResponse {
 }
 
 // GetMembers returns the Members field value
-func (o *MembersResponse) GetMembers() *[]Member {
-	if o == nil || IsNil(o.Members) {
-		var ret *[]Member
-		return ret
-	}
-
-	return o.Members
+func (o *MembersResponse) GetMembers() (ret MembersResponseGetMembersRetType) {
+	ret, _ = o.GetMembersOk()
+	return ret
 }
 
 // GetMembersOk returns a tuple with the Members field value
 // and a boolean to check if the value has been set.
-func (o *MembersResponse) GetMembersOk() (*[]Member, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Members, true
+func (o *MembersResponse) GetMembersOk() (ret MembersResponseGetMembersRetType, ok bool) {
+	return getMembersResponseGetMembersAttributeTypeOk(o.Members)
 }
 
 // SetMembers sets field value
-func (o *MembersResponse) SetMembers(v *[]Member) {
-	o.Members = v
+func (o *MembersResponse) SetMembers(v MembersResponseGetMembersRetType) {
+	setMembersResponseGetMembersAttributeType(&o.Members, v)
 }
 
 // GetResourceId returns the ResourceId field value
-func (o *MembersResponse) GetResourceId() *string {
-	if o == nil || IsNil(o.ResourceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceId
+func (o *MembersResponse) GetResourceId() (ret MembersResponseGetResourceIdRetType) {
+	ret, _ = o.GetResourceIdOk()
+	return ret
 }
 
 // GetResourceIdOk returns a tuple with the ResourceId field value
 // and a boolean to check if the value has been set.
-func (o *MembersResponse) GetResourceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceId, true
+func (o *MembersResponse) GetResourceIdOk() (ret MembersResponseGetResourceIdRetType, ok bool) {
+	return getMembersResponseGetResourceIdAttributeTypeOk(o.ResourceId)
 }
 
 // SetResourceId sets field value
-func (o *MembersResponse) SetResourceId(v *string) {
-	o.ResourceId = v
+func (o *MembersResponse) SetResourceId(v MembersResponseGetResourceIdRetType) {
+	setMembersResponseGetResourceIdAttributeType(&o.ResourceId, v)
 }
 
 // GetResourceType returns the ResourceType field value
-func (o *MembersResponse) GetResourceType() *string {
-	if o == nil || IsNil(o.ResourceType) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceType
+func (o *MembersResponse) GetResourceType() (ret MembersResponseGetResourceTypeRetType) {
+	ret, _ = o.GetResourceTypeOk()
+	return ret
 }
 
 // GetResourceTypeOk returns a tuple with the ResourceType field value
 // and a boolean to check if the value has been set.
-func (o *MembersResponse) GetResourceTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceType, true
+func (o *MembersResponse) GetResourceTypeOk() (ret MembersResponseGetResourceTypeRetType, ok bool) {
+	return getMembersResponseGetResourceTypeAttributeTypeOk(o.ResourceType)
 }
 
 // SetResourceType sets field value
-func (o *MembersResponse) SetResourceType(v *string) {
-	o.ResourceType = v
+func (o *MembersResponse) SetResourceType(v MembersResponseGetResourceTypeRetType) {
+	setMembersResponseGetResourceTypeAttributeType(&o.ResourceType, v)
 }
 
 // GetWrittenAt returns the WrittenAt field value if set, zero value otherwise.
-func (o *MembersResponse) GetWrittenAt() *Zookie {
-	if o == nil || IsNil(o.WrittenAt) {
-		var ret *Zookie
-		return ret
-	}
-	return o.WrittenAt
+func (o *MembersResponse) GetWrittenAt() (res MembersResponseGetWrittenAtRetType) {
+	res, _ = o.GetWrittenAtOk()
+	return
 }
 
 // GetWrittenAtOk returns a tuple with the WrittenAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MembersResponse) GetWrittenAtOk() (*Zookie, bool) {
-	if o == nil || IsNil(o.WrittenAt) {
-		return nil, false
-	}
-	return o.WrittenAt, true
+func (o *MembersResponse) GetWrittenAtOk() (ret MembersResponseGetWrittenAtRetType, ok bool) {
+	return getMembersResponseGetWrittenAtAttributeTypeOk(o.WrittenAt)
 }
 
 // HasWrittenAt returns a boolean if a field has been set.
 func (o *MembersResponse) HasWrittenAt() bool {
-	if o != nil && !IsNil(o.WrittenAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetWrittenAtOk()
+	return ok
 }
 
 // SetWrittenAt gets a reference to the given Zookie and assigns it to the WrittenAt field.
-func (o *MembersResponse) SetWrittenAt(v *Zookie) {
-	o.WrittenAt = v
+func (o *MembersResponse) SetWrittenAt(v MembersResponseGetWrittenAtRetType) {
+	setMembersResponseGetWrittenAtAttributeType(&o.WrittenAt, v)
 }
 
 func (o MembersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["members"] = o.Members
-	toSerialize["resourceId"] = o.ResourceId
-	toSerialize["resourceType"] = o.ResourceType
-	if !IsNil(o.WrittenAt) {
-		toSerialize["writtenAt"] = o.WrittenAt
+	if val, ok := getMembersResponseGetMembersAttributeTypeOk(o.Members); ok {
+		toSerialize["Members"] = val
+	}
+	if val, ok := getMembersResponseGetResourceIdAttributeTypeOk(o.ResourceId); ok {
+		toSerialize["ResourceId"] = val
+	}
+	if val, ok := getMembersResponseGetResourceTypeAttributeTypeOk(o.ResourceType); ok {
+		toSerialize["ResourceType"] = val
+	}
+	if val, ok := getMembersResponseGetWrittenAtAttributeTypeOk(o.WrittenAt); ok {
+		toSerialize["WrittenAt"] = val
 	}
 	return toSerialize, nil
 }
