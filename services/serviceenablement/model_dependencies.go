@@ -17,12 +17,52 @@ import (
 // checks if the Dependencies type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Dependencies{}
 
+/*
+	types and functions for hard
+*/
+
+// isArray
+type DependenciesGetHardAttributeType = *[]string
+type DependenciesGetHardArgType = []string
+type DependenciesGetHardRetType = []string
+
+func getDependenciesGetHardAttributeTypeOk(arg DependenciesGetHardAttributeType) (ret DependenciesGetHardRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDependenciesGetHardAttributeType(arg *DependenciesGetHardAttributeType, val DependenciesGetHardRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for soft
+*/
+
+// isArray
+type DependenciesGetSoftAttributeType = *[]string
+type DependenciesGetSoftArgType = []string
+type DependenciesGetSoftRetType = []string
+
+func getDependenciesGetSoftAttributeTypeOk(arg DependenciesGetSoftAttributeType) (ret DependenciesGetSoftRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDependenciesGetSoftAttributeType(arg *DependenciesGetSoftAttributeType, val DependenciesGetSoftRetType) {
+	*arg = &val
+}
+
 // Dependencies struct for Dependencies
 type Dependencies struct {
 	// a list of service IDs which this service depend on. If the service is enabled, those service are enabled as well automatically.
-	Hard *[]string `json:"hard,omitempty"`
+	Hard DependenciesGetHardAttributeType `json:"hard,omitempty"`
 	// a list of service IDs which this service depend on. When they are disabled a notification is sent.
-	Soft *[]string `json:"soft,omitempty"`
+	Soft DependenciesGetSoftAttributeType `json:"soft,omitempty"`
 }
 
 // NewDependencies instantiates a new Dependencies object
@@ -43,76 +83,58 @@ func NewDependenciesWithDefaults() *Dependencies {
 }
 
 // GetHard returns the Hard field value if set, zero value otherwise.
-func (o *Dependencies) GetHard() *[]string {
-	if o == nil || IsNil(o.Hard) {
-		var ret *[]string
-		return ret
-	}
-	return o.Hard
+func (o *Dependencies) GetHard() (res DependenciesGetHardRetType) {
+	res, _ = o.GetHardOk()
+	return
 }
 
 // GetHardOk returns a tuple with the Hard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dependencies) GetHardOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Hard) {
-		return nil, false
-	}
-	return o.Hard, true
+func (o *Dependencies) GetHardOk() (ret DependenciesGetHardRetType, ok bool) {
+	return getDependenciesGetHardAttributeTypeOk(o.Hard)
 }
 
 // HasHard returns a boolean if a field has been set.
 func (o *Dependencies) HasHard() bool {
-	if o != nil && !IsNil(o.Hard) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHardOk()
+	return ok
 }
 
 // SetHard gets a reference to the given []string and assigns it to the Hard field.
-func (o *Dependencies) SetHard(v *[]string) {
-	o.Hard = v
+func (o *Dependencies) SetHard(v DependenciesGetHardRetType) {
+	setDependenciesGetHardAttributeType(&o.Hard, v)
 }
 
 // GetSoft returns the Soft field value if set, zero value otherwise.
-func (o *Dependencies) GetSoft() *[]string {
-	if o == nil || IsNil(o.Soft) {
-		var ret *[]string
-		return ret
-	}
-	return o.Soft
+func (o *Dependencies) GetSoft() (res DependenciesGetSoftRetType) {
+	res, _ = o.GetSoftOk()
+	return
 }
 
 // GetSoftOk returns a tuple with the Soft field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dependencies) GetSoftOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Soft) {
-		return nil, false
-	}
-	return o.Soft, true
+func (o *Dependencies) GetSoftOk() (ret DependenciesGetSoftRetType, ok bool) {
+	return getDependenciesGetSoftAttributeTypeOk(o.Soft)
 }
 
 // HasSoft returns a boolean if a field has been set.
 func (o *Dependencies) HasSoft() bool {
-	if o != nil && !IsNil(o.Soft) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSoftOk()
+	return ok
 }
 
 // SetSoft gets a reference to the given []string and assigns it to the Soft field.
-func (o *Dependencies) SetSoft(v *[]string) {
-	o.Soft = v
+func (o *Dependencies) SetSoft(v DependenciesGetSoftRetType) {
+	setDependenciesGetSoftAttributeType(&o.Soft, v)
 }
 
 func (o Dependencies) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Hard) {
-		toSerialize["hard"] = o.Hard
+	if val, ok := getDependenciesGetHardAttributeTypeOk(o.Hard); ok {
+		toSerialize["Hard"] = val
 	}
-	if !IsNil(o.Soft) {
-		toSerialize["soft"] = o.Soft
+	if val, ok := getDependenciesGetSoftAttributeTypeOk(o.Soft); ok {
+		toSerialize["Soft"] = val
 	}
 	return toSerialize, nil
 }
