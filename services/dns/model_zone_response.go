@@ -17,11 +17,52 @@ import (
 // checks if the ZoneResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ZoneResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ZoneResponseGetMessageAttributeType = *string
+
+func getZoneResponseGetMessageAttributeTypeOk(arg ZoneResponseGetMessageAttributeType) (ret ZoneResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneResponseGetMessageAttributeType(arg *ZoneResponseGetMessageAttributeType, val ZoneResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ZoneResponseGetMessageArgType = string
+type ZoneResponseGetMessageRetType = string
+
+/*
+	types and functions for zone
+*/
+
+// isModel
+type ZoneResponseGetZoneAttributeType = *Zone
+type ZoneResponseGetZoneArgType = Zone
+type ZoneResponseGetZoneRetType = Zone
+
+func getZoneResponseGetZoneAttributeTypeOk(arg ZoneResponseGetZoneAttributeType) (ret ZoneResponseGetZoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneResponseGetZoneAttributeType(arg *ZoneResponseGetZoneAttributeType, val ZoneResponseGetZoneRetType) {
+	*arg = &val
+}
+
 // ZoneResponse ResponseZone for user info.
 type ZoneResponse struct {
-	Message *string `json:"message,omitempty"`
+	Message ZoneResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Zone *Zone `json:"zone"`
+	Zone ZoneResponseGetZoneAttributeType `json:"zone"`
 }
 
 type _ZoneResponse ZoneResponse
@@ -30,9 +71,9 @@ type _ZoneResponse ZoneResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewZoneResponse(zone *Zone) *ZoneResponse {
+func NewZoneResponse(zone ZoneResponseGetZoneArgType) *ZoneResponse {
 	this := ZoneResponse{}
-	this.Zone = zone
+	setZoneResponseGetZoneAttributeType(&this.Zone, zone)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewZoneResponseWithDefaults() *ZoneResponse {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ZoneResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *ZoneResponse) GetMessage() (res ZoneResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ZoneResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ZoneResponse) GetMessageOk() (ret ZoneResponseGetMessageRetType, ok bool) {
+	return getZoneResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ZoneResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ZoneResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ZoneResponse) SetMessage(v ZoneResponseGetMessageRetType) {
+	setZoneResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetZone returns the Zone field value
-func (o *ZoneResponse) GetZone() *Zone {
-	if o == nil || IsNil(o.Zone) {
-		var ret *Zone
-		return ret
-	}
-
-	return o.Zone
+func (o *ZoneResponse) GetZone() (ret ZoneResponseGetZoneRetType) {
+	ret, _ = o.GetZoneOk()
+	return ret
 }
 
 // GetZoneOk returns a tuple with the Zone field value
 // and a boolean to check if the value has been set.
-func (o *ZoneResponse) GetZoneOk() (*Zone, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Zone, true
+func (o *ZoneResponse) GetZoneOk() (ret ZoneResponseGetZoneRetType, ok bool) {
+	return getZoneResponseGetZoneAttributeTypeOk(o.Zone)
 }
 
 // SetZone sets field value
-func (o *ZoneResponse) SetZone(v *Zone) {
-	o.Zone = v
+func (o *ZoneResponse) SetZone(v ZoneResponseGetZoneRetType) {
+	setZoneResponseGetZoneAttributeType(&o.Zone, v)
 }
 
 func (o ZoneResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getZoneResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	toSerialize["zone"] = o.Zone
+	if val, ok := getZoneResponseGetZoneAttributeTypeOk(o.Zone); ok {
+		toSerialize["Zone"] = val
+	}
 	return toSerialize, nil
 }
 
