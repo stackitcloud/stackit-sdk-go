@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/loadbalancer"
 )
@@ -14,17 +13,18 @@ func main() {
 	// Specify the project ID
 	projectId := "PROJECT_ID"
 
+	// Specify the region
+	region := "REGION"
+
 	// Create a new API client, that uses default authentication and configuration
-	loadbalancerClient, err := loadbalancer.NewAPIClient(
-		config.WithRegion("eu01"),
-	)
+	loadbalancerClient, err := loadbalancer.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
 	}
 
 	// List the load balancer instances for your project
-	listInstancesResp, err := loadbalancerClient.ListLoadBalancers(context.Background(), projectId).Execute()
+	listInstancesResp, err := loadbalancerClient.ListLoadBalancers(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListLoadBalancers`: %v\n", err)
 		os.Exit(1)
@@ -69,7 +69,7 @@ func main() {
 			},
 		},
 	}
-	createLoadBalancerRes, err := loadbalancerClient.CreateLoadBalancer(context.Background(), projectId).CreateLoadBalancerPayload(createLoadBalancerPayload).XRequestID("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").Execute()
+	createLoadBalancerRes, err := loadbalancerClient.CreateLoadBalancer(context.Background(), projectId, region).CreateLoadBalancerPayload(createLoadBalancerPayload).XRequestID("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateLoadBalancer`: %v\n", err)
 		os.Exit(1)
