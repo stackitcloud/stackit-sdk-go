@@ -17,12 +17,52 @@ import (
 // checks if the InstanceSchema type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceSchema{}
 
+/*
+	types and functions for create
+*/
+
+// isModel
+type InstanceSchemaGetCreateAttributeType = *Schema
+type InstanceSchemaGetCreateArgType = Schema
+type InstanceSchemaGetCreateRetType = Schema
+
+func getInstanceSchemaGetCreateAttributeTypeOk(arg InstanceSchemaGetCreateAttributeType) (ret InstanceSchemaGetCreateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSchemaGetCreateAttributeType(arg *InstanceSchemaGetCreateAttributeType, val InstanceSchemaGetCreateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for update
+*/
+
+// isModel
+type InstanceSchemaGetUpdateAttributeType = *Schema
+type InstanceSchemaGetUpdateArgType = Schema
+type InstanceSchemaGetUpdateRetType = Schema
+
+func getInstanceSchemaGetUpdateAttributeTypeOk(arg InstanceSchemaGetUpdateAttributeType) (ret InstanceSchemaGetUpdateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSchemaGetUpdateAttributeType(arg *InstanceSchemaGetUpdateAttributeType, val InstanceSchemaGetUpdateRetType) {
+	*arg = &val
+}
+
 // InstanceSchema struct for InstanceSchema
 type InstanceSchema struct {
 	// REQUIRED
-	Create *Schema `json:"create"`
+	Create InstanceSchemaGetCreateAttributeType `json:"create"`
 	// REQUIRED
-	Update *Schema `json:"update"`
+	Update InstanceSchemaGetUpdateAttributeType `json:"update"`
 }
 
 type _InstanceSchema InstanceSchema
@@ -31,10 +71,10 @@ type _InstanceSchema InstanceSchema
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceSchema(create *Schema, update *Schema) *InstanceSchema {
+func NewInstanceSchema(create InstanceSchemaGetCreateArgType, update InstanceSchemaGetUpdateArgType) *InstanceSchema {
 	this := InstanceSchema{}
-	this.Create = create
-	this.Update = update
+	setInstanceSchemaGetCreateAttributeType(&this.Create, create)
+	setInstanceSchemaGetUpdateAttributeType(&this.Update, update)
 	return &this
 }
 
@@ -47,57 +87,47 @@ func NewInstanceSchemaWithDefaults() *InstanceSchema {
 }
 
 // GetCreate returns the Create field value
-func (o *InstanceSchema) GetCreate() *Schema {
-	if o == nil || IsNil(o.Create) {
-		var ret *Schema
-		return ret
-	}
-
-	return o.Create
+func (o *InstanceSchema) GetCreate() (ret InstanceSchemaGetCreateRetType) {
+	ret, _ = o.GetCreateOk()
+	return ret
 }
 
 // GetCreateOk returns a tuple with the Create field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSchema) GetCreateOk() (*Schema, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Create, true
+func (o *InstanceSchema) GetCreateOk() (ret InstanceSchemaGetCreateRetType, ok bool) {
+	return getInstanceSchemaGetCreateAttributeTypeOk(o.Create)
 }
 
 // SetCreate sets field value
-func (o *InstanceSchema) SetCreate(v *Schema) {
-	o.Create = v
+func (o *InstanceSchema) SetCreate(v InstanceSchemaGetCreateRetType) {
+	setInstanceSchemaGetCreateAttributeType(&o.Create, v)
 }
 
 // GetUpdate returns the Update field value
-func (o *InstanceSchema) GetUpdate() *Schema {
-	if o == nil || IsNil(o.Update) {
-		var ret *Schema
-		return ret
-	}
-
-	return o.Update
+func (o *InstanceSchema) GetUpdate() (ret InstanceSchemaGetUpdateRetType) {
+	ret, _ = o.GetUpdateOk()
+	return ret
 }
 
 // GetUpdateOk returns a tuple with the Update field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSchema) GetUpdateOk() (*Schema, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Update, true
+func (o *InstanceSchema) GetUpdateOk() (ret InstanceSchemaGetUpdateRetType, ok bool) {
+	return getInstanceSchemaGetUpdateAttributeTypeOk(o.Update)
 }
 
 // SetUpdate sets field value
-func (o *InstanceSchema) SetUpdate(v *Schema) {
-	o.Update = v
+func (o *InstanceSchema) SetUpdate(v InstanceSchemaGetUpdateRetType) {
+	setInstanceSchemaGetUpdateAttributeType(&o.Update, v)
 }
 
 func (o InstanceSchema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["create"] = o.Create
-	toSerialize["update"] = o.Update
+	if val, ok := getInstanceSchemaGetCreateAttributeTypeOk(o.Create); ok {
+		toSerialize["Create"] = val
+	}
+	if val, ok := getInstanceSchemaGetUpdateAttributeTypeOk(o.Update); ok {
+		toSerialize["Update"] = val
+	}
 	return toSerialize, nil
 }
 
