@@ -17,10 +17,51 @@ import (
 // checks if the InstanceHost type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceHost{}
 
+/*
+	types and functions for hostMetrics
+*/
+
+// isArray
+type InstanceHostGetHostMetricsAttributeType = *[]InstanceHostMetric
+type InstanceHostGetHostMetricsArgType = []InstanceHostMetric
+type InstanceHostGetHostMetricsRetType = []InstanceHostMetric
+
+func getInstanceHostGetHostMetricsAttributeTypeOk(arg InstanceHostGetHostMetricsAttributeType) (ret InstanceHostGetHostMetricsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceHostGetHostMetricsAttributeType(arg *InstanceHostGetHostMetricsAttributeType, val InstanceHostGetHostMetricsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type InstanceHostGetIdAttributeType = *string
+
+func getInstanceHostGetIdAttributeTypeOk(arg InstanceHostGetIdAttributeType) (ret InstanceHostGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceHostGetIdAttributeType(arg *InstanceHostGetIdAttributeType, val InstanceHostGetIdRetType) {
+	*arg = &val
+}
+
+type InstanceHostGetIdArgType = string
+type InstanceHostGetIdRetType = string
+
 // InstanceHost struct for InstanceHost
 type InstanceHost struct {
-	HostMetrics *[]InstanceHostMetric `json:"hostMetrics,omitempty"`
-	Id          *string               `json:"id,omitempty"`
+	HostMetrics InstanceHostGetHostMetricsAttributeType `json:"hostMetrics,omitempty"`
+	Id          InstanceHostGetIdAttributeType          `json:"id,omitempty"`
 }
 
 // NewInstanceHost instantiates a new InstanceHost object
@@ -41,76 +82,58 @@ func NewInstanceHostWithDefaults() *InstanceHost {
 }
 
 // GetHostMetrics returns the HostMetrics field value if set, zero value otherwise.
-func (o *InstanceHost) GetHostMetrics() *[]InstanceHostMetric {
-	if o == nil || IsNil(o.HostMetrics) {
-		var ret *[]InstanceHostMetric
-		return ret
-	}
-	return o.HostMetrics
+func (o *InstanceHost) GetHostMetrics() (res InstanceHostGetHostMetricsRetType) {
+	res, _ = o.GetHostMetricsOk()
+	return
 }
 
 // GetHostMetricsOk returns a tuple with the HostMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceHost) GetHostMetricsOk() (*[]InstanceHostMetric, bool) {
-	if o == nil || IsNil(o.HostMetrics) {
-		return nil, false
-	}
-	return o.HostMetrics, true
+func (o *InstanceHost) GetHostMetricsOk() (ret InstanceHostGetHostMetricsRetType, ok bool) {
+	return getInstanceHostGetHostMetricsAttributeTypeOk(o.HostMetrics)
 }
 
 // HasHostMetrics returns a boolean if a field has been set.
 func (o *InstanceHost) HasHostMetrics() bool {
-	if o != nil && !IsNil(o.HostMetrics) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHostMetricsOk()
+	return ok
 }
 
 // SetHostMetrics gets a reference to the given []InstanceHostMetric and assigns it to the HostMetrics field.
-func (o *InstanceHost) SetHostMetrics(v *[]InstanceHostMetric) {
-	o.HostMetrics = v
+func (o *InstanceHost) SetHostMetrics(v InstanceHostGetHostMetricsRetType) {
+	setInstanceHostGetHostMetricsAttributeType(&o.HostMetrics, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *InstanceHost) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *InstanceHost) GetId() (res InstanceHostGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceHost) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *InstanceHost) GetIdOk() (ret InstanceHostGetIdRetType, ok bool) {
+	return getInstanceHostGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *InstanceHost) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *InstanceHost) SetId(v *string) {
-	o.Id = v
+func (o *InstanceHost) SetId(v InstanceHostGetIdRetType) {
+	setInstanceHostGetIdAttributeType(&o.Id, v)
 }
 
 func (o InstanceHost) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.HostMetrics) {
-		toSerialize["hostMetrics"] = o.HostMetrics
+	if val, ok := getInstanceHostGetHostMetricsAttributeTypeOk(o.HostMetrics); ok {
+		toSerialize["HostMetrics"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getInstanceHostGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
 	return toSerialize, nil
 }

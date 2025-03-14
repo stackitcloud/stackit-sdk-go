@@ -17,9 +17,29 @@ import (
 // checks if the CreateUserResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateUserResponse{}
 
+/*
+	types and functions for item
+*/
+
+// isModel
+type CreateUserResponseGetItemAttributeType = *User
+type CreateUserResponseGetItemArgType = User
+type CreateUserResponseGetItemRetType = User
+
+func getCreateUserResponseGetItemAttributeTypeOk(arg CreateUserResponseGetItemAttributeType) (ret CreateUserResponseGetItemRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateUserResponseGetItemAttributeType(arg *CreateUserResponseGetItemAttributeType, val CreateUserResponseGetItemRetType) {
+	*arg = &val
+}
+
 // CreateUserResponse struct for CreateUserResponse
 type CreateUserResponse struct {
-	Item *User `json:"item,omitempty"`
+	Item CreateUserResponseGetItemAttributeType `json:"item,omitempty"`
 }
 
 // NewCreateUserResponse instantiates a new CreateUserResponse object
@@ -40,41 +60,32 @@ func NewCreateUserResponseWithDefaults() *CreateUserResponse {
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
-func (o *CreateUserResponse) GetItem() *User {
-	if o == nil || IsNil(o.Item) {
-		var ret *User
-		return ret
-	}
-	return o.Item
+func (o *CreateUserResponse) GetItem() (res CreateUserResponseGetItemRetType) {
+	res, _ = o.GetItemOk()
+	return
 }
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateUserResponse) GetItemOk() (*User, bool) {
-	if o == nil || IsNil(o.Item) {
-		return nil, false
-	}
-	return o.Item, true
+func (o *CreateUserResponse) GetItemOk() (ret CreateUserResponseGetItemRetType, ok bool) {
+	return getCreateUserResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
 func (o *CreateUserResponse) HasItem() bool {
-	if o != nil && !IsNil(o.Item) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemOk()
+	return ok
 }
 
 // SetItem gets a reference to the given User and assigns it to the Item field.
-func (o *CreateUserResponse) SetItem(v *User) {
-	o.Item = v
+func (o *CreateUserResponse) SetItem(v CreateUserResponseGetItemRetType) {
+	setCreateUserResponseGetItemAttributeType(&o.Item, v)
 }
 
 func (o CreateUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Item) {
-		toSerialize["item"] = o.Item
+	if val, ok := getCreateUserResponseGetItemAttributeTypeOk(o.Item); ok {
+		toSerialize["Item"] = val
 	}
 	return toSerialize, nil
 }

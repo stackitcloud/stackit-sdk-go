@@ -17,12 +17,74 @@ import (
 // checks if the CloneInstancePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CloneInstancePayload{}
 
+/*
+	types and functions for class
+*/
+
+// isNotNullableString
+type CloneInstancePayloadGetClassAttributeType = *string
+
+func getCloneInstancePayloadGetClassAttributeTypeOk(arg CloneInstancePayloadGetClassAttributeType) (ret CloneInstancePayloadGetClassRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneInstancePayloadGetClassAttributeType(arg *CloneInstancePayloadGetClassAttributeType, val CloneInstancePayloadGetClassRetType) {
+	*arg = &val
+}
+
+type CloneInstancePayloadGetClassArgType = string
+type CloneInstancePayloadGetClassRetType = string
+
+/*
+	types and functions for size
+*/
+
+// isLong
+type CloneInstancePayloadGetSizeAttributeType = *int64
+type CloneInstancePayloadGetSizeArgType = int64
+type CloneInstancePayloadGetSizeRetType = int64
+
+func getCloneInstancePayloadGetSizeAttributeTypeOk(arg CloneInstancePayloadGetSizeAttributeType) (ret CloneInstancePayloadGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneInstancePayloadGetSizeAttributeType(arg *CloneInstancePayloadGetSizeAttributeType, val CloneInstancePayloadGetSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for timestamp
+*/
+
+// isNotNullableString
+type CloneInstancePayloadGetTimestampAttributeType = *string
+
+func getCloneInstancePayloadGetTimestampAttributeTypeOk(arg CloneInstancePayloadGetTimestampAttributeType) (ret CloneInstancePayloadGetTimestampRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneInstancePayloadGetTimestampAttributeType(arg *CloneInstancePayloadGetTimestampAttributeType, val CloneInstancePayloadGetTimestampRetType) {
+	*arg = &val
+}
+
+type CloneInstancePayloadGetTimestampArgType = string
+type CloneInstancePayloadGetTimestampRetType = string
+
 // CloneInstancePayload struct for CloneInstancePayload
 type CloneInstancePayload struct {
-	Class *string `json:"class,omitempty"`
-	Size  *int64  `json:"size,omitempty"`
+	Class CloneInstancePayloadGetClassAttributeType `json:"class,omitempty"`
+	Size  CloneInstancePayloadGetSizeAttributeType  `json:"size,omitempty"`
 	// The timestamp should be specified in UTC time following the format provided in the example.
-	Timestamp *string `json:"timestamp,omitempty"`
+	Timestamp CloneInstancePayloadGetTimestampAttributeType `json:"timestamp,omitempty"`
 }
 
 // NewCloneInstancePayload instantiates a new CloneInstancePayload object
@@ -43,111 +105,84 @@ func NewCloneInstancePayloadWithDefaults() *CloneInstancePayload {
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
-func (o *CloneInstancePayload) GetClass() *string {
-	if o == nil || IsNil(o.Class) {
-		var ret *string
-		return ret
-	}
-	return o.Class
+func (o *CloneInstancePayload) GetClass() (res CloneInstancePayloadGetClassRetType) {
+	res, _ = o.GetClassOk()
+	return
 }
 
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloneInstancePayload) GetClassOk() (*string, bool) {
-	if o == nil || IsNil(o.Class) {
-		return nil, false
-	}
-	return o.Class, true
+func (o *CloneInstancePayload) GetClassOk() (ret CloneInstancePayloadGetClassRetType, ok bool) {
+	return getCloneInstancePayloadGetClassAttributeTypeOk(o.Class)
 }
 
 // HasClass returns a boolean if a field has been set.
 func (o *CloneInstancePayload) HasClass() bool {
-	if o != nil && !IsNil(o.Class) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetClassOk()
+	return ok
 }
 
 // SetClass gets a reference to the given string and assigns it to the Class field.
-func (o *CloneInstancePayload) SetClass(v *string) {
-	o.Class = v
+func (o *CloneInstancePayload) SetClass(v CloneInstancePayloadGetClassRetType) {
+	setCloneInstancePayloadGetClassAttributeType(&o.Class, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *CloneInstancePayload) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-	return o.Size
+func (o *CloneInstancePayload) GetSize() (res CloneInstancePayloadGetSizeRetType) {
+	res, _ = o.GetSizeOk()
+	return
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloneInstancePayload) GetSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Size) {
-		return nil, false
-	}
-	return o.Size, true
+func (o *CloneInstancePayload) GetSizeOk() (ret CloneInstancePayloadGetSizeRetType, ok bool) {
+	return getCloneInstancePayloadGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *CloneInstancePayload) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSizeOk()
+	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *CloneInstancePayload) SetSize(v *int64) {
-	o.Size = v
+func (o *CloneInstancePayload) SetSize(v CloneInstancePayloadGetSizeRetType) {
+	setCloneInstancePayloadGetSizeAttributeType(&o.Size, v)
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *CloneInstancePayload) GetTimestamp() *string {
-	if o == nil || IsNil(o.Timestamp) {
-		var ret *string
-		return ret
-	}
-	return o.Timestamp
+func (o *CloneInstancePayload) GetTimestamp() (res CloneInstancePayloadGetTimestampRetType) {
+	res, _ = o.GetTimestampOk()
+	return
 }
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloneInstancePayload) GetTimestampOk() (*string, bool) {
-	if o == nil || IsNil(o.Timestamp) {
-		return nil, false
-	}
-	return o.Timestamp, true
+func (o *CloneInstancePayload) GetTimestampOk() (ret CloneInstancePayloadGetTimestampRetType, ok bool) {
+	return getCloneInstancePayloadGetTimestampAttributeTypeOk(o.Timestamp)
 }
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *CloneInstancePayload) HasTimestamp() bool {
-	if o != nil && !IsNil(o.Timestamp) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTimestampOk()
+	return ok
 }
 
 // SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
-func (o *CloneInstancePayload) SetTimestamp(v *string) {
-	o.Timestamp = v
+func (o *CloneInstancePayload) SetTimestamp(v CloneInstancePayloadGetTimestampRetType) {
+	setCloneInstancePayloadGetTimestampAttributeType(&o.Timestamp, v)
 }
 
 func (o CloneInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Class) {
-		toSerialize["class"] = o.Class
+	if val, ok := getCloneInstancePayloadGetClassAttributeTypeOk(o.Class); ok {
+		toSerialize["Class"] = val
 	}
-	if !IsNil(o.Size) {
-		toSerialize["size"] = o.Size
+	if val, ok := getCloneInstancePayloadGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
 	}
-	if !IsNil(o.Timestamp) {
-		toSerialize["timestamp"] = o.Timestamp
+	if val, ok := getCloneInstancePayloadGetTimestampAttributeTypeOk(o.Timestamp); ok {
+		toSerialize["Timestamp"] = val
 	}
 	return toSerialize, nil
 }

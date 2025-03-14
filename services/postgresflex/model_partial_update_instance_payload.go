@@ -17,19 +17,203 @@ import (
 // checks if the PartialUpdateInstancePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateInstancePayload{}
 
+/*
+	types and functions for acl
+*/
+
+// isModel
+type PartialUpdateInstancePayloadGetAclAttributeType = *ACL
+type PartialUpdateInstancePayloadGetAclArgType = ACL
+type PartialUpdateInstancePayloadGetAclRetType = ACL
+
+func getPartialUpdateInstancePayloadGetAclAttributeTypeOk(arg PartialUpdateInstancePayloadGetAclAttributeType) (ret PartialUpdateInstancePayloadGetAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetAclAttributeType(arg *PartialUpdateInstancePayloadGetAclAttributeType, val PartialUpdateInstancePayloadGetAclRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for backupSchedule
+*/
+
+// isNotNullableString
+type PartialUpdateInstancePayloadGetBackupScheduleAttributeType = *string
+
+func getPartialUpdateInstancePayloadGetBackupScheduleAttributeTypeOk(arg PartialUpdateInstancePayloadGetBackupScheduleAttributeType) (ret PartialUpdateInstancePayloadGetBackupScheduleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetBackupScheduleAttributeType(arg *PartialUpdateInstancePayloadGetBackupScheduleAttributeType, val PartialUpdateInstancePayloadGetBackupScheduleRetType) {
+	*arg = &val
+}
+
+type PartialUpdateInstancePayloadGetBackupScheduleArgType = string
+type PartialUpdateInstancePayloadGetBackupScheduleRetType = string
+
+/*
+	types and functions for flavorId
+*/
+
+// isNotNullableString
+type PartialUpdateInstancePayloadGetFlavorIdAttributeType = *string
+
+func getPartialUpdateInstancePayloadGetFlavorIdAttributeTypeOk(arg PartialUpdateInstancePayloadGetFlavorIdAttributeType) (ret PartialUpdateInstancePayloadGetFlavorIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetFlavorIdAttributeType(arg *PartialUpdateInstancePayloadGetFlavorIdAttributeType, val PartialUpdateInstancePayloadGetFlavorIdRetType) {
+	*arg = &val
+}
+
+type PartialUpdateInstancePayloadGetFlavorIdArgType = string
+type PartialUpdateInstancePayloadGetFlavorIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+type PartialUpdateInstancePayloadGetLabelsAttributeType = *map[string]string
+type PartialUpdateInstancePayloadGetLabelsArgType = map[string]string
+type PartialUpdateInstancePayloadGetLabelsRetType = map[string]string
+
+func getPartialUpdateInstancePayloadGetLabelsAttributeTypeOk(arg PartialUpdateInstancePayloadGetLabelsAttributeType) (ret PartialUpdateInstancePayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetLabelsAttributeType(arg *PartialUpdateInstancePayloadGetLabelsAttributeType, val PartialUpdateInstancePayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type PartialUpdateInstancePayloadGetNameAttributeType = *string
+
+func getPartialUpdateInstancePayloadGetNameAttributeTypeOk(arg PartialUpdateInstancePayloadGetNameAttributeType) (ret PartialUpdateInstancePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetNameAttributeType(arg *PartialUpdateInstancePayloadGetNameAttributeType, val PartialUpdateInstancePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type PartialUpdateInstancePayloadGetNameArgType = string
+type PartialUpdateInstancePayloadGetNameRetType = string
+
+/*
+	types and functions for options
+*/
+
+// isContainer
+type PartialUpdateInstancePayloadGetOptionsAttributeType = *map[string]string
+type PartialUpdateInstancePayloadGetOptionsArgType = map[string]string
+type PartialUpdateInstancePayloadGetOptionsRetType = map[string]string
+
+func getPartialUpdateInstancePayloadGetOptionsAttributeTypeOk(arg PartialUpdateInstancePayloadGetOptionsAttributeType) (ret PartialUpdateInstancePayloadGetOptionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetOptionsAttributeType(arg *PartialUpdateInstancePayloadGetOptionsAttributeType, val PartialUpdateInstancePayloadGetOptionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for replicas
+*/
+
+// isInteger
+type PartialUpdateInstancePayloadGetReplicasAttributeType = *int64
+type PartialUpdateInstancePayloadGetReplicasArgType = int64
+type PartialUpdateInstancePayloadGetReplicasRetType = int64
+
+func getPartialUpdateInstancePayloadGetReplicasAttributeTypeOk(arg PartialUpdateInstancePayloadGetReplicasAttributeType) (ret PartialUpdateInstancePayloadGetReplicasRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetReplicasAttributeType(arg *PartialUpdateInstancePayloadGetReplicasAttributeType, val PartialUpdateInstancePayloadGetReplicasRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for storage
+*/
+
+// isModel
+type PartialUpdateInstancePayloadGetStorageAttributeType = *Storage
+type PartialUpdateInstancePayloadGetStorageArgType = Storage
+type PartialUpdateInstancePayloadGetStorageRetType = Storage
+
+func getPartialUpdateInstancePayloadGetStorageAttributeTypeOk(arg PartialUpdateInstancePayloadGetStorageAttributeType) (ret PartialUpdateInstancePayloadGetStorageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetStorageAttributeType(arg *PartialUpdateInstancePayloadGetStorageAttributeType, val PartialUpdateInstancePayloadGetStorageRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for version
+*/
+
+// isNotNullableString
+type PartialUpdateInstancePayloadGetVersionAttributeType = *string
+
+func getPartialUpdateInstancePayloadGetVersionAttributeTypeOk(arg PartialUpdateInstancePayloadGetVersionAttributeType) (ret PartialUpdateInstancePayloadGetVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetVersionAttributeType(arg *PartialUpdateInstancePayloadGetVersionAttributeType, val PartialUpdateInstancePayloadGetVersionRetType) {
+	*arg = &val
+}
+
+type PartialUpdateInstancePayloadGetVersionArgType = string
+type PartialUpdateInstancePayloadGetVersionRetType = string
+
 // PartialUpdateInstancePayload struct for PartialUpdateInstancePayload
 type PartialUpdateInstancePayload struct {
-	Acl            *ACL    `json:"acl,omitempty"`
-	BackupSchedule *string `json:"backupSchedule,omitempty"`
-	FlavorId       *string `json:"flavorId,omitempty"`
+	Acl            PartialUpdateInstancePayloadGetAclAttributeType            `json:"acl,omitempty"`
+	BackupSchedule PartialUpdateInstancePayloadGetBackupScheduleAttributeType `json:"backupSchedule,omitempty"`
+	FlavorId       PartialUpdateInstancePayloadGetFlavorIdAttributeType       `json:"flavorId,omitempty"`
 	// Labels field is not certain/clear
-	Labels  *map[string]string `json:"labels,omitempty"`
-	Name    *string            `json:"name,omitempty"`
-	Options *map[string]string `json:"options,omitempty"`
+	Labels  PartialUpdateInstancePayloadGetLabelsAttributeType  `json:"labels,omitempty"`
+	Name    PartialUpdateInstancePayloadGetNameAttributeType    `json:"name,omitempty"`
+	Options PartialUpdateInstancePayloadGetOptionsAttributeType `json:"options,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	Replicas *int64   `json:"replicas,omitempty"`
-	Storage  *Storage `json:"storage,omitempty"`
-	Version  *string  `json:"version,omitempty"`
+	Replicas PartialUpdateInstancePayloadGetReplicasAttributeType `json:"replicas,omitempty"`
+	Storage  PartialUpdateInstancePayloadGetStorageAttributeType  `json:"storage,omitempty"`
+	Version  PartialUpdateInstancePayloadGetVersionAttributeType  `json:"version,omitempty"`
 }
 
 // NewPartialUpdateInstancePayload instantiates a new PartialUpdateInstancePayload object
@@ -50,321 +234,240 @@ func NewPartialUpdateInstancePayloadWithDefaults() *PartialUpdateInstancePayload
 }
 
 // GetAcl returns the Acl field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetAcl() *ACL {
-	if o == nil || IsNil(o.Acl) {
-		var ret *ACL
-		return ret
-	}
-	return o.Acl
+func (o *PartialUpdateInstancePayload) GetAcl() (res PartialUpdateInstancePayloadGetAclRetType) {
+	res, _ = o.GetAclOk()
+	return
 }
 
 // GetAclOk returns a tuple with the Acl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetAclOk() (*ACL, bool) {
-	if o == nil || IsNil(o.Acl) {
-		return nil, false
-	}
-	return o.Acl, true
+func (o *PartialUpdateInstancePayload) GetAclOk() (ret PartialUpdateInstancePayloadGetAclRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetAclAttributeTypeOk(o.Acl)
 }
 
 // HasAcl returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAclOk()
+	return ok
 }
 
 // SetAcl gets a reference to the given ACL and assigns it to the Acl field.
-func (o *PartialUpdateInstancePayload) SetAcl(v *ACL) {
-	o.Acl = v
+func (o *PartialUpdateInstancePayload) SetAcl(v PartialUpdateInstancePayloadGetAclRetType) {
+	setPartialUpdateInstancePayloadGetAclAttributeType(&o.Acl, v)
 }
 
 // GetBackupSchedule returns the BackupSchedule field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetBackupSchedule() *string {
-	if o == nil || IsNil(o.BackupSchedule) {
-		var ret *string
-		return ret
-	}
-	return o.BackupSchedule
+func (o *PartialUpdateInstancePayload) GetBackupSchedule() (res PartialUpdateInstancePayloadGetBackupScheduleRetType) {
+	res, _ = o.GetBackupScheduleOk()
+	return
 }
 
 // GetBackupScheduleOk returns a tuple with the BackupSchedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetBackupScheduleOk() (*string, bool) {
-	if o == nil || IsNil(o.BackupSchedule) {
-		return nil, false
-	}
-	return o.BackupSchedule, true
+func (o *PartialUpdateInstancePayload) GetBackupScheduleOk() (ret PartialUpdateInstancePayloadGetBackupScheduleRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule)
 }
 
 // HasBackupSchedule returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasBackupSchedule() bool {
-	if o != nil && !IsNil(o.BackupSchedule) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBackupScheduleOk()
+	return ok
 }
 
 // SetBackupSchedule gets a reference to the given string and assigns it to the BackupSchedule field.
-func (o *PartialUpdateInstancePayload) SetBackupSchedule(v *string) {
-	o.BackupSchedule = v
+func (o *PartialUpdateInstancePayload) SetBackupSchedule(v PartialUpdateInstancePayloadGetBackupScheduleRetType) {
+	setPartialUpdateInstancePayloadGetBackupScheduleAttributeType(&o.BackupSchedule, v)
 }
 
 // GetFlavorId returns the FlavorId field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetFlavorId() *string {
-	if o == nil || IsNil(o.FlavorId) {
-		var ret *string
-		return ret
-	}
-	return o.FlavorId
+func (o *PartialUpdateInstancePayload) GetFlavorId() (res PartialUpdateInstancePayloadGetFlavorIdRetType) {
+	res, _ = o.GetFlavorIdOk()
+	return
 }
 
 // GetFlavorIdOk returns a tuple with the FlavorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetFlavorIdOk() (*string, bool) {
-	if o == nil || IsNil(o.FlavorId) {
-		return nil, false
-	}
-	return o.FlavorId, true
+func (o *PartialUpdateInstancePayload) GetFlavorIdOk() (ret PartialUpdateInstancePayloadGetFlavorIdRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetFlavorIdAttributeTypeOk(o.FlavorId)
 }
 
 // HasFlavorId returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasFlavorId() bool {
-	if o != nil && !IsNil(o.FlavorId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFlavorIdOk()
+	return ok
 }
 
 // SetFlavorId gets a reference to the given string and assigns it to the FlavorId field.
-func (o *PartialUpdateInstancePayload) SetFlavorId(v *string) {
-	o.FlavorId = v
+func (o *PartialUpdateInstancePayload) SetFlavorId(v PartialUpdateInstancePayloadGetFlavorIdRetType) {
+	setPartialUpdateInstancePayloadGetFlavorIdAttributeType(&o.FlavorId, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetLabels() *map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Labels
+func (o *PartialUpdateInstancePayload) GetLabels() (res PartialUpdateInstancePayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *PartialUpdateInstancePayload) GetLabelsOk() (ret PartialUpdateInstancePayloadGetLabelsRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *PartialUpdateInstancePayload) SetLabels(v *map[string]string) {
-	o.Labels = v
+func (o *PartialUpdateInstancePayload) SetLabels(v PartialUpdateInstancePayloadGetLabelsRetType) {
+	setPartialUpdateInstancePayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *PartialUpdateInstancePayload) GetName() (res PartialUpdateInstancePayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *PartialUpdateInstancePayload) GetNameOk() (ret PartialUpdateInstancePayloadGetNameRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PartialUpdateInstancePayload) SetName(v *string) {
-	o.Name = v
+func (o *PartialUpdateInstancePayload) SetName(v PartialUpdateInstancePayloadGetNameRetType) {
+	setPartialUpdateInstancePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetOptions() *map[string]string {
-	if o == nil || IsNil(o.Options) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Options
+func (o *PartialUpdateInstancePayload) GetOptions() (res PartialUpdateInstancePayloadGetOptionsRetType) {
+	res, _ = o.GetOptionsOk()
+	return
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetOptionsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Options) {
-		return nil, false
-	}
-	return o.Options, true
+func (o *PartialUpdateInstancePayload) GetOptionsOk() (ret PartialUpdateInstancePayloadGetOptionsRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOptionsOk()
+	return ok
 }
 
 // SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
-func (o *PartialUpdateInstancePayload) SetOptions(v *map[string]string) {
-	o.Options = v
+func (o *PartialUpdateInstancePayload) SetOptions(v PartialUpdateInstancePayloadGetOptionsRetType) {
+	setPartialUpdateInstancePayloadGetOptionsAttributeType(&o.Options, v)
 }
 
 // GetReplicas returns the Replicas field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetReplicas() *int64 {
-	if o == nil || IsNil(o.Replicas) {
-		var ret *int64
-		return ret
-	}
-	return o.Replicas
+func (o *PartialUpdateInstancePayload) GetReplicas() (res PartialUpdateInstancePayloadGetReplicasRetType) {
+	res, _ = o.GetReplicasOk()
+	return
 }
 
 // GetReplicasOk returns a tuple with the Replicas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetReplicasOk() (*int64, bool) {
-	if o == nil || IsNil(o.Replicas) {
-		return nil, false
-	}
-	return o.Replicas, true
+func (o *PartialUpdateInstancePayload) GetReplicasOk() (ret PartialUpdateInstancePayloadGetReplicasRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetReplicasAttributeTypeOk(o.Replicas)
 }
 
 // HasReplicas returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasReplicas() bool {
-	if o != nil && !IsNil(o.Replicas) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetReplicasOk()
+	return ok
 }
 
 // SetReplicas gets a reference to the given int64 and assigns it to the Replicas field.
-func (o *PartialUpdateInstancePayload) SetReplicas(v *int64) {
-	o.Replicas = v
+func (o *PartialUpdateInstancePayload) SetReplicas(v PartialUpdateInstancePayloadGetReplicasRetType) {
+	setPartialUpdateInstancePayloadGetReplicasAttributeType(&o.Replicas, v)
 }
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetStorage() *Storage {
-	if o == nil || IsNil(o.Storage) {
-		var ret *Storage
-		return ret
-	}
-	return o.Storage
+func (o *PartialUpdateInstancePayload) GetStorage() (res PartialUpdateInstancePayloadGetStorageRetType) {
+	res, _ = o.GetStorageOk()
+	return
 }
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetStorageOk() (*Storage, bool) {
-	if o == nil || IsNil(o.Storage) {
-		return nil, false
-	}
-	return o.Storage, true
+func (o *PartialUpdateInstancePayload) GetStorageOk() (ret PartialUpdateInstancePayloadGetStorageRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetStorageAttributeTypeOk(o.Storage)
 }
 
 // HasStorage returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasStorage() bool {
-	if o != nil && !IsNil(o.Storage) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStorageOk()
+	return ok
 }
 
 // SetStorage gets a reference to the given Storage and assigns it to the Storage field.
-func (o *PartialUpdateInstancePayload) SetStorage(v *Storage) {
-	o.Storage = v
+func (o *PartialUpdateInstancePayload) SetStorage(v PartialUpdateInstancePayloadGetStorageRetType) {
+	setPartialUpdateInstancePayloadGetStorageAttributeType(&o.Storage, v)
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetVersion() *string {
-	if o == nil || IsNil(o.Version) {
-		var ret *string
-		return ret
-	}
-	return o.Version
+func (o *PartialUpdateInstancePayload) GetVersion() (res PartialUpdateInstancePayloadGetVersionRetType) {
+	res, _ = o.GetVersionOk()
+	return
 }
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.Version) {
-		return nil, false
-	}
-	return o.Version, true
+func (o *PartialUpdateInstancePayload) GetVersionOk() (ret PartialUpdateInstancePayloadGetVersionRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetVersionAttributeTypeOk(o.Version)
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVersionOk()
+	return ok
 }
 
 // SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *PartialUpdateInstancePayload) SetVersion(v *string) {
-	o.Version = v
+func (o *PartialUpdateInstancePayload) SetVersion(v PartialUpdateInstancePayloadGetVersionRetType) {
+	setPartialUpdateInstancePayloadGetVersionAttributeType(&o.Version, v)
 }
 
 func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Acl) {
-		toSerialize["acl"] = o.Acl
+	if val, ok := getPartialUpdateInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {
+		toSerialize["Acl"] = val
 	}
-	if !IsNil(o.BackupSchedule) {
-		toSerialize["backupSchedule"] = o.BackupSchedule
+	if val, ok := getPartialUpdateInstancePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule); ok {
+		toSerialize["BackupSchedule"] = val
 	}
-	if !IsNil(o.FlavorId) {
-		toSerialize["flavorId"] = o.FlavorId
+	if val, ok := getPartialUpdateInstancePayloadGetFlavorIdAttributeTypeOk(o.FlavorId); ok {
+		toSerialize["FlavorId"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getPartialUpdateInstancePayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getPartialUpdateInstancePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
+	if val, ok := getPartialUpdateInstancePayloadGetOptionsAttributeTypeOk(o.Options); ok {
+		toSerialize["Options"] = val
 	}
-	if !IsNil(o.Replicas) {
-		toSerialize["replicas"] = o.Replicas
+	if val, ok := getPartialUpdateInstancePayloadGetReplicasAttributeTypeOk(o.Replicas); ok {
+		toSerialize["Replicas"] = val
 	}
-	if !IsNil(o.Storage) {
-		toSerialize["storage"] = o.Storage
+	if val, ok := getPartialUpdateInstancePayloadGetStorageAttributeTypeOk(o.Storage); ok {
+		toSerialize["Storage"] = val
 	}
-	if !IsNil(o.Version) {
-		toSerialize["version"] = o.Version
+	if val, ok := getPartialUpdateInstancePayloadGetVersionAttributeTypeOk(o.Version); ok {
+		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
 }

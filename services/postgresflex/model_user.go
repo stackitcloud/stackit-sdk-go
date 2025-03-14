@@ -17,16 +17,182 @@ import (
 // checks if the User type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &User{}
 
+/*
+	types and functions for database
+*/
+
+// isNotNullableString
+type UserGetDatabaseAttributeType = *string
+
+func getUserGetDatabaseAttributeTypeOk(arg UserGetDatabaseAttributeType) (ret UserGetDatabaseRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserGetDatabaseAttributeType(arg *UserGetDatabaseAttributeType, val UserGetDatabaseRetType) {
+	*arg = &val
+}
+
+type UserGetDatabaseArgType = string
+type UserGetDatabaseRetType = string
+
+/*
+	types and functions for host
+*/
+
+// isNotNullableString
+type UserGetHostAttributeType = *string
+
+func getUserGetHostAttributeTypeOk(arg UserGetHostAttributeType) (ret UserGetHostRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserGetHostAttributeType(arg *UserGetHostAttributeType, val UserGetHostRetType) {
+	*arg = &val
+}
+
+type UserGetHostArgType = string
+type UserGetHostRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type UserGetIdAttributeType = *string
+
+func getUserGetIdAttributeTypeOk(arg UserGetIdAttributeType) (ret UserGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserGetIdAttributeType(arg *UserGetIdAttributeType, val UserGetIdRetType) {
+	*arg = &val
+}
+
+type UserGetIdArgType = string
+type UserGetIdRetType = string
+
+/*
+	types and functions for password
+*/
+
+// isNotNullableString
+type UserGetPasswordAttributeType = *string
+
+func getUserGetPasswordAttributeTypeOk(arg UserGetPasswordAttributeType) (ret UserGetPasswordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserGetPasswordAttributeType(arg *UserGetPasswordAttributeType, val UserGetPasswordRetType) {
+	*arg = &val
+}
+
+type UserGetPasswordArgType = string
+type UserGetPasswordRetType = string
+
+/*
+	types and functions for port
+*/
+
+// isLong
+type UserGetPortAttributeType = *int64
+type UserGetPortArgType = int64
+type UserGetPortRetType = int64
+
+func getUserGetPortAttributeTypeOk(arg UserGetPortAttributeType) (ret UserGetPortRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserGetPortAttributeType(arg *UserGetPortAttributeType, val UserGetPortRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for roles
+*/
+
+// isArray
+type UserGetRolesAttributeType = *[]string
+type UserGetRolesArgType = []string
+type UserGetRolesRetType = []string
+
+func getUserGetRolesAttributeTypeOk(arg UserGetRolesAttributeType) (ret UserGetRolesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserGetRolesAttributeType(arg *UserGetRolesAttributeType, val UserGetRolesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for uri
+*/
+
+// isNotNullableString
+type UserGetUriAttributeType = *string
+
+func getUserGetUriAttributeTypeOk(arg UserGetUriAttributeType) (ret UserGetUriRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserGetUriAttributeType(arg *UserGetUriAttributeType, val UserGetUriRetType) {
+	*arg = &val
+}
+
+type UserGetUriArgType = string
+type UserGetUriRetType = string
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type UserGetUsernameAttributeType = *string
+
+func getUserGetUsernameAttributeTypeOk(arg UserGetUsernameAttributeType) (ret UserGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserGetUsernameAttributeType(arg *UserGetUsernameAttributeType, val UserGetUsernameRetType) {
+	*arg = &val
+}
+
+type UserGetUsernameArgType = string
+type UserGetUsernameRetType = string
+
 // User struct for User
 type User struct {
-	Database *string   `json:"database,omitempty"`
-	Host     *string   `json:"host,omitempty"`
-	Id       *string   `json:"id,omitempty"`
-	Password *string   `json:"password,omitempty"`
-	Port     *int64    `json:"port,omitempty"`
-	Roles    *[]string `json:"roles,omitempty"`
-	Uri      *string   `json:"uri,omitempty"`
-	Username *string   `json:"username,omitempty"`
+	Database UserGetDatabaseAttributeType `json:"database,omitempty"`
+	Host     UserGetHostAttributeType     `json:"host,omitempty"`
+	Id       UserGetIdAttributeType       `json:"id,omitempty"`
+	Password UserGetPasswordAttributeType `json:"password,omitempty"`
+	Port     UserGetPortAttributeType     `json:"port,omitempty"`
+	Roles    UserGetRolesAttributeType    `json:"roles,omitempty"`
+	Uri      UserGetUriAttributeType      `json:"uri,omitempty"`
+	Username UserGetUsernameAttributeType `json:"username,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -47,286 +213,214 @@ func NewUserWithDefaults() *User {
 }
 
 // GetDatabase returns the Database field value if set, zero value otherwise.
-func (o *User) GetDatabase() *string {
-	if o == nil || IsNil(o.Database) {
-		var ret *string
-		return ret
-	}
-	return o.Database
+func (o *User) GetDatabase() (res UserGetDatabaseRetType) {
+	res, _ = o.GetDatabaseOk()
+	return
 }
 
 // GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetDatabaseOk() (*string, bool) {
-	if o == nil || IsNil(o.Database) {
-		return nil, false
-	}
-	return o.Database, true
+func (o *User) GetDatabaseOk() (ret UserGetDatabaseRetType, ok bool) {
+	return getUserGetDatabaseAttributeTypeOk(o.Database)
 }
 
 // HasDatabase returns a boolean if a field has been set.
 func (o *User) HasDatabase() bool {
-	if o != nil && !IsNil(o.Database) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDatabaseOk()
+	return ok
 }
 
 // SetDatabase gets a reference to the given string and assigns it to the Database field.
-func (o *User) SetDatabase(v *string) {
-	o.Database = v
+func (o *User) SetDatabase(v UserGetDatabaseRetType) {
+	setUserGetDatabaseAttributeType(&o.Database, v)
 }
 
 // GetHost returns the Host field value if set, zero value otherwise.
-func (o *User) GetHost() *string {
-	if o == nil || IsNil(o.Host) {
-		var ret *string
-		return ret
-	}
-	return o.Host
+func (o *User) GetHost() (res UserGetHostRetType) {
+	res, _ = o.GetHostOk()
+	return
 }
 
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetHostOk() (*string, bool) {
-	if o == nil || IsNil(o.Host) {
-		return nil, false
-	}
-	return o.Host, true
+func (o *User) GetHostOk() (ret UserGetHostRetType, ok bool) {
+	return getUserGetHostAttributeTypeOk(o.Host)
 }
 
 // HasHost returns a boolean if a field has been set.
 func (o *User) HasHost() bool {
-	if o != nil && !IsNil(o.Host) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHostOk()
+	return ok
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
-func (o *User) SetHost(v *string) {
-	o.Host = v
+func (o *User) SetHost(v UserGetHostRetType) {
+	setUserGetHostAttributeType(&o.Host, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *User) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *User) GetId() (res UserGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *User) GetIdOk() (ret UserGetIdRetType, ok bool) {
+	return getUserGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *User) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *User) SetId(v *string) {
-	o.Id = v
+func (o *User) SetId(v UserGetIdRetType) {
+	setUserGetIdAttributeType(&o.Id, v)
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
-func (o *User) GetPassword() *string {
-	if o == nil || IsNil(o.Password) {
-		var ret *string
-		return ret
-	}
-	return o.Password
+func (o *User) GetPassword() (res UserGetPasswordRetType) {
+	res, _ = o.GetPasswordOk()
+	return
 }
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.Password) {
-		return nil, false
-	}
-	return o.Password, true
+func (o *User) GetPasswordOk() (ret UserGetPasswordRetType, ok bool) {
+	return getUserGetPasswordAttributeTypeOk(o.Password)
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *User) HasPassword() bool {
-	if o != nil && !IsNil(o.Password) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPasswordOk()
+	return ok
 }
 
 // SetPassword gets a reference to the given string and assigns it to the Password field.
-func (o *User) SetPassword(v *string) {
-	o.Password = v
+func (o *User) SetPassword(v UserGetPasswordRetType) {
+	setUserGetPasswordAttributeType(&o.Password, v)
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *User) GetPort() *int64 {
-	if o == nil || IsNil(o.Port) {
-		var ret *int64
-		return ret
-	}
-	return o.Port
+func (o *User) GetPort() (res UserGetPortRetType) {
+	res, _ = o.GetPortOk()
+	return
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetPortOk() (*int64, bool) {
-	if o == nil || IsNil(o.Port) {
-		return nil, false
-	}
-	return o.Port, true
+func (o *User) GetPortOk() (ret UserGetPortRetType, ok bool) {
+	return getUserGetPortAttributeTypeOk(o.Port)
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *User) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPortOk()
+	return ok
 }
 
 // SetPort gets a reference to the given int64 and assigns it to the Port field.
-func (o *User) SetPort(v *int64) {
-	o.Port = v
+func (o *User) SetPort(v UserGetPortRetType) {
+	setUserGetPortAttributeType(&o.Port, v)
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *User) GetRoles() *[]string {
-	if o == nil || IsNil(o.Roles) {
-		var ret *[]string
-		return ret
-	}
-	return o.Roles
+func (o *User) GetRoles() (res UserGetRolesRetType) {
+	res, _ = o.GetRolesOk()
+	return
 }
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetRolesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Roles) {
-		return nil, false
-	}
-	return o.Roles, true
+func (o *User) GetRolesOk() (ret UserGetRolesRetType, ok bool) {
+	return getUserGetRolesAttributeTypeOk(o.Roles)
 }
 
 // HasRoles returns a boolean if a field has been set.
 func (o *User) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRolesOk()
+	return ok
 }
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *User) SetRoles(v *[]string) {
-	o.Roles = v
+func (o *User) SetRoles(v UserGetRolesRetType) {
+	setUserGetRolesAttributeType(&o.Roles, v)
 }
 
 // GetUri returns the Uri field value if set, zero value otherwise.
-func (o *User) GetUri() *string {
-	if o == nil || IsNil(o.Uri) {
-		var ret *string
-		return ret
-	}
-	return o.Uri
+func (o *User) GetUri() (res UserGetUriRetType) {
+	res, _ = o.GetUriOk()
+	return
 }
 
 // GetUriOk returns a tuple with the Uri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetUriOk() (*string, bool) {
-	if o == nil || IsNil(o.Uri) {
-		return nil, false
-	}
-	return o.Uri, true
+func (o *User) GetUriOk() (ret UserGetUriRetType, ok bool) {
+	return getUserGetUriAttributeTypeOk(o.Uri)
 }
 
 // HasUri returns a boolean if a field has been set.
 func (o *User) HasUri() bool {
-	if o != nil && !IsNil(o.Uri) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUriOk()
+	return ok
 }
 
 // SetUri gets a reference to the given string and assigns it to the Uri field.
-func (o *User) SetUri(v *string) {
-	o.Uri = v
+func (o *User) SetUri(v UserGetUriRetType) {
+	setUserGetUriAttributeType(&o.Uri, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *User) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-	return o.Username
+func (o *User) GetUsername() (res UserGetUsernameRetType) {
+	res, _ = o.GetUsernameOk()
+	return
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
+func (o *User) GetUsernameOk() (ret UserGetUsernameRetType, ok bool) {
+	return getUserGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *User) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUsernameOk()
+	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *User) SetUsername(v *string) {
-	o.Username = v
+func (o *User) SetUsername(v UserGetUsernameRetType) {
+	setUserGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o User) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Database) {
-		toSerialize["database"] = o.Database
+	if val, ok := getUserGetDatabaseAttributeTypeOk(o.Database); ok {
+		toSerialize["Database"] = val
 	}
-	if !IsNil(o.Host) {
-		toSerialize["host"] = o.Host
+	if val, ok := getUserGetHostAttributeTypeOk(o.Host); ok {
+		toSerialize["Host"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getUserGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Password) {
-		toSerialize["password"] = o.Password
+	if val, ok := getUserGetPasswordAttributeTypeOk(o.Password); ok {
+		toSerialize["Password"] = val
 	}
-	if !IsNil(o.Port) {
-		toSerialize["port"] = o.Port
+	if val, ok := getUserGetPortAttributeTypeOk(o.Port); ok {
+		toSerialize["Port"] = val
 	}
-	if !IsNil(o.Roles) {
-		toSerialize["roles"] = o.Roles
+	if val, ok := getUserGetRolesAttributeTypeOk(o.Roles); ok {
+		toSerialize["Roles"] = val
 	}
-	if !IsNil(o.Uri) {
-		toSerialize["uri"] = o.Uri
+	if val, ok := getUserGetUriAttributeTypeOk(o.Uri); ok {
+		toSerialize["Uri"] = val
 	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
+	if val, ok := getUserGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
 	}
 	return toSerialize, nil
 }

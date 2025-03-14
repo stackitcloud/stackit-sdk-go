@@ -17,9 +17,29 @@ import (
 // checks if the ApiExtensionDeleteResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ApiExtensionDeleteResponse{}
 
+/*
+	types and functions for isSucceded
+*/
+
+// isBoolean
+type ApiExtensionDeleteResponsegetIsSuccededAttributeType = *bool
+type ApiExtensionDeleteResponsegetIsSuccededArgType = bool
+type ApiExtensionDeleteResponsegetIsSuccededRetType = bool
+
+func getApiExtensionDeleteResponsegetIsSuccededAttributeTypeOk(arg ApiExtensionDeleteResponsegetIsSuccededAttributeType) (ret ApiExtensionDeleteResponsegetIsSuccededRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApiExtensionDeleteResponsegetIsSuccededAttributeType(arg *ApiExtensionDeleteResponsegetIsSuccededAttributeType, val ApiExtensionDeleteResponsegetIsSuccededRetType) {
+	*arg = &val
+}
+
 // ApiExtensionDeleteResponse struct for ApiExtensionDeleteResponse
 type ApiExtensionDeleteResponse struct {
-	IsSucceded *bool `json:"isSucceded,omitempty"`
+	IsSucceded ApiExtensionDeleteResponsegetIsSuccededAttributeType `json:"isSucceded,omitempty"`
 }
 
 // NewApiExtensionDeleteResponse instantiates a new ApiExtensionDeleteResponse object
@@ -40,41 +60,32 @@ func NewApiExtensionDeleteResponseWithDefaults() *ApiExtensionDeleteResponse {
 }
 
 // GetIsSucceded returns the IsSucceded field value if set, zero value otherwise.
-func (o *ApiExtensionDeleteResponse) GetIsSucceded() *bool {
-	if o == nil || IsNil(o.IsSucceded) {
-		var ret *bool
-		return ret
-	}
-	return o.IsSucceded
+func (o *ApiExtensionDeleteResponse) GetIsSucceded() (res ApiExtensionDeleteResponsegetIsSuccededRetType) {
+	res, _ = o.GetIsSuccededOk()
+	return
 }
 
 // GetIsSuccededOk returns a tuple with the IsSucceded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiExtensionDeleteResponse) GetIsSuccededOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsSucceded) {
-		return nil, false
-	}
-	return o.IsSucceded, true
+func (o *ApiExtensionDeleteResponse) GetIsSuccededOk() (ret ApiExtensionDeleteResponsegetIsSuccededRetType, ok bool) {
+	return getApiExtensionDeleteResponsegetIsSuccededAttributeTypeOk(o.IsSucceded)
 }
 
 // HasIsSucceded returns a boolean if a field has been set.
 func (o *ApiExtensionDeleteResponse) HasIsSucceded() bool {
-	if o != nil && !IsNil(o.IsSucceded) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIsSuccededOk()
+	return ok
 }
 
 // SetIsSucceded gets a reference to the given bool and assigns it to the IsSucceded field.
-func (o *ApiExtensionDeleteResponse) SetIsSucceded(v *bool) {
-	o.IsSucceded = v
+func (o *ApiExtensionDeleteResponse) SetIsSucceded(v ApiExtensionDeleteResponsegetIsSuccededRetType) {
+	setApiExtensionDeleteResponsegetIsSuccededAttributeType(&o.IsSucceded, v)
 }
 
 func (o ApiExtensionDeleteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.IsSucceded) {
-		toSerialize["isSucceded"] = o.IsSucceded
+	if val, ok := getApiExtensionDeleteResponsegetIsSuccededAttributeTypeOk(o.IsSucceded); ok {
+		toSerialize["IsSucceded"] = val
 	}
 	return toSerialize, nil
 }
