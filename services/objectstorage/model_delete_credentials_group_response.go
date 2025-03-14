@@ -17,14 +17,56 @@ import (
 // checks if the DeleteCredentialsGroupResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeleteCredentialsGroupResponse{}
 
+/*
+	types and functions for credentialsGroupId
+*/
+
+// isNotNullableString
+type DeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeType = *string
+
+func getDeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeTypeOk(arg DeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeType) (ret DeleteCredentialsGroupResponseGetCredentialsGroupIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeType(arg *DeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeType, val DeleteCredentialsGroupResponseGetCredentialsGroupIdRetType) {
+	*arg = &val
+}
+
+type DeleteCredentialsGroupResponseGetCredentialsGroupIdArgType = string
+type DeleteCredentialsGroupResponseGetCredentialsGroupIdRetType = string
+
+/*
+	types and functions for project
+*/
+
+// isNotNullableString
+type DeleteCredentialsGroupResponseGetProjectAttributeType = *string
+
+func getDeleteCredentialsGroupResponseGetProjectAttributeTypeOk(arg DeleteCredentialsGroupResponseGetProjectAttributeType) (ret DeleteCredentialsGroupResponseGetProjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDeleteCredentialsGroupResponseGetProjectAttributeType(arg *DeleteCredentialsGroupResponseGetProjectAttributeType, val DeleteCredentialsGroupResponseGetProjectRetType) {
+	*arg = &val
+}
+
+type DeleteCredentialsGroupResponseGetProjectArgType = string
+type DeleteCredentialsGroupResponseGetProjectRetType = string
+
 // DeleteCredentialsGroupResponse struct for DeleteCredentialsGroupResponse
 type DeleteCredentialsGroupResponse struct {
 	// The ID of the credentials group
 	// REQUIRED
-	CredentialsGroupId *string `json:"credentialsGroupId"`
+	CredentialsGroupId DeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeType `json:"credentialsGroupId"`
 	// Project ID
 	// REQUIRED
-	Project *string `json:"project"`
+	Project DeleteCredentialsGroupResponseGetProjectAttributeType `json:"project"`
 }
 
 type _DeleteCredentialsGroupResponse DeleteCredentialsGroupResponse
@@ -33,10 +75,10 @@ type _DeleteCredentialsGroupResponse DeleteCredentialsGroupResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeleteCredentialsGroupResponse(credentialsGroupId *string, project *string) *DeleteCredentialsGroupResponse {
+func NewDeleteCredentialsGroupResponse(credentialsGroupId DeleteCredentialsGroupResponseGetCredentialsGroupIdArgType, project DeleteCredentialsGroupResponseGetProjectArgType) *DeleteCredentialsGroupResponse {
 	this := DeleteCredentialsGroupResponse{}
-	this.CredentialsGroupId = credentialsGroupId
-	this.Project = project
+	setDeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeType(&this.CredentialsGroupId, credentialsGroupId)
+	setDeleteCredentialsGroupResponseGetProjectAttributeType(&this.Project, project)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewDeleteCredentialsGroupResponseWithDefaults() *DeleteCredentialsGroupResp
 }
 
 // GetCredentialsGroupId returns the CredentialsGroupId field value
-func (o *DeleteCredentialsGroupResponse) GetCredentialsGroupId() *string {
-	if o == nil || IsNil(o.CredentialsGroupId) {
-		var ret *string
-		return ret
-	}
-
-	return o.CredentialsGroupId
+func (o *DeleteCredentialsGroupResponse) GetCredentialsGroupId() (ret DeleteCredentialsGroupResponseGetCredentialsGroupIdRetType) {
+	ret, _ = o.GetCredentialsGroupIdOk()
+	return ret
 }
 
 // GetCredentialsGroupIdOk returns a tuple with the CredentialsGroupId field value
 // and a boolean to check if the value has been set.
-func (o *DeleteCredentialsGroupResponse) GetCredentialsGroupIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CredentialsGroupId, true
+func (o *DeleteCredentialsGroupResponse) GetCredentialsGroupIdOk() (ret DeleteCredentialsGroupResponseGetCredentialsGroupIdRetType, ok bool) {
+	return getDeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeTypeOk(o.CredentialsGroupId)
 }
 
 // SetCredentialsGroupId sets field value
-func (o *DeleteCredentialsGroupResponse) SetCredentialsGroupId(v *string) {
-	o.CredentialsGroupId = v
+func (o *DeleteCredentialsGroupResponse) SetCredentialsGroupId(v DeleteCredentialsGroupResponseGetCredentialsGroupIdRetType) {
+	setDeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeType(&o.CredentialsGroupId, v)
 }
 
 // GetProject returns the Project field value
-func (o *DeleteCredentialsGroupResponse) GetProject() *string {
-	if o == nil || IsNil(o.Project) {
-		var ret *string
-		return ret
-	}
-
-	return o.Project
+func (o *DeleteCredentialsGroupResponse) GetProject() (ret DeleteCredentialsGroupResponseGetProjectRetType) {
+	ret, _ = o.GetProjectOk()
+	return ret
 }
 
 // GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *DeleteCredentialsGroupResponse) GetProjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Project, true
+func (o *DeleteCredentialsGroupResponse) GetProjectOk() (ret DeleteCredentialsGroupResponseGetProjectRetType, ok bool) {
+	return getDeleteCredentialsGroupResponseGetProjectAttributeTypeOk(o.Project)
 }
 
 // SetProject sets field value
-func (o *DeleteCredentialsGroupResponse) SetProject(v *string) {
-	o.Project = v
+func (o *DeleteCredentialsGroupResponse) SetProject(v DeleteCredentialsGroupResponseGetProjectRetType) {
+	setDeleteCredentialsGroupResponseGetProjectAttributeType(&o.Project, v)
 }
 
 func (o DeleteCredentialsGroupResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["credentialsGroupId"] = o.CredentialsGroupId
-	toSerialize["project"] = o.Project
+	if val, ok := getDeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeTypeOk(o.CredentialsGroupId); ok {
+		toSerialize["CredentialsGroupId"] = val
+	}
+	if val, ok := getDeleteCredentialsGroupResponseGetProjectAttributeTypeOk(o.Project); ok {
+		toSerialize["Project"] = val
+	}
 	return toSerialize, nil
 }
 

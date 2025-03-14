@@ -17,15 +17,78 @@ import (
 // checks if the AccessKey type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AccessKey{}
 
+/*
+	types and functions for displayName
+*/
+
+// isNotNullableString
+type AccessKeyGetDisplayNameAttributeType = *string
+
+func getAccessKeyGetDisplayNameAttributeTypeOk(arg AccessKeyGetDisplayNameAttributeType) (ret AccessKeyGetDisplayNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessKeyGetDisplayNameAttributeType(arg *AccessKeyGetDisplayNameAttributeType, val AccessKeyGetDisplayNameRetType) {
+	*arg = &val
+}
+
+type AccessKeyGetDisplayNameArgType = string
+type AccessKeyGetDisplayNameRetType = string
+
+/*
+	types and functions for expires
+*/
+
+// isNotNullableString
+type AccessKeyGetExpiresAttributeType = *string
+
+func getAccessKeyGetExpiresAttributeTypeOk(arg AccessKeyGetExpiresAttributeType) (ret AccessKeyGetExpiresRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessKeyGetExpiresAttributeType(arg *AccessKeyGetExpiresAttributeType, val AccessKeyGetExpiresRetType) {
+	*arg = &val
+}
+
+type AccessKeyGetExpiresArgType = string
+type AccessKeyGetExpiresRetType = string
+
+/*
+	types and functions for keyId
+*/
+
+// isNotNullableString
+type AccessKeyGetKeyIdAttributeType = *string
+
+func getAccessKeyGetKeyIdAttributeTypeOk(arg AccessKeyGetKeyIdAttributeType) (ret AccessKeyGetKeyIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessKeyGetKeyIdAttributeType(arg *AccessKeyGetKeyIdAttributeType, val AccessKeyGetKeyIdRetType) {
+	*arg = &val
+}
+
+type AccessKeyGetKeyIdArgType = string
+type AccessKeyGetKeyIdRetType = string
+
 // AccessKey struct for AccessKey
 type AccessKey struct {
 	// REQUIRED
-	DisplayName *string `json:"displayName"`
+	DisplayName AccessKeyGetDisplayNameAttributeType `json:"displayName"`
 	// REQUIRED
-	Expires *string `json:"expires"`
+	Expires AccessKeyGetExpiresAttributeType `json:"expires"`
 	// Identifies the pair of access key and secret access key for deletion
 	// REQUIRED
-	KeyId *string `json:"keyId"`
+	KeyId AccessKeyGetKeyIdAttributeType `json:"keyId"`
 }
 
 type _AccessKey AccessKey
@@ -34,11 +97,11 @@ type _AccessKey AccessKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccessKey(displayName *string, expires *string, keyId *string) *AccessKey {
+func NewAccessKey(displayName AccessKeyGetDisplayNameArgType, expires AccessKeyGetExpiresArgType, keyId AccessKeyGetKeyIdArgType) *AccessKey {
 	this := AccessKey{}
-	this.DisplayName = displayName
-	this.Expires = expires
-	this.KeyId = keyId
+	setAccessKeyGetDisplayNameAttributeType(&this.DisplayName, displayName)
+	setAccessKeyGetExpiresAttributeType(&this.Expires, expires)
+	setAccessKeyGetKeyIdAttributeType(&this.KeyId, keyId)
 	return &this
 }
 
@@ -51,82 +114,67 @@ func NewAccessKeyWithDefaults() *AccessKey {
 }
 
 // GetDisplayName returns the DisplayName field value
-func (o *AccessKey) GetDisplayName() *string {
-	if o == nil || IsNil(o.DisplayName) {
-		var ret *string
-		return ret
-	}
-
-	return o.DisplayName
+func (o *AccessKey) GetDisplayName() (ret AccessKeyGetDisplayNameRetType) {
+	ret, _ = o.GetDisplayNameOk()
+	return ret
 }
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value
 // and a boolean to check if the value has been set.
-func (o *AccessKey) GetDisplayNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DisplayName, true
+func (o *AccessKey) GetDisplayNameOk() (ret AccessKeyGetDisplayNameRetType, ok bool) {
+	return getAccessKeyGetDisplayNameAttributeTypeOk(o.DisplayName)
 }
 
 // SetDisplayName sets field value
-func (o *AccessKey) SetDisplayName(v *string) {
-	o.DisplayName = v
+func (o *AccessKey) SetDisplayName(v AccessKeyGetDisplayNameRetType) {
+	setAccessKeyGetDisplayNameAttributeType(&o.DisplayName, v)
 }
 
 // GetExpires returns the Expires field value
-func (o *AccessKey) GetExpires() *string {
-	if o == nil || IsNil(o.Expires) {
-		var ret *string
-		return ret
-	}
-
-	return o.Expires
+func (o *AccessKey) GetExpires() (ret AccessKeyGetExpiresRetType) {
+	ret, _ = o.GetExpiresOk()
+	return ret
 }
 
 // GetExpiresOk returns a tuple with the Expires field value
 // and a boolean to check if the value has been set.
-func (o *AccessKey) GetExpiresOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Expires, true
+func (o *AccessKey) GetExpiresOk() (ret AccessKeyGetExpiresRetType, ok bool) {
+	return getAccessKeyGetExpiresAttributeTypeOk(o.Expires)
 }
 
 // SetExpires sets field value
-func (o *AccessKey) SetExpires(v *string) {
-	o.Expires = v
+func (o *AccessKey) SetExpires(v AccessKeyGetExpiresRetType) {
+	setAccessKeyGetExpiresAttributeType(&o.Expires, v)
 }
 
 // GetKeyId returns the KeyId field value
-func (o *AccessKey) GetKeyId() *string {
-	if o == nil || IsNil(o.KeyId) {
-		var ret *string
-		return ret
-	}
-
-	return o.KeyId
+func (o *AccessKey) GetKeyId() (ret AccessKeyGetKeyIdRetType) {
+	ret, _ = o.GetKeyIdOk()
+	return ret
 }
 
 // GetKeyIdOk returns a tuple with the KeyId field value
 // and a boolean to check if the value has been set.
-func (o *AccessKey) GetKeyIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyId, true
+func (o *AccessKey) GetKeyIdOk() (ret AccessKeyGetKeyIdRetType, ok bool) {
+	return getAccessKeyGetKeyIdAttributeTypeOk(o.KeyId)
 }
 
 // SetKeyId sets field value
-func (o *AccessKey) SetKeyId(v *string) {
-	o.KeyId = v
+func (o *AccessKey) SetKeyId(v AccessKeyGetKeyIdRetType) {
+	setAccessKeyGetKeyIdAttributeType(&o.KeyId, v)
 }
 
 func (o AccessKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["displayName"] = o.DisplayName
-	toSerialize["expires"] = o.Expires
-	toSerialize["keyId"] = o.KeyId
+	if val, ok := getAccessKeyGetDisplayNameAttributeTypeOk(o.DisplayName); ok {
+		toSerialize["DisplayName"] = val
+	}
+	if val, ok := getAccessKeyGetExpiresAttributeTypeOk(o.Expires); ok {
+		toSerialize["Expires"] = val
+	}
+	if val, ok := getAccessKeyGetKeyIdAttributeTypeOk(o.KeyId); ok {
+		toSerialize["KeyId"] = val
+	}
 	return toSerialize, nil
 }
 
