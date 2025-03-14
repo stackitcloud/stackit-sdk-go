@@ -17,13 +17,94 @@ import (
 // checks if the CloudService type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CloudService{}
 
+/*
+	types and functions for dependencies
+*/
+
+// isModel
+type CloudServiceGetDependenciesAttributeType = *Dependencies
+type CloudServiceGetDependenciesArgType = Dependencies
+type CloudServiceGetDependenciesRetType = Dependencies
+
+func getCloudServiceGetDependenciesAttributeTypeOk(arg CloudServiceGetDependenciesAttributeType) (ret CloudServiceGetDependenciesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloudServiceGetDependenciesAttributeType(arg *CloudServiceGetDependenciesAttributeType, val CloudServiceGetDependenciesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+type CloudServiceGetLabelsAttributeType = *map[string]string
+type CloudServiceGetLabelsArgType = map[string]string
+type CloudServiceGetLabelsRetType = map[string]string
+
+func getCloudServiceGetLabelsAttributeTypeOk(arg CloudServiceGetLabelsAttributeType) (ret CloudServiceGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloudServiceGetLabelsAttributeType(arg *CloudServiceGetLabelsAttributeType, val CloudServiceGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for scope
+*/
+
+// isEnumRef
+type CloudServiceGetScopeAttributeType = *string
+type CloudServiceGetScopeArgType = string
+type CloudServiceGetScopeRetType = string
+
+func getCloudServiceGetScopeAttributeTypeOk(arg CloudServiceGetScopeAttributeType) (ret CloudServiceGetScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloudServiceGetScopeAttributeType(arg *CloudServiceGetScopeAttributeType, val CloudServiceGetScopeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for serviceId
+*/
+
+// isNotNullableString
+type CloudServiceGetServiceIdAttributeType = *string
+
+func getCloudServiceGetServiceIdAttributeTypeOk(arg CloudServiceGetServiceIdAttributeType) (ret CloudServiceGetServiceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloudServiceGetServiceIdAttributeType(arg *CloudServiceGetServiceIdAttributeType, val CloudServiceGetServiceIdRetType) {
+	*arg = &val
+}
+
+type CloudServiceGetServiceIdArgType = string
+type CloudServiceGetServiceIdRetType = string
+
 // CloudService struct for CloudService
 type CloudService struct {
-	Dependencies *Dependencies      `json:"dependencies,omitempty"`
-	Labels       *map[string]string `json:"labels,omitempty"`
-	Scope        *string            `json:"scope,omitempty"`
+	Dependencies CloudServiceGetDependenciesAttributeType `json:"dependencies,omitempty"`
+	Labels       CloudServiceGetLabelsAttributeType       `json:"labels,omitempty"`
+	Scope        CloudServiceGetScopeAttributeType        `json:"scope,omitempty"`
 	// the id of the service
-	ServiceId *string `json:"serviceId,omitempty"`
+	ServiceId CloudServiceGetServiceIdAttributeType `json:"serviceId,omitempty"`
 }
 
 // NewCloudService instantiates a new CloudService object
@@ -32,8 +113,6 @@ type CloudService struct {
 // will change when the set of required properties is changed
 func NewCloudService() *CloudService {
 	this := CloudService{}
-	var scope string = "PUBLIC"
-	this.Scope = &scope
 	return &this
 }
 
@@ -48,146 +127,110 @@ func NewCloudServiceWithDefaults() *CloudService {
 }
 
 // GetDependencies returns the Dependencies field value if set, zero value otherwise.
-func (o *CloudService) GetDependencies() *Dependencies {
-	if o == nil || IsNil(o.Dependencies) {
-		var ret *Dependencies
-		return ret
-	}
-	return o.Dependencies
+func (o *CloudService) GetDependencies() (res CloudServiceGetDependenciesRetType) {
+	res, _ = o.GetDependenciesOk()
+	return
 }
 
 // GetDependenciesOk returns a tuple with the Dependencies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudService) GetDependenciesOk() (*Dependencies, bool) {
-	if o == nil || IsNil(o.Dependencies) {
-		return nil, false
-	}
-	return o.Dependencies, true
+func (o *CloudService) GetDependenciesOk() (ret CloudServiceGetDependenciesRetType, ok bool) {
+	return getCloudServiceGetDependenciesAttributeTypeOk(o.Dependencies)
 }
 
 // HasDependencies returns a boolean if a field has been set.
 func (o *CloudService) HasDependencies() bool {
-	if o != nil && !IsNil(o.Dependencies) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDependenciesOk()
+	return ok
 }
 
 // SetDependencies gets a reference to the given Dependencies and assigns it to the Dependencies field.
-func (o *CloudService) SetDependencies(v *Dependencies) {
-	o.Dependencies = v
+func (o *CloudService) SetDependencies(v CloudServiceGetDependenciesRetType) {
+	setCloudServiceGetDependenciesAttributeType(&o.Dependencies, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CloudService) GetLabels() *map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Labels
+func (o *CloudService) GetLabels() (res CloudServiceGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudService) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *CloudService) GetLabelsOk() (ret CloudServiceGetLabelsRetType, ok bool) {
+	return getCloudServiceGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CloudService) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *CloudService) SetLabels(v *map[string]string) {
-	o.Labels = v
+func (o *CloudService) SetLabels(v CloudServiceGetLabelsRetType) {
+	setCloudServiceGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
-func (o *CloudService) GetScope() *string {
-	if o == nil || IsNil(o.Scope) {
-		var ret *string
-		return ret
-	}
-	return o.Scope
+func (o *CloudService) GetScope() (res CloudServiceGetScopeRetType) {
+	res, _ = o.GetScopeOk()
+	return
 }
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudService) GetScopeOk() (*string, bool) {
-	if o == nil || IsNil(o.Scope) {
-		return nil, false
-	}
-	return o.Scope, true
+func (o *CloudService) GetScopeOk() (ret CloudServiceGetScopeRetType, ok bool) {
+	return getCloudServiceGetScopeAttributeTypeOk(o.Scope)
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *CloudService) HasScope() bool {
-	if o != nil && !IsNil(o.Scope) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetScopeOk()
+	return ok
 }
 
 // SetScope gets a reference to the given string and assigns it to the Scope field.
-func (o *CloudService) SetScope(v *string) {
-	o.Scope = v
+func (o *CloudService) SetScope(v CloudServiceGetScopeRetType) {
+	setCloudServiceGetScopeAttributeType(&o.Scope, v)
 }
 
 // GetServiceId returns the ServiceId field value if set, zero value otherwise.
-func (o *CloudService) GetServiceId() *string {
-	if o == nil || IsNil(o.ServiceId) {
-		var ret *string
-		return ret
-	}
-	return o.ServiceId
+func (o *CloudService) GetServiceId() (res CloudServiceGetServiceIdRetType) {
+	res, _ = o.GetServiceIdOk()
+	return
 }
 
 // GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudService) GetServiceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ServiceId) {
-		return nil, false
-	}
-	return o.ServiceId, true
+func (o *CloudService) GetServiceIdOk() (ret CloudServiceGetServiceIdRetType, ok bool) {
+	return getCloudServiceGetServiceIdAttributeTypeOk(o.ServiceId)
 }
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *CloudService) HasServiceId() bool {
-	if o != nil && !IsNil(o.ServiceId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetServiceIdOk()
+	return ok
 }
 
 // SetServiceId gets a reference to the given string and assigns it to the ServiceId field.
-func (o *CloudService) SetServiceId(v *string) {
-	o.ServiceId = v
+func (o *CloudService) SetServiceId(v CloudServiceGetServiceIdRetType) {
+	setCloudServiceGetServiceIdAttributeType(&o.ServiceId, v)
 }
 
 func (o CloudService) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Dependencies) {
-		toSerialize["dependencies"] = o.Dependencies
+	if val, ok := getCloudServiceGetDependenciesAttributeTypeOk(o.Dependencies); ok {
+		toSerialize["Dependencies"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getCloudServiceGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
+	if val, ok := getCloudServiceGetScopeAttributeTypeOk(o.Scope); ok {
+		toSerialize["Scope"] = val
 	}
-	if !IsNil(o.ServiceId) {
-		toSerialize["serviceId"] = o.ServiceId
+	if val, ok := getCloudServiceGetServiceIdAttributeTypeOk(o.ServiceId); ok {
+		toSerialize["ServiceId"] = val
 	}
 	return toSerialize, nil
 }

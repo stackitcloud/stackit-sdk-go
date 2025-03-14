@@ -17,10 +17,51 @@ import (
 // checks if the ListServiceStatusRegional200Response type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListServiceStatusRegional200Response{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListServiceStatusRegional200ResponseGetItemsAttributeType = *[]ServiceStatus
+type ListServiceStatusRegional200ResponseGetItemsArgType = []ServiceStatus
+type ListServiceStatusRegional200ResponseGetItemsRetType = []ServiceStatus
+
+func getListServiceStatusRegional200ResponseGetItemsAttributeTypeOk(arg ListServiceStatusRegional200ResponseGetItemsAttributeType) (ret ListServiceStatusRegional200ResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListServiceStatusRegional200ResponseGetItemsAttributeType(arg *ListServiceStatusRegional200ResponseGetItemsAttributeType, val ListServiceStatusRegional200ResponseGetItemsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nextCursor
+*/
+
+// isNotNullableString
+type ListServiceStatusRegional200ResponseGetNextCursorAttributeType = *string
+
+func getListServiceStatusRegional200ResponseGetNextCursorAttributeTypeOk(arg ListServiceStatusRegional200ResponseGetNextCursorAttributeType) (ret ListServiceStatusRegional200ResponseGetNextCursorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListServiceStatusRegional200ResponseGetNextCursorAttributeType(arg *ListServiceStatusRegional200ResponseGetNextCursorAttributeType, val ListServiceStatusRegional200ResponseGetNextCursorRetType) {
+	*arg = &val
+}
+
+type ListServiceStatusRegional200ResponseGetNextCursorArgType = string
+type ListServiceStatusRegional200ResponseGetNextCursorRetType = string
+
 // ListServiceStatusRegional200Response struct for ListServiceStatusRegional200Response
 type ListServiceStatusRegional200Response struct {
-	Items      *[]ServiceStatus `json:"items,omitempty"`
-	NextCursor *string          `json:"nextCursor,omitempty"`
+	Items      ListServiceStatusRegional200ResponseGetItemsAttributeType      `json:"items,omitempty"`
+	NextCursor ListServiceStatusRegional200ResponseGetNextCursorAttributeType `json:"nextCursor,omitempty"`
 }
 
 // NewListServiceStatusRegional200Response instantiates a new ListServiceStatusRegional200Response object
@@ -41,76 +82,58 @@ func NewListServiceStatusRegional200ResponseWithDefaults() *ListServiceStatusReg
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *ListServiceStatusRegional200Response) GetItems() *[]ServiceStatus {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]ServiceStatus
-		return ret
-	}
-	return o.Items
+func (o *ListServiceStatusRegional200Response) GetItems() (res ListServiceStatusRegional200ResponseGetItemsRetType) {
+	res, _ = o.GetItemsOk()
+	return
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListServiceStatusRegional200Response) GetItemsOk() (*[]ServiceStatus, bool) {
-	if o == nil || IsNil(o.Items) {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListServiceStatusRegional200Response) GetItemsOk() (ret ListServiceStatusRegional200ResponseGetItemsRetType, ok bool) {
+	return getListServiceStatusRegional200ResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *ListServiceStatusRegional200Response) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemsOk()
+	return ok
 }
 
 // SetItems gets a reference to the given []ServiceStatus and assigns it to the Items field.
-func (o *ListServiceStatusRegional200Response) SetItems(v *[]ServiceStatus) {
-	o.Items = v
+func (o *ListServiceStatusRegional200Response) SetItems(v ListServiceStatusRegional200ResponseGetItemsRetType) {
+	setListServiceStatusRegional200ResponseGetItemsAttributeType(&o.Items, v)
 }
 
 // GetNextCursor returns the NextCursor field value if set, zero value otherwise.
-func (o *ListServiceStatusRegional200Response) GetNextCursor() *string {
-	if o == nil || IsNil(o.NextCursor) {
-		var ret *string
-		return ret
-	}
-	return o.NextCursor
+func (o *ListServiceStatusRegional200Response) GetNextCursor() (res ListServiceStatusRegional200ResponseGetNextCursorRetType) {
+	res, _ = o.GetNextCursorOk()
+	return
 }
 
 // GetNextCursorOk returns a tuple with the NextCursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListServiceStatusRegional200Response) GetNextCursorOk() (*string, bool) {
-	if o == nil || IsNil(o.NextCursor) {
-		return nil, false
-	}
-	return o.NextCursor, true
+func (o *ListServiceStatusRegional200Response) GetNextCursorOk() (ret ListServiceStatusRegional200ResponseGetNextCursorRetType, ok bool) {
+	return getListServiceStatusRegional200ResponseGetNextCursorAttributeTypeOk(o.NextCursor)
 }
 
 // HasNextCursor returns a boolean if a field has been set.
 func (o *ListServiceStatusRegional200Response) HasNextCursor() bool {
-	if o != nil && !IsNil(o.NextCursor) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNextCursorOk()
+	return ok
 }
 
 // SetNextCursor gets a reference to the given string and assigns it to the NextCursor field.
-func (o *ListServiceStatusRegional200Response) SetNextCursor(v *string) {
-	o.NextCursor = v
+func (o *ListServiceStatusRegional200Response) SetNextCursor(v ListServiceStatusRegional200ResponseGetNextCursorRetType) {
+	setListServiceStatusRegional200ResponseGetNextCursorAttributeType(&o.NextCursor, v)
 }
 
 func (o ListServiceStatusRegional200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Items) {
-		toSerialize["items"] = o.Items
+	if val, ok := getListServiceStatusRegional200ResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
-	if !IsNil(o.NextCursor) {
-		toSerialize["nextCursor"] = o.NextCursor
+	if val, ok := getListServiceStatusRegional200ResponseGetNextCursorAttributeTypeOk(o.NextCursor); ok {
+		toSerialize["NextCursor"] = val
 	}
 	return toSerialize, nil
 }

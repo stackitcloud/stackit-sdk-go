@@ -24,16 +24,16 @@ import (
 func Test_serviceenablement_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DisableServiceRegional", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/services/{serviceId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/services/{serviceId}"
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serviceIdValue := "serviceId"
-		path = strings.Replace(path, "{"+"serviceId"+"}", url.PathEscape(ParameterValueToString(serviceIdValue, "serviceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceId"+"}", url.PathEscape(ParameterValueToString(serviceIdValue, "serviceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -64,9 +64,9 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		region := "region"
-		projectId := "projectId"
-		serviceId := "serviceId"
+		region := regionValue
+		projectId := projectIdValue
+		serviceId := serviceIdValue
 
 		reqErr := apiClient.DisableServiceRegional(context.Background(), region, projectId, serviceId).Execute()
 
@@ -76,16 +76,16 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService EnableServiceRegional", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/services/{serviceId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/services/{serviceId}"
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serviceIdValue := "serviceId"
-		path = strings.Replace(path, "{"+"serviceId"+"}", url.PathEscape(ParameterValueToString(serviceIdValue, "serviceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceId"+"}", url.PathEscape(ParameterValueToString(serviceIdValue, "serviceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -116,9 +116,9 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		region := "region"
-		projectId := "projectId"
-		serviceId := "serviceId"
+		region := regionValue
+		projectId := projectIdValue
+		serviceId := serviceIdValue
 
 		reqErr := apiClient.EnableServiceRegional(context.Background(), region, projectId, serviceId).Execute()
 
@@ -128,16 +128,16 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetServiceStatusRegional", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/services/{serviceId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/services/{serviceId}"
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serviceIdValue := "serviceId"
-		path = strings.Replace(path, "{"+"serviceId"+"}", url.PathEscape(ParameterValueToString(serviceIdValue, "serviceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceId"+"}", url.PathEscape(ParameterValueToString(serviceIdValue, "serviceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServiceStatus{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -171,29 +171,29 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		region := "region"
-		projectId := "projectId"
-		serviceId := "serviceId"
+		region := regionValue
+		projectId := projectIdValue
+		serviceId := serviceIdValue
 
 		resp, reqErr := apiClient.GetServiceStatusRegional(context.Background(), region, projectId, serviceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListServiceStatusRegional", func(t *testing.T) {
-		path := "/v2/projects/{projectId}/regions/{region}/services"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/services"
 		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListServiceStatusRegional200Response{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -227,15 +227,15 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		region := "region"
-		projectId := "projectId"
+		region := regionValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListServiceStatusRegional(context.Background(), region, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
