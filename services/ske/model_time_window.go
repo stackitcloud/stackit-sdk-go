@@ -18,12 +18,52 @@ import (
 // checks if the TimeWindow type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &TimeWindow{}
 
+/*
+	types and functions for end
+*/
+
+// isDateTime
+type TimeWindowGetEndAttributeType = *time.Time
+type TimeWindowGetEndArgType = time.Time
+type TimeWindowGetEndRetType = time.Time
+
+func getTimeWindowGetEndAttributeTypeOk(arg TimeWindowGetEndAttributeType) (ret TimeWindowGetEndRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTimeWindowGetEndAttributeType(arg *TimeWindowGetEndAttributeType, val TimeWindowGetEndRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for start
+*/
+
+// isDateTime
+type TimeWindowGetStartAttributeType = *time.Time
+type TimeWindowGetStartArgType = time.Time
+type TimeWindowGetStartRetType = time.Time
+
+func getTimeWindowGetStartAttributeTypeOk(arg TimeWindowGetStartAttributeType) (ret TimeWindowGetStartRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTimeWindowGetStartAttributeType(arg *TimeWindowGetStartAttributeType, val TimeWindowGetStartRetType) {
+	*arg = &val
+}
+
 // TimeWindow struct for TimeWindow
 type TimeWindow struct {
 	// REQUIRED
-	End *time.Time `json:"end"`
+	End TimeWindowGetEndAttributeType `json:"end"`
 	// REQUIRED
-	Start *time.Time `json:"start"`
+	Start TimeWindowGetStartAttributeType `json:"start"`
 }
 
 type _TimeWindow TimeWindow
@@ -32,10 +72,10 @@ type _TimeWindow TimeWindow
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTimeWindow(end *time.Time, start *time.Time) *TimeWindow {
+func NewTimeWindow(end TimeWindowGetEndArgType, start TimeWindowGetStartArgType) *TimeWindow {
 	this := TimeWindow{}
-	this.End = end
-	this.Start = start
+	setTimeWindowGetEndAttributeType(&this.End, end)
+	setTimeWindowGetStartAttributeType(&this.Start, start)
 	return &this
 }
 
@@ -48,57 +88,47 @@ func NewTimeWindowWithDefaults() *TimeWindow {
 }
 
 // GetEnd returns the End field value
-func (o *TimeWindow) GetEnd() *time.Time {
-	if o == nil || IsNil(o.End) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.End
+func (o *TimeWindow) GetEnd() (ret TimeWindowGetEndRetType) {
+	ret, _ = o.GetEndOk()
+	return ret
 }
 
 // GetEndOk returns a tuple with the End field value
 // and a boolean to check if the value has been set.
-func (o *TimeWindow) GetEndOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.End, true
+func (o *TimeWindow) GetEndOk() (ret TimeWindowGetEndRetType, ok bool) {
+	return getTimeWindowGetEndAttributeTypeOk(o.End)
 }
 
 // SetEnd sets field value
-func (o *TimeWindow) SetEnd(v *time.Time) {
-	o.End = v
+func (o *TimeWindow) SetEnd(v TimeWindowGetEndRetType) {
+	setTimeWindowGetEndAttributeType(&o.End, v)
 }
 
 // GetStart returns the Start field value
-func (o *TimeWindow) GetStart() *time.Time {
-	if o == nil || IsNil(o.Start) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.Start
+func (o *TimeWindow) GetStart() (ret TimeWindowGetStartRetType) {
+	ret, _ = o.GetStartOk()
+	return ret
 }
 
 // GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
-func (o *TimeWindow) GetStartOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Start, true
+func (o *TimeWindow) GetStartOk() (ret TimeWindowGetStartRetType, ok bool) {
+	return getTimeWindowGetStartAttributeTypeOk(o.Start)
 }
 
 // SetStart sets field value
-func (o *TimeWindow) SetStart(v *time.Time) {
-	o.Start = v
+func (o *TimeWindow) SetStart(v TimeWindowGetStartRetType) {
+	setTimeWindowGetStartAttributeType(&o.Start, v)
 }
 
 func (o TimeWindow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["end"] = o.End
-	toSerialize["start"] = o.Start
+	if val, ok := getTimeWindowGetEndAttributeTypeOk(o.End); ok {
+		toSerialize["End"] = val
+	}
+	if val, ok := getTimeWindowGetStartAttributeTypeOk(o.Start); ok {
+		toSerialize["Start"] = val
+	}
 	return toSerialize, nil
 }
 

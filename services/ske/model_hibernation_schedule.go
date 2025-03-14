@@ -17,13 +17,76 @@ import (
 // checks if the HibernationSchedule type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HibernationSchedule{}
 
+/*
+	types and functions for end
+*/
+
+// isNotNullableString
+type HibernationScheduleGetEndAttributeType = *string
+
+func getHibernationScheduleGetEndAttributeTypeOk(arg HibernationScheduleGetEndAttributeType) (ret HibernationScheduleGetEndRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHibernationScheduleGetEndAttributeType(arg *HibernationScheduleGetEndAttributeType, val HibernationScheduleGetEndRetType) {
+	*arg = &val
+}
+
+type HibernationScheduleGetEndArgType = string
+type HibernationScheduleGetEndRetType = string
+
+/*
+	types and functions for start
+*/
+
+// isNotNullableString
+type HibernationScheduleGetStartAttributeType = *string
+
+func getHibernationScheduleGetStartAttributeTypeOk(arg HibernationScheduleGetStartAttributeType) (ret HibernationScheduleGetStartRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHibernationScheduleGetStartAttributeType(arg *HibernationScheduleGetStartAttributeType, val HibernationScheduleGetStartRetType) {
+	*arg = &val
+}
+
+type HibernationScheduleGetStartArgType = string
+type HibernationScheduleGetStartRetType = string
+
+/*
+	types and functions for timezone
+*/
+
+// isNotNullableString
+type HibernationScheduleGetTimezoneAttributeType = *string
+
+func getHibernationScheduleGetTimezoneAttributeTypeOk(arg HibernationScheduleGetTimezoneAttributeType) (ret HibernationScheduleGetTimezoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHibernationScheduleGetTimezoneAttributeType(arg *HibernationScheduleGetTimezoneAttributeType, val HibernationScheduleGetTimezoneRetType) {
+	*arg = &val
+}
+
+type HibernationScheduleGetTimezoneArgType = string
+type HibernationScheduleGetTimezoneRetType = string
+
 // HibernationSchedule struct for HibernationSchedule
 type HibernationSchedule struct {
 	// REQUIRED
-	End *string `json:"end"`
+	End HibernationScheduleGetEndAttributeType `json:"end"`
 	// REQUIRED
-	Start    *string `json:"start"`
-	Timezone *string `json:"timezone,omitempty"`
+	Start    HibernationScheduleGetStartAttributeType    `json:"start"`
+	Timezone HibernationScheduleGetTimezoneAttributeType `json:"timezone,omitempty"`
 }
 
 type _HibernationSchedule HibernationSchedule
@@ -32,10 +95,10 @@ type _HibernationSchedule HibernationSchedule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHibernationSchedule(end *string, start *string) *HibernationSchedule {
+func NewHibernationSchedule(end HibernationScheduleGetEndArgType, start HibernationScheduleGetStartArgType) *HibernationSchedule {
 	this := HibernationSchedule{}
-	this.End = end
-	this.Start = start
+	setHibernationScheduleGetEndAttributeType(&this.End, end)
+	setHibernationScheduleGetStartAttributeType(&this.Start, start)
 	return &this
 }
 
@@ -48,91 +111,72 @@ func NewHibernationScheduleWithDefaults() *HibernationSchedule {
 }
 
 // GetEnd returns the End field value
-func (o *HibernationSchedule) GetEnd() *string {
-	if o == nil || IsNil(o.End) {
-		var ret *string
-		return ret
-	}
-
-	return o.End
+func (o *HibernationSchedule) GetEnd() (ret HibernationScheduleGetEndRetType) {
+	ret, _ = o.GetEndOk()
+	return ret
 }
 
 // GetEndOk returns a tuple with the End field value
 // and a boolean to check if the value has been set.
-func (o *HibernationSchedule) GetEndOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.End, true
+func (o *HibernationSchedule) GetEndOk() (ret HibernationScheduleGetEndRetType, ok bool) {
+	return getHibernationScheduleGetEndAttributeTypeOk(o.End)
 }
 
 // SetEnd sets field value
-func (o *HibernationSchedule) SetEnd(v *string) {
-	o.End = v
+func (o *HibernationSchedule) SetEnd(v HibernationScheduleGetEndRetType) {
+	setHibernationScheduleGetEndAttributeType(&o.End, v)
 }
 
 // GetStart returns the Start field value
-func (o *HibernationSchedule) GetStart() *string {
-	if o == nil || IsNil(o.Start) {
-		var ret *string
-		return ret
-	}
-
-	return o.Start
+func (o *HibernationSchedule) GetStart() (ret HibernationScheduleGetStartRetType) {
+	ret, _ = o.GetStartOk()
+	return ret
 }
 
 // GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
-func (o *HibernationSchedule) GetStartOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Start, true
+func (o *HibernationSchedule) GetStartOk() (ret HibernationScheduleGetStartRetType, ok bool) {
+	return getHibernationScheduleGetStartAttributeTypeOk(o.Start)
 }
 
 // SetStart sets field value
-func (o *HibernationSchedule) SetStart(v *string) {
-	o.Start = v
+func (o *HibernationSchedule) SetStart(v HibernationScheduleGetStartRetType) {
+	setHibernationScheduleGetStartAttributeType(&o.Start, v)
 }
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
-func (o *HibernationSchedule) GetTimezone() *string {
-	if o == nil || IsNil(o.Timezone) {
-		var ret *string
-		return ret
-	}
-	return o.Timezone
+func (o *HibernationSchedule) GetTimezone() (res HibernationScheduleGetTimezoneRetType) {
+	res, _ = o.GetTimezoneOk()
+	return
 }
 
 // GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HibernationSchedule) GetTimezoneOk() (*string, bool) {
-	if o == nil || IsNil(o.Timezone) {
-		return nil, false
-	}
-	return o.Timezone, true
+func (o *HibernationSchedule) GetTimezoneOk() (ret HibernationScheduleGetTimezoneRetType, ok bool) {
+	return getHibernationScheduleGetTimezoneAttributeTypeOk(o.Timezone)
 }
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *HibernationSchedule) HasTimezone() bool {
-	if o != nil && !IsNil(o.Timezone) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTimezoneOk()
+	return ok
 }
 
 // SetTimezone gets a reference to the given string and assigns it to the Timezone field.
-func (o *HibernationSchedule) SetTimezone(v *string) {
-	o.Timezone = v
+func (o *HibernationSchedule) SetTimezone(v HibernationScheduleGetTimezoneRetType) {
+	setHibernationScheduleGetTimezoneAttributeType(&o.Timezone, v)
 }
 
 func (o HibernationSchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["end"] = o.End
-	toSerialize["start"] = o.Start
-	if !IsNil(o.Timezone) {
-		toSerialize["timezone"] = o.Timezone
+	if val, ok := getHibernationScheduleGetEndAttributeTypeOk(o.End); ok {
+		toSerialize["End"] = val
+	}
+	if val, ok := getHibernationScheduleGetStartAttributeTypeOk(o.Start); ok {
+		toSerialize["Start"] = val
+	}
+	if val, ok := getHibernationScheduleGetTimezoneAttributeTypeOk(o.Timezone); ok {
+		toSerialize["Timezone"] = val
 	}
 	return toSerialize, nil
 }

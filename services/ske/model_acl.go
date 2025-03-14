@@ -17,14 +17,54 @@ import (
 // checks if the ACL type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ACL{}
 
+/*
+	types and functions for allowedCidrs
+*/
+
+// isArray
+type ACLGetAllowedCidrsAttributeType = *[]string
+type ACLGetAllowedCidrsArgType = []string
+type ACLGetAllowedCidrsRetType = []string
+
+func getACLGetAllowedCidrsAttributeTypeOk(arg ACLGetAllowedCidrsAttributeType) (ret ACLGetAllowedCidrsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setACLGetAllowedCidrsAttributeType(arg *ACLGetAllowedCidrsAttributeType, val ACLGetAllowedCidrsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for enabled
+*/
+
+// isBoolean
+type ACLgetEnabledAttributeType = *bool
+type ACLgetEnabledArgType = bool
+type ACLgetEnabledRetType = bool
+
+func getACLgetEnabledAttributeTypeOk(arg ACLgetEnabledAttributeType) (ret ACLgetEnabledRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setACLgetEnabledAttributeType(arg *ACLgetEnabledAttributeType, val ACLgetEnabledRetType) {
+	*arg = &val
+}
+
 // ACL struct for ACL
 type ACL struct {
 	// Array of CIDRs to allow access to the kubernetes API.
 	// REQUIRED
-	AllowedCidrs *[]string `json:"allowedCidrs"`
+	AllowedCidrs ACLGetAllowedCidrsAttributeType `json:"allowedCidrs"`
 	// Enables the acl extension.
 	// REQUIRED
-	Enabled *bool `json:"enabled"`
+	Enabled ACLgetEnabledAttributeType `json:"enabled"`
 }
 
 type _ACL ACL
@@ -33,10 +73,10 @@ type _ACL ACL
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewACL(allowedCidrs *[]string, enabled *bool) *ACL {
+func NewACL(allowedCidrs ACLGetAllowedCidrsArgType, enabled ACLgetEnabledArgType) *ACL {
 	this := ACL{}
-	this.AllowedCidrs = allowedCidrs
-	this.Enabled = enabled
+	setACLGetAllowedCidrsAttributeType(&this.AllowedCidrs, allowedCidrs)
+	setACLgetEnabledAttributeType(&this.Enabled, enabled)
 	return &this
 }
 
@@ -49,57 +89,47 @@ func NewACLWithDefaults() *ACL {
 }
 
 // GetAllowedCidrs returns the AllowedCidrs field value
-func (o *ACL) GetAllowedCidrs() *[]string {
-	if o == nil || IsNil(o.AllowedCidrs) {
-		var ret *[]string
-		return ret
-	}
-
-	return o.AllowedCidrs
+func (o *ACL) GetAllowedCidrs() (ret ACLGetAllowedCidrsRetType) {
+	ret, _ = o.GetAllowedCidrsOk()
+	return ret
 }
 
 // GetAllowedCidrsOk returns a tuple with the AllowedCidrs field value
 // and a boolean to check if the value has been set.
-func (o *ACL) GetAllowedCidrsOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AllowedCidrs, true
+func (o *ACL) GetAllowedCidrsOk() (ret ACLGetAllowedCidrsRetType, ok bool) {
+	return getACLGetAllowedCidrsAttributeTypeOk(o.AllowedCidrs)
 }
 
 // SetAllowedCidrs sets field value
-func (o *ACL) SetAllowedCidrs(v *[]string) {
-	o.AllowedCidrs = v
+func (o *ACL) SetAllowedCidrs(v ACLGetAllowedCidrsRetType) {
+	setACLGetAllowedCidrsAttributeType(&o.AllowedCidrs, v)
 }
 
 // GetEnabled returns the Enabled field value
-func (o *ACL) GetEnabled() *bool {
-	if o == nil || IsNil(o.Enabled) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Enabled
+func (o *ACL) GetEnabled() (ret ACLgetEnabledRetType) {
+	ret, _ = o.GetEnabledOk()
+	return ret
 }
 
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *ACL) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Enabled, true
+func (o *ACL) GetEnabledOk() (ret ACLgetEnabledRetType, ok bool) {
+	return getACLgetEnabledAttributeTypeOk(o.Enabled)
 }
 
 // SetEnabled sets field value
-func (o *ACL) SetEnabled(v *bool) {
-	o.Enabled = v
+func (o *ACL) SetEnabled(v ACLgetEnabledRetType) {
+	setACLgetEnabledAttributeType(&o.Enabled, v)
 }
 
 func (o ACL) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["allowedCidrs"] = o.AllowedCidrs
-	toSerialize["enabled"] = o.Enabled
+	if val, ok := getACLGetAllowedCidrsAttributeTypeOk(o.AllowedCidrs); ok {
+		toSerialize["AllowedCidrs"] = val
+	}
+	if val, ok := getACLgetEnabledAttributeTypeOk(o.Enabled); ok {
+		toSerialize["Enabled"] = val
+	}
 	return toSerialize, nil
 }
 

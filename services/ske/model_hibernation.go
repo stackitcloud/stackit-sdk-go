@@ -17,10 +17,30 @@ import (
 // checks if the Hibernation type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Hibernation{}
 
+/*
+	types and functions for schedules
+*/
+
+// isArray
+type HibernationGetSchedulesAttributeType = *[]HibernationSchedule
+type HibernationGetSchedulesArgType = []HibernationSchedule
+type HibernationGetSchedulesRetType = []HibernationSchedule
+
+func getHibernationGetSchedulesAttributeTypeOk(arg HibernationGetSchedulesAttributeType) (ret HibernationGetSchedulesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHibernationGetSchedulesAttributeType(arg *HibernationGetSchedulesAttributeType, val HibernationGetSchedulesRetType) {
+	*arg = &val
+}
+
 // Hibernation struct for Hibernation
 type Hibernation struct {
 	// REQUIRED
-	Schedules *[]HibernationSchedule `json:"schedules"`
+	Schedules HibernationGetSchedulesAttributeType `json:"schedules"`
 }
 
 type _Hibernation Hibernation
@@ -29,9 +49,9 @@ type _Hibernation Hibernation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHibernation(schedules *[]HibernationSchedule) *Hibernation {
+func NewHibernation(schedules HibernationGetSchedulesArgType) *Hibernation {
 	this := Hibernation{}
-	this.Schedules = schedules
+	setHibernationGetSchedulesAttributeType(&this.Schedules, schedules)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewHibernationWithDefaults() *Hibernation {
 }
 
 // GetSchedules returns the Schedules field value
-func (o *Hibernation) GetSchedules() *[]HibernationSchedule {
-	if o == nil || IsNil(o.Schedules) {
-		var ret *[]HibernationSchedule
-		return ret
-	}
-
-	return o.Schedules
+func (o *Hibernation) GetSchedules() (ret HibernationGetSchedulesRetType) {
+	ret, _ = o.GetSchedulesOk()
+	return ret
 }
 
 // GetSchedulesOk returns a tuple with the Schedules field value
 // and a boolean to check if the value has been set.
-func (o *Hibernation) GetSchedulesOk() (*[]HibernationSchedule, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Schedules, true
+func (o *Hibernation) GetSchedulesOk() (ret HibernationGetSchedulesRetType, ok bool) {
+	return getHibernationGetSchedulesAttributeTypeOk(o.Schedules)
 }
 
 // SetSchedules sets field value
-func (o *Hibernation) SetSchedules(v *[]HibernationSchedule) {
-	o.Schedules = v
+func (o *Hibernation) SetSchedules(v HibernationGetSchedulesRetType) {
+	setHibernationGetSchedulesAttributeType(&o.Schedules, v)
 }
 
 func (o Hibernation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["schedules"] = o.Schedules
+	if val, ok := getHibernationGetSchedulesAttributeTypeOk(o.Schedules); ok {
+		toSerialize["Schedules"] = val
+	}
 	return toSerialize, nil
 }
 

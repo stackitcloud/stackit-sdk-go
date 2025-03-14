@@ -18,12 +18,94 @@ import (
 // checks if the MachineImageVersion type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MachineImageVersion{}
 
+/*
+	types and functions for cri
+*/
+
+// isArray
+type MachineImageVersionGetCriAttributeType = *[]CRI
+type MachineImageVersionGetCriArgType = []CRI
+type MachineImageVersionGetCriRetType = []CRI
+
+func getMachineImageVersionGetCriAttributeTypeOk(arg MachineImageVersionGetCriAttributeType) (ret MachineImageVersionGetCriRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineImageVersionGetCriAttributeType(arg *MachineImageVersionGetCriAttributeType, val MachineImageVersionGetCriRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for expirationDate
+*/
+
+// isDateTime
+type MachineImageVersionGetExpirationDateAttributeType = *time.Time
+type MachineImageVersionGetExpirationDateArgType = time.Time
+type MachineImageVersionGetExpirationDateRetType = time.Time
+
+func getMachineImageVersionGetExpirationDateAttributeTypeOk(arg MachineImageVersionGetExpirationDateAttributeType) (ret MachineImageVersionGetExpirationDateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineImageVersionGetExpirationDateAttributeType(arg *MachineImageVersionGetExpirationDateAttributeType, val MachineImageVersionGetExpirationDateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for state
+*/
+
+// isNotNullableString
+type MachineImageVersionGetStateAttributeType = *string
+
+func getMachineImageVersionGetStateAttributeTypeOk(arg MachineImageVersionGetStateAttributeType) (ret MachineImageVersionGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineImageVersionGetStateAttributeType(arg *MachineImageVersionGetStateAttributeType, val MachineImageVersionGetStateRetType) {
+	*arg = &val
+}
+
+type MachineImageVersionGetStateArgType = string
+type MachineImageVersionGetStateRetType = string
+
+/*
+	types and functions for version
+*/
+
+// isNotNullableString
+type MachineImageVersionGetVersionAttributeType = *string
+
+func getMachineImageVersionGetVersionAttributeTypeOk(arg MachineImageVersionGetVersionAttributeType) (ret MachineImageVersionGetVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineImageVersionGetVersionAttributeType(arg *MachineImageVersionGetVersionAttributeType, val MachineImageVersionGetVersionRetType) {
+	*arg = &val
+}
+
+type MachineImageVersionGetVersionArgType = string
+type MachineImageVersionGetVersionRetType = string
+
 // MachineImageVersion struct for MachineImageVersion
 type MachineImageVersion struct {
-	Cri            *[]CRI     `json:"cri,omitempty"`
-	ExpirationDate *time.Time `json:"expirationDate,omitempty"`
-	State          *string    `json:"state,omitempty"`
-	Version        *string    `json:"version,omitempty"`
+	Cri            MachineImageVersionGetCriAttributeType            `json:"cri,omitempty"`
+	ExpirationDate MachineImageVersionGetExpirationDateAttributeType `json:"expirationDate,omitempty"`
+	State          MachineImageVersionGetStateAttributeType          `json:"state,omitempty"`
+	Version        MachineImageVersionGetVersionAttributeType        `json:"version,omitempty"`
 }
 
 // NewMachineImageVersion instantiates a new MachineImageVersion object
@@ -44,146 +126,110 @@ func NewMachineImageVersionWithDefaults() *MachineImageVersion {
 }
 
 // GetCri returns the Cri field value if set, zero value otherwise.
-func (o *MachineImageVersion) GetCri() *[]CRI {
-	if o == nil || IsNil(o.Cri) {
-		var ret *[]CRI
-		return ret
-	}
-	return o.Cri
+func (o *MachineImageVersion) GetCri() (res MachineImageVersionGetCriRetType) {
+	res, _ = o.GetCriOk()
+	return
 }
 
 // GetCriOk returns a tuple with the Cri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineImageVersion) GetCriOk() (*[]CRI, bool) {
-	if o == nil || IsNil(o.Cri) {
-		return nil, false
-	}
-	return o.Cri, true
+func (o *MachineImageVersion) GetCriOk() (ret MachineImageVersionGetCriRetType, ok bool) {
+	return getMachineImageVersionGetCriAttributeTypeOk(o.Cri)
 }
 
 // HasCri returns a boolean if a field has been set.
 func (o *MachineImageVersion) HasCri() bool {
-	if o != nil && !IsNil(o.Cri) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCriOk()
+	return ok
 }
 
 // SetCri gets a reference to the given []CRI and assigns it to the Cri field.
-func (o *MachineImageVersion) SetCri(v *[]CRI) {
-	o.Cri = v
+func (o *MachineImageVersion) SetCri(v MachineImageVersionGetCriRetType) {
+	setMachineImageVersionGetCriAttributeType(&o.Cri, v)
 }
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
-func (o *MachineImageVersion) GetExpirationDate() *time.Time {
-	if o == nil || IsNil(o.ExpirationDate) {
-		var ret *time.Time
-		return ret
-	}
-	return o.ExpirationDate
+func (o *MachineImageVersion) GetExpirationDate() (res MachineImageVersionGetExpirationDateRetType) {
+	res, _ = o.GetExpirationDateOk()
+	return
 }
 
 // GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineImageVersion) GetExpirationDateOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.ExpirationDate) {
-		return nil, false
-	}
-	return o.ExpirationDate, true
+func (o *MachineImageVersion) GetExpirationDateOk() (ret MachineImageVersionGetExpirationDateRetType, ok bool) {
+	return getMachineImageVersionGetExpirationDateAttributeTypeOk(o.ExpirationDate)
 }
 
 // HasExpirationDate returns a boolean if a field has been set.
 func (o *MachineImageVersion) HasExpirationDate() bool {
-	if o != nil && !IsNil(o.ExpirationDate) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExpirationDateOk()
+	return ok
 }
 
 // SetExpirationDate gets a reference to the given time.Time and assigns it to the ExpirationDate field.
-func (o *MachineImageVersion) SetExpirationDate(v *time.Time) {
-	o.ExpirationDate = v
+func (o *MachineImageVersion) SetExpirationDate(v MachineImageVersionGetExpirationDateRetType) {
+	setMachineImageVersionGetExpirationDateAttributeType(&o.ExpirationDate, v)
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *MachineImageVersion) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-	return o.State
+func (o *MachineImageVersion) GetState() (res MachineImageVersionGetStateRetType) {
+	res, _ = o.GetStateOk()
+	return
 }
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineImageVersion) GetStateOk() (*string, bool) {
-	if o == nil || IsNil(o.State) {
-		return nil, false
-	}
-	return o.State, true
+func (o *MachineImageVersion) GetStateOk() (ret MachineImageVersionGetStateRetType, ok bool) {
+	return getMachineImageVersionGetStateAttributeTypeOk(o.State)
 }
 
 // HasState returns a boolean if a field has been set.
 func (o *MachineImageVersion) HasState() bool {
-	if o != nil && !IsNil(o.State) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStateOk()
+	return ok
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *MachineImageVersion) SetState(v *string) {
-	o.State = v
+func (o *MachineImageVersion) SetState(v MachineImageVersionGetStateRetType) {
+	setMachineImageVersionGetStateAttributeType(&o.State, v)
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *MachineImageVersion) GetVersion() *string {
-	if o == nil || IsNil(o.Version) {
-		var ret *string
-		return ret
-	}
-	return o.Version
+func (o *MachineImageVersion) GetVersion() (res MachineImageVersionGetVersionRetType) {
+	res, _ = o.GetVersionOk()
+	return
 }
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineImageVersion) GetVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.Version) {
-		return nil, false
-	}
-	return o.Version, true
+func (o *MachineImageVersion) GetVersionOk() (ret MachineImageVersionGetVersionRetType, ok bool) {
+	return getMachineImageVersionGetVersionAttributeTypeOk(o.Version)
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *MachineImageVersion) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVersionOk()
+	return ok
 }
 
 // SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *MachineImageVersion) SetVersion(v *string) {
-	o.Version = v
+func (o *MachineImageVersion) SetVersion(v MachineImageVersionGetVersionRetType) {
+	setMachineImageVersionGetVersionAttributeType(&o.Version, v)
 }
 
 func (o MachineImageVersion) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Cri) {
-		toSerialize["cri"] = o.Cri
+	if val, ok := getMachineImageVersionGetCriAttributeTypeOk(o.Cri); ok {
+		toSerialize["Cri"] = val
 	}
-	if !IsNil(o.ExpirationDate) {
-		toSerialize["expirationDate"] = o.ExpirationDate
+	if val, ok := getMachineImageVersionGetExpirationDateAttributeTypeOk(o.ExpirationDate); ok {
+		toSerialize["ExpirationDate"] = val
 	}
-	if !IsNil(o.State) {
-		toSerialize["state"] = o.State
+	if val, ok := getMachineImageVersionGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
 	}
-	if !IsNil(o.Version) {
-		toSerialize["version"] = o.Version
+	if val, ok := getMachineImageVersionGetVersionAttributeTypeOk(o.Version); ok {
+		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
 }
