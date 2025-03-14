@@ -17,13 +17,74 @@ import (
 // checks if the RemoveMembersPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RemoveMembersPayload{}
 
+/*
+	types and functions for forceRemove
+*/
+
+// isBoolean
+type RemoveMembersPayloadgetForceRemoveAttributeType = *bool
+type RemoveMembersPayloadgetForceRemoveArgType = bool
+type RemoveMembersPayloadgetForceRemoveRetType = bool
+
+func getRemoveMembersPayloadgetForceRemoveAttributeTypeOk(arg RemoveMembersPayloadgetForceRemoveAttributeType) (ret RemoveMembersPayloadgetForceRemoveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRemoveMembersPayloadgetForceRemoveAttributeType(arg *RemoveMembersPayloadgetForceRemoveAttributeType, val RemoveMembersPayloadgetForceRemoveRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for members
+*/
+
+// isArray
+type RemoveMembersPayloadGetMembersAttributeType = *[]Member
+type RemoveMembersPayloadGetMembersArgType = []Member
+type RemoveMembersPayloadGetMembersRetType = []Member
+
+func getRemoveMembersPayloadGetMembersAttributeTypeOk(arg RemoveMembersPayloadGetMembersAttributeType) (ret RemoveMembersPayloadGetMembersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRemoveMembersPayloadGetMembersAttributeType(arg *RemoveMembersPayloadGetMembersAttributeType, val RemoveMembersPayloadGetMembersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for resourceType
+*/
+
+// isNotNullableString
+type RemoveMembersPayloadGetResourceTypeAttributeType = *string
+
+func getRemoveMembersPayloadGetResourceTypeAttributeTypeOk(arg RemoveMembersPayloadGetResourceTypeAttributeType) (ret RemoveMembersPayloadGetResourceTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRemoveMembersPayloadGetResourceTypeAttributeType(arg *RemoveMembersPayloadGetResourceTypeAttributeType, val RemoveMembersPayloadGetResourceTypeRetType) {
+	*arg = &val
+}
+
+type RemoveMembersPayloadGetResourceTypeArgType = string
+type RemoveMembersPayloadGetResourceTypeRetType = string
+
 // RemoveMembersPayload struct for RemoveMembersPayload
 type RemoveMembersPayload struct {
-	ForceRemove *bool `json:"forceRemove,omitempty"`
+	ForceRemove RemoveMembersPayloadgetForceRemoveAttributeType `json:"forceRemove,omitempty"`
 	// REQUIRED
-	Members *[]Member `json:"members"`
+	Members RemoveMembersPayloadGetMembersAttributeType `json:"members"`
 	// REQUIRED
-	ResourceType *string `json:"resourceType"`
+	ResourceType RemoveMembersPayloadGetResourceTypeAttributeType `json:"resourceType"`
 }
 
 type _RemoveMembersPayload RemoveMembersPayload
@@ -32,10 +93,10 @@ type _RemoveMembersPayload RemoveMembersPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRemoveMembersPayload(members *[]Member, resourceType *string) *RemoveMembersPayload {
+func NewRemoveMembersPayload(members RemoveMembersPayloadGetMembersArgType, resourceType RemoveMembersPayloadGetResourceTypeArgType) *RemoveMembersPayload {
 	this := RemoveMembersPayload{}
-	this.Members = members
-	this.ResourceType = resourceType
+	setRemoveMembersPayloadGetMembersAttributeType(&this.Members, members)
+	setRemoveMembersPayloadGetResourceTypeAttributeType(&this.ResourceType, resourceType)
 	return &this
 }
 
@@ -48,92 +109,73 @@ func NewRemoveMembersPayloadWithDefaults() *RemoveMembersPayload {
 }
 
 // GetForceRemove returns the ForceRemove field value if set, zero value otherwise.
-func (o *RemoveMembersPayload) GetForceRemove() *bool {
-	if o == nil || IsNil(o.ForceRemove) {
-		var ret *bool
-		return ret
-	}
-	return o.ForceRemove
+func (o *RemoveMembersPayload) GetForceRemove() (res RemoveMembersPayloadgetForceRemoveRetType) {
+	res, _ = o.GetForceRemoveOk()
+	return
 }
 
 // GetForceRemoveOk returns a tuple with the ForceRemove field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RemoveMembersPayload) GetForceRemoveOk() (*bool, bool) {
-	if o == nil || IsNil(o.ForceRemove) {
-		return nil, false
-	}
-	return o.ForceRemove, true
+func (o *RemoveMembersPayload) GetForceRemoveOk() (ret RemoveMembersPayloadgetForceRemoveRetType, ok bool) {
+	return getRemoveMembersPayloadgetForceRemoveAttributeTypeOk(o.ForceRemove)
 }
 
 // HasForceRemove returns a boolean if a field has been set.
 func (o *RemoveMembersPayload) HasForceRemove() bool {
-	if o != nil && !IsNil(o.ForceRemove) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetForceRemoveOk()
+	return ok
 }
 
 // SetForceRemove gets a reference to the given bool and assigns it to the ForceRemove field.
-func (o *RemoveMembersPayload) SetForceRemove(v *bool) {
-	o.ForceRemove = v
+func (o *RemoveMembersPayload) SetForceRemove(v RemoveMembersPayloadgetForceRemoveRetType) {
+	setRemoveMembersPayloadgetForceRemoveAttributeType(&o.ForceRemove, v)
 }
 
 // GetMembers returns the Members field value
-func (o *RemoveMembersPayload) GetMembers() *[]Member {
-	if o == nil || IsNil(o.Members) {
-		var ret *[]Member
-		return ret
-	}
-
-	return o.Members
+func (o *RemoveMembersPayload) GetMembers() (ret RemoveMembersPayloadGetMembersRetType) {
+	ret, _ = o.GetMembersOk()
+	return ret
 }
 
 // GetMembersOk returns a tuple with the Members field value
 // and a boolean to check if the value has been set.
-func (o *RemoveMembersPayload) GetMembersOk() (*[]Member, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Members, true
+func (o *RemoveMembersPayload) GetMembersOk() (ret RemoveMembersPayloadGetMembersRetType, ok bool) {
+	return getRemoveMembersPayloadGetMembersAttributeTypeOk(o.Members)
 }
 
 // SetMembers sets field value
-func (o *RemoveMembersPayload) SetMembers(v *[]Member) {
-	o.Members = v
+func (o *RemoveMembersPayload) SetMembers(v RemoveMembersPayloadGetMembersRetType) {
+	setRemoveMembersPayloadGetMembersAttributeType(&o.Members, v)
 }
 
 // GetResourceType returns the ResourceType field value
-func (o *RemoveMembersPayload) GetResourceType() *string {
-	if o == nil || IsNil(o.ResourceType) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceType
+func (o *RemoveMembersPayload) GetResourceType() (ret RemoveMembersPayloadGetResourceTypeRetType) {
+	ret, _ = o.GetResourceTypeOk()
+	return ret
 }
 
 // GetResourceTypeOk returns a tuple with the ResourceType field value
 // and a boolean to check if the value has been set.
-func (o *RemoveMembersPayload) GetResourceTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceType, true
+func (o *RemoveMembersPayload) GetResourceTypeOk() (ret RemoveMembersPayloadGetResourceTypeRetType, ok bool) {
+	return getRemoveMembersPayloadGetResourceTypeAttributeTypeOk(o.ResourceType)
 }
 
 // SetResourceType sets field value
-func (o *RemoveMembersPayload) SetResourceType(v *string) {
-	o.ResourceType = v
+func (o *RemoveMembersPayload) SetResourceType(v RemoveMembersPayloadGetResourceTypeRetType) {
+	setRemoveMembersPayloadGetResourceTypeAttributeType(&o.ResourceType, v)
 }
 
 func (o RemoveMembersPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ForceRemove) {
-		toSerialize["forceRemove"] = o.ForceRemove
+	if val, ok := getRemoveMembersPayloadgetForceRemoveAttributeTypeOk(o.ForceRemove); ok {
+		toSerialize["ForceRemove"] = val
 	}
-	toSerialize["members"] = o.Members
-	toSerialize["resourceType"] = o.ResourceType
+	if val, ok := getRemoveMembersPayloadGetMembersAttributeTypeOk(o.Members); ok {
+		toSerialize["Members"] = val
+	}
+	if val, ok := getRemoveMembersPayloadGetResourceTypeAttributeTypeOk(o.ResourceType); ok {
+		toSerialize["ResourceType"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,15 +17,98 @@ import (
 // checks if the Role type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Role{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type RoleGetDescriptionAttributeType = *string
+
+func getRoleGetDescriptionAttributeTypeOk(arg RoleGetDescriptionAttributeType) (ret RoleGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRoleGetDescriptionAttributeType(arg *RoleGetDescriptionAttributeType, val RoleGetDescriptionRetType) {
+	*arg = &val
+}
+
+type RoleGetDescriptionArgType = string
+type RoleGetDescriptionRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type RoleGetIdAttributeType = *string
+
+func getRoleGetIdAttributeTypeOk(arg RoleGetIdAttributeType) (ret RoleGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRoleGetIdAttributeType(arg *RoleGetIdAttributeType, val RoleGetIdRetType) {
+	*arg = &val
+}
+
+type RoleGetIdArgType = string
+type RoleGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type RoleGetNameAttributeType = *string
+
+func getRoleGetNameAttributeTypeOk(arg RoleGetNameAttributeType) (ret RoleGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRoleGetNameAttributeType(arg *RoleGetNameAttributeType, val RoleGetNameRetType) {
+	*arg = &val
+}
+
+type RoleGetNameArgType = string
+type RoleGetNameRetType = string
+
+/*
+	types and functions for permissions
+*/
+
+// isArray
+type RoleGetPermissionsAttributeType = *[]Permission
+type RoleGetPermissionsArgType = []Permission
+type RoleGetPermissionsRetType = []Permission
+
+func getRoleGetPermissionsAttributeTypeOk(arg RoleGetPermissionsAttributeType) (ret RoleGetPermissionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRoleGetPermissionsAttributeType(arg *RoleGetPermissionsAttributeType, val RoleGetPermissionsRetType) {
+	*arg = &val
+}
+
 // Role struct for Role
 type Role struct {
 	// REQUIRED
-	Description *string `json:"description"`
-	Id          *string `json:"id,omitempty"`
+	Description RoleGetDescriptionAttributeType `json:"description"`
+	Id          RoleGetIdAttributeType          `json:"id,omitempty"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name RoleGetNameAttributeType `json:"name"`
 	// REQUIRED
-	Permissions *[]Permission `json:"permissions"`
+	Permissions RoleGetPermissionsAttributeType `json:"permissions"`
 }
 
 type _Role Role
@@ -34,11 +117,11 @@ type _Role Role
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRole(description *string, name *string, permissions *[]Permission) *Role {
+func NewRole(description RoleGetDescriptionArgType, name RoleGetNameArgType, permissions RoleGetPermissionsArgType) *Role {
 	this := Role{}
-	this.Description = description
-	this.Name = name
-	this.Permissions = permissions
+	setRoleGetDescriptionAttributeType(&this.Description, description)
+	setRoleGetNameAttributeType(&this.Name, name)
+	setRoleGetPermissionsAttributeType(&this.Permissions, permissions)
 	return &this
 }
 
@@ -51,117 +134,93 @@ func NewRoleWithDefaults() *Role {
 }
 
 // GetDescription returns the Description field value
-func (o *Role) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *Role) GetDescription() (ret RoleGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *Role) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *Role) GetDescriptionOk() (ret RoleGetDescriptionRetType, ok bool) {
+	return getRoleGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *Role) SetDescription(v *string) {
-	o.Description = v
+func (o *Role) SetDescription(v RoleGetDescriptionRetType) {
+	setRoleGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Role) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Role) GetId() (res RoleGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Role) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Role) GetIdOk() (ret RoleGetIdRetType, ok bool) {
+	return getRoleGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Role) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Role) SetId(v *string) {
-	o.Id = v
+func (o *Role) SetId(v RoleGetIdRetType) {
+	setRoleGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value
-func (o *Role) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Role) GetName() (ret RoleGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Role) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Role) GetNameOk() (ret RoleGetNameRetType, ok bool) {
+	return getRoleGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Role) SetName(v *string) {
-	o.Name = v
+func (o *Role) SetName(v RoleGetNameRetType) {
+	setRoleGetNameAttributeType(&o.Name, v)
 }
 
 // GetPermissions returns the Permissions field value
-func (o *Role) GetPermissions() *[]Permission {
-	if o == nil || IsNil(o.Permissions) {
-		var ret *[]Permission
-		return ret
-	}
-
-	return o.Permissions
+func (o *Role) GetPermissions() (ret RoleGetPermissionsRetType) {
+	ret, _ = o.GetPermissionsOk()
+	return ret
 }
 
 // GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
-func (o *Role) GetPermissionsOk() (*[]Permission, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Permissions, true
+func (o *Role) GetPermissionsOk() (ret RoleGetPermissionsRetType, ok bool) {
+	return getRoleGetPermissionsAttributeTypeOk(o.Permissions)
 }
 
 // SetPermissions sets field value
-func (o *Role) SetPermissions(v *[]Permission) {
-	o.Permissions = v
+func (o *Role) SetPermissions(v RoleGetPermissionsRetType) {
+	setRoleGetPermissionsAttributeType(&o.Permissions, v)
 }
 
 func (o Role) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getRoleGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["permissions"] = o.Permissions
+	if val, ok := getRoleGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getRoleGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getRoleGetPermissionsAttributeTypeOk(o.Permissions); ok {
+		toSerialize["Permissions"] = val
+	}
 	return toSerialize, nil
 }
 
