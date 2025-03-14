@@ -17,10 +17,52 @@ import (
 // checks if the ApiConfiguration type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ApiConfiguration{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ApiConfigurationGetNameAttributeType = *string
+
+func getApiConfigurationGetNameAttributeTypeOk(arg ApiConfigurationGetNameAttributeType) (ret ApiConfigurationGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApiConfigurationGetNameAttributeType(arg *ApiConfigurationGetNameAttributeType, val ApiConfigurationGetNameRetType) {
+	*arg = &val
+}
+
+type ApiConfigurationGetNameArgType = string
+type ApiConfigurationGetNameRetType = string
+
+/*
+	types and functions for setting
+*/
+
+// isNotNullableString
+type ApiConfigurationGetSettingAttributeType = *string
+
+func getApiConfigurationGetSettingAttributeTypeOk(arg ApiConfigurationGetSettingAttributeType) (ret ApiConfigurationGetSettingRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApiConfigurationGetSettingAttributeType(arg *ApiConfigurationGetSettingAttributeType, val ApiConfigurationGetSettingRetType) {
+	*arg = &val
+}
+
+type ApiConfigurationGetSettingArgType = string
+type ApiConfigurationGetSettingRetType = string
+
 // ApiConfiguration struct for ApiConfiguration
 type ApiConfiguration struct {
-	Name    *string `json:"name,omitempty"`
-	Setting *string `json:"setting,omitempty"`
+	Name    ApiConfigurationGetNameAttributeType    `json:"name,omitempty"`
+	Setting ApiConfigurationGetSettingAttributeType `json:"setting,omitempty"`
 }
 
 // NewApiConfiguration instantiates a new ApiConfiguration object
@@ -41,76 +83,58 @@ func NewApiConfigurationWithDefaults() *ApiConfiguration {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ApiConfiguration) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *ApiConfiguration) GetName() (res ApiConfigurationGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiConfiguration) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *ApiConfiguration) GetNameOk() (ret ApiConfigurationGetNameRetType, ok bool) {
+	return getApiConfigurationGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ApiConfiguration) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ApiConfiguration) SetName(v *string) {
-	o.Name = v
+func (o *ApiConfiguration) SetName(v ApiConfigurationGetNameRetType) {
+	setApiConfigurationGetNameAttributeType(&o.Name, v)
 }
 
 // GetSetting returns the Setting field value if set, zero value otherwise.
-func (o *ApiConfiguration) GetSetting() *string {
-	if o == nil || IsNil(o.Setting) {
-		var ret *string
-		return ret
-	}
-	return o.Setting
+func (o *ApiConfiguration) GetSetting() (res ApiConfigurationGetSettingRetType) {
+	res, _ = o.GetSettingOk()
+	return
 }
 
 // GetSettingOk returns a tuple with the Setting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiConfiguration) GetSettingOk() (*string, bool) {
-	if o == nil || IsNil(o.Setting) {
-		return nil, false
-	}
-	return o.Setting, true
+func (o *ApiConfiguration) GetSettingOk() (ret ApiConfigurationGetSettingRetType, ok bool) {
+	return getApiConfigurationGetSettingAttributeTypeOk(o.Setting)
 }
 
 // HasSetting returns a boolean if a field has been set.
 func (o *ApiConfiguration) HasSetting() bool {
-	if o != nil && !IsNil(o.Setting) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSettingOk()
+	return ok
 }
 
 // SetSetting gets a reference to the given string and assigns it to the Setting field.
-func (o *ApiConfiguration) SetSetting(v *string) {
-	o.Setting = v
+func (o *ApiConfiguration) SetSetting(v ApiConfigurationGetSettingRetType) {
+	setApiConfigurationGetSettingAttributeType(&o.Setting, v)
 }
 
 func (o ApiConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getApiConfigurationGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Setting) {
-		toSerialize["setting"] = o.Setting
+	if val, ok := getApiConfigurationGetSettingAttributeTypeOk(o.Setting); ok {
+		toSerialize["Setting"] = val
 	}
 	return toSerialize, nil
 }

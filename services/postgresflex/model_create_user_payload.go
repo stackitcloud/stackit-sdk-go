@@ -17,10 +17,51 @@ import (
 // checks if the CreateUserPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateUserPayload{}
 
+/*
+	types and functions for roles
+*/
+
+// isArray
+type CreateUserPayloadGetRolesAttributeType = *[]string
+type CreateUserPayloadGetRolesArgType = []string
+type CreateUserPayloadGetRolesRetType = []string
+
+func getCreateUserPayloadGetRolesAttributeTypeOk(arg CreateUserPayloadGetRolesAttributeType) (ret CreateUserPayloadGetRolesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateUserPayloadGetRolesAttributeType(arg *CreateUserPayloadGetRolesAttributeType, val CreateUserPayloadGetRolesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type CreateUserPayloadGetUsernameAttributeType = *string
+
+func getCreateUserPayloadGetUsernameAttributeTypeOk(arg CreateUserPayloadGetUsernameAttributeType) (ret CreateUserPayloadGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateUserPayloadGetUsernameAttributeType(arg *CreateUserPayloadGetUsernameAttributeType, val CreateUserPayloadGetUsernameRetType) {
+	*arg = &val
+}
+
+type CreateUserPayloadGetUsernameArgType = string
+type CreateUserPayloadGetUsernameRetType = string
+
 // CreateUserPayload struct for CreateUserPayload
 type CreateUserPayload struct {
-	Roles    *[]string `json:"roles,omitempty"`
-	Username *string   `json:"username,omitempty"`
+	Roles    CreateUserPayloadGetRolesAttributeType    `json:"roles,omitempty"`
+	Username CreateUserPayloadGetUsernameAttributeType `json:"username,omitempty"`
 }
 
 // NewCreateUserPayload instantiates a new CreateUserPayload object
@@ -41,76 +82,58 @@ func NewCreateUserPayloadWithDefaults() *CreateUserPayload {
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *CreateUserPayload) GetRoles() *[]string {
-	if o == nil || IsNil(o.Roles) {
-		var ret *[]string
-		return ret
-	}
-	return o.Roles
+func (o *CreateUserPayload) GetRoles() (res CreateUserPayloadGetRolesRetType) {
+	res, _ = o.GetRolesOk()
+	return
 }
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateUserPayload) GetRolesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Roles) {
-		return nil, false
-	}
-	return o.Roles, true
+func (o *CreateUserPayload) GetRolesOk() (ret CreateUserPayloadGetRolesRetType, ok bool) {
+	return getCreateUserPayloadGetRolesAttributeTypeOk(o.Roles)
 }
 
 // HasRoles returns a boolean if a field has been set.
 func (o *CreateUserPayload) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRolesOk()
+	return ok
 }
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *CreateUserPayload) SetRoles(v *[]string) {
-	o.Roles = v
+func (o *CreateUserPayload) SetRoles(v CreateUserPayloadGetRolesRetType) {
+	setCreateUserPayloadGetRolesAttributeType(&o.Roles, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *CreateUserPayload) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-	return o.Username
+func (o *CreateUserPayload) GetUsername() (res CreateUserPayloadGetUsernameRetType) {
+	res, _ = o.GetUsernameOk()
+	return
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateUserPayload) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
+func (o *CreateUserPayload) GetUsernameOk() (ret CreateUserPayloadGetUsernameRetType, ok bool) {
+	return getCreateUserPayloadGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CreateUserPayload) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUsernameOk()
+	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *CreateUserPayload) SetUsername(v *string) {
-	o.Username = v
+func (o *CreateUserPayload) SetUsername(v CreateUserPayloadGetUsernameRetType) {
+	setCreateUserPayloadGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Roles) {
-		toSerialize["roles"] = o.Roles
+	if val, ok := getCreateUserPayloadGetRolesAttributeTypeOk(o.Roles); ok {
+		toSerialize["Roles"] = val
 	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
+	if val, ok := getCreateUserPayloadGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
 	}
 	return toSerialize, nil
 }

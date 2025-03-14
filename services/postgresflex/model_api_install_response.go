@@ -17,9 +17,29 @@ import (
 // checks if the ApiInstallResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ApiInstallResponse{}
 
+/*
+	types and functions for extension
+*/
+
+// isModel
+type ApiInstallResponseGetExtensionAttributeType = *ApiExtensionList
+type ApiInstallResponseGetExtensionArgType = ApiExtensionList
+type ApiInstallResponseGetExtensionRetType = ApiExtensionList
+
+func getApiInstallResponseGetExtensionAttributeTypeOk(arg ApiInstallResponseGetExtensionAttributeType) (ret ApiInstallResponseGetExtensionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApiInstallResponseGetExtensionAttributeType(arg *ApiInstallResponseGetExtensionAttributeType, val ApiInstallResponseGetExtensionRetType) {
+	*arg = &val
+}
+
 // ApiInstallResponse struct for ApiInstallResponse
 type ApiInstallResponse struct {
-	Extension *ApiExtensionList `json:"extension,omitempty"`
+	Extension ApiInstallResponseGetExtensionAttributeType `json:"extension,omitempty"`
 }
 
 // NewApiInstallResponse instantiates a new ApiInstallResponse object
@@ -40,41 +60,32 @@ func NewApiInstallResponseWithDefaults() *ApiInstallResponse {
 }
 
 // GetExtension returns the Extension field value if set, zero value otherwise.
-func (o *ApiInstallResponse) GetExtension() *ApiExtensionList {
-	if o == nil || IsNil(o.Extension) {
-		var ret *ApiExtensionList
-		return ret
-	}
-	return o.Extension
+func (o *ApiInstallResponse) GetExtension() (res ApiInstallResponseGetExtensionRetType) {
+	res, _ = o.GetExtensionOk()
+	return
 }
 
 // GetExtensionOk returns a tuple with the Extension field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiInstallResponse) GetExtensionOk() (*ApiExtensionList, bool) {
-	if o == nil || IsNil(o.Extension) {
-		return nil, false
-	}
-	return o.Extension, true
+func (o *ApiInstallResponse) GetExtensionOk() (ret ApiInstallResponseGetExtensionRetType, ok bool) {
+	return getApiInstallResponseGetExtensionAttributeTypeOk(o.Extension)
 }
 
 // HasExtension returns a boolean if a field has been set.
 func (o *ApiInstallResponse) HasExtension() bool {
-	if o != nil && !IsNil(o.Extension) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExtensionOk()
+	return ok
 }
 
 // SetExtension gets a reference to the given ApiExtensionList and assigns it to the Extension field.
-func (o *ApiInstallResponse) SetExtension(v *ApiExtensionList) {
-	o.Extension = v
+func (o *ApiInstallResponse) SetExtension(v ApiInstallResponseGetExtensionRetType) {
+	setApiInstallResponseGetExtensionAttributeType(&o.Extension, v)
 }
 
 func (o ApiInstallResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Extension) {
-		toSerialize["extension"] = o.Extension
+	if val, ok := getApiInstallResponseGetExtensionAttributeTypeOk(o.Extension); ok {
+		toSerialize["Extension"] = val
 	}
 	return toSerialize, nil
 }

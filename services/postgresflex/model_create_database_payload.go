@@ -17,11 +17,52 @@ import (
 // checks if the CreateDatabasePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateDatabasePayload{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateDatabasePayloadGetNameAttributeType = *string
+
+func getCreateDatabasePayloadGetNameAttributeTypeOk(arg CreateDatabasePayloadGetNameAttributeType) (ret CreateDatabasePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDatabasePayloadGetNameAttributeType(arg *CreateDatabasePayloadGetNameAttributeType, val CreateDatabasePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateDatabasePayloadGetNameArgType = string
+type CreateDatabasePayloadGetNameRetType = string
+
+/*
+	types and functions for options
+*/
+
+// isContainer
+type CreateDatabasePayloadGetOptionsAttributeType = *map[string]string
+type CreateDatabasePayloadGetOptionsArgType = map[string]string
+type CreateDatabasePayloadGetOptionsRetType = map[string]string
+
+func getCreateDatabasePayloadGetOptionsAttributeTypeOk(arg CreateDatabasePayloadGetOptionsAttributeType) (ret CreateDatabasePayloadGetOptionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDatabasePayloadGetOptionsAttributeType(arg *CreateDatabasePayloadGetOptionsAttributeType, val CreateDatabasePayloadGetOptionsRetType) {
+	*arg = &val
+}
+
 // CreateDatabasePayload struct for CreateDatabasePayload
 type CreateDatabasePayload struct {
-	Name *string `json:"name,omitempty"`
+	Name CreateDatabasePayloadGetNameAttributeType `json:"name,omitempty"`
 	// Database specific options
-	Options *map[string]string `json:"options,omitempty"`
+	Options CreateDatabasePayloadGetOptionsAttributeType `json:"options,omitempty"`
 }
 
 // NewCreateDatabasePayload instantiates a new CreateDatabasePayload object
@@ -42,76 +83,58 @@ func NewCreateDatabasePayloadWithDefaults() *CreateDatabasePayload {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CreateDatabasePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *CreateDatabasePayload) GetName() (res CreateDatabasePayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateDatabasePayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateDatabasePayload) GetNameOk() (ret CreateDatabasePayloadGetNameRetType, ok bool) {
+	return getCreateDatabasePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateDatabasePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CreateDatabasePayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateDatabasePayload) SetName(v CreateDatabasePayloadGetNameRetType) {
+	setCreateDatabasePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *CreateDatabasePayload) GetOptions() *map[string]string {
-	if o == nil || IsNil(o.Options) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Options
+func (o *CreateDatabasePayload) GetOptions() (res CreateDatabasePayloadGetOptionsRetType) {
+	res, _ = o.GetOptionsOk()
+	return
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateDatabasePayload) GetOptionsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Options) {
-		return nil, false
-	}
-	return o.Options, true
+func (o *CreateDatabasePayload) GetOptionsOk() (ret CreateDatabasePayloadGetOptionsRetType, ok bool) {
+	return getCreateDatabasePayloadGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *CreateDatabasePayload) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOptionsOk()
+	return ok
 }
 
 // SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
-func (o *CreateDatabasePayload) SetOptions(v *map[string]string) {
-	o.Options = v
+func (o *CreateDatabasePayload) SetOptions(v CreateDatabasePayloadGetOptionsRetType) {
+	setCreateDatabasePayloadGetOptionsAttributeType(&o.Options, v)
 }
 
 func (o CreateDatabasePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getCreateDatabasePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
+	if val, ok := getCreateDatabasePayloadGetOptionsAttributeTypeOk(o.Options); ok {
+		toSerialize["Options"] = val
 	}
 	return toSerialize, nil
 }

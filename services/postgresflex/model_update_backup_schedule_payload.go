@@ -17,10 +17,31 @@ import (
 // checks if the UpdateBackupSchedulePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateBackupSchedulePayload{}
 
+/*
+	types and functions for backupSchedule
+*/
+
+// isNotNullableString
+type UpdateBackupSchedulePayloadGetBackupScheduleAttributeType = *string
+
+func getUpdateBackupSchedulePayloadGetBackupScheduleAttributeTypeOk(arg UpdateBackupSchedulePayloadGetBackupScheduleAttributeType) (ret UpdateBackupSchedulePayloadGetBackupScheduleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupSchedulePayloadGetBackupScheduleAttributeType(arg *UpdateBackupSchedulePayloadGetBackupScheduleAttributeType, val UpdateBackupSchedulePayloadGetBackupScheduleRetType) {
+	*arg = &val
+}
+
+type UpdateBackupSchedulePayloadGetBackupScheduleArgType = string
+type UpdateBackupSchedulePayloadGetBackupScheduleRetType = string
+
 // UpdateBackupSchedulePayload struct for UpdateBackupSchedulePayload
 type UpdateBackupSchedulePayload struct {
 	// REQUIRED
-	BackupSchedule *string `json:"backupSchedule"`
+	BackupSchedule UpdateBackupSchedulePayloadGetBackupScheduleAttributeType `json:"backupSchedule"`
 }
 
 type _UpdateBackupSchedulePayload UpdateBackupSchedulePayload
@@ -29,9 +50,9 @@ type _UpdateBackupSchedulePayload UpdateBackupSchedulePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateBackupSchedulePayload(backupSchedule *string) *UpdateBackupSchedulePayload {
+func NewUpdateBackupSchedulePayload(backupSchedule UpdateBackupSchedulePayloadGetBackupScheduleArgType) *UpdateBackupSchedulePayload {
 	this := UpdateBackupSchedulePayload{}
-	this.BackupSchedule = backupSchedule
+	setUpdateBackupSchedulePayloadGetBackupScheduleAttributeType(&this.BackupSchedule, backupSchedule)
 	return &this
 }
 
@@ -44,32 +65,27 @@ func NewUpdateBackupSchedulePayloadWithDefaults() *UpdateBackupSchedulePayload {
 }
 
 // GetBackupSchedule returns the BackupSchedule field value
-func (o *UpdateBackupSchedulePayload) GetBackupSchedule() *string {
-	if o == nil || IsNil(o.BackupSchedule) {
-		var ret *string
-		return ret
-	}
-
-	return o.BackupSchedule
+func (o *UpdateBackupSchedulePayload) GetBackupSchedule() (ret UpdateBackupSchedulePayloadGetBackupScheduleRetType) {
+	ret, _ = o.GetBackupScheduleOk()
+	return ret
 }
 
 // GetBackupScheduleOk returns a tuple with the BackupSchedule field value
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupSchedulePayload) GetBackupScheduleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.BackupSchedule, true
+func (o *UpdateBackupSchedulePayload) GetBackupScheduleOk() (ret UpdateBackupSchedulePayloadGetBackupScheduleRetType, ok bool) {
+	return getUpdateBackupSchedulePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule)
 }
 
 // SetBackupSchedule sets field value
-func (o *UpdateBackupSchedulePayload) SetBackupSchedule(v *string) {
-	o.BackupSchedule = v
+func (o *UpdateBackupSchedulePayload) SetBackupSchedule(v UpdateBackupSchedulePayloadGetBackupScheduleRetType) {
+	setUpdateBackupSchedulePayloadGetBackupScheduleAttributeType(&o.BackupSchedule, v)
 }
 
 func (o UpdateBackupSchedulePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["backupSchedule"] = o.BackupSchedule
+	if val, ok := getUpdateBackupSchedulePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule); ok {
+		toSerialize["BackupSchedule"] = val
+	}
 	return toSerialize, nil
 }
 
