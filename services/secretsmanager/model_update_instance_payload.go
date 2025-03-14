@@ -17,11 +17,32 @@ import (
 // checks if the UpdateInstancePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateInstancePayload{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type UpdateInstancePayloadGetNameAttributeType = *string
+
+func getUpdateInstancePayloadGetNameAttributeTypeOk(arg UpdateInstancePayloadGetNameAttributeType) (ret UpdateInstancePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateInstancePayloadGetNameAttributeType(arg *UpdateInstancePayloadGetNameAttributeType, val UpdateInstancePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type UpdateInstancePayloadGetNameArgType = string
+type UpdateInstancePayloadGetNameRetType = string
+
 // UpdateInstancePayload struct for UpdateInstancePayload
 type UpdateInstancePayload struct {
 	// A user chosen name to distinguish multiple secrets manager instances.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name UpdateInstancePayloadGetNameAttributeType `json:"name"`
 }
 
 type _UpdateInstancePayload UpdateInstancePayload
@@ -30,9 +51,9 @@ type _UpdateInstancePayload UpdateInstancePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateInstancePayload(name *string) *UpdateInstancePayload {
+func NewUpdateInstancePayload(name UpdateInstancePayloadGetNameArgType) *UpdateInstancePayload {
 	this := UpdateInstancePayload{}
-	this.Name = name
+	setUpdateInstancePayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -45,32 +66,27 @@ func NewUpdateInstancePayloadWithDefaults() *UpdateInstancePayload {
 }
 
 // GetName returns the Name field value
-func (o *UpdateInstancePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *UpdateInstancePayload) GetName() (ret UpdateInstancePayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *UpdateInstancePayload) GetNameOk() (ret UpdateInstancePayloadGetNameRetType, ok bool) {
+	return getUpdateInstancePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *UpdateInstancePayload) SetName(v *string) {
-	o.Name = v
+func (o *UpdateInstancePayload) SetName(v UpdateInstancePayloadGetNameRetType) {
+	setUpdateInstancePayloadGetNameAttributeType(&o.Name, v)
 }
 
 func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
+	if val, ok := getUpdateInstancePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
 	return toSerialize, nil
 }
 
