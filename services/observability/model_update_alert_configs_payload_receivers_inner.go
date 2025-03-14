@@ -17,16 +17,97 @@ import (
 // checks if the UpdateAlertConfigsPayloadReceiversInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateAlertConfigsPayloadReceiversInner{}
 
+/*
+	types and functions for emailConfigs
+*/
+
+// isArray
+type UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsAttributeType = *[]CreateAlertConfigReceiverPayloadEmailConfigsInner
+type UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsArgType = []CreateAlertConfigReceiverPayloadEmailConfigsInner
+type UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsRetType = []CreateAlertConfigReceiverPayloadEmailConfigsInner
+
+func getUpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsAttributeTypeOk(arg UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsAttributeType) (ret UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsAttributeType(arg *UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsAttributeType, val UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadReceiversInnerGetNameAttributeType = *string
+
+func getUpdateAlertConfigsPayloadReceiversInnerGetNameAttributeTypeOk(arg UpdateAlertConfigsPayloadReceiversInnerGetNameAttributeType) (ret UpdateAlertConfigsPayloadReceiversInnerGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadReceiversInnerGetNameAttributeType(arg *UpdateAlertConfigsPayloadReceiversInnerGetNameAttributeType, val UpdateAlertConfigsPayloadReceiversInnerGetNameRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadReceiversInnerGetNameArgType = string
+type UpdateAlertConfigsPayloadReceiversInnerGetNameRetType = string
+
+/*
+	types and functions for opsgenieConfigs
+*/
+
+// isArray
+type UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsAttributeType = *[]CreateAlertConfigReceiverPayloadOpsgenieConfigsInner
+type UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsArgType = []CreateAlertConfigReceiverPayloadOpsgenieConfigsInner
+type UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsRetType = []CreateAlertConfigReceiverPayloadOpsgenieConfigsInner
+
+func getUpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsAttributeTypeOk(arg UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsAttributeType) (ret UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsAttributeType(arg *UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsAttributeType, val UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for webHookConfigs
+*/
+
+// isArray
+type UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsAttributeType = *[]CreateAlertConfigReceiverPayloadWebHookConfigsInner
+type UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsArgType = []CreateAlertConfigReceiverPayloadWebHookConfigsInner
+type UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsRetType = []CreateAlertConfigReceiverPayloadWebHookConfigsInner
+
+func getUpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsAttributeTypeOk(arg UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsAttributeType) (ret UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsAttributeType(arg *UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsAttributeType, val UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsRetType) {
+	*arg = &val
+}
+
 // UpdateAlertConfigsPayloadReceiversInner Receivers
 type UpdateAlertConfigsPayloadReceiversInner struct {
 	// Email configurations
-	EmailConfigs *[]CreateAlertConfigReceiverPayloadEmailConfigsInner `json:"emailConfigs,omitempty"`
+	EmailConfigs UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsAttributeType `json:"emailConfigs,omitempty"`
 	// `Additional Validators:` * must be unique * should only include the characters: a-zA-Z0-9-
 	// REQUIRED
-	Name *string `json:"name"`
+	Name UpdateAlertConfigsPayloadReceiversInnerGetNameAttributeType `json:"name"`
 	// Configuration for ops genie.
-	OpsgenieConfigs *[]CreateAlertConfigReceiverPayloadOpsgenieConfigsInner `json:"opsgenieConfigs,omitempty"`
-	WebHookConfigs  *[]CreateAlertConfigReceiverPayloadWebHookConfigsInner  `json:"webHookConfigs,omitempty"`
+	OpsgenieConfigs UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsAttributeType `json:"opsgenieConfigs,omitempty"`
+	WebHookConfigs  UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsAttributeType  `json:"webHookConfigs,omitempty"`
 }
 
 type _UpdateAlertConfigsPayloadReceiversInner UpdateAlertConfigsPayloadReceiversInner
@@ -35,9 +116,9 @@ type _UpdateAlertConfigsPayloadReceiversInner UpdateAlertConfigsPayloadReceivers
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateAlertConfigsPayloadReceiversInner(name *string) *UpdateAlertConfigsPayloadReceiversInner {
+func NewUpdateAlertConfigsPayloadReceiversInner(name UpdateAlertConfigsPayloadReceiversInnerGetNameArgType) *UpdateAlertConfigsPayloadReceiversInner {
 	this := UpdateAlertConfigsPayloadReceiversInner{}
-	this.Name = name
+	setUpdateAlertConfigsPayloadReceiversInnerGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -50,136 +131,104 @@ func NewUpdateAlertConfigsPayloadReceiversInnerWithDefaults() *UpdateAlertConfig
 }
 
 // GetEmailConfigs returns the EmailConfigs field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadReceiversInner) GetEmailConfigs() *[]CreateAlertConfigReceiverPayloadEmailConfigsInner {
-	if o == nil || IsNil(o.EmailConfigs) {
-		var ret *[]CreateAlertConfigReceiverPayloadEmailConfigsInner
-		return ret
-	}
-	return o.EmailConfigs
+func (o *UpdateAlertConfigsPayloadReceiversInner) GetEmailConfigs() (res UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsRetType) {
+	res, _ = o.GetEmailConfigsOk()
+	return
 }
 
 // GetEmailConfigsOk returns a tuple with the EmailConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadReceiversInner) GetEmailConfigsOk() (*[]CreateAlertConfigReceiverPayloadEmailConfigsInner, bool) {
-	if o == nil || IsNil(o.EmailConfigs) {
-		return nil, false
-	}
-	return o.EmailConfigs, true
+func (o *UpdateAlertConfigsPayloadReceiversInner) GetEmailConfigsOk() (ret UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsAttributeTypeOk(o.EmailConfigs)
 }
 
 // HasEmailConfigs returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadReceiversInner) HasEmailConfigs() bool {
-	if o != nil && !IsNil(o.EmailConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEmailConfigsOk()
+	return ok
 }
 
 // SetEmailConfigs gets a reference to the given []CreateAlertConfigReceiverPayloadEmailConfigsInner and assigns it to the EmailConfigs field.
-func (o *UpdateAlertConfigsPayloadReceiversInner) SetEmailConfigs(v *[]CreateAlertConfigReceiverPayloadEmailConfigsInner) {
-	o.EmailConfigs = v
+func (o *UpdateAlertConfigsPayloadReceiversInner) SetEmailConfigs(v UpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsRetType) {
+	setUpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsAttributeType(&o.EmailConfigs, v)
 }
 
 // GetName returns the Name field value
-func (o *UpdateAlertConfigsPayloadReceiversInner) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *UpdateAlertConfigsPayloadReceiversInner) GetName() (ret UpdateAlertConfigsPayloadReceiversInnerGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadReceiversInner) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *UpdateAlertConfigsPayloadReceiversInner) GetNameOk() (ret UpdateAlertConfigsPayloadReceiversInnerGetNameRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadReceiversInnerGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *UpdateAlertConfigsPayloadReceiversInner) SetName(v *string) {
-	o.Name = v
+func (o *UpdateAlertConfigsPayloadReceiversInner) SetName(v UpdateAlertConfigsPayloadReceiversInnerGetNameRetType) {
+	setUpdateAlertConfigsPayloadReceiversInnerGetNameAttributeType(&o.Name, v)
 }
 
 // GetOpsgenieConfigs returns the OpsgenieConfigs field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadReceiversInner) GetOpsgenieConfigs() *[]CreateAlertConfigReceiverPayloadOpsgenieConfigsInner {
-	if o == nil || IsNil(o.OpsgenieConfigs) {
-		var ret *[]CreateAlertConfigReceiverPayloadOpsgenieConfigsInner
-		return ret
-	}
-	return o.OpsgenieConfigs
+func (o *UpdateAlertConfigsPayloadReceiversInner) GetOpsgenieConfigs() (res UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsRetType) {
+	res, _ = o.GetOpsgenieConfigsOk()
+	return
 }
 
 // GetOpsgenieConfigsOk returns a tuple with the OpsgenieConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadReceiversInner) GetOpsgenieConfigsOk() (*[]CreateAlertConfigReceiverPayloadOpsgenieConfigsInner, bool) {
-	if o == nil || IsNil(o.OpsgenieConfigs) {
-		return nil, false
-	}
-	return o.OpsgenieConfigs, true
+func (o *UpdateAlertConfigsPayloadReceiversInner) GetOpsgenieConfigsOk() (ret UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsAttributeTypeOk(o.OpsgenieConfigs)
 }
 
 // HasOpsgenieConfigs returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadReceiversInner) HasOpsgenieConfigs() bool {
-	if o != nil && !IsNil(o.OpsgenieConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOpsgenieConfigsOk()
+	return ok
 }
 
 // SetOpsgenieConfigs gets a reference to the given []CreateAlertConfigReceiverPayloadOpsgenieConfigsInner and assigns it to the OpsgenieConfigs field.
-func (o *UpdateAlertConfigsPayloadReceiversInner) SetOpsgenieConfigs(v *[]CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) {
-	o.OpsgenieConfigs = v
+func (o *UpdateAlertConfigsPayloadReceiversInner) SetOpsgenieConfigs(v UpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsRetType) {
+	setUpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsAttributeType(&o.OpsgenieConfigs, v)
 }
 
 // GetWebHookConfigs returns the WebHookConfigs field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadReceiversInner) GetWebHookConfigs() *[]CreateAlertConfigReceiverPayloadWebHookConfigsInner {
-	if o == nil || IsNil(o.WebHookConfigs) {
-		var ret *[]CreateAlertConfigReceiverPayloadWebHookConfigsInner
-		return ret
-	}
-	return o.WebHookConfigs
+func (o *UpdateAlertConfigsPayloadReceiversInner) GetWebHookConfigs() (res UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsRetType) {
+	res, _ = o.GetWebHookConfigsOk()
+	return
 }
 
 // GetWebHookConfigsOk returns a tuple with the WebHookConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadReceiversInner) GetWebHookConfigsOk() (*[]CreateAlertConfigReceiverPayloadWebHookConfigsInner, bool) {
-	if o == nil || IsNil(o.WebHookConfigs) {
-		return nil, false
-	}
-	return o.WebHookConfigs, true
+func (o *UpdateAlertConfigsPayloadReceiversInner) GetWebHookConfigsOk() (ret UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsAttributeTypeOk(o.WebHookConfigs)
 }
 
 // HasWebHookConfigs returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadReceiversInner) HasWebHookConfigs() bool {
-	if o != nil && !IsNil(o.WebHookConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetWebHookConfigsOk()
+	return ok
 }
 
 // SetWebHookConfigs gets a reference to the given []CreateAlertConfigReceiverPayloadWebHookConfigsInner and assigns it to the WebHookConfigs field.
-func (o *UpdateAlertConfigsPayloadReceiversInner) SetWebHookConfigs(v *[]CreateAlertConfigReceiverPayloadWebHookConfigsInner) {
-	o.WebHookConfigs = v
+func (o *UpdateAlertConfigsPayloadReceiversInner) SetWebHookConfigs(v UpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsRetType) {
+	setUpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsAttributeType(&o.WebHookConfigs, v)
 }
 
 func (o UpdateAlertConfigsPayloadReceiversInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.EmailConfigs) {
-		toSerialize["emailConfigs"] = o.EmailConfigs
+	if val, ok := getUpdateAlertConfigsPayloadReceiversInnerGetEmailConfigsAttributeTypeOk(o.EmailConfigs); ok {
+		toSerialize["EmailConfigs"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.OpsgenieConfigs) {
-		toSerialize["opsgenieConfigs"] = o.OpsgenieConfigs
+	if val, ok := getUpdateAlertConfigsPayloadReceiversInnerGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.WebHookConfigs) {
-		toSerialize["webHookConfigs"] = o.WebHookConfigs
+	if val, ok := getUpdateAlertConfigsPayloadReceiversInnerGetOpsgenieConfigsAttributeTypeOk(o.OpsgenieConfigs); ok {
+		toSerialize["OpsgenieConfigs"] = val
+	}
+	if val, ok := getUpdateAlertConfigsPayloadReceiversInnerGetWebHookConfigsAttributeTypeOk(o.WebHookConfigs); ok {
+		toSerialize["WebHookConfigs"] = val
 	}
 	return toSerialize, nil
 }

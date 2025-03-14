@@ -17,12 +17,53 @@ import (
 // checks if the ScrapeConfigsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ScrapeConfigsResponse{}
 
+/*
+	types and functions for data
+*/
+
+// isArray
+type ScrapeConfigsResponseGetDataAttributeType = *[]Job
+type ScrapeConfigsResponseGetDataArgType = []Job
+type ScrapeConfigsResponseGetDataRetType = []Job
+
+func getScrapeConfigsResponseGetDataAttributeTypeOk(arg ScrapeConfigsResponseGetDataAttributeType) (ret ScrapeConfigsResponseGetDataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setScrapeConfigsResponseGetDataAttributeType(arg *ScrapeConfigsResponseGetDataAttributeType, val ScrapeConfigsResponseGetDataRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ScrapeConfigsResponseGetMessageAttributeType = *string
+
+func getScrapeConfigsResponseGetMessageAttributeTypeOk(arg ScrapeConfigsResponseGetMessageAttributeType) (ret ScrapeConfigsResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setScrapeConfigsResponseGetMessageAttributeType(arg *ScrapeConfigsResponseGetMessageAttributeType, val ScrapeConfigsResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ScrapeConfigsResponseGetMessageArgType = string
+type ScrapeConfigsResponseGetMessageRetType = string
+
 // ScrapeConfigsResponse struct for ScrapeConfigsResponse
 type ScrapeConfigsResponse struct {
 	// REQUIRED
-	Data *[]Job `json:"data"`
+	Data ScrapeConfigsResponseGetDataAttributeType `json:"data"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message ScrapeConfigsResponseGetMessageAttributeType `json:"message"`
 }
 
 type _ScrapeConfigsResponse ScrapeConfigsResponse
@@ -31,10 +72,10 @@ type _ScrapeConfigsResponse ScrapeConfigsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScrapeConfigsResponse(data *[]Job, message *string) *ScrapeConfigsResponse {
+func NewScrapeConfigsResponse(data ScrapeConfigsResponseGetDataArgType, message ScrapeConfigsResponseGetMessageArgType) *ScrapeConfigsResponse {
 	this := ScrapeConfigsResponse{}
-	this.Data = data
-	this.Message = message
+	setScrapeConfigsResponseGetDataAttributeType(&this.Data, data)
+	setScrapeConfigsResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewScrapeConfigsResponseWithDefaults() *ScrapeConfigsResponse {
 }
 
 // GetData returns the Data field value
-func (o *ScrapeConfigsResponse) GetData() *[]Job {
-	if o == nil || IsNil(o.Data) {
-		var ret *[]Job
-		return ret
-	}
-
-	return o.Data
+func (o *ScrapeConfigsResponse) GetData() (ret ScrapeConfigsResponseGetDataRetType) {
+	ret, _ = o.GetDataOk()
+	return ret
 }
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ScrapeConfigsResponse) GetDataOk() (*[]Job, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Data, true
+func (o *ScrapeConfigsResponse) GetDataOk() (ret ScrapeConfigsResponseGetDataRetType, ok bool) {
+	return getScrapeConfigsResponseGetDataAttributeTypeOk(o.Data)
 }
 
 // SetData sets field value
-func (o *ScrapeConfigsResponse) SetData(v *[]Job) {
-	o.Data = v
+func (o *ScrapeConfigsResponse) SetData(v ScrapeConfigsResponseGetDataRetType) {
+	setScrapeConfigsResponseGetDataAttributeType(&o.Data, v)
 }
 
 // GetMessage returns the Message field value
-func (o *ScrapeConfigsResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *ScrapeConfigsResponse) GetMessage() (ret ScrapeConfigsResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *ScrapeConfigsResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ScrapeConfigsResponse) GetMessageOk() (ret ScrapeConfigsResponseGetMessageRetType, ok bool) {
+	return getScrapeConfigsResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *ScrapeConfigsResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ScrapeConfigsResponse) SetMessage(v ScrapeConfigsResponseGetMessageRetType) {
+	setScrapeConfigsResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o ScrapeConfigsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["data"] = o.Data
-	toSerialize["message"] = o.Message
+	if val, ok := getScrapeConfigsResponseGetDataAttributeTypeOk(o.Data); ok {
+		toSerialize["Data"] = val
+	}
+	if val, ok := getScrapeConfigsResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

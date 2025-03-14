@@ -17,13 +17,53 @@ import (
 // checks if the CreateScrapeConfigPayloadStaticConfigsInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateScrapeConfigPayloadStaticConfigsInner{}
 
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeType = *map[string]interface{}
+type CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsArgType = map[string]interface{}
+type CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsRetType = map[string]interface{}
+
+func getCreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeTypeOk(arg CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeType) (ret CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeType(arg *CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeType, val CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targets
+*/
+
+// isArray
+type CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeType = *[]string
+type CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsArgType = []string
+type CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsRetType = []string
+
+func getCreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeTypeOk(arg CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeType) (ret CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeType(arg *CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeType, val CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsRetType) {
+	*arg = &val
+}
+
 // CreateScrapeConfigPayloadStaticConfigsInner struct for CreateScrapeConfigPayloadStaticConfigsInner
 type CreateScrapeConfigPayloadStaticConfigsInner struct {
 	// Labels assigned to all metrics scraped from the targets. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeType `json:"labels,omitempty"`
 	// The targets specified by the static config.
 	// REQUIRED
-	Targets *[]string `json:"targets"`
+	Targets CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeType `json:"targets"`
 }
 
 type _CreateScrapeConfigPayloadStaticConfigsInner CreateScrapeConfigPayloadStaticConfigsInner
@@ -32,9 +72,9 @@ type _CreateScrapeConfigPayloadStaticConfigsInner CreateScrapeConfigPayloadStati
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateScrapeConfigPayloadStaticConfigsInner(targets *[]string) *CreateScrapeConfigPayloadStaticConfigsInner {
+func NewCreateScrapeConfigPayloadStaticConfigsInner(targets CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsArgType) *CreateScrapeConfigPayloadStaticConfigsInner {
 	this := CreateScrapeConfigPayloadStaticConfigsInner{}
-	this.Targets = targets
+	setCreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeType(&this.Targets, targets)
 	return &this
 }
 
@@ -47,67 +87,53 @@ func NewCreateScrapeConfigPayloadStaticConfigsInnerWithDefaults() *CreateScrapeC
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetLabels() (res CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetLabelsOk() (ret CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsRetType, ok bool) {
+	return getCreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadStaticConfigsInner) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *CreateScrapeConfigPayloadStaticConfigsInner) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) SetLabels(v CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsRetType) {
+	setCreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetTargets returns the Targets field value
-func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetTargets() *[]string {
-	if o == nil || IsNil(o.Targets) {
-		var ret *[]string
-		return ret
-	}
-
-	return o.Targets
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetTargets() (ret CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsRetType) {
+	ret, _ = o.GetTargetsOk()
+	return ret
 }
 
 // GetTargetsOk returns a tuple with the Targets field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetTargetsOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Targets, true
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) GetTargetsOk() (ret CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsRetType, ok bool) {
+	return getCreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeTypeOk(o.Targets)
 }
 
 // SetTargets sets field value
-func (o *CreateScrapeConfigPayloadStaticConfigsInner) SetTargets(v *[]string) {
-	o.Targets = v
+func (o *CreateScrapeConfigPayloadStaticConfigsInner) SetTargets(v CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsRetType) {
+	setCreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeType(&o.Targets, v)
 }
 
 func (o CreateScrapeConfigPayloadStaticConfigsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getCreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	toSerialize["targets"] = o.Targets
+	if val, ok := getCreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeTypeOk(o.Targets); ok {
+		toSerialize["Targets"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,12 +17,53 @@ import (
 // checks if the CreateAlertConfigReceiverPayloadWebHookConfigsInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateAlertConfigReceiverPayloadWebHookConfigsInner{}
 
+/*
+	types and functions for msTeams
+*/
+
+// isBoolean
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeType = *bool
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsArgType = bool
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsRetType = bool
+
+func getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeTypeOk(arg CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeType) (ret CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeType(arg *CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeType, val CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for url
+*/
+
+// isNotNullableString
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeType = *string
+
+func getCreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeTypeOk(arg CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeType) (ret CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeType(arg *CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeType, val CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlRetType) {
+	*arg = &val
+}
+
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlArgType = string
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlRetType = string
+
 // CreateAlertConfigReceiverPayloadWebHookConfigsInner struct for CreateAlertConfigReceiverPayloadWebHookConfigsInner
 type CreateAlertConfigReceiverPayloadWebHookConfigsInner struct {
 	// Microsoft Teams webhooks require special handling. If you set this property to true, it is treated as such
-	MsTeams *bool `json:"msTeams,omitempty"`
+	MsTeams CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeType `json:"msTeams,omitempty"`
 	// The endpoint to send HTTP POST requests to. `Additional Validators:` * must be a syntactically valid url address
-	Url *string `json:"url,omitempty"`
+	Url CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeType `json:"url,omitempty"`
 }
 
 // NewCreateAlertConfigReceiverPayloadWebHookConfigsInner instantiates a new CreateAlertConfigReceiverPayloadWebHookConfigsInner object
@@ -31,8 +72,6 @@ type CreateAlertConfigReceiverPayloadWebHookConfigsInner struct {
 // will change when the set of required properties is changed
 func NewCreateAlertConfigReceiverPayloadWebHookConfigsInner() *CreateAlertConfigReceiverPayloadWebHookConfigsInner {
 	this := CreateAlertConfigReceiverPayloadWebHookConfigsInner{}
-	var msTeams bool = false
-	this.MsTeams = &msTeams
 	return &this
 }
 
@@ -47,76 +86,58 @@ func NewCreateAlertConfigReceiverPayloadWebHookConfigsInnerWithDefaults() *Creat
 }
 
 // GetMsTeams returns the MsTeams field value if set, zero value otherwise.
-func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetMsTeams() *bool {
-	if o == nil || IsNil(o.MsTeams) {
-		var ret *bool
-		return ret
-	}
-	return o.MsTeams
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetMsTeams() (res CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsRetType) {
+	res, _ = o.GetMsTeamsOk()
+	return
 }
 
 // GetMsTeamsOk returns a tuple with the MsTeams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetMsTeamsOk() (*bool, bool) {
-	if o == nil || IsNil(o.MsTeams) {
-		return nil, false
-	}
-	return o.MsTeams, true
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetMsTeamsOk() (ret CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeTypeOk(o.MsTeams)
 }
 
 // HasMsTeams returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) HasMsTeams() bool {
-	if o != nil && !IsNil(o.MsTeams) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMsTeamsOk()
+	return ok
 }
 
 // SetMsTeams gets a reference to the given bool and assigns it to the MsTeams field.
-func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) SetMsTeams(v *bool) {
-	o.MsTeams = v
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) SetMsTeams(v CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsRetType) {
+	setCreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeType(&o.MsTeams, v)
 }
 
 // GetUrl returns the Url field value if set, zero value otherwise.
-func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetUrl() *string {
-	if o == nil || IsNil(o.Url) {
-		var ret *string
-		return ret
-	}
-	return o.Url
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetUrl() (res CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlRetType) {
+	res, _ = o.GetUrlOk()
+	return
 }
 
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.Url) {
-		return nil, false
-	}
-	return o.Url, true
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetUrlOk() (ret CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeTypeOk(o.Url)
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) HasUrl() bool {
-	if o != nil && !IsNil(o.Url) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUrlOk()
+	return ok
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.
-func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) SetUrl(v *string) {
-	o.Url = v
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) SetUrl(v CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlRetType) {
+	setCreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeType(&o.Url, v)
 }
 
 func (o CreateAlertConfigReceiverPayloadWebHookConfigsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.MsTeams) {
-		toSerialize["msTeams"] = o.MsTeams
+	if val, ok := getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeTypeOk(o.MsTeams); ok {
+		toSerialize["MsTeams"] = val
 	}
-	if !IsNil(o.Url) {
-		toSerialize["url"] = o.Url
+	if val, ok := getCreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeTypeOk(o.Url); ok {
+		toSerialize["Url"] = val
 	}
 	return toSerialize, nil
 }

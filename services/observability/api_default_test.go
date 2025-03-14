@@ -24,14 +24,14 @@ import (
 func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateAlertConfigReceiver", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AlertConfigReceiversResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -65,8 +65,8 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 		createAlertConfigReceiverPayload := CreateAlertConfigReceiverPayload{}
 
 		resp, reqErr := apiClient.CreateAlertConfigReceiver(context.Background(), instanceId, projectId).CreateAlertConfigReceiverPayload(createAlertConfigReceiverPayload).Execute()
@@ -74,20 +74,20 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateAlertConfigRoute", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AlertConfigRouteResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -121,8 +121,8 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 		createAlertConfigRoutePayload := CreateAlertConfigRoutePayload{}
 
 		resp, reqErr := apiClient.CreateAlertConfigRoute(context.Background(), instanceId, projectId).CreateAlertConfigRoutePayload(createAlertConfigRoutePayload).Execute()
@@ -130,20 +130,20 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateCredentials", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateCredentialsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -177,26 +177,26 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.CreateCredentials(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances"
+		_apiUrlPath := "/v1/projects/{projectId}/instances"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -230,7 +230,7 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createInstancePayload := CreateInstancePayload{}
 
 		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
@@ -238,20 +238,20 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateScrapeConfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ScrapeConfigsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -285,8 +285,8 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 		createScrapeConfigPayload := CreateScrapeConfigPayload{}
 
 		resp, reqErr := apiClient.CreateScrapeConfig(context.Background(), instanceId, projectId).CreateScrapeConfigPayload(createScrapeConfigPayload).Execute()
@@ -294,22 +294,22 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteAlertConfigReceiver", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AlertConfigReceiversResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -343,31 +343,31 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		receiver := receiverValue
 
 		resp, reqErr := apiClient.DeleteAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteAlertConfigRoute", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AlertConfigRouteResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -401,31 +401,31 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		receiver := receiverValue
 
 		resp, reqErr := apiClient.DeleteAlertConfigRoute(context.Background(), instanceId, projectId, receiver).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteCredentials", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		usernameValue := "username"
-		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -459,31 +459,31 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		username := "username"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		username := usernameValue
 
 		resp, reqErr := apiClient.DeleteCredentials(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteCredentialsRemoteWriteConfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		usernameValue := "username"
-		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CredentialsRemoteWriteDeleteResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -517,29 +517,29 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		username := "username"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		username := usernameValue
 
 		resp, reqErr := apiClient.DeleteCredentialsRemoteWriteConfig(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := InstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -573,30 +573,30 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.DeleteInstance(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteScrapeConfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		jobNameValue := "jobName"
-		path = strings.Replace(path, "{"+"jobName"+"}", url.PathEscape(ParameterValueToString(jobNameValue, "jobName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"jobName"+"}", url.PathEscape(ParameterValueToString(jobNameValue, "jobName")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := DeleteScrapeConfigResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -630,31 +630,31 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		jobName := "jobName"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		jobName := jobNameValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.DeleteScrapeConfig(context.Background(), instanceId, jobName, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetAlertConfigReceiver", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Receiver{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -688,31 +688,31 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		receiver := receiverValue
 
 		resp, reqErr := apiClient.GetAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetAlertConfigRoute", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AlertConfigRouteResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -746,29 +746,29 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		receiver := receiverValue
 
 		resp, reqErr := apiClient.GetAlertConfigRoute(context.Background(), instanceId, projectId, receiver).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetAlertConfigs", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetAlertConfigsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -802,30 +802,30 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.GetAlertConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetCredentials", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		usernameValue := "username"
-		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetCredentialsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -859,31 +859,31 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		username := "username"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		username := usernameValue
 
 		resp, reqErr := apiClient.GetCredentials(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetCredentialsRemoteWriteConfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		usernameValue := "username"
-		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CredentialsRemoteWriteConfig{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -917,29 +917,29 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		username := "username"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		username := usernameValue
 
 		resp, reqErr := apiClient.GetCredentialsRemoteWriteConfig(context.Background(), instanceId, projectId, username).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetGrafanaConfigs", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GrafanaConfigs{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -973,28 +973,28 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.GetGrafanaConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1028,28 +1028,28 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.GetInstance(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetMetricsStorageRetention", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetMetricsStorageRetentionResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1083,30 +1083,30 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.GetMetricsStorageRetention(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetScrapeConfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		jobNameValue := "jobName"
-		path = strings.Replace(path, "{"+"jobName"+"}", url.PathEscape(ParameterValueToString(jobNameValue, "jobName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"jobName"+"}", url.PathEscape(ParameterValueToString(jobNameValue, "jobName")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetScrapeConfigResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1140,29 +1140,29 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		jobName := "jobName"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		jobName := jobNameValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.GetScrapeConfig(context.Background(), instanceId, jobName, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListACL", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/acl"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acl"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListACLResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1196,28 +1196,28 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListACL(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListAlertConfigReceivers", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AlertConfigReceiversResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1251,28 +1251,28 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListAlertConfigReceivers(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListAlertConfigRoutes", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AlertConfigRouteResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1306,28 +1306,28 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListAlertConfigRoutes(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListCredentials", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListCredentialsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1361,26 +1361,26 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListCredentials(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances"
+		_apiUrlPath := "/v1/projects/{projectId}/instances"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListInstancesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1414,25 +1414,25 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListPlans", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/plans"
+		_apiUrlPath := "/v1/projects/{projectId}/plans"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PlansResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1466,27 +1466,27 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListPlans(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListScrapeConfigs", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListScrapeConfigsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1520,28 +1520,28 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListScrapeConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateACL", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/acl"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acl"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1575,30 +1575,30 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.UpdateACL(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateAlertConfigReceiver", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AlertConfigReceiversResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1632,9 +1632,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		receiver := receiverValue
 		updateAlertConfigReceiverPayload := UpdateAlertConfigReceiverPayload{}
 
 		resp, reqErr := apiClient.UpdateAlertConfigReceiver(context.Background(), instanceId, projectId, receiver).UpdateAlertConfigReceiverPayload(updateAlertConfigReceiverPayload).Execute()
@@ -1642,22 +1642,22 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateAlertConfigRoute", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		receiverValue := "receiver"
-		path = strings.Replace(path, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AlertConfigRouteResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1691,9 +1691,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		receiver := "receiver"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		receiver := receiverValue
 		updateAlertConfigRoutePayload := UpdateAlertConfigRoutePayload{}
 
 		resp, reqErr := apiClient.UpdateAlertConfigRoute(context.Background(), instanceId, projectId, receiver).UpdateAlertConfigRoutePayload(updateAlertConfigRoutePayload).Execute()
@@ -1701,20 +1701,20 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateAlertConfigs", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := UpdateAlertConfigsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1748,8 +1748,8 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 		updateAlertConfigsPayload := UpdateAlertConfigsPayload{}
 
 		resp, reqErr := apiClient.UpdateAlertConfigs(context.Background(), instanceId, projectId).UpdateAlertConfigsPayload(updateAlertConfigsPayload).Execute()
@@ -1757,22 +1757,22 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateCredentialsRemoteWriteConfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		usernameValue := "username"
-		path = strings.Replace(path, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CredentialsRemoteWriteConfig{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1806,9 +1806,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
-		username := "username"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		username := usernameValue
 		updateCredentialsRemoteWriteConfigPayload := UpdateCredentialsRemoteWriteConfigPayload{}
 
 		resp, reqErr := apiClient.UpdateCredentialsRemoteWriteConfig(context.Background(), instanceId, projectId, username).UpdateCredentialsRemoteWriteConfigPayload(updateCredentialsRemoteWriteConfigPayload).Execute()
@@ -1816,20 +1816,20 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateGrafanaConfigs", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1863,8 +1863,8 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 		updateGrafanaConfigsPayload := UpdateGrafanaConfigsPayload{}
 
 		resp, reqErr := apiClient.UpdateGrafanaConfigs(context.Background(), instanceId, projectId).UpdateGrafanaConfigsPayload(updateGrafanaConfigsPayload).Execute()
@@ -1872,20 +1872,20 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := InstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1919,8 +1919,8 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 		updateInstancePayload := UpdateInstancePayload{}
 
 		resp, reqErr := apiClient.UpdateInstance(context.Background(), instanceId, projectId).UpdateInstancePayload(updateInstancePayload).Execute()
@@ -1928,20 +1928,20 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateMetricsStorageRetention", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1975,8 +1975,8 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		projectId := projectIdValue
 		updateMetricsStorageRetentionPayload := UpdateMetricsStorageRetentionPayload{}
 
 		resp, reqErr := apiClient.UpdateMetricsStorageRetention(context.Background(), instanceId, projectId).UpdateMetricsStorageRetentionPayload(updateMetricsStorageRetentionPayload).Execute()
@@ -1984,22 +1984,22 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateScrapeConfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		jobNameValue := "jobName"
-		path = strings.Replace(path, "{"+"jobName"+"}", url.PathEscape(ParameterValueToString(jobNameValue, "jobName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"jobName"+"}", url.PathEscape(ParameterValueToString(jobNameValue, "jobName")), -1)
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ScrapeConfigsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2033,9 +2033,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		instanceId := "instanceId"
-		jobName := "jobName"
-		projectId := "projectId"
+		instanceId := instanceIdValue
+		jobName := jobNameValue
+		projectId := projectIdValue
 		updateScrapeConfigPayload := UpdateScrapeConfigPayload{}
 
 		resp, reqErr := apiClient.UpdateScrapeConfig(context.Background(), instanceId, jobName, projectId).UpdateScrapeConfigPayload(updateScrapeConfigPayload).Execute()
@@ -2043,7 +2043,7 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})

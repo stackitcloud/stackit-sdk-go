@@ -17,12 +17,53 @@ import (
 // checks if the CreateCredentialsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateCredentialsResponse{}
 
+/*
+	types and functions for credentials
+*/
+
+// isModel
+type CreateCredentialsResponseGetCredentialsAttributeType = *Credentials
+type CreateCredentialsResponseGetCredentialsArgType = Credentials
+type CreateCredentialsResponseGetCredentialsRetType = Credentials
+
+func getCreateCredentialsResponseGetCredentialsAttributeTypeOk(arg CreateCredentialsResponseGetCredentialsAttributeType) (ret CreateCredentialsResponseGetCredentialsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCredentialsResponseGetCredentialsAttributeType(arg *CreateCredentialsResponseGetCredentialsAttributeType, val CreateCredentialsResponseGetCredentialsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type CreateCredentialsResponseGetMessageAttributeType = *string
+
+func getCreateCredentialsResponseGetMessageAttributeTypeOk(arg CreateCredentialsResponseGetMessageAttributeType) (ret CreateCredentialsResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCredentialsResponseGetMessageAttributeType(arg *CreateCredentialsResponseGetMessageAttributeType, val CreateCredentialsResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type CreateCredentialsResponseGetMessageArgType = string
+type CreateCredentialsResponseGetMessageRetType = string
+
 // CreateCredentialsResponse struct for CreateCredentialsResponse
 type CreateCredentialsResponse struct {
 	// REQUIRED
-	Credentials *Credentials `json:"credentials"`
+	Credentials CreateCredentialsResponseGetCredentialsAttributeType `json:"credentials"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message CreateCredentialsResponseGetMessageAttributeType `json:"message"`
 }
 
 type _CreateCredentialsResponse CreateCredentialsResponse
@@ -31,10 +72,10 @@ type _CreateCredentialsResponse CreateCredentialsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateCredentialsResponse(credentials *Credentials, message *string) *CreateCredentialsResponse {
+func NewCreateCredentialsResponse(credentials CreateCredentialsResponseGetCredentialsArgType, message CreateCredentialsResponseGetMessageArgType) *CreateCredentialsResponse {
 	this := CreateCredentialsResponse{}
-	this.Credentials = credentials
-	this.Message = message
+	setCreateCredentialsResponseGetCredentialsAttributeType(&this.Credentials, credentials)
+	setCreateCredentialsResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewCreateCredentialsResponseWithDefaults() *CreateCredentialsResponse {
 }
 
 // GetCredentials returns the Credentials field value
-func (o *CreateCredentialsResponse) GetCredentials() *Credentials {
-	if o == nil || IsNil(o.Credentials) {
-		var ret *Credentials
-		return ret
-	}
-
-	return o.Credentials
+func (o *CreateCredentialsResponse) GetCredentials() (ret CreateCredentialsResponseGetCredentialsRetType) {
+	ret, _ = o.GetCredentialsOk()
+	return ret
 }
 
 // GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *CreateCredentialsResponse) GetCredentialsOk() (*Credentials, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Credentials, true
+func (o *CreateCredentialsResponse) GetCredentialsOk() (ret CreateCredentialsResponseGetCredentialsRetType, ok bool) {
+	return getCreateCredentialsResponseGetCredentialsAttributeTypeOk(o.Credentials)
 }
 
 // SetCredentials sets field value
-func (o *CreateCredentialsResponse) SetCredentials(v *Credentials) {
-	o.Credentials = v
+func (o *CreateCredentialsResponse) SetCredentials(v CreateCredentialsResponseGetCredentialsRetType) {
+	setCreateCredentialsResponseGetCredentialsAttributeType(&o.Credentials, v)
 }
 
 // GetMessage returns the Message field value
-func (o *CreateCredentialsResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *CreateCredentialsResponse) GetMessage() (ret CreateCredentialsResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *CreateCredentialsResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *CreateCredentialsResponse) GetMessageOk() (ret CreateCredentialsResponseGetMessageRetType, ok bool) {
+	return getCreateCredentialsResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *CreateCredentialsResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *CreateCredentialsResponse) SetMessage(v CreateCredentialsResponseGetMessageRetType) {
+	setCreateCredentialsResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o CreateCredentialsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["credentials"] = o.Credentials
-	toSerialize["message"] = o.Message
+	if val, ok := getCreateCredentialsResponseGetCredentialsAttributeTypeOk(o.Credentials); ok {
+		toSerialize["Credentials"] = val
+	}
+	if val, ok := getCreateCredentialsResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

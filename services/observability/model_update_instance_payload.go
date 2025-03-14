@@ -17,15 +17,77 @@ import (
 // checks if the UpdateInstancePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateInstancePayload{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type UpdateInstancePayloadGetNameAttributeType = *string
+
+func getUpdateInstancePayloadGetNameAttributeTypeOk(arg UpdateInstancePayloadGetNameAttributeType) (ret UpdateInstancePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateInstancePayloadGetNameAttributeType(arg *UpdateInstancePayloadGetNameAttributeType, val UpdateInstancePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type UpdateInstancePayloadGetNameArgType = string
+type UpdateInstancePayloadGetNameRetType = string
+
+/*
+	types and functions for parameter
+*/
+
+// isFreeform
+type UpdateInstancePayloadGetParameterAttributeType = *map[string]interface{}
+type UpdateInstancePayloadGetParameterArgType = map[string]interface{}
+type UpdateInstancePayloadGetParameterRetType = map[string]interface{}
+
+func getUpdateInstancePayloadGetParameterAttributeTypeOk(arg UpdateInstancePayloadGetParameterAttributeType) (ret UpdateInstancePayloadGetParameterRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateInstancePayloadGetParameterAttributeType(arg *UpdateInstancePayloadGetParameterAttributeType, val UpdateInstancePayloadGetParameterRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for planId
+*/
+
+// isNotNullableString
+type UpdateInstancePayloadGetPlanIdAttributeType = *string
+
+func getUpdateInstancePayloadGetPlanIdAttributeTypeOk(arg UpdateInstancePayloadGetPlanIdAttributeType) (ret UpdateInstancePayloadGetPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateInstancePayloadGetPlanIdAttributeType(arg *UpdateInstancePayloadGetPlanIdAttributeType, val UpdateInstancePayloadGetPlanIdRetType) {
+	*arg = &val
+}
+
+type UpdateInstancePayloadGetPlanIdArgType = string
+type UpdateInstancePayloadGetPlanIdRetType = string
+
 // UpdateInstancePayload Create update instance body.
 type UpdateInstancePayload struct {
 	// Name of the service
-	Name *string `json:"name,omitempty"`
+	Name UpdateInstancePayloadGetNameAttributeType `json:"name,omitempty"`
 	// additional parameters
-	Parameter *map[string]interface{} `json:"parameter,omitempty"`
+	Parameter UpdateInstancePayloadGetParameterAttributeType `json:"parameter,omitempty"`
 	// uuid of the plan to create/update
 	// REQUIRED
-	PlanId *string `json:"planId"`
+	PlanId UpdateInstancePayloadGetPlanIdAttributeType `json:"planId"`
 }
 
 type _UpdateInstancePayload UpdateInstancePayload
@@ -34,9 +96,9 @@ type _UpdateInstancePayload UpdateInstancePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateInstancePayload(planId *string) *UpdateInstancePayload {
+func NewUpdateInstancePayload(planId UpdateInstancePayloadGetPlanIdArgType) *UpdateInstancePayload {
 	this := UpdateInstancePayload{}
-	this.PlanId = planId
+	setUpdateInstancePayloadGetPlanIdAttributeType(&this.PlanId, planId)
 	return &this
 }
 
@@ -49,102 +111,79 @@ func NewUpdateInstancePayloadWithDefaults() *UpdateInstancePayload {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateInstancePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *UpdateInstancePayload) GetName() (res UpdateInstancePayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *UpdateInstancePayload) GetNameOk() (ret UpdateInstancePayloadGetNameRetType, ok bool) {
+	return getUpdateInstancePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateInstancePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateInstancePayload) SetName(v *string) {
-	o.Name = v
+func (o *UpdateInstancePayload) SetName(v UpdateInstancePayloadGetNameRetType) {
+	setUpdateInstancePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetParameter returns the Parameter field value if set, zero value otherwise.
-func (o *UpdateInstancePayload) GetParameter() *map[string]interface{} {
-	if o == nil || IsNil(o.Parameter) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Parameter
+func (o *UpdateInstancePayload) GetParameter() (res UpdateInstancePayloadGetParameterRetType) {
+	res, _ = o.GetParameterOk()
+	return
 }
 
 // GetParameterOk returns a tuple with the Parameter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePayload) GetParameterOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Parameter) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Parameter, true
+func (o *UpdateInstancePayload) GetParameterOk() (ret UpdateInstancePayloadGetParameterRetType, ok bool) {
+	return getUpdateInstancePayloadGetParameterAttributeTypeOk(o.Parameter)
 }
 
 // HasParameter returns a boolean if a field has been set.
 func (o *UpdateInstancePayload) HasParameter() bool {
-	if o != nil && !IsNil(o.Parameter) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetParameterOk()
+	return ok
 }
 
 // SetParameter gets a reference to the given map[string]interface{} and assigns it to the Parameter field.
-func (o *UpdateInstancePayload) SetParameter(v *map[string]interface{}) {
-	o.Parameter = v
+func (o *UpdateInstancePayload) SetParameter(v UpdateInstancePayloadGetParameterRetType) {
+	setUpdateInstancePayloadGetParameterAttributeType(&o.Parameter, v)
 }
 
 // GetPlanId returns the PlanId field value
-func (o *UpdateInstancePayload) GetPlanId() *string {
-	if o == nil || IsNil(o.PlanId) {
-		var ret *string
-		return ret
-	}
-
-	return o.PlanId
+func (o *UpdateInstancePayload) GetPlanId() (ret UpdateInstancePayloadGetPlanIdRetType) {
+	ret, _ = o.GetPlanIdOk()
+	return ret
 }
 
 // GetPlanIdOk returns a tuple with the PlanId field value
 // and a boolean to check if the value has been set.
-func (o *UpdateInstancePayload) GetPlanIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PlanId, true
+func (o *UpdateInstancePayload) GetPlanIdOk() (ret UpdateInstancePayloadGetPlanIdRetType, ok bool) {
+	return getUpdateInstancePayloadGetPlanIdAttributeTypeOk(o.PlanId)
 }
 
 // SetPlanId sets field value
-func (o *UpdateInstancePayload) SetPlanId(v *string) {
-	o.PlanId = v
+func (o *UpdateInstancePayload) SetPlanId(v UpdateInstancePayloadGetPlanIdRetType) {
+	setUpdateInstancePayloadGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getUpdateInstancePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Parameter) {
-		toSerialize["parameter"] = o.Parameter
+	if val, ok := getUpdateInstancePayloadGetParameterAttributeTypeOk(o.Parameter); ok {
+		toSerialize["Parameter"] = val
 	}
-	toSerialize["planId"] = o.PlanId
+	if val, ok := getUpdateInstancePayloadGetPlanIdAttributeTypeOk(o.PlanId); ok {
+		toSerialize["PlanId"] = val
+	}
 	return toSerialize, nil
 }
 

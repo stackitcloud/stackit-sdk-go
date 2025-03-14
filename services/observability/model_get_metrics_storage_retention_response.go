@@ -17,16 +17,100 @@ import (
 // checks if the GetMetricsStorageRetentionResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetMetricsStorageRetentionResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type GetMetricsStorageRetentionResponseGetMessageAttributeType = *string
+
+func getGetMetricsStorageRetentionResponseGetMessageAttributeTypeOk(arg GetMetricsStorageRetentionResponseGetMessageAttributeType) (ret GetMetricsStorageRetentionResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsStorageRetentionResponseGetMessageAttributeType(arg *GetMetricsStorageRetentionResponseGetMessageAttributeType, val GetMetricsStorageRetentionResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type GetMetricsStorageRetentionResponseGetMessageArgType = string
+type GetMetricsStorageRetentionResponseGetMessageRetType = string
+
+/*
+	types and functions for metricsRetentionTime1h
+*/
+
+// isNotNullableString
+type GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeType = *string
+
+func getGetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeTypeOk(arg GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeType) (ret GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeType(arg *GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeType, val GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hRetType) {
+	*arg = &val
+}
+
+type GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hArgType = string
+type GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hRetType = string
+
+/*
+	types and functions for metricsRetentionTime5m
+*/
+
+// isNotNullableString
+type GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeType = *string
+
+func getGetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeTypeOk(arg GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeType) (ret GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeType(arg *GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeType, val GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mRetType) {
+	*arg = &val
+}
+
+type GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mArgType = string
+type GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mRetType = string
+
+/*
+	types and functions for metricsRetentionTimeRaw
+*/
+
+// isNotNullableString
+type GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType = *string
+
+func getGetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeTypeOk(arg GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType) (ret GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType(arg *GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType, val GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawRetType) {
+	*arg = &val
+}
+
+type GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawArgType = string
+type GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawRetType = string
+
 // GetMetricsStorageRetentionResponse struct for GetMetricsStorageRetentionResponse
 type GetMetricsStorageRetentionResponse struct {
 	// REQUIRED
-	Message *string `json:"message"`
+	Message GetMetricsStorageRetentionResponseGetMessageAttributeType `json:"message"`
 	// REQUIRED
-	MetricsRetentionTime1h *string `json:"metricsRetentionTime1h"`
+	MetricsRetentionTime1h GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h"`
 	// REQUIRED
-	MetricsRetentionTime5m *string `json:"metricsRetentionTime5m"`
+	MetricsRetentionTime5m GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m"`
 	// REQUIRED
-	MetricsRetentionTimeRaw *string `json:"metricsRetentionTimeRaw"`
+	MetricsRetentionTimeRaw GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw"`
 }
 
 type _GetMetricsStorageRetentionResponse GetMetricsStorageRetentionResponse
@@ -35,12 +119,12 @@ type _GetMetricsStorageRetentionResponse GetMetricsStorageRetentionResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetMetricsStorageRetentionResponse(message *string, metricsRetentionTime1h *string, metricsRetentionTime5m *string, metricsRetentionTimeRaw *string) *GetMetricsStorageRetentionResponse {
+func NewGetMetricsStorageRetentionResponse(message GetMetricsStorageRetentionResponseGetMessageArgType, metricsRetentionTime1h GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hArgType, metricsRetentionTime5m GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawArgType) *GetMetricsStorageRetentionResponse {
 	this := GetMetricsStorageRetentionResponse{}
-	this.Message = message
-	this.MetricsRetentionTime1h = metricsRetentionTime1h
-	this.MetricsRetentionTime5m = metricsRetentionTime5m
-	this.MetricsRetentionTimeRaw = metricsRetentionTimeRaw
+	setGetMetricsStorageRetentionResponseGetMessageAttributeType(&this.Message, message)
+	setGetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeType(&this.MetricsRetentionTime1h, metricsRetentionTime1h)
+	setGetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeType(&this.MetricsRetentionTime5m, metricsRetentionTime5m)
+	setGetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType(&this.MetricsRetentionTimeRaw, metricsRetentionTimeRaw)
 	return &this
 }
 
@@ -53,107 +137,87 @@ func NewGetMetricsStorageRetentionResponseWithDefaults() *GetMetricsStorageReten
 }
 
 // GetMessage returns the Message field value
-func (o *GetMetricsStorageRetentionResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *GetMetricsStorageRetentionResponse) GetMessage() (ret GetMetricsStorageRetentionResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsStorageRetentionResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *GetMetricsStorageRetentionResponse) GetMessageOk() (ret GetMetricsStorageRetentionResponseGetMessageRetType, ok bool) {
+	return getGetMetricsStorageRetentionResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *GetMetricsStorageRetentionResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *GetMetricsStorageRetentionResponse) SetMessage(v GetMetricsStorageRetentionResponseGetMessageRetType) {
+	setGetMetricsStorageRetentionResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
-func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime1h() *string {
-	if o == nil || IsNil(o.MetricsRetentionTime1h) {
-		var ret *string
-		return ret
-	}
-
-	return o.MetricsRetentionTime1h
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime1h() (ret GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hRetType) {
+	ret, _ = o.GetMetricsRetentionTime1hOk()
+	return ret
 }
 
 // GetMetricsRetentionTime1hOk returns a tuple with the MetricsRetentionTime1h field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime1hOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTime1h, true
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime1hOk() (ret GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hRetType, ok bool) {
+	return getGetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h)
 }
 
 // SetMetricsRetentionTime1h sets field value
-func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTime1h(v *string) {
-	o.MetricsRetentionTime1h = v
+func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTime1h(v GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hRetType) {
+	setGetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeType(&o.MetricsRetentionTime1h, v)
 }
 
 // GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
-func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime5m() *string {
-	if o == nil || IsNil(o.MetricsRetentionTime5m) {
-		var ret *string
-		return ret
-	}
-
-	return o.MetricsRetentionTime5m
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime5m() (ret GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mRetType) {
+	ret, _ = o.GetMetricsRetentionTime5mOk()
+	return ret
 }
 
 // GetMetricsRetentionTime5mOk returns a tuple with the MetricsRetentionTime5m field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime5mOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTime5m, true
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTime5mOk() (ret GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mRetType, ok bool) {
+	return getGetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeTypeOk(o.MetricsRetentionTime5m)
 }
 
 // SetMetricsRetentionTime5m sets field value
-func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTime5m(v *string) {
-	o.MetricsRetentionTime5m = v
+func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTime5m(v GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mRetType) {
+	setGetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeType(&o.MetricsRetentionTime5m, v)
 }
 
 // GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
-func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTimeRaw() *string {
-	if o == nil || IsNil(o.MetricsRetentionTimeRaw) {
-		var ret *string
-		return ret
-	}
-
-	return o.MetricsRetentionTimeRaw
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTimeRaw() (ret GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawRetType) {
+	ret, _ = o.GetMetricsRetentionTimeRawOk()
+	return ret
 }
 
 // GetMetricsRetentionTimeRawOk returns a tuple with the MetricsRetentionTimeRaw field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTimeRawOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTimeRaw, true
+func (o *GetMetricsStorageRetentionResponse) GetMetricsRetentionTimeRawOk() (ret GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawRetType, ok bool) {
+	return getGetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeTypeOk(o.MetricsRetentionTimeRaw)
 }
 
 // SetMetricsRetentionTimeRaw sets field value
-func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTimeRaw(v *string) {
-	o.MetricsRetentionTimeRaw = v
+func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTimeRaw(v GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawRetType) {
+	setGetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType(&o.MetricsRetentionTimeRaw, v)
 }
 
 func (o GetMetricsStorageRetentionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.Message
-	toSerialize["metricsRetentionTime1h"] = o.MetricsRetentionTime1h
-	toSerialize["metricsRetentionTime5m"] = o.MetricsRetentionTime5m
-	toSerialize["metricsRetentionTimeRaw"] = o.MetricsRetentionTimeRaw
+	if val, ok := getGetMetricsStorageRetentionResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
+	if val, ok := getGetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h); ok {
+		toSerialize["MetricsRetentionTime1h"] = val
+	}
+	if val, ok := getGetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeTypeOk(o.MetricsRetentionTime5m); ok {
+		toSerialize["MetricsRetentionTime5m"] = val
+	}
+	if val, ok := getGetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeTypeOk(o.MetricsRetentionTimeRaw); ok {
+		toSerialize["MetricsRetentionTimeRaw"] = val
+	}
 	return toSerialize, nil
 }
 

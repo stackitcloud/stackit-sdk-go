@@ -17,11 +17,52 @@ import (
 // checks if the Error type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Error{}
 
+/*
+	types and functions for errors
+*/
+
+// isArray
+type ErrorGetErrorsAttributeType = *[]map[string]string
+type ErrorGetErrorsArgType = []map[string]string
+type ErrorGetErrorsRetType = []map[string]string
+
+func getErrorGetErrorsAttributeTypeOk(arg ErrorGetErrorsAttributeType) (ret ErrorGetErrorsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorGetErrorsAttributeType(arg *ErrorGetErrorsAttributeType, val ErrorGetErrorsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ErrorGetMessageAttributeType = *string
+
+func getErrorGetMessageAttributeTypeOk(arg ErrorGetMessageAttributeType) (ret ErrorGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorGetMessageAttributeType(arg *ErrorGetMessageAttributeType, val ErrorGetMessageRetType) {
+	*arg = &val
+}
+
+type ErrorGetMessageArgType = string
+type ErrorGetMessageRetType = string
+
 // Error struct for Error
 type Error struct {
-	Errors *[]map[string]string `json:"errors,omitempty"`
+	Errors ErrorGetErrorsAttributeType `json:"errors,omitempty"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message ErrorGetMessageAttributeType `json:"message"`
 }
 
 type _Error Error
@@ -30,9 +71,9 @@ type _Error Error
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewError(message *string) *Error {
+func NewError(message ErrorGetMessageArgType) *Error {
 	this := Error{}
-	this.Message = message
+	setErrorGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewErrorWithDefaults() *Error {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *Error) GetErrors() *[]map[string]string {
-	if o == nil || IsNil(o.Errors) {
-		var ret *[]map[string]string
-		return ret
-	}
-	return o.Errors
+func (o *Error) GetErrors() (res ErrorGetErrorsRetType) {
+	res, _ = o.GetErrorsOk()
+	return
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Error) GetErrorsOk() (*[]map[string]string, bool) {
-	if o == nil || IsNil(o.Errors) {
-		return nil, false
-	}
-	return o.Errors, true
+func (o *Error) GetErrorsOk() (ret ErrorGetErrorsRetType, ok bool) {
+	return getErrorGetErrorsAttributeTypeOk(o.Errors)
 }
 
 // HasErrors returns a boolean if a field has been set.
 func (o *Error) HasErrors() bool {
-	if o != nil && !IsNil(o.Errors) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorsOk()
+	return ok
 }
 
 // SetErrors gets a reference to the given []map[string]string and assigns it to the Errors field.
-func (o *Error) SetErrors(v *[]map[string]string) {
-	o.Errors = v
+func (o *Error) SetErrors(v ErrorGetErrorsRetType) {
+	setErrorGetErrorsAttributeType(&o.Errors, v)
 }
 
 // GetMessage returns the Message field value
-func (o *Error) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *Error) GetMessage() (ret ErrorGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *Error) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *Error) GetMessageOk() (ret ErrorGetMessageRetType, ok bool) {
+	return getErrorGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *Error) SetMessage(v *string) {
-	o.Message = v
+func (o *Error) SetMessage(v ErrorGetMessageRetType) {
+	setErrorGetMessageAttributeType(&o.Message, v)
 }
 
 func (o Error) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Errors) {
-		toSerialize["errors"] = o.Errors
+	if val, ok := getErrorGetErrorsAttributeTypeOk(o.Errors); ok {
+		toSerialize["Errors"] = val
 	}
-	toSerialize["message"] = o.Message
+	if val, ok := getErrorGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 
