@@ -18,24 +18,165 @@ import (
 // checks if the PartialUpdateServiceAccountKeyResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateServiceAccountKeyResponse{}
 
+/*
+	types and functions for active
+*/
+
+// isBoolean
+type PartialUpdateServiceAccountKeyResponsegetActiveAttributeType = *bool
+type PartialUpdateServiceAccountKeyResponsegetActiveArgType = bool
+type PartialUpdateServiceAccountKeyResponsegetActiveRetType = bool
+
+func getPartialUpdateServiceAccountKeyResponsegetActiveAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponsegetActiveAttributeType) (ret PartialUpdateServiceAccountKeyResponsegetActiveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateServiceAccountKeyResponsegetActiveAttributeType(arg *PartialUpdateServiceAccountKeyResponsegetActiveAttributeType, val PartialUpdateServiceAccountKeyResponsegetActiveRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type PartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeType = *time.Time
+type PartialUpdateServiceAccountKeyResponseGetCreatedAtArgType = time.Time
+type PartialUpdateServiceAccountKeyResponseGetCreatedAtRetType = time.Time
+
+func getPartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeType) (ret PartialUpdateServiceAccountKeyResponseGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeType(arg *PartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeType, val PartialUpdateServiceAccountKeyResponseGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type PartialUpdateServiceAccountKeyResponseGetIdAttributeType = *string
+
+func getPartialUpdateServiceAccountKeyResponseGetIdAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponseGetIdAttributeType) (ret PartialUpdateServiceAccountKeyResponseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateServiceAccountKeyResponseGetIdAttributeType(arg *PartialUpdateServiceAccountKeyResponseGetIdAttributeType, val PartialUpdateServiceAccountKeyResponseGetIdRetType) {
+	*arg = &val
+}
+
+type PartialUpdateServiceAccountKeyResponseGetIdArgType = string
+type PartialUpdateServiceAccountKeyResponseGetIdRetType = string
+
+/*
+	types and functions for keyAlgorithm
+*/
+
+// isEnumRef
+type PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType = *string
+type PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmArgType = string
+type PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmRetType = string
+
+func getPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType) (ret PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType, val PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for keyOrigin
+*/
+
+// isEnumRef
+type PartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType = *string
+type PartialUpdateServiceAccountKeyResponseGetKeyOriginArgType = string
+type PartialUpdateServiceAccountKeyResponseGetKeyOriginRetType = string
+
+func getPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType) (ret PartialUpdateServiceAccountKeyResponseGetKeyOriginRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *PartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType, val PartialUpdateServiceAccountKeyResponseGetKeyOriginRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for keyType
+*/
+
+// isEnumRef
+type PartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType = *string
+type PartialUpdateServiceAccountKeyResponseGetKeyTypeArgType = string
+type PartialUpdateServiceAccountKeyResponseGetKeyTypeRetType = string
+
+func getPartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType) (ret PartialUpdateServiceAccountKeyResponseGetKeyTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType(arg *PartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType, val PartialUpdateServiceAccountKeyResponseGetKeyTypeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for validUntil
+*/
+
+// isDateTime
+type PartialUpdateServiceAccountKeyResponseGetValidUntilAttributeType = *time.Time
+type PartialUpdateServiceAccountKeyResponseGetValidUntilArgType = time.Time
+type PartialUpdateServiceAccountKeyResponseGetValidUntilRetType = time.Time
+
+func getPartialUpdateServiceAccountKeyResponseGetValidUntilAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponseGetValidUntilAttributeType) (ret PartialUpdateServiceAccountKeyResponseGetValidUntilRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateServiceAccountKeyResponseGetValidUntilAttributeType(arg *PartialUpdateServiceAccountKeyResponseGetValidUntilAttributeType, val PartialUpdateServiceAccountKeyResponseGetValidUntilRetType) {
+	*arg = &val
+}
+
 // PartialUpdateServiceAccountKeyResponse struct for PartialUpdateServiceAccountKeyResponse
 type PartialUpdateServiceAccountKeyResponse struct {
 	// REQUIRED
-	Active *bool `json:"active"`
+	Active PartialUpdateServiceAccountKeyResponsegetActiveAttributeType `json:"active"`
 	// Creation time of the key
 	// REQUIRED
-	CreatedAt *time.Time `json:"createdAt"`
+	CreatedAt PartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeType `json:"createdAt"`
 	// Unique ID of the key.
 	// REQUIRED
-	Id *string `json:"id"`
+	Id PartialUpdateServiceAccountKeyResponseGetIdAttributeType `json:"id"`
 	// REQUIRED
-	KeyAlgorithm *string `json:"keyAlgorithm"`
+	KeyAlgorithm PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType `json:"keyAlgorithm"`
 	// REQUIRED
-	KeyOrigin *string `json:"keyOrigin"`
+	KeyOrigin PartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType `json:"keyOrigin"`
 	// REQUIRED
-	KeyType *string `json:"keyType"`
+	KeyType PartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType `json:"keyType"`
 	// If specified, the timestamp until the key is active. May be null
-	ValidUntil *time.Time `json:"validUntil,omitempty"`
+	ValidUntil PartialUpdateServiceAccountKeyResponseGetValidUntilAttributeType `json:"validUntil,omitempty"`
 }
 
 type _PartialUpdateServiceAccountKeyResponse PartialUpdateServiceAccountKeyResponse
@@ -44,14 +185,14 @@ type _PartialUpdateServiceAccountKeyResponse PartialUpdateServiceAccountKeyRespo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPartialUpdateServiceAccountKeyResponse(active *bool, createdAt *time.Time, id *string, keyAlgorithm *string, keyOrigin *string, keyType *string) *PartialUpdateServiceAccountKeyResponse {
+func NewPartialUpdateServiceAccountKeyResponse(active PartialUpdateServiceAccountKeyResponsegetActiveArgType, createdAt PartialUpdateServiceAccountKeyResponseGetCreatedAtArgType, id PartialUpdateServiceAccountKeyResponseGetIdArgType, keyAlgorithm PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmArgType, keyOrigin PartialUpdateServiceAccountKeyResponseGetKeyOriginArgType, keyType PartialUpdateServiceAccountKeyResponseGetKeyTypeArgType) *PartialUpdateServiceAccountKeyResponse {
 	this := PartialUpdateServiceAccountKeyResponse{}
-	this.Active = active
-	this.CreatedAt = createdAt
-	this.Id = id
-	this.KeyAlgorithm = keyAlgorithm
-	this.KeyOrigin = keyOrigin
-	this.KeyType = keyType
+	setPartialUpdateServiceAccountKeyResponsegetActiveAttributeType(&this.Active, active)
+	setPartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
+	setPartialUpdateServiceAccountKeyResponseGetIdAttributeType(&this.Id, id)
+	setPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(&this.KeyAlgorithm, keyAlgorithm)
+	setPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType(&this.KeyOrigin, keyOrigin)
+	setPartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType(&this.KeyType, keyType)
 	return &this
 }
 
@@ -64,191 +205,152 @@ func NewPartialUpdateServiceAccountKeyResponseWithDefaults() *PartialUpdateServi
 }
 
 // GetActive returns the Active field value
-func (o *PartialUpdateServiceAccountKeyResponse) GetActive() *bool {
-	if o == nil || IsNil(o.Active) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Active
+func (o *PartialUpdateServiceAccountKeyResponse) GetActive() (ret PartialUpdateServiceAccountKeyResponsegetActiveRetType) {
+	ret, _ = o.GetActiveOk()
+	return ret
 }
 
 // GetActiveOk returns a tuple with the Active field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetActiveOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Active, true
+func (o *PartialUpdateServiceAccountKeyResponse) GetActiveOk() (ret PartialUpdateServiceAccountKeyResponsegetActiveRetType, ok bool) {
+	return getPartialUpdateServiceAccountKeyResponsegetActiveAttributeTypeOk(o.Active)
 }
 
 // SetActive sets field value
-func (o *PartialUpdateServiceAccountKeyResponse) SetActive(v *bool) {
-	o.Active = v
+func (o *PartialUpdateServiceAccountKeyResponse) SetActive(v PartialUpdateServiceAccountKeyResponsegetActiveRetType) {
+	setPartialUpdateServiceAccountKeyResponsegetActiveAttributeType(&o.Active, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *PartialUpdateServiceAccountKeyResponse) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.CreatedAt
+func (o *PartialUpdateServiceAccountKeyResponse) GetCreatedAt() (ret PartialUpdateServiceAccountKeyResponseGetCreatedAtRetType) {
+	ret, _ = o.GetCreatedAtOk()
+	return ret
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *PartialUpdateServiceAccountKeyResponse) GetCreatedAtOk() (ret PartialUpdateServiceAccountKeyResponseGetCreatedAtRetType, ok bool) {
+	return getPartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // SetCreatedAt sets field value
-func (o *PartialUpdateServiceAccountKeyResponse) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *PartialUpdateServiceAccountKeyResponse) SetCreatedAt(v PartialUpdateServiceAccountKeyResponseGetCreatedAtRetType) {
+	setPartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetId returns the Id field value
-func (o *PartialUpdateServiceAccountKeyResponse) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *PartialUpdateServiceAccountKeyResponse) GetId() (ret PartialUpdateServiceAccountKeyResponseGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *PartialUpdateServiceAccountKeyResponse) GetIdOk() (ret PartialUpdateServiceAccountKeyResponseGetIdRetType, ok bool) {
+	return getPartialUpdateServiceAccountKeyResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *PartialUpdateServiceAccountKeyResponse) SetId(v *string) {
-	o.Id = v
+func (o *PartialUpdateServiceAccountKeyResponse) SetId(v PartialUpdateServiceAccountKeyResponseGetIdRetType) {
+	setPartialUpdateServiceAccountKeyResponseGetIdAttributeType(&o.Id, v)
 }
 
 // GetKeyAlgorithm returns the KeyAlgorithm field value
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithm() *string {
-	if o == nil || IsNil(o.KeyAlgorithm) {
-		var ret *string
-		return ret
-	}
-
-	return o.KeyAlgorithm
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithm() (ret PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmRetType) {
+	ret, _ = o.GetKeyAlgorithmOk()
+	return ret
 }
 
 // GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithmOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyAlgorithm, true
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyAlgorithmOk() (ret PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmRetType, ok bool) {
+	return getPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeTypeOk(o.KeyAlgorithm)
 }
 
 // SetKeyAlgorithm sets field value
-func (o *PartialUpdateServiceAccountKeyResponse) SetKeyAlgorithm(v *string) {
-	o.KeyAlgorithm = v
+func (o *PartialUpdateServiceAccountKeyResponse) SetKeyAlgorithm(v PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmRetType) {
+	setPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(&o.KeyAlgorithm, v)
 }
 
 // GetKeyOrigin returns the KeyOrigin field value
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOrigin() *string {
-	if o == nil || IsNil(o.KeyOrigin) {
-		var ret *string
-		return ret
-	}
-
-	return o.KeyOrigin
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOrigin() (ret PartialUpdateServiceAccountKeyResponseGetKeyOriginRetType) {
+	ret, _ = o.GetKeyOriginOk()
+	return ret
 }
 
 // GetKeyOriginOk returns a tuple with the KeyOrigin field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOriginOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyOrigin, true
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyOriginOk() (ret PartialUpdateServiceAccountKeyResponseGetKeyOriginRetType, ok bool) {
+	return getPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeTypeOk(o.KeyOrigin)
 }
 
 // SetKeyOrigin sets field value
-func (o *PartialUpdateServiceAccountKeyResponse) SetKeyOrigin(v *string) {
-	o.KeyOrigin = v
+func (o *PartialUpdateServiceAccountKeyResponse) SetKeyOrigin(v PartialUpdateServiceAccountKeyResponseGetKeyOriginRetType) {
+	setPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType(&o.KeyOrigin, v)
 }
 
 // GetKeyType returns the KeyType field value
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyType() *string {
-	if o == nil || IsNil(o.KeyType) {
-		var ret *string
-		return ret
-	}
-
-	return o.KeyType
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyType() (ret PartialUpdateServiceAccountKeyResponseGetKeyTypeRetType) {
+	ret, _ = o.GetKeyTypeOk()
+	return ret
 }
 
 // GetKeyTypeOk returns a tuple with the KeyType field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetKeyTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyType, true
+func (o *PartialUpdateServiceAccountKeyResponse) GetKeyTypeOk() (ret PartialUpdateServiceAccountKeyResponseGetKeyTypeRetType, ok bool) {
+	return getPartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeTypeOk(o.KeyType)
 }
 
 // SetKeyType sets field value
-func (o *PartialUpdateServiceAccountKeyResponse) SetKeyType(v *string) {
-	o.KeyType = v
+func (o *PartialUpdateServiceAccountKeyResponse) SetKeyType(v PartialUpdateServiceAccountKeyResponseGetKeyTypeRetType) {
+	setPartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType(&o.KeyType, v)
 }
 
 // GetValidUntil returns the ValidUntil field value if set, zero value otherwise.
-func (o *PartialUpdateServiceAccountKeyResponse) GetValidUntil() *time.Time {
-	if o == nil || IsNil(o.ValidUntil) {
-		var ret *time.Time
-		return ret
-	}
-	return o.ValidUntil
+func (o *PartialUpdateServiceAccountKeyResponse) GetValidUntil() (res PartialUpdateServiceAccountKeyResponseGetValidUntilRetType) {
+	res, _ = o.GetValidUntilOk()
+	return
 }
 
 // GetValidUntilOk returns a tuple with the ValidUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyResponse) GetValidUntilOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.ValidUntil) {
-		return nil, false
-	}
-	return o.ValidUntil, true
+func (o *PartialUpdateServiceAccountKeyResponse) GetValidUntilOk() (ret PartialUpdateServiceAccountKeyResponseGetValidUntilRetType, ok bool) {
+	return getPartialUpdateServiceAccountKeyResponseGetValidUntilAttributeTypeOk(o.ValidUntil)
 }
 
 // HasValidUntil returns a boolean if a field has been set.
 func (o *PartialUpdateServiceAccountKeyResponse) HasValidUntil() bool {
-	if o != nil && !IsNil(o.ValidUntil) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetValidUntilOk()
+	return ok
 }
 
 // SetValidUntil gets a reference to the given time.Time and assigns it to the ValidUntil field.
-func (o *PartialUpdateServiceAccountKeyResponse) SetValidUntil(v *time.Time) {
-	o.ValidUntil = v
+func (o *PartialUpdateServiceAccountKeyResponse) SetValidUntil(v PartialUpdateServiceAccountKeyResponseGetValidUntilRetType) {
+	setPartialUpdateServiceAccountKeyResponseGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
 func (o PartialUpdateServiceAccountKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["active"] = o.Active
-	toSerialize["createdAt"] = o.CreatedAt
-	toSerialize["id"] = o.Id
-	toSerialize["keyAlgorithm"] = o.KeyAlgorithm
-	toSerialize["keyOrigin"] = o.KeyOrigin
-	toSerialize["keyType"] = o.KeyType
-	if !IsNil(o.ValidUntil) {
-		toSerialize["validUntil"] = o.ValidUntil
+	if val, ok := getPartialUpdateServiceAccountKeyResponsegetActiveAttributeTypeOk(o.Active); ok {
+		toSerialize["Active"] = val
+	}
+	if val, ok := getPartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getPartialUpdateServiceAccountKeyResponseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeTypeOk(o.KeyAlgorithm); ok {
+		toSerialize["KeyAlgorithm"] = val
+	}
+	if val, ok := getPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeTypeOk(o.KeyOrigin); ok {
+		toSerialize["KeyOrigin"] = val
+	}
+	if val, ok := getPartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeTypeOk(o.KeyType); ok {
+		toSerialize["KeyType"] = val
+	}
+	if val, ok := getPartialUpdateServiceAccountKeyResponseGetValidUntilAttributeTypeOk(o.ValidUntil); ok {
+		toSerialize["ValidUntil"] = val
 	}
 	return toSerialize, nil
 }

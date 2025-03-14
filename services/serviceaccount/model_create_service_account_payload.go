@@ -17,11 +17,32 @@ import (
 // checks if the CreateServiceAccountPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateServiceAccountPayload{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateServiceAccountPayloadGetNameAttributeType = *string
+
+func getCreateServiceAccountPayloadGetNameAttributeTypeOk(arg CreateServiceAccountPayloadGetNameAttributeType) (ret CreateServiceAccountPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountPayloadGetNameAttributeType(arg *CreateServiceAccountPayloadGetNameAttributeType, val CreateServiceAccountPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateServiceAccountPayloadGetNameArgType = string
+type CreateServiceAccountPayloadGetNameRetType = string
+
 // CreateServiceAccountPayload struct for CreateServiceAccountPayload
 type CreateServiceAccountPayload struct {
 	// The requested name of the service account. The service will generate a unique email from this name.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CreateServiceAccountPayloadGetNameAttributeType `json:"name"`
 }
 
 type _CreateServiceAccountPayload CreateServiceAccountPayload
@@ -30,9 +51,9 @@ type _CreateServiceAccountPayload CreateServiceAccountPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateServiceAccountPayload(name *string) *CreateServiceAccountPayload {
+func NewCreateServiceAccountPayload(name CreateServiceAccountPayloadGetNameArgType) *CreateServiceAccountPayload {
 	this := CreateServiceAccountPayload{}
-	this.Name = name
+	setCreateServiceAccountPayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -45,32 +66,27 @@ func NewCreateServiceAccountPayloadWithDefaults() *CreateServiceAccountPayload {
 }
 
 // GetName returns the Name field value
-func (o *CreateServiceAccountPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateServiceAccountPayload) GetName() (ret CreateServiceAccountPayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountPayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateServiceAccountPayload) GetNameOk() (ret CreateServiceAccountPayloadGetNameRetType, ok bool) {
+	return getCreateServiceAccountPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateServiceAccountPayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateServiceAccountPayload) SetName(v CreateServiceAccountPayloadGetNameRetType) {
+	setCreateServiceAccountPayloadGetNameAttributeType(&o.Name, v)
 }
 
 func (o CreateServiceAccountPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
+	if val, ok := getCreateServiceAccountPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
 	return toSerialize, nil
 }
 
