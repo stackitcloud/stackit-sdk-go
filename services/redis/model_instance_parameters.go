@@ -17,48 +17,495 @@ import (
 // checks if the InstanceParameters type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceParameters{}
 
+/*
+	types and functions for down-after-milliseconds
+*/
+
+// isInteger
+type InstanceParametersGetDownAfterMillisecondsAttributeType = *int64
+type InstanceParametersGetDownAfterMillisecondsArgType = int64
+type InstanceParametersGetDownAfterMillisecondsRetType = int64
+
+func getInstanceParametersGetDownAfterMillisecondsAttributeTypeOk(arg InstanceParametersGetDownAfterMillisecondsAttributeType) (ret InstanceParametersGetDownAfterMillisecondsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetDownAfterMillisecondsAttributeType(arg *InstanceParametersGetDownAfterMillisecondsAttributeType, val InstanceParametersGetDownAfterMillisecondsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for enable_monitoring
+*/
+
+// isBoolean
+type InstanceParametersgetEnableMonitoringAttributeType = *bool
+type InstanceParametersgetEnableMonitoringArgType = bool
+type InstanceParametersgetEnableMonitoringRetType = bool
+
+func getInstanceParametersgetEnableMonitoringAttributeTypeOk(arg InstanceParametersgetEnableMonitoringAttributeType) (ret InstanceParametersgetEnableMonitoringRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersgetEnableMonitoringAttributeType(arg *InstanceParametersgetEnableMonitoringAttributeType, val InstanceParametersgetEnableMonitoringRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for failover-timeout
+*/
+
+// isInteger
+type InstanceParametersGetFailoverTimeoutAttributeType = *int64
+type InstanceParametersGetFailoverTimeoutArgType = int64
+type InstanceParametersGetFailoverTimeoutRetType = int64
+
+func getInstanceParametersGetFailoverTimeoutAttributeTypeOk(arg InstanceParametersGetFailoverTimeoutAttributeType) (ret InstanceParametersGetFailoverTimeoutRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetFailoverTimeoutAttributeType(arg *InstanceParametersGetFailoverTimeoutAttributeType, val InstanceParametersGetFailoverTimeoutRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for graphite
+*/
+
+// isNotNullableString
+type InstanceParametersGetGraphiteAttributeType = *string
+
+func getInstanceParametersGetGraphiteAttributeTypeOk(arg InstanceParametersGetGraphiteAttributeType) (ret InstanceParametersGetGraphiteRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetGraphiteAttributeType(arg *InstanceParametersGetGraphiteAttributeType, val InstanceParametersGetGraphiteRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetGraphiteArgType = string
+type InstanceParametersGetGraphiteRetType = string
+
+/*
+	types and functions for lazyfree-lazy-eviction
+*/
+
+// isEnumRef
+type InstanceParametersGetLazyfreeLazyEvictionAttributeType = *string
+type InstanceParametersGetLazyfreeLazyEvictionArgType = string
+type InstanceParametersGetLazyfreeLazyEvictionRetType = string
+
+func getInstanceParametersGetLazyfreeLazyEvictionAttributeTypeOk(arg InstanceParametersGetLazyfreeLazyEvictionAttributeType) (ret InstanceParametersGetLazyfreeLazyEvictionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetLazyfreeLazyEvictionAttributeType(arg *InstanceParametersGetLazyfreeLazyEvictionAttributeType, val InstanceParametersGetLazyfreeLazyEvictionRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for lazyfree-lazy-expire
+*/
+
+// isEnumRef
+type InstanceParametersGetLazyfreeLazyExpireAttributeType = *string
+type InstanceParametersGetLazyfreeLazyExpireArgType = string
+type InstanceParametersGetLazyfreeLazyExpireRetType = string
+
+func getInstanceParametersGetLazyfreeLazyExpireAttributeTypeOk(arg InstanceParametersGetLazyfreeLazyExpireAttributeType) (ret InstanceParametersGetLazyfreeLazyExpireRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetLazyfreeLazyExpireAttributeType(arg *InstanceParametersGetLazyfreeLazyExpireAttributeType, val InstanceParametersGetLazyfreeLazyExpireRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for lua-time-limit
+*/
+
+// isInteger
+type InstanceParametersGetLuaTimeLimitAttributeType = *int64
+type InstanceParametersGetLuaTimeLimitArgType = int64
+type InstanceParametersGetLuaTimeLimitRetType = int64
+
+func getInstanceParametersGetLuaTimeLimitAttributeTypeOk(arg InstanceParametersGetLuaTimeLimitAttributeType) (ret InstanceParametersGetLuaTimeLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetLuaTimeLimitAttributeType(arg *InstanceParametersGetLuaTimeLimitAttributeType, val InstanceParametersGetLuaTimeLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for max_disk_threshold
+*/
+
+// isInteger
+type InstanceParametersGetMaxDiskThresholdAttributeType = *int64
+type InstanceParametersGetMaxDiskThresholdArgType = int64
+type InstanceParametersGetMaxDiskThresholdRetType = int64
+
+func getInstanceParametersGetMaxDiskThresholdAttributeTypeOk(arg InstanceParametersGetMaxDiskThresholdAttributeType) (ret InstanceParametersGetMaxDiskThresholdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMaxDiskThresholdAttributeType(arg *InstanceParametersGetMaxDiskThresholdAttributeType, val InstanceParametersGetMaxDiskThresholdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maxclients
+*/
+
+// isInteger
+type InstanceParametersGetMaxclientsAttributeType = *int64
+type InstanceParametersGetMaxclientsArgType = int64
+type InstanceParametersGetMaxclientsRetType = int64
+
+func getInstanceParametersGetMaxclientsAttributeTypeOk(arg InstanceParametersGetMaxclientsAttributeType) (ret InstanceParametersGetMaxclientsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMaxclientsAttributeType(arg *InstanceParametersGetMaxclientsAttributeType, val InstanceParametersGetMaxclientsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maxmemory-policy
+*/
+
+// isEnumRef
+type InstanceParametersGetMaxmemoryPolicyAttributeType = *string
+type InstanceParametersGetMaxmemoryPolicyArgType = string
+type InstanceParametersGetMaxmemoryPolicyRetType = string
+
+func getInstanceParametersGetMaxmemoryPolicyAttributeTypeOk(arg InstanceParametersGetMaxmemoryPolicyAttributeType) (ret InstanceParametersGetMaxmemoryPolicyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMaxmemoryPolicyAttributeType(arg *InstanceParametersGetMaxmemoryPolicyAttributeType, val InstanceParametersGetMaxmemoryPolicyRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maxmemory-samples
+*/
+
+// isInteger
+type InstanceParametersGetMaxmemorySamplesAttributeType = *int64
+type InstanceParametersGetMaxmemorySamplesArgType = int64
+type InstanceParametersGetMaxmemorySamplesRetType = int64
+
+func getInstanceParametersGetMaxmemorySamplesAttributeTypeOk(arg InstanceParametersGetMaxmemorySamplesAttributeType) (ret InstanceParametersGetMaxmemorySamplesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMaxmemorySamplesAttributeType(arg *InstanceParametersGetMaxmemorySamplesAttributeType, val InstanceParametersGetMaxmemorySamplesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for metrics_frequency
+*/
+
+// isInteger
+type InstanceParametersGetMetricsFrequencyAttributeType = *int64
+type InstanceParametersGetMetricsFrequencyArgType = int64
+type InstanceParametersGetMetricsFrequencyRetType = int64
+
+func getInstanceParametersGetMetricsFrequencyAttributeTypeOk(arg InstanceParametersGetMetricsFrequencyAttributeType) (ret InstanceParametersGetMetricsFrequencyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMetricsFrequencyAttributeType(arg *InstanceParametersGetMetricsFrequencyAttributeType, val InstanceParametersGetMetricsFrequencyRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for metrics_prefix
+*/
+
+// isNotNullableString
+type InstanceParametersGetMetricsPrefixAttributeType = *string
+
+func getInstanceParametersGetMetricsPrefixAttributeTypeOk(arg InstanceParametersGetMetricsPrefixAttributeType) (ret InstanceParametersGetMetricsPrefixRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMetricsPrefixAttributeType(arg *InstanceParametersGetMetricsPrefixAttributeType, val InstanceParametersGetMetricsPrefixRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetMetricsPrefixArgType = string
+type InstanceParametersGetMetricsPrefixRetType = string
+
+/*
+	types and functions for min_replicas_max_lag
+*/
+
+// isInteger
+type InstanceParametersGetMinReplicasMaxLagAttributeType = *int64
+type InstanceParametersGetMinReplicasMaxLagArgType = int64
+type InstanceParametersGetMinReplicasMaxLagRetType = int64
+
+func getInstanceParametersGetMinReplicasMaxLagAttributeTypeOk(arg InstanceParametersGetMinReplicasMaxLagAttributeType) (ret InstanceParametersGetMinReplicasMaxLagRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMinReplicasMaxLagAttributeType(arg *InstanceParametersGetMinReplicasMaxLagAttributeType, val InstanceParametersGetMinReplicasMaxLagRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for monitoring_instance_id
+*/
+
+// isNotNullableString
+type InstanceParametersGetMonitoringInstanceIdAttributeType = *string
+
+func getInstanceParametersGetMonitoringInstanceIdAttributeTypeOk(arg InstanceParametersGetMonitoringInstanceIdAttributeType) (ret InstanceParametersGetMonitoringInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMonitoringInstanceIdAttributeType(arg *InstanceParametersGetMonitoringInstanceIdAttributeType, val InstanceParametersGetMonitoringInstanceIdRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetMonitoringInstanceIdArgType = string
+type InstanceParametersGetMonitoringInstanceIdRetType = string
+
+/*
+	types and functions for notify-keyspace-events
+*/
+
+// isNotNullableString
+type InstanceParametersGetNotifyKeyspaceEventsAttributeType = *string
+
+func getInstanceParametersGetNotifyKeyspaceEventsAttributeTypeOk(arg InstanceParametersGetNotifyKeyspaceEventsAttributeType) (ret InstanceParametersGetNotifyKeyspaceEventsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetNotifyKeyspaceEventsAttributeType(arg *InstanceParametersGetNotifyKeyspaceEventsAttributeType, val InstanceParametersGetNotifyKeyspaceEventsRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetNotifyKeyspaceEventsArgType = string
+type InstanceParametersGetNotifyKeyspaceEventsRetType = string
+
+/*
+	types and functions for sgw_acl
+*/
+
+// isNotNullableString
+type InstanceParametersGetSgwAclAttributeType = *string
+
+func getInstanceParametersGetSgwAclAttributeTypeOk(arg InstanceParametersGetSgwAclAttributeType) (ret InstanceParametersGetSgwAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetSgwAclAttributeType(arg *InstanceParametersGetSgwAclAttributeType, val InstanceParametersGetSgwAclRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetSgwAclArgType = string
+type InstanceParametersGetSgwAclRetType = string
+
+/*
+	types and functions for snapshot
+*/
+
+// isNotNullableString
+type InstanceParametersGetSnapshotAttributeType = *string
+
+func getInstanceParametersGetSnapshotAttributeTypeOk(arg InstanceParametersGetSnapshotAttributeType) (ret InstanceParametersGetSnapshotRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetSnapshotAttributeType(arg *InstanceParametersGetSnapshotAttributeType, val InstanceParametersGetSnapshotRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetSnapshotArgType = string
+type InstanceParametersGetSnapshotRetType = string
+
+/*
+	types and functions for syslog
+*/
+
+// isArray
+type InstanceParametersGetSyslogAttributeType = *[]string
+type InstanceParametersGetSyslogArgType = []string
+type InstanceParametersGetSyslogRetType = []string
+
+func getInstanceParametersGetSyslogAttributeTypeOk(arg InstanceParametersGetSyslogAttributeType) (ret InstanceParametersGetSyslogRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetSyslogAttributeType(arg *InstanceParametersGetSyslogAttributeType, val InstanceParametersGetSyslogRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tls-ciphers
+*/
+
+// isArray
+type InstanceParametersGetTlsCiphersAttributeType = *[]string
+type InstanceParametersGetTlsCiphersArgType = []string
+type InstanceParametersGetTlsCiphersRetType = []string
+
+func getInstanceParametersGetTlsCiphersAttributeTypeOk(arg InstanceParametersGetTlsCiphersAttributeType) (ret InstanceParametersGetTlsCiphersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetTlsCiphersAttributeType(arg *InstanceParametersGetTlsCiphersAttributeType, val InstanceParametersGetTlsCiphersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tls-ciphersuites
+*/
+
+// isNotNullableString
+type InstanceParametersGetTlsCiphersuitesAttributeType = *string
+
+func getInstanceParametersGetTlsCiphersuitesAttributeTypeOk(arg InstanceParametersGetTlsCiphersuitesAttributeType) (ret InstanceParametersGetTlsCiphersuitesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetTlsCiphersuitesAttributeType(arg *InstanceParametersGetTlsCiphersuitesAttributeType, val InstanceParametersGetTlsCiphersuitesRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetTlsCiphersuitesArgType = string
+type InstanceParametersGetTlsCiphersuitesRetType = string
+
+/*
+	types and functions for tls-protocols
+*/
+
+// isEnumRef
+type InstanceParametersGetTlsProtocolsAttributeType = *string
+type InstanceParametersGetTlsProtocolsArgType = string
+type InstanceParametersGetTlsProtocolsRetType = string
+
+func getInstanceParametersGetTlsProtocolsAttributeTypeOk(arg InstanceParametersGetTlsProtocolsAttributeType) (ret InstanceParametersGetTlsProtocolsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetTlsProtocolsAttributeType(arg *InstanceParametersGetTlsProtocolsAttributeType, val InstanceParametersGetTlsProtocolsRetType) {
+	*arg = &val
+}
+
 // InstanceParameters struct for InstanceParameters
 type InstanceParameters struct {
 	// The unit is milliseconds.
 	// Can be cast to int32 without loss of precision.
-	DownAfterMilliseconds *int64 `json:"down-after-milliseconds,omitempty"`
-	EnableMonitoring      *bool  `json:"enable_monitoring,omitempty"`
+	DownAfterMilliseconds InstanceParametersGetDownAfterMillisecondsAttributeType `json:"down-after-milliseconds,omitempty"`
+	EnableMonitoring      InstanceParametersgetEnableMonitoringAttributeType      `json:"enable_monitoring,omitempty"`
 	// The unit is milliseconds.
 	// Can be cast to int32 without loss of precision.
-	FailoverTimeout *int64 `json:"failover-timeout,omitempty"`
+	FailoverTimeout InstanceParametersGetFailoverTimeoutAttributeType `json:"failover-timeout,omitempty"`
 	// If you want to monitor your service with Graphite, you can set the custom parameter graphite. It expects the host and port where the Graphite metrics should be sent to.
-	Graphite             *string `json:"graphite,omitempty"`
-	LazyfreeLazyEviction *string `json:"lazyfree-lazy-eviction,omitempty"`
-	LazyfreeLazyExpire   *string `json:"lazyfree-lazy-expire,omitempty"`
+	Graphite             InstanceParametersGetGraphiteAttributeType             `json:"graphite,omitempty"`
+	LazyfreeLazyEviction InstanceParametersGetLazyfreeLazyEvictionAttributeType `json:"lazyfree-lazy-eviction,omitempty"`
+	LazyfreeLazyExpire   InstanceParametersGetLazyfreeLazyExpireAttributeType   `json:"lazyfree-lazy-expire,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	LuaTimeLimit *int64 `json:"lua-time-limit,omitempty"`
+	LuaTimeLimit InstanceParametersGetLuaTimeLimitAttributeType `json:"lua-time-limit,omitempty"`
 	// This component monitors ephemeral and persistent disk usage. If one of these disk usages reaches the default configured threshold of 80%, the a9s Parachute stops all processes on that node.
 	// Can be cast to int32 without loss of precision.
-	MaxDiskThreshold *int64 `json:"max_disk_threshold,omitempty"`
+	MaxDiskThreshold InstanceParametersGetMaxDiskThresholdAttributeType `json:"max_disk_threshold,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	Maxclients      *int64  `json:"maxclients,omitempty"`
-	MaxmemoryPolicy *string `json:"maxmemory-policy,omitempty"`
+	Maxclients      InstanceParametersGetMaxclientsAttributeType      `json:"maxclients,omitempty"`
+	MaxmemoryPolicy InstanceParametersGetMaxmemoryPolicyAttributeType `json:"maxmemory-policy,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	MaxmemorySamples *int64 `json:"maxmemory-samples,omitempty"`
+	MaxmemorySamples InstanceParametersGetMaxmemorySamplesAttributeType `json:"maxmemory-samples,omitempty"`
 	// Frequency of metrics being emitted in seconds
 	// Can be cast to int32 without loss of precision.
-	MetricsFrequency *int64 `json:"metrics_frequency,omitempty"`
+	MetricsFrequency InstanceParametersGetMetricsFrequencyAttributeType `json:"metrics_frequency,omitempty"`
 	// Depending on your graphite provider, you might need to prefix the metrics with a certain value, like an API key for example.
-	MetricsPrefix *string `json:"metrics_prefix,omitempty"`
+	MetricsPrefix InstanceParametersGetMetricsPrefixAttributeType `json:"metrics_prefix,omitempty"`
 	// The unit is seconds.
 	// Can be cast to int32 without loss of precision.
-	MinReplicasMaxLag    *int64  `json:"min_replicas_max_lag,omitempty"`
-	MonitoringInstanceId *string `json:"monitoring_instance_id,omitempty"`
+	MinReplicasMaxLag    InstanceParametersGetMinReplicasMaxLagAttributeType    `json:"min_replicas_max_lag,omitempty"`
+	MonitoringInstanceId InstanceParametersGetMonitoringInstanceIdAttributeType `json:"monitoring_instance_id,omitempty"`
 	// The allowed value must include the following characters only: [K,E,g,$,l,s,h,z,x,e,A,t]
-	NotifyKeyspaceEvents *string `json:"notify-keyspace-events,omitempty"`
+	NotifyKeyspaceEvents InstanceParametersGetNotifyKeyspaceEventsAttributeType `json:"notify-keyspace-events,omitempty"`
 	// Comma separated list of IP networks in CIDR notation which are allowed to access this instance.
-	SgwAcl *string `json:"sgw_acl,omitempty"`
+	SgwAcl InstanceParametersGetSgwAclAttributeType `json:"sgw_acl,omitempty"`
 	// This setting must follow the original Redis configuration for RDB.
-	Snapshot        *string   `json:"snapshot,omitempty"`
-	Syslog          *[]string `json:"syslog,omitempty"`
-	TlsCiphers      *[]string `json:"tls-ciphers,omitempty"`
-	TlsCiphersuites *string   `json:"tls-ciphersuites,omitempty"`
-	TlsProtocols    *string   `json:"tls-protocols,omitempty"`
+	Snapshot        InstanceParametersGetSnapshotAttributeType        `json:"snapshot,omitempty"`
+	Syslog          InstanceParametersGetSyslogAttributeType          `json:"syslog,omitempty"`
+	TlsCiphers      InstanceParametersGetTlsCiphersAttributeType      `json:"tls-ciphers,omitempty"`
+	TlsCiphersuites InstanceParametersGetTlsCiphersuitesAttributeType `json:"tls-ciphersuites,omitempty"`
+	TlsProtocols    InstanceParametersGetTlsProtocolsAttributeType    `json:"tls-protocols,omitempty"`
 }
 
 // NewInstanceParameters instantiates a new InstanceParameters object
@@ -67,32 +514,6 @@ type InstanceParameters struct {
 // will change when the set of required properties is changed
 func NewInstanceParameters() *InstanceParameters {
 	this := InstanceParameters{}
-	var downAfterMilliseconds int64 = 10000
-	this.DownAfterMilliseconds = &downAfterMilliseconds
-	var enableMonitoring bool = false
-	this.EnableMonitoring = &enableMonitoring
-	var failoverTimeout int64 = 30000
-	this.FailoverTimeout = &failoverTimeout
-	var lazyfreeLazyEviction string = "no"
-	this.LazyfreeLazyEviction = &lazyfreeLazyEviction
-	var lazyfreeLazyExpire string = "no"
-	this.LazyfreeLazyExpire = &lazyfreeLazyExpire
-	var luaTimeLimit int64 = 5000
-	this.LuaTimeLimit = &luaTimeLimit
-	var maxDiskThreshold int64 = 80
-	this.MaxDiskThreshold = &maxDiskThreshold
-	var maxclients int64 = 10000
-	this.Maxclients = &maxclients
-	var maxmemoryPolicy string = "volatile-lru"
-	this.MaxmemoryPolicy = &maxmemoryPolicy
-	var maxmemorySamples int64 = 5
-	this.MaxmemorySamples = &maxmemorySamples
-	var metricsFrequency int64 = 10
-	this.MetricsFrequency = &metricsFrequency
-	var minReplicasMaxLag int64 = 10
-	this.MinReplicasMaxLag = &minReplicasMaxLag
-	var notifyKeyspaceEvents string = ""
-	this.NotifyKeyspaceEvents = &notifyKeyspaceEvents
 	return &this
 }
 
@@ -131,776 +552,578 @@ func NewInstanceParametersWithDefaults() *InstanceParameters {
 }
 
 // GetDownAfterMilliseconds returns the DownAfterMilliseconds field value if set, zero value otherwise.
-func (o *InstanceParameters) GetDownAfterMilliseconds() *int64 {
-	if o == nil || IsNil(o.DownAfterMilliseconds) {
-		var ret *int64
-		return ret
-	}
-	return o.DownAfterMilliseconds
+func (o *InstanceParameters) GetDownAfterMilliseconds() (res InstanceParametersGetDownAfterMillisecondsRetType) {
+	res, _ = o.GetDownAfterMillisecondsOk()
+	return
 }
 
 // GetDownAfterMillisecondsOk returns a tuple with the DownAfterMilliseconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetDownAfterMillisecondsOk() (*int64, bool) {
-	if o == nil || IsNil(o.DownAfterMilliseconds) {
-		return nil, false
-	}
-	return o.DownAfterMilliseconds, true
+func (o *InstanceParameters) GetDownAfterMillisecondsOk() (ret InstanceParametersGetDownAfterMillisecondsRetType, ok bool) {
+	return getInstanceParametersGetDownAfterMillisecondsAttributeTypeOk(o.DownAfterMilliseconds)
 }
 
 // HasDownAfterMilliseconds returns a boolean if a field has been set.
 func (o *InstanceParameters) HasDownAfterMilliseconds() bool {
-	if o != nil && !IsNil(o.DownAfterMilliseconds) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDownAfterMillisecondsOk()
+	return ok
 }
 
 // SetDownAfterMilliseconds gets a reference to the given int64 and assigns it to the DownAfterMilliseconds field.
-func (o *InstanceParameters) SetDownAfterMilliseconds(v *int64) {
-	o.DownAfterMilliseconds = v
+func (o *InstanceParameters) SetDownAfterMilliseconds(v InstanceParametersGetDownAfterMillisecondsRetType) {
+	setInstanceParametersGetDownAfterMillisecondsAttributeType(&o.DownAfterMilliseconds, v)
 }
 
 // GetEnableMonitoring returns the EnableMonitoring field value if set, zero value otherwise.
-func (o *InstanceParameters) GetEnableMonitoring() *bool {
-	if o == nil || IsNil(o.EnableMonitoring) {
-		var ret *bool
-		return ret
-	}
-	return o.EnableMonitoring
+func (o *InstanceParameters) GetEnableMonitoring() (res InstanceParametersgetEnableMonitoringRetType) {
+	res, _ = o.GetEnableMonitoringOk()
+	return
 }
 
 // GetEnableMonitoringOk returns a tuple with the EnableMonitoring field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetEnableMonitoringOk() (*bool, bool) {
-	if o == nil || IsNil(o.EnableMonitoring) {
-		return nil, false
-	}
-	return o.EnableMonitoring, true
+func (o *InstanceParameters) GetEnableMonitoringOk() (ret InstanceParametersgetEnableMonitoringRetType, ok bool) {
+	return getInstanceParametersgetEnableMonitoringAttributeTypeOk(o.EnableMonitoring)
 }
 
 // HasEnableMonitoring returns a boolean if a field has been set.
 func (o *InstanceParameters) HasEnableMonitoring() bool {
-	if o != nil && !IsNil(o.EnableMonitoring) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEnableMonitoringOk()
+	return ok
 }
 
 // SetEnableMonitoring gets a reference to the given bool and assigns it to the EnableMonitoring field.
-func (o *InstanceParameters) SetEnableMonitoring(v *bool) {
-	o.EnableMonitoring = v
+func (o *InstanceParameters) SetEnableMonitoring(v InstanceParametersgetEnableMonitoringRetType) {
+	setInstanceParametersgetEnableMonitoringAttributeType(&o.EnableMonitoring, v)
 }
 
 // GetFailoverTimeout returns the FailoverTimeout field value if set, zero value otherwise.
-func (o *InstanceParameters) GetFailoverTimeout() *int64 {
-	if o == nil || IsNil(o.FailoverTimeout) {
-		var ret *int64
-		return ret
-	}
-	return o.FailoverTimeout
+func (o *InstanceParameters) GetFailoverTimeout() (res InstanceParametersGetFailoverTimeoutRetType) {
+	res, _ = o.GetFailoverTimeoutOk()
+	return
 }
 
 // GetFailoverTimeoutOk returns a tuple with the FailoverTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetFailoverTimeoutOk() (*int64, bool) {
-	if o == nil || IsNil(o.FailoverTimeout) {
-		return nil, false
-	}
-	return o.FailoverTimeout, true
+func (o *InstanceParameters) GetFailoverTimeoutOk() (ret InstanceParametersGetFailoverTimeoutRetType, ok bool) {
+	return getInstanceParametersGetFailoverTimeoutAttributeTypeOk(o.FailoverTimeout)
 }
 
 // HasFailoverTimeout returns a boolean if a field has been set.
 func (o *InstanceParameters) HasFailoverTimeout() bool {
-	if o != nil && !IsNil(o.FailoverTimeout) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFailoverTimeoutOk()
+	return ok
 }
 
 // SetFailoverTimeout gets a reference to the given int64 and assigns it to the FailoverTimeout field.
-func (o *InstanceParameters) SetFailoverTimeout(v *int64) {
-	o.FailoverTimeout = v
+func (o *InstanceParameters) SetFailoverTimeout(v InstanceParametersGetFailoverTimeoutRetType) {
+	setInstanceParametersGetFailoverTimeoutAttributeType(&o.FailoverTimeout, v)
 }
 
 // GetGraphite returns the Graphite field value if set, zero value otherwise.
-func (o *InstanceParameters) GetGraphite() *string {
-	if o == nil || IsNil(o.Graphite) {
-		var ret *string
-		return ret
-	}
-	return o.Graphite
+func (o *InstanceParameters) GetGraphite() (res InstanceParametersGetGraphiteRetType) {
+	res, _ = o.GetGraphiteOk()
+	return
 }
 
 // GetGraphiteOk returns a tuple with the Graphite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetGraphiteOk() (*string, bool) {
-	if o == nil || IsNil(o.Graphite) {
-		return nil, false
-	}
-	return o.Graphite, true
+func (o *InstanceParameters) GetGraphiteOk() (ret InstanceParametersGetGraphiteRetType, ok bool) {
+	return getInstanceParametersGetGraphiteAttributeTypeOk(o.Graphite)
 }
 
 // HasGraphite returns a boolean if a field has been set.
 func (o *InstanceParameters) HasGraphite() bool {
-	if o != nil && !IsNil(o.Graphite) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGraphiteOk()
+	return ok
 }
 
 // SetGraphite gets a reference to the given string and assigns it to the Graphite field.
-func (o *InstanceParameters) SetGraphite(v *string) {
-	o.Graphite = v
+func (o *InstanceParameters) SetGraphite(v InstanceParametersGetGraphiteRetType) {
+	setInstanceParametersGetGraphiteAttributeType(&o.Graphite, v)
 }
 
 // GetLazyfreeLazyEviction returns the LazyfreeLazyEviction field value if set, zero value otherwise.
-func (o *InstanceParameters) GetLazyfreeLazyEviction() *string {
-	if o == nil || IsNil(o.LazyfreeLazyEviction) {
-		var ret *string
-		return ret
-	}
-	return o.LazyfreeLazyEviction
+func (o *InstanceParameters) GetLazyfreeLazyEviction() (res InstanceParametersGetLazyfreeLazyEvictionRetType) {
+	res, _ = o.GetLazyfreeLazyEvictionOk()
+	return
 }
 
 // GetLazyfreeLazyEvictionOk returns a tuple with the LazyfreeLazyEviction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetLazyfreeLazyEvictionOk() (*string, bool) {
-	if o == nil || IsNil(o.LazyfreeLazyEviction) {
-		return nil, false
-	}
-	return o.LazyfreeLazyEviction, true
+func (o *InstanceParameters) GetLazyfreeLazyEvictionOk() (ret InstanceParametersGetLazyfreeLazyEvictionRetType, ok bool) {
+	return getInstanceParametersGetLazyfreeLazyEvictionAttributeTypeOk(o.LazyfreeLazyEviction)
 }
 
 // HasLazyfreeLazyEviction returns a boolean if a field has been set.
 func (o *InstanceParameters) HasLazyfreeLazyEviction() bool {
-	if o != nil && !IsNil(o.LazyfreeLazyEviction) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLazyfreeLazyEvictionOk()
+	return ok
 }
 
 // SetLazyfreeLazyEviction gets a reference to the given string and assigns it to the LazyfreeLazyEviction field.
-func (o *InstanceParameters) SetLazyfreeLazyEviction(v *string) {
-	o.LazyfreeLazyEviction = v
+func (o *InstanceParameters) SetLazyfreeLazyEviction(v InstanceParametersGetLazyfreeLazyEvictionRetType) {
+	setInstanceParametersGetLazyfreeLazyEvictionAttributeType(&o.LazyfreeLazyEviction, v)
 }
 
 // GetLazyfreeLazyExpire returns the LazyfreeLazyExpire field value if set, zero value otherwise.
-func (o *InstanceParameters) GetLazyfreeLazyExpire() *string {
-	if o == nil || IsNil(o.LazyfreeLazyExpire) {
-		var ret *string
-		return ret
-	}
-	return o.LazyfreeLazyExpire
+func (o *InstanceParameters) GetLazyfreeLazyExpire() (res InstanceParametersGetLazyfreeLazyExpireRetType) {
+	res, _ = o.GetLazyfreeLazyExpireOk()
+	return
 }
 
 // GetLazyfreeLazyExpireOk returns a tuple with the LazyfreeLazyExpire field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetLazyfreeLazyExpireOk() (*string, bool) {
-	if o == nil || IsNil(o.LazyfreeLazyExpire) {
-		return nil, false
-	}
-	return o.LazyfreeLazyExpire, true
+func (o *InstanceParameters) GetLazyfreeLazyExpireOk() (ret InstanceParametersGetLazyfreeLazyExpireRetType, ok bool) {
+	return getInstanceParametersGetLazyfreeLazyExpireAttributeTypeOk(o.LazyfreeLazyExpire)
 }
 
 // HasLazyfreeLazyExpire returns a boolean if a field has been set.
 func (o *InstanceParameters) HasLazyfreeLazyExpire() bool {
-	if o != nil && !IsNil(o.LazyfreeLazyExpire) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLazyfreeLazyExpireOk()
+	return ok
 }
 
 // SetLazyfreeLazyExpire gets a reference to the given string and assigns it to the LazyfreeLazyExpire field.
-func (o *InstanceParameters) SetLazyfreeLazyExpire(v *string) {
-	o.LazyfreeLazyExpire = v
+func (o *InstanceParameters) SetLazyfreeLazyExpire(v InstanceParametersGetLazyfreeLazyExpireRetType) {
+	setInstanceParametersGetLazyfreeLazyExpireAttributeType(&o.LazyfreeLazyExpire, v)
 }
 
 // GetLuaTimeLimit returns the LuaTimeLimit field value if set, zero value otherwise.
-func (o *InstanceParameters) GetLuaTimeLimit() *int64 {
-	if o == nil || IsNil(o.LuaTimeLimit) {
-		var ret *int64
-		return ret
-	}
-	return o.LuaTimeLimit
+func (o *InstanceParameters) GetLuaTimeLimit() (res InstanceParametersGetLuaTimeLimitRetType) {
+	res, _ = o.GetLuaTimeLimitOk()
+	return
 }
 
 // GetLuaTimeLimitOk returns a tuple with the LuaTimeLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetLuaTimeLimitOk() (*int64, bool) {
-	if o == nil || IsNil(o.LuaTimeLimit) {
-		return nil, false
-	}
-	return o.LuaTimeLimit, true
+func (o *InstanceParameters) GetLuaTimeLimitOk() (ret InstanceParametersGetLuaTimeLimitRetType, ok bool) {
+	return getInstanceParametersGetLuaTimeLimitAttributeTypeOk(o.LuaTimeLimit)
 }
 
 // HasLuaTimeLimit returns a boolean if a field has been set.
 func (o *InstanceParameters) HasLuaTimeLimit() bool {
-	if o != nil && !IsNil(o.LuaTimeLimit) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLuaTimeLimitOk()
+	return ok
 }
 
 // SetLuaTimeLimit gets a reference to the given int64 and assigns it to the LuaTimeLimit field.
-func (o *InstanceParameters) SetLuaTimeLimit(v *int64) {
-	o.LuaTimeLimit = v
+func (o *InstanceParameters) SetLuaTimeLimit(v InstanceParametersGetLuaTimeLimitRetType) {
+	setInstanceParametersGetLuaTimeLimitAttributeType(&o.LuaTimeLimit, v)
 }
 
 // GetMaxDiskThreshold returns the MaxDiskThreshold field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMaxDiskThreshold() *int64 {
-	if o == nil || IsNil(o.MaxDiskThreshold) {
-		var ret *int64
-		return ret
-	}
-	return o.MaxDiskThreshold
+func (o *InstanceParameters) GetMaxDiskThreshold() (res InstanceParametersGetMaxDiskThresholdRetType) {
+	res, _ = o.GetMaxDiskThresholdOk()
+	return
 }
 
 // GetMaxDiskThresholdOk returns a tuple with the MaxDiskThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMaxDiskThresholdOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxDiskThreshold) {
-		return nil, false
-	}
-	return o.MaxDiskThreshold, true
+func (o *InstanceParameters) GetMaxDiskThresholdOk() (ret InstanceParametersGetMaxDiskThresholdRetType, ok bool) {
+	return getInstanceParametersGetMaxDiskThresholdAttributeTypeOk(o.MaxDiskThreshold)
 }
 
 // HasMaxDiskThreshold returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxDiskThreshold() bool {
-	if o != nil && !IsNil(o.MaxDiskThreshold) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxDiskThresholdOk()
+	return ok
 }
 
 // SetMaxDiskThreshold gets a reference to the given int64 and assigns it to the MaxDiskThreshold field.
-func (o *InstanceParameters) SetMaxDiskThreshold(v *int64) {
-	o.MaxDiskThreshold = v
+func (o *InstanceParameters) SetMaxDiskThreshold(v InstanceParametersGetMaxDiskThresholdRetType) {
+	setInstanceParametersGetMaxDiskThresholdAttributeType(&o.MaxDiskThreshold, v)
 }
 
 // GetMaxclients returns the Maxclients field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMaxclients() *int64 {
-	if o == nil || IsNil(o.Maxclients) {
-		var ret *int64
-		return ret
-	}
-	return o.Maxclients
+func (o *InstanceParameters) GetMaxclients() (res InstanceParametersGetMaxclientsRetType) {
+	res, _ = o.GetMaxclientsOk()
+	return
 }
 
 // GetMaxclientsOk returns a tuple with the Maxclients field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMaxclientsOk() (*int64, bool) {
-	if o == nil || IsNil(o.Maxclients) {
-		return nil, false
-	}
-	return o.Maxclients, true
+func (o *InstanceParameters) GetMaxclientsOk() (ret InstanceParametersGetMaxclientsRetType, ok bool) {
+	return getInstanceParametersGetMaxclientsAttributeTypeOk(o.Maxclients)
 }
 
 // HasMaxclients returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxclients() bool {
-	if o != nil && !IsNil(o.Maxclients) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxclientsOk()
+	return ok
 }
 
 // SetMaxclients gets a reference to the given int64 and assigns it to the Maxclients field.
-func (o *InstanceParameters) SetMaxclients(v *int64) {
-	o.Maxclients = v
+func (o *InstanceParameters) SetMaxclients(v InstanceParametersGetMaxclientsRetType) {
+	setInstanceParametersGetMaxclientsAttributeType(&o.Maxclients, v)
 }
 
 // GetMaxmemoryPolicy returns the MaxmemoryPolicy field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMaxmemoryPolicy() *string {
-	if o == nil || IsNil(o.MaxmemoryPolicy) {
-		var ret *string
-		return ret
-	}
-	return o.MaxmemoryPolicy
+func (o *InstanceParameters) GetMaxmemoryPolicy() (res InstanceParametersGetMaxmemoryPolicyRetType) {
+	res, _ = o.GetMaxmemoryPolicyOk()
+	return
 }
 
 // GetMaxmemoryPolicyOk returns a tuple with the MaxmemoryPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMaxmemoryPolicyOk() (*string, bool) {
-	if o == nil || IsNil(o.MaxmemoryPolicy) {
-		return nil, false
-	}
-	return o.MaxmemoryPolicy, true
+func (o *InstanceParameters) GetMaxmemoryPolicyOk() (ret InstanceParametersGetMaxmemoryPolicyRetType, ok bool) {
+	return getInstanceParametersGetMaxmemoryPolicyAttributeTypeOk(o.MaxmemoryPolicy)
 }
 
 // HasMaxmemoryPolicy returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxmemoryPolicy() bool {
-	if o != nil && !IsNil(o.MaxmemoryPolicy) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxmemoryPolicyOk()
+	return ok
 }
 
 // SetMaxmemoryPolicy gets a reference to the given string and assigns it to the MaxmemoryPolicy field.
-func (o *InstanceParameters) SetMaxmemoryPolicy(v *string) {
-	o.MaxmemoryPolicy = v
+func (o *InstanceParameters) SetMaxmemoryPolicy(v InstanceParametersGetMaxmemoryPolicyRetType) {
+	setInstanceParametersGetMaxmemoryPolicyAttributeType(&o.MaxmemoryPolicy, v)
 }
 
 // GetMaxmemorySamples returns the MaxmemorySamples field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMaxmemorySamples() *int64 {
-	if o == nil || IsNil(o.MaxmemorySamples) {
-		var ret *int64
-		return ret
-	}
-	return o.MaxmemorySamples
+func (o *InstanceParameters) GetMaxmemorySamples() (res InstanceParametersGetMaxmemorySamplesRetType) {
+	res, _ = o.GetMaxmemorySamplesOk()
+	return
 }
 
 // GetMaxmemorySamplesOk returns a tuple with the MaxmemorySamples field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMaxmemorySamplesOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxmemorySamples) {
-		return nil, false
-	}
-	return o.MaxmemorySamples, true
+func (o *InstanceParameters) GetMaxmemorySamplesOk() (ret InstanceParametersGetMaxmemorySamplesRetType, ok bool) {
+	return getInstanceParametersGetMaxmemorySamplesAttributeTypeOk(o.MaxmemorySamples)
 }
 
 // HasMaxmemorySamples returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxmemorySamples() bool {
-	if o != nil && !IsNil(o.MaxmemorySamples) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxmemorySamplesOk()
+	return ok
 }
 
 // SetMaxmemorySamples gets a reference to the given int64 and assigns it to the MaxmemorySamples field.
-func (o *InstanceParameters) SetMaxmemorySamples(v *int64) {
-	o.MaxmemorySamples = v
+func (o *InstanceParameters) SetMaxmemorySamples(v InstanceParametersGetMaxmemorySamplesRetType) {
+	setInstanceParametersGetMaxmemorySamplesAttributeType(&o.MaxmemorySamples, v)
 }
 
 // GetMetricsFrequency returns the MetricsFrequency field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMetricsFrequency() *int64 {
-	if o == nil || IsNil(o.MetricsFrequency) {
-		var ret *int64
-		return ret
-	}
-	return o.MetricsFrequency
+func (o *InstanceParameters) GetMetricsFrequency() (res InstanceParametersGetMetricsFrequencyRetType) {
+	res, _ = o.GetMetricsFrequencyOk()
+	return
 }
 
 // GetMetricsFrequencyOk returns a tuple with the MetricsFrequency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMetricsFrequencyOk() (*int64, bool) {
-	if o == nil || IsNil(o.MetricsFrequency) {
-		return nil, false
-	}
-	return o.MetricsFrequency, true
+func (o *InstanceParameters) GetMetricsFrequencyOk() (ret InstanceParametersGetMetricsFrequencyRetType, ok bool) {
+	return getInstanceParametersGetMetricsFrequencyAttributeTypeOk(o.MetricsFrequency)
 }
 
 // HasMetricsFrequency returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsFrequency() bool {
-	if o != nil && !IsNil(o.MetricsFrequency) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMetricsFrequencyOk()
+	return ok
 }
 
 // SetMetricsFrequency gets a reference to the given int64 and assigns it to the MetricsFrequency field.
-func (o *InstanceParameters) SetMetricsFrequency(v *int64) {
-	o.MetricsFrequency = v
+func (o *InstanceParameters) SetMetricsFrequency(v InstanceParametersGetMetricsFrequencyRetType) {
+	setInstanceParametersGetMetricsFrequencyAttributeType(&o.MetricsFrequency, v)
 }
 
 // GetMetricsPrefix returns the MetricsPrefix field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMetricsPrefix() *string {
-	if o == nil || IsNil(o.MetricsPrefix) {
-		var ret *string
-		return ret
-	}
-	return o.MetricsPrefix
+func (o *InstanceParameters) GetMetricsPrefix() (res InstanceParametersGetMetricsPrefixRetType) {
+	res, _ = o.GetMetricsPrefixOk()
+	return
 }
 
 // GetMetricsPrefixOk returns a tuple with the MetricsPrefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMetricsPrefixOk() (*string, bool) {
-	if o == nil || IsNil(o.MetricsPrefix) {
-		return nil, false
-	}
-	return o.MetricsPrefix, true
+func (o *InstanceParameters) GetMetricsPrefixOk() (ret InstanceParametersGetMetricsPrefixRetType, ok bool) {
+	return getInstanceParametersGetMetricsPrefixAttributeTypeOk(o.MetricsPrefix)
 }
 
 // HasMetricsPrefix returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsPrefix() bool {
-	if o != nil && !IsNil(o.MetricsPrefix) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMetricsPrefixOk()
+	return ok
 }
 
 // SetMetricsPrefix gets a reference to the given string and assigns it to the MetricsPrefix field.
-func (o *InstanceParameters) SetMetricsPrefix(v *string) {
-	o.MetricsPrefix = v
+func (o *InstanceParameters) SetMetricsPrefix(v InstanceParametersGetMetricsPrefixRetType) {
+	setInstanceParametersGetMetricsPrefixAttributeType(&o.MetricsPrefix, v)
 }
 
 // GetMinReplicasMaxLag returns the MinReplicasMaxLag field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMinReplicasMaxLag() *int64 {
-	if o == nil || IsNil(o.MinReplicasMaxLag) {
-		var ret *int64
-		return ret
-	}
-	return o.MinReplicasMaxLag
+func (o *InstanceParameters) GetMinReplicasMaxLag() (res InstanceParametersGetMinReplicasMaxLagRetType) {
+	res, _ = o.GetMinReplicasMaxLagOk()
+	return
 }
 
 // GetMinReplicasMaxLagOk returns a tuple with the MinReplicasMaxLag field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMinReplicasMaxLagOk() (*int64, bool) {
-	if o == nil || IsNil(o.MinReplicasMaxLag) {
-		return nil, false
-	}
-	return o.MinReplicasMaxLag, true
+func (o *InstanceParameters) GetMinReplicasMaxLagOk() (ret InstanceParametersGetMinReplicasMaxLagRetType, ok bool) {
+	return getInstanceParametersGetMinReplicasMaxLagAttributeTypeOk(o.MinReplicasMaxLag)
 }
 
 // HasMinReplicasMaxLag returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMinReplicasMaxLag() bool {
-	if o != nil && !IsNil(o.MinReplicasMaxLag) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMinReplicasMaxLagOk()
+	return ok
 }
 
 // SetMinReplicasMaxLag gets a reference to the given int64 and assigns it to the MinReplicasMaxLag field.
-func (o *InstanceParameters) SetMinReplicasMaxLag(v *int64) {
-	o.MinReplicasMaxLag = v
+func (o *InstanceParameters) SetMinReplicasMaxLag(v InstanceParametersGetMinReplicasMaxLagRetType) {
+	setInstanceParametersGetMinReplicasMaxLagAttributeType(&o.MinReplicasMaxLag, v)
 }
 
 // GetMonitoringInstanceId returns the MonitoringInstanceId field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMonitoringInstanceId() *string {
-	if o == nil || IsNil(o.MonitoringInstanceId) {
-		var ret *string
-		return ret
-	}
-	return o.MonitoringInstanceId
+func (o *InstanceParameters) GetMonitoringInstanceId() (res InstanceParametersGetMonitoringInstanceIdRetType) {
+	res, _ = o.GetMonitoringInstanceIdOk()
+	return
 }
 
 // GetMonitoringInstanceIdOk returns a tuple with the MonitoringInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMonitoringInstanceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.MonitoringInstanceId) {
-		return nil, false
-	}
-	return o.MonitoringInstanceId, true
+func (o *InstanceParameters) GetMonitoringInstanceIdOk() (ret InstanceParametersGetMonitoringInstanceIdRetType, ok bool) {
+	return getInstanceParametersGetMonitoringInstanceIdAttributeTypeOk(o.MonitoringInstanceId)
 }
 
 // HasMonitoringInstanceId returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMonitoringInstanceId() bool {
-	if o != nil && !IsNil(o.MonitoringInstanceId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMonitoringInstanceIdOk()
+	return ok
 }
 
 // SetMonitoringInstanceId gets a reference to the given string and assigns it to the MonitoringInstanceId field.
-func (o *InstanceParameters) SetMonitoringInstanceId(v *string) {
-	o.MonitoringInstanceId = v
+func (o *InstanceParameters) SetMonitoringInstanceId(v InstanceParametersGetMonitoringInstanceIdRetType) {
+	setInstanceParametersGetMonitoringInstanceIdAttributeType(&o.MonitoringInstanceId, v)
 }
 
 // GetNotifyKeyspaceEvents returns the NotifyKeyspaceEvents field value if set, zero value otherwise.
-func (o *InstanceParameters) GetNotifyKeyspaceEvents() *string {
-	if o == nil || IsNil(o.NotifyKeyspaceEvents) {
-		var ret *string
-		return ret
-	}
-	return o.NotifyKeyspaceEvents
+func (o *InstanceParameters) GetNotifyKeyspaceEvents() (res InstanceParametersGetNotifyKeyspaceEventsRetType) {
+	res, _ = o.GetNotifyKeyspaceEventsOk()
+	return
 }
 
 // GetNotifyKeyspaceEventsOk returns a tuple with the NotifyKeyspaceEvents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetNotifyKeyspaceEventsOk() (*string, bool) {
-	if o == nil || IsNil(o.NotifyKeyspaceEvents) {
-		return nil, false
-	}
-	return o.NotifyKeyspaceEvents, true
+func (o *InstanceParameters) GetNotifyKeyspaceEventsOk() (ret InstanceParametersGetNotifyKeyspaceEventsRetType, ok bool) {
+	return getInstanceParametersGetNotifyKeyspaceEventsAttributeTypeOk(o.NotifyKeyspaceEvents)
 }
 
 // HasNotifyKeyspaceEvents returns a boolean if a field has been set.
 func (o *InstanceParameters) HasNotifyKeyspaceEvents() bool {
-	if o != nil && !IsNil(o.NotifyKeyspaceEvents) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNotifyKeyspaceEventsOk()
+	return ok
 }
 
 // SetNotifyKeyspaceEvents gets a reference to the given string and assigns it to the NotifyKeyspaceEvents field.
-func (o *InstanceParameters) SetNotifyKeyspaceEvents(v *string) {
-	o.NotifyKeyspaceEvents = v
+func (o *InstanceParameters) SetNotifyKeyspaceEvents(v InstanceParametersGetNotifyKeyspaceEventsRetType) {
+	setInstanceParametersGetNotifyKeyspaceEventsAttributeType(&o.NotifyKeyspaceEvents, v)
 }
 
 // GetSgwAcl returns the SgwAcl field value if set, zero value otherwise.
-func (o *InstanceParameters) GetSgwAcl() *string {
-	if o == nil || IsNil(o.SgwAcl) {
-		var ret *string
-		return ret
-	}
-	return o.SgwAcl
+func (o *InstanceParameters) GetSgwAcl() (res InstanceParametersGetSgwAclRetType) {
+	res, _ = o.GetSgwAclOk()
+	return
 }
 
 // GetSgwAclOk returns a tuple with the SgwAcl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetSgwAclOk() (*string, bool) {
-	if o == nil || IsNil(o.SgwAcl) {
-		return nil, false
-	}
-	return o.SgwAcl, true
+func (o *InstanceParameters) GetSgwAclOk() (ret InstanceParametersGetSgwAclRetType, ok bool) {
+	return getInstanceParametersGetSgwAclAttributeTypeOk(o.SgwAcl)
 }
 
 // HasSgwAcl returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSgwAcl() bool {
-	if o != nil && !IsNil(o.SgwAcl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSgwAclOk()
+	return ok
 }
 
 // SetSgwAcl gets a reference to the given string and assigns it to the SgwAcl field.
-func (o *InstanceParameters) SetSgwAcl(v *string) {
-	o.SgwAcl = v
+func (o *InstanceParameters) SetSgwAcl(v InstanceParametersGetSgwAclRetType) {
+	setInstanceParametersGetSgwAclAttributeType(&o.SgwAcl, v)
 }
 
 // GetSnapshot returns the Snapshot field value if set, zero value otherwise.
-func (o *InstanceParameters) GetSnapshot() *string {
-	if o == nil || IsNil(o.Snapshot) {
-		var ret *string
-		return ret
-	}
-	return o.Snapshot
+func (o *InstanceParameters) GetSnapshot() (res InstanceParametersGetSnapshotRetType) {
+	res, _ = o.GetSnapshotOk()
+	return
 }
 
 // GetSnapshotOk returns a tuple with the Snapshot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetSnapshotOk() (*string, bool) {
-	if o == nil || IsNil(o.Snapshot) {
-		return nil, false
-	}
-	return o.Snapshot, true
+func (o *InstanceParameters) GetSnapshotOk() (ret InstanceParametersGetSnapshotRetType, ok bool) {
+	return getInstanceParametersGetSnapshotAttributeTypeOk(o.Snapshot)
 }
 
 // HasSnapshot returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSnapshot() bool {
-	if o != nil && !IsNil(o.Snapshot) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSnapshotOk()
+	return ok
 }
 
 // SetSnapshot gets a reference to the given string and assigns it to the Snapshot field.
-func (o *InstanceParameters) SetSnapshot(v *string) {
-	o.Snapshot = v
+func (o *InstanceParameters) SetSnapshot(v InstanceParametersGetSnapshotRetType) {
+	setInstanceParametersGetSnapshotAttributeType(&o.Snapshot, v)
 }
 
 // GetSyslog returns the Syslog field value if set, zero value otherwise.
-func (o *InstanceParameters) GetSyslog() *[]string {
-	if o == nil || IsNil(o.Syslog) {
-		var ret *[]string
-		return ret
-	}
-	return o.Syslog
+func (o *InstanceParameters) GetSyslog() (res InstanceParametersGetSyslogRetType) {
+	res, _ = o.GetSyslogOk()
+	return
 }
 
 // GetSyslogOk returns a tuple with the Syslog field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetSyslogOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Syslog) {
-		return nil, false
-	}
-	return o.Syslog, true
+func (o *InstanceParameters) GetSyslogOk() (ret InstanceParametersGetSyslogRetType, ok bool) {
+	return getInstanceParametersGetSyslogAttributeTypeOk(o.Syslog)
 }
 
 // HasSyslog returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSyslog() bool {
-	if o != nil && !IsNil(o.Syslog) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSyslogOk()
+	return ok
 }
 
 // SetSyslog gets a reference to the given []string and assigns it to the Syslog field.
-func (o *InstanceParameters) SetSyslog(v *[]string) {
-	o.Syslog = v
+func (o *InstanceParameters) SetSyslog(v InstanceParametersGetSyslogRetType) {
+	setInstanceParametersGetSyslogAttributeType(&o.Syslog, v)
 }
 
 // GetTlsCiphers returns the TlsCiphers field value if set, zero value otherwise.
-func (o *InstanceParameters) GetTlsCiphers() *[]string {
-	if o == nil || IsNil(o.TlsCiphers) {
-		var ret *[]string
-		return ret
-	}
-	return o.TlsCiphers
+func (o *InstanceParameters) GetTlsCiphers() (res InstanceParametersGetTlsCiphersRetType) {
+	res, _ = o.GetTlsCiphersOk()
+	return
 }
 
 // GetTlsCiphersOk returns a tuple with the TlsCiphers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetTlsCiphersOk() (*[]string, bool) {
-	if o == nil || IsNil(o.TlsCiphers) {
-		return nil, false
-	}
-	return o.TlsCiphers, true
+func (o *InstanceParameters) GetTlsCiphersOk() (ret InstanceParametersGetTlsCiphersRetType, ok bool) {
+	return getInstanceParametersGetTlsCiphersAttributeTypeOk(o.TlsCiphers)
 }
 
 // HasTlsCiphers returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsCiphers() bool {
-	if o != nil && !IsNil(o.TlsCiphers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsCiphersOk()
+	return ok
 }
 
 // SetTlsCiphers gets a reference to the given []string and assigns it to the TlsCiphers field.
-func (o *InstanceParameters) SetTlsCiphers(v *[]string) {
-	o.TlsCiphers = v
+func (o *InstanceParameters) SetTlsCiphers(v InstanceParametersGetTlsCiphersRetType) {
+	setInstanceParametersGetTlsCiphersAttributeType(&o.TlsCiphers, v)
 }
 
 // GetTlsCiphersuites returns the TlsCiphersuites field value if set, zero value otherwise.
-func (o *InstanceParameters) GetTlsCiphersuites() *string {
-	if o == nil || IsNil(o.TlsCiphersuites) {
-		var ret *string
-		return ret
-	}
-	return o.TlsCiphersuites
+func (o *InstanceParameters) GetTlsCiphersuites() (res InstanceParametersGetTlsCiphersuitesRetType) {
+	res, _ = o.GetTlsCiphersuitesOk()
+	return
 }
 
 // GetTlsCiphersuitesOk returns a tuple with the TlsCiphersuites field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetTlsCiphersuitesOk() (*string, bool) {
-	if o == nil || IsNil(o.TlsCiphersuites) {
-		return nil, false
-	}
-	return o.TlsCiphersuites, true
+func (o *InstanceParameters) GetTlsCiphersuitesOk() (ret InstanceParametersGetTlsCiphersuitesRetType, ok bool) {
+	return getInstanceParametersGetTlsCiphersuitesAttributeTypeOk(o.TlsCiphersuites)
 }
 
 // HasTlsCiphersuites returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsCiphersuites() bool {
-	if o != nil && !IsNil(o.TlsCiphersuites) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsCiphersuitesOk()
+	return ok
 }
 
 // SetTlsCiphersuites gets a reference to the given string and assigns it to the TlsCiphersuites field.
-func (o *InstanceParameters) SetTlsCiphersuites(v *string) {
-	o.TlsCiphersuites = v
+func (o *InstanceParameters) SetTlsCiphersuites(v InstanceParametersGetTlsCiphersuitesRetType) {
+	setInstanceParametersGetTlsCiphersuitesAttributeType(&o.TlsCiphersuites, v)
 }
 
 // GetTlsProtocols returns the TlsProtocols field value if set, zero value otherwise.
-func (o *InstanceParameters) GetTlsProtocols() *string {
-	if o == nil || IsNil(o.TlsProtocols) {
-		var ret *string
-		return ret
-	}
-	return o.TlsProtocols
+func (o *InstanceParameters) GetTlsProtocols() (res InstanceParametersGetTlsProtocolsRetType) {
+	res, _ = o.GetTlsProtocolsOk()
+	return
 }
 
 // GetTlsProtocolsOk returns a tuple with the TlsProtocols field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetTlsProtocolsOk() (*string, bool) {
-	if o == nil || IsNil(o.TlsProtocols) {
-		return nil, false
-	}
-	return o.TlsProtocols, true
+func (o *InstanceParameters) GetTlsProtocolsOk() (ret InstanceParametersGetTlsProtocolsRetType, ok bool) {
+	return getInstanceParametersGetTlsProtocolsAttributeTypeOk(o.TlsProtocols)
 }
 
 // HasTlsProtocols returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsProtocols() bool {
-	if o != nil && !IsNil(o.TlsProtocols) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsProtocolsOk()
+	return ok
 }
 
 // SetTlsProtocols gets a reference to the given string and assigns it to the TlsProtocols field.
-func (o *InstanceParameters) SetTlsProtocols(v *string) {
-	o.TlsProtocols = v
+func (o *InstanceParameters) SetTlsProtocols(v InstanceParametersGetTlsProtocolsRetType) {
+	setInstanceParametersGetTlsProtocolsAttributeType(&o.TlsProtocols, v)
 }
 
 func (o InstanceParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.DownAfterMilliseconds) {
-		toSerialize["down-after-milliseconds"] = o.DownAfterMilliseconds
+	if val, ok := getInstanceParametersGetDownAfterMillisecondsAttributeTypeOk(o.DownAfterMilliseconds); ok {
+		toSerialize["DownAfterMilliseconds"] = val
 	}
-	if !IsNil(o.EnableMonitoring) {
-		toSerialize["enable_monitoring"] = o.EnableMonitoring
+	if val, ok := getInstanceParametersgetEnableMonitoringAttributeTypeOk(o.EnableMonitoring); ok {
+		toSerialize["EnableMonitoring"] = val
 	}
-	if !IsNil(o.FailoverTimeout) {
-		toSerialize["failover-timeout"] = o.FailoverTimeout
+	if val, ok := getInstanceParametersGetFailoverTimeoutAttributeTypeOk(o.FailoverTimeout); ok {
+		toSerialize["FailoverTimeout"] = val
 	}
-	if !IsNil(o.Graphite) {
-		toSerialize["graphite"] = o.Graphite
+	if val, ok := getInstanceParametersGetGraphiteAttributeTypeOk(o.Graphite); ok {
+		toSerialize["Graphite"] = val
 	}
-	if !IsNil(o.LazyfreeLazyEviction) {
-		toSerialize["lazyfree-lazy-eviction"] = o.LazyfreeLazyEviction
+	if val, ok := getInstanceParametersGetLazyfreeLazyEvictionAttributeTypeOk(o.LazyfreeLazyEviction); ok {
+		toSerialize["LazyfreeLazyEviction"] = val
 	}
-	if !IsNil(o.LazyfreeLazyExpire) {
-		toSerialize["lazyfree-lazy-expire"] = o.LazyfreeLazyExpire
+	if val, ok := getInstanceParametersGetLazyfreeLazyExpireAttributeTypeOk(o.LazyfreeLazyExpire); ok {
+		toSerialize["LazyfreeLazyExpire"] = val
 	}
-	if !IsNil(o.LuaTimeLimit) {
-		toSerialize["lua-time-limit"] = o.LuaTimeLimit
+	if val, ok := getInstanceParametersGetLuaTimeLimitAttributeTypeOk(o.LuaTimeLimit); ok {
+		toSerialize["LuaTimeLimit"] = val
 	}
-	if !IsNil(o.MaxDiskThreshold) {
-		toSerialize["max_disk_threshold"] = o.MaxDiskThreshold
+	if val, ok := getInstanceParametersGetMaxDiskThresholdAttributeTypeOk(o.MaxDiskThreshold); ok {
+		toSerialize["MaxDiskThreshold"] = val
 	}
-	if !IsNil(o.Maxclients) {
-		toSerialize["maxclients"] = o.Maxclients
+	if val, ok := getInstanceParametersGetMaxclientsAttributeTypeOk(o.Maxclients); ok {
+		toSerialize["Maxclients"] = val
 	}
-	if !IsNil(o.MaxmemoryPolicy) {
-		toSerialize["maxmemory-policy"] = o.MaxmemoryPolicy
+	if val, ok := getInstanceParametersGetMaxmemoryPolicyAttributeTypeOk(o.MaxmemoryPolicy); ok {
+		toSerialize["MaxmemoryPolicy"] = val
 	}
-	if !IsNil(o.MaxmemorySamples) {
-		toSerialize["maxmemory-samples"] = o.MaxmemorySamples
+	if val, ok := getInstanceParametersGetMaxmemorySamplesAttributeTypeOk(o.MaxmemorySamples); ok {
+		toSerialize["MaxmemorySamples"] = val
 	}
-	if !IsNil(o.MetricsFrequency) {
-		toSerialize["metrics_frequency"] = o.MetricsFrequency
+	if val, ok := getInstanceParametersGetMetricsFrequencyAttributeTypeOk(o.MetricsFrequency); ok {
+		toSerialize["MetricsFrequency"] = val
 	}
-	if !IsNil(o.MetricsPrefix) {
-		toSerialize["metrics_prefix"] = o.MetricsPrefix
+	if val, ok := getInstanceParametersGetMetricsPrefixAttributeTypeOk(o.MetricsPrefix); ok {
+		toSerialize["MetricsPrefix"] = val
 	}
-	if !IsNil(o.MinReplicasMaxLag) {
-		toSerialize["min_replicas_max_lag"] = o.MinReplicasMaxLag
+	if val, ok := getInstanceParametersGetMinReplicasMaxLagAttributeTypeOk(o.MinReplicasMaxLag); ok {
+		toSerialize["MinReplicasMaxLag"] = val
 	}
-	if !IsNil(o.MonitoringInstanceId) {
-		toSerialize["monitoring_instance_id"] = o.MonitoringInstanceId
+	if val, ok := getInstanceParametersGetMonitoringInstanceIdAttributeTypeOk(o.MonitoringInstanceId); ok {
+		toSerialize["MonitoringInstanceId"] = val
 	}
-	if !IsNil(o.NotifyKeyspaceEvents) {
-		toSerialize["notify-keyspace-events"] = o.NotifyKeyspaceEvents
+	if val, ok := getInstanceParametersGetNotifyKeyspaceEventsAttributeTypeOk(o.NotifyKeyspaceEvents); ok {
+		toSerialize["NotifyKeyspaceEvents"] = val
 	}
-	if !IsNil(o.SgwAcl) {
-		toSerialize["sgw_acl"] = o.SgwAcl
+	if val, ok := getInstanceParametersGetSgwAclAttributeTypeOk(o.SgwAcl); ok {
+		toSerialize["SgwAcl"] = val
 	}
-	if !IsNil(o.Snapshot) {
-		toSerialize["snapshot"] = o.Snapshot
+	if val, ok := getInstanceParametersGetSnapshotAttributeTypeOk(o.Snapshot); ok {
+		toSerialize["Snapshot"] = val
 	}
-	if !IsNil(o.Syslog) {
-		toSerialize["syslog"] = o.Syslog
+	if val, ok := getInstanceParametersGetSyslogAttributeTypeOk(o.Syslog); ok {
+		toSerialize["Syslog"] = val
 	}
-	if !IsNil(o.TlsCiphers) {
-		toSerialize["tls-ciphers"] = o.TlsCiphers
+	if val, ok := getInstanceParametersGetTlsCiphersAttributeTypeOk(o.TlsCiphers); ok {
+		toSerialize["TlsCiphers"] = val
 	}
-	if !IsNil(o.TlsCiphersuites) {
-		toSerialize["tls-ciphersuites"] = o.TlsCiphersuites
+	if val, ok := getInstanceParametersGetTlsCiphersuitesAttributeTypeOk(o.TlsCiphersuites); ok {
+		toSerialize["TlsCiphersuites"] = val
 	}
-	if !IsNil(o.TlsProtocols) {
-		toSerialize["tls-protocols"] = o.TlsProtocols
+	if val, ok := getInstanceParametersGetTlsProtocolsAttributeTypeOk(o.TlsProtocols); ok {
+		toSerialize["TlsProtocols"] = val
 	}
 	return toSerialize, nil
 }
