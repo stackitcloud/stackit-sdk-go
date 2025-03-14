@@ -17,13 +17,93 @@ import (
 // checks if the LoadBalancerOptions type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &LoadBalancerOptions{}
 
+/*
+	types and functions for accessControl
+*/
+
+// isModel
+type LoadBalancerOptionsGetAccessControlAttributeType = *LoadbalancerOptionAccessControl
+type LoadBalancerOptionsGetAccessControlArgType = LoadbalancerOptionAccessControl
+type LoadBalancerOptionsGetAccessControlRetType = LoadbalancerOptionAccessControl
+
+func getLoadBalancerOptionsGetAccessControlAttributeTypeOk(arg LoadBalancerOptionsGetAccessControlAttributeType) (ret LoadBalancerOptionsGetAccessControlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadBalancerOptionsGetAccessControlAttributeType(arg *LoadBalancerOptionsGetAccessControlAttributeType, val LoadBalancerOptionsGetAccessControlRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for ephemeralAddress
+*/
+
+// isBoolean
+type LoadBalancerOptionsgetEphemeralAddressAttributeType = *bool
+type LoadBalancerOptionsgetEphemeralAddressArgType = bool
+type LoadBalancerOptionsgetEphemeralAddressRetType = bool
+
+func getLoadBalancerOptionsgetEphemeralAddressAttributeTypeOk(arg LoadBalancerOptionsgetEphemeralAddressAttributeType) (ret LoadBalancerOptionsgetEphemeralAddressRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadBalancerOptionsgetEphemeralAddressAttributeType(arg *LoadBalancerOptionsgetEphemeralAddressAttributeType, val LoadBalancerOptionsgetEphemeralAddressRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for observability
+*/
+
+// isModel
+type LoadBalancerOptionsGetObservabilityAttributeType = *LoadbalancerOptionObservability
+type LoadBalancerOptionsGetObservabilityArgType = LoadbalancerOptionObservability
+type LoadBalancerOptionsGetObservabilityRetType = LoadbalancerOptionObservability
+
+func getLoadBalancerOptionsGetObservabilityAttributeTypeOk(arg LoadBalancerOptionsGetObservabilityAttributeType) (ret LoadBalancerOptionsGetObservabilityRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadBalancerOptionsGetObservabilityAttributeType(arg *LoadBalancerOptionsGetObservabilityAttributeType, val LoadBalancerOptionsGetObservabilityRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for privateNetworkOnly
+*/
+
+// isBoolean
+type LoadBalancerOptionsgetPrivateNetworkOnlyAttributeType = *bool
+type LoadBalancerOptionsgetPrivateNetworkOnlyArgType = bool
+type LoadBalancerOptionsgetPrivateNetworkOnlyRetType = bool
+
+func getLoadBalancerOptionsgetPrivateNetworkOnlyAttributeTypeOk(arg LoadBalancerOptionsgetPrivateNetworkOnlyAttributeType) (ret LoadBalancerOptionsgetPrivateNetworkOnlyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadBalancerOptionsgetPrivateNetworkOnlyAttributeType(arg *LoadBalancerOptionsgetPrivateNetworkOnlyAttributeType, val LoadBalancerOptionsgetPrivateNetworkOnlyRetType) {
+	*arg = &val
+}
+
 // LoadBalancerOptions Defines any optional functionality you want to have enabled on your application load balancer.
 type LoadBalancerOptions struct {
-	AccessControl    *LoadbalancerOptionAccessControl `json:"accessControl,omitempty"`
-	EphemeralAddress *bool                            `json:"ephemeralAddress,omitempty"`
-	Observability    *LoadbalancerOptionObservability `json:"observability,omitempty"`
+	AccessControl    LoadBalancerOptionsGetAccessControlAttributeType    `json:"accessControl,omitempty"`
+	EphemeralAddress LoadBalancerOptionsgetEphemeralAddressAttributeType `json:"ephemeralAddress,omitempty"`
+	Observability    LoadBalancerOptionsGetObservabilityAttributeType    `json:"observability,omitempty"`
 	// Application Load Balancer is accessible only via a private network ip address. Not changeable after creation.
-	PrivateNetworkOnly *bool `json:"privateNetworkOnly,omitempty"`
+	PrivateNetworkOnly LoadBalancerOptionsgetPrivateNetworkOnlyAttributeType `json:"privateNetworkOnly,omitempty"`
 }
 
 // NewLoadBalancerOptions instantiates a new LoadBalancerOptions object
@@ -44,146 +124,110 @@ func NewLoadBalancerOptionsWithDefaults() *LoadBalancerOptions {
 }
 
 // GetAccessControl returns the AccessControl field value if set, zero value otherwise.
-func (o *LoadBalancerOptions) GetAccessControl() *LoadbalancerOptionAccessControl {
-	if o == nil || IsNil(o.AccessControl) {
-		var ret *LoadbalancerOptionAccessControl
-		return ret
-	}
-	return o.AccessControl
+func (o *LoadBalancerOptions) GetAccessControl() (res LoadBalancerOptionsGetAccessControlRetType) {
+	res, _ = o.GetAccessControlOk()
+	return
 }
 
 // GetAccessControlOk returns a tuple with the AccessControl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadBalancerOptions) GetAccessControlOk() (*LoadbalancerOptionAccessControl, bool) {
-	if o == nil || IsNil(o.AccessControl) {
-		return nil, false
-	}
-	return o.AccessControl, true
+func (o *LoadBalancerOptions) GetAccessControlOk() (ret LoadBalancerOptionsGetAccessControlRetType, ok bool) {
+	return getLoadBalancerOptionsGetAccessControlAttributeTypeOk(o.AccessControl)
 }
 
 // HasAccessControl returns a boolean if a field has been set.
 func (o *LoadBalancerOptions) HasAccessControl() bool {
-	if o != nil && !IsNil(o.AccessControl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAccessControlOk()
+	return ok
 }
 
 // SetAccessControl gets a reference to the given LoadbalancerOptionAccessControl and assigns it to the AccessControl field.
-func (o *LoadBalancerOptions) SetAccessControl(v *LoadbalancerOptionAccessControl) {
-	o.AccessControl = v
+func (o *LoadBalancerOptions) SetAccessControl(v LoadBalancerOptionsGetAccessControlRetType) {
+	setLoadBalancerOptionsGetAccessControlAttributeType(&o.AccessControl, v)
 }
 
 // GetEphemeralAddress returns the EphemeralAddress field value if set, zero value otherwise.
-func (o *LoadBalancerOptions) GetEphemeralAddress() *bool {
-	if o == nil || IsNil(o.EphemeralAddress) {
-		var ret *bool
-		return ret
-	}
-	return o.EphemeralAddress
+func (o *LoadBalancerOptions) GetEphemeralAddress() (res LoadBalancerOptionsgetEphemeralAddressRetType) {
+	res, _ = o.GetEphemeralAddressOk()
+	return
 }
 
 // GetEphemeralAddressOk returns a tuple with the EphemeralAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadBalancerOptions) GetEphemeralAddressOk() (*bool, bool) {
-	if o == nil || IsNil(o.EphemeralAddress) {
-		return nil, false
-	}
-	return o.EphemeralAddress, true
+func (o *LoadBalancerOptions) GetEphemeralAddressOk() (ret LoadBalancerOptionsgetEphemeralAddressRetType, ok bool) {
+	return getLoadBalancerOptionsgetEphemeralAddressAttributeTypeOk(o.EphemeralAddress)
 }
 
 // HasEphemeralAddress returns a boolean if a field has been set.
 func (o *LoadBalancerOptions) HasEphemeralAddress() bool {
-	if o != nil && !IsNil(o.EphemeralAddress) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEphemeralAddressOk()
+	return ok
 }
 
 // SetEphemeralAddress gets a reference to the given bool and assigns it to the EphemeralAddress field.
-func (o *LoadBalancerOptions) SetEphemeralAddress(v *bool) {
-	o.EphemeralAddress = v
+func (o *LoadBalancerOptions) SetEphemeralAddress(v LoadBalancerOptionsgetEphemeralAddressRetType) {
+	setLoadBalancerOptionsgetEphemeralAddressAttributeType(&o.EphemeralAddress, v)
 }
 
 // GetObservability returns the Observability field value if set, zero value otherwise.
-func (o *LoadBalancerOptions) GetObservability() *LoadbalancerOptionObservability {
-	if o == nil || IsNil(o.Observability) {
-		var ret *LoadbalancerOptionObservability
-		return ret
-	}
-	return o.Observability
+func (o *LoadBalancerOptions) GetObservability() (res LoadBalancerOptionsGetObservabilityRetType) {
+	res, _ = o.GetObservabilityOk()
+	return
 }
 
 // GetObservabilityOk returns a tuple with the Observability field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadBalancerOptions) GetObservabilityOk() (*LoadbalancerOptionObservability, bool) {
-	if o == nil || IsNil(o.Observability) {
-		return nil, false
-	}
-	return o.Observability, true
+func (o *LoadBalancerOptions) GetObservabilityOk() (ret LoadBalancerOptionsGetObservabilityRetType, ok bool) {
+	return getLoadBalancerOptionsGetObservabilityAttributeTypeOk(o.Observability)
 }
 
 // HasObservability returns a boolean if a field has been set.
 func (o *LoadBalancerOptions) HasObservability() bool {
-	if o != nil && !IsNil(o.Observability) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetObservabilityOk()
+	return ok
 }
 
 // SetObservability gets a reference to the given LoadbalancerOptionObservability and assigns it to the Observability field.
-func (o *LoadBalancerOptions) SetObservability(v *LoadbalancerOptionObservability) {
-	o.Observability = v
+func (o *LoadBalancerOptions) SetObservability(v LoadBalancerOptionsGetObservabilityRetType) {
+	setLoadBalancerOptionsGetObservabilityAttributeType(&o.Observability, v)
 }
 
 // GetPrivateNetworkOnly returns the PrivateNetworkOnly field value if set, zero value otherwise.
-func (o *LoadBalancerOptions) GetPrivateNetworkOnly() *bool {
-	if o == nil || IsNil(o.PrivateNetworkOnly) {
-		var ret *bool
-		return ret
-	}
-	return o.PrivateNetworkOnly
+func (o *LoadBalancerOptions) GetPrivateNetworkOnly() (res LoadBalancerOptionsgetPrivateNetworkOnlyRetType) {
+	res, _ = o.GetPrivateNetworkOnlyOk()
+	return
 }
 
 // GetPrivateNetworkOnlyOk returns a tuple with the PrivateNetworkOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadBalancerOptions) GetPrivateNetworkOnlyOk() (*bool, bool) {
-	if o == nil || IsNil(o.PrivateNetworkOnly) {
-		return nil, false
-	}
-	return o.PrivateNetworkOnly, true
+func (o *LoadBalancerOptions) GetPrivateNetworkOnlyOk() (ret LoadBalancerOptionsgetPrivateNetworkOnlyRetType, ok bool) {
+	return getLoadBalancerOptionsgetPrivateNetworkOnlyAttributeTypeOk(o.PrivateNetworkOnly)
 }
 
 // HasPrivateNetworkOnly returns a boolean if a field has been set.
 func (o *LoadBalancerOptions) HasPrivateNetworkOnly() bool {
-	if o != nil && !IsNil(o.PrivateNetworkOnly) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPrivateNetworkOnlyOk()
+	return ok
 }
 
 // SetPrivateNetworkOnly gets a reference to the given bool and assigns it to the PrivateNetworkOnly field.
-func (o *LoadBalancerOptions) SetPrivateNetworkOnly(v *bool) {
-	o.PrivateNetworkOnly = v
+func (o *LoadBalancerOptions) SetPrivateNetworkOnly(v LoadBalancerOptionsgetPrivateNetworkOnlyRetType) {
+	setLoadBalancerOptionsgetPrivateNetworkOnlyAttributeType(&o.PrivateNetworkOnly, v)
 }
 
 func (o LoadBalancerOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AccessControl) {
-		toSerialize["accessControl"] = o.AccessControl
+	if val, ok := getLoadBalancerOptionsGetAccessControlAttributeTypeOk(o.AccessControl); ok {
+		toSerialize["AccessControl"] = val
 	}
-	if !IsNil(o.EphemeralAddress) {
-		toSerialize["ephemeralAddress"] = o.EphemeralAddress
+	if val, ok := getLoadBalancerOptionsgetEphemeralAddressAttributeTypeOk(o.EphemeralAddress); ok {
+		toSerialize["EphemeralAddress"] = val
 	}
-	if !IsNil(o.Observability) {
-		toSerialize["observability"] = o.Observability
+	if val, ok := getLoadBalancerOptionsGetObservabilityAttributeTypeOk(o.Observability); ok {
+		toSerialize["Observability"] = val
 	}
-	if !IsNil(o.PrivateNetworkOnly) {
-		toSerialize["privateNetworkOnly"] = o.PrivateNetworkOnly
+	if val, ok := getLoadBalancerOptionsgetPrivateNetworkOnlyAttributeTypeOk(o.PrivateNetworkOnly); ok {
+		toSerialize["PrivateNetworkOnly"] = val
 	}
 	return toSerialize, nil
 }

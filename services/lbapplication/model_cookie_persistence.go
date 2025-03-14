@@ -17,12 +17,54 @@ import (
 // checks if the CookiePersistence type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CookiePersistence{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CookiePersistenceGetNameAttributeType = *string
+
+func getCookiePersistenceGetNameAttributeTypeOk(arg CookiePersistenceGetNameAttributeType) (ret CookiePersistenceGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCookiePersistenceGetNameAttributeType(arg *CookiePersistenceGetNameAttributeType, val CookiePersistenceGetNameRetType) {
+	*arg = &val
+}
+
+type CookiePersistenceGetNameArgType = string
+type CookiePersistenceGetNameRetType = string
+
+/*
+	types and functions for ttl
+*/
+
+// isNotNullableString
+type CookiePersistenceGetTtlAttributeType = *string
+
+func getCookiePersistenceGetTtlAttributeTypeOk(arg CookiePersistenceGetTtlAttributeType) (ret CookiePersistenceGetTtlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCookiePersistenceGetTtlAttributeType(arg *CookiePersistenceGetTtlAttributeType, val CookiePersistenceGetTtlRetType) {
+	*arg = &val
+}
+
+type CookiePersistenceGetTtlArgType = string
+type CookiePersistenceGetTtlRetType = string
+
 // CookiePersistence struct for CookiePersistence
 type CookiePersistence struct {
 	// Cookie is the name of the cookie to use.
-	Name *string `json:"name,omitempty"`
+	Name CookiePersistenceGetNameAttributeType `json:"name,omitempty"`
 	// TTL specifies the time-to-live for the cookie. The default value is 0s, and it acts as a session cookie, expiring when the client session ends.
-	Ttl *string `json:"ttl,omitempty"`
+	Ttl CookiePersistenceGetTtlAttributeType `json:"ttl,omitempty"`
 }
 
 // NewCookiePersistence instantiates a new CookiePersistence object
@@ -43,76 +85,58 @@ func NewCookiePersistenceWithDefaults() *CookiePersistence {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CookiePersistence) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *CookiePersistence) GetName() (res CookiePersistenceGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CookiePersistence) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CookiePersistence) GetNameOk() (ret CookiePersistenceGetNameRetType, ok bool) {
+	return getCookiePersistenceGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CookiePersistence) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CookiePersistence) SetName(v *string) {
-	o.Name = v
+func (o *CookiePersistence) SetName(v CookiePersistenceGetNameRetType) {
+	setCookiePersistenceGetNameAttributeType(&o.Name, v)
 }
 
 // GetTtl returns the Ttl field value if set, zero value otherwise.
-func (o *CookiePersistence) GetTtl() *string {
-	if o == nil || IsNil(o.Ttl) {
-		var ret *string
-		return ret
-	}
-	return o.Ttl
+func (o *CookiePersistence) GetTtl() (res CookiePersistenceGetTtlRetType) {
+	res, _ = o.GetTtlOk()
+	return
 }
 
 // GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CookiePersistence) GetTtlOk() (*string, bool) {
-	if o == nil || IsNil(o.Ttl) {
-		return nil, false
-	}
-	return o.Ttl, true
+func (o *CookiePersistence) GetTtlOk() (ret CookiePersistenceGetTtlRetType, ok bool) {
+	return getCookiePersistenceGetTtlAttributeTypeOk(o.Ttl)
 }
 
 // HasTtl returns a boolean if a field has been set.
 func (o *CookiePersistence) HasTtl() bool {
-	if o != nil && !IsNil(o.Ttl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTtlOk()
+	return ok
 }
 
 // SetTtl gets a reference to the given string and assigns it to the Ttl field.
-func (o *CookiePersistence) SetTtl(v *string) {
-	o.Ttl = v
+func (o *CookiePersistence) SetTtl(v CookiePersistenceGetTtlRetType) {
+	setCookiePersistenceGetTtlAttributeType(&o.Ttl, v)
 }
 
 func (o CookiePersistence) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getCookiePersistenceGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Ttl) {
-		toSerialize["ttl"] = o.Ttl
+	if val, ok := getCookiePersistenceGetTtlAttributeTypeOk(o.Ttl); ok {
+		toSerialize["Ttl"] = val
 	}
 	return toSerialize, nil
 }

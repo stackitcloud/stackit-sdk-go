@@ -17,9 +17,29 @@ import (
 // checks if the ProtocolOptionsHTTPS type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ProtocolOptionsHTTPS{}
 
+/*
+	types and functions for certificateConfig
+*/
+
+// isModel
+type ProtocolOptionsHTTPSGetCertificateConfigAttributeType = *CertificateConfig
+type ProtocolOptionsHTTPSGetCertificateConfigArgType = CertificateConfig
+type ProtocolOptionsHTTPSGetCertificateConfigRetType = CertificateConfig
+
+func getProtocolOptionsHTTPSGetCertificateConfigAttributeTypeOk(arg ProtocolOptionsHTTPSGetCertificateConfigAttributeType) (ret ProtocolOptionsHTTPSGetCertificateConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProtocolOptionsHTTPSGetCertificateConfigAttributeType(arg *ProtocolOptionsHTTPSGetCertificateConfigAttributeType, val ProtocolOptionsHTTPSGetCertificateConfigRetType) {
+	*arg = &val
+}
+
 // ProtocolOptionsHTTPS struct for ProtocolOptionsHTTPS
 type ProtocolOptionsHTTPS struct {
-	CertificateConfig *CertificateConfig `json:"certificateConfig,omitempty"`
+	CertificateConfig ProtocolOptionsHTTPSGetCertificateConfigAttributeType `json:"certificateConfig,omitempty"`
 }
 
 // NewProtocolOptionsHTTPS instantiates a new ProtocolOptionsHTTPS object
@@ -40,41 +60,32 @@ func NewProtocolOptionsHTTPSWithDefaults() *ProtocolOptionsHTTPS {
 }
 
 // GetCertificateConfig returns the CertificateConfig field value if set, zero value otherwise.
-func (o *ProtocolOptionsHTTPS) GetCertificateConfig() *CertificateConfig {
-	if o == nil || IsNil(o.CertificateConfig) {
-		var ret *CertificateConfig
-		return ret
-	}
-	return o.CertificateConfig
+func (o *ProtocolOptionsHTTPS) GetCertificateConfig() (res ProtocolOptionsHTTPSGetCertificateConfigRetType) {
+	res, _ = o.GetCertificateConfigOk()
+	return
 }
 
 // GetCertificateConfigOk returns a tuple with the CertificateConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProtocolOptionsHTTPS) GetCertificateConfigOk() (*CertificateConfig, bool) {
-	if o == nil || IsNil(o.CertificateConfig) {
-		return nil, false
-	}
-	return o.CertificateConfig, true
+func (o *ProtocolOptionsHTTPS) GetCertificateConfigOk() (ret ProtocolOptionsHTTPSGetCertificateConfigRetType, ok bool) {
+	return getProtocolOptionsHTTPSGetCertificateConfigAttributeTypeOk(o.CertificateConfig)
 }
 
 // HasCertificateConfig returns a boolean if a field has been set.
 func (o *ProtocolOptionsHTTPS) HasCertificateConfig() bool {
-	if o != nil && !IsNil(o.CertificateConfig) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCertificateConfigOk()
+	return ok
 }
 
 // SetCertificateConfig gets a reference to the given CertificateConfig and assigns it to the CertificateConfig field.
-func (o *ProtocolOptionsHTTPS) SetCertificateConfig(v *CertificateConfig) {
-	o.CertificateConfig = v
+func (o *ProtocolOptionsHTTPS) SetCertificateConfig(v ProtocolOptionsHTTPSGetCertificateConfigRetType) {
+	setProtocolOptionsHTTPSGetCertificateConfigAttributeType(&o.CertificateConfig, v)
 }
 
 func (o ProtocolOptionsHTTPS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CertificateConfig) {
-		toSerialize["certificateConfig"] = o.CertificateConfig
+	if val, ok := getProtocolOptionsHTTPSGetCertificateConfigAttributeTypeOk(o.CertificateConfig); ok {
+		toSerialize["CertificateConfig"] = val
 	}
 	return toSerialize, nil
 }
