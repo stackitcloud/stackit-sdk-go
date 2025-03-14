@@ -17,13 +17,117 @@ import (
 // checks if the OpsgenieConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OpsgenieConfig{}
 
+/*
+	types and functions for apiKey
+*/
+
+// isNotNullableString
+type OpsgenieConfigGetApiKeyAttributeType = *string
+
+func getOpsgenieConfigGetApiKeyAttributeTypeOk(arg OpsgenieConfigGetApiKeyAttributeType) (ret OpsgenieConfigGetApiKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOpsgenieConfigGetApiKeyAttributeType(arg *OpsgenieConfigGetApiKeyAttributeType, val OpsgenieConfigGetApiKeyRetType) {
+	*arg = &val
+}
+
+type OpsgenieConfigGetApiKeyArgType = string
+type OpsgenieConfigGetApiKeyRetType = string
+
+/*
+	types and functions for apiUrl
+*/
+
+// isNotNullableString
+type OpsgenieConfigGetApiUrlAttributeType = *string
+
+func getOpsgenieConfigGetApiUrlAttributeTypeOk(arg OpsgenieConfigGetApiUrlAttributeType) (ret OpsgenieConfigGetApiUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOpsgenieConfigGetApiUrlAttributeType(arg *OpsgenieConfigGetApiUrlAttributeType, val OpsgenieConfigGetApiUrlRetType) {
+	*arg = &val
+}
+
+type OpsgenieConfigGetApiUrlArgType = string
+type OpsgenieConfigGetApiUrlRetType = string
+
+/*
+	types and functions for priority
+*/
+
+// isNotNullableString
+type OpsgenieConfigGetPriorityAttributeType = *string
+
+func getOpsgenieConfigGetPriorityAttributeTypeOk(arg OpsgenieConfigGetPriorityAttributeType) (ret OpsgenieConfigGetPriorityRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOpsgenieConfigGetPriorityAttributeType(arg *OpsgenieConfigGetPriorityAttributeType, val OpsgenieConfigGetPriorityRetType) {
+	*arg = &val
+}
+
+type OpsgenieConfigGetPriorityArgType = string
+type OpsgenieConfigGetPriorityRetType = string
+
+/*
+	types and functions for sendResolved
+*/
+
+// isBoolean
+type OpsgenieConfiggetSendResolvedAttributeType = *bool
+type OpsgenieConfiggetSendResolvedArgType = bool
+type OpsgenieConfiggetSendResolvedRetType = bool
+
+func getOpsgenieConfiggetSendResolvedAttributeTypeOk(arg OpsgenieConfiggetSendResolvedAttributeType) (ret OpsgenieConfiggetSendResolvedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOpsgenieConfiggetSendResolvedAttributeType(arg *OpsgenieConfiggetSendResolvedAttributeType, val OpsgenieConfiggetSendResolvedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tags
+*/
+
+// isNotNullableString
+type OpsgenieConfigGetTagsAttributeType = *string
+
+func getOpsgenieConfigGetTagsAttributeTypeOk(arg OpsgenieConfigGetTagsAttributeType) (ret OpsgenieConfigGetTagsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOpsgenieConfigGetTagsAttributeType(arg *OpsgenieConfigGetTagsAttributeType, val OpsgenieConfigGetTagsRetType) {
+	*arg = &val
+}
+
+type OpsgenieConfigGetTagsArgType = string
+type OpsgenieConfigGetTagsRetType = string
+
 // OpsgenieConfig struct for OpsgenieConfig
 type OpsgenieConfig struct {
-	ApiKey       *string `json:"apiKey,omitempty"`
-	ApiUrl       *string `json:"apiUrl,omitempty"`
-	Priority     *string `json:"priority,omitempty"`
-	SendResolved *bool   `json:"sendResolved,omitempty"`
-	Tags         *string `json:"tags,omitempty"`
+	ApiKey       OpsgenieConfigGetApiKeyAttributeType       `json:"apiKey,omitempty"`
+	ApiUrl       OpsgenieConfigGetApiUrlAttributeType       `json:"apiUrl,omitempty"`
+	Priority     OpsgenieConfigGetPriorityAttributeType     `json:"priority,omitempty"`
+	SendResolved OpsgenieConfiggetSendResolvedAttributeType `json:"sendResolved,omitempty"`
+	Tags         OpsgenieConfigGetTagsAttributeType         `json:"tags,omitempty"`
 }
 
 // NewOpsgenieConfig instantiates a new OpsgenieConfig object
@@ -32,8 +136,6 @@ type OpsgenieConfig struct {
 // will change when the set of required properties is changed
 func NewOpsgenieConfig() *OpsgenieConfig {
 	this := OpsgenieConfig{}
-	var sendResolved bool = true
-	this.SendResolved = &sendResolved
 	return &this
 }
 
@@ -48,181 +150,136 @@ func NewOpsgenieConfigWithDefaults() *OpsgenieConfig {
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *OpsgenieConfig) GetApiKey() *string {
-	if o == nil || IsNil(o.ApiKey) {
-		var ret *string
-		return ret
-	}
-	return o.ApiKey
+func (o *OpsgenieConfig) GetApiKey() (res OpsgenieConfigGetApiKeyRetType) {
+	res, _ = o.GetApiKeyOk()
+	return
 }
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OpsgenieConfig) GetApiKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.ApiKey) {
-		return nil, false
-	}
-	return o.ApiKey, true
+func (o *OpsgenieConfig) GetApiKeyOk() (ret OpsgenieConfigGetApiKeyRetType, ok bool) {
+	return getOpsgenieConfigGetApiKeyAttributeTypeOk(o.ApiKey)
 }
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasApiKey() bool {
-	if o != nil && !IsNil(o.ApiKey) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetApiKeyOk()
+	return ok
 }
 
 // SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *OpsgenieConfig) SetApiKey(v *string) {
-	o.ApiKey = v
+func (o *OpsgenieConfig) SetApiKey(v OpsgenieConfigGetApiKeyRetType) {
+	setOpsgenieConfigGetApiKeyAttributeType(&o.ApiKey, v)
 }
 
 // GetApiUrl returns the ApiUrl field value if set, zero value otherwise.
-func (o *OpsgenieConfig) GetApiUrl() *string {
-	if o == nil || IsNil(o.ApiUrl) {
-		var ret *string
-		return ret
-	}
-	return o.ApiUrl
+func (o *OpsgenieConfig) GetApiUrl() (res OpsgenieConfigGetApiUrlRetType) {
+	res, _ = o.GetApiUrlOk()
+	return
 }
 
 // GetApiUrlOk returns a tuple with the ApiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OpsgenieConfig) GetApiUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.ApiUrl) {
-		return nil, false
-	}
-	return o.ApiUrl, true
+func (o *OpsgenieConfig) GetApiUrlOk() (ret OpsgenieConfigGetApiUrlRetType, ok bool) {
+	return getOpsgenieConfigGetApiUrlAttributeTypeOk(o.ApiUrl)
 }
 
 // HasApiUrl returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasApiUrl() bool {
-	if o != nil && !IsNil(o.ApiUrl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetApiUrlOk()
+	return ok
 }
 
 // SetApiUrl gets a reference to the given string and assigns it to the ApiUrl field.
-func (o *OpsgenieConfig) SetApiUrl(v *string) {
-	o.ApiUrl = v
+func (o *OpsgenieConfig) SetApiUrl(v OpsgenieConfigGetApiUrlRetType) {
+	setOpsgenieConfigGetApiUrlAttributeType(&o.ApiUrl, v)
 }
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
-func (o *OpsgenieConfig) GetPriority() *string {
-	if o == nil || IsNil(o.Priority) {
-		var ret *string
-		return ret
-	}
-	return o.Priority
+func (o *OpsgenieConfig) GetPriority() (res OpsgenieConfigGetPriorityRetType) {
+	res, _ = o.GetPriorityOk()
+	return
 }
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OpsgenieConfig) GetPriorityOk() (*string, bool) {
-	if o == nil || IsNil(o.Priority) {
-		return nil, false
-	}
-	return o.Priority, true
+func (o *OpsgenieConfig) GetPriorityOk() (ret OpsgenieConfigGetPriorityRetType, ok bool) {
+	return getOpsgenieConfigGetPriorityAttributeTypeOk(o.Priority)
 }
 
 // HasPriority returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasPriority() bool {
-	if o != nil && !IsNil(o.Priority) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPriorityOk()
+	return ok
 }
 
 // SetPriority gets a reference to the given string and assigns it to the Priority field.
-func (o *OpsgenieConfig) SetPriority(v *string) {
-	o.Priority = v
+func (o *OpsgenieConfig) SetPriority(v OpsgenieConfigGetPriorityRetType) {
+	setOpsgenieConfigGetPriorityAttributeType(&o.Priority, v)
 }
 
 // GetSendResolved returns the SendResolved field value if set, zero value otherwise.
-func (o *OpsgenieConfig) GetSendResolved() *bool {
-	if o == nil || IsNil(o.SendResolved) {
-		var ret *bool
-		return ret
-	}
-	return o.SendResolved
+func (o *OpsgenieConfig) GetSendResolved() (res OpsgenieConfiggetSendResolvedRetType) {
+	res, _ = o.GetSendResolvedOk()
+	return
 }
 
 // GetSendResolvedOk returns a tuple with the SendResolved field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OpsgenieConfig) GetSendResolvedOk() (*bool, bool) {
-	if o == nil || IsNil(o.SendResolved) {
-		return nil, false
-	}
-	return o.SendResolved, true
+func (o *OpsgenieConfig) GetSendResolvedOk() (ret OpsgenieConfiggetSendResolvedRetType, ok bool) {
+	return getOpsgenieConfiggetSendResolvedAttributeTypeOk(o.SendResolved)
 }
 
 // HasSendResolved returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasSendResolved() bool {
-	if o != nil && !IsNil(o.SendResolved) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSendResolvedOk()
+	return ok
 }
 
 // SetSendResolved gets a reference to the given bool and assigns it to the SendResolved field.
-func (o *OpsgenieConfig) SetSendResolved(v *bool) {
-	o.SendResolved = v
+func (o *OpsgenieConfig) SetSendResolved(v OpsgenieConfiggetSendResolvedRetType) {
+	setOpsgenieConfiggetSendResolvedAttributeType(&o.SendResolved, v)
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *OpsgenieConfig) GetTags() *string {
-	if o == nil || IsNil(o.Tags) {
-		var ret *string
-		return ret
-	}
-	return o.Tags
+func (o *OpsgenieConfig) GetTags() (res OpsgenieConfigGetTagsRetType) {
+	res, _ = o.GetTagsOk()
+	return
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OpsgenieConfig) GetTagsOk() (*string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
+func (o *OpsgenieConfig) GetTagsOk() (ret OpsgenieConfigGetTagsRetType, ok bool) {
+	return getOpsgenieConfigGetTagsAttributeTypeOk(o.Tags)
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *OpsgenieConfig) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTagsOk()
+	return ok
 }
 
 // SetTags gets a reference to the given string and assigns it to the Tags field.
-func (o *OpsgenieConfig) SetTags(v *string) {
-	o.Tags = v
+func (o *OpsgenieConfig) SetTags(v OpsgenieConfigGetTagsRetType) {
+	setOpsgenieConfigGetTagsAttributeType(&o.Tags, v)
 }
 
 func (o OpsgenieConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ApiKey) {
-		toSerialize["apiKey"] = o.ApiKey
+	if val, ok := getOpsgenieConfigGetApiKeyAttributeTypeOk(o.ApiKey); ok {
+		toSerialize["ApiKey"] = val
 	}
-	if !IsNil(o.ApiUrl) {
-		toSerialize["apiUrl"] = o.ApiUrl
+	if val, ok := getOpsgenieConfigGetApiUrlAttributeTypeOk(o.ApiUrl); ok {
+		toSerialize["ApiUrl"] = val
 	}
-	if !IsNil(o.Priority) {
-		toSerialize["priority"] = o.Priority
+	if val, ok := getOpsgenieConfigGetPriorityAttributeTypeOk(o.Priority); ok {
+		toSerialize["Priority"] = val
 	}
-	if !IsNil(o.SendResolved) {
-		toSerialize["sendResolved"] = o.SendResolved
+	if val, ok := getOpsgenieConfiggetSendResolvedAttributeTypeOk(o.SendResolved); ok {
+		toSerialize["SendResolved"] = val
 	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	if val, ok := getOpsgenieConfigGetTagsAttributeTypeOk(o.Tags); ok {
+		toSerialize["Tags"] = val
 	}
 	return toSerialize, nil
 }

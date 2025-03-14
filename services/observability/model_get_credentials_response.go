@@ -17,15 +17,98 @@ import (
 // checks if the GetCredentialsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetCredentialsResponse{}
 
+/*
+	types and functions for credentialsInfo
+*/
+
+// isContainer
+type GetCredentialsResponseGetCredentialsInfoAttributeType = *map[string]string
+type GetCredentialsResponseGetCredentialsInfoArgType = map[string]string
+type GetCredentialsResponseGetCredentialsInfoRetType = map[string]string
+
+func getGetCredentialsResponseGetCredentialsInfoAttributeTypeOk(arg GetCredentialsResponseGetCredentialsInfoAttributeType) (ret GetCredentialsResponseGetCredentialsInfoRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetCredentialsResponseGetCredentialsInfoAttributeType(arg *GetCredentialsResponseGetCredentialsInfoAttributeType, val GetCredentialsResponseGetCredentialsInfoRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type GetCredentialsResponseGetIdAttributeType = *string
+
+func getGetCredentialsResponseGetIdAttributeTypeOk(arg GetCredentialsResponseGetIdAttributeType) (ret GetCredentialsResponseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetCredentialsResponseGetIdAttributeType(arg *GetCredentialsResponseGetIdAttributeType, val GetCredentialsResponseGetIdRetType) {
+	*arg = &val
+}
+
+type GetCredentialsResponseGetIdArgType = string
+type GetCredentialsResponseGetIdRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type GetCredentialsResponseGetMessageAttributeType = *string
+
+func getGetCredentialsResponseGetMessageAttributeTypeOk(arg GetCredentialsResponseGetMessageAttributeType) (ret GetCredentialsResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetCredentialsResponseGetMessageAttributeType(arg *GetCredentialsResponseGetMessageAttributeType, val GetCredentialsResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type GetCredentialsResponseGetMessageArgType = string
+type GetCredentialsResponseGetMessageRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type GetCredentialsResponseGetNameAttributeType = *string
+
+func getGetCredentialsResponseGetNameAttributeTypeOk(arg GetCredentialsResponseGetNameAttributeType) (ret GetCredentialsResponseGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetCredentialsResponseGetNameAttributeType(arg *GetCredentialsResponseGetNameAttributeType, val GetCredentialsResponseGetNameRetType) {
+	*arg = &val
+}
+
+type GetCredentialsResponseGetNameArgType = string
+type GetCredentialsResponseGetNameRetType = string
+
 // GetCredentialsResponse struct for GetCredentialsResponse
 type GetCredentialsResponse struct {
-	CredentialsInfo *map[string]string `json:"credentialsInfo,omitempty"`
+	CredentialsInfo GetCredentialsResponseGetCredentialsInfoAttributeType `json:"credentialsInfo,omitempty"`
 	// REQUIRED
-	Id *string `json:"id"`
+	Id GetCredentialsResponseGetIdAttributeType `json:"id"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message GetCredentialsResponseGetMessageAttributeType `json:"message"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name GetCredentialsResponseGetNameAttributeType `json:"name"`
 }
 
 type _GetCredentialsResponse GetCredentialsResponse
@@ -34,11 +117,11 @@ type _GetCredentialsResponse GetCredentialsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetCredentialsResponse(id *string, message *string, name *string) *GetCredentialsResponse {
+func NewGetCredentialsResponse(id GetCredentialsResponseGetIdArgType, message GetCredentialsResponseGetMessageArgType, name GetCredentialsResponseGetNameArgType) *GetCredentialsResponse {
 	this := GetCredentialsResponse{}
-	this.Id = id
-	this.Message = message
-	this.Name = name
+	setGetCredentialsResponseGetIdAttributeType(&this.Id, id)
+	setGetCredentialsResponseGetMessageAttributeType(&this.Message, message)
+	setGetCredentialsResponseGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -51,117 +134,93 @@ func NewGetCredentialsResponseWithDefaults() *GetCredentialsResponse {
 }
 
 // GetCredentialsInfo returns the CredentialsInfo field value if set, zero value otherwise.
-func (o *GetCredentialsResponse) GetCredentialsInfo() *map[string]string {
-	if o == nil || IsNil(o.CredentialsInfo) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.CredentialsInfo
+func (o *GetCredentialsResponse) GetCredentialsInfo() (res GetCredentialsResponseGetCredentialsInfoRetType) {
+	res, _ = o.GetCredentialsInfoOk()
+	return
 }
 
 // GetCredentialsInfoOk returns a tuple with the CredentialsInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCredentialsResponse) GetCredentialsInfoOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.CredentialsInfo) {
-		return nil, false
-	}
-	return o.CredentialsInfo, true
+func (o *GetCredentialsResponse) GetCredentialsInfoOk() (ret GetCredentialsResponseGetCredentialsInfoRetType, ok bool) {
+	return getGetCredentialsResponseGetCredentialsInfoAttributeTypeOk(o.CredentialsInfo)
 }
 
 // HasCredentialsInfo returns a boolean if a field has been set.
 func (o *GetCredentialsResponse) HasCredentialsInfo() bool {
-	if o != nil && !IsNil(o.CredentialsInfo) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCredentialsInfoOk()
+	return ok
 }
 
 // SetCredentialsInfo gets a reference to the given map[string]string and assigns it to the CredentialsInfo field.
-func (o *GetCredentialsResponse) SetCredentialsInfo(v *map[string]string) {
-	o.CredentialsInfo = v
+func (o *GetCredentialsResponse) SetCredentialsInfo(v GetCredentialsResponseGetCredentialsInfoRetType) {
+	setGetCredentialsResponseGetCredentialsInfoAttributeType(&o.CredentialsInfo, v)
 }
 
 // GetId returns the Id field value
-func (o *GetCredentialsResponse) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *GetCredentialsResponse) GetId() (ret GetCredentialsResponseGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *GetCredentialsResponse) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *GetCredentialsResponse) GetIdOk() (ret GetCredentialsResponseGetIdRetType, ok bool) {
+	return getGetCredentialsResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *GetCredentialsResponse) SetId(v *string) {
-	o.Id = v
+func (o *GetCredentialsResponse) SetId(v GetCredentialsResponseGetIdRetType) {
+	setGetCredentialsResponseGetIdAttributeType(&o.Id, v)
 }
 
 // GetMessage returns the Message field value
-func (o *GetCredentialsResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *GetCredentialsResponse) GetMessage() (ret GetCredentialsResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *GetCredentialsResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *GetCredentialsResponse) GetMessageOk() (ret GetCredentialsResponseGetMessageRetType, ok bool) {
+	return getGetCredentialsResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *GetCredentialsResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *GetCredentialsResponse) SetMessage(v GetCredentialsResponseGetMessageRetType) {
+	setGetCredentialsResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetName returns the Name field value
-func (o *GetCredentialsResponse) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *GetCredentialsResponse) GetName() (ret GetCredentialsResponseGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *GetCredentialsResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *GetCredentialsResponse) GetNameOk() (ret GetCredentialsResponseGetNameRetType, ok bool) {
+	return getGetCredentialsResponseGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *GetCredentialsResponse) SetName(v *string) {
-	o.Name = v
+func (o *GetCredentialsResponse) SetName(v GetCredentialsResponseGetNameRetType) {
+	setGetCredentialsResponseGetNameAttributeType(&o.Name, v)
 }
 
 func (o GetCredentialsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CredentialsInfo) {
-		toSerialize["credentialsInfo"] = o.CredentialsInfo
+	if val, ok := getGetCredentialsResponseGetCredentialsInfoAttributeTypeOk(o.CredentialsInfo); ok {
+		toSerialize["CredentialsInfo"] = val
 	}
-	toSerialize["id"] = o.Id
-	toSerialize["message"] = o.Message
-	toSerialize["name"] = o.Name
+	if val, ok := getGetCredentialsResponseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getGetCredentialsResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
+	if val, ok := getGetCredentialsResponseGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
 	return toSerialize, nil
 }
 

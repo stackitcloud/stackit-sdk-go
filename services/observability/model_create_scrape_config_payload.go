@@ -17,42 +17,367 @@ import (
 // checks if the CreateScrapeConfigPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateScrapeConfigPayload{}
 
+/*
+	types and functions for basicAuth
+*/
+
+// isModel
+type CreateScrapeConfigPayloadGetBasicAuthAttributeType = *CreateScrapeConfigPayloadBasicAuth
+type CreateScrapeConfigPayloadGetBasicAuthArgType = CreateScrapeConfigPayloadBasicAuth
+type CreateScrapeConfigPayloadGetBasicAuthRetType = CreateScrapeConfigPayloadBasicAuth
+
+func getCreateScrapeConfigPayloadGetBasicAuthAttributeTypeOk(arg CreateScrapeConfigPayloadGetBasicAuthAttributeType) (ret CreateScrapeConfigPayloadGetBasicAuthRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetBasicAuthAttributeType(arg *CreateScrapeConfigPayloadGetBasicAuthAttributeType, val CreateScrapeConfigPayloadGetBasicAuthRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for bearerToken
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadGetBearerTokenAttributeType = *string
+
+func getCreateScrapeConfigPayloadGetBearerTokenAttributeTypeOk(arg CreateScrapeConfigPayloadGetBearerTokenAttributeType) (ret CreateScrapeConfigPayloadGetBearerTokenRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetBearerTokenAttributeType(arg *CreateScrapeConfigPayloadGetBearerTokenAttributeType, val CreateScrapeConfigPayloadGetBearerTokenRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadGetBearerTokenArgType = string
+type CreateScrapeConfigPayloadGetBearerTokenRetType = string
+
+/*
+	types and functions for honorLabels
+*/
+
+// isBoolean
+type CreateScrapeConfigPayloadgetHonorLabelsAttributeType = *bool
+type CreateScrapeConfigPayloadgetHonorLabelsArgType = bool
+type CreateScrapeConfigPayloadgetHonorLabelsRetType = bool
+
+func getCreateScrapeConfigPayloadgetHonorLabelsAttributeTypeOk(arg CreateScrapeConfigPayloadgetHonorLabelsAttributeType) (ret CreateScrapeConfigPayloadgetHonorLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadgetHonorLabelsAttributeType(arg *CreateScrapeConfigPayloadgetHonorLabelsAttributeType, val CreateScrapeConfigPayloadgetHonorLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for honorTimeStamps
+*/
+
+// isBoolean
+type CreateScrapeConfigPayloadgetHonorTimeStampsAttributeType = *bool
+type CreateScrapeConfigPayloadgetHonorTimeStampsArgType = bool
+type CreateScrapeConfigPayloadgetHonorTimeStampsRetType = bool
+
+func getCreateScrapeConfigPayloadgetHonorTimeStampsAttributeTypeOk(arg CreateScrapeConfigPayloadgetHonorTimeStampsAttributeType) (ret CreateScrapeConfigPayloadgetHonorTimeStampsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadgetHonorTimeStampsAttributeType(arg *CreateScrapeConfigPayloadgetHonorTimeStampsAttributeType, val CreateScrapeConfigPayloadgetHonorTimeStampsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for httpSdConfigs
+*/
+
+// isArray
+type CreateScrapeConfigPayloadGetHttpSdConfigsAttributeType = *[]CreateScrapeConfigPayloadHttpSdConfigsInner
+type CreateScrapeConfigPayloadGetHttpSdConfigsArgType = []CreateScrapeConfigPayloadHttpSdConfigsInner
+type CreateScrapeConfigPayloadGetHttpSdConfigsRetType = []CreateScrapeConfigPayloadHttpSdConfigsInner
+
+func getCreateScrapeConfigPayloadGetHttpSdConfigsAttributeTypeOk(arg CreateScrapeConfigPayloadGetHttpSdConfigsAttributeType) (ret CreateScrapeConfigPayloadGetHttpSdConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetHttpSdConfigsAttributeType(arg *CreateScrapeConfigPayloadGetHttpSdConfigsAttributeType, val CreateScrapeConfigPayloadGetHttpSdConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for jobName
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadGetJobNameAttributeType = *string
+
+func getCreateScrapeConfigPayloadGetJobNameAttributeTypeOk(arg CreateScrapeConfigPayloadGetJobNameAttributeType) (ret CreateScrapeConfigPayloadGetJobNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetJobNameAttributeType(arg *CreateScrapeConfigPayloadGetJobNameAttributeType, val CreateScrapeConfigPayloadGetJobNameRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadGetJobNameArgType = string
+type CreateScrapeConfigPayloadGetJobNameRetType = string
+
+/*
+	types and functions for metricsPath
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadGetMetricsPathAttributeType = *string
+
+func getCreateScrapeConfigPayloadGetMetricsPathAttributeTypeOk(arg CreateScrapeConfigPayloadGetMetricsPathAttributeType) (ret CreateScrapeConfigPayloadGetMetricsPathRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetMetricsPathAttributeType(arg *CreateScrapeConfigPayloadGetMetricsPathAttributeType, val CreateScrapeConfigPayloadGetMetricsPathRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadGetMetricsPathArgType = string
+type CreateScrapeConfigPayloadGetMetricsPathRetType = string
+
+/*
+	types and functions for metricsRelabelConfigs
+*/
+
+// isArray
+type CreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType = *[]CreateScrapeConfigPayloadMetricsRelabelConfigsInner
+type CreateScrapeConfigPayloadGetMetricsRelabelConfigsArgType = []CreateScrapeConfigPayloadMetricsRelabelConfigsInner
+type CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType = []CreateScrapeConfigPayloadMetricsRelabelConfigsInner
+
+func getCreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeTypeOk(arg CreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType) (ret CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType(arg *CreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType, val CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for oauth2
+*/
+
+// isModel
+type CreateScrapeConfigPayloadGetOauth2AttributeType = *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
+type CreateScrapeConfigPayloadGetOauth2ArgType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
+type CreateScrapeConfigPayloadGetOauth2RetType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
+
+func getCreateScrapeConfigPayloadGetOauth2AttributeTypeOk(arg CreateScrapeConfigPayloadGetOauth2AttributeType) (ret CreateScrapeConfigPayloadGetOauth2RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetOauth2AttributeType(arg *CreateScrapeConfigPayloadGetOauth2AttributeType, val CreateScrapeConfigPayloadGetOauth2RetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for params
+*/
+
+// isFreeform
+type CreateScrapeConfigPayloadGetParamsAttributeType = *map[string]interface{}
+type CreateScrapeConfigPayloadGetParamsArgType = map[string]interface{}
+type CreateScrapeConfigPayloadGetParamsRetType = map[string]interface{}
+
+func getCreateScrapeConfigPayloadGetParamsAttributeTypeOk(arg CreateScrapeConfigPayloadGetParamsAttributeType) (ret CreateScrapeConfigPayloadGetParamsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetParamsAttributeType(arg *CreateScrapeConfigPayloadGetParamsAttributeType, val CreateScrapeConfigPayloadGetParamsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for sampleLimit
+*/
+
+// isNumber
+type CreateScrapeConfigPayloadGetSampleLimitAttributeType = *float64
+type CreateScrapeConfigPayloadGetSampleLimitArgType = float64
+type CreateScrapeConfigPayloadGetSampleLimitRetType = float64
+
+func getCreateScrapeConfigPayloadGetSampleLimitAttributeTypeOk(arg CreateScrapeConfigPayloadGetSampleLimitAttributeType) (ret CreateScrapeConfigPayloadGetSampleLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetSampleLimitAttributeType(arg *CreateScrapeConfigPayloadGetSampleLimitAttributeType, val CreateScrapeConfigPayloadGetSampleLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for scheme
+*/
+
+// isEnumRef
+type CreateScrapeConfigPayloadGetSchemeAttributeType = *string
+type CreateScrapeConfigPayloadGetSchemeArgType = string
+type CreateScrapeConfigPayloadGetSchemeRetType = string
+
+func getCreateScrapeConfigPayloadGetSchemeAttributeTypeOk(arg CreateScrapeConfigPayloadGetSchemeAttributeType) (ret CreateScrapeConfigPayloadGetSchemeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetSchemeAttributeType(arg *CreateScrapeConfigPayloadGetSchemeAttributeType, val CreateScrapeConfigPayloadGetSchemeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for scrapeInterval
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadGetScrapeIntervalAttributeType = *string
+
+func getCreateScrapeConfigPayloadGetScrapeIntervalAttributeTypeOk(arg CreateScrapeConfigPayloadGetScrapeIntervalAttributeType) (ret CreateScrapeConfigPayloadGetScrapeIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetScrapeIntervalAttributeType(arg *CreateScrapeConfigPayloadGetScrapeIntervalAttributeType, val CreateScrapeConfigPayloadGetScrapeIntervalRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadGetScrapeIntervalArgType = string
+type CreateScrapeConfigPayloadGetScrapeIntervalRetType = string
+
+/*
+	types and functions for scrapeTimeout
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadGetScrapeTimeoutAttributeType = *string
+
+func getCreateScrapeConfigPayloadGetScrapeTimeoutAttributeTypeOk(arg CreateScrapeConfigPayloadGetScrapeTimeoutAttributeType) (ret CreateScrapeConfigPayloadGetScrapeTimeoutRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetScrapeTimeoutAttributeType(arg *CreateScrapeConfigPayloadGetScrapeTimeoutAttributeType, val CreateScrapeConfigPayloadGetScrapeTimeoutRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadGetScrapeTimeoutArgType = string
+type CreateScrapeConfigPayloadGetScrapeTimeoutRetType = string
+
+/*
+	types and functions for staticConfigs
+*/
+
+// isArray
+type CreateScrapeConfigPayloadGetStaticConfigsAttributeType = *[]CreateScrapeConfigPayloadStaticConfigsInner
+type CreateScrapeConfigPayloadGetStaticConfigsArgType = []CreateScrapeConfigPayloadStaticConfigsInner
+type CreateScrapeConfigPayloadGetStaticConfigsRetType = []CreateScrapeConfigPayloadStaticConfigsInner
+
+func getCreateScrapeConfigPayloadGetStaticConfigsAttributeTypeOk(arg CreateScrapeConfigPayloadGetStaticConfigsAttributeType) (ret CreateScrapeConfigPayloadGetStaticConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetStaticConfigsAttributeType(arg *CreateScrapeConfigPayloadGetStaticConfigsAttributeType, val CreateScrapeConfigPayloadGetStaticConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tlsConfig
+*/
+
+// isModel
+type CreateScrapeConfigPayloadGetTlsConfigAttributeType = *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+type CreateScrapeConfigPayloadGetTlsConfigArgType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+type CreateScrapeConfigPayloadGetTlsConfigRetType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+
+func getCreateScrapeConfigPayloadGetTlsConfigAttributeTypeOk(arg CreateScrapeConfigPayloadGetTlsConfigAttributeType) (ret CreateScrapeConfigPayloadGetTlsConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadGetTlsConfigAttributeType(arg *CreateScrapeConfigPayloadGetTlsConfigAttributeType, val CreateScrapeConfigPayloadGetTlsConfigRetType) {
+	*arg = &val
+}
+
 // CreateScrapeConfigPayload struct for CreateScrapeConfigPayload
 type CreateScrapeConfigPayload struct {
-	BasicAuth *CreateScrapeConfigPayloadBasicAuth `json:"basicAuth,omitempty"`
+	BasicAuth CreateScrapeConfigPayloadGetBasicAuthAttributeType `json:"basicAuth,omitempty"`
 	// Sets the 'Authorization' header on every scrape request with the configured bearer token. It is mutually exclusive with 'bearer_token_file'. `Additional Validators:` * needs to be a valid bearer token * if bearerToken is in the body no other authentication method should be in the body
-	BearerToken *string `json:"bearerToken,omitempty"`
+	BearerToken CreateScrapeConfigPayloadGetBearerTokenAttributeType `json:"bearerToken,omitempty"`
 	// Note that any globally configured 'external_labels' are unaffected by this setting. In communication with external systems, they are always applied only when a time series does not have a given label yet and are ignored otherwise.
-	HonorLabels *bool `json:"honorLabels,omitempty"`
+	HonorLabels CreateScrapeConfigPayloadgetHonorLabelsAttributeType `json:"honorLabels,omitempty"`
 	// honor_timestamps controls whether Prometheus respects the timestamps present in scraped data. If honor_timestamps is set to 'true', the timestamps of the metrics exposed by the target will be used.
-	HonorTimeStamps *bool `json:"honorTimeStamps,omitempty"`
+	HonorTimeStamps CreateScrapeConfigPayloadgetHonorTimeStampsAttributeType `json:"honorTimeStamps,omitempty"`
 	// HTTP-based service discovery provides a more generic way to configure static targets and serves as an interface to plug in custom service discovery mechanisms.
-	HttpSdConfigs *[]CreateScrapeConfigPayloadHttpSdConfigsInner `json:"httpSdConfigs,omitempty"`
+	HttpSdConfigs CreateScrapeConfigPayloadGetHttpSdConfigsAttributeType `json:"httpSdConfigs,omitempty"`
 	// The job name assigned to scraped metrics by default. `Additional Validators:` * must be unique * key and values should only include the characters: a-zA-Z0-9-
 	// REQUIRED
-	JobName *string `json:"jobName"`
+	JobName CreateScrapeConfigPayloadGetJobNameAttributeType `json:"jobName"`
 	// The HTTP resource path on which to fetch metrics from targets. E.g. /metrics
-	MetricsPath *string `json:"metricsPath,omitempty"`
+	MetricsPath CreateScrapeConfigPayloadGetMetricsPathAttributeType `json:"metricsPath,omitempty"`
 	// List of metric relabel configurations
-	MetricsRelabelConfigs *[]CreateScrapeConfigPayloadMetricsRelabelConfigsInner `json:"metricsRelabelConfigs,omitempty"`
-	Oauth2                *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2     `json:"oauth2,omitempty"`
+	MetricsRelabelConfigs CreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType `json:"metricsRelabelConfigs,omitempty"`
+	Oauth2                CreateScrapeConfigPayloadGetOauth2AttributeType                `json:"oauth2,omitempty"`
 	// Optional http params `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters
-	Params *map[string]interface{} `json:"params,omitempty"`
+	Params CreateScrapeConfigPayloadGetParamsAttributeType `json:"params,omitempty"`
 	// Per-scrape limit on number of scraped samples that will be accepted. If more than this number of samples are present after metric relabeling the entire scrape will be treated as failed. The total limit depends on the service plan target limits * samples
-	SampleLimit *float64 `json:"sampleLimit,omitempty"`
+	SampleLimit CreateScrapeConfigPayloadGetSampleLimitAttributeType `json:"sampleLimit,omitempty"`
 	// Configures the protocol scheme used for requests. https or http
 	// REQUIRED
-	Scheme *string `json:"scheme"`
+	Scheme CreateScrapeConfigPayloadGetSchemeAttributeType `json:"scheme"`
 	// How frequently to scrape targets from this job. E.g. 5m `Additional Validators:` * must be a valid time format* must be >= 60s
 	// REQUIRED
-	ScrapeInterval *string `json:"scrapeInterval"`
+	ScrapeInterval CreateScrapeConfigPayloadGetScrapeIntervalAttributeType `json:"scrapeInterval"`
 	// Per-scrape timeout when scraping this job. `Additional Validators:` * must be a valid time format* must be smaller than scrapeInterval
 	// REQUIRED
-	ScrapeTimeout *string `json:"scrapeTimeout"`
+	ScrapeTimeout CreateScrapeConfigPayloadGetScrapeTimeoutAttributeType `json:"scrapeTimeout"`
 	// A list of scrape configurations.
 	// REQUIRED
-	StaticConfigs *[]CreateScrapeConfigPayloadStaticConfigsInner              `json:"staticConfigs"`
-	TlsConfig     *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig `json:"tlsConfig,omitempty"`
+	StaticConfigs CreateScrapeConfigPayloadGetStaticConfigsAttributeType `json:"staticConfigs"`
+	TlsConfig     CreateScrapeConfigPayloadGetTlsConfigAttributeType     `json:"tlsConfig,omitempty"`
 }
 
 type _CreateScrapeConfigPayload CreateScrapeConfigPayload
@@ -61,19 +386,13 @@ type _CreateScrapeConfigPayload CreateScrapeConfigPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateScrapeConfigPayload(jobName *string, scheme *string, scrapeInterval *string, scrapeTimeout *string, staticConfigs *[]CreateScrapeConfigPayloadStaticConfigsInner) *CreateScrapeConfigPayload {
+func NewCreateScrapeConfigPayload(jobName CreateScrapeConfigPayloadGetJobNameArgType, scheme CreateScrapeConfigPayloadGetSchemeArgType, scrapeInterval CreateScrapeConfigPayloadGetScrapeIntervalArgType, scrapeTimeout CreateScrapeConfigPayloadGetScrapeTimeoutArgType, staticConfigs CreateScrapeConfigPayloadGetStaticConfigsArgType) *CreateScrapeConfigPayload {
 	this := CreateScrapeConfigPayload{}
-	var honorLabels bool = false
-	this.HonorLabels = &honorLabels
-	var honorTimeStamps bool = false
-	this.HonorTimeStamps = &honorTimeStamps
-	this.JobName = jobName
-	var metricsPath string = "/metrics"
-	this.MetricsPath = &metricsPath
-	this.Scheme = scheme
-	this.ScrapeInterval = scrapeInterval
-	this.ScrapeTimeout = scrapeTimeout
-	this.StaticConfigs = staticConfigs
+	setCreateScrapeConfigPayloadGetJobNameAttributeType(&this.JobName, jobName)
+	setCreateScrapeConfigPayloadGetSchemeAttributeType(&this.Scheme, scheme)
+	setCreateScrapeConfigPayloadGetScrapeIntervalAttributeType(&this.ScrapeInterval, scrapeInterval)
+	setCreateScrapeConfigPayloadGetScrapeTimeoutAttributeType(&this.ScrapeTimeout, scrapeTimeout)
+	setCreateScrapeConfigPayloadGetStaticConfigsAttributeType(&this.StaticConfigs, staticConfigs)
 	return &this
 }
 
@@ -92,516 +411,392 @@ func NewCreateScrapeConfigPayloadWithDefaults() *CreateScrapeConfigPayload {
 }
 
 // GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetBasicAuth() *CreateScrapeConfigPayloadBasicAuth {
-	if o == nil || IsNil(o.BasicAuth) {
-		var ret *CreateScrapeConfigPayloadBasicAuth
-		return ret
-	}
-	return o.BasicAuth
+func (o *CreateScrapeConfigPayload) GetBasicAuth() (res CreateScrapeConfigPayloadGetBasicAuthRetType) {
+	res, _ = o.GetBasicAuthOk()
+	return
 }
 
 // GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetBasicAuthOk() (*CreateScrapeConfigPayloadBasicAuth, bool) {
-	if o == nil || IsNil(o.BasicAuth) {
-		return nil, false
-	}
-	return o.BasicAuth, true
+func (o *CreateScrapeConfigPayload) GetBasicAuthOk() (ret CreateScrapeConfigPayloadGetBasicAuthRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetBasicAuthAttributeTypeOk(o.BasicAuth)
 }
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasBasicAuth() bool {
-	if o != nil && !IsNil(o.BasicAuth) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBasicAuthOk()
+	return ok
 }
 
 // SetBasicAuth gets a reference to the given CreateScrapeConfigPayloadBasicAuth and assigns it to the BasicAuth field.
-func (o *CreateScrapeConfigPayload) SetBasicAuth(v *CreateScrapeConfigPayloadBasicAuth) {
-	o.BasicAuth = v
+func (o *CreateScrapeConfigPayload) SetBasicAuth(v CreateScrapeConfigPayloadGetBasicAuthRetType) {
+	setCreateScrapeConfigPayloadGetBasicAuthAttributeType(&o.BasicAuth, v)
 }
 
 // GetBearerToken returns the BearerToken field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetBearerToken() *string {
-	if o == nil || IsNil(o.BearerToken) {
-		var ret *string
-		return ret
-	}
-	return o.BearerToken
+func (o *CreateScrapeConfigPayload) GetBearerToken() (res CreateScrapeConfigPayloadGetBearerTokenRetType) {
+	res, _ = o.GetBearerTokenOk()
+	return
 }
 
 // GetBearerTokenOk returns a tuple with the BearerToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetBearerTokenOk() (*string, bool) {
-	if o == nil || IsNil(o.BearerToken) {
-		return nil, false
-	}
-	return o.BearerToken, true
+func (o *CreateScrapeConfigPayload) GetBearerTokenOk() (ret CreateScrapeConfigPayloadGetBearerTokenRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetBearerTokenAttributeTypeOk(o.BearerToken)
 }
 
 // HasBearerToken returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasBearerToken() bool {
-	if o != nil && !IsNil(o.BearerToken) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBearerTokenOk()
+	return ok
 }
 
 // SetBearerToken gets a reference to the given string and assigns it to the BearerToken field.
-func (o *CreateScrapeConfigPayload) SetBearerToken(v *string) {
-	o.BearerToken = v
+func (o *CreateScrapeConfigPayload) SetBearerToken(v CreateScrapeConfigPayloadGetBearerTokenRetType) {
+	setCreateScrapeConfigPayloadGetBearerTokenAttributeType(&o.BearerToken, v)
 }
 
 // GetHonorLabels returns the HonorLabels field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetHonorLabels() *bool {
-	if o == nil || IsNil(o.HonorLabels) {
-		var ret *bool
-		return ret
-	}
-	return o.HonorLabels
+func (o *CreateScrapeConfigPayload) GetHonorLabels() (res CreateScrapeConfigPayloadgetHonorLabelsRetType) {
+	res, _ = o.GetHonorLabelsOk()
+	return
 }
 
 // GetHonorLabelsOk returns a tuple with the HonorLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetHonorLabelsOk() (*bool, bool) {
-	if o == nil || IsNil(o.HonorLabels) {
-		return nil, false
-	}
-	return o.HonorLabels, true
+func (o *CreateScrapeConfigPayload) GetHonorLabelsOk() (ret CreateScrapeConfigPayloadgetHonorLabelsRetType, ok bool) {
+	return getCreateScrapeConfigPayloadgetHonorLabelsAttributeTypeOk(o.HonorLabels)
 }
 
 // HasHonorLabels returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasHonorLabels() bool {
-	if o != nil && !IsNil(o.HonorLabels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHonorLabelsOk()
+	return ok
 }
 
 // SetHonorLabels gets a reference to the given bool and assigns it to the HonorLabels field.
-func (o *CreateScrapeConfigPayload) SetHonorLabels(v *bool) {
-	o.HonorLabels = v
+func (o *CreateScrapeConfigPayload) SetHonorLabels(v CreateScrapeConfigPayloadgetHonorLabelsRetType) {
+	setCreateScrapeConfigPayloadgetHonorLabelsAttributeType(&o.HonorLabels, v)
 }
 
 // GetHonorTimeStamps returns the HonorTimeStamps field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetHonorTimeStamps() *bool {
-	if o == nil || IsNil(o.HonorTimeStamps) {
-		var ret *bool
-		return ret
-	}
-	return o.HonorTimeStamps
+func (o *CreateScrapeConfigPayload) GetHonorTimeStamps() (res CreateScrapeConfigPayloadgetHonorTimeStampsRetType) {
+	res, _ = o.GetHonorTimeStampsOk()
+	return
 }
 
 // GetHonorTimeStampsOk returns a tuple with the HonorTimeStamps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetHonorTimeStampsOk() (*bool, bool) {
-	if o == nil || IsNil(o.HonorTimeStamps) {
-		return nil, false
-	}
-	return o.HonorTimeStamps, true
+func (o *CreateScrapeConfigPayload) GetHonorTimeStampsOk() (ret CreateScrapeConfigPayloadgetHonorTimeStampsRetType, ok bool) {
+	return getCreateScrapeConfigPayloadgetHonorTimeStampsAttributeTypeOk(o.HonorTimeStamps)
 }
 
 // HasHonorTimeStamps returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasHonorTimeStamps() bool {
-	if o != nil && !IsNil(o.HonorTimeStamps) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHonorTimeStampsOk()
+	return ok
 }
 
 // SetHonorTimeStamps gets a reference to the given bool and assigns it to the HonorTimeStamps field.
-func (o *CreateScrapeConfigPayload) SetHonorTimeStamps(v *bool) {
-	o.HonorTimeStamps = v
+func (o *CreateScrapeConfigPayload) SetHonorTimeStamps(v CreateScrapeConfigPayloadgetHonorTimeStampsRetType) {
+	setCreateScrapeConfigPayloadgetHonorTimeStampsAttributeType(&o.HonorTimeStamps, v)
 }
 
 // GetHttpSdConfigs returns the HttpSdConfigs field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetHttpSdConfigs() *[]CreateScrapeConfigPayloadHttpSdConfigsInner {
-	if o == nil || IsNil(o.HttpSdConfigs) {
-		var ret *[]CreateScrapeConfigPayloadHttpSdConfigsInner
-		return ret
-	}
-	return o.HttpSdConfigs
+func (o *CreateScrapeConfigPayload) GetHttpSdConfigs() (res CreateScrapeConfigPayloadGetHttpSdConfigsRetType) {
+	res, _ = o.GetHttpSdConfigsOk()
+	return
 }
 
 // GetHttpSdConfigsOk returns a tuple with the HttpSdConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetHttpSdConfigsOk() (*[]CreateScrapeConfigPayloadHttpSdConfigsInner, bool) {
-	if o == nil || IsNil(o.HttpSdConfigs) {
-		return nil, false
-	}
-	return o.HttpSdConfigs, true
+func (o *CreateScrapeConfigPayload) GetHttpSdConfigsOk() (ret CreateScrapeConfigPayloadGetHttpSdConfigsRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetHttpSdConfigsAttributeTypeOk(o.HttpSdConfigs)
 }
 
 // HasHttpSdConfigs returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasHttpSdConfigs() bool {
-	if o != nil && !IsNil(o.HttpSdConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHttpSdConfigsOk()
+	return ok
 }
 
 // SetHttpSdConfigs gets a reference to the given []CreateScrapeConfigPayloadHttpSdConfigsInner and assigns it to the HttpSdConfigs field.
-func (o *CreateScrapeConfigPayload) SetHttpSdConfigs(v *[]CreateScrapeConfigPayloadHttpSdConfigsInner) {
-	o.HttpSdConfigs = v
+func (o *CreateScrapeConfigPayload) SetHttpSdConfigs(v CreateScrapeConfigPayloadGetHttpSdConfigsRetType) {
+	setCreateScrapeConfigPayloadGetHttpSdConfigsAttributeType(&o.HttpSdConfigs, v)
 }
 
 // GetJobName returns the JobName field value
-func (o *CreateScrapeConfigPayload) GetJobName() *string {
-	if o == nil || IsNil(o.JobName) {
-		var ret *string
-		return ret
-	}
-
-	return o.JobName
+func (o *CreateScrapeConfigPayload) GetJobName() (ret CreateScrapeConfigPayloadGetJobNameRetType) {
+	ret, _ = o.GetJobNameOk()
+	return ret
 }
 
 // GetJobNameOk returns a tuple with the JobName field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetJobNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.JobName, true
+func (o *CreateScrapeConfigPayload) GetJobNameOk() (ret CreateScrapeConfigPayloadGetJobNameRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetJobNameAttributeTypeOk(o.JobName)
 }
 
 // SetJobName sets field value
-func (o *CreateScrapeConfigPayload) SetJobName(v *string) {
-	o.JobName = v
+func (o *CreateScrapeConfigPayload) SetJobName(v CreateScrapeConfigPayloadGetJobNameRetType) {
+	setCreateScrapeConfigPayloadGetJobNameAttributeType(&o.JobName, v)
 }
 
 // GetMetricsPath returns the MetricsPath field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetMetricsPath() *string {
-	if o == nil || IsNil(o.MetricsPath) {
-		var ret *string
-		return ret
-	}
-	return o.MetricsPath
+func (o *CreateScrapeConfigPayload) GetMetricsPath() (res CreateScrapeConfigPayloadGetMetricsPathRetType) {
+	res, _ = o.GetMetricsPathOk()
+	return
 }
 
 // GetMetricsPathOk returns a tuple with the MetricsPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetMetricsPathOk() (*string, bool) {
-	if o == nil || IsNil(o.MetricsPath) {
-		return nil, false
-	}
-	return o.MetricsPath, true
+func (o *CreateScrapeConfigPayload) GetMetricsPathOk() (ret CreateScrapeConfigPayloadGetMetricsPathRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetMetricsPathAttributeTypeOk(o.MetricsPath)
 }
 
 // HasMetricsPath returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasMetricsPath() bool {
-	if o != nil && !IsNil(o.MetricsPath) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMetricsPathOk()
+	return ok
 }
 
 // SetMetricsPath gets a reference to the given string and assigns it to the MetricsPath field.
-func (o *CreateScrapeConfigPayload) SetMetricsPath(v *string) {
-	o.MetricsPath = v
+func (o *CreateScrapeConfigPayload) SetMetricsPath(v CreateScrapeConfigPayloadGetMetricsPathRetType) {
+	setCreateScrapeConfigPayloadGetMetricsPathAttributeType(&o.MetricsPath, v)
 }
 
 // GetMetricsRelabelConfigs returns the MetricsRelabelConfigs field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetMetricsRelabelConfigs() *[]CreateScrapeConfigPayloadMetricsRelabelConfigsInner {
-	if o == nil || IsNil(o.MetricsRelabelConfigs) {
-		var ret *[]CreateScrapeConfigPayloadMetricsRelabelConfigsInner
-		return ret
-	}
-	return o.MetricsRelabelConfigs
+func (o *CreateScrapeConfigPayload) GetMetricsRelabelConfigs() (res CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType) {
+	res, _ = o.GetMetricsRelabelConfigsOk()
+	return
 }
 
 // GetMetricsRelabelConfigsOk returns a tuple with the MetricsRelabelConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetMetricsRelabelConfigsOk() (*[]CreateScrapeConfigPayloadMetricsRelabelConfigsInner, bool) {
-	if o == nil || IsNil(o.MetricsRelabelConfigs) {
-		return nil, false
-	}
-	return o.MetricsRelabelConfigs, true
+func (o *CreateScrapeConfigPayload) GetMetricsRelabelConfigsOk() (ret CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeTypeOk(o.MetricsRelabelConfigs)
 }
 
 // HasMetricsRelabelConfigs returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasMetricsRelabelConfigs() bool {
-	if o != nil && !IsNil(o.MetricsRelabelConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMetricsRelabelConfigsOk()
+	return ok
 }
 
 // SetMetricsRelabelConfigs gets a reference to the given []CreateScrapeConfigPayloadMetricsRelabelConfigsInner and assigns it to the MetricsRelabelConfigs field.
-func (o *CreateScrapeConfigPayload) SetMetricsRelabelConfigs(v *[]CreateScrapeConfigPayloadMetricsRelabelConfigsInner) {
-	o.MetricsRelabelConfigs = v
+func (o *CreateScrapeConfigPayload) SetMetricsRelabelConfigs(v CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType) {
+	setCreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType(&o.MetricsRelabelConfigs, v)
 }
 
 // GetOauth2 returns the Oauth2 field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetOauth2() *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 {
-	if o == nil || IsNil(o.Oauth2) {
-		var ret *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
-		return ret
-	}
-	return o.Oauth2
+func (o *CreateScrapeConfigPayload) GetOauth2() (res CreateScrapeConfigPayloadGetOauth2RetType) {
+	res, _ = o.GetOauth2Ok()
+	return
 }
 
 // GetOauth2Ok returns a tuple with the Oauth2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetOauth2Ok() (*CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2, bool) {
-	if o == nil || IsNil(o.Oauth2) {
-		return nil, false
-	}
-	return o.Oauth2, true
+func (o *CreateScrapeConfigPayload) GetOauth2Ok() (ret CreateScrapeConfigPayloadGetOauth2RetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetOauth2AttributeTypeOk(o.Oauth2)
 }
 
 // HasOauth2 returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasOauth2() bool {
-	if o != nil && !IsNil(o.Oauth2) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOauth2Ok()
+	return ok
 }
 
 // SetOauth2 gets a reference to the given CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 and assigns it to the Oauth2 field.
-func (o *CreateScrapeConfigPayload) SetOauth2(v *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) {
-	o.Oauth2 = v
+func (o *CreateScrapeConfigPayload) SetOauth2(v CreateScrapeConfigPayloadGetOauth2RetType) {
+	setCreateScrapeConfigPayloadGetOauth2AttributeType(&o.Oauth2, v)
 }
 
 // GetParams returns the Params field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetParams() *map[string]interface{} {
-	if o == nil || IsNil(o.Params) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Params
+func (o *CreateScrapeConfigPayload) GetParams() (res CreateScrapeConfigPayloadGetParamsRetType) {
+	res, _ = o.GetParamsOk()
+	return
 }
 
 // GetParamsOk returns a tuple with the Params field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetParamsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Params) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Params, true
+func (o *CreateScrapeConfigPayload) GetParamsOk() (ret CreateScrapeConfigPayloadGetParamsRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetParamsAttributeTypeOk(o.Params)
 }
 
 // HasParams returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasParams() bool {
-	if o != nil && !IsNil(o.Params) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetParamsOk()
+	return ok
 }
 
 // SetParams gets a reference to the given map[string]interface{} and assigns it to the Params field.
-func (o *CreateScrapeConfigPayload) SetParams(v *map[string]interface{}) {
-	o.Params = v
+func (o *CreateScrapeConfigPayload) SetParams(v CreateScrapeConfigPayloadGetParamsRetType) {
+	setCreateScrapeConfigPayloadGetParamsAttributeType(&o.Params, v)
 }
 
 // GetSampleLimit returns the SampleLimit field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetSampleLimit() *float64 {
-	if o == nil || IsNil(o.SampleLimit) {
-		var ret *float64
-		return ret
-	}
-	return o.SampleLimit
+func (o *CreateScrapeConfigPayload) GetSampleLimit() (res CreateScrapeConfigPayloadGetSampleLimitRetType) {
+	res, _ = o.GetSampleLimitOk()
+	return
 }
 
 // GetSampleLimitOk returns a tuple with the SampleLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetSampleLimitOk() (*float64, bool) {
-	if o == nil || IsNil(o.SampleLimit) {
-		return nil, false
-	}
-	return o.SampleLimit, true
+func (o *CreateScrapeConfigPayload) GetSampleLimitOk() (ret CreateScrapeConfigPayloadGetSampleLimitRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetSampleLimitAttributeTypeOk(o.SampleLimit)
 }
 
 // HasSampleLimit returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasSampleLimit() bool {
-	if o != nil && !IsNil(o.SampleLimit) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSampleLimitOk()
+	return ok
 }
 
 // SetSampleLimit gets a reference to the given float64 and assigns it to the SampleLimit field.
-func (o *CreateScrapeConfigPayload) SetSampleLimit(v *float64) {
-	o.SampleLimit = v
+func (o *CreateScrapeConfigPayload) SetSampleLimit(v CreateScrapeConfigPayloadGetSampleLimitRetType) {
+	setCreateScrapeConfigPayloadGetSampleLimitAttributeType(&o.SampleLimit, v)
 }
 
 // GetScheme returns the Scheme field value
-func (o *CreateScrapeConfigPayload) GetScheme() *string {
-	if o == nil || IsNil(o.Scheme) {
-		var ret *string
-		return ret
-	}
-
-	return o.Scheme
+func (o *CreateScrapeConfigPayload) GetScheme() (ret CreateScrapeConfigPayloadGetSchemeRetType) {
+	ret, _ = o.GetSchemeOk()
+	return ret
 }
 
 // GetSchemeOk returns a tuple with the Scheme field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetSchemeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Scheme, true
+func (o *CreateScrapeConfigPayload) GetSchemeOk() (ret CreateScrapeConfigPayloadGetSchemeRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetSchemeAttributeTypeOk(o.Scheme)
 }
 
 // SetScheme sets field value
-func (o *CreateScrapeConfigPayload) SetScheme(v *string) {
-	o.Scheme = v
+func (o *CreateScrapeConfigPayload) SetScheme(v CreateScrapeConfigPayloadGetSchemeRetType) {
+	setCreateScrapeConfigPayloadGetSchemeAttributeType(&o.Scheme, v)
 }
 
 // GetScrapeInterval returns the ScrapeInterval field value
-func (o *CreateScrapeConfigPayload) GetScrapeInterval() *string {
-	if o == nil || IsNil(o.ScrapeInterval) {
-		var ret *string
-		return ret
-	}
-
-	return o.ScrapeInterval
+func (o *CreateScrapeConfigPayload) GetScrapeInterval() (ret CreateScrapeConfigPayloadGetScrapeIntervalRetType) {
+	ret, _ = o.GetScrapeIntervalOk()
+	return ret
 }
 
 // GetScrapeIntervalOk returns a tuple with the ScrapeInterval field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetScrapeIntervalOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ScrapeInterval, true
+func (o *CreateScrapeConfigPayload) GetScrapeIntervalOk() (ret CreateScrapeConfigPayloadGetScrapeIntervalRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetScrapeIntervalAttributeTypeOk(o.ScrapeInterval)
 }
 
 // SetScrapeInterval sets field value
-func (o *CreateScrapeConfigPayload) SetScrapeInterval(v *string) {
-	o.ScrapeInterval = v
+func (o *CreateScrapeConfigPayload) SetScrapeInterval(v CreateScrapeConfigPayloadGetScrapeIntervalRetType) {
+	setCreateScrapeConfigPayloadGetScrapeIntervalAttributeType(&o.ScrapeInterval, v)
 }
 
 // GetScrapeTimeout returns the ScrapeTimeout field value
-func (o *CreateScrapeConfigPayload) GetScrapeTimeout() *string {
-	if o == nil || IsNil(o.ScrapeTimeout) {
-		var ret *string
-		return ret
-	}
-
-	return o.ScrapeTimeout
+func (o *CreateScrapeConfigPayload) GetScrapeTimeout() (ret CreateScrapeConfigPayloadGetScrapeTimeoutRetType) {
+	ret, _ = o.GetScrapeTimeoutOk()
+	return ret
 }
 
 // GetScrapeTimeoutOk returns a tuple with the ScrapeTimeout field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetScrapeTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ScrapeTimeout, true
+func (o *CreateScrapeConfigPayload) GetScrapeTimeoutOk() (ret CreateScrapeConfigPayloadGetScrapeTimeoutRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetScrapeTimeoutAttributeTypeOk(o.ScrapeTimeout)
 }
 
 // SetScrapeTimeout sets field value
-func (o *CreateScrapeConfigPayload) SetScrapeTimeout(v *string) {
-	o.ScrapeTimeout = v
+func (o *CreateScrapeConfigPayload) SetScrapeTimeout(v CreateScrapeConfigPayloadGetScrapeTimeoutRetType) {
+	setCreateScrapeConfigPayloadGetScrapeTimeoutAttributeType(&o.ScrapeTimeout, v)
 }
 
 // GetStaticConfigs returns the StaticConfigs field value
-func (o *CreateScrapeConfigPayload) GetStaticConfigs() *[]CreateScrapeConfigPayloadStaticConfigsInner {
-	if o == nil || IsNil(o.StaticConfigs) {
-		var ret *[]CreateScrapeConfigPayloadStaticConfigsInner
-		return ret
-	}
-
-	return o.StaticConfigs
+func (o *CreateScrapeConfigPayload) GetStaticConfigs() (ret CreateScrapeConfigPayloadGetStaticConfigsRetType) {
+	ret, _ = o.GetStaticConfigsOk()
+	return ret
 }
 
 // GetStaticConfigsOk returns a tuple with the StaticConfigs field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetStaticConfigsOk() (*[]CreateScrapeConfigPayloadStaticConfigsInner, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.StaticConfigs, true
+func (o *CreateScrapeConfigPayload) GetStaticConfigsOk() (ret CreateScrapeConfigPayloadGetStaticConfigsRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetStaticConfigsAttributeTypeOk(o.StaticConfigs)
 }
 
 // SetStaticConfigs sets field value
-func (o *CreateScrapeConfigPayload) SetStaticConfigs(v *[]CreateScrapeConfigPayloadStaticConfigsInner) {
-	o.StaticConfigs = v
+func (o *CreateScrapeConfigPayload) SetStaticConfigs(v CreateScrapeConfigPayloadGetStaticConfigsRetType) {
+	setCreateScrapeConfigPayloadGetStaticConfigsAttributeType(&o.StaticConfigs, v)
 }
 
 // GetTlsConfig returns the TlsConfig field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayload) GetTlsConfig() *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig {
-	if o == nil || IsNil(o.TlsConfig) {
-		var ret *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
-		return ret
-	}
-	return o.TlsConfig
+func (o *CreateScrapeConfigPayload) GetTlsConfig() (res CreateScrapeConfigPayloadGetTlsConfigRetType) {
+	res, _ = o.GetTlsConfigOk()
+	return
 }
 
 // GetTlsConfigOk returns a tuple with the TlsConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayload) GetTlsConfigOk() (*CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig, bool) {
-	if o == nil || IsNil(o.TlsConfig) {
-		return nil, false
-	}
-	return o.TlsConfig, true
+func (o *CreateScrapeConfigPayload) GetTlsConfigOk() (ret CreateScrapeConfigPayloadGetTlsConfigRetType, ok bool) {
+	return getCreateScrapeConfigPayloadGetTlsConfigAttributeTypeOk(o.TlsConfig)
 }
 
 // HasTlsConfig returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayload) HasTlsConfig() bool {
-	if o != nil && !IsNil(o.TlsConfig) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsConfigOk()
+	return ok
 }
 
 // SetTlsConfig gets a reference to the given CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig and assigns it to the TlsConfig field.
-func (o *CreateScrapeConfigPayload) SetTlsConfig(v *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) {
-	o.TlsConfig = v
+func (o *CreateScrapeConfigPayload) SetTlsConfig(v CreateScrapeConfigPayloadGetTlsConfigRetType) {
+	setCreateScrapeConfigPayloadGetTlsConfigAttributeType(&o.TlsConfig, v)
 }
 
 func (o CreateScrapeConfigPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BasicAuth) {
-		toSerialize["basicAuth"] = o.BasicAuth
+	if val, ok := getCreateScrapeConfigPayloadGetBasicAuthAttributeTypeOk(o.BasicAuth); ok {
+		toSerialize["BasicAuth"] = val
 	}
-	if !IsNil(o.BearerToken) {
-		toSerialize["bearerToken"] = o.BearerToken
+	if val, ok := getCreateScrapeConfigPayloadGetBearerTokenAttributeTypeOk(o.BearerToken); ok {
+		toSerialize["BearerToken"] = val
 	}
-	if !IsNil(o.HonorLabels) {
-		toSerialize["honorLabels"] = o.HonorLabels
+	if val, ok := getCreateScrapeConfigPayloadgetHonorLabelsAttributeTypeOk(o.HonorLabels); ok {
+		toSerialize["HonorLabels"] = val
 	}
-	if !IsNil(o.HonorTimeStamps) {
-		toSerialize["honorTimeStamps"] = o.HonorTimeStamps
+	if val, ok := getCreateScrapeConfigPayloadgetHonorTimeStampsAttributeTypeOk(o.HonorTimeStamps); ok {
+		toSerialize["HonorTimeStamps"] = val
 	}
-	if !IsNil(o.HttpSdConfigs) {
-		toSerialize["httpSdConfigs"] = o.HttpSdConfigs
+	if val, ok := getCreateScrapeConfigPayloadGetHttpSdConfigsAttributeTypeOk(o.HttpSdConfigs); ok {
+		toSerialize["HttpSdConfigs"] = val
 	}
-	toSerialize["jobName"] = o.JobName
-	if !IsNil(o.MetricsPath) {
-		toSerialize["metricsPath"] = o.MetricsPath
+	if val, ok := getCreateScrapeConfigPayloadGetJobNameAttributeTypeOk(o.JobName); ok {
+		toSerialize["JobName"] = val
 	}
-	if !IsNil(o.MetricsRelabelConfigs) {
-		toSerialize["metricsRelabelConfigs"] = o.MetricsRelabelConfigs
+	if val, ok := getCreateScrapeConfigPayloadGetMetricsPathAttributeTypeOk(o.MetricsPath); ok {
+		toSerialize["MetricsPath"] = val
 	}
-	if !IsNil(o.Oauth2) {
-		toSerialize["oauth2"] = o.Oauth2
+	if val, ok := getCreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeTypeOk(o.MetricsRelabelConfigs); ok {
+		toSerialize["MetricsRelabelConfigs"] = val
 	}
-	if !IsNil(o.Params) {
-		toSerialize["params"] = o.Params
+	if val, ok := getCreateScrapeConfigPayloadGetOauth2AttributeTypeOk(o.Oauth2); ok {
+		toSerialize["Oauth2"] = val
 	}
-	if !IsNil(o.SampleLimit) {
-		toSerialize["sampleLimit"] = o.SampleLimit
+	if val, ok := getCreateScrapeConfigPayloadGetParamsAttributeTypeOk(o.Params); ok {
+		toSerialize["Params"] = val
 	}
-	toSerialize["scheme"] = o.Scheme
-	toSerialize["scrapeInterval"] = o.ScrapeInterval
-	toSerialize["scrapeTimeout"] = o.ScrapeTimeout
-	toSerialize["staticConfigs"] = o.StaticConfigs
-	if !IsNil(o.TlsConfig) {
-		toSerialize["tlsConfig"] = o.TlsConfig
+	if val, ok := getCreateScrapeConfigPayloadGetSampleLimitAttributeTypeOk(o.SampleLimit); ok {
+		toSerialize["SampleLimit"] = val
+	}
+	if val, ok := getCreateScrapeConfigPayloadGetSchemeAttributeTypeOk(o.Scheme); ok {
+		toSerialize["Scheme"] = val
+	}
+	if val, ok := getCreateScrapeConfigPayloadGetScrapeIntervalAttributeTypeOk(o.ScrapeInterval); ok {
+		toSerialize["ScrapeInterval"] = val
+	}
+	if val, ok := getCreateScrapeConfigPayloadGetScrapeTimeoutAttributeTypeOk(o.ScrapeTimeout); ok {
+		toSerialize["ScrapeTimeout"] = val
+	}
+	if val, ok := getCreateScrapeConfigPayloadGetStaticConfigsAttributeTypeOk(o.StaticConfigs); ok {
+		toSerialize["StaticConfigs"] = val
+	}
+	if val, ok := getCreateScrapeConfigPayloadGetTlsConfigAttributeTypeOk(o.TlsConfig); ok {
+		toSerialize["TlsConfig"] = val
 	}
 	return toSerialize, nil
 }

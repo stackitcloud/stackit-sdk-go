@@ -17,12 +17,54 @@ import (
 // checks if the BasicAuth type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BasicAuth{}
 
+/*
+	types and functions for password
+*/
+
+// isNotNullableString
+type BasicAuthGetPasswordAttributeType = *string
+
+func getBasicAuthGetPasswordAttributeTypeOk(arg BasicAuthGetPasswordAttributeType) (ret BasicAuthGetPasswordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBasicAuthGetPasswordAttributeType(arg *BasicAuthGetPasswordAttributeType, val BasicAuthGetPasswordRetType) {
+	*arg = &val
+}
+
+type BasicAuthGetPasswordArgType = string
+type BasicAuthGetPasswordRetType = string
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type BasicAuthGetUsernameAttributeType = *string
+
+func getBasicAuthGetUsernameAttributeTypeOk(arg BasicAuthGetUsernameAttributeType) (ret BasicAuthGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBasicAuthGetUsernameAttributeType(arg *BasicAuthGetUsernameAttributeType, val BasicAuthGetUsernameRetType) {
+	*arg = &val
+}
+
+type BasicAuthGetUsernameArgType = string
+type BasicAuthGetUsernameRetType = string
+
 // BasicAuth struct for BasicAuth
 type BasicAuth struct {
 	// REQUIRED
-	Password *string `json:"password"`
+	Password BasicAuthGetPasswordAttributeType `json:"password"`
 	// REQUIRED
-	Username *string `json:"username"`
+	Username BasicAuthGetUsernameAttributeType `json:"username"`
 }
 
 type _BasicAuth BasicAuth
@@ -31,10 +73,10 @@ type _BasicAuth BasicAuth
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBasicAuth(password *string, username *string) *BasicAuth {
+func NewBasicAuth(password BasicAuthGetPasswordArgType, username BasicAuthGetUsernameArgType) *BasicAuth {
 	this := BasicAuth{}
-	this.Password = password
-	this.Username = username
+	setBasicAuthGetPasswordAttributeType(&this.Password, password)
+	setBasicAuthGetUsernameAttributeType(&this.Username, username)
 	return &this
 }
 
@@ -47,57 +89,47 @@ func NewBasicAuthWithDefaults() *BasicAuth {
 }
 
 // GetPassword returns the Password field value
-func (o *BasicAuth) GetPassword() *string {
-	if o == nil || IsNil(o.Password) {
-		var ret *string
-		return ret
-	}
-
-	return o.Password
+func (o *BasicAuth) GetPassword() (ret BasicAuthGetPasswordRetType) {
+	ret, _ = o.GetPasswordOk()
+	return ret
 }
 
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
-func (o *BasicAuth) GetPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Password, true
+func (o *BasicAuth) GetPasswordOk() (ret BasicAuthGetPasswordRetType, ok bool) {
+	return getBasicAuthGetPasswordAttributeTypeOk(o.Password)
 }
 
 // SetPassword sets field value
-func (o *BasicAuth) SetPassword(v *string) {
-	o.Password = v
+func (o *BasicAuth) SetPassword(v BasicAuthGetPasswordRetType) {
+	setBasicAuthGetPasswordAttributeType(&o.Password, v)
 }
 
 // GetUsername returns the Username field value
-func (o *BasicAuth) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-
-	return o.Username
+func (o *BasicAuth) GetUsername() (ret BasicAuthGetUsernameRetType) {
+	ret, _ = o.GetUsernameOk()
+	return ret
 }
 
 // GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
-func (o *BasicAuth) GetUsernameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Username, true
+func (o *BasicAuth) GetUsernameOk() (ret BasicAuthGetUsernameRetType, ok bool) {
+	return getBasicAuthGetUsernameAttributeTypeOk(o.Username)
 }
 
 // SetUsername sets field value
-func (o *BasicAuth) SetUsername(v *string) {
-	o.Username = v
+func (o *BasicAuth) SetUsername(v BasicAuthGetUsernameRetType) {
+	setBasicAuthGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o BasicAuth) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["password"] = o.Password
-	toSerialize["username"] = o.Username
+	if val, ok := getBasicAuthGetPasswordAttributeTypeOk(o.Password); ok {
+		toSerialize["Password"] = val
+	}
+	if val, ok := getBasicAuthGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
+	}
 	return toSerialize, nil
 }
 

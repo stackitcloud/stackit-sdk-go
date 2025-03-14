@@ -17,18 +17,118 @@ import (
 // checks if the UpdateAlertConfigsPayloadInhibitRules type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateAlertConfigsPayloadInhibitRules{}
 
+/*
+	types and functions for equal
+*/
+
+// isArray
+type UpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeType = *[]string
+type UpdateAlertConfigsPayloadInhibitRulesGetEqualArgType = []string
+type UpdateAlertConfigsPayloadInhibitRulesGetEqualRetType = []string
+
+func getUpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeTypeOk(arg UpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeType) (ret UpdateAlertConfigsPayloadInhibitRulesGetEqualRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeType(arg *UpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeType, val UpdateAlertConfigsPayloadInhibitRulesGetEqualRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for sourceMatch
+*/
+
+// isFreeform
+type UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchAttributeType = *map[string]interface{}
+type UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchArgType = map[string]interface{}
+type UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchRetType = map[string]interface{}
+
+func getUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchAttributeTypeOk(arg UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchAttributeType) (ret UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchAttributeType(arg *UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchAttributeType, val UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for sourceMatchRe
+*/
+
+// isFreeform
+type UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReAttributeType = *map[string]interface{}
+type UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReArgType = map[string]interface{}
+type UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReRetType = map[string]interface{}
+
+func getUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReAttributeTypeOk(arg UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReAttributeType) (ret UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReAttributeType(arg *UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReAttributeType, val UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targetMatch
+*/
+
+// isFreeform
+type UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchAttributeType = *map[string]interface{}
+type UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchArgType = map[string]interface{}
+type UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchRetType = map[string]interface{}
+
+func getUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchAttributeTypeOk(arg UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchAttributeType) (ret UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchAttributeType(arg *UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchAttributeType, val UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targetMatchRe
+*/
+
+// isFreeform
+type UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeType = *map[string]interface{}
+type UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReArgType = map[string]interface{}
+type UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReRetType = map[string]interface{}
+
+func getUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeTypeOk(arg UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeType) (ret UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeType(arg *UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeType, val UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReRetType) {
+	*arg = &val
+}
+
 // UpdateAlertConfigsPayloadInhibitRules A list of inhibition rules.
 type UpdateAlertConfigsPayloadInhibitRules struct {
 	// Labels that must have an equal value in the source and target alert for the inhibition to take effect. `Additional Validators:` * should only include the characters: a-zA-Z0-9_./@&?:-
-	Equal *[]string `json:"equal,omitempty"`
+	Equal UpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeType `json:"equal,omitempty"`
 	// map of key:value. Matchers for which one or more alerts have to exist for the inhibition to take effect. `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters * each key and value should only include the characters: a-zA-Z0-9_./@&?:-
-	SourceMatch *map[string]interface{} `json:"sourceMatch,omitempty"`
+	SourceMatch UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchAttributeType `json:"sourceMatch,omitempty"`
 	// map of key:value. Regex match `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters
-	SourceMatchRe *map[string]interface{} `json:"sourceMatchRe,omitempty"`
+	SourceMatchRe UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReAttributeType `json:"sourceMatchRe,omitempty"`
 	// map of key:value. Matchers that have to be fulfilled in the alerts to be muted. `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters * each key and value should only include the characters: a-zA-Z0-9_./@&?:-
-	TargetMatch *map[string]interface{} `json:"targetMatch,omitempty"`
+	TargetMatch UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchAttributeType `json:"targetMatch,omitempty"`
 	// map of key:value. Matchers that have to be fulfilled in the alerts to be muted. Regex. `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters
-	TargetMatchRe *map[string]interface{} `json:"targetMatchRe,omitempty"`
+	TargetMatchRe UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeType `json:"targetMatchRe,omitempty"`
 }
 
 // NewUpdateAlertConfigsPayloadInhibitRules instantiates a new UpdateAlertConfigsPayloadInhibitRules object
@@ -49,181 +149,136 @@ func NewUpdateAlertConfigsPayloadInhibitRulesWithDefaults() *UpdateAlertConfigsP
 }
 
 // GetEqual returns the Equal field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetEqual() *[]string {
-	if o == nil || IsNil(o.Equal) {
-		var ret *[]string
-		return ret
-	}
-	return o.Equal
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetEqual() (res UpdateAlertConfigsPayloadInhibitRulesGetEqualRetType) {
+	res, _ = o.GetEqualOk()
+	return
 }
 
 // GetEqualOk returns a tuple with the Equal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetEqualOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Equal) {
-		return nil, false
-	}
-	return o.Equal, true
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetEqualOk() (ret UpdateAlertConfigsPayloadInhibitRulesGetEqualRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeTypeOk(o.Equal)
 }
 
 // HasEqual returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasEqual() bool {
-	if o != nil && !IsNil(o.Equal) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEqualOk()
+	return ok
 }
 
 // SetEqual gets a reference to the given []string and assigns it to the Equal field.
-func (o *UpdateAlertConfigsPayloadInhibitRules) SetEqual(v *[]string) {
-	o.Equal = v
+func (o *UpdateAlertConfigsPayloadInhibitRules) SetEqual(v UpdateAlertConfigsPayloadInhibitRulesGetEqualRetType) {
+	setUpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeType(&o.Equal, v)
 }
 
 // GetSourceMatch returns the SourceMatch field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatch() *map[string]interface{} {
-	if o == nil || IsNil(o.SourceMatch) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.SourceMatch
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatch() (res UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchRetType) {
+	res, _ = o.GetSourceMatchOk()
+	return
 }
 
 // GetSourceMatchOk returns a tuple with the SourceMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatchOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.SourceMatch) {
-		return &map[string]interface{}{}, false
-	}
-	return o.SourceMatch, true
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatchOk() (ret UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchAttributeTypeOk(o.SourceMatch)
 }
 
 // HasSourceMatch returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasSourceMatch() bool {
-	if o != nil && !IsNil(o.SourceMatch) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSourceMatchOk()
+	return ok
 }
 
 // SetSourceMatch gets a reference to the given map[string]interface{} and assigns it to the SourceMatch field.
-func (o *UpdateAlertConfigsPayloadInhibitRules) SetSourceMatch(v *map[string]interface{}) {
-	o.SourceMatch = v
+func (o *UpdateAlertConfigsPayloadInhibitRules) SetSourceMatch(v UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchRetType) {
+	setUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchAttributeType(&o.SourceMatch, v)
 }
 
 // GetSourceMatchRe returns the SourceMatchRe field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatchRe() *map[string]interface{} {
-	if o == nil || IsNil(o.SourceMatchRe) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.SourceMatchRe
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatchRe() (res UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReRetType) {
+	res, _ = o.GetSourceMatchReOk()
+	return
 }
 
 // GetSourceMatchReOk returns a tuple with the SourceMatchRe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatchReOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.SourceMatchRe) {
-		return &map[string]interface{}{}, false
-	}
-	return o.SourceMatchRe, true
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetSourceMatchReOk() (ret UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReAttributeTypeOk(o.SourceMatchRe)
 }
 
 // HasSourceMatchRe returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasSourceMatchRe() bool {
-	if o != nil && !IsNil(o.SourceMatchRe) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSourceMatchReOk()
+	return ok
 }
 
 // SetSourceMatchRe gets a reference to the given map[string]interface{} and assigns it to the SourceMatchRe field.
-func (o *UpdateAlertConfigsPayloadInhibitRules) SetSourceMatchRe(v *map[string]interface{}) {
-	o.SourceMatchRe = v
+func (o *UpdateAlertConfigsPayloadInhibitRules) SetSourceMatchRe(v UpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReRetType) {
+	setUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReAttributeType(&o.SourceMatchRe, v)
 }
 
 // GetTargetMatch returns the TargetMatch field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatch() *map[string]interface{} {
-	if o == nil || IsNil(o.TargetMatch) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.TargetMatch
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatch() (res UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchRetType) {
+	res, _ = o.GetTargetMatchOk()
+	return
 }
 
 // GetTargetMatchOk returns a tuple with the TargetMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatchOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.TargetMatch) {
-		return &map[string]interface{}{}, false
-	}
-	return o.TargetMatch, true
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatchOk() (ret UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchAttributeTypeOk(o.TargetMatch)
 }
 
 // HasTargetMatch returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasTargetMatch() bool {
-	if o != nil && !IsNil(o.TargetMatch) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetMatchOk()
+	return ok
 }
 
 // SetTargetMatch gets a reference to the given map[string]interface{} and assigns it to the TargetMatch field.
-func (o *UpdateAlertConfigsPayloadInhibitRules) SetTargetMatch(v *map[string]interface{}) {
-	o.TargetMatch = v
+func (o *UpdateAlertConfigsPayloadInhibitRules) SetTargetMatch(v UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchRetType) {
+	setUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchAttributeType(&o.TargetMatch, v)
 }
 
 // GetTargetMatchRe returns the TargetMatchRe field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatchRe() *map[string]interface{} {
-	if o == nil || IsNil(o.TargetMatchRe) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.TargetMatchRe
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatchRe() (res UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReRetType) {
+	res, _ = o.GetTargetMatchReOk()
+	return
 }
 
 // GetTargetMatchReOk returns a tuple with the TargetMatchRe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatchReOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.TargetMatchRe) {
-		return &map[string]interface{}{}, false
-	}
-	return o.TargetMatchRe, true
+func (o *UpdateAlertConfigsPayloadInhibitRules) GetTargetMatchReOk() (ret UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeTypeOk(o.TargetMatchRe)
 }
 
 // HasTargetMatchRe returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadInhibitRules) HasTargetMatchRe() bool {
-	if o != nil && !IsNil(o.TargetMatchRe) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetMatchReOk()
+	return ok
 }
 
 // SetTargetMatchRe gets a reference to the given map[string]interface{} and assigns it to the TargetMatchRe field.
-func (o *UpdateAlertConfigsPayloadInhibitRules) SetTargetMatchRe(v *map[string]interface{}) {
-	o.TargetMatchRe = v
+func (o *UpdateAlertConfigsPayloadInhibitRules) SetTargetMatchRe(v UpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReRetType) {
+	setUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeType(&o.TargetMatchRe, v)
 }
 
 func (o UpdateAlertConfigsPayloadInhibitRules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Equal) {
-		toSerialize["equal"] = o.Equal
+	if val, ok := getUpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeTypeOk(o.Equal); ok {
+		toSerialize["Equal"] = val
 	}
-	if !IsNil(o.SourceMatch) {
-		toSerialize["sourceMatch"] = o.SourceMatch
+	if val, ok := getUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchAttributeTypeOk(o.SourceMatch); ok {
+		toSerialize["SourceMatch"] = val
 	}
-	if !IsNil(o.SourceMatchRe) {
-		toSerialize["sourceMatchRe"] = o.SourceMatchRe
+	if val, ok := getUpdateAlertConfigsPayloadInhibitRulesGetSourceMatchReAttributeTypeOk(o.SourceMatchRe); ok {
+		toSerialize["SourceMatchRe"] = val
 	}
-	if !IsNil(o.TargetMatch) {
-		toSerialize["targetMatch"] = o.TargetMatch
+	if val, ok := getUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchAttributeTypeOk(o.TargetMatch); ok {
+		toSerialize["TargetMatch"] = val
 	}
-	if !IsNil(o.TargetMatchRe) {
-		toSerialize["targetMatchRe"] = o.TargetMatchRe
+	if val, ok := getUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeTypeOk(o.TargetMatchRe); ok {
+		toSerialize["TargetMatchRe"] = val
 	}
 	return toSerialize, nil
 }

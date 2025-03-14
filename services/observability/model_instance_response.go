@@ -17,10 +17,31 @@ import (
 // checks if the InstanceResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type InstanceResponseGetMessageAttributeType = *string
+
+func getInstanceResponseGetMessageAttributeTypeOk(arg InstanceResponseGetMessageAttributeType) (ret InstanceResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceResponseGetMessageAttributeType(arg *InstanceResponseGetMessageAttributeType, val InstanceResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type InstanceResponseGetMessageArgType = string
+type InstanceResponseGetMessageRetType = string
+
 // InstanceResponse struct for InstanceResponse
 type InstanceResponse struct {
 	// REQUIRED
-	Message *string `json:"message"`
+	Message InstanceResponseGetMessageAttributeType `json:"message"`
 }
 
 type _InstanceResponse InstanceResponse
@@ -29,9 +50,9 @@ type _InstanceResponse InstanceResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceResponse(message *string) *InstanceResponse {
+func NewInstanceResponse(message InstanceResponseGetMessageArgType) *InstanceResponse {
 	this := InstanceResponse{}
-	this.Message = message
+	setInstanceResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -44,32 +65,27 @@ func NewInstanceResponseWithDefaults() *InstanceResponse {
 }
 
 // GetMessage returns the Message field value
-func (o *InstanceResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *InstanceResponse) GetMessage() (ret InstanceResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *InstanceResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *InstanceResponse) GetMessageOk() (ret InstanceResponseGetMessageRetType, ok bool) {
+	return getInstanceResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *InstanceResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *InstanceResponse) SetMessage(v InstanceResponseGetMessageRetType) {
+	setInstanceResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o InstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.Message
+	if val, ok := getInstanceResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

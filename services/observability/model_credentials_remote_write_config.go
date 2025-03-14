@@ -17,14 +17,75 @@ import (
 // checks if the CredentialsRemoteWriteConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CredentialsRemoteWriteConfig{}
 
+/*
+	types and functions for credentialsMaxLimit
+*/
+
+// isInteger
+type CredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeType = *int64
+type CredentialsRemoteWriteConfigGetCredentialsMaxLimitArgType = int64
+type CredentialsRemoteWriteConfigGetCredentialsMaxLimitRetType = int64
+
+func getCredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeTypeOk(arg CredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeType) (ret CredentialsRemoteWriteConfigGetCredentialsMaxLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeType(arg *CredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeType, val CredentialsRemoteWriteConfigGetCredentialsMaxLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maxLimit
+*/
+
+// isInteger
+type CredentialsRemoteWriteConfigGetMaxLimitAttributeType = *int64
+type CredentialsRemoteWriteConfigGetMaxLimitArgType = int64
+type CredentialsRemoteWriteConfigGetMaxLimitRetType = int64
+
+func getCredentialsRemoteWriteConfigGetMaxLimitAttributeTypeOk(arg CredentialsRemoteWriteConfigGetMaxLimitAttributeType) (ret CredentialsRemoteWriteConfigGetMaxLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsRemoteWriteConfigGetMaxLimitAttributeType(arg *CredentialsRemoteWriteConfigGetMaxLimitAttributeType, val CredentialsRemoteWriteConfigGetMaxLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type CredentialsRemoteWriteConfigGetMessageAttributeType = *string
+
+func getCredentialsRemoteWriteConfigGetMessageAttributeTypeOk(arg CredentialsRemoteWriteConfigGetMessageAttributeType) (ret CredentialsRemoteWriteConfigGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsRemoteWriteConfigGetMessageAttributeType(arg *CredentialsRemoteWriteConfigGetMessageAttributeType, val CredentialsRemoteWriteConfigGetMessageRetType) {
+	*arg = &val
+}
+
+type CredentialsRemoteWriteConfigGetMessageArgType = string
+type CredentialsRemoteWriteConfigGetMessageRetType = string
+
 // CredentialsRemoteWriteConfig struct for CredentialsRemoteWriteConfig
 type CredentialsRemoteWriteConfig struct {
 	// REQUIRED
-	CredentialsMaxLimit *int64 `json:"credentialsMaxLimit"`
+	CredentialsMaxLimit CredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeType `json:"credentialsMaxLimit"`
 	// REQUIRED
-	MaxLimit *int64 `json:"maxLimit"`
+	MaxLimit CredentialsRemoteWriteConfigGetMaxLimitAttributeType `json:"maxLimit"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message CredentialsRemoteWriteConfigGetMessageAttributeType `json:"message"`
 }
 
 type _CredentialsRemoteWriteConfig CredentialsRemoteWriteConfig
@@ -33,11 +94,11 @@ type _CredentialsRemoteWriteConfig CredentialsRemoteWriteConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredentialsRemoteWriteConfig(credentialsMaxLimit *int64, maxLimit *int64, message *string) *CredentialsRemoteWriteConfig {
+func NewCredentialsRemoteWriteConfig(credentialsMaxLimit CredentialsRemoteWriteConfigGetCredentialsMaxLimitArgType, maxLimit CredentialsRemoteWriteConfigGetMaxLimitArgType, message CredentialsRemoteWriteConfigGetMessageArgType) *CredentialsRemoteWriteConfig {
 	this := CredentialsRemoteWriteConfig{}
-	this.CredentialsMaxLimit = credentialsMaxLimit
-	this.MaxLimit = maxLimit
-	this.Message = message
+	setCredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeType(&this.CredentialsMaxLimit, credentialsMaxLimit)
+	setCredentialsRemoteWriteConfigGetMaxLimitAttributeType(&this.MaxLimit, maxLimit)
+	setCredentialsRemoteWriteConfigGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -50,82 +111,67 @@ func NewCredentialsRemoteWriteConfigWithDefaults() *CredentialsRemoteWriteConfig
 }
 
 // GetCredentialsMaxLimit returns the CredentialsMaxLimit field value
-func (o *CredentialsRemoteWriteConfig) GetCredentialsMaxLimit() *int64 {
-	if o == nil || IsNil(o.CredentialsMaxLimit) {
-		var ret *int64
-		return ret
-	}
-
-	return o.CredentialsMaxLimit
+func (o *CredentialsRemoteWriteConfig) GetCredentialsMaxLimit() (ret CredentialsRemoteWriteConfigGetCredentialsMaxLimitRetType) {
+	ret, _ = o.GetCredentialsMaxLimitOk()
+	return ret
 }
 
 // GetCredentialsMaxLimitOk returns a tuple with the CredentialsMaxLimit field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsRemoteWriteConfig) GetCredentialsMaxLimitOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CredentialsMaxLimit, true
+func (o *CredentialsRemoteWriteConfig) GetCredentialsMaxLimitOk() (ret CredentialsRemoteWriteConfigGetCredentialsMaxLimitRetType, ok bool) {
+	return getCredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeTypeOk(o.CredentialsMaxLimit)
 }
 
 // SetCredentialsMaxLimit sets field value
-func (o *CredentialsRemoteWriteConfig) SetCredentialsMaxLimit(v *int64) {
-	o.CredentialsMaxLimit = v
+func (o *CredentialsRemoteWriteConfig) SetCredentialsMaxLimit(v CredentialsRemoteWriteConfigGetCredentialsMaxLimitRetType) {
+	setCredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeType(&o.CredentialsMaxLimit, v)
 }
 
 // GetMaxLimit returns the MaxLimit field value
-func (o *CredentialsRemoteWriteConfig) GetMaxLimit() *int64 {
-	if o == nil || IsNil(o.MaxLimit) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MaxLimit
+func (o *CredentialsRemoteWriteConfig) GetMaxLimit() (ret CredentialsRemoteWriteConfigGetMaxLimitRetType) {
+	ret, _ = o.GetMaxLimitOk()
+	return ret
 }
 
 // GetMaxLimitOk returns a tuple with the MaxLimit field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsRemoteWriteConfig) GetMaxLimitOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxLimit, true
+func (o *CredentialsRemoteWriteConfig) GetMaxLimitOk() (ret CredentialsRemoteWriteConfigGetMaxLimitRetType, ok bool) {
+	return getCredentialsRemoteWriteConfigGetMaxLimitAttributeTypeOk(o.MaxLimit)
 }
 
 // SetMaxLimit sets field value
-func (o *CredentialsRemoteWriteConfig) SetMaxLimit(v *int64) {
-	o.MaxLimit = v
+func (o *CredentialsRemoteWriteConfig) SetMaxLimit(v CredentialsRemoteWriteConfigGetMaxLimitRetType) {
+	setCredentialsRemoteWriteConfigGetMaxLimitAttributeType(&o.MaxLimit, v)
 }
 
 // GetMessage returns the Message field value
-func (o *CredentialsRemoteWriteConfig) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *CredentialsRemoteWriteConfig) GetMessage() (ret CredentialsRemoteWriteConfigGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsRemoteWriteConfig) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *CredentialsRemoteWriteConfig) GetMessageOk() (ret CredentialsRemoteWriteConfigGetMessageRetType, ok bool) {
+	return getCredentialsRemoteWriteConfigGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *CredentialsRemoteWriteConfig) SetMessage(v *string) {
-	o.Message = v
+func (o *CredentialsRemoteWriteConfig) SetMessage(v CredentialsRemoteWriteConfigGetMessageRetType) {
+	setCredentialsRemoteWriteConfigGetMessageAttributeType(&o.Message, v)
 }
 
 func (o CredentialsRemoteWriteConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["credentialsMaxLimit"] = o.CredentialsMaxLimit
-	toSerialize["maxLimit"] = o.MaxLimit
-	toSerialize["message"] = o.Message
+	if val, ok := getCredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeTypeOk(o.CredentialsMaxLimit); ok {
+		toSerialize["CredentialsMaxLimit"] = val
+	}
+	if val, ok := getCredentialsRemoteWriteConfigGetMaxLimitAttributeTypeOk(o.MaxLimit); ok {
+		toSerialize["MaxLimit"] = val
+	}
+	if val, ok := getCredentialsRemoteWriteConfigGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

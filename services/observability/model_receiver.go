@@ -17,12 +17,53 @@ import (
 // checks if the Receiver type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Receiver{}
 
+/*
+	types and functions for data
+*/
+
+// isModel
+type ReceiverGetDataAttributeType = *Receivers
+type ReceiverGetDataArgType = Receivers
+type ReceiverGetDataRetType = Receivers
+
+func getReceiverGetDataAttributeTypeOk(arg ReceiverGetDataAttributeType) (ret ReceiverGetDataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setReceiverGetDataAttributeType(arg *ReceiverGetDataAttributeType, val ReceiverGetDataRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ReceiverGetMessageAttributeType = *string
+
+func getReceiverGetMessageAttributeTypeOk(arg ReceiverGetMessageAttributeType) (ret ReceiverGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setReceiverGetMessageAttributeType(arg *ReceiverGetMessageAttributeType, val ReceiverGetMessageRetType) {
+	*arg = &val
+}
+
+type ReceiverGetMessageArgType = string
+type ReceiverGetMessageRetType = string
+
 // Receiver struct for Receiver
 type Receiver struct {
 	// REQUIRED
-	Data *Receivers `json:"data"`
+	Data ReceiverGetDataAttributeType `json:"data"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message ReceiverGetMessageAttributeType `json:"message"`
 }
 
 type _Receiver Receiver
@@ -31,10 +72,10 @@ type _Receiver Receiver
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReceiver(data *Receivers, message *string) *Receiver {
+func NewReceiver(data ReceiverGetDataArgType, message ReceiverGetMessageArgType) *Receiver {
 	this := Receiver{}
-	this.Data = data
-	this.Message = message
+	setReceiverGetDataAttributeType(&this.Data, data)
+	setReceiverGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewReceiverWithDefaults() *Receiver {
 }
 
 // GetData returns the Data field value
-func (o *Receiver) GetData() *Receivers {
-	if o == nil || IsNil(o.Data) {
-		var ret *Receivers
-		return ret
-	}
-
-	return o.Data
+func (o *Receiver) GetData() (ret ReceiverGetDataRetType) {
+	ret, _ = o.GetDataOk()
+	return ret
 }
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *Receiver) GetDataOk() (*Receivers, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Data, true
+func (o *Receiver) GetDataOk() (ret ReceiverGetDataRetType, ok bool) {
+	return getReceiverGetDataAttributeTypeOk(o.Data)
 }
 
 // SetData sets field value
-func (o *Receiver) SetData(v *Receivers) {
-	o.Data = v
+func (o *Receiver) SetData(v ReceiverGetDataRetType) {
+	setReceiverGetDataAttributeType(&o.Data, v)
 }
 
 // GetMessage returns the Message field value
-func (o *Receiver) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *Receiver) GetMessage() (ret ReceiverGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *Receiver) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *Receiver) GetMessageOk() (ret ReceiverGetMessageRetType, ok bool) {
+	return getReceiverGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *Receiver) SetMessage(v *string) {
-	o.Message = v
+func (o *Receiver) SetMessage(v ReceiverGetMessageRetType) {
+	setReceiverGetMessageAttributeType(&o.Message, v)
 }
 
 func (o Receiver) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["data"] = o.Data
-	toSerialize["message"] = o.Message
+	if val, ok := getReceiverGetDataAttributeTypeOk(o.Data); ok {
+		toSerialize["Data"] = val
+	}
+	if val, ok := getReceiverGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

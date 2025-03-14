@@ -17,16 +17,119 @@ import (
 // checks if the OAuth2 type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OAuth2{}
 
+/*
+	types and functions for clientId
+*/
+
+// isNotNullableString
+type OAuth2GetClientIdAttributeType = *string
+
+func getOAuth2GetClientIdAttributeTypeOk(arg OAuth2GetClientIdAttributeType) (ret OAuth2GetClientIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOAuth2GetClientIdAttributeType(arg *OAuth2GetClientIdAttributeType, val OAuth2GetClientIdRetType) {
+	*arg = &val
+}
+
+type OAuth2GetClientIdArgType = string
+type OAuth2GetClientIdRetType = string
+
+/*
+	types and functions for clientSecret
+*/
+
+// isNotNullableString
+type OAuth2GetClientSecretAttributeType = *string
+
+func getOAuth2GetClientSecretAttributeTypeOk(arg OAuth2GetClientSecretAttributeType) (ret OAuth2GetClientSecretRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOAuth2GetClientSecretAttributeType(arg *OAuth2GetClientSecretAttributeType, val OAuth2GetClientSecretRetType) {
+	*arg = &val
+}
+
+type OAuth2GetClientSecretArgType = string
+type OAuth2GetClientSecretRetType = string
+
+/*
+	types and functions for scopes
+*/
+
+// isArray
+type OAuth2GetScopesAttributeType = *[]string
+type OAuth2GetScopesArgType = []string
+type OAuth2GetScopesRetType = []string
+
+func getOAuth2GetScopesAttributeTypeOk(arg OAuth2GetScopesAttributeType) (ret OAuth2GetScopesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOAuth2GetScopesAttributeType(arg *OAuth2GetScopesAttributeType, val OAuth2GetScopesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tlsConfig
+*/
+
+// isModel
+type OAuth2GetTlsConfigAttributeType = *TLSConfig
+type OAuth2GetTlsConfigArgType = TLSConfig
+type OAuth2GetTlsConfigRetType = TLSConfig
+
+func getOAuth2GetTlsConfigAttributeTypeOk(arg OAuth2GetTlsConfigAttributeType) (ret OAuth2GetTlsConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOAuth2GetTlsConfigAttributeType(arg *OAuth2GetTlsConfigAttributeType, val OAuth2GetTlsConfigRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tokenUrl
+*/
+
+// isNotNullableString
+type OAuth2GetTokenUrlAttributeType = *string
+
+func getOAuth2GetTokenUrlAttributeTypeOk(arg OAuth2GetTokenUrlAttributeType) (ret OAuth2GetTokenUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOAuth2GetTokenUrlAttributeType(arg *OAuth2GetTokenUrlAttributeType, val OAuth2GetTokenUrlRetType) {
+	*arg = &val
+}
+
+type OAuth2GetTokenUrlArgType = string
+type OAuth2GetTokenUrlRetType = string
+
 // OAuth2 struct for OAuth2
 type OAuth2 struct {
 	// REQUIRED
-	ClientId *string `json:"clientId"`
+	ClientId OAuth2GetClientIdAttributeType `json:"clientId"`
 	// REQUIRED
-	ClientSecret *string    `json:"clientSecret"`
-	Scopes       *[]string  `json:"scopes,omitempty"`
-	TlsConfig    *TLSConfig `json:"tlsConfig,omitempty"`
+	ClientSecret OAuth2GetClientSecretAttributeType `json:"clientSecret"`
+	Scopes       OAuth2GetScopesAttributeType       `json:"scopes,omitempty"`
+	TlsConfig    OAuth2GetTlsConfigAttributeType    `json:"tlsConfig,omitempty"`
 	// REQUIRED
-	TokenUrl *string `json:"tokenUrl"`
+	TokenUrl OAuth2GetTokenUrlAttributeType `json:"tokenUrl"`
 }
 
 type _OAuth2 OAuth2
@@ -35,11 +138,11 @@ type _OAuth2 OAuth2
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOAuth2(clientId *string, clientSecret *string, tokenUrl *string) *OAuth2 {
+func NewOAuth2(clientId OAuth2GetClientIdArgType, clientSecret OAuth2GetClientSecretArgType, tokenUrl OAuth2GetTokenUrlArgType) *OAuth2 {
 	this := OAuth2{}
-	this.ClientId = clientId
-	this.ClientSecret = clientSecret
-	this.TokenUrl = tokenUrl
+	setOAuth2GetClientIdAttributeType(&this.ClientId, clientId)
+	setOAuth2GetClientSecretAttributeType(&this.ClientSecret, clientSecret)
+	setOAuth2GetTokenUrlAttributeType(&this.TokenUrl, tokenUrl)
 	return &this
 }
 
@@ -52,152 +155,119 @@ func NewOAuth2WithDefaults() *OAuth2 {
 }
 
 // GetClientId returns the ClientId field value
-func (o *OAuth2) GetClientId() *string {
-	if o == nil || IsNil(o.ClientId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ClientId
+func (o *OAuth2) GetClientId() (ret OAuth2GetClientIdRetType) {
+	ret, _ = o.GetClientIdOk()
+	return ret
 }
 
 // GetClientIdOk returns a tuple with the ClientId field value
 // and a boolean to check if the value has been set.
-func (o *OAuth2) GetClientIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ClientId, true
+func (o *OAuth2) GetClientIdOk() (ret OAuth2GetClientIdRetType, ok bool) {
+	return getOAuth2GetClientIdAttributeTypeOk(o.ClientId)
 }
 
 // SetClientId sets field value
-func (o *OAuth2) SetClientId(v *string) {
-	o.ClientId = v
+func (o *OAuth2) SetClientId(v OAuth2GetClientIdRetType) {
+	setOAuth2GetClientIdAttributeType(&o.ClientId, v)
 }
 
 // GetClientSecret returns the ClientSecret field value
-func (o *OAuth2) GetClientSecret() *string {
-	if o == nil || IsNil(o.ClientSecret) {
-		var ret *string
-		return ret
-	}
-
-	return o.ClientSecret
+func (o *OAuth2) GetClientSecret() (ret OAuth2GetClientSecretRetType) {
+	ret, _ = o.GetClientSecretOk()
+	return ret
 }
 
 // GetClientSecretOk returns a tuple with the ClientSecret field value
 // and a boolean to check if the value has been set.
-func (o *OAuth2) GetClientSecretOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ClientSecret, true
+func (o *OAuth2) GetClientSecretOk() (ret OAuth2GetClientSecretRetType, ok bool) {
+	return getOAuth2GetClientSecretAttributeTypeOk(o.ClientSecret)
 }
 
 // SetClientSecret sets field value
-func (o *OAuth2) SetClientSecret(v *string) {
-	o.ClientSecret = v
+func (o *OAuth2) SetClientSecret(v OAuth2GetClientSecretRetType) {
+	setOAuth2GetClientSecretAttributeType(&o.ClientSecret, v)
 }
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
-func (o *OAuth2) GetScopes() *[]string {
-	if o == nil || IsNil(o.Scopes) {
-		var ret *[]string
-		return ret
-	}
-	return o.Scopes
+func (o *OAuth2) GetScopes() (res OAuth2GetScopesRetType) {
+	res, _ = o.GetScopesOk()
+	return
 }
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OAuth2) GetScopesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Scopes) {
-		return nil, false
-	}
-	return o.Scopes, true
+func (o *OAuth2) GetScopesOk() (ret OAuth2GetScopesRetType, ok bool) {
+	return getOAuth2GetScopesAttributeTypeOk(o.Scopes)
 }
 
 // HasScopes returns a boolean if a field has been set.
 func (o *OAuth2) HasScopes() bool {
-	if o != nil && !IsNil(o.Scopes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetScopesOk()
+	return ok
 }
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.
-func (o *OAuth2) SetScopes(v *[]string) {
-	o.Scopes = v
+func (o *OAuth2) SetScopes(v OAuth2GetScopesRetType) {
+	setOAuth2GetScopesAttributeType(&o.Scopes, v)
 }
 
 // GetTlsConfig returns the TlsConfig field value if set, zero value otherwise.
-func (o *OAuth2) GetTlsConfig() *TLSConfig {
-	if o == nil || IsNil(o.TlsConfig) {
-		var ret *TLSConfig
-		return ret
-	}
-	return o.TlsConfig
+func (o *OAuth2) GetTlsConfig() (res OAuth2GetTlsConfigRetType) {
+	res, _ = o.GetTlsConfigOk()
+	return
 }
 
 // GetTlsConfigOk returns a tuple with the TlsConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OAuth2) GetTlsConfigOk() (*TLSConfig, bool) {
-	if o == nil || IsNil(o.TlsConfig) {
-		return nil, false
-	}
-	return o.TlsConfig, true
+func (o *OAuth2) GetTlsConfigOk() (ret OAuth2GetTlsConfigRetType, ok bool) {
+	return getOAuth2GetTlsConfigAttributeTypeOk(o.TlsConfig)
 }
 
 // HasTlsConfig returns a boolean if a field has been set.
 func (o *OAuth2) HasTlsConfig() bool {
-	if o != nil && !IsNil(o.TlsConfig) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsConfigOk()
+	return ok
 }
 
 // SetTlsConfig gets a reference to the given TLSConfig and assigns it to the TlsConfig field.
-func (o *OAuth2) SetTlsConfig(v *TLSConfig) {
-	o.TlsConfig = v
+func (o *OAuth2) SetTlsConfig(v OAuth2GetTlsConfigRetType) {
+	setOAuth2GetTlsConfigAttributeType(&o.TlsConfig, v)
 }
 
 // GetTokenUrl returns the TokenUrl field value
-func (o *OAuth2) GetTokenUrl() *string {
-	if o == nil || IsNil(o.TokenUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.TokenUrl
+func (o *OAuth2) GetTokenUrl() (ret OAuth2GetTokenUrlRetType) {
+	ret, _ = o.GetTokenUrlOk()
+	return ret
 }
 
 // GetTokenUrlOk returns a tuple with the TokenUrl field value
 // and a boolean to check if the value has been set.
-func (o *OAuth2) GetTokenUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TokenUrl, true
+func (o *OAuth2) GetTokenUrlOk() (ret OAuth2GetTokenUrlRetType, ok bool) {
+	return getOAuth2GetTokenUrlAttributeTypeOk(o.TokenUrl)
 }
 
 // SetTokenUrl sets field value
-func (o *OAuth2) SetTokenUrl(v *string) {
-	o.TokenUrl = v
+func (o *OAuth2) SetTokenUrl(v OAuth2GetTokenUrlRetType) {
+	setOAuth2GetTokenUrlAttributeType(&o.TokenUrl, v)
 }
 
 func (o OAuth2) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["clientId"] = o.ClientId
-	toSerialize["clientSecret"] = o.ClientSecret
-	if !IsNil(o.Scopes) {
-		toSerialize["scopes"] = o.Scopes
+	if val, ok := getOAuth2GetClientIdAttributeTypeOk(o.ClientId); ok {
+		toSerialize["ClientId"] = val
 	}
-	if !IsNil(o.TlsConfig) {
-		toSerialize["tlsConfig"] = o.TlsConfig
+	if val, ok := getOAuth2GetClientSecretAttributeTypeOk(o.ClientSecret); ok {
+		toSerialize["ClientSecret"] = val
 	}
-	toSerialize["tokenUrl"] = o.TokenUrl
+	if val, ok := getOAuth2GetScopesAttributeTypeOk(o.Scopes); ok {
+		toSerialize["Scopes"] = val
+	}
+	if val, ok := getOAuth2GetTlsConfigAttributeTypeOk(o.TlsConfig); ok {
+		toSerialize["TlsConfig"] = val
+	}
+	if val, ok := getOAuth2GetTokenUrlAttributeTypeOk(o.TokenUrl); ok {
+		toSerialize["TokenUrl"] = val
+	}
 	return toSerialize, nil
 }
 

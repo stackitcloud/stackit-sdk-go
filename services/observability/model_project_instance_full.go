@@ -17,20 +17,170 @@ import (
 // checks if the ProjectInstanceFull type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ProjectInstanceFull{}
 
+/*
+	types and functions for error
+*/
+
+// isNullableString
+type ProjectInstanceFullGetErrorAttributeType = *NullableString
+
+func getProjectInstanceFullGetErrorAttributeTypeOk(arg ProjectInstanceFullGetErrorAttributeType) (ret ProjectInstanceFullGetErrorRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setProjectInstanceFullGetErrorAttributeType(arg *ProjectInstanceFullGetErrorAttributeType, val ProjectInstanceFullGetErrorRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ProjectInstanceFullGetErrorArgType = *string
+type ProjectInstanceFullGetErrorRetType = *string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ProjectInstanceFullGetIdAttributeType = *string
+
+func getProjectInstanceFullGetIdAttributeTypeOk(arg ProjectInstanceFullGetIdAttributeType) (ret ProjectInstanceFullGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectInstanceFullGetIdAttributeType(arg *ProjectInstanceFullGetIdAttributeType, val ProjectInstanceFullGetIdRetType) {
+	*arg = &val
+}
+
+type ProjectInstanceFullGetIdArgType = string
+type ProjectInstanceFullGetIdRetType = string
+
+/*
+	types and functions for instance
+*/
+
+// isNotNullableString
+type ProjectInstanceFullGetInstanceAttributeType = *string
+
+func getProjectInstanceFullGetInstanceAttributeTypeOk(arg ProjectInstanceFullGetInstanceAttributeType) (ret ProjectInstanceFullGetInstanceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectInstanceFullGetInstanceAttributeType(arg *ProjectInstanceFullGetInstanceAttributeType, val ProjectInstanceFullGetInstanceRetType) {
+	*arg = &val
+}
+
+type ProjectInstanceFullGetInstanceArgType = string
+type ProjectInstanceFullGetInstanceRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ProjectInstanceFullGetNameAttributeType = *string
+
+func getProjectInstanceFullGetNameAttributeTypeOk(arg ProjectInstanceFullGetNameAttributeType) (ret ProjectInstanceFullGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectInstanceFullGetNameAttributeType(arg *ProjectInstanceFullGetNameAttributeType, val ProjectInstanceFullGetNameRetType) {
+	*arg = &val
+}
+
+type ProjectInstanceFullGetNameArgType = string
+type ProjectInstanceFullGetNameRetType = string
+
+/*
+	types and functions for planName
+*/
+
+// isNotNullableString
+type ProjectInstanceFullGetPlanNameAttributeType = *string
+
+func getProjectInstanceFullGetPlanNameAttributeTypeOk(arg ProjectInstanceFullGetPlanNameAttributeType) (ret ProjectInstanceFullGetPlanNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectInstanceFullGetPlanNameAttributeType(arg *ProjectInstanceFullGetPlanNameAttributeType, val ProjectInstanceFullGetPlanNameRetType) {
+	*arg = &val
+}
+
+type ProjectInstanceFullGetPlanNameArgType = string
+type ProjectInstanceFullGetPlanNameRetType = string
+
+/*
+	types and functions for serviceName
+*/
+
+// isNotNullableString
+type ProjectInstanceFullGetServiceNameAttributeType = *string
+
+func getProjectInstanceFullGetServiceNameAttributeTypeOk(arg ProjectInstanceFullGetServiceNameAttributeType) (ret ProjectInstanceFullGetServiceNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectInstanceFullGetServiceNameAttributeType(arg *ProjectInstanceFullGetServiceNameAttributeType, val ProjectInstanceFullGetServiceNameRetType) {
+	*arg = &val
+}
+
+type ProjectInstanceFullGetServiceNameArgType = string
+type ProjectInstanceFullGetServiceNameRetType = string
+
+/*
+	types and functions for status
+*/
+
+// isEnumRef
+type ProjectInstanceFullGetStatusAttributeType = *string
+type ProjectInstanceFullGetStatusArgType = string
+type ProjectInstanceFullGetStatusRetType = string
+
+func getProjectInstanceFullGetStatusAttributeTypeOk(arg ProjectInstanceFullGetStatusAttributeType) (ret ProjectInstanceFullGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectInstanceFullGetStatusAttributeType(arg *ProjectInstanceFullGetStatusAttributeType, val ProjectInstanceFullGetStatusRetType) {
+	*arg = &val
+}
+
 // ProjectInstanceFull struct for ProjectInstanceFull
 type ProjectInstanceFull struct {
-	Error *NullableString `json:"error,omitempty"`
+	Error ProjectInstanceFullGetErrorAttributeType `json:"error,omitempty"`
 	// REQUIRED
-	Id *string `json:"id"`
+	Id ProjectInstanceFullGetIdAttributeType `json:"id"`
 	// REQUIRED
-	Instance *string `json:"instance"`
-	Name     *string `json:"name,omitempty"`
+	Instance ProjectInstanceFullGetInstanceAttributeType `json:"instance"`
+	Name     ProjectInstanceFullGetNameAttributeType     `json:"name,omitempty"`
 	// REQUIRED
-	PlanName *string `json:"planName"`
+	PlanName ProjectInstanceFullGetPlanNameAttributeType `json:"planName"`
 	// REQUIRED
-	ServiceName *string `json:"serviceName"`
+	ServiceName ProjectInstanceFullGetServiceNameAttributeType `json:"serviceName"`
 	// REQUIRED
-	Status *string `json:"status"`
+	Status ProjectInstanceFullGetStatusAttributeType `json:"status"`
 }
 
 type _ProjectInstanceFull ProjectInstanceFull
@@ -39,13 +189,13 @@ type _ProjectInstanceFull ProjectInstanceFull
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectInstanceFull(id *string, instance *string, planName *string, serviceName *string, status *string) *ProjectInstanceFull {
+func NewProjectInstanceFull(id ProjectInstanceFullGetIdArgType, instance ProjectInstanceFullGetInstanceArgType, planName ProjectInstanceFullGetPlanNameArgType, serviceName ProjectInstanceFullGetServiceNameArgType, status ProjectInstanceFullGetStatusArgType) *ProjectInstanceFull {
 	this := ProjectInstanceFull{}
-	this.Id = id
-	this.Instance = instance
-	this.PlanName = planName
-	this.ServiceName = serviceName
-	this.Status = status
+	setProjectInstanceFullGetIdAttributeType(&this.Id, id)
+	setProjectInstanceFullGetInstanceAttributeType(&this.Instance, instance)
+	setProjectInstanceFullGetPlanNameAttributeType(&this.PlanName, planName)
+	setProjectInstanceFullGetServiceNameAttributeType(&this.ServiceName, serviceName)
+	setProjectInstanceFullGetStatusAttributeType(&this.Status, status)
 	return &this
 }
 
@@ -58,222 +208,170 @@ func NewProjectInstanceFullWithDefaults() *ProjectInstanceFull {
 }
 
 // GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectInstanceFull) GetError() *string {
-	if o == nil || IsNil(o.Error) || IsNil(o.Error.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.Error.Get()
+func (o *ProjectInstanceFull) GetError() (res ProjectInstanceFullGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectInstanceFull) GetErrorOk() (*string, bool) {
-	if o == nil || IsNil(o.Error) {
-		return nil, false
-	}
-	return o.Error.Get(), o.Error.IsSet()
+func (o *ProjectInstanceFull) GetErrorOk() (ret ProjectInstanceFullGetErrorRetType, ok bool) {
+	return getProjectInstanceFullGetErrorAttributeTypeOk(o.Error)
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *ProjectInstanceFull) HasError() bool {
-	if o != nil && !IsNil(o.Error) && o.Error.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorOk()
+	return ok
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
-func (o *ProjectInstanceFull) SetError(v *string) {
-	if IsNil(o.Error) {
-		o.Error = new(NullableString)
-	}
-	o.Error.Set(v)
+func (o *ProjectInstanceFull) SetError(v ProjectInstanceFullGetErrorRetType) {
+	setProjectInstanceFullGetErrorAttributeType(&o.Error, v)
 }
 
 // SetErrorNil sets the value for Error to be an explicit nil
 func (o *ProjectInstanceFull) SetErrorNil() {
-	if IsNil(o.Error) {
-		o.Error = new(NullableString)
-	}
-	o.Error.Set(nil)
+	o.Error = nil
 }
 
 // UnsetError ensures that no value is present for Error, not even an explicit nil
 func (o *ProjectInstanceFull) UnsetError() {
-	if IsNil(o.Error) {
-		o.Error = new(NullableString)
-	}
-	o.Error.Unset()
+	o.Error = nil
 }
 
 // GetId returns the Id field value
-func (o *ProjectInstanceFull) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *ProjectInstanceFull) GetId() (ret ProjectInstanceFullGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInstanceFull) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *ProjectInstanceFull) GetIdOk() (ret ProjectInstanceFullGetIdRetType, ok bool) {
+	return getProjectInstanceFullGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *ProjectInstanceFull) SetId(v *string) {
-	o.Id = v
+func (o *ProjectInstanceFull) SetId(v ProjectInstanceFullGetIdRetType) {
+	setProjectInstanceFullGetIdAttributeType(&o.Id, v)
 }
 
 // GetInstance returns the Instance field value
-func (o *ProjectInstanceFull) GetInstance() *string {
-	if o == nil || IsNil(o.Instance) {
-		var ret *string
-		return ret
-	}
-
-	return o.Instance
+func (o *ProjectInstanceFull) GetInstance() (ret ProjectInstanceFullGetInstanceRetType) {
+	ret, _ = o.GetInstanceOk()
+	return ret
 }
 
 // GetInstanceOk returns a tuple with the Instance field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInstanceFull) GetInstanceOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Instance, true
+func (o *ProjectInstanceFull) GetInstanceOk() (ret ProjectInstanceFullGetInstanceRetType, ok bool) {
+	return getProjectInstanceFullGetInstanceAttributeTypeOk(o.Instance)
 }
 
 // SetInstance sets field value
-func (o *ProjectInstanceFull) SetInstance(v *string) {
-	o.Instance = v
+func (o *ProjectInstanceFull) SetInstance(v ProjectInstanceFullGetInstanceRetType) {
+	setProjectInstanceFullGetInstanceAttributeType(&o.Instance, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ProjectInstanceFull) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *ProjectInstanceFull) GetName() (res ProjectInstanceFullGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectInstanceFull) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *ProjectInstanceFull) GetNameOk() (ret ProjectInstanceFullGetNameRetType, ok bool) {
+	return getProjectInstanceFullGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ProjectInstanceFull) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ProjectInstanceFull) SetName(v *string) {
-	o.Name = v
+func (o *ProjectInstanceFull) SetName(v ProjectInstanceFullGetNameRetType) {
+	setProjectInstanceFullGetNameAttributeType(&o.Name, v)
 }
 
 // GetPlanName returns the PlanName field value
-func (o *ProjectInstanceFull) GetPlanName() *string {
-	if o == nil || IsNil(o.PlanName) {
-		var ret *string
-		return ret
-	}
-
-	return o.PlanName
+func (o *ProjectInstanceFull) GetPlanName() (ret ProjectInstanceFullGetPlanNameRetType) {
+	ret, _ = o.GetPlanNameOk()
+	return ret
 }
 
 // GetPlanNameOk returns a tuple with the PlanName field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInstanceFull) GetPlanNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PlanName, true
+func (o *ProjectInstanceFull) GetPlanNameOk() (ret ProjectInstanceFullGetPlanNameRetType, ok bool) {
+	return getProjectInstanceFullGetPlanNameAttributeTypeOk(o.PlanName)
 }
 
 // SetPlanName sets field value
-func (o *ProjectInstanceFull) SetPlanName(v *string) {
-	o.PlanName = v
+func (o *ProjectInstanceFull) SetPlanName(v ProjectInstanceFullGetPlanNameRetType) {
+	setProjectInstanceFullGetPlanNameAttributeType(&o.PlanName, v)
 }
 
 // GetServiceName returns the ServiceName field value
-func (o *ProjectInstanceFull) GetServiceName() *string {
-	if o == nil || IsNil(o.ServiceName) {
-		var ret *string
-		return ret
-	}
-
-	return o.ServiceName
+func (o *ProjectInstanceFull) GetServiceName() (ret ProjectInstanceFullGetServiceNameRetType) {
+	ret, _ = o.GetServiceNameOk()
+	return ret
 }
 
 // GetServiceNameOk returns a tuple with the ServiceName field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInstanceFull) GetServiceNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ServiceName, true
+func (o *ProjectInstanceFull) GetServiceNameOk() (ret ProjectInstanceFullGetServiceNameRetType, ok bool) {
+	return getProjectInstanceFullGetServiceNameAttributeTypeOk(o.ServiceName)
 }
 
 // SetServiceName sets field value
-func (o *ProjectInstanceFull) SetServiceName(v *string) {
-	o.ServiceName = v
+func (o *ProjectInstanceFull) SetServiceName(v ProjectInstanceFullGetServiceNameRetType) {
+	setProjectInstanceFullGetServiceNameAttributeType(&o.ServiceName, v)
 }
 
 // GetStatus returns the Status field value
-func (o *ProjectInstanceFull) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-
-	return o.Status
+func (o *ProjectInstanceFull) GetStatus() (ret ProjectInstanceFullGetStatusRetType) {
+	ret, _ = o.GetStatusOk()
+	return ret
 }
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *ProjectInstanceFull) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Status, true
+func (o *ProjectInstanceFull) GetStatusOk() (ret ProjectInstanceFullGetStatusRetType, ok bool) {
+	return getProjectInstanceFullGetStatusAttributeTypeOk(o.Status)
 }
 
 // SetStatus sets field value
-func (o *ProjectInstanceFull) SetStatus(v *string) {
-	o.Status = v
+func (o *ProjectInstanceFull) SetStatus(v ProjectInstanceFullGetStatusRetType) {
+	setProjectInstanceFullGetStatusAttributeType(&o.Status, v)
 }
 
 func (o ProjectInstanceFull) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Error.IsSet() {
-		toSerialize["error"] = o.Error.Get()
+	if val, ok := getProjectInstanceFullGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
 	}
-	toSerialize["id"] = o.Id
-	toSerialize["instance"] = o.Instance
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getProjectInstanceFullGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	toSerialize["planName"] = o.PlanName
-	toSerialize["serviceName"] = o.ServiceName
-	toSerialize["status"] = o.Status
+	if val, ok := getProjectInstanceFullGetInstanceAttributeTypeOk(o.Instance); ok {
+		toSerialize["Instance"] = val
+	}
+	if val, ok := getProjectInstanceFullGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getProjectInstanceFullGetPlanNameAttributeTypeOk(o.PlanName); ok {
+		toSerialize["PlanName"] = val
+	}
+	if val, ok := getProjectInstanceFullGetServiceNameAttributeTypeOk(o.ServiceName); ok {
+		toSerialize["ServiceName"] = val
+	}
+	if val, ok := getProjectInstanceFullGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
+	}
 	return toSerialize, nil
 }
 
