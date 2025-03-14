@@ -17,16 +17,96 @@ import (
 // checks if the MongodbatlasStats type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MongodbatlasStats{}
 
+/*
+	types and functions for ms
+*/
+
+// isNumber
+type MongodbatlasStatsGetMsAttributeType = *float64
+type MongodbatlasStatsGetMsArgType = float64
+type MongodbatlasStatsGetMsRetType = float64
+
+func getMongodbatlasStatsGetMsAttributeTypeOk(arg MongodbatlasStatsGetMsAttributeType) (ret MongodbatlasStatsGetMsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMongodbatlasStatsGetMsAttributeType(arg *MongodbatlasStatsGetMsAttributeType, val MongodbatlasStatsGetMsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nReturned
+*/
+
+// isInteger
+type MongodbatlasStatsGetNReturnedAttributeType = *int64
+type MongodbatlasStatsGetNReturnedArgType = int64
+type MongodbatlasStatsGetNReturnedRetType = int64
+
+func getMongodbatlasStatsGetNReturnedAttributeTypeOk(arg MongodbatlasStatsGetNReturnedAttributeType) (ret MongodbatlasStatsGetNReturnedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMongodbatlasStatsGetNReturnedAttributeType(arg *MongodbatlasStatsGetNReturnedAttributeType, val MongodbatlasStatsGetNReturnedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nScanned
+*/
+
+// isInteger
+type MongodbatlasStatsGetNScannedAttributeType = *int64
+type MongodbatlasStatsGetNScannedArgType = int64
+type MongodbatlasStatsGetNScannedRetType = int64
+
+func getMongodbatlasStatsGetNScannedAttributeTypeOk(arg MongodbatlasStatsGetNScannedAttributeType) (ret MongodbatlasStatsGetNScannedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMongodbatlasStatsGetNScannedAttributeType(arg *MongodbatlasStatsGetNScannedAttributeType, val MongodbatlasStatsGetNScannedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for ts
+*/
+
+// isInteger
+type MongodbatlasStatsGetTsAttributeType = *int64
+type MongodbatlasStatsGetTsArgType = int64
+type MongodbatlasStatsGetTsRetType = int64
+
+func getMongodbatlasStatsGetTsAttributeTypeOk(arg MongodbatlasStatsGetTsAttributeType) (ret MongodbatlasStatsGetTsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMongodbatlasStatsGetTsAttributeType(arg *MongodbatlasStatsGetTsAttributeType, val MongodbatlasStatsGetTsRetType) {
+	*arg = &val
+}
+
 // MongodbatlasStats struct for MongodbatlasStats
 type MongodbatlasStats struct {
 	// Duration in milliseconds of the query.
-	Ms *float64 `json:"ms,omitempty"`
+	Ms MongodbatlasStatsGetMsAttributeType `json:"ms,omitempty"`
 	// Number of results returned by the query.
-	NReturned *int64 `json:"nReturned,omitempty"`
+	NReturned MongodbatlasStatsGetNReturnedAttributeType `json:"nReturned,omitempty"`
 	// Number of documents read by the query.
-	NScanned *int64 `json:"nScanned,omitempty"`
+	NScanned MongodbatlasStatsGetNScannedAttributeType `json:"nScanned,omitempty"`
 	// Query timestamp, in seconds since epoch.
-	Ts *int64 `json:"ts,omitempty"`
+	Ts MongodbatlasStatsGetTsAttributeType `json:"ts,omitempty"`
 }
 
 // NewMongodbatlasStats instantiates a new MongodbatlasStats object
@@ -47,146 +127,110 @@ func NewMongodbatlasStatsWithDefaults() *MongodbatlasStats {
 }
 
 // GetMs returns the Ms field value if set, zero value otherwise.
-func (o *MongodbatlasStats) GetMs() *float64 {
-	if o == nil || IsNil(o.Ms) {
-		var ret *float64
-		return ret
-	}
-	return o.Ms
+func (o *MongodbatlasStats) GetMs() (res MongodbatlasStatsGetMsRetType) {
+	res, _ = o.GetMsOk()
+	return
 }
 
 // GetMsOk returns a tuple with the Ms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MongodbatlasStats) GetMsOk() (*float64, bool) {
-	if o == nil || IsNil(o.Ms) {
-		return nil, false
-	}
-	return o.Ms, true
+func (o *MongodbatlasStats) GetMsOk() (ret MongodbatlasStatsGetMsRetType, ok bool) {
+	return getMongodbatlasStatsGetMsAttributeTypeOk(o.Ms)
 }
 
 // HasMs returns a boolean if a field has been set.
 func (o *MongodbatlasStats) HasMs() bool {
-	if o != nil && !IsNil(o.Ms) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMsOk()
+	return ok
 }
 
 // SetMs gets a reference to the given float64 and assigns it to the Ms field.
-func (o *MongodbatlasStats) SetMs(v *float64) {
-	o.Ms = v
+func (o *MongodbatlasStats) SetMs(v MongodbatlasStatsGetMsRetType) {
+	setMongodbatlasStatsGetMsAttributeType(&o.Ms, v)
 }
 
 // GetNReturned returns the NReturned field value if set, zero value otherwise.
-func (o *MongodbatlasStats) GetNReturned() *int64 {
-	if o == nil || IsNil(o.NReturned) {
-		var ret *int64
-		return ret
-	}
-	return o.NReturned
+func (o *MongodbatlasStats) GetNReturned() (res MongodbatlasStatsGetNReturnedRetType) {
+	res, _ = o.GetNReturnedOk()
+	return
 }
 
 // GetNReturnedOk returns a tuple with the NReturned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MongodbatlasStats) GetNReturnedOk() (*int64, bool) {
-	if o == nil || IsNil(o.NReturned) {
-		return nil, false
-	}
-	return o.NReturned, true
+func (o *MongodbatlasStats) GetNReturnedOk() (ret MongodbatlasStatsGetNReturnedRetType, ok bool) {
+	return getMongodbatlasStatsGetNReturnedAttributeTypeOk(o.NReturned)
 }
 
 // HasNReturned returns a boolean if a field has been set.
 func (o *MongodbatlasStats) HasNReturned() bool {
-	if o != nil && !IsNil(o.NReturned) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNReturnedOk()
+	return ok
 }
 
 // SetNReturned gets a reference to the given int64 and assigns it to the NReturned field.
-func (o *MongodbatlasStats) SetNReturned(v *int64) {
-	o.NReturned = v
+func (o *MongodbatlasStats) SetNReturned(v MongodbatlasStatsGetNReturnedRetType) {
+	setMongodbatlasStatsGetNReturnedAttributeType(&o.NReturned, v)
 }
 
 // GetNScanned returns the NScanned field value if set, zero value otherwise.
-func (o *MongodbatlasStats) GetNScanned() *int64 {
-	if o == nil || IsNil(o.NScanned) {
-		var ret *int64
-		return ret
-	}
-	return o.NScanned
+func (o *MongodbatlasStats) GetNScanned() (res MongodbatlasStatsGetNScannedRetType) {
+	res, _ = o.GetNScannedOk()
+	return
 }
 
 // GetNScannedOk returns a tuple with the NScanned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MongodbatlasStats) GetNScannedOk() (*int64, bool) {
-	if o == nil || IsNil(o.NScanned) {
-		return nil, false
-	}
-	return o.NScanned, true
+func (o *MongodbatlasStats) GetNScannedOk() (ret MongodbatlasStatsGetNScannedRetType, ok bool) {
+	return getMongodbatlasStatsGetNScannedAttributeTypeOk(o.NScanned)
 }
 
 // HasNScanned returns a boolean if a field has been set.
 func (o *MongodbatlasStats) HasNScanned() bool {
-	if o != nil && !IsNil(o.NScanned) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNScannedOk()
+	return ok
 }
 
 // SetNScanned gets a reference to the given int64 and assigns it to the NScanned field.
-func (o *MongodbatlasStats) SetNScanned(v *int64) {
-	o.NScanned = v
+func (o *MongodbatlasStats) SetNScanned(v MongodbatlasStatsGetNScannedRetType) {
+	setMongodbatlasStatsGetNScannedAttributeType(&o.NScanned, v)
 }
 
 // GetTs returns the Ts field value if set, zero value otherwise.
-func (o *MongodbatlasStats) GetTs() *int64 {
-	if o == nil || IsNil(o.Ts) {
-		var ret *int64
-		return ret
-	}
-	return o.Ts
+func (o *MongodbatlasStats) GetTs() (res MongodbatlasStatsGetTsRetType) {
+	res, _ = o.GetTsOk()
+	return
 }
 
 // GetTsOk returns a tuple with the Ts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MongodbatlasStats) GetTsOk() (*int64, bool) {
-	if o == nil || IsNil(o.Ts) {
-		return nil, false
-	}
-	return o.Ts, true
+func (o *MongodbatlasStats) GetTsOk() (ret MongodbatlasStatsGetTsRetType, ok bool) {
+	return getMongodbatlasStatsGetTsAttributeTypeOk(o.Ts)
 }
 
 // HasTs returns a boolean if a field has been set.
 func (o *MongodbatlasStats) HasTs() bool {
-	if o != nil && !IsNil(o.Ts) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTsOk()
+	return ok
 }
 
 // SetTs gets a reference to the given int64 and assigns it to the Ts field.
-func (o *MongodbatlasStats) SetTs(v *int64) {
-	o.Ts = v
+func (o *MongodbatlasStats) SetTs(v MongodbatlasStatsGetTsRetType) {
+	setMongodbatlasStatsGetTsAttributeType(&o.Ts, v)
 }
 
 func (o MongodbatlasStats) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Ms) {
-		toSerialize["ms"] = o.Ms
+	if val, ok := getMongodbatlasStatsGetMsAttributeTypeOk(o.Ms); ok {
+		toSerialize["Ms"] = val
 	}
-	if !IsNil(o.NReturned) {
-		toSerialize["nReturned"] = o.NReturned
+	if val, ok := getMongodbatlasStatsGetNReturnedAttributeTypeOk(o.NReturned); ok {
+		toSerialize["NReturned"] = val
 	}
-	if !IsNil(o.NScanned) {
-		toSerialize["nScanned"] = o.NScanned
+	if val, ok := getMongodbatlasStatsGetNScannedAttributeTypeOk(o.NScanned); ok {
+		toSerialize["NScanned"] = val
 	}
-	if !IsNil(o.Ts) {
-		toSerialize["ts"] = o.Ts
+	if val, ok := getMongodbatlasStatsGetTsAttributeTypeOk(o.Ts); ok {
+		toSerialize["Ts"] = val
 	}
 	return toSerialize, nil
 }
