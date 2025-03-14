@@ -17,17 +17,157 @@ import (
 // checks if the CreateOrUpdateClusterPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateOrUpdateClusterPayload{}
 
+/*
+	types and functions for extensions
+*/
+
+// isModel
+type CreateOrUpdateClusterPayloadGetExtensionsAttributeType = *Extension
+type CreateOrUpdateClusterPayloadGetExtensionsArgType = Extension
+type CreateOrUpdateClusterPayloadGetExtensionsRetType = Extension
+
+func getCreateOrUpdateClusterPayloadGetExtensionsAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetExtensionsAttributeType) (ret CreateOrUpdateClusterPayloadGetExtensionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateOrUpdateClusterPayloadGetExtensionsAttributeType(arg *CreateOrUpdateClusterPayloadGetExtensionsAttributeType, val CreateOrUpdateClusterPayloadGetExtensionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for hibernation
+*/
+
+// isModel
+type CreateOrUpdateClusterPayloadGetHibernationAttributeType = *Hibernation
+type CreateOrUpdateClusterPayloadGetHibernationArgType = Hibernation
+type CreateOrUpdateClusterPayloadGetHibernationRetType = Hibernation
+
+func getCreateOrUpdateClusterPayloadGetHibernationAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetHibernationAttributeType) (ret CreateOrUpdateClusterPayloadGetHibernationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateOrUpdateClusterPayloadGetHibernationAttributeType(arg *CreateOrUpdateClusterPayloadGetHibernationAttributeType, val CreateOrUpdateClusterPayloadGetHibernationRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for kubernetes
+*/
+
+// isModel
+type CreateOrUpdateClusterPayloadGetKubernetesAttributeType = *Kubernetes
+type CreateOrUpdateClusterPayloadGetKubernetesArgType = Kubernetes
+type CreateOrUpdateClusterPayloadGetKubernetesRetType = Kubernetes
+
+func getCreateOrUpdateClusterPayloadGetKubernetesAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetKubernetesAttributeType) (ret CreateOrUpdateClusterPayloadGetKubernetesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateOrUpdateClusterPayloadGetKubernetesAttributeType(arg *CreateOrUpdateClusterPayloadGetKubernetesAttributeType, val CreateOrUpdateClusterPayloadGetKubernetesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maintenance
+*/
+
+// isModel
+type CreateOrUpdateClusterPayloadGetMaintenanceAttributeType = *Maintenance
+type CreateOrUpdateClusterPayloadGetMaintenanceArgType = Maintenance
+type CreateOrUpdateClusterPayloadGetMaintenanceRetType = Maintenance
+
+func getCreateOrUpdateClusterPayloadGetMaintenanceAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetMaintenanceAttributeType) (ret CreateOrUpdateClusterPayloadGetMaintenanceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateOrUpdateClusterPayloadGetMaintenanceAttributeType(arg *CreateOrUpdateClusterPayloadGetMaintenanceAttributeType, val CreateOrUpdateClusterPayloadGetMaintenanceRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for network
+*/
+
+// isModel
+type CreateOrUpdateClusterPayloadGetNetworkAttributeType = *Network
+type CreateOrUpdateClusterPayloadGetNetworkArgType = Network
+type CreateOrUpdateClusterPayloadGetNetworkRetType = Network
+
+func getCreateOrUpdateClusterPayloadGetNetworkAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetNetworkAttributeType) (ret CreateOrUpdateClusterPayloadGetNetworkRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateOrUpdateClusterPayloadGetNetworkAttributeType(arg *CreateOrUpdateClusterPayloadGetNetworkAttributeType, val CreateOrUpdateClusterPayloadGetNetworkRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nodepools
+*/
+
+// isArray
+type CreateOrUpdateClusterPayloadGetNodepoolsAttributeType = *[]Nodepool
+type CreateOrUpdateClusterPayloadGetNodepoolsArgType = []Nodepool
+type CreateOrUpdateClusterPayloadGetNodepoolsRetType = []Nodepool
+
+func getCreateOrUpdateClusterPayloadGetNodepoolsAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetNodepoolsAttributeType) (ret CreateOrUpdateClusterPayloadGetNodepoolsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateOrUpdateClusterPayloadGetNodepoolsAttributeType(arg *CreateOrUpdateClusterPayloadGetNodepoolsAttributeType, val CreateOrUpdateClusterPayloadGetNodepoolsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isModel
+type CreateOrUpdateClusterPayloadGetStatusAttributeType = *ClusterStatus
+type CreateOrUpdateClusterPayloadGetStatusArgType = ClusterStatus
+type CreateOrUpdateClusterPayloadGetStatusRetType = ClusterStatus
+
+func getCreateOrUpdateClusterPayloadGetStatusAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetStatusAttributeType) (ret CreateOrUpdateClusterPayloadGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateOrUpdateClusterPayloadGetStatusAttributeType(arg *CreateOrUpdateClusterPayloadGetStatusAttributeType, val CreateOrUpdateClusterPayloadGetStatusRetType) {
+	*arg = &val
+}
+
 // CreateOrUpdateClusterPayload struct for CreateOrUpdateClusterPayload
 type CreateOrUpdateClusterPayload struct {
-	Extensions  *Extension   `json:"extensions,omitempty"`
-	Hibernation *Hibernation `json:"hibernation,omitempty"`
+	Extensions  CreateOrUpdateClusterPayloadGetExtensionsAttributeType  `json:"extensions,omitempty"`
+	Hibernation CreateOrUpdateClusterPayloadGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
-	Kubernetes  *Kubernetes  `json:"kubernetes"`
-	Maintenance *Maintenance `json:"maintenance,omitempty"`
-	Network     *Network     `json:"network,omitempty"`
+	Kubernetes  CreateOrUpdateClusterPayloadGetKubernetesAttributeType  `json:"kubernetes"`
+	Maintenance CreateOrUpdateClusterPayloadGetMaintenanceAttributeType `json:"maintenance,omitempty"`
+	Network     CreateOrUpdateClusterPayloadGetNetworkAttributeType     `json:"network,omitempty"`
 	// REQUIRED
-	Nodepools *[]Nodepool    `json:"nodepools"`
-	Status    *ClusterStatus `json:"status,omitempty"`
+	Nodepools CreateOrUpdateClusterPayloadGetNodepoolsAttributeType `json:"nodepools"`
+	Status    CreateOrUpdateClusterPayloadGetStatusAttributeType    `json:"status,omitempty"`
 }
 
 type _CreateOrUpdateClusterPayload CreateOrUpdateClusterPayload
@@ -36,10 +176,10 @@ type _CreateOrUpdateClusterPayload CreateOrUpdateClusterPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateOrUpdateClusterPayload(kubernetes *Kubernetes, nodepools *[]Nodepool) *CreateOrUpdateClusterPayload {
+func NewCreateOrUpdateClusterPayload(kubernetes CreateOrUpdateClusterPayloadGetKubernetesArgType, nodepools CreateOrUpdateClusterPayloadGetNodepoolsArgType) *CreateOrUpdateClusterPayload {
 	this := CreateOrUpdateClusterPayload{}
-	this.Kubernetes = kubernetes
-	this.Nodepools = nodepools
+	setCreateOrUpdateClusterPayloadGetKubernetesAttributeType(&this.Kubernetes, kubernetes)
+	setCreateOrUpdateClusterPayloadGetNodepoolsAttributeType(&this.Nodepools, nodepools)
 	return &this
 }
 
@@ -52,231 +192,176 @@ func NewCreateOrUpdateClusterPayloadWithDefaults() *CreateOrUpdateClusterPayload
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
-func (o *CreateOrUpdateClusterPayload) GetExtensions() *Extension {
-	if o == nil || IsNil(o.Extensions) {
-		var ret *Extension
-		return ret
-	}
-	return o.Extensions
+func (o *CreateOrUpdateClusterPayload) GetExtensions() (res CreateOrUpdateClusterPayloadGetExtensionsRetType) {
+	res, _ = o.GetExtensionsOk()
+	return
 }
 
 // GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrUpdateClusterPayload) GetExtensionsOk() (*Extension, bool) {
-	if o == nil || IsNil(o.Extensions) {
-		return nil, false
-	}
-	return o.Extensions, true
+func (o *CreateOrUpdateClusterPayload) GetExtensionsOk() (ret CreateOrUpdateClusterPayloadGetExtensionsRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetExtensionsAttributeTypeOk(o.Extensions)
 }
 
 // HasExtensions returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasExtensions() bool {
-	if o != nil && !IsNil(o.Extensions) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExtensionsOk()
+	return ok
 }
 
 // SetExtensions gets a reference to the given Extension and assigns it to the Extensions field.
-func (o *CreateOrUpdateClusterPayload) SetExtensions(v *Extension) {
-	o.Extensions = v
+func (o *CreateOrUpdateClusterPayload) SetExtensions(v CreateOrUpdateClusterPayloadGetExtensionsRetType) {
+	setCreateOrUpdateClusterPayloadGetExtensionsAttributeType(&o.Extensions, v)
 }
 
 // GetHibernation returns the Hibernation field value if set, zero value otherwise.
-func (o *CreateOrUpdateClusterPayload) GetHibernation() *Hibernation {
-	if o == nil || IsNil(o.Hibernation) {
-		var ret *Hibernation
-		return ret
-	}
-	return o.Hibernation
+func (o *CreateOrUpdateClusterPayload) GetHibernation() (res CreateOrUpdateClusterPayloadGetHibernationRetType) {
+	res, _ = o.GetHibernationOk()
+	return
 }
 
 // GetHibernationOk returns a tuple with the Hibernation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrUpdateClusterPayload) GetHibernationOk() (*Hibernation, bool) {
-	if o == nil || IsNil(o.Hibernation) {
-		return nil, false
-	}
-	return o.Hibernation, true
+func (o *CreateOrUpdateClusterPayload) GetHibernationOk() (ret CreateOrUpdateClusterPayloadGetHibernationRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetHibernationAttributeTypeOk(o.Hibernation)
 }
 
 // HasHibernation returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasHibernation() bool {
-	if o != nil && !IsNil(o.Hibernation) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHibernationOk()
+	return ok
 }
 
 // SetHibernation gets a reference to the given Hibernation and assigns it to the Hibernation field.
-func (o *CreateOrUpdateClusterPayload) SetHibernation(v *Hibernation) {
-	o.Hibernation = v
+func (o *CreateOrUpdateClusterPayload) SetHibernation(v CreateOrUpdateClusterPayloadGetHibernationRetType) {
+	setCreateOrUpdateClusterPayloadGetHibernationAttributeType(&o.Hibernation, v)
 }
 
 // GetKubernetes returns the Kubernetes field value
-func (o *CreateOrUpdateClusterPayload) GetKubernetes() *Kubernetes {
-	if o == nil || IsNil(o.Kubernetes) {
-		var ret *Kubernetes
-		return ret
-	}
-
-	return o.Kubernetes
+func (o *CreateOrUpdateClusterPayload) GetKubernetes() (ret CreateOrUpdateClusterPayloadGetKubernetesRetType) {
+	ret, _ = o.GetKubernetesOk()
+	return ret
 }
 
 // GetKubernetesOk returns a tuple with the Kubernetes field value
 // and a boolean to check if the value has been set.
-func (o *CreateOrUpdateClusterPayload) GetKubernetesOk() (*Kubernetes, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Kubernetes, true
+func (o *CreateOrUpdateClusterPayload) GetKubernetesOk() (ret CreateOrUpdateClusterPayloadGetKubernetesRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetKubernetesAttributeTypeOk(o.Kubernetes)
 }
 
 // SetKubernetes sets field value
-func (o *CreateOrUpdateClusterPayload) SetKubernetes(v *Kubernetes) {
-	o.Kubernetes = v
+func (o *CreateOrUpdateClusterPayload) SetKubernetes(v CreateOrUpdateClusterPayloadGetKubernetesRetType) {
+	setCreateOrUpdateClusterPayloadGetKubernetesAttributeType(&o.Kubernetes, v)
 }
 
 // GetMaintenance returns the Maintenance field value if set, zero value otherwise.
-func (o *CreateOrUpdateClusterPayload) GetMaintenance() *Maintenance {
-	if o == nil || IsNil(o.Maintenance) {
-		var ret *Maintenance
-		return ret
-	}
-	return o.Maintenance
+func (o *CreateOrUpdateClusterPayload) GetMaintenance() (res CreateOrUpdateClusterPayloadGetMaintenanceRetType) {
+	res, _ = o.GetMaintenanceOk()
+	return
 }
 
 // GetMaintenanceOk returns a tuple with the Maintenance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrUpdateClusterPayload) GetMaintenanceOk() (*Maintenance, bool) {
-	if o == nil || IsNil(o.Maintenance) {
-		return nil, false
-	}
-	return o.Maintenance, true
+func (o *CreateOrUpdateClusterPayload) GetMaintenanceOk() (ret CreateOrUpdateClusterPayloadGetMaintenanceRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetMaintenanceAttributeTypeOk(o.Maintenance)
 }
 
 // HasMaintenance returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasMaintenance() bool {
-	if o != nil && !IsNil(o.Maintenance) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaintenanceOk()
+	return ok
 }
 
 // SetMaintenance gets a reference to the given Maintenance and assigns it to the Maintenance field.
-func (o *CreateOrUpdateClusterPayload) SetMaintenance(v *Maintenance) {
-	o.Maintenance = v
+func (o *CreateOrUpdateClusterPayload) SetMaintenance(v CreateOrUpdateClusterPayloadGetMaintenanceRetType) {
+	setCreateOrUpdateClusterPayloadGetMaintenanceAttributeType(&o.Maintenance, v)
 }
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
-func (o *CreateOrUpdateClusterPayload) GetNetwork() *Network {
-	if o == nil || IsNil(o.Network) {
-		var ret *Network
-		return ret
-	}
-	return o.Network
+func (o *CreateOrUpdateClusterPayload) GetNetwork() (res CreateOrUpdateClusterPayloadGetNetworkRetType) {
+	res, _ = o.GetNetworkOk()
+	return
 }
 
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrUpdateClusterPayload) GetNetworkOk() (*Network, bool) {
-	if o == nil || IsNil(o.Network) {
-		return nil, false
-	}
-	return o.Network, true
+func (o *CreateOrUpdateClusterPayload) GetNetworkOk() (ret CreateOrUpdateClusterPayloadGetNetworkRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetNetworkAttributeTypeOk(o.Network)
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasNetwork() bool {
-	if o != nil && !IsNil(o.Network) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNetworkOk()
+	return ok
 }
 
 // SetNetwork gets a reference to the given Network and assigns it to the Network field.
-func (o *CreateOrUpdateClusterPayload) SetNetwork(v *Network) {
-	o.Network = v
+func (o *CreateOrUpdateClusterPayload) SetNetwork(v CreateOrUpdateClusterPayloadGetNetworkRetType) {
+	setCreateOrUpdateClusterPayloadGetNetworkAttributeType(&o.Network, v)
 }
 
 // GetNodepools returns the Nodepools field value
-func (o *CreateOrUpdateClusterPayload) GetNodepools() *[]Nodepool {
-	if o == nil || IsNil(o.Nodepools) {
-		var ret *[]Nodepool
-		return ret
-	}
-
-	return o.Nodepools
+func (o *CreateOrUpdateClusterPayload) GetNodepools() (ret CreateOrUpdateClusterPayloadGetNodepoolsRetType) {
+	ret, _ = o.GetNodepoolsOk()
+	return ret
 }
 
 // GetNodepoolsOk returns a tuple with the Nodepools field value
 // and a boolean to check if the value has been set.
-func (o *CreateOrUpdateClusterPayload) GetNodepoolsOk() (*[]Nodepool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Nodepools, true
+func (o *CreateOrUpdateClusterPayload) GetNodepoolsOk() (ret CreateOrUpdateClusterPayloadGetNodepoolsRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetNodepoolsAttributeTypeOk(o.Nodepools)
 }
 
 // SetNodepools sets field value
-func (o *CreateOrUpdateClusterPayload) SetNodepools(v *[]Nodepool) {
-	o.Nodepools = v
+func (o *CreateOrUpdateClusterPayload) SetNodepools(v CreateOrUpdateClusterPayloadGetNodepoolsRetType) {
+	setCreateOrUpdateClusterPayloadGetNodepoolsAttributeType(&o.Nodepools, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CreateOrUpdateClusterPayload) GetStatus() *ClusterStatus {
-	if o == nil || IsNil(o.Status) {
-		var ret *ClusterStatus
-		return ret
-	}
-	return o.Status
+func (o *CreateOrUpdateClusterPayload) GetStatus() (res CreateOrUpdateClusterPayloadGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrUpdateClusterPayload) GetStatusOk() (*ClusterStatus, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *CreateOrUpdateClusterPayload) GetStatusOk() (ret CreateOrUpdateClusterPayloadGetStatusRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateOrUpdateClusterPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given ClusterStatus and assigns it to the Status field.
-func (o *CreateOrUpdateClusterPayload) SetStatus(v *ClusterStatus) {
-	o.Status = v
+func (o *CreateOrUpdateClusterPayload) SetStatus(v CreateOrUpdateClusterPayloadGetStatusRetType) {
+	setCreateOrUpdateClusterPayloadGetStatusAttributeType(&o.Status, v)
 }
 
 func (o CreateOrUpdateClusterPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Extensions) {
-		toSerialize["extensions"] = o.Extensions
+	if val, ok := getCreateOrUpdateClusterPayloadGetExtensionsAttributeTypeOk(o.Extensions); ok {
+		toSerialize["Extensions"] = val
 	}
-	if !IsNil(o.Hibernation) {
-		toSerialize["hibernation"] = o.Hibernation
+	if val, ok := getCreateOrUpdateClusterPayloadGetHibernationAttributeTypeOk(o.Hibernation); ok {
+		toSerialize["Hibernation"] = val
 	}
-	toSerialize["kubernetes"] = o.Kubernetes
-	if !IsNil(o.Maintenance) {
-		toSerialize["maintenance"] = o.Maintenance
+	if val, ok := getCreateOrUpdateClusterPayloadGetKubernetesAttributeTypeOk(o.Kubernetes); ok {
+		toSerialize["Kubernetes"] = val
 	}
-	if !IsNil(o.Network) {
-		toSerialize["network"] = o.Network
+	if val, ok := getCreateOrUpdateClusterPayloadGetMaintenanceAttributeTypeOk(o.Maintenance); ok {
+		toSerialize["Maintenance"] = val
 	}
-	toSerialize["nodepools"] = o.Nodepools
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getCreateOrUpdateClusterPayloadGetNetworkAttributeTypeOk(o.Network); ok {
+		toSerialize["Network"] = val
+	}
+	if val, ok := getCreateOrUpdateClusterPayloadGetNodepoolsAttributeTypeOk(o.Nodepools); ok {
+		toSerialize["Nodepools"] = val
+	}
+	if val, ok := getCreateOrUpdateClusterPayloadGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
 }

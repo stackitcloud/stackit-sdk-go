@@ -17,9 +17,30 @@ import (
 // checks if the LoginKubeconfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &LoginKubeconfig{}
 
+/*
+	types and functions for kubeconfig
+*/
+
+// isNotNullableString
+type LoginKubeconfigGetKubeconfigAttributeType = *string
+
+func getLoginKubeconfigGetKubeconfigAttributeTypeOk(arg LoginKubeconfigGetKubeconfigAttributeType) (ret LoginKubeconfigGetKubeconfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoginKubeconfigGetKubeconfigAttributeType(arg *LoginKubeconfigGetKubeconfigAttributeType, val LoginKubeconfigGetKubeconfigRetType) {
+	*arg = &val
+}
+
+type LoginKubeconfigGetKubeconfigArgType = string
+type LoginKubeconfigGetKubeconfigRetType = string
+
 // LoginKubeconfig struct for LoginKubeconfig
 type LoginKubeconfig struct {
-	Kubeconfig *string `json:"kubeconfig,omitempty"`
+	Kubeconfig LoginKubeconfigGetKubeconfigAttributeType `json:"kubeconfig,omitempty"`
 }
 
 // NewLoginKubeconfig instantiates a new LoginKubeconfig object
@@ -40,41 +61,32 @@ func NewLoginKubeconfigWithDefaults() *LoginKubeconfig {
 }
 
 // GetKubeconfig returns the Kubeconfig field value if set, zero value otherwise.
-func (o *LoginKubeconfig) GetKubeconfig() *string {
-	if o == nil || IsNil(o.Kubeconfig) {
-		var ret *string
-		return ret
-	}
-	return o.Kubeconfig
+func (o *LoginKubeconfig) GetKubeconfig() (res LoginKubeconfigGetKubeconfigRetType) {
+	res, _ = o.GetKubeconfigOk()
+	return
 }
 
 // GetKubeconfigOk returns a tuple with the Kubeconfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoginKubeconfig) GetKubeconfigOk() (*string, bool) {
-	if o == nil || IsNil(o.Kubeconfig) {
-		return nil, false
-	}
-	return o.Kubeconfig, true
+func (o *LoginKubeconfig) GetKubeconfigOk() (ret LoginKubeconfigGetKubeconfigRetType, ok bool) {
+	return getLoginKubeconfigGetKubeconfigAttributeTypeOk(o.Kubeconfig)
 }
 
 // HasKubeconfig returns a boolean if a field has been set.
 func (o *LoginKubeconfig) HasKubeconfig() bool {
-	if o != nil && !IsNil(o.Kubeconfig) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetKubeconfigOk()
+	return ok
 }
 
 // SetKubeconfig gets a reference to the given string and assigns it to the Kubeconfig field.
-func (o *LoginKubeconfig) SetKubeconfig(v *string) {
-	o.Kubeconfig = v
+func (o *LoginKubeconfig) SetKubeconfig(v LoginKubeconfigGetKubeconfigRetType) {
+	setLoginKubeconfigGetKubeconfigAttributeType(&o.Kubeconfig, v)
 }
 
 func (o LoginKubeconfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Kubeconfig) {
-		toSerialize["kubeconfig"] = o.Kubeconfig
+	if val, ok := getLoginKubeconfigGetKubeconfigAttributeTypeOk(o.Kubeconfig); ok {
+		toSerialize["Kubeconfig"] = val
 	}
 	return toSerialize, nil
 }

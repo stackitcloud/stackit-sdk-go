@@ -17,11 +17,71 @@ import (
 // checks if the Extension type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Extension{}
 
+/*
+	types and functions for acl
+*/
+
+// isModel
+type ExtensionGetAclAttributeType = *ACL
+type ExtensionGetAclArgType = ACL
+type ExtensionGetAclRetType = ACL
+
+func getExtensionGetAclAttributeTypeOk(arg ExtensionGetAclAttributeType) (ret ExtensionGetAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExtensionGetAclAttributeType(arg *ExtensionGetAclAttributeType, val ExtensionGetAclRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for argus
+*/
+
+// isModel
+type ExtensionGetArgusAttributeType = *Argus
+type ExtensionGetArgusArgType = Argus
+type ExtensionGetArgusRetType = Argus
+
+func getExtensionGetArgusAttributeTypeOk(arg ExtensionGetArgusAttributeType) (ret ExtensionGetArgusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExtensionGetArgusAttributeType(arg *ExtensionGetArgusAttributeType, val ExtensionGetArgusRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for dns
+*/
+
+// isModel
+type ExtensionGetDnsAttributeType = *DNS
+type ExtensionGetDnsArgType = DNS
+type ExtensionGetDnsRetType = DNS
+
+func getExtensionGetDnsAttributeTypeOk(arg ExtensionGetDnsAttributeType) (ret ExtensionGetDnsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExtensionGetDnsAttributeType(arg *ExtensionGetDnsAttributeType, val ExtensionGetDnsRetType) {
+	*arg = &val
+}
+
 // Extension struct for Extension
 type Extension struct {
-	Acl   *ACL   `json:"acl,omitempty"`
-	Argus *Argus `json:"argus,omitempty"`
-	Dns   *DNS   `json:"dns,omitempty"`
+	Acl   ExtensionGetAclAttributeType   `json:"acl,omitempty"`
+	Argus ExtensionGetArgusAttributeType `json:"argus,omitempty"`
+	Dns   ExtensionGetDnsAttributeType   `json:"dns,omitempty"`
 }
 
 // NewExtension instantiates a new Extension object
@@ -42,111 +102,84 @@ func NewExtensionWithDefaults() *Extension {
 }
 
 // GetAcl returns the Acl field value if set, zero value otherwise.
-func (o *Extension) GetAcl() *ACL {
-	if o == nil || IsNil(o.Acl) {
-		var ret *ACL
-		return ret
-	}
-	return o.Acl
+func (o *Extension) GetAcl() (res ExtensionGetAclRetType) {
+	res, _ = o.GetAclOk()
+	return
 }
 
 // GetAclOk returns a tuple with the Acl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Extension) GetAclOk() (*ACL, bool) {
-	if o == nil || IsNil(o.Acl) {
-		return nil, false
-	}
-	return o.Acl, true
+func (o *Extension) GetAclOk() (ret ExtensionGetAclRetType, ok bool) {
+	return getExtensionGetAclAttributeTypeOk(o.Acl)
 }
 
 // HasAcl returns a boolean if a field has been set.
 func (o *Extension) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAclOk()
+	return ok
 }
 
 // SetAcl gets a reference to the given ACL and assigns it to the Acl field.
-func (o *Extension) SetAcl(v *ACL) {
-	o.Acl = v
+func (o *Extension) SetAcl(v ExtensionGetAclRetType) {
+	setExtensionGetAclAttributeType(&o.Acl, v)
 }
 
 // GetArgus returns the Argus field value if set, zero value otherwise.
-func (o *Extension) GetArgus() *Argus {
-	if o == nil || IsNil(o.Argus) {
-		var ret *Argus
-		return ret
-	}
-	return o.Argus
+func (o *Extension) GetArgus() (res ExtensionGetArgusRetType) {
+	res, _ = o.GetArgusOk()
+	return
 }
 
 // GetArgusOk returns a tuple with the Argus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Extension) GetArgusOk() (*Argus, bool) {
-	if o == nil || IsNil(o.Argus) {
-		return nil, false
-	}
-	return o.Argus, true
+func (o *Extension) GetArgusOk() (ret ExtensionGetArgusRetType, ok bool) {
+	return getExtensionGetArgusAttributeTypeOk(o.Argus)
 }
 
 // HasArgus returns a boolean if a field has been set.
 func (o *Extension) HasArgus() bool {
-	if o != nil && !IsNil(o.Argus) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetArgusOk()
+	return ok
 }
 
 // SetArgus gets a reference to the given Argus and assigns it to the Argus field.
-func (o *Extension) SetArgus(v *Argus) {
-	o.Argus = v
+func (o *Extension) SetArgus(v ExtensionGetArgusRetType) {
+	setExtensionGetArgusAttributeType(&o.Argus, v)
 }
 
 // GetDns returns the Dns field value if set, zero value otherwise.
-func (o *Extension) GetDns() *DNS {
-	if o == nil || IsNil(o.Dns) {
-		var ret *DNS
-		return ret
-	}
-	return o.Dns
+func (o *Extension) GetDns() (res ExtensionGetDnsRetType) {
+	res, _ = o.GetDnsOk()
+	return
 }
 
 // GetDnsOk returns a tuple with the Dns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Extension) GetDnsOk() (*DNS, bool) {
-	if o == nil || IsNil(o.Dns) {
-		return nil, false
-	}
-	return o.Dns, true
+func (o *Extension) GetDnsOk() (ret ExtensionGetDnsRetType, ok bool) {
+	return getExtensionGetDnsAttributeTypeOk(o.Dns)
 }
 
 // HasDns returns a boolean if a field has been set.
 func (o *Extension) HasDns() bool {
-	if o != nil && !IsNil(o.Dns) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDnsOk()
+	return ok
 }
 
 // SetDns gets a reference to the given DNS and assigns it to the Dns field.
-func (o *Extension) SetDns(v *DNS) {
-	o.Dns = v
+func (o *Extension) SetDns(v ExtensionGetDnsRetType) {
+	setExtensionGetDnsAttributeType(&o.Dns, v)
 }
 
 func (o Extension) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Acl) {
-		toSerialize["acl"] = o.Acl
+	if val, ok := getExtensionGetAclAttributeTypeOk(o.Acl); ok {
+		toSerialize["Acl"] = val
 	}
-	if !IsNil(o.Argus) {
-		toSerialize["argus"] = o.Argus
+	if val, ok := getExtensionGetArgusAttributeTypeOk(o.Argus); ok {
+		toSerialize["Argus"] = val
 	}
-	if !IsNil(o.Dns) {
-		toSerialize["dns"] = o.Dns
+	if val, ok := getExtensionGetDnsAttributeTypeOk(o.Dns); ok {
+		toSerialize["Dns"] = val
 	}
 	return toSerialize, nil
 }

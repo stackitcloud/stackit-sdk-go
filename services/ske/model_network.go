@@ -17,9 +17,30 @@ import (
 // checks if the Network type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Network{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type NetworkGetIdAttributeType = *string
+
+func getNetworkGetIdAttributeTypeOk(arg NetworkGetIdAttributeType) (ret NetworkGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetIdAttributeType(arg *NetworkGetIdAttributeType, val NetworkGetIdRetType) {
+	*arg = &val
+}
+
+type NetworkGetIdArgType = string
+type NetworkGetIdRetType = string
+
 // Network struct for Network
 type Network struct {
-	Id *string `json:"id,omitempty"`
+	Id NetworkGetIdAttributeType `json:"id,omitempty"`
 }
 
 // NewNetwork instantiates a new Network object
@@ -40,41 +61,32 @@ func NewNetworkWithDefaults() *Network {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Network) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Network) GetId() (res NetworkGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Network) GetIdOk() (ret NetworkGetIdRetType, ok bool) {
+	return getNetworkGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Network) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Network) SetId(v *string) {
-	o.Id = v
+func (o *Network) SetId(v NetworkGetIdRetType) {
+	setNetworkGetIdAttributeType(&o.Id, v)
 }
 
 func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getNetworkGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,9 +17,30 @@ import (
 // checks if the VolumeType type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VolumeType{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type VolumeTypeGetNameAttributeType = *string
+
+func getVolumeTypeGetNameAttributeTypeOk(arg VolumeTypeGetNameAttributeType) (ret VolumeTypeGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeTypeGetNameAttributeType(arg *VolumeTypeGetNameAttributeType, val VolumeTypeGetNameRetType) {
+	*arg = &val
+}
+
+type VolumeTypeGetNameArgType = string
+type VolumeTypeGetNameRetType = string
+
 // VolumeType struct for VolumeType
 type VolumeType struct {
-	Name *string `json:"name,omitempty"`
+	Name VolumeTypeGetNameAttributeType `json:"name,omitempty"`
 }
 
 // NewVolumeType instantiates a new VolumeType object
@@ -40,41 +61,32 @@ func NewVolumeTypeWithDefaults() *VolumeType {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *VolumeType) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *VolumeType) GetName() (res VolumeTypeGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VolumeType) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *VolumeType) GetNameOk() (ret VolumeTypeGetNameRetType, ok bool) {
+	return getVolumeTypeGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *VolumeType) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *VolumeType) SetName(v *string) {
-	o.Name = v
+func (o *VolumeType) SetName(v VolumeTypeGetNameRetType) {
+	setVolumeTypeGetNameAttributeType(&o.Name, v)
 }
 
 func (o VolumeType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getVolumeTypeGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }
