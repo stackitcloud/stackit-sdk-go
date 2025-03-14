@@ -18,35 +18,322 @@ import (
 // checks if the Volume type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Volume{}
 
+/*
+	types and functions for availabilityZone
+*/
+
+// isNotNullableString
+type VolumeGetAvailabilityZoneAttributeType = *string
+
+func getVolumeGetAvailabilityZoneAttributeTypeOk(arg VolumeGetAvailabilityZoneAttributeType) (ret VolumeGetAvailabilityZoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetAvailabilityZoneAttributeType(arg *VolumeGetAvailabilityZoneAttributeType, val VolumeGetAvailabilityZoneRetType) {
+	*arg = &val
+}
+
+type VolumeGetAvailabilityZoneArgType = string
+type VolumeGetAvailabilityZoneRetType = string
+
+/*
+	types and functions for bootable
+*/
+
+// isBoolean
+type VolumegetBootableAttributeType = *bool
+type VolumegetBootableArgType = bool
+type VolumegetBootableRetType = bool
+
+func getVolumegetBootableAttributeTypeOk(arg VolumegetBootableAttributeType) (ret VolumegetBootableRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumegetBootableAttributeType(arg *VolumegetBootableAttributeType, val VolumegetBootableRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type VolumeGetCreatedAtAttributeType = *time.Time
+type VolumeGetCreatedAtArgType = time.Time
+type VolumeGetCreatedAtRetType = time.Time
+
+func getVolumeGetCreatedAtAttributeTypeOk(arg VolumeGetCreatedAtAttributeType) (ret VolumeGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetCreatedAtAttributeType(arg *VolumeGetCreatedAtAttributeType, val VolumeGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type VolumeGetDescriptionAttributeType = *string
+
+func getVolumeGetDescriptionAttributeTypeOk(arg VolumeGetDescriptionAttributeType) (ret VolumeGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetDescriptionAttributeType(arg *VolumeGetDescriptionAttributeType, val VolumeGetDescriptionRetType) {
+	*arg = &val
+}
+
+type VolumeGetDescriptionArgType = string
+type VolumeGetDescriptionRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type VolumeGetIdAttributeType = *string
+
+func getVolumeGetIdAttributeTypeOk(arg VolumeGetIdAttributeType) (ret VolumeGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetIdAttributeType(arg *VolumeGetIdAttributeType, val VolumeGetIdRetType) {
+	*arg = &val
+}
+
+type VolumeGetIdArgType = string
+type VolumeGetIdRetType = string
+
+/*
+	types and functions for imageConfig
+*/
+
+// isModel
+type VolumeGetImageConfigAttributeType = *ImageConfig
+type VolumeGetImageConfigArgType = ImageConfig
+type VolumeGetImageConfigRetType = ImageConfig
+
+func getVolumeGetImageConfigAttributeTypeOk(arg VolumeGetImageConfigAttributeType) (ret VolumeGetImageConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetImageConfigAttributeType(arg *VolumeGetImageConfigAttributeType, val VolumeGetImageConfigRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type VolumeGetLabelsAttributeType = *map[string]interface{}
+type VolumeGetLabelsArgType = map[string]interface{}
+type VolumeGetLabelsRetType = map[string]interface{}
+
+func getVolumeGetLabelsAttributeTypeOk(arg VolumeGetLabelsAttributeType) (ret VolumeGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetLabelsAttributeType(arg *VolumeGetLabelsAttributeType, val VolumeGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type VolumeGetNameAttributeType = *string
+
+func getVolumeGetNameAttributeTypeOk(arg VolumeGetNameAttributeType) (ret VolumeGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetNameAttributeType(arg *VolumeGetNameAttributeType, val VolumeGetNameRetType) {
+	*arg = &val
+}
+
+type VolumeGetNameArgType = string
+type VolumeGetNameRetType = string
+
+/*
+	types and functions for performanceClass
+*/
+
+// isNotNullableString
+type VolumeGetPerformanceClassAttributeType = *string
+
+func getVolumeGetPerformanceClassAttributeTypeOk(arg VolumeGetPerformanceClassAttributeType) (ret VolumeGetPerformanceClassRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetPerformanceClassAttributeType(arg *VolumeGetPerformanceClassAttributeType, val VolumeGetPerformanceClassRetType) {
+	*arg = &val
+}
+
+type VolumeGetPerformanceClassArgType = string
+type VolumeGetPerformanceClassRetType = string
+
+/*
+	types and functions for serverId
+*/
+
+// isNotNullableString
+type VolumeGetServerIdAttributeType = *string
+
+func getVolumeGetServerIdAttributeTypeOk(arg VolumeGetServerIdAttributeType) (ret VolumeGetServerIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetServerIdAttributeType(arg *VolumeGetServerIdAttributeType, val VolumeGetServerIdRetType) {
+	*arg = &val
+}
+
+type VolumeGetServerIdArgType = string
+type VolumeGetServerIdRetType = string
+
+/*
+	types and functions for size
+*/
+
+// isLong
+type VolumeGetSizeAttributeType = *int64
+type VolumeGetSizeArgType = int64
+type VolumeGetSizeRetType = int64
+
+func getVolumeGetSizeAttributeTypeOk(arg VolumeGetSizeAttributeType) (ret VolumeGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetSizeAttributeType(arg *VolumeGetSizeAttributeType, val VolumeGetSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for source
+*/
+
+// isModel
+type VolumeGetSourceAttributeType = *VolumeSource
+type VolumeGetSourceArgType = VolumeSource
+type VolumeGetSourceRetType = VolumeSource
+
+func getVolumeGetSourceAttributeTypeOk(arg VolumeGetSourceAttributeType) (ret VolumeGetSourceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetSourceAttributeType(arg *VolumeGetSourceAttributeType, val VolumeGetSourceRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type VolumeGetStatusAttributeType = *string
+
+func getVolumeGetStatusAttributeTypeOk(arg VolumeGetStatusAttributeType) (ret VolumeGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetStatusAttributeType(arg *VolumeGetStatusAttributeType, val VolumeGetStatusRetType) {
+	*arg = &val
+}
+
+type VolumeGetStatusArgType = string
+type VolumeGetStatusRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type VolumeGetUpdatedAtAttributeType = *time.Time
+type VolumeGetUpdatedAtArgType = time.Time
+type VolumeGetUpdatedAtRetType = time.Time
+
+func getVolumeGetUpdatedAtAttributeTypeOk(arg VolumeGetUpdatedAtAttributeType) (ret VolumeGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetUpdatedAtAttributeType(arg *VolumeGetUpdatedAtAttributeType, val VolumeGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // Volume Object that represents a volume and its parameters. Used for Creating and returning (get/list).
 type Volume struct {
 	// Object that represents an availability zone.
 	// REQUIRED
-	AvailabilityZone *string `json:"availabilityZone"`
+	AvailabilityZone VolumeGetAvailabilityZoneAttributeType `json:"availabilityZone"`
 	// Indicates if a volume is bootable.
-	Bootable *bool `json:"bootable,omitempty"`
+	Bootable VolumegetBootableAttributeType `json:"bootable,omitempty"`
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt VolumeGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 127 Characters.
-	Description *string `json:"description,omitempty"`
+	Description VolumeGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id          *string      `json:"id,omitempty"`
-	ImageConfig *ImageConfig `json:"imageConfig,omitempty"`
+	Id          VolumeGetIdAttributeType          `json:"id,omitempty"`
+	ImageConfig VolumeGetImageConfigAttributeType `json:"imageConfig,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels VolumeGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty"`
+	Name VolumeGetNameAttributeType `json:"name,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	PerformanceClass *string `json:"performanceClass,omitempty"`
+	PerformanceClass VolumeGetPerformanceClassAttributeType `json:"performanceClass,omitempty"`
 	// Universally Unique Identifier (UUID).
-	ServerId *string `json:"serverId,omitempty"`
+	ServerId VolumeGetServerIdAttributeType `json:"serverId,omitempty"`
 	// Size in Gigabyte.
-	Size   *int64        `json:"size,omitempty"`
-	Source *VolumeSource `json:"source,omitempty"`
+	Size   VolumeGetSizeAttributeType   `json:"size,omitempty"`
+	Source VolumeGetSourceAttributeType `json:"source,omitempty"`
 	// The status of a volume object. Possible values: `ATTACHED`, `ATTACHING`, `AVAILABLE`, `AWAITING-TRANSFER`, `BACKING-UP`, `CREATING`, `DELETED`, `DELETING`, `DETACHING`, `DOWNLOADING`, `ERROR`, `ERROR_BACKING-UP`, `ERROR_DELETING`, `ERROR_RESIZING`, `ERROR_RESTORING-BACKUP`, `MAINTENANCE`, `RESERVED`, `RESIZING`, `RESTORING-BACKUP`, `RETYPING`, `UPLOADING`.
-	Status *string `json:"status,omitempty"`
+	Status VolumeGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt VolumeGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 type _Volume Volume
@@ -55,9 +342,9 @@ type _Volume Volume
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVolume(availabilityZone *string) *Volume {
+func NewVolume(availabilityZone VolumeGetAvailabilityZoneArgType) *Volume {
 	this := Volume{}
-	this.AvailabilityZone = availabilityZone
+	setVolumeGetAvailabilityZoneAttributeType(&this.AvailabilityZone, availabilityZone)
 	return &this
 }
 
@@ -70,486 +357,364 @@ func NewVolumeWithDefaults() *Volume {
 }
 
 // GetAvailabilityZone returns the AvailabilityZone field value
-func (o *Volume) GetAvailabilityZone() *string {
-	if o == nil || IsNil(o.AvailabilityZone) {
-		var ret *string
-		return ret
-	}
-
-	return o.AvailabilityZone
+func (o *Volume) GetAvailabilityZone() (ret VolumeGetAvailabilityZoneRetType) {
+	ret, _ = o.GetAvailabilityZoneOk()
+	return ret
 }
 
 // GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value
 // and a boolean to check if the value has been set.
-func (o *Volume) GetAvailabilityZoneOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AvailabilityZone, true
+func (o *Volume) GetAvailabilityZoneOk() (ret VolumeGetAvailabilityZoneRetType, ok bool) {
+	return getVolumeGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone)
 }
 
 // SetAvailabilityZone sets field value
-func (o *Volume) SetAvailabilityZone(v *string) {
-	o.AvailabilityZone = v
+func (o *Volume) SetAvailabilityZone(v VolumeGetAvailabilityZoneRetType) {
+	setVolumeGetAvailabilityZoneAttributeType(&o.AvailabilityZone, v)
 }
 
 // GetBootable returns the Bootable field value if set, zero value otherwise.
-func (o *Volume) GetBootable() *bool {
-	if o == nil || IsNil(o.Bootable) {
-		var ret *bool
-		return ret
-	}
-	return o.Bootable
+func (o *Volume) GetBootable() (res VolumegetBootableRetType) {
+	res, _ = o.GetBootableOk()
+	return
 }
 
 // GetBootableOk returns a tuple with the Bootable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetBootableOk() (*bool, bool) {
-	if o == nil || IsNil(o.Bootable) {
-		return nil, false
-	}
-	return o.Bootable, true
+func (o *Volume) GetBootableOk() (ret VolumegetBootableRetType, ok bool) {
+	return getVolumegetBootableAttributeTypeOk(o.Bootable)
 }
 
 // HasBootable returns a boolean if a field has been set.
 func (o *Volume) HasBootable() bool {
-	if o != nil && !IsNil(o.Bootable) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBootableOk()
+	return ok
 }
 
 // SetBootable gets a reference to the given bool and assigns it to the Bootable field.
-func (o *Volume) SetBootable(v *bool) {
-	o.Bootable = v
+func (o *Volume) SetBootable(v VolumegetBootableRetType) {
+	setVolumegetBootableAttributeType(&o.Bootable, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Volume) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *Volume) GetCreatedAt() (res VolumeGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *Volume) GetCreatedAtOk() (ret VolumeGetCreatedAtRetType, ok bool) {
+	return getVolumeGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Volume) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Volume) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *Volume) SetCreatedAt(v VolumeGetCreatedAtRetType) {
+	setVolumeGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Volume) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *Volume) GetDescription() (res VolumeGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *Volume) GetDescriptionOk() (ret VolumeGetDescriptionRetType, ok bool) {
+	return getVolumeGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Volume) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Volume) SetDescription(v *string) {
-	o.Description = v
+func (o *Volume) SetDescription(v VolumeGetDescriptionRetType) {
+	setVolumeGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Volume) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Volume) GetId() (res VolumeGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Volume) GetIdOk() (ret VolumeGetIdRetType, ok bool) {
+	return getVolumeGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Volume) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Volume) SetId(v *string) {
-	o.Id = v
+func (o *Volume) SetId(v VolumeGetIdRetType) {
+	setVolumeGetIdAttributeType(&o.Id, v)
 }
 
 // GetImageConfig returns the ImageConfig field value if set, zero value otherwise.
-func (o *Volume) GetImageConfig() *ImageConfig {
-	if o == nil || IsNil(o.ImageConfig) {
-		var ret *ImageConfig
-		return ret
-	}
-	return o.ImageConfig
+func (o *Volume) GetImageConfig() (res VolumeGetImageConfigRetType) {
+	res, _ = o.GetImageConfigOk()
+	return
 }
 
 // GetImageConfigOk returns a tuple with the ImageConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetImageConfigOk() (*ImageConfig, bool) {
-	if o == nil || IsNil(o.ImageConfig) {
-		return nil, false
-	}
-	return o.ImageConfig, true
+func (o *Volume) GetImageConfigOk() (ret VolumeGetImageConfigRetType, ok bool) {
+	return getVolumeGetImageConfigAttributeTypeOk(o.ImageConfig)
 }
 
 // HasImageConfig returns a boolean if a field has been set.
 func (o *Volume) HasImageConfig() bool {
-	if o != nil && !IsNil(o.ImageConfig) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetImageConfigOk()
+	return ok
 }
 
 // SetImageConfig gets a reference to the given ImageConfig and assigns it to the ImageConfig field.
-func (o *Volume) SetImageConfig(v *ImageConfig) {
-	o.ImageConfig = v
+func (o *Volume) SetImageConfig(v VolumeGetImageConfigRetType) {
+	setVolumeGetImageConfigAttributeType(&o.ImageConfig, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Volume) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *Volume) GetLabels() (res VolumeGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *Volume) GetLabelsOk() (ret VolumeGetLabelsRetType, ok bool) {
+	return getVolumeGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Volume) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *Volume) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *Volume) SetLabels(v VolumeGetLabelsRetType) {
+	setVolumeGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Volume) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Volume) GetName() (res VolumeGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Volume) GetNameOk() (ret VolumeGetNameRetType, ok bool) {
+	return getVolumeGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Volume) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Volume) SetName(v *string) {
-	o.Name = v
+func (o *Volume) SetName(v VolumeGetNameRetType) {
+	setVolumeGetNameAttributeType(&o.Name, v)
 }
 
 // GetPerformanceClass returns the PerformanceClass field value if set, zero value otherwise.
-func (o *Volume) GetPerformanceClass() *string {
-	if o == nil || IsNil(o.PerformanceClass) {
-		var ret *string
-		return ret
-	}
-	return o.PerformanceClass
+func (o *Volume) GetPerformanceClass() (res VolumeGetPerformanceClassRetType) {
+	res, _ = o.GetPerformanceClassOk()
+	return
 }
 
 // GetPerformanceClassOk returns a tuple with the PerformanceClass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetPerformanceClassOk() (*string, bool) {
-	if o == nil || IsNil(o.PerformanceClass) {
-		return nil, false
-	}
-	return o.PerformanceClass, true
+func (o *Volume) GetPerformanceClassOk() (ret VolumeGetPerformanceClassRetType, ok bool) {
+	return getVolumeGetPerformanceClassAttributeTypeOk(o.PerformanceClass)
 }
 
 // HasPerformanceClass returns a boolean if a field has been set.
 func (o *Volume) HasPerformanceClass() bool {
-	if o != nil && !IsNil(o.PerformanceClass) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPerformanceClassOk()
+	return ok
 }
 
 // SetPerformanceClass gets a reference to the given string and assigns it to the PerformanceClass field.
-func (o *Volume) SetPerformanceClass(v *string) {
-	o.PerformanceClass = v
+func (o *Volume) SetPerformanceClass(v VolumeGetPerformanceClassRetType) {
+	setVolumeGetPerformanceClassAttributeType(&o.PerformanceClass, v)
 }
 
 // GetServerId returns the ServerId field value if set, zero value otherwise.
-func (o *Volume) GetServerId() *string {
-	if o == nil || IsNil(o.ServerId) {
-		var ret *string
-		return ret
-	}
-	return o.ServerId
+func (o *Volume) GetServerId() (res VolumeGetServerIdRetType) {
+	res, _ = o.GetServerIdOk()
+	return
 }
 
 // GetServerIdOk returns a tuple with the ServerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetServerIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerId) {
-		return nil, false
-	}
-	return o.ServerId, true
+func (o *Volume) GetServerIdOk() (ret VolumeGetServerIdRetType, ok bool) {
+	return getVolumeGetServerIdAttributeTypeOk(o.ServerId)
 }
 
 // HasServerId returns a boolean if a field has been set.
 func (o *Volume) HasServerId() bool {
-	if o != nil && !IsNil(o.ServerId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetServerIdOk()
+	return ok
 }
 
 // SetServerId gets a reference to the given string and assigns it to the ServerId field.
-func (o *Volume) SetServerId(v *string) {
-	o.ServerId = v
+func (o *Volume) SetServerId(v VolumeGetServerIdRetType) {
+	setVolumeGetServerIdAttributeType(&o.ServerId, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *Volume) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-	return o.Size
+func (o *Volume) GetSize() (res VolumeGetSizeRetType) {
+	res, _ = o.GetSizeOk()
+	return
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Size) {
-		return nil, false
-	}
-	return o.Size, true
+func (o *Volume) GetSizeOk() (ret VolumeGetSizeRetType, ok bool) {
+	return getVolumeGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *Volume) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSizeOk()
+	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *Volume) SetSize(v *int64) {
-	o.Size = v
+func (o *Volume) SetSize(v VolumeGetSizeRetType) {
+	setVolumeGetSizeAttributeType(&o.Size, v)
 }
 
 // GetSource returns the Source field value if set, zero value otherwise.
-func (o *Volume) GetSource() *VolumeSource {
-	if o == nil || IsNil(o.Source) {
-		var ret *VolumeSource
-		return ret
-	}
-	return o.Source
+func (o *Volume) GetSource() (res VolumeGetSourceRetType) {
+	res, _ = o.GetSourceOk()
+	return
 }
 
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetSourceOk() (*VolumeSource, bool) {
-	if o == nil || IsNil(o.Source) {
-		return nil, false
-	}
-	return o.Source, true
+func (o *Volume) GetSourceOk() (ret VolumeGetSourceRetType, ok bool) {
+	return getVolumeGetSourceAttributeTypeOk(o.Source)
 }
 
 // HasSource returns a boolean if a field has been set.
 func (o *Volume) HasSource() bool {
-	if o != nil && !IsNil(o.Source) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSourceOk()
+	return ok
 }
 
 // SetSource gets a reference to the given VolumeSource and assigns it to the Source field.
-func (o *Volume) SetSource(v *VolumeSource) {
-	o.Source = v
+func (o *Volume) SetSource(v VolumeGetSourceRetType) {
+	setVolumeGetSourceAttributeType(&o.Source, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Volume) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *Volume) GetStatus() (res VolumeGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *Volume) GetStatusOk() (ret VolumeGetStatusRetType, ok bool) {
+	return getVolumeGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Volume) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Volume) SetStatus(v *string) {
-	o.Status = v
+func (o *Volume) SetStatus(v VolumeGetStatusRetType) {
+	setVolumeGetStatusAttributeType(&o.Status, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Volume) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *Volume) GetUpdatedAt() (res VolumeGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *Volume) GetUpdatedAtOk() (ret VolumeGetUpdatedAtRetType, ok bool) {
+	return getVolumeGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Volume) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Volume) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *Volume) SetUpdatedAt(v VolumeGetUpdatedAtRetType) {
+	setVolumeGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 func (o Volume) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["availabilityZone"] = o.AvailabilityZone
-	if !IsNil(o.Bootable) {
-		toSerialize["bootable"] = o.Bootable
+	if val, ok := getVolumeGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone); ok {
+		toSerialize["AvailabilityZone"] = val
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getVolumegetBootableAttributeTypeOk(o.Bootable); ok {
+		toSerialize["Bootable"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getVolumeGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getVolumeGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.ImageConfig) {
-		toSerialize["imageConfig"] = o.ImageConfig
+	if val, ok := getVolumeGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getVolumeGetImageConfigAttributeTypeOk(o.ImageConfig); ok {
+		toSerialize["ImageConfig"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getVolumeGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.PerformanceClass) {
-		toSerialize["performanceClass"] = o.PerformanceClass
+	if val, ok := getVolumeGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.ServerId) {
-		toSerialize["serverId"] = o.ServerId
+	if val, ok := getVolumeGetPerformanceClassAttributeTypeOk(o.PerformanceClass); ok {
+		toSerialize["PerformanceClass"] = val
 	}
-	if !IsNil(o.Size) {
-		toSerialize["size"] = o.Size
+	if val, ok := getVolumeGetServerIdAttributeTypeOk(o.ServerId); ok {
+		toSerialize["ServerId"] = val
 	}
-	if !IsNil(o.Source) {
-		toSerialize["source"] = o.Source
+	if val, ok := getVolumeGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getVolumeGetSourceAttributeTypeOk(o.Source); ok {
+		toSerialize["Source"] = val
 	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getVolumeGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
+	}
+	if val, ok := getVolumeGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

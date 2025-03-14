@@ -17,20 +17,162 @@ import (
 // checks if the UpdateImagePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateImagePayload{}
 
+/*
+	types and functions for config
+*/
+
+// isModel
+type UpdateImagePayloadGetConfigAttributeType = *ImageConfig
+type UpdateImagePayloadGetConfigArgType = ImageConfig
+type UpdateImagePayloadGetConfigRetType = ImageConfig
+
+func getUpdateImagePayloadGetConfigAttributeTypeOk(arg UpdateImagePayloadGetConfigAttributeType) (ret UpdateImagePayloadGetConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateImagePayloadGetConfigAttributeType(arg *UpdateImagePayloadGetConfigAttributeType, val UpdateImagePayloadGetConfigRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for diskFormat
+*/
+
+// isNotNullableString
+type UpdateImagePayloadGetDiskFormatAttributeType = *string
+
+func getUpdateImagePayloadGetDiskFormatAttributeTypeOk(arg UpdateImagePayloadGetDiskFormatAttributeType) (ret UpdateImagePayloadGetDiskFormatRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateImagePayloadGetDiskFormatAttributeType(arg *UpdateImagePayloadGetDiskFormatAttributeType, val UpdateImagePayloadGetDiskFormatRetType) {
+	*arg = &val
+}
+
+type UpdateImagePayloadGetDiskFormatArgType = string
+type UpdateImagePayloadGetDiskFormatRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type UpdateImagePayloadGetLabelsAttributeType = *map[string]interface{}
+type UpdateImagePayloadGetLabelsArgType = map[string]interface{}
+type UpdateImagePayloadGetLabelsRetType = map[string]interface{}
+
+func getUpdateImagePayloadGetLabelsAttributeTypeOk(arg UpdateImagePayloadGetLabelsAttributeType) (ret UpdateImagePayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateImagePayloadGetLabelsAttributeType(arg *UpdateImagePayloadGetLabelsAttributeType, val UpdateImagePayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for minDiskSize
+*/
+
+// isLong
+type UpdateImagePayloadGetMinDiskSizeAttributeType = *int64
+type UpdateImagePayloadGetMinDiskSizeArgType = int64
+type UpdateImagePayloadGetMinDiskSizeRetType = int64
+
+func getUpdateImagePayloadGetMinDiskSizeAttributeTypeOk(arg UpdateImagePayloadGetMinDiskSizeAttributeType) (ret UpdateImagePayloadGetMinDiskSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateImagePayloadGetMinDiskSizeAttributeType(arg *UpdateImagePayloadGetMinDiskSizeAttributeType, val UpdateImagePayloadGetMinDiskSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for minRam
+*/
+
+// isLong
+type UpdateImagePayloadGetMinRamAttributeType = *int64
+type UpdateImagePayloadGetMinRamArgType = int64
+type UpdateImagePayloadGetMinRamRetType = int64
+
+func getUpdateImagePayloadGetMinRamAttributeTypeOk(arg UpdateImagePayloadGetMinRamAttributeType) (ret UpdateImagePayloadGetMinRamRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateImagePayloadGetMinRamAttributeType(arg *UpdateImagePayloadGetMinRamAttributeType, val UpdateImagePayloadGetMinRamRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type UpdateImagePayloadGetNameAttributeType = *string
+
+func getUpdateImagePayloadGetNameAttributeTypeOk(arg UpdateImagePayloadGetNameAttributeType) (ret UpdateImagePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateImagePayloadGetNameAttributeType(arg *UpdateImagePayloadGetNameAttributeType, val UpdateImagePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type UpdateImagePayloadGetNameArgType = string
+type UpdateImagePayloadGetNameRetType = string
+
+/*
+	types and functions for protected
+*/
+
+// isBoolean
+type UpdateImagePayloadgetProtectedAttributeType = *bool
+type UpdateImagePayloadgetProtectedArgType = bool
+type UpdateImagePayloadgetProtectedRetType = bool
+
+func getUpdateImagePayloadgetProtectedAttributeTypeOk(arg UpdateImagePayloadgetProtectedAttributeType) (ret UpdateImagePayloadgetProtectedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateImagePayloadgetProtectedAttributeType(arg *UpdateImagePayloadgetProtectedAttributeType, val UpdateImagePayloadgetProtectedRetType) {
+	*arg = &val
+}
+
 // UpdateImagePayload Object that represents an update request body of an Image.
 type UpdateImagePayload struct {
-	Config *ImageConfig `json:"config,omitempty"`
+	Config UpdateImagePayloadGetConfigAttributeType `json:"config,omitempty"`
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
-	DiskFormat *string `json:"diskFormat,omitempty"`
+	DiskFormat UpdateImagePayloadGetDiskFormatAttributeType `json:"diskFormat,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels UpdateImagePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
-	MinDiskSize *int64 `json:"minDiskSize,omitempty"`
+	MinDiskSize UpdateImagePayloadGetMinDiskSizeAttributeType `json:"minDiskSize,omitempty"`
 	// Size in Megabyte.
-	MinRam *int64 `json:"minRam,omitempty"`
+	MinRam UpdateImagePayloadGetMinRamAttributeType `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name      *string `json:"name,omitempty"`
-	Protected *bool   `json:"protected,omitempty"`
+	Name      UpdateImagePayloadGetNameAttributeType      `json:"name,omitempty"`
+	Protected UpdateImagePayloadgetProtectedAttributeType `json:"protected,omitempty"`
 }
 
 // NewUpdateImagePayload instantiates a new UpdateImagePayload object
@@ -51,251 +193,188 @@ func NewUpdateImagePayloadWithDefaults() *UpdateImagePayload {
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
-func (o *UpdateImagePayload) GetConfig() *ImageConfig {
-	if o == nil || IsNil(o.Config) {
-		var ret *ImageConfig
-		return ret
-	}
-	return o.Config
+func (o *UpdateImagePayload) GetConfig() (res UpdateImagePayloadGetConfigRetType) {
+	res, _ = o.GetConfigOk()
+	return
 }
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateImagePayload) GetConfigOk() (*ImageConfig, bool) {
-	if o == nil || IsNil(o.Config) {
-		return nil, false
-	}
-	return o.Config, true
+func (o *UpdateImagePayload) GetConfigOk() (ret UpdateImagePayloadGetConfigRetType, ok bool) {
+	return getUpdateImagePayloadGetConfigAttributeTypeOk(o.Config)
 }
 
 // HasConfig returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasConfig() bool {
-	if o != nil && !IsNil(o.Config) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetConfigOk()
+	return ok
 }
 
 // SetConfig gets a reference to the given ImageConfig and assigns it to the Config field.
-func (o *UpdateImagePayload) SetConfig(v *ImageConfig) {
-	o.Config = v
+func (o *UpdateImagePayload) SetConfig(v UpdateImagePayloadGetConfigRetType) {
+	setUpdateImagePayloadGetConfigAttributeType(&o.Config, v)
 }
 
 // GetDiskFormat returns the DiskFormat field value if set, zero value otherwise.
-func (o *UpdateImagePayload) GetDiskFormat() *string {
-	if o == nil || IsNil(o.DiskFormat) {
-		var ret *string
-		return ret
-	}
-	return o.DiskFormat
+func (o *UpdateImagePayload) GetDiskFormat() (res UpdateImagePayloadGetDiskFormatRetType) {
+	res, _ = o.GetDiskFormatOk()
+	return
 }
 
 // GetDiskFormatOk returns a tuple with the DiskFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateImagePayload) GetDiskFormatOk() (*string, bool) {
-	if o == nil || IsNil(o.DiskFormat) {
-		return nil, false
-	}
-	return o.DiskFormat, true
+func (o *UpdateImagePayload) GetDiskFormatOk() (ret UpdateImagePayloadGetDiskFormatRetType, ok bool) {
+	return getUpdateImagePayloadGetDiskFormatAttributeTypeOk(o.DiskFormat)
 }
 
 // HasDiskFormat returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasDiskFormat() bool {
-	if o != nil && !IsNil(o.DiskFormat) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDiskFormatOk()
+	return ok
 }
 
 // SetDiskFormat gets a reference to the given string and assigns it to the DiskFormat field.
-func (o *UpdateImagePayload) SetDiskFormat(v *string) {
-	o.DiskFormat = v
+func (o *UpdateImagePayload) SetDiskFormat(v UpdateImagePayloadGetDiskFormatRetType) {
+	setUpdateImagePayloadGetDiskFormatAttributeType(&o.DiskFormat, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateImagePayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *UpdateImagePayload) GetLabels() (res UpdateImagePayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateImagePayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *UpdateImagePayload) GetLabelsOk() (ret UpdateImagePayloadGetLabelsRetType, ok bool) {
+	return getUpdateImagePayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *UpdateImagePayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *UpdateImagePayload) SetLabels(v UpdateImagePayloadGetLabelsRetType) {
+	setUpdateImagePayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetMinDiskSize returns the MinDiskSize field value if set, zero value otherwise.
-func (o *UpdateImagePayload) GetMinDiskSize() *int64 {
-	if o == nil || IsNil(o.MinDiskSize) {
-		var ret *int64
-		return ret
-	}
-	return o.MinDiskSize
+func (o *UpdateImagePayload) GetMinDiskSize() (res UpdateImagePayloadGetMinDiskSizeRetType) {
+	res, _ = o.GetMinDiskSizeOk()
+	return
 }
 
 // GetMinDiskSizeOk returns a tuple with the MinDiskSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateImagePayload) GetMinDiskSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.MinDiskSize) {
-		return nil, false
-	}
-	return o.MinDiskSize, true
+func (o *UpdateImagePayload) GetMinDiskSizeOk() (ret UpdateImagePayloadGetMinDiskSizeRetType, ok bool) {
+	return getUpdateImagePayloadGetMinDiskSizeAttributeTypeOk(o.MinDiskSize)
 }
 
 // HasMinDiskSize returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasMinDiskSize() bool {
-	if o != nil && !IsNil(o.MinDiskSize) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMinDiskSizeOk()
+	return ok
 }
 
 // SetMinDiskSize gets a reference to the given int64 and assigns it to the MinDiskSize field.
-func (o *UpdateImagePayload) SetMinDiskSize(v *int64) {
-	o.MinDiskSize = v
+func (o *UpdateImagePayload) SetMinDiskSize(v UpdateImagePayloadGetMinDiskSizeRetType) {
+	setUpdateImagePayloadGetMinDiskSizeAttributeType(&o.MinDiskSize, v)
 }
 
 // GetMinRam returns the MinRam field value if set, zero value otherwise.
-func (o *UpdateImagePayload) GetMinRam() *int64 {
-	if o == nil || IsNil(o.MinRam) {
-		var ret *int64
-		return ret
-	}
-	return o.MinRam
+func (o *UpdateImagePayload) GetMinRam() (res UpdateImagePayloadGetMinRamRetType) {
+	res, _ = o.GetMinRamOk()
+	return
 }
 
 // GetMinRamOk returns a tuple with the MinRam field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateImagePayload) GetMinRamOk() (*int64, bool) {
-	if o == nil || IsNil(o.MinRam) {
-		return nil, false
-	}
-	return o.MinRam, true
+func (o *UpdateImagePayload) GetMinRamOk() (ret UpdateImagePayloadGetMinRamRetType, ok bool) {
+	return getUpdateImagePayloadGetMinRamAttributeTypeOk(o.MinRam)
 }
 
 // HasMinRam returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasMinRam() bool {
-	if o != nil && !IsNil(o.MinRam) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMinRamOk()
+	return ok
 }
 
 // SetMinRam gets a reference to the given int64 and assigns it to the MinRam field.
-func (o *UpdateImagePayload) SetMinRam(v *int64) {
-	o.MinRam = v
+func (o *UpdateImagePayload) SetMinRam(v UpdateImagePayloadGetMinRamRetType) {
+	setUpdateImagePayloadGetMinRamAttributeType(&o.MinRam, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateImagePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *UpdateImagePayload) GetName() (res UpdateImagePayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateImagePayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *UpdateImagePayload) GetNameOk() (ret UpdateImagePayloadGetNameRetType, ok bool) {
+	return getUpdateImagePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateImagePayload) SetName(v *string) {
-	o.Name = v
+func (o *UpdateImagePayload) SetName(v UpdateImagePayloadGetNameRetType) {
+	setUpdateImagePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetProtected returns the Protected field value if set, zero value otherwise.
-func (o *UpdateImagePayload) GetProtected() *bool {
-	if o == nil || IsNil(o.Protected) {
-		var ret *bool
-		return ret
-	}
-	return o.Protected
+func (o *UpdateImagePayload) GetProtected() (res UpdateImagePayloadgetProtectedRetType) {
+	res, _ = o.GetProtectedOk()
+	return
 }
 
 // GetProtectedOk returns a tuple with the Protected field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateImagePayload) GetProtectedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Protected) {
-		return nil, false
-	}
-	return o.Protected, true
+func (o *UpdateImagePayload) GetProtectedOk() (ret UpdateImagePayloadgetProtectedRetType, ok bool) {
+	return getUpdateImagePayloadgetProtectedAttributeTypeOk(o.Protected)
 }
 
 // HasProtected returns a boolean if a field has been set.
 func (o *UpdateImagePayload) HasProtected() bool {
-	if o != nil && !IsNil(o.Protected) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProtectedOk()
+	return ok
 }
 
 // SetProtected gets a reference to the given bool and assigns it to the Protected field.
-func (o *UpdateImagePayload) SetProtected(v *bool) {
-	o.Protected = v
+func (o *UpdateImagePayload) SetProtected(v UpdateImagePayloadgetProtectedRetType) {
+	setUpdateImagePayloadgetProtectedAttributeType(&o.Protected, v)
 }
 
 func (o UpdateImagePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Config) {
-		toSerialize["config"] = o.Config
+	if val, ok := getUpdateImagePayloadGetConfigAttributeTypeOk(o.Config); ok {
+		toSerialize["Config"] = val
 	}
-	if !IsNil(o.DiskFormat) {
-		toSerialize["diskFormat"] = o.DiskFormat
+	if val, ok := getUpdateImagePayloadGetDiskFormatAttributeTypeOk(o.DiskFormat); ok {
+		toSerialize["DiskFormat"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getUpdateImagePayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.MinDiskSize) {
-		toSerialize["minDiskSize"] = o.MinDiskSize
+	if val, ok := getUpdateImagePayloadGetMinDiskSizeAttributeTypeOk(o.MinDiskSize); ok {
+		toSerialize["MinDiskSize"] = val
 	}
-	if !IsNil(o.MinRam) {
-		toSerialize["minRam"] = o.MinRam
+	if val, ok := getUpdateImagePayloadGetMinRamAttributeTypeOk(o.MinRam); ok {
+		toSerialize["MinRam"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getUpdateImagePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Protected) {
-		toSerialize["protected"] = o.Protected
+	if val, ok := getUpdateImagePayloadgetProtectedAttributeTypeOk(o.Protected); ok {
+		toSerialize["Protected"] = val
 	}
 	return toSerialize, nil
 }

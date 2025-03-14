@@ -17,11 +17,32 @@ import (
 // checks if the AddMemberToVirtualIPPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AddMemberToVirtualIPPayload{}
 
+/*
+	types and functions for member
+*/
+
+// isNotNullableString
+type AddMemberToVirtualIPPayloadGetMemberAttributeType = *string
+
+func getAddMemberToVirtualIPPayloadGetMemberAttributeTypeOk(arg AddMemberToVirtualIPPayloadGetMemberAttributeType) (ret AddMemberToVirtualIPPayloadGetMemberRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAddMemberToVirtualIPPayloadGetMemberAttributeType(arg *AddMemberToVirtualIPPayloadGetMemberAttributeType, val AddMemberToVirtualIPPayloadGetMemberRetType) {
+	*arg = &val
+}
+
+type AddMemberToVirtualIPPayloadGetMemberArgType = string
+type AddMemberToVirtualIPPayloadGetMemberRetType = string
+
 // AddMemberToVirtualIPPayload Object that represents a virtual IP member.
 type AddMemberToVirtualIPPayload struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Member *string `json:"member"`
+	Member AddMemberToVirtualIPPayloadGetMemberAttributeType `json:"member"`
 }
 
 type _AddMemberToVirtualIPPayload AddMemberToVirtualIPPayload
@@ -30,9 +51,9 @@ type _AddMemberToVirtualIPPayload AddMemberToVirtualIPPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddMemberToVirtualIPPayload(member *string) *AddMemberToVirtualIPPayload {
+func NewAddMemberToVirtualIPPayload(member AddMemberToVirtualIPPayloadGetMemberArgType) *AddMemberToVirtualIPPayload {
 	this := AddMemberToVirtualIPPayload{}
-	this.Member = member
+	setAddMemberToVirtualIPPayloadGetMemberAttributeType(&this.Member, member)
 	return &this
 }
 
@@ -45,32 +66,27 @@ func NewAddMemberToVirtualIPPayloadWithDefaults() *AddMemberToVirtualIPPayload {
 }
 
 // GetMember returns the Member field value
-func (o *AddMemberToVirtualIPPayload) GetMember() *string {
-	if o == nil || IsNil(o.Member) {
-		var ret *string
-		return ret
-	}
-
-	return o.Member
+func (o *AddMemberToVirtualIPPayload) GetMember() (ret AddMemberToVirtualIPPayloadGetMemberRetType) {
+	ret, _ = o.GetMemberOk()
+	return ret
 }
 
 // GetMemberOk returns a tuple with the Member field value
 // and a boolean to check if the value has been set.
-func (o *AddMemberToVirtualIPPayload) GetMemberOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Member, true
+func (o *AddMemberToVirtualIPPayload) GetMemberOk() (ret AddMemberToVirtualIPPayloadGetMemberRetType, ok bool) {
+	return getAddMemberToVirtualIPPayloadGetMemberAttributeTypeOk(o.Member)
 }
 
 // SetMember sets field value
-func (o *AddMemberToVirtualIPPayload) SetMember(v *string) {
-	o.Member = v
+func (o *AddMemberToVirtualIPPayload) SetMember(v AddMemberToVirtualIPPayloadGetMemberRetType) {
+	setAddMemberToVirtualIPPayloadGetMemberAttributeType(&o.Member, v)
 }
 
 func (o AddMemberToVirtualIPPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["member"] = o.Member
+	if val, ok := getAddMemberToVirtualIPPayloadGetMemberAttributeTypeOk(o.Member); ok {
+		toSerialize["Member"] = val
+	}
 	return toSerialize, nil
 }
 

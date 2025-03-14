@@ -17,12 +17,53 @@ import (
 // checks if the UpdateServerPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateServerPayload{}
 
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type UpdateServerPayloadGetLabelsAttributeType = *map[string]interface{}
+type UpdateServerPayloadGetLabelsArgType = map[string]interface{}
+type UpdateServerPayloadGetLabelsRetType = map[string]interface{}
+
+func getUpdateServerPayloadGetLabelsAttributeTypeOk(arg UpdateServerPayloadGetLabelsAttributeType) (ret UpdateServerPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateServerPayloadGetLabelsAttributeType(arg *UpdateServerPayloadGetLabelsAttributeType, val UpdateServerPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type UpdateServerPayloadGetNameAttributeType = *string
+
+func getUpdateServerPayloadGetNameAttributeTypeOk(arg UpdateServerPayloadGetNameAttributeType) (ret UpdateServerPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateServerPayloadGetNameAttributeType(arg *UpdateServerPayloadGetNameAttributeType, val UpdateServerPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type UpdateServerPayloadGetNameArgType = string
+type UpdateServerPayloadGetNameRetType = string
+
 // UpdateServerPayload Object that represents an update request body of a server.
 type UpdateServerPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels UpdateServerPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a Server.
-	Name *string `json:"name,omitempty"`
+	Name UpdateServerPayloadGetNameAttributeType `json:"name,omitempty"`
 }
 
 // NewUpdateServerPayload instantiates a new UpdateServerPayload object
@@ -43,76 +84,58 @@ func NewUpdateServerPayloadWithDefaults() *UpdateServerPayload {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateServerPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *UpdateServerPayload) GetLabels() (res UpdateServerPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateServerPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *UpdateServerPayload) GetLabelsOk() (ret UpdateServerPayloadGetLabelsRetType, ok bool) {
+	return getUpdateServerPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateServerPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *UpdateServerPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *UpdateServerPayload) SetLabels(v UpdateServerPayloadGetLabelsRetType) {
+	setUpdateServerPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateServerPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *UpdateServerPayload) GetName() (res UpdateServerPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateServerPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *UpdateServerPayload) GetNameOk() (ret UpdateServerPayloadGetNameRetType, ok bool) {
+	return getUpdateServerPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateServerPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateServerPayload) SetName(v *string) {
-	o.Name = v
+func (o *UpdateServerPayload) SetName(v UpdateServerPayloadGetNameRetType) {
+	setUpdateServerPayloadGetNameAttributeType(&o.Name, v)
 }
 
 func (o UpdateServerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getUpdateServerPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getUpdateServerPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,9 +17,29 @@ import (
 // checks if the CreateSecurityGroupRuleProtocol type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateSecurityGroupRuleProtocol{}
 
+/*
+	types and functions for protocol
+*/
+
+// isModel
+type CreateSecurityGroupRuleProtocolGetProtocolAttributeType = *CreateProtocol
+type CreateSecurityGroupRuleProtocolGetProtocolArgType = CreateProtocol
+type CreateSecurityGroupRuleProtocolGetProtocolRetType = CreateProtocol
+
+func getCreateSecurityGroupRuleProtocolGetProtocolAttributeTypeOk(arg CreateSecurityGroupRuleProtocolGetProtocolAttributeType) (ret CreateSecurityGroupRuleProtocolGetProtocolRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupRuleProtocolGetProtocolAttributeType(arg *CreateSecurityGroupRuleProtocolGetProtocolAttributeType, val CreateSecurityGroupRuleProtocolGetProtocolRetType) {
+	*arg = &val
+}
+
 // CreateSecurityGroupRuleProtocol The internet protocol which the rule should match.
 type CreateSecurityGroupRuleProtocol struct {
-	Protocol *CreateProtocol `json:"protocol,omitempty"`
+	Protocol CreateSecurityGroupRuleProtocolGetProtocolAttributeType `json:"protocol,omitempty"`
 }
 
 // NewCreateSecurityGroupRuleProtocol instantiates a new CreateSecurityGroupRuleProtocol object
@@ -40,41 +60,32 @@ func NewCreateSecurityGroupRuleProtocolWithDefaults() *CreateSecurityGroupRulePr
 }
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
-func (o *CreateSecurityGroupRuleProtocol) GetProtocol() *CreateProtocol {
-	if o == nil || IsNil(o.Protocol) {
-		var ret *CreateProtocol
-		return ret
-	}
-	return o.Protocol
+func (o *CreateSecurityGroupRuleProtocol) GetProtocol() (res CreateSecurityGroupRuleProtocolGetProtocolRetType) {
+	res, _ = o.GetProtocolOk()
+	return
 }
 
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupRuleProtocol) GetProtocolOk() (*CreateProtocol, bool) {
-	if o == nil || IsNil(o.Protocol) {
-		return nil, false
-	}
-	return o.Protocol, true
+func (o *CreateSecurityGroupRuleProtocol) GetProtocolOk() (ret CreateSecurityGroupRuleProtocolGetProtocolRetType, ok bool) {
+	return getCreateSecurityGroupRuleProtocolGetProtocolAttributeTypeOk(o.Protocol)
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *CreateSecurityGroupRuleProtocol) HasProtocol() bool {
-	if o != nil && !IsNil(o.Protocol) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProtocolOk()
+	return ok
 }
 
 // SetProtocol gets a reference to the given CreateProtocol and assigns it to the Protocol field.
-func (o *CreateSecurityGroupRuleProtocol) SetProtocol(v *CreateProtocol) {
-	o.Protocol = v
+func (o *CreateSecurityGroupRuleProtocol) SetProtocol(v CreateSecurityGroupRuleProtocolGetProtocolRetType) {
+	setCreateSecurityGroupRuleProtocolGetProtocolAttributeType(&o.Protocol, v)
 }
 
 func (o CreateSecurityGroupRuleProtocol) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
+	if val, ok := getCreateSecurityGroupRuleProtocolGetProtocolAttributeTypeOk(o.Protocol); ok {
+		toSerialize["Protocol"] = val
 	}
 	return toSerialize, nil
 }

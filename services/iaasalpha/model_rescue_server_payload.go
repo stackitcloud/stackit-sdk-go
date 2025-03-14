@@ -17,11 +17,32 @@ import (
 // checks if the RescueServerPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RescueServerPayload{}
 
+/*
+	types and functions for image
+*/
+
+// isNotNullableString
+type RescueServerPayloadGetImageAttributeType = *string
+
+func getRescueServerPayloadGetImageAttributeTypeOk(arg RescueServerPayloadGetImageAttributeType) (ret RescueServerPayloadGetImageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRescueServerPayloadGetImageAttributeType(arg *RescueServerPayloadGetImageAttributeType, val RescueServerPayloadGetImageRetType) {
+	*arg = &val
+}
+
+type RescueServerPayloadGetImageArgType = string
+type RescueServerPayloadGetImageRetType = string
+
 // RescueServerPayload struct for RescueServerPayload
 type RescueServerPayload struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Image *string `json:"image"`
+	Image RescueServerPayloadGetImageAttributeType `json:"image"`
 }
 
 type _RescueServerPayload RescueServerPayload
@@ -30,9 +51,9 @@ type _RescueServerPayload RescueServerPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRescueServerPayload(image *string) *RescueServerPayload {
+func NewRescueServerPayload(image RescueServerPayloadGetImageArgType) *RescueServerPayload {
 	this := RescueServerPayload{}
-	this.Image = image
+	setRescueServerPayloadGetImageAttributeType(&this.Image, image)
 	return &this
 }
 
@@ -45,32 +66,27 @@ func NewRescueServerPayloadWithDefaults() *RescueServerPayload {
 }
 
 // GetImage returns the Image field value
-func (o *RescueServerPayload) GetImage() *string {
-	if o == nil || IsNil(o.Image) {
-		var ret *string
-		return ret
-	}
-
-	return o.Image
+func (o *RescueServerPayload) GetImage() (ret RescueServerPayloadGetImageRetType) {
+	ret, _ = o.GetImageOk()
+	return ret
 }
 
 // GetImageOk returns a tuple with the Image field value
 // and a boolean to check if the value has been set.
-func (o *RescueServerPayload) GetImageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Image, true
+func (o *RescueServerPayload) GetImageOk() (ret RescueServerPayloadGetImageRetType, ok bool) {
+	return getRescueServerPayloadGetImageAttributeTypeOk(o.Image)
 }
 
 // SetImage sets field value
-func (o *RescueServerPayload) SetImage(v *string) {
-	o.Image = v
+func (o *RescueServerPayload) SetImage(v RescueServerPayloadGetImageRetType) {
+	setRescueServerPayloadGetImageAttributeType(&o.Image, v)
 }
 
 func (o RescueServerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["image"] = o.Image
+	if val, ok := getRescueServerPayloadGetImageAttributeTypeOk(o.Image); ok {
+		toSerialize["Image"] = val
+	}
 	return toSerialize, nil
 }
 

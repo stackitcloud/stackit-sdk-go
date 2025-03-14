@@ -18,28 +18,234 @@ import (
 // checks if the UpdateBackupPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateBackupPayload{}
 
+/*
+	types and functions for availabilityZone
+*/
+
+// isNotNullableString
+type UpdateBackupPayloadGetAvailabilityZoneAttributeType = *string
+
+func getUpdateBackupPayloadGetAvailabilityZoneAttributeTypeOk(arg UpdateBackupPayloadGetAvailabilityZoneAttributeType) (ret UpdateBackupPayloadGetAvailabilityZoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetAvailabilityZoneAttributeType(arg *UpdateBackupPayloadGetAvailabilityZoneAttributeType, val UpdateBackupPayloadGetAvailabilityZoneRetType) {
+	*arg = &val
+}
+
+type UpdateBackupPayloadGetAvailabilityZoneArgType = string
+type UpdateBackupPayloadGetAvailabilityZoneRetType = string
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type UpdateBackupPayloadGetCreatedAtAttributeType = *time.Time
+type UpdateBackupPayloadGetCreatedAtArgType = time.Time
+type UpdateBackupPayloadGetCreatedAtRetType = time.Time
+
+func getUpdateBackupPayloadGetCreatedAtAttributeTypeOk(arg UpdateBackupPayloadGetCreatedAtAttributeType) (ret UpdateBackupPayloadGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetCreatedAtAttributeType(arg *UpdateBackupPayloadGetCreatedAtAttributeType, val UpdateBackupPayloadGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type UpdateBackupPayloadGetIdAttributeType = *string
+
+func getUpdateBackupPayloadGetIdAttributeTypeOk(arg UpdateBackupPayloadGetIdAttributeType) (ret UpdateBackupPayloadGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetIdAttributeType(arg *UpdateBackupPayloadGetIdAttributeType, val UpdateBackupPayloadGetIdRetType) {
+	*arg = &val
+}
+
+type UpdateBackupPayloadGetIdArgType = string
+type UpdateBackupPayloadGetIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type UpdateBackupPayloadGetLabelsAttributeType = *map[string]interface{}
+type UpdateBackupPayloadGetLabelsArgType = map[string]interface{}
+type UpdateBackupPayloadGetLabelsRetType = map[string]interface{}
+
+func getUpdateBackupPayloadGetLabelsAttributeTypeOk(arg UpdateBackupPayloadGetLabelsAttributeType) (ret UpdateBackupPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetLabelsAttributeType(arg *UpdateBackupPayloadGetLabelsAttributeType, val UpdateBackupPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type UpdateBackupPayloadGetNameAttributeType = *string
+
+func getUpdateBackupPayloadGetNameAttributeTypeOk(arg UpdateBackupPayloadGetNameAttributeType) (ret UpdateBackupPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetNameAttributeType(arg *UpdateBackupPayloadGetNameAttributeType, val UpdateBackupPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type UpdateBackupPayloadGetNameArgType = string
+type UpdateBackupPayloadGetNameRetType = string
+
+/*
+	types and functions for size
+*/
+
+// isLong
+type UpdateBackupPayloadGetSizeAttributeType = *int64
+type UpdateBackupPayloadGetSizeArgType = int64
+type UpdateBackupPayloadGetSizeRetType = int64
+
+func getUpdateBackupPayloadGetSizeAttributeTypeOk(arg UpdateBackupPayloadGetSizeAttributeType) (ret UpdateBackupPayloadGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetSizeAttributeType(arg *UpdateBackupPayloadGetSizeAttributeType, val UpdateBackupPayloadGetSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for snapshotId
+*/
+
+// isNotNullableString
+type UpdateBackupPayloadGetSnapshotIdAttributeType = *string
+
+func getUpdateBackupPayloadGetSnapshotIdAttributeTypeOk(arg UpdateBackupPayloadGetSnapshotIdAttributeType) (ret UpdateBackupPayloadGetSnapshotIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetSnapshotIdAttributeType(arg *UpdateBackupPayloadGetSnapshotIdAttributeType, val UpdateBackupPayloadGetSnapshotIdRetType) {
+	*arg = &val
+}
+
+type UpdateBackupPayloadGetSnapshotIdArgType = string
+type UpdateBackupPayloadGetSnapshotIdRetType = string
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type UpdateBackupPayloadGetStatusAttributeType = *string
+
+func getUpdateBackupPayloadGetStatusAttributeTypeOk(arg UpdateBackupPayloadGetStatusAttributeType) (ret UpdateBackupPayloadGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetStatusAttributeType(arg *UpdateBackupPayloadGetStatusAttributeType, val UpdateBackupPayloadGetStatusRetType) {
+	*arg = &val
+}
+
+type UpdateBackupPayloadGetStatusArgType = string
+type UpdateBackupPayloadGetStatusRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type UpdateBackupPayloadGetUpdatedAtAttributeType = *time.Time
+type UpdateBackupPayloadGetUpdatedAtArgType = time.Time
+type UpdateBackupPayloadGetUpdatedAtRetType = time.Time
+
+func getUpdateBackupPayloadGetUpdatedAtAttributeTypeOk(arg UpdateBackupPayloadGetUpdatedAtAttributeType) (ret UpdateBackupPayloadGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetUpdatedAtAttributeType(arg *UpdateBackupPayloadGetUpdatedAtAttributeType, val UpdateBackupPayloadGetUpdatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for volumeId
+*/
+
+// isNotNullableString
+type UpdateBackupPayloadGetVolumeIdAttributeType = *string
+
+func getUpdateBackupPayloadGetVolumeIdAttributeTypeOk(arg UpdateBackupPayloadGetVolumeIdAttributeType) (ret UpdateBackupPayloadGetVolumeIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadGetVolumeIdAttributeType(arg *UpdateBackupPayloadGetVolumeIdAttributeType, val UpdateBackupPayloadGetVolumeIdRetType) {
+	*arg = &val
+}
+
+type UpdateBackupPayloadGetVolumeIdArgType = string
+type UpdateBackupPayloadGetVolumeIdRetType = string
+
 // UpdateBackupPayload Object that represents a backup.
 type UpdateBackupPayload struct {
 	// Object that represents an availability zone.
-	AvailabilityZone *string `json:"availabilityZone,omitempty"`
+	AvailabilityZone UpdateBackupPayloadGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt UpdateBackupPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id UpdateBackupPayloadGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels UpdateBackupPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty"`
+	Name UpdateBackupPayloadGetNameAttributeType `json:"name,omitempty"`
 	// Size in Gigabyte.
-	Size *int64 `json:"size,omitempty"`
+	Size UpdateBackupPayloadGetSizeAttributeType `json:"size,omitempty"`
 	// Universally Unique Identifier (UUID).
-	SnapshotId *string `json:"snapshotId,omitempty"`
+	SnapshotId UpdateBackupPayloadGetSnapshotIdAttributeType `json:"snapshotId,omitempty"`
 	// The status of a backup object. Possible values: `AVAILABLE`, `CREATING`, `DELETED`, `DELETING`, `ERROR`, `RESTORING`.
-	Status *string `json:"status,omitempty"`
+	Status UpdateBackupPayloadGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt UpdateBackupPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 	// Universally Unique Identifier (UUID).
-	VolumeId *string `json:"volumeId,omitempty"`
+	VolumeId UpdateBackupPayloadGetVolumeIdAttributeType `json:"volumeId,omitempty"`
 }
 
 // NewUpdateBackupPayload instantiates a new UpdateBackupPayload object
@@ -60,356 +266,266 @@ func NewUpdateBackupPayloadWithDefaults() *UpdateBackupPayload {
 }
 
 // GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetAvailabilityZone() *string {
-	if o == nil || IsNil(o.AvailabilityZone) {
-		var ret *string
-		return ret
-	}
-	return o.AvailabilityZone
+func (o *UpdateBackupPayload) GetAvailabilityZone() (res UpdateBackupPayloadGetAvailabilityZoneRetType) {
+	res, _ = o.GetAvailabilityZoneOk()
+	return
 }
 
 // GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetAvailabilityZoneOk() (*string, bool) {
-	if o == nil || IsNil(o.AvailabilityZone) {
-		return nil, false
-	}
-	return o.AvailabilityZone, true
+func (o *UpdateBackupPayload) GetAvailabilityZoneOk() (ret UpdateBackupPayloadGetAvailabilityZoneRetType, ok bool) {
+	return getUpdateBackupPayloadGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone)
 }
 
 // HasAvailabilityZone returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasAvailabilityZone() bool {
-	if o != nil && !IsNil(o.AvailabilityZone) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAvailabilityZoneOk()
+	return ok
 }
 
 // SetAvailabilityZone gets a reference to the given string and assigns it to the AvailabilityZone field.
-func (o *UpdateBackupPayload) SetAvailabilityZone(v *string) {
-	o.AvailabilityZone = v
+func (o *UpdateBackupPayload) SetAvailabilityZone(v UpdateBackupPayloadGetAvailabilityZoneRetType) {
+	setUpdateBackupPayloadGetAvailabilityZoneAttributeType(&o.AvailabilityZone, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *UpdateBackupPayload) GetCreatedAt() (res UpdateBackupPayloadGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *UpdateBackupPayload) GetCreatedAtOk() (ret UpdateBackupPayloadGetCreatedAtRetType, ok bool) {
+	return getUpdateBackupPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *UpdateBackupPayload) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *UpdateBackupPayload) SetCreatedAt(v UpdateBackupPayloadGetCreatedAtRetType) {
+	setUpdateBackupPayloadGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *UpdateBackupPayload) GetId() (res UpdateBackupPayloadGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *UpdateBackupPayload) GetIdOk() (ret UpdateBackupPayloadGetIdRetType, ok bool) {
+	return getUpdateBackupPayloadGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *UpdateBackupPayload) SetId(v *string) {
-	o.Id = v
+func (o *UpdateBackupPayload) SetId(v UpdateBackupPayloadGetIdRetType) {
+	setUpdateBackupPayloadGetIdAttributeType(&o.Id, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *UpdateBackupPayload) GetLabels() (res UpdateBackupPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *UpdateBackupPayload) GetLabelsOk() (ret UpdateBackupPayloadGetLabelsRetType, ok bool) {
+	return getUpdateBackupPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *UpdateBackupPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *UpdateBackupPayload) SetLabels(v UpdateBackupPayloadGetLabelsRetType) {
+	setUpdateBackupPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *UpdateBackupPayload) GetName() (res UpdateBackupPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *UpdateBackupPayload) GetNameOk() (ret UpdateBackupPayloadGetNameRetType, ok bool) {
+	return getUpdateBackupPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateBackupPayload) SetName(v *string) {
-	o.Name = v
+func (o *UpdateBackupPayload) SetName(v UpdateBackupPayloadGetNameRetType) {
+	setUpdateBackupPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-	return o.Size
+func (o *UpdateBackupPayload) GetSize() (res UpdateBackupPayloadGetSizeRetType) {
+	res, _ = o.GetSizeOk()
+	return
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Size) {
-		return nil, false
-	}
-	return o.Size, true
+func (o *UpdateBackupPayload) GetSizeOk() (ret UpdateBackupPayloadGetSizeRetType, ok bool) {
+	return getUpdateBackupPayloadGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSizeOk()
+	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *UpdateBackupPayload) SetSize(v *int64) {
-	o.Size = v
+func (o *UpdateBackupPayload) SetSize(v UpdateBackupPayloadGetSizeRetType) {
+	setUpdateBackupPayloadGetSizeAttributeType(&o.Size, v)
 }
 
 // GetSnapshotId returns the SnapshotId field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetSnapshotId() *string {
-	if o == nil || IsNil(o.SnapshotId) {
-		var ret *string
-		return ret
-	}
-	return o.SnapshotId
+func (o *UpdateBackupPayload) GetSnapshotId() (res UpdateBackupPayloadGetSnapshotIdRetType) {
+	res, _ = o.GetSnapshotIdOk()
+	return
 }
 
 // GetSnapshotIdOk returns a tuple with the SnapshotId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetSnapshotIdOk() (*string, bool) {
-	if o == nil || IsNil(o.SnapshotId) {
-		return nil, false
-	}
-	return o.SnapshotId, true
+func (o *UpdateBackupPayload) GetSnapshotIdOk() (ret UpdateBackupPayloadGetSnapshotIdRetType, ok bool) {
+	return getUpdateBackupPayloadGetSnapshotIdAttributeTypeOk(o.SnapshotId)
 }
 
 // HasSnapshotId returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasSnapshotId() bool {
-	if o != nil && !IsNil(o.SnapshotId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSnapshotIdOk()
+	return ok
 }
 
 // SetSnapshotId gets a reference to the given string and assigns it to the SnapshotId field.
-func (o *UpdateBackupPayload) SetSnapshotId(v *string) {
-	o.SnapshotId = v
+func (o *UpdateBackupPayload) SetSnapshotId(v UpdateBackupPayloadGetSnapshotIdRetType) {
+	setUpdateBackupPayloadGetSnapshotIdAttributeType(&o.SnapshotId, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *UpdateBackupPayload) GetStatus() (res UpdateBackupPayloadGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *UpdateBackupPayload) GetStatusOk() (ret UpdateBackupPayloadGetStatusRetType, ok bool) {
+	return getUpdateBackupPayloadGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *UpdateBackupPayload) SetStatus(v *string) {
-	o.Status = v
+func (o *UpdateBackupPayload) SetStatus(v UpdateBackupPayloadGetStatusRetType) {
+	setUpdateBackupPayloadGetStatusAttributeType(&o.Status, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *UpdateBackupPayload) GetUpdatedAt() (res UpdateBackupPayloadGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *UpdateBackupPayload) GetUpdatedAtOk() (ret UpdateBackupPayloadGetUpdatedAtRetType, ok bool) {
+	return getUpdateBackupPayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *UpdateBackupPayload) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *UpdateBackupPayload) SetUpdatedAt(v UpdateBackupPayloadGetUpdatedAtRetType) {
+	setUpdateBackupPayloadGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 // GetVolumeId returns the VolumeId field value if set, zero value otherwise.
-func (o *UpdateBackupPayload) GetVolumeId() *string {
-	if o == nil || IsNil(o.VolumeId) {
-		var ret *string
-		return ret
-	}
-	return o.VolumeId
+func (o *UpdateBackupPayload) GetVolumeId() (res UpdateBackupPayloadGetVolumeIdRetType) {
+	res, _ = o.GetVolumeIdOk()
+	return
 }
 
 // GetVolumeIdOk returns a tuple with the VolumeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupPayload) GetVolumeIdOk() (*string, bool) {
-	if o == nil || IsNil(o.VolumeId) {
-		return nil, false
-	}
-	return o.VolumeId, true
+func (o *UpdateBackupPayload) GetVolumeIdOk() (ret UpdateBackupPayloadGetVolumeIdRetType, ok bool) {
+	return getUpdateBackupPayloadGetVolumeIdAttributeTypeOk(o.VolumeId)
 }
 
 // HasVolumeId returns a boolean if a field has been set.
 func (o *UpdateBackupPayload) HasVolumeId() bool {
-	if o != nil && !IsNil(o.VolumeId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVolumeIdOk()
+	return ok
 }
 
 // SetVolumeId gets a reference to the given string and assigns it to the VolumeId field.
-func (o *UpdateBackupPayload) SetVolumeId(v *string) {
-	o.VolumeId = v
+func (o *UpdateBackupPayload) SetVolumeId(v UpdateBackupPayloadGetVolumeIdRetType) {
+	setUpdateBackupPayloadGetVolumeIdAttributeType(&o.VolumeId, v)
 }
 
 func (o UpdateBackupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AvailabilityZone) {
-		toSerialize["availabilityZone"] = o.AvailabilityZone
+	if val, ok := getUpdateBackupPayloadGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone); ok {
+		toSerialize["AvailabilityZone"] = val
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getUpdateBackupPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getUpdateBackupPayloadGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getUpdateBackupPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getUpdateBackupPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Size) {
-		toSerialize["size"] = o.Size
+	if val, ok := getUpdateBackupPayloadGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
 	}
-	if !IsNil(o.SnapshotId) {
-		toSerialize["snapshotId"] = o.SnapshotId
+	if val, ok := getUpdateBackupPayloadGetSnapshotIdAttributeTypeOk(o.SnapshotId); ok {
+		toSerialize["SnapshotId"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getUpdateBackupPayloadGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getUpdateBackupPayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
-	if !IsNil(o.VolumeId) {
-		toSerialize["volumeId"] = o.VolumeId
+	if val, ok := getUpdateBackupPayloadGetVolumeIdAttributeTypeOk(o.VolumeId); ok {
+		toSerialize["VolumeId"] = val
 	}
 	return toSerialize, nil
 }
