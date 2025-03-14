@@ -17,11 +17,52 @@ import (
 // checks if the GetEmbeddingsModelResp type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetEmbeddingsModelResp{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type GetEmbeddingsModelRespGetMessageAttributeType = *string
+
+func getGetEmbeddingsModelRespGetMessageAttributeTypeOk(arg GetEmbeddingsModelRespGetMessageAttributeType) (ret GetEmbeddingsModelRespGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetEmbeddingsModelRespGetMessageAttributeType(arg *GetEmbeddingsModelRespGetMessageAttributeType, val GetEmbeddingsModelRespGetMessageRetType) {
+	*arg = &val
+}
+
+type GetEmbeddingsModelRespGetMessageArgType = string
+type GetEmbeddingsModelRespGetMessageRetType = string
+
+/*
+	types and functions for model
+*/
+
+// isModel
+type GetEmbeddingsModelRespGetModelAttributeType = *EmbeddingModelDetails
+type GetEmbeddingsModelRespGetModelArgType = EmbeddingModelDetails
+type GetEmbeddingsModelRespGetModelRetType = EmbeddingModelDetails
+
+func getGetEmbeddingsModelRespGetModelAttributeTypeOk(arg GetEmbeddingsModelRespGetModelAttributeType) (ret GetEmbeddingsModelRespGetModelRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetEmbeddingsModelRespGetModelAttributeType(arg *GetEmbeddingsModelRespGetModelAttributeType, val GetEmbeddingsModelRespGetModelRetType) {
+	*arg = &val
+}
+
 // GetEmbeddingsModelResp struct for GetEmbeddingsModelResp
 type GetEmbeddingsModelResp struct {
-	Message *string `json:"message,omitempty"`
+	Message GetEmbeddingsModelRespGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Model *EmbeddingModelDetails `json:"model"`
+	Model GetEmbeddingsModelRespGetModelAttributeType `json:"model"`
 }
 
 type _GetEmbeddingsModelResp GetEmbeddingsModelResp
@@ -30,9 +71,9 @@ type _GetEmbeddingsModelResp GetEmbeddingsModelResp
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetEmbeddingsModelResp(model *EmbeddingModelDetails) *GetEmbeddingsModelResp {
+func NewGetEmbeddingsModelResp(model GetEmbeddingsModelRespGetModelArgType) *GetEmbeddingsModelResp {
 	this := GetEmbeddingsModelResp{}
-	this.Model = model
+	setGetEmbeddingsModelRespGetModelAttributeType(&this.Model, model)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewGetEmbeddingsModelRespWithDefaults() *GetEmbeddingsModelResp {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *GetEmbeddingsModelResp) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *GetEmbeddingsModelResp) GetMessage() (res GetEmbeddingsModelRespGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetEmbeddingsModelResp) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *GetEmbeddingsModelResp) GetMessageOk() (ret GetEmbeddingsModelRespGetMessageRetType, ok bool) {
+	return getGetEmbeddingsModelRespGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *GetEmbeddingsModelResp) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *GetEmbeddingsModelResp) SetMessage(v *string) {
-	o.Message = v
+func (o *GetEmbeddingsModelResp) SetMessage(v GetEmbeddingsModelRespGetMessageRetType) {
+	setGetEmbeddingsModelRespGetMessageAttributeType(&o.Message, v)
 }
 
 // GetModel returns the Model field value
-func (o *GetEmbeddingsModelResp) GetModel() *EmbeddingModelDetails {
-	if o == nil || IsNil(o.Model) {
-		var ret *EmbeddingModelDetails
-		return ret
-	}
-
-	return o.Model
+func (o *GetEmbeddingsModelResp) GetModel() (ret GetEmbeddingsModelRespGetModelRetType) {
+	ret, _ = o.GetModelOk()
+	return ret
 }
 
 // GetModelOk returns a tuple with the Model field value
 // and a boolean to check if the value has been set.
-func (o *GetEmbeddingsModelResp) GetModelOk() (*EmbeddingModelDetails, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Model, true
+func (o *GetEmbeddingsModelResp) GetModelOk() (ret GetEmbeddingsModelRespGetModelRetType, ok bool) {
+	return getGetEmbeddingsModelRespGetModelAttributeTypeOk(o.Model)
 }
 
 // SetModel sets field value
-func (o *GetEmbeddingsModelResp) SetModel(v *EmbeddingModelDetails) {
-	o.Model = v
+func (o *GetEmbeddingsModelResp) SetModel(v GetEmbeddingsModelRespGetModelRetType) {
+	setGetEmbeddingsModelRespGetModelAttributeType(&o.Model, v)
 }
 
 func (o GetEmbeddingsModelResp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getGetEmbeddingsModelRespGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	toSerialize["model"] = o.Model
+	if val, ok := getGetEmbeddingsModelRespGetModelAttributeTypeOk(o.Model); ok {
+		toSerialize["Model"] = val
+	}
 	return toSerialize, nil
 }
 

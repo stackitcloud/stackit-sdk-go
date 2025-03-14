@@ -17,11 +17,52 @@ import (
 // checks if the UpdateTokenResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateTokenResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type UpdateTokenResponseGetMessageAttributeType = *string
+
+func getUpdateTokenResponseGetMessageAttributeTypeOk(arg UpdateTokenResponseGetMessageAttributeType) (ret UpdateTokenResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateTokenResponseGetMessageAttributeType(arg *UpdateTokenResponseGetMessageAttributeType, val UpdateTokenResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type UpdateTokenResponseGetMessageArgType = string
+type UpdateTokenResponseGetMessageRetType = string
+
+/*
+	types and functions for token
+*/
+
+// isModel
+type UpdateTokenResponseGetTokenAttributeType = *Token
+type UpdateTokenResponseGetTokenArgType = Token
+type UpdateTokenResponseGetTokenRetType = Token
+
+func getUpdateTokenResponseGetTokenAttributeTypeOk(arg UpdateTokenResponseGetTokenAttributeType) (ret UpdateTokenResponseGetTokenRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateTokenResponseGetTokenAttributeType(arg *UpdateTokenResponseGetTokenAttributeType, val UpdateTokenResponseGetTokenRetType) {
+	*arg = &val
+}
+
 // UpdateTokenResponse struct for UpdateTokenResponse
 type UpdateTokenResponse struct {
-	Message *string `json:"message,omitempty"`
+	Message UpdateTokenResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Token *Token `json:"token"`
+	Token UpdateTokenResponseGetTokenAttributeType `json:"token"`
 }
 
 type _UpdateTokenResponse UpdateTokenResponse
@@ -30,9 +71,9 @@ type _UpdateTokenResponse UpdateTokenResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateTokenResponse(token *Token) *UpdateTokenResponse {
+func NewUpdateTokenResponse(token UpdateTokenResponseGetTokenArgType) *UpdateTokenResponse {
 	this := UpdateTokenResponse{}
-	this.Token = token
+	setUpdateTokenResponseGetTokenAttributeType(&this.Token, token)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewUpdateTokenResponseWithDefaults() *UpdateTokenResponse {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *UpdateTokenResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *UpdateTokenResponse) GetMessage() (res UpdateTokenResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateTokenResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *UpdateTokenResponse) GetMessageOk() (ret UpdateTokenResponseGetMessageRetType, ok bool) {
+	return getUpdateTokenResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *UpdateTokenResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *UpdateTokenResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *UpdateTokenResponse) SetMessage(v UpdateTokenResponseGetMessageRetType) {
+	setUpdateTokenResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetToken returns the Token field value
-func (o *UpdateTokenResponse) GetToken() *Token {
-	if o == nil || IsNil(o.Token) {
-		var ret *Token
-		return ret
-	}
-
-	return o.Token
+func (o *UpdateTokenResponse) GetToken() (ret UpdateTokenResponseGetTokenRetType) {
+	ret, _ = o.GetTokenOk()
+	return ret
 }
 
 // GetTokenOk returns a tuple with the Token field value
 // and a boolean to check if the value has been set.
-func (o *UpdateTokenResponse) GetTokenOk() (*Token, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Token, true
+func (o *UpdateTokenResponse) GetTokenOk() (ret UpdateTokenResponseGetTokenRetType, ok bool) {
+	return getUpdateTokenResponseGetTokenAttributeTypeOk(o.Token)
 }
 
 // SetToken sets field value
-func (o *UpdateTokenResponse) SetToken(v *Token) {
-	o.Token = v
+func (o *UpdateTokenResponse) SetToken(v UpdateTokenResponseGetTokenRetType) {
+	setUpdateTokenResponseGetTokenAttributeType(&o.Token, v)
 }
 
 func (o UpdateTokenResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getUpdateTokenResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	toSerialize["token"] = o.Token
+	if val, ok := getUpdateTokenResponseGetTokenAttributeTypeOk(o.Token); ok {
+		toSerialize["Token"] = val
+	}
 	return toSerialize, nil
 }
 

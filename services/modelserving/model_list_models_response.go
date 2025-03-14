@@ -17,11 +17,52 @@ import (
 // checks if the ListModelsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListModelsResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ListModelsResponseGetMessageAttributeType = *string
+
+func getListModelsResponseGetMessageAttributeTypeOk(arg ListModelsResponseGetMessageAttributeType) (ret ListModelsResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListModelsResponseGetMessageAttributeType(arg *ListModelsResponseGetMessageAttributeType, val ListModelsResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ListModelsResponseGetMessageArgType = string
+type ListModelsResponseGetMessageRetType = string
+
+/*
+	types and functions for models
+*/
+
+// isArray
+type ListModelsResponseGetModelsAttributeType = *[]Model
+type ListModelsResponseGetModelsArgType = []Model
+type ListModelsResponseGetModelsRetType = []Model
+
+func getListModelsResponseGetModelsAttributeTypeOk(arg ListModelsResponseGetModelsAttributeType) (ret ListModelsResponseGetModelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListModelsResponseGetModelsAttributeType(arg *ListModelsResponseGetModelsAttributeType, val ListModelsResponseGetModelsRetType) {
+	*arg = &val
+}
+
 // ListModelsResponse struct for ListModelsResponse
 type ListModelsResponse struct {
-	Message *string `json:"message,omitempty"`
+	Message ListModelsResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Models *[]Model `json:"models"`
+	Models ListModelsResponseGetModelsAttributeType `json:"models"`
 }
 
 type _ListModelsResponse ListModelsResponse
@@ -30,9 +71,9 @@ type _ListModelsResponse ListModelsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListModelsResponse(models *[]Model) *ListModelsResponse {
+func NewListModelsResponse(models ListModelsResponseGetModelsArgType) *ListModelsResponse {
 	this := ListModelsResponse{}
-	this.Models = models
+	setListModelsResponseGetModelsAttributeType(&this.Models, models)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewListModelsResponseWithDefaults() *ListModelsResponse {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ListModelsResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *ListModelsResponse) GetMessage() (res ListModelsResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListModelsResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ListModelsResponse) GetMessageOk() (ret ListModelsResponseGetMessageRetType, ok bool) {
+	return getListModelsResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ListModelsResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ListModelsResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ListModelsResponse) SetMessage(v ListModelsResponseGetMessageRetType) {
+	setListModelsResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetModels returns the Models field value
-func (o *ListModelsResponse) GetModels() *[]Model {
-	if o == nil || IsNil(o.Models) {
-		var ret *[]Model
-		return ret
-	}
-
-	return o.Models
+func (o *ListModelsResponse) GetModels() (ret ListModelsResponseGetModelsRetType) {
+	ret, _ = o.GetModelsOk()
+	return ret
 }
 
 // GetModelsOk returns a tuple with the Models field value
 // and a boolean to check if the value has been set.
-func (o *ListModelsResponse) GetModelsOk() (*[]Model, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Models, true
+func (o *ListModelsResponse) GetModelsOk() (ret ListModelsResponseGetModelsRetType, ok bool) {
+	return getListModelsResponseGetModelsAttributeTypeOk(o.Models)
 }
 
 // SetModels sets field value
-func (o *ListModelsResponse) SetModels(v *[]Model) {
-	o.Models = v
+func (o *ListModelsResponse) SetModels(v ListModelsResponseGetModelsRetType) {
+	setListModelsResponseGetModelsAttributeType(&o.Models, v)
 }
 
 func (o ListModelsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getListModelsResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	toSerialize["models"] = o.Models
+	if val, ok := getListModelsResponseGetModelsAttributeTypeOk(o.Models); ok {
+		toSerialize["Models"] = val
+	}
 	return toSerialize, nil
 }
 
