@@ -17,11 +17,52 @@ import (
 // checks if the GetChatModelResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetChatModelResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type GetChatModelResponseGetMessageAttributeType = *string
+
+func getGetChatModelResponseGetMessageAttributeTypeOk(arg GetChatModelResponseGetMessageAttributeType) (ret GetChatModelResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetChatModelResponseGetMessageAttributeType(arg *GetChatModelResponseGetMessageAttributeType, val GetChatModelResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type GetChatModelResponseGetMessageArgType = string
+type GetChatModelResponseGetMessageRetType = string
+
+/*
+	types and functions for model
+*/
+
+// isModel
+type GetChatModelResponseGetModelAttributeType = *ChatModelDetails
+type GetChatModelResponseGetModelArgType = ChatModelDetails
+type GetChatModelResponseGetModelRetType = ChatModelDetails
+
+func getGetChatModelResponseGetModelAttributeTypeOk(arg GetChatModelResponseGetModelAttributeType) (ret GetChatModelResponseGetModelRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetChatModelResponseGetModelAttributeType(arg *GetChatModelResponseGetModelAttributeType, val GetChatModelResponseGetModelRetType) {
+	*arg = &val
+}
+
 // GetChatModelResponse struct for GetChatModelResponse
 type GetChatModelResponse struct {
-	Message *string `json:"message,omitempty"`
+	Message GetChatModelResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Model *ChatModelDetails `json:"model"`
+	Model GetChatModelResponseGetModelAttributeType `json:"model"`
 }
 
 type _GetChatModelResponse GetChatModelResponse
@@ -30,9 +71,9 @@ type _GetChatModelResponse GetChatModelResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetChatModelResponse(model *ChatModelDetails) *GetChatModelResponse {
+func NewGetChatModelResponse(model GetChatModelResponseGetModelArgType) *GetChatModelResponse {
 	this := GetChatModelResponse{}
-	this.Model = model
+	setGetChatModelResponseGetModelAttributeType(&this.Model, model)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewGetChatModelResponseWithDefaults() *GetChatModelResponse {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *GetChatModelResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *GetChatModelResponse) GetMessage() (res GetChatModelResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetChatModelResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *GetChatModelResponse) GetMessageOk() (ret GetChatModelResponseGetMessageRetType, ok bool) {
+	return getGetChatModelResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *GetChatModelResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *GetChatModelResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *GetChatModelResponse) SetMessage(v GetChatModelResponseGetMessageRetType) {
+	setGetChatModelResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetModel returns the Model field value
-func (o *GetChatModelResponse) GetModel() *ChatModelDetails {
-	if o == nil || IsNil(o.Model) {
-		var ret *ChatModelDetails
-		return ret
-	}
-
-	return o.Model
+func (o *GetChatModelResponse) GetModel() (ret GetChatModelResponseGetModelRetType) {
+	ret, _ = o.GetModelOk()
+	return ret
 }
 
 // GetModelOk returns a tuple with the Model field value
 // and a boolean to check if the value has been set.
-func (o *GetChatModelResponse) GetModelOk() (*ChatModelDetails, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Model, true
+func (o *GetChatModelResponse) GetModelOk() (ret GetChatModelResponseGetModelRetType, ok bool) {
+	return getGetChatModelResponseGetModelAttributeTypeOk(o.Model)
 }
 
 // SetModel sets field value
-func (o *GetChatModelResponse) SetModel(v *ChatModelDetails) {
-	o.Model = v
+func (o *GetChatModelResponse) SetModel(v GetChatModelResponseGetModelRetType) {
+	setGetChatModelResponseGetModelAttributeType(&o.Model, v)
 }
 
 func (o GetChatModelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getGetChatModelResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	toSerialize["model"] = o.Model
+	if val, ok := getGetChatModelResponseGetModelAttributeTypeOk(o.Model); ok {
+		toSerialize["Model"] = val
+	}
 	return toSerialize, nil
 }
 
