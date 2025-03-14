@@ -17,11 +17,52 @@ import (
 // checks if the RecordSetResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RecordSetResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type RecordSetResponseGetMessageAttributeType = *string
+
+func getRecordSetResponseGetMessageAttributeTypeOk(arg RecordSetResponseGetMessageAttributeType) (ret RecordSetResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetResponseGetMessageAttributeType(arg *RecordSetResponseGetMessageAttributeType, val RecordSetResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type RecordSetResponseGetMessageArgType = string
+type RecordSetResponseGetMessageRetType = string
+
+/*
+	types and functions for rrset
+*/
+
+// isModel
+type RecordSetResponseGetRrsetAttributeType = *RecordSet
+type RecordSetResponseGetRrsetArgType = RecordSet
+type RecordSetResponseGetRrsetRetType = RecordSet
+
+func getRecordSetResponseGetRrsetAttributeTypeOk(arg RecordSetResponseGetRrsetAttributeType) (ret RecordSetResponseGetRrsetRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetResponseGetRrsetAttributeType(arg *RecordSetResponseGetRrsetAttributeType, val RecordSetResponseGetRrsetRetType) {
+	*arg = &val
+}
+
 // RecordSetResponse ResponseRRSet for rr set info.
 type RecordSetResponse struct {
-	Message *string `json:"message,omitempty"`
+	Message RecordSetResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Rrset *RecordSet `json:"rrset"`
+	Rrset RecordSetResponseGetRrsetAttributeType `json:"rrset"`
 }
 
 type _RecordSetResponse RecordSetResponse
@@ -30,9 +71,9 @@ type _RecordSetResponse RecordSetResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecordSetResponse(rrset *RecordSet) *RecordSetResponse {
+func NewRecordSetResponse(rrset RecordSetResponseGetRrsetArgType) *RecordSetResponse {
 	this := RecordSetResponse{}
-	this.Rrset = rrset
+	setRecordSetResponseGetRrsetAttributeType(&this.Rrset, rrset)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewRecordSetResponseWithDefaults() *RecordSetResponse {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *RecordSetResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *RecordSetResponse) GetMessage() (res RecordSetResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordSetResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *RecordSetResponse) GetMessageOk() (ret RecordSetResponseGetMessageRetType, ok bool) {
+	return getRecordSetResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *RecordSetResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *RecordSetResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *RecordSetResponse) SetMessage(v RecordSetResponseGetMessageRetType) {
+	setRecordSetResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetRrset returns the Rrset field value
-func (o *RecordSetResponse) GetRrset() *RecordSet {
-	if o == nil || IsNil(o.Rrset) {
-		var ret *RecordSet
-		return ret
-	}
-
-	return o.Rrset
+func (o *RecordSetResponse) GetRrset() (ret RecordSetResponseGetRrsetRetType) {
+	ret, _ = o.GetRrsetOk()
+	return ret
 }
 
 // GetRrsetOk returns a tuple with the Rrset field value
 // and a boolean to check if the value has been set.
-func (o *RecordSetResponse) GetRrsetOk() (*RecordSet, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Rrset, true
+func (o *RecordSetResponse) GetRrsetOk() (ret RecordSetResponseGetRrsetRetType, ok bool) {
+	return getRecordSetResponseGetRrsetAttributeTypeOk(o.Rrset)
 }
 
 // SetRrset sets field value
-func (o *RecordSetResponse) SetRrset(v *RecordSet) {
-	o.Rrset = v
+func (o *RecordSetResponse) SetRrset(v RecordSetResponseGetRrsetRetType) {
+	setRecordSetResponseGetRrsetAttributeType(&o.Rrset, v)
 }
 
 func (o RecordSetResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getRecordSetResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	toSerialize["rrset"] = o.Rrset
+	if val, ok := getRecordSetResponseGetRrsetAttributeTypeOk(o.Rrset); ok {
+		toSerialize["Rrset"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,10 +17,51 @@ import (
 // checks if the DeleteLabelResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeleteLabelResponse{}
 
+/*
+	types and functions for label
+*/
+
+// isModel
+type DeleteLabelResponseGetLabelAttributeType = *Label
+type DeleteLabelResponseGetLabelArgType = Label
+type DeleteLabelResponseGetLabelRetType = Label
+
+func getDeleteLabelResponseGetLabelAttributeTypeOk(arg DeleteLabelResponseGetLabelAttributeType) (ret DeleteLabelResponseGetLabelRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDeleteLabelResponseGetLabelAttributeType(arg *DeleteLabelResponseGetLabelAttributeType, val DeleteLabelResponseGetLabelRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type DeleteLabelResponseGetMessageAttributeType = *string
+
+func getDeleteLabelResponseGetMessageAttributeTypeOk(arg DeleteLabelResponseGetMessageAttributeType) (ret DeleteLabelResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDeleteLabelResponseGetMessageAttributeType(arg *DeleteLabelResponseGetMessageAttributeType, val DeleteLabelResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type DeleteLabelResponseGetMessageArgType = string
+type DeleteLabelResponseGetMessageRetType = string
+
 // DeleteLabelResponse ResponseDeleteLabel.
 type DeleteLabelResponse struct {
-	Label   *Label  `json:"label,omitempty"`
-	Message *string `json:"message,omitempty"`
+	Label   DeleteLabelResponseGetLabelAttributeType   `json:"label,omitempty"`
+	Message DeleteLabelResponseGetMessageAttributeType `json:"message,omitempty"`
 }
 
 // NewDeleteLabelResponse instantiates a new DeleteLabelResponse object
@@ -41,76 +82,58 @@ func NewDeleteLabelResponseWithDefaults() *DeleteLabelResponse {
 }
 
 // GetLabel returns the Label field value if set, zero value otherwise.
-func (o *DeleteLabelResponse) GetLabel() *Label {
-	if o == nil || IsNil(o.Label) {
-		var ret *Label
-		return ret
-	}
-	return o.Label
+func (o *DeleteLabelResponse) GetLabel() (res DeleteLabelResponseGetLabelRetType) {
+	res, _ = o.GetLabelOk()
+	return
 }
 
 // GetLabelOk returns a tuple with the Label field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteLabelResponse) GetLabelOk() (*Label, bool) {
-	if o == nil || IsNil(o.Label) {
-		return nil, false
-	}
-	return o.Label, true
+func (o *DeleteLabelResponse) GetLabelOk() (ret DeleteLabelResponseGetLabelRetType, ok bool) {
+	return getDeleteLabelResponseGetLabelAttributeTypeOk(o.Label)
 }
 
 // HasLabel returns a boolean if a field has been set.
 func (o *DeleteLabelResponse) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelOk()
+	return ok
 }
 
 // SetLabel gets a reference to the given Label and assigns it to the Label field.
-func (o *DeleteLabelResponse) SetLabel(v *Label) {
-	o.Label = v
+func (o *DeleteLabelResponse) SetLabel(v DeleteLabelResponseGetLabelRetType) {
+	setDeleteLabelResponseGetLabelAttributeType(&o.Label, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *DeleteLabelResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *DeleteLabelResponse) GetMessage() (res DeleteLabelResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeleteLabelResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *DeleteLabelResponse) GetMessageOk() (ret DeleteLabelResponseGetMessageRetType, ok bool) {
+	return getDeleteLabelResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *DeleteLabelResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *DeleteLabelResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *DeleteLabelResponse) SetMessage(v DeleteLabelResponseGetMessageRetType) {
+	setDeleteLabelResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o DeleteLabelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
+	if val, ok := getDeleteLabelResponseGetLabelAttributeTypeOk(o.Label); ok {
+		toSerialize["Label"] = val
 	}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getDeleteLabelResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
 }

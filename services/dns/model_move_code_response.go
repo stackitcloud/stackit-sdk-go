@@ -17,16 +17,79 @@ import (
 // checks if the MoveCodeResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MoveCodeResponse{}
 
+/*
+	types and functions for code
+*/
+
+// isNotNullableString
+type MoveCodeResponseGetCodeAttributeType = *string
+
+func getMoveCodeResponseGetCodeAttributeTypeOk(arg MoveCodeResponseGetCodeAttributeType) (ret MoveCodeResponseGetCodeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMoveCodeResponseGetCodeAttributeType(arg *MoveCodeResponseGetCodeAttributeType, val MoveCodeResponseGetCodeRetType) {
+	*arg = &val
+}
+
+type MoveCodeResponseGetCodeArgType = string
+type MoveCodeResponseGetCodeRetType = string
+
+/*
+	types and functions for expiresAt
+*/
+
+// isNotNullableString
+type MoveCodeResponseGetExpiresAtAttributeType = *string
+
+func getMoveCodeResponseGetExpiresAtAttributeTypeOk(arg MoveCodeResponseGetExpiresAtAttributeType) (ret MoveCodeResponseGetExpiresAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMoveCodeResponseGetExpiresAtAttributeType(arg *MoveCodeResponseGetExpiresAtAttributeType, val MoveCodeResponseGetExpiresAtRetType) {
+	*arg = &val
+}
+
+type MoveCodeResponseGetExpiresAtArgType = string
+type MoveCodeResponseGetExpiresAtRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type MoveCodeResponseGetMessageAttributeType = *string
+
+func getMoveCodeResponseGetMessageAttributeTypeOk(arg MoveCodeResponseGetMessageAttributeType) (ret MoveCodeResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMoveCodeResponseGetMessageAttributeType(arg *MoveCodeResponseGetMessageAttributeType, val MoveCodeResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type MoveCodeResponseGetMessageArgType = string
+type MoveCodeResponseGetMessageRetType = string
+
 // MoveCodeResponse struct for MoveCodeResponse
 type MoveCodeResponse struct {
 	// code to move the zone. It is one time shown so better keep it.
 	// REQUIRED
-	Code *string `json:"code"`
+	Code MoveCodeResponseGetCodeAttributeType `json:"code"`
 	// when the code expires
 	// REQUIRED
-	ExpiresAt *string `json:"expiresAt"`
+	ExpiresAt MoveCodeResponseGetExpiresAtAttributeType `json:"expiresAt"`
 	// human readable message
-	Message *string `json:"message,omitempty"`
+	Message MoveCodeResponseGetMessageAttributeType `json:"message,omitempty"`
 }
 
 type _MoveCodeResponse MoveCodeResponse
@@ -35,10 +98,10 @@ type _MoveCodeResponse MoveCodeResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMoveCodeResponse(code *string, expiresAt *string) *MoveCodeResponse {
+func NewMoveCodeResponse(code MoveCodeResponseGetCodeArgType, expiresAt MoveCodeResponseGetExpiresAtArgType) *MoveCodeResponse {
 	this := MoveCodeResponse{}
-	this.Code = code
-	this.ExpiresAt = expiresAt
+	setMoveCodeResponseGetCodeAttributeType(&this.Code, code)
+	setMoveCodeResponseGetExpiresAtAttributeType(&this.ExpiresAt, expiresAt)
 	return &this
 }
 
@@ -51,91 +114,72 @@ func NewMoveCodeResponseWithDefaults() *MoveCodeResponse {
 }
 
 // GetCode returns the Code field value
-func (o *MoveCodeResponse) GetCode() *string {
-	if o == nil || IsNil(o.Code) {
-		var ret *string
-		return ret
-	}
-
-	return o.Code
+func (o *MoveCodeResponse) GetCode() (ret MoveCodeResponseGetCodeRetType) {
+	ret, _ = o.GetCodeOk()
+	return ret
 }
 
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-func (o *MoveCodeResponse) GetCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Code, true
+func (o *MoveCodeResponse) GetCodeOk() (ret MoveCodeResponseGetCodeRetType, ok bool) {
+	return getMoveCodeResponseGetCodeAttributeTypeOk(o.Code)
 }
 
 // SetCode sets field value
-func (o *MoveCodeResponse) SetCode(v *string) {
-	o.Code = v
+func (o *MoveCodeResponse) SetCode(v MoveCodeResponseGetCodeRetType) {
+	setMoveCodeResponseGetCodeAttributeType(&o.Code, v)
 }
 
 // GetExpiresAt returns the ExpiresAt field value
-func (o *MoveCodeResponse) GetExpiresAt() *string {
-	if o == nil || IsNil(o.ExpiresAt) {
-		var ret *string
-		return ret
-	}
-
-	return o.ExpiresAt
+func (o *MoveCodeResponse) GetExpiresAt() (ret MoveCodeResponseGetExpiresAtRetType) {
+	ret, _ = o.GetExpiresAtOk()
+	return ret
 }
 
 // GetExpiresAtOk returns a tuple with the ExpiresAt field value
 // and a boolean to check if the value has been set.
-func (o *MoveCodeResponse) GetExpiresAtOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExpiresAt, true
+func (o *MoveCodeResponse) GetExpiresAtOk() (ret MoveCodeResponseGetExpiresAtRetType, ok bool) {
+	return getMoveCodeResponseGetExpiresAtAttributeTypeOk(o.ExpiresAt)
 }
 
 // SetExpiresAt sets field value
-func (o *MoveCodeResponse) SetExpiresAt(v *string) {
-	o.ExpiresAt = v
+func (o *MoveCodeResponse) SetExpiresAt(v MoveCodeResponseGetExpiresAtRetType) {
+	setMoveCodeResponseGetExpiresAtAttributeType(&o.ExpiresAt, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *MoveCodeResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *MoveCodeResponse) GetMessage() (res MoveCodeResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MoveCodeResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *MoveCodeResponse) GetMessageOk() (ret MoveCodeResponseGetMessageRetType, ok bool) {
+	return getMoveCodeResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *MoveCodeResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *MoveCodeResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *MoveCodeResponse) SetMessage(v MoveCodeResponseGetMessageRetType) {
+	setMoveCodeResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o MoveCodeResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["code"] = o.Code
-	toSerialize["expiresAt"] = o.ExpiresAt
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getMoveCodeResponseGetCodeAttributeTypeOk(o.Code); ok {
+		toSerialize["Code"] = val
+	}
+	if val, ok := getMoveCodeResponseGetExpiresAtAttributeTypeOk(o.ExpiresAt); ok {
+		toSerialize["ExpiresAt"] = val
+	}
+	if val, ok := getMoveCodeResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
 }

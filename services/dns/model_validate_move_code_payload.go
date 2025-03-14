@@ -17,11 +17,32 @@ import (
 // checks if the ValidateMoveCodePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ValidateMoveCodePayload{}
 
+/*
+	types and functions for code
+*/
+
+// isNotNullableString
+type ValidateMoveCodePayloadGetCodeAttributeType = *string
+
+func getValidateMoveCodePayloadGetCodeAttributeTypeOk(arg ValidateMoveCodePayloadGetCodeAttributeType) (ret ValidateMoveCodePayloadGetCodeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setValidateMoveCodePayloadGetCodeAttributeType(arg *ValidateMoveCodePayloadGetCodeAttributeType, val ValidateMoveCodePayloadGetCodeRetType) {
+	*arg = &val
+}
+
+type ValidateMoveCodePayloadGetCodeArgType = string
+type ValidateMoveCodePayloadGetCodeRetType = string
+
 // ValidateMoveCodePayload PostValidateMoveCodeRequest body to validate move code request.
 type ValidateMoveCodePayload struct {
 	// code that should be validated. It validates if it is valid, not expired and belongs to the zone.
 	// REQUIRED
-	Code *string `json:"code"`
+	Code ValidateMoveCodePayloadGetCodeAttributeType `json:"code"`
 }
 
 type _ValidateMoveCodePayload ValidateMoveCodePayload
@@ -30,9 +51,9 @@ type _ValidateMoveCodePayload ValidateMoveCodePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidateMoveCodePayload(code *string) *ValidateMoveCodePayload {
+func NewValidateMoveCodePayload(code ValidateMoveCodePayloadGetCodeArgType) *ValidateMoveCodePayload {
 	this := ValidateMoveCodePayload{}
-	this.Code = code
+	setValidateMoveCodePayloadGetCodeAttributeType(&this.Code, code)
 	return &this
 }
 
@@ -45,32 +66,27 @@ func NewValidateMoveCodePayloadWithDefaults() *ValidateMoveCodePayload {
 }
 
 // GetCode returns the Code field value
-func (o *ValidateMoveCodePayload) GetCode() *string {
-	if o == nil || IsNil(o.Code) {
-		var ret *string
-		return ret
-	}
-
-	return o.Code
+func (o *ValidateMoveCodePayload) GetCode() (ret ValidateMoveCodePayloadGetCodeRetType) {
+	ret, _ = o.GetCodeOk()
+	return ret
 }
 
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-func (o *ValidateMoveCodePayload) GetCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Code, true
+func (o *ValidateMoveCodePayload) GetCodeOk() (ret ValidateMoveCodePayloadGetCodeRetType, ok bool) {
+	return getValidateMoveCodePayloadGetCodeAttributeTypeOk(o.Code)
 }
 
 // SetCode sets field value
-func (o *ValidateMoveCodePayload) SetCode(v *string) {
-	o.Code = v
+func (o *ValidateMoveCodePayload) SetCode(v ValidateMoveCodePayloadGetCodeRetType) {
+	setValidateMoveCodePayloadGetCodeAttributeType(&o.Code, v)
 }
 
 func (o ValidateMoveCodePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["code"] = o.Code
+	if val, ok := getValidateMoveCodePayloadGetCodeAttributeTypeOk(o.Code); ok {
+		toSerialize["Code"] = val
+	}
 	return toSerialize, nil
 }
 
