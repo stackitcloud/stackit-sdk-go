@@ -17,34 +17,242 @@ import (
 // checks if the CatalogProductPricingOption type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CatalogProductPricingOption{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type CatalogProductPricingOptionGetDescriptionAttributeType = *string
+
+func getCatalogProductPricingOptionGetDescriptionAttributeTypeOk(arg CatalogProductPricingOptionGetDescriptionAttributeType) (ret CatalogProductPricingOptionGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetDescriptionAttributeType(arg *CatalogProductPricingOptionGetDescriptionAttributeType, val CatalogProductPricingOptionGetDescriptionRetType) {
+	*arg = &val
+}
+
+type CatalogProductPricingOptionGetDescriptionArgType = string
+type CatalogProductPricingOptionGetDescriptionRetType = string
+
+/*
+	types and functions for highlights
+*/
+
+// isArray
+type CatalogProductPricingOptionGetHighlightsAttributeType = *[]CatalogPricingOptionHighlight
+type CatalogProductPricingOptionGetHighlightsArgType = []CatalogPricingOptionHighlight
+type CatalogProductPricingOptionGetHighlightsRetType = []CatalogPricingOptionHighlight
+
+func getCatalogProductPricingOptionGetHighlightsAttributeTypeOk(arg CatalogProductPricingOptionGetHighlightsAttributeType) (ret CatalogProductPricingOptionGetHighlightsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetHighlightsAttributeType(arg *CatalogProductPricingOptionGetHighlightsAttributeType, val CatalogProductPricingOptionGetHighlightsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CatalogProductPricingOptionGetNameAttributeType = *string
+
+func getCatalogProductPricingOptionGetNameAttributeTypeOk(arg CatalogProductPricingOptionGetNameAttributeType) (ret CatalogProductPricingOptionGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetNameAttributeType(arg *CatalogProductPricingOptionGetNameAttributeType, val CatalogProductPricingOptionGetNameRetType) {
+	*arg = &val
+}
+
+type CatalogProductPricingOptionGetNameArgType = string
+type CatalogProductPricingOptionGetNameRetType = string
+
+/*
+	types and functions for priceType
+*/
+
+// isEnumRef
+type CatalogProductPricingOptionGetPriceTypeAttributeType = *string
+type CatalogProductPricingOptionGetPriceTypeArgType = string
+type CatalogProductPricingOptionGetPriceTypeRetType = string
+
+func getCatalogProductPricingOptionGetPriceTypeAttributeTypeOk(arg CatalogProductPricingOptionGetPriceTypeAttributeType) (ret CatalogProductPricingOptionGetPriceTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetPriceTypeAttributeType(arg *CatalogProductPricingOptionGetPriceTypeAttributeType, val CatalogProductPricingOptionGetPriceTypeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for pricingPlan
+*/
+
+// isNotNullableString
+type CatalogProductPricingOptionGetPricingPlanAttributeType = *string
+
+func getCatalogProductPricingOptionGetPricingPlanAttributeTypeOk(arg CatalogProductPricingOptionGetPricingPlanAttributeType) (ret CatalogProductPricingOptionGetPricingPlanRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetPricingPlanAttributeType(arg *CatalogProductPricingOptionGetPricingPlanAttributeType, val CatalogProductPricingOptionGetPricingPlanRetType) {
+	*arg = &val
+}
+
+type CatalogProductPricingOptionGetPricingPlanArgType = string
+type CatalogProductPricingOptionGetPricingPlanRetType = string
+
+/*
+	types and functions for rate
+*/
+
+// isNotNullableString
+type CatalogProductPricingOptionGetRateAttributeType = *string
+
+func getCatalogProductPricingOptionGetRateAttributeTypeOk(arg CatalogProductPricingOptionGetRateAttributeType) (ret CatalogProductPricingOptionGetRateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetRateAttributeType(arg *CatalogProductPricingOptionGetRateAttributeType, val CatalogProductPricingOptionGetRateRetType) {
+	*arg = &val
+}
+
+type CatalogProductPricingOptionGetRateArgType = string
+type CatalogProductPricingOptionGetRateRetType = string
+
+/*
+	types and functions for sku
+*/
+
+// isNotNullableString
+type CatalogProductPricingOptionGetSkuAttributeType = *string
+
+func getCatalogProductPricingOptionGetSkuAttributeTypeOk(arg CatalogProductPricingOptionGetSkuAttributeType) (ret CatalogProductPricingOptionGetSkuRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetSkuAttributeType(arg *CatalogProductPricingOptionGetSkuAttributeType, val CatalogProductPricingOptionGetSkuRetType) {
+	*arg = &val
+}
+
+type CatalogProductPricingOptionGetSkuArgType = string
+type CatalogProductPricingOptionGetSkuRetType = string
+
+/*
+	types and functions for skuInfo
+*/
+
+// isNotNullableString
+type CatalogProductPricingOptionGetSkuInfoAttributeType = *string
+
+func getCatalogProductPricingOptionGetSkuInfoAttributeTypeOk(arg CatalogProductPricingOptionGetSkuInfoAttributeType) (ret CatalogProductPricingOptionGetSkuInfoRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetSkuInfoAttributeType(arg *CatalogProductPricingOptionGetSkuInfoAttributeType, val CatalogProductPricingOptionGetSkuInfoRetType) {
+	*arg = &val
+}
+
+type CatalogProductPricingOptionGetSkuInfoArgType = string
+type CatalogProductPricingOptionGetSkuInfoRetType = string
+
+/*
+	types and functions for skuInfoDetails
+*/
+
+// isNotNullableString
+type CatalogProductPricingOptionGetSkuInfoDetailsAttributeType = *string
+
+func getCatalogProductPricingOptionGetSkuInfoDetailsAttributeTypeOk(arg CatalogProductPricingOptionGetSkuInfoDetailsAttributeType) (ret CatalogProductPricingOptionGetSkuInfoDetailsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetSkuInfoDetailsAttributeType(arg *CatalogProductPricingOptionGetSkuInfoDetailsAttributeType, val CatalogProductPricingOptionGetSkuInfoDetailsRetType) {
+	*arg = &val
+}
+
+type CatalogProductPricingOptionGetSkuInfoDetailsArgType = string
+type CatalogProductPricingOptionGetSkuInfoDetailsRetType = string
+
+/*
+	types and functions for unit
+*/
+
+// isNotNullableString
+type CatalogProductPricingOptionGetUnitAttributeType = *string
+
+func getCatalogProductPricingOptionGetUnitAttributeTypeOk(arg CatalogProductPricingOptionGetUnitAttributeType) (ret CatalogProductPricingOptionGetUnitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetUnitAttributeType(arg *CatalogProductPricingOptionGetUnitAttributeType, val CatalogProductPricingOptionGetUnitRetType) {
+	*arg = &val
+}
+
+type CatalogProductPricingOptionGetUnitArgType = string
+type CatalogProductPricingOptionGetUnitRetType = string
+
 // CatalogProductPricingOption struct for CatalogProductPricingOption
 type CatalogProductPricingOption struct {
 	// The pricing option description.
 	// REQUIRED
-	Description *string `json:"description"`
+	Description CatalogProductPricingOptionGetDescriptionAttributeType `json:"description"`
 	// The list of highlights.
 	// REQUIRED
-	Highlights *[]CatalogPricingOptionHighlight `json:"highlights"`
+	Highlights CatalogProductPricingOptionGetHighlightsAttributeType `json:"highlights"`
 	// The pricing option name.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CatalogProductPricingOptionGetNameAttributeType `json:"name"`
 	// The price type / pricing model.
-	PriceType *string `json:"priceType,omitempty"`
+	PriceType CatalogProductPricingOptionGetPriceTypeAttributeType `json:"priceType,omitempty"`
 	// Additional price type information.
-	PricingPlan *string `json:"pricingPlan,omitempty"`
+	PricingPlan CatalogProductPricingOptionGetPricingPlanAttributeType `json:"pricingPlan,omitempty"`
 	// The price of the product (per unit).
-	Rate *string `json:"rate,omitempty"`
+	Rate CatalogProductPricingOptionGetRateAttributeType `json:"rate,omitempty"`
 	// The concrete variant of the product.
 	// REQUIRED
-	Sku *string `json:"sku"`
+	Sku CatalogProductPricingOptionGetSkuAttributeType `json:"sku"`
 	// Short description of this offering.
 	// REQUIRED
-	SkuInfo *string `json:"skuInfo"`
+	SkuInfo CatalogProductPricingOptionGetSkuInfoAttributeType `json:"skuInfo"`
 	// More details about what this offering entails.
 	// REQUIRED
-	SkuInfoDetails *string `json:"skuInfoDetails"`
+	SkuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsAttributeType `json:"skuInfoDetails"`
 	// The interval to which the rate applies.
-	Unit *string `json:"unit,omitempty"`
+	Unit CatalogProductPricingOptionGetUnitAttributeType `json:"unit,omitempty"`
 }
 
 type _CatalogProductPricingOption CatalogProductPricingOption
@@ -53,14 +261,14 @@ type _CatalogProductPricingOption CatalogProductPricingOption
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCatalogProductPricingOption(description *string, highlights *[]CatalogPricingOptionHighlight, name *string, sku *string, skuInfo *string, skuInfoDetails *string) *CatalogProductPricingOption {
+func NewCatalogProductPricingOption(description CatalogProductPricingOptionGetDescriptionArgType, highlights CatalogProductPricingOptionGetHighlightsArgType, name CatalogProductPricingOptionGetNameArgType, sku CatalogProductPricingOptionGetSkuArgType, skuInfo CatalogProductPricingOptionGetSkuInfoArgType, skuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsArgType) *CatalogProductPricingOption {
 	this := CatalogProductPricingOption{}
-	this.Description = description
-	this.Highlights = highlights
-	this.Name = name
-	this.Sku = sku
-	this.SkuInfo = skuInfo
-	this.SkuInfoDetails = skuInfoDetails
+	setCatalogProductPricingOptionGetDescriptionAttributeType(&this.Description, description)
+	setCatalogProductPricingOptionGetHighlightsAttributeType(&this.Highlights, highlights)
+	setCatalogProductPricingOptionGetNameAttributeType(&this.Name, name)
+	setCatalogProductPricingOptionGetSkuAttributeType(&this.Sku, sku)
+	setCatalogProductPricingOptionGetSkuInfoAttributeType(&this.SkuInfo, skuInfo)
+	setCatalogProductPricingOptionGetSkuInfoDetailsAttributeType(&this.SkuInfoDetails, skuInfoDetails)
 	return &this
 }
 
@@ -73,296 +281,230 @@ func NewCatalogProductPricingOptionWithDefaults() *CatalogProductPricingOption {
 }
 
 // GetDescription returns the Description field value
-func (o *CatalogProductPricingOption) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *CatalogProductPricingOption) GetDescription() (ret CatalogProductPricingOptionGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *CatalogProductPricingOption) GetDescriptionOk() (ret CatalogProductPricingOptionGetDescriptionRetType, ok bool) {
+	return getCatalogProductPricingOptionGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *CatalogProductPricingOption) SetDescription(v *string) {
-	o.Description = v
+func (o *CatalogProductPricingOption) SetDescription(v CatalogProductPricingOptionGetDescriptionRetType) {
+	setCatalogProductPricingOptionGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetHighlights returns the Highlights field value
-func (o *CatalogProductPricingOption) GetHighlights() *[]CatalogPricingOptionHighlight {
-	if o == nil || IsNil(o.Highlights) {
-		var ret *[]CatalogPricingOptionHighlight
-		return ret
-	}
-
-	return o.Highlights
+func (o *CatalogProductPricingOption) GetHighlights() (ret CatalogProductPricingOptionGetHighlightsRetType) {
+	ret, _ = o.GetHighlightsOk()
+	return ret
 }
 
 // GetHighlightsOk returns a tuple with the Highlights field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetHighlightsOk() (*[]CatalogPricingOptionHighlight, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Highlights, true
+func (o *CatalogProductPricingOption) GetHighlightsOk() (ret CatalogProductPricingOptionGetHighlightsRetType, ok bool) {
+	return getCatalogProductPricingOptionGetHighlightsAttributeTypeOk(o.Highlights)
 }
 
 // SetHighlights sets field value
-func (o *CatalogProductPricingOption) SetHighlights(v *[]CatalogPricingOptionHighlight) {
-	o.Highlights = v
+func (o *CatalogProductPricingOption) SetHighlights(v CatalogProductPricingOptionGetHighlightsRetType) {
+	setCatalogProductPricingOptionGetHighlightsAttributeType(&o.Highlights, v)
 }
 
 // GetName returns the Name field value
-func (o *CatalogProductPricingOption) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CatalogProductPricingOption) GetName() (ret CatalogProductPricingOptionGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CatalogProductPricingOption) GetNameOk() (ret CatalogProductPricingOptionGetNameRetType, ok bool) {
+	return getCatalogProductPricingOptionGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CatalogProductPricingOption) SetName(v *string) {
-	o.Name = v
+func (o *CatalogProductPricingOption) SetName(v CatalogProductPricingOptionGetNameRetType) {
+	setCatalogProductPricingOptionGetNameAttributeType(&o.Name, v)
 }
 
 // GetPriceType returns the PriceType field value if set, zero value otherwise.
-func (o *CatalogProductPricingOption) GetPriceType() *string {
-	if o == nil || IsNil(o.PriceType) {
-		var ret *string
-		return ret
-	}
-	return o.PriceType
+func (o *CatalogProductPricingOption) GetPriceType() (res CatalogProductPricingOptionGetPriceTypeRetType) {
+	res, _ = o.GetPriceTypeOk()
+	return
 }
 
 // GetPriceTypeOk returns a tuple with the PriceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetPriceTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.PriceType) {
-		return nil, false
-	}
-	return o.PriceType, true
+func (o *CatalogProductPricingOption) GetPriceTypeOk() (ret CatalogProductPricingOptionGetPriceTypeRetType, ok bool) {
+	return getCatalogProductPricingOptionGetPriceTypeAttributeTypeOk(o.PriceType)
 }
 
 // HasPriceType returns a boolean if a field has been set.
 func (o *CatalogProductPricingOption) HasPriceType() bool {
-	if o != nil && !IsNil(o.PriceType) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPriceTypeOk()
+	return ok
 }
 
 // SetPriceType gets a reference to the given string and assigns it to the PriceType field.
-func (o *CatalogProductPricingOption) SetPriceType(v *string) {
-	o.PriceType = v
+func (o *CatalogProductPricingOption) SetPriceType(v CatalogProductPricingOptionGetPriceTypeRetType) {
+	setCatalogProductPricingOptionGetPriceTypeAttributeType(&o.PriceType, v)
 }
 
 // GetPricingPlan returns the PricingPlan field value if set, zero value otherwise.
-func (o *CatalogProductPricingOption) GetPricingPlan() *string {
-	if o == nil || IsNil(o.PricingPlan) {
-		var ret *string
-		return ret
-	}
-	return o.PricingPlan
+func (o *CatalogProductPricingOption) GetPricingPlan() (res CatalogProductPricingOptionGetPricingPlanRetType) {
+	res, _ = o.GetPricingPlanOk()
+	return
 }
 
 // GetPricingPlanOk returns a tuple with the PricingPlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetPricingPlanOk() (*string, bool) {
-	if o == nil || IsNil(o.PricingPlan) {
-		return nil, false
-	}
-	return o.PricingPlan, true
+func (o *CatalogProductPricingOption) GetPricingPlanOk() (ret CatalogProductPricingOptionGetPricingPlanRetType, ok bool) {
+	return getCatalogProductPricingOptionGetPricingPlanAttributeTypeOk(o.PricingPlan)
 }
 
 // HasPricingPlan returns a boolean if a field has been set.
 func (o *CatalogProductPricingOption) HasPricingPlan() bool {
-	if o != nil && !IsNil(o.PricingPlan) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPricingPlanOk()
+	return ok
 }
 
 // SetPricingPlan gets a reference to the given string and assigns it to the PricingPlan field.
-func (o *CatalogProductPricingOption) SetPricingPlan(v *string) {
-	o.PricingPlan = v
+func (o *CatalogProductPricingOption) SetPricingPlan(v CatalogProductPricingOptionGetPricingPlanRetType) {
+	setCatalogProductPricingOptionGetPricingPlanAttributeType(&o.PricingPlan, v)
 }
 
 // GetRate returns the Rate field value if set, zero value otherwise.
-func (o *CatalogProductPricingOption) GetRate() *string {
-	if o == nil || IsNil(o.Rate) {
-		var ret *string
-		return ret
-	}
-	return o.Rate
+func (o *CatalogProductPricingOption) GetRate() (res CatalogProductPricingOptionGetRateRetType) {
+	res, _ = o.GetRateOk()
+	return
 }
 
 // GetRateOk returns a tuple with the Rate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetRateOk() (*string, bool) {
-	if o == nil || IsNil(o.Rate) {
-		return nil, false
-	}
-	return o.Rate, true
+func (o *CatalogProductPricingOption) GetRateOk() (ret CatalogProductPricingOptionGetRateRetType, ok bool) {
+	return getCatalogProductPricingOptionGetRateAttributeTypeOk(o.Rate)
 }
 
 // HasRate returns a boolean if a field has been set.
 func (o *CatalogProductPricingOption) HasRate() bool {
-	if o != nil && !IsNil(o.Rate) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRateOk()
+	return ok
 }
 
 // SetRate gets a reference to the given string and assigns it to the Rate field.
-func (o *CatalogProductPricingOption) SetRate(v *string) {
-	o.Rate = v
+func (o *CatalogProductPricingOption) SetRate(v CatalogProductPricingOptionGetRateRetType) {
+	setCatalogProductPricingOptionGetRateAttributeType(&o.Rate, v)
 }
 
 // GetSku returns the Sku field value
-func (o *CatalogProductPricingOption) GetSku() *string {
-	if o == nil || IsNil(o.Sku) {
-		var ret *string
-		return ret
-	}
-
-	return o.Sku
+func (o *CatalogProductPricingOption) GetSku() (ret CatalogProductPricingOptionGetSkuRetType) {
+	ret, _ = o.GetSkuOk()
+	return ret
 }
 
 // GetSkuOk returns a tuple with the Sku field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetSkuOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Sku, true
+func (o *CatalogProductPricingOption) GetSkuOk() (ret CatalogProductPricingOptionGetSkuRetType, ok bool) {
+	return getCatalogProductPricingOptionGetSkuAttributeTypeOk(o.Sku)
 }
 
 // SetSku sets field value
-func (o *CatalogProductPricingOption) SetSku(v *string) {
-	o.Sku = v
+func (o *CatalogProductPricingOption) SetSku(v CatalogProductPricingOptionGetSkuRetType) {
+	setCatalogProductPricingOptionGetSkuAttributeType(&o.Sku, v)
 }
 
 // GetSkuInfo returns the SkuInfo field value
-func (o *CatalogProductPricingOption) GetSkuInfo() *string {
-	if o == nil || IsNil(o.SkuInfo) {
-		var ret *string
-		return ret
-	}
-
-	return o.SkuInfo
+func (o *CatalogProductPricingOption) GetSkuInfo() (ret CatalogProductPricingOptionGetSkuInfoRetType) {
+	ret, _ = o.GetSkuInfoOk()
+	return ret
 }
 
 // GetSkuInfoOk returns a tuple with the SkuInfo field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetSkuInfoOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SkuInfo, true
+func (o *CatalogProductPricingOption) GetSkuInfoOk() (ret CatalogProductPricingOptionGetSkuInfoRetType, ok bool) {
+	return getCatalogProductPricingOptionGetSkuInfoAttributeTypeOk(o.SkuInfo)
 }
 
 // SetSkuInfo sets field value
-func (o *CatalogProductPricingOption) SetSkuInfo(v *string) {
-	o.SkuInfo = v
+func (o *CatalogProductPricingOption) SetSkuInfo(v CatalogProductPricingOptionGetSkuInfoRetType) {
+	setCatalogProductPricingOptionGetSkuInfoAttributeType(&o.SkuInfo, v)
 }
 
 // GetSkuInfoDetails returns the SkuInfoDetails field value
-func (o *CatalogProductPricingOption) GetSkuInfoDetails() *string {
-	if o == nil || IsNil(o.SkuInfoDetails) {
-		var ret *string
-		return ret
-	}
-
-	return o.SkuInfoDetails
+func (o *CatalogProductPricingOption) GetSkuInfoDetails() (ret CatalogProductPricingOptionGetSkuInfoDetailsRetType) {
+	ret, _ = o.GetSkuInfoDetailsOk()
+	return ret
 }
 
 // GetSkuInfoDetailsOk returns a tuple with the SkuInfoDetails field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetSkuInfoDetailsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SkuInfoDetails, true
+func (o *CatalogProductPricingOption) GetSkuInfoDetailsOk() (ret CatalogProductPricingOptionGetSkuInfoDetailsRetType, ok bool) {
+	return getCatalogProductPricingOptionGetSkuInfoDetailsAttributeTypeOk(o.SkuInfoDetails)
 }
 
 // SetSkuInfoDetails sets field value
-func (o *CatalogProductPricingOption) SetSkuInfoDetails(v *string) {
-	o.SkuInfoDetails = v
+func (o *CatalogProductPricingOption) SetSkuInfoDetails(v CatalogProductPricingOptionGetSkuInfoDetailsRetType) {
+	setCatalogProductPricingOptionGetSkuInfoDetailsAttributeType(&o.SkuInfoDetails, v)
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
-func (o *CatalogProductPricingOption) GetUnit() *string {
-	if o == nil || IsNil(o.Unit) {
-		var ret *string
-		return ret
-	}
-	return o.Unit
+func (o *CatalogProductPricingOption) GetUnit() (res CatalogProductPricingOptionGetUnitRetType) {
+	res, _ = o.GetUnitOk()
+	return
 }
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductPricingOption) GetUnitOk() (*string, bool) {
-	if o == nil || IsNil(o.Unit) {
-		return nil, false
-	}
-	return o.Unit, true
+func (o *CatalogProductPricingOption) GetUnitOk() (ret CatalogProductPricingOptionGetUnitRetType, ok bool) {
+	return getCatalogProductPricingOptionGetUnitAttributeTypeOk(o.Unit)
 }
 
 // HasUnit returns a boolean if a field has been set.
 func (o *CatalogProductPricingOption) HasUnit() bool {
-	if o != nil && !IsNil(o.Unit) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUnitOk()
+	return ok
 }
 
 // SetUnit gets a reference to the given string and assigns it to the Unit field.
-func (o *CatalogProductPricingOption) SetUnit(v *string) {
-	o.Unit = v
+func (o *CatalogProductPricingOption) SetUnit(v CatalogProductPricingOptionGetUnitRetType) {
+	setCatalogProductPricingOptionGetUnitAttributeType(&o.Unit, v)
 }
 
 func (o CatalogProductPricingOption) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	toSerialize["highlights"] = o.Highlights
-	toSerialize["name"] = o.Name
-	if !IsNil(o.PriceType) {
-		toSerialize["priceType"] = o.PriceType
+	if val, ok := getCatalogProductPricingOptionGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.PricingPlan) {
-		toSerialize["pricingPlan"] = o.PricingPlan
+	if val, ok := getCatalogProductPricingOptionGetHighlightsAttributeTypeOk(o.Highlights); ok {
+		toSerialize["Highlights"] = val
 	}
-	if !IsNil(o.Rate) {
-		toSerialize["rate"] = o.Rate
+	if val, ok := getCatalogProductPricingOptionGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	toSerialize["sku"] = o.Sku
-	toSerialize["skuInfo"] = o.SkuInfo
-	toSerialize["skuInfoDetails"] = o.SkuInfoDetails
-	if !IsNil(o.Unit) {
-		toSerialize["unit"] = o.Unit
+	if val, ok := getCatalogProductPricingOptionGetPriceTypeAttributeTypeOk(o.PriceType); ok {
+		toSerialize["PriceType"] = val
+	}
+	if val, ok := getCatalogProductPricingOptionGetPricingPlanAttributeTypeOk(o.PricingPlan); ok {
+		toSerialize["PricingPlan"] = val
+	}
+	if val, ok := getCatalogProductPricingOptionGetRateAttributeTypeOk(o.Rate); ok {
+		toSerialize["Rate"] = val
+	}
+	if val, ok := getCatalogProductPricingOptionGetSkuAttributeTypeOk(o.Sku); ok {
+		toSerialize["Sku"] = val
+	}
+	if val, ok := getCatalogProductPricingOptionGetSkuInfoAttributeTypeOk(o.SkuInfo); ok {
+		toSerialize["SkuInfo"] = val
+	}
+	if val, ok := getCatalogProductPricingOptionGetSkuInfoDetailsAttributeTypeOk(o.SkuInfoDetails); ok {
+		toSerialize["SkuInfoDetails"] = val
+	}
+	if val, ok := getCatalogProductPricingOptionGetUnitAttributeTypeOk(o.Unit); ok {
+		toSerialize["Unit"] = val
 	}
 	return toSerialize, nil
 }

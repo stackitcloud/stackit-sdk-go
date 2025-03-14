@@ -17,17 +17,80 @@ import (
 // checks if the RegisterTestingRegisterTesting type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RegisterTestingRegisterTesting{}
 
+/*
+	types and functions for contactEmail
+*/
+
+// isNotNullableString
+type RegisterTestingRegisterTestingGetContactEmailAttributeType = *string
+
+func getRegisterTestingRegisterTestingGetContactEmailAttributeTypeOk(arg RegisterTestingRegisterTestingGetContactEmailAttributeType) (ret RegisterTestingRegisterTestingGetContactEmailRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRegisterTestingRegisterTestingGetContactEmailAttributeType(arg *RegisterTestingRegisterTestingGetContactEmailAttributeType, val RegisterTestingRegisterTestingGetContactEmailRetType) {
+	*arg = &val
+}
+
+type RegisterTestingRegisterTestingGetContactEmailArgType = string
+type RegisterTestingRegisterTestingGetContactEmailRetType = string
+
+/*
+	types and functions for fullName
+*/
+
+// isNotNullableString
+type RegisterTestingRegisterTestingGetFullNameAttributeType = *string
+
+func getRegisterTestingRegisterTestingGetFullNameAttributeTypeOk(arg RegisterTestingRegisterTestingGetFullNameAttributeType) (ret RegisterTestingRegisterTestingGetFullNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRegisterTestingRegisterTestingGetFullNameAttributeType(arg *RegisterTestingRegisterTestingGetFullNameAttributeType, val RegisterTestingRegisterTestingGetFullNameRetType) {
+	*arg = &val
+}
+
+type RegisterTestingRegisterTestingGetFullNameArgType = string
+type RegisterTestingRegisterTestingGetFullNameRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type RegisterTestingRegisterTestingGetMessageAttributeType = *string
+
+func getRegisterTestingRegisterTestingGetMessageAttributeTypeOk(arg RegisterTestingRegisterTestingGetMessageAttributeType) (ret RegisterTestingRegisterTestingGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRegisterTestingRegisterTestingGetMessageAttributeType(arg *RegisterTestingRegisterTestingGetMessageAttributeType, val RegisterTestingRegisterTestingGetMessageRetType) {
+	*arg = &val
+}
+
+type RegisterTestingRegisterTestingGetMessageArgType = string
+type RegisterTestingRegisterTestingGetMessageRetType = string
+
 // RegisterTestingRegisterTesting struct for RegisterTestingRegisterTesting
 type RegisterTestingRegisterTesting struct {
 	// The contact e-mail address.
 	// REQUIRED
-	ContactEmail *string `json:"contactEmail"`
+	ContactEmail RegisterTestingRegisterTestingGetContactEmailAttributeType `json:"contactEmail"`
 	// The full name of the contact person.
 	// REQUIRED
-	FullName *string `json:"fullName"`
+	FullName RegisterTestingRegisterTestingGetFullNameAttributeType `json:"fullName"`
 	// The message content.
 	// REQUIRED
-	Message *string `json:"message"`
+	Message RegisterTestingRegisterTestingGetMessageAttributeType `json:"message"`
 }
 
 type _RegisterTestingRegisterTesting RegisterTestingRegisterTesting
@@ -36,11 +99,11 @@ type _RegisterTestingRegisterTesting RegisterTestingRegisterTesting
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterTestingRegisterTesting(contactEmail *string, fullName *string, message *string) *RegisterTestingRegisterTesting {
+func NewRegisterTestingRegisterTesting(contactEmail RegisterTestingRegisterTestingGetContactEmailArgType, fullName RegisterTestingRegisterTestingGetFullNameArgType, message RegisterTestingRegisterTestingGetMessageArgType) *RegisterTestingRegisterTesting {
 	this := RegisterTestingRegisterTesting{}
-	this.ContactEmail = contactEmail
-	this.FullName = fullName
-	this.Message = message
+	setRegisterTestingRegisterTestingGetContactEmailAttributeType(&this.ContactEmail, contactEmail)
+	setRegisterTestingRegisterTestingGetFullNameAttributeType(&this.FullName, fullName)
+	setRegisterTestingRegisterTestingGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -53,82 +116,67 @@ func NewRegisterTestingRegisterTestingWithDefaults() *RegisterTestingRegisterTes
 }
 
 // GetContactEmail returns the ContactEmail field value
-func (o *RegisterTestingRegisterTesting) GetContactEmail() *string {
-	if o == nil || IsNil(o.ContactEmail) {
-		var ret *string
-		return ret
-	}
-
-	return o.ContactEmail
+func (o *RegisterTestingRegisterTesting) GetContactEmail() (ret RegisterTestingRegisterTestingGetContactEmailRetType) {
+	ret, _ = o.GetContactEmailOk()
+	return ret
 }
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value
 // and a boolean to check if the value has been set.
-func (o *RegisterTestingRegisterTesting) GetContactEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactEmail, true
+func (o *RegisterTestingRegisterTesting) GetContactEmailOk() (ret RegisterTestingRegisterTestingGetContactEmailRetType, ok bool) {
+	return getRegisterTestingRegisterTestingGetContactEmailAttributeTypeOk(o.ContactEmail)
 }
 
 // SetContactEmail sets field value
-func (o *RegisterTestingRegisterTesting) SetContactEmail(v *string) {
-	o.ContactEmail = v
+func (o *RegisterTestingRegisterTesting) SetContactEmail(v RegisterTestingRegisterTestingGetContactEmailRetType) {
+	setRegisterTestingRegisterTestingGetContactEmailAttributeType(&o.ContactEmail, v)
 }
 
 // GetFullName returns the FullName field value
-func (o *RegisterTestingRegisterTesting) GetFullName() *string {
-	if o == nil || IsNil(o.FullName) {
-		var ret *string
-		return ret
-	}
-
-	return o.FullName
+func (o *RegisterTestingRegisterTesting) GetFullName() (ret RegisterTestingRegisterTestingGetFullNameRetType) {
+	ret, _ = o.GetFullNameOk()
+	return ret
 }
 
 // GetFullNameOk returns a tuple with the FullName field value
 // and a boolean to check if the value has been set.
-func (o *RegisterTestingRegisterTesting) GetFullNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.FullName, true
+func (o *RegisterTestingRegisterTesting) GetFullNameOk() (ret RegisterTestingRegisterTestingGetFullNameRetType, ok bool) {
+	return getRegisterTestingRegisterTestingGetFullNameAttributeTypeOk(o.FullName)
 }
 
 // SetFullName sets field value
-func (o *RegisterTestingRegisterTesting) SetFullName(v *string) {
-	o.FullName = v
+func (o *RegisterTestingRegisterTesting) SetFullName(v RegisterTestingRegisterTestingGetFullNameRetType) {
+	setRegisterTestingRegisterTestingGetFullNameAttributeType(&o.FullName, v)
 }
 
 // GetMessage returns the Message field value
-func (o *RegisterTestingRegisterTesting) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *RegisterTestingRegisterTesting) GetMessage() (ret RegisterTestingRegisterTestingGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *RegisterTestingRegisterTesting) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *RegisterTestingRegisterTesting) GetMessageOk() (ret RegisterTestingRegisterTestingGetMessageRetType, ok bool) {
+	return getRegisterTestingRegisterTestingGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *RegisterTestingRegisterTesting) SetMessage(v *string) {
-	o.Message = v
+func (o *RegisterTestingRegisterTesting) SetMessage(v RegisterTestingRegisterTestingGetMessageRetType) {
+	setRegisterTestingRegisterTestingGetMessageAttributeType(&o.Message, v)
 }
 
 func (o RegisterTestingRegisterTesting) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["contactEmail"] = o.ContactEmail
-	toSerialize["fullName"] = o.FullName
-	toSerialize["message"] = o.Message
+	if val, ok := getRegisterTestingRegisterTestingGetContactEmailAttributeTypeOk(o.ContactEmail); ok {
+		toSerialize["ContactEmail"] = val
+	}
+	if val, ok := getRegisterTestingRegisterTestingGetFullNameAttributeTypeOk(o.FullName); ok {
+		toSerialize["FullName"] = val
+	}
+	if val, ok := getRegisterTestingRegisterTestingGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

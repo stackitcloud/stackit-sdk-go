@@ -17,12 +17,52 @@ import (
 // checks if the SubscriptionCancelResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SubscriptionCancelResponse{}
 
+/*
+	types and functions for currentSubscription
+*/
+
+// isModel
+type SubscriptionCancelResponseGetCurrentSubscriptionAttributeType = *CurrentSubscriptionStateResponse
+type SubscriptionCancelResponseGetCurrentSubscriptionArgType = CurrentSubscriptionStateResponse
+type SubscriptionCancelResponseGetCurrentSubscriptionRetType = CurrentSubscriptionStateResponse
+
+func getSubscriptionCancelResponseGetCurrentSubscriptionAttributeTypeOk(arg SubscriptionCancelResponseGetCurrentSubscriptionAttributeType) (ret SubscriptionCancelResponseGetCurrentSubscriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionCancelResponseGetCurrentSubscriptionAttributeType(arg *SubscriptionCancelResponseGetCurrentSubscriptionAttributeType, val SubscriptionCancelResponseGetCurrentSubscriptionRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for requestedSubscription
+*/
+
+// isModel
+type SubscriptionCancelResponseGetRequestedSubscriptionAttributeType = *RequestedSubscriptionStateResponse
+type SubscriptionCancelResponseGetRequestedSubscriptionArgType = RequestedSubscriptionStateResponse
+type SubscriptionCancelResponseGetRequestedSubscriptionRetType = RequestedSubscriptionStateResponse
+
+func getSubscriptionCancelResponseGetRequestedSubscriptionAttributeTypeOk(arg SubscriptionCancelResponseGetRequestedSubscriptionAttributeType) (ret SubscriptionCancelResponseGetRequestedSubscriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionCancelResponseGetRequestedSubscriptionAttributeType(arg *SubscriptionCancelResponseGetRequestedSubscriptionAttributeType, val SubscriptionCancelResponseGetRequestedSubscriptionRetType) {
+	*arg = &val
+}
+
 // SubscriptionCancelResponse struct for SubscriptionCancelResponse
 type SubscriptionCancelResponse struct {
 	// REQUIRED
-	CurrentSubscription *CurrentSubscriptionStateResponse `json:"currentSubscription"`
+	CurrentSubscription SubscriptionCancelResponseGetCurrentSubscriptionAttributeType `json:"currentSubscription"`
 	// REQUIRED
-	RequestedSubscription *RequestedSubscriptionStateResponse `json:"requestedSubscription"`
+	RequestedSubscription SubscriptionCancelResponseGetRequestedSubscriptionAttributeType `json:"requestedSubscription"`
 }
 
 type _SubscriptionCancelResponse SubscriptionCancelResponse
@@ -31,10 +71,10 @@ type _SubscriptionCancelResponse SubscriptionCancelResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionCancelResponse(currentSubscription *CurrentSubscriptionStateResponse, requestedSubscription *RequestedSubscriptionStateResponse) *SubscriptionCancelResponse {
+func NewSubscriptionCancelResponse(currentSubscription SubscriptionCancelResponseGetCurrentSubscriptionArgType, requestedSubscription SubscriptionCancelResponseGetRequestedSubscriptionArgType) *SubscriptionCancelResponse {
 	this := SubscriptionCancelResponse{}
-	this.CurrentSubscription = currentSubscription
-	this.RequestedSubscription = requestedSubscription
+	setSubscriptionCancelResponseGetCurrentSubscriptionAttributeType(&this.CurrentSubscription, currentSubscription)
+	setSubscriptionCancelResponseGetRequestedSubscriptionAttributeType(&this.RequestedSubscription, requestedSubscription)
 	return &this
 }
 
@@ -47,57 +87,47 @@ func NewSubscriptionCancelResponseWithDefaults() *SubscriptionCancelResponse {
 }
 
 // GetCurrentSubscription returns the CurrentSubscription field value
-func (o *SubscriptionCancelResponse) GetCurrentSubscription() *CurrentSubscriptionStateResponse {
-	if o == nil || IsNil(o.CurrentSubscription) {
-		var ret *CurrentSubscriptionStateResponse
-		return ret
-	}
-
-	return o.CurrentSubscription
+func (o *SubscriptionCancelResponse) GetCurrentSubscription() (ret SubscriptionCancelResponseGetCurrentSubscriptionRetType) {
+	ret, _ = o.GetCurrentSubscriptionOk()
+	return ret
 }
 
 // GetCurrentSubscriptionOk returns a tuple with the CurrentSubscription field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionCancelResponse) GetCurrentSubscriptionOk() (*CurrentSubscriptionStateResponse, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CurrentSubscription, true
+func (o *SubscriptionCancelResponse) GetCurrentSubscriptionOk() (ret SubscriptionCancelResponseGetCurrentSubscriptionRetType, ok bool) {
+	return getSubscriptionCancelResponseGetCurrentSubscriptionAttributeTypeOk(o.CurrentSubscription)
 }
 
 // SetCurrentSubscription sets field value
-func (o *SubscriptionCancelResponse) SetCurrentSubscription(v *CurrentSubscriptionStateResponse) {
-	o.CurrentSubscription = v
+func (o *SubscriptionCancelResponse) SetCurrentSubscription(v SubscriptionCancelResponseGetCurrentSubscriptionRetType) {
+	setSubscriptionCancelResponseGetCurrentSubscriptionAttributeType(&o.CurrentSubscription, v)
 }
 
 // GetRequestedSubscription returns the RequestedSubscription field value
-func (o *SubscriptionCancelResponse) GetRequestedSubscription() *RequestedSubscriptionStateResponse {
-	if o == nil || IsNil(o.RequestedSubscription) {
-		var ret *RequestedSubscriptionStateResponse
-		return ret
-	}
-
-	return o.RequestedSubscription
+func (o *SubscriptionCancelResponse) GetRequestedSubscription() (ret SubscriptionCancelResponseGetRequestedSubscriptionRetType) {
+	ret, _ = o.GetRequestedSubscriptionOk()
+	return ret
 }
 
 // GetRequestedSubscriptionOk returns a tuple with the RequestedSubscription field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionCancelResponse) GetRequestedSubscriptionOk() (*RequestedSubscriptionStateResponse, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RequestedSubscription, true
+func (o *SubscriptionCancelResponse) GetRequestedSubscriptionOk() (ret SubscriptionCancelResponseGetRequestedSubscriptionRetType, ok bool) {
+	return getSubscriptionCancelResponseGetRequestedSubscriptionAttributeTypeOk(o.RequestedSubscription)
 }
 
 // SetRequestedSubscription sets field value
-func (o *SubscriptionCancelResponse) SetRequestedSubscription(v *RequestedSubscriptionStateResponse) {
-	o.RequestedSubscription = v
+func (o *SubscriptionCancelResponse) SetRequestedSubscription(v SubscriptionCancelResponseGetRequestedSubscriptionRetType) {
+	setSubscriptionCancelResponseGetRequestedSubscriptionAttributeType(&o.RequestedSubscription, v)
 }
 
 func (o SubscriptionCancelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["currentSubscription"] = o.CurrentSubscription
-	toSerialize["requestedSubscription"] = o.RequestedSubscription
+	if val, ok := getSubscriptionCancelResponseGetCurrentSubscriptionAttributeTypeOk(o.CurrentSubscription); ok {
+		toSerialize["CurrentSubscription"] = val
+	}
+	if val, ok := getSubscriptionCancelResponseGetRequestedSubscriptionAttributeTypeOk(o.RequestedSubscription); ok {
+		toSerialize["RequestedSubscription"] = val
+	}
 	return toSerialize, nil
 }
 
