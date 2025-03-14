@@ -17,30 +17,294 @@ import (
 // checks if the InstanceParameters type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceParameters{}
 
+/*
+	types and functions for consumer_timeout
+*/
+
+// isInteger
+type InstanceParametersGetConsumerTimeoutAttributeType = *int64
+type InstanceParametersGetConsumerTimeoutArgType = int64
+type InstanceParametersGetConsumerTimeoutRetType = int64
+
+func getInstanceParametersGetConsumerTimeoutAttributeTypeOk(arg InstanceParametersGetConsumerTimeoutAttributeType) (ret InstanceParametersGetConsumerTimeoutRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetConsumerTimeoutAttributeType(arg *InstanceParametersGetConsumerTimeoutAttributeType, val InstanceParametersGetConsumerTimeoutRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for enable_monitoring
+*/
+
+// isBoolean
+type InstanceParametersgetEnableMonitoringAttributeType = *bool
+type InstanceParametersgetEnableMonitoringArgType = bool
+type InstanceParametersgetEnableMonitoringRetType = bool
+
+func getInstanceParametersgetEnableMonitoringAttributeTypeOk(arg InstanceParametersgetEnableMonitoringAttributeType) (ret InstanceParametersgetEnableMonitoringRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersgetEnableMonitoringAttributeType(arg *InstanceParametersgetEnableMonitoringAttributeType, val InstanceParametersgetEnableMonitoringRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for graphite
+*/
+
+// isNotNullableString
+type InstanceParametersGetGraphiteAttributeType = *string
+
+func getInstanceParametersGetGraphiteAttributeTypeOk(arg InstanceParametersGetGraphiteAttributeType) (ret InstanceParametersGetGraphiteRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetGraphiteAttributeType(arg *InstanceParametersGetGraphiteAttributeType, val InstanceParametersGetGraphiteRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetGraphiteArgType = string
+type InstanceParametersGetGraphiteRetType = string
+
+/*
+	types and functions for max_disk_threshold
+*/
+
+// isInteger
+type InstanceParametersGetMaxDiskThresholdAttributeType = *int64
+type InstanceParametersGetMaxDiskThresholdArgType = int64
+type InstanceParametersGetMaxDiskThresholdRetType = int64
+
+func getInstanceParametersGetMaxDiskThresholdAttributeTypeOk(arg InstanceParametersGetMaxDiskThresholdAttributeType) (ret InstanceParametersGetMaxDiskThresholdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMaxDiskThresholdAttributeType(arg *InstanceParametersGetMaxDiskThresholdAttributeType, val InstanceParametersGetMaxDiskThresholdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for metrics_frequency
+*/
+
+// isInteger
+type InstanceParametersGetMetricsFrequencyAttributeType = *int64
+type InstanceParametersGetMetricsFrequencyArgType = int64
+type InstanceParametersGetMetricsFrequencyRetType = int64
+
+func getInstanceParametersGetMetricsFrequencyAttributeTypeOk(arg InstanceParametersGetMetricsFrequencyAttributeType) (ret InstanceParametersGetMetricsFrequencyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMetricsFrequencyAttributeType(arg *InstanceParametersGetMetricsFrequencyAttributeType, val InstanceParametersGetMetricsFrequencyRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for metrics_prefix
+*/
+
+// isNotNullableString
+type InstanceParametersGetMetricsPrefixAttributeType = *string
+
+func getInstanceParametersGetMetricsPrefixAttributeTypeOk(arg InstanceParametersGetMetricsPrefixAttributeType) (ret InstanceParametersGetMetricsPrefixRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMetricsPrefixAttributeType(arg *InstanceParametersGetMetricsPrefixAttributeType, val InstanceParametersGetMetricsPrefixRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetMetricsPrefixArgType = string
+type InstanceParametersGetMetricsPrefixRetType = string
+
+/*
+	types and functions for monitoring_instance_id
+*/
+
+// isNotNullableString
+type InstanceParametersGetMonitoringInstanceIdAttributeType = *string
+
+func getInstanceParametersGetMonitoringInstanceIdAttributeTypeOk(arg InstanceParametersGetMonitoringInstanceIdAttributeType) (ret InstanceParametersGetMonitoringInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetMonitoringInstanceIdAttributeType(arg *InstanceParametersGetMonitoringInstanceIdAttributeType, val InstanceParametersGetMonitoringInstanceIdRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetMonitoringInstanceIdArgType = string
+type InstanceParametersGetMonitoringInstanceIdRetType = string
+
+/*
+	types and functions for plugins
+*/
+
+// isArray
+type InstanceParametersGetPluginsAttributeType = *[]string
+type InstanceParametersGetPluginsArgType = []string
+type InstanceParametersGetPluginsRetType = []string
+
+func getInstanceParametersGetPluginsAttributeTypeOk(arg InstanceParametersGetPluginsAttributeType) (ret InstanceParametersGetPluginsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetPluginsAttributeType(arg *InstanceParametersGetPluginsAttributeType, val InstanceParametersGetPluginsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for roles
+*/
+
+// isArray
+type InstanceParametersGetRolesAttributeType = *[]string
+type InstanceParametersGetRolesArgType = []string
+type InstanceParametersGetRolesRetType = []string
+
+func getInstanceParametersGetRolesAttributeTypeOk(arg InstanceParametersGetRolesAttributeType) (ret InstanceParametersGetRolesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetRolesAttributeType(arg *InstanceParametersGetRolesAttributeType, val InstanceParametersGetRolesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for sgw_acl
+*/
+
+// isNotNullableString
+type InstanceParametersGetSgwAclAttributeType = *string
+
+func getInstanceParametersGetSgwAclAttributeTypeOk(arg InstanceParametersGetSgwAclAttributeType) (ret InstanceParametersGetSgwAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetSgwAclAttributeType(arg *InstanceParametersGetSgwAclAttributeType, val InstanceParametersGetSgwAclRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGetSgwAclArgType = string
+type InstanceParametersGetSgwAclRetType = string
+
+/*
+	types and functions for syslog
+*/
+
+// isArray
+type InstanceParametersGetSyslogAttributeType = *[]string
+type InstanceParametersGetSyslogArgType = []string
+type InstanceParametersGetSyslogRetType = []string
+
+func getInstanceParametersGetSyslogAttributeTypeOk(arg InstanceParametersGetSyslogAttributeType) (ret InstanceParametersGetSyslogRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetSyslogAttributeType(arg *InstanceParametersGetSyslogAttributeType, val InstanceParametersGetSyslogRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tls-ciphers
+*/
+
+// isArray
+type InstanceParametersGetTlsCiphersAttributeType = *[]string
+type InstanceParametersGetTlsCiphersArgType = []string
+type InstanceParametersGetTlsCiphersRetType = []string
+
+func getInstanceParametersGetTlsCiphersAttributeTypeOk(arg InstanceParametersGetTlsCiphersAttributeType) (ret InstanceParametersGetTlsCiphersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetTlsCiphersAttributeType(arg *InstanceParametersGetTlsCiphersAttributeType, val InstanceParametersGetTlsCiphersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tls-protocols
+*/
+
+// isEnumRef
+type InstanceParametersGetTlsProtocolsAttributeType = *string
+type InstanceParametersGetTlsProtocolsArgType = string
+type InstanceParametersGetTlsProtocolsRetType = string
+
+func getInstanceParametersGetTlsProtocolsAttributeTypeOk(arg InstanceParametersGetTlsProtocolsAttributeType) (ret InstanceParametersGetTlsProtocolsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGetTlsProtocolsAttributeType(arg *InstanceParametersGetTlsProtocolsAttributeType, val InstanceParametersGetTlsProtocolsRetType) {
+	*arg = &val
+}
+
 // InstanceParameters struct for InstanceParameters
 type InstanceParameters struct {
 	// The unit is milliseconds.
 	// Can be cast to int32 without loss of precision.
-	ConsumerTimeout  *int64 `json:"consumer_timeout,omitempty"`
-	EnableMonitoring *bool  `json:"enable_monitoring,omitempty"`
+	ConsumerTimeout  InstanceParametersGetConsumerTimeoutAttributeType  `json:"consumer_timeout,omitempty"`
+	EnableMonitoring InstanceParametersgetEnableMonitoringAttributeType `json:"enable_monitoring,omitempty"`
 	// If you want to monitor your service with Graphite, you can set the custom parameter graphite. It expects the host and port where the Graphite metrics should be sent to.
-	Graphite *string `json:"graphite,omitempty"`
+	Graphite InstanceParametersGetGraphiteAttributeType `json:"graphite,omitempty"`
 	// This component monitors ephemeral and persistent disk usage. If one of these disk usages reaches the default configured threshold of 80%, the a9s Parachute stops all processes on that node.
 	// Can be cast to int32 without loss of precision.
-	MaxDiskThreshold *int64 `json:"max_disk_threshold,omitempty"`
+	MaxDiskThreshold InstanceParametersGetMaxDiskThresholdAttributeType `json:"max_disk_threshold,omitempty"`
 	// Frequency of metrics being emitted in seconds
 	// Can be cast to int32 without loss of precision.
-	MetricsFrequency *int64 `json:"metrics_frequency,omitempty"`
+	MetricsFrequency InstanceParametersGetMetricsFrequencyAttributeType `json:"metrics_frequency,omitempty"`
 	// Depending on your graphite provider, you might need to prefix the metrics with a certain value, like an API key for example.
-	MetricsPrefix        *string   `json:"metrics_prefix,omitempty"`
-	MonitoringInstanceId *string   `json:"monitoring_instance_id,omitempty"`
-	Plugins              *[]string `json:"plugins,omitempty"`
-	Roles                *[]string `json:"roles,omitempty"`
+	MetricsPrefix        InstanceParametersGetMetricsPrefixAttributeType        `json:"metrics_prefix,omitempty"`
+	MonitoringInstanceId InstanceParametersGetMonitoringInstanceIdAttributeType `json:"monitoring_instance_id,omitempty"`
+	Plugins              InstanceParametersGetPluginsAttributeType              `json:"plugins,omitempty"`
+	Roles                InstanceParametersGetRolesAttributeType                `json:"roles,omitempty"`
 	// Comma separated list of IP networks in CIDR notation which are allowed to access this instance.
-	SgwAcl       *string   `json:"sgw_acl,omitempty"`
-	Syslog       *[]string `json:"syslog,omitempty"`
-	TlsCiphers   *[]string `json:"tls-ciphers,omitempty"`
-	TlsProtocols *string   `json:"tls-protocols,omitempty"`
+	SgwAcl       InstanceParametersGetSgwAclAttributeType       `json:"sgw_acl,omitempty"`
+	Syslog       InstanceParametersGetSyslogAttributeType       `json:"syslog,omitempty"`
+	TlsCiphers   InstanceParametersGetTlsCiphersAttributeType   `json:"tls-ciphers,omitempty"`
+	TlsProtocols InstanceParametersGetTlsProtocolsAttributeType `json:"tls-protocols,omitempty"`
 }
 
 // NewInstanceParameters instantiates a new InstanceParameters object
@@ -49,14 +313,6 @@ type InstanceParameters struct {
 // will change when the set of required properties is changed
 func NewInstanceParameters() *InstanceParameters {
 	this := InstanceParameters{}
-	var consumerTimeout int64 = 1800000
-	this.ConsumerTimeout = &consumerTimeout
-	var enableMonitoring bool = false
-	this.EnableMonitoring = &enableMonitoring
-	var maxDiskThreshold int64 = 80
-	this.MaxDiskThreshold = &maxDiskThreshold
-	var metricsFrequency int64 = 10
-	this.MetricsFrequency = &metricsFrequency
 	return &this
 }
 
@@ -77,461 +333,344 @@ func NewInstanceParametersWithDefaults() *InstanceParameters {
 }
 
 // GetConsumerTimeout returns the ConsumerTimeout field value if set, zero value otherwise.
-func (o *InstanceParameters) GetConsumerTimeout() *int64 {
-	if o == nil || IsNil(o.ConsumerTimeout) {
-		var ret *int64
-		return ret
-	}
-	return o.ConsumerTimeout
+func (o *InstanceParameters) GetConsumerTimeout() (res InstanceParametersGetConsumerTimeoutRetType) {
+	res, _ = o.GetConsumerTimeoutOk()
+	return
 }
 
 // GetConsumerTimeoutOk returns a tuple with the ConsumerTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetConsumerTimeoutOk() (*int64, bool) {
-	if o == nil || IsNil(o.ConsumerTimeout) {
-		return nil, false
-	}
-	return o.ConsumerTimeout, true
+func (o *InstanceParameters) GetConsumerTimeoutOk() (ret InstanceParametersGetConsumerTimeoutRetType, ok bool) {
+	return getInstanceParametersGetConsumerTimeoutAttributeTypeOk(o.ConsumerTimeout)
 }
 
 // HasConsumerTimeout returns a boolean if a field has been set.
 func (o *InstanceParameters) HasConsumerTimeout() bool {
-	if o != nil && !IsNil(o.ConsumerTimeout) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetConsumerTimeoutOk()
+	return ok
 }
 
 // SetConsumerTimeout gets a reference to the given int64 and assigns it to the ConsumerTimeout field.
-func (o *InstanceParameters) SetConsumerTimeout(v *int64) {
-	o.ConsumerTimeout = v
+func (o *InstanceParameters) SetConsumerTimeout(v InstanceParametersGetConsumerTimeoutRetType) {
+	setInstanceParametersGetConsumerTimeoutAttributeType(&o.ConsumerTimeout, v)
 }
 
 // GetEnableMonitoring returns the EnableMonitoring field value if set, zero value otherwise.
-func (o *InstanceParameters) GetEnableMonitoring() *bool {
-	if o == nil || IsNil(o.EnableMonitoring) {
-		var ret *bool
-		return ret
-	}
-	return o.EnableMonitoring
+func (o *InstanceParameters) GetEnableMonitoring() (res InstanceParametersgetEnableMonitoringRetType) {
+	res, _ = o.GetEnableMonitoringOk()
+	return
 }
 
 // GetEnableMonitoringOk returns a tuple with the EnableMonitoring field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetEnableMonitoringOk() (*bool, bool) {
-	if o == nil || IsNil(o.EnableMonitoring) {
-		return nil, false
-	}
-	return o.EnableMonitoring, true
+func (o *InstanceParameters) GetEnableMonitoringOk() (ret InstanceParametersgetEnableMonitoringRetType, ok bool) {
+	return getInstanceParametersgetEnableMonitoringAttributeTypeOk(o.EnableMonitoring)
 }
 
 // HasEnableMonitoring returns a boolean if a field has been set.
 func (o *InstanceParameters) HasEnableMonitoring() bool {
-	if o != nil && !IsNil(o.EnableMonitoring) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEnableMonitoringOk()
+	return ok
 }
 
 // SetEnableMonitoring gets a reference to the given bool and assigns it to the EnableMonitoring field.
-func (o *InstanceParameters) SetEnableMonitoring(v *bool) {
-	o.EnableMonitoring = v
+func (o *InstanceParameters) SetEnableMonitoring(v InstanceParametersgetEnableMonitoringRetType) {
+	setInstanceParametersgetEnableMonitoringAttributeType(&o.EnableMonitoring, v)
 }
 
 // GetGraphite returns the Graphite field value if set, zero value otherwise.
-func (o *InstanceParameters) GetGraphite() *string {
-	if o == nil || IsNil(o.Graphite) {
-		var ret *string
-		return ret
-	}
-	return o.Graphite
+func (o *InstanceParameters) GetGraphite() (res InstanceParametersGetGraphiteRetType) {
+	res, _ = o.GetGraphiteOk()
+	return
 }
 
 // GetGraphiteOk returns a tuple with the Graphite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetGraphiteOk() (*string, bool) {
-	if o == nil || IsNil(o.Graphite) {
-		return nil, false
-	}
-	return o.Graphite, true
+func (o *InstanceParameters) GetGraphiteOk() (ret InstanceParametersGetGraphiteRetType, ok bool) {
+	return getInstanceParametersGetGraphiteAttributeTypeOk(o.Graphite)
 }
 
 // HasGraphite returns a boolean if a field has been set.
 func (o *InstanceParameters) HasGraphite() bool {
-	if o != nil && !IsNil(o.Graphite) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGraphiteOk()
+	return ok
 }
 
 // SetGraphite gets a reference to the given string and assigns it to the Graphite field.
-func (o *InstanceParameters) SetGraphite(v *string) {
-	o.Graphite = v
+func (o *InstanceParameters) SetGraphite(v InstanceParametersGetGraphiteRetType) {
+	setInstanceParametersGetGraphiteAttributeType(&o.Graphite, v)
 }
 
 // GetMaxDiskThreshold returns the MaxDiskThreshold field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMaxDiskThreshold() *int64 {
-	if o == nil || IsNil(o.MaxDiskThreshold) {
-		var ret *int64
-		return ret
-	}
-	return o.MaxDiskThreshold
+func (o *InstanceParameters) GetMaxDiskThreshold() (res InstanceParametersGetMaxDiskThresholdRetType) {
+	res, _ = o.GetMaxDiskThresholdOk()
+	return
 }
 
 // GetMaxDiskThresholdOk returns a tuple with the MaxDiskThreshold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMaxDiskThresholdOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxDiskThreshold) {
-		return nil, false
-	}
-	return o.MaxDiskThreshold, true
+func (o *InstanceParameters) GetMaxDiskThresholdOk() (ret InstanceParametersGetMaxDiskThresholdRetType, ok bool) {
+	return getInstanceParametersGetMaxDiskThresholdAttributeTypeOk(o.MaxDiskThreshold)
 }
 
 // HasMaxDiskThreshold returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMaxDiskThreshold() bool {
-	if o != nil && !IsNil(o.MaxDiskThreshold) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxDiskThresholdOk()
+	return ok
 }
 
 // SetMaxDiskThreshold gets a reference to the given int64 and assigns it to the MaxDiskThreshold field.
-func (o *InstanceParameters) SetMaxDiskThreshold(v *int64) {
-	o.MaxDiskThreshold = v
+func (o *InstanceParameters) SetMaxDiskThreshold(v InstanceParametersGetMaxDiskThresholdRetType) {
+	setInstanceParametersGetMaxDiskThresholdAttributeType(&o.MaxDiskThreshold, v)
 }
 
 // GetMetricsFrequency returns the MetricsFrequency field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMetricsFrequency() *int64 {
-	if o == nil || IsNil(o.MetricsFrequency) {
-		var ret *int64
-		return ret
-	}
-	return o.MetricsFrequency
+func (o *InstanceParameters) GetMetricsFrequency() (res InstanceParametersGetMetricsFrequencyRetType) {
+	res, _ = o.GetMetricsFrequencyOk()
+	return
 }
 
 // GetMetricsFrequencyOk returns a tuple with the MetricsFrequency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMetricsFrequencyOk() (*int64, bool) {
-	if o == nil || IsNil(o.MetricsFrequency) {
-		return nil, false
-	}
-	return o.MetricsFrequency, true
+func (o *InstanceParameters) GetMetricsFrequencyOk() (ret InstanceParametersGetMetricsFrequencyRetType, ok bool) {
+	return getInstanceParametersGetMetricsFrequencyAttributeTypeOk(o.MetricsFrequency)
 }
 
 // HasMetricsFrequency returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsFrequency() bool {
-	if o != nil && !IsNil(o.MetricsFrequency) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMetricsFrequencyOk()
+	return ok
 }
 
 // SetMetricsFrequency gets a reference to the given int64 and assigns it to the MetricsFrequency field.
-func (o *InstanceParameters) SetMetricsFrequency(v *int64) {
-	o.MetricsFrequency = v
+func (o *InstanceParameters) SetMetricsFrequency(v InstanceParametersGetMetricsFrequencyRetType) {
+	setInstanceParametersGetMetricsFrequencyAttributeType(&o.MetricsFrequency, v)
 }
 
 // GetMetricsPrefix returns the MetricsPrefix field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMetricsPrefix() *string {
-	if o == nil || IsNil(o.MetricsPrefix) {
-		var ret *string
-		return ret
-	}
-	return o.MetricsPrefix
+func (o *InstanceParameters) GetMetricsPrefix() (res InstanceParametersGetMetricsPrefixRetType) {
+	res, _ = o.GetMetricsPrefixOk()
+	return
 }
 
 // GetMetricsPrefixOk returns a tuple with the MetricsPrefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMetricsPrefixOk() (*string, bool) {
-	if o == nil || IsNil(o.MetricsPrefix) {
-		return nil, false
-	}
-	return o.MetricsPrefix, true
+func (o *InstanceParameters) GetMetricsPrefixOk() (ret InstanceParametersGetMetricsPrefixRetType, ok bool) {
+	return getInstanceParametersGetMetricsPrefixAttributeTypeOk(o.MetricsPrefix)
 }
 
 // HasMetricsPrefix returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMetricsPrefix() bool {
-	if o != nil && !IsNil(o.MetricsPrefix) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMetricsPrefixOk()
+	return ok
 }
 
 // SetMetricsPrefix gets a reference to the given string and assigns it to the MetricsPrefix field.
-func (o *InstanceParameters) SetMetricsPrefix(v *string) {
-	o.MetricsPrefix = v
+func (o *InstanceParameters) SetMetricsPrefix(v InstanceParametersGetMetricsPrefixRetType) {
+	setInstanceParametersGetMetricsPrefixAttributeType(&o.MetricsPrefix, v)
 }
 
 // GetMonitoringInstanceId returns the MonitoringInstanceId field value if set, zero value otherwise.
-func (o *InstanceParameters) GetMonitoringInstanceId() *string {
-	if o == nil || IsNil(o.MonitoringInstanceId) {
-		var ret *string
-		return ret
-	}
-	return o.MonitoringInstanceId
+func (o *InstanceParameters) GetMonitoringInstanceId() (res InstanceParametersGetMonitoringInstanceIdRetType) {
+	res, _ = o.GetMonitoringInstanceIdOk()
+	return
 }
 
 // GetMonitoringInstanceIdOk returns a tuple with the MonitoringInstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetMonitoringInstanceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.MonitoringInstanceId) {
-		return nil, false
-	}
-	return o.MonitoringInstanceId, true
+func (o *InstanceParameters) GetMonitoringInstanceIdOk() (ret InstanceParametersGetMonitoringInstanceIdRetType, ok bool) {
+	return getInstanceParametersGetMonitoringInstanceIdAttributeTypeOk(o.MonitoringInstanceId)
 }
 
 // HasMonitoringInstanceId returns a boolean if a field has been set.
 func (o *InstanceParameters) HasMonitoringInstanceId() bool {
-	if o != nil && !IsNil(o.MonitoringInstanceId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMonitoringInstanceIdOk()
+	return ok
 }
 
 // SetMonitoringInstanceId gets a reference to the given string and assigns it to the MonitoringInstanceId field.
-func (o *InstanceParameters) SetMonitoringInstanceId(v *string) {
-	o.MonitoringInstanceId = v
+func (o *InstanceParameters) SetMonitoringInstanceId(v InstanceParametersGetMonitoringInstanceIdRetType) {
+	setInstanceParametersGetMonitoringInstanceIdAttributeType(&o.MonitoringInstanceId, v)
 }
 
 // GetPlugins returns the Plugins field value if set, zero value otherwise.
-func (o *InstanceParameters) GetPlugins() *[]string {
-	if o == nil || IsNil(o.Plugins) {
-		var ret *[]string
-		return ret
-	}
-	return o.Plugins
+func (o *InstanceParameters) GetPlugins() (res InstanceParametersGetPluginsRetType) {
+	res, _ = o.GetPluginsOk()
+	return
 }
 
 // GetPluginsOk returns a tuple with the Plugins field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetPluginsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Plugins) {
-		return nil, false
-	}
-	return o.Plugins, true
+func (o *InstanceParameters) GetPluginsOk() (ret InstanceParametersGetPluginsRetType, ok bool) {
+	return getInstanceParametersGetPluginsAttributeTypeOk(o.Plugins)
 }
 
 // HasPlugins returns a boolean if a field has been set.
 func (o *InstanceParameters) HasPlugins() bool {
-	if o != nil && !IsNil(o.Plugins) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPluginsOk()
+	return ok
 }
 
 // SetPlugins gets a reference to the given []string and assigns it to the Plugins field.
-func (o *InstanceParameters) SetPlugins(v *[]string) {
-	o.Plugins = v
+func (o *InstanceParameters) SetPlugins(v InstanceParametersGetPluginsRetType) {
+	setInstanceParametersGetPluginsAttributeType(&o.Plugins, v)
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *InstanceParameters) GetRoles() *[]string {
-	if o == nil || IsNil(o.Roles) {
-		var ret *[]string
-		return ret
-	}
-	return o.Roles
+func (o *InstanceParameters) GetRoles() (res InstanceParametersGetRolesRetType) {
+	res, _ = o.GetRolesOk()
+	return
 }
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetRolesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Roles) {
-		return nil, false
-	}
-	return o.Roles, true
+func (o *InstanceParameters) GetRolesOk() (ret InstanceParametersGetRolesRetType, ok bool) {
+	return getInstanceParametersGetRolesAttributeTypeOk(o.Roles)
 }
 
 // HasRoles returns a boolean if a field has been set.
 func (o *InstanceParameters) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRolesOk()
+	return ok
 }
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *InstanceParameters) SetRoles(v *[]string) {
-	o.Roles = v
+func (o *InstanceParameters) SetRoles(v InstanceParametersGetRolesRetType) {
+	setInstanceParametersGetRolesAttributeType(&o.Roles, v)
 }
 
 // GetSgwAcl returns the SgwAcl field value if set, zero value otherwise.
-func (o *InstanceParameters) GetSgwAcl() *string {
-	if o == nil || IsNil(o.SgwAcl) {
-		var ret *string
-		return ret
-	}
-	return o.SgwAcl
+func (o *InstanceParameters) GetSgwAcl() (res InstanceParametersGetSgwAclRetType) {
+	res, _ = o.GetSgwAclOk()
+	return
 }
 
 // GetSgwAclOk returns a tuple with the SgwAcl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetSgwAclOk() (*string, bool) {
-	if o == nil || IsNil(o.SgwAcl) {
-		return nil, false
-	}
-	return o.SgwAcl, true
+func (o *InstanceParameters) GetSgwAclOk() (ret InstanceParametersGetSgwAclRetType, ok bool) {
+	return getInstanceParametersGetSgwAclAttributeTypeOk(o.SgwAcl)
 }
 
 // HasSgwAcl returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSgwAcl() bool {
-	if o != nil && !IsNil(o.SgwAcl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSgwAclOk()
+	return ok
 }
 
 // SetSgwAcl gets a reference to the given string and assigns it to the SgwAcl field.
-func (o *InstanceParameters) SetSgwAcl(v *string) {
-	o.SgwAcl = v
+func (o *InstanceParameters) SetSgwAcl(v InstanceParametersGetSgwAclRetType) {
+	setInstanceParametersGetSgwAclAttributeType(&o.SgwAcl, v)
 }
 
 // GetSyslog returns the Syslog field value if set, zero value otherwise.
-func (o *InstanceParameters) GetSyslog() *[]string {
-	if o == nil || IsNil(o.Syslog) {
-		var ret *[]string
-		return ret
-	}
-	return o.Syslog
+func (o *InstanceParameters) GetSyslog() (res InstanceParametersGetSyslogRetType) {
+	res, _ = o.GetSyslogOk()
+	return
 }
 
 // GetSyslogOk returns a tuple with the Syslog field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetSyslogOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Syslog) {
-		return nil, false
-	}
-	return o.Syslog, true
+func (o *InstanceParameters) GetSyslogOk() (ret InstanceParametersGetSyslogRetType, ok bool) {
+	return getInstanceParametersGetSyslogAttributeTypeOk(o.Syslog)
 }
 
 // HasSyslog returns a boolean if a field has been set.
 func (o *InstanceParameters) HasSyslog() bool {
-	if o != nil && !IsNil(o.Syslog) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSyslogOk()
+	return ok
 }
 
 // SetSyslog gets a reference to the given []string and assigns it to the Syslog field.
-func (o *InstanceParameters) SetSyslog(v *[]string) {
-	o.Syslog = v
+func (o *InstanceParameters) SetSyslog(v InstanceParametersGetSyslogRetType) {
+	setInstanceParametersGetSyslogAttributeType(&o.Syslog, v)
 }
 
 // GetTlsCiphers returns the TlsCiphers field value if set, zero value otherwise.
-func (o *InstanceParameters) GetTlsCiphers() *[]string {
-	if o == nil || IsNil(o.TlsCiphers) {
-		var ret *[]string
-		return ret
-	}
-	return o.TlsCiphers
+func (o *InstanceParameters) GetTlsCiphers() (res InstanceParametersGetTlsCiphersRetType) {
+	res, _ = o.GetTlsCiphersOk()
+	return
 }
 
 // GetTlsCiphersOk returns a tuple with the TlsCiphers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetTlsCiphersOk() (*[]string, bool) {
-	if o == nil || IsNil(o.TlsCiphers) {
-		return nil, false
-	}
-	return o.TlsCiphers, true
+func (o *InstanceParameters) GetTlsCiphersOk() (ret InstanceParametersGetTlsCiphersRetType, ok bool) {
+	return getInstanceParametersGetTlsCiphersAttributeTypeOk(o.TlsCiphers)
 }
 
 // HasTlsCiphers returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsCiphers() bool {
-	if o != nil && !IsNil(o.TlsCiphers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsCiphersOk()
+	return ok
 }
 
 // SetTlsCiphers gets a reference to the given []string and assigns it to the TlsCiphers field.
-func (o *InstanceParameters) SetTlsCiphers(v *[]string) {
-	o.TlsCiphers = v
+func (o *InstanceParameters) SetTlsCiphers(v InstanceParametersGetTlsCiphersRetType) {
+	setInstanceParametersGetTlsCiphersAttributeType(&o.TlsCiphers, v)
 }
 
 // GetTlsProtocols returns the TlsProtocols field value if set, zero value otherwise.
-func (o *InstanceParameters) GetTlsProtocols() *string {
-	if o == nil || IsNil(o.TlsProtocols) {
-		var ret *string
-		return ret
-	}
-	return o.TlsProtocols
+func (o *InstanceParameters) GetTlsProtocols() (res InstanceParametersGetTlsProtocolsRetType) {
+	res, _ = o.GetTlsProtocolsOk()
+	return
 }
 
 // GetTlsProtocolsOk returns a tuple with the TlsProtocols field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParameters) GetTlsProtocolsOk() (*string, bool) {
-	if o == nil || IsNil(o.TlsProtocols) {
-		return nil, false
-	}
-	return o.TlsProtocols, true
+func (o *InstanceParameters) GetTlsProtocolsOk() (ret InstanceParametersGetTlsProtocolsRetType, ok bool) {
+	return getInstanceParametersGetTlsProtocolsAttributeTypeOk(o.TlsProtocols)
 }
 
 // HasTlsProtocols returns a boolean if a field has been set.
 func (o *InstanceParameters) HasTlsProtocols() bool {
-	if o != nil && !IsNil(o.TlsProtocols) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsProtocolsOk()
+	return ok
 }
 
 // SetTlsProtocols gets a reference to the given string and assigns it to the TlsProtocols field.
-func (o *InstanceParameters) SetTlsProtocols(v *string) {
-	o.TlsProtocols = v
+func (o *InstanceParameters) SetTlsProtocols(v InstanceParametersGetTlsProtocolsRetType) {
+	setInstanceParametersGetTlsProtocolsAttributeType(&o.TlsProtocols, v)
 }
 
 func (o InstanceParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ConsumerTimeout) {
-		toSerialize["consumer_timeout"] = o.ConsumerTimeout
+	if val, ok := getInstanceParametersGetConsumerTimeoutAttributeTypeOk(o.ConsumerTimeout); ok {
+		toSerialize["ConsumerTimeout"] = val
 	}
-	if !IsNil(o.EnableMonitoring) {
-		toSerialize["enable_monitoring"] = o.EnableMonitoring
+	if val, ok := getInstanceParametersgetEnableMonitoringAttributeTypeOk(o.EnableMonitoring); ok {
+		toSerialize["EnableMonitoring"] = val
 	}
-	if !IsNil(o.Graphite) {
-		toSerialize["graphite"] = o.Graphite
+	if val, ok := getInstanceParametersGetGraphiteAttributeTypeOk(o.Graphite); ok {
+		toSerialize["Graphite"] = val
 	}
-	if !IsNil(o.MaxDiskThreshold) {
-		toSerialize["max_disk_threshold"] = o.MaxDiskThreshold
+	if val, ok := getInstanceParametersGetMaxDiskThresholdAttributeTypeOk(o.MaxDiskThreshold); ok {
+		toSerialize["MaxDiskThreshold"] = val
 	}
-	if !IsNil(o.MetricsFrequency) {
-		toSerialize["metrics_frequency"] = o.MetricsFrequency
+	if val, ok := getInstanceParametersGetMetricsFrequencyAttributeTypeOk(o.MetricsFrequency); ok {
+		toSerialize["MetricsFrequency"] = val
 	}
-	if !IsNil(o.MetricsPrefix) {
-		toSerialize["metrics_prefix"] = o.MetricsPrefix
+	if val, ok := getInstanceParametersGetMetricsPrefixAttributeTypeOk(o.MetricsPrefix); ok {
+		toSerialize["MetricsPrefix"] = val
 	}
-	if !IsNil(o.MonitoringInstanceId) {
-		toSerialize["monitoring_instance_id"] = o.MonitoringInstanceId
+	if val, ok := getInstanceParametersGetMonitoringInstanceIdAttributeTypeOk(o.MonitoringInstanceId); ok {
+		toSerialize["MonitoringInstanceId"] = val
 	}
-	if !IsNil(o.Plugins) {
-		toSerialize["plugins"] = o.Plugins
+	if val, ok := getInstanceParametersGetPluginsAttributeTypeOk(o.Plugins); ok {
+		toSerialize["Plugins"] = val
 	}
-	if !IsNil(o.Roles) {
-		toSerialize["roles"] = o.Roles
+	if val, ok := getInstanceParametersGetRolesAttributeTypeOk(o.Roles); ok {
+		toSerialize["Roles"] = val
 	}
-	if !IsNil(o.SgwAcl) {
-		toSerialize["sgw_acl"] = o.SgwAcl
+	if val, ok := getInstanceParametersGetSgwAclAttributeTypeOk(o.SgwAcl); ok {
+		toSerialize["SgwAcl"] = val
 	}
-	if !IsNil(o.Syslog) {
-		toSerialize["syslog"] = o.Syslog
+	if val, ok := getInstanceParametersGetSyslogAttributeTypeOk(o.Syslog); ok {
+		toSerialize["Syslog"] = val
 	}
-	if !IsNil(o.TlsCiphers) {
-		toSerialize["tls-ciphers"] = o.TlsCiphers
+	if val, ok := getInstanceParametersGetTlsCiphersAttributeTypeOk(o.TlsCiphers); ok {
+		toSerialize["TlsCiphers"] = val
 	}
-	if !IsNil(o.TlsProtocols) {
-		toSerialize["tls-protocols"] = o.TlsProtocols
+	if val, ok := getInstanceParametersGetTlsProtocolsAttributeTypeOk(o.TlsProtocols); ok {
+		toSerialize["TlsProtocols"] = val
 	}
 	return toSerialize, nil
 }
