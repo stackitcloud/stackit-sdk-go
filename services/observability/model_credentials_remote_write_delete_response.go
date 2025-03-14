@@ -17,12 +17,53 @@ import (
 // checks if the CredentialsRemoteWriteDeleteResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CredentialsRemoteWriteDeleteResponse{}
 
+/*
+	types and functions for maxLimit
+*/
+
+// isInteger
+type CredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeType = *int64
+type CredentialsRemoteWriteDeleteResponseGetMaxLimitArgType = int64
+type CredentialsRemoteWriteDeleteResponseGetMaxLimitRetType = int64
+
+func getCredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeTypeOk(arg CredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeType) (ret CredentialsRemoteWriteDeleteResponseGetMaxLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeType(arg *CredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeType, val CredentialsRemoteWriteDeleteResponseGetMaxLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type CredentialsRemoteWriteDeleteResponseGetMessageAttributeType = *string
+
+func getCredentialsRemoteWriteDeleteResponseGetMessageAttributeTypeOk(arg CredentialsRemoteWriteDeleteResponseGetMessageAttributeType) (ret CredentialsRemoteWriteDeleteResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsRemoteWriteDeleteResponseGetMessageAttributeType(arg *CredentialsRemoteWriteDeleteResponseGetMessageAttributeType, val CredentialsRemoteWriteDeleteResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type CredentialsRemoteWriteDeleteResponseGetMessageArgType = string
+type CredentialsRemoteWriteDeleteResponseGetMessageRetType = string
+
 // CredentialsRemoteWriteDeleteResponse struct for CredentialsRemoteWriteDeleteResponse
 type CredentialsRemoteWriteDeleteResponse struct {
 	// REQUIRED
-	MaxLimit *int64 `json:"maxLimit"`
+	MaxLimit CredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeType `json:"maxLimit"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message CredentialsRemoteWriteDeleteResponseGetMessageAttributeType `json:"message"`
 }
 
 type _CredentialsRemoteWriteDeleteResponse CredentialsRemoteWriteDeleteResponse
@@ -31,10 +72,10 @@ type _CredentialsRemoteWriteDeleteResponse CredentialsRemoteWriteDeleteResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredentialsRemoteWriteDeleteResponse(maxLimit *int64, message *string) *CredentialsRemoteWriteDeleteResponse {
+func NewCredentialsRemoteWriteDeleteResponse(maxLimit CredentialsRemoteWriteDeleteResponseGetMaxLimitArgType, message CredentialsRemoteWriteDeleteResponseGetMessageArgType) *CredentialsRemoteWriteDeleteResponse {
 	this := CredentialsRemoteWriteDeleteResponse{}
-	this.MaxLimit = maxLimit
-	this.Message = message
+	setCredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeType(&this.MaxLimit, maxLimit)
+	setCredentialsRemoteWriteDeleteResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewCredentialsRemoteWriteDeleteResponseWithDefaults() *CredentialsRemoteWri
 }
 
 // GetMaxLimit returns the MaxLimit field value
-func (o *CredentialsRemoteWriteDeleteResponse) GetMaxLimit() *int64 {
-	if o == nil || IsNil(o.MaxLimit) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MaxLimit
+func (o *CredentialsRemoteWriteDeleteResponse) GetMaxLimit() (ret CredentialsRemoteWriteDeleteResponseGetMaxLimitRetType) {
+	ret, _ = o.GetMaxLimitOk()
+	return ret
 }
 
 // GetMaxLimitOk returns a tuple with the MaxLimit field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsRemoteWriteDeleteResponse) GetMaxLimitOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxLimit, true
+func (o *CredentialsRemoteWriteDeleteResponse) GetMaxLimitOk() (ret CredentialsRemoteWriteDeleteResponseGetMaxLimitRetType, ok bool) {
+	return getCredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeTypeOk(o.MaxLimit)
 }
 
 // SetMaxLimit sets field value
-func (o *CredentialsRemoteWriteDeleteResponse) SetMaxLimit(v *int64) {
-	o.MaxLimit = v
+func (o *CredentialsRemoteWriteDeleteResponse) SetMaxLimit(v CredentialsRemoteWriteDeleteResponseGetMaxLimitRetType) {
+	setCredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeType(&o.MaxLimit, v)
 }
 
 // GetMessage returns the Message field value
-func (o *CredentialsRemoteWriteDeleteResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *CredentialsRemoteWriteDeleteResponse) GetMessage() (ret CredentialsRemoteWriteDeleteResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsRemoteWriteDeleteResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *CredentialsRemoteWriteDeleteResponse) GetMessageOk() (ret CredentialsRemoteWriteDeleteResponseGetMessageRetType, ok bool) {
+	return getCredentialsRemoteWriteDeleteResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *CredentialsRemoteWriteDeleteResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *CredentialsRemoteWriteDeleteResponse) SetMessage(v CredentialsRemoteWriteDeleteResponseGetMessageRetType) {
+	setCredentialsRemoteWriteDeleteResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o CredentialsRemoteWriteDeleteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["maxLimit"] = o.MaxLimit
-	toSerialize["message"] = o.Message
+	if val, ok := getCredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeTypeOk(o.MaxLimit); ok {
+		toSerialize["MaxLimit"] = val
+	}
+	if val, ok := getCredentialsRemoteWriteDeleteResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

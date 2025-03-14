@@ -17,10 +17,30 @@ import (
 // checks if the CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig{}
 
+/*
+	types and functions for insecureSkipVerify
+*/
+
+// isBoolean
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeType = *bool
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyArgType = bool
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyRetType = bool
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyRetType) {
+	*arg = &val
+}
+
 // CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig Configures the scrape request's TLS settings.
 type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig struct {
 	// Disable validation of the server certificate.
-	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
+	InsecureSkipVerify CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeType `json:"insecureSkipVerify,omitempty"`
 }
 
 // NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig instantiates a new CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig object
@@ -29,8 +49,6 @@ type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig struct {
 // will change when the set of required properties is changed
 func NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig() *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig {
 	this := CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig{}
-	var insecureSkipVerify bool = false
-	this.InsecureSkipVerify = &insecureSkipVerify
 	return &this
 }
 
@@ -45,41 +63,32 @@ func NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfigWithDefaults()
 }
 
 // GetInsecureSkipVerify returns the InsecureSkipVerify field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) GetInsecureSkipVerify() *bool {
-	if o == nil || IsNil(o.InsecureSkipVerify) {
-		var ret *bool
-		return ret
-	}
-	return o.InsecureSkipVerify
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) GetInsecureSkipVerify() (res CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyRetType) {
+	res, _ = o.GetInsecureSkipVerifyOk()
+	return
 }
 
 // GetInsecureSkipVerifyOk returns a tuple with the InsecureSkipVerify field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) GetInsecureSkipVerifyOk() (*bool, bool) {
-	if o == nil || IsNil(o.InsecureSkipVerify) {
-		return nil, false
-	}
-	return o.InsecureSkipVerify, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) GetInsecureSkipVerifyOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeTypeOk(o.InsecureSkipVerify)
 }
 
 // HasInsecureSkipVerify returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) HasInsecureSkipVerify() bool {
-	if o != nil && !IsNil(o.InsecureSkipVerify) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInsecureSkipVerifyOk()
+	return ok
 }
 
 // SetInsecureSkipVerify gets a reference to the given bool and assigns it to the InsecureSkipVerify field.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) SetInsecureSkipVerify(v *bool) {
-	o.InsecureSkipVerify = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) SetInsecureSkipVerify(v CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeType(&o.InsecureSkipVerify, v)
 }
 
 func (o CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.InsecureSkipVerify) {
-		toSerialize["insecureSkipVerify"] = o.InsecureSkipVerify
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeTypeOk(o.InsecureSkipVerify); ok {
+		toSerialize["InsecureSkipVerify"] = val
 	}
 	return toSerialize, nil
 }
