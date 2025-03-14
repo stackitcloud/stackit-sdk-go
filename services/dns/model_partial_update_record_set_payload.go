@@ -17,16 +17,98 @@ import (
 // checks if the PartialUpdateRecordSetPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateRecordSetPayload{}
 
+/*
+	types and functions for comment
+*/
+
+// isNotNullableString
+type PartialUpdateRecordSetPayloadGetCommentAttributeType = *string
+
+func getPartialUpdateRecordSetPayloadGetCommentAttributeTypeOk(arg PartialUpdateRecordSetPayloadGetCommentAttributeType) (ret PartialUpdateRecordSetPayloadGetCommentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateRecordSetPayloadGetCommentAttributeType(arg *PartialUpdateRecordSetPayloadGetCommentAttributeType, val PartialUpdateRecordSetPayloadGetCommentRetType) {
+	*arg = &val
+}
+
+type PartialUpdateRecordSetPayloadGetCommentArgType = string
+type PartialUpdateRecordSetPayloadGetCommentRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type PartialUpdateRecordSetPayloadGetNameAttributeType = *string
+
+func getPartialUpdateRecordSetPayloadGetNameAttributeTypeOk(arg PartialUpdateRecordSetPayloadGetNameAttributeType) (ret PartialUpdateRecordSetPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateRecordSetPayloadGetNameAttributeType(arg *PartialUpdateRecordSetPayloadGetNameAttributeType, val PartialUpdateRecordSetPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type PartialUpdateRecordSetPayloadGetNameArgType = string
+type PartialUpdateRecordSetPayloadGetNameRetType = string
+
+/*
+	types and functions for records
+*/
+
+// isArray
+type PartialUpdateRecordSetPayloadGetRecordsAttributeType = *[]RecordPayload
+type PartialUpdateRecordSetPayloadGetRecordsArgType = []RecordPayload
+type PartialUpdateRecordSetPayloadGetRecordsRetType = []RecordPayload
+
+func getPartialUpdateRecordSetPayloadGetRecordsAttributeTypeOk(arg PartialUpdateRecordSetPayloadGetRecordsAttributeType) (ret PartialUpdateRecordSetPayloadGetRecordsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateRecordSetPayloadGetRecordsAttributeType(arg *PartialUpdateRecordSetPayloadGetRecordsAttributeType, val PartialUpdateRecordSetPayloadGetRecordsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for ttl
+*/
+
+// isInteger
+type PartialUpdateRecordSetPayloadGetTtlAttributeType = *int64
+type PartialUpdateRecordSetPayloadGetTtlArgType = int64
+type PartialUpdateRecordSetPayloadGetTtlRetType = int64
+
+func getPartialUpdateRecordSetPayloadGetTtlAttributeTypeOk(arg PartialUpdateRecordSetPayloadGetTtlAttributeType) (ret PartialUpdateRecordSetPayloadGetTtlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateRecordSetPayloadGetTtlAttributeType(arg *PartialUpdateRecordSetPayloadGetTtlAttributeType, val PartialUpdateRecordSetPayloadGetTtlRetType) {
+	*arg = &val
+}
+
 // PartialUpdateRecordSetPayload RRSetPatch for rr patch set info.
 type PartialUpdateRecordSetPayload struct {
 	// user comment
-	Comment *string `json:"comment,omitempty"`
+	Comment PartialUpdateRecordSetPayloadGetCommentAttributeType `json:"comment,omitempty"`
 	// rfc1035 Section 2.3.4
-	Name *string `json:"name,omitempty"`
+	Name PartialUpdateRecordSetPayloadGetNameAttributeType `json:"name,omitempty"`
 	// records
-	Records *[]RecordPayload `json:"records,omitempty"`
+	Records PartialUpdateRecordSetPayloadGetRecordsAttributeType `json:"records,omitempty"`
 	// time to live
-	Ttl *int64 `json:"ttl,omitempty"`
+	Ttl PartialUpdateRecordSetPayloadGetTtlAttributeType `json:"ttl,omitempty"`
 }
 
 // NewPartialUpdateRecordSetPayload instantiates a new PartialUpdateRecordSetPayload object
@@ -47,146 +129,110 @@ func NewPartialUpdateRecordSetPayloadWithDefaults() *PartialUpdateRecordSetPaylo
 }
 
 // GetComment returns the Comment field value if set, zero value otherwise.
-func (o *PartialUpdateRecordSetPayload) GetComment() *string {
-	if o == nil || IsNil(o.Comment) {
-		var ret *string
-		return ret
-	}
-	return o.Comment
+func (o *PartialUpdateRecordSetPayload) GetComment() (res PartialUpdateRecordSetPayloadGetCommentRetType) {
+	res, _ = o.GetCommentOk()
+	return
 }
 
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateRecordSetPayload) GetCommentOk() (*string, bool) {
-	if o == nil || IsNil(o.Comment) {
-		return nil, false
-	}
-	return o.Comment, true
+func (o *PartialUpdateRecordSetPayload) GetCommentOk() (ret PartialUpdateRecordSetPayloadGetCommentRetType, ok bool) {
+	return getPartialUpdateRecordSetPayloadGetCommentAttributeTypeOk(o.Comment)
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *PartialUpdateRecordSetPayload) HasComment() bool {
-	if o != nil && !IsNil(o.Comment) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCommentOk()
+	return ok
 }
 
 // SetComment gets a reference to the given string and assigns it to the Comment field.
-func (o *PartialUpdateRecordSetPayload) SetComment(v *string) {
-	o.Comment = v
+func (o *PartialUpdateRecordSetPayload) SetComment(v PartialUpdateRecordSetPayloadGetCommentRetType) {
+	setPartialUpdateRecordSetPayloadGetCommentAttributeType(&o.Comment, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PartialUpdateRecordSetPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *PartialUpdateRecordSetPayload) GetName() (res PartialUpdateRecordSetPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateRecordSetPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *PartialUpdateRecordSetPayload) GetNameOk() (ret PartialUpdateRecordSetPayloadGetNameRetType, ok bool) {
+	return getPartialUpdateRecordSetPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateRecordSetPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PartialUpdateRecordSetPayload) SetName(v *string) {
-	o.Name = v
+func (o *PartialUpdateRecordSetPayload) SetName(v PartialUpdateRecordSetPayloadGetNameRetType) {
+	setPartialUpdateRecordSetPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetRecords returns the Records field value if set, zero value otherwise.
-func (o *PartialUpdateRecordSetPayload) GetRecords() *[]RecordPayload {
-	if o == nil || IsNil(o.Records) {
-		var ret *[]RecordPayload
-		return ret
-	}
-	return o.Records
+func (o *PartialUpdateRecordSetPayload) GetRecords() (res PartialUpdateRecordSetPayloadGetRecordsRetType) {
+	res, _ = o.GetRecordsOk()
+	return
 }
 
 // GetRecordsOk returns a tuple with the Records field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateRecordSetPayload) GetRecordsOk() (*[]RecordPayload, bool) {
-	if o == nil || IsNil(o.Records) {
-		return nil, false
-	}
-	return o.Records, true
+func (o *PartialUpdateRecordSetPayload) GetRecordsOk() (ret PartialUpdateRecordSetPayloadGetRecordsRetType, ok bool) {
+	return getPartialUpdateRecordSetPayloadGetRecordsAttributeTypeOk(o.Records)
 }
 
 // HasRecords returns a boolean if a field has been set.
 func (o *PartialUpdateRecordSetPayload) HasRecords() bool {
-	if o != nil && !IsNil(o.Records) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRecordsOk()
+	return ok
 }
 
 // SetRecords gets a reference to the given []RecordPayload and assigns it to the Records field.
-func (o *PartialUpdateRecordSetPayload) SetRecords(v *[]RecordPayload) {
-	o.Records = v
+func (o *PartialUpdateRecordSetPayload) SetRecords(v PartialUpdateRecordSetPayloadGetRecordsRetType) {
+	setPartialUpdateRecordSetPayloadGetRecordsAttributeType(&o.Records, v)
 }
 
 // GetTtl returns the Ttl field value if set, zero value otherwise.
-func (o *PartialUpdateRecordSetPayload) GetTtl() *int64 {
-	if o == nil || IsNil(o.Ttl) {
-		var ret *int64
-		return ret
-	}
-	return o.Ttl
+func (o *PartialUpdateRecordSetPayload) GetTtl() (res PartialUpdateRecordSetPayloadGetTtlRetType) {
+	res, _ = o.GetTtlOk()
+	return
 }
 
 // GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateRecordSetPayload) GetTtlOk() (*int64, bool) {
-	if o == nil || IsNil(o.Ttl) {
-		return nil, false
-	}
-	return o.Ttl, true
+func (o *PartialUpdateRecordSetPayload) GetTtlOk() (ret PartialUpdateRecordSetPayloadGetTtlRetType, ok bool) {
+	return getPartialUpdateRecordSetPayloadGetTtlAttributeTypeOk(o.Ttl)
 }
 
 // HasTtl returns a boolean if a field has been set.
 func (o *PartialUpdateRecordSetPayload) HasTtl() bool {
-	if o != nil && !IsNil(o.Ttl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTtlOk()
+	return ok
 }
 
 // SetTtl gets a reference to the given int64 and assigns it to the Ttl field.
-func (o *PartialUpdateRecordSetPayload) SetTtl(v *int64) {
-	o.Ttl = v
+func (o *PartialUpdateRecordSetPayload) SetTtl(v PartialUpdateRecordSetPayloadGetTtlRetType) {
+	setPartialUpdateRecordSetPayloadGetTtlAttributeType(&o.Ttl, v)
 }
 
 func (o PartialUpdateRecordSetPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
+	if val, ok := getPartialUpdateRecordSetPayloadGetCommentAttributeTypeOk(o.Comment); ok {
+		toSerialize["Comment"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getPartialUpdateRecordSetPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Records) {
-		toSerialize["records"] = o.Records
+	if val, ok := getPartialUpdateRecordSetPayloadGetRecordsAttributeTypeOk(o.Records); ok {
+		toSerialize["Records"] = val
 	}
-	if !IsNil(o.Ttl) {
-		toSerialize["ttl"] = o.Ttl
+	if val, ok := getPartialUpdateRecordSetPayloadGetTtlAttributeTypeOk(o.Ttl); ok {
+		toSerialize["Ttl"] = val
 	}
 	return toSerialize, nil
 }

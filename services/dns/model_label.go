@@ -17,12 +17,54 @@ import (
 // checks if the Label type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Label{}
 
+/*
+	types and functions for key
+*/
+
+// isNotNullableString
+type LabelGetKeyAttributeType = *string
+
+func getLabelGetKeyAttributeTypeOk(arg LabelGetKeyAttributeType) (ret LabelGetKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLabelGetKeyAttributeType(arg *LabelGetKeyAttributeType, val LabelGetKeyRetType) {
+	*arg = &val
+}
+
+type LabelGetKeyArgType = string
+type LabelGetKeyRetType = string
+
+/*
+	types and functions for value
+*/
+
+// isNotNullableString
+type LabelGetValueAttributeType = *string
+
+func getLabelGetValueAttributeTypeOk(arg LabelGetValueAttributeType) (ret LabelGetValueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLabelGetValueAttributeType(arg *LabelGetValueAttributeType, val LabelGetValueRetType) {
+	*arg = &val
+}
+
+type LabelGetValueArgType = string
+type LabelGetValueRetType = string
+
 // Label struct for Label
 type Label struct {
 	// REQUIRED
-	Key *string `json:"key"`
+	Key LabelGetKeyAttributeType `json:"key"`
 	// REQUIRED
-	Value *string `json:"value"`
+	Value LabelGetValueAttributeType `json:"value"`
 }
 
 type _Label Label
@@ -31,10 +73,10 @@ type _Label Label
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLabel(key *string, value *string) *Label {
+func NewLabel(key LabelGetKeyArgType, value LabelGetValueArgType) *Label {
 	this := Label{}
-	this.Key = key
-	this.Value = value
+	setLabelGetKeyAttributeType(&this.Key, key)
+	setLabelGetValueAttributeType(&this.Value, value)
 	return &this
 }
 
@@ -47,57 +89,47 @@ func NewLabelWithDefaults() *Label {
 }
 
 // GetKey returns the Key field value
-func (o *Label) GetKey() *string {
-	if o == nil || IsNil(o.Key) {
-		var ret *string
-		return ret
-	}
-
-	return o.Key
+func (o *Label) GetKey() (ret LabelGetKeyRetType) {
+	ret, _ = o.GetKeyOk()
+	return ret
 }
 
 // GetKeyOk returns a tuple with the Key field value
 // and a boolean to check if the value has been set.
-func (o *Label) GetKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Key, true
+func (o *Label) GetKeyOk() (ret LabelGetKeyRetType, ok bool) {
+	return getLabelGetKeyAttributeTypeOk(o.Key)
 }
 
 // SetKey sets field value
-func (o *Label) SetKey(v *string) {
-	o.Key = v
+func (o *Label) SetKey(v LabelGetKeyRetType) {
+	setLabelGetKeyAttributeType(&o.Key, v)
 }
 
 // GetValue returns the Value field value
-func (o *Label) GetValue() *string {
-	if o == nil || IsNil(o.Value) {
-		var ret *string
-		return ret
-	}
-
-	return o.Value
+func (o *Label) GetValue() (ret LabelGetValueRetType) {
+	ret, _ = o.GetValueOk()
+	return ret
 }
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *Label) GetValueOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Value, true
+func (o *Label) GetValueOk() (ret LabelGetValueRetType, ok bool) {
+	return getLabelGetValueAttributeTypeOk(o.Value)
 }
 
 // SetValue sets field value
-func (o *Label) SetValue(v *string) {
-	o.Value = v
+func (o *Label) SetValue(v LabelGetValueRetType) {
+	setLabelGetValueAttributeType(&o.Value, v)
 }
 
 func (o Label) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["key"] = o.Key
-	toSerialize["value"] = o.Value
+	if val, ok := getLabelGetKeyAttributeTypeOk(o.Key); ok {
+		toSerialize["Key"] = val
+	}
+	if val, ok := getLabelGetValueAttributeTypeOk(o.Value); ok {
+		toSerialize["Value"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,13 +17,116 @@ import (
 // checks if the RecordDataExchange type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RecordDataExchange{}
 
+/*
+	types and functions for comment
+*/
+
+// isNotNullableString
+type RecordDataExchangeGetCommentAttributeType = *string
+
+func getRecordDataExchangeGetCommentAttributeTypeOk(arg RecordDataExchangeGetCommentAttributeType) (ret RecordDataExchangeGetCommentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordDataExchangeGetCommentAttributeType(arg *RecordDataExchangeGetCommentAttributeType, val RecordDataExchangeGetCommentRetType) {
+	*arg = &val
+}
+
+type RecordDataExchangeGetCommentArgType = string
+type RecordDataExchangeGetCommentRetType = string
+
+/*
+	types and functions for content
+*/
+
+// isArray
+type RecordDataExchangeGetContentAttributeType = *[]string
+type RecordDataExchangeGetContentArgType = []string
+type RecordDataExchangeGetContentRetType = []string
+
+func getRecordDataExchangeGetContentAttributeTypeOk(arg RecordDataExchangeGetContentAttributeType) (ret RecordDataExchangeGetContentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordDataExchangeGetContentAttributeType(arg *RecordDataExchangeGetContentAttributeType, val RecordDataExchangeGetContentRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type RecordDataExchangeGetNameAttributeType = *string
+
+func getRecordDataExchangeGetNameAttributeTypeOk(arg RecordDataExchangeGetNameAttributeType) (ret RecordDataExchangeGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordDataExchangeGetNameAttributeType(arg *RecordDataExchangeGetNameAttributeType, val RecordDataExchangeGetNameRetType) {
+	*arg = &val
+}
+
+type RecordDataExchangeGetNameArgType = string
+type RecordDataExchangeGetNameRetType = string
+
+/*
+	types and functions for ttl
+*/
+
+// isInteger
+type RecordDataExchangeGetTtlAttributeType = *int64
+type RecordDataExchangeGetTtlArgType = int64
+type RecordDataExchangeGetTtlRetType = int64
+
+func getRecordDataExchangeGetTtlAttributeTypeOk(arg RecordDataExchangeGetTtlAttributeType) (ret RecordDataExchangeGetTtlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordDataExchangeGetTtlAttributeType(arg *RecordDataExchangeGetTtlAttributeType, val RecordDataExchangeGetTtlRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isNotNullableString
+type RecordDataExchangeGetTypeAttributeType = *string
+
+func getRecordDataExchangeGetTypeAttributeTypeOk(arg RecordDataExchangeGetTypeAttributeType) (ret RecordDataExchangeGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordDataExchangeGetTypeAttributeType(arg *RecordDataExchangeGetTypeAttributeType, val RecordDataExchangeGetTypeRetType) {
+	*arg = &val
+}
+
+type RecordDataExchangeGetTypeArgType = string
+type RecordDataExchangeGetTypeRetType = string
+
 // RecordDataExchange struct for RecordDataExchange
 type RecordDataExchange struct {
-	Comment *string   `json:"comment,omitempty"`
-	Content *[]string `json:"content,omitempty"`
-	Name    *string   `json:"name,omitempty"`
-	Ttl     *int64    `json:"ttl,omitempty"`
-	Type    *string   `json:"type,omitempty"`
+	Comment RecordDataExchangeGetCommentAttributeType `json:"comment,omitempty"`
+	Content RecordDataExchangeGetContentAttributeType `json:"content,omitempty"`
+	Name    RecordDataExchangeGetNameAttributeType    `json:"name,omitempty"`
+	Ttl     RecordDataExchangeGetTtlAttributeType     `json:"ttl,omitempty"`
+	Type    RecordDataExchangeGetTypeAttributeType    `json:"type,omitempty"`
 }
 
 // NewRecordDataExchange instantiates a new RecordDataExchange object
@@ -44,181 +147,136 @@ func NewRecordDataExchangeWithDefaults() *RecordDataExchange {
 }
 
 // GetComment returns the Comment field value if set, zero value otherwise.
-func (o *RecordDataExchange) GetComment() *string {
-	if o == nil || IsNil(o.Comment) {
-		var ret *string
-		return ret
-	}
-	return o.Comment
+func (o *RecordDataExchange) GetComment() (res RecordDataExchangeGetCommentRetType) {
+	res, _ = o.GetCommentOk()
+	return
 }
 
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordDataExchange) GetCommentOk() (*string, bool) {
-	if o == nil || IsNil(o.Comment) {
-		return nil, false
-	}
-	return o.Comment, true
+func (o *RecordDataExchange) GetCommentOk() (ret RecordDataExchangeGetCommentRetType, ok bool) {
+	return getRecordDataExchangeGetCommentAttributeTypeOk(o.Comment)
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *RecordDataExchange) HasComment() bool {
-	if o != nil && !IsNil(o.Comment) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCommentOk()
+	return ok
 }
 
 // SetComment gets a reference to the given string and assigns it to the Comment field.
-func (o *RecordDataExchange) SetComment(v *string) {
-	o.Comment = v
+func (o *RecordDataExchange) SetComment(v RecordDataExchangeGetCommentRetType) {
+	setRecordDataExchangeGetCommentAttributeType(&o.Comment, v)
 }
 
 // GetContent returns the Content field value if set, zero value otherwise.
-func (o *RecordDataExchange) GetContent() *[]string {
-	if o == nil || IsNil(o.Content) {
-		var ret *[]string
-		return ret
-	}
-	return o.Content
+func (o *RecordDataExchange) GetContent() (res RecordDataExchangeGetContentRetType) {
+	res, _ = o.GetContentOk()
+	return
 }
 
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordDataExchange) GetContentOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Content) {
-		return nil, false
-	}
-	return o.Content, true
+func (o *RecordDataExchange) GetContentOk() (ret RecordDataExchangeGetContentRetType, ok bool) {
+	return getRecordDataExchangeGetContentAttributeTypeOk(o.Content)
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *RecordDataExchange) HasContent() bool {
-	if o != nil && !IsNil(o.Content) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetContentOk()
+	return ok
 }
 
 // SetContent gets a reference to the given []string and assigns it to the Content field.
-func (o *RecordDataExchange) SetContent(v *[]string) {
-	o.Content = v
+func (o *RecordDataExchange) SetContent(v RecordDataExchangeGetContentRetType) {
+	setRecordDataExchangeGetContentAttributeType(&o.Content, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *RecordDataExchange) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *RecordDataExchange) GetName() (res RecordDataExchangeGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordDataExchange) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *RecordDataExchange) GetNameOk() (ret RecordDataExchangeGetNameRetType, ok bool) {
+	return getRecordDataExchangeGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *RecordDataExchange) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *RecordDataExchange) SetName(v *string) {
-	o.Name = v
+func (o *RecordDataExchange) SetName(v RecordDataExchangeGetNameRetType) {
+	setRecordDataExchangeGetNameAttributeType(&o.Name, v)
 }
 
 // GetTtl returns the Ttl field value if set, zero value otherwise.
-func (o *RecordDataExchange) GetTtl() *int64 {
-	if o == nil || IsNil(o.Ttl) {
-		var ret *int64
-		return ret
-	}
-	return o.Ttl
+func (o *RecordDataExchange) GetTtl() (res RecordDataExchangeGetTtlRetType) {
+	res, _ = o.GetTtlOk()
+	return
 }
 
 // GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordDataExchange) GetTtlOk() (*int64, bool) {
-	if o == nil || IsNil(o.Ttl) {
-		return nil, false
-	}
-	return o.Ttl, true
+func (o *RecordDataExchange) GetTtlOk() (ret RecordDataExchangeGetTtlRetType, ok bool) {
+	return getRecordDataExchangeGetTtlAttributeTypeOk(o.Ttl)
 }
 
 // HasTtl returns a boolean if a field has been set.
 func (o *RecordDataExchange) HasTtl() bool {
-	if o != nil && !IsNil(o.Ttl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTtlOk()
+	return ok
 }
 
 // SetTtl gets a reference to the given int64 and assigns it to the Ttl field.
-func (o *RecordDataExchange) SetTtl(v *int64) {
-	o.Ttl = v
+func (o *RecordDataExchange) SetTtl(v RecordDataExchangeGetTtlRetType) {
+	setRecordDataExchangeGetTtlAttributeType(&o.Ttl, v)
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *RecordDataExchange) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-	return o.Type
+func (o *RecordDataExchange) GetType() (res RecordDataExchangeGetTypeRetType) {
+	res, _ = o.GetTypeOk()
+	return
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordDataExchange) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
+func (o *RecordDataExchange) GetTypeOk() (ret RecordDataExchangeGetTypeRetType, ok bool) {
+	return getRecordDataExchangeGetTypeAttributeTypeOk(o.Type)
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *RecordDataExchange) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTypeOk()
+	return ok
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *RecordDataExchange) SetType(v *string) {
-	o.Type = v
+func (o *RecordDataExchange) SetType(v RecordDataExchangeGetTypeRetType) {
+	setRecordDataExchangeGetTypeAttributeType(&o.Type, v)
 }
 
 func (o RecordDataExchange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
+	if val, ok := getRecordDataExchangeGetCommentAttributeTypeOk(o.Comment); ok {
+		toSerialize["Comment"] = val
 	}
-	if !IsNil(o.Content) {
-		toSerialize["content"] = o.Content
+	if val, ok := getRecordDataExchangeGetContentAttributeTypeOk(o.Content); ok {
+		toSerialize["Content"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getRecordDataExchangeGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Ttl) {
-		toSerialize["ttl"] = o.Ttl
+	if val, ok := getRecordDataExchangeGetTtlAttributeTypeOk(o.Ttl); ok {
+		toSerialize["Ttl"] = val
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if val, ok := getRecordDataExchangeGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
 }

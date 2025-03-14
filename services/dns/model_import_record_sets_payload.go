@@ -17,9 +17,29 @@ import (
 // checks if the ImportRecordSetsPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ImportRecordSetsPayload{}
 
+/*
+	types and functions for rrSets
+*/
+
+// isArray
+type ImportRecordSetsPayloadGetRrSetsAttributeType = *[]ZoneModelsImportRecordModel
+type ImportRecordSetsPayloadGetRrSetsArgType = []ZoneModelsImportRecordModel
+type ImportRecordSetsPayloadGetRrSetsRetType = []ZoneModelsImportRecordModel
+
+func getImportRecordSetsPayloadGetRrSetsAttributeTypeOk(arg ImportRecordSetsPayloadGetRrSetsAttributeType) (ret ImportRecordSetsPayloadGetRrSetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImportRecordSetsPayloadGetRrSetsAttributeType(arg *ImportRecordSetsPayloadGetRrSetsAttributeType, val ImportRecordSetsPayloadGetRrSetsRetType) {
+	*arg = &val
+}
+
 // ImportRecordSetsPayload struct for ImportRecordSetsPayload
 type ImportRecordSetsPayload struct {
-	RrSets *[]ZoneModelsImportRecordModel `json:"rrSets,omitempty"`
+	RrSets ImportRecordSetsPayloadGetRrSetsAttributeType `json:"rrSets,omitempty"`
 }
 
 // NewImportRecordSetsPayload instantiates a new ImportRecordSetsPayload object
@@ -40,41 +60,32 @@ func NewImportRecordSetsPayloadWithDefaults() *ImportRecordSetsPayload {
 }
 
 // GetRrSets returns the RrSets field value if set, zero value otherwise.
-func (o *ImportRecordSetsPayload) GetRrSets() *[]ZoneModelsImportRecordModel {
-	if o == nil || IsNil(o.RrSets) {
-		var ret *[]ZoneModelsImportRecordModel
-		return ret
-	}
-	return o.RrSets
+func (o *ImportRecordSetsPayload) GetRrSets() (res ImportRecordSetsPayloadGetRrSetsRetType) {
+	res, _ = o.GetRrSetsOk()
+	return
 }
 
 // GetRrSetsOk returns a tuple with the RrSets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportRecordSetsPayload) GetRrSetsOk() (*[]ZoneModelsImportRecordModel, bool) {
-	if o == nil || IsNil(o.RrSets) {
-		return nil, false
-	}
-	return o.RrSets, true
+func (o *ImportRecordSetsPayload) GetRrSetsOk() (ret ImportRecordSetsPayloadGetRrSetsRetType, ok bool) {
+	return getImportRecordSetsPayloadGetRrSetsAttributeTypeOk(o.RrSets)
 }
 
 // HasRrSets returns a boolean if a field has been set.
 func (o *ImportRecordSetsPayload) HasRrSets() bool {
-	if o != nil && !IsNil(o.RrSets) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRrSetsOk()
+	return ok
 }
 
 // SetRrSets gets a reference to the given []ZoneModelsImportRecordModel and assigns it to the RrSets field.
-func (o *ImportRecordSetsPayload) SetRrSets(v *[]ZoneModelsImportRecordModel) {
-	o.RrSets = v
+func (o *ImportRecordSetsPayload) SetRrSets(v ImportRecordSetsPayloadGetRrSetsRetType) {
+	setImportRecordSetsPayloadGetRrSetsAttributeType(&o.RrSets, v)
 }
 
 func (o ImportRecordSetsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.RrSets) {
-		toSerialize["rrSets"] = o.RrSets
+	if val, ok := getImportRecordSetsPayloadGetRrSetsAttributeTypeOk(o.RrSets); ok {
+		toSerialize["RrSets"] = val
 	}
 	return toSerialize, nil
 }

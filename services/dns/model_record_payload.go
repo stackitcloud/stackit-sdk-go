@@ -17,11 +17,32 @@ import (
 // checks if the RecordPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RecordPayload{}
 
+/*
+	types and functions for content
+*/
+
+// isNotNullableString
+type RecordPayloadGetContentAttributeType = *string
+
+func getRecordPayloadGetContentAttributeTypeOk(arg RecordPayloadGetContentAttributeType) (ret RecordPayloadGetContentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordPayloadGetContentAttributeType(arg *RecordPayloadGetContentAttributeType, val RecordPayloadGetContentRetType) {
+	*arg = &val
+}
+
+type RecordPayloadGetContentArgType = string
+type RecordPayloadGetContentRetType = string
+
 // RecordPayload RecordPost for rr set info.
 type RecordPayload struct {
 	// content of the record
 	// REQUIRED
-	Content *string `json:"content"`
+	Content RecordPayloadGetContentAttributeType `json:"content"`
 }
 
 type _RecordPayload RecordPayload
@@ -30,9 +51,9 @@ type _RecordPayload RecordPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecordPayload(content *string) *RecordPayload {
+func NewRecordPayload(content RecordPayloadGetContentArgType) *RecordPayload {
 	this := RecordPayload{}
-	this.Content = content
+	setRecordPayloadGetContentAttributeType(&this.Content, content)
 	return &this
 }
 
@@ -45,32 +66,27 @@ func NewRecordPayloadWithDefaults() *RecordPayload {
 }
 
 // GetContent returns the Content field value
-func (o *RecordPayload) GetContent() *string {
-	if o == nil || IsNil(o.Content) {
-		var ret *string
-		return ret
-	}
-
-	return o.Content
+func (o *RecordPayload) GetContent() (ret RecordPayloadGetContentRetType) {
+	ret, _ = o.GetContentOk()
+	return ret
 }
 
 // GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
-func (o *RecordPayload) GetContentOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Content, true
+func (o *RecordPayload) GetContentOk() (ret RecordPayloadGetContentRetType, ok bool) {
+	return getRecordPayloadGetContentAttributeTypeOk(o.Content)
 }
 
 // SetContent sets field value
-func (o *RecordPayload) SetContent(v *string) {
-	o.Content = v
+func (o *RecordPayload) SetContent(v RecordPayloadGetContentRetType) {
+	setRecordPayloadGetContentAttributeType(&o.Content, v)
 }
 
 func (o RecordPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["content"] = o.Content
+	if val, ok := getRecordPayloadGetContentAttributeTypeOk(o.Content); ok {
+		toSerialize["Content"] = val
+	}
 	return toSerialize, nil
 }
 

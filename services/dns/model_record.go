@@ -17,14 +17,56 @@ import (
 // checks if the Record type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Record{}
 
+/*
+	types and functions for content
+*/
+
+// isNotNullableString
+type RecordGetContentAttributeType = *string
+
+func getRecordGetContentAttributeTypeOk(arg RecordGetContentAttributeType) (ret RecordGetContentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordGetContentAttributeType(arg *RecordGetContentAttributeType, val RecordGetContentRetType) {
+	*arg = &val
+}
+
+type RecordGetContentArgType = string
+type RecordGetContentRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type RecordGetIdAttributeType = *string
+
+func getRecordGetIdAttributeTypeOk(arg RecordGetIdAttributeType) (ret RecordGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordGetIdAttributeType(arg *RecordGetIdAttributeType, val RecordGetIdRetType) {
+	*arg = &val
+}
+
+type RecordGetIdArgType = string
+type RecordGetIdRetType = string
+
 // Record Record.
 type Record struct {
 	// content of the record
 	// REQUIRED
-	Content *string `json:"content"`
+	Content RecordGetContentAttributeType `json:"content"`
 	// rr set id
 	// REQUIRED
-	Id *string `json:"id"`
+	Id RecordGetIdAttributeType `json:"id"`
 }
 
 type _Record Record
@@ -33,10 +75,10 @@ type _Record Record
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecord(content *string, id *string) *Record {
+func NewRecord(content RecordGetContentArgType, id RecordGetIdArgType) *Record {
 	this := Record{}
-	this.Content = content
-	this.Id = id
+	setRecordGetContentAttributeType(&this.Content, content)
+	setRecordGetIdAttributeType(&this.Id, id)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewRecordWithDefaults() *Record {
 }
 
 // GetContent returns the Content field value
-func (o *Record) GetContent() *string {
-	if o == nil || IsNil(o.Content) {
-		var ret *string
-		return ret
-	}
-
-	return o.Content
+func (o *Record) GetContent() (ret RecordGetContentRetType) {
+	ret, _ = o.GetContentOk()
+	return ret
 }
 
 // GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
-func (o *Record) GetContentOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Content, true
+func (o *Record) GetContentOk() (ret RecordGetContentRetType, ok bool) {
+	return getRecordGetContentAttributeTypeOk(o.Content)
 }
 
 // SetContent sets field value
-func (o *Record) SetContent(v *string) {
-	o.Content = v
+func (o *Record) SetContent(v RecordGetContentRetType) {
+	setRecordGetContentAttributeType(&o.Content, v)
 }
 
 // GetId returns the Id field value
-func (o *Record) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *Record) GetId() (ret RecordGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Record) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Record) GetIdOk() (ret RecordGetIdRetType, ok bool) {
+	return getRecordGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *Record) SetId(v *string) {
-	o.Id = v
+func (o *Record) SetId(v RecordGetIdRetType) {
+	setRecordGetIdAttributeType(&o.Id, v)
 }
 
 func (o Record) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["content"] = o.Content
-	toSerialize["id"] = o.Id
+	if val, ok := getRecordGetContentAttributeTypeOk(o.Content); ok {
+		toSerialize["Content"] = val
+	}
+	if val, ok := getRecordGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
 	return toSerialize, nil
 }
 

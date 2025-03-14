@@ -17,37 +17,322 @@ import (
 // checks if the CreateZonePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateZonePayload{}
 
+/*
+	types and functions for acl
+*/
+
+// isNotNullableString
+type CreateZonePayloadGetAclAttributeType = *string
+
+func getCreateZonePayloadGetAclAttributeTypeOk(arg CreateZonePayloadGetAclAttributeType) (ret CreateZonePayloadGetAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetAclAttributeType(arg *CreateZonePayloadGetAclAttributeType, val CreateZonePayloadGetAclRetType) {
+	*arg = &val
+}
+
+type CreateZonePayloadGetAclArgType = string
+type CreateZonePayloadGetAclRetType = string
+
+/*
+	types and functions for contactEmail
+*/
+
+// isNotNullableString
+type CreateZonePayloadGetContactEmailAttributeType = *string
+
+func getCreateZonePayloadGetContactEmailAttributeTypeOk(arg CreateZonePayloadGetContactEmailAttributeType) (ret CreateZonePayloadGetContactEmailRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetContactEmailAttributeType(arg *CreateZonePayloadGetContactEmailAttributeType, val CreateZonePayloadGetContactEmailRetType) {
+	*arg = &val
+}
+
+type CreateZonePayloadGetContactEmailArgType = string
+type CreateZonePayloadGetContactEmailRetType = string
+
+/*
+	types and functions for defaultTTL
+*/
+
+// isInteger
+type CreateZonePayloadGetDefaultTTLAttributeType = *int64
+type CreateZonePayloadGetDefaultTTLArgType = int64
+type CreateZonePayloadGetDefaultTTLRetType = int64
+
+func getCreateZonePayloadGetDefaultTTLAttributeTypeOk(arg CreateZonePayloadGetDefaultTTLAttributeType) (ret CreateZonePayloadGetDefaultTTLRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetDefaultTTLAttributeType(arg *CreateZonePayloadGetDefaultTTLAttributeType, val CreateZonePayloadGetDefaultTTLRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type CreateZonePayloadGetDescriptionAttributeType = *string
+
+func getCreateZonePayloadGetDescriptionAttributeTypeOk(arg CreateZonePayloadGetDescriptionAttributeType) (ret CreateZonePayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetDescriptionAttributeType(arg *CreateZonePayloadGetDescriptionAttributeType, val CreateZonePayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+type CreateZonePayloadGetDescriptionArgType = string
+type CreateZonePayloadGetDescriptionRetType = string
+
+/*
+	types and functions for dnsName
+*/
+
+// isNotNullableString
+type CreateZonePayloadGetDnsNameAttributeType = *string
+
+func getCreateZonePayloadGetDnsNameAttributeTypeOk(arg CreateZonePayloadGetDnsNameAttributeType) (ret CreateZonePayloadGetDnsNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetDnsNameAttributeType(arg *CreateZonePayloadGetDnsNameAttributeType, val CreateZonePayloadGetDnsNameRetType) {
+	*arg = &val
+}
+
+type CreateZonePayloadGetDnsNameArgType = string
+type CreateZonePayloadGetDnsNameRetType = string
+
+/*
+	types and functions for expireTime
+*/
+
+// isInteger
+type CreateZonePayloadGetExpireTimeAttributeType = *int64
+type CreateZonePayloadGetExpireTimeArgType = int64
+type CreateZonePayloadGetExpireTimeRetType = int64
+
+func getCreateZonePayloadGetExpireTimeAttributeTypeOk(arg CreateZonePayloadGetExpireTimeAttributeType) (ret CreateZonePayloadGetExpireTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetExpireTimeAttributeType(arg *CreateZonePayloadGetExpireTimeAttributeType, val CreateZonePayloadGetExpireTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for extensions
+*/
+
+// isModel
+type CreateZonePayloadGetExtensionsAttributeType = *CreateZonePayloadExtensions
+type CreateZonePayloadGetExtensionsArgType = CreateZonePayloadExtensions
+type CreateZonePayloadGetExtensionsRetType = CreateZonePayloadExtensions
+
+func getCreateZonePayloadGetExtensionsAttributeTypeOk(arg CreateZonePayloadGetExtensionsAttributeType) (ret CreateZonePayloadGetExtensionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetExtensionsAttributeType(arg *CreateZonePayloadGetExtensionsAttributeType, val CreateZonePayloadGetExtensionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for isReverseZone
+*/
+
+// isBoolean
+type CreateZonePayloadgetIsReverseZoneAttributeType = *bool
+type CreateZonePayloadgetIsReverseZoneArgType = bool
+type CreateZonePayloadgetIsReverseZoneRetType = bool
+
+func getCreateZonePayloadgetIsReverseZoneAttributeTypeOk(arg CreateZonePayloadgetIsReverseZoneAttributeType) (ret CreateZonePayloadgetIsReverseZoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadgetIsReverseZoneAttributeType(arg *CreateZonePayloadgetIsReverseZoneAttributeType, val CreateZonePayloadgetIsReverseZoneRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateZonePayloadGetNameAttributeType = *string
+
+func getCreateZonePayloadGetNameAttributeTypeOk(arg CreateZonePayloadGetNameAttributeType) (ret CreateZonePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetNameAttributeType(arg *CreateZonePayloadGetNameAttributeType, val CreateZonePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateZonePayloadGetNameArgType = string
+type CreateZonePayloadGetNameRetType = string
+
+/*
+	types and functions for negativeCache
+*/
+
+// isInteger
+type CreateZonePayloadGetNegativeCacheAttributeType = *int64
+type CreateZonePayloadGetNegativeCacheArgType = int64
+type CreateZonePayloadGetNegativeCacheRetType = int64
+
+func getCreateZonePayloadGetNegativeCacheAttributeTypeOk(arg CreateZonePayloadGetNegativeCacheAttributeType) (ret CreateZonePayloadGetNegativeCacheRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetNegativeCacheAttributeType(arg *CreateZonePayloadGetNegativeCacheAttributeType, val CreateZonePayloadGetNegativeCacheRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for primaries
+*/
+
+// isArray
+type CreateZonePayloadGetPrimariesAttributeType = *[]string
+type CreateZonePayloadGetPrimariesArgType = []string
+type CreateZonePayloadGetPrimariesRetType = []string
+
+func getCreateZonePayloadGetPrimariesAttributeTypeOk(arg CreateZonePayloadGetPrimariesAttributeType) (ret CreateZonePayloadGetPrimariesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetPrimariesAttributeType(arg *CreateZonePayloadGetPrimariesAttributeType, val CreateZonePayloadGetPrimariesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for refreshTime
+*/
+
+// isInteger
+type CreateZonePayloadGetRefreshTimeAttributeType = *int64
+type CreateZonePayloadGetRefreshTimeArgType = int64
+type CreateZonePayloadGetRefreshTimeRetType = int64
+
+func getCreateZonePayloadGetRefreshTimeAttributeTypeOk(arg CreateZonePayloadGetRefreshTimeAttributeType) (ret CreateZonePayloadGetRefreshTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetRefreshTimeAttributeType(arg *CreateZonePayloadGetRefreshTimeAttributeType, val CreateZonePayloadGetRefreshTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for retryTime
+*/
+
+// isInteger
+type CreateZonePayloadGetRetryTimeAttributeType = *int64
+type CreateZonePayloadGetRetryTimeArgType = int64
+type CreateZonePayloadGetRetryTimeRetType = int64
+
+func getCreateZonePayloadGetRetryTimeAttributeTypeOk(arg CreateZonePayloadGetRetryTimeAttributeType) (ret CreateZonePayloadGetRetryTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetRetryTimeAttributeType(arg *CreateZonePayloadGetRetryTimeAttributeType, val CreateZonePayloadGetRetryTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type CreateZonePayloadGetTypeAttributeType = *string
+type CreateZonePayloadGetTypeArgType = string
+type CreateZonePayloadGetTypeRetType = string
+
+func getCreateZonePayloadGetTypeAttributeTypeOk(arg CreateZonePayloadGetTypeAttributeType) (ret CreateZonePayloadGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateZonePayloadGetTypeAttributeType(arg *CreateZonePayloadGetTypeAttributeType, val CreateZonePayloadGetTypeRetType) {
+	*arg = &val
+}
+
 // CreateZonePayload Zone to create.
 type CreateZonePayload struct {
 	// access control list
-	Acl *string `json:"acl,omitempty"`
+	Acl CreateZonePayloadGetAclAttributeType `json:"acl,omitempty"`
 	// contact e-mail for the zone
-	ContactEmail *string `json:"contactEmail,omitempty"`
+	ContactEmail CreateZonePayloadGetContactEmailAttributeType `json:"contactEmail,omitempty"`
 	// default time to live
-	DefaultTTL *int64 `json:"defaultTTL,omitempty"`
+	DefaultTTL CreateZonePayloadGetDefaultTTLAttributeType `json:"defaultTTL,omitempty"`
 	// description of the zone
-	Description *string `json:"description,omitempty"`
+	Description CreateZonePayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// zone name
 	// REQUIRED
-	DnsName *string `json:"dnsName"`
+	DnsName CreateZonePayloadGetDnsNameAttributeType `json:"dnsName"`
 	// expire time
-	ExpireTime *int64                       `json:"expireTime,omitempty"`
-	Extensions *CreateZonePayloadExtensions `json:"extensions,omitempty"`
+	ExpireTime CreateZonePayloadGetExpireTimeAttributeType `json:"expireTime,omitempty"`
+	Extensions CreateZonePayloadGetExtensionsAttributeType `json:"extensions,omitempty"`
 	// if the zone is a reverse zone or not
-	IsReverseZone *bool `json:"isReverseZone,omitempty"`
+	IsReverseZone CreateZonePayloadgetIsReverseZoneAttributeType `json:"isReverseZone,omitempty"`
 	// user given name
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CreateZonePayloadGetNameAttributeType `json:"name"`
 	// negative caching
-	NegativeCache *int64 `json:"negativeCache,omitempty"`
+	NegativeCache CreateZonePayloadGetNegativeCacheAttributeType `json:"negativeCache,omitempty"`
 	// primary name server for secondary zone
-	Primaries *[]string `json:"primaries,omitempty"`
+	Primaries CreateZonePayloadGetPrimariesAttributeType `json:"primaries,omitempty"`
 	// refresh time
-	RefreshTime *int64 `json:"refreshTime,omitempty"`
+	RefreshTime CreateZonePayloadGetRefreshTimeAttributeType `json:"refreshTime,omitempty"`
 	// retry time
-	RetryTime *int64 `json:"retryTime,omitempty"`
+	RetryTime CreateZonePayloadGetRetryTimeAttributeType `json:"retryTime,omitempty"`
 	// zone type
-	Type *string `json:"type,omitempty"`
+	Type CreateZonePayloadGetTypeAttributeType `json:"type,omitempty"`
 }
 
 type _CreateZonePayload CreateZonePayload
@@ -56,18 +341,10 @@ type _CreateZonePayload CreateZonePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateZonePayload(dnsName *string, name *string) *CreateZonePayload {
+func NewCreateZonePayload(dnsName CreateZonePayloadGetDnsNameArgType, name CreateZonePayloadGetNameArgType) *CreateZonePayload {
 	this := CreateZonePayload{}
-	var acl string = "0.0.0.0/0,::/0"
-	this.Acl = &acl
-	var contactEmail string = "hostmaster@stackit.cloud"
-	this.ContactEmail = &contactEmail
-	this.DnsName = dnsName
-	var isReverseZone bool = false
-	this.IsReverseZone = &isReverseZone
-	this.Name = name
-	var type_ string = "primary"
-	this.Type = &type_
+	setCreateZonePayloadGetDnsNameAttributeType(&this.DnsName, dnsName)
+	setCreateZonePayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -88,476 +365,358 @@ func NewCreateZonePayloadWithDefaults() *CreateZonePayload {
 }
 
 // GetAcl returns the Acl field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetAcl() *string {
-	if o == nil || IsNil(o.Acl) {
-		var ret *string
-		return ret
-	}
-	return o.Acl
+func (o *CreateZonePayload) GetAcl() (res CreateZonePayloadGetAclRetType) {
+	res, _ = o.GetAclOk()
+	return
 }
 
 // GetAclOk returns a tuple with the Acl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetAclOk() (*string, bool) {
-	if o == nil || IsNil(o.Acl) {
-		return nil, false
-	}
-	return o.Acl, true
+func (o *CreateZonePayload) GetAclOk() (ret CreateZonePayloadGetAclRetType, ok bool) {
+	return getCreateZonePayloadGetAclAttributeTypeOk(o.Acl)
 }
 
 // HasAcl returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAclOk()
+	return ok
 }
 
 // SetAcl gets a reference to the given string and assigns it to the Acl field.
-func (o *CreateZonePayload) SetAcl(v *string) {
-	o.Acl = v
+func (o *CreateZonePayload) SetAcl(v CreateZonePayloadGetAclRetType) {
+	setCreateZonePayloadGetAclAttributeType(&o.Acl, v)
 }
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetContactEmail() *string {
-	if o == nil || IsNil(o.ContactEmail) {
-		var ret *string
-		return ret
-	}
-	return o.ContactEmail
+func (o *CreateZonePayload) GetContactEmail() (res CreateZonePayloadGetContactEmailRetType) {
+	res, _ = o.GetContactEmailOk()
+	return
 }
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetContactEmailOk() (*string, bool) {
-	if o == nil || IsNil(o.ContactEmail) {
-		return nil, false
-	}
-	return o.ContactEmail, true
+func (o *CreateZonePayload) GetContactEmailOk() (ret CreateZonePayloadGetContactEmailRetType, ok bool) {
+	return getCreateZonePayloadGetContactEmailAttributeTypeOk(o.ContactEmail)
 }
 
 // HasContactEmail returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasContactEmail() bool {
-	if o != nil && !IsNil(o.ContactEmail) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetContactEmailOk()
+	return ok
 }
 
 // SetContactEmail gets a reference to the given string and assigns it to the ContactEmail field.
-func (o *CreateZonePayload) SetContactEmail(v *string) {
-	o.ContactEmail = v
+func (o *CreateZonePayload) SetContactEmail(v CreateZonePayloadGetContactEmailRetType) {
+	setCreateZonePayloadGetContactEmailAttributeType(&o.ContactEmail, v)
 }
 
 // GetDefaultTTL returns the DefaultTTL field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetDefaultTTL() *int64 {
-	if o == nil || IsNil(o.DefaultTTL) {
-		var ret *int64
-		return ret
-	}
-	return o.DefaultTTL
+func (o *CreateZonePayload) GetDefaultTTL() (res CreateZonePayloadGetDefaultTTLRetType) {
+	res, _ = o.GetDefaultTTLOk()
+	return
 }
 
 // GetDefaultTTLOk returns a tuple with the DefaultTTL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetDefaultTTLOk() (*int64, bool) {
-	if o == nil || IsNil(o.DefaultTTL) {
-		return nil, false
-	}
-	return o.DefaultTTL, true
+func (o *CreateZonePayload) GetDefaultTTLOk() (ret CreateZonePayloadGetDefaultTTLRetType, ok bool) {
+	return getCreateZonePayloadGetDefaultTTLAttributeTypeOk(o.DefaultTTL)
 }
 
 // HasDefaultTTL returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasDefaultTTL() bool {
-	if o != nil && !IsNil(o.DefaultTTL) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDefaultTTLOk()
+	return ok
 }
 
 // SetDefaultTTL gets a reference to the given int64 and assigns it to the DefaultTTL field.
-func (o *CreateZonePayload) SetDefaultTTL(v *int64) {
-	o.DefaultTTL = v
+func (o *CreateZonePayload) SetDefaultTTL(v CreateZonePayloadGetDefaultTTLRetType) {
+	setCreateZonePayloadGetDefaultTTLAttributeType(&o.DefaultTTL, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *CreateZonePayload) GetDescription() (res CreateZonePayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *CreateZonePayload) GetDescriptionOk() (ret CreateZonePayloadGetDescriptionRetType, ok bool) {
+	return getCreateZonePayloadGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *CreateZonePayload) SetDescription(v *string) {
-	o.Description = v
+func (o *CreateZonePayload) SetDescription(v CreateZonePayloadGetDescriptionRetType) {
+	setCreateZonePayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDnsName returns the DnsName field value
-func (o *CreateZonePayload) GetDnsName() *string {
-	if o == nil || IsNil(o.DnsName) {
-		var ret *string
-		return ret
-	}
-
-	return o.DnsName
+func (o *CreateZonePayload) GetDnsName() (ret CreateZonePayloadGetDnsNameRetType) {
+	ret, _ = o.GetDnsNameOk()
+	return ret
 }
 
 // GetDnsNameOk returns a tuple with the DnsName field value
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetDnsNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DnsName, true
+func (o *CreateZonePayload) GetDnsNameOk() (ret CreateZonePayloadGetDnsNameRetType, ok bool) {
+	return getCreateZonePayloadGetDnsNameAttributeTypeOk(o.DnsName)
 }
 
 // SetDnsName sets field value
-func (o *CreateZonePayload) SetDnsName(v *string) {
-	o.DnsName = v
+func (o *CreateZonePayload) SetDnsName(v CreateZonePayloadGetDnsNameRetType) {
+	setCreateZonePayloadGetDnsNameAttributeType(&o.DnsName, v)
 }
 
 // GetExpireTime returns the ExpireTime field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetExpireTime() *int64 {
-	if o == nil || IsNil(o.ExpireTime) {
-		var ret *int64
-		return ret
-	}
-	return o.ExpireTime
+func (o *CreateZonePayload) GetExpireTime() (res CreateZonePayloadGetExpireTimeRetType) {
+	res, _ = o.GetExpireTimeOk()
+	return
 }
 
 // GetExpireTimeOk returns a tuple with the ExpireTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetExpireTimeOk() (*int64, bool) {
-	if o == nil || IsNil(o.ExpireTime) {
-		return nil, false
-	}
-	return o.ExpireTime, true
+func (o *CreateZonePayload) GetExpireTimeOk() (ret CreateZonePayloadGetExpireTimeRetType, ok bool) {
+	return getCreateZonePayloadGetExpireTimeAttributeTypeOk(o.ExpireTime)
 }
 
 // HasExpireTime returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasExpireTime() bool {
-	if o != nil && !IsNil(o.ExpireTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExpireTimeOk()
+	return ok
 }
 
 // SetExpireTime gets a reference to the given int64 and assigns it to the ExpireTime field.
-func (o *CreateZonePayload) SetExpireTime(v *int64) {
-	o.ExpireTime = v
+func (o *CreateZonePayload) SetExpireTime(v CreateZonePayloadGetExpireTimeRetType) {
+	setCreateZonePayloadGetExpireTimeAttributeType(&o.ExpireTime, v)
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetExtensions() *CreateZonePayloadExtensions {
-	if o == nil || IsNil(o.Extensions) {
-		var ret *CreateZonePayloadExtensions
-		return ret
-	}
-	return o.Extensions
+func (o *CreateZonePayload) GetExtensions() (res CreateZonePayloadGetExtensionsRetType) {
+	res, _ = o.GetExtensionsOk()
+	return
 }
 
 // GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetExtensionsOk() (*CreateZonePayloadExtensions, bool) {
-	if o == nil || IsNil(o.Extensions) {
-		return nil, false
-	}
-	return o.Extensions, true
+func (o *CreateZonePayload) GetExtensionsOk() (ret CreateZonePayloadGetExtensionsRetType, ok bool) {
+	return getCreateZonePayloadGetExtensionsAttributeTypeOk(o.Extensions)
 }
 
 // HasExtensions returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasExtensions() bool {
-	if o != nil && !IsNil(o.Extensions) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExtensionsOk()
+	return ok
 }
 
 // SetExtensions gets a reference to the given CreateZonePayloadExtensions and assigns it to the Extensions field.
-func (o *CreateZonePayload) SetExtensions(v *CreateZonePayloadExtensions) {
-	o.Extensions = v
+func (o *CreateZonePayload) SetExtensions(v CreateZonePayloadGetExtensionsRetType) {
+	setCreateZonePayloadGetExtensionsAttributeType(&o.Extensions, v)
 }
 
 // GetIsReverseZone returns the IsReverseZone field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetIsReverseZone() *bool {
-	if o == nil || IsNil(o.IsReverseZone) {
-		var ret *bool
-		return ret
-	}
-	return o.IsReverseZone
+func (o *CreateZonePayload) GetIsReverseZone() (res CreateZonePayloadgetIsReverseZoneRetType) {
+	res, _ = o.GetIsReverseZoneOk()
+	return
 }
 
 // GetIsReverseZoneOk returns a tuple with the IsReverseZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetIsReverseZoneOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsReverseZone) {
-		return nil, false
-	}
-	return o.IsReverseZone, true
+func (o *CreateZonePayload) GetIsReverseZoneOk() (ret CreateZonePayloadgetIsReverseZoneRetType, ok bool) {
+	return getCreateZonePayloadgetIsReverseZoneAttributeTypeOk(o.IsReverseZone)
 }
 
 // HasIsReverseZone returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasIsReverseZone() bool {
-	if o != nil && !IsNil(o.IsReverseZone) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIsReverseZoneOk()
+	return ok
 }
 
 // SetIsReverseZone gets a reference to the given bool and assigns it to the IsReverseZone field.
-func (o *CreateZonePayload) SetIsReverseZone(v *bool) {
-	o.IsReverseZone = v
+func (o *CreateZonePayload) SetIsReverseZone(v CreateZonePayloadgetIsReverseZoneRetType) {
+	setCreateZonePayloadgetIsReverseZoneAttributeType(&o.IsReverseZone, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateZonePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateZonePayload) GetName() (ret CreateZonePayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateZonePayload) GetNameOk() (ret CreateZonePayloadGetNameRetType, ok bool) {
+	return getCreateZonePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateZonePayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateZonePayload) SetName(v CreateZonePayloadGetNameRetType) {
+	setCreateZonePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetNegativeCache returns the NegativeCache field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetNegativeCache() *int64 {
-	if o == nil || IsNil(o.NegativeCache) {
-		var ret *int64
-		return ret
-	}
-	return o.NegativeCache
+func (o *CreateZonePayload) GetNegativeCache() (res CreateZonePayloadGetNegativeCacheRetType) {
+	res, _ = o.GetNegativeCacheOk()
+	return
 }
 
 // GetNegativeCacheOk returns a tuple with the NegativeCache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetNegativeCacheOk() (*int64, bool) {
-	if o == nil || IsNil(o.NegativeCache) {
-		return nil, false
-	}
-	return o.NegativeCache, true
+func (o *CreateZonePayload) GetNegativeCacheOk() (ret CreateZonePayloadGetNegativeCacheRetType, ok bool) {
+	return getCreateZonePayloadGetNegativeCacheAttributeTypeOk(o.NegativeCache)
 }
 
 // HasNegativeCache returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasNegativeCache() bool {
-	if o != nil && !IsNil(o.NegativeCache) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNegativeCacheOk()
+	return ok
 }
 
 // SetNegativeCache gets a reference to the given int64 and assigns it to the NegativeCache field.
-func (o *CreateZonePayload) SetNegativeCache(v *int64) {
-	o.NegativeCache = v
+func (o *CreateZonePayload) SetNegativeCache(v CreateZonePayloadGetNegativeCacheRetType) {
+	setCreateZonePayloadGetNegativeCacheAttributeType(&o.NegativeCache, v)
 }
 
 // GetPrimaries returns the Primaries field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetPrimaries() *[]string {
-	if o == nil || IsNil(o.Primaries) {
-		var ret *[]string
-		return ret
-	}
-	return o.Primaries
+func (o *CreateZonePayload) GetPrimaries() (res CreateZonePayloadGetPrimariesRetType) {
+	res, _ = o.GetPrimariesOk()
+	return
 }
 
 // GetPrimariesOk returns a tuple with the Primaries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetPrimariesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Primaries) {
-		return nil, false
-	}
-	return o.Primaries, true
+func (o *CreateZonePayload) GetPrimariesOk() (ret CreateZonePayloadGetPrimariesRetType, ok bool) {
+	return getCreateZonePayloadGetPrimariesAttributeTypeOk(o.Primaries)
 }
 
 // HasPrimaries returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasPrimaries() bool {
-	if o != nil && !IsNil(o.Primaries) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPrimariesOk()
+	return ok
 }
 
 // SetPrimaries gets a reference to the given []string and assigns it to the Primaries field.
-func (o *CreateZonePayload) SetPrimaries(v *[]string) {
-	o.Primaries = v
+func (o *CreateZonePayload) SetPrimaries(v CreateZonePayloadGetPrimariesRetType) {
+	setCreateZonePayloadGetPrimariesAttributeType(&o.Primaries, v)
 }
 
 // GetRefreshTime returns the RefreshTime field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetRefreshTime() *int64 {
-	if o == nil || IsNil(o.RefreshTime) {
-		var ret *int64
-		return ret
-	}
-	return o.RefreshTime
+func (o *CreateZonePayload) GetRefreshTime() (res CreateZonePayloadGetRefreshTimeRetType) {
+	res, _ = o.GetRefreshTimeOk()
+	return
 }
 
 // GetRefreshTimeOk returns a tuple with the RefreshTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetRefreshTimeOk() (*int64, bool) {
-	if o == nil || IsNil(o.RefreshTime) {
-		return nil, false
-	}
-	return o.RefreshTime, true
+func (o *CreateZonePayload) GetRefreshTimeOk() (ret CreateZonePayloadGetRefreshTimeRetType, ok bool) {
+	return getCreateZonePayloadGetRefreshTimeAttributeTypeOk(o.RefreshTime)
 }
 
 // HasRefreshTime returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasRefreshTime() bool {
-	if o != nil && !IsNil(o.RefreshTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRefreshTimeOk()
+	return ok
 }
 
 // SetRefreshTime gets a reference to the given int64 and assigns it to the RefreshTime field.
-func (o *CreateZonePayload) SetRefreshTime(v *int64) {
-	o.RefreshTime = v
+func (o *CreateZonePayload) SetRefreshTime(v CreateZonePayloadGetRefreshTimeRetType) {
+	setCreateZonePayloadGetRefreshTimeAttributeType(&o.RefreshTime, v)
 }
 
 // GetRetryTime returns the RetryTime field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetRetryTime() *int64 {
-	if o == nil || IsNil(o.RetryTime) {
-		var ret *int64
-		return ret
-	}
-	return o.RetryTime
+func (o *CreateZonePayload) GetRetryTime() (res CreateZonePayloadGetRetryTimeRetType) {
+	res, _ = o.GetRetryTimeOk()
+	return
 }
 
 // GetRetryTimeOk returns a tuple with the RetryTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetRetryTimeOk() (*int64, bool) {
-	if o == nil || IsNil(o.RetryTime) {
-		return nil, false
-	}
-	return o.RetryTime, true
+func (o *CreateZonePayload) GetRetryTimeOk() (ret CreateZonePayloadGetRetryTimeRetType, ok bool) {
+	return getCreateZonePayloadGetRetryTimeAttributeTypeOk(o.RetryTime)
 }
 
 // HasRetryTime returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasRetryTime() bool {
-	if o != nil && !IsNil(o.RetryTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRetryTimeOk()
+	return ok
 }
 
 // SetRetryTime gets a reference to the given int64 and assigns it to the RetryTime field.
-func (o *CreateZonePayload) SetRetryTime(v *int64) {
-	o.RetryTime = v
+func (o *CreateZonePayload) SetRetryTime(v CreateZonePayloadGetRetryTimeRetType) {
+	setCreateZonePayloadGetRetryTimeAttributeType(&o.RetryTime, v)
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *CreateZonePayload) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-	return o.Type
+func (o *CreateZonePayload) GetType() (res CreateZonePayloadGetTypeRetType) {
+	res, _ = o.GetTypeOk()
+	return
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateZonePayload) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
+func (o *CreateZonePayload) GetTypeOk() (ret CreateZonePayloadGetTypeRetType, ok bool) {
+	return getCreateZonePayloadGetTypeAttributeTypeOk(o.Type)
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *CreateZonePayload) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTypeOk()
+	return ok
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *CreateZonePayload) SetType(v *string) {
-	o.Type = v
+func (o *CreateZonePayload) SetType(v CreateZonePayloadGetTypeRetType) {
+	setCreateZonePayloadGetTypeAttributeType(&o.Type, v)
 }
 
 func (o CreateZonePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Acl) {
-		toSerialize["acl"] = o.Acl
+	if val, ok := getCreateZonePayloadGetAclAttributeTypeOk(o.Acl); ok {
+		toSerialize["Acl"] = val
 	}
-	if !IsNil(o.ContactEmail) {
-		toSerialize["contactEmail"] = o.ContactEmail
+	if val, ok := getCreateZonePayloadGetContactEmailAttributeTypeOk(o.ContactEmail); ok {
+		toSerialize["ContactEmail"] = val
 	}
-	if !IsNil(o.DefaultTTL) {
-		toSerialize["defaultTTL"] = o.DefaultTTL
+	if val, ok := getCreateZonePayloadGetDefaultTTLAttributeTypeOk(o.DefaultTTL); ok {
+		toSerialize["DefaultTTL"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getCreateZonePayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["dnsName"] = o.DnsName
-	if !IsNil(o.ExpireTime) {
-		toSerialize["expireTime"] = o.ExpireTime
+	if val, ok := getCreateZonePayloadGetDnsNameAttributeTypeOk(o.DnsName); ok {
+		toSerialize["DnsName"] = val
 	}
-	if !IsNil(o.Extensions) {
-		toSerialize["extensions"] = o.Extensions
+	if val, ok := getCreateZonePayloadGetExpireTimeAttributeTypeOk(o.ExpireTime); ok {
+		toSerialize["ExpireTime"] = val
 	}
-	if !IsNil(o.IsReverseZone) {
-		toSerialize["isReverseZone"] = o.IsReverseZone
+	if val, ok := getCreateZonePayloadGetExtensionsAttributeTypeOk(o.Extensions); ok {
+		toSerialize["Extensions"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.NegativeCache) {
-		toSerialize["negativeCache"] = o.NegativeCache
+	if val, ok := getCreateZonePayloadgetIsReverseZoneAttributeTypeOk(o.IsReverseZone); ok {
+		toSerialize["IsReverseZone"] = val
 	}
-	if !IsNil(o.Primaries) {
-		toSerialize["primaries"] = o.Primaries
+	if val, ok := getCreateZonePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.RefreshTime) {
-		toSerialize["refreshTime"] = o.RefreshTime
+	if val, ok := getCreateZonePayloadGetNegativeCacheAttributeTypeOk(o.NegativeCache); ok {
+		toSerialize["NegativeCache"] = val
 	}
-	if !IsNil(o.RetryTime) {
-		toSerialize["retryTime"] = o.RetryTime
+	if val, ok := getCreateZonePayloadGetPrimariesAttributeTypeOk(o.Primaries); ok {
+		toSerialize["Primaries"] = val
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if val, ok := getCreateZonePayloadGetRefreshTimeAttributeTypeOk(o.RefreshTime); ok {
+		toSerialize["RefreshTime"] = val
+	}
+	if val, ok := getCreateZonePayloadGetRetryTimeAttributeTypeOk(o.RetryTime); ok {
+		toSerialize["RetryTime"] = val
+	}
+	if val, ok := getCreateZonePayloadGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
 }

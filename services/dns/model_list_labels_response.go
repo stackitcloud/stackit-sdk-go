@@ -17,10 +17,51 @@ import (
 // checks if the ListLabelsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListLabelsResponse{}
 
+/*
+	types and functions for labels
+*/
+
+// isArray
+type ListLabelsResponseGetLabelsAttributeType = *[]Label
+type ListLabelsResponseGetLabelsArgType = []Label
+type ListLabelsResponseGetLabelsRetType = []Label
+
+func getListLabelsResponseGetLabelsAttributeTypeOk(arg ListLabelsResponseGetLabelsAttributeType) (ret ListLabelsResponseGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListLabelsResponseGetLabelsAttributeType(arg *ListLabelsResponseGetLabelsAttributeType, val ListLabelsResponseGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ListLabelsResponseGetMessageAttributeType = *string
+
+func getListLabelsResponseGetMessageAttributeTypeOk(arg ListLabelsResponseGetMessageAttributeType) (ret ListLabelsResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListLabelsResponseGetMessageAttributeType(arg *ListLabelsResponseGetMessageAttributeType, val ListLabelsResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ListLabelsResponseGetMessageArgType = string
+type ListLabelsResponseGetMessageRetType = string
+
 // ListLabelsResponse ResponseAllLabels.
 type ListLabelsResponse struct {
-	Labels  *[]Label `json:"labels,omitempty"`
-	Message *string  `json:"message,omitempty"`
+	Labels  ListLabelsResponseGetLabelsAttributeType  `json:"labels,omitempty"`
+	Message ListLabelsResponseGetMessageAttributeType `json:"message,omitempty"`
 }
 
 // NewListLabelsResponse instantiates a new ListLabelsResponse object
@@ -41,76 +82,58 @@ func NewListLabelsResponseWithDefaults() *ListLabelsResponse {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *ListLabelsResponse) GetLabels() *[]Label {
-	if o == nil || IsNil(o.Labels) {
-		var ret *[]Label
-		return ret
-	}
-	return o.Labels
+func (o *ListLabelsResponse) GetLabels() (res ListLabelsResponseGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListLabelsResponse) GetLabelsOk() (*[]Label, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *ListLabelsResponse) GetLabelsOk() (ret ListLabelsResponseGetLabelsRetType, ok bool) {
+	return getListLabelsResponseGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *ListLabelsResponse) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given []Label and assigns it to the Labels field.
-func (o *ListLabelsResponse) SetLabels(v *[]Label) {
-	o.Labels = v
+func (o *ListLabelsResponse) SetLabels(v ListLabelsResponseGetLabelsRetType) {
+	setListLabelsResponseGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ListLabelsResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *ListLabelsResponse) GetMessage() (res ListLabelsResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListLabelsResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ListLabelsResponse) GetMessageOk() (ret ListLabelsResponseGetMessageRetType, ok bool) {
+	return getListLabelsResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ListLabelsResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ListLabelsResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ListLabelsResponse) SetMessage(v ListLabelsResponseGetMessageRetType) {
+	setListLabelsResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o ListLabelsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getListLabelsResponseGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getListLabelsResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
 }

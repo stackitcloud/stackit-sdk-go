@@ -17,10 +17,50 @@ import (
 // checks if the ExportRecordSetsPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ExportRecordSetsPayload{}
 
+/*
+	types and functions for exportAsFQDN
+*/
+
+// isBoolean
+type ExportRecordSetsPayloadgetExportAsFQDNAttributeType = *bool
+type ExportRecordSetsPayloadgetExportAsFQDNArgType = bool
+type ExportRecordSetsPayloadgetExportAsFQDNRetType = bool
+
+func getExportRecordSetsPayloadgetExportAsFQDNAttributeTypeOk(arg ExportRecordSetsPayloadgetExportAsFQDNAttributeType) (ret ExportRecordSetsPayloadgetExportAsFQDNRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExportRecordSetsPayloadgetExportAsFQDNAttributeType(arg *ExportRecordSetsPayloadgetExportAsFQDNAttributeType, val ExportRecordSetsPayloadgetExportAsFQDNRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for format
+*/
+
+// isEnumRef
+type ExportRecordSetsPayloadGetFormatAttributeType = *string
+type ExportRecordSetsPayloadGetFormatArgType = string
+type ExportRecordSetsPayloadGetFormatRetType = string
+
+func getExportRecordSetsPayloadGetFormatAttributeTypeOk(arg ExportRecordSetsPayloadGetFormatAttributeType) (ret ExportRecordSetsPayloadGetFormatRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExportRecordSetsPayloadGetFormatAttributeType(arg *ExportRecordSetsPayloadGetFormatAttributeType, val ExportRecordSetsPayloadGetFormatRetType) {
+	*arg = &val
+}
+
 // ExportRecordSetsPayload struct for ExportRecordSetsPayload
 type ExportRecordSetsPayload struct {
-	ExportAsFQDN *bool   `json:"exportAsFQDN,omitempty"`
-	Format       *string `json:"format,omitempty"`
+	ExportAsFQDN ExportRecordSetsPayloadgetExportAsFQDNAttributeType `json:"exportAsFQDN,omitempty"`
+	Format       ExportRecordSetsPayloadGetFormatAttributeType       `json:"format,omitempty"`
 }
 
 // NewExportRecordSetsPayload instantiates a new ExportRecordSetsPayload object
@@ -29,10 +69,6 @@ type ExportRecordSetsPayload struct {
 // will change when the set of required properties is changed
 func NewExportRecordSetsPayload() *ExportRecordSetsPayload {
 	this := ExportRecordSetsPayload{}
-	var exportAsFQDN bool = true
-	this.ExportAsFQDN = &exportAsFQDN
-	var format string = "csv"
-	this.Format = &format
 	return &this
 }
 
@@ -49,76 +85,58 @@ func NewExportRecordSetsPayloadWithDefaults() *ExportRecordSetsPayload {
 }
 
 // GetExportAsFQDN returns the ExportAsFQDN field value if set, zero value otherwise.
-func (o *ExportRecordSetsPayload) GetExportAsFQDN() *bool {
-	if o == nil || IsNil(o.ExportAsFQDN) {
-		var ret *bool
-		return ret
-	}
-	return o.ExportAsFQDN
+func (o *ExportRecordSetsPayload) GetExportAsFQDN() (res ExportRecordSetsPayloadgetExportAsFQDNRetType) {
+	res, _ = o.GetExportAsFQDNOk()
+	return
 }
 
 // GetExportAsFQDNOk returns a tuple with the ExportAsFQDN field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExportRecordSetsPayload) GetExportAsFQDNOk() (*bool, bool) {
-	if o == nil || IsNil(o.ExportAsFQDN) {
-		return nil, false
-	}
-	return o.ExportAsFQDN, true
+func (o *ExportRecordSetsPayload) GetExportAsFQDNOk() (ret ExportRecordSetsPayloadgetExportAsFQDNRetType, ok bool) {
+	return getExportRecordSetsPayloadgetExportAsFQDNAttributeTypeOk(o.ExportAsFQDN)
 }
 
 // HasExportAsFQDN returns a boolean if a field has been set.
 func (o *ExportRecordSetsPayload) HasExportAsFQDN() bool {
-	if o != nil && !IsNil(o.ExportAsFQDN) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExportAsFQDNOk()
+	return ok
 }
 
 // SetExportAsFQDN gets a reference to the given bool and assigns it to the ExportAsFQDN field.
-func (o *ExportRecordSetsPayload) SetExportAsFQDN(v *bool) {
-	o.ExportAsFQDN = v
+func (o *ExportRecordSetsPayload) SetExportAsFQDN(v ExportRecordSetsPayloadgetExportAsFQDNRetType) {
+	setExportRecordSetsPayloadgetExportAsFQDNAttributeType(&o.ExportAsFQDN, v)
 }
 
 // GetFormat returns the Format field value if set, zero value otherwise.
-func (o *ExportRecordSetsPayload) GetFormat() *string {
-	if o == nil || IsNil(o.Format) {
-		var ret *string
-		return ret
-	}
-	return o.Format
+func (o *ExportRecordSetsPayload) GetFormat() (res ExportRecordSetsPayloadGetFormatRetType) {
+	res, _ = o.GetFormatOk()
+	return
 }
 
 // GetFormatOk returns a tuple with the Format field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExportRecordSetsPayload) GetFormatOk() (*string, bool) {
-	if o == nil || IsNil(o.Format) {
-		return nil, false
-	}
-	return o.Format, true
+func (o *ExportRecordSetsPayload) GetFormatOk() (ret ExportRecordSetsPayloadGetFormatRetType, ok bool) {
+	return getExportRecordSetsPayloadGetFormatAttributeTypeOk(o.Format)
 }
 
 // HasFormat returns a boolean if a field has been set.
 func (o *ExportRecordSetsPayload) HasFormat() bool {
-	if o != nil && !IsNil(o.Format) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFormatOk()
+	return ok
 }
 
 // SetFormat gets a reference to the given string and assigns it to the Format field.
-func (o *ExportRecordSetsPayload) SetFormat(v *string) {
-	o.Format = v
+func (o *ExportRecordSetsPayload) SetFormat(v ExportRecordSetsPayloadGetFormatRetType) {
+	setExportRecordSetsPayloadGetFormatAttributeType(&o.Format, v)
 }
 
 func (o ExportRecordSetsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ExportAsFQDN) {
-		toSerialize["exportAsFQDN"] = o.ExportAsFQDN
+	if val, ok := getExportRecordSetsPayloadgetExportAsFQDNAttributeTypeOk(o.ExportAsFQDN); ok {
+		toSerialize["ExportAsFQDN"] = val
 	}
-	if !IsNil(o.Format) {
-		toSerialize["format"] = o.Format
+	if val, ok := getExportRecordSetsPayloadGetFormatAttributeTypeOk(o.Format); ok {
+		toSerialize["Format"] = val
 	}
 	return toSerialize, nil
 }
