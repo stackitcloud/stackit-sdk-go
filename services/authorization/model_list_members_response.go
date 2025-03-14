@@ -17,14 +17,76 @@ import (
 // checks if the ListMembersResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListMembersResponse{}
 
+/*
+	types and functions for members
+*/
+
+// isArray
+type ListMembersResponseGetMembersAttributeType = *[]Member
+type ListMembersResponseGetMembersArgType = []Member
+type ListMembersResponseGetMembersRetType = []Member
+
+func getListMembersResponseGetMembersAttributeTypeOk(arg ListMembersResponseGetMembersAttributeType) (ret ListMembersResponseGetMembersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListMembersResponseGetMembersAttributeType(arg *ListMembersResponseGetMembersAttributeType, val ListMembersResponseGetMembersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for resourceId
+*/
+
+// isNotNullableString
+type ListMembersResponseGetResourceIdAttributeType = *string
+
+func getListMembersResponseGetResourceIdAttributeTypeOk(arg ListMembersResponseGetResourceIdAttributeType) (ret ListMembersResponseGetResourceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListMembersResponseGetResourceIdAttributeType(arg *ListMembersResponseGetResourceIdAttributeType, val ListMembersResponseGetResourceIdRetType) {
+	*arg = &val
+}
+
+type ListMembersResponseGetResourceIdArgType = string
+type ListMembersResponseGetResourceIdRetType = string
+
+/*
+	types and functions for resourceType
+*/
+
+// isNotNullableString
+type ListMembersResponseGetResourceTypeAttributeType = *string
+
+func getListMembersResponseGetResourceTypeAttributeTypeOk(arg ListMembersResponseGetResourceTypeAttributeType) (ret ListMembersResponseGetResourceTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListMembersResponseGetResourceTypeAttributeType(arg *ListMembersResponseGetResourceTypeAttributeType, val ListMembersResponseGetResourceTypeRetType) {
+	*arg = &val
+}
+
+type ListMembersResponseGetResourceTypeArgType = string
+type ListMembersResponseGetResourceTypeRetType = string
+
 // ListMembersResponse struct for ListMembersResponse
 type ListMembersResponse struct {
 	// REQUIRED
-	Members *[]Member `json:"members"`
+	Members ListMembersResponseGetMembersAttributeType `json:"members"`
 	// REQUIRED
-	ResourceId *string `json:"resourceId"`
+	ResourceId ListMembersResponseGetResourceIdAttributeType `json:"resourceId"`
 	// REQUIRED
-	ResourceType *string `json:"resourceType"`
+	ResourceType ListMembersResponseGetResourceTypeAttributeType `json:"resourceType"`
 }
 
 type _ListMembersResponse ListMembersResponse
@@ -33,11 +95,11 @@ type _ListMembersResponse ListMembersResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListMembersResponse(members *[]Member, resourceId *string, resourceType *string) *ListMembersResponse {
+func NewListMembersResponse(members ListMembersResponseGetMembersArgType, resourceId ListMembersResponseGetResourceIdArgType, resourceType ListMembersResponseGetResourceTypeArgType) *ListMembersResponse {
 	this := ListMembersResponse{}
-	this.Members = members
-	this.ResourceId = resourceId
-	this.ResourceType = resourceType
+	setListMembersResponseGetMembersAttributeType(&this.Members, members)
+	setListMembersResponseGetResourceIdAttributeType(&this.ResourceId, resourceId)
+	setListMembersResponseGetResourceTypeAttributeType(&this.ResourceType, resourceType)
 	return &this
 }
 
@@ -50,82 +112,67 @@ func NewListMembersResponseWithDefaults() *ListMembersResponse {
 }
 
 // GetMembers returns the Members field value
-func (o *ListMembersResponse) GetMembers() *[]Member {
-	if o == nil || IsNil(o.Members) {
-		var ret *[]Member
-		return ret
-	}
-
-	return o.Members
+func (o *ListMembersResponse) GetMembers() (ret ListMembersResponseGetMembersRetType) {
+	ret, _ = o.GetMembersOk()
+	return ret
 }
 
 // GetMembersOk returns a tuple with the Members field value
 // and a boolean to check if the value has been set.
-func (o *ListMembersResponse) GetMembersOk() (*[]Member, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Members, true
+func (o *ListMembersResponse) GetMembersOk() (ret ListMembersResponseGetMembersRetType, ok bool) {
+	return getListMembersResponseGetMembersAttributeTypeOk(o.Members)
 }
 
 // SetMembers sets field value
-func (o *ListMembersResponse) SetMembers(v *[]Member) {
-	o.Members = v
+func (o *ListMembersResponse) SetMembers(v ListMembersResponseGetMembersRetType) {
+	setListMembersResponseGetMembersAttributeType(&o.Members, v)
 }
 
 // GetResourceId returns the ResourceId field value
-func (o *ListMembersResponse) GetResourceId() *string {
-	if o == nil || IsNil(o.ResourceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceId
+func (o *ListMembersResponse) GetResourceId() (ret ListMembersResponseGetResourceIdRetType) {
+	ret, _ = o.GetResourceIdOk()
+	return ret
 }
 
 // GetResourceIdOk returns a tuple with the ResourceId field value
 // and a boolean to check if the value has been set.
-func (o *ListMembersResponse) GetResourceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceId, true
+func (o *ListMembersResponse) GetResourceIdOk() (ret ListMembersResponseGetResourceIdRetType, ok bool) {
+	return getListMembersResponseGetResourceIdAttributeTypeOk(o.ResourceId)
 }
 
 // SetResourceId sets field value
-func (o *ListMembersResponse) SetResourceId(v *string) {
-	o.ResourceId = v
+func (o *ListMembersResponse) SetResourceId(v ListMembersResponseGetResourceIdRetType) {
+	setListMembersResponseGetResourceIdAttributeType(&o.ResourceId, v)
 }
 
 // GetResourceType returns the ResourceType field value
-func (o *ListMembersResponse) GetResourceType() *string {
-	if o == nil || IsNil(o.ResourceType) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceType
+func (o *ListMembersResponse) GetResourceType() (ret ListMembersResponseGetResourceTypeRetType) {
+	ret, _ = o.GetResourceTypeOk()
+	return ret
 }
 
 // GetResourceTypeOk returns a tuple with the ResourceType field value
 // and a boolean to check if the value has been set.
-func (o *ListMembersResponse) GetResourceTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceType, true
+func (o *ListMembersResponse) GetResourceTypeOk() (ret ListMembersResponseGetResourceTypeRetType, ok bool) {
+	return getListMembersResponseGetResourceTypeAttributeTypeOk(o.ResourceType)
 }
 
 // SetResourceType sets field value
-func (o *ListMembersResponse) SetResourceType(v *string) {
-	o.ResourceType = v
+func (o *ListMembersResponse) SetResourceType(v ListMembersResponseGetResourceTypeRetType) {
+	setListMembersResponseGetResourceTypeAttributeType(&o.ResourceType, v)
 }
 
 func (o ListMembersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["members"] = o.Members
-	toSerialize["resourceId"] = o.ResourceId
-	toSerialize["resourceType"] = o.ResourceType
+	if val, ok := getListMembersResponseGetMembersAttributeTypeOk(o.Members); ok {
+		toSerialize["Members"] = val
+	}
+	if val, ok := getListMembersResponseGetResourceIdAttributeTypeOk(o.ResourceId); ok {
+		toSerialize["ResourceId"] = val
+	}
+	if val, ok := getListMembersResponseGetResourceTypeAttributeTypeOk(o.ResourceType); ok {
+		toSerialize["ResourceType"] = val
+	}
 	return toSerialize, nil
 }
 
