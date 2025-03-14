@@ -17,12 +17,57 @@ import (
 // checks if the UpdateNetworkIPv6Body type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateNetworkIPv6Body{}
 
+/*
+	types and functions for gateway
+*/
+
+// isNullableString
+type UpdateNetworkIPv6BodyGetGatewayAttributeType = *NullableString
+
+func getUpdateNetworkIPv6BodyGetGatewayAttributeTypeOk(arg UpdateNetworkIPv6BodyGetGatewayAttributeType) (ret UpdateNetworkIPv6BodyGetGatewayRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setUpdateNetworkIPv6BodyGetGatewayAttributeType(arg *UpdateNetworkIPv6BodyGetGatewayAttributeType, val UpdateNetworkIPv6BodyGetGatewayRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type UpdateNetworkIPv6BodyGetGatewayArgType = *string
+type UpdateNetworkIPv6BodyGetGatewayRetType = *string
+
+/*
+	types and functions for nameservers
+*/
+
+// isArray
+type UpdateNetworkIPv6BodyGetNameserversAttributeType = *[]string
+type UpdateNetworkIPv6BodyGetNameserversArgType = []string
+type UpdateNetworkIPv6BodyGetNameserversRetType = []string
+
+func getUpdateNetworkIPv6BodyGetNameserversAttributeTypeOk(arg UpdateNetworkIPv6BodyGetNameserversAttributeType) (ret UpdateNetworkIPv6BodyGetNameserversRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateNetworkIPv6BodyGetNameserversAttributeType(arg *UpdateNetworkIPv6BodyGetNameserversAttributeType, val UpdateNetworkIPv6BodyGetNameserversRetType) {
+	*arg = &val
+}
+
 // UpdateNetworkIPv6Body The config object for a IPv6 network update.
 type UpdateNetworkIPv6Body struct {
 	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
-	Gateway *NullableString `json:"gateway,omitempty"`
+	Gateway UpdateNetworkIPv6BodyGetGatewayAttributeType `json:"gateway,omitempty"`
 	// A list containing DNS Servers/Nameservers for IPv6.
-	Nameservers *[]string `json:"nameservers,omitempty"`
+	Nameservers UpdateNetworkIPv6BodyGetNameserversAttributeType `json:"nameservers,omitempty"`
 }
 
 // NewUpdateNetworkIPv6Body instantiates a new UpdateNetworkIPv6Body object
@@ -43,96 +88,69 @@ func NewUpdateNetworkIPv6BodyWithDefaults() *UpdateNetworkIPv6Body {
 }
 
 // GetGateway returns the Gateway field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateNetworkIPv6Body) GetGateway() *string {
-	if o == nil || IsNil(o.Gateway) || IsNil(o.Gateway.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.Gateway.Get()
+func (o *UpdateNetworkIPv6Body) GetGateway() (res UpdateNetworkIPv6BodyGetGatewayRetType) {
+	res, _ = o.GetGatewayOk()
+	return
 }
 
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateNetworkIPv6Body) GetGatewayOk() (*string, bool) {
-	if o == nil || IsNil(o.Gateway) {
-		return nil, false
-	}
-	return o.Gateway.Get(), o.Gateway.IsSet()
+func (o *UpdateNetworkIPv6Body) GetGatewayOk() (ret UpdateNetworkIPv6BodyGetGatewayRetType, ok bool) {
+	return getUpdateNetworkIPv6BodyGetGatewayAttributeTypeOk(o.Gateway)
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *UpdateNetworkIPv6Body) HasGateway() bool {
-	if o != nil && !IsNil(o.Gateway) && o.Gateway.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGatewayOk()
+	return ok
 }
 
 // SetGateway gets a reference to the given string and assigns it to the Gateway field.
-func (o *UpdateNetworkIPv6Body) SetGateway(v *string) {
-	if IsNil(o.Gateway) {
-		o.Gateway = new(NullableString)
-	}
-	o.Gateway.Set(v)
+func (o *UpdateNetworkIPv6Body) SetGateway(v UpdateNetworkIPv6BodyGetGatewayRetType) {
+	setUpdateNetworkIPv6BodyGetGatewayAttributeType(&o.Gateway, v)
 }
 
 // SetGatewayNil sets the value for Gateway to be an explicit nil
 func (o *UpdateNetworkIPv6Body) SetGatewayNil() {
-	if IsNil(o.Gateway) {
-		o.Gateway = new(NullableString)
-	}
-	o.Gateway.Set(nil)
+	o.Gateway = nil
 }
 
 // UnsetGateway ensures that no value is present for Gateway, not even an explicit nil
 func (o *UpdateNetworkIPv6Body) UnsetGateway() {
-	if IsNil(o.Gateway) {
-		o.Gateway = new(NullableString)
-	}
-	o.Gateway.Unset()
+	o.Gateway = nil
 }
 
 // GetNameservers returns the Nameservers field value if set, zero value otherwise.
-func (o *UpdateNetworkIPv6Body) GetNameservers() *[]string {
-	if o == nil || IsNil(o.Nameservers) {
-		var ret *[]string
-		return ret
-	}
-	return o.Nameservers
+func (o *UpdateNetworkIPv6Body) GetNameservers() (res UpdateNetworkIPv6BodyGetNameserversRetType) {
+	res, _ = o.GetNameserversOk()
+	return
 }
 
 // GetNameserversOk returns a tuple with the Nameservers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkIPv6Body) GetNameserversOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Nameservers) {
-		return nil, false
-	}
-	return o.Nameservers, true
+func (o *UpdateNetworkIPv6Body) GetNameserversOk() (ret UpdateNetworkIPv6BodyGetNameserversRetType, ok bool) {
+	return getUpdateNetworkIPv6BodyGetNameserversAttributeTypeOk(o.Nameservers)
 }
 
 // HasNameservers returns a boolean if a field has been set.
 func (o *UpdateNetworkIPv6Body) HasNameservers() bool {
-	if o != nil && !IsNil(o.Nameservers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameserversOk()
+	return ok
 }
 
 // SetNameservers gets a reference to the given []string and assigns it to the Nameservers field.
-func (o *UpdateNetworkIPv6Body) SetNameservers(v *[]string) {
-	o.Nameservers = v
+func (o *UpdateNetworkIPv6Body) SetNameservers(v UpdateNetworkIPv6BodyGetNameserversRetType) {
+	setUpdateNetworkIPv6BodyGetNameserversAttributeType(&o.Nameservers, v)
 }
 
 func (o UpdateNetworkIPv6Body) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Gateway.IsSet() {
-		toSerialize["gateway"] = o.Gateway.Get()
+	if val, ok := getUpdateNetworkIPv6BodyGetGatewayAttributeTypeOk(o.Gateway); ok {
+		toSerialize["Gateway"] = val
 	}
-	if !IsNil(o.Nameservers) {
-		toSerialize["nameservers"] = o.Nameservers
+	if val, ok := getUpdateNetworkIPv6BodyGetNameserversAttributeTypeOk(o.Nameservers); ok {
+		toSerialize["Nameservers"] = val
 	}
 	return toSerialize, nil
 }

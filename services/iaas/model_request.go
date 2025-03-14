@@ -17,23 +17,148 @@ import (
 // checks if the Request type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Request{}
 
+/*
+	types and functions for details
+*/
+
+// isNotNullableString
+type RequestGetDetailsAttributeType = *string
+
+func getRequestGetDetailsAttributeTypeOk(arg RequestGetDetailsAttributeType) (ret RequestGetDetailsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRequestGetDetailsAttributeType(arg *RequestGetDetailsAttributeType, val RequestGetDetailsRetType) {
+	*arg = &val
+}
+
+type RequestGetDetailsArgType = string
+type RequestGetDetailsRetType = string
+
+/*
+	types and functions for requestAction
+*/
+
+// isNotNullableString
+type RequestGetRequestActionAttributeType = *string
+
+func getRequestGetRequestActionAttributeTypeOk(arg RequestGetRequestActionAttributeType) (ret RequestGetRequestActionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRequestGetRequestActionAttributeType(arg *RequestGetRequestActionAttributeType, val RequestGetRequestActionRetType) {
+	*arg = &val
+}
+
+type RequestGetRequestActionArgType = string
+type RequestGetRequestActionRetType = string
+
+/*
+	types and functions for requestId
+*/
+
+// isNotNullableString
+type RequestGetRequestIdAttributeType = *string
+
+func getRequestGetRequestIdAttributeTypeOk(arg RequestGetRequestIdAttributeType) (ret RequestGetRequestIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRequestGetRequestIdAttributeType(arg *RequestGetRequestIdAttributeType, val RequestGetRequestIdRetType) {
+	*arg = &val
+}
+
+type RequestGetRequestIdArgType = string
+type RequestGetRequestIdRetType = string
+
+/*
+	types and functions for requestType
+*/
+
+// isNotNullableString
+type RequestGetRequestTypeAttributeType = *string
+
+func getRequestGetRequestTypeAttributeTypeOk(arg RequestGetRequestTypeAttributeType) (ret RequestGetRequestTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRequestGetRequestTypeAttributeType(arg *RequestGetRequestTypeAttributeType, val RequestGetRequestTypeRetType) {
+	*arg = &val
+}
+
+type RequestGetRequestTypeArgType = string
+type RequestGetRequestTypeRetType = string
+
+/*
+	types and functions for resources
+*/
+
+// isArray
+type RequestGetResourcesAttributeType = *[]RequestResource
+type RequestGetResourcesArgType = []RequestResource
+type RequestGetResourcesRetType = []RequestResource
+
+func getRequestGetResourcesAttributeTypeOk(arg RequestGetResourcesAttributeType) (ret RequestGetResourcesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRequestGetResourcesAttributeType(arg *RequestGetResourcesAttributeType, val RequestGetResourcesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type RequestGetStatusAttributeType = *string
+
+func getRequestGetStatusAttributeTypeOk(arg RequestGetStatusAttributeType) (ret RequestGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRequestGetStatusAttributeType(arg *RequestGetStatusAttributeType, val RequestGetStatusRetType) {
+	*arg = &val
+}
+
+type RequestGetStatusArgType = string
+type RequestGetStatusRetType = string
+
 // Request Object that represents a request.
 type Request struct {
-	Details *string `json:"details,omitempty"`
+	Details RequestGetDetailsAttributeType `json:"details,omitempty"`
 	// Object that represents a resource action. Possible values: `CREATE`, `DELETE`, `UPDATE`.
 	// REQUIRED
-	RequestAction *string `json:"requestAction"`
+	RequestAction RequestGetRequestActionAttributeType `json:"requestAction"`
 	// Identifier (ID) representing a single API request.
 	// REQUIRED
-	RequestId *string `json:"requestId"`
+	RequestId RequestGetRequestIdAttributeType `json:"requestId"`
 	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.
 	// REQUIRED
-	RequestType *string `json:"requestType"`
+	RequestType RequestGetRequestTypeAttributeType `json:"requestType"`
 	// REQUIRED
-	Resources *[]RequestResource `json:"resources"`
+	Resources RequestGetResourcesAttributeType `json:"resources"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
-	Status *string `json:"status"`
+	Status RequestGetStatusAttributeType `json:"status"`
 }
 
 type _Request Request
@@ -42,13 +167,13 @@ type _Request Request
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRequest(requestAction *string, requestId *string, requestType *string, resources *[]RequestResource, status *string) *Request {
+func NewRequest(requestAction RequestGetRequestActionArgType, requestId RequestGetRequestIdArgType, requestType RequestGetRequestTypeArgType, resources RequestGetResourcesArgType, status RequestGetStatusArgType) *Request {
 	this := Request{}
-	this.RequestAction = requestAction
-	this.RequestId = requestId
-	this.RequestType = requestType
-	this.Resources = resources
-	this.Status = status
+	setRequestGetRequestActionAttributeType(&this.RequestAction, requestAction)
+	setRequestGetRequestIdAttributeType(&this.RequestId, requestId)
+	setRequestGetRequestTypeAttributeType(&this.RequestType, requestType)
+	setRequestGetResourcesAttributeType(&this.Resources, resources)
+	setRequestGetStatusAttributeType(&this.Status, status)
 	return &this
 }
 
@@ -61,167 +186,133 @@ func NewRequestWithDefaults() *Request {
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
-func (o *Request) GetDetails() *string {
-	if o == nil || IsNil(o.Details) {
-		var ret *string
-		return ret
-	}
-	return o.Details
+func (o *Request) GetDetails() (res RequestGetDetailsRetType) {
+	res, _ = o.GetDetailsOk()
+	return
 }
 
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Request) GetDetailsOk() (*string, bool) {
-	if o == nil || IsNil(o.Details) {
-		return nil, false
-	}
-	return o.Details, true
+func (o *Request) GetDetailsOk() (ret RequestGetDetailsRetType, ok bool) {
+	return getRequestGetDetailsAttributeTypeOk(o.Details)
 }
 
 // HasDetails returns a boolean if a field has been set.
 func (o *Request) HasDetails() bool {
-	if o != nil && !IsNil(o.Details) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDetailsOk()
+	return ok
 }
 
 // SetDetails gets a reference to the given string and assigns it to the Details field.
-func (o *Request) SetDetails(v *string) {
-	o.Details = v
+func (o *Request) SetDetails(v RequestGetDetailsRetType) {
+	setRequestGetDetailsAttributeType(&o.Details, v)
 }
 
 // GetRequestAction returns the RequestAction field value
-func (o *Request) GetRequestAction() *string {
-	if o == nil || IsNil(o.RequestAction) {
-		var ret *string
-		return ret
-	}
-
-	return o.RequestAction
+func (o *Request) GetRequestAction() (ret RequestGetRequestActionRetType) {
+	ret, _ = o.GetRequestActionOk()
+	return ret
 }
 
 // GetRequestActionOk returns a tuple with the RequestAction field value
 // and a boolean to check if the value has been set.
-func (o *Request) GetRequestActionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RequestAction, true
+func (o *Request) GetRequestActionOk() (ret RequestGetRequestActionRetType, ok bool) {
+	return getRequestGetRequestActionAttributeTypeOk(o.RequestAction)
 }
 
 // SetRequestAction sets field value
-func (o *Request) SetRequestAction(v *string) {
-	o.RequestAction = v
+func (o *Request) SetRequestAction(v RequestGetRequestActionRetType) {
+	setRequestGetRequestActionAttributeType(&o.RequestAction, v)
 }
 
 // GetRequestId returns the RequestId field value
-func (o *Request) GetRequestId() *string {
-	if o == nil || IsNil(o.RequestId) {
-		var ret *string
-		return ret
-	}
-
-	return o.RequestId
+func (o *Request) GetRequestId() (ret RequestGetRequestIdRetType) {
+	ret, _ = o.GetRequestIdOk()
+	return ret
 }
 
 // GetRequestIdOk returns a tuple with the RequestId field value
 // and a boolean to check if the value has been set.
-func (o *Request) GetRequestIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RequestId, true
+func (o *Request) GetRequestIdOk() (ret RequestGetRequestIdRetType, ok bool) {
+	return getRequestGetRequestIdAttributeTypeOk(o.RequestId)
 }
 
 // SetRequestId sets field value
-func (o *Request) SetRequestId(v *string) {
-	o.RequestId = v
+func (o *Request) SetRequestId(v RequestGetRequestIdRetType) {
+	setRequestGetRequestIdAttributeType(&o.RequestId, v)
 }
 
 // GetRequestType returns the RequestType field value
-func (o *Request) GetRequestType() *string {
-	if o == nil || IsNil(o.RequestType) {
-		var ret *string
-		return ret
-	}
-
-	return o.RequestType
+func (o *Request) GetRequestType() (ret RequestGetRequestTypeRetType) {
+	ret, _ = o.GetRequestTypeOk()
+	return ret
 }
 
 // GetRequestTypeOk returns a tuple with the RequestType field value
 // and a boolean to check if the value has been set.
-func (o *Request) GetRequestTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RequestType, true
+func (o *Request) GetRequestTypeOk() (ret RequestGetRequestTypeRetType, ok bool) {
+	return getRequestGetRequestTypeAttributeTypeOk(o.RequestType)
 }
 
 // SetRequestType sets field value
-func (o *Request) SetRequestType(v *string) {
-	o.RequestType = v
+func (o *Request) SetRequestType(v RequestGetRequestTypeRetType) {
+	setRequestGetRequestTypeAttributeType(&o.RequestType, v)
 }
 
 // GetResources returns the Resources field value
-func (o *Request) GetResources() *[]RequestResource {
-	if o == nil || IsNil(o.Resources) {
-		var ret *[]RequestResource
-		return ret
-	}
-
-	return o.Resources
+func (o *Request) GetResources() (ret RequestGetResourcesRetType) {
+	ret, _ = o.GetResourcesOk()
+	return ret
 }
 
 // GetResourcesOk returns a tuple with the Resources field value
 // and a boolean to check if the value has been set.
-func (o *Request) GetResourcesOk() (*[]RequestResource, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Resources, true
+func (o *Request) GetResourcesOk() (ret RequestGetResourcesRetType, ok bool) {
+	return getRequestGetResourcesAttributeTypeOk(o.Resources)
 }
 
 // SetResources sets field value
-func (o *Request) SetResources(v *[]RequestResource) {
-	o.Resources = v
+func (o *Request) SetResources(v RequestGetResourcesRetType) {
+	setRequestGetResourcesAttributeType(&o.Resources, v)
 }
 
 // GetStatus returns the Status field value
-func (o *Request) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-
-	return o.Status
+func (o *Request) GetStatus() (ret RequestGetStatusRetType) {
+	ret, _ = o.GetStatusOk()
+	return ret
 }
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *Request) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Status, true
+func (o *Request) GetStatusOk() (ret RequestGetStatusRetType, ok bool) {
+	return getRequestGetStatusAttributeTypeOk(o.Status)
 }
 
 // SetStatus sets field value
-func (o *Request) SetStatus(v *string) {
-	o.Status = v
+func (o *Request) SetStatus(v RequestGetStatusRetType) {
+	setRequestGetStatusAttributeType(&o.Status, v)
 }
 
 func (o Request) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Details) {
-		toSerialize["details"] = o.Details
+	if val, ok := getRequestGetDetailsAttributeTypeOk(o.Details); ok {
+		toSerialize["Details"] = val
 	}
-	toSerialize["requestAction"] = o.RequestAction
-	toSerialize["requestId"] = o.RequestId
-	toSerialize["requestType"] = o.RequestType
-	toSerialize["resources"] = o.Resources
-	toSerialize["status"] = o.Status
+	if val, ok := getRequestGetRequestActionAttributeTypeOk(o.RequestAction); ok {
+		toSerialize["RequestAction"] = val
+	}
+	if val, ok := getRequestGetRequestIdAttributeTypeOk(o.RequestId); ok {
+		toSerialize["RequestId"] = val
+	}
+	if val, ok := getRequestGetRequestTypeAttributeTypeOk(o.RequestType); ok {
+		toSerialize["RequestType"] = val
+	}
+	if val, ok := getRequestGetResourcesAttributeTypeOk(o.Resources); ok {
+		toSerialize["Resources"] = val
+	}
+	if val, ok := getRequestGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
+	}
 	return toSerialize, nil
 }
 

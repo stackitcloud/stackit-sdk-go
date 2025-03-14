@@ -17,10 +17,31 @@ import (
 // checks if the CreateServerNetworking type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateServerNetworking{}
 
+/*
+	types and functions for networkId
+*/
+
+// isNotNullableString
+type CreateServerNetworkingGetNetworkIdAttributeType = *string
+
+func getCreateServerNetworkingGetNetworkIdAttributeTypeOk(arg CreateServerNetworkingGetNetworkIdAttributeType) (ret CreateServerNetworkingGetNetworkIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerNetworkingGetNetworkIdAttributeType(arg *CreateServerNetworkingGetNetworkIdAttributeType, val CreateServerNetworkingGetNetworkIdRetType) {
+	*arg = &val
+}
+
+type CreateServerNetworkingGetNetworkIdArgType = string
+type CreateServerNetworkingGetNetworkIdRetType = string
+
 // CreateServerNetworking The initial networking setup for the server creation with a network.
 type CreateServerNetworking struct {
 	// Universally Unique Identifier (UUID).
-	NetworkId *string `json:"networkId,omitempty"`
+	NetworkId CreateServerNetworkingGetNetworkIdAttributeType `json:"networkId,omitempty"`
 }
 
 // NewCreateServerNetworking instantiates a new CreateServerNetworking object
@@ -41,41 +62,32 @@ func NewCreateServerNetworkingWithDefaults() *CreateServerNetworking {
 }
 
 // GetNetworkId returns the NetworkId field value if set, zero value otherwise.
-func (o *CreateServerNetworking) GetNetworkId() *string {
-	if o == nil || IsNil(o.NetworkId) {
-		var ret *string
-		return ret
-	}
-	return o.NetworkId
+func (o *CreateServerNetworking) GetNetworkId() (res CreateServerNetworkingGetNetworkIdRetType) {
+	res, _ = o.GetNetworkIdOk()
+	return
 }
 
 // GetNetworkIdOk returns a tuple with the NetworkId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerNetworking) GetNetworkIdOk() (*string, bool) {
-	if o == nil || IsNil(o.NetworkId) {
-		return nil, false
-	}
-	return o.NetworkId, true
+func (o *CreateServerNetworking) GetNetworkIdOk() (ret CreateServerNetworkingGetNetworkIdRetType, ok bool) {
+	return getCreateServerNetworkingGetNetworkIdAttributeTypeOk(o.NetworkId)
 }
 
 // HasNetworkId returns a boolean if a field has been set.
 func (o *CreateServerNetworking) HasNetworkId() bool {
-	if o != nil && !IsNil(o.NetworkId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNetworkIdOk()
+	return ok
 }
 
 // SetNetworkId gets a reference to the given string and assigns it to the NetworkId field.
-func (o *CreateServerNetworking) SetNetworkId(v *string) {
-	o.NetworkId = v
+func (o *CreateServerNetworking) SetNetworkId(v CreateServerNetworkingGetNetworkIdRetType) {
+	setCreateServerNetworkingGetNetworkIdAttributeType(&o.NetworkId, v)
 }
 
 func (o CreateServerNetworking) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.NetworkId) {
-		toSerialize["networkId"] = o.NetworkId
+	if val, ok := getCreateServerNetworkingGetNetworkIdAttributeTypeOk(o.NetworkId); ok {
+		toSerialize["NetworkId"] = val
 	}
 	return toSerialize, nil
 }

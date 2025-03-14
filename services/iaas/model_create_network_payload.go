@@ -17,16 +17,97 @@ import (
 // checks if the CreateNetworkPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateNetworkPayload{}
 
+/*
+	types and functions for addressFamily
+*/
+
+// isModel
+type CreateNetworkPayloadGetAddressFamilyAttributeType = *CreateNetworkAddressFamily
+type CreateNetworkPayloadGetAddressFamilyArgType = CreateNetworkAddressFamily
+type CreateNetworkPayloadGetAddressFamilyRetType = CreateNetworkAddressFamily
+
+func getCreateNetworkPayloadGetAddressFamilyAttributeTypeOk(arg CreateNetworkPayloadGetAddressFamilyAttributeType) (ret CreateNetworkPayloadGetAddressFamilyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateNetworkPayloadGetAddressFamilyAttributeType(arg *CreateNetworkPayloadGetAddressFamilyAttributeType, val CreateNetworkPayloadGetAddressFamilyRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type CreateNetworkPayloadGetLabelsAttributeType = *map[string]interface{}
+type CreateNetworkPayloadGetLabelsArgType = map[string]interface{}
+type CreateNetworkPayloadGetLabelsRetType = map[string]interface{}
+
+func getCreateNetworkPayloadGetLabelsAttributeTypeOk(arg CreateNetworkPayloadGetLabelsAttributeType) (ret CreateNetworkPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateNetworkPayloadGetLabelsAttributeType(arg *CreateNetworkPayloadGetLabelsAttributeType, val CreateNetworkPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateNetworkPayloadGetNameAttributeType = *string
+
+func getCreateNetworkPayloadGetNameAttributeTypeOk(arg CreateNetworkPayloadGetNameAttributeType) (ret CreateNetworkPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateNetworkPayloadGetNameAttributeType(arg *CreateNetworkPayloadGetNameAttributeType, val CreateNetworkPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateNetworkPayloadGetNameArgType = string
+type CreateNetworkPayloadGetNameRetType = string
+
+/*
+	types and functions for routed
+*/
+
+// isBoolean
+type CreateNetworkPayloadgetRoutedAttributeType = *bool
+type CreateNetworkPayloadgetRoutedArgType = bool
+type CreateNetworkPayloadgetRoutedRetType = bool
+
+func getCreateNetworkPayloadgetRoutedAttributeTypeOk(arg CreateNetworkPayloadgetRoutedAttributeType) (ret CreateNetworkPayloadgetRoutedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateNetworkPayloadgetRoutedAttributeType(arg *CreateNetworkPayloadgetRoutedAttributeType, val CreateNetworkPayloadgetRoutedRetType) {
+	*arg = &val
+}
+
 // CreateNetworkPayload Object that represents the request body for a network create.
 type CreateNetworkPayload struct {
-	AddressFamily *CreateNetworkAddressFamily `json:"addressFamily,omitempty"`
+	AddressFamily CreateNetworkPayloadGetAddressFamilyAttributeType `json:"addressFamily,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels CreateNetworkPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CreateNetworkPayloadGetNameAttributeType `json:"name"`
 	// Shows if the network is routed and therefore accessible from other networks.
-	Routed *bool `json:"routed,omitempty"`
+	Routed CreateNetworkPayloadgetRoutedAttributeType `json:"routed,omitempty"`
 }
 
 type _CreateNetworkPayload CreateNetworkPayload
@@ -35,9 +116,9 @@ type _CreateNetworkPayload CreateNetworkPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNetworkPayload(name *string) *CreateNetworkPayload {
+func NewCreateNetworkPayload(name CreateNetworkPayloadGetNameArgType) *CreateNetworkPayload {
 	this := CreateNetworkPayload{}
-	this.Name = name
+	setCreateNetworkPayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -50,136 +131,104 @@ func NewCreateNetworkPayloadWithDefaults() *CreateNetworkPayload {
 }
 
 // GetAddressFamily returns the AddressFamily field value if set, zero value otherwise.
-func (o *CreateNetworkPayload) GetAddressFamily() *CreateNetworkAddressFamily {
-	if o == nil || IsNil(o.AddressFamily) {
-		var ret *CreateNetworkAddressFamily
-		return ret
-	}
-	return o.AddressFamily
+func (o *CreateNetworkPayload) GetAddressFamily() (res CreateNetworkPayloadGetAddressFamilyRetType) {
+	res, _ = o.GetAddressFamilyOk()
+	return
 }
 
 // GetAddressFamilyOk returns a tuple with the AddressFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkPayload) GetAddressFamilyOk() (*CreateNetworkAddressFamily, bool) {
-	if o == nil || IsNil(o.AddressFamily) {
-		return nil, false
-	}
-	return o.AddressFamily, true
+func (o *CreateNetworkPayload) GetAddressFamilyOk() (ret CreateNetworkPayloadGetAddressFamilyRetType, ok bool) {
+	return getCreateNetworkPayloadGetAddressFamilyAttributeTypeOk(o.AddressFamily)
 }
 
 // HasAddressFamily returns a boolean if a field has been set.
 func (o *CreateNetworkPayload) HasAddressFamily() bool {
-	if o != nil && !IsNil(o.AddressFamily) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAddressFamilyOk()
+	return ok
 }
 
 // SetAddressFamily gets a reference to the given CreateNetworkAddressFamily and assigns it to the AddressFamily field.
-func (o *CreateNetworkPayload) SetAddressFamily(v *CreateNetworkAddressFamily) {
-	o.AddressFamily = v
+func (o *CreateNetworkPayload) SetAddressFamily(v CreateNetworkPayloadGetAddressFamilyRetType) {
+	setCreateNetworkPayloadGetAddressFamilyAttributeType(&o.AddressFamily, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateNetworkPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *CreateNetworkPayload) GetLabels() (res CreateNetworkPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *CreateNetworkPayload) GetLabelsOk() (ret CreateNetworkPayloadGetLabelsRetType, ok bool) {
+	return getCreateNetworkPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateNetworkPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *CreateNetworkPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *CreateNetworkPayload) SetLabels(v CreateNetworkPayloadGetLabelsRetType) {
+	setCreateNetworkPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateNetworkPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateNetworkPayload) GetName() (ret CreateNetworkPayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkPayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateNetworkPayload) GetNameOk() (ret CreateNetworkPayloadGetNameRetType, ok bool) {
+	return getCreateNetworkPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateNetworkPayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateNetworkPayload) SetName(v CreateNetworkPayloadGetNameRetType) {
+	setCreateNetworkPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetRouted returns the Routed field value if set, zero value otherwise.
-func (o *CreateNetworkPayload) GetRouted() *bool {
-	if o == nil || IsNil(o.Routed) {
-		var ret *bool
-		return ret
-	}
-	return o.Routed
+func (o *CreateNetworkPayload) GetRouted() (res CreateNetworkPayloadgetRoutedRetType) {
+	res, _ = o.GetRoutedOk()
+	return
 }
 
 // GetRoutedOk returns a tuple with the Routed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkPayload) GetRoutedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Routed) {
-		return nil, false
-	}
-	return o.Routed, true
+func (o *CreateNetworkPayload) GetRoutedOk() (ret CreateNetworkPayloadgetRoutedRetType, ok bool) {
+	return getCreateNetworkPayloadgetRoutedAttributeTypeOk(o.Routed)
 }
 
 // HasRouted returns a boolean if a field has been set.
 func (o *CreateNetworkPayload) HasRouted() bool {
-	if o != nil && !IsNil(o.Routed) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRoutedOk()
+	return ok
 }
 
 // SetRouted gets a reference to the given bool and assigns it to the Routed field.
-func (o *CreateNetworkPayload) SetRouted(v *bool) {
-	o.Routed = v
+func (o *CreateNetworkPayload) SetRouted(v CreateNetworkPayloadgetRoutedRetType) {
+	setCreateNetworkPayloadgetRoutedAttributeType(&o.Routed, v)
 }
 
 func (o CreateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AddressFamily) {
-		toSerialize["addressFamily"] = o.AddressFamily
+	if val, ok := getCreateNetworkPayloadGetAddressFamilyAttributeTypeOk(o.AddressFamily); ok {
+		toSerialize["AddressFamily"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getCreateNetworkPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Routed) {
-		toSerialize["routed"] = o.Routed
+	if val, ok := getCreateNetworkPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getCreateNetworkPayloadgetRoutedAttributeTypeOk(o.Routed); ok {
+		toSerialize["Routed"] = val
 	}
 	return toSerialize, nil
 }

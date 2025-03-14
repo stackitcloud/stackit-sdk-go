@@ -17,12 +17,52 @@ import (
 // checks if the QuotaListVolumes type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &QuotaListVolumes{}
 
+/*
+	types and functions for limit
+*/
+
+// isLong
+type QuotaListVolumesGetLimitAttributeType = *int64
+type QuotaListVolumesGetLimitArgType = int64
+type QuotaListVolumesGetLimitRetType = int64
+
+func getQuotaListVolumesGetLimitAttributeTypeOk(arg QuotaListVolumesGetLimitAttributeType) (ret QuotaListVolumesGetLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setQuotaListVolumesGetLimitAttributeType(arg *QuotaListVolumesGetLimitAttributeType, val QuotaListVolumesGetLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for usage
+*/
+
+// isLong
+type QuotaListVolumesGetUsageAttributeType = *int64
+type QuotaListVolumesGetUsageArgType = int64
+type QuotaListVolumesGetUsageRetType = int64
+
+func getQuotaListVolumesGetUsageAttributeTypeOk(arg QuotaListVolumesGetUsageAttributeType) (ret QuotaListVolumesGetUsageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setQuotaListVolumesGetUsageAttributeType(arg *QuotaListVolumesGetUsageAttributeType, val QuotaListVolumesGetUsageRetType) {
+	*arg = &val
+}
+
 // QuotaListVolumes Number of volumes.
 type QuotaListVolumes struct {
 	// REQUIRED
-	Limit *int64 `json:"limit"`
+	Limit QuotaListVolumesGetLimitAttributeType `json:"limit"`
 	// REQUIRED
-	Usage *int64 `json:"usage"`
+	Usage QuotaListVolumesGetUsageAttributeType `json:"usage"`
 }
 
 type _QuotaListVolumes QuotaListVolumes
@@ -31,10 +71,10 @@ type _QuotaListVolumes QuotaListVolumes
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQuotaListVolumes(limit *int64, usage *int64) *QuotaListVolumes {
+func NewQuotaListVolumes(limit QuotaListVolumesGetLimitArgType, usage QuotaListVolumesGetUsageArgType) *QuotaListVolumes {
 	this := QuotaListVolumes{}
-	this.Limit = limit
-	this.Usage = usage
+	setQuotaListVolumesGetLimitAttributeType(&this.Limit, limit)
+	setQuotaListVolumesGetUsageAttributeType(&this.Usage, usage)
 	return &this
 }
 
@@ -47,57 +87,47 @@ func NewQuotaListVolumesWithDefaults() *QuotaListVolumes {
 }
 
 // GetLimit returns the Limit field value
-func (o *QuotaListVolumes) GetLimit() *int64 {
-	if o == nil || IsNil(o.Limit) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Limit
+func (o *QuotaListVolumes) GetLimit() (ret QuotaListVolumesGetLimitRetType) {
+	ret, _ = o.GetLimitOk()
+	return ret
 }
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
-func (o *QuotaListVolumes) GetLimitOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Limit, true
+func (o *QuotaListVolumes) GetLimitOk() (ret QuotaListVolumesGetLimitRetType, ok bool) {
+	return getQuotaListVolumesGetLimitAttributeTypeOk(o.Limit)
 }
 
 // SetLimit sets field value
-func (o *QuotaListVolumes) SetLimit(v *int64) {
-	o.Limit = v
+func (o *QuotaListVolumes) SetLimit(v QuotaListVolumesGetLimitRetType) {
+	setQuotaListVolumesGetLimitAttributeType(&o.Limit, v)
 }
 
 // GetUsage returns the Usage field value
-func (o *QuotaListVolumes) GetUsage() *int64 {
-	if o == nil || IsNil(o.Usage) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Usage
+func (o *QuotaListVolumes) GetUsage() (ret QuotaListVolumesGetUsageRetType) {
+	ret, _ = o.GetUsageOk()
+	return ret
 }
 
 // GetUsageOk returns a tuple with the Usage field value
 // and a boolean to check if the value has been set.
-func (o *QuotaListVolumes) GetUsageOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Usage, true
+func (o *QuotaListVolumes) GetUsageOk() (ret QuotaListVolumesGetUsageRetType, ok bool) {
+	return getQuotaListVolumesGetUsageAttributeTypeOk(o.Usage)
 }
 
 // SetUsage sets field value
-func (o *QuotaListVolumes) SetUsage(v *int64) {
-	o.Usage = v
+func (o *QuotaListVolumes) SetUsage(v QuotaListVolumesGetUsageRetType) {
+	setQuotaListVolumesGetUsageAttributeType(&o.Usage, v)
 }
 
 func (o QuotaListVolumes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["limit"] = o.Limit
-	toSerialize["usage"] = o.Usage
+	if val, ok := getQuotaListVolumesGetLimitAttributeTypeOk(o.Limit); ok {
+		toSerialize["Limit"] = val
+	}
+	if val, ok := getQuotaListVolumesGetUsageAttributeTypeOk(o.Usage); ok {
+		toSerialize["Usage"] = val
+	}
 	return toSerialize, nil
 }
 

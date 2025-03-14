@@ -17,11 +17,31 @@ import (
 // checks if the AvailabilityZoneListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AvailabilityZoneListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type AvailabilityZoneListResponseGetItemsAttributeType = *[]string
+type AvailabilityZoneListResponseGetItemsArgType = []string
+type AvailabilityZoneListResponseGetItemsRetType = []string
+
+func getAvailabilityZoneListResponseGetItemsAttributeTypeOk(arg AvailabilityZoneListResponseGetItemsAttributeType) (ret AvailabilityZoneListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAvailabilityZoneListResponseGetItemsAttributeType(arg *AvailabilityZoneListResponseGetItemsAttributeType, val AvailabilityZoneListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // AvailabilityZoneListResponse Availability Zone list response.
 type AvailabilityZoneListResponse struct {
 	// A list of availability zones.
 	// REQUIRED
-	Items *[]string `json:"items"`
+	Items AvailabilityZoneListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _AvailabilityZoneListResponse AvailabilityZoneListResponse
@@ -30,9 +50,9 @@ type _AvailabilityZoneListResponse AvailabilityZoneListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAvailabilityZoneListResponse(items *[]string) *AvailabilityZoneListResponse {
+func NewAvailabilityZoneListResponse(items AvailabilityZoneListResponseGetItemsArgType) *AvailabilityZoneListResponse {
 	this := AvailabilityZoneListResponse{}
-	this.Items = items
+	setAvailabilityZoneListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewAvailabilityZoneListResponseWithDefaults() *AvailabilityZoneListResponse
 }
 
 // GetItems returns the Items field value
-func (o *AvailabilityZoneListResponse) GetItems() *[]string {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]string
-		return ret
-	}
-
-	return o.Items
+func (o *AvailabilityZoneListResponse) GetItems() (ret AvailabilityZoneListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *AvailabilityZoneListResponse) GetItemsOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *AvailabilityZoneListResponse) GetItemsOk() (ret AvailabilityZoneListResponseGetItemsRetType, ok bool) {
+	return getAvailabilityZoneListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *AvailabilityZoneListResponse) SetItems(v *[]string) {
-	o.Items = v
+func (o *AvailabilityZoneListResponse) SetItems(v AvailabilityZoneListResponseGetItemsRetType) {
+	setAvailabilityZoneListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o AvailabilityZoneListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getAvailabilityZoneListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 

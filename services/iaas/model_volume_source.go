@@ -17,14 +17,56 @@ import (
 // checks if the VolumeSource type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VolumeSource{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type VolumeSourceGetIdAttributeType = *string
+
+func getVolumeSourceGetIdAttributeTypeOk(arg VolumeSourceGetIdAttributeType) (ret VolumeSourceGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeSourceGetIdAttributeType(arg *VolumeSourceGetIdAttributeType, val VolumeSourceGetIdRetType) {
+	*arg = &val
+}
+
+type VolumeSourceGetIdArgType = string
+type VolumeSourceGetIdRetType = string
+
+/*
+	types and functions for type
+*/
+
+// isNotNullableString
+type VolumeSourceGetTypeAttributeType = *string
+
+func getVolumeSourceGetTypeAttributeTypeOk(arg VolumeSourceGetTypeAttributeType) (ret VolumeSourceGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeSourceGetTypeAttributeType(arg *VolumeSourceGetTypeAttributeType, val VolumeSourceGetTypeRetType) {
+	*arg = &val
+}
+
+type VolumeSourceGetTypeArgType = string
+type VolumeSourceGetTypeRetType = string
+
 // VolumeSource The source object of a volume.
 type VolumeSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Id *string `json:"id"`
+	Id VolumeSourceGetIdAttributeType `json:"id"`
 	// The source types of a volume. Possible values: `image`, `volume`, `snapshot`, `backup`.
 	// REQUIRED
-	Type *string `json:"type"`
+	Type VolumeSourceGetTypeAttributeType `json:"type"`
 }
 
 type _VolumeSource VolumeSource
@@ -33,10 +75,10 @@ type _VolumeSource VolumeSource
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVolumeSource(id *string, type_ *string) *VolumeSource {
+func NewVolumeSource(id VolumeSourceGetIdArgType, type_ VolumeSourceGetTypeArgType) *VolumeSource {
 	this := VolumeSource{}
-	this.Id = id
-	this.Type = type_
+	setVolumeSourceGetIdAttributeType(&this.Id, id)
+	setVolumeSourceGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewVolumeSourceWithDefaults() *VolumeSource {
 }
 
 // GetId returns the Id field value
-func (o *VolumeSource) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *VolumeSource) GetId() (ret VolumeSourceGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *VolumeSource) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *VolumeSource) GetIdOk() (ret VolumeSourceGetIdRetType, ok bool) {
+	return getVolumeSourceGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *VolumeSource) SetId(v *string) {
-	o.Id = v
+func (o *VolumeSource) SetId(v VolumeSourceGetIdRetType) {
+	setVolumeSourceGetIdAttributeType(&o.Id, v)
 }
 
 // GetType returns the Type field value
-func (o *VolumeSource) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *VolumeSource) GetType() (ret VolumeSourceGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *VolumeSource) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *VolumeSource) GetTypeOk() (ret VolumeSourceGetTypeRetType, ok bool) {
+	return getVolumeSourceGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *VolumeSource) SetType(v *string) {
-	o.Type = v
+func (o *VolumeSource) SetType(v VolumeSourceGetTypeRetType) {
+	setVolumeSourceGetTypeAttributeType(&o.Type, v)
 }
 
 func (o VolumeSource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["type"] = o.Type
+	if val, ok := getVolumeSourceGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getVolumeSourceGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

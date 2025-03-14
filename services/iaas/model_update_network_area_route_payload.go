@@ -17,10 +17,30 @@ import (
 // checks if the UpdateNetworkAreaRoutePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateNetworkAreaRoutePayload{}
 
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type UpdateNetworkAreaRoutePayloadGetLabelsAttributeType = *map[string]interface{}
+type UpdateNetworkAreaRoutePayloadGetLabelsArgType = map[string]interface{}
+type UpdateNetworkAreaRoutePayloadGetLabelsRetType = map[string]interface{}
+
+func getUpdateNetworkAreaRoutePayloadGetLabelsAttributeTypeOk(arg UpdateNetworkAreaRoutePayloadGetLabelsAttributeType) (ret UpdateNetworkAreaRoutePayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateNetworkAreaRoutePayloadGetLabelsAttributeType(arg *UpdateNetworkAreaRoutePayloadGetLabelsAttributeType, val UpdateNetworkAreaRoutePayloadGetLabelsRetType) {
+	*arg = &val
+}
+
 // UpdateNetworkAreaRoutePayload Object that represents the request body for a route update.
 type UpdateNetworkAreaRoutePayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels UpdateNetworkAreaRoutePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 }
 
 // NewUpdateNetworkAreaRoutePayload instantiates a new UpdateNetworkAreaRoutePayload object
@@ -41,41 +61,32 @@ func NewUpdateNetworkAreaRoutePayloadWithDefaults() *UpdateNetworkAreaRoutePaylo
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateNetworkAreaRoutePayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *UpdateNetworkAreaRoutePayload) GetLabels() (res UpdateNetworkAreaRoutePayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateNetworkAreaRoutePayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *UpdateNetworkAreaRoutePayload) GetLabelsOk() (ret UpdateNetworkAreaRoutePayloadGetLabelsRetType, ok bool) {
+	return getUpdateNetworkAreaRoutePayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateNetworkAreaRoutePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *UpdateNetworkAreaRoutePayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *UpdateNetworkAreaRoutePayload) SetLabels(v UpdateNetworkAreaRoutePayloadGetLabelsRetType) {
+	setUpdateNetworkAreaRoutePayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 func (o UpdateNetworkAreaRoutePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getUpdateNetworkAreaRoutePayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	return toSerialize, nil
 }

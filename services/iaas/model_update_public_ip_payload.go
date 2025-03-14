@@ -17,16 +17,103 @@ import (
 // checks if the UpdatePublicIPPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdatePublicIPPayload{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type UpdatePublicIPPayloadGetIdAttributeType = *string
+
+func getUpdatePublicIPPayloadGetIdAttributeTypeOk(arg UpdatePublicIPPayloadGetIdAttributeType) (ret UpdatePublicIPPayloadGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdatePublicIPPayloadGetIdAttributeType(arg *UpdatePublicIPPayloadGetIdAttributeType, val UpdatePublicIPPayloadGetIdRetType) {
+	*arg = &val
+}
+
+type UpdatePublicIPPayloadGetIdArgType = string
+type UpdatePublicIPPayloadGetIdRetType = string
+
+/*
+	types and functions for ip
+*/
+
+// isNotNullableString
+type UpdatePublicIPPayloadGetIpAttributeType = *string
+
+func getUpdatePublicIPPayloadGetIpAttributeTypeOk(arg UpdatePublicIPPayloadGetIpAttributeType) (ret UpdatePublicIPPayloadGetIpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdatePublicIPPayloadGetIpAttributeType(arg *UpdatePublicIPPayloadGetIpAttributeType, val UpdatePublicIPPayloadGetIpRetType) {
+	*arg = &val
+}
+
+type UpdatePublicIPPayloadGetIpArgType = string
+type UpdatePublicIPPayloadGetIpRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type UpdatePublicIPPayloadGetLabelsAttributeType = *map[string]interface{}
+type UpdatePublicIPPayloadGetLabelsArgType = map[string]interface{}
+type UpdatePublicIPPayloadGetLabelsRetType = map[string]interface{}
+
+func getUpdatePublicIPPayloadGetLabelsAttributeTypeOk(arg UpdatePublicIPPayloadGetLabelsAttributeType) (ret UpdatePublicIPPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdatePublicIPPayloadGetLabelsAttributeType(arg *UpdatePublicIPPayloadGetLabelsAttributeType, val UpdatePublicIPPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for networkInterface
+*/
+
+// isNullableString
+type UpdatePublicIPPayloadGetNetworkInterfaceAttributeType = *NullableString
+
+func getUpdatePublicIPPayloadGetNetworkInterfaceAttributeTypeOk(arg UpdatePublicIPPayloadGetNetworkInterfaceAttributeType) (ret UpdatePublicIPPayloadGetNetworkInterfaceRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setUpdatePublicIPPayloadGetNetworkInterfaceAttributeType(arg *UpdatePublicIPPayloadGetNetworkInterfaceAttributeType, val UpdatePublicIPPayloadGetNetworkInterfaceRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type UpdatePublicIPPayloadGetNetworkInterfaceArgType = *string
+type UpdatePublicIPPayloadGetNetworkInterfaceRetType = *string
+
 // UpdatePublicIPPayload Object that represents a public IP.
 type UpdatePublicIPPayload struct {
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id UpdatePublicIPPayloadGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents an IP address.
-	Ip *string `json:"ip,omitempty"`
+	Ip UpdatePublicIPPayloadGetIpAttributeType `json:"ip,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels UpdatePublicIPPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Universally Unique Identifier (UUID).
-	NetworkInterface *NullableString `json:"networkInterface,omitempty"`
+	NetworkInterface UpdatePublicIPPayloadGetNetworkInterfaceAttributeType `json:"networkInterface,omitempty"`
 }
 
 // NewUpdatePublicIPPayload instantiates a new UpdatePublicIPPayload object
@@ -47,166 +134,121 @@ func NewUpdatePublicIPPayloadWithDefaults() *UpdatePublicIPPayload {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *UpdatePublicIPPayload) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *UpdatePublicIPPayload) GetId() (res UpdatePublicIPPayloadGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdatePublicIPPayload) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *UpdatePublicIPPayload) GetIdOk() (ret UpdatePublicIPPayloadGetIdRetType, ok bool) {
+	return getUpdatePublicIPPayloadGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdatePublicIPPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *UpdatePublicIPPayload) SetId(v *string) {
-	o.Id = v
+func (o *UpdatePublicIPPayload) SetId(v UpdatePublicIPPayloadGetIdRetType) {
+	setUpdatePublicIPPayloadGetIdAttributeType(&o.Id, v)
 }
 
 // GetIp returns the Ip field value if set, zero value otherwise.
-func (o *UpdatePublicIPPayload) GetIp() *string {
-	if o == nil || IsNil(o.Ip) {
-		var ret *string
-		return ret
-	}
-	return o.Ip
+func (o *UpdatePublicIPPayload) GetIp() (res UpdatePublicIPPayloadGetIpRetType) {
+	res, _ = o.GetIpOk()
+	return
 }
 
 // GetIpOk returns a tuple with the Ip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdatePublicIPPayload) GetIpOk() (*string, bool) {
-	if o == nil || IsNil(o.Ip) {
-		return nil, false
-	}
-	return o.Ip, true
+func (o *UpdatePublicIPPayload) GetIpOk() (ret UpdatePublicIPPayloadGetIpRetType, ok bool) {
+	return getUpdatePublicIPPayloadGetIpAttributeTypeOk(o.Ip)
 }
 
 // HasIp returns a boolean if a field has been set.
 func (o *UpdatePublicIPPayload) HasIp() bool {
-	if o != nil && !IsNil(o.Ip) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIpOk()
+	return ok
 }
 
 // SetIp gets a reference to the given string and assigns it to the Ip field.
-func (o *UpdatePublicIPPayload) SetIp(v *string) {
-	o.Ip = v
+func (o *UpdatePublicIPPayload) SetIp(v UpdatePublicIPPayloadGetIpRetType) {
+	setUpdatePublicIPPayloadGetIpAttributeType(&o.Ip, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdatePublicIPPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *UpdatePublicIPPayload) GetLabels() (res UpdatePublicIPPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdatePublicIPPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *UpdatePublicIPPayload) GetLabelsOk() (ret UpdatePublicIPPayloadGetLabelsRetType, ok bool) {
+	return getUpdatePublicIPPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdatePublicIPPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *UpdatePublicIPPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *UpdatePublicIPPayload) SetLabels(v UpdatePublicIPPayloadGetLabelsRetType) {
+	setUpdatePublicIPPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetNetworkInterface returns the NetworkInterface field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdatePublicIPPayload) GetNetworkInterface() *string {
-	if o == nil || IsNil(o.NetworkInterface) || IsNil(o.NetworkInterface.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.NetworkInterface.Get()
+func (o *UpdatePublicIPPayload) GetNetworkInterface() (res UpdatePublicIPPayloadGetNetworkInterfaceRetType) {
+	res, _ = o.GetNetworkInterfaceOk()
+	return
 }
 
 // GetNetworkInterfaceOk returns a tuple with the NetworkInterface field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdatePublicIPPayload) GetNetworkInterfaceOk() (*string, bool) {
-	if o == nil || IsNil(o.NetworkInterface) {
-		return nil, false
-	}
-	return o.NetworkInterface.Get(), o.NetworkInterface.IsSet()
+func (o *UpdatePublicIPPayload) GetNetworkInterfaceOk() (ret UpdatePublicIPPayloadGetNetworkInterfaceRetType, ok bool) {
+	return getUpdatePublicIPPayloadGetNetworkInterfaceAttributeTypeOk(o.NetworkInterface)
 }
 
 // HasNetworkInterface returns a boolean if a field has been set.
 func (o *UpdatePublicIPPayload) HasNetworkInterface() bool {
-	if o != nil && !IsNil(o.NetworkInterface) && o.NetworkInterface.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNetworkInterfaceOk()
+	return ok
 }
 
 // SetNetworkInterface gets a reference to the given string and assigns it to the NetworkInterface field.
-func (o *UpdatePublicIPPayload) SetNetworkInterface(v *string) {
-	if IsNil(o.NetworkInterface) {
-		o.NetworkInterface = new(NullableString)
-	}
-	o.NetworkInterface.Set(v)
+func (o *UpdatePublicIPPayload) SetNetworkInterface(v UpdatePublicIPPayloadGetNetworkInterfaceRetType) {
+	setUpdatePublicIPPayloadGetNetworkInterfaceAttributeType(&o.NetworkInterface, v)
 }
 
 // SetNetworkInterfaceNil sets the value for NetworkInterface to be an explicit nil
 func (o *UpdatePublicIPPayload) SetNetworkInterfaceNil() {
-	if IsNil(o.NetworkInterface) {
-		o.NetworkInterface = new(NullableString)
-	}
-	o.NetworkInterface.Set(nil)
+	o.NetworkInterface = nil
 }
 
 // UnsetNetworkInterface ensures that no value is present for NetworkInterface, not even an explicit nil
 func (o *UpdatePublicIPPayload) UnsetNetworkInterface() {
-	if IsNil(o.NetworkInterface) {
-		o.NetworkInterface = new(NullableString)
-	}
-	o.NetworkInterface.Unset()
+	o.NetworkInterface = nil
 }
 
 func (o UpdatePublicIPPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getUpdatePublicIPPayloadGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Ip) {
-		toSerialize["ip"] = o.Ip
+	if val, ok := getUpdatePublicIPPayloadGetIpAttributeTypeOk(o.Ip); ok {
+		toSerialize["Ip"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getUpdatePublicIPPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if o.NetworkInterface.IsSet() {
-		toSerialize["networkInterface"] = o.NetworkInterface.Get()
+	if val, ok := getUpdatePublicIPPayloadGetNetworkInterfaceAttributeTypeOk(o.NetworkInterface); ok {
+		toSerialize["NetworkInterface"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,12 +17,53 @@ import (
 // checks if the UpdateSnapshotPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateSnapshotPayload{}
 
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type UpdateSnapshotPayloadGetLabelsAttributeType = *map[string]interface{}
+type UpdateSnapshotPayloadGetLabelsArgType = map[string]interface{}
+type UpdateSnapshotPayloadGetLabelsRetType = map[string]interface{}
+
+func getUpdateSnapshotPayloadGetLabelsAttributeTypeOk(arg UpdateSnapshotPayloadGetLabelsAttributeType) (ret UpdateSnapshotPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateSnapshotPayloadGetLabelsAttributeType(arg *UpdateSnapshotPayloadGetLabelsAttributeType, val UpdateSnapshotPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type UpdateSnapshotPayloadGetNameAttributeType = *string
+
+func getUpdateSnapshotPayloadGetNameAttributeTypeOk(arg UpdateSnapshotPayloadGetNameAttributeType) (ret UpdateSnapshotPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateSnapshotPayloadGetNameAttributeType(arg *UpdateSnapshotPayloadGetNameAttributeType, val UpdateSnapshotPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type UpdateSnapshotPayloadGetNameArgType = string
+type UpdateSnapshotPayloadGetNameRetType = string
+
 // UpdateSnapshotPayload Object that represents an update request body of a snapshot.
 type UpdateSnapshotPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels UpdateSnapshotPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty"`
+	Name UpdateSnapshotPayloadGetNameAttributeType `json:"name,omitempty"`
 }
 
 // NewUpdateSnapshotPayload instantiates a new UpdateSnapshotPayload object
@@ -43,76 +84,58 @@ func NewUpdateSnapshotPayloadWithDefaults() *UpdateSnapshotPayload {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateSnapshotPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *UpdateSnapshotPayload) GetLabels() (res UpdateSnapshotPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSnapshotPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *UpdateSnapshotPayload) GetLabelsOk() (ret UpdateSnapshotPayloadGetLabelsRetType, ok bool) {
+	return getUpdateSnapshotPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateSnapshotPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *UpdateSnapshotPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *UpdateSnapshotPayload) SetLabels(v UpdateSnapshotPayloadGetLabelsRetType) {
+	setUpdateSnapshotPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateSnapshotPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *UpdateSnapshotPayload) GetName() (res UpdateSnapshotPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSnapshotPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *UpdateSnapshotPayload) GetNameOk() (ret UpdateSnapshotPayloadGetNameRetType, ok bool) {
+	return getUpdateSnapshotPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateSnapshotPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateSnapshotPayload) SetName(v *string) {
-	o.Name = v
+func (o *UpdateSnapshotPayload) SetName(v UpdateSnapshotPayloadGetNameRetType) {
+	setUpdateSnapshotPayloadGetNameAttributeType(&o.Name, v)
 }
 
 func (o UpdateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getUpdateSnapshotPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getUpdateSnapshotPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }
