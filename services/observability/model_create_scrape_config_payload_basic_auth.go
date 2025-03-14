@@ -17,12 +17,54 @@ import (
 // checks if the CreateScrapeConfigPayloadBasicAuth type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateScrapeConfigPayloadBasicAuth{}
 
+/*
+	types and functions for password
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadBasicAuthGetPasswordAttributeType = *string
+
+func getCreateScrapeConfigPayloadBasicAuthGetPasswordAttributeTypeOk(arg CreateScrapeConfigPayloadBasicAuthGetPasswordAttributeType) (ret CreateScrapeConfigPayloadBasicAuthGetPasswordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadBasicAuthGetPasswordAttributeType(arg *CreateScrapeConfigPayloadBasicAuthGetPasswordAttributeType, val CreateScrapeConfigPayloadBasicAuthGetPasswordRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadBasicAuthGetPasswordArgType = string
+type CreateScrapeConfigPayloadBasicAuthGetPasswordRetType = string
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadBasicAuthGetUsernameAttributeType = *string
+
+func getCreateScrapeConfigPayloadBasicAuthGetUsernameAttributeTypeOk(arg CreateScrapeConfigPayloadBasicAuthGetUsernameAttributeType) (ret CreateScrapeConfigPayloadBasicAuthGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadBasicAuthGetUsernameAttributeType(arg *CreateScrapeConfigPayloadBasicAuthGetUsernameAttributeType, val CreateScrapeConfigPayloadBasicAuthGetUsernameRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadBasicAuthGetUsernameArgType = string
+type CreateScrapeConfigPayloadBasicAuthGetUsernameRetType = string
+
 // CreateScrapeConfigPayloadBasicAuth Sets the 'Authorization' header on every scrape request with the configured username and password. `Additional Validators:` * if basicAuth is in the body no other authentication method should be in the body
 type CreateScrapeConfigPayloadBasicAuth struct {
 	// password
-	Password *string `json:"password,omitempty"`
+	Password CreateScrapeConfigPayloadBasicAuthGetPasswordAttributeType `json:"password,omitempty"`
 	// username
-	Username *string `json:"username,omitempty"`
+	Username CreateScrapeConfigPayloadBasicAuthGetUsernameAttributeType `json:"username,omitempty"`
 }
 
 // NewCreateScrapeConfigPayloadBasicAuth instantiates a new CreateScrapeConfigPayloadBasicAuth object
@@ -43,76 +85,58 @@ func NewCreateScrapeConfigPayloadBasicAuthWithDefaults() *CreateScrapeConfigPayl
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadBasicAuth) GetPassword() *string {
-	if o == nil || IsNil(o.Password) {
-		var ret *string
-		return ret
-	}
-	return o.Password
+func (o *CreateScrapeConfigPayloadBasicAuth) GetPassword() (res CreateScrapeConfigPayloadBasicAuthGetPasswordRetType) {
+	res, _ = o.GetPasswordOk()
+	return
 }
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadBasicAuth) GetPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.Password) {
-		return nil, false
-	}
-	return o.Password, true
+func (o *CreateScrapeConfigPayloadBasicAuth) GetPasswordOk() (ret CreateScrapeConfigPayloadBasicAuthGetPasswordRetType, ok bool) {
+	return getCreateScrapeConfigPayloadBasicAuthGetPasswordAttributeTypeOk(o.Password)
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadBasicAuth) HasPassword() bool {
-	if o != nil && !IsNil(o.Password) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPasswordOk()
+	return ok
 }
 
 // SetPassword gets a reference to the given string and assigns it to the Password field.
-func (o *CreateScrapeConfigPayloadBasicAuth) SetPassword(v *string) {
-	o.Password = v
+func (o *CreateScrapeConfigPayloadBasicAuth) SetPassword(v CreateScrapeConfigPayloadBasicAuthGetPasswordRetType) {
+	setCreateScrapeConfigPayloadBasicAuthGetPasswordAttributeType(&o.Password, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadBasicAuth) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-	return o.Username
+func (o *CreateScrapeConfigPayloadBasicAuth) GetUsername() (res CreateScrapeConfigPayloadBasicAuthGetUsernameRetType) {
+	res, _ = o.GetUsernameOk()
+	return
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadBasicAuth) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
+func (o *CreateScrapeConfigPayloadBasicAuth) GetUsernameOk() (ret CreateScrapeConfigPayloadBasicAuthGetUsernameRetType, ok bool) {
+	return getCreateScrapeConfigPayloadBasicAuthGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadBasicAuth) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUsernameOk()
+	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *CreateScrapeConfigPayloadBasicAuth) SetUsername(v *string) {
-	o.Username = v
+func (o *CreateScrapeConfigPayloadBasicAuth) SetUsername(v CreateScrapeConfigPayloadBasicAuthGetUsernameRetType) {
+	setCreateScrapeConfigPayloadBasicAuthGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o CreateScrapeConfigPayloadBasicAuth) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Password) {
-		toSerialize["password"] = o.Password
+	if val, ok := getCreateScrapeConfigPayloadBasicAuthGetPasswordAttributeTypeOk(o.Password); ok {
+		toSerialize["Password"] = val
 	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
+	if val, ok := getCreateScrapeConfigPayloadBasicAuthGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
 	}
 	return toSerialize, nil
 }

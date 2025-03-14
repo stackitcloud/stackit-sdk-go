@@ -17,16 +17,118 @@ import (
 // checks if the CreateScrapeConfigPayloadHttpSdConfigsInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateScrapeConfigPayloadHttpSdConfigsInner{}
 
+/*
+	types and functions for basicAuth
+*/
+
+// isModel
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeType = *CreateScrapeConfigPayloadBasicAuth
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthArgType = CreateScrapeConfigPayloadBasicAuth
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthRetType = CreateScrapeConfigPayloadBasicAuth
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for oauth2
+*/
+
+// isModel
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2AttributeType = *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2ArgType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2RetType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2AttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2AttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2AttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2AttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2RetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for refreshInterval
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalAttributeType = *string
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalArgType = string
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalRetType = string
+
+/*
+	types and functions for tlsConfig
+*/
+
+// isModel
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeType = *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigArgType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigRetType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for url
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType = *string
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlArgType = string
+type CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlRetType = string
+
 // CreateScrapeConfigPayloadHttpSdConfigsInner struct for CreateScrapeConfigPayloadHttpSdConfigsInner
 type CreateScrapeConfigPayloadHttpSdConfigsInner struct {
-	BasicAuth *CreateScrapeConfigPayloadBasicAuth                `json:"basicAuth,omitempty"`
-	Oauth2    *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 `json:"oauth2,omitempty"`
+	BasicAuth CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeType `json:"basicAuth,omitempty"`
+	Oauth2    CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2AttributeType    `json:"oauth2,omitempty"`
 	// Refresh interval to re-query the endpoint. E.g. 60s `Additional Validators:` * must be a valid time format* must be >= 60s
-	RefreshInterval *string                                                     `json:"refreshInterval,omitempty"`
-	TlsConfig       *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig `json:"tlsConfig,omitempty"`
+	RefreshInterval CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalAttributeType `json:"refreshInterval,omitempty"`
+	TlsConfig       CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeType       `json:"tlsConfig,omitempty"`
 	// URL from which the targets are fetched.
 	// REQUIRED
-	Url *string `json:"url"`
+	Url CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType `json:"url"`
 }
 
 type _CreateScrapeConfigPayloadHttpSdConfigsInner CreateScrapeConfigPayloadHttpSdConfigsInner
@@ -35,11 +137,9 @@ type _CreateScrapeConfigPayloadHttpSdConfigsInner CreateScrapeConfigPayloadHttpS
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateScrapeConfigPayloadHttpSdConfigsInner(url *string) *CreateScrapeConfigPayloadHttpSdConfigsInner {
+func NewCreateScrapeConfigPayloadHttpSdConfigsInner(url CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlArgType) *CreateScrapeConfigPayloadHttpSdConfigsInner {
 	this := CreateScrapeConfigPayloadHttpSdConfigsInner{}
-	var refreshInterval string = "60s"
-	this.RefreshInterval = &refreshInterval
-	this.Url = url
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType(&this.Url, url)
 	return &this
 }
 
@@ -54,172 +154,131 @@ func NewCreateScrapeConfigPayloadHttpSdConfigsInnerWithDefaults() *CreateScrapeC
 }
 
 // GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetBasicAuth() *CreateScrapeConfigPayloadBasicAuth {
-	if o == nil || IsNil(o.BasicAuth) {
-		var ret *CreateScrapeConfigPayloadBasicAuth
-		return ret
-	}
-	return o.BasicAuth
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetBasicAuth() (res CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthRetType) {
+	res, _ = o.GetBasicAuthOk()
+	return
 }
 
 // GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetBasicAuthOk() (*CreateScrapeConfigPayloadBasicAuth, bool) {
-	if o == nil || IsNil(o.BasicAuth) {
-		return nil, false
-	}
-	return o.BasicAuth, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetBasicAuthOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeTypeOk(o.BasicAuth)
 }
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) HasBasicAuth() bool {
-	if o != nil && !IsNil(o.BasicAuth) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBasicAuthOk()
+	return ok
 }
 
 // SetBasicAuth gets a reference to the given CreateScrapeConfigPayloadBasicAuth and assigns it to the BasicAuth field.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetBasicAuth(v *CreateScrapeConfigPayloadBasicAuth) {
-	o.BasicAuth = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetBasicAuth(v CreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeType(&o.BasicAuth, v)
 }
 
 // GetOauth2 returns the Oauth2 field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetOauth2() *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 {
-	if o == nil || IsNil(o.Oauth2) {
-		var ret *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
-		return ret
-	}
-	return o.Oauth2
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetOauth2() (res CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2RetType) {
+	res, _ = o.GetOauth2Ok()
+	return
 }
 
 // GetOauth2Ok returns a tuple with the Oauth2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetOauth2Ok() (*CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2, bool) {
-	if o == nil || IsNil(o.Oauth2) {
-		return nil, false
-	}
-	return o.Oauth2, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetOauth2Ok() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2RetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2AttributeTypeOk(o.Oauth2)
 }
 
 // HasOauth2 returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) HasOauth2() bool {
-	if o != nil && !IsNil(o.Oauth2) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOauth2Ok()
+	return ok
 }
 
 // SetOauth2 gets a reference to the given CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 and assigns it to the Oauth2 field.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetOauth2(v *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) {
-	o.Oauth2 = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetOauth2(v CreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2RetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2AttributeType(&o.Oauth2, v)
 }
 
 // GetRefreshInterval returns the RefreshInterval field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetRefreshInterval() *string {
-	if o == nil || IsNil(o.RefreshInterval) {
-		var ret *string
-		return ret
-	}
-	return o.RefreshInterval
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetRefreshInterval() (res CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalRetType) {
+	res, _ = o.GetRefreshIntervalOk()
+	return
 }
 
 // GetRefreshIntervalOk returns a tuple with the RefreshInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetRefreshIntervalOk() (*string, bool) {
-	if o == nil || IsNil(o.RefreshInterval) {
-		return nil, false
-	}
-	return o.RefreshInterval, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetRefreshIntervalOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalAttributeTypeOk(o.RefreshInterval)
 }
 
 // HasRefreshInterval returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) HasRefreshInterval() bool {
-	if o != nil && !IsNil(o.RefreshInterval) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRefreshIntervalOk()
+	return ok
 }
 
 // SetRefreshInterval gets a reference to the given string and assigns it to the RefreshInterval field.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetRefreshInterval(v *string) {
-	o.RefreshInterval = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetRefreshInterval(v CreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalAttributeType(&o.RefreshInterval, v)
 }
 
 // GetTlsConfig returns the TlsConfig field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetTlsConfig() *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig {
-	if o == nil || IsNil(o.TlsConfig) {
-		var ret *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
-		return ret
-	}
-	return o.TlsConfig
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetTlsConfig() (res CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigRetType) {
+	res, _ = o.GetTlsConfigOk()
+	return
 }
 
 // GetTlsConfigOk returns a tuple with the TlsConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetTlsConfigOk() (*CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig, bool) {
-	if o == nil || IsNil(o.TlsConfig) {
-		return nil, false
-	}
-	return o.TlsConfig, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetTlsConfigOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeTypeOk(o.TlsConfig)
 }
 
 // HasTlsConfig returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) HasTlsConfig() bool {
-	if o != nil && !IsNil(o.TlsConfig) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsConfigOk()
+	return ok
 }
 
 // SetTlsConfig gets a reference to the given CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig and assigns it to the TlsConfig field.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetTlsConfig(v *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) {
-	o.TlsConfig = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetTlsConfig(v CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeType(&o.TlsConfig, v)
 }
 
 // GetUrl returns the Url field value
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetUrl() *string {
-	if o == nil || IsNil(o.Url) {
-		var ret *string
-		return ret
-	}
-
-	return o.Url
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetUrl() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlRetType) {
+	ret, _ = o.GetUrlOk()
+	return ret
 }
 
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Url, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) GetUrlOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeTypeOk(o.Url)
 }
 
 // SetUrl sets field value
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetUrl(v *string) {
-	o.Url = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetUrl(v CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType(&o.Url, v)
 }
 
 func (o CreateScrapeConfigPayloadHttpSdConfigsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BasicAuth) {
-		toSerialize["basicAuth"] = o.BasicAuth
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeTypeOk(o.BasicAuth); ok {
+		toSerialize["BasicAuth"] = val
 	}
-	if !IsNil(o.Oauth2) {
-		toSerialize["oauth2"] = o.Oauth2
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerGetOauth2AttributeTypeOk(o.Oauth2); ok {
+		toSerialize["Oauth2"] = val
 	}
-	if !IsNil(o.RefreshInterval) {
-		toSerialize["refreshInterval"] = o.RefreshInterval
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerGetRefreshIntervalAttributeTypeOk(o.RefreshInterval); ok {
+		toSerialize["RefreshInterval"] = val
 	}
-	if !IsNil(o.TlsConfig) {
-		toSerialize["tlsConfig"] = o.TlsConfig
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeTypeOk(o.TlsConfig); ok {
+		toSerialize["TlsConfig"] = val
 	}
-	toSerialize["url"] = o.Url
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeTypeOk(o.Url); ok {
+		toSerialize["Url"] = val
+	}
 	return toSerialize, nil
 }
 

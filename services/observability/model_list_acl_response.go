@@ -17,12 +17,53 @@ import (
 // checks if the ListACLResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListACLResponse{}
 
+/*
+	types and functions for acl
+*/
+
+// isArray
+type ListACLResponseGetAclAttributeType = *[]string
+type ListACLResponseGetAclArgType = []string
+type ListACLResponseGetAclRetType = []string
+
+func getListACLResponseGetAclAttributeTypeOk(arg ListACLResponseGetAclAttributeType) (ret ListACLResponseGetAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListACLResponseGetAclAttributeType(arg *ListACLResponseGetAclAttributeType, val ListACLResponseGetAclRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ListACLResponseGetMessageAttributeType = *string
+
+func getListACLResponseGetMessageAttributeTypeOk(arg ListACLResponseGetMessageAttributeType) (ret ListACLResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListACLResponseGetMessageAttributeType(arg *ListACLResponseGetMessageAttributeType, val ListACLResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ListACLResponseGetMessageArgType = string
+type ListACLResponseGetMessageRetType = string
+
 // ListACLResponse struct for ListACLResponse
 type ListACLResponse struct {
 	// REQUIRED
-	Acl *[]string `json:"acl"`
+	Acl ListACLResponseGetAclAttributeType `json:"acl"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message ListACLResponseGetMessageAttributeType `json:"message"`
 }
 
 type _ListACLResponse ListACLResponse
@@ -31,10 +72,10 @@ type _ListACLResponse ListACLResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListACLResponse(acl *[]string, message *string) *ListACLResponse {
+func NewListACLResponse(acl ListACLResponseGetAclArgType, message ListACLResponseGetMessageArgType) *ListACLResponse {
 	this := ListACLResponse{}
-	this.Acl = acl
-	this.Message = message
+	setListACLResponseGetAclAttributeType(&this.Acl, acl)
+	setListACLResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewListACLResponseWithDefaults() *ListACLResponse {
 }
 
 // GetAcl returns the Acl field value
-func (o *ListACLResponse) GetAcl() *[]string {
-	if o == nil || IsNil(o.Acl) {
-		var ret *[]string
-		return ret
-	}
-
-	return o.Acl
+func (o *ListACLResponse) GetAcl() (ret ListACLResponseGetAclRetType) {
+	ret, _ = o.GetAclOk()
+	return ret
 }
 
 // GetAclOk returns a tuple with the Acl field value
 // and a boolean to check if the value has been set.
-func (o *ListACLResponse) GetAclOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Acl, true
+func (o *ListACLResponse) GetAclOk() (ret ListACLResponseGetAclRetType, ok bool) {
+	return getListACLResponseGetAclAttributeTypeOk(o.Acl)
 }
 
 // SetAcl sets field value
-func (o *ListACLResponse) SetAcl(v *[]string) {
-	o.Acl = v
+func (o *ListACLResponse) SetAcl(v ListACLResponseGetAclRetType) {
+	setListACLResponseGetAclAttributeType(&o.Acl, v)
 }
 
 // GetMessage returns the Message field value
-func (o *ListACLResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *ListACLResponse) GetMessage() (ret ListACLResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *ListACLResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ListACLResponse) GetMessageOk() (ret ListACLResponseGetMessageRetType, ok bool) {
+	return getListACLResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *ListACLResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ListACLResponse) SetMessage(v ListACLResponseGetMessageRetType) {
+	setListACLResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o ListACLResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["acl"] = o.Acl
-	toSerialize["message"] = o.Message
+	if val, ok := getListACLResponseGetAclAttributeTypeOk(o.Acl); ok {
+		toSerialize["Acl"] = val
+	}
+	if val, ok := getListACLResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 
