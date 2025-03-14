@@ -17,18 +17,102 @@ import (
 // checks if the Bucket type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Bucket{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type BucketGetNameAttributeType = *string
+
+func getBucketGetNameAttributeTypeOk(arg BucketGetNameAttributeType) (ret BucketGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBucketGetNameAttributeType(arg *BucketGetNameAttributeType, val BucketGetNameRetType) {
+	*arg = &val
+}
+
+type BucketGetNameArgType = string
+type BucketGetNameRetType = string
+
+/*
+	types and functions for region
+*/
+
+// isNotNullableString
+type BucketGetRegionAttributeType = *string
+
+func getBucketGetRegionAttributeTypeOk(arg BucketGetRegionAttributeType) (ret BucketGetRegionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBucketGetRegionAttributeType(arg *BucketGetRegionAttributeType, val BucketGetRegionRetType) {
+	*arg = &val
+}
+
+type BucketGetRegionArgType = string
+type BucketGetRegionRetType = string
+
+/*
+	types and functions for urlPathStyle
+*/
+
+// isNotNullableString
+type BucketGetUrlPathStyleAttributeType = *string
+
+func getBucketGetUrlPathStyleAttributeTypeOk(arg BucketGetUrlPathStyleAttributeType) (ret BucketGetUrlPathStyleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBucketGetUrlPathStyleAttributeType(arg *BucketGetUrlPathStyleAttributeType, val BucketGetUrlPathStyleRetType) {
+	*arg = &val
+}
+
+type BucketGetUrlPathStyleArgType = string
+type BucketGetUrlPathStyleRetType = string
+
+/*
+	types and functions for urlVirtualHostedStyle
+*/
+
+// isNotNullableString
+type BucketGetUrlVirtualHostedStyleAttributeType = *string
+
+func getBucketGetUrlVirtualHostedStyleAttributeTypeOk(arg BucketGetUrlVirtualHostedStyleAttributeType) (ret BucketGetUrlVirtualHostedStyleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBucketGetUrlVirtualHostedStyleAttributeType(arg *BucketGetUrlVirtualHostedStyleAttributeType, val BucketGetUrlVirtualHostedStyleRetType) {
+	*arg = &val
+}
+
+type BucketGetUrlVirtualHostedStyleArgType = string
+type BucketGetUrlVirtualHostedStyleRetType = string
+
 // Bucket struct for Bucket
 type Bucket struct {
 	// REQUIRED
-	Name *string `json:"name"`
+	Name BucketGetNameAttributeType `json:"name"`
 	// REQUIRED
-	Region *string `json:"region"`
+	Region BucketGetRegionAttributeType `json:"region"`
 	// URL in path style
 	// REQUIRED
-	UrlPathStyle *string `json:"urlPathStyle"`
+	UrlPathStyle BucketGetUrlPathStyleAttributeType `json:"urlPathStyle"`
 	// URL in virtual hosted style
 	// REQUIRED
-	UrlVirtualHostedStyle *string `json:"urlVirtualHostedStyle"`
+	UrlVirtualHostedStyle BucketGetUrlVirtualHostedStyleAttributeType `json:"urlVirtualHostedStyle"`
 }
 
 type _Bucket Bucket
@@ -37,12 +121,12 @@ type _Bucket Bucket
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucket(name *string, region *string, urlPathStyle *string, urlVirtualHostedStyle *string) *Bucket {
+func NewBucket(name BucketGetNameArgType, region BucketGetRegionArgType, urlPathStyle BucketGetUrlPathStyleArgType, urlVirtualHostedStyle BucketGetUrlVirtualHostedStyleArgType) *Bucket {
 	this := Bucket{}
-	this.Name = name
-	this.Region = region
-	this.UrlPathStyle = urlPathStyle
-	this.UrlVirtualHostedStyle = urlVirtualHostedStyle
+	setBucketGetNameAttributeType(&this.Name, name)
+	setBucketGetRegionAttributeType(&this.Region, region)
+	setBucketGetUrlPathStyleAttributeType(&this.UrlPathStyle, urlPathStyle)
+	setBucketGetUrlVirtualHostedStyleAttributeType(&this.UrlVirtualHostedStyle, urlVirtualHostedStyle)
 	return &this
 }
 
@@ -55,107 +139,87 @@ func NewBucketWithDefaults() *Bucket {
 }
 
 // GetName returns the Name field value
-func (o *Bucket) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Bucket) GetName() (ret BucketGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Bucket) GetNameOk() (ret BucketGetNameRetType, ok bool) {
+	return getBucketGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Bucket) SetName(v *string) {
-	o.Name = v
+func (o *Bucket) SetName(v BucketGetNameRetType) {
+	setBucketGetNameAttributeType(&o.Name, v)
 }
 
 // GetRegion returns the Region field value
-func (o *Bucket) GetRegion() *string {
-	if o == nil || IsNil(o.Region) {
-		var ret *string
-		return ret
-	}
-
-	return o.Region
+func (o *Bucket) GetRegion() (ret BucketGetRegionRetType) {
+	ret, _ = o.GetRegionOk()
+	return ret
 }
 
 // GetRegionOk returns a tuple with the Region field value
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetRegionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Region, true
+func (o *Bucket) GetRegionOk() (ret BucketGetRegionRetType, ok bool) {
+	return getBucketGetRegionAttributeTypeOk(o.Region)
 }
 
 // SetRegion sets field value
-func (o *Bucket) SetRegion(v *string) {
-	o.Region = v
+func (o *Bucket) SetRegion(v BucketGetRegionRetType) {
+	setBucketGetRegionAttributeType(&o.Region, v)
 }
 
 // GetUrlPathStyle returns the UrlPathStyle field value
-func (o *Bucket) GetUrlPathStyle() *string {
-	if o == nil || IsNil(o.UrlPathStyle) {
-		var ret *string
-		return ret
-	}
-
-	return o.UrlPathStyle
+func (o *Bucket) GetUrlPathStyle() (ret BucketGetUrlPathStyleRetType) {
+	ret, _ = o.GetUrlPathStyleOk()
+	return ret
 }
 
 // GetUrlPathStyleOk returns a tuple with the UrlPathStyle field value
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetUrlPathStyleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UrlPathStyle, true
+func (o *Bucket) GetUrlPathStyleOk() (ret BucketGetUrlPathStyleRetType, ok bool) {
+	return getBucketGetUrlPathStyleAttributeTypeOk(o.UrlPathStyle)
 }
 
 // SetUrlPathStyle sets field value
-func (o *Bucket) SetUrlPathStyle(v *string) {
-	o.UrlPathStyle = v
+func (o *Bucket) SetUrlPathStyle(v BucketGetUrlPathStyleRetType) {
+	setBucketGetUrlPathStyleAttributeType(&o.UrlPathStyle, v)
 }
 
 // GetUrlVirtualHostedStyle returns the UrlVirtualHostedStyle field value
-func (o *Bucket) GetUrlVirtualHostedStyle() *string {
-	if o == nil || IsNil(o.UrlVirtualHostedStyle) {
-		var ret *string
-		return ret
-	}
-
-	return o.UrlVirtualHostedStyle
+func (o *Bucket) GetUrlVirtualHostedStyle() (ret BucketGetUrlVirtualHostedStyleRetType) {
+	ret, _ = o.GetUrlVirtualHostedStyleOk()
+	return ret
 }
 
 // GetUrlVirtualHostedStyleOk returns a tuple with the UrlVirtualHostedStyle field value
 // and a boolean to check if the value has been set.
-func (o *Bucket) GetUrlVirtualHostedStyleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UrlVirtualHostedStyle, true
+func (o *Bucket) GetUrlVirtualHostedStyleOk() (ret BucketGetUrlVirtualHostedStyleRetType, ok bool) {
+	return getBucketGetUrlVirtualHostedStyleAttributeTypeOk(o.UrlVirtualHostedStyle)
 }
 
 // SetUrlVirtualHostedStyle sets field value
-func (o *Bucket) SetUrlVirtualHostedStyle(v *string) {
-	o.UrlVirtualHostedStyle = v
+func (o *Bucket) SetUrlVirtualHostedStyle(v BucketGetUrlVirtualHostedStyleRetType) {
+	setBucketGetUrlVirtualHostedStyleAttributeType(&o.UrlVirtualHostedStyle, v)
 }
 
 func (o Bucket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["region"] = o.Region
-	toSerialize["urlPathStyle"] = o.UrlPathStyle
-	toSerialize["urlVirtualHostedStyle"] = o.UrlVirtualHostedStyle
+	if val, ok := getBucketGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getBucketGetRegionAttributeTypeOk(o.Region); ok {
+		toSerialize["Region"] = val
+	}
+	if val, ok := getBucketGetUrlPathStyleAttributeTypeOk(o.UrlPathStyle); ok {
+		toSerialize["UrlPathStyle"] = val
+	}
+	if val, ok := getBucketGetUrlVirtualHostedStyleAttributeTypeOk(o.UrlVirtualHostedStyle); ok {
+		toSerialize["UrlVirtualHostedStyle"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,12 +17,54 @@ import (
 // checks if the DetailedError type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DetailedError{}
 
+/*
+	types and functions for key
+*/
+
+// isNotNullableString
+type DetailedErrorGetKeyAttributeType = *string
+
+func getDetailedErrorGetKeyAttributeTypeOk(arg DetailedErrorGetKeyAttributeType) (ret DetailedErrorGetKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDetailedErrorGetKeyAttributeType(arg *DetailedErrorGetKeyAttributeType, val DetailedErrorGetKeyRetType) {
+	*arg = &val
+}
+
+type DetailedErrorGetKeyArgType = string
+type DetailedErrorGetKeyRetType = string
+
+/*
+	types and functions for msg
+*/
+
+// isNotNullableString
+type DetailedErrorGetMsgAttributeType = *string
+
+func getDetailedErrorGetMsgAttributeTypeOk(arg DetailedErrorGetMsgAttributeType) (ret DetailedErrorGetMsgRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDetailedErrorGetMsgAttributeType(arg *DetailedErrorGetMsgAttributeType, val DetailedErrorGetMsgRetType) {
+	*arg = &val
+}
+
+type DetailedErrorGetMsgArgType = string
+type DetailedErrorGetMsgRetType = string
+
 // DetailedError struct for DetailedError
 type DetailedError struct {
 	// REQUIRED
-	Key *string `json:"key"`
+	Key DetailedErrorGetKeyAttributeType `json:"key"`
 	// REQUIRED
-	Msg *string `json:"msg"`
+	Msg DetailedErrorGetMsgAttributeType `json:"msg"`
 }
 
 type _DetailedError DetailedError
@@ -31,10 +73,10 @@ type _DetailedError DetailedError
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDetailedError(key *string, msg *string) *DetailedError {
+func NewDetailedError(key DetailedErrorGetKeyArgType, msg DetailedErrorGetMsgArgType) *DetailedError {
 	this := DetailedError{}
-	this.Key = key
-	this.Msg = msg
+	setDetailedErrorGetKeyAttributeType(&this.Key, key)
+	setDetailedErrorGetMsgAttributeType(&this.Msg, msg)
 	return &this
 }
 
@@ -47,57 +89,47 @@ func NewDetailedErrorWithDefaults() *DetailedError {
 }
 
 // GetKey returns the Key field value
-func (o *DetailedError) GetKey() *string {
-	if o == nil || IsNil(o.Key) {
-		var ret *string
-		return ret
-	}
-
-	return o.Key
+func (o *DetailedError) GetKey() (ret DetailedErrorGetKeyRetType) {
+	ret, _ = o.GetKeyOk()
+	return ret
 }
 
 // GetKeyOk returns a tuple with the Key field value
 // and a boolean to check if the value has been set.
-func (o *DetailedError) GetKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Key, true
+func (o *DetailedError) GetKeyOk() (ret DetailedErrorGetKeyRetType, ok bool) {
+	return getDetailedErrorGetKeyAttributeTypeOk(o.Key)
 }
 
 // SetKey sets field value
-func (o *DetailedError) SetKey(v *string) {
-	o.Key = v
+func (o *DetailedError) SetKey(v DetailedErrorGetKeyRetType) {
+	setDetailedErrorGetKeyAttributeType(&o.Key, v)
 }
 
 // GetMsg returns the Msg field value
-func (o *DetailedError) GetMsg() *string {
-	if o == nil || IsNil(o.Msg) {
-		var ret *string
-		return ret
-	}
-
-	return o.Msg
+func (o *DetailedError) GetMsg() (ret DetailedErrorGetMsgRetType) {
+	ret, _ = o.GetMsgOk()
+	return ret
 }
 
 // GetMsgOk returns a tuple with the Msg field value
 // and a boolean to check if the value has been set.
-func (o *DetailedError) GetMsgOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Msg, true
+func (o *DetailedError) GetMsgOk() (ret DetailedErrorGetMsgRetType, ok bool) {
+	return getDetailedErrorGetMsgAttributeTypeOk(o.Msg)
 }
 
 // SetMsg sets field value
-func (o *DetailedError) SetMsg(v *string) {
-	o.Msg = v
+func (o *DetailedError) SetMsg(v DetailedErrorGetMsgRetType) {
+	setDetailedErrorGetMsgAttributeType(&o.Msg, v)
 }
 
 func (o DetailedError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["key"] = o.Key
-	toSerialize["msg"] = o.Msg
+	if val, ok := getDetailedErrorGetKeyAttributeTypeOk(o.Key); ok {
+		toSerialize["Key"] = val
+	}
+	if val, ok := getDetailedErrorGetMsgAttributeTypeOk(o.Msg); ok {
+		toSerialize["Msg"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,13 +17,54 @@ import (
 // checks if the CreateCredentialsGroupResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateCredentialsGroupResponse{}
 
+/*
+	types and functions for credentialsGroup
+*/
+
+// isModel
+type CreateCredentialsGroupResponseGetCredentialsGroupAttributeType = *CredentialsGroup
+type CreateCredentialsGroupResponseGetCredentialsGroupArgType = CredentialsGroup
+type CreateCredentialsGroupResponseGetCredentialsGroupRetType = CredentialsGroup
+
+func getCreateCredentialsGroupResponseGetCredentialsGroupAttributeTypeOk(arg CreateCredentialsGroupResponseGetCredentialsGroupAttributeType) (ret CreateCredentialsGroupResponseGetCredentialsGroupRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCredentialsGroupResponseGetCredentialsGroupAttributeType(arg *CreateCredentialsGroupResponseGetCredentialsGroupAttributeType, val CreateCredentialsGroupResponseGetCredentialsGroupRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for project
+*/
+
+// isNotNullableString
+type CreateCredentialsGroupResponseGetProjectAttributeType = *string
+
+func getCreateCredentialsGroupResponseGetProjectAttributeTypeOk(arg CreateCredentialsGroupResponseGetProjectAttributeType) (ret CreateCredentialsGroupResponseGetProjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCredentialsGroupResponseGetProjectAttributeType(arg *CreateCredentialsGroupResponseGetProjectAttributeType, val CreateCredentialsGroupResponseGetProjectRetType) {
+	*arg = &val
+}
+
+type CreateCredentialsGroupResponseGetProjectArgType = string
+type CreateCredentialsGroupResponseGetProjectRetType = string
+
 // CreateCredentialsGroupResponse struct for CreateCredentialsGroupResponse
 type CreateCredentialsGroupResponse struct {
 	// REQUIRED
-	CredentialsGroup *CredentialsGroup `json:"credentialsGroup"`
+	CredentialsGroup CreateCredentialsGroupResponseGetCredentialsGroupAttributeType `json:"credentialsGroup"`
 	// Project ID
 	// REQUIRED
-	Project *string `json:"project"`
+	Project CreateCredentialsGroupResponseGetProjectAttributeType `json:"project"`
 }
 
 type _CreateCredentialsGroupResponse CreateCredentialsGroupResponse
@@ -32,10 +73,10 @@ type _CreateCredentialsGroupResponse CreateCredentialsGroupResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateCredentialsGroupResponse(credentialsGroup *CredentialsGroup, project *string) *CreateCredentialsGroupResponse {
+func NewCreateCredentialsGroupResponse(credentialsGroup CreateCredentialsGroupResponseGetCredentialsGroupArgType, project CreateCredentialsGroupResponseGetProjectArgType) *CreateCredentialsGroupResponse {
 	this := CreateCredentialsGroupResponse{}
-	this.CredentialsGroup = credentialsGroup
-	this.Project = project
+	setCreateCredentialsGroupResponseGetCredentialsGroupAttributeType(&this.CredentialsGroup, credentialsGroup)
+	setCreateCredentialsGroupResponseGetProjectAttributeType(&this.Project, project)
 	return &this
 }
 
@@ -48,57 +89,47 @@ func NewCreateCredentialsGroupResponseWithDefaults() *CreateCredentialsGroupResp
 }
 
 // GetCredentialsGroup returns the CredentialsGroup field value
-func (o *CreateCredentialsGroupResponse) GetCredentialsGroup() *CredentialsGroup {
-	if o == nil || IsNil(o.CredentialsGroup) {
-		var ret *CredentialsGroup
-		return ret
-	}
-
-	return o.CredentialsGroup
+func (o *CreateCredentialsGroupResponse) GetCredentialsGroup() (ret CreateCredentialsGroupResponseGetCredentialsGroupRetType) {
+	ret, _ = o.GetCredentialsGroupOk()
+	return ret
 }
 
 // GetCredentialsGroupOk returns a tuple with the CredentialsGroup field value
 // and a boolean to check if the value has been set.
-func (o *CreateCredentialsGroupResponse) GetCredentialsGroupOk() (*CredentialsGroup, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CredentialsGroup, true
+func (o *CreateCredentialsGroupResponse) GetCredentialsGroupOk() (ret CreateCredentialsGroupResponseGetCredentialsGroupRetType, ok bool) {
+	return getCreateCredentialsGroupResponseGetCredentialsGroupAttributeTypeOk(o.CredentialsGroup)
 }
 
 // SetCredentialsGroup sets field value
-func (o *CreateCredentialsGroupResponse) SetCredentialsGroup(v *CredentialsGroup) {
-	o.CredentialsGroup = v
+func (o *CreateCredentialsGroupResponse) SetCredentialsGroup(v CreateCredentialsGroupResponseGetCredentialsGroupRetType) {
+	setCreateCredentialsGroupResponseGetCredentialsGroupAttributeType(&o.CredentialsGroup, v)
 }
 
 // GetProject returns the Project field value
-func (o *CreateCredentialsGroupResponse) GetProject() *string {
-	if o == nil || IsNil(o.Project) {
-		var ret *string
-		return ret
-	}
-
-	return o.Project
+func (o *CreateCredentialsGroupResponse) GetProject() (ret CreateCredentialsGroupResponseGetProjectRetType) {
+	ret, _ = o.GetProjectOk()
+	return ret
 }
 
 // GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *CreateCredentialsGroupResponse) GetProjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Project, true
+func (o *CreateCredentialsGroupResponse) GetProjectOk() (ret CreateCredentialsGroupResponseGetProjectRetType, ok bool) {
+	return getCreateCredentialsGroupResponseGetProjectAttributeTypeOk(o.Project)
 }
 
 // SetProject sets field value
-func (o *CreateCredentialsGroupResponse) SetProject(v *string) {
-	o.Project = v
+func (o *CreateCredentialsGroupResponse) SetProject(v CreateCredentialsGroupResponseGetProjectRetType) {
+	setCreateCredentialsGroupResponseGetProjectAttributeType(&o.Project, v)
 }
 
 func (o CreateCredentialsGroupResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["credentialsGroup"] = o.CredentialsGroup
-	toSerialize["project"] = o.Project
+	if val, ok := getCreateCredentialsGroupResponseGetCredentialsGroupAttributeTypeOk(o.CredentialsGroup); ok {
+		toSerialize["CredentialsGroup"] = val
+	}
+	if val, ok := getCreateCredentialsGroupResponseGetProjectAttributeTypeOk(o.Project); ok {
+		toSerialize["Project"] = val
+	}
 	return toSerialize, nil
 }
 

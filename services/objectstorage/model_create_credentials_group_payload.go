@@ -17,11 +17,32 @@ import (
 // checks if the CreateCredentialsGroupPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateCredentialsGroupPayload{}
 
+/*
+	types and functions for displayName
+*/
+
+// isNotNullableString
+type CreateCredentialsGroupPayloadGetDisplayNameAttributeType = *string
+
+func getCreateCredentialsGroupPayloadGetDisplayNameAttributeTypeOk(arg CreateCredentialsGroupPayloadGetDisplayNameAttributeType) (ret CreateCredentialsGroupPayloadGetDisplayNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCredentialsGroupPayloadGetDisplayNameAttributeType(arg *CreateCredentialsGroupPayloadGetDisplayNameAttributeType, val CreateCredentialsGroupPayloadGetDisplayNameRetType) {
+	*arg = &val
+}
+
+type CreateCredentialsGroupPayloadGetDisplayNameArgType = string
+type CreateCredentialsGroupPayloadGetDisplayNameRetType = string
+
 // CreateCredentialsGroupPayload struct for CreateCredentialsGroupPayload
 type CreateCredentialsGroupPayload struct {
 	// Name of the group holding credentials
 	// REQUIRED
-	DisplayName *string `json:"displayName"`
+	DisplayName CreateCredentialsGroupPayloadGetDisplayNameAttributeType `json:"displayName"`
 }
 
 type _CreateCredentialsGroupPayload CreateCredentialsGroupPayload
@@ -30,9 +51,9 @@ type _CreateCredentialsGroupPayload CreateCredentialsGroupPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateCredentialsGroupPayload(displayName *string) *CreateCredentialsGroupPayload {
+func NewCreateCredentialsGroupPayload(displayName CreateCredentialsGroupPayloadGetDisplayNameArgType) *CreateCredentialsGroupPayload {
 	this := CreateCredentialsGroupPayload{}
-	this.DisplayName = displayName
+	setCreateCredentialsGroupPayloadGetDisplayNameAttributeType(&this.DisplayName, displayName)
 	return &this
 }
 
@@ -45,32 +66,27 @@ func NewCreateCredentialsGroupPayloadWithDefaults() *CreateCredentialsGroupPaylo
 }
 
 // GetDisplayName returns the DisplayName field value
-func (o *CreateCredentialsGroupPayload) GetDisplayName() *string {
-	if o == nil || IsNil(o.DisplayName) {
-		var ret *string
-		return ret
-	}
-
-	return o.DisplayName
+func (o *CreateCredentialsGroupPayload) GetDisplayName() (ret CreateCredentialsGroupPayloadGetDisplayNameRetType) {
+	ret, _ = o.GetDisplayNameOk()
+	return ret
 }
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value
 // and a boolean to check if the value has been set.
-func (o *CreateCredentialsGroupPayload) GetDisplayNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DisplayName, true
+func (o *CreateCredentialsGroupPayload) GetDisplayNameOk() (ret CreateCredentialsGroupPayloadGetDisplayNameRetType, ok bool) {
+	return getCreateCredentialsGroupPayloadGetDisplayNameAttributeTypeOk(o.DisplayName)
 }
 
 // SetDisplayName sets field value
-func (o *CreateCredentialsGroupPayload) SetDisplayName(v *string) {
-	o.DisplayName = v
+func (o *CreateCredentialsGroupPayload) SetDisplayName(v CreateCredentialsGroupPayloadGetDisplayNameRetType) {
+	setCreateCredentialsGroupPayloadGetDisplayNameAttributeType(&o.DisplayName, v)
 }
 
 func (o CreateCredentialsGroupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["displayName"] = o.DisplayName
+	if val, ok := getCreateCredentialsGroupPayloadGetDisplayNameAttributeTypeOk(o.DisplayName); ok {
+		toSerialize["DisplayName"] = val
+	}
 	return toSerialize, nil
 }
 
