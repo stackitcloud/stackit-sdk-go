@@ -17,10 +17,52 @@ import (
 // checks if the InstanceListUser type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceListUser{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type InstanceListUserGetIdAttributeType = *string
+
+func getInstanceListUserGetIdAttributeTypeOk(arg InstanceListUserGetIdAttributeType) (ret InstanceListUserGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceListUserGetIdAttributeType(arg *InstanceListUserGetIdAttributeType, val InstanceListUserGetIdRetType) {
+	*arg = &val
+}
+
+type InstanceListUserGetIdArgType = string
+type InstanceListUserGetIdRetType = string
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type InstanceListUserGetUsernameAttributeType = *string
+
+func getInstanceListUserGetUsernameAttributeTypeOk(arg InstanceListUserGetUsernameAttributeType) (ret InstanceListUserGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceListUserGetUsernameAttributeType(arg *InstanceListUserGetUsernameAttributeType, val InstanceListUserGetUsernameRetType) {
+	*arg = &val
+}
+
+type InstanceListUserGetUsernameArgType = string
+type InstanceListUserGetUsernameRetType = string
+
 // InstanceListUser struct for InstanceListUser
 type InstanceListUser struct {
-	Id       *string `json:"id,omitempty"`
-	Username *string `json:"username,omitempty"`
+	Id       InstanceListUserGetIdAttributeType       `json:"id,omitempty"`
+	Username InstanceListUserGetUsernameAttributeType `json:"username,omitempty"`
 }
 
 // NewInstanceListUser instantiates a new InstanceListUser object
@@ -41,76 +83,58 @@ func NewInstanceListUserWithDefaults() *InstanceListUser {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *InstanceListUser) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *InstanceListUser) GetId() (res InstanceListUserGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListUser) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *InstanceListUser) GetIdOk() (ret InstanceListUserGetIdRetType, ok bool) {
+	return getInstanceListUserGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *InstanceListUser) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *InstanceListUser) SetId(v *string) {
-	o.Id = v
+func (o *InstanceListUser) SetId(v InstanceListUserGetIdRetType) {
+	setInstanceListUserGetIdAttributeType(&o.Id, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *InstanceListUser) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-	return o.Username
+func (o *InstanceListUser) GetUsername() (res InstanceListUserGetUsernameRetType) {
+	res, _ = o.GetUsernameOk()
+	return
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListUser) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
+func (o *InstanceListUser) GetUsernameOk() (ret InstanceListUserGetUsernameRetType, ok bool) {
+	return getInstanceListUserGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *InstanceListUser) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUsernameOk()
+	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *InstanceListUser) SetUsername(v *string) {
-	o.Username = v
+func (o *InstanceListUser) SetUsername(v InstanceListUserGetUsernameRetType) {
+	setInstanceListUserGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o InstanceListUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getInstanceListUserGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
+	if val, ok := getInstanceListUserGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
 	}
 	return toSerialize, nil
 }

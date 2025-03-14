@@ -17,10 +17,30 @@ import (
 // checks if the CreateInstancePayloadAcl type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateInstancePayloadAcl{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type CreateInstancePayloadAclGetItemsAttributeType = *[]string
+type CreateInstancePayloadAclGetItemsArgType = []string
+type CreateInstancePayloadAclGetItemsRetType = []string
+
+func getCreateInstancePayloadAclGetItemsAttributeTypeOk(arg CreateInstancePayloadAclGetItemsAttributeType) (ret CreateInstancePayloadAclGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadAclGetItemsAttributeType(arg *CreateInstancePayloadAclGetItemsAttributeType, val CreateInstancePayloadAclGetItemsRetType) {
+	*arg = &val
+}
+
 // CreateInstancePayloadAcl ACL is the Access Control List defining the IP ranges allowed to connect to the database
 type CreateInstancePayloadAcl struct {
 	// a simple list with IP addresses with CIDR.
-	Items *[]string `json:"items,omitempty"`
+	Items CreateInstancePayloadAclGetItemsAttributeType `json:"items,omitempty"`
 }
 
 // NewCreateInstancePayloadAcl instantiates a new CreateInstancePayloadAcl object
@@ -41,41 +61,32 @@ func NewCreateInstancePayloadAclWithDefaults() *CreateInstancePayloadAcl {
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *CreateInstancePayloadAcl) GetItems() *[]string {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]string
-		return ret
-	}
-	return o.Items
+func (o *CreateInstancePayloadAcl) GetItems() (res CreateInstancePayloadAclGetItemsRetType) {
+	res, _ = o.GetItemsOk()
+	return
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayloadAcl) GetItemsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Items) {
-		return nil, false
-	}
-	return o.Items, true
+func (o *CreateInstancePayloadAcl) GetItemsOk() (ret CreateInstancePayloadAclGetItemsRetType, ok bool) {
+	return getCreateInstancePayloadAclGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *CreateInstancePayloadAcl) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemsOk()
+	return ok
 }
 
 // SetItems gets a reference to the given []string and assigns it to the Items field.
-func (o *CreateInstancePayloadAcl) SetItems(v *[]string) {
-	o.Items = v
+func (o *CreateInstancePayloadAcl) SetItems(v CreateInstancePayloadAclGetItemsRetType) {
+	setCreateInstancePayloadAclGetItemsAttributeType(&o.Items, v)
 }
 
 func (o CreateInstancePayloadAcl) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Items) {
-		toSerialize["items"] = o.Items
+	if val, ok := getCreateInstancePayloadAclGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
 }

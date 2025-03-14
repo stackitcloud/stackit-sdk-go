@@ -17,9 +17,30 @@ import (
 // checks if the CreateInstanceResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateInstanceResponse{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CreateInstanceResponseGetIdAttributeType = *string
+
+func getCreateInstanceResponseGetIdAttributeTypeOk(arg CreateInstanceResponseGetIdAttributeType) (ret CreateInstanceResponseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstanceResponseGetIdAttributeType(arg *CreateInstanceResponseGetIdAttributeType, val CreateInstanceResponseGetIdRetType) {
+	*arg = &val
+}
+
+type CreateInstanceResponseGetIdArgType = string
+type CreateInstanceResponseGetIdRetType = string
+
 // CreateInstanceResponse struct for CreateInstanceResponse
 type CreateInstanceResponse struct {
-	Id *string `json:"id,omitempty"`
+	Id CreateInstanceResponseGetIdAttributeType `json:"id,omitempty"`
 }
 
 // NewCreateInstanceResponse instantiates a new CreateInstanceResponse object
@@ -40,41 +61,32 @@ func NewCreateInstanceResponseWithDefaults() *CreateInstanceResponse {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateInstanceResponse) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *CreateInstanceResponse) GetId() (res CreateInstanceResponseGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstanceResponse) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CreateInstanceResponse) GetIdOk() (ret CreateInstanceResponseGetIdRetType, ok bool) {
+	return getCreateInstanceResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateInstanceResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateInstanceResponse) SetId(v *string) {
-	o.Id = v
+func (o *CreateInstanceResponse) SetId(v CreateInstanceResponseGetIdRetType) {
+	setCreateInstanceResponseGetIdAttributeType(&o.Id, v)
 }
 
 func (o CreateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getCreateInstanceResponseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
 	return toSerialize, nil
 }

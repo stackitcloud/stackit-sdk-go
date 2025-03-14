@@ -17,13 +17,75 @@ import (
 // checks if the SingleDatabase type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SingleDatabase{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type SingleDatabaseGetIdAttributeType = *string
+
+func getSingleDatabaseGetIdAttributeTypeOk(arg SingleDatabaseGetIdAttributeType) (ret SingleDatabaseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSingleDatabaseGetIdAttributeType(arg *SingleDatabaseGetIdAttributeType, val SingleDatabaseGetIdRetType) {
+	*arg = &val
+}
+
+type SingleDatabaseGetIdArgType = string
+type SingleDatabaseGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type SingleDatabaseGetNameAttributeType = *string
+
+func getSingleDatabaseGetNameAttributeTypeOk(arg SingleDatabaseGetNameAttributeType) (ret SingleDatabaseGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSingleDatabaseGetNameAttributeType(arg *SingleDatabaseGetNameAttributeType, val SingleDatabaseGetNameRetType) {
+	*arg = &val
+}
+
+type SingleDatabaseGetNameArgType = string
+type SingleDatabaseGetNameRetType = string
+
+/*
+	types and functions for options
+*/
+
+// isModel
+type SingleDatabaseGetOptionsAttributeType = *SingleDatabaseOptions
+type SingleDatabaseGetOptionsArgType = SingleDatabaseOptions
+type SingleDatabaseGetOptionsRetType = SingleDatabaseOptions
+
+func getSingleDatabaseGetOptionsAttributeTypeOk(arg SingleDatabaseGetOptionsAttributeType) (ret SingleDatabaseGetOptionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSingleDatabaseGetOptionsAttributeType(arg *SingleDatabaseGetOptionsAttributeType, val SingleDatabaseGetOptionsRetType) {
+	*arg = &val
+}
+
 // SingleDatabase struct for SingleDatabase
 type SingleDatabase struct {
 	// Database id
-	Id *string `json:"id,omitempty"`
+	Id SingleDatabaseGetIdAttributeType `json:"id,omitempty"`
 	// Database name
-	Name    *string                `json:"name,omitempty"`
-	Options *SingleDatabaseOptions `json:"options,omitempty"`
+	Name    SingleDatabaseGetNameAttributeType    `json:"name,omitempty"`
+	Options SingleDatabaseGetOptionsAttributeType `json:"options,omitempty"`
 }
 
 // NewSingleDatabase instantiates a new SingleDatabase object
@@ -44,111 +106,84 @@ func NewSingleDatabaseWithDefaults() *SingleDatabase {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *SingleDatabase) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *SingleDatabase) GetId() (res SingleDatabaseGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SingleDatabase) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *SingleDatabase) GetIdOk() (ret SingleDatabaseGetIdRetType, ok bool) {
+	return getSingleDatabaseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *SingleDatabase) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *SingleDatabase) SetId(v *string) {
-	o.Id = v
+func (o *SingleDatabase) SetId(v SingleDatabaseGetIdRetType) {
+	setSingleDatabaseGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *SingleDatabase) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *SingleDatabase) GetName() (res SingleDatabaseGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SingleDatabase) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *SingleDatabase) GetNameOk() (ret SingleDatabaseGetNameRetType, ok bool) {
+	return getSingleDatabaseGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *SingleDatabase) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *SingleDatabase) SetName(v *string) {
-	o.Name = v
+func (o *SingleDatabase) SetName(v SingleDatabaseGetNameRetType) {
+	setSingleDatabaseGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *SingleDatabase) GetOptions() *SingleDatabaseOptions {
-	if o == nil || IsNil(o.Options) {
-		var ret *SingleDatabaseOptions
-		return ret
-	}
-	return o.Options
+func (o *SingleDatabase) GetOptions() (res SingleDatabaseGetOptionsRetType) {
+	res, _ = o.GetOptionsOk()
+	return
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SingleDatabase) GetOptionsOk() (*SingleDatabaseOptions, bool) {
-	if o == nil || IsNil(o.Options) {
-		return nil, false
-	}
-	return o.Options, true
+func (o *SingleDatabase) GetOptionsOk() (ret SingleDatabaseGetOptionsRetType, ok bool) {
+	return getSingleDatabaseGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *SingleDatabase) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOptionsOk()
+	return ok
 }
 
 // SetOptions gets a reference to the given SingleDatabaseOptions and assigns it to the Options field.
-func (o *SingleDatabase) SetOptions(v *SingleDatabaseOptions) {
-	o.Options = v
+func (o *SingleDatabase) SetOptions(v SingleDatabaseGetOptionsRetType) {
+	setSingleDatabaseGetOptionsAttributeType(&o.Options, v)
 }
 
 func (o SingleDatabase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getSingleDatabaseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getSingleDatabaseGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
+	if val, ok := getSingleDatabaseGetOptionsAttributeTypeOk(o.Options); ok {
+		toSerialize["Options"] = val
 	}
 	return toSerialize, nil
 }

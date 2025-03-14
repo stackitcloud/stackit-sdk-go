@@ -17,10 +17,52 @@ import (
 // checks if the MssqlDatabaseCollation type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MssqlDatabaseCollation{}
 
+/*
+	types and functions for collation_name
+*/
+
+// isNotNullableString
+type MssqlDatabaseCollationGetCollationNameAttributeType = *string
+
+func getMssqlDatabaseCollationGetCollationNameAttributeTypeOk(arg MssqlDatabaseCollationGetCollationNameAttributeType) (ret MssqlDatabaseCollationGetCollationNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMssqlDatabaseCollationGetCollationNameAttributeType(arg *MssqlDatabaseCollationGetCollationNameAttributeType, val MssqlDatabaseCollationGetCollationNameRetType) {
+	*arg = &val
+}
+
+type MssqlDatabaseCollationGetCollationNameArgType = string
+type MssqlDatabaseCollationGetCollationNameRetType = string
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type MssqlDatabaseCollationGetDescriptionAttributeType = *string
+
+func getMssqlDatabaseCollationGetDescriptionAttributeTypeOk(arg MssqlDatabaseCollationGetDescriptionAttributeType) (ret MssqlDatabaseCollationGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMssqlDatabaseCollationGetDescriptionAttributeType(arg *MssqlDatabaseCollationGetDescriptionAttributeType, val MssqlDatabaseCollationGetDescriptionRetType) {
+	*arg = &val
+}
+
+type MssqlDatabaseCollationGetDescriptionArgType = string
+type MssqlDatabaseCollationGetDescriptionRetType = string
+
 // MssqlDatabaseCollation struct for MssqlDatabaseCollation
 type MssqlDatabaseCollation struct {
-	CollationName *string `json:"collation_name,omitempty"`
-	Description   *string `json:"description,omitempty"`
+	CollationName MssqlDatabaseCollationGetCollationNameAttributeType `json:"collation_name,omitempty"`
+	Description   MssqlDatabaseCollationGetDescriptionAttributeType   `json:"description,omitempty"`
 }
 
 // NewMssqlDatabaseCollation instantiates a new MssqlDatabaseCollation object
@@ -41,76 +83,58 @@ func NewMssqlDatabaseCollationWithDefaults() *MssqlDatabaseCollation {
 }
 
 // GetCollationName returns the CollationName field value if set, zero value otherwise.
-func (o *MssqlDatabaseCollation) GetCollationName() *string {
-	if o == nil || IsNil(o.CollationName) {
-		var ret *string
-		return ret
-	}
-	return o.CollationName
+func (o *MssqlDatabaseCollation) GetCollationName() (res MssqlDatabaseCollationGetCollationNameRetType) {
+	res, _ = o.GetCollationNameOk()
+	return
 }
 
 // GetCollationNameOk returns a tuple with the CollationName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MssqlDatabaseCollation) GetCollationNameOk() (*string, bool) {
-	if o == nil || IsNil(o.CollationName) {
-		return nil, false
-	}
-	return o.CollationName, true
+func (o *MssqlDatabaseCollation) GetCollationNameOk() (ret MssqlDatabaseCollationGetCollationNameRetType, ok bool) {
+	return getMssqlDatabaseCollationGetCollationNameAttributeTypeOk(o.CollationName)
 }
 
 // HasCollationName returns a boolean if a field has been set.
 func (o *MssqlDatabaseCollation) HasCollationName() bool {
-	if o != nil && !IsNil(o.CollationName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCollationNameOk()
+	return ok
 }
 
 // SetCollationName gets a reference to the given string and assigns it to the CollationName field.
-func (o *MssqlDatabaseCollation) SetCollationName(v *string) {
-	o.CollationName = v
+func (o *MssqlDatabaseCollation) SetCollationName(v MssqlDatabaseCollationGetCollationNameRetType) {
+	setMssqlDatabaseCollationGetCollationNameAttributeType(&o.CollationName, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *MssqlDatabaseCollation) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *MssqlDatabaseCollation) GetDescription() (res MssqlDatabaseCollationGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MssqlDatabaseCollation) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *MssqlDatabaseCollation) GetDescriptionOk() (ret MssqlDatabaseCollationGetDescriptionRetType, ok bool) {
+	return getMssqlDatabaseCollationGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *MssqlDatabaseCollation) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *MssqlDatabaseCollation) SetDescription(v *string) {
-	o.Description = v
+func (o *MssqlDatabaseCollation) SetDescription(v MssqlDatabaseCollationGetDescriptionRetType) {
+	setMssqlDatabaseCollationGetDescriptionAttributeType(&o.Description, v)
 }
 
 func (o MssqlDatabaseCollation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CollationName) {
-		toSerialize["collation_name"] = o.CollationName
+	if val, ok := getMssqlDatabaseCollationGetCollationNameAttributeTypeOk(o.CollationName); ok {
+		toSerialize["CollationName"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getMssqlDatabaseCollationGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	return toSerialize, nil
 }

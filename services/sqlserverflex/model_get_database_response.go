@@ -17,9 +17,29 @@ import (
 // checks if the GetDatabaseResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetDatabaseResponse{}
 
+/*
+	types and functions for database
+*/
+
+// isModel
+type GetDatabaseResponseGetDatabaseAttributeType = *SingleDatabase
+type GetDatabaseResponseGetDatabaseArgType = SingleDatabase
+type GetDatabaseResponseGetDatabaseRetType = SingleDatabase
+
+func getGetDatabaseResponseGetDatabaseAttributeTypeOk(arg GetDatabaseResponseGetDatabaseAttributeType) (ret GetDatabaseResponseGetDatabaseRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetDatabaseResponseGetDatabaseAttributeType(arg *GetDatabaseResponseGetDatabaseAttributeType, val GetDatabaseResponseGetDatabaseRetType) {
+	*arg = &val
+}
+
 // GetDatabaseResponse struct for GetDatabaseResponse
 type GetDatabaseResponse struct {
-	Database *SingleDatabase `json:"database,omitempty"`
+	Database GetDatabaseResponseGetDatabaseAttributeType `json:"database,omitempty"`
 }
 
 // NewGetDatabaseResponse instantiates a new GetDatabaseResponse object
@@ -40,41 +60,32 @@ func NewGetDatabaseResponseWithDefaults() *GetDatabaseResponse {
 }
 
 // GetDatabase returns the Database field value if set, zero value otherwise.
-func (o *GetDatabaseResponse) GetDatabase() *SingleDatabase {
-	if o == nil || IsNil(o.Database) {
-		var ret *SingleDatabase
-		return ret
-	}
-	return o.Database
+func (o *GetDatabaseResponse) GetDatabase() (res GetDatabaseResponseGetDatabaseRetType) {
+	res, _ = o.GetDatabaseOk()
+	return
 }
 
 // GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetDatabaseResponse) GetDatabaseOk() (*SingleDatabase, bool) {
-	if o == nil || IsNil(o.Database) {
-		return nil, false
-	}
-	return o.Database, true
+func (o *GetDatabaseResponse) GetDatabaseOk() (ret GetDatabaseResponseGetDatabaseRetType, ok bool) {
+	return getGetDatabaseResponseGetDatabaseAttributeTypeOk(o.Database)
 }
 
 // HasDatabase returns a boolean if a field has been set.
 func (o *GetDatabaseResponse) HasDatabase() bool {
-	if o != nil && !IsNil(o.Database) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDatabaseOk()
+	return ok
 }
 
 // SetDatabase gets a reference to the given SingleDatabase and assigns it to the Database field.
-func (o *GetDatabaseResponse) SetDatabase(v *SingleDatabase) {
-	o.Database = v
+func (o *GetDatabaseResponse) SetDatabase(v GetDatabaseResponseGetDatabaseRetType) {
+	setGetDatabaseResponseGetDatabaseAttributeType(&o.Database, v)
 }
 
 func (o GetDatabaseResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Database) {
-		toSerialize["database"] = o.Database
+	if val, ok := getGetDatabaseResponseGetDatabaseAttributeTypeOk(o.Database); ok {
+		toSerialize["Database"] = val
 	}
 	return toSerialize, nil
 }
