@@ -17,10 +17,30 @@ import (
 // checks if the ListOfferingsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListOfferingsResponse{}
 
+/*
+	types and functions for offerings
+*/
+
+// isArray
+type ListOfferingsResponseGetOfferingsAttributeType = *[]Offering
+type ListOfferingsResponseGetOfferingsArgType = []Offering
+type ListOfferingsResponseGetOfferingsRetType = []Offering
+
+func getListOfferingsResponseGetOfferingsAttributeTypeOk(arg ListOfferingsResponseGetOfferingsAttributeType) (ret ListOfferingsResponseGetOfferingsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOfferingsResponseGetOfferingsAttributeType(arg *ListOfferingsResponseGetOfferingsAttributeType, val ListOfferingsResponseGetOfferingsRetType) {
+	*arg = &val
+}
+
 // ListOfferingsResponse struct for ListOfferingsResponse
 type ListOfferingsResponse struct {
 	// REQUIRED
-	Offerings *[]Offering `json:"offerings"`
+	Offerings ListOfferingsResponseGetOfferingsAttributeType `json:"offerings"`
 }
 
 type _ListOfferingsResponse ListOfferingsResponse
@@ -29,9 +49,9 @@ type _ListOfferingsResponse ListOfferingsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOfferingsResponse(offerings *[]Offering) *ListOfferingsResponse {
+func NewListOfferingsResponse(offerings ListOfferingsResponseGetOfferingsArgType) *ListOfferingsResponse {
 	this := ListOfferingsResponse{}
-	this.Offerings = offerings
+	setListOfferingsResponseGetOfferingsAttributeType(&this.Offerings, offerings)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewListOfferingsResponseWithDefaults() *ListOfferingsResponse {
 }
 
 // GetOfferings returns the Offerings field value
-func (o *ListOfferingsResponse) GetOfferings() *[]Offering {
-	if o == nil || IsNil(o.Offerings) {
-		var ret *[]Offering
-		return ret
-	}
-
-	return o.Offerings
+func (o *ListOfferingsResponse) GetOfferings() (ret ListOfferingsResponseGetOfferingsRetType) {
+	ret, _ = o.GetOfferingsOk()
+	return ret
 }
 
 // GetOfferingsOk returns a tuple with the Offerings field value
 // and a boolean to check if the value has been set.
-func (o *ListOfferingsResponse) GetOfferingsOk() (*[]Offering, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Offerings, true
+func (o *ListOfferingsResponse) GetOfferingsOk() (ret ListOfferingsResponseGetOfferingsRetType, ok bool) {
+	return getListOfferingsResponseGetOfferingsAttributeTypeOk(o.Offerings)
 }
 
 // SetOfferings sets field value
-func (o *ListOfferingsResponse) SetOfferings(v *[]Offering) {
-	o.Offerings = v
+func (o *ListOfferingsResponse) SetOfferings(v ListOfferingsResponseGetOfferingsRetType) {
+	setListOfferingsResponseGetOfferingsAttributeType(&o.Offerings, v)
 }
 
 func (o ListOfferingsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["offerings"] = o.Offerings
+	if val, ok := getListOfferingsResponseGetOfferingsAttributeTypeOk(o.Offerings); ok {
+		toSerialize["Offerings"] = val
+	}
 	return toSerialize, nil
 }
 
