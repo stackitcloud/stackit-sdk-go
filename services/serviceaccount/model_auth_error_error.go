@@ -17,14 +17,76 @@ import (
 // checks if the AuthErrorError type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AuthErrorError{}
 
+/*
+	types and functions for code
+*/
+
+// isInteger
+type AuthErrorErrorGetCodeAttributeType = *int64
+type AuthErrorErrorGetCodeArgType = int64
+type AuthErrorErrorGetCodeRetType = int64
+
+func getAuthErrorErrorGetCodeAttributeTypeOk(arg AuthErrorErrorGetCodeAttributeType) (ret AuthErrorErrorGetCodeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAuthErrorErrorGetCodeAttributeType(arg *AuthErrorErrorGetCodeAttributeType, val AuthErrorErrorGetCodeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type AuthErrorErrorGetMessageAttributeType = *string
+
+func getAuthErrorErrorGetMessageAttributeTypeOk(arg AuthErrorErrorGetMessageAttributeType) (ret AuthErrorErrorGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAuthErrorErrorGetMessageAttributeType(arg *AuthErrorErrorGetMessageAttributeType, val AuthErrorErrorGetMessageRetType) {
+	*arg = &val
+}
+
+type AuthErrorErrorGetMessageArgType = string
+type AuthErrorErrorGetMessageRetType = string
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type AuthErrorErrorGetStatusAttributeType = *string
+
+func getAuthErrorErrorGetStatusAttributeTypeOk(arg AuthErrorErrorGetStatusAttributeType) (ret AuthErrorErrorGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAuthErrorErrorGetStatusAttributeType(arg *AuthErrorErrorGetStatusAttributeType, val AuthErrorErrorGetStatusRetType) {
+	*arg = &val
+}
+
+type AuthErrorErrorGetStatusArgType = string
+type AuthErrorErrorGetStatusRetType = string
+
 // AuthErrorError struct for AuthErrorError
 type AuthErrorError struct {
 	// REQUIRED
-	Code *int64 `json:"code"`
+	Code AuthErrorErrorGetCodeAttributeType `json:"code"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message AuthErrorErrorGetMessageAttributeType `json:"message"`
 	// REQUIRED
-	Status *string `json:"status"`
+	Status AuthErrorErrorGetStatusAttributeType `json:"status"`
 }
 
 type _AuthErrorError AuthErrorError
@@ -33,11 +95,11 @@ type _AuthErrorError AuthErrorError
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuthErrorError(code *int64, message *string, status *string) *AuthErrorError {
+func NewAuthErrorError(code AuthErrorErrorGetCodeArgType, message AuthErrorErrorGetMessageArgType, status AuthErrorErrorGetStatusArgType) *AuthErrorError {
 	this := AuthErrorError{}
-	this.Code = code
-	this.Message = message
-	this.Status = status
+	setAuthErrorErrorGetCodeAttributeType(&this.Code, code)
+	setAuthErrorErrorGetMessageAttributeType(&this.Message, message)
+	setAuthErrorErrorGetStatusAttributeType(&this.Status, status)
 	return &this
 }
 
@@ -50,82 +112,67 @@ func NewAuthErrorErrorWithDefaults() *AuthErrorError {
 }
 
 // GetCode returns the Code field value
-func (o *AuthErrorError) GetCode() *int64 {
-	if o == nil || IsNil(o.Code) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Code
+func (o *AuthErrorError) GetCode() (ret AuthErrorErrorGetCodeRetType) {
+	ret, _ = o.GetCodeOk()
+	return ret
 }
 
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-func (o *AuthErrorError) GetCodeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Code, true
+func (o *AuthErrorError) GetCodeOk() (ret AuthErrorErrorGetCodeRetType, ok bool) {
+	return getAuthErrorErrorGetCodeAttributeTypeOk(o.Code)
 }
 
 // SetCode sets field value
-func (o *AuthErrorError) SetCode(v *int64) {
-	o.Code = v
+func (o *AuthErrorError) SetCode(v AuthErrorErrorGetCodeRetType) {
+	setAuthErrorErrorGetCodeAttributeType(&o.Code, v)
 }
 
 // GetMessage returns the Message field value
-func (o *AuthErrorError) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *AuthErrorError) GetMessage() (ret AuthErrorErrorGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *AuthErrorError) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *AuthErrorError) GetMessageOk() (ret AuthErrorErrorGetMessageRetType, ok bool) {
+	return getAuthErrorErrorGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *AuthErrorError) SetMessage(v *string) {
-	o.Message = v
+func (o *AuthErrorError) SetMessage(v AuthErrorErrorGetMessageRetType) {
+	setAuthErrorErrorGetMessageAttributeType(&o.Message, v)
 }
 
 // GetStatus returns the Status field value
-func (o *AuthErrorError) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-
-	return o.Status
+func (o *AuthErrorError) GetStatus() (ret AuthErrorErrorGetStatusRetType) {
+	ret, _ = o.GetStatusOk()
+	return ret
 }
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *AuthErrorError) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Status, true
+func (o *AuthErrorError) GetStatusOk() (ret AuthErrorErrorGetStatusRetType, ok bool) {
+	return getAuthErrorErrorGetStatusAttributeTypeOk(o.Status)
 }
 
 // SetStatus sets field value
-func (o *AuthErrorError) SetStatus(v *string) {
-	o.Status = v
+func (o *AuthErrorError) SetStatus(v AuthErrorErrorGetStatusRetType) {
+	setAuthErrorErrorGetStatusAttributeType(&o.Status, v)
 }
 
 func (o AuthErrorError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["code"] = o.Code
-	toSerialize["message"] = o.Message
-	toSerialize["status"] = o.Status
+	if val, ok := getAuthErrorErrorGetCodeAttributeTypeOk(o.Code); ok {
+		toSerialize["Code"] = val
+	}
+	if val, ok := getAuthErrorErrorGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
+	if val, ok := getAuthErrorErrorGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
+	}
 	return toSerialize, nil
 }
 

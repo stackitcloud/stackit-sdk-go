@@ -18,12 +18,52 @@ import (
 // checks if the PartialUpdateServiceAccountKeyPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateServiceAccountKeyPayload{}
 
+/*
+	types and functions for active
+*/
+
+// isBoolean
+type PartialUpdateServiceAccountKeyPayloadgetActiveAttributeType = *bool
+type PartialUpdateServiceAccountKeyPayloadgetActiveArgType = bool
+type PartialUpdateServiceAccountKeyPayloadgetActiveRetType = bool
+
+func getPartialUpdateServiceAccountKeyPayloadgetActiveAttributeTypeOk(arg PartialUpdateServiceAccountKeyPayloadgetActiveAttributeType) (ret PartialUpdateServiceAccountKeyPayloadgetActiveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateServiceAccountKeyPayloadgetActiveAttributeType(arg *PartialUpdateServiceAccountKeyPayloadgetActiveAttributeType, val PartialUpdateServiceAccountKeyPayloadgetActiveRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for validUntil
+*/
+
+// isDateTime
+type PartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeType = *time.Time
+type PartialUpdateServiceAccountKeyPayloadGetValidUntilArgType = time.Time
+type PartialUpdateServiceAccountKeyPayloadGetValidUntilRetType = time.Time
+
+func getPartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeTypeOk(arg PartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeType) (ret PartialUpdateServiceAccountKeyPayloadGetValidUntilRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeType(arg *PartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeType, val PartialUpdateServiceAccountKeyPayloadGetValidUntilRetType) {
+	*arg = &val
+}
+
 // PartialUpdateServiceAccountKeyPayload struct for PartialUpdateServiceAccountKeyPayload
 type PartialUpdateServiceAccountKeyPayload struct {
 	// Active keys are valid, while inactive keys are temporarily deactivated.
-	Active *bool `json:"active,omitempty"`
+	Active PartialUpdateServiceAccountKeyPayloadgetActiveAttributeType `json:"active,omitempty"`
 	// Optional, date of key expiration. To disable, set time to \"9999-01-01T01:01:01Z\"
-	ValidUntil *time.Time `json:"validUntil,omitempty"`
+	ValidUntil PartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeType `json:"validUntil,omitempty"`
 }
 
 // NewPartialUpdateServiceAccountKeyPayload instantiates a new PartialUpdateServiceAccountKeyPayload object
@@ -44,76 +84,58 @@ func NewPartialUpdateServiceAccountKeyPayloadWithDefaults() *PartialUpdateServic
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *PartialUpdateServiceAccountKeyPayload) GetActive() *bool {
-	if o == nil || IsNil(o.Active) {
-		var ret *bool
-		return ret
-	}
-	return o.Active
+func (o *PartialUpdateServiceAccountKeyPayload) GetActive() (res PartialUpdateServiceAccountKeyPayloadgetActiveRetType) {
+	res, _ = o.GetActiveOk()
+	return
 }
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyPayload) GetActiveOk() (*bool, bool) {
-	if o == nil || IsNil(o.Active) {
-		return nil, false
-	}
-	return o.Active, true
+func (o *PartialUpdateServiceAccountKeyPayload) GetActiveOk() (ret PartialUpdateServiceAccountKeyPayloadgetActiveRetType, ok bool) {
+	return getPartialUpdateServiceAccountKeyPayloadgetActiveAttributeTypeOk(o.Active)
 }
 
 // HasActive returns a boolean if a field has been set.
 func (o *PartialUpdateServiceAccountKeyPayload) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetActiveOk()
+	return ok
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *PartialUpdateServiceAccountKeyPayload) SetActive(v *bool) {
-	o.Active = v
+func (o *PartialUpdateServiceAccountKeyPayload) SetActive(v PartialUpdateServiceAccountKeyPayloadgetActiveRetType) {
+	setPartialUpdateServiceAccountKeyPayloadgetActiveAttributeType(&o.Active, v)
 }
 
 // GetValidUntil returns the ValidUntil field value if set, zero value otherwise.
-func (o *PartialUpdateServiceAccountKeyPayload) GetValidUntil() *time.Time {
-	if o == nil || IsNil(o.ValidUntil) {
-		var ret *time.Time
-		return ret
-	}
-	return o.ValidUntil
+func (o *PartialUpdateServiceAccountKeyPayload) GetValidUntil() (res PartialUpdateServiceAccountKeyPayloadGetValidUntilRetType) {
+	res, _ = o.GetValidUntilOk()
+	return
 }
 
 // GetValidUntilOk returns a tuple with the ValidUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateServiceAccountKeyPayload) GetValidUntilOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.ValidUntil) {
-		return nil, false
-	}
-	return o.ValidUntil, true
+func (o *PartialUpdateServiceAccountKeyPayload) GetValidUntilOk() (ret PartialUpdateServiceAccountKeyPayloadGetValidUntilRetType, ok bool) {
+	return getPartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeTypeOk(o.ValidUntil)
 }
 
 // HasValidUntil returns a boolean if a field has been set.
 func (o *PartialUpdateServiceAccountKeyPayload) HasValidUntil() bool {
-	if o != nil && !IsNil(o.ValidUntil) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetValidUntilOk()
+	return ok
 }
 
 // SetValidUntil gets a reference to the given time.Time and assigns it to the ValidUntil field.
-func (o *PartialUpdateServiceAccountKeyPayload) SetValidUntil(v *time.Time) {
-	o.ValidUntil = v
+func (o *PartialUpdateServiceAccountKeyPayload) SetValidUntil(v PartialUpdateServiceAccountKeyPayloadGetValidUntilRetType) {
+	setPartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
 func (o PartialUpdateServiceAccountKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Active) {
-		toSerialize["active"] = o.Active
+	if val, ok := getPartialUpdateServiceAccountKeyPayloadgetActiveAttributeTypeOk(o.Active); ok {
+		toSerialize["Active"] = val
 	}
-	if !IsNil(o.ValidUntil) {
-		toSerialize["validUntil"] = o.ValidUntil
+	if val, ok := getPartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeTypeOk(o.ValidUntil); ok {
+		toSerialize["ValidUntil"] = val
 	}
 	return toSerialize, nil
 }
