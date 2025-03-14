@@ -17,14 +17,76 @@ import (
 // checks if the ActionError type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ActionError{}
 
+/*
+	types and functions for action
+*/
+
+// isEnumRef
+type ActionErrorGetActionAttributeType = *string
+type ActionErrorGetActionArgType = string
+type ActionErrorGetActionRetType = string
+
+func getActionErrorGetActionAttributeTypeOk(arg ActionErrorGetActionAttributeType) (ret ActionErrorGetActionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActionErrorGetActionAttributeType(arg *ActionErrorGetActionAttributeType, val ActionErrorGetActionRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for code
+*/
+
+// isNotNullableString
+type ActionErrorGetCodeAttributeType = *string
+
+func getActionErrorGetCodeAttributeTypeOk(arg ActionErrorGetCodeAttributeType) (ret ActionErrorGetCodeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActionErrorGetCodeAttributeType(arg *ActionErrorGetCodeAttributeType, val ActionErrorGetCodeRetType) {
+	*arg = &val
+}
+
+type ActionErrorGetCodeArgType = string
+type ActionErrorGetCodeRetType = string
+
+/*
+	types and functions for reason
+*/
+
+// isNotNullableString
+type ActionErrorGetReasonAttributeType = *string
+
+func getActionErrorGetReasonAttributeTypeOk(arg ActionErrorGetReasonAttributeType) (ret ActionErrorGetReasonRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActionErrorGetReasonAttributeType(arg *ActionErrorGetReasonAttributeType, val ActionErrorGetReasonRetType) {
+	*arg = &val
+}
+
+type ActionErrorGetReasonArgType = string
+type ActionErrorGetReasonRetType = string
+
 // ActionError the last error for this service.
 type ActionError struct {
 	// the last action which was triggered on this service
-	Action *string `json:"action,omitempty"`
+	Action ActionErrorGetActionAttributeType `json:"action,omitempty"`
 	// the error code if provided by the service
-	Code *string `json:"code,omitempty"`
+	Code ActionErrorGetCodeAttributeType `json:"code,omitempty"`
 	// the error reason provided by the service
-	Reason *string `json:"reason,omitempty"`
+	Reason ActionErrorGetReasonAttributeType `json:"reason,omitempty"`
 }
 
 // NewActionError instantiates a new ActionError object
@@ -45,111 +107,84 @@ func NewActionErrorWithDefaults() *ActionError {
 }
 
 // GetAction returns the Action field value if set, zero value otherwise.
-func (o *ActionError) GetAction() *string {
-	if o == nil || IsNil(o.Action) {
-		var ret *string
-		return ret
-	}
-	return o.Action
+func (o *ActionError) GetAction() (res ActionErrorGetActionRetType) {
+	res, _ = o.GetActionOk()
+	return
 }
 
 // GetActionOk returns a tuple with the Action field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActionError) GetActionOk() (*string, bool) {
-	if o == nil || IsNil(o.Action) {
-		return nil, false
-	}
-	return o.Action, true
+func (o *ActionError) GetActionOk() (ret ActionErrorGetActionRetType, ok bool) {
+	return getActionErrorGetActionAttributeTypeOk(o.Action)
 }
 
 // HasAction returns a boolean if a field has been set.
 func (o *ActionError) HasAction() bool {
-	if o != nil && !IsNil(o.Action) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetActionOk()
+	return ok
 }
 
 // SetAction gets a reference to the given string and assigns it to the Action field.
-func (o *ActionError) SetAction(v *string) {
-	o.Action = v
+func (o *ActionError) SetAction(v ActionErrorGetActionRetType) {
+	setActionErrorGetActionAttributeType(&o.Action, v)
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *ActionError) GetCode() *string {
-	if o == nil || IsNil(o.Code) {
-		var ret *string
-		return ret
-	}
-	return o.Code
+func (o *ActionError) GetCode() (res ActionErrorGetCodeRetType) {
+	res, _ = o.GetCodeOk()
+	return
 }
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActionError) GetCodeOk() (*string, bool) {
-	if o == nil || IsNil(o.Code) {
-		return nil, false
-	}
-	return o.Code, true
+func (o *ActionError) GetCodeOk() (ret ActionErrorGetCodeRetType, ok bool) {
+	return getActionErrorGetCodeAttributeTypeOk(o.Code)
 }
 
 // HasCode returns a boolean if a field has been set.
 func (o *ActionError) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCodeOk()
+	return ok
 }
 
 // SetCode gets a reference to the given string and assigns it to the Code field.
-func (o *ActionError) SetCode(v *string) {
-	o.Code = v
+func (o *ActionError) SetCode(v ActionErrorGetCodeRetType) {
+	setActionErrorGetCodeAttributeType(&o.Code, v)
 }
 
 // GetReason returns the Reason field value if set, zero value otherwise.
-func (o *ActionError) GetReason() *string {
-	if o == nil || IsNil(o.Reason) {
-		var ret *string
-		return ret
-	}
-	return o.Reason
+func (o *ActionError) GetReason() (res ActionErrorGetReasonRetType) {
+	res, _ = o.GetReasonOk()
+	return
 }
 
 // GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ActionError) GetReasonOk() (*string, bool) {
-	if o == nil || IsNil(o.Reason) {
-		return nil, false
-	}
-	return o.Reason, true
+func (o *ActionError) GetReasonOk() (ret ActionErrorGetReasonRetType, ok bool) {
+	return getActionErrorGetReasonAttributeTypeOk(o.Reason)
 }
 
 // HasReason returns a boolean if a field has been set.
 func (o *ActionError) HasReason() bool {
-	if o != nil && !IsNil(o.Reason) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetReasonOk()
+	return ok
 }
 
 // SetReason gets a reference to the given string and assigns it to the Reason field.
-func (o *ActionError) SetReason(v *string) {
-	o.Reason = v
+func (o *ActionError) SetReason(v ActionErrorGetReasonRetType) {
+	setActionErrorGetReasonAttributeType(&o.Reason, v)
 }
 
 func (o ActionError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Action) {
-		toSerialize["action"] = o.Action
+	if val, ok := getActionErrorGetActionAttributeTypeOk(o.Action); ok {
+		toSerialize["Action"] = val
 	}
-	if !IsNil(o.Code) {
-		toSerialize["code"] = o.Code
+	if val, ok := getActionErrorGetCodeAttributeTypeOk(o.Code); ok {
+		toSerialize["Code"] = val
 	}
-	if !IsNil(o.Reason) {
-		toSerialize["reason"] = o.Reason
+	if val, ok := getActionErrorGetReasonAttributeTypeOk(o.Reason); ok {
+		toSerialize["Reason"] = val
 	}
 	return toSerialize, nil
 }

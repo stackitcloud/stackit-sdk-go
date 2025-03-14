@@ -17,19 +17,200 @@ import (
 // checks if the ServiceStatus type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ServiceStatus{}
 
+/*
+	types and functions for dependencies
+*/
+
+// isModel
+type ServiceStatusGetDependenciesAttributeType = *Dependencies
+type ServiceStatusGetDependenciesArgType = Dependencies
+type ServiceStatusGetDependenciesRetType = Dependencies
+
+func getServiceStatusGetDependenciesAttributeTypeOk(arg ServiceStatusGetDependenciesAttributeType) (ret ServiceStatusGetDependenciesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceStatusGetDependenciesAttributeType(arg *ServiceStatusGetDependenciesAttributeType, val ServiceStatusGetDependenciesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for enablement
+*/
+
+// isEnumRef
+type ServiceStatusGetEnablementAttributeType = *string
+type ServiceStatusGetEnablementArgType = string
+type ServiceStatusGetEnablementRetType = string
+
+func getServiceStatusGetEnablementAttributeTypeOk(arg ServiceStatusGetEnablementAttributeType) (ret ServiceStatusGetEnablementRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceStatusGetEnablementAttributeType(arg *ServiceStatusGetEnablementAttributeType, val ServiceStatusGetEnablementRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for error
+*/
+
+// isModel
+type ServiceStatusGetErrorAttributeType = *ActionError
+type ServiceStatusGetErrorArgType = ActionError
+type ServiceStatusGetErrorRetType = ActionError
+
+func getServiceStatusGetErrorAttributeTypeOk(arg ServiceStatusGetErrorAttributeType) (ret ServiceStatusGetErrorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceStatusGetErrorAttributeType(arg *ServiceStatusGetErrorAttributeType, val ServiceStatusGetErrorRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+type ServiceStatusGetLabelsAttributeType = *map[string]string
+type ServiceStatusGetLabelsArgType = map[string]string
+type ServiceStatusGetLabelsRetType = map[string]string
+
+func getServiceStatusGetLabelsAttributeTypeOk(arg ServiceStatusGetLabelsAttributeType) (ret ServiceStatusGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceStatusGetLabelsAttributeType(arg *ServiceStatusGetLabelsAttributeType, val ServiceStatusGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for lifecycle
+*/
+
+// isEnumRef
+type ServiceStatusGetLifecycleAttributeType = *string
+type ServiceStatusGetLifecycleArgType = string
+type ServiceStatusGetLifecycleRetType = string
+
+func getServiceStatusGetLifecycleAttributeTypeOk(arg ServiceStatusGetLifecycleAttributeType) (ret ServiceStatusGetLifecycleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceStatusGetLifecycleAttributeType(arg *ServiceStatusGetLifecycleAttributeType, val ServiceStatusGetLifecycleRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parameters
+*/
+
+// fallback
+type ServiceStatusGetParametersAttributeType = *Parameters
+type ServiceStatusGetParametersArgType = Parameters
+type ServiceStatusGetParametersRetType = Parameters
+
+func getServiceStatusGetParametersAttributeTypeOk(arg ServiceStatusGetParametersAttributeType) (ret ServiceStatusGetParametersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceStatusGetParametersAttributeType(arg *ServiceStatusGetParametersAttributeType, val ServiceStatusGetParametersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for scope
+*/
+
+// isEnumRef
+type ServiceStatusGetScopeAttributeType = *string
+type ServiceStatusGetScopeArgType = string
+type ServiceStatusGetScopeRetType = string
+
+func getServiceStatusGetScopeAttributeTypeOk(arg ServiceStatusGetScopeAttributeType) (ret ServiceStatusGetScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceStatusGetScopeAttributeType(arg *ServiceStatusGetScopeAttributeType, val ServiceStatusGetScopeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for serviceId
+*/
+
+// isNotNullableString
+type ServiceStatusGetServiceIdAttributeType = *string
+
+func getServiceStatusGetServiceIdAttributeTypeOk(arg ServiceStatusGetServiceIdAttributeType) (ret ServiceStatusGetServiceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceStatusGetServiceIdAttributeType(arg *ServiceStatusGetServiceIdAttributeType, val ServiceStatusGetServiceIdRetType) {
+	*arg = &val
+}
+
+type ServiceStatusGetServiceIdArgType = string
+type ServiceStatusGetServiceIdRetType = string
+
+/*
+	types and functions for state
+*/
+
+// isEnumRef
+type ServiceStatusGetStateAttributeType = *string
+type ServiceStatusGetStateArgType = string
+type ServiceStatusGetStateRetType = string
+
+func getServiceStatusGetStateAttributeTypeOk(arg ServiceStatusGetStateAttributeType) (ret ServiceStatusGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceStatusGetStateAttributeType(arg *ServiceStatusGetStateAttributeType, val ServiceStatusGetStateRetType) {
+	*arg = &val
+}
+
 // ServiceStatus struct for ServiceStatus
 type ServiceStatus struct {
-	Dependencies *Dependencies      `json:"dependencies,omitempty"`
-	Enablement   *string            `json:"enablement,omitempty"`
-	Error        *ActionError       `json:"error,omitempty"`
-	Labels       *map[string]string `json:"labels,omitempty"`
-	Lifecycle    *string            `json:"lifecycle,omitempty"`
-	Parameters   *Parameters        `json:"parameters,omitempty"`
-	Scope        *string            `json:"scope,omitempty"`
+	Dependencies ServiceStatusGetDependenciesAttributeType `json:"dependencies,omitempty"`
+	Enablement   ServiceStatusGetEnablementAttributeType   `json:"enablement,omitempty"`
+	Error        ServiceStatusGetErrorAttributeType        `json:"error,omitempty"`
+	Labels       ServiceStatusGetLabelsAttributeType       `json:"labels,omitempty"`
+	Lifecycle    ServiceStatusGetLifecycleAttributeType    `json:"lifecycle,omitempty"`
+	Parameters   ServiceStatusGetParametersAttributeType   `json:"parameters,omitempty"`
+	Scope        ServiceStatusGetScopeAttributeType        `json:"scope,omitempty"`
 	// the id of the service
-	ServiceId *string `json:"serviceId,omitempty"`
+	ServiceId ServiceStatusGetServiceIdAttributeType `json:"serviceId,omitempty"`
 	// the state of a service within a project
-	State *string `json:"state,omitempty"`
+	State ServiceStatusGetStateAttributeType `json:"state,omitempty"`
 }
 
 // NewServiceStatus instantiates a new ServiceStatus object
@@ -38,14 +219,6 @@ type ServiceStatus struct {
 // will change when the set of required properties is changed
 func NewServiceStatus() *ServiceStatus {
 	this := ServiceStatus{}
-	var enablement string = "REQUEST"
-	this.Enablement = &enablement
-	var lifecycle string = "FLEX"
-	this.Lifecycle = &lifecycle
-	var scope string = "PUBLIC"
-	this.Scope = &scope
-	var state string = "ENABLED"
-	this.State = &state
 	return &this
 }
 
@@ -66,321 +239,240 @@ func NewServiceStatusWithDefaults() *ServiceStatus {
 }
 
 // GetDependencies returns the Dependencies field value if set, zero value otherwise.
-func (o *ServiceStatus) GetDependencies() *Dependencies {
-	if o == nil || IsNil(o.Dependencies) {
-		var ret *Dependencies
-		return ret
-	}
-	return o.Dependencies
+func (o *ServiceStatus) GetDependencies() (res ServiceStatusGetDependenciesRetType) {
+	res, _ = o.GetDependenciesOk()
+	return
 }
 
 // GetDependenciesOk returns a tuple with the Dependencies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetDependenciesOk() (*Dependencies, bool) {
-	if o == nil || IsNil(o.Dependencies) {
-		return nil, false
-	}
-	return o.Dependencies, true
+func (o *ServiceStatus) GetDependenciesOk() (ret ServiceStatusGetDependenciesRetType, ok bool) {
+	return getServiceStatusGetDependenciesAttributeTypeOk(o.Dependencies)
 }
 
 // HasDependencies returns a boolean if a field has been set.
 func (o *ServiceStatus) HasDependencies() bool {
-	if o != nil && !IsNil(o.Dependencies) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDependenciesOk()
+	return ok
 }
 
 // SetDependencies gets a reference to the given Dependencies and assigns it to the Dependencies field.
-func (o *ServiceStatus) SetDependencies(v *Dependencies) {
-	o.Dependencies = v
+func (o *ServiceStatus) SetDependencies(v ServiceStatusGetDependenciesRetType) {
+	setServiceStatusGetDependenciesAttributeType(&o.Dependencies, v)
 }
 
 // GetEnablement returns the Enablement field value if set, zero value otherwise.
-func (o *ServiceStatus) GetEnablement() *string {
-	if o == nil || IsNil(o.Enablement) {
-		var ret *string
-		return ret
-	}
-	return o.Enablement
+func (o *ServiceStatus) GetEnablement() (res ServiceStatusGetEnablementRetType) {
+	res, _ = o.GetEnablementOk()
+	return
 }
 
 // GetEnablementOk returns a tuple with the Enablement field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetEnablementOk() (*string, bool) {
-	if o == nil || IsNil(o.Enablement) {
-		return nil, false
-	}
-	return o.Enablement, true
+func (o *ServiceStatus) GetEnablementOk() (ret ServiceStatusGetEnablementRetType, ok bool) {
+	return getServiceStatusGetEnablementAttributeTypeOk(o.Enablement)
 }
 
 // HasEnablement returns a boolean if a field has been set.
 func (o *ServiceStatus) HasEnablement() bool {
-	if o != nil && !IsNil(o.Enablement) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEnablementOk()
+	return ok
 }
 
 // SetEnablement gets a reference to the given string and assigns it to the Enablement field.
-func (o *ServiceStatus) SetEnablement(v *string) {
-	o.Enablement = v
+func (o *ServiceStatus) SetEnablement(v ServiceStatusGetEnablementRetType) {
+	setServiceStatusGetEnablementAttributeType(&o.Enablement, v)
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *ServiceStatus) GetError() *ActionError {
-	if o == nil || IsNil(o.Error) {
-		var ret *ActionError
-		return ret
-	}
-	return o.Error
+func (o *ServiceStatus) GetError() (res ServiceStatusGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetErrorOk() (*ActionError, bool) {
-	if o == nil || IsNil(o.Error) {
-		return nil, false
-	}
-	return o.Error, true
+func (o *ServiceStatus) GetErrorOk() (ret ServiceStatusGetErrorRetType, ok bool) {
+	return getServiceStatusGetErrorAttributeTypeOk(o.Error)
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *ServiceStatus) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorOk()
+	return ok
 }
 
 // SetError gets a reference to the given ActionError and assigns it to the Error field.
-func (o *ServiceStatus) SetError(v *ActionError) {
-	o.Error = v
+func (o *ServiceStatus) SetError(v ServiceStatusGetErrorRetType) {
+	setServiceStatusGetErrorAttributeType(&o.Error, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *ServiceStatus) GetLabels() *map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Labels
+func (o *ServiceStatus) GetLabels() (res ServiceStatusGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *ServiceStatus) GetLabelsOk() (ret ServiceStatusGetLabelsRetType, ok bool) {
+	return getServiceStatusGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *ServiceStatus) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *ServiceStatus) SetLabels(v *map[string]string) {
-	o.Labels = v
+func (o *ServiceStatus) SetLabels(v ServiceStatusGetLabelsRetType) {
+	setServiceStatusGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
-func (o *ServiceStatus) GetLifecycle() *string {
-	if o == nil || IsNil(o.Lifecycle) {
-		var ret *string
-		return ret
-	}
-	return o.Lifecycle
+func (o *ServiceStatus) GetLifecycle() (res ServiceStatusGetLifecycleRetType) {
+	res, _ = o.GetLifecycleOk()
+	return
 }
 
 // GetLifecycleOk returns a tuple with the Lifecycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetLifecycleOk() (*string, bool) {
-	if o == nil || IsNil(o.Lifecycle) {
-		return nil, false
-	}
-	return o.Lifecycle, true
+func (o *ServiceStatus) GetLifecycleOk() (ret ServiceStatusGetLifecycleRetType, ok bool) {
+	return getServiceStatusGetLifecycleAttributeTypeOk(o.Lifecycle)
 }
 
 // HasLifecycle returns a boolean if a field has been set.
 func (o *ServiceStatus) HasLifecycle() bool {
-	if o != nil && !IsNil(o.Lifecycle) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLifecycleOk()
+	return ok
 }
 
 // SetLifecycle gets a reference to the given string and assigns it to the Lifecycle field.
-func (o *ServiceStatus) SetLifecycle(v *string) {
-	o.Lifecycle = v
+func (o *ServiceStatus) SetLifecycle(v ServiceStatusGetLifecycleRetType) {
+	setServiceStatusGetLifecycleAttributeType(&o.Lifecycle, v)
 }
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
-func (o *ServiceStatus) GetParameters() *Parameters {
-	if o == nil || IsNil(o.Parameters) {
-		var ret *Parameters
-		return ret
-	}
-	return o.Parameters
+func (o *ServiceStatus) GetParameters() (res ServiceStatusGetParametersRetType) {
+	res, _ = o.GetParametersOk()
+	return
 }
 
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetParametersOk() (*Parameters, bool) {
-	if o == nil || IsNil(o.Parameters) {
-		return nil, false
-	}
-	return o.Parameters, true
+func (o *ServiceStatus) GetParametersOk() (ret ServiceStatusGetParametersRetType, ok bool) {
+	return getServiceStatusGetParametersAttributeTypeOk(o.Parameters)
 }
 
 // HasParameters returns a boolean if a field has been set.
 func (o *ServiceStatus) HasParameters() bool {
-	if o != nil && !IsNil(o.Parameters) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetParametersOk()
+	return ok
 }
 
 // SetParameters gets a reference to the given Parameters and assigns it to the Parameters field.
-func (o *ServiceStatus) SetParameters(v *Parameters) {
-	o.Parameters = v
+func (o *ServiceStatus) SetParameters(v ServiceStatusGetParametersRetType) {
+	setServiceStatusGetParametersAttributeType(&o.Parameters, v)
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
-func (o *ServiceStatus) GetScope() *string {
-	if o == nil || IsNil(o.Scope) {
-		var ret *string
-		return ret
-	}
-	return o.Scope
+func (o *ServiceStatus) GetScope() (res ServiceStatusGetScopeRetType) {
+	res, _ = o.GetScopeOk()
+	return
 }
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetScopeOk() (*string, bool) {
-	if o == nil || IsNil(o.Scope) {
-		return nil, false
-	}
-	return o.Scope, true
+func (o *ServiceStatus) GetScopeOk() (ret ServiceStatusGetScopeRetType, ok bool) {
+	return getServiceStatusGetScopeAttributeTypeOk(o.Scope)
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *ServiceStatus) HasScope() bool {
-	if o != nil && !IsNil(o.Scope) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetScopeOk()
+	return ok
 }
 
 // SetScope gets a reference to the given string and assigns it to the Scope field.
-func (o *ServiceStatus) SetScope(v *string) {
-	o.Scope = v
+func (o *ServiceStatus) SetScope(v ServiceStatusGetScopeRetType) {
+	setServiceStatusGetScopeAttributeType(&o.Scope, v)
 }
 
 // GetServiceId returns the ServiceId field value if set, zero value otherwise.
-func (o *ServiceStatus) GetServiceId() *string {
-	if o == nil || IsNil(o.ServiceId) {
-		var ret *string
-		return ret
-	}
-	return o.ServiceId
+func (o *ServiceStatus) GetServiceId() (res ServiceStatusGetServiceIdRetType) {
+	res, _ = o.GetServiceIdOk()
+	return
 }
 
 // GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetServiceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ServiceId) {
-		return nil, false
-	}
-	return o.ServiceId, true
+func (o *ServiceStatus) GetServiceIdOk() (ret ServiceStatusGetServiceIdRetType, ok bool) {
+	return getServiceStatusGetServiceIdAttributeTypeOk(o.ServiceId)
 }
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *ServiceStatus) HasServiceId() bool {
-	if o != nil && !IsNil(o.ServiceId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetServiceIdOk()
+	return ok
 }
 
 // SetServiceId gets a reference to the given string and assigns it to the ServiceId field.
-func (o *ServiceStatus) SetServiceId(v *string) {
-	o.ServiceId = v
+func (o *ServiceStatus) SetServiceId(v ServiceStatusGetServiceIdRetType) {
+	setServiceStatusGetServiceIdAttributeType(&o.ServiceId, v)
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *ServiceStatus) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-	return o.State
+func (o *ServiceStatus) GetState() (res ServiceStatusGetStateRetType) {
+	res, _ = o.GetStateOk()
+	return
 }
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceStatus) GetStateOk() (*string, bool) {
-	if o == nil || IsNil(o.State) {
-		return nil, false
-	}
-	return o.State, true
+func (o *ServiceStatus) GetStateOk() (ret ServiceStatusGetStateRetType, ok bool) {
+	return getServiceStatusGetStateAttributeTypeOk(o.State)
 }
 
 // HasState returns a boolean if a field has been set.
 func (o *ServiceStatus) HasState() bool {
-	if o != nil && !IsNil(o.State) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStateOk()
+	return ok
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *ServiceStatus) SetState(v *string) {
-	o.State = v
+func (o *ServiceStatus) SetState(v ServiceStatusGetStateRetType) {
+	setServiceStatusGetStateAttributeType(&o.State, v)
 }
 
 func (o ServiceStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Dependencies) {
-		toSerialize["dependencies"] = o.Dependencies
+	if val, ok := getServiceStatusGetDependenciesAttributeTypeOk(o.Dependencies); ok {
+		toSerialize["Dependencies"] = val
 	}
-	if !IsNil(o.Enablement) {
-		toSerialize["enablement"] = o.Enablement
+	if val, ok := getServiceStatusGetEnablementAttributeTypeOk(o.Enablement); ok {
+		toSerialize["Enablement"] = val
 	}
-	if !IsNil(o.Error) {
-		toSerialize["error"] = o.Error
+	if val, ok := getServiceStatusGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getServiceStatusGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Lifecycle) {
-		toSerialize["lifecycle"] = o.Lifecycle
+	if val, ok := getServiceStatusGetLifecycleAttributeTypeOk(o.Lifecycle); ok {
+		toSerialize["Lifecycle"] = val
 	}
-	if !IsNil(o.Parameters) {
-		toSerialize["parameters"] = o.Parameters
+	if val, ok := getServiceStatusGetParametersAttributeTypeOk(o.Parameters); ok {
+		toSerialize["Parameters"] = val
 	}
-	if !IsNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
+	if val, ok := getServiceStatusGetScopeAttributeTypeOk(o.Scope); ok {
+		toSerialize["Scope"] = val
 	}
-	if !IsNil(o.ServiceId) {
-		toSerialize["serviceId"] = o.ServiceId
+	if val, ok := getServiceStatusGetServiceIdAttributeTypeOk(o.ServiceId); ok {
+		toSerialize["ServiceId"] = val
 	}
-	if !IsNil(o.State) {
-		toSerialize["state"] = o.State
+	if val, ok := getServiceStatusGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
 	}
 	return toSerialize, nil
 }
