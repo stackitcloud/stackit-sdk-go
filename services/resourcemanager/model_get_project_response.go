@@ -18,30 +18,213 @@ import (
 // checks if the GetProjectResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetProjectResponse{}
 
+/*
+	types and functions for containerId
+*/
+
+// isNotNullableString
+type GetProjectResponseGetContainerIdAttributeType = *string
+
+func getGetProjectResponseGetContainerIdAttributeTypeOk(arg GetProjectResponseGetContainerIdAttributeType) (ret GetProjectResponseGetContainerIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetProjectResponseGetContainerIdAttributeType(arg *GetProjectResponseGetContainerIdAttributeType, val GetProjectResponseGetContainerIdRetType) {
+	*arg = &val
+}
+
+type GetProjectResponseGetContainerIdArgType = string
+type GetProjectResponseGetContainerIdRetType = string
+
+/*
+	types and functions for creationTime
+*/
+
+// isDateTime
+type GetProjectResponseGetCreationTimeAttributeType = *time.Time
+type GetProjectResponseGetCreationTimeArgType = time.Time
+type GetProjectResponseGetCreationTimeRetType = time.Time
+
+func getGetProjectResponseGetCreationTimeAttributeTypeOk(arg GetProjectResponseGetCreationTimeAttributeType) (ret GetProjectResponseGetCreationTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetProjectResponseGetCreationTimeAttributeType(arg *GetProjectResponseGetCreationTimeAttributeType, val GetProjectResponseGetCreationTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+type GetProjectResponseGetLabelsAttributeType = *map[string]string
+type GetProjectResponseGetLabelsArgType = map[string]string
+type GetProjectResponseGetLabelsRetType = map[string]string
+
+func getGetProjectResponseGetLabelsAttributeTypeOk(arg GetProjectResponseGetLabelsAttributeType) (ret GetProjectResponseGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetProjectResponseGetLabelsAttributeType(arg *GetProjectResponseGetLabelsAttributeType, val GetProjectResponseGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for lifecycleState
+*/
+
+// isEnumRef
+type GetProjectResponseGetLifecycleStateAttributeType = *LifecycleState
+type GetProjectResponseGetLifecycleStateArgType = LifecycleState
+type GetProjectResponseGetLifecycleStateRetType = LifecycleState
+
+func getGetProjectResponseGetLifecycleStateAttributeTypeOk(arg GetProjectResponseGetLifecycleStateAttributeType) (ret GetProjectResponseGetLifecycleStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetProjectResponseGetLifecycleStateAttributeType(arg *GetProjectResponseGetLifecycleStateAttributeType, val GetProjectResponseGetLifecycleStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type GetProjectResponseGetNameAttributeType = *string
+
+func getGetProjectResponseGetNameAttributeTypeOk(arg GetProjectResponseGetNameAttributeType) (ret GetProjectResponseGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetProjectResponseGetNameAttributeType(arg *GetProjectResponseGetNameAttributeType, val GetProjectResponseGetNameRetType) {
+	*arg = &val
+}
+
+type GetProjectResponseGetNameArgType = string
+type GetProjectResponseGetNameRetType = string
+
+/*
+	types and functions for parent
+*/
+
+// isModel
+type GetProjectResponseGetParentAttributeType = *Parent
+type GetProjectResponseGetParentArgType = Parent
+type GetProjectResponseGetParentRetType = Parent
+
+func getGetProjectResponseGetParentAttributeTypeOk(arg GetProjectResponseGetParentAttributeType) (ret GetProjectResponseGetParentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetProjectResponseGetParentAttributeType(arg *GetProjectResponseGetParentAttributeType, val GetProjectResponseGetParentRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parents
+*/
+
+// isArray
+type GetProjectResponseGetParentsAttributeType = *[]ParentListInner
+type GetProjectResponseGetParentsArgType = []ParentListInner
+type GetProjectResponseGetParentsRetType = []ParentListInner
+
+func getGetProjectResponseGetParentsAttributeTypeOk(arg GetProjectResponseGetParentsAttributeType) (ret GetProjectResponseGetParentsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetProjectResponseGetParentsAttributeType(arg *GetProjectResponseGetParentsAttributeType, val GetProjectResponseGetParentsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for projectId
+*/
+
+// isNotNullableString
+type GetProjectResponseGetProjectIdAttributeType = *string
+
+func getGetProjectResponseGetProjectIdAttributeTypeOk(arg GetProjectResponseGetProjectIdAttributeType) (ret GetProjectResponseGetProjectIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetProjectResponseGetProjectIdAttributeType(arg *GetProjectResponseGetProjectIdAttributeType, val GetProjectResponseGetProjectIdRetType) {
+	*arg = &val
+}
+
+type GetProjectResponseGetProjectIdArgType = string
+type GetProjectResponseGetProjectIdRetType = string
+
+/*
+	types and functions for updateTime
+*/
+
+// isDateTime
+type GetProjectResponseGetUpdateTimeAttributeType = *time.Time
+type GetProjectResponseGetUpdateTimeArgType = time.Time
+type GetProjectResponseGetUpdateTimeRetType = time.Time
+
+func getGetProjectResponseGetUpdateTimeAttributeTypeOk(arg GetProjectResponseGetUpdateTimeAttributeType) (ret GetProjectResponseGetUpdateTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetProjectResponseGetUpdateTimeAttributeType(arg *GetProjectResponseGetUpdateTimeAttributeType, val GetProjectResponseGetUpdateTimeRetType) {
+	*arg = &val
+}
+
 // GetProjectResponse struct for GetProjectResponse
 type GetProjectResponse struct {
 	// Globally unique identifier.
 	// REQUIRED
-	ContainerId *string `json:"containerId"`
+	ContainerId GetProjectResponseGetContainerIdAttributeType `json:"containerId"`
 	// Timestamp at which the project was created.
 	// REQUIRED
-	CreationTime *time.Time `json:"creationTime"`
+	CreationTime GetProjectResponseGetCreationTimeAttributeType `json:"creationTime"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
-	Labels *map[string]string `json:"labels,omitempty"`
+	Labels GetProjectResponseGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	LifecycleState *LifecycleState `json:"lifecycleState"`
+	LifecycleState GetProjectResponseGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// Project name.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name GetProjectResponseGetNameAttributeType `json:"name"`
 	// REQUIRED
-	Parent  *Parent            `json:"parent"`
-	Parents *[]ParentListInner `json:"parents,omitempty"`
+	Parent  GetProjectResponseGetParentAttributeType  `json:"parent"`
+	Parents GetProjectResponseGetParentsAttributeType `json:"parents,omitempty"`
 	// Globally unique identifier.
 	// REQUIRED
-	ProjectId *string `json:"projectId"`
+	ProjectId GetProjectResponseGetProjectIdAttributeType `json:"projectId"`
 	// Timestamp at which the project was last modified.
 	// REQUIRED
-	UpdateTime *time.Time `json:"updateTime"`
+	UpdateTime GetProjectResponseGetUpdateTimeAttributeType `json:"updateTime"`
 }
 
 type _GetProjectResponse GetProjectResponse
@@ -50,15 +233,15 @@ type _GetProjectResponse GetProjectResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetProjectResponse(containerId *string, creationTime *time.Time, lifecycleState *LifecycleState, name *string, parent *Parent, projectId *string, updateTime *time.Time) *GetProjectResponse {
+func NewGetProjectResponse(containerId GetProjectResponseGetContainerIdArgType, creationTime GetProjectResponseGetCreationTimeArgType, lifecycleState GetProjectResponseGetLifecycleStateArgType, name GetProjectResponseGetNameArgType, parent GetProjectResponseGetParentArgType, projectId GetProjectResponseGetProjectIdArgType, updateTime GetProjectResponseGetUpdateTimeArgType) *GetProjectResponse {
 	this := GetProjectResponse{}
-	this.ContainerId = containerId
-	this.CreationTime = creationTime
-	this.LifecycleState = lifecycleState
-	this.Name = name
-	this.Parent = parent
-	this.ProjectId = projectId
-	this.UpdateTime = updateTime
+	setGetProjectResponseGetContainerIdAttributeType(&this.ContainerId, containerId)
+	setGetProjectResponseGetCreationTimeAttributeType(&this.CreationTime, creationTime)
+	setGetProjectResponseGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
+	setGetProjectResponseGetNameAttributeType(&this.Name, name)
+	setGetProjectResponseGetParentAttributeType(&this.Parent, parent)
+	setGetProjectResponseGetProjectIdAttributeType(&this.ProjectId, projectId)
+	setGetProjectResponseGetUpdateTimeAttributeType(&this.UpdateTime, updateTime)
 	return &this
 }
 
@@ -71,252 +254,199 @@ func NewGetProjectResponseWithDefaults() *GetProjectResponse {
 }
 
 // GetContainerId returns the ContainerId field value
-func (o *GetProjectResponse) GetContainerId() *string {
-	if o == nil || IsNil(o.ContainerId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ContainerId
+func (o *GetProjectResponse) GetContainerId() (ret GetProjectResponseGetContainerIdRetType) {
+	ret, _ = o.GetContainerIdOk()
+	return ret
 }
 
 // GetContainerIdOk returns a tuple with the ContainerId field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectResponse) GetContainerIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContainerId, true
+func (o *GetProjectResponse) GetContainerIdOk() (ret GetProjectResponseGetContainerIdRetType, ok bool) {
+	return getGetProjectResponseGetContainerIdAttributeTypeOk(o.ContainerId)
 }
 
 // SetContainerId sets field value
-func (o *GetProjectResponse) SetContainerId(v *string) {
-	o.ContainerId = v
+func (o *GetProjectResponse) SetContainerId(v GetProjectResponseGetContainerIdRetType) {
+	setGetProjectResponseGetContainerIdAttributeType(&o.ContainerId, v)
 }
 
 // GetCreationTime returns the CreationTime field value
-func (o *GetProjectResponse) GetCreationTime() *time.Time {
-	if o == nil || IsNil(o.CreationTime) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.CreationTime
+func (o *GetProjectResponse) GetCreationTime() (ret GetProjectResponseGetCreationTimeRetType) {
+	ret, _ = o.GetCreationTimeOk()
+	return ret
 }
 
 // GetCreationTimeOk returns a tuple with the CreationTime field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectResponse) GetCreationTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreationTime, true
+func (o *GetProjectResponse) GetCreationTimeOk() (ret GetProjectResponseGetCreationTimeRetType, ok bool) {
+	return getGetProjectResponseGetCreationTimeAttributeTypeOk(o.CreationTime)
 }
 
 // SetCreationTime sets field value
-func (o *GetProjectResponse) SetCreationTime(v *time.Time) {
-	o.CreationTime = v
+func (o *GetProjectResponse) SetCreationTime(v GetProjectResponseGetCreationTimeRetType) {
+	setGetProjectResponseGetCreationTimeAttributeType(&o.CreationTime, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *GetProjectResponse) GetLabels() *map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Labels
+func (o *GetProjectResponse) GetLabels() (res GetProjectResponseGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetProjectResponse) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *GetProjectResponse) GetLabelsOk() (ret GetProjectResponseGetLabelsRetType, ok bool) {
+	return getGetProjectResponseGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *GetProjectResponse) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *GetProjectResponse) SetLabels(v *map[string]string) {
-	o.Labels = v
+func (o *GetProjectResponse) SetLabels(v GetProjectResponseGetLabelsRetType) {
+	setGetProjectResponseGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetLifecycleState returns the LifecycleState field value
-func (o *GetProjectResponse) GetLifecycleState() *LifecycleState {
-	if o == nil || IsNil(o.LifecycleState) {
-		var ret *LifecycleState
-		return ret
-	}
-
-	return o.LifecycleState
+func (o *GetProjectResponse) GetLifecycleState() (ret GetProjectResponseGetLifecycleStateRetType) {
+	ret, _ = o.GetLifecycleStateOk()
+	return ret
 }
 
 // GetLifecycleStateOk returns a tuple with the LifecycleState field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectResponse) GetLifecycleStateOk() (*LifecycleState, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LifecycleState, true
+func (o *GetProjectResponse) GetLifecycleStateOk() (ret GetProjectResponseGetLifecycleStateRetType, ok bool) {
+	return getGetProjectResponseGetLifecycleStateAttributeTypeOk(o.LifecycleState)
 }
 
 // SetLifecycleState sets field value
-func (o *GetProjectResponse) SetLifecycleState(v *LifecycleState) {
-	o.LifecycleState = v
+func (o *GetProjectResponse) SetLifecycleState(v GetProjectResponseGetLifecycleStateRetType) {
+	setGetProjectResponseGetLifecycleStateAttributeType(&o.LifecycleState, v)
 }
 
 // GetName returns the Name field value
-func (o *GetProjectResponse) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *GetProjectResponse) GetName() (ret GetProjectResponseGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *GetProjectResponse) GetNameOk() (ret GetProjectResponseGetNameRetType, ok bool) {
+	return getGetProjectResponseGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *GetProjectResponse) SetName(v *string) {
-	o.Name = v
+func (o *GetProjectResponse) SetName(v GetProjectResponseGetNameRetType) {
+	setGetProjectResponseGetNameAttributeType(&o.Name, v)
 }
 
 // GetParent returns the Parent field value
-func (o *GetProjectResponse) GetParent() *Parent {
-	if o == nil || IsNil(o.Parent) {
-		var ret *Parent
-		return ret
-	}
-
-	return o.Parent
+func (o *GetProjectResponse) GetParent() (ret GetProjectResponseGetParentRetType) {
+	ret, _ = o.GetParentOk()
+	return ret
 }
 
 // GetParentOk returns a tuple with the Parent field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectResponse) GetParentOk() (*Parent, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Parent, true
+func (o *GetProjectResponse) GetParentOk() (ret GetProjectResponseGetParentRetType, ok bool) {
+	return getGetProjectResponseGetParentAttributeTypeOk(o.Parent)
 }
 
 // SetParent sets field value
-func (o *GetProjectResponse) SetParent(v *Parent) {
-	o.Parent = v
+func (o *GetProjectResponse) SetParent(v GetProjectResponseGetParentRetType) {
+	setGetProjectResponseGetParentAttributeType(&o.Parent, v)
 }
 
 // GetParents returns the Parents field value if set, zero value otherwise.
-func (o *GetProjectResponse) GetParents() *[]ParentListInner {
-	if o == nil || IsNil(o.Parents) {
-		var ret *[]ParentListInner
-		return ret
-	}
-	return o.Parents
+func (o *GetProjectResponse) GetParents() (res GetProjectResponseGetParentsRetType) {
+	res, _ = o.GetParentsOk()
+	return
 }
 
 // GetParentsOk returns a tuple with the Parents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetProjectResponse) GetParentsOk() (*[]ParentListInner, bool) {
-	if o == nil || IsNil(o.Parents) {
-		return nil, false
-	}
-	return o.Parents, true
+func (o *GetProjectResponse) GetParentsOk() (ret GetProjectResponseGetParentsRetType, ok bool) {
+	return getGetProjectResponseGetParentsAttributeTypeOk(o.Parents)
 }
 
 // HasParents returns a boolean if a field has been set.
 func (o *GetProjectResponse) HasParents() bool {
-	if o != nil && !IsNil(o.Parents) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetParentsOk()
+	return ok
 }
 
 // SetParents gets a reference to the given []ParentListInner and assigns it to the Parents field.
-func (o *GetProjectResponse) SetParents(v *[]ParentListInner) {
-	o.Parents = v
+func (o *GetProjectResponse) SetParents(v GetProjectResponseGetParentsRetType) {
+	setGetProjectResponseGetParentsAttributeType(&o.Parents, v)
 }
 
 // GetProjectId returns the ProjectId field value
-func (o *GetProjectResponse) GetProjectId() *string {
-	if o == nil || IsNil(o.ProjectId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ProjectId
+func (o *GetProjectResponse) GetProjectId() (ret GetProjectResponseGetProjectIdRetType) {
+	ret, _ = o.GetProjectIdOk()
+	return ret
 }
 
 // GetProjectIdOk returns a tuple with the ProjectId field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectResponse) GetProjectIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProjectId, true
+func (o *GetProjectResponse) GetProjectIdOk() (ret GetProjectResponseGetProjectIdRetType, ok bool) {
+	return getGetProjectResponseGetProjectIdAttributeTypeOk(o.ProjectId)
 }
 
 // SetProjectId sets field value
-func (o *GetProjectResponse) SetProjectId(v *string) {
-	o.ProjectId = v
+func (o *GetProjectResponse) SetProjectId(v GetProjectResponseGetProjectIdRetType) {
+	setGetProjectResponseGetProjectIdAttributeType(&o.ProjectId, v)
 }
 
 // GetUpdateTime returns the UpdateTime field value
-func (o *GetProjectResponse) GetUpdateTime() *time.Time {
-	if o == nil || IsNil(o.UpdateTime) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.UpdateTime
+func (o *GetProjectResponse) GetUpdateTime() (ret GetProjectResponseGetUpdateTimeRetType) {
+	ret, _ = o.GetUpdateTimeOk()
+	return ret
 }
 
 // GetUpdateTimeOk returns a tuple with the UpdateTime field value
 // and a boolean to check if the value has been set.
-func (o *GetProjectResponse) GetUpdateTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UpdateTime, true
+func (o *GetProjectResponse) GetUpdateTimeOk() (ret GetProjectResponseGetUpdateTimeRetType, ok bool) {
+	return getGetProjectResponseGetUpdateTimeAttributeTypeOk(o.UpdateTime)
 }
 
 // SetUpdateTime sets field value
-func (o *GetProjectResponse) SetUpdateTime(v *time.Time) {
-	o.UpdateTime = v
+func (o *GetProjectResponse) SetUpdateTime(v GetProjectResponseGetUpdateTimeRetType) {
+	setGetProjectResponseGetUpdateTimeAttributeType(&o.UpdateTime, v)
 }
 
 func (o GetProjectResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containerId"] = o.ContainerId
-	toSerialize["creationTime"] = o.CreationTime
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getGetProjectResponseGetContainerIdAttributeTypeOk(o.ContainerId); ok {
+		toSerialize["ContainerId"] = val
 	}
-	toSerialize["lifecycleState"] = o.LifecycleState
-	toSerialize["name"] = o.Name
-	toSerialize["parent"] = o.Parent
-	if !IsNil(o.Parents) {
-		toSerialize["parents"] = o.Parents
+	if val, ok := getGetProjectResponseGetCreationTimeAttributeTypeOk(o.CreationTime); ok {
+		toSerialize["CreationTime"] = val
 	}
-	toSerialize["projectId"] = o.ProjectId
-	toSerialize["updateTime"] = o.UpdateTime
+	if val, ok := getGetProjectResponseGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
+	}
+	if val, ok := getGetProjectResponseGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
+		toSerialize["LifecycleState"] = val
+	}
+	if val, ok := getGetProjectResponseGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getGetProjectResponseGetParentAttributeTypeOk(o.Parent); ok {
+		toSerialize["Parent"] = val
+	}
+	if val, ok := getGetProjectResponseGetParentsAttributeTypeOk(o.Parents); ok {
+		toSerialize["Parents"] = val
+	}
+	if val, ok := getGetProjectResponseGetProjectIdAttributeTypeOk(o.ProjectId); ok {
+		toSerialize["ProjectId"] = val
+	}
+	if val, ok := getGetProjectResponseGetUpdateTimeAttributeTypeOk(o.UpdateTime); ok {
+		toSerialize["UpdateTime"] = val
+	}
 	return toSerialize, nil
 }
 

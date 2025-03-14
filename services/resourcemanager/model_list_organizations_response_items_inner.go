@@ -18,27 +18,170 @@ import (
 // checks if the ListOrganizationsResponseItemsInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListOrganizationsResponseItemsInner{}
 
+/*
+	types and functions for containerId
+*/
+
+// isNotNullableString
+type ListOrganizationsResponseItemsInnerGetContainerIdAttributeType = *string
+
+func getListOrganizationsResponseItemsInnerGetContainerIdAttributeTypeOk(arg ListOrganizationsResponseItemsInnerGetContainerIdAttributeType) (ret ListOrganizationsResponseItemsInnerGetContainerIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseItemsInnerGetContainerIdAttributeType(arg *ListOrganizationsResponseItemsInnerGetContainerIdAttributeType, val ListOrganizationsResponseItemsInnerGetContainerIdRetType) {
+	*arg = &val
+}
+
+type ListOrganizationsResponseItemsInnerGetContainerIdArgType = string
+type ListOrganizationsResponseItemsInnerGetContainerIdRetType = string
+
+/*
+	types and functions for creationTime
+*/
+
+// isDateTime
+type ListOrganizationsResponseItemsInnerGetCreationTimeAttributeType = *time.Time
+type ListOrganizationsResponseItemsInnerGetCreationTimeArgType = time.Time
+type ListOrganizationsResponseItemsInnerGetCreationTimeRetType = time.Time
+
+func getListOrganizationsResponseItemsInnerGetCreationTimeAttributeTypeOk(arg ListOrganizationsResponseItemsInnerGetCreationTimeAttributeType) (ret ListOrganizationsResponseItemsInnerGetCreationTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseItemsInnerGetCreationTimeAttributeType(arg *ListOrganizationsResponseItemsInnerGetCreationTimeAttributeType, val ListOrganizationsResponseItemsInnerGetCreationTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+type ListOrganizationsResponseItemsInnerGetLabelsAttributeType = *map[string]string
+type ListOrganizationsResponseItemsInnerGetLabelsArgType = map[string]string
+type ListOrganizationsResponseItemsInnerGetLabelsRetType = map[string]string
+
+func getListOrganizationsResponseItemsInnerGetLabelsAttributeTypeOk(arg ListOrganizationsResponseItemsInnerGetLabelsAttributeType) (ret ListOrganizationsResponseItemsInnerGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseItemsInnerGetLabelsAttributeType(arg *ListOrganizationsResponseItemsInnerGetLabelsAttributeType, val ListOrganizationsResponseItemsInnerGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for lifecycleState
+*/
+
+// isEnumRef
+type ListOrganizationsResponseItemsInnerGetLifecycleStateAttributeType = *LifecycleState
+type ListOrganizationsResponseItemsInnerGetLifecycleStateArgType = LifecycleState
+type ListOrganizationsResponseItemsInnerGetLifecycleStateRetType = LifecycleState
+
+func getListOrganizationsResponseItemsInnerGetLifecycleStateAttributeTypeOk(arg ListOrganizationsResponseItemsInnerGetLifecycleStateAttributeType) (ret ListOrganizationsResponseItemsInnerGetLifecycleStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseItemsInnerGetLifecycleStateAttributeType(arg *ListOrganizationsResponseItemsInnerGetLifecycleStateAttributeType, val ListOrganizationsResponseItemsInnerGetLifecycleStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ListOrganizationsResponseItemsInnerGetNameAttributeType = *string
+
+func getListOrganizationsResponseItemsInnerGetNameAttributeTypeOk(arg ListOrganizationsResponseItemsInnerGetNameAttributeType) (ret ListOrganizationsResponseItemsInnerGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseItemsInnerGetNameAttributeType(arg *ListOrganizationsResponseItemsInnerGetNameAttributeType, val ListOrganizationsResponseItemsInnerGetNameRetType) {
+	*arg = &val
+}
+
+type ListOrganizationsResponseItemsInnerGetNameArgType = string
+type ListOrganizationsResponseItemsInnerGetNameRetType = string
+
+/*
+	types and functions for organizationId
+*/
+
+// isNotNullableString
+type ListOrganizationsResponseItemsInnerGetOrganizationIdAttributeType = *string
+
+func getListOrganizationsResponseItemsInnerGetOrganizationIdAttributeTypeOk(arg ListOrganizationsResponseItemsInnerGetOrganizationIdAttributeType) (ret ListOrganizationsResponseItemsInnerGetOrganizationIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseItemsInnerGetOrganizationIdAttributeType(arg *ListOrganizationsResponseItemsInnerGetOrganizationIdAttributeType, val ListOrganizationsResponseItemsInnerGetOrganizationIdRetType) {
+	*arg = &val
+}
+
+type ListOrganizationsResponseItemsInnerGetOrganizationIdArgType = string
+type ListOrganizationsResponseItemsInnerGetOrganizationIdRetType = string
+
+/*
+	types and functions for updateTime
+*/
+
+// isDateTime
+type ListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType = *time.Time
+type ListOrganizationsResponseItemsInnerGetUpdateTimeArgType = time.Time
+type ListOrganizationsResponseItemsInnerGetUpdateTimeRetType = time.Time
+
+func getListOrganizationsResponseItemsInnerGetUpdateTimeAttributeTypeOk(arg ListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType) (ret ListOrganizationsResponseItemsInnerGetUpdateTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType(arg *ListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType, val ListOrganizationsResponseItemsInnerGetUpdateTimeRetType) {
+	*arg = &val
+}
+
 // ListOrganizationsResponseItemsInner struct for ListOrganizationsResponseItemsInner
 type ListOrganizationsResponseItemsInner struct {
 	// Globally unique, user-friendly identifier.
 	// REQUIRED
-	ContainerId *string `json:"containerId"`
+	ContainerId ListOrganizationsResponseItemsInnerGetContainerIdAttributeType `json:"containerId"`
 	// Timestamp at which the organization was created.
 	// REQUIRED
-	CreationTime *time.Time `json:"creationTime"`
+	CreationTime ListOrganizationsResponseItemsInnerGetCreationTimeAttributeType `json:"creationTime"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
-	Labels *map[string]string `json:"labels,omitempty"`
+	Labels ListOrganizationsResponseItemsInnerGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	LifecycleState *LifecycleState `json:"lifecycleState"`
+	LifecycleState ListOrganizationsResponseItemsInnerGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// Name of the organization.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name ListOrganizationsResponseItemsInnerGetNameAttributeType `json:"name"`
 	// Globally unique, organization identifier.
 	// REQUIRED
-	OrganizationId *string `json:"organizationId"`
+	OrganizationId ListOrganizationsResponseItemsInnerGetOrganizationIdAttributeType `json:"organizationId"`
 	// Timestamp at which the organization was last modified.
 	// REQUIRED
-	UpdateTime *time.Time `json:"updateTime"`
+	UpdateTime ListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType `json:"updateTime"`
 }
 
 type _ListOrganizationsResponseItemsInner ListOrganizationsResponseItemsInner
@@ -47,14 +190,14 @@ type _ListOrganizationsResponseItemsInner ListOrganizationsResponseItemsInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOrganizationsResponseItemsInner(containerId *string, creationTime *time.Time, lifecycleState *LifecycleState, name *string, organizationId *string, updateTime *time.Time) *ListOrganizationsResponseItemsInner {
+func NewListOrganizationsResponseItemsInner(containerId ListOrganizationsResponseItemsInnerGetContainerIdArgType, creationTime ListOrganizationsResponseItemsInnerGetCreationTimeArgType, lifecycleState ListOrganizationsResponseItemsInnerGetLifecycleStateArgType, name ListOrganizationsResponseItemsInnerGetNameArgType, organizationId ListOrganizationsResponseItemsInnerGetOrganizationIdArgType, updateTime ListOrganizationsResponseItemsInnerGetUpdateTimeArgType) *ListOrganizationsResponseItemsInner {
 	this := ListOrganizationsResponseItemsInner{}
-	this.ContainerId = containerId
-	this.CreationTime = creationTime
-	this.LifecycleState = lifecycleState
-	this.Name = name
-	this.OrganizationId = organizationId
-	this.UpdateTime = updateTime
+	setListOrganizationsResponseItemsInnerGetContainerIdAttributeType(&this.ContainerId, containerId)
+	setListOrganizationsResponseItemsInnerGetCreationTimeAttributeType(&this.CreationTime, creationTime)
+	setListOrganizationsResponseItemsInnerGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
+	setListOrganizationsResponseItemsInnerGetNameAttributeType(&this.Name, name)
+	setListOrganizationsResponseItemsInnerGetOrganizationIdAttributeType(&this.OrganizationId, organizationId)
+	setListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType(&this.UpdateTime, updateTime)
 	return &this
 }
 
@@ -67,192 +210,153 @@ func NewListOrganizationsResponseItemsInnerWithDefaults() *ListOrganizationsResp
 }
 
 // GetContainerId returns the ContainerId field value
-func (o *ListOrganizationsResponseItemsInner) GetContainerId() *string {
-	if o == nil || IsNil(o.ContainerId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ContainerId
+func (o *ListOrganizationsResponseItemsInner) GetContainerId() (ret ListOrganizationsResponseItemsInnerGetContainerIdRetType) {
+	ret, _ = o.GetContainerIdOk()
+	return ret
 }
 
 // GetContainerIdOk returns a tuple with the ContainerId field value
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponseItemsInner) GetContainerIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContainerId, true
+func (o *ListOrganizationsResponseItemsInner) GetContainerIdOk() (ret ListOrganizationsResponseItemsInnerGetContainerIdRetType, ok bool) {
+	return getListOrganizationsResponseItemsInnerGetContainerIdAttributeTypeOk(o.ContainerId)
 }
 
 // SetContainerId sets field value
-func (o *ListOrganizationsResponseItemsInner) SetContainerId(v *string) {
-	o.ContainerId = v
+func (o *ListOrganizationsResponseItemsInner) SetContainerId(v ListOrganizationsResponseItemsInnerGetContainerIdRetType) {
+	setListOrganizationsResponseItemsInnerGetContainerIdAttributeType(&o.ContainerId, v)
 }
 
 // GetCreationTime returns the CreationTime field value
-func (o *ListOrganizationsResponseItemsInner) GetCreationTime() *time.Time {
-	if o == nil || IsNil(o.CreationTime) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.CreationTime
+func (o *ListOrganizationsResponseItemsInner) GetCreationTime() (ret ListOrganizationsResponseItemsInnerGetCreationTimeRetType) {
+	ret, _ = o.GetCreationTimeOk()
+	return ret
 }
 
 // GetCreationTimeOk returns a tuple with the CreationTime field value
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponseItemsInner) GetCreationTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreationTime, true
+func (o *ListOrganizationsResponseItemsInner) GetCreationTimeOk() (ret ListOrganizationsResponseItemsInnerGetCreationTimeRetType, ok bool) {
+	return getListOrganizationsResponseItemsInnerGetCreationTimeAttributeTypeOk(o.CreationTime)
 }
 
 // SetCreationTime sets field value
-func (o *ListOrganizationsResponseItemsInner) SetCreationTime(v *time.Time) {
-	o.CreationTime = v
+func (o *ListOrganizationsResponseItemsInner) SetCreationTime(v ListOrganizationsResponseItemsInnerGetCreationTimeRetType) {
+	setListOrganizationsResponseItemsInnerGetCreationTimeAttributeType(&o.CreationTime, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *ListOrganizationsResponseItemsInner) GetLabels() *map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Labels
+func (o *ListOrganizationsResponseItemsInner) GetLabels() (res ListOrganizationsResponseItemsInnerGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponseItemsInner) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *ListOrganizationsResponseItemsInner) GetLabelsOk() (ret ListOrganizationsResponseItemsInnerGetLabelsRetType, ok bool) {
+	return getListOrganizationsResponseItemsInnerGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *ListOrganizationsResponseItemsInner) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *ListOrganizationsResponseItemsInner) SetLabels(v *map[string]string) {
-	o.Labels = v
+func (o *ListOrganizationsResponseItemsInner) SetLabels(v ListOrganizationsResponseItemsInnerGetLabelsRetType) {
+	setListOrganizationsResponseItemsInnerGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetLifecycleState returns the LifecycleState field value
-func (o *ListOrganizationsResponseItemsInner) GetLifecycleState() *LifecycleState {
-	if o == nil || IsNil(o.LifecycleState) {
-		var ret *LifecycleState
-		return ret
-	}
-
-	return o.LifecycleState
+func (o *ListOrganizationsResponseItemsInner) GetLifecycleState() (ret ListOrganizationsResponseItemsInnerGetLifecycleStateRetType) {
+	ret, _ = o.GetLifecycleStateOk()
+	return ret
 }
 
 // GetLifecycleStateOk returns a tuple with the LifecycleState field value
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponseItemsInner) GetLifecycleStateOk() (*LifecycleState, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LifecycleState, true
+func (o *ListOrganizationsResponseItemsInner) GetLifecycleStateOk() (ret ListOrganizationsResponseItemsInnerGetLifecycleStateRetType, ok bool) {
+	return getListOrganizationsResponseItemsInnerGetLifecycleStateAttributeTypeOk(o.LifecycleState)
 }
 
 // SetLifecycleState sets field value
-func (o *ListOrganizationsResponseItemsInner) SetLifecycleState(v *LifecycleState) {
-	o.LifecycleState = v
+func (o *ListOrganizationsResponseItemsInner) SetLifecycleState(v ListOrganizationsResponseItemsInnerGetLifecycleStateRetType) {
+	setListOrganizationsResponseItemsInnerGetLifecycleStateAttributeType(&o.LifecycleState, v)
 }
 
 // GetName returns the Name field value
-func (o *ListOrganizationsResponseItemsInner) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *ListOrganizationsResponseItemsInner) GetName() (ret ListOrganizationsResponseItemsInnerGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponseItemsInner) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *ListOrganizationsResponseItemsInner) GetNameOk() (ret ListOrganizationsResponseItemsInnerGetNameRetType, ok bool) {
+	return getListOrganizationsResponseItemsInnerGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *ListOrganizationsResponseItemsInner) SetName(v *string) {
-	o.Name = v
+func (o *ListOrganizationsResponseItemsInner) SetName(v ListOrganizationsResponseItemsInnerGetNameRetType) {
+	setListOrganizationsResponseItemsInnerGetNameAttributeType(&o.Name, v)
 }
 
 // GetOrganizationId returns the OrganizationId field value
-func (o *ListOrganizationsResponseItemsInner) GetOrganizationId() *string {
-	if o == nil || IsNil(o.OrganizationId) {
-		var ret *string
-		return ret
-	}
-
-	return o.OrganizationId
+func (o *ListOrganizationsResponseItemsInner) GetOrganizationId() (ret ListOrganizationsResponseItemsInnerGetOrganizationIdRetType) {
+	ret, _ = o.GetOrganizationIdOk()
+	return ret
 }
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponseItemsInner) GetOrganizationIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OrganizationId, true
+func (o *ListOrganizationsResponseItemsInner) GetOrganizationIdOk() (ret ListOrganizationsResponseItemsInnerGetOrganizationIdRetType, ok bool) {
+	return getListOrganizationsResponseItemsInnerGetOrganizationIdAttributeTypeOk(o.OrganizationId)
 }
 
 // SetOrganizationId sets field value
-func (o *ListOrganizationsResponseItemsInner) SetOrganizationId(v *string) {
-	o.OrganizationId = v
+func (o *ListOrganizationsResponseItemsInner) SetOrganizationId(v ListOrganizationsResponseItemsInnerGetOrganizationIdRetType) {
+	setListOrganizationsResponseItemsInnerGetOrganizationIdAttributeType(&o.OrganizationId, v)
 }
 
 // GetUpdateTime returns the UpdateTime field value
-func (o *ListOrganizationsResponseItemsInner) GetUpdateTime() *time.Time {
-	if o == nil || IsNil(o.UpdateTime) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.UpdateTime
+func (o *ListOrganizationsResponseItemsInner) GetUpdateTime() (ret ListOrganizationsResponseItemsInnerGetUpdateTimeRetType) {
+	ret, _ = o.GetUpdateTimeOk()
+	return ret
 }
 
 // GetUpdateTimeOk returns a tuple with the UpdateTime field value
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponseItemsInner) GetUpdateTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UpdateTime, true
+func (o *ListOrganizationsResponseItemsInner) GetUpdateTimeOk() (ret ListOrganizationsResponseItemsInnerGetUpdateTimeRetType, ok bool) {
+	return getListOrganizationsResponseItemsInnerGetUpdateTimeAttributeTypeOk(o.UpdateTime)
 }
 
 // SetUpdateTime sets field value
-func (o *ListOrganizationsResponseItemsInner) SetUpdateTime(v *time.Time) {
-	o.UpdateTime = v
+func (o *ListOrganizationsResponseItemsInner) SetUpdateTime(v ListOrganizationsResponseItemsInnerGetUpdateTimeRetType) {
+	setListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType(&o.UpdateTime, v)
 }
 
 func (o ListOrganizationsResponseItemsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containerId"] = o.ContainerId
-	toSerialize["creationTime"] = o.CreationTime
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getListOrganizationsResponseItemsInnerGetContainerIdAttributeTypeOk(o.ContainerId); ok {
+		toSerialize["ContainerId"] = val
 	}
-	toSerialize["lifecycleState"] = o.LifecycleState
-	toSerialize["name"] = o.Name
-	toSerialize["organizationId"] = o.OrganizationId
-	toSerialize["updateTime"] = o.UpdateTime
+	if val, ok := getListOrganizationsResponseItemsInnerGetCreationTimeAttributeTypeOk(o.CreationTime); ok {
+		toSerialize["CreationTime"] = val
+	}
+	if val, ok := getListOrganizationsResponseItemsInnerGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
+	}
+	if val, ok := getListOrganizationsResponseItemsInnerGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
+		toSerialize["LifecycleState"] = val
+	}
+	if val, ok := getListOrganizationsResponseItemsInnerGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getListOrganizationsResponseItemsInnerGetOrganizationIdAttributeTypeOk(o.OrganizationId); ok {
+		toSerialize["OrganizationId"] = val
+	}
+	if val, ok := getListOrganizationsResponseItemsInnerGetUpdateTimeAttributeTypeOk(o.UpdateTime); ok {
+		toSerialize["UpdateTime"] = val
+	}
 	return toSerialize, nil
 }
 
