@@ -17,11 +17,31 @@ import (
 // checks if the NICListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NICListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type NICListResponseGetItemsAttributeType = *[]NIC
+type NICListResponseGetItemsArgType = []NIC
+type NICListResponseGetItemsRetType = []NIC
+
+func getNICListResponseGetItemsAttributeTypeOk(arg NICListResponseGetItemsAttributeType) (ret NICListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNICListResponseGetItemsAttributeType(arg *NICListResponseGetItemsAttributeType, val NICListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // NICListResponse NIC list response.
 type NICListResponse struct {
 	// A list of network interfaces.
 	// REQUIRED
-	Items *[]NIC `json:"items"`
+	Items NICListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _NICListResponse NICListResponse
@@ -30,9 +50,9 @@ type _NICListResponse NICListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNICListResponse(items *[]NIC) *NICListResponse {
+func NewNICListResponse(items NICListResponseGetItemsArgType) *NICListResponse {
 	this := NICListResponse{}
-	this.Items = items
+	setNICListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewNICListResponseWithDefaults() *NICListResponse {
 }
 
 // GetItems returns the Items field value
-func (o *NICListResponse) GetItems() *[]NIC {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]NIC
-		return ret
-	}
-
-	return o.Items
+func (o *NICListResponse) GetItems() (ret NICListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *NICListResponse) GetItemsOk() (*[]NIC, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *NICListResponse) GetItemsOk() (ret NICListResponseGetItemsRetType, ok bool) {
+	return getNICListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *NICListResponse) SetItems(v *[]NIC) {
-	o.Items = v
+func (o *NICListResponse) SetItems(v NICListResponseGetItemsRetType) {
+	setNICListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o NICListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getNICListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 
