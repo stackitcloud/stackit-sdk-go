@@ -17,11 +17,52 @@ import (
 // checks if the CreateTokenResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateTokenResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type CreateTokenResponseGetMessageAttributeType = *string
+
+func getCreateTokenResponseGetMessageAttributeTypeOk(arg CreateTokenResponseGetMessageAttributeType) (ret CreateTokenResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateTokenResponseGetMessageAttributeType(arg *CreateTokenResponseGetMessageAttributeType, val CreateTokenResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type CreateTokenResponseGetMessageArgType = string
+type CreateTokenResponseGetMessageRetType = string
+
+/*
+	types and functions for token
+*/
+
+// isModel
+type CreateTokenResponseGetTokenAttributeType = *TokenCreated
+type CreateTokenResponseGetTokenArgType = TokenCreated
+type CreateTokenResponseGetTokenRetType = TokenCreated
+
+func getCreateTokenResponseGetTokenAttributeTypeOk(arg CreateTokenResponseGetTokenAttributeType) (ret CreateTokenResponseGetTokenRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateTokenResponseGetTokenAttributeType(arg *CreateTokenResponseGetTokenAttributeType, val CreateTokenResponseGetTokenRetType) {
+	*arg = &val
+}
+
 // CreateTokenResponse struct for CreateTokenResponse
 type CreateTokenResponse struct {
-	Message *string `json:"message,omitempty"`
+	Message CreateTokenResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Token *TokenCreated `json:"token"`
+	Token CreateTokenResponseGetTokenAttributeType `json:"token"`
 }
 
 type _CreateTokenResponse CreateTokenResponse
@@ -30,9 +71,9 @@ type _CreateTokenResponse CreateTokenResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTokenResponse(token *TokenCreated) *CreateTokenResponse {
+func NewCreateTokenResponse(token CreateTokenResponseGetTokenArgType) *CreateTokenResponse {
 	this := CreateTokenResponse{}
-	this.Token = token
+	setCreateTokenResponseGetTokenAttributeType(&this.Token, token)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewCreateTokenResponseWithDefaults() *CreateTokenResponse {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *CreateTokenResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *CreateTokenResponse) GetMessage() (res CreateTokenResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTokenResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *CreateTokenResponse) GetMessageOk() (ret CreateTokenResponseGetMessageRetType, ok bool) {
+	return getCreateTokenResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *CreateTokenResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *CreateTokenResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *CreateTokenResponse) SetMessage(v CreateTokenResponseGetMessageRetType) {
+	setCreateTokenResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetToken returns the Token field value
-func (o *CreateTokenResponse) GetToken() *TokenCreated {
-	if o == nil || IsNil(o.Token) {
-		var ret *TokenCreated
-		return ret
-	}
-
-	return o.Token
+func (o *CreateTokenResponse) GetToken() (ret CreateTokenResponseGetTokenRetType) {
+	ret, _ = o.GetTokenOk()
+	return ret
 }
 
 // GetTokenOk returns a tuple with the Token field value
 // and a boolean to check if the value has been set.
-func (o *CreateTokenResponse) GetTokenOk() (*TokenCreated, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Token, true
+func (o *CreateTokenResponse) GetTokenOk() (ret CreateTokenResponseGetTokenRetType, ok bool) {
+	return getCreateTokenResponseGetTokenAttributeTypeOk(o.Token)
 }
 
 // SetToken sets field value
-func (o *CreateTokenResponse) SetToken(v *TokenCreated) {
-	o.Token = v
+func (o *CreateTokenResponse) SetToken(v CreateTokenResponseGetTokenRetType) {
+	setCreateTokenResponseGetTokenAttributeType(&o.Token, v)
 }
 
 func (o CreateTokenResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getCreateTokenResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	toSerialize["token"] = o.Token
+	if val, ok := getCreateTokenResponseGetTokenAttributeTypeOk(o.Token); ok {
+		toSerialize["Token"] = val
+	}
 	return toSerialize, nil
 }
 

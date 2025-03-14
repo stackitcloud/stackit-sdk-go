@@ -17,10 +17,52 @@ import (
 // checks if the ErrorMessageResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ErrorMessageResponse{}
 
+/*
+	types and functions for error
+*/
+
+// isNotNullableString
+type ErrorMessageResponseGetErrorAttributeType = *string
+
+func getErrorMessageResponseGetErrorAttributeTypeOk(arg ErrorMessageResponseGetErrorAttributeType) (ret ErrorMessageResponseGetErrorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorMessageResponseGetErrorAttributeType(arg *ErrorMessageResponseGetErrorAttributeType, val ErrorMessageResponseGetErrorRetType) {
+	*arg = &val
+}
+
+type ErrorMessageResponseGetErrorArgType = string
+type ErrorMessageResponseGetErrorRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ErrorMessageResponseGetMessageAttributeType = *string
+
+func getErrorMessageResponseGetMessageAttributeTypeOk(arg ErrorMessageResponseGetMessageAttributeType) (ret ErrorMessageResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorMessageResponseGetMessageAttributeType(arg *ErrorMessageResponseGetMessageAttributeType, val ErrorMessageResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ErrorMessageResponseGetMessageArgType = string
+type ErrorMessageResponseGetMessageRetType = string
+
 // ErrorMessageResponse struct for ErrorMessageResponse
 type ErrorMessageResponse struct {
-	Error   *string `json:"error,omitempty"`
-	Message *string `json:"message,omitempty"`
+	Error   ErrorMessageResponseGetErrorAttributeType   `json:"error,omitempty"`
+	Message ErrorMessageResponseGetMessageAttributeType `json:"message,omitempty"`
 }
 
 // NewErrorMessageResponse instantiates a new ErrorMessageResponse object
@@ -41,76 +83,58 @@ func NewErrorMessageResponseWithDefaults() *ErrorMessageResponse {
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *ErrorMessageResponse) GetError() *string {
-	if o == nil || IsNil(o.Error) {
-		var ret *string
-		return ret
-	}
-	return o.Error
+func (o *ErrorMessageResponse) GetError() (res ErrorMessageResponseGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorMessageResponse) GetErrorOk() (*string, bool) {
-	if o == nil || IsNil(o.Error) {
-		return nil, false
-	}
-	return o.Error, true
+func (o *ErrorMessageResponse) GetErrorOk() (ret ErrorMessageResponseGetErrorRetType, ok bool) {
+	return getErrorMessageResponseGetErrorAttributeTypeOk(o.Error)
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *ErrorMessageResponse) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorOk()
+	return ok
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
-func (o *ErrorMessageResponse) SetError(v *string) {
-	o.Error = v
+func (o *ErrorMessageResponse) SetError(v ErrorMessageResponseGetErrorRetType) {
+	setErrorMessageResponseGetErrorAttributeType(&o.Error, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ErrorMessageResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *ErrorMessageResponse) GetMessage() (res ErrorMessageResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorMessageResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ErrorMessageResponse) GetMessageOk() (ret ErrorMessageResponseGetMessageRetType, ok bool) {
+	return getErrorMessageResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ErrorMessageResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ErrorMessageResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ErrorMessageResponse) SetMessage(v ErrorMessageResponseGetMessageRetType) {
+	setErrorMessageResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o ErrorMessageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Error) {
-		toSerialize["error"] = o.Error
+	if val, ok := getErrorMessageResponseGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
 	}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getErrorMessageResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
 }

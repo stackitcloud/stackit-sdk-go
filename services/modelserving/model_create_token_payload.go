@@ -17,13 +17,76 @@ import (
 // checks if the CreateTokenPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateTokenPayload{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type CreateTokenPayloadGetDescriptionAttributeType = *string
+
+func getCreateTokenPayloadGetDescriptionAttributeTypeOk(arg CreateTokenPayloadGetDescriptionAttributeType) (ret CreateTokenPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateTokenPayloadGetDescriptionAttributeType(arg *CreateTokenPayloadGetDescriptionAttributeType, val CreateTokenPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+type CreateTokenPayloadGetDescriptionArgType = string
+type CreateTokenPayloadGetDescriptionRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateTokenPayloadGetNameAttributeType = *string
+
+func getCreateTokenPayloadGetNameAttributeTypeOk(arg CreateTokenPayloadGetNameAttributeType) (ret CreateTokenPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateTokenPayloadGetNameAttributeType(arg *CreateTokenPayloadGetNameAttributeType, val CreateTokenPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateTokenPayloadGetNameArgType = string
+type CreateTokenPayloadGetNameRetType = string
+
+/*
+	types and functions for ttlDuration
+*/
+
+// isNotNullableString
+type CreateTokenPayloadGetTtlDurationAttributeType = *string
+
+func getCreateTokenPayloadGetTtlDurationAttributeTypeOk(arg CreateTokenPayloadGetTtlDurationAttributeType) (ret CreateTokenPayloadGetTtlDurationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateTokenPayloadGetTtlDurationAttributeType(arg *CreateTokenPayloadGetTtlDurationAttributeType, val CreateTokenPayloadGetTtlDurationRetType) {
+	*arg = &val
+}
+
+type CreateTokenPayloadGetTtlDurationArgType = string
+type CreateTokenPayloadGetTtlDurationRetType = string
+
 // CreateTokenPayload struct for CreateTokenPayload
 type CreateTokenPayload struct {
-	Description *string `json:"description,omitempty"`
+	Description CreateTokenPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CreateTokenPayloadGetNameAttributeType `json:"name"`
 	// time to live duration. Must be valid duration string. If not set the token will never expire.
-	TtlDuration *string `json:"ttlDuration,omitempty"`
+	TtlDuration CreateTokenPayloadGetTtlDurationAttributeType `json:"ttlDuration,omitempty"`
 }
 
 type _CreateTokenPayload CreateTokenPayload
@@ -32,9 +95,9 @@ type _CreateTokenPayload CreateTokenPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTokenPayload(name *string) *CreateTokenPayload {
+func NewCreateTokenPayload(name CreateTokenPayloadGetNameArgType) *CreateTokenPayload {
 	this := CreateTokenPayload{}
-	this.Name = name
+	setCreateTokenPayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -47,101 +110,78 @@ func NewCreateTokenPayloadWithDefaults() *CreateTokenPayload {
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *CreateTokenPayload) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *CreateTokenPayload) GetDescription() (res CreateTokenPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTokenPayload) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *CreateTokenPayload) GetDescriptionOk() (ret CreateTokenPayloadGetDescriptionRetType, ok bool) {
+	return getCreateTokenPayloadGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateTokenPayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *CreateTokenPayload) SetDescription(v *string) {
-	o.Description = v
+func (o *CreateTokenPayload) SetDescription(v CreateTokenPayloadGetDescriptionRetType) {
+	setCreateTokenPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateTokenPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateTokenPayload) GetName() (ret CreateTokenPayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateTokenPayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateTokenPayload) GetNameOk() (ret CreateTokenPayloadGetNameRetType, ok bool) {
+	return getCreateTokenPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateTokenPayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateTokenPayload) SetName(v CreateTokenPayloadGetNameRetType) {
+	setCreateTokenPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetTtlDuration returns the TtlDuration field value if set, zero value otherwise.
-func (o *CreateTokenPayload) GetTtlDuration() *string {
-	if o == nil || IsNil(o.TtlDuration) {
-		var ret *string
-		return ret
-	}
-	return o.TtlDuration
+func (o *CreateTokenPayload) GetTtlDuration() (res CreateTokenPayloadGetTtlDurationRetType) {
+	res, _ = o.GetTtlDurationOk()
+	return
 }
 
 // GetTtlDurationOk returns a tuple with the TtlDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTokenPayload) GetTtlDurationOk() (*string, bool) {
-	if o == nil || IsNil(o.TtlDuration) {
-		return nil, false
-	}
-	return o.TtlDuration, true
+func (o *CreateTokenPayload) GetTtlDurationOk() (ret CreateTokenPayloadGetTtlDurationRetType, ok bool) {
+	return getCreateTokenPayloadGetTtlDurationAttributeTypeOk(o.TtlDuration)
 }
 
 // HasTtlDuration returns a boolean if a field has been set.
 func (o *CreateTokenPayload) HasTtlDuration() bool {
-	if o != nil && !IsNil(o.TtlDuration) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTtlDurationOk()
+	return ok
 }
 
 // SetTtlDuration gets a reference to the given string and assigns it to the TtlDuration field.
-func (o *CreateTokenPayload) SetTtlDuration(v *string) {
-	o.TtlDuration = v
+func (o *CreateTokenPayload) SetTtlDuration(v CreateTokenPayloadGetTtlDurationRetType) {
+	setCreateTokenPayloadGetTtlDurationAttributeType(&o.TtlDuration, v)
 }
 
 func (o CreateTokenPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getCreateTokenPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.TtlDuration) {
-		toSerialize["ttlDuration"] = o.TtlDuration
+	if val, ok := getCreateTokenPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getCreateTokenPayloadGetTtlDurationAttributeTypeOk(o.TtlDuration); ok {
+		toSerialize["TtlDuration"] = val
 	}
 	return toSerialize, nil
 }
