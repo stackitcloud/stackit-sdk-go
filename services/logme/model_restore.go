@@ -17,17 +17,120 @@ import (
 // checks if the Restore type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Restore{}
 
+/*
+	types and functions for backup_id
+*/
+
+// isInteger
+type RestoreGetBackupIdAttributeType = *int64
+type RestoreGetBackupIdArgType = int64
+type RestoreGetBackupIdRetType = int64
+
+func getRestoreGetBackupIdAttributeTypeOk(arg RestoreGetBackupIdAttributeType) (ret RestoreGetBackupIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreGetBackupIdAttributeType(arg *RestoreGetBackupIdAttributeType, val RestoreGetBackupIdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for finished_at
+*/
+
+// isNotNullableString
+type RestoreGetFinishedAtAttributeType = *string
+
+func getRestoreGetFinishedAtAttributeTypeOk(arg RestoreGetFinishedAtAttributeType) (ret RestoreGetFinishedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreGetFinishedAtAttributeType(arg *RestoreGetFinishedAtAttributeType, val RestoreGetFinishedAtRetType) {
+	*arg = &val
+}
+
+type RestoreGetFinishedAtArgType = string
+type RestoreGetFinishedAtRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isInteger
+type RestoreGetIdAttributeType = *int64
+type RestoreGetIdArgType = int64
+type RestoreGetIdRetType = int64
+
+func getRestoreGetIdAttributeTypeOk(arg RestoreGetIdAttributeType) (ret RestoreGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreGetIdAttributeType(arg *RestoreGetIdAttributeType, val RestoreGetIdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type RestoreGetStatusAttributeType = *string
+
+func getRestoreGetStatusAttributeTypeOk(arg RestoreGetStatusAttributeType) (ret RestoreGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreGetStatusAttributeType(arg *RestoreGetStatusAttributeType, val RestoreGetStatusRetType) {
+	*arg = &val
+}
+
+type RestoreGetStatusArgType = string
+type RestoreGetStatusRetType = string
+
+/*
+	types and functions for triggered_at
+*/
+
+// isNotNullableString
+type RestoreGetTriggeredAtAttributeType = *string
+
+func getRestoreGetTriggeredAtAttributeTypeOk(arg RestoreGetTriggeredAtAttributeType) (ret RestoreGetTriggeredAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreGetTriggeredAtAttributeType(arg *RestoreGetTriggeredAtAttributeType, val RestoreGetTriggeredAtRetType) {
+	*arg = &val
+}
+
+type RestoreGetTriggeredAtArgType = string
+type RestoreGetTriggeredAtRetType = string
+
 // Restore struct for Restore
 type Restore struct {
 	// REQUIRED
-	BackupId *int64 `json:"backup_id"`
+	BackupId RestoreGetBackupIdAttributeType `json:"backup_id"`
 	// REQUIRED
-	FinishedAt *string `json:"finished_at"`
+	FinishedAt RestoreGetFinishedAtAttributeType `json:"finished_at"`
 	// REQUIRED
-	Id *int64 `json:"id"`
+	Id RestoreGetIdAttributeType `json:"id"`
 	// REQUIRED
-	Status      *string `json:"status"`
-	TriggeredAt *string `json:"triggered_at,omitempty"`
+	Status      RestoreGetStatusAttributeType      `json:"status"`
+	TriggeredAt RestoreGetTriggeredAtAttributeType `json:"triggered_at,omitempty"`
 }
 
 type _Restore Restore
@@ -36,12 +139,12 @@ type _Restore Restore
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRestore(backupId *int64, finishedAt *string, id *int64, status *string) *Restore {
+func NewRestore(backupId RestoreGetBackupIdArgType, finishedAt RestoreGetFinishedAtArgType, id RestoreGetIdArgType, status RestoreGetStatusArgType) *Restore {
 	this := Restore{}
-	this.BackupId = backupId
-	this.FinishedAt = finishedAt
-	this.Id = id
-	this.Status = status
+	setRestoreGetBackupIdAttributeType(&this.BackupId, backupId)
+	setRestoreGetFinishedAtAttributeType(&this.FinishedAt, finishedAt)
+	setRestoreGetIdAttributeType(&this.Id, id)
+	setRestoreGetStatusAttributeType(&this.Status, status)
 	return &this
 }
 
@@ -54,141 +157,112 @@ func NewRestoreWithDefaults() *Restore {
 }
 
 // GetBackupId returns the BackupId field value
-func (o *Restore) GetBackupId() *int64 {
-	if o == nil || IsNil(o.BackupId) {
-		var ret *int64
-		return ret
-	}
-
-	return o.BackupId
+func (o *Restore) GetBackupId() (ret RestoreGetBackupIdRetType) {
+	ret, _ = o.GetBackupIdOk()
+	return ret
 }
 
 // GetBackupIdOk returns a tuple with the BackupId field value
 // and a boolean to check if the value has been set.
-func (o *Restore) GetBackupIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.BackupId, true
+func (o *Restore) GetBackupIdOk() (ret RestoreGetBackupIdRetType, ok bool) {
+	return getRestoreGetBackupIdAttributeTypeOk(o.BackupId)
 }
 
 // SetBackupId sets field value
-func (o *Restore) SetBackupId(v *int64) {
-	o.BackupId = v
+func (o *Restore) SetBackupId(v RestoreGetBackupIdRetType) {
+	setRestoreGetBackupIdAttributeType(&o.BackupId, v)
 }
 
 // GetFinishedAt returns the FinishedAt field value
-func (o *Restore) GetFinishedAt() *string {
-	if o == nil || IsNil(o.FinishedAt) {
-		var ret *string
-		return ret
-	}
-
-	return o.FinishedAt
+func (o *Restore) GetFinishedAt() (ret RestoreGetFinishedAtRetType) {
+	ret, _ = o.GetFinishedAtOk()
+	return ret
 }
 
 // GetFinishedAtOk returns a tuple with the FinishedAt field value
 // and a boolean to check if the value has been set.
-func (o *Restore) GetFinishedAtOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.FinishedAt, true
+func (o *Restore) GetFinishedAtOk() (ret RestoreGetFinishedAtRetType, ok bool) {
+	return getRestoreGetFinishedAtAttributeTypeOk(o.FinishedAt)
 }
 
 // SetFinishedAt sets field value
-func (o *Restore) SetFinishedAt(v *string) {
-	o.FinishedAt = v
+func (o *Restore) SetFinishedAt(v RestoreGetFinishedAtRetType) {
+	setRestoreGetFinishedAtAttributeType(&o.FinishedAt, v)
 }
 
 // GetId returns the Id field value
-func (o *Restore) GetId() *int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Id
+func (o *Restore) GetId() (ret RestoreGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Restore) GetIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Restore) GetIdOk() (ret RestoreGetIdRetType, ok bool) {
+	return getRestoreGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *Restore) SetId(v *int64) {
-	o.Id = v
+func (o *Restore) SetId(v RestoreGetIdRetType) {
+	setRestoreGetIdAttributeType(&o.Id, v)
 }
 
 // GetStatus returns the Status field value
-func (o *Restore) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-
-	return o.Status
+func (o *Restore) GetStatus() (ret RestoreGetStatusRetType) {
+	ret, _ = o.GetStatusOk()
+	return ret
 }
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *Restore) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Status, true
+func (o *Restore) GetStatusOk() (ret RestoreGetStatusRetType, ok bool) {
+	return getRestoreGetStatusAttributeTypeOk(o.Status)
 }
 
 // SetStatus sets field value
-func (o *Restore) SetStatus(v *string) {
-	o.Status = v
+func (o *Restore) SetStatus(v RestoreGetStatusRetType) {
+	setRestoreGetStatusAttributeType(&o.Status, v)
 }
 
 // GetTriggeredAt returns the TriggeredAt field value if set, zero value otherwise.
-func (o *Restore) GetTriggeredAt() *string {
-	if o == nil || IsNil(o.TriggeredAt) {
-		var ret *string
-		return ret
-	}
-	return o.TriggeredAt
+func (o *Restore) GetTriggeredAt() (res RestoreGetTriggeredAtRetType) {
+	res, _ = o.GetTriggeredAtOk()
+	return
 }
 
 // GetTriggeredAtOk returns a tuple with the TriggeredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Restore) GetTriggeredAtOk() (*string, bool) {
-	if o == nil || IsNil(o.TriggeredAt) {
-		return nil, false
-	}
-	return o.TriggeredAt, true
+func (o *Restore) GetTriggeredAtOk() (ret RestoreGetTriggeredAtRetType, ok bool) {
+	return getRestoreGetTriggeredAtAttributeTypeOk(o.TriggeredAt)
 }
 
 // HasTriggeredAt returns a boolean if a field has been set.
 func (o *Restore) HasTriggeredAt() bool {
-	if o != nil && !IsNil(o.TriggeredAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTriggeredAtOk()
+	return ok
 }
 
 // SetTriggeredAt gets a reference to the given string and assigns it to the TriggeredAt field.
-func (o *Restore) SetTriggeredAt(v *string) {
-	o.TriggeredAt = v
+func (o *Restore) SetTriggeredAt(v RestoreGetTriggeredAtRetType) {
+	setRestoreGetTriggeredAtAttributeType(&o.TriggeredAt, v)
 }
 
 func (o Restore) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["backup_id"] = o.BackupId
-	toSerialize["finished_at"] = o.FinishedAt
-	toSerialize["id"] = o.Id
-	toSerialize["status"] = o.Status
-	if !IsNil(o.TriggeredAt) {
-		toSerialize["triggered_at"] = o.TriggeredAt
+	if val, ok := getRestoreGetBackupIdAttributeTypeOk(o.BackupId); ok {
+		toSerialize["BackupId"] = val
+	}
+	if val, ok := getRestoreGetFinishedAtAttributeTypeOk(o.FinishedAt); ok {
+		toSerialize["FinishedAt"] = val
+	}
+	if val, ok := getRestoreGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getRestoreGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
+	}
+	if val, ok := getRestoreGetTriggeredAtAttributeTypeOk(o.TriggeredAt); ok {
+		toSerialize["TriggeredAt"] = val
 	}
 	return toSerialize, nil
 }
