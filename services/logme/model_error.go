@@ -17,12 +17,54 @@ import (
 // checks if the Error type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Error{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type ErrorGetDescriptionAttributeType = *string
+
+func getErrorGetDescriptionAttributeTypeOk(arg ErrorGetDescriptionAttributeType) (ret ErrorGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorGetDescriptionAttributeType(arg *ErrorGetDescriptionAttributeType, val ErrorGetDescriptionRetType) {
+	*arg = &val
+}
+
+type ErrorGetDescriptionArgType = string
+type ErrorGetDescriptionRetType = string
+
+/*
+	types and functions for error
+*/
+
+// isNotNullableString
+type ErrorGetErrorAttributeType = *string
+
+func getErrorGetErrorAttributeTypeOk(arg ErrorGetErrorAttributeType) (ret ErrorGetErrorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorGetErrorAttributeType(arg *ErrorGetErrorAttributeType, val ErrorGetErrorRetType) {
+	*arg = &val
+}
+
+type ErrorGetErrorArgType = string
+type ErrorGetErrorRetType = string
+
 // Error struct for Error
 type Error struct {
 	// REQUIRED
-	Description *string `json:"description"`
+	Description ErrorGetDescriptionAttributeType `json:"description"`
 	// REQUIRED
-	Error *string `json:"error"`
+	Error ErrorGetErrorAttributeType `json:"error"`
 }
 
 type _Error Error
@@ -31,10 +73,10 @@ type _Error Error
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewError(description *string, error_ *string) *Error {
+func NewError(description ErrorGetDescriptionArgType, error_ ErrorGetErrorArgType) *Error {
 	this := Error{}
-	this.Description = description
-	this.Error = error_
+	setErrorGetDescriptionAttributeType(&this.Description, description)
+	setErrorGetErrorAttributeType(&this.Error, error_)
 	return &this
 }
 
@@ -47,57 +89,47 @@ func NewErrorWithDefaults() *Error {
 }
 
 // GetDescription returns the Description field value
-func (o *Error) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *Error) GetDescription() (ret ErrorGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *Error) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *Error) GetDescriptionOk() (ret ErrorGetDescriptionRetType, ok bool) {
+	return getErrorGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *Error) SetDescription(v *string) {
-	o.Description = v
+func (o *Error) SetDescription(v ErrorGetDescriptionRetType) {
+	setErrorGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetError returns the Error field value
-func (o *Error) GetError() *string {
-	if o == nil || IsNil(o.Error) {
-		var ret *string
-		return ret
-	}
-
-	return o.Error
+func (o *Error) GetError() (ret ErrorGetErrorRetType) {
+	ret, _ = o.GetErrorOk()
+	return ret
 }
 
 // GetErrorOk returns a tuple with the Error field value
 // and a boolean to check if the value has been set.
-func (o *Error) GetErrorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Error, true
+func (o *Error) GetErrorOk() (ret ErrorGetErrorRetType, ok bool) {
+	return getErrorGetErrorAttributeTypeOk(o.Error)
 }
 
 // SetError sets field value
-func (o *Error) SetError(v *string) {
-	o.Error = v
+func (o *Error) SetError(v ErrorGetErrorRetType) {
+	setErrorGetErrorAttributeType(&o.Error, v)
 }
 
 func (o Error) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	toSerialize["error"] = o.Error
+	if val, ok := getErrorGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
+	if val, ok := getErrorGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
+	}
 	return toSerialize, nil
 }
 
