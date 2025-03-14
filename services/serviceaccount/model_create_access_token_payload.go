@@ -17,11 +17,31 @@ import (
 // checks if the CreateAccessTokenPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateAccessTokenPayload{}
 
+/*
+	types and functions for ttlDays
+*/
+
+// isInteger
+type CreateAccessTokenPayloadGetTtlDaysAttributeType = *int64
+type CreateAccessTokenPayloadGetTtlDaysArgType = int64
+type CreateAccessTokenPayloadGetTtlDaysRetType = int64
+
+func getCreateAccessTokenPayloadGetTtlDaysAttributeTypeOk(arg CreateAccessTokenPayloadGetTtlDaysAttributeType) (ret CreateAccessTokenPayloadGetTtlDaysRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAccessTokenPayloadGetTtlDaysAttributeType(arg *CreateAccessTokenPayloadGetTtlDaysAttributeType, val CreateAccessTokenPayloadGetTtlDaysRetType) {
+	*arg = &val
+}
+
 // CreateAccessTokenPayload struct for CreateAccessTokenPayload
 type CreateAccessTokenPayload struct {
 	// The duration in days for how long the new Access Token should be valid.
 	// REQUIRED
-	TtlDays *int64 `json:"ttlDays"`
+	TtlDays CreateAccessTokenPayloadGetTtlDaysAttributeType `json:"ttlDays"`
 }
 
 type _CreateAccessTokenPayload CreateAccessTokenPayload
@@ -30,9 +50,9 @@ type _CreateAccessTokenPayload CreateAccessTokenPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAccessTokenPayload(ttlDays *int64) *CreateAccessTokenPayload {
+func NewCreateAccessTokenPayload(ttlDays CreateAccessTokenPayloadGetTtlDaysArgType) *CreateAccessTokenPayload {
 	this := CreateAccessTokenPayload{}
-	this.TtlDays = ttlDays
+	setCreateAccessTokenPayloadGetTtlDaysAttributeType(&this.TtlDays, ttlDays)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewCreateAccessTokenPayloadWithDefaults() *CreateAccessTokenPayload {
 }
 
 // GetTtlDays returns the TtlDays field value
-func (o *CreateAccessTokenPayload) GetTtlDays() *int64 {
-	if o == nil || IsNil(o.TtlDays) {
-		var ret *int64
-		return ret
-	}
-
-	return o.TtlDays
+func (o *CreateAccessTokenPayload) GetTtlDays() (ret CreateAccessTokenPayloadGetTtlDaysRetType) {
+	ret, _ = o.GetTtlDaysOk()
+	return ret
 }
 
 // GetTtlDaysOk returns a tuple with the TtlDays field value
 // and a boolean to check if the value has been set.
-func (o *CreateAccessTokenPayload) GetTtlDaysOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TtlDays, true
+func (o *CreateAccessTokenPayload) GetTtlDaysOk() (ret CreateAccessTokenPayloadGetTtlDaysRetType, ok bool) {
+	return getCreateAccessTokenPayloadGetTtlDaysAttributeTypeOk(o.TtlDays)
 }
 
 // SetTtlDays sets field value
-func (o *CreateAccessTokenPayload) SetTtlDays(v *int64) {
-	o.TtlDays = v
+func (o *CreateAccessTokenPayload) SetTtlDays(v CreateAccessTokenPayloadGetTtlDaysRetType) {
+	setCreateAccessTokenPayloadGetTtlDaysAttributeType(&o.TtlDays, v)
 }
 
 func (o CreateAccessTokenPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["ttlDays"] = o.TtlDays
+	if val, ok := getCreateAccessTokenPayloadGetTtlDaysAttributeTypeOk(o.TtlDays); ok {
+		toSerialize["TtlDays"] = val
+	}
 	return toSerialize, nil
 }
 
