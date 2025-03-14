@@ -17,10 +17,30 @@ import (
 // checks if the HandlersInstancesSlowQueriesResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HandlersInstancesSlowQueriesResponse{}
 
+/*
+	types and functions for slowQueries
+*/
+
+// isArray
+type HandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeType = *[]SlowQuery
+type HandlersInstancesSlowQueriesResponseGetSlowQueriesArgType = []SlowQuery
+type HandlersInstancesSlowQueriesResponseGetSlowQueriesRetType = []SlowQuery
+
+func getHandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeTypeOk(arg HandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeType) (ret HandlersInstancesSlowQueriesResponseGetSlowQueriesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeType(arg *HandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeType, val HandlersInstancesSlowQueriesResponseGetSlowQueriesRetType) {
+	*arg = &val
+}
+
 // HandlersInstancesSlowQueriesResponse struct for HandlersInstancesSlowQueriesResponse
 type HandlersInstancesSlowQueriesResponse struct {
 	// A list of documents with information about slow queries as detected by the Performance Advisor.
-	SlowQueries *[]SlowQuery `json:"slowQueries,omitempty"`
+	SlowQueries HandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeType `json:"slowQueries,omitempty"`
 }
 
 // NewHandlersInstancesSlowQueriesResponse instantiates a new HandlersInstancesSlowQueriesResponse object
@@ -41,41 +61,32 @@ func NewHandlersInstancesSlowQueriesResponseWithDefaults() *HandlersInstancesSlo
 }
 
 // GetSlowQueries returns the SlowQueries field value if set, zero value otherwise.
-func (o *HandlersInstancesSlowQueriesResponse) GetSlowQueries() *[]SlowQuery {
-	if o == nil || IsNil(o.SlowQueries) {
-		var ret *[]SlowQuery
-		return ret
-	}
-	return o.SlowQueries
+func (o *HandlersInstancesSlowQueriesResponse) GetSlowQueries() (res HandlersInstancesSlowQueriesResponseGetSlowQueriesRetType) {
+	res, _ = o.GetSlowQueriesOk()
+	return
 }
 
 // GetSlowQueriesOk returns a tuple with the SlowQueries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInstancesSlowQueriesResponse) GetSlowQueriesOk() (*[]SlowQuery, bool) {
-	if o == nil || IsNil(o.SlowQueries) {
-		return nil, false
-	}
-	return o.SlowQueries, true
+func (o *HandlersInstancesSlowQueriesResponse) GetSlowQueriesOk() (ret HandlersInstancesSlowQueriesResponseGetSlowQueriesRetType, ok bool) {
+	return getHandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeTypeOk(o.SlowQueries)
 }
 
 // HasSlowQueries returns a boolean if a field has been set.
 func (o *HandlersInstancesSlowQueriesResponse) HasSlowQueries() bool {
-	if o != nil && !IsNil(o.SlowQueries) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSlowQueriesOk()
+	return ok
 }
 
 // SetSlowQueries gets a reference to the given []SlowQuery and assigns it to the SlowQueries field.
-func (o *HandlersInstancesSlowQueriesResponse) SetSlowQueries(v *[]SlowQuery) {
-	o.SlowQueries = v
+func (o *HandlersInstancesSlowQueriesResponse) SetSlowQueries(v HandlersInstancesSlowQueriesResponseGetSlowQueriesRetType) {
+	setHandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeType(&o.SlowQueries, v)
 }
 
 func (o HandlersInstancesSlowQueriesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.SlowQueries) {
-		toSerialize["slowQueries"] = o.SlowQueries
+	if val, ok := getHandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeTypeOk(o.SlowQueries); ok {
+		toSerialize["SlowQueries"] = val
 	}
 	return toSerialize, nil
 }

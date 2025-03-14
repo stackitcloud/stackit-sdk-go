@@ -17,20 +17,142 @@ import (
 // checks if the Shape type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Shape{}
 
+/*
+	types and functions for avgMs
+*/
+
+// isNumber
+type ShapeGetAvgMsAttributeType = *float64
+type ShapeGetAvgMsArgType = float64
+type ShapeGetAvgMsRetType = float64
+
+func getShapeGetAvgMsAttributeTypeOk(arg ShapeGetAvgMsAttributeType) (ret ShapeGetAvgMsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setShapeGetAvgMsAttributeType(arg *ShapeGetAvgMsAttributeType, val ShapeGetAvgMsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for count
+*/
+
+// isInteger
+type ShapeGetCountAttributeType = *int64
+type ShapeGetCountArgType = int64
+type ShapeGetCountRetType = int64
+
+func getShapeGetCountAttributeTypeOk(arg ShapeGetCountAttributeType) (ret ShapeGetCountRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setShapeGetCountAttributeType(arg *ShapeGetCountAttributeType, val ShapeGetCountRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ShapeGetIdAttributeType = *string
+
+func getShapeGetIdAttributeTypeOk(arg ShapeGetIdAttributeType) (ret ShapeGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setShapeGetIdAttributeType(arg *ShapeGetIdAttributeType, val ShapeGetIdRetType) {
+	*arg = &val
+}
+
+type ShapeGetIdArgType = string
+type ShapeGetIdRetType = string
+
+/*
+	types and functions for inefficiencyScore
+*/
+
+// isInteger
+type ShapeGetInefficiencyScoreAttributeType = *int64
+type ShapeGetInefficiencyScoreArgType = int64
+type ShapeGetInefficiencyScoreRetType = int64
+
+func getShapeGetInefficiencyScoreAttributeTypeOk(arg ShapeGetInefficiencyScoreAttributeType) (ret ShapeGetInefficiencyScoreRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setShapeGetInefficiencyScoreAttributeType(arg *ShapeGetInefficiencyScoreAttributeType, val ShapeGetInefficiencyScoreRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for namespace
+*/
+
+// isNotNullableString
+type ShapeGetNamespaceAttributeType = *string
+
+func getShapeGetNamespaceAttributeTypeOk(arg ShapeGetNamespaceAttributeType) (ret ShapeGetNamespaceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setShapeGetNamespaceAttributeType(arg *ShapeGetNamespaceAttributeType, val ShapeGetNamespaceRetType) {
+	*arg = &val
+}
+
+type ShapeGetNamespaceArgType = string
+type ShapeGetNamespaceRetType = string
+
+/*
+	types and functions for operations
+*/
+
+// isArray
+type ShapeGetOperationsAttributeType = *[]MongodbatlasOperation
+type ShapeGetOperationsArgType = []MongodbatlasOperation
+type ShapeGetOperationsRetType = []MongodbatlasOperation
+
+func getShapeGetOperationsAttributeTypeOk(arg ShapeGetOperationsAttributeType) (ret ShapeGetOperationsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setShapeGetOperationsAttributeType(arg *ShapeGetOperationsAttributeType, val ShapeGetOperationsRetType) {
+	*arg = &val
+}
+
 // Shape struct for Shape
 type Shape struct {
 	// Average duration in milliseconds for the queries examined that match this shape.
-	AvgMs *float64 `json:"avgMs,omitempty"`
+	AvgMs ShapeGetAvgMsAttributeType `json:"avgMs,omitempty"`
 	// Number of queries examined that match this shape.
-	Count *int64 `json:"count,omitempty"`
+	Count ShapeGetCountAttributeType `json:"count,omitempty"`
 	// Unique id for this shape. Exists only for the duration of the API request.
-	Id *string `json:"id,omitempty"`
+	Id ShapeGetIdAttributeType `json:"id,omitempty"`
 	// Average number of documents read for every document returned by the query.
-	InefficiencyScore *int64 `json:"inefficiencyScore,omitempty"`
+	InefficiencyScore ShapeGetInefficiencyScoreAttributeType `json:"inefficiencyScore,omitempty"`
 	// The namespace in which the slow query ran.
-	Namespace *string `json:"namespace,omitempty"`
+	Namespace ShapeGetNamespaceAttributeType `json:"namespace,omitempty"`
 	// It represents documents with specific information and log lines for individual queries.
-	Operations *[]MongodbatlasOperation `json:"operations,omitempty"`
+	Operations ShapeGetOperationsAttributeType `json:"operations,omitempty"`
 }
 
 // NewShape instantiates a new Shape object
@@ -51,216 +173,162 @@ func NewShapeWithDefaults() *Shape {
 }
 
 // GetAvgMs returns the AvgMs field value if set, zero value otherwise.
-func (o *Shape) GetAvgMs() *float64 {
-	if o == nil || IsNil(o.AvgMs) {
-		var ret *float64
-		return ret
-	}
-	return o.AvgMs
+func (o *Shape) GetAvgMs() (res ShapeGetAvgMsRetType) {
+	res, _ = o.GetAvgMsOk()
+	return
 }
 
 // GetAvgMsOk returns a tuple with the AvgMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Shape) GetAvgMsOk() (*float64, bool) {
-	if o == nil || IsNil(o.AvgMs) {
-		return nil, false
-	}
-	return o.AvgMs, true
+func (o *Shape) GetAvgMsOk() (ret ShapeGetAvgMsRetType, ok bool) {
+	return getShapeGetAvgMsAttributeTypeOk(o.AvgMs)
 }
 
 // HasAvgMs returns a boolean if a field has been set.
 func (o *Shape) HasAvgMs() bool {
-	if o != nil && !IsNil(o.AvgMs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAvgMsOk()
+	return ok
 }
 
 // SetAvgMs gets a reference to the given float64 and assigns it to the AvgMs field.
-func (o *Shape) SetAvgMs(v *float64) {
-	o.AvgMs = v
+func (o *Shape) SetAvgMs(v ShapeGetAvgMsRetType) {
+	setShapeGetAvgMsAttributeType(&o.AvgMs, v)
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *Shape) GetCount() *int64 {
-	if o == nil || IsNil(o.Count) {
-		var ret *int64
-		return ret
-	}
-	return o.Count
+func (o *Shape) GetCount() (res ShapeGetCountRetType) {
+	res, _ = o.GetCountOk()
+	return
 }
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Shape) GetCountOk() (*int64, bool) {
-	if o == nil || IsNil(o.Count) {
-		return nil, false
-	}
-	return o.Count, true
+func (o *Shape) GetCountOk() (ret ShapeGetCountRetType, ok bool) {
+	return getShapeGetCountAttributeTypeOk(o.Count)
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *Shape) HasCount() bool {
-	if o != nil && !IsNil(o.Count) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCountOk()
+	return ok
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
-func (o *Shape) SetCount(v *int64) {
-	o.Count = v
+func (o *Shape) SetCount(v ShapeGetCountRetType) {
+	setShapeGetCountAttributeType(&o.Count, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Shape) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Shape) GetId() (res ShapeGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Shape) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Shape) GetIdOk() (ret ShapeGetIdRetType, ok bool) {
+	return getShapeGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Shape) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Shape) SetId(v *string) {
-	o.Id = v
+func (o *Shape) SetId(v ShapeGetIdRetType) {
+	setShapeGetIdAttributeType(&o.Id, v)
 }
 
 // GetInefficiencyScore returns the InefficiencyScore field value if set, zero value otherwise.
-func (o *Shape) GetInefficiencyScore() *int64 {
-	if o == nil || IsNil(o.InefficiencyScore) {
-		var ret *int64
-		return ret
-	}
-	return o.InefficiencyScore
+func (o *Shape) GetInefficiencyScore() (res ShapeGetInefficiencyScoreRetType) {
+	res, _ = o.GetInefficiencyScoreOk()
+	return
 }
 
 // GetInefficiencyScoreOk returns a tuple with the InefficiencyScore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Shape) GetInefficiencyScoreOk() (*int64, bool) {
-	if o == nil || IsNil(o.InefficiencyScore) {
-		return nil, false
-	}
-	return o.InefficiencyScore, true
+func (o *Shape) GetInefficiencyScoreOk() (ret ShapeGetInefficiencyScoreRetType, ok bool) {
+	return getShapeGetInefficiencyScoreAttributeTypeOk(o.InefficiencyScore)
 }
 
 // HasInefficiencyScore returns a boolean if a field has been set.
 func (o *Shape) HasInefficiencyScore() bool {
-	if o != nil && !IsNil(o.InefficiencyScore) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInefficiencyScoreOk()
+	return ok
 }
 
 // SetInefficiencyScore gets a reference to the given int64 and assigns it to the InefficiencyScore field.
-func (o *Shape) SetInefficiencyScore(v *int64) {
-	o.InefficiencyScore = v
+func (o *Shape) SetInefficiencyScore(v ShapeGetInefficiencyScoreRetType) {
+	setShapeGetInefficiencyScoreAttributeType(&o.InefficiencyScore, v)
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
-func (o *Shape) GetNamespace() *string {
-	if o == nil || IsNil(o.Namespace) {
-		var ret *string
-		return ret
-	}
-	return o.Namespace
+func (o *Shape) GetNamespace() (res ShapeGetNamespaceRetType) {
+	res, _ = o.GetNamespaceOk()
+	return
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Shape) GetNamespaceOk() (*string, bool) {
-	if o == nil || IsNil(o.Namespace) {
-		return nil, false
-	}
-	return o.Namespace, true
+func (o *Shape) GetNamespaceOk() (ret ShapeGetNamespaceRetType, ok bool) {
+	return getShapeGetNamespaceAttributeTypeOk(o.Namespace)
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *Shape) HasNamespace() bool {
-	if o != nil && !IsNil(o.Namespace) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNamespaceOk()
+	return ok
 }
 
 // SetNamespace gets a reference to the given string and assigns it to the Namespace field.
-func (o *Shape) SetNamespace(v *string) {
-	o.Namespace = v
+func (o *Shape) SetNamespace(v ShapeGetNamespaceRetType) {
+	setShapeGetNamespaceAttributeType(&o.Namespace, v)
 }
 
 // GetOperations returns the Operations field value if set, zero value otherwise.
-func (o *Shape) GetOperations() *[]MongodbatlasOperation {
-	if o == nil || IsNil(o.Operations) {
-		var ret *[]MongodbatlasOperation
-		return ret
-	}
-	return o.Operations
+func (o *Shape) GetOperations() (res ShapeGetOperationsRetType) {
+	res, _ = o.GetOperationsOk()
+	return
 }
 
 // GetOperationsOk returns a tuple with the Operations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Shape) GetOperationsOk() (*[]MongodbatlasOperation, bool) {
-	if o == nil || IsNil(o.Operations) {
-		return nil, false
-	}
-	return o.Operations, true
+func (o *Shape) GetOperationsOk() (ret ShapeGetOperationsRetType, ok bool) {
+	return getShapeGetOperationsAttributeTypeOk(o.Operations)
 }
 
 // HasOperations returns a boolean if a field has been set.
 func (o *Shape) HasOperations() bool {
-	if o != nil && !IsNil(o.Operations) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOperationsOk()
+	return ok
 }
 
 // SetOperations gets a reference to the given []MongodbatlasOperation and assigns it to the Operations field.
-func (o *Shape) SetOperations(v *[]MongodbatlasOperation) {
-	o.Operations = v
+func (o *Shape) SetOperations(v ShapeGetOperationsRetType) {
+	setShapeGetOperationsAttributeType(&o.Operations, v)
 }
 
 func (o Shape) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AvgMs) {
-		toSerialize["avgMs"] = o.AvgMs
+	if val, ok := getShapeGetAvgMsAttributeTypeOk(o.AvgMs); ok {
+		toSerialize["AvgMs"] = val
 	}
-	if !IsNil(o.Count) {
-		toSerialize["count"] = o.Count
+	if val, ok := getShapeGetCountAttributeTypeOk(o.Count); ok {
+		toSerialize["Count"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getShapeGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.InefficiencyScore) {
-		toSerialize["inefficiencyScore"] = o.InefficiencyScore
+	if val, ok := getShapeGetInefficiencyScoreAttributeTypeOk(o.InefficiencyScore); ok {
+		toSerialize["InefficiencyScore"] = val
 	}
-	if !IsNil(o.Namespace) {
-		toSerialize["namespace"] = o.Namespace
+	if val, ok := getShapeGetNamespaceAttributeTypeOk(o.Namespace); ok {
+		toSerialize["Namespace"] = val
 	}
-	if !IsNil(o.Operations) {
-		toSerialize["operations"] = o.Operations
+	if val, ok := getShapeGetOperationsAttributeTypeOk(o.Operations); ok {
+		toSerialize["Operations"] = val
 	}
 	return toSerialize, nil
 }

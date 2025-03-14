@@ -17,9 +17,29 @@ import (
 // checks if the UpdateInstanceResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateInstanceResponse{}
 
+/*
+	types and functions for item
+*/
+
+// isModel
+type UpdateInstanceResponseGetItemAttributeType = *Instance
+type UpdateInstanceResponseGetItemArgType = Instance
+type UpdateInstanceResponseGetItemRetType = Instance
+
+func getUpdateInstanceResponseGetItemAttributeTypeOk(arg UpdateInstanceResponseGetItemAttributeType) (ret UpdateInstanceResponseGetItemRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateInstanceResponseGetItemAttributeType(arg *UpdateInstanceResponseGetItemAttributeType, val UpdateInstanceResponseGetItemRetType) {
+	*arg = &val
+}
+
 // UpdateInstanceResponse struct for UpdateInstanceResponse
 type UpdateInstanceResponse struct {
-	Item *Instance `json:"item,omitempty"`
+	Item UpdateInstanceResponseGetItemAttributeType `json:"item,omitempty"`
 }
 
 // NewUpdateInstanceResponse instantiates a new UpdateInstanceResponse object
@@ -40,41 +60,32 @@ func NewUpdateInstanceResponseWithDefaults() *UpdateInstanceResponse {
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
-func (o *UpdateInstanceResponse) GetItem() *Instance {
-	if o == nil || IsNil(o.Item) {
-		var ret *Instance
-		return ret
-	}
-	return o.Item
+func (o *UpdateInstanceResponse) GetItem() (res UpdateInstanceResponseGetItemRetType) {
+	res, _ = o.GetItemOk()
+	return
 }
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateInstanceResponse) GetItemOk() (*Instance, bool) {
-	if o == nil || IsNil(o.Item) {
-		return nil, false
-	}
-	return o.Item, true
+func (o *UpdateInstanceResponse) GetItemOk() (ret UpdateInstanceResponseGetItemRetType, ok bool) {
+	return getUpdateInstanceResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
 func (o *UpdateInstanceResponse) HasItem() bool {
-	if o != nil && !IsNil(o.Item) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemOk()
+	return ok
 }
 
 // SetItem gets a reference to the given Instance and assigns it to the Item field.
-func (o *UpdateInstanceResponse) SetItem(v *Instance) {
-	o.Item = v
+func (o *UpdateInstanceResponse) SetItem(v UpdateInstanceResponseGetItemRetType) {
+	setUpdateInstanceResponseGetItemAttributeType(&o.Item, v)
 }
 
 func (o UpdateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Item) {
-		toSerialize["item"] = o.Item
+	if val, ok := getUpdateInstanceResponseGetItemAttributeTypeOk(o.Item); ok {
+		toSerialize["Item"] = val
 	}
 	return toSerialize, nil
 }
