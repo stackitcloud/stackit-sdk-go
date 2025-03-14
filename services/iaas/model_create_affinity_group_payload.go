@@ -17,18 +17,101 @@ import (
 // checks if the CreateAffinityGroupPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateAffinityGroupPayload{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CreateAffinityGroupPayloadGetIdAttributeType = *string
+
+func getCreateAffinityGroupPayloadGetIdAttributeTypeOk(arg CreateAffinityGroupPayloadGetIdAttributeType) (ret CreateAffinityGroupPayloadGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAffinityGroupPayloadGetIdAttributeType(arg *CreateAffinityGroupPayloadGetIdAttributeType, val CreateAffinityGroupPayloadGetIdRetType) {
+	*arg = &val
+}
+
+type CreateAffinityGroupPayloadGetIdArgType = string
+type CreateAffinityGroupPayloadGetIdRetType = string
+
+/*
+	types and functions for members
+*/
+
+// isArray
+type CreateAffinityGroupPayloadGetMembersAttributeType = *[]string
+type CreateAffinityGroupPayloadGetMembersArgType = []string
+type CreateAffinityGroupPayloadGetMembersRetType = []string
+
+func getCreateAffinityGroupPayloadGetMembersAttributeTypeOk(arg CreateAffinityGroupPayloadGetMembersAttributeType) (ret CreateAffinityGroupPayloadGetMembersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAffinityGroupPayloadGetMembersAttributeType(arg *CreateAffinityGroupPayloadGetMembersAttributeType, val CreateAffinityGroupPayloadGetMembersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateAffinityGroupPayloadGetNameAttributeType = *string
+
+func getCreateAffinityGroupPayloadGetNameAttributeTypeOk(arg CreateAffinityGroupPayloadGetNameAttributeType) (ret CreateAffinityGroupPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAffinityGroupPayloadGetNameAttributeType(arg *CreateAffinityGroupPayloadGetNameAttributeType, val CreateAffinityGroupPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateAffinityGroupPayloadGetNameArgType = string
+type CreateAffinityGroupPayloadGetNameRetType = string
+
+/*
+	types and functions for policy
+*/
+
+// isNotNullableString
+type CreateAffinityGroupPayloadGetPolicyAttributeType = *string
+
+func getCreateAffinityGroupPayloadGetPolicyAttributeTypeOk(arg CreateAffinityGroupPayloadGetPolicyAttributeType) (ret CreateAffinityGroupPayloadGetPolicyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAffinityGroupPayloadGetPolicyAttributeType(arg *CreateAffinityGroupPayloadGetPolicyAttributeType, val CreateAffinityGroupPayloadGetPolicyRetType) {
+	*arg = &val
+}
+
+type CreateAffinityGroupPayloadGetPolicyArgType = string
+type CreateAffinityGroupPayloadGetPolicyRetType = string
+
 // CreateAffinityGroupPayload Definition of an affinity group.
 type CreateAffinityGroupPayload struct {
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id CreateAffinityGroupPayloadGetIdAttributeType `json:"id,omitempty"`
 	// The servers that are part of the affinity group.
-	Members *[]string `json:"members,omitempty"`
+	Members CreateAffinityGroupPayloadGetMembersAttributeType `json:"members,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CreateAffinityGroupPayloadGetNameAttributeType `json:"name"`
 	// The affinity group policy. `hard-affinity`: All servers in this group will be hosted on the same compute node. `soft-affinity`: All servers in this group will be hosted on as few compute nodes as possible. `hard-anti-affinity`: All servers in this group will be hosted on different compute nodes. `soft-anti-affinity`: All servers in this group will be hosted on as many compute nodes as possible. Possible values: `hard-anti-affinity`, `hard-affinity`, `soft-anti-affinity`, `soft-affinity`.
 	// REQUIRED
-	Policy *string `json:"policy"`
+	Policy CreateAffinityGroupPayloadGetPolicyAttributeType `json:"policy"`
 }
 
 type _CreateAffinityGroupPayload CreateAffinityGroupPayload
@@ -37,10 +120,10 @@ type _CreateAffinityGroupPayload CreateAffinityGroupPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAffinityGroupPayload(name *string, policy *string) *CreateAffinityGroupPayload {
+func NewCreateAffinityGroupPayload(name CreateAffinityGroupPayloadGetNameArgType, policy CreateAffinityGroupPayloadGetPolicyArgType) *CreateAffinityGroupPayload {
 	this := CreateAffinityGroupPayload{}
-	this.Name = name
-	this.Policy = policy
+	setCreateAffinityGroupPayloadGetNameAttributeType(&this.Name, name)
+	setCreateAffinityGroupPayloadGetPolicyAttributeType(&this.Policy, policy)
 	return &this
 }
 
@@ -53,127 +136,99 @@ func NewCreateAffinityGroupPayloadWithDefaults() *CreateAffinityGroupPayload {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateAffinityGroupPayload) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *CreateAffinityGroupPayload) GetId() (res CreateAffinityGroupPayloadGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAffinityGroupPayload) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CreateAffinityGroupPayload) GetIdOk() (ret CreateAffinityGroupPayloadGetIdRetType, ok bool) {
+	return getCreateAffinityGroupPayloadGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateAffinityGroupPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateAffinityGroupPayload) SetId(v *string) {
-	o.Id = v
+func (o *CreateAffinityGroupPayload) SetId(v CreateAffinityGroupPayloadGetIdRetType) {
+	setCreateAffinityGroupPayloadGetIdAttributeType(&o.Id, v)
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
-func (o *CreateAffinityGroupPayload) GetMembers() *[]string {
-	if o == nil || IsNil(o.Members) {
-		var ret *[]string
-		return ret
-	}
-	return o.Members
+func (o *CreateAffinityGroupPayload) GetMembers() (res CreateAffinityGroupPayloadGetMembersRetType) {
+	res, _ = o.GetMembersOk()
+	return
 }
 
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAffinityGroupPayload) GetMembersOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Members) {
-		return nil, false
-	}
-	return o.Members, true
+func (o *CreateAffinityGroupPayload) GetMembersOk() (ret CreateAffinityGroupPayloadGetMembersRetType, ok bool) {
+	return getCreateAffinityGroupPayloadGetMembersAttributeTypeOk(o.Members)
 }
 
 // HasMembers returns a boolean if a field has been set.
 func (o *CreateAffinityGroupPayload) HasMembers() bool {
-	if o != nil && !IsNil(o.Members) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMembersOk()
+	return ok
 }
 
 // SetMembers gets a reference to the given []string and assigns it to the Members field.
-func (o *CreateAffinityGroupPayload) SetMembers(v *[]string) {
-	o.Members = v
+func (o *CreateAffinityGroupPayload) SetMembers(v CreateAffinityGroupPayloadGetMembersRetType) {
+	setCreateAffinityGroupPayloadGetMembersAttributeType(&o.Members, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateAffinityGroupPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateAffinityGroupPayload) GetName() (ret CreateAffinityGroupPayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateAffinityGroupPayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateAffinityGroupPayload) GetNameOk() (ret CreateAffinityGroupPayloadGetNameRetType, ok bool) {
+	return getCreateAffinityGroupPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateAffinityGroupPayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateAffinityGroupPayload) SetName(v CreateAffinityGroupPayloadGetNameRetType) {
+	setCreateAffinityGroupPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetPolicy returns the Policy field value
-func (o *CreateAffinityGroupPayload) GetPolicy() *string {
-	if o == nil || IsNil(o.Policy) {
-		var ret *string
-		return ret
-	}
-
-	return o.Policy
+func (o *CreateAffinityGroupPayload) GetPolicy() (ret CreateAffinityGroupPayloadGetPolicyRetType) {
+	ret, _ = o.GetPolicyOk()
+	return ret
 }
 
 // GetPolicyOk returns a tuple with the Policy field value
 // and a boolean to check if the value has been set.
-func (o *CreateAffinityGroupPayload) GetPolicyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Policy, true
+func (o *CreateAffinityGroupPayload) GetPolicyOk() (ret CreateAffinityGroupPayloadGetPolicyRetType, ok bool) {
+	return getCreateAffinityGroupPayloadGetPolicyAttributeTypeOk(o.Policy)
 }
 
 // SetPolicy sets field value
-func (o *CreateAffinityGroupPayload) SetPolicy(v *string) {
-	o.Policy = v
+func (o *CreateAffinityGroupPayload) SetPolicy(v CreateAffinityGroupPayloadGetPolicyRetType) {
+	setCreateAffinityGroupPayloadGetPolicyAttributeType(&o.Policy, v)
 }
 
 func (o CreateAffinityGroupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getCreateAffinityGroupPayloadGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Members) {
-		toSerialize["members"] = o.Members
+	if val, ok := getCreateAffinityGroupPayloadGetMembersAttributeTypeOk(o.Members); ok {
+		toSerialize["Members"] = val
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["policy"] = o.Policy
+	if val, ok := getCreateAffinityGroupPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getCreateAffinityGroupPayloadGetPolicyAttributeTypeOk(o.Policy); ok {
+		toSerialize["Policy"] = val
+	}
 	return toSerialize, nil
 }
 

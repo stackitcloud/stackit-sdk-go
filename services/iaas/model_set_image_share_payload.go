@@ -17,12 +17,52 @@ import (
 // checks if the SetImageSharePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SetImageSharePayload{}
 
+/*
+	types and functions for parentOrganization
+*/
+
+// isBoolean
+type SetImageSharePayloadgetParentOrganizationAttributeType = *bool
+type SetImageSharePayloadgetParentOrganizationArgType = bool
+type SetImageSharePayloadgetParentOrganizationRetType = bool
+
+func getSetImageSharePayloadgetParentOrganizationAttributeTypeOk(arg SetImageSharePayloadgetParentOrganizationAttributeType) (ret SetImageSharePayloadgetParentOrganizationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSetImageSharePayloadgetParentOrganizationAttributeType(arg *SetImageSharePayloadgetParentOrganizationAttributeType, val SetImageSharePayloadgetParentOrganizationRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for projects
+*/
+
+// isArray
+type SetImageSharePayloadGetProjectsAttributeType = *[]string
+type SetImageSharePayloadGetProjectsArgType = []string
+type SetImageSharePayloadGetProjectsRetType = []string
+
+func getSetImageSharePayloadGetProjectsAttributeTypeOk(arg SetImageSharePayloadGetProjectsAttributeType) (ret SetImageSharePayloadGetProjectsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSetImageSharePayloadGetProjectsAttributeType(arg *SetImageSharePayloadGetProjectsAttributeType, val SetImageSharePayloadGetProjectsRetType) {
+	*arg = &val
+}
+
 // SetImageSharePayload Share details of an Image. For requests ParentOrganization and Projects are mutually exclusive.
 type SetImageSharePayload struct {
 	// Image is shared with all projects inside the image owners organization.
-	ParentOrganization *bool `json:"parentOrganization,omitempty"`
+	ParentOrganization SetImageSharePayloadgetParentOrganizationAttributeType `json:"parentOrganization,omitempty"`
 	// List of all projects the Image is shared with.
-	Projects *[]string `json:"projects,omitempty"`
+	Projects SetImageSharePayloadGetProjectsAttributeType `json:"projects,omitempty"`
 }
 
 // NewSetImageSharePayload instantiates a new SetImageSharePayload object
@@ -43,76 +83,58 @@ func NewSetImageSharePayloadWithDefaults() *SetImageSharePayload {
 }
 
 // GetParentOrganization returns the ParentOrganization field value if set, zero value otherwise.
-func (o *SetImageSharePayload) GetParentOrganization() *bool {
-	if o == nil || IsNil(o.ParentOrganization) {
-		var ret *bool
-		return ret
-	}
-	return o.ParentOrganization
+func (o *SetImageSharePayload) GetParentOrganization() (res SetImageSharePayloadgetParentOrganizationRetType) {
+	res, _ = o.GetParentOrganizationOk()
+	return
 }
 
 // GetParentOrganizationOk returns a tuple with the ParentOrganization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetImageSharePayload) GetParentOrganizationOk() (*bool, bool) {
-	if o == nil || IsNil(o.ParentOrganization) {
-		return nil, false
-	}
-	return o.ParentOrganization, true
+func (o *SetImageSharePayload) GetParentOrganizationOk() (ret SetImageSharePayloadgetParentOrganizationRetType, ok bool) {
+	return getSetImageSharePayloadgetParentOrganizationAttributeTypeOk(o.ParentOrganization)
 }
 
 // HasParentOrganization returns a boolean if a field has been set.
 func (o *SetImageSharePayload) HasParentOrganization() bool {
-	if o != nil && !IsNil(o.ParentOrganization) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetParentOrganizationOk()
+	return ok
 }
 
 // SetParentOrganization gets a reference to the given bool and assigns it to the ParentOrganization field.
-func (o *SetImageSharePayload) SetParentOrganization(v *bool) {
-	o.ParentOrganization = v
+func (o *SetImageSharePayload) SetParentOrganization(v SetImageSharePayloadgetParentOrganizationRetType) {
+	setSetImageSharePayloadgetParentOrganizationAttributeType(&o.ParentOrganization, v)
 }
 
 // GetProjects returns the Projects field value if set, zero value otherwise.
-func (o *SetImageSharePayload) GetProjects() *[]string {
-	if o == nil || IsNil(o.Projects) {
-		var ret *[]string
-		return ret
-	}
-	return o.Projects
+func (o *SetImageSharePayload) GetProjects() (res SetImageSharePayloadGetProjectsRetType) {
+	res, _ = o.GetProjectsOk()
+	return
 }
 
 // GetProjectsOk returns a tuple with the Projects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetImageSharePayload) GetProjectsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Projects) {
-		return nil, false
-	}
-	return o.Projects, true
+func (o *SetImageSharePayload) GetProjectsOk() (ret SetImageSharePayloadGetProjectsRetType, ok bool) {
+	return getSetImageSharePayloadGetProjectsAttributeTypeOk(o.Projects)
 }
 
 // HasProjects returns a boolean if a field has been set.
 func (o *SetImageSharePayload) HasProjects() bool {
-	if o != nil && !IsNil(o.Projects) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProjectsOk()
+	return ok
 }
 
 // SetProjects gets a reference to the given []string and assigns it to the Projects field.
-func (o *SetImageSharePayload) SetProjects(v *[]string) {
-	o.Projects = v
+func (o *SetImageSharePayload) SetProjects(v SetImageSharePayloadGetProjectsRetType) {
+	setSetImageSharePayloadGetProjectsAttributeType(&o.Projects, v)
 }
 
 func (o SetImageSharePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ParentOrganization) {
-		toSerialize["parentOrganization"] = o.ParentOrganization
+	if val, ok := getSetImageSharePayloadgetParentOrganizationAttributeTypeOk(o.ParentOrganization); ok {
+		toSerialize["ParentOrganization"] = val
 	}
-	if !IsNil(o.Projects) {
-		toSerialize["projects"] = o.Projects
+	if val, ok := getSetImageSharePayloadGetProjectsAttributeTypeOk(o.Projects); ok {
+		toSerialize["Projects"] = val
 	}
 	return toSerialize, nil
 }

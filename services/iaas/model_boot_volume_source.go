@@ -17,14 +17,56 @@ import (
 // checks if the BootVolumeSource type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BootVolumeSource{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type BootVolumeSourceGetIdAttributeType = *string
+
+func getBootVolumeSourceGetIdAttributeTypeOk(arg BootVolumeSourceGetIdAttributeType) (ret BootVolumeSourceGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBootVolumeSourceGetIdAttributeType(arg *BootVolumeSourceGetIdAttributeType, val BootVolumeSourceGetIdRetType) {
+	*arg = &val
+}
+
+type BootVolumeSourceGetIdArgType = string
+type BootVolumeSourceGetIdRetType = string
+
+/*
+	types and functions for type
+*/
+
+// isNotNullableString
+type BootVolumeSourceGetTypeAttributeType = *string
+
+func getBootVolumeSourceGetTypeAttributeTypeOk(arg BootVolumeSourceGetTypeAttributeType) (ret BootVolumeSourceGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBootVolumeSourceGetTypeAttributeType(arg *BootVolumeSourceGetTypeAttributeType, val BootVolumeSourceGetTypeRetType) {
+	*arg = &val
+}
+
+type BootVolumeSourceGetTypeArgType = string
+type BootVolumeSourceGetTypeRetType = string
+
 // BootVolumeSource struct for BootVolumeSource
 type BootVolumeSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Id *string `json:"id"`
+	Id BootVolumeSourceGetIdAttributeType `json:"id"`
 	// The source types of a boot volume. Possible values: `image`, `volume`.
 	// REQUIRED
-	Type *string `json:"type"`
+	Type BootVolumeSourceGetTypeAttributeType `json:"type"`
 }
 
 type _BootVolumeSource BootVolumeSource
@@ -33,10 +75,10 @@ type _BootVolumeSource BootVolumeSource
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBootVolumeSource(id *string, type_ *string) *BootVolumeSource {
+func NewBootVolumeSource(id BootVolumeSourceGetIdArgType, type_ BootVolumeSourceGetTypeArgType) *BootVolumeSource {
 	this := BootVolumeSource{}
-	this.Id = id
-	this.Type = type_
+	setBootVolumeSourceGetIdAttributeType(&this.Id, id)
+	setBootVolumeSourceGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewBootVolumeSourceWithDefaults() *BootVolumeSource {
 }
 
 // GetId returns the Id field value
-func (o *BootVolumeSource) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *BootVolumeSource) GetId() (ret BootVolumeSourceGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *BootVolumeSource) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *BootVolumeSource) GetIdOk() (ret BootVolumeSourceGetIdRetType, ok bool) {
+	return getBootVolumeSourceGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *BootVolumeSource) SetId(v *string) {
-	o.Id = v
+func (o *BootVolumeSource) SetId(v BootVolumeSourceGetIdRetType) {
+	setBootVolumeSourceGetIdAttributeType(&o.Id, v)
 }
 
 // GetType returns the Type field value
-func (o *BootVolumeSource) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *BootVolumeSource) GetType() (ret BootVolumeSourceGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *BootVolumeSource) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *BootVolumeSource) GetTypeOk() (ret BootVolumeSourceGetTypeRetType, ok bool) {
+	return getBootVolumeSourceGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *BootVolumeSource) SetType(v *string) {
-	o.Type = v
+func (o *BootVolumeSource) SetType(v BootVolumeSourceGetTypeRetType) {
+	setBootVolumeSourceGetTypeAttributeType(&o.Type, v)
 }
 
 func (o BootVolumeSource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["type"] = o.Type
+	if val, ok := getBootVolumeSourceGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getBootVolumeSourceGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

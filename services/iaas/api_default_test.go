@@ -18,22 +18,23 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
 func Test_iaas_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddNetworkToServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -64,9 +65,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		networkId := "networkId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		networkId := networkIdValue
 
 		reqErr := apiClient.AddNetworkToServer(context.Background(), projectId, serverId, networkId).Execute()
 
@@ -76,16 +77,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddNicToServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		nicIdValue := "nicId"
-		path = strings.Replace(path, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		nicIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -116,9 +117,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		nicId := "nicId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		nicId := nicIdValue
 
 		reqErr := apiClient.AddNicToServer(context.Background(), projectId, serverId, nicId).Execute()
 
@@ -128,16 +129,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddPublicIpToServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		publicIpIdValue := "publicIpId"
-		path = strings.Replace(path, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		publicIpIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -168,9 +169,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		publicIpId := "publicIpId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		publicIpId := publicIpIdValue
 
 		reqErr := apiClient.AddPublicIpToServer(context.Background(), projectId, serverId, publicIpId).Execute()
 
@@ -180,16 +181,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddSecurityGroupToServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		securityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -220,9 +221,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		securityGroupId := "securityGroupId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		securityGroupId := securityGroupIdValue
 
 		reqErr := apiClient.AddSecurityGroupToServer(context.Background(), projectId, serverId, securityGroupId).Execute()
 
@@ -232,16 +233,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddServiceAccountToServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		serviceAccountMailValue := "serviceAccountMail"
-		path = strings.Replace(path, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServiceAccountMailListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -275,31 +276,31 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		serviceAccountMail := "serviceAccountMail"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		serviceAccountMail := serviceAccountMailValue
 
 		resp, reqErr := apiClient.AddServiceAccountToServer(context.Background(), projectId, serverId, serviceAccountMail).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService AddVolumeToServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		volumeIdValue := "volumeId"
-		path = strings.Replace(path, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		volumeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeAttachment{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -333,27 +334,27 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		volumeId := "volumeId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		volumeId := volumeIdValue
 
 		resp, reqErr := apiClient.AddVolumeToServer(context.Background(), projectId, serverId, volumeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateAffinityGroup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/affinity-groups"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/affinity-groups"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AffinityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -387,7 +388,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createAffinityGroupPayload := CreateAffinityGroupPayload{}
 
 		resp, reqErr := apiClient.CreateAffinityGroup(context.Background(), projectId).CreateAffinityGroupPayload(createAffinityGroupPayload).Execute()
@@ -395,18 +396,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateBackup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/backups"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/backups"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Backup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -440,7 +441,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createBackupPayload := CreateBackupPayload{}
 
 		resp, reqErr := apiClient.CreateBackup(context.Background(), projectId).CreateBackupPayload(createBackupPayload).Execute()
@@ -448,18 +449,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateImage", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageCreateResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -493,7 +494,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createImagePayload := CreateImagePayload{}
 
 		resp, reqErr := apiClient.CreateImage(context.Background(), projectId).CreateImagePayload(createImagePayload).Execute()
@@ -501,16 +502,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateKeyPair", func(t *testing.T) {
-		path := "/v1beta1/keypairs"
+		_apiUrlPath := "/v1beta1/keypairs"
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Keypair{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -551,18 +552,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateNetwork", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Network{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -596,7 +597,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createNetworkPayload := CreateNetworkPayload{}
 
 		resp, reqErr := apiClient.CreateNetwork(context.Background(), projectId).CreateNetworkPayload(createNetworkPayload).Execute()
@@ -604,18 +605,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateNetworkArea", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkArea{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -649,7 +650,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
+		organizationId := organizationIdValue
 		createNetworkAreaPayload := CreateNetworkAreaPayload{}
 
 		resp, reqErr := apiClient.CreateNetworkArea(context.Background(), organizationId).CreateNetworkAreaPayload(createNetworkAreaPayload).Execute()
@@ -657,20 +658,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateNetworkAreaRange", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkRangeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -704,8 +705,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
 		createNetworkAreaRangePayload := CreateNetworkAreaRangePayload{}
 
 		resp, reqErr := apiClient.CreateNetworkAreaRange(context.Background(), organizationId, areaId).CreateNetworkAreaRangePayload(createNetworkAreaRangePayload).Execute()
@@ -713,20 +714,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateNetworkAreaRoute", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RouteListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -760,8 +761,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
 		createNetworkAreaRoutePayload := CreateNetworkAreaRoutePayload{}
 
 		resp, reqErr := apiClient.CreateNetworkAreaRoute(context.Background(), organizationId, areaId).CreateNetworkAreaRoutePayload(createNetworkAreaRoutePayload).Execute()
@@ -769,20 +770,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateNic", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NIC{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -816,8 +817,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		networkId := "networkId"
+		projectId := projectIdValue
+		networkId := networkIdValue
 		createNicPayload := CreateNicPayload{}
 
 		resp, reqErr := apiClient.CreateNic(context.Background(), projectId, networkId).CreateNicPayload(createNicPayload).Execute()
@@ -825,18 +826,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreatePublicIP", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/public-ips"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -870,7 +871,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createPublicIPPayload := CreatePublicIPPayload{}
 
 		resp, reqErr := apiClient.CreatePublicIP(context.Background(), projectId).CreatePublicIPPayload(createPublicIPPayload).Execute()
@@ -878,18 +879,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateSecurityGroup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/security-groups"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -923,7 +924,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createSecurityGroupPayload := CreateSecurityGroupPayload{}
 
 		resp, reqErr := apiClient.CreateSecurityGroup(context.Background(), projectId).CreateSecurityGroupPayload(createSecurityGroupPayload).Execute()
@@ -931,20 +932,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateSecurityGroupRule", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		securityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroupRule{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -978,8 +979,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		securityGroupId := "securityGroupId"
+		projectId := projectIdValue
+		securityGroupId := securityGroupIdValue
 		createSecurityGroupRulePayload := CreateSecurityGroupRulePayload{}
 
 		resp, reqErr := apiClient.CreateSecurityGroupRule(context.Background(), projectId, securityGroupId).CreateSecurityGroupRulePayload(createSecurityGroupRulePayload).Execute()
@@ -987,18 +988,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Server{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1032,7 +1033,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createServerPayload := CreateServerPayload{}
 
 		resp, reqErr := apiClient.CreateServer(context.Background(), projectId).CreateServerPayload(createServerPayload).Execute()
@@ -1040,18 +1041,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateSnapshot", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/snapshots"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Snapshot{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1085,7 +1086,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createSnapshotPayload := CreateSnapshotPayload{}
 
 		resp, reqErr := apiClient.CreateSnapshot(context.Background(), projectId).CreateSnapshotPayload(createSnapshotPayload).Execute()
@@ -1093,18 +1094,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateVolume", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/volumes"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Volume{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1138,7 +1139,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createVolumePayload := CreateVolumePayload{}
 
 		resp, reqErr := apiClient.CreateVolume(context.Background(), projectId).CreateVolumePayload(createVolumePayload).Execute()
@@ -1146,20 +1147,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeallocateServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/deallocate"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/deallocate"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1190,8 +1191,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		reqErr := apiClient.DeallocateServer(context.Background(), projectId, serverId).Execute()
 
@@ -1201,14 +1202,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteAffinityGroup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/affinity-groups/{affinityGroupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		affinityGroupIdValue := "affinityGroupId"
-		path = strings.Replace(path, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/affinity-groups/{affinityGroupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		affinityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1239,8 +1240,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		affinityGroupId := "affinityGroupId"
+		projectId := projectIdValue
+		affinityGroupId := affinityGroupIdValue
 
 		reqErr := apiClient.DeleteAffinityGroup(context.Background(), projectId, affinityGroupId).Execute()
 
@@ -1250,14 +1251,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteBackup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/backups/{backupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		backupIdValue := "backupId"
-		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/backups/{backupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		backupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1288,8 +1289,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		backupId := "backupId"
+		projectId := projectIdValue
+		backupId := backupIdValue
 
 		reqErr := apiClient.DeleteBackup(context.Background(), projectId, backupId).Execute()
 
@@ -1299,14 +1300,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteImage", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1337,8 +1338,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
+		projectId := projectIdValue
+		imageId := imageIdValue
 
 		reqErr := apiClient.DeleteImage(context.Background(), projectId, imageId).Execute()
 
@@ -1348,14 +1349,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteImageShare", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}/share"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1386,8 +1387,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
+		projectId := projectIdValue
+		imageId := imageIdValue
 
 		reqErr := apiClient.DeleteImageShare(context.Background(), projectId, imageId).Execute()
 
@@ -1397,16 +1398,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteImageShareConsumer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
-		consumerProjectIdValue := "consumerProjectId"
-		path = strings.Replace(path, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		consumerProjectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1437,9 +1438,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
-		consumerProjectId := "consumerProjectId"
+		projectId := projectIdValue
+		imageId := imageIdValue
+		consumerProjectId := consumerProjectIdValue
 
 		reqErr := apiClient.DeleteImageShareConsumer(context.Background(), projectId, imageId, consumerProjectId).Execute()
 
@@ -1449,12 +1450,12 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteKeyPair", func(t *testing.T) {
-		path := "/v1beta1/keypairs/{keypairName}"
+		_apiUrlPath := "/v1beta1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName"
-		path = strings.Replace(path, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1485,7 +1486,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		keypairName := "keypairName"
+		keypairName := keypairNameValue
 
 		reqErr := apiClient.DeleteKeyPair(context.Background(), keypairName).Execute()
 
@@ -1495,14 +1496,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetwork", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks/{networkId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1533,8 +1534,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		networkId := "networkId"
+		projectId := projectIdValue
+		networkId := networkIdValue
 
 		reqErr := apiClient.DeleteNetwork(context.Background(), projectId, networkId).Execute()
 
@@ -1544,14 +1545,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetworkArea", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1582,8 +1583,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
 
 		reqErr := apiClient.DeleteNetworkArea(context.Background(), organizationId, areaId).Execute()
 
@@ -1593,16 +1594,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetworkAreaRange", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		networkRangeIdValue := "networkRangeId"
-		path = strings.Replace(path, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		networkRangeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1633,9 +1634,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
-		networkRangeId := "networkRangeId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		networkRangeId := networkRangeIdValue
 
 		reqErr := apiClient.DeleteNetworkAreaRange(context.Background(), organizationId, areaId, networkRangeId).Execute()
 
@@ -1645,16 +1646,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetworkAreaRoute", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		routeIdValue := "routeId"
-		path = strings.Replace(path, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		routeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1685,9 +1686,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
-		routeId := "routeId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		routeId := routeIdValue
 
 		reqErr := apiClient.DeleteNetworkAreaRoute(context.Background(), organizationId, areaId, routeId).Execute()
 
@@ -1697,16 +1698,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNic", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		nicIdValue := "nicId"
-		path = strings.Replace(path, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		nicIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1737,9 +1738,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		networkId := "networkId"
-		nicId := "nicId"
+		projectId := projectIdValue
+		networkId := networkIdValue
+		nicId := nicIdValue
 
 		reqErr := apiClient.DeleteNic(context.Background(), projectId, networkId, nicId).Execute()
 
@@ -1749,14 +1750,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeletePublicIP", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		publicIpIdValue := "publicIpId"
-		path = strings.Replace(path, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		publicIpIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1787,8 +1788,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		publicIpId := "publicIpId"
+		projectId := projectIdValue
+		publicIpId := publicIpIdValue
 
 		reqErr := apiClient.DeletePublicIP(context.Background(), projectId, publicIpId).Execute()
 
@@ -1798,14 +1799,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteSecurityGroup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		securityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1836,8 +1837,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		securityGroupId := "securityGroupId"
+		projectId := projectIdValue
+		securityGroupId := securityGroupIdValue
 
 		reqErr := apiClient.DeleteSecurityGroup(context.Background(), projectId, securityGroupId).Execute()
 
@@ -1847,16 +1848,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteSecurityGroupRule", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
-		securityGroupRuleIdValue := "securityGroupRuleId"
-		path = strings.Replace(path, "{"+"securityGroupRuleId"+"}", url.PathEscape(ParameterValueToString(securityGroupRuleIdValue, "securityGroupRuleId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		securityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+		securityGroupRuleIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupRuleId"+"}", url.PathEscape(ParameterValueToString(securityGroupRuleIdValue, "securityGroupRuleId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1887,9 +1888,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		securityGroupId := "securityGroupId"
-		securityGroupRuleId := "securityGroupRuleId"
+		projectId := projectIdValue
+		securityGroupId := securityGroupIdValue
+		securityGroupRuleId := securityGroupRuleIdValue
 
 		reqErr := apiClient.DeleteSecurityGroupRule(context.Background(), projectId, securityGroupId, securityGroupRuleId).Execute()
 
@@ -1899,14 +1900,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1937,8 +1938,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		reqErr := apiClient.DeleteServer(context.Background(), projectId, serverId).Execute()
 
@@ -1948,14 +1949,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteSnapshot", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		snapshotIdValue := "snapshotId"
-		path = strings.Replace(path, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		snapshotIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1986,8 +1987,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		snapshotId := "snapshotId"
+		projectId := projectIdValue
+		snapshotId := snapshotIdValue
 
 		reqErr := apiClient.DeleteSnapshot(context.Background(), projectId, snapshotId).Execute()
 
@@ -1997,14 +1998,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteVolume", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/volumes/{volumeId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumeIdValue := "volumeId"
-		path = strings.Replace(path, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes/{volumeId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		volumeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -2035,8 +2036,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		volumeId := "volumeId"
+		projectId := projectIdValue
+		volumeId := volumeIdValue
 
 		reqErr := apiClient.DeleteVolume(context.Background(), projectId, volumeId).Execute()
 
@@ -2046,14 +2047,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetAffinityGroup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/affinity-groups/{affinityGroupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		affinityGroupIdValue := "affinityGroupId"
-		path = strings.Replace(path, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/affinity-groups/{affinityGroupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		affinityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AffinityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2087,30 +2088,30 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		affinityGroupId := "affinityGroupId"
+		projectId := projectIdValue
+		affinityGroupId := affinityGroupIdValue
 
 		resp, reqErr := apiClient.GetAffinityGroup(context.Background(), projectId, affinityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetAttachedVolume", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		volumeIdValue := "volumeId"
-		path = strings.Replace(path, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		volumeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeAttachment{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2144,29 +2145,29 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		volumeId := "volumeId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		volumeId := volumeIdValue
 
 		resp, reqErr := apiClient.GetAttachedVolume(context.Background(), projectId, serverId, volumeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/backups/{backupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		backupIdValue := "backupId"
-		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/backups/{backupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		backupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Backup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2200,28 +2201,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		backupId := "backupId"
+		projectId := projectIdValue
+		backupId := backupIdValue
 
 		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, backupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetImage", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Image{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2255,28 +2256,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
+		projectId := projectIdValue
+		imageId := imageIdValue
 
 		resp, reqErr := apiClient.GetImage(context.Background(), projectId, imageId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetImageShare", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}/share"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageShare{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2310,30 +2311,30 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
+		projectId := projectIdValue
+		imageId := imageIdValue
 
 		resp, reqErr := apiClient.GetImageShare(context.Background(), projectId, imageId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetImageShareConsumer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
-		consumerProjectIdValue := "consumerProjectId"
-		path = strings.Replace(path, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		consumerProjectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageShareConsumer{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2367,27 +2368,27 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
-		consumerProjectId := "consumerProjectId"
+		projectId := projectIdValue
+		imageId := imageIdValue
+		consumerProjectId := consumerProjectIdValue
 
 		resp, reqErr := apiClient.GetImageShareConsumer(context.Background(), projectId, imageId, consumerProjectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetKeyPair", func(t *testing.T) {
-		path := "/v1beta1/keypairs/{keypairName}"
+		_apiUrlPath := "/v1beta1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName"
-		path = strings.Replace(path, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Keypair{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2421,27 +2422,27 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		keypairName := "keypairName"
+		keypairName := keypairNameValue
 
 		resp, reqErr := apiClient.GetKeyPair(context.Background(), keypairName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetMachineType", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/machine-types/{machineType}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/machine-types/{machineType}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		machineTypeValue := "machineType"
-		path = strings.Replace(path, "{"+"machineType"+"}", url.PathEscape(ParameterValueToString(machineTypeValue, "machineType")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"machineType"+"}", url.PathEscape(ParameterValueToString(machineTypeValue, "machineType")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := MachineType{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2475,28 +2476,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		machineType := "machineType"
+		projectId := projectIdValue
+		machineType := machineTypeValue
 
 		resp, reqErr := apiClient.GetMachineType(context.Background(), projectId, machineType).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetNetwork", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks/{networkId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Network{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2530,28 +2531,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		networkId := "networkId"
+		projectId := projectIdValue
+		networkId := networkIdValue
 
 		resp, reqErr := apiClient.GetNetwork(context.Background(), projectId, networkId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetNetworkArea", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkArea{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2585,30 +2586,30 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
 
 		resp, reqErr := apiClient.GetNetworkArea(context.Background(), organizationId, areaId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetNetworkAreaRange", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		networkRangeIdValue := "networkRangeId"
-		path = strings.Replace(path, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		networkRangeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkRange{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2642,31 +2643,31 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
-		networkRangeId := "networkRangeId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		networkRangeId := networkRangeIdValue
 
 		resp, reqErr := apiClient.GetNetworkAreaRange(context.Background(), organizationId, areaId, networkRangeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetNetworkAreaRoute", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		routeIdValue := "routeId"
-		path = strings.Replace(path, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		routeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Route{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2700,31 +2701,31 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
-		routeId := "routeId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		routeId := routeIdValue
 
 		resp, reqErr := apiClient.GetNetworkAreaRoute(context.Background(), organizationId, areaId, routeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetNic", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		nicIdValue := "nicId"
-		path = strings.Replace(path, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		nicIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NIC{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2758,29 +2759,29 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		networkId := "networkId"
-		nicId := "nicId"
+		projectId := projectIdValue
+		networkId := networkIdValue
+		nicId := nicIdValue
 
 		resp, reqErr := apiClient.GetNic(context.Background(), projectId, networkId, nicId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetOrganizationRequest", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/requests/{requestId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/requests/{requestId}"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		requestIdValue := "requestId"
-		path = strings.Replace(path, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Request{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2814,28 +2815,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		requestId := "requestId"
+		organizationId := organizationIdValue
+		requestId := requestIdValue
 
 		resp, reqErr := apiClient.GetOrganizationRequest(context.Background(), organizationId, requestId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetProjectNIC", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/nics/{nicId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		nicIdValue := "nicId"
-		path = strings.Replace(path, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/nics/{nicId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		nicIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NIC{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2869,28 +2870,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		nicId := "nicId"
+		projectId := projectIdValue
+		nicId := nicIdValue
 
 		resp, reqErr := apiClient.GetProjectNIC(context.Background(), projectId, nicId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetProjectRequest", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/requests/{requestId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/requests/{requestId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		requestIdValue := "requestId"
-		path = strings.Replace(path, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Request{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2924,28 +2925,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		requestId := "requestId"
+		projectId := projectIdValue
+		requestId := requestIdValue
 
 		resp, reqErr := apiClient.GetProjectRequest(context.Background(), projectId, requestId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetPublicIP", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		publicIpIdValue := "publicIpId"
-		path = strings.Replace(path, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		publicIpIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -2979,28 +2980,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		publicIpId := "publicIpId"
+		projectId := projectIdValue
+		publicIpId := publicIpIdValue
 
 		resp, reqErr := apiClient.GetPublicIP(context.Background(), projectId, publicIpId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetSecurityGroup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		securityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3034,30 +3035,30 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		securityGroupId := "securityGroupId"
+		projectId := projectIdValue
+		securityGroupId := securityGroupIdValue
 
 		resp, reqErr := apiClient.GetSecurityGroup(context.Background(), projectId, securityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetSecurityGroupRule", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
-		securityGroupRuleIdValue := "securityGroupRuleId"
-		path = strings.Replace(path, "{"+"securityGroupRuleId"+"}", url.PathEscape(ParameterValueToString(securityGroupRuleIdValue, "securityGroupRuleId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		securityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+		securityGroupRuleIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupRuleId"+"}", url.PathEscape(ParameterValueToString(securityGroupRuleIdValue, "securityGroupRuleId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroupRule{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3091,29 +3092,29 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		securityGroupId := "securityGroupId"
-		securityGroupRuleId := "securityGroupRuleId"
+		projectId := projectIdValue
+		securityGroupId := securityGroupIdValue
+		securityGroupRuleId := securityGroupRuleIdValue
 
 		resp, reqErr := apiClient.GetSecurityGroupRule(context.Background(), projectId, securityGroupId, securityGroupRuleId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Server{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3147,28 +3148,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		resp, reqErr := apiClient.GetServer(context.Background(), projectId, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetServerConsole", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/console"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/console"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServerConsoleUrl{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3202,28 +3203,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		resp, reqErr := apiClient.GetServerConsole(context.Background(), projectId, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetServerLog", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/log"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/log"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetServerLog200Response{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3257,28 +3258,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		resp, reqErr := apiClient.GetServerLog(context.Background(), projectId, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetSnapshot", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		snapshotIdValue := "snapshotId"
-		path = strings.Replace(path, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		snapshotIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Snapshot{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3312,28 +3313,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		snapshotId := "snapshotId"
+		projectId := projectIdValue
+		snapshotId := snapshotIdValue
 
 		resp, reqErr := apiClient.GetSnapshot(context.Background(), projectId, snapshotId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetVolume", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/volumes/{volumeId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumeIdValue := "volumeId"
-		path = strings.Replace(path, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes/{volumeId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		volumeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Volume{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3367,28 +3368,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		volumeId := "volumeId"
+		projectId := projectIdValue
+		volumeId := volumeIdValue
 
 		resp, reqErr := apiClient.GetVolume(context.Background(), projectId, volumeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetVolumePerformanceClass", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumePerformanceClassValue := "volumePerformanceClass"
-		path = strings.Replace(path, "{"+"volumePerformanceClass"+"}", url.PathEscape(ParameterValueToString(volumePerformanceClassValue, "volumePerformanceClass")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumePerformanceClass"+"}", url.PathEscape(ParameterValueToString(volumePerformanceClassValue, "volumePerformanceClass")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumePerformanceClass{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3422,26 +3423,26 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		volumePerformanceClass := "volumePerformanceClass"
+		projectId := projectIdValue
+		volumePerformanceClass := volumePerformanceClassValue
 
 		resp, reqErr := apiClient.GetVolumePerformanceClass(context.Background(), projectId, volumePerformanceClass).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListAffinityGroups", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/affinity-groups"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/affinity-groups"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AffinityGroupListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3475,27 +3476,27 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListAffinityGroups(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListAttachedVolumes", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeAttachmentListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3529,24 +3530,24 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		resp, reqErr := apiClient.ListAttachedVolumes(context.Background(), projectId, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListAvailabilityZones", func(t *testing.T) {
-		path := "/v1beta1/availability-zones"
+		_apiUrlPath := "/v1beta1/availability-zones"
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AvailabilityZoneListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3585,18 +3586,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/backups"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/backups"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := BackupListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3630,25 +3631,25 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListBackups(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListImages", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3682,23 +3683,23 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListImages(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListKeyPairs", func(t *testing.T) {
-		path := "/v1beta1/keypairs"
+		_apiUrlPath := "/v1beta1/keypairs"
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := KeyPairListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3737,18 +3738,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListMachineTypes", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/machine-types"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/machine-types"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := MachineTypeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3782,27 +3783,27 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListMachineTypes(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreaProjects", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/projects"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/projects"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ProjectListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3836,28 +3837,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
 
 		resp, reqErr := apiClient.ListNetworkAreaProjects(context.Background(), organizationId, areaId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreaRanges", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkRangeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3891,28 +3892,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
 
 		resp, reqErr := apiClient.ListNetworkAreaRanges(context.Background(), organizationId, areaId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreaRoutes", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RouteListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3946,26 +3947,26 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
 
 		resp, reqErr := apiClient.ListNetworkAreaRoutes(context.Background(), organizationId, areaId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreas", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkAreaListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -3999,25 +4000,25 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
+		organizationId := organizationIdValue
 
 		resp, reqErr := apiClient.ListNetworkAreas(context.Background(), organizationId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListNetworks", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4051,27 +4052,27 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListNetworks(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListNics", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NICListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4105,26 +4106,26 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		networkId := "networkId"
+		projectId := projectIdValue
+		networkId := networkIdValue
 
 		resp, reqErr := apiClient.ListNics(context.Background(), projectId, networkId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListProjectNICs", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/nics"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/nics"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NICListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4158,25 +4159,25 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListProjectNICs(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListPublicIPs", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/public-ips"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicIpListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4210,23 +4211,23 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListPublicIPs(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListPublicIpRanges", func(t *testing.T) {
-		path := "/v1beta1/networks/public-ip-ranges"
+		_apiUrlPath := "/v1beta1/networks/public-ip-ranges"
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicNetworkListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4265,18 +4266,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListQuotas", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/quotas"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/quotas"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := QuotaListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4310,27 +4311,27 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListQuotas(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListSecurityGroupRules", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		securityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroupRuleListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4364,26 +4365,26 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		securityGroupId := "securityGroupId"
+		projectId := projectIdValue
+		securityGroupId := securityGroupIdValue
 
 		resp, reqErr := apiClient.ListSecurityGroupRules(context.Background(), projectId, securityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListSecurityGroups", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/security-groups"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroupListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4417,27 +4418,27 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListSecurityGroups(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListServerNics", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/nics"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/nics"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NICListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4471,28 +4472,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		resp, reqErr := apiClient.ListServerNics(context.Background(), projectId, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListServerServiceAccounts", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/service-accounts"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/service-accounts"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServiceAccountMailListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4526,26 +4527,26 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		resp, reqErr := apiClient.ListServerServiceAccounts(context.Background(), projectId, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListServers", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServerListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4579,25 +4580,25 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListServers(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListSnapshots", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/snapshots"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SnapshotListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4631,25 +4632,25 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListSnapshots(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListVolumePerformanceClasses", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/volume-performance-classes"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/volume-performance-classes"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumePerformanceClassListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4683,25 +4684,25 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListVolumePerformanceClasses(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListVolumes", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/volumes"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4735,27 +4736,27 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListVolumes(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateNetwork", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks/{networkId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -4786,8 +4787,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		networkId := "networkId"
+		projectId := projectIdValue
+		networkId := networkIdValue
 		partialUpdateNetworkPayload := PartialUpdateNetworkPayload{}
 
 		reqErr := apiClient.PartialUpdateNetwork(context.Background(), projectId, networkId).PartialUpdateNetworkPayload(partialUpdateNetworkPayload).Execute()
@@ -4798,14 +4799,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateNetworkArea", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkArea{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -4839,8 +4840,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
 		partialUpdateNetworkAreaPayload := PartialUpdateNetworkAreaPayload{}
 
 		resp, reqErr := apiClient.PartialUpdateNetworkArea(context.Background(), organizationId, areaId).PartialUpdateNetworkAreaPayload(partialUpdateNetworkAreaPayload).Execute()
@@ -4848,20 +4849,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService RebootServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/reboot"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/reboot"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -4892,8 +4893,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		reqErr := apiClient.RebootServer(context.Background(), projectId, serverId).Execute()
 
@@ -4903,16 +4904,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveNetworkFromServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -4943,9 +4944,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		networkId := "networkId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		networkId := networkIdValue
 
 		reqErr := apiClient.RemoveNetworkFromServer(context.Background(), projectId, serverId, networkId).Execute()
 
@@ -4955,16 +4956,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveNicFromServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		nicIdValue := "nicId"
-		path = strings.Replace(path, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		nicIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -4995,9 +4996,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		nicId := "nicId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		nicId := nicIdValue
 
 		reqErr := apiClient.RemoveNicFromServer(context.Background(), projectId, serverId, nicId).Execute()
 
@@ -5007,16 +5008,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemovePublicIpFromServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		publicIpIdValue := "publicIpId"
-		path = strings.Replace(path, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		publicIpIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5047,9 +5048,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		publicIpId := "publicIpId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		publicIpId := publicIpIdValue
 
 		reqErr := apiClient.RemovePublicIpFromServer(context.Background(), projectId, serverId, publicIpId).Execute()
 
@@ -5059,16 +5060,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveSecurityGroupFromServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		securityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5099,9 +5100,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		securityGroupId := "securityGroupId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		securityGroupId := securityGroupIdValue
 
 		reqErr := apiClient.RemoveSecurityGroupFromServer(context.Background(), projectId, serverId, securityGroupId).Execute()
 
@@ -5111,16 +5112,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveServiceAccountFromServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		serviceAccountMailValue := "serviceAccountMail"
-		path = strings.Replace(path, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServiceAccountMailListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -5154,31 +5155,31 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		serviceAccountMail := "serviceAccountMail"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		serviceAccountMail := serviceAccountMailValue
 
 		resp, reqErr := apiClient.RemoveServiceAccountFromServer(context.Background(), projectId, serverId, serviceAccountMail).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService RemoveVolumeFromServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		volumeIdValue := "volumeId"
-		path = strings.Replace(path, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		volumeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5209,9 +5210,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		volumeId := "volumeId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		volumeId := volumeIdValue
 
 		reqErr := apiClient.RemoveVolumeFromServer(context.Background(), projectId, serverId, volumeId).Execute()
 
@@ -5221,14 +5222,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RescueServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/rescue"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/rescue"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5259,8 +5260,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 		rescueServerPayload := RescueServerPayload{}
 
 		reqErr := apiClient.RescueServer(context.Background(), projectId, serverId).RescueServerPayload(rescueServerPayload).Execute()
@@ -5271,14 +5272,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResizeServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/resize"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/resize"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5309,8 +5310,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 		resizeServerPayload := ResizeServerPayload{}
 
 		reqErr := apiClient.ResizeServer(context.Background(), projectId, serverId).ResizeServerPayload(resizeServerPayload).Execute()
@@ -5321,14 +5322,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResizeVolume", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/volumes/{volumeId}/resize"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumeIdValue := "volumeId"
-		path = strings.Replace(path, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes/{volumeId}/resize"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		volumeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5359,8 +5360,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		volumeId := "volumeId"
+		projectId := projectIdValue
+		volumeId := volumeIdValue
 
 		reqErr := apiClient.ResizeVolume(context.Background(), projectId, volumeId).Execute()
 
@@ -5370,14 +5371,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RestoreBackup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/backups/{backupId}/restore"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		backupIdValue := "backupId"
-		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/backups/{backupId}/restore"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		backupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5408,8 +5409,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		backupId := "backupId"
+		projectId := projectIdValue
+		backupId := backupIdValue
 
 		reqErr := apiClient.RestoreBackup(context.Background(), projectId, backupId).Execute()
 
@@ -5419,14 +5420,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService SetImageShare", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}/share"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageShare{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -5460,8 +5461,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
+		projectId := projectIdValue
+		imageId := imageIdValue
 		setImageSharePayload := SetImageSharePayload{}
 
 		resp, reqErr := apiClient.SetImageShare(context.Background(), projectId, imageId).SetImageSharePayload(setImageSharePayload).Execute()
@@ -5469,20 +5470,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService StartServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/start"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/start"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5513,8 +5514,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		reqErr := apiClient.StartServer(context.Background(), projectId, serverId).Execute()
 
@@ -5524,14 +5525,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService StopServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/stop"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/stop"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5562,8 +5563,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		reqErr := apiClient.StopServer(context.Background(), projectId, serverId).Execute()
 
@@ -5573,14 +5574,14 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UnrescueServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/unrescue"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/unrescue"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -5611,8 +5612,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 
 		reqErr := apiClient.UnrescueServer(context.Background(), projectId, serverId).Execute()
 
@@ -5622,16 +5623,16 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateAttachedVolume", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		volumeIdValue := "volumeId"
-		path = strings.Replace(path, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		volumeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeAttachment{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -5665,9 +5666,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		volumeId := "volumeId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		volumeId := volumeIdValue
 		updateAttachedVolumePayload := UpdateAttachedVolumePayload{}
 
 		resp, reqErr := apiClient.UpdateAttachedVolume(context.Background(), projectId, serverId, volumeId).UpdateAttachedVolumePayload(updateAttachedVolumePayload).Execute()
@@ -5675,20 +5676,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateBackup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/backups/{backupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		backupIdValue := "backupId"
-		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/backups/{backupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		backupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Backup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -5722,8 +5723,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		backupId := "backupId"
+		projectId := projectIdValue
+		backupId := backupIdValue
 		updateBackupPayload := UpdateBackupPayload{}
 
 		resp, reqErr := apiClient.UpdateBackup(context.Background(), projectId, backupId).UpdateBackupPayload(updateBackupPayload).Execute()
@@ -5731,20 +5732,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateImage", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Image{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -5778,8 +5779,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
+		projectId := projectIdValue
+		imageId := imageIdValue
 		updateImagePayload := UpdateImagePayload{}
 
 		resp, reqErr := apiClient.UpdateImage(context.Background(), projectId, imageId).UpdateImagePayload(updateImagePayload).Execute()
@@ -5787,20 +5788,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateImageScopeLocal", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}/publish"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/publish"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Image{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -5834,28 +5835,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
+		projectId := projectIdValue
+		imageId := imageIdValue
 
 		resp, reqErr := apiClient.UpdateImageScopeLocal(context.Background(), projectId, imageId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateImageScopePublic", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}/publish"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/publish"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Image{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -5889,28 +5890,28 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
+		projectId := projectIdValue
+		imageId := imageIdValue
 
 		resp, reqErr := apiClient.UpdateImageScopePublic(context.Background(), projectId, imageId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateImageShare", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/images/{imageId}/share"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := "imageId"
-		path = strings.Replace(path, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		imageIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageShare{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -5944,8 +5945,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		imageId := "imageId"
+		projectId := projectIdValue
+		imageId := imageIdValue
 		updateImageSharePayload := UpdateImageSharePayload{}
 
 		resp, reqErr := apiClient.UpdateImageShare(context.Background(), projectId, imageId).UpdateImageSharePayload(updateImageSharePayload).Execute()
@@ -5953,18 +5954,18 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateKeyPair", func(t *testing.T) {
-		path := "/v1beta1/keypairs/{keypairName}"
+		_apiUrlPath := "/v1beta1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName"
-		path = strings.Replace(path, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Keypair{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -5998,7 +5999,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		keypairName := "keypairName"
+		keypairName := keypairNameValue
 		updateKeyPairPayload := UpdateKeyPairPayload{}
 
 		resp, reqErr := apiClient.UpdateKeyPair(context.Background(), keypairName).UpdateKeyPairPayload(updateKeyPairPayload).Execute()
@@ -6006,22 +6007,22 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateNetworkAreaRoute", func(t *testing.T) {
-		path := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
-		organizationIdValue := "organizationId"
-		path = strings.Replace(path, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := "areaId"
-		path = strings.Replace(path, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		routeIdValue := "routeId"
-		path = strings.Replace(path, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+		organizationIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		routeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Route{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -6055,9 +6056,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		organizationId := "organizationId"
-		areaId := "areaId"
-		routeId := "routeId"
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		routeId := routeIdValue
 		updateNetworkAreaRoutePayload := UpdateNetworkAreaRoutePayload{}
 
 		resp, reqErr := apiClient.UpdateNetworkAreaRoute(context.Background(), organizationId, areaId, routeId).UpdateNetworkAreaRoutePayload(updateNetworkAreaRoutePayload).Execute()
@@ -6065,22 +6066,22 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateNic", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := "networkId"
-		path = strings.Replace(path, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		nicIdValue := "nicId"
-		path = strings.Replace(path, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		networkIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
+		nicIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NIC{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -6114,9 +6115,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		networkId := "networkId"
-		nicId := "nicId"
+		projectId := projectIdValue
+		networkId := networkIdValue
+		nicId := nicIdValue
 		updateNicPayload := UpdateNicPayload{}
 
 		resp, reqErr := apiClient.UpdateNic(context.Background(), projectId, networkId, nicId).UpdateNicPayload(updateNicPayload).Execute()
@@ -6124,20 +6125,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdatePublicIP", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		publicIpIdValue := "publicIpId"
-		path = strings.Replace(path, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		publicIpIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -6171,8 +6172,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		publicIpId := "publicIpId"
+		projectId := projectIdValue
+		publicIpId := publicIpIdValue
 		updatePublicIPPayload := UpdatePublicIPPayload{}
 
 		resp, reqErr := apiClient.UpdatePublicIP(context.Background(), projectId, publicIpId).UpdatePublicIPPayload(updatePublicIPPayload).Execute()
@@ -6180,20 +6181,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateSecurityGroup", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := "securityGroupId"
-		path = strings.Replace(path, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		securityGroupIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -6227,8 +6228,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		securityGroupId := "securityGroupId"
+		projectId := projectIdValue
+		securityGroupId := securityGroupIdValue
 		updateSecurityGroupPayload := UpdateSecurityGroupPayload{}
 
 		resp, reqErr := apiClient.UpdateSecurityGroup(context.Background(), projectId, securityGroupId).UpdateSecurityGroupPayload(updateSecurityGroupPayload).Execute()
@@ -6236,20 +6237,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateServer", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/servers/{serverId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Server{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -6283,8 +6284,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
 		updateServerPayload := UpdateServerPayload{}
 
 		resp, reqErr := apiClient.UpdateServer(context.Background(), projectId, serverId).UpdateServerPayload(updateServerPayload).Execute()
@@ -6292,20 +6293,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateSnapshot", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		snapshotIdValue := "snapshotId"
-		path = strings.Replace(path, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		snapshotIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Snapshot{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -6339,8 +6340,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		snapshotId := "snapshotId"
+		projectId := projectIdValue
+		snapshotId := snapshotIdValue
 		updateSnapshotPayload := UpdateSnapshotPayload{}
 
 		resp, reqErr := apiClient.UpdateSnapshot(context.Background(), projectId, snapshotId).UpdateSnapshotPayload(updateSnapshotPayload).Execute()
@@ -6348,20 +6349,20 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateVolume", func(t *testing.T) {
-		path := "/v1beta1/projects/{projectId}/volumes/{volumeId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumeIdValue := "volumeId"
-		path = strings.Replace(path, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
+		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes/{volumeId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		volumeIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Volume{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -6395,8 +6396,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		volumeId := "volumeId"
+		projectId := projectIdValue
+		volumeId := volumeIdValue
 		updateVolumePayload := UpdateVolumePayload{}
 
 		resp, reqErr := apiClient.UpdateVolume(context.Background(), projectId, volumeId).UpdateVolumePayload(updateVolumePayload).Execute()
@@ -6404,7 +6405,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})

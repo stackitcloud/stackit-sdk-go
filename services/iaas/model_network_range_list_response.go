@@ -17,11 +17,31 @@ import (
 // checks if the NetworkRangeListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NetworkRangeListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type NetworkRangeListResponseGetItemsAttributeType = *[]NetworkRange
+type NetworkRangeListResponseGetItemsArgType = []NetworkRange
+type NetworkRangeListResponseGetItemsRetType = []NetworkRange
+
+func getNetworkRangeListResponseGetItemsAttributeTypeOk(arg NetworkRangeListResponseGetItemsAttributeType) (ret NetworkRangeListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkRangeListResponseGetItemsAttributeType(arg *NetworkRangeListResponseGetItemsAttributeType, val NetworkRangeListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // NetworkRangeListResponse Network Range list response.
 type NetworkRangeListResponse struct {
 	// A list of network ranges.
 	// REQUIRED
-	Items *[]NetworkRange `json:"items"`
+	Items NetworkRangeListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _NetworkRangeListResponse NetworkRangeListResponse
@@ -30,9 +50,9 @@ type _NetworkRangeListResponse NetworkRangeListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkRangeListResponse(items *[]NetworkRange) *NetworkRangeListResponse {
+func NewNetworkRangeListResponse(items NetworkRangeListResponseGetItemsArgType) *NetworkRangeListResponse {
 	this := NetworkRangeListResponse{}
-	this.Items = items
+	setNetworkRangeListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewNetworkRangeListResponseWithDefaults() *NetworkRangeListResponse {
 }
 
 // GetItems returns the Items field value
-func (o *NetworkRangeListResponse) GetItems() *[]NetworkRange {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]NetworkRange
-		return ret
-	}
-
-	return o.Items
+func (o *NetworkRangeListResponse) GetItems() (ret NetworkRangeListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *NetworkRangeListResponse) GetItemsOk() (*[]NetworkRange, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *NetworkRangeListResponse) GetItemsOk() (ret NetworkRangeListResponseGetItemsRetType, ok bool) {
+	return getNetworkRangeListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *NetworkRangeListResponse) SetItems(v *[]NetworkRange) {
-	o.Items = v
+func (o *NetworkRangeListResponse) SetItems(v NetworkRangeListResponseGetItemsRetType) {
+	setNetworkRangeListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o NetworkRangeListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getNetworkRangeListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 
