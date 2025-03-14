@@ -17,9 +17,29 @@ import (
 // checks if the ListFlavorsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListFlavorsResponse{}
 
+/*
+	types and functions for flavors
+*/
+
+// isArray
+type ListFlavorsResponseGetFlavorsAttributeType = *[]Flavor
+type ListFlavorsResponseGetFlavorsArgType = []Flavor
+type ListFlavorsResponseGetFlavorsRetType = []Flavor
+
+func getListFlavorsResponseGetFlavorsAttributeTypeOk(arg ListFlavorsResponseGetFlavorsAttributeType) (ret ListFlavorsResponseGetFlavorsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListFlavorsResponseGetFlavorsAttributeType(arg *ListFlavorsResponseGetFlavorsAttributeType, val ListFlavorsResponseGetFlavorsRetType) {
+	*arg = &val
+}
+
 // ListFlavorsResponse struct for ListFlavorsResponse
 type ListFlavorsResponse struct {
-	Flavors *[]Flavor `json:"flavors,omitempty"`
+	Flavors ListFlavorsResponseGetFlavorsAttributeType `json:"flavors,omitempty"`
 }
 
 // NewListFlavorsResponse instantiates a new ListFlavorsResponse object
@@ -40,41 +60,32 @@ func NewListFlavorsResponseWithDefaults() *ListFlavorsResponse {
 }
 
 // GetFlavors returns the Flavors field value if set, zero value otherwise.
-func (o *ListFlavorsResponse) GetFlavors() *[]Flavor {
-	if o == nil || IsNil(o.Flavors) {
-		var ret *[]Flavor
-		return ret
-	}
-	return o.Flavors
+func (o *ListFlavorsResponse) GetFlavors() (res ListFlavorsResponseGetFlavorsRetType) {
+	res, _ = o.GetFlavorsOk()
+	return
 }
 
 // GetFlavorsOk returns a tuple with the Flavors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListFlavorsResponse) GetFlavorsOk() (*[]Flavor, bool) {
-	if o == nil || IsNil(o.Flavors) {
-		return nil, false
-	}
-	return o.Flavors, true
+func (o *ListFlavorsResponse) GetFlavorsOk() (ret ListFlavorsResponseGetFlavorsRetType, ok bool) {
+	return getListFlavorsResponseGetFlavorsAttributeTypeOk(o.Flavors)
 }
 
 // HasFlavors returns a boolean if a field has been set.
 func (o *ListFlavorsResponse) HasFlavors() bool {
-	if o != nil && !IsNil(o.Flavors) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFlavorsOk()
+	return ok
 }
 
 // SetFlavors gets a reference to the given []Flavor and assigns it to the Flavors field.
-func (o *ListFlavorsResponse) SetFlavors(v *[]Flavor) {
-	o.Flavors = v
+func (o *ListFlavorsResponse) SetFlavors(v ListFlavorsResponseGetFlavorsRetType) {
+	setListFlavorsResponseGetFlavorsAttributeType(&o.Flavors, v)
 }
 
 func (o ListFlavorsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Flavors) {
-		toSerialize["flavors"] = o.Flavors
+	if val, ok := getListFlavorsResponseGetFlavorsAttributeTypeOk(o.Flavors); ok {
+		toSerialize["Flavors"] = val
 	}
 	return toSerialize, nil
 }
