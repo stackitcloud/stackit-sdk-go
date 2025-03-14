@@ -17,12 +17,94 @@ import (
 // checks if the Error type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Error{}
 
+/*
+	types and functions for code
+*/
+
+// isInteger
+type ErrorGetCodeAttributeType = *int64
+type ErrorGetCodeArgType = int64
+type ErrorGetCodeRetType = int64
+
+func getErrorGetCodeAttributeTypeOk(arg ErrorGetCodeAttributeType) (ret ErrorGetCodeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorGetCodeAttributeType(arg *ErrorGetCodeAttributeType, val ErrorGetCodeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for fields
+*/
+
+// isContainer
+type ErrorGetFieldsAttributeType = *map[string][]string
+type ErrorGetFieldsArgType = map[string][]string
+type ErrorGetFieldsRetType = map[string][]string
+
+func getErrorGetFieldsAttributeTypeOk(arg ErrorGetFieldsAttributeType) (ret ErrorGetFieldsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorGetFieldsAttributeType(arg *ErrorGetFieldsAttributeType, val ErrorGetFieldsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ErrorGetMessageAttributeType = *string
+
+func getErrorGetMessageAttributeTypeOk(arg ErrorGetMessageAttributeType) (ret ErrorGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorGetMessageAttributeType(arg *ErrorGetMessageAttributeType, val ErrorGetMessageRetType) {
+	*arg = &val
+}
+
+type ErrorGetMessageArgType = string
+type ErrorGetMessageRetType = string
+
+/*
+	types and functions for type
+*/
+
+// isNotNullableString
+type ErrorGetTypeAttributeType = *string
+
+func getErrorGetTypeAttributeTypeOk(arg ErrorGetTypeAttributeType) (ret ErrorGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorGetTypeAttributeType(arg *ErrorGetTypeAttributeType, val ErrorGetTypeRetType) {
+	*arg = &val
+}
+
+type ErrorGetTypeArgType = string
+type ErrorGetTypeRetType = string
+
 // Error struct for Error
 type Error struct {
-	Code    *int64               `json:"code,omitempty"`
-	Fields  *map[string][]string `json:"fields,omitempty"`
-	Message *string              `json:"message,omitempty"`
-	Type    *string              `json:"type,omitempty"`
+	Code    ErrorGetCodeAttributeType    `json:"code,omitempty"`
+	Fields  ErrorGetFieldsAttributeType  `json:"fields,omitempty"`
+	Message ErrorGetMessageAttributeType `json:"message,omitempty"`
+	Type    ErrorGetTypeAttributeType    `json:"type,omitempty"`
 }
 
 // NewError instantiates a new Error object
@@ -43,146 +125,110 @@ func NewErrorWithDefaults() *Error {
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *Error) GetCode() *int64 {
-	if o == nil || IsNil(o.Code) {
-		var ret *int64
-		return ret
-	}
-	return o.Code
+func (o *Error) GetCode() (res ErrorGetCodeRetType) {
+	res, _ = o.GetCodeOk()
+	return
 }
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Error) GetCodeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Code) {
-		return nil, false
-	}
-	return o.Code, true
+func (o *Error) GetCodeOk() (ret ErrorGetCodeRetType, ok bool) {
+	return getErrorGetCodeAttributeTypeOk(o.Code)
 }
 
 // HasCode returns a boolean if a field has been set.
 func (o *Error) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCodeOk()
+	return ok
 }
 
 // SetCode gets a reference to the given int64 and assigns it to the Code field.
-func (o *Error) SetCode(v *int64) {
-	o.Code = v
+func (o *Error) SetCode(v ErrorGetCodeRetType) {
+	setErrorGetCodeAttributeType(&o.Code, v)
 }
 
 // GetFields returns the Fields field value if set, zero value otherwise.
-func (o *Error) GetFields() *map[string][]string {
-	if o == nil || IsNil(o.Fields) {
-		var ret *map[string][]string
-		return ret
-	}
-	return o.Fields
+func (o *Error) GetFields() (res ErrorGetFieldsRetType) {
+	res, _ = o.GetFieldsOk()
+	return
 }
 
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Error) GetFieldsOk() (*map[string][]string, bool) {
-	if o == nil || IsNil(o.Fields) {
-		return nil, false
-	}
-	return o.Fields, true
+func (o *Error) GetFieldsOk() (ret ErrorGetFieldsRetType, ok bool) {
+	return getErrorGetFieldsAttributeTypeOk(o.Fields)
 }
 
 // HasFields returns a boolean if a field has been set.
 func (o *Error) HasFields() bool {
-	if o != nil && !IsNil(o.Fields) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFieldsOk()
+	return ok
 }
 
 // SetFields gets a reference to the given map[string][]string and assigns it to the Fields field.
-func (o *Error) SetFields(v *map[string][]string) {
-	o.Fields = v
+func (o *Error) SetFields(v ErrorGetFieldsRetType) {
+	setErrorGetFieldsAttributeType(&o.Fields, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *Error) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *Error) GetMessage() (res ErrorGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Error) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *Error) GetMessageOk() (ret ErrorGetMessageRetType, ok bool) {
+	return getErrorGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *Error) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *Error) SetMessage(v *string) {
-	o.Message = v
+func (o *Error) SetMessage(v ErrorGetMessageRetType) {
+	setErrorGetMessageAttributeType(&o.Message, v)
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Error) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-	return o.Type
+func (o *Error) GetType() (res ErrorGetTypeRetType) {
+	res, _ = o.GetTypeOk()
+	return
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Error) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
+func (o *Error) GetTypeOk() (ret ErrorGetTypeRetType, ok bool) {
+	return getErrorGetTypeAttributeTypeOk(o.Type)
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *Error) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTypeOk()
+	return ok
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Error) SetType(v *string) {
-	o.Type = v
+func (o *Error) SetType(v ErrorGetTypeRetType) {
+	setErrorGetTypeAttributeType(&o.Type, v)
 }
 
 func (o Error) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Code) {
-		toSerialize["code"] = o.Code
+	if val, ok := getErrorGetCodeAttributeTypeOk(o.Code); ok {
+		toSerialize["Code"] = val
 	}
-	if !IsNil(o.Fields) {
-		toSerialize["fields"] = o.Fields
+	if val, ok := getErrorGetFieldsAttributeTypeOk(o.Fields); ok {
+		toSerialize["Fields"] = val
 	}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getErrorGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if val, ok := getErrorGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
 }

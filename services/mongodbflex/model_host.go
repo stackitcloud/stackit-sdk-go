@@ -17,10 +17,51 @@ import (
 // checks if the Host type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Host{}
 
+/*
+	types and functions for hostMetrics
+*/
+
+// isArray
+type HostGetHostMetricsAttributeType = *[]HostMetric
+type HostGetHostMetricsArgType = []HostMetric
+type HostGetHostMetricsRetType = []HostMetric
+
+func getHostGetHostMetricsAttributeTypeOk(arg HostGetHostMetricsAttributeType) (ret HostGetHostMetricsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHostGetHostMetricsAttributeType(arg *HostGetHostMetricsAttributeType, val HostGetHostMetricsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type HostGetIdAttributeType = *string
+
+func getHostGetIdAttributeTypeOk(arg HostGetIdAttributeType) (ret HostGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHostGetIdAttributeType(arg *HostGetIdAttributeType, val HostGetIdRetType) {
+	*arg = &val
+}
+
+type HostGetIdArgType = string
+type HostGetIdRetType = string
+
 // Host struct for Host
 type Host struct {
-	HostMetrics *[]HostMetric `json:"hostMetrics,omitempty"`
-	Id          *string       `json:"id,omitempty"`
+	HostMetrics HostGetHostMetricsAttributeType `json:"hostMetrics,omitempty"`
+	Id          HostGetIdAttributeType          `json:"id,omitempty"`
 }
 
 // NewHost instantiates a new Host object
@@ -41,76 +82,58 @@ func NewHostWithDefaults() *Host {
 }
 
 // GetHostMetrics returns the HostMetrics field value if set, zero value otherwise.
-func (o *Host) GetHostMetrics() *[]HostMetric {
-	if o == nil || IsNil(o.HostMetrics) {
-		var ret *[]HostMetric
-		return ret
-	}
-	return o.HostMetrics
+func (o *Host) GetHostMetrics() (res HostGetHostMetricsRetType) {
+	res, _ = o.GetHostMetricsOk()
+	return
 }
 
 // GetHostMetricsOk returns a tuple with the HostMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetHostMetricsOk() (*[]HostMetric, bool) {
-	if o == nil || IsNil(o.HostMetrics) {
-		return nil, false
-	}
-	return o.HostMetrics, true
+func (o *Host) GetHostMetricsOk() (ret HostGetHostMetricsRetType, ok bool) {
+	return getHostGetHostMetricsAttributeTypeOk(o.HostMetrics)
 }
 
 // HasHostMetrics returns a boolean if a field has been set.
 func (o *Host) HasHostMetrics() bool {
-	if o != nil && !IsNil(o.HostMetrics) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHostMetricsOk()
+	return ok
 }
 
 // SetHostMetrics gets a reference to the given []HostMetric and assigns it to the HostMetrics field.
-func (o *Host) SetHostMetrics(v *[]HostMetric) {
-	o.HostMetrics = v
+func (o *Host) SetHostMetrics(v HostGetHostMetricsRetType) {
+	setHostGetHostMetricsAttributeType(&o.HostMetrics, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Host) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Host) GetId() (res HostGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Host) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Host) GetIdOk() (ret HostGetIdRetType, ok bool) {
+	return getHostGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Host) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Host) SetId(v *string) {
-	o.Id = v
+func (o *Host) SetId(v HostGetIdRetType) {
+	setHostGetIdAttributeType(&o.Id, v)
 }
 
 func (o Host) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.HostMetrics) {
-		toSerialize["hostMetrics"] = o.HostMetrics
+	if val, ok := getHostGetHostMetricsAttributeTypeOk(o.HostMetrics); ok {
+		toSerialize["HostMetrics"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getHostGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
 	return toSerialize, nil
 }

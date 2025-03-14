@@ -17,16 +17,181 @@ import (
 // checks if the Backup type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Backup{}
 
+/*
+	types and functions for endTime
+*/
+
+// isNotNullableString
+type BackupGetEndTimeAttributeType = *string
+
+func getBackupGetEndTimeAttributeTypeOk(arg BackupGetEndTimeAttributeType) (ret BackupGetEndTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupGetEndTimeAttributeType(arg *BackupGetEndTimeAttributeType, val BackupGetEndTimeRetType) {
+	*arg = &val
+}
+
+type BackupGetEndTimeArgType = string
+type BackupGetEndTimeRetType = string
+
+/*
+	types and functions for error
+*/
+
+// isNotNullableString
+type BackupGetErrorAttributeType = *string
+
+func getBackupGetErrorAttributeTypeOk(arg BackupGetErrorAttributeType) (ret BackupGetErrorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupGetErrorAttributeType(arg *BackupGetErrorAttributeType, val BackupGetErrorRetType) {
+	*arg = &val
+}
+
+type BackupGetErrorArgType = string
+type BackupGetErrorRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type BackupGetIdAttributeType = *string
+
+func getBackupGetIdAttributeTypeOk(arg BackupGetIdAttributeType) (ret BackupGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupGetIdAttributeType(arg *BackupGetIdAttributeType, val BackupGetIdRetType) {
+	*arg = &val
+}
+
+type BackupGetIdArgType = string
+type BackupGetIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isArray
+type BackupGetLabelsAttributeType = *[]string
+type BackupGetLabelsArgType = []string
+type BackupGetLabelsRetType = []string
+
+func getBackupGetLabelsAttributeTypeOk(arg BackupGetLabelsAttributeType) (ret BackupGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupGetLabelsAttributeType(arg *BackupGetLabelsAttributeType, val BackupGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type BackupGetNameAttributeType = *string
+
+func getBackupGetNameAttributeTypeOk(arg BackupGetNameAttributeType) (ret BackupGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupGetNameAttributeType(arg *BackupGetNameAttributeType, val BackupGetNameRetType) {
+	*arg = &val
+}
+
+type BackupGetNameArgType = string
+type BackupGetNameRetType = string
+
+/*
+	types and functions for options
+*/
+
+// isContainer
+type BackupGetOptionsAttributeType = *map[string]string
+type BackupGetOptionsArgType = map[string]string
+type BackupGetOptionsRetType = map[string]string
+
+func getBackupGetOptionsAttributeTypeOk(arg BackupGetOptionsAttributeType) (ret BackupGetOptionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupGetOptionsAttributeType(arg *BackupGetOptionsAttributeType, val BackupGetOptionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for size
+*/
+
+// isInteger
+type BackupGetSizeAttributeType = *int64
+type BackupGetSizeArgType = int64
+type BackupGetSizeRetType = int64
+
+func getBackupGetSizeAttributeTypeOk(arg BackupGetSizeAttributeType) (ret BackupGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupGetSizeAttributeType(arg *BackupGetSizeAttributeType, val BackupGetSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for startTime
+*/
+
+// isNotNullableString
+type BackupGetStartTimeAttributeType = *string
+
+func getBackupGetStartTimeAttributeTypeOk(arg BackupGetStartTimeAttributeType) (ret BackupGetStartTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupGetStartTimeAttributeType(arg *BackupGetStartTimeAttributeType, val BackupGetStartTimeRetType) {
+	*arg = &val
+}
+
+type BackupGetStartTimeArgType = string
+type BackupGetStartTimeRetType = string
+
 // Backup struct for Backup
 type Backup struct {
-	EndTime   *string            `json:"endTime,omitempty"`
-	Error     *string            `json:"error,omitempty"`
-	Id        *string            `json:"id,omitempty"`
-	Labels    *[]string          `json:"labels,omitempty"`
-	Name      *string            `json:"name,omitempty"`
-	Options   *map[string]string `json:"options,omitempty"`
-	Size      *int64             `json:"size,omitempty"`
-	StartTime *string            `json:"startTime,omitempty"`
+	EndTime   BackupGetEndTimeAttributeType   `json:"endTime,omitempty"`
+	Error     BackupGetErrorAttributeType     `json:"error,omitempty"`
+	Id        BackupGetIdAttributeType        `json:"id,omitempty"`
+	Labels    BackupGetLabelsAttributeType    `json:"labels,omitempty"`
+	Name      BackupGetNameAttributeType      `json:"name,omitempty"`
+	Options   BackupGetOptionsAttributeType   `json:"options,omitempty"`
+	Size      BackupGetSizeAttributeType      `json:"size,omitempty"`
+	StartTime BackupGetStartTimeAttributeType `json:"startTime,omitempty"`
 }
 
 // NewBackup instantiates a new Backup object
@@ -47,286 +212,214 @@ func NewBackupWithDefaults() *Backup {
 }
 
 // GetEndTime returns the EndTime field value if set, zero value otherwise.
-func (o *Backup) GetEndTime() *string {
-	if o == nil || IsNil(o.EndTime) {
-		var ret *string
-		return ret
-	}
-	return o.EndTime
+func (o *Backup) GetEndTime() (res BackupGetEndTimeRetType) {
+	res, _ = o.GetEndTimeOk()
+	return
 }
 
 // GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Backup) GetEndTimeOk() (*string, bool) {
-	if o == nil || IsNil(o.EndTime) {
-		return nil, false
-	}
-	return o.EndTime, true
+func (o *Backup) GetEndTimeOk() (ret BackupGetEndTimeRetType, ok bool) {
+	return getBackupGetEndTimeAttributeTypeOk(o.EndTime)
 }
 
 // HasEndTime returns a boolean if a field has been set.
 func (o *Backup) HasEndTime() bool {
-	if o != nil && !IsNil(o.EndTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEndTimeOk()
+	return ok
 }
 
 // SetEndTime gets a reference to the given string and assigns it to the EndTime field.
-func (o *Backup) SetEndTime(v *string) {
-	o.EndTime = v
+func (o *Backup) SetEndTime(v BackupGetEndTimeRetType) {
+	setBackupGetEndTimeAttributeType(&o.EndTime, v)
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *Backup) GetError() *string {
-	if o == nil || IsNil(o.Error) {
-		var ret *string
-		return ret
-	}
-	return o.Error
+func (o *Backup) GetError() (res BackupGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Backup) GetErrorOk() (*string, bool) {
-	if o == nil || IsNil(o.Error) {
-		return nil, false
-	}
-	return o.Error, true
+func (o *Backup) GetErrorOk() (ret BackupGetErrorRetType, ok bool) {
+	return getBackupGetErrorAttributeTypeOk(o.Error)
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *Backup) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorOk()
+	return ok
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
-func (o *Backup) SetError(v *string) {
-	o.Error = v
+func (o *Backup) SetError(v BackupGetErrorRetType) {
+	setBackupGetErrorAttributeType(&o.Error, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Backup) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Backup) GetId() (res BackupGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Backup) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Backup) GetIdOk() (ret BackupGetIdRetType, ok bool) {
+	return getBackupGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Backup) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Backup) SetId(v *string) {
-	o.Id = v
+func (o *Backup) SetId(v BackupGetIdRetType) {
+	setBackupGetIdAttributeType(&o.Id, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Backup) GetLabels() *[]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *[]string
-		return ret
-	}
-	return o.Labels
+func (o *Backup) GetLabels() (res BackupGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Backup) GetLabelsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *Backup) GetLabelsOk() (ret BackupGetLabelsRetType, ok bool) {
+	return getBackupGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Backup) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given []string and assigns it to the Labels field.
-func (o *Backup) SetLabels(v *[]string) {
-	o.Labels = v
+func (o *Backup) SetLabels(v BackupGetLabelsRetType) {
+	setBackupGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Backup) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Backup) GetName() (res BackupGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Backup) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Backup) GetNameOk() (ret BackupGetNameRetType, ok bool) {
+	return getBackupGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Backup) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Backup) SetName(v *string) {
-	o.Name = v
+func (o *Backup) SetName(v BackupGetNameRetType) {
+	setBackupGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *Backup) GetOptions() *map[string]string {
-	if o == nil || IsNil(o.Options) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Options
+func (o *Backup) GetOptions() (res BackupGetOptionsRetType) {
+	res, _ = o.GetOptionsOk()
+	return
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Backup) GetOptionsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Options) {
-		return nil, false
-	}
-	return o.Options, true
+func (o *Backup) GetOptionsOk() (ret BackupGetOptionsRetType, ok bool) {
+	return getBackupGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Backup) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOptionsOk()
+	return ok
 }
 
 // SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
-func (o *Backup) SetOptions(v *map[string]string) {
-	o.Options = v
+func (o *Backup) SetOptions(v BackupGetOptionsRetType) {
+	setBackupGetOptionsAttributeType(&o.Options, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *Backup) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-	return o.Size
+func (o *Backup) GetSize() (res BackupGetSizeRetType) {
+	res, _ = o.GetSizeOk()
+	return
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Backup) GetSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Size) {
-		return nil, false
-	}
-	return o.Size, true
+func (o *Backup) GetSizeOk() (ret BackupGetSizeRetType, ok bool) {
+	return getBackupGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *Backup) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSizeOk()
+	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *Backup) SetSize(v *int64) {
-	o.Size = v
+func (o *Backup) SetSize(v BackupGetSizeRetType) {
+	setBackupGetSizeAttributeType(&o.Size, v)
 }
 
 // GetStartTime returns the StartTime field value if set, zero value otherwise.
-func (o *Backup) GetStartTime() *string {
-	if o == nil || IsNil(o.StartTime) {
-		var ret *string
-		return ret
-	}
-	return o.StartTime
+func (o *Backup) GetStartTime() (res BackupGetStartTimeRetType) {
+	res, _ = o.GetStartTimeOk()
+	return
 }
 
 // GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Backup) GetStartTimeOk() (*string, bool) {
-	if o == nil || IsNil(o.StartTime) {
-		return nil, false
-	}
-	return o.StartTime, true
+func (o *Backup) GetStartTimeOk() (ret BackupGetStartTimeRetType, ok bool) {
+	return getBackupGetStartTimeAttributeTypeOk(o.StartTime)
 }
 
 // HasStartTime returns a boolean if a field has been set.
 func (o *Backup) HasStartTime() bool {
-	if o != nil && !IsNil(o.StartTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStartTimeOk()
+	return ok
 }
 
 // SetStartTime gets a reference to the given string and assigns it to the StartTime field.
-func (o *Backup) SetStartTime(v *string) {
-	o.StartTime = v
+func (o *Backup) SetStartTime(v BackupGetStartTimeRetType) {
+	setBackupGetStartTimeAttributeType(&o.StartTime, v)
 }
 
 func (o Backup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.EndTime) {
-		toSerialize["endTime"] = o.EndTime
+	if val, ok := getBackupGetEndTimeAttributeTypeOk(o.EndTime); ok {
+		toSerialize["EndTime"] = val
 	}
-	if !IsNil(o.Error) {
-		toSerialize["error"] = o.Error
+	if val, ok := getBackupGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getBackupGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getBackupGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getBackupGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
+	if val, ok := getBackupGetOptionsAttributeTypeOk(o.Options); ok {
+		toSerialize["Options"] = val
 	}
-	if !IsNil(o.Size) {
-		toSerialize["size"] = o.Size
+	if val, ok := getBackupGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
 	}
-	if !IsNil(o.StartTime) {
-		toSerialize["startTime"] = o.StartTime
+	if val, ok := getBackupGetStartTimeAttributeTypeOk(o.StartTime); ok {
+		toSerialize["StartTime"] = val
 	}
 	return toSerialize, nil
 }
