@@ -17,35 +17,326 @@ import (
 // checks if the Instance type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Instance{}
 
+/*
+	types and functions for cfGuid
+*/
+
+// isNotNullableString
+type InstanceGetCfGuidAttributeType = *string
+
+func getInstanceGetCfGuidAttributeTypeOk(arg InstanceGetCfGuidAttributeType) (ret InstanceGetCfGuidRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetCfGuidAttributeType(arg *InstanceGetCfGuidAttributeType, val InstanceGetCfGuidRetType) {
+	*arg = &val
+}
+
+type InstanceGetCfGuidArgType = string
+type InstanceGetCfGuidRetType = string
+
+/*
+	types and functions for cfOrganizationGuid
+*/
+
+// isNotNullableString
+type InstanceGetCfOrganizationGuidAttributeType = *string
+
+func getInstanceGetCfOrganizationGuidAttributeTypeOk(arg InstanceGetCfOrganizationGuidAttributeType) (ret InstanceGetCfOrganizationGuidRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetCfOrganizationGuidAttributeType(arg *InstanceGetCfOrganizationGuidAttributeType, val InstanceGetCfOrganizationGuidRetType) {
+	*arg = &val
+}
+
+type InstanceGetCfOrganizationGuidArgType = string
+type InstanceGetCfOrganizationGuidRetType = string
+
+/*
+	types and functions for cfSpaceGuid
+*/
+
+// isNotNullableString
+type InstanceGetCfSpaceGuidAttributeType = *string
+
+func getInstanceGetCfSpaceGuidAttributeTypeOk(arg InstanceGetCfSpaceGuidAttributeType) (ret InstanceGetCfSpaceGuidRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetCfSpaceGuidAttributeType(arg *InstanceGetCfSpaceGuidAttributeType, val InstanceGetCfSpaceGuidRetType) {
+	*arg = &val
+}
+
+type InstanceGetCfSpaceGuidArgType = string
+type InstanceGetCfSpaceGuidRetType = string
+
+/*
+	types and functions for dashboardUrl
+*/
+
+// isNotNullableString
+type InstanceGetDashboardUrlAttributeType = *string
+
+func getInstanceGetDashboardUrlAttributeTypeOk(arg InstanceGetDashboardUrlAttributeType) (ret InstanceGetDashboardUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetDashboardUrlAttributeType(arg *InstanceGetDashboardUrlAttributeType, val InstanceGetDashboardUrlRetType) {
+	*arg = &val
+}
+
+type InstanceGetDashboardUrlArgType = string
+type InstanceGetDashboardUrlRetType = string
+
+/*
+	types and functions for imageUrl
+*/
+
+// isNotNullableString
+type InstanceGetImageUrlAttributeType = *string
+
+func getInstanceGetImageUrlAttributeTypeOk(arg InstanceGetImageUrlAttributeType) (ret InstanceGetImageUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetImageUrlAttributeType(arg *InstanceGetImageUrlAttributeType, val InstanceGetImageUrlRetType) {
+	*arg = &val
+}
+
+type InstanceGetImageUrlArgType = string
+type InstanceGetImageUrlRetType = string
+
+/*
+	types and functions for instanceId
+*/
+
+// isNotNullableString
+type InstanceGetInstanceIdAttributeType = *string
+
+func getInstanceGetInstanceIdAttributeTypeOk(arg InstanceGetInstanceIdAttributeType) (ret InstanceGetInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetInstanceIdAttributeType(arg *InstanceGetInstanceIdAttributeType, val InstanceGetInstanceIdRetType) {
+	*arg = &val
+}
+
+type InstanceGetInstanceIdArgType = string
+type InstanceGetInstanceIdRetType = string
+
+/*
+	types and functions for lastOperation
+*/
+
+// isModel
+type InstanceGetLastOperationAttributeType = *InstanceLastOperation
+type InstanceGetLastOperationArgType = InstanceLastOperation
+type InstanceGetLastOperationRetType = InstanceLastOperation
+
+func getInstanceGetLastOperationAttributeTypeOk(arg InstanceGetLastOperationAttributeType) (ret InstanceGetLastOperationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetLastOperationAttributeType(arg *InstanceGetLastOperationAttributeType, val InstanceGetLastOperationRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type InstanceGetNameAttributeType = *string
+
+func getInstanceGetNameAttributeTypeOk(arg InstanceGetNameAttributeType) (ret InstanceGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetNameAttributeType(arg *InstanceGetNameAttributeType, val InstanceGetNameRetType) {
+	*arg = &val
+}
+
+type InstanceGetNameArgType = string
+type InstanceGetNameRetType = string
+
+/*
+	types and functions for offeringName
+*/
+
+// isNotNullableString
+type InstanceGetOfferingNameAttributeType = *string
+
+func getInstanceGetOfferingNameAttributeTypeOk(arg InstanceGetOfferingNameAttributeType) (ret InstanceGetOfferingNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetOfferingNameAttributeType(arg *InstanceGetOfferingNameAttributeType, val InstanceGetOfferingNameRetType) {
+	*arg = &val
+}
+
+type InstanceGetOfferingNameArgType = string
+type InstanceGetOfferingNameRetType = string
+
+/*
+	types and functions for offeringVersion
+*/
+
+// isNotNullableString
+type InstanceGetOfferingVersionAttributeType = *string
+
+func getInstanceGetOfferingVersionAttributeTypeOk(arg InstanceGetOfferingVersionAttributeType) (ret InstanceGetOfferingVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetOfferingVersionAttributeType(arg *InstanceGetOfferingVersionAttributeType, val InstanceGetOfferingVersionRetType) {
+	*arg = &val
+}
+
+type InstanceGetOfferingVersionArgType = string
+type InstanceGetOfferingVersionRetType = string
+
+/*
+	types and functions for parameters
+*/
+
+// isFreeform
+type InstanceGetParametersAttributeType = *map[string]interface{}
+type InstanceGetParametersArgType = map[string]interface{}
+type InstanceGetParametersRetType = map[string]interface{}
+
+func getInstanceGetParametersAttributeTypeOk(arg InstanceGetParametersAttributeType) (ret InstanceGetParametersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetParametersAttributeType(arg *InstanceGetParametersAttributeType, val InstanceGetParametersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for planId
+*/
+
+// isNotNullableString
+type InstanceGetPlanIdAttributeType = *string
+
+func getInstanceGetPlanIdAttributeTypeOk(arg InstanceGetPlanIdAttributeType) (ret InstanceGetPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetPlanIdAttributeType(arg *InstanceGetPlanIdAttributeType, val InstanceGetPlanIdRetType) {
+	*arg = &val
+}
+
+type InstanceGetPlanIdArgType = string
+type InstanceGetPlanIdRetType = string
+
+/*
+	types and functions for planName
+*/
+
+// isNotNullableString
+type InstanceGetPlanNameAttributeType = *string
+
+func getInstanceGetPlanNameAttributeTypeOk(arg InstanceGetPlanNameAttributeType) (ret InstanceGetPlanNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetPlanNameAttributeType(arg *InstanceGetPlanNameAttributeType, val InstanceGetPlanNameRetType) {
+	*arg = &val
+}
+
+type InstanceGetPlanNameArgType = string
+type InstanceGetPlanNameRetType = string
+
+/*
+	types and functions for status
+*/
+
+// isEnumRef
+type InstanceGetStatusAttributeType = *string
+type InstanceGetStatusArgType = string
+type InstanceGetStatusRetType = string
+
+func getInstanceGetStatusAttributeTypeOk(arg InstanceGetStatusAttributeType) (ret InstanceGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetStatusAttributeType(arg *InstanceGetStatusAttributeType, val InstanceGetStatusRetType) {
+	*arg = &val
+}
+
 // Instance struct for Instance
 type Instance struct {
 	// REQUIRED
-	CfGuid *string `json:"cfGuid"`
+	CfGuid InstanceGetCfGuidAttributeType `json:"cfGuid"`
 	// REQUIRED
-	CfOrganizationGuid *string `json:"cfOrganizationGuid"`
+	CfOrganizationGuid InstanceGetCfOrganizationGuidAttributeType `json:"cfOrganizationGuid"`
 	// REQUIRED
-	CfSpaceGuid *string `json:"cfSpaceGuid"`
+	CfSpaceGuid InstanceGetCfSpaceGuidAttributeType `json:"cfSpaceGuid"`
 	// REQUIRED
-	DashboardUrl *string `json:"dashboardUrl"`
+	DashboardUrl InstanceGetDashboardUrlAttributeType `json:"dashboardUrl"`
 	// REQUIRED
-	ImageUrl   *string `json:"imageUrl"`
-	InstanceId *string `json:"instanceId,omitempty"`
+	ImageUrl   InstanceGetImageUrlAttributeType   `json:"imageUrl"`
+	InstanceId InstanceGetInstanceIdAttributeType `json:"instanceId,omitempty"`
 	// REQUIRED
-	LastOperation *InstanceLastOperation `json:"lastOperation"`
+	LastOperation InstanceGetLastOperationAttributeType `json:"lastOperation"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name InstanceGetNameAttributeType `json:"name"`
 	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
-	OfferingName *string `json:"offeringName"`
+	OfferingName InstanceGetOfferingNameAttributeType `json:"offeringName"`
 	// REQUIRED
-	OfferingVersion *string `json:"offeringVersion"`
+	OfferingVersion InstanceGetOfferingVersionAttributeType `json:"offeringVersion"`
 	// REQUIRED
-	Parameters *map[string]interface{} `json:"parameters"`
+	Parameters InstanceGetParametersAttributeType `json:"parameters"`
 	// REQUIRED
-	PlanId *string `json:"planId"`
+	PlanId InstanceGetPlanIdAttributeType `json:"planId"`
 	// REQUIRED
-	PlanName *string `json:"planName"`
-	Status   *string `json:"status,omitempty"`
+	PlanName InstanceGetPlanNameAttributeType `json:"planName"`
+	Status   InstanceGetStatusAttributeType   `json:"status,omitempty"`
 }
 
 type _Instance Instance
@@ -54,20 +345,20 @@ type _Instance Instance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance(cfGuid *string, cfOrganizationGuid *string, cfSpaceGuid *string, dashboardUrl *string, imageUrl *string, lastOperation *InstanceLastOperation, name *string, offeringName *string, offeringVersion *string, parameters *map[string]interface{}, planId *string, planName *string) *Instance {
+func NewInstance(cfGuid InstanceGetCfGuidArgType, cfOrganizationGuid InstanceGetCfOrganizationGuidArgType, cfSpaceGuid InstanceGetCfSpaceGuidArgType, dashboardUrl InstanceGetDashboardUrlArgType, imageUrl InstanceGetImageUrlArgType, lastOperation InstanceGetLastOperationArgType, name InstanceGetNameArgType, offeringName InstanceGetOfferingNameArgType, offeringVersion InstanceGetOfferingVersionArgType, parameters InstanceGetParametersArgType, planId InstanceGetPlanIdArgType, planName InstanceGetPlanNameArgType) *Instance {
 	this := Instance{}
-	this.CfGuid = cfGuid
-	this.CfOrganizationGuid = cfOrganizationGuid
-	this.CfSpaceGuid = cfSpaceGuid
-	this.DashboardUrl = dashboardUrl
-	this.ImageUrl = imageUrl
-	this.LastOperation = lastOperation
-	this.Name = name
-	this.OfferingName = offeringName
-	this.OfferingVersion = offeringVersion
-	this.Parameters = parameters
-	this.PlanId = planId
-	this.PlanName = planName
+	setInstanceGetCfGuidAttributeType(&this.CfGuid, cfGuid)
+	setInstanceGetCfOrganizationGuidAttributeType(&this.CfOrganizationGuid, cfOrganizationGuid)
+	setInstanceGetCfSpaceGuidAttributeType(&this.CfSpaceGuid, cfSpaceGuid)
+	setInstanceGetDashboardUrlAttributeType(&this.DashboardUrl, dashboardUrl)
+	setInstanceGetImageUrlAttributeType(&this.ImageUrl, imageUrl)
+	setInstanceGetLastOperationAttributeType(&this.LastOperation, lastOperation)
+	setInstanceGetNameAttributeType(&this.Name, name)
+	setInstanceGetOfferingNameAttributeType(&this.OfferingName, offeringName)
+	setInstanceGetOfferingVersionAttributeType(&this.OfferingVersion, offeringVersion)
+	setInstanceGetParametersAttributeType(&this.Parameters, parameters)
+	setInstanceGetPlanIdAttributeType(&this.PlanId, planId)
+	setInstanceGetPlanNameAttributeType(&this.PlanName, planName)
 	return &this
 }
 
@@ -80,379 +371,301 @@ func NewInstanceWithDefaults() *Instance {
 }
 
 // GetCfGuid returns the CfGuid field value
-func (o *Instance) GetCfGuid() *string {
-	if o == nil || IsNil(o.CfGuid) {
-		var ret *string
-		return ret
-	}
-
-	return o.CfGuid
+func (o *Instance) GetCfGuid() (ret InstanceGetCfGuidRetType) {
+	ret, _ = o.GetCfGuidOk()
+	return ret
 }
 
 // GetCfGuidOk returns a tuple with the CfGuid field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetCfGuidOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CfGuid, true
+func (o *Instance) GetCfGuidOk() (ret InstanceGetCfGuidRetType, ok bool) {
+	return getInstanceGetCfGuidAttributeTypeOk(o.CfGuid)
 }
 
 // SetCfGuid sets field value
-func (o *Instance) SetCfGuid(v *string) {
-	o.CfGuid = v
+func (o *Instance) SetCfGuid(v InstanceGetCfGuidRetType) {
+	setInstanceGetCfGuidAttributeType(&o.CfGuid, v)
 }
 
 // GetCfOrganizationGuid returns the CfOrganizationGuid field value
-func (o *Instance) GetCfOrganizationGuid() *string {
-	if o == nil || IsNil(o.CfOrganizationGuid) {
-		var ret *string
-		return ret
-	}
-
-	return o.CfOrganizationGuid
+func (o *Instance) GetCfOrganizationGuid() (ret InstanceGetCfOrganizationGuidRetType) {
+	ret, _ = o.GetCfOrganizationGuidOk()
+	return ret
 }
 
 // GetCfOrganizationGuidOk returns a tuple with the CfOrganizationGuid field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetCfOrganizationGuidOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CfOrganizationGuid, true
+func (o *Instance) GetCfOrganizationGuidOk() (ret InstanceGetCfOrganizationGuidRetType, ok bool) {
+	return getInstanceGetCfOrganizationGuidAttributeTypeOk(o.CfOrganizationGuid)
 }
 
 // SetCfOrganizationGuid sets field value
-func (o *Instance) SetCfOrganizationGuid(v *string) {
-	o.CfOrganizationGuid = v
+func (o *Instance) SetCfOrganizationGuid(v InstanceGetCfOrganizationGuidRetType) {
+	setInstanceGetCfOrganizationGuidAttributeType(&o.CfOrganizationGuid, v)
 }
 
 // GetCfSpaceGuid returns the CfSpaceGuid field value
-func (o *Instance) GetCfSpaceGuid() *string {
-	if o == nil || IsNil(o.CfSpaceGuid) {
-		var ret *string
-		return ret
-	}
-
-	return o.CfSpaceGuid
+func (o *Instance) GetCfSpaceGuid() (ret InstanceGetCfSpaceGuidRetType) {
+	ret, _ = o.GetCfSpaceGuidOk()
+	return ret
 }
 
 // GetCfSpaceGuidOk returns a tuple with the CfSpaceGuid field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetCfSpaceGuidOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CfSpaceGuid, true
+func (o *Instance) GetCfSpaceGuidOk() (ret InstanceGetCfSpaceGuidRetType, ok bool) {
+	return getInstanceGetCfSpaceGuidAttributeTypeOk(o.CfSpaceGuid)
 }
 
 // SetCfSpaceGuid sets field value
-func (o *Instance) SetCfSpaceGuid(v *string) {
-	o.CfSpaceGuid = v
+func (o *Instance) SetCfSpaceGuid(v InstanceGetCfSpaceGuidRetType) {
+	setInstanceGetCfSpaceGuidAttributeType(&o.CfSpaceGuid, v)
 }
 
 // GetDashboardUrl returns the DashboardUrl field value
-func (o *Instance) GetDashboardUrl() *string {
-	if o == nil || IsNil(o.DashboardUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.DashboardUrl
+func (o *Instance) GetDashboardUrl() (ret InstanceGetDashboardUrlRetType) {
+	ret, _ = o.GetDashboardUrlOk()
+	return ret
 }
 
 // GetDashboardUrlOk returns a tuple with the DashboardUrl field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetDashboardUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DashboardUrl, true
+func (o *Instance) GetDashboardUrlOk() (ret InstanceGetDashboardUrlRetType, ok bool) {
+	return getInstanceGetDashboardUrlAttributeTypeOk(o.DashboardUrl)
 }
 
 // SetDashboardUrl sets field value
-func (o *Instance) SetDashboardUrl(v *string) {
-	o.DashboardUrl = v
+func (o *Instance) SetDashboardUrl(v InstanceGetDashboardUrlRetType) {
+	setInstanceGetDashboardUrlAttributeType(&o.DashboardUrl, v)
 }
 
 // GetImageUrl returns the ImageUrl field value
-func (o *Instance) GetImageUrl() *string {
-	if o == nil || IsNil(o.ImageUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.ImageUrl
+func (o *Instance) GetImageUrl() (ret InstanceGetImageUrlRetType) {
+	ret, _ = o.GetImageUrlOk()
+	return ret
 }
 
 // GetImageUrlOk returns a tuple with the ImageUrl field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetImageUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ImageUrl, true
+func (o *Instance) GetImageUrlOk() (ret InstanceGetImageUrlRetType, ok bool) {
+	return getInstanceGetImageUrlAttributeTypeOk(o.ImageUrl)
 }
 
 // SetImageUrl sets field value
-func (o *Instance) SetImageUrl(v *string) {
-	o.ImageUrl = v
+func (o *Instance) SetImageUrl(v InstanceGetImageUrlRetType) {
+	setInstanceGetImageUrlAttributeType(&o.ImageUrl, v)
 }
 
 // GetInstanceId returns the InstanceId field value if set, zero value otherwise.
-func (o *Instance) GetInstanceId() *string {
-	if o == nil || IsNil(o.InstanceId) {
-		var ret *string
-		return ret
-	}
-	return o.InstanceId
+func (o *Instance) GetInstanceId() (res InstanceGetInstanceIdRetType) {
+	res, _ = o.GetInstanceIdOk()
+	return
 }
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetInstanceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.InstanceId) {
-		return nil, false
-	}
-	return o.InstanceId, true
+func (o *Instance) GetInstanceIdOk() (ret InstanceGetInstanceIdRetType, ok bool) {
+	return getInstanceGetInstanceIdAttributeTypeOk(o.InstanceId)
 }
 
 // HasInstanceId returns a boolean if a field has been set.
 func (o *Instance) HasInstanceId() bool {
-	if o != nil && !IsNil(o.InstanceId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInstanceIdOk()
+	return ok
 }
 
 // SetInstanceId gets a reference to the given string and assigns it to the InstanceId field.
-func (o *Instance) SetInstanceId(v *string) {
-	o.InstanceId = v
+func (o *Instance) SetInstanceId(v InstanceGetInstanceIdRetType) {
+	setInstanceGetInstanceIdAttributeType(&o.InstanceId, v)
 }
 
 // GetLastOperation returns the LastOperation field value
-func (o *Instance) GetLastOperation() *InstanceLastOperation {
-	if o == nil || IsNil(o.LastOperation) {
-		var ret *InstanceLastOperation
-		return ret
-	}
-
-	return o.LastOperation
+func (o *Instance) GetLastOperation() (ret InstanceGetLastOperationRetType) {
+	ret, _ = o.GetLastOperationOk()
+	return ret
 }
 
 // GetLastOperationOk returns a tuple with the LastOperation field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetLastOperationOk() (*InstanceLastOperation, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastOperation, true
+func (o *Instance) GetLastOperationOk() (ret InstanceGetLastOperationRetType, ok bool) {
+	return getInstanceGetLastOperationAttributeTypeOk(o.LastOperation)
 }
 
 // SetLastOperation sets field value
-func (o *Instance) SetLastOperation(v *InstanceLastOperation) {
-	o.LastOperation = v
+func (o *Instance) SetLastOperation(v InstanceGetLastOperationRetType) {
+	setInstanceGetLastOperationAttributeType(&o.LastOperation, v)
 }
 
 // GetName returns the Name field value
-func (o *Instance) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Instance) GetName() (ret InstanceGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Instance) GetNameOk() (ret InstanceGetNameRetType, ok bool) {
+	return getInstanceGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Instance) SetName(v *string) {
-	o.Name = v
+func (o *Instance) SetName(v InstanceGetNameRetType) {
+	setInstanceGetNameAttributeType(&o.Name, v)
 }
 
 // GetOfferingName returns the OfferingName field value
 // Deprecated
-func (o *Instance) GetOfferingName() *string {
-	if o == nil || IsNil(o.OfferingName) {
-		var ret *string
-		return ret
-	}
-
-	return o.OfferingName
+func (o *Instance) GetOfferingName() (ret InstanceGetOfferingNameRetType) {
+	ret, _ = o.GetOfferingNameOk()
+	return ret
 }
 
 // GetOfferingNameOk returns a tuple with the OfferingName field value
 // and a boolean to check if the value has been set.
 // Deprecated
-func (o *Instance) GetOfferingNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OfferingName, true
+func (o *Instance) GetOfferingNameOk() (ret InstanceGetOfferingNameRetType, ok bool) {
+	return getInstanceGetOfferingNameAttributeTypeOk(o.OfferingName)
 }
 
 // SetOfferingName sets field value
 // Deprecated
-func (o *Instance) SetOfferingName(v *string) {
-	o.OfferingName = v
+func (o *Instance) SetOfferingName(v InstanceGetOfferingNameRetType) {
+	setInstanceGetOfferingNameAttributeType(&o.OfferingName, v)
 }
 
 // GetOfferingVersion returns the OfferingVersion field value
-func (o *Instance) GetOfferingVersion() *string {
-	if o == nil || IsNil(o.OfferingVersion) {
-		var ret *string
-		return ret
-	}
-
-	return o.OfferingVersion
+func (o *Instance) GetOfferingVersion() (ret InstanceGetOfferingVersionRetType) {
+	ret, _ = o.GetOfferingVersionOk()
+	return ret
 }
 
 // GetOfferingVersionOk returns a tuple with the OfferingVersion field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetOfferingVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OfferingVersion, true
+func (o *Instance) GetOfferingVersionOk() (ret InstanceGetOfferingVersionRetType, ok bool) {
+	return getInstanceGetOfferingVersionAttributeTypeOk(o.OfferingVersion)
 }
 
 // SetOfferingVersion sets field value
-func (o *Instance) SetOfferingVersion(v *string) {
-	o.OfferingVersion = v
+func (o *Instance) SetOfferingVersion(v InstanceGetOfferingVersionRetType) {
+	setInstanceGetOfferingVersionAttributeType(&o.OfferingVersion, v)
 }
 
 // GetParameters returns the Parameters field value
-func (o *Instance) GetParameters() *map[string]interface{} {
-	if o == nil || IsNil(o.Parameters) {
-		var ret *map[string]interface{}
-		return ret
-	}
-
-	return o.Parameters
+func (o *Instance) GetParameters() (ret InstanceGetParametersRetType) {
+	ret, _ = o.GetParametersOk()
+	return ret
 }
 
 // GetParametersOk returns a tuple with the Parameters field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetParametersOk() (*map[string]interface{}, bool) {
-	if o == nil {
-		return &map[string]interface{}{}, false
-	}
-	return o.Parameters, true
+func (o *Instance) GetParametersOk() (ret InstanceGetParametersRetType, ok bool) {
+	return getInstanceGetParametersAttributeTypeOk(o.Parameters)
 }
 
 // SetParameters sets field value
-func (o *Instance) SetParameters(v *map[string]interface{}) {
-	o.Parameters = v
+func (o *Instance) SetParameters(v InstanceGetParametersRetType) {
+	setInstanceGetParametersAttributeType(&o.Parameters, v)
 }
 
 // GetPlanId returns the PlanId field value
-func (o *Instance) GetPlanId() *string {
-	if o == nil || IsNil(o.PlanId) {
-		var ret *string
-		return ret
-	}
-
-	return o.PlanId
+func (o *Instance) GetPlanId() (ret InstanceGetPlanIdRetType) {
+	ret, _ = o.GetPlanIdOk()
+	return ret
 }
 
 // GetPlanIdOk returns a tuple with the PlanId field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetPlanIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PlanId, true
+func (o *Instance) GetPlanIdOk() (ret InstanceGetPlanIdRetType, ok bool) {
+	return getInstanceGetPlanIdAttributeTypeOk(o.PlanId)
 }
 
 // SetPlanId sets field value
-func (o *Instance) SetPlanId(v *string) {
-	o.PlanId = v
+func (o *Instance) SetPlanId(v InstanceGetPlanIdRetType) {
+	setInstanceGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 // GetPlanName returns the PlanName field value
-func (o *Instance) GetPlanName() *string {
-	if o == nil || IsNil(o.PlanName) {
-		var ret *string
-		return ret
-	}
-
-	return o.PlanName
+func (o *Instance) GetPlanName() (ret InstanceGetPlanNameRetType) {
+	ret, _ = o.GetPlanNameOk()
+	return ret
 }
 
 // GetPlanNameOk returns a tuple with the PlanName field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetPlanNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PlanName, true
+func (o *Instance) GetPlanNameOk() (ret InstanceGetPlanNameRetType, ok bool) {
+	return getInstanceGetPlanNameAttributeTypeOk(o.PlanName)
 }
 
 // SetPlanName sets field value
-func (o *Instance) SetPlanName(v *string) {
-	o.PlanName = v
+func (o *Instance) SetPlanName(v InstanceGetPlanNameRetType) {
+	setInstanceGetPlanNameAttributeType(&o.PlanName, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Instance) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *Instance) GetStatus() (res InstanceGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *Instance) GetStatusOk() (ret InstanceGetStatusRetType, ok bool) {
+	return getInstanceGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Instance) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Instance) SetStatus(v *string) {
-	o.Status = v
+func (o *Instance) SetStatus(v InstanceGetStatusRetType) {
+	setInstanceGetStatusAttributeType(&o.Status, v)
 }
 
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cfGuid"] = o.CfGuid
-	toSerialize["cfOrganizationGuid"] = o.CfOrganizationGuid
-	toSerialize["cfSpaceGuid"] = o.CfSpaceGuid
-	toSerialize["dashboardUrl"] = o.DashboardUrl
-	toSerialize["imageUrl"] = o.ImageUrl
-	if !IsNil(o.InstanceId) {
-		toSerialize["instanceId"] = o.InstanceId
+	if val, ok := getInstanceGetCfGuidAttributeTypeOk(o.CfGuid); ok {
+		toSerialize["CfGuid"] = val
 	}
-	toSerialize["lastOperation"] = o.LastOperation
-	toSerialize["name"] = o.Name
-	toSerialize["offeringName"] = o.OfferingName
-	toSerialize["offeringVersion"] = o.OfferingVersion
-	toSerialize["parameters"] = o.Parameters
-	toSerialize["planId"] = o.PlanId
-	toSerialize["planName"] = o.PlanName
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getInstanceGetCfOrganizationGuidAttributeTypeOk(o.CfOrganizationGuid); ok {
+		toSerialize["CfOrganizationGuid"] = val
+	}
+	if val, ok := getInstanceGetCfSpaceGuidAttributeTypeOk(o.CfSpaceGuid); ok {
+		toSerialize["CfSpaceGuid"] = val
+	}
+	if val, ok := getInstanceGetDashboardUrlAttributeTypeOk(o.DashboardUrl); ok {
+		toSerialize["DashboardUrl"] = val
+	}
+	if val, ok := getInstanceGetImageUrlAttributeTypeOk(o.ImageUrl); ok {
+		toSerialize["ImageUrl"] = val
+	}
+	if val, ok := getInstanceGetInstanceIdAttributeTypeOk(o.InstanceId); ok {
+		toSerialize["InstanceId"] = val
+	}
+	if val, ok := getInstanceGetLastOperationAttributeTypeOk(o.LastOperation); ok {
+		toSerialize["LastOperation"] = val
+	}
+	if val, ok := getInstanceGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getInstanceGetOfferingNameAttributeTypeOk(o.OfferingName); ok {
+		toSerialize["OfferingName"] = val
+	}
+	if val, ok := getInstanceGetOfferingVersionAttributeTypeOk(o.OfferingVersion); ok {
+		toSerialize["OfferingVersion"] = val
+	}
+	if val, ok := getInstanceGetParametersAttributeTypeOk(o.Parameters); ok {
+		toSerialize["Parameters"] = val
+	}
+	if val, ok := getInstanceGetPlanIdAttributeTypeOk(o.PlanId); ok {
+		toSerialize["PlanId"] = val
+	}
+	if val, ok := getInstanceGetPlanNameAttributeTypeOk(o.PlanName); ok {
+		toSerialize["PlanName"] = val
+	}
+	if val, ok := getInstanceGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
 }
