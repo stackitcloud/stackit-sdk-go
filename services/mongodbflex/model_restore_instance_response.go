@@ -17,9 +17,29 @@ import (
 // checks if the RestoreInstanceResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RestoreInstanceResponse{}
 
+/*
+	types and functions for item
+*/
+
+// isModel
+type RestoreInstanceResponseGetItemAttributeType = *RestoreInstanceStatus
+type RestoreInstanceResponseGetItemArgType = RestoreInstanceStatus
+type RestoreInstanceResponseGetItemRetType = RestoreInstanceStatus
+
+func getRestoreInstanceResponseGetItemAttributeTypeOk(arg RestoreInstanceResponseGetItemAttributeType) (ret RestoreInstanceResponseGetItemRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreInstanceResponseGetItemAttributeType(arg *RestoreInstanceResponseGetItemAttributeType, val RestoreInstanceResponseGetItemRetType) {
+	*arg = &val
+}
+
 // RestoreInstanceResponse struct for RestoreInstanceResponse
 type RestoreInstanceResponse struct {
-	Item *RestoreInstanceStatus `json:"item,omitempty"`
+	Item RestoreInstanceResponseGetItemAttributeType `json:"item,omitempty"`
 }
 
 // NewRestoreInstanceResponse instantiates a new RestoreInstanceResponse object
@@ -40,41 +60,32 @@ func NewRestoreInstanceResponseWithDefaults() *RestoreInstanceResponse {
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
-func (o *RestoreInstanceResponse) GetItem() *RestoreInstanceStatus {
-	if o == nil || IsNil(o.Item) {
-		var ret *RestoreInstanceStatus
-		return ret
-	}
-	return o.Item
+func (o *RestoreInstanceResponse) GetItem() (res RestoreInstanceResponseGetItemRetType) {
+	res, _ = o.GetItemOk()
+	return
 }
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreInstanceResponse) GetItemOk() (*RestoreInstanceStatus, bool) {
-	if o == nil || IsNil(o.Item) {
-		return nil, false
-	}
-	return o.Item, true
+func (o *RestoreInstanceResponse) GetItemOk() (ret RestoreInstanceResponseGetItemRetType, ok bool) {
+	return getRestoreInstanceResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
 func (o *RestoreInstanceResponse) HasItem() bool {
-	if o != nil && !IsNil(o.Item) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemOk()
+	return ok
 }
 
 // SetItem gets a reference to the given RestoreInstanceStatus and assigns it to the Item field.
-func (o *RestoreInstanceResponse) SetItem(v *RestoreInstanceStatus) {
-	o.Item = v
+func (o *RestoreInstanceResponse) SetItem(v RestoreInstanceResponseGetItemRetType) {
+	setRestoreInstanceResponseGetItemAttributeType(&o.Item, v)
 }
 
 func (o RestoreInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Item) {
-		toSerialize["item"] = o.Item
+	if val, ok := getRestoreInstanceResponseGetItemAttributeTypeOk(o.Item); ok {
+		toSerialize["Item"] = val
 	}
 	return toSerialize, nil
 }

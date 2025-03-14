@@ -17,18 +17,120 @@ import (
 // checks if the SuggestedIndex type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SuggestedIndex{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type SuggestedIndexGetIdAttributeType = *string
+
+func getSuggestedIndexGetIdAttributeTypeOk(arg SuggestedIndexGetIdAttributeType) (ret SuggestedIndexGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestedIndexGetIdAttributeType(arg *SuggestedIndexGetIdAttributeType, val SuggestedIndexGetIdRetType) {
+	*arg = &val
+}
+
+type SuggestedIndexGetIdArgType = string
+type SuggestedIndexGetIdRetType = string
+
+/*
+	types and functions for impact
+*/
+
+// isArray
+type SuggestedIndexGetImpactAttributeType = *[]string
+type SuggestedIndexGetImpactArgType = []string
+type SuggestedIndexGetImpactRetType = []string
+
+func getSuggestedIndexGetImpactAttributeTypeOk(arg SuggestedIndexGetImpactAttributeType) (ret SuggestedIndexGetImpactRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestedIndexGetImpactAttributeType(arg *SuggestedIndexGetImpactAttributeType, val SuggestedIndexGetImpactRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for index
+*/
+
+// isArray
+type SuggestedIndexGetIndexAttributeType = *[]map[string]int32
+type SuggestedIndexGetIndexArgType = []map[string]int32
+type SuggestedIndexGetIndexRetType = []map[string]int32
+
+func getSuggestedIndexGetIndexAttributeTypeOk(arg SuggestedIndexGetIndexAttributeType) (ret SuggestedIndexGetIndexRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestedIndexGetIndexAttributeType(arg *SuggestedIndexGetIndexAttributeType, val SuggestedIndexGetIndexRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for namespace
+*/
+
+// isNotNullableString
+type SuggestedIndexGetNamespaceAttributeType = *string
+
+func getSuggestedIndexGetNamespaceAttributeTypeOk(arg SuggestedIndexGetNamespaceAttributeType) (ret SuggestedIndexGetNamespaceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestedIndexGetNamespaceAttributeType(arg *SuggestedIndexGetNamespaceAttributeType, val SuggestedIndexGetNamespaceRetType) {
+	*arg = &val
+}
+
+type SuggestedIndexGetNamespaceArgType = string
+type SuggestedIndexGetNamespaceRetType = string
+
+/*
+	types and functions for weight
+*/
+
+// isNumber
+type SuggestedIndexGetWeightAttributeType = *float64
+type SuggestedIndexGetWeightArgType = float64
+type SuggestedIndexGetWeightRetType = float64
+
+func getSuggestedIndexGetWeightAttributeTypeOk(arg SuggestedIndexGetWeightAttributeType) (ret SuggestedIndexGetWeightRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestedIndexGetWeightAttributeType(arg *SuggestedIndexGetWeightAttributeType, val SuggestedIndexGetWeightRetType) {
+	*arg = &val
+}
+
 // SuggestedIndex struct for SuggestedIndex
 type SuggestedIndex struct {
 	// Unique id for this suggested index.
-	Id *string `json:"id,omitempty"`
+	Id SuggestedIndexGetIdAttributeType `json:"id,omitempty"`
 	// List of unique identifiers which correspond the query shapes in this response which pertain to this suggested index.
-	Impact *[]string `json:"impact,omitempty"`
+	Impact SuggestedIndexGetImpactAttributeType `json:"impact,omitempty"`
 	// Array of documents that specifies a key in the index and its sort order, ascending or descending.
-	Index *[]map[string]int32 `json:"index,omitempty"`
+	Index SuggestedIndexGetIndexAttributeType `json:"index,omitempty"`
 	// Namespace of the suggested index.
-	Namespace *string `json:"namespace,omitempty"`
+	Namespace SuggestedIndexGetNamespaceAttributeType `json:"namespace,omitempty"`
 	// Estimated percentage performance improvement that the suggested index would provide.
-	Weight *float64 `json:"weight,omitempty"`
+	Weight SuggestedIndexGetWeightAttributeType `json:"weight,omitempty"`
 }
 
 // NewSuggestedIndex instantiates a new SuggestedIndex object
@@ -49,181 +151,136 @@ func NewSuggestedIndexWithDefaults() *SuggestedIndex {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *SuggestedIndex) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *SuggestedIndex) GetId() (res SuggestedIndexGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuggestedIndex) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *SuggestedIndex) GetIdOk() (ret SuggestedIndexGetIdRetType, ok bool) {
+	return getSuggestedIndexGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *SuggestedIndex) SetId(v *string) {
-	o.Id = v
+func (o *SuggestedIndex) SetId(v SuggestedIndexGetIdRetType) {
+	setSuggestedIndexGetIdAttributeType(&o.Id, v)
 }
 
 // GetImpact returns the Impact field value if set, zero value otherwise.
-func (o *SuggestedIndex) GetImpact() *[]string {
-	if o == nil || IsNil(o.Impact) {
-		var ret *[]string
-		return ret
-	}
-	return o.Impact
+func (o *SuggestedIndex) GetImpact() (res SuggestedIndexGetImpactRetType) {
+	res, _ = o.GetImpactOk()
+	return
 }
 
 // GetImpactOk returns a tuple with the Impact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuggestedIndex) GetImpactOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Impact) {
-		return nil, false
-	}
-	return o.Impact, true
+func (o *SuggestedIndex) GetImpactOk() (ret SuggestedIndexGetImpactRetType, ok bool) {
+	return getSuggestedIndexGetImpactAttributeTypeOk(o.Impact)
 }
 
 // HasImpact returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasImpact() bool {
-	if o != nil && !IsNil(o.Impact) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetImpactOk()
+	return ok
 }
 
 // SetImpact gets a reference to the given []string and assigns it to the Impact field.
-func (o *SuggestedIndex) SetImpact(v *[]string) {
-	o.Impact = v
+func (o *SuggestedIndex) SetImpact(v SuggestedIndexGetImpactRetType) {
+	setSuggestedIndexGetImpactAttributeType(&o.Impact, v)
 }
 
 // GetIndex returns the Index field value if set, zero value otherwise.
-func (o *SuggestedIndex) GetIndex() *[]map[string]int32 {
-	if o == nil || IsNil(o.Index) {
-		var ret *[]map[string]int32
-		return ret
-	}
-	return o.Index
+func (o *SuggestedIndex) GetIndex() (res SuggestedIndexGetIndexRetType) {
+	res, _ = o.GetIndexOk()
+	return
 }
 
 // GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuggestedIndex) GetIndexOk() (*[]map[string]int32, bool) {
-	if o == nil || IsNil(o.Index) {
-		return nil, false
-	}
-	return o.Index, true
+func (o *SuggestedIndex) GetIndexOk() (ret SuggestedIndexGetIndexRetType, ok bool) {
+	return getSuggestedIndexGetIndexAttributeTypeOk(o.Index)
 }
 
 // HasIndex returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasIndex() bool {
-	if o != nil && !IsNil(o.Index) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIndexOk()
+	return ok
 }
 
 // SetIndex gets a reference to the given []map[string]int32 and assigns it to the Index field.
-func (o *SuggestedIndex) SetIndex(v *[]map[string]int32) {
-	o.Index = v
+func (o *SuggestedIndex) SetIndex(v SuggestedIndexGetIndexRetType) {
+	setSuggestedIndexGetIndexAttributeType(&o.Index, v)
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
-func (o *SuggestedIndex) GetNamespace() *string {
-	if o == nil || IsNil(o.Namespace) {
-		var ret *string
-		return ret
-	}
-	return o.Namespace
+func (o *SuggestedIndex) GetNamespace() (res SuggestedIndexGetNamespaceRetType) {
+	res, _ = o.GetNamespaceOk()
+	return
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuggestedIndex) GetNamespaceOk() (*string, bool) {
-	if o == nil || IsNil(o.Namespace) {
-		return nil, false
-	}
-	return o.Namespace, true
+func (o *SuggestedIndex) GetNamespaceOk() (ret SuggestedIndexGetNamespaceRetType, ok bool) {
+	return getSuggestedIndexGetNamespaceAttributeTypeOk(o.Namespace)
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasNamespace() bool {
-	if o != nil && !IsNil(o.Namespace) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNamespaceOk()
+	return ok
 }
 
 // SetNamespace gets a reference to the given string and assigns it to the Namespace field.
-func (o *SuggestedIndex) SetNamespace(v *string) {
-	o.Namespace = v
+func (o *SuggestedIndex) SetNamespace(v SuggestedIndexGetNamespaceRetType) {
+	setSuggestedIndexGetNamespaceAttributeType(&o.Namespace, v)
 }
 
 // GetWeight returns the Weight field value if set, zero value otherwise.
-func (o *SuggestedIndex) GetWeight() *float64 {
-	if o == nil || IsNil(o.Weight) {
-		var ret *float64
-		return ret
-	}
-	return o.Weight
+func (o *SuggestedIndex) GetWeight() (res SuggestedIndexGetWeightRetType) {
+	res, _ = o.GetWeightOk()
+	return
 }
 
 // GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuggestedIndex) GetWeightOk() (*float64, bool) {
-	if o == nil || IsNil(o.Weight) {
-		return nil, false
-	}
-	return o.Weight, true
+func (o *SuggestedIndex) GetWeightOk() (ret SuggestedIndexGetWeightRetType, ok bool) {
+	return getSuggestedIndexGetWeightAttributeTypeOk(o.Weight)
 }
 
 // HasWeight returns a boolean if a field has been set.
 func (o *SuggestedIndex) HasWeight() bool {
-	if o != nil && !IsNil(o.Weight) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetWeightOk()
+	return ok
 }
 
 // SetWeight gets a reference to the given float64 and assigns it to the Weight field.
-func (o *SuggestedIndex) SetWeight(v *float64) {
-	o.Weight = v
+func (o *SuggestedIndex) SetWeight(v SuggestedIndexGetWeightRetType) {
+	setSuggestedIndexGetWeightAttributeType(&o.Weight, v)
 }
 
 func (o SuggestedIndex) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getSuggestedIndexGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Impact) {
-		toSerialize["impact"] = o.Impact
+	if val, ok := getSuggestedIndexGetImpactAttributeTypeOk(o.Impact); ok {
+		toSerialize["Impact"] = val
 	}
-	if !IsNil(o.Index) {
-		toSerialize["index"] = o.Index
+	if val, ok := getSuggestedIndexGetIndexAttributeTypeOk(o.Index); ok {
+		toSerialize["Index"] = val
 	}
-	if !IsNil(o.Namespace) {
-		toSerialize["namespace"] = o.Namespace
+	if val, ok := getSuggestedIndexGetNamespaceAttributeTypeOk(o.Namespace); ok {
+		toSerialize["Namespace"] = val
 	}
-	if !IsNil(o.Weight) {
-		toSerialize["weight"] = o.Weight
+	if val, ok := getSuggestedIndexGetWeightAttributeTypeOk(o.Weight); ok {
+		toSerialize["Weight"] = val
 	}
 	return toSerialize, nil
 }

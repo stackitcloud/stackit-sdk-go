@@ -17,9 +17,29 @@ import (
 // checks if the HandlersInstancesGetInstanceResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HandlersInstancesGetInstanceResponse{}
 
+/*
+	types and functions for item
+*/
+
+// isModel
+type HandlersInstancesGetInstanceResponseGetItemAttributeType = *Instance
+type HandlersInstancesGetInstanceResponseGetItemArgType = Instance
+type HandlersInstancesGetInstanceResponseGetItemRetType = Instance
+
+func getHandlersInstancesGetInstanceResponseGetItemAttributeTypeOk(arg HandlersInstancesGetInstanceResponseGetItemAttributeType) (ret HandlersInstancesGetInstanceResponseGetItemRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInstancesGetInstanceResponseGetItemAttributeType(arg *HandlersInstancesGetInstanceResponseGetItemAttributeType, val HandlersInstancesGetInstanceResponseGetItemRetType) {
+	*arg = &val
+}
+
 // HandlersInstancesGetInstanceResponse struct for HandlersInstancesGetInstanceResponse
 type HandlersInstancesGetInstanceResponse struct {
-	Item *Instance `json:"item,omitempty"`
+	Item HandlersInstancesGetInstanceResponseGetItemAttributeType `json:"item,omitempty"`
 }
 
 // NewHandlersInstancesGetInstanceResponse instantiates a new HandlersInstancesGetInstanceResponse object
@@ -40,41 +60,32 @@ func NewHandlersInstancesGetInstanceResponseWithDefaults() *HandlersInstancesGet
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
-func (o *HandlersInstancesGetInstanceResponse) GetItem() *Instance {
-	if o == nil || IsNil(o.Item) {
-		var ret *Instance
-		return ret
-	}
-	return o.Item
+func (o *HandlersInstancesGetInstanceResponse) GetItem() (res HandlersInstancesGetInstanceResponseGetItemRetType) {
+	res, _ = o.GetItemOk()
+	return
 }
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInstancesGetInstanceResponse) GetItemOk() (*Instance, bool) {
-	if o == nil || IsNil(o.Item) {
-		return nil, false
-	}
-	return o.Item, true
+func (o *HandlersInstancesGetInstanceResponse) GetItemOk() (ret HandlersInstancesGetInstanceResponseGetItemRetType, ok bool) {
+	return getHandlersInstancesGetInstanceResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
 func (o *HandlersInstancesGetInstanceResponse) HasItem() bool {
-	if o != nil && !IsNil(o.Item) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemOk()
+	return ok
 }
 
 // SetItem gets a reference to the given Instance and assigns it to the Item field.
-func (o *HandlersInstancesGetInstanceResponse) SetItem(v *Instance) {
-	o.Item = v
+func (o *HandlersInstancesGetInstanceResponse) SetItem(v HandlersInstancesGetInstanceResponseGetItemRetType) {
+	setHandlersInstancesGetInstanceResponseGetItemAttributeType(&o.Item, v)
 }
 
 func (o HandlersInstancesGetInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Item) {
-		toSerialize["item"] = o.Item
+	if val, ok := getHandlersInstancesGetInstanceResponseGetItemAttributeTypeOk(o.Item); ok {
+		toSerialize["Item"] = val
 	}
 	return toSerialize, nil
 }

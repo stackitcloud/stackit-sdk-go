@@ -24,14 +24,14 @@ import (
 func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CloneInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/clone"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/clone"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CloneInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -65,8 +65,8 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 		cloneInstancePayload := CloneInstancePayload{}
 
 		resp, reqErr := apiClient.CloneInstance(context.Background(), projectId, instanceId).CloneInstancePayload(cloneInstancePayload).Execute()
@@ -74,18 +74,18 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances"
+		_apiUrlPath := "/v1/projects/{projectId}/instances"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -119,7 +119,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createInstancePayload := CreateInstancePayload{}
 
 		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
@@ -127,20 +127,20 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateUserResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -174,8 +174,8 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 		createUserPayload := CreateUserPayload{}
 
 		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
@@ -183,20 +183,20 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -227,8 +227,8 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 
 		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId).Execute()
 
@@ -238,16 +238,16 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
-		path = strings.Replace(path, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -278,9 +278,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
-		userId := "userId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
+		userId := userIdValue
 
 		reqErr := apiClient.DeleteUser(context.Background(), projectId, instanceId, userId).Execute()
 
@@ -290,16 +290,16 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		backupIdValue := "backupId"
-		path = strings.Replace(path, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetBackupResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -333,29 +333,29 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
-		backupId := "backupId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
+		backupId := backupIdValue
 
 		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, instanceId, backupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -389,30 +389,30 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 
 		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
-		path = strings.Replace(path, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetUserResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -446,29 +446,29 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
-		userId := "userId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
+		userId := userIdValue
 
 		resp, reqErr := apiClient.GetUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListAdvisorSlowQueries", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/advisor/slow-queries"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/advisor/slow-queries"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := HandlersInstancesSlowQueriesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -502,28 +502,28 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 
 		resp, reqErr := apiClient.ListAdvisorSlowQueries(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListBackupsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -557,26 +557,26 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 
 		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListFlavors", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/flavors"
+		_apiUrlPath := "/v1/projects/{projectId}/flavors"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListFlavorsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -610,25 +610,25 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListFlavors(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances"
+		_apiUrlPath := "/v1/projects/{projectId}/instances"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListInstancesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -662,7 +662,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		var tag string
 
 		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Tag(tag).Execute()
@@ -670,22 +670,22 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListMetrics", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/metrics/{metric}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics/{metric}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		metricValue := "metric"
-		path = strings.Replace(path, "{"+"metric"+"}", url.PathEscape(ParameterValueToString(metricValue, "metric")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"metric"+"}", url.PathEscape(ParameterValueToString(metricValue, "metric")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListMetricsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -719,9 +719,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
-		metric := "metric"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
+		metric := metricValue
 		var granularity string
 
 		resp, reqErr := apiClient.ListMetrics(context.Background(), projectId, instanceId, metric).Granularity(granularity).Execute()
@@ -729,20 +729,20 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListRestoreJobs", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/restores"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/restores"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListRestoreJobsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -776,28 +776,28 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 
 		resp, reqErr := apiClient.ListRestoreJobs(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListStorages", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/storages/{flavor}"
+		_apiUrlPath := "/v1/projects/{projectId}/storages/{flavor}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		flavorValue := "flavor"
-		path = strings.Replace(path, "{"+"flavor"+"}", url.PathEscape(ParameterValueToString(flavorValue, "flavor")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"flavor"+"}", url.PathEscape(ParameterValueToString(flavorValue, "flavor")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListStoragesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -831,28 +831,28 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		flavor := "flavor"
+		projectId := projectIdValue
+		flavor := flavorValue
 
 		resp, reqErr := apiClient.ListStorages(context.Background(), projectId, flavor).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListSuggestedIndexes", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/advisor/suggested-indexes"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/advisor/suggested-indexes"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := HandlersInstancesSuggestedIndexesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -886,28 +886,28 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 
 		resp, reqErr := apiClient.ListSuggestedIndexes(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListUsers", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListUsersResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -941,26 +941,26 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 
 		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, instanceId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListVersions", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/versions"
+		_apiUrlPath := "/v1/projects/{projectId}/versions"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListVersionsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -994,27 +994,27 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListVersions(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := UpdateInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1048,8 +1048,8 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 		partialUpdateInstancePayload := PartialUpdateInstancePayload{}
 
 		resp, reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, instanceId).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
@@ -1057,22 +1057,22 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
-		path = strings.Replace(path, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1103,9 +1103,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
-		userId := "userId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
+		userId := userIdValue
 		partialUpdateUserPayload := PartialUpdateUserPayload{}
 
 		reqErr := apiClient.PartialUpdateUser(context.Background(), projectId, instanceId, userId).PartialUpdateUserPayload(partialUpdateUserPayload).Execute()
@@ -1116,16 +1116,16 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResetUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}/reset"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}/reset"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
-		path = strings.Replace(path, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := User{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1159,29 +1159,29 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
-		userId := "userId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
+		userId := userIdValue
 
 		resp, reqErr := apiClient.ResetUser(context.Background(), projectId, instanceId, userId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService RestoreInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/restores"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/restores"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RestoreInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1215,8 +1215,8 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 		restoreInstancePayload := RestoreInstancePayload{}
 
 		resp, reqErr := apiClient.RestoreInstance(context.Background(), projectId, instanceId).RestoreInstancePayload(restoreInstancePayload).Execute()
@@ -1224,20 +1224,20 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateBackupSchedule", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/backups"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := BackupSchedule{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1271,8 +1271,8 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 		updateBackupSchedulePayload := UpdateBackupSchedulePayload{}
 
 		resp, reqErr := apiClient.UpdateBackupSchedule(context.Background(), projectId, instanceId).UpdateBackupSchedulePayload(updateBackupSchedulePayload).Execute()
@@ -1280,20 +1280,20 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := UpdateInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1327,8 +1327,8 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
 		updateInstancePayload := UpdateInstancePayload{}
 
 		resp, reqErr := apiClient.UpdateInstance(context.Background(), projectId, instanceId).UpdateInstancePayload(updateInstancePayload).Execute()
@@ -1336,22 +1336,22 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService UpdateUser", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId"
-		path = strings.Replace(path, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId"
-		path = strings.Replace(path, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -1382,9 +1382,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		instanceId := "instanceId"
-		userId := "userId"
+		projectId := projectIdValue
+		instanceId := instanceIdValue
+		userId := userIdValue
 		updateUserPayload := UpdateUserPayload{}
 
 		reqErr := apiClient.UpdateUser(context.Background(), projectId, instanceId, userId).UpdateUserPayload(updateUserPayload).Execute()

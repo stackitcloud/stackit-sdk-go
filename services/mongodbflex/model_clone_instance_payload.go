@@ -17,11 +17,53 @@ import (
 // checks if the CloneInstancePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CloneInstancePayload{}
 
+/*
+	types and functions for instanceId
+*/
+
+// isNotNullableString
+type CloneInstancePayloadGetInstanceIdAttributeType = *string
+
+func getCloneInstancePayloadGetInstanceIdAttributeTypeOk(arg CloneInstancePayloadGetInstanceIdAttributeType) (ret CloneInstancePayloadGetInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneInstancePayloadGetInstanceIdAttributeType(arg *CloneInstancePayloadGetInstanceIdAttributeType, val CloneInstancePayloadGetInstanceIdRetType) {
+	*arg = &val
+}
+
+type CloneInstancePayloadGetInstanceIdArgType = string
+type CloneInstancePayloadGetInstanceIdRetType = string
+
+/*
+	types and functions for timestamp
+*/
+
+// isNotNullableString
+type CloneInstancePayloadGetTimestampAttributeType = *string
+
+func getCloneInstancePayloadGetTimestampAttributeTypeOk(arg CloneInstancePayloadGetTimestampAttributeType) (ret CloneInstancePayloadGetTimestampRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneInstancePayloadGetTimestampAttributeType(arg *CloneInstancePayloadGetTimestampAttributeType, val CloneInstancePayloadGetTimestampRetType) {
+	*arg = &val
+}
+
+type CloneInstancePayloadGetTimestampArgType = string
+type CloneInstancePayloadGetTimestampRetType = string
+
 // CloneInstancePayload struct for CloneInstancePayload
 type CloneInstancePayload struct {
 	// REQUIRED
-	InstanceId *string `json:"instanceId"`
-	Timestamp  *string `json:"timestamp,omitempty"`
+	InstanceId CloneInstancePayloadGetInstanceIdAttributeType `json:"instanceId"`
+	Timestamp  CloneInstancePayloadGetTimestampAttributeType  `json:"timestamp,omitempty"`
 }
 
 type _CloneInstancePayload CloneInstancePayload
@@ -30,9 +72,9 @@ type _CloneInstancePayload CloneInstancePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCloneInstancePayload(instanceId *string) *CloneInstancePayload {
+func NewCloneInstancePayload(instanceId CloneInstancePayloadGetInstanceIdArgType) *CloneInstancePayload {
 	this := CloneInstancePayload{}
-	this.InstanceId = instanceId
+	setCloneInstancePayloadGetInstanceIdAttributeType(&this.InstanceId, instanceId)
 	return &this
 }
 
@@ -45,66 +87,52 @@ func NewCloneInstancePayloadWithDefaults() *CloneInstancePayload {
 }
 
 // GetInstanceId returns the InstanceId field value
-func (o *CloneInstancePayload) GetInstanceId() *string {
-	if o == nil || IsNil(o.InstanceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.InstanceId
+func (o *CloneInstancePayload) GetInstanceId() (ret CloneInstancePayloadGetInstanceIdRetType) {
+	ret, _ = o.GetInstanceIdOk()
+	return ret
 }
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value
 // and a boolean to check if the value has been set.
-func (o *CloneInstancePayload) GetInstanceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.InstanceId, true
+func (o *CloneInstancePayload) GetInstanceIdOk() (ret CloneInstancePayloadGetInstanceIdRetType, ok bool) {
+	return getCloneInstancePayloadGetInstanceIdAttributeTypeOk(o.InstanceId)
 }
 
 // SetInstanceId sets field value
-func (o *CloneInstancePayload) SetInstanceId(v *string) {
-	o.InstanceId = v
+func (o *CloneInstancePayload) SetInstanceId(v CloneInstancePayloadGetInstanceIdRetType) {
+	setCloneInstancePayloadGetInstanceIdAttributeType(&o.InstanceId, v)
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *CloneInstancePayload) GetTimestamp() *string {
-	if o == nil || IsNil(o.Timestamp) {
-		var ret *string
-		return ret
-	}
-	return o.Timestamp
+func (o *CloneInstancePayload) GetTimestamp() (res CloneInstancePayloadGetTimestampRetType) {
+	res, _ = o.GetTimestampOk()
+	return
 }
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloneInstancePayload) GetTimestampOk() (*string, bool) {
-	if o == nil || IsNil(o.Timestamp) {
-		return nil, false
-	}
-	return o.Timestamp, true
+func (o *CloneInstancePayload) GetTimestampOk() (ret CloneInstancePayloadGetTimestampRetType, ok bool) {
+	return getCloneInstancePayloadGetTimestampAttributeTypeOk(o.Timestamp)
 }
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *CloneInstancePayload) HasTimestamp() bool {
-	if o != nil && !IsNil(o.Timestamp) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTimestampOk()
+	return ok
 }
 
 // SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
-func (o *CloneInstancePayload) SetTimestamp(v *string) {
-	o.Timestamp = v
+func (o *CloneInstancePayload) SetTimestamp(v CloneInstancePayloadGetTimestampRetType) {
+	setCloneInstancePayloadGetTimestampAttributeType(&o.Timestamp, v)
 }
 
 func (o CloneInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["instanceId"] = o.InstanceId
-	if !IsNil(o.Timestamp) {
-		toSerialize["timestamp"] = o.Timestamp
+	if val, ok := getCloneInstancePayloadGetInstanceIdAttributeTypeOk(o.InstanceId); ok {
+		toSerialize["InstanceId"] = val
+	}
+	if val, ok := getCloneInstancePayloadGetTimestampAttributeTypeOk(o.Timestamp); ok {
+		toSerialize["Timestamp"] = val
 	}
 	return toSerialize, nil
 }

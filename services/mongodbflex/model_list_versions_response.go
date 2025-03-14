@@ -17,9 +17,29 @@ import (
 // checks if the ListVersionsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListVersionsResponse{}
 
+/*
+	types and functions for versions
+*/
+
+// isArray
+type ListVersionsResponseGetVersionsAttributeType = *[]string
+type ListVersionsResponseGetVersionsArgType = []string
+type ListVersionsResponseGetVersionsRetType = []string
+
+func getListVersionsResponseGetVersionsAttributeTypeOk(arg ListVersionsResponseGetVersionsAttributeType) (ret ListVersionsResponseGetVersionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListVersionsResponseGetVersionsAttributeType(arg *ListVersionsResponseGetVersionsAttributeType, val ListVersionsResponseGetVersionsRetType) {
+	*arg = &val
+}
+
 // ListVersionsResponse struct for ListVersionsResponse
 type ListVersionsResponse struct {
-	Versions *[]string `json:"versions,omitempty"`
+	Versions ListVersionsResponseGetVersionsAttributeType `json:"versions,omitempty"`
 }
 
 // NewListVersionsResponse instantiates a new ListVersionsResponse object
@@ -40,41 +60,32 @@ func NewListVersionsResponseWithDefaults() *ListVersionsResponse {
 }
 
 // GetVersions returns the Versions field value if set, zero value otherwise.
-func (o *ListVersionsResponse) GetVersions() *[]string {
-	if o == nil || IsNil(o.Versions) {
-		var ret *[]string
-		return ret
-	}
-	return o.Versions
+func (o *ListVersionsResponse) GetVersions() (res ListVersionsResponseGetVersionsRetType) {
+	res, _ = o.GetVersionsOk()
+	return
 }
 
 // GetVersionsOk returns a tuple with the Versions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListVersionsResponse) GetVersionsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Versions) {
-		return nil, false
-	}
-	return o.Versions, true
+func (o *ListVersionsResponse) GetVersionsOk() (ret ListVersionsResponseGetVersionsRetType, ok bool) {
+	return getListVersionsResponseGetVersionsAttributeTypeOk(o.Versions)
 }
 
 // HasVersions returns a boolean if a field has been set.
 func (o *ListVersionsResponse) HasVersions() bool {
-	if o != nil && !IsNil(o.Versions) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVersionsOk()
+	return ok
 }
 
 // SetVersions gets a reference to the given []string and assigns it to the Versions field.
-func (o *ListVersionsResponse) SetVersions(v *[]string) {
-	o.Versions = v
+func (o *ListVersionsResponse) SetVersions(v ListVersionsResponseGetVersionsRetType) {
+	setListVersionsResponseGetVersionsAttributeType(&o.Versions, v)
 }
 
 func (o ListVersionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Versions) {
-		toSerialize["versions"] = o.Versions
+	if val, ok := getListVersionsResponseGetVersionsAttributeTypeOk(o.Versions); ok {
+		toSerialize["Versions"] = val
 	}
 	return toSerialize, nil
 }
