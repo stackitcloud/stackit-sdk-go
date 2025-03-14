@@ -17,14 +17,56 @@ import (
 // checks if the DeleteAccessKeyResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeleteAccessKeyResponse{}
 
+/*
+	types and functions for keyId
+*/
+
+// isNotNullableString
+type DeleteAccessKeyResponseGetKeyIdAttributeType = *string
+
+func getDeleteAccessKeyResponseGetKeyIdAttributeTypeOk(arg DeleteAccessKeyResponseGetKeyIdAttributeType) (ret DeleteAccessKeyResponseGetKeyIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDeleteAccessKeyResponseGetKeyIdAttributeType(arg *DeleteAccessKeyResponseGetKeyIdAttributeType, val DeleteAccessKeyResponseGetKeyIdRetType) {
+	*arg = &val
+}
+
+type DeleteAccessKeyResponseGetKeyIdArgType = string
+type DeleteAccessKeyResponseGetKeyIdRetType = string
+
+/*
+	types and functions for project
+*/
+
+// isNotNullableString
+type DeleteAccessKeyResponseGetProjectAttributeType = *string
+
+func getDeleteAccessKeyResponseGetProjectAttributeTypeOk(arg DeleteAccessKeyResponseGetProjectAttributeType) (ret DeleteAccessKeyResponseGetProjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDeleteAccessKeyResponseGetProjectAttributeType(arg *DeleteAccessKeyResponseGetProjectAttributeType, val DeleteAccessKeyResponseGetProjectRetType) {
+	*arg = &val
+}
+
+type DeleteAccessKeyResponseGetProjectArgType = string
+type DeleteAccessKeyResponseGetProjectRetType = string
+
 // DeleteAccessKeyResponse struct for DeleteAccessKeyResponse
 type DeleteAccessKeyResponse struct {
 	// Identifies the pair of access key and secret access key for deletion
 	// REQUIRED
-	KeyId *string `json:"keyId"`
+	KeyId DeleteAccessKeyResponseGetKeyIdAttributeType `json:"keyId"`
 	// Project ID
 	// REQUIRED
-	Project *string `json:"project"`
+	Project DeleteAccessKeyResponseGetProjectAttributeType `json:"project"`
 }
 
 type _DeleteAccessKeyResponse DeleteAccessKeyResponse
@@ -33,10 +75,10 @@ type _DeleteAccessKeyResponse DeleteAccessKeyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeleteAccessKeyResponse(keyId *string, project *string) *DeleteAccessKeyResponse {
+func NewDeleteAccessKeyResponse(keyId DeleteAccessKeyResponseGetKeyIdArgType, project DeleteAccessKeyResponseGetProjectArgType) *DeleteAccessKeyResponse {
 	this := DeleteAccessKeyResponse{}
-	this.KeyId = keyId
-	this.Project = project
+	setDeleteAccessKeyResponseGetKeyIdAttributeType(&this.KeyId, keyId)
+	setDeleteAccessKeyResponseGetProjectAttributeType(&this.Project, project)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewDeleteAccessKeyResponseWithDefaults() *DeleteAccessKeyResponse {
 }
 
 // GetKeyId returns the KeyId field value
-func (o *DeleteAccessKeyResponse) GetKeyId() *string {
-	if o == nil || IsNil(o.KeyId) {
-		var ret *string
-		return ret
-	}
-
-	return o.KeyId
+func (o *DeleteAccessKeyResponse) GetKeyId() (ret DeleteAccessKeyResponseGetKeyIdRetType) {
+	ret, _ = o.GetKeyIdOk()
+	return ret
 }
 
 // GetKeyIdOk returns a tuple with the KeyId field value
 // and a boolean to check if the value has been set.
-func (o *DeleteAccessKeyResponse) GetKeyIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyId, true
+func (o *DeleteAccessKeyResponse) GetKeyIdOk() (ret DeleteAccessKeyResponseGetKeyIdRetType, ok bool) {
+	return getDeleteAccessKeyResponseGetKeyIdAttributeTypeOk(o.KeyId)
 }
 
 // SetKeyId sets field value
-func (o *DeleteAccessKeyResponse) SetKeyId(v *string) {
-	o.KeyId = v
+func (o *DeleteAccessKeyResponse) SetKeyId(v DeleteAccessKeyResponseGetKeyIdRetType) {
+	setDeleteAccessKeyResponseGetKeyIdAttributeType(&o.KeyId, v)
 }
 
 // GetProject returns the Project field value
-func (o *DeleteAccessKeyResponse) GetProject() *string {
-	if o == nil || IsNil(o.Project) {
-		var ret *string
-		return ret
-	}
-
-	return o.Project
+func (o *DeleteAccessKeyResponse) GetProject() (ret DeleteAccessKeyResponseGetProjectRetType) {
+	ret, _ = o.GetProjectOk()
+	return ret
 }
 
 // GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *DeleteAccessKeyResponse) GetProjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Project, true
+func (o *DeleteAccessKeyResponse) GetProjectOk() (ret DeleteAccessKeyResponseGetProjectRetType, ok bool) {
+	return getDeleteAccessKeyResponseGetProjectAttributeTypeOk(o.Project)
 }
 
 // SetProject sets field value
-func (o *DeleteAccessKeyResponse) SetProject(v *string) {
-	o.Project = v
+func (o *DeleteAccessKeyResponse) SetProject(v DeleteAccessKeyResponseGetProjectRetType) {
+	setDeleteAccessKeyResponseGetProjectAttributeType(&o.Project, v)
 }
 
 func (o DeleteAccessKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["keyId"] = o.KeyId
-	toSerialize["project"] = o.Project
+	if val, ok := getDeleteAccessKeyResponseGetKeyIdAttributeTypeOk(o.KeyId); ok {
+		toSerialize["KeyId"] = val
+	}
+	if val, ok := getDeleteAccessKeyResponseGetProjectAttributeTypeOk(o.Project); ok {
+		toSerialize["Project"] = val
+	}
 	return toSerialize, nil
 }
 
