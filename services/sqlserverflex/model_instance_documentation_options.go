@@ -17,12 +17,54 @@ import (
 // checks if the InstanceDocumentationOptions type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceDocumentationOptions{}
 
+/*
+	types and functions for edition
+*/
+
+// isNotNullableString
+type InstanceDocumentationOptionsGetEditionAttributeType = *string
+
+func getInstanceDocumentationOptionsGetEditionAttributeTypeOk(arg InstanceDocumentationOptionsGetEditionAttributeType) (ret InstanceDocumentationOptionsGetEditionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceDocumentationOptionsGetEditionAttributeType(arg *InstanceDocumentationOptionsGetEditionAttributeType, val InstanceDocumentationOptionsGetEditionRetType) {
+	*arg = &val
+}
+
+type InstanceDocumentationOptionsGetEditionArgType = string
+type InstanceDocumentationOptionsGetEditionRetType = string
+
+/*
+	types and functions for retentionDays
+*/
+
+// isNotNullableString
+type InstanceDocumentationOptionsGetRetentionDaysAttributeType = *string
+
+func getInstanceDocumentationOptionsGetRetentionDaysAttributeTypeOk(arg InstanceDocumentationOptionsGetRetentionDaysAttributeType) (ret InstanceDocumentationOptionsGetRetentionDaysRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceDocumentationOptionsGetRetentionDaysAttributeType(arg *InstanceDocumentationOptionsGetRetentionDaysAttributeType, val InstanceDocumentationOptionsGetRetentionDaysRetType) {
+	*arg = &val
+}
+
+type InstanceDocumentationOptionsGetRetentionDaysArgType = string
+type InstanceDocumentationOptionsGetRetentionDaysRetType = string
+
 // InstanceDocumentationOptions struct for InstanceDocumentationOptions
 type InstanceDocumentationOptions struct {
 	// Edition of the MSSQL server instance
-	Edition *string `json:"edition,omitempty"`
+	Edition InstanceDocumentationOptionsGetEditionAttributeType `json:"edition,omitempty"`
 	// The days for how long the backup files should be stored before cleaned up. 30 to 365
-	RetentionDays *string `json:"retentionDays,omitempty"`
+	RetentionDays InstanceDocumentationOptionsGetRetentionDaysAttributeType `json:"retentionDays,omitempty"`
 }
 
 // NewInstanceDocumentationOptions instantiates a new InstanceDocumentationOptions object
@@ -31,10 +73,6 @@ type InstanceDocumentationOptions struct {
 // will change when the set of required properties is changed
 func NewInstanceDocumentationOptions() *InstanceDocumentationOptions {
 	this := InstanceDocumentationOptions{}
-	var edition string = "developer"
-	this.Edition = &edition
-	var retentionDays string = "32"
-	this.RetentionDays = &retentionDays
 	return &this
 }
 
@@ -51,76 +89,58 @@ func NewInstanceDocumentationOptionsWithDefaults() *InstanceDocumentationOptions
 }
 
 // GetEdition returns the Edition field value if set, zero value otherwise.
-func (o *InstanceDocumentationOptions) GetEdition() *string {
-	if o == nil || IsNil(o.Edition) {
-		var ret *string
-		return ret
-	}
-	return o.Edition
+func (o *InstanceDocumentationOptions) GetEdition() (res InstanceDocumentationOptionsGetEditionRetType) {
+	res, _ = o.GetEditionOk()
+	return
 }
 
 // GetEditionOk returns a tuple with the Edition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceDocumentationOptions) GetEditionOk() (*string, bool) {
-	if o == nil || IsNil(o.Edition) {
-		return nil, false
-	}
-	return o.Edition, true
+func (o *InstanceDocumentationOptions) GetEditionOk() (ret InstanceDocumentationOptionsGetEditionRetType, ok bool) {
+	return getInstanceDocumentationOptionsGetEditionAttributeTypeOk(o.Edition)
 }
 
 // HasEdition returns a boolean if a field has been set.
 func (o *InstanceDocumentationOptions) HasEdition() bool {
-	if o != nil && !IsNil(o.Edition) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEditionOk()
+	return ok
 }
 
 // SetEdition gets a reference to the given string and assigns it to the Edition field.
-func (o *InstanceDocumentationOptions) SetEdition(v *string) {
-	o.Edition = v
+func (o *InstanceDocumentationOptions) SetEdition(v InstanceDocumentationOptionsGetEditionRetType) {
+	setInstanceDocumentationOptionsGetEditionAttributeType(&o.Edition, v)
 }
 
 // GetRetentionDays returns the RetentionDays field value if set, zero value otherwise.
-func (o *InstanceDocumentationOptions) GetRetentionDays() *string {
-	if o == nil || IsNil(o.RetentionDays) {
-		var ret *string
-		return ret
-	}
-	return o.RetentionDays
+func (o *InstanceDocumentationOptions) GetRetentionDays() (res InstanceDocumentationOptionsGetRetentionDaysRetType) {
+	res, _ = o.GetRetentionDaysOk()
+	return
 }
 
 // GetRetentionDaysOk returns a tuple with the RetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceDocumentationOptions) GetRetentionDaysOk() (*string, bool) {
-	if o == nil || IsNil(o.RetentionDays) {
-		return nil, false
-	}
-	return o.RetentionDays, true
+func (o *InstanceDocumentationOptions) GetRetentionDaysOk() (ret InstanceDocumentationOptionsGetRetentionDaysRetType, ok bool) {
+	return getInstanceDocumentationOptionsGetRetentionDaysAttributeTypeOk(o.RetentionDays)
 }
 
 // HasRetentionDays returns a boolean if a field has been set.
 func (o *InstanceDocumentationOptions) HasRetentionDays() bool {
-	if o != nil && !IsNil(o.RetentionDays) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRetentionDaysOk()
+	return ok
 }
 
 // SetRetentionDays gets a reference to the given string and assigns it to the RetentionDays field.
-func (o *InstanceDocumentationOptions) SetRetentionDays(v *string) {
-	o.RetentionDays = v
+func (o *InstanceDocumentationOptions) SetRetentionDays(v InstanceDocumentationOptionsGetRetentionDaysRetType) {
+	setInstanceDocumentationOptionsGetRetentionDaysAttributeType(&o.RetentionDays, v)
 }
 
 func (o InstanceDocumentationOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Edition) {
-		toSerialize["edition"] = o.Edition
+	if val, ok := getInstanceDocumentationOptionsGetEditionAttributeTypeOk(o.Edition); ok {
+		toSerialize["Edition"] = val
 	}
-	if !IsNil(o.RetentionDays) {
-		toSerialize["retentionDays"] = o.RetentionDays
+	if val, ok := getInstanceDocumentationOptionsGetRetentionDaysAttributeTypeOk(o.RetentionDays); ok {
+		toSerialize["RetentionDays"] = val
 	}
 	return toSerialize, nil
 }

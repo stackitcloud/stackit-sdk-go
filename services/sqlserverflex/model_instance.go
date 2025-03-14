@@ -17,19 +17,224 @@ import (
 // checks if the Instance type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Instance{}
 
+/*
+	types and functions for acl
+*/
+
+// isModel
+type InstanceGetAclAttributeType = *ACL
+type InstanceGetAclArgType = ACL
+type InstanceGetAclRetType = ACL
+
+func getInstanceGetAclAttributeTypeOk(arg InstanceGetAclAttributeType) (ret InstanceGetAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetAclAttributeType(arg *InstanceGetAclAttributeType, val InstanceGetAclRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for backupSchedule
+*/
+
+// isNotNullableString
+type InstanceGetBackupScheduleAttributeType = *string
+
+func getInstanceGetBackupScheduleAttributeTypeOk(arg InstanceGetBackupScheduleAttributeType) (ret InstanceGetBackupScheduleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetBackupScheduleAttributeType(arg *InstanceGetBackupScheduleAttributeType, val InstanceGetBackupScheduleRetType) {
+	*arg = &val
+}
+
+type InstanceGetBackupScheduleArgType = string
+type InstanceGetBackupScheduleRetType = string
+
+/*
+	types and functions for flavor
+*/
+
+// isModel
+type InstanceGetFlavorAttributeType = *Flavor
+type InstanceGetFlavorArgType = Flavor
+type InstanceGetFlavorRetType = Flavor
+
+func getInstanceGetFlavorAttributeTypeOk(arg InstanceGetFlavorAttributeType) (ret InstanceGetFlavorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetFlavorAttributeType(arg *InstanceGetFlavorAttributeType, val InstanceGetFlavorRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type InstanceGetIdAttributeType = *string
+
+func getInstanceGetIdAttributeTypeOk(arg InstanceGetIdAttributeType) (ret InstanceGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetIdAttributeType(arg *InstanceGetIdAttributeType, val InstanceGetIdRetType) {
+	*arg = &val
+}
+
+type InstanceGetIdArgType = string
+type InstanceGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type InstanceGetNameAttributeType = *string
+
+func getInstanceGetNameAttributeTypeOk(arg InstanceGetNameAttributeType) (ret InstanceGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetNameAttributeType(arg *InstanceGetNameAttributeType, val InstanceGetNameRetType) {
+	*arg = &val
+}
+
+type InstanceGetNameArgType = string
+type InstanceGetNameRetType = string
+
+/*
+	types and functions for options
+*/
+
+// isContainer
+type InstanceGetOptionsAttributeType = *map[string]string
+type InstanceGetOptionsArgType = map[string]string
+type InstanceGetOptionsRetType = map[string]string
+
+func getInstanceGetOptionsAttributeTypeOk(arg InstanceGetOptionsAttributeType) (ret InstanceGetOptionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetOptionsAttributeType(arg *InstanceGetOptionsAttributeType, val InstanceGetOptionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for replicas
+*/
+
+// isInteger
+type InstanceGetReplicasAttributeType = *int64
+type InstanceGetReplicasArgType = int64
+type InstanceGetReplicasRetType = int64
+
+func getInstanceGetReplicasAttributeTypeOk(arg InstanceGetReplicasAttributeType) (ret InstanceGetReplicasRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetReplicasAttributeType(arg *InstanceGetReplicasAttributeType, val InstanceGetReplicasRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type InstanceGetStatusAttributeType = *string
+
+func getInstanceGetStatusAttributeTypeOk(arg InstanceGetStatusAttributeType) (ret InstanceGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetStatusAttributeType(arg *InstanceGetStatusAttributeType, val InstanceGetStatusRetType) {
+	*arg = &val
+}
+
+type InstanceGetStatusArgType = string
+type InstanceGetStatusRetType = string
+
+/*
+	types and functions for storage
+*/
+
+// isModel
+type InstanceGetStorageAttributeType = *Storage
+type InstanceGetStorageArgType = Storage
+type InstanceGetStorageRetType = Storage
+
+func getInstanceGetStorageAttributeTypeOk(arg InstanceGetStorageAttributeType) (ret InstanceGetStorageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetStorageAttributeType(arg *InstanceGetStorageAttributeType, val InstanceGetStorageRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for version
+*/
+
+// isNotNullableString
+type InstanceGetVersionAttributeType = *string
+
+func getInstanceGetVersionAttributeTypeOk(arg InstanceGetVersionAttributeType) (ret InstanceGetVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetVersionAttributeType(arg *InstanceGetVersionAttributeType, val InstanceGetVersionRetType) {
+	*arg = &val
+}
+
+type InstanceGetVersionArgType = string
+type InstanceGetVersionRetType = string
+
 // Instance struct for Instance
 type Instance struct {
-	Acl            *ACL               `json:"acl,omitempty"`
-	BackupSchedule *string            `json:"backupSchedule,omitempty"`
-	Flavor         *Flavor            `json:"flavor,omitempty"`
-	Id             *string            `json:"id,omitempty"`
-	Name           *string            `json:"name,omitempty"`
-	Options        *map[string]string `json:"options,omitempty"`
+	Acl            InstanceGetAclAttributeType            `json:"acl,omitempty"`
+	BackupSchedule InstanceGetBackupScheduleAttributeType `json:"backupSchedule,omitempty"`
+	Flavor         InstanceGetFlavorAttributeType         `json:"flavor,omitempty"`
+	Id             InstanceGetIdAttributeType             `json:"id,omitempty"`
+	Name           InstanceGetNameAttributeType           `json:"name,omitempty"`
+	Options        InstanceGetOptionsAttributeType        `json:"options,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	Replicas *int64   `json:"replicas,omitempty"`
-	Status   *string  `json:"status,omitempty"`
-	Storage  *Storage `json:"storage,omitempty"`
-	Version  *string  `json:"version,omitempty"`
+	Replicas InstanceGetReplicasAttributeType `json:"replicas,omitempty"`
+	Status   InstanceGetStatusAttributeType   `json:"status,omitempty"`
+	Storage  InstanceGetStorageAttributeType  `json:"storage,omitempty"`
+	Version  InstanceGetVersionAttributeType  `json:"version,omitempty"`
 }
 
 // NewInstance instantiates a new Instance object
@@ -50,356 +255,266 @@ func NewInstanceWithDefaults() *Instance {
 }
 
 // GetAcl returns the Acl field value if set, zero value otherwise.
-func (o *Instance) GetAcl() *ACL {
-	if o == nil || IsNil(o.Acl) {
-		var ret *ACL
-		return ret
-	}
-	return o.Acl
+func (o *Instance) GetAcl() (res InstanceGetAclRetType) {
+	res, _ = o.GetAclOk()
+	return
 }
 
 // GetAclOk returns a tuple with the Acl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetAclOk() (*ACL, bool) {
-	if o == nil || IsNil(o.Acl) {
-		return nil, false
-	}
-	return o.Acl, true
+func (o *Instance) GetAclOk() (ret InstanceGetAclRetType, ok bool) {
+	return getInstanceGetAclAttributeTypeOk(o.Acl)
 }
 
 // HasAcl returns a boolean if a field has been set.
 func (o *Instance) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAclOk()
+	return ok
 }
 
 // SetAcl gets a reference to the given ACL and assigns it to the Acl field.
-func (o *Instance) SetAcl(v *ACL) {
-	o.Acl = v
+func (o *Instance) SetAcl(v InstanceGetAclRetType) {
+	setInstanceGetAclAttributeType(&o.Acl, v)
 }
 
 // GetBackupSchedule returns the BackupSchedule field value if set, zero value otherwise.
-func (o *Instance) GetBackupSchedule() *string {
-	if o == nil || IsNil(o.BackupSchedule) {
-		var ret *string
-		return ret
-	}
-	return o.BackupSchedule
+func (o *Instance) GetBackupSchedule() (res InstanceGetBackupScheduleRetType) {
+	res, _ = o.GetBackupScheduleOk()
+	return
 }
 
 // GetBackupScheduleOk returns a tuple with the BackupSchedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetBackupScheduleOk() (*string, bool) {
-	if o == nil || IsNil(o.BackupSchedule) {
-		return nil, false
-	}
-	return o.BackupSchedule, true
+func (o *Instance) GetBackupScheduleOk() (ret InstanceGetBackupScheduleRetType, ok bool) {
+	return getInstanceGetBackupScheduleAttributeTypeOk(o.BackupSchedule)
 }
 
 // HasBackupSchedule returns a boolean if a field has been set.
 func (o *Instance) HasBackupSchedule() bool {
-	if o != nil && !IsNil(o.BackupSchedule) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBackupScheduleOk()
+	return ok
 }
 
 // SetBackupSchedule gets a reference to the given string and assigns it to the BackupSchedule field.
-func (o *Instance) SetBackupSchedule(v *string) {
-	o.BackupSchedule = v
+func (o *Instance) SetBackupSchedule(v InstanceGetBackupScheduleRetType) {
+	setInstanceGetBackupScheduleAttributeType(&o.BackupSchedule, v)
 }
 
 // GetFlavor returns the Flavor field value if set, zero value otherwise.
-func (o *Instance) GetFlavor() *Flavor {
-	if o == nil || IsNil(o.Flavor) {
-		var ret *Flavor
-		return ret
-	}
-	return o.Flavor
+func (o *Instance) GetFlavor() (res InstanceGetFlavorRetType) {
+	res, _ = o.GetFlavorOk()
+	return
 }
 
 // GetFlavorOk returns a tuple with the Flavor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetFlavorOk() (*Flavor, bool) {
-	if o == nil || IsNil(o.Flavor) {
-		return nil, false
-	}
-	return o.Flavor, true
+func (o *Instance) GetFlavorOk() (ret InstanceGetFlavorRetType, ok bool) {
+	return getInstanceGetFlavorAttributeTypeOk(o.Flavor)
 }
 
 // HasFlavor returns a boolean if a field has been set.
 func (o *Instance) HasFlavor() bool {
-	if o != nil && !IsNil(o.Flavor) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFlavorOk()
+	return ok
 }
 
 // SetFlavor gets a reference to the given Flavor and assigns it to the Flavor field.
-func (o *Instance) SetFlavor(v *Flavor) {
-	o.Flavor = v
+func (o *Instance) SetFlavor(v InstanceGetFlavorRetType) {
+	setInstanceGetFlavorAttributeType(&o.Flavor, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Instance) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Instance) GetId() (res InstanceGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Instance) GetIdOk() (ret InstanceGetIdRetType, ok bool) {
+	return getInstanceGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Instance) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Instance) SetId(v *string) {
-	o.Id = v
+func (o *Instance) SetId(v InstanceGetIdRetType) {
+	setInstanceGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Instance) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Instance) GetName() (res InstanceGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Instance) GetNameOk() (ret InstanceGetNameRetType, ok bool) {
+	return getInstanceGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Instance) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Instance) SetName(v *string) {
-	o.Name = v
+func (o *Instance) SetName(v InstanceGetNameRetType) {
+	setInstanceGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *Instance) GetOptions() *map[string]string {
-	if o == nil || IsNil(o.Options) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Options
+func (o *Instance) GetOptions() (res InstanceGetOptionsRetType) {
+	res, _ = o.GetOptionsOk()
+	return
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetOptionsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Options) {
-		return nil, false
-	}
-	return o.Options, true
+func (o *Instance) GetOptionsOk() (ret InstanceGetOptionsRetType, ok bool) {
+	return getInstanceGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Instance) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOptionsOk()
+	return ok
 }
 
 // SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
-func (o *Instance) SetOptions(v *map[string]string) {
-	o.Options = v
+func (o *Instance) SetOptions(v InstanceGetOptionsRetType) {
+	setInstanceGetOptionsAttributeType(&o.Options, v)
 }
 
 // GetReplicas returns the Replicas field value if set, zero value otherwise.
-func (o *Instance) GetReplicas() *int64 {
-	if o == nil || IsNil(o.Replicas) {
-		var ret *int64
-		return ret
-	}
-	return o.Replicas
+func (o *Instance) GetReplicas() (res InstanceGetReplicasRetType) {
+	res, _ = o.GetReplicasOk()
+	return
 }
 
 // GetReplicasOk returns a tuple with the Replicas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetReplicasOk() (*int64, bool) {
-	if o == nil || IsNil(o.Replicas) {
-		return nil, false
-	}
-	return o.Replicas, true
+func (o *Instance) GetReplicasOk() (ret InstanceGetReplicasRetType, ok bool) {
+	return getInstanceGetReplicasAttributeTypeOk(o.Replicas)
 }
 
 // HasReplicas returns a boolean if a field has been set.
 func (o *Instance) HasReplicas() bool {
-	if o != nil && !IsNil(o.Replicas) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetReplicasOk()
+	return ok
 }
 
 // SetReplicas gets a reference to the given int64 and assigns it to the Replicas field.
-func (o *Instance) SetReplicas(v *int64) {
-	o.Replicas = v
+func (o *Instance) SetReplicas(v InstanceGetReplicasRetType) {
+	setInstanceGetReplicasAttributeType(&o.Replicas, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Instance) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *Instance) GetStatus() (res InstanceGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *Instance) GetStatusOk() (ret InstanceGetStatusRetType, ok bool) {
+	return getInstanceGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Instance) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Instance) SetStatus(v *string) {
-	o.Status = v
+func (o *Instance) SetStatus(v InstanceGetStatusRetType) {
+	setInstanceGetStatusAttributeType(&o.Status, v)
 }
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
-func (o *Instance) GetStorage() *Storage {
-	if o == nil || IsNil(o.Storage) {
-		var ret *Storage
-		return ret
-	}
-	return o.Storage
+func (o *Instance) GetStorage() (res InstanceGetStorageRetType) {
+	res, _ = o.GetStorageOk()
+	return
 }
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStorageOk() (*Storage, bool) {
-	if o == nil || IsNil(o.Storage) {
-		return nil, false
-	}
-	return o.Storage, true
+func (o *Instance) GetStorageOk() (ret InstanceGetStorageRetType, ok bool) {
+	return getInstanceGetStorageAttributeTypeOk(o.Storage)
 }
 
 // HasStorage returns a boolean if a field has been set.
 func (o *Instance) HasStorage() bool {
-	if o != nil && !IsNil(o.Storage) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStorageOk()
+	return ok
 }
 
 // SetStorage gets a reference to the given Storage and assigns it to the Storage field.
-func (o *Instance) SetStorage(v *Storage) {
-	o.Storage = v
+func (o *Instance) SetStorage(v InstanceGetStorageRetType) {
+	setInstanceGetStorageAttributeType(&o.Storage, v)
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *Instance) GetVersion() *string {
-	if o == nil || IsNil(o.Version) {
-		var ret *string
-		return ret
-	}
-	return o.Version
+func (o *Instance) GetVersion() (res InstanceGetVersionRetType) {
+	res, _ = o.GetVersionOk()
+	return
 }
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.Version) {
-		return nil, false
-	}
-	return o.Version, true
+func (o *Instance) GetVersionOk() (ret InstanceGetVersionRetType, ok bool) {
+	return getInstanceGetVersionAttributeTypeOk(o.Version)
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *Instance) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVersionOk()
+	return ok
 }
 
 // SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *Instance) SetVersion(v *string) {
-	o.Version = v
+func (o *Instance) SetVersion(v InstanceGetVersionRetType) {
+	setInstanceGetVersionAttributeType(&o.Version, v)
 }
 
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Acl) {
-		toSerialize["acl"] = o.Acl
+	if val, ok := getInstanceGetAclAttributeTypeOk(o.Acl); ok {
+		toSerialize["Acl"] = val
 	}
-	if !IsNil(o.BackupSchedule) {
-		toSerialize["backupSchedule"] = o.BackupSchedule
+	if val, ok := getInstanceGetBackupScheduleAttributeTypeOk(o.BackupSchedule); ok {
+		toSerialize["BackupSchedule"] = val
 	}
-	if !IsNil(o.Flavor) {
-		toSerialize["flavor"] = o.Flavor
+	if val, ok := getInstanceGetFlavorAttributeTypeOk(o.Flavor); ok {
+		toSerialize["Flavor"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getInstanceGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getInstanceGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
+	if val, ok := getInstanceGetOptionsAttributeTypeOk(o.Options); ok {
+		toSerialize["Options"] = val
 	}
-	if !IsNil(o.Replicas) {
-		toSerialize["replicas"] = o.Replicas
+	if val, ok := getInstanceGetReplicasAttributeTypeOk(o.Replicas); ok {
+		toSerialize["Replicas"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getInstanceGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
-	if !IsNil(o.Storage) {
-		toSerialize["storage"] = o.Storage
+	if val, ok := getInstanceGetStorageAttributeTypeOk(o.Storage); ok {
+		toSerialize["Storage"] = val
 	}
-	if !IsNil(o.Version) {
-		toSerialize["version"] = o.Version
+	if val, ok := getInstanceGetVersionAttributeTypeOk(o.Version); ok {
+		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
 }

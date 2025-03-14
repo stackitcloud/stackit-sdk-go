@@ -17,9 +17,29 @@ import (
 // checks if the ListCollationsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListCollationsResponse{}
 
+/*
+	types and functions for collations
+*/
+
+// isArray
+type ListCollationsResponseGetCollationsAttributeType = *[]MssqlDatabaseCollation
+type ListCollationsResponseGetCollationsArgType = []MssqlDatabaseCollation
+type ListCollationsResponseGetCollationsRetType = []MssqlDatabaseCollation
+
+func getListCollationsResponseGetCollationsAttributeTypeOk(arg ListCollationsResponseGetCollationsAttributeType) (ret ListCollationsResponseGetCollationsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListCollationsResponseGetCollationsAttributeType(arg *ListCollationsResponseGetCollationsAttributeType, val ListCollationsResponseGetCollationsRetType) {
+	*arg = &val
+}
+
 // ListCollationsResponse struct for ListCollationsResponse
 type ListCollationsResponse struct {
-	Collations *[]MssqlDatabaseCollation `json:"collations,omitempty"`
+	Collations ListCollationsResponseGetCollationsAttributeType `json:"collations,omitempty"`
 }
 
 // NewListCollationsResponse instantiates a new ListCollationsResponse object
@@ -40,41 +60,32 @@ func NewListCollationsResponseWithDefaults() *ListCollationsResponse {
 }
 
 // GetCollations returns the Collations field value if set, zero value otherwise.
-func (o *ListCollationsResponse) GetCollations() *[]MssqlDatabaseCollation {
-	if o == nil || IsNil(o.Collations) {
-		var ret *[]MssqlDatabaseCollation
-		return ret
-	}
-	return o.Collations
+func (o *ListCollationsResponse) GetCollations() (res ListCollationsResponseGetCollationsRetType) {
+	res, _ = o.GetCollationsOk()
+	return
 }
 
 // GetCollationsOk returns a tuple with the Collations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListCollationsResponse) GetCollationsOk() (*[]MssqlDatabaseCollation, bool) {
-	if o == nil || IsNil(o.Collations) {
-		return nil, false
-	}
-	return o.Collations, true
+func (o *ListCollationsResponse) GetCollationsOk() (ret ListCollationsResponseGetCollationsRetType, ok bool) {
+	return getListCollationsResponseGetCollationsAttributeTypeOk(o.Collations)
 }
 
 // HasCollations returns a boolean if a field has been set.
 func (o *ListCollationsResponse) HasCollations() bool {
-	if o != nil && !IsNil(o.Collations) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCollationsOk()
+	return ok
 }
 
 // SetCollations gets a reference to the given []MssqlDatabaseCollation and assigns it to the Collations field.
-func (o *ListCollationsResponse) SetCollations(v *[]MssqlDatabaseCollation) {
-	o.Collations = v
+func (o *ListCollationsResponse) SetCollations(v ListCollationsResponseGetCollationsRetType) {
+	setListCollationsResponseGetCollationsAttributeType(&o.Collations, v)
 }
 
 func (o ListCollationsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Collations) {
-		toSerialize["collations"] = o.Collations
+	if val, ok := getListCollationsResponseGetCollationsAttributeTypeOk(o.Collations); ok {
+		toSerialize["Collations"] = val
 	}
 	return toSerialize, nil
 }

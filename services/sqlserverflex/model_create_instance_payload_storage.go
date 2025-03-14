@@ -17,12 +17,53 @@ import (
 // checks if the CreateInstancePayloadStorage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateInstancePayloadStorage{}
 
+/*
+	types and functions for class
+*/
+
+// isNotNullableString
+type CreateInstancePayloadStorageGetClassAttributeType = *string
+
+func getCreateInstancePayloadStorageGetClassAttributeTypeOk(arg CreateInstancePayloadStorageGetClassAttributeType) (ret CreateInstancePayloadStorageGetClassRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadStorageGetClassAttributeType(arg *CreateInstancePayloadStorageGetClassAttributeType, val CreateInstancePayloadStorageGetClassRetType) {
+	*arg = &val
+}
+
+type CreateInstancePayloadStorageGetClassArgType = string
+type CreateInstancePayloadStorageGetClassRetType = string
+
+/*
+	types and functions for size
+*/
+
+// isLong
+type CreateInstancePayloadStorageGetSizeAttributeType = *int64
+type CreateInstancePayloadStorageGetSizeArgType = int64
+type CreateInstancePayloadStorageGetSizeRetType = int64
+
+func getCreateInstancePayloadStorageGetSizeAttributeTypeOk(arg CreateInstancePayloadStorageGetSizeAttributeType) (ret CreateInstancePayloadStorageGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadStorageGetSizeAttributeType(arg *CreateInstancePayloadStorageGetSizeAttributeType, val CreateInstancePayloadStorageGetSizeRetType) {
+	*arg = &val
+}
+
 // CreateInstancePayloadStorage Storage for the instance
 type CreateInstancePayloadStorage struct {
 	// Class of the instance.
-	Class *string `json:"class,omitempty"`
+	Class CreateInstancePayloadStorageGetClassAttributeType `json:"class,omitempty"`
 	// Size of the instance storage in GB
-	Size *int64 `json:"size,omitempty"`
+	Size CreateInstancePayloadStorageGetSizeAttributeType `json:"size,omitempty"`
 }
 
 // NewCreateInstancePayloadStorage instantiates a new CreateInstancePayloadStorage object
@@ -31,8 +72,6 @@ type CreateInstancePayloadStorage struct {
 // will change when the set of required properties is changed
 func NewCreateInstancePayloadStorage() *CreateInstancePayloadStorage {
 	this := CreateInstancePayloadStorage{}
-	var class string = "premium-perf12-stackit"
-	this.Class = &class
 	return &this
 }
 
@@ -47,76 +86,58 @@ func NewCreateInstancePayloadStorageWithDefaults() *CreateInstancePayloadStorage
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
-func (o *CreateInstancePayloadStorage) GetClass() *string {
-	if o == nil || IsNil(o.Class) {
-		var ret *string
-		return ret
-	}
-	return o.Class
+func (o *CreateInstancePayloadStorage) GetClass() (res CreateInstancePayloadStorageGetClassRetType) {
+	res, _ = o.GetClassOk()
+	return
 }
 
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayloadStorage) GetClassOk() (*string, bool) {
-	if o == nil || IsNil(o.Class) {
-		return nil, false
-	}
-	return o.Class, true
+func (o *CreateInstancePayloadStorage) GetClassOk() (ret CreateInstancePayloadStorageGetClassRetType, ok bool) {
+	return getCreateInstancePayloadStorageGetClassAttributeTypeOk(o.Class)
 }
 
 // HasClass returns a boolean if a field has been set.
 func (o *CreateInstancePayloadStorage) HasClass() bool {
-	if o != nil && !IsNil(o.Class) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetClassOk()
+	return ok
 }
 
 // SetClass gets a reference to the given string and assigns it to the Class field.
-func (o *CreateInstancePayloadStorage) SetClass(v *string) {
-	o.Class = v
+func (o *CreateInstancePayloadStorage) SetClass(v CreateInstancePayloadStorageGetClassRetType) {
+	setCreateInstancePayloadStorageGetClassAttributeType(&o.Class, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *CreateInstancePayloadStorage) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-	return o.Size
+func (o *CreateInstancePayloadStorage) GetSize() (res CreateInstancePayloadStorageGetSizeRetType) {
+	res, _ = o.GetSizeOk()
+	return
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayloadStorage) GetSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Size) {
-		return nil, false
-	}
-	return o.Size, true
+func (o *CreateInstancePayloadStorage) GetSizeOk() (ret CreateInstancePayloadStorageGetSizeRetType, ok bool) {
+	return getCreateInstancePayloadStorageGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *CreateInstancePayloadStorage) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSizeOk()
+	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *CreateInstancePayloadStorage) SetSize(v *int64) {
-	o.Size = v
+func (o *CreateInstancePayloadStorage) SetSize(v CreateInstancePayloadStorageGetSizeRetType) {
+	setCreateInstancePayloadStorageGetSizeAttributeType(&o.Size, v)
 }
 
 func (o CreateInstancePayloadStorage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Class) {
-		toSerialize["class"] = o.Class
+	if val, ok := getCreateInstancePayloadStorageGetClassAttributeTypeOk(o.Class); ok {
+		toSerialize["Class"] = val
 	}
-	if !IsNil(o.Size) {
-		toSerialize["size"] = o.Size
+	if val, ok := getCreateInstancePayloadStorageGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
 	}
 	return toSerialize, nil
 }

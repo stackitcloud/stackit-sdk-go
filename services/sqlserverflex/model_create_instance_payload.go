@@ -17,22 +17,186 @@ import (
 // checks if the CreateInstancePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateInstancePayload{}
 
+/*
+	types and functions for acl
+*/
+
+// isModel
+type CreateInstancePayloadGetAclAttributeType = *CreateInstancePayloadAcl
+type CreateInstancePayloadGetAclArgType = CreateInstancePayloadAcl
+type CreateInstancePayloadGetAclRetType = CreateInstancePayloadAcl
+
+func getCreateInstancePayloadGetAclAttributeTypeOk(arg CreateInstancePayloadGetAclAttributeType) (ret CreateInstancePayloadGetAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetAclAttributeType(arg *CreateInstancePayloadGetAclAttributeType, val CreateInstancePayloadGetAclRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for backupSchedule
+*/
+
+// isNotNullableString
+type CreateInstancePayloadGetBackupScheduleAttributeType = *string
+
+func getCreateInstancePayloadGetBackupScheduleAttributeTypeOk(arg CreateInstancePayloadGetBackupScheduleAttributeType) (ret CreateInstancePayloadGetBackupScheduleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetBackupScheduleAttributeType(arg *CreateInstancePayloadGetBackupScheduleAttributeType, val CreateInstancePayloadGetBackupScheduleRetType) {
+	*arg = &val
+}
+
+type CreateInstancePayloadGetBackupScheduleArgType = string
+type CreateInstancePayloadGetBackupScheduleRetType = string
+
+/*
+	types and functions for flavorId
+*/
+
+// isNotNullableString
+type CreateInstancePayloadGetFlavorIdAttributeType = *string
+
+func getCreateInstancePayloadGetFlavorIdAttributeTypeOk(arg CreateInstancePayloadGetFlavorIdAttributeType) (ret CreateInstancePayloadGetFlavorIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetFlavorIdAttributeType(arg *CreateInstancePayloadGetFlavorIdAttributeType, val CreateInstancePayloadGetFlavorIdRetType) {
+	*arg = &val
+}
+
+type CreateInstancePayloadGetFlavorIdArgType = string
+type CreateInstancePayloadGetFlavorIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type CreateInstancePayloadGetLabelsAttributeType = *map[string]interface{}
+type CreateInstancePayloadGetLabelsArgType = map[string]interface{}
+type CreateInstancePayloadGetLabelsRetType = map[string]interface{}
+
+func getCreateInstancePayloadGetLabelsAttributeTypeOk(arg CreateInstancePayloadGetLabelsAttributeType) (ret CreateInstancePayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetLabelsAttributeType(arg *CreateInstancePayloadGetLabelsAttributeType, val CreateInstancePayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateInstancePayloadGetNameAttributeType = *string
+
+func getCreateInstancePayloadGetNameAttributeTypeOk(arg CreateInstancePayloadGetNameAttributeType) (ret CreateInstancePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetNameAttributeType(arg *CreateInstancePayloadGetNameAttributeType, val CreateInstancePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateInstancePayloadGetNameArgType = string
+type CreateInstancePayloadGetNameRetType = string
+
+/*
+	types and functions for options
+*/
+
+// isModel
+type CreateInstancePayloadGetOptionsAttributeType = *CreateInstancePayloadOptions
+type CreateInstancePayloadGetOptionsArgType = CreateInstancePayloadOptions
+type CreateInstancePayloadGetOptionsRetType = CreateInstancePayloadOptions
+
+func getCreateInstancePayloadGetOptionsAttributeTypeOk(arg CreateInstancePayloadGetOptionsAttributeType) (ret CreateInstancePayloadGetOptionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetOptionsAttributeType(arg *CreateInstancePayloadGetOptionsAttributeType, val CreateInstancePayloadGetOptionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for storage
+*/
+
+// isModel
+type CreateInstancePayloadGetStorageAttributeType = *CreateInstancePayloadStorage
+type CreateInstancePayloadGetStorageArgType = CreateInstancePayloadStorage
+type CreateInstancePayloadGetStorageRetType = CreateInstancePayloadStorage
+
+func getCreateInstancePayloadGetStorageAttributeTypeOk(arg CreateInstancePayloadGetStorageAttributeType) (ret CreateInstancePayloadGetStorageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetStorageAttributeType(arg *CreateInstancePayloadGetStorageAttributeType, val CreateInstancePayloadGetStorageRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for version
+*/
+
+// isNotNullableString
+type CreateInstancePayloadGetVersionAttributeType = *string
+
+func getCreateInstancePayloadGetVersionAttributeTypeOk(arg CreateInstancePayloadGetVersionAttributeType) (ret CreateInstancePayloadGetVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetVersionAttributeType(arg *CreateInstancePayloadGetVersionAttributeType, val CreateInstancePayloadGetVersionRetType) {
+	*arg = &val
+}
+
+type CreateInstancePayloadGetVersionArgType = string
+type CreateInstancePayloadGetVersionRetType = string
+
 // CreateInstancePayload struct for CreateInstancePayload
 type CreateInstancePayload struct {
-	Acl *CreateInstancePayloadAcl `json:"acl,omitempty"`
+	Acl CreateInstancePayloadGetAclAttributeType `json:"acl,omitempty"`
 	// Cronjob for the daily full backup if not provided a job will generated between 00:00 and 04:59
-	BackupSchedule *string `json:"backupSchedule,omitempty"`
+	BackupSchedule CreateInstancePayloadGetBackupScheduleAttributeType `json:"backupSchedule,omitempty"`
 	// Id of the selected flavor
 	// REQUIRED
-	FlavorId *string                 `json:"flavorId"`
-	Labels   *map[string]interface{} `json:"labels,omitempty"`
+	FlavorId CreateInstancePayloadGetFlavorIdAttributeType `json:"flavorId"`
+	Labels   CreateInstancePayloadGetLabelsAttributeType   `json:"labels,omitempty"`
 	// Name of the instance
 	// REQUIRED
-	Name    *string                       `json:"name"`
-	Options *CreateInstancePayloadOptions `json:"options,omitempty"`
-	Storage *CreateInstancePayloadStorage `json:"storage,omitempty"`
+	Name    CreateInstancePayloadGetNameAttributeType    `json:"name"`
+	Options CreateInstancePayloadGetOptionsAttributeType `json:"options,omitempty"`
+	Storage CreateInstancePayloadGetStorageAttributeType `json:"storage,omitempty"`
 	// Version of the MSSQL Server
-	Version *string `json:"version,omitempty"`
+	Version CreateInstancePayloadGetVersionAttributeType `json:"version,omitempty"`
 }
 
 type _CreateInstancePayload CreateInstancePayload
@@ -41,12 +205,10 @@ type _CreateInstancePayload CreateInstancePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInstancePayload(flavorId *string, name *string) *CreateInstancePayload {
+func NewCreateInstancePayload(flavorId CreateInstancePayloadGetFlavorIdArgType, name CreateInstancePayloadGetNameArgType) *CreateInstancePayload {
 	this := CreateInstancePayload{}
-	this.FlavorId = flavorId
-	this.Name = name
-	var version string = "2022"
-	this.Version = &version
+	setCreateInstancePayloadGetFlavorIdAttributeType(&this.FlavorId, flavorId)
+	setCreateInstancePayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -61,266 +223,202 @@ func NewCreateInstancePayloadWithDefaults() *CreateInstancePayload {
 }
 
 // GetAcl returns the Acl field value if set, zero value otherwise.
-func (o *CreateInstancePayload) GetAcl() *CreateInstancePayloadAcl {
-	if o == nil || IsNil(o.Acl) {
-		var ret *CreateInstancePayloadAcl
-		return ret
-	}
-	return o.Acl
+func (o *CreateInstancePayload) GetAcl() (res CreateInstancePayloadGetAclRetType) {
+	res, _ = o.GetAclOk()
+	return
 }
 
 // GetAclOk returns a tuple with the Acl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetAclOk() (*CreateInstancePayloadAcl, bool) {
-	if o == nil || IsNil(o.Acl) {
-		return nil, false
-	}
-	return o.Acl, true
+func (o *CreateInstancePayload) GetAclOk() (ret CreateInstancePayloadGetAclRetType, ok bool) {
+	return getCreateInstancePayloadGetAclAttributeTypeOk(o.Acl)
 }
 
 // HasAcl returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasAcl() bool {
-	if o != nil && !IsNil(o.Acl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAclOk()
+	return ok
 }
 
 // SetAcl gets a reference to the given CreateInstancePayloadAcl and assigns it to the Acl field.
-func (o *CreateInstancePayload) SetAcl(v *CreateInstancePayloadAcl) {
-	o.Acl = v
+func (o *CreateInstancePayload) SetAcl(v CreateInstancePayloadGetAclRetType) {
+	setCreateInstancePayloadGetAclAttributeType(&o.Acl, v)
 }
 
 // GetBackupSchedule returns the BackupSchedule field value if set, zero value otherwise.
-func (o *CreateInstancePayload) GetBackupSchedule() *string {
-	if o == nil || IsNil(o.BackupSchedule) {
-		var ret *string
-		return ret
-	}
-	return o.BackupSchedule
+func (o *CreateInstancePayload) GetBackupSchedule() (res CreateInstancePayloadGetBackupScheduleRetType) {
+	res, _ = o.GetBackupScheduleOk()
+	return
 }
 
 // GetBackupScheduleOk returns a tuple with the BackupSchedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetBackupScheduleOk() (*string, bool) {
-	if o == nil || IsNil(o.BackupSchedule) {
-		return nil, false
-	}
-	return o.BackupSchedule, true
+func (o *CreateInstancePayload) GetBackupScheduleOk() (ret CreateInstancePayloadGetBackupScheduleRetType, ok bool) {
+	return getCreateInstancePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule)
 }
 
 // HasBackupSchedule returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasBackupSchedule() bool {
-	if o != nil && !IsNil(o.BackupSchedule) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBackupScheduleOk()
+	return ok
 }
 
 // SetBackupSchedule gets a reference to the given string and assigns it to the BackupSchedule field.
-func (o *CreateInstancePayload) SetBackupSchedule(v *string) {
-	o.BackupSchedule = v
+func (o *CreateInstancePayload) SetBackupSchedule(v CreateInstancePayloadGetBackupScheduleRetType) {
+	setCreateInstancePayloadGetBackupScheduleAttributeType(&o.BackupSchedule, v)
 }
 
 // GetFlavorId returns the FlavorId field value
-func (o *CreateInstancePayload) GetFlavorId() *string {
-	if o == nil || IsNil(o.FlavorId) {
-		var ret *string
-		return ret
-	}
-
-	return o.FlavorId
+func (o *CreateInstancePayload) GetFlavorId() (ret CreateInstancePayloadGetFlavorIdRetType) {
+	ret, _ = o.GetFlavorIdOk()
+	return ret
 }
 
 // GetFlavorIdOk returns a tuple with the FlavorId field value
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetFlavorIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.FlavorId, true
+func (o *CreateInstancePayload) GetFlavorIdOk() (ret CreateInstancePayloadGetFlavorIdRetType, ok bool) {
+	return getCreateInstancePayloadGetFlavorIdAttributeTypeOk(o.FlavorId)
 }
 
 // SetFlavorId sets field value
-func (o *CreateInstancePayload) SetFlavorId(v *string) {
-	o.FlavorId = v
+func (o *CreateInstancePayload) SetFlavorId(v CreateInstancePayloadGetFlavorIdRetType) {
+	setCreateInstancePayloadGetFlavorIdAttributeType(&o.FlavorId, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateInstancePayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *CreateInstancePayload) GetLabels() (res CreateInstancePayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *CreateInstancePayload) GetLabelsOk() (ret CreateInstancePayloadGetLabelsRetType, ok bool) {
+	return getCreateInstancePayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *CreateInstancePayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *CreateInstancePayload) SetLabels(v CreateInstancePayloadGetLabelsRetType) {
+	setCreateInstancePayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateInstancePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateInstancePayload) GetName() (ret CreateInstancePayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateInstancePayload) GetNameOk() (ret CreateInstancePayloadGetNameRetType, ok bool) {
+	return getCreateInstancePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateInstancePayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateInstancePayload) SetName(v CreateInstancePayloadGetNameRetType) {
+	setCreateInstancePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *CreateInstancePayload) GetOptions() *CreateInstancePayloadOptions {
-	if o == nil || IsNil(o.Options) {
-		var ret *CreateInstancePayloadOptions
-		return ret
-	}
-	return o.Options
+func (o *CreateInstancePayload) GetOptions() (res CreateInstancePayloadGetOptionsRetType) {
+	res, _ = o.GetOptionsOk()
+	return
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetOptionsOk() (*CreateInstancePayloadOptions, bool) {
-	if o == nil || IsNil(o.Options) {
-		return nil, false
-	}
-	return o.Options, true
+func (o *CreateInstancePayload) GetOptionsOk() (ret CreateInstancePayloadGetOptionsRetType, ok bool) {
+	return getCreateInstancePayloadGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOptionsOk()
+	return ok
 }
 
 // SetOptions gets a reference to the given CreateInstancePayloadOptions and assigns it to the Options field.
-func (o *CreateInstancePayload) SetOptions(v *CreateInstancePayloadOptions) {
-	o.Options = v
+func (o *CreateInstancePayload) SetOptions(v CreateInstancePayloadGetOptionsRetType) {
+	setCreateInstancePayloadGetOptionsAttributeType(&o.Options, v)
 }
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
-func (o *CreateInstancePayload) GetStorage() *CreateInstancePayloadStorage {
-	if o == nil || IsNil(o.Storage) {
-		var ret *CreateInstancePayloadStorage
-		return ret
-	}
-	return o.Storage
+func (o *CreateInstancePayload) GetStorage() (res CreateInstancePayloadGetStorageRetType) {
+	res, _ = o.GetStorageOk()
+	return
 }
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetStorageOk() (*CreateInstancePayloadStorage, bool) {
-	if o == nil || IsNil(o.Storage) {
-		return nil, false
-	}
-	return o.Storage, true
+func (o *CreateInstancePayload) GetStorageOk() (ret CreateInstancePayloadGetStorageRetType, ok bool) {
+	return getCreateInstancePayloadGetStorageAttributeTypeOk(o.Storage)
 }
 
 // HasStorage returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasStorage() bool {
-	if o != nil && !IsNil(o.Storage) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStorageOk()
+	return ok
 }
 
 // SetStorage gets a reference to the given CreateInstancePayloadStorage and assigns it to the Storage field.
-func (o *CreateInstancePayload) SetStorage(v *CreateInstancePayloadStorage) {
-	o.Storage = v
+func (o *CreateInstancePayload) SetStorage(v CreateInstancePayloadGetStorageRetType) {
+	setCreateInstancePayloadGetStorageAttributeType(&o.Storage, v)
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *CreateInstancePayload) GetVersion() *string {
-	if o == nil || IsNil(o.Version) {
-		var ret *string
-		return ret
-	}
-	return o.Version
+func (o *CreateInstancePayload) GetVersion() (res CreateInstancePayloadGetVersionRetType) {
+	res, _ = o.GetVersionOk()
+	return
 }
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.Version) {
-		return nil, false
-	}
-	return o.Version, true
+func (o *CreateInstancePayload) GetVersionOk() (ret CreateInstancePayloadGetVersionRetType, ok bool) {
+	return getCreateInstancePayloadGetVersionAttributeTypeOk(o.Version)
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVersionOk()
+	return ok
 }
 
 // SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *CreateInstancePayload) SetVersion(v *string) {
-	o.Version = v
+func (o *CreateInstancePayload) SetVersion(v CreateInstancePayloadGetVersionRetType) {
+	setCreateInstancePayloadGetVersionAttributeType(&o.Version, v)
 }
 
 func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Acl) {
-		toSerialize["acl"] = o.Acl
+	if val, ok := getCreateInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {
+		toSerialize["Acl"] = val
 	}
-	if !IsNil(o.BackupSchedule) {
-		toSerialize["backupSchedule"] = o.BackupSchedule
+	if val, ok := getCreateInstancePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule); ok {
+		toSerialize["BackupSchedule"] = val
 	}
-	toSerialize["flavorId"] = o.FlavorId
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getCreateInstancePayloadGetFlavorIdAttributeTypeOk(o.FlavorId); ok {
+		toSerialize["FlavorId"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
+	if val, ok := getCreateInstancePayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Storage) {
-		toSerialize["storage"] = o.Storage
+	if val, ok := getCreateInstancePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Version) {
-		toSerialize["version"] = o.Version
+	if val, ok := getCreateInstancePayloadGetOptionsAttributeTypeOk(o.Options); ok {
+		toSerialize["Options"] = val
+	}
+	if val, ok := getCreateInstancePayloadGetStorageAttributeTypeOk(o.Storage); ok {
+		toSerialize["Storage"] = val
+	}
+	if val, ok := getCreateInstancePayloadGetVersionAttributeTypeOk(o.Version); ok {
+		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
 }

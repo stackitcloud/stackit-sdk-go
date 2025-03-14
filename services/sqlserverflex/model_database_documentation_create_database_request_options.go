@@ -17,15 +17,78 @@ import (
 // checks if the DatabaseDocumentationCreateDatabaseRequestOptions type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DatabaseDocumentationCreateDatabaseRequestOptions{}
 
+/*
+	types and functions for collation
+*/
+
+// isNotNullableString
+type DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationAttributeType = *string
+
+func getDatabaseDocumentationCreateDatabaseRequestOptionsGetCollationAttributeTypeOk(arg DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationAttributeType) (ret DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDatabaseDocumentationCreateDatabaseRequestOptionsGetCollationAttributeType(arg *DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationAttributeType, val DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationRetType) {
+	*arg = &val
+}
+
+type DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationArgType = string
+type DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationRetType = string
+
+/*
+	types and functions for compatibilityLevel
+*/
+
+// isNotNullableString
+type DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeType = *string
+
+func getDatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeTypeOk(arg DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeType) (ret DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeType(arg *DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeType, val DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelRetType) {
+	*arg = &val
+}
+
+type DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelArgType = string
+type DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelRetType = string
+
+/*
+	types and functions for owner
+*/
+
+// isNotNullableString
+type DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeType = *string
+
+func getDatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeTypeOk(arg DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeType) (ret DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeType(arg *DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeType, val DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerRetType) {
+	*arg = &val
+}
+
+type DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerArgType = string
+type DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerRetType = string
+
 // DatabaseDocumentationCreateDatabaseRequestOptions struct for DatabaseDocumentationCreateDatabaseRequestOptions
 type DatabaseDocumentationCreateDatabaseRequestOptions struct {
 	// Collation of the database
-	Collation *string `json:"collation,omitempty"`
+	Collation DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationAttributeType `json:"collation,omitempty"`
 	// CompatibilityLevel of the Database.
-	CompatibilityLevel *string `json:"compatibilityLevel,omitempty"`
+	CompatibilityLevel DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeType `json:"compatibilityLevel,omitempty"`
 	// Name of the owner of the database.
 	// REQUIRED
-	Owner *string `json:"owner"`
+	Owner DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeType `json:"owner"`
 }
 
 type _DatabaseDocumentationCreateDatabaseRequestOptions DatabaseDocumentationCreateDatabaseRequestOptions
@@ -34,9 +97,9 @@ type _DatabaseDocumentationCreateDatabaseRequestOptions DatabaseDocumentationCre
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDatabaseDocumentationCreateDatabaseRequestOptions(owner *string) *DatabaseDocumentationCreateDatabaseRequestOptions {
+func NewDatabaseDocumentationCreateDatabaseRequestOptions(owner DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerArgType) *DatabaseDocumentationCreateDatabaseRequestOptions {
 	this := DatabaseDocumentationCreateDatabaseRequestOptions{}
-	this.Owner = owner
+	setDatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeType(&this.Owner, owner)
 	return &this
 }
 
@@ -49,102 +112,79 @@ func NewDatabaseDocumentationCreateDatabaseRequestOptionsWithDefaults() *Databas
 }
 
 // GetCollation returns the Collation field value if set, zero value otherwise.
-func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCollation() *string {
-	if o == nil || IsNil(o.Collation) {
-		var ret *string
-		return ret
-	}
-	return o.Collation
+func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCollation() (res DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationRetType) {
+	res, _ = o.GetCollationOk()
+	return
 }
 
 // GetCollationOk returns a tuple with the Collation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCollationOk() (*string, bool) {
-	if o == nil || IsNil(o.Collation) {
-		return nil, false
-	}
-	return o.Collation, true
+func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCollationOk() (ret DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationRetType, ok bool) {
+	return getDatabaseDocumentationCreateDatabaseRequestOptionsGetCollationAttributeTypeOk(o.Collation)
 }
 
 // HasCollation returns a boolean if a field has been set.
 func (o *DatabaseDocumentationCreateDatabaseRequestOptions) HasCollation() bool {
-	if o != nil && !IsNil(o.Collation) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCollationOk()
+	return ok
 }
 
 // SetCollation gets a reference to the given string and assigns it to the Collation field.
-func (o *DatabaseDocumentationCreateDatabaseRequestOptions) SetCollation(v *string) {
-	o.Collation = v
+func (o *DatabaseDocumentationCreateDatabaseRequestOptions) SetCollation(v DatabaseDocumentationCreateDatabaseRequestOptionsGetCollationRetType) {
+	setDatabaseDocumentationCreateDatabaseRequestOptionsGetCollationAttributeType(&o.Collation, v)
 }
 
 // GetCompatibilityLevel returns the CompatibilityLevel field value if set, zero value otherwise.
-func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCompatibilityLevel() *string {
-	if o == nil || IsNil(o.CompatibilityLevel) {
-		var ret *string
-		return ret
-	}
-	return o.CompatibilityLevel
+func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCompatibilityLevel() (res DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelRetType) {
+	res, _ = o.GetCompatibilityLevelOk()
+	return
 }
 
 // GetCompatibilityLevelOk returns a tuple with the CompatibilityLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCompatibilityLevelOk() (*string, bool) {
-	if o == nil || IsNil(o.CompatibilityLevel) {
-		return nil, false
-	}
-	return o.CompatibilityLevel, true
+func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetCompatibilityLevelOk() (ret DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelRetType, ok bool) {
+	return getDatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeTypeOk(o.CompatibilityLevel)
 }
 
 // HasCompatibilityLevel returns a boolean if a field has been set.
 func (o *DatabaseDocumentationCreateDatabaseRequestOptions) HasCompatibilityLevel() bool {
-	if o != nil && !IsNil(o.CompatibilityLevel) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCompatibilityLevelOk()
+	return ok
 }
 
 // SetCompatibilityLevel gets a reference to the given string and assigns it to the CompatibilityLevel field.
-func (o *DatabaseDocumentationCreateDatabaseRequestOptions) SetCompatibilityLevel(v *string) {
-	o.CompatibilityLevel = v
+func (o *DatabaseDocumentationCreateDatabaseRequestOptions) SetCompatibilityLevel(v DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelRetType) {
+	setDatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeType(&o.CompatibilityLevel, v)
 }
 
 // GetOwner returns the Owner field value
-func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetOwner() *string {
-	if o == nil || IsNil(o.Owner) {
-		var ret *string
-		return ret
-	}
-
-	return o.Owner
+func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetOwner() (ret DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerRetType) {
+	ret, _ = o.GetOwnerOk()
+	return ret
 }
 
 // GetOwnerOk returns a tuple with the Owner field value
 // and a boolean to check if the value has been set.
-func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetOwnerOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Owner, true
+func (o *DatabaseDocumentationCreateDatabaseRequestOptions) GetOwnerOk() (ret DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerRetType, ok bool) {
+	return getDatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeTypeOk(o.Owner)
 }
 
 // SetOwner sets field value
-func (o *DatabaseDocumentationCreateDatabaseRequestOptions) SetOwner(v *string) {
-	o.Owner = v
+func (o *DatabaseDocumentationCreateDatabaseRequestOptions) SetOwner(v DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerRetType) {
+	setDatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeType(&o.Owner, v)
 }
 
 func (o DatabaseDocumentationCreateDatabaseRequestOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Collation) {
-		toSerialize["collation"] = o.Collation
+	if val, ok := getDatabaseDocumentationCreateDatabaseRequestOptionsGetCollationAttributeTypeOk(o.Collation); ok {
+		toSerialize["Collation"] = val
 	}
-	if !IsNil(o.CompatibilityLevel) {
-		toSerialize["compatibilityLevel"] = o.CompatibilityLevel
+	if val, ok := getDatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeTypeOk(o.CompatibilityLevel); ok {
+		toSerialize["CompatibilityLevel"] = val
 	}
-	toSerialize["owner"] = o.Owner
+	if val, ok := getDatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeTypeOk(o.Owner); ok {
+		toSerialize["Owner"] = val
+	}
 	return toSerialize, nil
 }
 
