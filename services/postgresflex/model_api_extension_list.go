@@ -17,11 +17,73 @@ import (
 // checks if the ApiExtensionList type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ApiExtensionList{}
 
+/*
+	types and functions for ID
+*/
+
+// isLong
+type ApiExtensionListGetIDAttributeType = *int64
+type ApiExtensionListGetIDArgType = int64
+type ApiExtensionListGetIDRetType = int64
+
+func getApiExtensionListGetIDAttributeTypeOk(arg ApiExtensionListGetIDAttributeType) (ret ApiExtensionListGetIDRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApiExtensionListGetIDAttributeType(arg *ApiExtensionListGetIDAttributeType, val ApiExtensionListGetIDRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type ApiExtensionListGetDescriptionAttributeType = *string
+
+func getApiExtensionListGetDescriptionAttributeTypeOk(arg ApiExtensionListGetDescriptionAttributeType) (ret ApiExtensionListGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApiExtensionListGetDescriptionAttributeType(arg *ApiExtensionListGetDescriptionAttributeType, val ApiExtensionListGetDescriptionRetType) {
+	*arg = &val
+}
+
+type ApiExtensionListGetDescriptionArgType = string
+type ApiExtensionListGetDescriptionRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ApiExtensionListGetNameAttributeType = *string
+
+func getApiExtensionListGetNameAttributeTypeOk(arg ApiExtensionListGetNameAttributeType) (ret ApiExtensionListGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApiExtensionListGetNameAttributeType(arg *ApiExtensionListGetNameAttributeType, val ApiExtensionListGetNameRetType) {
+	*arg = &val
+}
+
+type ApiExtensionListGetNameArgType = string
+type ApiExtensionListGetNameRetType = string
+
 // ApiExtensionList struct for ApiExtensionList
 type ApiExtensionList struct {
-	ID          *int64  `json:"ID,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Name        *string `json:"name,omitempty"`
+	ID          ApiExtensionListGetIDAttributeType          `json:"ID,omitempty"`
+	Description ApiExtensionListGetDescriptionAttributeType `json:"description,omitempty"`
+	Name        ApiExtensionListGetNameAttributeType        `json:"name,omitempty"`
 }
 
 // NewApiExtensionList instantiates a new ApiExtensionList object
@@ -42,111 +104,84 @@ func NewApiExtensionListWithDefaults() *ApiExtensionList {
 }
 
 // GetID returns the ID field value if set, zero value otherwise.
-func (o *ApiExtensionList) GetID() *int64 {
-	if o == nil || IsNil(o.ID) {
-		var ret *int64
-		return ret
-	}
-	return o.ID
+func (o *ApiExtensionList) GetID() (res ApiExtensionListGetIDRetType) {
+	res, _ = o.GetIDOk()
+	return
 }
 
 // GetIDOk returns a tuple with the ID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiExtensionList) GetIDOk() (*int64, bool) {
-	if o == nil || IsNil(o.ID) {
-		return nil, false
-	}
-	return o.ID, true
+func (o *ApiExtensionList) GetIDOk() (ret ApiExtensionListGetIDRetType, ok bool) {
+	return getApiExtensionListGetIDAttributeTypeOk(o.ID)
 }
 
 // HasID returns a boolean if a field has been set.
 func (o *ApiExtensionList) HasID() bool {
-	if o != nil && !IsNil(o.ID) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIDOk()
+	return ok
 }
 
 // SetID gets a reference to the given int64 and assigns it to the ID field.
-func (o *ApiExtensionList) SetID(v *int64) {
-	o.ID = v
+func (o *ApiExtensionList) SetID(v ApiExtensionListGetIDRetType) {
+	setApiExtensionListGetIDAttributeType(&o.ID, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *ApiExtensionList) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *ApiExtensionList) GetDescription() (res ApiExtensionListGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiExtensionList) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *ApiExtensionList) GetDescriptionOk() (ret ApiExtensionListGetDescriptionRetType, ok bool) {
+	return getApiExtensionListGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ApiExtensionList) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *ApiExtensionList) SetDescription(v *string) {
-	o.Description = v
+func (o *ApiExtensionList) SetDescription(v ApiExtensionListGetDescriptionRetType) {
+	setApiExtensionListGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ApiExtensionList) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *ApiExtensionList) GetName() (res ApiExtensionListGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiExtensionList) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *ApiExtensionList) GetNameOk() (ret ApiExtensionListGetNameRetType, ok bool) {
+	return getApiExtensionListGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ApiExtensionList) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ApiExtensionList) SetName(v *string) {
-	o.Name = v
+func (o *ApiExtensionList) SetName(v ApiExtensionListGetNameRetType) {
+	setApiExtensionListGetNameAttributeType(&o.Name, v)
 }
 
 func (o ApiExtensionList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ID) {
-		toSerialize["ID"] = o.ID
+	if val, ok := getApiExtensionListGetIDAttributeTypeOk(o.ID); ok {
+		toSerialize["ID"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getApiExtensionListGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getApiExtensionListGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }
