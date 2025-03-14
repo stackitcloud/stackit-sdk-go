@@ -17,10 +17,51 @@ import (
 // checks if the MachineImage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MachineImage{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type MachineImageGetNameAttributeType = *string
+
+func getMachineImageGetNameAttributeTypeOk(arg MachineImageGetNameAttributeType) (ret MachineImageGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineImageGetNameAttributeType(arg *MachineImageGetNameAttributeType, val MachineImageGetNameRetType) {
+	*arg = &val
+}
+
+type MachineImageGetNameArgType = string
+type MachineImageGetNameRetType = string
+
+/*
+	types and functions for versions
+*/
+
+// isArray
+type MachineImageGetVersionsAttributeType = *[]MachineImageVersion
+type MachineImageGetVersionsArgType = []MachineImageVersion
+type MachineImageGetVersionsRetType = []MachineImageVersion
+
+func getMachineImageGetVersionsAttributeTypeOk(arg MachineImageGetVersionsAttributeType) (ret MachineImageGetVersionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineImageGetVersionsAttributeType(arg *MachineImageGetVersionsAttributeType, val MachineImageGetVersionsRetType) {
+	*arg = &val
+}
+
 // MachineImage struct for MachineImage
 type MachineImage struct {
-	Name     *string                `json:"name,omitempty"`
-	Versions *[]MachineImageVersion `json:"versions,omitempty"`
+	Name     MachineImageGetNameAttributeType     `json:"name,omitempty"`
+	Versions MachineImageGetVersionsAttributeType `json:"versions,omitempty"`
 }
 
 // NewMachineImage instantiates a new MachineImage object
@@ -41,76 +82,58 @@ func NewMachineImageWithDefaults() *MachineImage {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *MachineImage) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *MachineImage) GetName() (res MachineImageGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineImage) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *MachineImage) GetNameOk() (ret MachineImageGetNameRetType, ok bool) {
+	return getMachineImageGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *MachineImage) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *MachineImage) SetName(v *string) {
-	o.Name = v
+func (o *MachineImage) SetName(v MachineImageGetNameRetType) {
+	setMachineImageGetNameAttributeType(&o.Name, v)
 }
 
 // GetVersions returns the Versions field value if set, zero value otherwise.
-func (o *MachineImage) GetVersions() *[]MachineImageVersion {
-	if o == nil || IsNil(o.Versions) {
-		var ret *[]MachineImageVersion
-		return ret
-	}
-	return o.Versions
+func (o *MachineImage) GetVersions() (res MachineImageGetVersionsRetType) {
+	res, _ = o.GetVersionsOk()
+	return
 }
 
 // GetVersionsOk returns a tuple with the Versions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineImage) GetVersionsOk() (*[]MachineImageVersion, bool) {
-	if o == nil || IsNil(o.Versions) {
-		return nil, false
-	}
-	return o.Versions, true
+func (o *MachineImage) GetVersionsOk() (ret MachineImageGetVersionsRetType, ok bool) {
+	return getMachineImageGetVersionsAttributeTypeOk(o.Versions)
 }
 
 // HasVersions returns a boolean if a field has been set.
 func (o *MachineImage) HasVersions() bool {
-	if o != nil && !IsNil(o.Versions) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVersionsOk()
+	return ok
 }
 
 // SetVersions gets a reference to the given []MachineImageVersion and assigns it to the Versions field.
-func (o *MachineImage) SetVersions(v *[]MachineImageVersion) {
-	o.Versions = v
+func (o *MachineImage) SetVersions(v MachineImageGetVersionsRetType) {
+	setMachineImageGetVersionsAttributeType(&o.Versions, v)
 }
 
 func (o MachineImage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getMachineImageGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Versions) {
-		toSerialize["versions"] = o.Versions
+	if val, ok := getMachineImageGetVersionsAttributeTypeOk(o.Versions); ok {
+		toSerialize["Versions"] = val
 	}
 	return toSerialize, nil
 }

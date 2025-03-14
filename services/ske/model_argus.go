@@ -17,14 +17,55 @@ import (
 // checks if the Argus type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Argus{}
 
+/*
+	types and functions for argusInstanceId
+*/
+
+// isNotNullableString
+type ArgusGetArgusInstanceIdAttributeType = *string
+
+func getArgusGetArgusInstanceIdAttributeTypeOk(arg ArgusGetArgusInstanceIdAttributeType) (ret ArgusGetArgusInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setArgusGetArgusInstanceIdAttributeType(arg *ArgusGetArgusInstanceIdAttributeType, val ArgusGetArgusInstanceIdRetType) {
+	*arg = &val
+}
+
+type ArgusGetArgusInstanceIdArgType = string
+type ArgusGetArgusInstanceIdRetType = string
+
+/*
+	types and functions for enabled
+*/
+
+// isBoolean
+type ArgusgetEnabledAttributeType = *bool
+type ArgusgetEnabledArgType = bool
+type ArgusgetEnabledRetType = bool
+
+func getArgusgetEnabledAttributeTypeOk(arg ArgusgetEnabledAttributeType) (ret ArgusgetEnabledRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setArgusgetEnabledAttributeType(arg *ArgusgetEnabledAttributeType, val ArgusgetEnabledRetType) {
+	*arg = &val
+}
+
 // Argus struct for Argus
 type Argus struct {
 	// Argus instance ID to choose which Argus instance is used.
 	// REQUIRED
-	ArgusInstanceId *string `json:"argusInstanceId"`
+	ArgusInstanceId ArgusGetArgusInstanceIdAttributeType `json:"argusInstanceId"`
 	// Enables the argus extension.
 	// REQUIRED
-	Enabled *bool `json:"enabled"`
+	Enabled ArgusgetEnabledAttributeType `json:"enabled"`
 }
 
 type _Argus Argus
@@ -33,10 +74,10 @@ type _Argus Argus
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewArgus(argusInstanceId *string, enabled *bool) *Argus {
+func NewArgus(argusInstanceId ArgusGetArgusInstanceIdArgType, enabled ArgusgetEnabledArgType) *Argus {
 	this := Argus{}
-	this.ArgusInstanceId = argusInstanceId
-	this.Enabled = enabled
+	setArgusGetArgusInstanceIdAttributeType(&this.ArgusInstanceId, argusInstanceId)
+	setArgusgetEnabledAttributeType(&this.Enabled, enabled)
 	return &this
 }
 
@@ -49,57 +90,47 @@ func NewArgusWithDefaults() *Argus {
 }
 
 // GetArgusInstanceId returns the ArgusInstanceId field value
-func (o *Argus) GetArgusInstanceId() *string {
-	if o == nil || IsNil(o.ArgusInstanceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ArgusInstanceId
+func (o *Argus) GetArgusInstanceId() (ret ArgusGetArgusInstanceIdRetType) {
+	ret, _ = o.GetArgusInstanceIdOk()
+	return ret
 }
 
 // GetArgusInstanceIdOk returns a tuple with the ArgusInstanceId field value
 // and a boolean to check if the value has been set.
-func (o *Argus) GetArgusInstanceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ArgusInstanceId, true
+func (o *Argus) GetArgusInstanceIdOk() (ret ArgusGetArgusInstanceIdRetType, ok bool) {
+	return getArgusGetArgusInstanceIdAttributeTypeOk(o.ArgusInstanceId)
 }
 
 // SetArgusInstanceId sets field value
-func (o *Argus) SetArgusInstanceId(v *string) {
-	o.ArgusInstanceId = v
+func (o *Argus) SetArgusInstanceId(v ArgusGetArgusInstanceIdRetType) {
+	setArgusGetArgusInstanceIdAttributeType(&o.ArgusInstanceId, v)
 }
 
 // GetEnabled returns the Enabled field value
-func (o *Argus) GetEnabled() *bool {
-	if o == nil || IsNil(o.Enabled) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Enabled
+func (o *Argus) GetEnabled() (ret ArgusgetEnabledRetType) {
+	ret, _ = o.GetEnabledOk()
+	return ret
 }
 
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *Argus) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Enabled, true
+func (o *Argus) GetEnabledOk() (ret ArgusgetEnabledRetType, ok bool) {
+	return getArgusgetEnabledAttributeTypeOk(o.Enabled)
 }
 
 // SetEnabled sets field value
-func (o *Argus) SetEnabled(v *bool) {
-	o.Enabled = v
+func (o *Argus) SetEnabled(v ArgusgetEnabledRetType) {
+	setArgusgetEnabledAttributeType(&o.Enabled, v)
 }
 
 func (o Argus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["argusInstanceId"] = o.ArgusInstanceId
-	toSerialize["enabled"] = o.Enabled
+	if val, ok := getArgusGetArgusInstanceIdAttributeTypeOk(o.ArgusInstanceId); ok {
+		toSerialize["ArgusInstanceId"] = val
+	}
+	if val, ok := getArgusgetEnabledAttributeTypeOk(o.Enabled); ok {
+		toSerialize["Enabled"] = val
+	}
 	return toSerialize, nil
 }
 

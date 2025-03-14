@@ -17,13 +17,75 @@ import (
 // checks if the Taint type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Taint{}
 
+/*
+	types and functions for effect
+*/
+
+// isEnumRef
+type TaintGetEffectAttributeType = *string
+type TaintGetEffectArgType = string
+type TaintGetEffectRetType = string
+
+func getTaintGetEffectAttributeTypeOk(arg TaintGetEffectAttributeType) (ret TaintGetEffectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTaintGetEffectAttributeType(arg *TaintGetEffectAttributeType, val TaintGetEffectRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for key
+*/
+
+// isNotNullableString
+type TaintGetKeyAttributeType = *string
+
+func getTaintGetKeyAttributeTypeOk(arg TaintGetKeyAttributeType) (ret TaintGetKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTaintGetKeyAttributeType(arg *TaintGetKeyAttributeType, val TaintGetKeyRetType) {
+	*arg = &val
+}
+
+type TaintGetKeyArgType = string
+type TaintGetKeyRetType = string
+
+/*
+	types and functions for value
+*/
+
+// isNotNullableString
+type TaintGetValueAttributeType = *string
+
+func getTaintGetValueAttributeTypeOk(arg TaintGetValueAttributeType) (ret TaintGetValueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTaintGetValueAttributeType(arg *TaintGetValueAttributeType, val TaintGetValueRetType) {
+	*arg = &val
+}
+
+type TaintGetValueArgType = string
+type TaintGetValueRetType = string
+
 // Taint struct for Taint
 type Taint struct {
 	// REQUIRED
-	Effect *string `json:"effect"`
+	Effect TaintGetEffectAttributeType `json:"effect"`
 	// REQUIRED
-	Key   *string `json:"key"`
-	Value *string `json:"value,omitempty"`
+	Key   TaintGetKeyAttributeType   `json:"key"`
+	Value TaintGetValueAttributeType `json:"value,omitempty"`
 }
 
 type _Taint Taint
@@ -32,10 +94,10 @@ type _Taint Taint
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTaint(effect *string, key *string) *Taint {
+func NewTaint(effect TaintGetEffectArgType, key TaintGetKeyArgType) *Taint {
 	this := Taint{}
-	this.Effect = effect
-	this.Key = key
+	setTaintGetEffectAttributeType(&this.Effect, effect)
+	setTaintGetKeyAttributeType(&this.Key, key)
 	return &this
 }
 
@@ -48,91 +110,72 @@ func NewTaintWithDefaults() *Taint {
 }
 
 // GetEffect returns the Effect field value
-func (o *Taint) GetEffect() *string {
-	if o == nil || IsNil(o.Effect) {
-		var ret *string
-		return ret
-	}
-
-	return o.Effect
+func (o *Taint) GetEffect() (ret TaintGetEffectRetType) {
+	ret, _ = o.GetEffectOk()
+	return ret
 }
 
 // GetEffectOk returns a tuple with the Effect field value
 // and a boolean to check if the value has been set.
-func (o *Taint) GetEffectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Effect, true
+func (o *Taint) GetEffectOk() (ret TaintGetEffectRetType, ok bool) {
+	return getTaintGetEffectAttributeTypeOk(o.Effect)
 }
 
 // SetEffect sets field value
-func (o *Taint) SetEffect(v *string) {
-	o.Effect = v
+func (o *Taint) SetEffect(v TaintGetEffectRetType) {
+	setTaintGetEffectAttributeType(&o.Effect, v)
 }
 
 // GetKey returns the Key field value
-func (o *Taint) GetKey() *string {
-	if o == nil || IsNil(o.Key) {
-		var ret *string
-		return ret
-	}
-
-	return o.Key
+func (o *Taint) GetKey() (ret TaintGetKeyRetType) {
+	ret, _ = o.GetKeyOk()
+	return ret
 }
 
 // GetKeyOk returns a tuple with the Key field value
 // and a boolean to check if the value has been set.
-func (o *Taint) GetKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Key, true
+func (o *Taint) GetKeyOk() (ret TaintGetKeyRetType, ok bool) {
+	return getTaintGetKeyAttributeTypeOk(o.Key)
 }
 
 // SetKey sets field value
-func (o *Taint) SetKey(v *string) {
-	o.Key = v
+func (o *Taint) SetKey(v TaintGetKeyRetType) {
+	setTaintGetKeyAttributeType(&o.Key, v)
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *Taint) GetValue() *string {
-	if o == nil || IsNil(o.Value) {
-		var ret *string
-		return ret
-	}
-	return o.Value
+func (o *Taint) GetValue() (res TaintGetValueRetType) {
+	res, _ = o.GetValueOk()
+	return
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Taint) GetValueOk() (*string, bool) {
-	if o == nil || IsNil(o.Value) {
-		return nil, false
-	}
-	return o.Value, true
+func (o *Taint) GetValueOk() (ret TaintGetValueRetType, ok bool) {
+	return getTaintGetValueAttributeTypeOk(o.Value)
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *Taint) HasValue() bool {
-	if o != nil && !IsNil(o.Value) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetValueOk()
+	return ok
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *Taint) SetValue(v *string) {
-	o.Value = v
+func (o *Taint) SetValue(v TaintGetValueRetType) {
+	setTaintGetValueAttributeType(&o.Value, v)
 }
 
 func (o Taint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["effect"] = o.Effect
-	toSerialize["key"] = o.Key
-	if !IsNil(o.Value) {
-		toSerialize["value"] = o.Value
+	if val, ok := getTaintGetEffectAttributeTypeOk(o.Effect); ok {
+		toSerialize["Effect"] = val
+	}
+	if val, ok := getTaintGetKeyAttributeTypeOk(o.Key); ok {
+		toSerialize["Key"] = val
+	}
+	if val, ok := getTaintGetValueAttributeTypeOk(o.Value); ok {
+		toSerialize["Value"] = val
 	}
 	return toSerialize, nil
 }
