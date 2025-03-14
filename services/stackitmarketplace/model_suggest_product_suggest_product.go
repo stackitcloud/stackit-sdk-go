@@ -17,19 +17,103 @@ import (
 // checks if the SuggestProductSuggestProduct type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SuggestProductSuggestProduct{}
 
+/*
+	types and functions for companyName
+*/
+
+// isNotNullableString
+type SuggestProductSuggestProductGetCompanyNameAttributeType = *string
+
+func getSuggestProductSuggestProductGetCompanyNameAttributeTypeOk(arg SuggestProductSuggestProductGetCompanyNameAttributeType) (ret SuggestProductSuggestProductGetCompanyNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestProductSuggestProductGetCompanyNameAttributeType(arg *SuggestProductSuggestProductGetCompanyNameAttributeType, val SuggestProductSuggestProductGetCompanyNameRetType) {
+	*arg = &val
+}
+
+type SuggestProductSuggestProductGetCompanyNameArgType = string
+type SuggestProductSuggestProductGetCompanyNameRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type SuggestProductSuggestProductGetMessageAttributeType = *string
+
+func getSuggestProductSuggestProductGetMessageAttributeTypeOk(arg SuggestProductSuggestProductGetMessageAttributeType) (ret SuggestProductSuggestProductGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestProductSuggestProductGetMessageAttributeType(arg *SuggestProductSuggestProductGetMessageAttributeType, val SuggestProductSuggestProductGetMessageRetType) {
+	*arg = &val
+}
+
+type SuggestProductSuggestProductGetMessageArgType = string
+type SuggestProductSuggestProductGetMessageRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type SuggestProductSuggestProductGetNameAttributeType = *string
+
+func getSuggestProductSuggestProductGetNameAttributeTypeOk(arg SuggestProductSuggestProductGetNameAttributeType) (ret SuggestProductSuggestProductGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestProductSuggestProductGetNameAttributeType(arg *SuggestProductSuggestProductGetNameAttributeType, val SuggestProductSuggestProductGetNameRetType) {
+	*arg = &val
+}
+
+type SuggestProductSuggestProductGetNameArgType = string
+type SuggestProductSuggestProductGetNameRetType = string
+
+/*
+	types and functions for url
+*/
+
+// isNotNullableString
+type SuggestProductSuggestProductGetUrlAttributeType = *string
+
+func getSuggestProductSuggestProductGetUrlAttributeTypeOk(arg SuggestProductSuggestProductGetUrlAttributeType) (ret SuggestProductSuggestProductGetUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestProductSuggestProductGetUrlAttributeType(arg *SuggestProductSuggestProductGetUrlAttributeType, val SuggestProductSuggestProductGetUrlRetType) {
+	*arg = &val
+}
+
+type SuggestProductSuggestProductGetUrlArgType = string
+type SuggestProductSuggestProductGetUrlRetType = string
+
 // SuggestProductSuggestProduct struct for SuggestProductSuggestProduct
 type SuggestProductSuggestProduct struct {
 	// The suggested product's company name.
 	// REQUIRED
-	CompanyName *string `json:"companyName"`
+	CompanyName SuggestProductSuggestProductGetCompanyNameAttributeType `json:"companyName"`
 	// An additional message.
-	Message *string `json:"message,omitempty"`
+	Message SuggestProductSuggestProductGetMessageAttributeType `json:"message,omitempty"`
 	// The suggested product name.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name SuggestProductSuggestProductGetNameAttributeType `json:"name"`
 	// The suggested product's website URL.
 	// REQUIRED
-	Url *string `json:"url"`
+	Url SuggestProductSuggestProductGetUrlAttributeType `json:"url"`
 }
 
 type _SuggestProductSuggestProduct SuggestProductSuggestProduct
@@ -38,11 +122,11 @@ type _SuggestProductSuggestProduct SuggestProductSuggestProduct
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSuggestProductSuggestProduct(companyName *string, name *string, url *string) *SuggestProductSuggestProduct {
+func NewSuggestProductSuggestProduct(companyName SuggestProductSuggestProductGetCompanyNameArgType, name SuggestProductSuggestProductGetNameArgType, url SuggestProductSuggestProductGetUrlArgType) *SuggestProductSuggestProduct {
 	this := SuggestProductSuggestProduct{}
-	this.CompanyName = companyName
-	this.Name = name
-	this.Url = url
+	setSuggestProductSuggestProductGetCompanyNameAttributeType(&this.CompanyName, companyName)
+	setSuggestProductSuggestProductGetNameAttributeType(&this.Name, name)
+	setSuggestProductSuggestProductGetUrlAttributeType(&this.Url, url)
 	return &this
 }
 
@@ -55,117 +139,93 @@ func NewSuggestProductSuggestProductWithDefaults() *SuggestProductSuggestProduct
 }
 
 // GetCompanyName returns the CompanyName field value
-func (o *SuggestProductSuggestProduct) GetCompanyName() *string {
-	if o == nil || IsNil(o.CompanyName) {
-		var ret *string
-		return ret
-	}
-
-	return o.CompanyName
+func (o *SuggestProductSuggestProduct) GetCompanyName() (ret SuggestProductSuggestProductGetCompanyNameRetType) {
+	ret, _ = o.GetCompanyNameOk()
+	return ret
 }
 
 // GetCompanyNameOk returns a tuple with the CompanyName field value
 // and a boolean to check if the value has been set.
-func (o *SuggestProductSuggestProduct) GetCompanyNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CompanyName, true
+func (o *SuggestProductSuggestProduct) GetCompanyNameOk() (ret SuggestProductSuggestProductGetCompanyNameRetType, ok bool) {
+	return getSuggestProductSuggestProductGetCompanyNameAttributeTypeOk(o.CompanyName)
 }
 
 // SetCompanyName sets field value
-func (o *SuggestProductSuggestProduct) SetCompanyName(v *string) {
-	o.CompanyName = v
+func (o *SuggestProductSuggestProduct) SetCompanyName(v SuggestProductSuggestProductGetCompanyNameRetType) {
+	setSuggestProductSuggestProductGetCompanyNameAttributeType(&o.CompanyName, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *SuggestProductSuggestProduct) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *SuggestProductSuggestProduct) GetMessage() (res SuggestProductSuggestProductGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SuggestProductSuggestProduct) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *SuggestProductSuggestProduct) GetMessageOk() (ret SuggestProductSuggestProductGetMessageRetType, ok bool) {
+	return getSuggestProductSuggestProductGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *SuggestProductSuggestProduct) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *SuggestProductSuggestProduct) SetMessage(v *string) {
-	o.Message = v
+func (o *SuggestProductSuggestProduct) SetMessage(v SuggestProductSuggestProductGetMessageRetType) {
+	setSuggestProductSuggestProductGetMessageAttributeType(&o.Message, v)
 }
 
 // GetName returns the Name field value
-func (o *SuggestProductSuggestProduct) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *SuggestProductSuggestProduct) GetName() (ret SuggestProductSuggestProductGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *SuggestProductSuggestProduct) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *SuggestProductSuggestProduct) GetNameOk() (ret SuggestProductSuggestProductGetNameRetType, ok bool) {
+	return getSuggestProductSuggestProductGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *SuggestProductSuggestProduct) SetName(v *string) {
-	o.Name = v
+func (o *SuggestProductSuggestProduct) SetName(v SuggestProductSuggestProductGetNameRetType) {
+	setSuggestProductSuggestProductGetNameAttributeType(&o.Name, v)
 }
 
 // GetUrl returns the Url field value
-func (o *SuggestProductSuggestProduct) GetUrl() *string {
-	if o == nil || IsNil(o.Url) {
-		var ret *string
-		return ret
-	}
-
-	return o.Url
+func (o *SuggestProductSuggestProduct) GetUrl() (ret SuggestProductSuggestProductGetUrlRetType) {
+	ret, _ = o.GetUrlOk()
+	return ret
 }
 
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
-func (o *SuggestProductSuggestProduct) GetUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Url, true
+func (o *SuggestProductSuggestProduct) GetUrlOk() (ret SuggestProductSuggestProductGetUrlRetType, ok bool) {
+	return getSuggestProductSuggestProductGetUrlAttributeTypeOk(o.Url)
 }
 
 // SetUrl sets field value
-func (o *SuggestProductSuggestProduct) SetUrl(v *string) {
-	o.Url = v
+func (o *SuggestProductSuggestProduct) SetUrl(v SuggestProductSuggestProductGetUrlRetType) {
+	setSuggestProductSuggestProductGetUrlAttributeType(&o.Url, v)
 }
 
 func (o SuggestProductSuggestProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["companyName"] = o.CompanyName
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getSuggestProductSuggestProductGetCompanyNameAttributeTypeOk(o.CompanyName); ok {
+		toSerialize["CompanyName"] = val
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["url"] = o.Url
+	if val, ok := getSuggestProductSuggestProductGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
+	if val, ok := getSuggestProductSuggestProductGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getSuggestProductSuggestProductGetUrlAttributeTypeOk(o.Url); ok {
+		toSerialize["Url"] = val
+	}
 	return toSerialize, nil
 }
 

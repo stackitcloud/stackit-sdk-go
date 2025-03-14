@@ -17,14 +17,77 @@ import (
 // checks if the CatalogProductHighlight type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CatalogProductHighlight{}
 
+/*
+	types and functions for highlightContent
+*/
+
+// isNotNullableString
+type CatalogProductHighlightGetHighlightContentAttributeType = *string
+
+func getCatalogProductHighlightGetHighlightContentAttributeTypeOk(arg CatalogProductHighlightGetHighlightContentAttributeType) (ret CatalogProductHighlightGetHighlightContentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductHighlightGetHighlightContentAttributeType(arg *CatalogProductHighlightGetHighlightContentAttributeType, val CatalogProductHighlightGetHighlightContentRetType) {
+	*arg = &val
+}
+
+type CatalogProductHighlightGetHighlightContentArgType = string
+type CatalogProductHighlightGetHighlightContentRetType = string
+
+/*
+	types and functions for highlightIcon
+*/
+
+// isNotNullableString
+type CatalogProductHighlightGetHighlightIconAttributeType = *string
+
+func getCatalogProductHighlightGetHighlightIconAttributeTypeOk(arg CatalogProductHighlightGetHighlightIconAttributeType) (ret CatalogProductHighlightGetHighlightIconRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductHighlightGetHighlightIconAttributeType(arg *CatalogProductHighlightGetHighlightIconAttributeType, val CatalogProductHighlightGetHighlightIconRetType) {
+	*arg = &val
+}
+
+type CatalogProductHighlightGetHighlightIconArgType = string
+type CatalogProductHighlightGetHighlightIconRetType = string
+
+/*
+	types and functions for highlightTitle
+*/
+
+// isNotNullableString
+type CatalogProductHighlightGetHighlightTitleAttributeType = *string
+
+func getCatalogProductHighlightGetHighlightTitleAttributeTypeOk(arg CatalogProductHighlightGetHighlightTitleAttributeType) (ret CatalogProductHighlightGetHighlightTitleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductHighlightGetHighlightTitleAttributeType(arg *CatalogProductHighlightGetHighlightTitleAttributeType, val CatalogProductHighlightGetHighlightTitleRetType) {
+	*arg = &val
+}
+
+type CatalogProductHighlightGetHighlightTitleArgType = string
+type CatalogProductHighlightGetHighlightTitleRetType = string
+
 // CatalogProductHighlight struct for CatalogProductHighlight
 type CatalogProductHighlight struct {
 	// The highlight content.
-	HighlightContent *string `json:"highlightContent,omitempty"`
+	HighlightContent CatalogProductHighlightGetHighlightContentAttributeType `json:"highlightContent,omitempty"`
 	// The highlight icon.
-	HighlightIcon *string `json:"highlightIcon,omitempty"`
+	HighlightIcon CatalogProductHighlightGetHighlightIconAttributeType `json:"highlightIcon,omitempty"`
 	// The highlight title.
-	HighlightTitle *string `json:"highlightTitle,omitempty"`
+	HighlightTitle CatalogProductHighlightGetHighlightTitleAttributeType `json:"highlightTitle,omitempty"`
 }
 
 // NewCatalogProductHighlight instantiates a new CatalogProductHighlight object
@@ -45,111 +108,84 @@ func NewCatalogProductHighlightWithDefaults() *CatalogProductHighlight {
 }
 
 // GetHighlightContent returns the HighlightContent field value if set, zero value otherwise.
-func (o *CatalogProductHighlight) GetHighlightContent() *string {
-	if o == nil || IsNil(o.HighlightContent) {
-		var ret *string
-		return ret
-	}
-	return o.HighlightContent
+func (o *CatalogProductHighlight) GetHighlightContent() (res CatalogProductHighlightGetHighlightContentRetType) {
+	res, _ = o.GetHighlightContentOk()
+	return
 }
 
 // GetHighlightContentOk returns a tuple with the HighlightContent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductHighlight) GetHighlightContentOk() (*string, bool) {
-	if o == nil || IsNil(o.HighlightContent) {
-		return nil, false
-	}
-	return o.HighlightContent, true
+func (o *CatalogProductHighlight) GetHighlightContentOk() (ret CatalogProductHighlightGetHighlightContentRetType, ok bool) {
+	return getCatalogProductHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent)
 }
 
 // HasHighlightContent returns a boolean if a field has been set.
 func (o *CatalogProductHighlight) HasHighlightContent() bool {
-	if o != nil && !IsNil(o.HighlightContent) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHighlightContentOk()
+	return ok
 }
 
 // SetHighlightContent gets a reference to the given string and assigns it to the HighlightContent field.
-func (o *CatalogProductHighlight) SetHighlightContent(v *string) {
-	o.HighlightContent = v
+func (o *CatalogProductHighlight) SetHighlightContent(v CatalogProductHighlightGetHighlightContentRetType) {
+	setCatalogProductHighlightGetHighlightContentAttributeType(&o.HighlightContent, v)
 }
 
 // GetHighlightIcon returns the HighlightIcon field value if set, zero value otherwise.
-func (o *CatalogProductHighlight) GetHighlightIcon() *string {
-	if o == nil || IsNil(o.HighlightIcon) {
-		var ret *string
-		return ret
-	}
-	return o.HighlightIcon
+func (o *CatalogProductHighlight) GetHighlightIcon() (res CatalogProductHighlightGetHighlightIconRetType) {
+	res, _ = o.GetHighlightIconOk()
+	return
 }
 
 // GetHighlightIconOk returns a tuple with the HighlightIcon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductHighlight) GetHighlightIconOk() (*string, bool) {
-	if o == nil || IsNil(o.HighlightIcon) {
-		return nil, false
-	}
-	return o.HighlightIcon, true
+func (o *CatalogProductHighlight) GetHighlightIconOk() (ret CatalogProductHighlightGetHighlightIconRetType, ok bool) {
+	return getCatalogProductHighlightGetHighlightIconAttributeTypeOk(o.HighlightIcon)
 }
 
 // HasHighlightIcon returns a boolean if a field has been set.
 func (o *CatalogProductHighlight) HasHighlightIcon() bool {
-	if o != nil && !IsNil(o.HighlightIcon) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHighlightIconOk()
+	return ok
 }
 
 // SetHighlightIcon gets a reference to the given string and assigns it to the HighlightIcon field.
-func (o *CatalogProductHighlight) SetHighlightIcon(v *string) {
-	o.HighlightIcon = v
+func (o *CatalogProductHighlight) SetHighlightIcon(v CatalogProductHighlightGetHighlightIconRetType) {
+	setCatalogProductHighlightGetHighlightIconAttributeType(&o.HighlightIcon, v)
 }
 
 // GetHighlightTitle returns the HighlightTitle field value if set, zero value otherwise.
-func (o *CatalogProductHighlight) GetHighlightTitle() *string {
-	if o == nil || IsNil(o.HighlightTitle) {
-		var ret *string
-		return ret
-	}
-	return o.HighlightTitle
+func (o *CatalogProductHighlight) GetHighlightTitle() (res CatalogProductHighlightGetHighlightTitleRetType) {
+	res, _ = o.GetHighlightTitleOk()
+	return
 }
 
 // GetHighlightTitleOk returns a tuple with the HighlightTitle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductHighlight) GetHighlightTitleOk() (*string, bool) {
-	if o == nil || IsNil(o.HighlightTitle) {
-		return nil, false
-	}
-	return o.HighlightTitle, true
+func (o *CatalogProductHighlight) GetHighlightTitleOk() (ret CatalogProductHighlightGetHighlightTitleRetType, ok bool) {
+	return getCatalogProductHighlightGetHighlightTitleAttributeTypeOk(o.HighlightTitle)
 }
 
 // HasHighlightTitle returns a boolean if a field has been set.
 func (o *CatalogProductHighlight) HasHighlightTitle() bool {
-	if o != nil && !IsNil(o.HighlightTitle) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHighlightTitleOk()
+	return ok
 }
 
 // SetHighlightTitle gets a reference to the given string and assigns it to the HighlightTitle field.
-func (o *CatalogProductHighlight) SetHighlightTitle(v *string) {
-	o.HighlightTitle = v
+func (o *CatalogProductHighlight) SetHighlightTitle(v CatalogProductHighlightGetHighlightTitleRetType) {
+	setCatalogProductHighlightGetHighlightTitleAttributeType(&o.HighlightTitle, v)
 }
 
 func (o CatalogProductHighlight) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.HighlightContent) {
-		toSerialize["highlightContent"] = o.HighlightContent
+	if val, ok := getCatalogProductHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent); ok {
+		toSerialize["HighlightContent"] = val
 	}
-	if !IsNil(o.HighlightIcon) {
-		toSerialize["highlightIcon"] = o.HighlightIcon
+	if val, ok := getCatalogProductHighlightGetHighlightIconAttributeTypeOk(o.HighlightIcon); ok {
+		toSerialize["HighlightIcon"] = val
 	}
-	if !IsNil(o.HighlightTitle) {
-		toSerialize["highlightTitle"] = o.HighlightTitle
+	if val, ok := getCatalogProductHighlightGetHighlightTitleAttributeTypeOk(o.HighlightTitle); ok {
+		toSerialize["HighlightTitle"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,14 +17,55 @@ import (
 // checks if the RequestedSubscriptionStateResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RequestedSubscriptionStateResponse{}
 
+/*
+	types and functions for lifecycleState
+*/
+
+// isEnumRef
+type RequestedSubscriptionStateResponseGetLifecycleStateAttributeType = *string
+type RequestedSubscriptionStateResponseGetLifecycleStateArgType = string
+type RequestedSubscriptionStateResponseGetLifecycleStateRetType = string
+
+func getRequestedSubscriptionStateResponseGetLifecycleStateAttributeTypeOk(arg RequestedSubscriptionStateResponseGetLifecycleStateAttributeType) (ret RequestedSubscriptionStateResponseGetLifecycleStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRequestedSubscriptionStateResponseGetLifecycleStateAttributeType(arg *RequestedSubscriptionStateResponseGetLifecycleStateAttributeType, val RequestedSubscriptionStateResponseGetLifecycleStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for subscriptionId
+*/
+
+// isNotNullableString
+type RequestedSubscriptionStateResponseGetSubscriptionIdAttributeType = *string
+
+func getRequestedSubscriptionStateResponseGetSubscriptionIdAttributeTypeOk(arg RequestedSubscriptionStateResponseGetSubscriptionIdAttributeType) (ret RequestedSubscriptionStateResponseGetSubscriptionIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRequestedSubscriptionStateResponseGetSubscriptionIdAttributeType(arg *RequestedSubscriptionStateResponseGetSubscriptionIdAttributeType, val RequestedSubscriptionStateResponseGetSubscriptionIdRetType) {
+	*arg = &val
+}
+
+type RequestedSubscriptionStateResponseGetSubscriptionIdArgType = string
+type RequestedSubscriptionStateResponseGetSubscriptionIdRetType = string
+
 // RequestedSubscriptionStateResponse struct for RequestedSubscriptionStateResponse
 type RequestedSubscriptionStateResponse struct {
 	// Lifecycle state of the subscription.
 	// REQUIRED
-	LifecycleState *string `json:"lifecycleState"`
+	LifecycleState RequestedSubscriptionStateResponseGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// The subscription ID.
 	// REQUIRED
-	SubscriptionId *string `json:"subscriptionId"`
+	SubscriptionId RequestedSubscriptionStateResponseGetSubscriptionIdAttributeType `json:"subscriptionId"`
 }
 
 type _RequestedSubscriptionStateResponse RequestedSubscriptionStateResponse
@@ -33,10 +74,10 @@ type _RequestedSubscriptionStateResponse RequestedSubscriptionStateResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRequestedSubscriptionStateResponse(lifecycleState *string, subscriptionId *string) *RequestedSubscriptionStateResponse {
+func NewRequestedSubscriptionStateResponse(lifecycleState RequestedSubscriptionStateResponseGetLifecycleStateArgType, subscriptionId RequestedSubscriptionStateResponseGetSubscriptionIdArgType) *RequestedSubscriptionStateResponse {
 	this := RequestedSubscriptionStateResponse{}
-	this.LifecycleState = lifecycleState
-	this.SubscriptionId = subscriptionId
+	setRequestedSubscriptionStateResponseGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
+	setRequestedSubscriptionStateResponseGetSubscriptionIdAttributeType(&this.SubscriptionId, subscriptionId)
 	return &this
 }
 
@@ -49,57 +90,47 @@ func NewRequestedSubscriptionStateResponseWithDefaults() *RequestedSubscriptionS
 }
 
 // GetLifecycleState returns the LifecycleState field value
-func (o *RequestedSubscriptionStateResponse) GetLifecycleState() *string {
-	if o == nil || IsNil(o.LifecycleState) {
-		var ret *string
-		return ret
-	}
-
-	return o.LifecycleState
+func (o *RequestedSubscriptionStateResponse) GetLifecycleState() (ret RequestedSubscriptionStateResponseGetLifecycleStateRetType) {
+	ret, _ = o.GetLifecycleStateOk()
+	return ret
 }
 
 // GetLifecycleStateOk returns a tuple with the LifecycleState field value
 // and a boolean to check if the value has been set.
-func (o *RequestedSubscriptionStateResponse) GetLifecycleStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LifecycleState, true
+func (o *RequestedSubscriptionStateResponse) GetLifecycleStateOk() (ret RequestedSubscriptionStateResponseGetLifecycleStateRetType, ok bool) {
+	return getRequestedSubscriptionStateResponseGetLifecycleStateAttributeTypeOk(o.LifecycleState)
 }
 
 // SetLifecycleState sets field value
-func (o *RequestedSubscriptionStateResponse) SetLifecycleState(v *string) {
-	o.LifecycleState = v
+func (o *RequestedSubscriptionStateResponse) SetLifecycleState(v RequestedSubscriptionStateResponseGetLifecycleStateRetType) {
+	setRequestedSubscriptionStateResponseGetLifecycleStateAttributeType(&o.LifecycleState, v)
 }
 
 // GetSubscriptionId returns the SubscriptionId field value
-func (o *RequestedSubscriptionStateResponse) GetSubscriptionId() *string {
-	if o == nil || IsNil(o.SubscriptionId) {
-		var ret *string
-		return ret
-	}
-
-	return o.SubscriptionId
+func (o *RequestedSubscriptionStateResponse) GetSubscriptionId() (ret RequestedSubscriptionStateResponseGetSubscriptionIdRetType) {
+	ret, _ = o.GetSubscriptionIdOk()
+	return ret
 }
 
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value
 // and a boolean to check if the value has been set.
-func (o *RequestedSubscriptionStateResponse) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SubscriptionId, true
+func (o *RequestedSubscriptionStateResponse) GetSubscriptionIdOk() (ret RequestedSubscriptionStateResponseGetSubscriptionIdRetType, ok bool) {
+	return getRequestedSubscriptionStateResponseGetSubscriptionIdAttributeTypeOk(o.SubscriptionId)
 }
 
 // SetSubscriptionId sets field value
-func (o *RequestedSubscriptionStateResponse) SetSubscriptionId(v *string) {
-	o.SubscriptionId = v
+func (o *RequestedSubscriptionStateResponse) SetSubscriptionId(v RequestedSubscriptionStateResponseGetSubscriptionIdRetType) {
+	setRequestedSubscriptionStateResponseGetSubscriptionIdAttributeType(&o.SubscriptionId, v)
 }
 
 func (o RequestedSubscriptionStateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["lifecycleState"] = o.LifecycleState
-	toSerialize["subscriptionId"] = o.SubscriptionId
+	if val, ok := getRequestedSubscriptionStateResponseGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
+		toSerialize["LifecycleState"] = val
+	}
+	if val, ok := getRequestedSubscriptionStateResponseGetSubscriptionIdAttributeTypeOk(o.SubscriptionId); ok {
+		toSerialize["SubscriptionId"] = val
+	}
 	return toSerialize, nil
 }
 
