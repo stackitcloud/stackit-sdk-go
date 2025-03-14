@@ -17,12 +17,53 @@ import (
 // checks if the AddMembersPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AddMembersPayload{}
 
+/*
+	types and functions for members
+*/
+
+// isArray
+type AddMembersPayloadGetMembersAttributeType = *[]Member
+type AddMembersPayloadGetMembersArgType = []Member
+type AddMembersPayloadGetMembersRetType = []Member
+
+func getAddMembersPayloadGetMembersAttributeTypeOk(arg AddMembersPayloadGetMembersAttributeType) (ret AddMembersPayloadGetMembersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAddMembersPayloadGetMembersAttributeType(arg *AddMembersPayloadGetMembersAttributeType, val AddMembersPayloadGetMembersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for resourceType
+*/
+
+// isNotNullableString
+type AddMembersPayloadGetResourceTypeAttributeType = *string
+
+func getAddMembersPayloadGetResourceTypeAttributeTypeOk(arg AddMembersPayloadGetResourceTypeAttributeType) (ret AddMembersPayloadGetResourceTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAddMembersPayloadGetResourceTypeAttributeType(arg *AddMembersPayloadGetResourceTypeAttributeType, val AddMembersPayloadGetResourceTypeRetType) {
+	*arg = &val
+}
+
+type AddMembersPayloadGetResourceTypeArgType = string
+type AddMembersPayloadGetResourceTypeRetType = string
+
 // AddMembersPayload struct for AddMembersPayload
 type AddMembersPayload struct {
 	// REQUIRED
-	Members *[]Member `json:"members"`
+	Members AddMembersPayloadGetMembersAttributeType `json:"members"`
 	// REQUIRED
-	ResourceType *string `json:"resourceType"`
+	ResourceType AddMembersPayloadGetResourceTypeAttributeType `json:"resourceType"`
 }
 
 type _AddMembersPayload AddMembersPayload
@@ -31,10 +72,10 @@ type _AddMembersPayload AddMembersPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddMembersPayload(members *[]Member, resourceType *string) *AddMembersPayload {
+func NewAddMembersPayload(members AddMembersPayloadGetMembersArgType, resourceType AddMembersPayloadGetResourceTypeArgType) *AddMembersPayload {
 	this := AddMembersPayload{}
-	this.Members = members
-	this.ResourceType = resourceType
+	setAddMembersPayloadGetMembersAttributeType(&this.Members, members)
+	setAddMembersPayloadGetResourceTypeAttributeType(&this.ResourceType, resourceType)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewAddMembersPayloadWithDefaults() *AddMembersPayload {
 }
 
 // GetMembers returns the Members field value
-func (o *AddMembersPayload) GetMembers() *[]Member {
-	if o == nil || IsNil(o.Members) {
-		var ret *[]Member
-		return ret
-	}
-
-	return o.Members
+func (o *AddMembersPayload) GetMembers() (ret AddMembersPayloadGetMembersRetType) {
+	ret, _ = o.GetMembersOk()
+	return ret
 }
 
 // GetMembersOk returns a tuple with the Members field value
 // and a boolean to check if the value has been set.
-func (o *AddMembersPayload) GetMembersOk() (*[]Member, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Members, true
+func (o *AddMembersPayload) GetMembersOk() (ret AddMembersPayloadGetMembersRetType, ok bool) {
+	return getAddMembersPayloadGetMembersAttributeTypeOk(o.Members)
 }
 
 // SetMembers sets field value
-func (o *AddMembersPayload) SetMembers(v *[]Member) {
-	o.Members = v
+func (o *AddMembersPayload) SetMembers(v AddMembersPayloadGetMembersRetType) {
+	setAddMembersPayloadGetMembersAttributeType(&o.Members, v)
 }
 
 // GetResourceType returns the ResourceType field value
-func (o *AddMembersPayload) GetResourceType() *string {
-	if o == nil || IsNil(o.ResourceType) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceType
+func (o *AddMembersPayload) GetResourceType() (ret AddMembersPayloadGetResourceTypeRetType) {
+	ret, _ = o.GetResourceTypeOk()
+	return ret
 }
 
 // GetResourceTypeOk returns a tuple with the ResourceType field value
 // and a boolean to check if the value has been set.
-func (o *AddMembersPayload) GetResourceTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceType, true
+func (o *AddMembersPayload) GetResourceTypeOk() (ret AddMembersPayloadGetResourceTypeRetType, ok bool) {
+	return getAddMembersPayloadGetResourceTypeAttributeTypeOk(o.ResourceType)
 }
 
 // SetResourceType sets field value
-func (o *AddMembersPayload) SetResourceType(v *string) {
-	o.ResourceType = v
+func (o *AddMembersPayload) SetResourceType(v AddMembersPayloadGetResourceTypeRetType) {
+	setAddMembersPayloadGetResourceTypeAttributeType(&o.ResourceType, v)
 }
 
 func (o AddMembersPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["members"] = o.Members
-	toSerialize["resourceType"] = o.ResourceType
+	if val, ok := getAddMembersPayloadGetMembersAttributeTypeOk(o.Members); ok {
+		toSerialize["Members"] = val
+	}
+	if val, ok := getAddMembersPayloadGetResourceTypeAttributeTypeOk(o.ResourceType); ok {
+		toSerialize["ResourceType"] = val
+	}
 	return toSerialize, nil
 }
 
