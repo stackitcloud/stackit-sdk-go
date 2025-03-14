@@ -17,28 +17,253 @@ import (
 // checks if the UpdateLoadBalancerPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateLoadBalancerPayload{}
 
+/*
+	types and functions for errors
+*/
+
+// isArray
+type UpdateLoadBalancerPayloadGetErrorsAttributeType = *[]LoadBalancerError
+type UpdateLoadBalancerPayloadGetErrorsArgType = []LoadBalancerError
+type UpdateLoadBalancerPayloadGetErrorsRetType = []LoadBalancerError
+
+func getUpdateLoadBalancerPayloadGetErrorsAttributeTypeOk(arg UpdateLoadBalancerPayloadGetErrorsAttributeType) (ret UpdateLoadBalancerPayloadGetErrorsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetErrorsAttributeType(arg *UpdateLoadBalancerPayloadGetErrorsAttributeType, val UpdateLoadBalancerPayloadGetErrorsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for externalAddress
+*/
+
+// isNotNullableString
+type UpdateLoadBalancerPayloadGetExternalAddressAttributeType = *string
+
+func getUpdateLoadBalancerPayloadGetExternalAddressAttributeTypeOk(arg UpdateLoadBalancerPayloadGetExternalAddressAttributeType) (ret UpdateLoadBalancerPayloadGetExternalAddressRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetExternalAddressAttributeType(arg *UpdateLoadBalancerPayloadGetExternalAddressAttributeType, val UpdateLoadBalancerPayloadGetExternalAddressRetType) {
+	*arg = &val
+}
+
+type UpdateLoadBalancerPayloadGetExternalAddressArgType = string
+type UpdateLoadBalancerPayloadGetExternalAddressRetType = string
+
+/*
+	types and functions for listeners
+*/
+
+// isArray
+type UpdateLoadBalancerPayloadGetListenersAttributeType = *[]Listener
+type UpdateLoadBalancerPayloadGetListenersArgType = []Listener
+type UpdateLoadBalancerPayloadGetListenersRetType = []Listener
+
+func getUpdateLoadBalancerPayloadGetListenersAttributeTypeOk(arg UpdateLoadBalancerPayloadGetListenersAttributeType) (ret UpdateLoadBalancerPayloadGetListenersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetListenersAttributeType(arg *UpdateLoadBalancerPayloadGetListenersAttributeType, val UpdateLoadBalancerPayloadGetListenersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type UpdateLoadBalancerPayloadGetNameAttributeType = *string
+
+func getUpdateLoadBalancerPayloadGetNameAttributeTypeOk(arg UpdateLoadBalancerPayloadGetNameAttributeType) (ret UpdateLoadBalancerPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetNameAttributeType(arg *UpdateLoadBalancerPayloadGetNameAttributeType, val UpdateLoadBalancerPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type UpdateLoadBalancerPayloadGetNameArgType = string
+type UpdateLoadBalancerPayloadGetNameRetType = string
+
+/*
+	types and functions for networks
+*/
+
+// isArray
+type UpdateLoadBalancerPayloadGetNetworksAttributeType = *[]Network
+type UpdateLoadBalancerPayloadGetNetworksArgType = []Network
+type UpdateLoadBalancerPayloadGetNetworksRetType = []Network
+
+func getUpdateLoadBalancerPayloadGetNetworksAttributeTypeOk(arg UpdateLoadBalancerPayloadGetNetworksAttributeType) (ret UpdateLoadBalancerPayloadGetNetworksRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetNetworksAttributeType(arg *UpdateLoadBalancerPayloadGetNetworksAttributeType, val UpdateLoadBalancerPayloadGetNetworksRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for options
+*/
+
+// isModel
+type UpdateLoadBalancerPayloadGetOptionsAttributeType = *LoadBalancerOptions
+type UpdateLoadBalancerPayloadGetOptionsArgType = LoadBalancerOptions
+type UpdateLoadBalancerPayloadGetOptionsRetType = LoadBalancerOptions
+
+func getUpdateLoadBalancerPayloadGetOptionsAttributeTypeOk(arg UpdateLoadBalancerPayloadGetOptionsAttributeType) (ret UpdateLoadBalancerPayloadGetOptionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetOptionsAttributeType(arg *UpdateLoadBalancerPayloadGetOptionsAttributeType, val UpdateLoadBalancerPayloadGetOptionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for planId
+*/
+
+// isNotNullableString
+type UpdateLoadBalancerPayloadGetPlanIdAttributeType = *string
+
+func getUpdateLoadBalancerPayloadGetPlanIdAttributeTypeOk(arg UpdateLoadBalancerPayloadGetPlanIdAttributeType) (ret UpdateLoadBalancerPayloadGetPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetPlanIdAttributeType(arg *UpdateLoadBalancerPayloadGetPlanIdAttributeType, val UpdateLoadBalancerPayloadGetPlanIdRetType) {
+	*arg = &val
+}
+
+type UpdateLoadBalancerPayloadGetPlanIdArgType = string
+type UpdateLoadBalancerPayloadGetPlanIdRetType = string
+
+/*
+	types and functions for privateAddress
+*/
+
+// isNotNullableString
+type UpdateLoadBalancerPayloadGetPrivateAddressAttributeType = *string
+
+func getUpdateLoadBalancerPayloadGetPrivateAddressAttributeTypeOk(arg UpdateLoadBalancerPayloadGetPrivateAddressAttributeType) (ret UpdateLoadBalancerPayloadGetPrivateAddressRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetPrivateAddressAttributeType(arg *UpdateLoadBalancerPayloadGetPrivateAddressAttributeType, val UpdateLoadBalancerPayloadGetPrivateAddressRetType) {
+	*arg = &val
+}
+
+type UpdateLoadBalancerPayloadGetPrivateAddressArgType = string
+type UpdateLoadBalancerPayloadGetPrivateAddressRetType = string
+
+/*
+	types and functions for status
+*/
+
+// isEnumRef
+type UpdateLoadBalancerPayloadGetStatusAttributeType = *string
+type UpdateLoadBalancerPayloadGetStatusArgType = string
+type UpdateLoadBalancerPayloadGetStatusRetType = string
+
+func getUpdateLoadBalancerPayloadGetStatusAttributeTypeOk(arg UpdateLoadBalancerPayloadGetStatusAttributeType) (ret UpdateLoadBalancerPayloadGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetStatusAttributeType(arg *UpdateLoadBalancerPayloadGetStatusAttributeType, val UpdateLoadBalancerPayloadGetStatusRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targetPools
+*/
+
+// isArray
+type UpdateLoadBalancerPayloadGetTargetPoolsAttributeType = *[]TargetPool
+type UpdateLoadBalancerPayloadGetTargetPoolsArgType = []TargetPool
+type UpdateLoadBalancerPayloadGetTargetPoolsRetType = []TargetPool
+
+func getUpdateLoadBalancerPayloadGetTargetPoolsAttributeTypeOk(arg UpdateLoadBalancerPayloadGetTargetPoolsAttributeType) (ret UpdateLoadBalancerPayloadGetTargetPoolsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetTargetPoolsAttributeType(arg *UpdateLoadBalancerPayloadGetTargetPoolsAttributeType, val UpdateLoadBalancerPayloadGetTargetPoolsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for version
+*/
+
+// isNotNullableString
+type UpdateLoadBalancerPayloadGetVersionAttributeType = *string
+
+func getUpdateLoadBalancerPayloadGetVersionAttributeTypeOk(arg UpdateLoadBalancerPayloadGetVersionAttributeType) (ret UpdateLoadBalancerPayloadGetVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetVersionAttributeType(arg *UpdateLoadBalancerPayloadGetVersionAttributeType, val UpdateLoadBalancerPayloadGetVersionRetType) {
+	*arg = &val
+}
+
+type UpdateLoadBalancerPayloadGetVersionArgType = string
+type UpdateLoadBalancerPayloadGetVersionRetType = string
+
 // UpdateLoadBalancerPayload struct for UpdateLoadBalancerPayload
 type UpdateLoadBalancerPayload struct {
 	// Reports all errors a load balancer has.
-	Errors *[]LoadBalancerError `json:"errors,omitempty"`
+	Errors UpdateLoadBalancerPayloadGetErrorsAttributeType `json:"errors,omitempty"`
 	// External load balancer IP address where this load balancer is exposed. Not changeable after creation.
-	ExternalAddress *string `json:"externalAddress,omitempty"`
+	ExternalAddress UpdateLoadBalancerPayloadGetExternalAddressAttributeType `json:"externalAddress,omitempty"`
 	// There is a maximum listener count of 20.  Port and protocol limitations:  - UDP listeners cannot have the same port. - TCP-derived listeners cannot have the same port. A TCP-derived listener is any listener that listens on a TCP port. As of now those are: TCP, TCP_PROXY, and PROTOCOL_TLS_PASSTHROUGH. The only exception is, if all listeners for the same port are PROTOCOL_TLS_PASSTHROUGH. - PROTOCOL_TLS_PASSTHROUGH listeners cannot have the same port and at least one common domain name. - PROTOCOL_TLS_PASSTHROUGH listeners can have the same domain name and different ports though (e.g. ports 443 and 8443 for domain example.com). - PROTOCOL_TLS_PASSTHROUGH listeners without a domain name serve as a default listener and you can have only one default listener.
-	Listeners *[]Listener `json:"listeners,omitempty"`
+	Listeners UpdateLoadBalancerPayloadGetListenersAttributeType `json:"listeners,omitempty"`
 	// Load balancer name. Not changeable after creation.
-	Name *string `json:"name,omitempty"`
+	Name UpdateLoadBalancerPayloadGetNameAttributeType `json:"name,omitempty"`
 	// List of networks that listeners and targets reside in. Currently limited to one. Not changeable after creation.
-	Networks *[]Network           `json:"networks,omitempty"`
-	Options  *LoadBalancerOptions `json:"options,omitempty"`
+	Networks UpdateLoadBalancerPayloadGetNetworksAttributeType `json:"networks,omitempty"`
+	Options  UpdateLoadBalancerPayloadGetOptionsAttributeType  `json:"options,omitempty"`
 	// Service Plan configures the size of the Load Balancer. Currently supported plans are p10, p50, p250 and p750. This list can change in the future where plan ids will be removed and new plans by added. That is the reason this is not an enum.
-	PlanId *string `json:"planId,omitempty"`
+	PlanId UpdateLoadBalancerPayloadGetPlanIdAttributeType `json:"planId,omitempty"`
 	// Transient private load balancer IP address that can change any time.
-	PrivateAddress *string `json:"privateAddress,omitempty"`
-	Status         *string `json:"status,omitempty"`
+	PrivateAddress UpdateLoadBalancerPayloadGetPrivateAddressAttributeType `json:"privateAddress,omitempty"`
+	Status         UpdateLoadBalancerPayloadGetStatusAttributeType         `json:"status,omitempty"`
 	// List of all target pools which will be used in the load balancer. Limited to 20.
-	TargetPools *[]TargetPool `json:"targetPools,omitempty"`
+	TargetPools UpdateLoadBalancerPayloadGetTargetPoolsAttributeType `json:"targetPools,omitempty"`
 	// Load balancer resource version. Must be empty or unset for creating load balancers, non-empty for updating load balancers. Semantics: While retrieving load balancers, this is the current version of this load balancer resource that changes during updates of the load balancers. On updates this field specified the load balancer version you calculated your update for instead of the future version to enable concurrency safe updates. Update calls will then report the new version in their result as you would see with a load balancer retrieval call later. There exist no total order of the version, so you can only compare it for equality, but not for less/greater than another version. Since the creation of load balancer is always intended to create the first version of it, there should be no existing version. That's why this field must by empty of not present in that case.
-	Version *string `json:"version,omitempty"`
+	Version UpdateLoadBalancerPayloadGetVersionAttributeType `json:"version,omitempty"`
 }
 
 // NewUpdateLoadBalancerPayload instantiates a new UpdateLoadBalancerPayload object
@@ -59,391 +284,292 @@ func NewUpdateLoadBalancerPayloadWithDefaults() *UpdateLoadBalancerPayload {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetErrors() *[]LoadBalancerError {
-	if o == nil || IsNil(o.Errors) {
-		var ret *[]LoadBalancerError
-		return ret
-	}
-	return o.Errors
+func (o *UpdateLoadBalancerPayload) GetErrors() (res UpdateLoadBalancerPayloadGetErrorsRetType) {
+	res, _ = o.GetErrorsOk()
+	return
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetErrorsOk() (*[]LoadBalancerError, bool) {
-	if o == nil || IsNil(o.Errors) {
-		return nil, false
-	}
-	return o.Errors, true
+func (o *UpdateLoadBalancerPayload) GetErrorsOk() (ret UpdateLoadBalancerPayloadGetErrorsRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetErrorsAttributeTypeOk(o.Errors)
 }
 
 // HasErrors returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasErrors() bool {
-	if o != nil && !IsNil(o.Errors) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorsOk()
+	return ok
 }
 
 // SetErrors gets a reference to the given []LoadBalancerError and assigns it to the Errors field.
-func (o *UpdateLoadBalancerPayload) SetErrors(v *[]LoadBalancerError) {
-	o.Errors = v
+func (o *UpdateLoadBalancerPayload) SetErrors(v UpdateLoadBalancerPayloadGetErrorsRetType) {
+	setUpdateLoadBalancerPayloadGetErrorsAttributeType(&o.Errors, v)
 }
 
 // GetExternalAddress returns the ExternalAddress field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetExternalAddress() *string {
-	if o == nil || IsNil(o.ExternalAddress) {
-		var ret *string
-		return ret
-	}
-	return o.ExternalAddress
+func (o *UpdateLoadBalancerPayload) GetExternalAddress() (res UpdateLoadBalancerPayloadGetExternalAddressRetType) {
+	res, _ = o.GetExternalAddressOk()
+	return
 }
 
 // GetExternalAddressOk returns a tuple with the ExternalAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetExternalAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.ExternalAddress) {
-		return nil, false
-	}
-	return o.ExternalAddress, true
+func (o *UpdateLoadBalancerPayload) GetExternalAddressOk() (ret UpdateLoadBalancerPayloadGetExternalAddressRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetExternalAddressAttributeTypeOk(o.ExternalAddress)
 }
 
 // HasExternalAddress returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasExternalAddress() bool {
-	if o != nil && !IsNil(o.ExternalAddress) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExternalAddressOk()
+	return ok
 }
 
 // SetExternalAddress gets a reference to the given string and assigns it to the ExternalAddress field.
-func (o *UpdateLoadBalancerPayload) SetExternalAddress(v *string) {
-	o.ExternalAddress = v
+func (o *UpdateLoadBalancerPayload) SetExternalAddress(v UpdateLoadBalancerPayloadGetExternalAddressRetType) {
+	setUpdateLoadBalancerPayloadGetExternalAddressAttributeType(&o.ExternalAddress, v)
 }
 
 // GetListeners returns the Listeners field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetListeners() *[]Listener {
-	if o == nil || IsNil(o.Listeners) {
-		var ret *[]Listener
-		return ret
-	}
-	return o.Listeners
+func (o *UpdateLoadBalancerPayload) GetListeners() (res UpdateLoadBalancerPayloadGetListenersRetType) {
+	res, _ = o.GetListenersOk()
+	return
 }
 
 // GetListenersOk returns a tuple with the Listeners field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetListenersOk() (*[]Listener, bool) {
-	if o == nil || IsNil(o.Listeners) {
-		return nil, false
-	}
-	return o.Listeners, true
+func (o *UpdateLoadBalancerPayload) GetListenersOk() (ret UpdateLoadBalancerPayloadGetListenersRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetListenersAttributeTypeOk(o.Listeners)
 }
 
 // HasListeners returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasListeners() bool {
-	if o != nil && !IsNil(o.Listeners) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetListenersOk()
+	return ok
 }
 
 // SetListeners gets a reference to the given []Listener and assigns it to the Listeners field.
-func (o *UpdateLoadBalancerPayload) SetListeners(v *[]Listener) {
-	o.Listeners = v
+func (o *UpdateLoadBalancerPayload) SetListeners(v UpdateLoadBalancerPayloadGetListenersRetType) {
+	setUpdateLoadBalancerPayloadGetListenersAttributeType(&o.Listeners, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *UpdateLoadBalancerPayload) GetName() (res UpdateLoadBalancerPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *UpdateLoadBalancerPayload) GetNameOk() (ret UpdateLoadBalancerPayloadGetNameRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateLoadBalancerPayload) SetName(v *string) {
-	o.Name = v
+func (o *UpdateLoadBalancerPayload) SetName(v UpdateLoadBalancerPayloadGetNameRetType) {
+	setUpdateLoadBalancerPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetNetworks returns the Networks field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetNetworks() *[]Network {
-	if o == nil || IsNil(o.Networks) {
-		var ret *[]Network
-		return ret
-	}
-	return o.Networks
+func (o *UpdateLoadBalancerPayload) GetNetworks() (res UpdateLoadBalancerPayloadGetNetworksRetType) {
+	res, _ = o.GetNetworksOk()
+	return
 }
 
 // GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetNetworksOk() (*[]Network, bool) {
-	if o == nil || IsNil(o.Networks) {
-		return nil, false
-	}
-	return o.Networks, true
+func (o *UpdateLoadBalancerPayload) GetNetworksOk() (ret UpdateLoadBalancerPayloadGetNetworksRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetNetworksAttributeTypeOk(o.Networks)
 }
 
 // HasNetworks returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasNetworks() bool {
-	if o != nil && !IsNil(o.Networks) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNetworksOk()
+	return ok
 }
 
 // SetNetworks gets a reference to the given []Network and assigns it to the Networks field.
-func (o *UpdateLoadBalancerPayload) SetNetworks(v *[]Network) {
-	o.Networks = v
+func (o *UpdateLoadBalancerPayload) SetNetworks(v UpdateLoadBalancerPayloadGetNetworksRetType) {
+	setUpdateLoadBalancerPayloadGetNetworksAttributeType(&o.Networks, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetOptions() *LoadBalancerOptions {
-	if o == nil || IsNil(o.Options) {
-		var ret *LoadBalancerOptions
-		return ret
-	}
-	return o.Options
+func (o *UpdateLoadBalancerPayload) GetOptions() (res UpdateLoadBalancerPayloadGetOptionsRetType) {
+	res, _ = o.GetOptionsOk()
+	return
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetOptionsOk() (*LoadBalancerOptions, bool) {
-	if o == nil || IsNil(o.Options) {
-		return nil, false
-	}
-	return o.Options, true
+func (o *UpdateLoadBalancerPayload) GetOptionsOk() (ret UpdateLoadBalancerPayloadGetOptionsRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOptionsOk()
+	return ok
 }
 
 // SetOptions gets a reference to the given LoadBalancerOptions and assigns it to the Options field.
-func (o *UpdateLoadBalancerPayload) SetOptions(v *LoadBalancerOptions) {
-	o.Options = v
+func (o *UpdateLoadBalancerPayload) SetOptions(v UpdateLoadBalancerPayloadGetOptionsRetType) {
+	setUpdateLoadBalancerPayloadGetOptionsAttributeType(&o.Options, v)
 }
 
 // GetPlanId returns the PlanId field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetPlanId() *string {
-	if o == nil || IsNil(o.PlanId) {
-		var ret *string
-		return ret
-	}
-	return o.PlanId
+func (o *UpdateLoadBalancerPayload) GetPlanId() (res UpdateLoadBalancerPayloadGetPlanIdRetType) {
+	res, _ = o.GetPlanIdOk()
+	return
 }
 
 // GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetPlanIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PlanId) {
-		return nil, false
-	}
-	return o.PlanId, true
+func (o *UpdateLoadBalancerPayload) GetPlanIdOk() (ret UpdateLoadBalancerPayloadGetPlanIdRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetPlanIdAttributeTypeOk(o.PlanId)
 }
 
 // HasPlanId returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasPlanId() bool {
-	if o != nil && !IsNil(o.PlanId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPlanIdOk()
+	return ok
 }
 
 // SetPlanId gets a reference to the given string and assigns it to the PlanId field.
-func (o *UpdateLoadBalancerPayload) SetPlanId(v *string) {
-	o.PlanId = v
+func (o *UpdateLoadBalancerPayload) SetPlanId(v UpdateLoadBalancerPayloadGetPlanIdRetType) {
+	setUpdateLoadBalancerPayloadGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 // GetPrivateAddress returns the PrivateAddress field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetPrivateAddress() *string {
-	if o == nil || IsNil(o.PrivateAddress) {
-		var ret *string
-		return ret
-	}
-	return o.PrivateAddress
+func (o *UpdateLoadBalancerPayload) GetPrivateAddress() (res UpdateLoadBalancerPayloadGetPrivateAddressRetType) {
+	res, _ = o.GetPrivateAddressOk()
+	return
 }
 
 // GetPrivateAddressOk returns a tuple with the PrivateAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetPrivateAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.PrivateAddress) {
-		return nil, false
-	}
-	return o.PrivateAddress, true
+func (o *UpdateLoadBalancerPayload) GetPrivateAddressOk() (ret UpdateLoadBalancerPayloadGetPrivateAddressRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetPrivateAddressAttributeTypeOk(o.PrivateAddress)
 }
 
 // HasPrivateAddress returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasPrivateAddress() bool {
-	if o != nil && !IsNil(o.PrivateAddress) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPrivateAddressOk()
+	return ok
 }
 
 // SetPrivateAddress gets a reference to the given string and assigns it to the PrivateAddress field.
-func (o *UpdateLoadBalancerPayload) SetPrivateAddress(v *string) {
-	o.PrivateAddress = v
+func (o *UpdateLoadBalancerPayload) SetPrivateAddress(v UpdateLoadBalancerPayloadGetPrivateAddressRetType) {
+	setUpdateLoadBalancerPayloadGetPrivateAddressAttributeType(&o.PrivateAddress, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *UpdateLoadBalancerPayload) GetStatus() (res UpdateLoadBalancerPayloadGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *UpdateLoadBalancerPayload) GetStatusOk() (ret UpdateLoadBalancerPayloadGetStatusRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *UpdateLoadBalancerPayload) SetStatus(v *string) {
-	o.Status = v
+func (o *UpdateLoadBalancerPayload) SetStatus(v UpdateLoadBalancerPayloadGetStatusRetType) {
+	setUpdateLoadBalancerPayloadGetStatusAttributeType(&o.Status, v)
 }
 
 // GetTargetPools returns the TargetPools field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetTargetPools() *[]TargetPool {
-	if o == nil || IsNil(o.TargetPools) {
-		var ret *[]TargetPool
-		return ret
-	}
-	return o.TargetPools
+func (o *UpdateLoadBalancerPayload) GetTargetPools() (res UpdateLoadBalancerPayloadGetTargetPoolsRetType) {
+	res, _ = o.GetTargetPoolsOk()
+	return
 }
 
 // GetTargetPoolsOk returns a tuple with the TargetPools field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetTargetPoolsOk() (*[]TargetPool, bool) {
-	if o == nil || IsNil(o.TargetPools) {
-		return nil, false
-	}
-	return o.TargetPools, true
+func (o *UpdateLoadBalancerPayload) GetTargetPoolsOk() (ret UpdateLoadBalancerPayloadGetTargetPoolsRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetTargetPoolsAttributeTypeOk(o.TargetPools)
 }
 
 // HasTargetPools returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasTargetPools() bool {
-	if o != nil && !IsNil(o.TargetPools) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetPoolsOk()
+	return ok
 }
 
 // SetTargetPools gets a reference to the given []TargetPool and assigns it to the TargetPools field.
-func (o *UpdateLoadBalancerPayload) SetTargetPools(v *[]TargetPool) {
-	o.TargetPools = v
+func (o *UpdateLoadBalancerPayload) SetTargetPools(v UpdateLoadBalancerPayloadGetTargetPoolsRetType) {
+	setUpdateLoadBalancerPayloadGetTargetPoolsAttributeType(&o.TargetPools, v)
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *UpdateLoadBalancerPayload) GetVersion() *string {
-	if o == nil || IsNil(o.Version) {
-		var ret *string
-		return ret
-	}
-	return o.Version
+func (o *UpdateLoadBalancerPayload) GetVersion() (res UpdateLoadBalancerPayloadGetVersionRetType) {
+	res, _ = o.GetVersionOk()
+	return
 }
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoadBalancerPayload) GetVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.Version) {
-		return nil, false
-	}
-	return o.Version, true
+func (o *UpdateLoadBalancerPayload) GetVersionOk() (ret UpdateLoadBalancerPayloadGetVersionRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetVersionAttributeTypeOk(o.Version)
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *UpdateLoadBalancerPayload) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVersionOk()
+	return ok
 }
 
 // SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *UpdateLoadBalancerPayload) SetVersion(v *string) {
-	o.Version = v
+func (o *UpdateLoadBalancerPayload) SetVersion(v UpdateLoadBalancerPayloadGetVersionRetType) {
+	setUpdateLoadBalancerPayloadGetVersionAttributeType(&o.Version, v)
 }
 
 func (o UpdateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Errors) {
-		toSerialize["errors"] = o.Errors
+	if val, ok := getUpdateLoadBalancerPayloadGetErrorsAttributeTypeOk(o.Errors); ok {
+		toSerialize["Errors"] = val
 	}
-	if !IsNil(o.ExternalAddress) {
-		toSerialize["externalAddress"] = o.ExternalAddress
+	if val, ok := getUpdateLoadBalancerPayloadGetExternalAddressAttributeTypeOk(o.ExternalAddress); ok {
+		toSerialize["ExternalAddress"] = val
 	}
-	if !IsNil(o.Listeners) {
-		toSerialize["listeners"] = o.Listeners
+	if val, ok := getUpdateLoadBalancerPayloadGetListenersAttributeTypeOk(o.Listeners); ok {
+		toSerialize["Listeners"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getUpdateLoadBalancerPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Networks) {
-		toSerialize["networks"] = o.Networks
+	if val, ok := getUpdateLoadBalancerPayloadGetNetworksAttributeTypeOk(o.Networks); ok {
+		toSerialize["Networks"] = val
 	}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
+	if val, ok := getUpdateLoadBalancerPayloadGetOptionsAttributeTypeOk(o.Options); ok {
+		toSerialize["Options"] = val
 	}
-	if !IsNil(o.PlanId) {
-		toSerialize["planId"] = o.PlanId
+	if val, ok := getUpdateLoadBalancerPayloadGetPlanIdAttributeTypeOk(o.PlanId); ok {
+		toSerialize["PlanId"] = val
 	}
-	if !IsNil(o.PrivateAddress) {
-		toSerialize["privateAddress"] = o.PrivateAddress
+	if val, ok := getUpdateLoadBalancerPayloadGetPrivateAddressAttributeTypeOk(o.PrivateAddress); ok {
+		toSerialize["PrivateAddress"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getUpdateLoadBalancerPayloadGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
-	if !IsNil(o.TargetPools) {
-		toSerialize["targetPools"] = o.TargetPools
+	if val, ok := getUpdateLoadBalancerPayloadGetTargetPoolsAttributeTypeOk(o.TargetPools); ok {
+		toSerialize["TargetPools"] = val
 	}
-	if !IsNil(o.Version) {
-		toSerialize["version"] = o.Version
+	if val, ok := getUpdateLoadBalancerPayloadGetVersionAttributeTypeOk(o.Version); ok {
+		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,12 +17,54 @@ import (
 // checks if the LoadbalancerOptionLogs type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &LoadbalancerOptionLogs{}
 
+/*
+	types and functions for credentialsRef
+*/
+
+// isNotNullableString
+type LoadbalancerOptionLogsGetCredentialsRefAttributeType = *string
+
+func getLoadbalancerOptionLogsGetCredentialsRefAttributeTypeOk(arg LoadbalancerOptionLogsGetCredentialsRefAttributeType) (ret LoadbalancerOptionLogsGetCredentialsRefRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadbalancerOptionLogsGetCredentialsRefAttributeType(arg *LoadbalancerOptionLogsGetCredentialsRefAttributeType, val LoadbalancerOptionLogsGetCredentialsRefRetType) {
+	*arg = &val
+}
+
+type LoadbalancerOptionLogsGetCredentialsRefArgType = string
+type LoadbalancerOptionLogsGetCredentialsRefRetType = string
+
+/*
+	types and functions for pushUrl
+*/
+
+// isNotNullableString
+type LoadbalancerOptionLogsGetPushUrlAttributeType = *string
+
+func getLoadbalancerOptionLogsGetPushUrlAttributeTypeOk(arg LoadbalancerOptionLogsGetPushUrlAttributeType) (ret LoadbalancerOptionLogsGetPushUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadbalancerOptionLogsGetPushUrlAttributeType(arg *LoadbalancerOptionLogsGetPushUrlAttributeType, val LoadbalancerOptionLogsGetPushUrlRetType) {
+	*arg = &val
+}
+
+type LoadbalancerOptionLogsGetPushUrlArgType = string
+type LoadbalancerOptionLogsGetPushUrlRetType = string
+
 // LoadbalancerOptionLogs struct for LoadbalancerOptionLogs
 type LoadbalancerOptionLogs struct {
 	// Credentials reference for logging. This reference is created via the observability create endpoint and the credential needs to contain the basic auth username and password for the logging solution the push URL points to. Then this enables monitoring via remote write for the Load Balancer.
-	CredentialsRef *string `json:"credentialsRef,omitempty"`
+	CredentialsRef LoadbalancerOptionLogsGetCredentialsRefAttributeType `json:"credentialsRef,omitempty"`
 	// The ARGUS/Loki remote write Push URL you want the logs to be shipped to.
-	PushUrl *string `json:"pushUrl,omitempty"`
+	PushUrl LoadbalancerOptionLogsGetPushUrlAttributeType `json:"pushUrl,omitempty"`
 }
 
 // NewLoadbalancerOptionLogs instantiates a new LoadbalancerOptionLogs object
@@ -43,76 +85,58 @@ func NewLoadbalancerOptionLogsWithDefaults() *LoadbalancerOptionLogs {
 }
 
 // GetCredentialsRef returns the CredentialsRef field value if set, zero value otherwise.
-func (o *LoadbalancerOptionLogs) GetCredentialsRef() *string {
-	if o == nil || IsNil(o.CredentialsRef) {
-		var ret *string
-		return ret
-	}
-	return o.CredentialsRef
+func (o *LoadbalancerOptionLogs) GetCredentialsRef() (res LoadbalancerOptionLogsGetCredentialsRefRetType) {
+	res, _ = o.GetCredentialsRefOk()
+	return
 }
 
 // GetCredentialsRefOk returns a tuple with the CredentialsRef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadbalancerOptionLogs) GetCredentialsRefOk() (*string, bool) {
-	if o == nil || IsNil(o.CredentialsRef) {
-		return nil, false
-	}
-	return o.CredentialsRef, true
+func (o *LoadbalancerOptionLogs) GetCredentialsRefOk() (ret LoadbalancerOptionLogsGetCredentialsRefRetType, ok bool) {
+	return getLoadbalancerOptionLogsGetCredentialsRefAttributeTypeOk(o.CredentialsRef)
 }
 
 // HasCredentialsRef returns a boolean if a field has been set.
 func (o *LoadbalancerOptionLogs) HasCredentialsRef() bool {
-	if o != nil && !IsNil(o.CredentialsRef) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCredentialsRefOk()
+	return ok
 }
 
 // SetCredentialsRef gets a reference to the given string and assigns it to the CredentialsRef field.
-func (o *LoadbalancerOptionLogs) SetCredentialsRef(v *string) {
-	o.CredentialsRef = v
+func (o *LoadbalancerOptionLogs) SetCredentialsRef(v LoadbalancerOptionLogsGetCredentialsRefRetType) {
+	setLoadbalancerOptionLogsGetCredentialsRefAttributeType(&o.CredentialsRef, v)
 }
 
 // GetPushUrl returns the PushUrl field value if set, zero value otherwise.
-func (o *LoadbalancerOptionLogs) GetPushUrl() *string {
-	if o == nil || IsNil(o.PushUrl) {
-		var ret *string
-		return ret
-	}
-	return o.PushUrl
+func (o *LoadbalancerOptionLogs) GetPushUrl() (res LoadbalancerOptionLogsGetPushUrlRetType) {
+	res, _ = o.GetPushUrlOk()
+	return
 }
 
 // GetPushUrlOk returns a tuple with the PushUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadbalancerOptionLogs) GetPushUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.PushUrl) {
-		return nil, false
-	}
-	return o.PushUrl, true
+func (o *LoadbalancerOptionLogs) GetPushUrlOk() (ret LoadbalancerOptionLogsGetPushUrlRetType, ok bool) {
+	return getLoadbalancerOptionLogsGetPushUrlAttributeTypeOk(o.PushUrl)
 }
 
 // HasPushUrl returns a boolean if a field has been set.
 func (o *LoadbalancerOptionLogs) HasPushUrl() bool {
-	if o != nil && !IsNil(o.PushUrl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPushUrlOk()
+	return ok
 }
 
 // SetPushUrl gets a reference to the given string and assigns it to the PushUrl field.
-func (o *LoadbalancerOptionLogs) SetPushUrl(v *string) {
-	o.PushUrl = v
+func (o *LoadbalancerOptionLogs) SetPushUrl(v LoadbalancerOptionLogsGetPushUrlRetType) {
+	setLoadbalancerOptionLogsGetPushUrlAttributeType(&o.PushUrl, v)
 }
 
 func (o LoadbalancerOptionLogs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CredentialsRef) {
-		toSerialize["credentialsRef"] = o.CredentialsRef
+	if val, ok := getLoadbalancerOptionLogsGetCredentialsRefAttributeTypeOk(o.CredentialsRef); ok {
+		toSerialize["CredentialsRef"] = val
 	}
-	if !IsNil(o.PushUrl) {
-		toSerialize["pushUrl"] = o.PushUrl
+	if val, ok := getLoadbalancerOptionLogsGetPushUrlAttributeTypeOk(o.PushUrl); ok {
+		toSerialize["PushUrl"] = val
 	}
 	return toSerialize, nil
 }

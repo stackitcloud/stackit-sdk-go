@@ -17,22 +17,185 @@ import (
 // checks if the Listener type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Listener{}
 
+/*
+	types and functions for displayName
+*/
+
+// isNotNullableString
+type ListenerGetDisplayNameAttributeType = *string
+
+func getListenerGetDisplayNameAttributeTypeOk(arg ListenerGetDisplayNameAttributeType) (ret ListenerGetDisplayNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetDisplayNameAttributeType(arg *ListenerGetDisplayNameAttributeType, val ListenerGetDisplayNameRetType) {
+	*arg = &val
+}
+
+type ListenerGetDisplayNameArgType = string
+type ListenerGetDisplayNameRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ListenerGetNameAttributeType = *string
+
+func getListenerGetNameAttributeTypeOk(arg ListenerGetNameAttributeType) (ret ListenerGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetNameAttributeType(arg *ListenerGetNameAttributeType, val ListenerGetNameRetType) {
+	*arg = &val
+}
+
+type ListenerGetNameArgType = string
+type ListenerGetNameRetType = string
+
+/*
+	types and functions for port
+*/
+
+// isInteger
+type ListenerGetPortAttributeType = *int64
+type ListenerGetPortArgType = int64
+type ListenerGetPortRetType = int64
+
+func getListenerGetPortAttributeTypeOk(arg ListenerGetPortAttributeType) (ret ListenerGetPortRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetPortAttributeType(arg *ListenerGetPortAttributeType, val ListenerGetPortRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for protocol
+*/
+
+// isEnumRef
+type ListenerGetProtocolAttributeType = *string
+type ListenerGetProtocolArgType = string
+type ListenerGetProtocolRetType = string
+
+func getListenerGetProtocolAttributeTypeOk(arg ListenerGetProtocolAttributeType) (ret ListenerGetProtocolRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetProtocolAttributeType(arg *ListenerGetProtocolAttributeType, val ListenerGetProtocolRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for serverNameIndicators
+*/
+
+// isArray
+type ListenerGetServerNameIndicatorsAttributeType = *[]ServerNameIndicator
+type ListenerGetServerNameIndicatorsArgType = []ServerNameIndicator
+type ListenerGetServerNameIndicatorsRetType = []ServerNameIndicator
+
+func getListenerGetServerNameIndicatorsAttributeTypeOk(arg ListenerGetServerNameIndicatorsAttributeType) (ret ListenerGetServerNameIndicatorsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetServerNameIndicatorsAttributeType(arg *ListenerGetServerNameIndicatorsAttributeType, val ListenerGetServerNameIndicatorsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targetPool
+*/
+
+// isNotNullableString
+type ListenerGetTargetPoolAttributeType = *string
+
+func getListenerGetTargetPoolAttributeTypeOk(arg ListenerGetTargetPoolAttributeType) (ret ListenerGetTargetPoolRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetTargetPoolAttributeType(arg *ListenerGetTargetPoolAttributeType, val ListenerGetTargetPoolRetType) {
+	*arg = &val
+}
+
+type ListenerGetTargetPoolArgType = string
+type ListenerGetTargetPoolRetType = string
+
+/*
+	types and functions for tcp
+*/
+
+// isModel
+type ListenerGetTcpAttributeType = *OptionsTCP
+type ListenerGetTcpArgType = OptionsTCP
+type ListenerGetTcpRetType = OptionsTCP
+
+func getListenerGetTcpAttributeTypeOk(arg ListenerGetTcpAttributeType) (ret ListenerGetTcpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetTcpAttributeType(arg *ListenerGetTcpAttributeType, val ListenerGetTcpRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for udp
+*/
+
+// isModel
+type ListenerGetUdpAttributeType = *OptionsUDP
+type ListenerGetUdpArgType = OptionsUDP
+type ListenerGetUdpRetType = OptionsUDP
+
+func getListenerGetUdpAttributeTypeOk(arg ListenerGetUdpAttributeType) (ret ListenerGetUdpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetUdpAttributeType(arg *ListenerGetUdpAttributeType, val ListenerGetUdpRetType) {
+	*arg = &val
+}
+
 // Listener struct for Listener
 type Listener struct {
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName ListenerGetDisplayNameAttributeType `json:"displayName,omitempty"`
 	// Will be used to reference a listener and will replace display name in the future. Currently uses <protocol>-<port> as the name if no display name is given.
-	Name *string `json:"name,omitempty"`
+	Name ListenerGetNameAttributeType `json:"name,omitempty"`
 	// Port number where we listen for traffic
 	// Can be cast to int32 without loss of precision.
-	Port *int64 `json:"port,omitempty"`
+	Port ListenerGetPortAttributeType `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP, PROTOCOL_TCP_PROXY and PROTOCOL_TLS_PASSTHROUGH are supported.
-	Protocol *string `json:"protocol,omitempty"`
+	Protocol ListenerGetProtocolAttributeType `json:"protocol,omitempty"`
 	// Server Name Idicators config for domains to be routed to the desired target pool for this listener.
-	ServerNameIndicators *[]ServerNameIndicator `json:"serverNameIndicators,omitempty"`
+	ServerNameIndicators ListenerGetServerNameIndicatorsAttributeType `json:"serverNameIndicators,omitempty"`
 	// Reference target pool by target pool name.
-	TargetPool *string     `json:"targetPool,omitempty"`
-	Tcp        *OptionsTCP `json:"tcp,omitempty"`
-	Udp        *OptionsUDP `json:"udp,omitempty"`
+	TargetPool ListenerGetTargetPoolAttributeType `json:"targetPool,omitempty"`
+	Tcp        ListenerGetTcpAttributeType        `json:"tcp,omitempty"`
+	Udp        ListenerGetUdpAttributeType        `json:"udp,omitempty"`
 }
 
 // NewListener instantiates a new Listener object
@@ -53,286 +216,214 @@ func NewListenerWithDefaults() *Listener {
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *Listener) GetDisplayName() *string {
-	if o == nil || IsNil(o.DisplayName) {
-		var ret *string
-		return ret
-	}
-	return o.DisplayName
+func (o *Listener) GetDisplayName() (res ListenerGetDisplayNameRetType) {
+	res, _ = o.GetDisplayNameOk()
+	return
 }
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetDisplayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
+func (o *Listener) GetDisplayNameOk() (ret ListenerGetDisplayNameRetType, ok bool) {
+	return getListenerGetDisplayNameAttributeTypeOk(o.DisplayName)
 }
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *Listener) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDisplayNameOk()
+	return ok
 }
 
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *Listener) SetDisplayName(v *string) {
-	o.DisplayName = v
+func (o *Listener) SetDisplayName(v ListenerGetDisplayNameRetType) {
+	setListenerGetDisplayNameAttributeType(&o.DisplayName, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Listener) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Listener) GetName() (res ListenerGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Listener) GetNameOk() (ret ListenerGetNameRetType, ok bool) {
+	return getListenerGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Listener) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Listener) SetName(v *string) {
-	o.Name = v
+func (o *Listener) SetName(v ListenerGetNameRetType) {
+	setListenerGetNameAttributeType(&o.Name, v)
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *Listener) GetPort() *int64 {
-	if o == nil || IsNil(o.Port) {
-		var ret *int64
-		return ret
-	}
-	return o.Port
+func (o *Listener) GetPort() (res ListenerGetPortRetType) {
+	res, _ = o.GetPortOk()
+	return
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetPortOk() (*int64, bool) {
-	if o == nil || IsNil(o.Port) {
-		return nil, false
-	}
-	return o.Port, true
+func (o *Listener) GetPortOk() (ret ListenerGetPortRetType, ok bool) {
+	return getListenerGetPortAttributeTypeOk(o.Port)
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *Listener) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPortOk()
+	return ok
 }
 
 // SetPort gets a reference to the given int64 and assigns it to the Port field.
-func (o *Listener) SetPort(v *int64) {
-	o.Port = v
+func (o *Listener) SetPort(v ListenerGetPortRetType) {
+	setListenerGetPortAttributeType(&o.Port, v)
 }
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
-func (o *Listener) GetProtocol() *string {
-	if o == nil || IsNil(o.Protocol) {
-		var ret *string
-		return ret
-	}
-	return o.Protocol
+func (o *Listener) GetProtocol() (res ListenerGetProtocolRetType) {
+	res, _ = o.GetProtocolOk()
+	return
 }
 
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetProtocolOk() (*string, bool) {
-	if o == nil || IsNil(o.Protocol) {
-		return nil, false
-	}
-	return o.Protocol, true
+func (o *Listener) GetProtocolOk() (ret ListenerGetProtocolRetType, ok bool) {
+	return getListenerGetProtocolAttributeTypeOk(o.Protocol)
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *Listener) HasProtocol() bool {
-	if o != nil && !IsNil(o.Protocol) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProtocolOk()
+	return ok
 }
 
 // SetProtocol gets a reference to the given string and assigns it to the Protocol field.
-func (o *Listener) SetProtocol(v *string) {
-	o.Protocol = v
+func (o *Listener) SetProtocol(v ListenerGetProtocolRetType) {
+	setListenerGetProtocolAttributeType(&o.Protocol, v)
 }
 
 // GetServerNameIndicators returns the ServerNameIndicators field value if set, zero value otherwise.
-func (o *Listener) GetServerNameIndicators() *[]ServerNameIndicator {
-	if o == nil || IsNil(o.ServerNameIndicators) {
-		var ret *[]ServerNameIndicator
-		return ret
-	}
-	return o.ServerNameIndicators
+func (o *Listener) GetServerNameIndicators() (res ListenerGetServerNameIndicatorsRetType) {
+	res, _ = o.GetServerNameIndicatorsOk()
+	return
 }
 
 // GetServerNameIndicatorsOk returns a tuple with the ServerNameIndicators field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetServerNameIndicatorsOk() (*[]ServerNameIndicator, bool) {
-	if o == nil || IsNil(o.ServerNameIndicators) {
-		return nil, false
-	}
-	return o.ServerNameIndicators, true
+func (o *Listener) GetServerNameIndicatorsOk() (ret ListenerGetServerNameIndicatorsRetType, ok bool) {
+	return getListenerGetServerNameIndicatorsAttributeTypeOk(o.ServerNameIndicators)
 }
 
 // HasServerNameIndicators returns a boolean if a field has been set.
 func (o *Listener) HasServerNameIndicators() bool {
-	if o != nil && !IsNil(o.ServerNameIndicators) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetServerNameIndicatorsOk()
+	return ok
 }
 
 // SetServerNameIndicators gets a reference to the given []ServerNameIndicator and assigns it to the ServerNameIndicators field.
-func (o *Listener) SetServerNameIndicators(v *[]ServerNameIndicator) {
-	o.ServerNameIndicators = v
+func (o *Listener) SetServerNameIndicators(v ListenerGetServerNameIndicatorsRetType) {
+	setListenerGetServerNameIndicatorsAttributeType(&o.ServerNameIndicators, v)
 }
 
 // GetTargetPool returns the TargetPool field value if set, zero value otherwise.
-func (o *Listener) GetTargetPool() *string {
-	if o == nil || IsNil(o.TargetPool) {
-		var ret *string
-		return ret
-	}
-	return o.TargetPool
+func (o *Listener) GetTargetPool() (res ListenerGetTargetPoolRetType) {
+	res, _ = o.GetTargetPoolOk()
+	return
 }
 
 // GetTargetPoolOk returns a tuple with the TargetPool field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetTargetPoolOk() (*string, bool) {
-	if o == nil || IsNil(o.TargetPool) {
-		return nil, false
-	}
-	return o.TargetPool, true
+func (o *Listener) GetTargetPoolOk() (ret ListenerGetTargetPoolRetType, ok bool) {
+	return getListenerGetTargetPoolAttributeTypeOk(o.TargetPool)
 }
 
 // HasTargetPool returns a boolean if a field has been set.
 func (o *Listener) HasTargetPool() bool {
-	if o != nil && !IsNil(o.TargetPool) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetPoolOk()
+	return ok
 }
 
 // SetTargetPool gets a reference to the given string and assigns it to the TargetPool field.
-func (o *Listener) SetTargetPool(v *string) {
-	o.TargetPool = v
+func (o *Listener) SetTargetPool(v ListenerGetTargetPoolRetType) {
+	setListenerGetTargetPoolAttributeType(&o.TargetPool, v)
 }
 
 // GetTcp returns the Tcp field value if set, zero value otherwise.
-func (o *Listener) GetTcp() *OptionsTCP {
-	if o == nil || IsNil(o.Tcp) {
-		var ret *OptionsTCP
-		return ret
-	}
-	return o.Tcp
+func (o *Listener) GetTcp() (res ListenerGetTcpRetType) {
+	res, _ = o.GetTcpOk()
+	return
 }
 
 // GetTcpOk returns a tuple with the Tcp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetTcpOk() (*OptionsTCP, bool) {
-	if o == nil || IsNil(o.Tcp) {
-		return nil, false
-	}
-	return o.Tcp, true
+func (o *Listener) GetTcpOk() (ret ListenerGetTcpRetType, ok bool) {
+	return getListenerGetTcpAttributeTypeOk(o.Tcp)
 }
 
 // HasTcp returns a boolean if a field has been set.
 func (o *Listener) HasTcp() bool {
-	if o != nil && !IsNil(o.Tcp) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTcpOk()
+	return ok
 }
 
 // SetTcp gets a reference to the given OptionsTCP and assigns it to the Tcp field.
-func (o *Listener) SetTcp(v *OptionsTCP) {
-	o.Tcp = v
+func (o *Listener) SetTcp(v ListenerGetTcpRetType) {
+	setListenerGetTcpAttributeType(&o.Tcp, v)
 }
 
 // GetUdp returns the Udp field value if set, zero value otherwise.
-func (o *Listener) GetUdp() *OptionsUDP {
-	if o == nil || IsNil(o.Udp) {
-		var ret *OptionsUDP
-		return ret
-	}
-	return o.Udp
+func (o *Listener) GetUdp() (res ListenerGetUdpRetType) {
+	res, _ = o.GetUdpOk()
+	return
 }
 
 // GetUdpOk returns a tuple with the Udp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Listener) GetUdpOk() (*OptionsUDP, bool) {
-	if o == nil || IsNil(o.Udp) {
-		return nil, false
-	}
-	return o.Udp, true
+func (o *Listener) GetUdpOk() (ret ListenerGetUdpRetType, ok bool) {
+	return getListenerGetUdpAttributeTypeOk(o.Udp)
 }
 
 // HasUdp returns a boolean if a field has been set.
 func (o *Listener) HasUdp() bool {
-	if o != nil && !IsNil(o.Udp) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUdpOk()
+	return ok
 }
 
 // SetUdp gets a reference to the given OptionsUDP and assigns it to the Udp field.
-func (o *Listener) SetUdp(v *OptionsUDP) {
-	o.Udp = v
+func (o *Listener) SetUdp(v ListenerGetUdpRetType) {
+	setListenerGetUdpAttributeType(&o.Udp, v)
 }
 
 func (o Listener) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
+	if val, ok := getListenerGetDisplayNameAttributeTypeOk(o.DisplayName); ok {
+		toSerialize["DisplayName"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getListenerGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Port) {
-		toSerialize["port"] = o.Port
+	if val, ok := getListenerGetPortAttributeTypeOk(o.Port); ok {
+		toSerialize["Port"] = val
 	}
-	if !IsNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
+	if val, ok := getListenerGetProtocolAttributeTypeOk(o.Protocol); ok {
+		toSerialize["Protocol"] = val
 	}
-	if !IsNil(o.ServerNameIndicators) {
-		toSerialize["serverNameIndicators"] = o.ServerNameIndicators
+	if val, ok := getListenerGetServerNameIndicatorsAttributeTypeOk(o.ServerNameIndicators); ok {
+		toSerialize["ServerNameIndicators"] = val
 	}
-	if !IsNil(o.TargetPool) {
-		toSerialize["targetPool"] = o.TargetPool
+	if val, ok := getListenerGetTargetPoolAttributeTypeOk(o.TargetPool); ok {
+		toSerialize["TargetPool"] = val
 	}
-	if !IsNil(o.Tcp) {
-		toSerialize["tcp"] = o.Tcp
+	if val, ok := getListenerGetTcpAttributeTypeOk(o.Tcp); ok {
+		toSerialize["Tcp"] = val
 	}
-	if !IsNil(o.Udp) {
-		toSerialize["udp"] = o.Udp
+	if val, ok := getListenerGetUdpAttributeTypeOk(o.Udp); ok {
+		toSerialize["Udp"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,10 +17,30 @@ import (
 // checks if the SessionPersistence type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SessionPersistence{}
 
+/*
+	types and functions for useSourceIpAddress
+*/
+
+// isBoolean
+type SessionPersistencegetUseSourceIpAddressAttributeType = *bool
+type SessionPersistencegetUseSourceIpAddressArgType = bool
+type SessionPersistencegetUseSourceIpAddressRetType = bool
+
+func getSessionPersistencegetUseSourceIpAddressAttributeTypeOk(arg SessionPersistencegetUseSourceIpAddressAttributeType) (ret SessionPersistencegetUseSourceIpAddressRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSessionPersistencegetUseSourceIpAddressAttributeType(arg *SessionPersistencegetUseSourceIpAddressAttributeType, val SessionPersistencegetUseSourceIpAddressRetType) {
+	*arg = &val
+}
+
 // SessionPersistence struct for SessionPersistence
 type SessionPersistence struct {
 	// If enabled then all connections from one source IP address are redirected to the same target. This setting changes the load balancing algorithm to Maglev.
-	UseSourceIpAddress *bool `json:"useSourceIpAddress,omitempty"`
+	UseSourceIpAddress SessionPersistencegetUseSourceIpAddressAttributeType `json:"useSourceIpAddress,omitempty"`
 }
 
 // NewSessionPersistence instantiates a new SessionPersistence object
@@ -41,41 +61,32 @@ func NewSessionPersistenceWithDefaults() *SessionPersistence {
 }
 
 // GetUseSourceIpAddress returns the UseSourceIpAddress field value if set, zero value otherwise.
-func (o *SessionPersistence) GetUseSourceIpAddress() *bool {
-	if o == nil || IsNil(o.UseSourceIpAddress) {
-		var ret *bool
-		return ret
-	}
-	return o.UseSourceIpAddress
+func (o *SessionPersistence) GetUseSourceIpAddress() (res SessionPersistencegetUseSourceIpAddressRetType) {
+	res, _ = o.GetUseSourceIpAddressOk()
+	return
 }
 
 // GetUseSourceIpAddressOk returns a tuple with the UseSourceIpAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SessionPersistence) GetUseSourceIpAddressOk() (*bool, bool) {
-	if o == nil || IsNil(o.UseSourceIpAddress) {
-		return nil, false
-	}
-	return o.UseSourceIpAddress, true
+func (o *SessionPersistence) GetUseSourceIpAddressOk() (ret SessionPersistencegetUseSourceIpAddressRetType, ok bool) {
+	return getSessionPersistencegetUseSourceIpAddressAttributeTypeOk(o.UseSourceIpAddress)
 }
 
 // HasUseSourceIpAddress returns a boolean if a field has been set.
 func (o *SessionPersistence) HasUseSourceIpAddress() bool {
-	if o != nil && !IsNil(o.UseSourceIpAddress) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUseSourceIpAddressOk()
+	return ok
 }
 
 // SetUseSourceIpAddress gets a reference to the given bool and assigns it to the UseSourceIpAddress field.
-func (o *SessionPersistence) SetUseSourceIpAddress(v *bool) {
-	o.UseSourceIpAddress = v
+func (o *SessionPersistence) SetUseSourceIpAddress(v SessionPersistencegetUseSourceIpAddressRetType) {
+	setSessionPersistencegetUseSourceIpAddressAttributeType(&o.UseSourceIpAddress, v)
 }
 
 func (o SessionPersistence) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.UseSourceIpAddress) {
-		toSerialize["useSourceIpAddress"] = o.UseSourceIpAddress
+	if val, ok := getSessionPersistencegetUseSourceIpAddressAttributeTypeOk(o.UseSourceIpAddress); ok {
+		toSerialize["UseSourceIpAddress"] = val
 	}
 	return toSerialize, nil
 }
