@@ -17,23 +17,128 @@ import (
 // checks if the ContactSalesContactSales type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ContactSalesContactSales{}
 
+/*
+	types and functions for companyName
+*/
+
+// isNotNullableString
+type ContactSalesContactSalesGetCompanyNameAttributeType = *string
+
+func getContactSalesContactSalesGetCompanyNameAttributeTypeOk(arg ContactSalesContactSalesGetCompanyNameAttributeType) (ret ContactSalesContactSalesGetCompanyNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setContactSalesContactSalesGetCompanyNameAttributeType(arg *ContactSalesContactSalesGetCompanyNameAttributeType, val ContactSalesContactSalesGetCompanyNameRetType) {
+	*arg = &val
+}
+
+type ContactSalesContactSalesGetCompanyNameArgType = string
+type ContactSalesContactSalesGetCompanyNameRetType = string
+
+/*
+	types and functions for contactEmail
+*/
+
+// isNotNullableString
+type ContactSalesContactSalesGetContactEmailAttributeType = *string
+
+func getContactSalesContactSalesGetContactEmailAttributeTypeOk(arg ContactSalesContactSalesGetContactEmailAttributeType) (ret ContactSalesContactSalesGetContactEmailRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setContactSalesContactSalesGetContactEmailAttributeType(arg *ContactSalesContactSalesGetContactEmailAttributeType, val ContactSalesContactSalesGetContactEmailRetType) {
+	*arg = &val
+}
+
+type ContactSalesContactSalesGetContactEmailArgType = string
+type ContactSalesContactSalesGetContactEmailRetType = string
+
+/*
+	types and functions for fullName
+*/
+
+// isNotNullableString
+type ContactSalesContactSalesGetFullNameAttributeType = *string
+
+func getContactSalesContactSalesGetFullNameAttributeTypeOk(arg ContactSalesContactSalesGetFullNameAttributeType) (ret ContactSalesContactSalesGetFullNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setContactSalesContactSalesGetFullNameAttributeType(arg *ContactSalesContactSalesGetFullNameAttributeType, val ContactSalesContactSalesGetFullNameRetType) {
+	*arg = &val
+}
+
+type ContactSalesContactSalesGetFullNameArgType = string
+type ContactSalesContactSalesGetFullNameRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ContactSalesContactSalesGetMessageAttributeType = *string
+
+func getContactSalesContactSalesGetMessageAttributeTypeOk(arg ContactSalesContactSalesGetMessageAttributeType) (ret ContactSalesContactSalesGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setContactSalesContactSalesGetMessageAttributeType(arg *ContactSalesContactSalesGetMessageAttributeType, val ContactSalesContactSalesGetMessageRetType) {
+	*arg = &val
+}
+
+type ContactSalesContactSalesGetMessageArgType = string
+type ContactSalesContactSalesGetMessageRetType = string
+
+/*
+	types and functions for productId
+*/
+
+// isNotNullableString
+type ContactSalesContactSalesGetProductIdAttributeType = *string
+
+func getContactSalesContactSalesGetProductIdAttributeTypeOk(arg ContactSalesContactSalesGetProductIdAttributeType) (ret ContactSalesContactSalesGetProductIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setContactSalesContactSalesGetProductIdAttributeType(arg *ContactSalesContactSalesGetProductIdAttributeType, val ContactSalesContactSalesGetProductIdRetType) {
+	*arg = &val
+}
+
+type ContactSalesContactSalesGetProductIdArgType = string
+type ContactSalesContactSalesGetProductIdRetType = string
+
 // ContactSalesContactSales struct for ContactSalesContactSales
 type ContactSalesContactSales struct {
 	// The company name.
 	// REQUIRED
-	CompanyName *string `json:"companyName"`
+	CompanyName ContactSalesContactSalesGetCompanyNameAttributeType `json:"companyName"`
 	// The contact e-mail address.
 	// REQUIRED
-	ContactEmail *string `json:"contactEmail"`
+	ContactEmail ContactSalesContactSalesGetContactEmailAttributeType `json:"contactEmail"`
 	// The full name of the contact person.
 	// REQUIRED
-	FullName *string `json:"fullName"`
+	FullName ContactSalesContactSalesGetFullNameAttributeType `json:"fullName"`
 	// The message content.
 	// REQUIRED
-	Message *string `json:"message"`
+	Message ContactSalesContactSalesGetMessageAttributeType `json:"message"`
 	// The product ID.
 	// REQUIRED
-	ProductId *string `json:"productId"`
+	ProductId ContactSalesContactSalesGetProductIdAttributeType `json:"productId"`
 }
 
 type _ContactSalesContactSales ContactSalesContactSales
@@ -42,13 +147,13 @@ type _ContactSalesContactSales ContactSalesContactSales
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContactSalesContactSales(companyName *string, contactEmail *string, fullName *string, message *string, productId *string) *ContactSalesContactSales {
+func NewContactSalesContactSales(companyName ContactSalesContactSalesGetCompanyNameArgType, contactEmail ContactSalesContactSalesGetContactEmailArgType, fullName ContactSalesContactSalesGetFullNameArgType, message ContactSalesContactSalesGetMessageArgType, productId ContactSalesContactSalesGetProductIdArgType) *ContactSalesContactSales {
 	this := ContactSalesContactSales{}
-	this.CompanyName = companyName
-	this.ContactEmail = contactEmail
-	this.FullName = fullName
-	this.Message = message
-	this.ProductId = productId
+	setContactSalesContactSalesGetCompanyNameAttributeType(&this.CompanyName, companyName)
+	setContactSalesContactSalesGetContactEmailAttributeType(&this.ContactEmail, contactEmail)
+	setContactSalesContactSalesGetFullNameAttributeType(&this.FullName, fullName)
+	setContactSalesContactSalesGetMessageAttributeType(&this.Message, message)
+	setContactSalesContactSalesGetProductIdAttributeType(&this.ProductId, productId)
 	return &this
 }
 
@@ -61,132 +166,107 @@ func NewContactSalesContactSalesWithDefaults() *ContactSalesContactSales {
 }
 
 // GetCompanyName returns the CompanyName field value
-func (o *ContactSalesContactSales) GetCompanyName() *string {
-	if o == nil || IsNil(o.CompanyName) {
-		var ret *string
-		return ret
-	}
-
-	return o.CompanyName
+func (o *ContactSalesContactSales) GetCompanyName() (ret ContactSalesContactSalesGetCompanyNameRetType) {
+	ret, _ = o.GetCompanyNameOk()
+	return ret
 }
 
 // GetCompanyNameOk returns a tuple with the CompanyName field value
 // and a boolean to check if the value has been set.
-func (o *ContactSalesContactSales) GetCompanyNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CompanyName, true
+func (o *ContactSalesContactSales) GetCompanyNameOk() (ret ContactSalesContactSalesGetCompanyNameRetType, ok bool) {
+	return getContactSalesContactSalesGetCompanyNameAttributeTypeOk(o.CompanyName)
 }
 
 // SetCompanyName sets field value
-func (o *ContactSalesContactSales) SetCompanyName(v *string) {
-	o.CompanyName = v
+func (o *ContactSalesContactSales) SetCompanyName(v ContactSalesContactSalesGetCompanyNameRetType) {
+	setContactSalesContactSalesGetCompanyNameAttributeType(&o.CompanyName, v)
 }
 
 // GetContactEmail returns the ContactEmail field value
-func (o *ContactSalesContactSales) GetContactEmail() *string {
-	if o == nil || IsNil(o.ContactEmail) {
-		var ret *string
-		return ret
-	}
-
-	return o.ContactEmail
+func (o *ContactSalesContactSales) GetContactEmail() (ret ContactSalesContactSalesGetContactEmailRetType) {
+	ret, _ = o.GetContactEmailOk()
+	return ret
 }
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value
 // and a boolean to check if the value has been set.
-func (o *ContactSalesContactSales) GetContactEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactEmail, true
+func (o *ContactSalesContactSales) GetContactEmailOk() (ret ContactSalesContactSalesGetContactEmailRetType, ok bool) {
+	return getContactSalesContactSalesGetContactEmailAttributeTypeOk(o.ContactEmail)
 }
 
 // SetContactEmail sets field value
-func (o *ContactSalesContactSales) SetContactEmail(v *string) {
-	o.ContactEmail = v
+func (o *ContactSalesContactSales) SetContactEmail(v ContactSalesContactSalesGetContactEmailRetType) {
+	setContactSalesContactSalesGetContactEmailAttributeType(&o.ContactEmail, v)
 }
 
 // GetFullName returns the FullName field value
-func (o *ContactSalesContactSales) GetFullName() *string {
-	if o == nil || IsNil(o.FullName) {
-		var ret *string
-		return ret
-	}
-
-	return o.FullName
+func (o *ContactSalesContactSales) GetFullName() (ret ContactSalesContactSalesGetFullNameRetType) {
+	ret, _ = o.GetFullNameOk()
+	return ret
 }
 
 // GetFullNameOk returns a tuple with the FullName field value
 // and a boolean to check if the value has been set.
-func (o *ContactSalesContactSales) GetFullNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.FullName, true
+func (o *ContactSalesContactSales) GetFullNameOk() (ret ContactSalesContactSalesGetFullNameRetType, ok bool) {
+	return getContactSalesContactSalesGetFullNameAttributeTypeOk(o.FullName)
 }
 
 // SetFullName sets field value
-func (o *ContactSalesContactSales) SetFullName(v *string) {
-	o.FullName = v
+func (o *ContactSalesContactSales) SetFullName(v ContactSalesContactSalesGetFullNameRetType) {
+	setContactSalesContactSalesGetFullNameAttributeType(&o.FullName, v)
 }
 
 // GetMessage returns the Message field value
-func (o *ContactSalesContactSales) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *ContactSalesContactSales) GetMessage() (ret ContactSalesContactSalesGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *ContactSalesContactSales) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ContactSalesContactSales) GetMessageOk() (ret ContactSalesContactSalesGetMessageRetType, ok bool) {
+	return getContactSalesContactSalesGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *ContactSalesContactSales) SetMessage(v *string) {
-	o.Message = v
+func (o *ContactSalesContactSales) SetMessage(v ContactSalesContactSalesGetMessageRetType) {
+	setContactSalesContactSalesGetMessageAttributeType(&o.Message, v)
 }
 
 // GetProductId returns the ProductId field value
-func (o *ContactSalesContactSales) GetProductId() *string {
-	if o == nil || IsNil(o.ProductId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ProductId
+func (o *ContactSalesContactSales) GetProductId() (ret ContactSalesContactSalesGetProductIdRetType) {
+	ret, _ = o.GetProductIdOk()
+	return ret
 }
 
 // GetProductIdOk returns a tuple with the ProductId field value
 // and a boolean to check if the value has been set.
-func (o *ContactSalesContactSales) GetProductIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProductId, true
+func (o *ContactSalesContactSales) GetProductIdOk() (ret ContactSalesContactSalesGetProductIdRetType, ok bool) {
+	return getContactSalesContactSalesGetProductIdAttributeTypeOk(o.ProductId)
 }
 
 // SetProductId sets field value
-func (o *ContactSalesContactSales) SetProductId(v *string) {
-	o.ProductId = v
+func (o *ContactSalesContactSales) SetProductId(v ContactSalesContactSalesGetProductIdRetType) {
+	setContactSalesContactSalesGetProductIdAttributeType(&o.ProductId, v)
 }
 
 func (o ContactSalesContactSales) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["companyName"] = o.CompanyName
-	toSerialize["contactEmail"] = o.ContactEmail
-	toSerialize["fullName"] = o.FullName
-	toSerialize["message"] = o.Message
-	toSerialize["productId"] = o.ProductId
+	if val, ok := getContactSalesContactSalesGetCompanyNameAttributeTypeOk(o.CompanyName); ok {
+		toSerialize["CompanyName"] = val
+	}
+	if val, ok := getContactSalesContactSalesGetContactEmailAttributeTypeOk(o.ContactEmail); ok {
+		toSerialize["ContactEmail"] = val
+	}
+	if val, ok := getContactSalesContactSalesGetFullNameAttributeTypeOk(o.FullName); ok {
+		toSerialize["FullName"] = val
+	}
+	if val, ok := getContactSalesContactSalesGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
+	if val, ok := getContactSalesContactSalesGetProductIdAttributeTypeOk(o.ProductId); ok {
+		toSerialize["ProductId"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,13 +17,53 @@ import (
 // checks if the SuggestProduct type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SuggestProduct{}
 
+/*
+	types and functions for suggestProduct
+*/
+
+// isModel
+type SuggestProductGetSuggestProductAttributeType = *SuggestProductSuggestProduct
+type SuggestProductGetSuggestProductArgType = SuggestProductSuggestProduct
+type SuggestProductGetSuggestProductRetType = SuggestProductSuggestProduct
+
+func getSuggestProductGetSuggestProductAttributeTypeOk(arg SuggestProductGetSuggestProductAttributeType) (ret SuggestProductGetSuggestProductRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestProductGetSuggestProductAttributeType(arg *SuggestProductGetSuggestProductAttributeType, val SuggestProductGetSuggestProductRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type SuggestProductGetTypeAttributeType = *string
+type SuggestProductGetTypeArgType = string
+type SuggestProductGetTypeRetType = string
+
+func getSuggestProductGetTypeAttributeTypeOk(arg SuggestProductGetTypeAttributeType) (ret SuggestProductGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSuggestProductGetTypeAttributeType(arg *SuggestProductGetTypeAttributeType, val SuggestProductGetTypeRetType) {
+	*arg = &val
+}
+
 // SuggestProduct Suggest a product.
 type SuggestProduct struct {
 	// REQUIRED
-	SuggestProduct *SuggestProductSuggestProduct `json:"suggestProduct"`
+	SuggestProduct SuggestProductGetSuggestProductAttributeType `json:"suggestProduct"`
 	// The form type.
 	// REQUIRED
-	Type *string `json:"type"`
+	Type SuggestProductGetTypeAttributeType `json:"type"`
 }
 
 type _SuggestProduct SuggestProduct
@@ -32,10 +72,10 @@ type _SuggestProduct SuggestProduct
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSuggestProduct(suggestProduct *SuggestProductSuggestProduct, type_ *string) *SuggestProduct {
+func NewSuggestProduct(suggestProduct SuggestProductGetSuggestProductArgType, type_ SuggestProductGetTypeArgType) *SuggestProduct {
 	this := SuggestProduct{}
-	this.SuggestProduct = suggestProduct
-	this.Type = type_
+	setSuggestProductGetSuggestProductAttributeType(&this.SuggestProduct, suggestProduct)
+	setSuggestProductGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -48,57 +88,47 @@ func NewSuggestProductWithDefaults() *SuggestProduct {
 }
 
 // GetSuggestProduct returns the SuggestProduct field value
-func (o *SuggestProduct) GetSuggestProduct() *SuggestProductSuggestProduct {
-	if o == nil || IsNil(o.SuggestProduct) {
-		var ret *SuggestProductSuggestProduct
-		return ret
-	}
-
-	return o.SuggestProduct
+func (o *SuggestProduct) GetSuggestProduct() (ret SuggestProductGetSuggestProductRetType) {
+	ret, _ = o.GetSuggestProductOk()
+	return ret
 }
 
 // GetSuggestProductOk returns a tuple with the SuggestProduct field value
 // and a boolean to check if the value has been set.
-func (o *SuggestProduct) GetSuggestProductOk() (*SuggestProductSuggestProduct, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SuggestProduct, true
+func (o *SuggestProduct) GetSuggestProductOk() (ret SuggestProductGetSuggestProductRetType, ok bool) {
+	return getSuggestProductGetSuggestProductAttributeTypeOk(o.SuggestProduct)
 }
 
 // SetSuggestProduct sets field value
-func (o *SuggestProduct) SetSuggestProduct(v *SuggestProductSuggestProduct) {
-	o.SuggestProduct = v
+func (o *SuggestProduct) SetSuggestProduct(v SuggestProductGetSuggestProductRetType) {
+	setSuggestProductGetSuggestProductAttributeType(&o.SuggestProduct, v)
 }
 
 // GetType returns the Type field value
-func (o *SuggestProduct) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *SuggestProduct) GetType() (ret SuggestProductGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *SuggestProduct) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *SuggestProduct) GetTypeOk() (ret SuggestProductGetTypeRetType, ok bool) {
+	return getSuggestProductGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *SuggestProduct) SetType(v *string) {
-	o.Type = v
+func (o *SuggestProduct) SetType(v SuggestProductGetTypeRetType) {
+	setSuggestProductGetTypeAttributeType(&o.Type, v)
 }
 
 func (o SuggestProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["suggestProduct"] = o.SuggestProduct
-	toSerialize["type"] = o.Type
+	if val, ok := getSuggestProductGetSuggestProductAttributeTypeOk(o.SuggestProduct); ok {
+		toSerialize["SuggestProduct"] = val
+	}
+	if val, ok := getSuggestProductGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

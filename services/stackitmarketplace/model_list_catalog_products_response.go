@@ -17,17 +17,78 @@ import (
 // checks if the ListCatalogProductsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListCatalogProductsResponse{}
 
+/*
+	types and functions for cursor
+*/
+
+// isNotNullableString
+type ListCatalogProductsResponseGetCursorAttributeType = *string
+
+func getListCatalogProductsResponseGetCursorAttributeTypeOk(arg ListCatalogProductsResponseGetCursorAttributeType) (ret ListCatalogProductsResponseGetCursorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListCatalogProductsResponseGetCursorAttributeType(arg *ListCatalogProductsResponseGetCursorAttributeType, val ListCatalogProductsResponseGetCursorRetType) {
+	*arg = &val
+}
+
+type ListCatalogProductsResponseGetCursorArgType = string
+type ListCatalogProductsResponseGetCursorRetType = string
+
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListCatalogProductsResponseGetItemsAttributeType = *[]CatalogProductOverview
+type ListCatalogProductsResponseGetItemsArgType = []CatalogProductOverview
+type ListCatalogProductsResponseGetItemsRetType = []CatalogProductOverview
+
+func getListCatalogProductsResponseGetItemsAttributeTypeOk(arg ListCatalogProductsResponseGetItemsAttributeType) (ret ListCatalogProductsResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListCatalogProductsResponseGetItemsAttributeType(arg *ListCatalogProductsResponseGetItemsAttributeType, val ListCatalogProductsResponseGetItemsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for limit
+*/
+
+// isInteger
+type ListCatalogProductsResponseGetLimitAttributeType = *int64
+type ListCatalogProductsResponseGetLimitArgType = int64
+type ListCatalogProductsResponseGetLimitRetType = int64
+
+func getListCatalogProductsResponseGetLimitAttributeTypeOk(arg ListCatalogProductsResponseGetLimitAttributeType) (ret ListCatalogProductsResponseGetLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListCatalogProductsResponseGetLimitAttributeType(arg *ListCatalogProductsResponseGetLimitAttributeType, val ListCatalogProductsResponseGetLimitRetType) {
+	*arg = &val
+}
+
 // ListCatalogProductsResponse struct for ListCatalogProductsResponse
 type ListCatalogProductsResponse struct {
 	// A pagination cursor that represents a position in the dataset. Use it in subsequent requests to continue retrieving data from this position. If `null`, there are no more results to retrieve.
 	// REQUIRED
-	Cursor *string `json:"cursor"`
+	Cursor ListCatalogProductsResponseGetCursorAttributeType `json:"cursor"`
 	// REQUIRED
-	Items *[]CatalogProductOverview `json:"items"`
+	Items ListCatalogProductsResponseGetItemsAttributeType `json:"items"`
 	// The maximum number of items to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Limit *int64 `json:"limit"`
+	Limit ListCatalogProductsResponseGetLimitAttributeType `json:"limit"`
 }
 
 type _ListCatalogProductsResponse ListCatalogProductsResponse
@@ -36,11 +97,11 @@ type _ListCatalogProductsResponse ListCatalogProductsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListCatalogProductsResponse(cursor *string, items *[]CatalogProductOverview, limit *int64) *ListCatalogProductsResponse {
+func NewListCatalogProductsResponse(cursor ListCatalogProductsResponseGetCursorArgType, items ListCatalogProductsResponseGetItemsArgType, limit ListCatalogProductsResponseGetLimitArgType) *ListCatalogProductsResponse {
 	this := ListCatalogProductsResponse{}
-	this.Cursor = cursor
-	this.Items = items
-	this.Limit = limit
+	setListCatalogProductsResponseGetCursorAttributeType(&this.Cursor, cursor)
+	setListCatalogProductsResponseGetItemsAttributeType(&this.Items, items)
+	setListCatalogProductsResponseGetLimitAttributeType(&this.Limit, limit)
 	return &this
 }
 
@@ -55,82 +116,67 @@ func NewListCatalogProductsResponseWithDefaults() *ListCatalogProductsResponse {
 }
 
 // GetCursor returns the Cursor field value
-func (o *ListCatalogProductsResponse) GetCursor() *string {
-	if o == nil || IsNil(o.Cursor) {
-		var ret *string
-		return ret
-	}
-
-	return o.Cursor
+func (o *ListCatalogProductsResponse) GetCursor() (ret ListCatalogProductsResponseGetCursorRetType) {
+	ret, _ = o.GetCursorOk()
+	return ret
 }
 
 // GetCursorOk returns a tuple with the Cursor field value
 // and a boolean to check if the value has been set.
-func (o *ListCatalogProductsResponse) GetCursorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Cursor, true
+func (o *ListCatalogProductsResponse) GetCursorOk() (ret ListCatalogProductsResponseGetCursorRetType, ok bool) {
+	return getListCatalogProductsResponseGetCursorAttributeTypeOk(o.Cursor)
 }
 
 // SetCursor sets field value
-func (o *ListCatalogProductsResponse) SetCursor(v *string) {
-	o.Cursor = v
+func (o *ListCatalogProductsResponse) SetCursor(v ListCatalogProductsResponseGetCursorRetType) {
+	setListCatalogProductsResponseGetCursorAttributeType(&o.Cursor, v)
 }
 
 // GetItems returns the Items field value
-func (o *ListCatalogProductsResponse) GetItems() *[]CatalogProductOverview {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]CatalogProductOverview
-		return ret
-	}
-
-	return o.Items
+func (o *ListCatalogProductsResponse) GetItems() (ret ListCatalogProductsResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *ListCatalogProductsResponse) GetItemsOk() (*[]CatalogProductOverview, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListCatalogProductsResponse) GetItemsOk() (ret ListCatalogProductsResponseGetItemsRetType, ok bool) {
+	return getListCatalogProductsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *ListCatalogProductsResponse) SetItems(v *[]CatalogProductOverview) {
-	o.Items = v
+func (o *ListCatalogProductsResponse) SetItems(v ListCatalogProductsResponseGetItemsRetType) {
+	setListCatalogProductsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 // GetLimit returns the Limit field value
-func (o *ListCatalogProductsResponse) GetLimit() *int64 {
-	if o == nil || IsNil(o.Limit) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Limit
+func (o *ListCatalogProductsResponse) GetLimit() (ret ListCatalogProductsResponseGetLimitRetType) {
+	ret, _ = o.GetLimitOk()
+	return ret
 }
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
-func (o *ListCatalogProductsResponse) GetLimitOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Limit, true
+func (o *ListCatalogProductsResponse) GetLimitOk() (ret ListCatalogProductsResponseGetLimitRetType, ok bool) {
+	return getListCatalogProductsResponseGetLimitAttributeTypeOk(o.Limit)
 }
 
 // SetLimit sets field value
-func (o *ListCatalogProductsResponse) SetLimit(v *int64) {
-	o.Limit = v
+func (o *ListCatalogProductsResponse) SetLimit(v ListCatalogProductsResponseGetLimitRetType) {
+	setListCatalogProductsResponseGetLimitAttributeType(&o.Limit, v)
 }
 
 func (o ListCatalogProductsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cursor"] = o.Cursor
-	toSerialize["items"] = o.Items
-	toSerialize["limit"] = o.Limit
+	if val, ok := getListCatalogProductsResponseGetCursorAttributeTypeOk(o.Cursor); ok {
+		toSerialize["Cursor"] = val
+	}
+	if val, ok := getListCatalogProductsResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
+	if val, ok := getListCatalogProductsResponseGetLimitAttributeTypeOk(o.Limit); ok {
+		toSerialize["Limit"] = val
+	}
 	return toSerialize, nil
 }
 
