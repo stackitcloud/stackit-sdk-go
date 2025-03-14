@@ -2,6 +2,8 @@
 
 - `postgresflex`: [v1.0.1](services/postgresflex/CHANGELOG.md#v101-2025-03-12)
   - **Bugfix:** `DeleteUserWaitHandler` is now also using the region as parameter.
+- `modelserving`: [v0.2.0](services/modelserving/CHANGELOG.md#v020-2025-03-14)
+  - **New**: STACKIT Model Serving module wait handler added.
 
 ## Release (2025-03-05)
 
