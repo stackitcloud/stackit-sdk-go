@@ -35,7 +35,7 @@ func TestTokenFlow_Init(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Setting service account token: %s", err)
 			}
-			if err := c.Init(tt.args.cfg); (err != nil) != tt.wantErr {
+			if err := c.Init(tt.args.cfg, http.DefaultTransport); (err != nil) != tt.wantErr {
 				t.Errorf("TokenFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			err = os.Setenv(ServiceAccountToken, b)
@@ -51,7 +51,7 @@ func TestTokenFlow_Init(t *testing.T) {
 
 func TestTokenFlow_Do(t *testing.T) {
 	type fields struct {
-		client *http.Client
+		rt     http.RoundTripper
 		config *TokenFlowConfig
 	}
 	type args struct{}
@@ -63,12 +63,12 @@ func TestTokenFlow_Do(t *testing.T) {
 		wantErr bool
 	}{
 		{"fail", fields{nil, nil}, args{}, 0, true},
-		{"success", fields{&http.Client{}, &TokenFlowConfig{}}, args{}, http.StatusOK, false},
+		{"success", fields{http.DefaultTransport, &TokenFlowConfig{}}, args{}, http.StatusOK, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &TokenFlow{
-				client: tt.fields.client,
+				rt:     tt.fields.rt,
 				config: tt.fields.config,
 			}
 			handler := http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {

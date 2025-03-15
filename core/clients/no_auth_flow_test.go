@@ -25,7 +25,7 @@ func TestNoAuthFlow_Init(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &NoAuthFlow{}
-			if err := c.Init(tt.args.cfg); (err != nil) != tt.wantErr {
+			if err := c.Init(tt.args.cfg, http.DefaultTransport); (err != nil) != tt.wantErr {
 				t.Errorf("NoAuthFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -34,7 +34,7 @@ func TestNoAuthFlow_Init(t *testing.T) {
 
 func TestNoAuthFlow_Do(t *testing.T) {
 	type fields struct {
-		client *http.Client
+		rt http.RoundTripper
 	}
 	type args struct{}
 	tests := []struct {
@@ -45,8 +45,10 @@ func TestNoAuthFlow_Do(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:    "fail",
-			fields:  fields{nil},
+			name: "fail",
+			fields: fields{
+				nil,
+			},
 			args:    args{},
 			want:    0,
 			wantErr: true,
@@ -54,7 +56,7 @@ func TestNoAuthFlow_Do(t *testing.T) {
 		{
 			name: "success",
 			fields: fields{
-				&http.Client{},
+				http.DefaultTransport,
 			},
 			args:    args{},
 			want:    http.StatusOK,
@@ -64,7 +66,7 @@ func TestNoAuthFlow_Do(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &NoAuthFlow{
-				client: tt.fields.client,
+				rt: tt.fields.rt,
 			}
 			handler := http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 				w.Header().Set("Content-Type", "application/json")

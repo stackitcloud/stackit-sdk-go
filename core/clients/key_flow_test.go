@@ -5,6 +5,7 @@ import (
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -113,7 +114,7 @@ func TestKeyFlowInit(t *testing.T) {
 			}
 
 			cfg.ServiceAccountKey = tt.serviceAccountKey
-			if err := c.Init(cfg); (err != nil) != tt.wantErr {
+			if err := c.Init(cfg, http.DefaultTransport); (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			if c.config == nil {
@@ -268,13 +269,14 @@ func TestRequestToken(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			mockDo := func(_ *http.Request) (resp *http.Response, err error) {
-				return tt.mockResponse, tt.mockError
-			}
-
 			c := &KeyFlow{
+				authClient: &http.Client{
+					Transport: mockTransportFn{func(_ *http.Request) (*http.Response, error) {
+						return tt.mockResponse, tt.mockError
+					}},
+				},
 				config: &KeyFlowConfig{},
-				doer:   mockDo,
+				rt:     http.DefaultTransport,
 			}
 
 			res, err := c.requestToken(tt.grant, tt.assertion)
@@ -289,7 +291,7 @@ func TestRequestToken(t *testing.T) {
 			if tt.expectedError != nil {
 				if err == nil {
 					t.Errorf("Expected error '%v' but no error was returned", tt.expectedError)
-				} else if tt.expectedError.Error() != err.Error() {
+				} else if errors.Is(err, tt.expectedError) {
 					t.Errorf("Error is not correct. Expected %v, got %v", tt.expectedError, err)
 				}
 			} else {
@@ -302,4 +304,12 @@ func TestRequestToken(t *testing.T) {
 			}
 		})
 	}
+}
+
+type mockTransportFn struct {
+	fn func(req *http.Request) (*http.Response, error)
+}
+
+func (m mockTransportFn) RoundTrip(req *http.Request) (*http.Response, error) {
+	return m.fn(req)
 }

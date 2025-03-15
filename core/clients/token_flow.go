@@ -13,7 +13,7 @@ const (
 
 // TokenFlow handles auth with SA static token
 type TokenFlow struct {
-	client *http.Client
+	rt     http.RoundTripper
 	config *TokenFlowConfig
 }
 
@@ -34,17 +34,16 @@ func (c *TokenFlow) GetConfig() TokenFlowConfig {
 	return *c.config
 }
 
-func (c *TokenFlow) Init(cfg *TokenFlowConfig) error {
+func (c *TokenFlow) Init(cfg *TokenFlowConfig, rt http.RoundTripper) error {
 	c.config = cfg
-	c.configureHTTPClient()
-	return c.validate()
-}
 
-// configureHTTPClient configures the HTTP client
-func (c *TokenFlow) configureHTTPClient() {
-	client := &http.Client{}
-	client.Timeout = DefaultClientTimeout
-	c.client = client
+	if rt == nil {
+		rt = http.DefaultTransport
+	}
+
+	c.rt = rt
+
+	return c.validate()
 }
 
 // validate the client is configured well
@@ -57,9 +56,9 @@ func (c *TokenFlow) validate() error {
 
 // Roundtrip performs the request
 func (c *TokenFlow) RoundTrip(req *http.Request) (*http.Response, error) {
-	if c.client == nil {
+	if c.rt == nil {
 		return nil, fmt.Errorf("please run Init()")
 	}
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.config.ServiceAccountToken))
-	return c.client.Do(req)
+	return c.rt.RoundTrip(req)
 }
