@@ -1,12 +1,14 @@
 module github.com/stackitcloud/stackit-sdk-go/scripts
 
-go 1.21
+go 1.23.0
+
+toolchain go1.24.1
 
 require (
 	github.com/go-git/go-git/v5 v5.13.2
 	github.com/stackitcloud/stackit-sdk-go/core v0.16.0
 	golang.org/x/mod v0.20.0
-	golang.org/x/term v0.29.0
+	golang.org/x/term v0.30.0
 )
 
 require (
@@ -31,6 +33,6 @@ require (
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	golang.org/x/crypto v0.33.0 // indirect
 	golang.org/x/net v0.35.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/sys v0.31.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 )
