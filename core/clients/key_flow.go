@@ -34,9 +34,9 @@ const (
 
 // KeyFlow handles auth with SA key
 type KeyFlow struct {
-	client        *http.Client
+	rt            http.RoundTripper
+	authClient    *http.Client
 	config        *KeyFlowConfig
-	doer          func(req *http.Request) (resp *http.Response, err error)
 	key           *ServiceAccountKeyResponse
 	privateKey    *rsa.PrivateKey
 	privateKeyPEM []byte
@@ -116,7 +116,7 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 	return *c.token
 }
 
-func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
+func (c *KeyFlow) Init(cfg *KeyFlowConfig, rt http.RoundTripper) error {
 	// No concurrency at this point, so no mutex check needed
 	c.token = &TokenResponseBody{}
 	c.config = cfg
@@ -124,7 +124,17 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	if c.config.TokenUrl == "" {
 		c.config.TokenUrl = tokenAPI
 	}
-	c.configureHTTPClient()
+
+	if rt == nil {
+		rt = http.DefaultTransport
+	}
+
+	c.rt = rt
+	c.authClient = &http.Client{
+		Transport: rt,
+		Timeout:   DefaultClientTimeout,
+	}
+
 	err := c.validate()
 	if err != nil {
 		return err
@@ -163,7 +173,7 @@ func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 
 // Roundtrip performs the request
 func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
-	if c.client == nil {
+	if c.rt == nil {
 		return nil, fmt.Errorf("please run Init()")
 	}
 
@@ -172,13 +182,13 @@ func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 		return nil, err
 	}
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", accessToken))
-	return c.doer(req)
+	return c.rt.RoundTrip(req)
 }
 
 // GetAccessToken returns a short-lived access token and saves the access and refresh tokens in the token field
 func (c *KeyFlow) GetAccessToken() (string, error) {
-	if c.client == nil {
-		return "", fmt.Errorf("nil http client, please run Init()")
+	if c.rt == nil {
+		return "", fmt.Errorf("nil http round tripper, please run Init()")
 	}
 
 	c.tokenMutex.RLock()
@@ -201,14 +211,6 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 	c.tokenMutex.RUnlock()
 
 	return accessToken, nil
-}
-
-// configureHTTPClient configures the HTTP client
-func (c *KeyFlow) configureHTTPClient() {
-	client := &http.Client{}
-	client.Timeout = DefaultClientTimeout
-	c.client = client
-	c.doer = c.client.Do
 }
 
 // validate the client is configured well
@@ -279,10 +281,6 @@ func (c *KeyFlow) createAccessToken() (err error) {
 // createAccessTokenWithRefreshToken creates an access token using
 // an existing pre-validated refresh token
 func (c *KeyFlow) createAccessTokenWithRefreshToken() (err error) {
-	if c.client == nil {
-		return fmt.Errorf("nil http client, please run Init()")
-	}
-
 	c.tokenMutex.RLock()
 	refreshToken := c.token.RefreshToken
 	c.tokenMutex.RUnlock()
@@ -334,7 +332,8 @@ func (c *KeyFlow) requestToken(grant, assertion string) (*http.Response, error) 
 		return nil, err
 	}
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	return c.doer(req)
+
+	return c.authClient.Do(req)
 }
 
 // parseTokenResponse parses the response from the server

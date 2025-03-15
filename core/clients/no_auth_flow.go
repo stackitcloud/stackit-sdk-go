@@ -6,7 +6,7 @@ import (
 )
 
 type NoAuthFlow struct {
-	client *http.Client
+	rt     http.RoundTripper
 	config *NoAuthFlowConfig
 }
 
@@ -24,18 +24,23 @@ func (c *NoAuthFlow) GetConfig() NoAuthFlowConfig {
 	return *c.config
 }
 
-func (c *NoAuthFlow) Init(_ NoAuthFlowConfig) error {
+func (c *NoAuthFlow) Init(_ NoAuthFlowConfig, rt http.RoundTripper) error {
 	c.config = &NoAuthFlowConfig{}
-	c.client = &http.Client{
-		Timeout: DefaultClientTimeout,
+
+	if rt == nil {
+		rt = http.DefaultTransport
 	}
+
+	c.rt = rt
+
 	return nil
 }
 
 // Roundtrip performs the request
 func (c *NoAuthFlow) RoundTrip(req *http.Request) (*http.Response, error) {
-	if c.client == nil {
+	if c.rt == nil {
 		return nil, fmt.Errorf("please run Init()")
 	}
-	return c.client.Do(req)
+
+	return c.rt.RoundTrip(req)
 }
