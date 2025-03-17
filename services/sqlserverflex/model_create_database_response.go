@@ -17,9 +17,30 @@ import (
 // checks if the CreateDatabaseResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateDatabaseResponse{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CreateDatabaseResponseGetIdAttributeType = *string
+
+func getCreateDatabaseResponseGetIdAttributeTypeOk(arg CreateDatabaseResponseGetIdAttributeType) (ret CreateDatabaseResponseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDatabaseResponseGetIdAttributeType(arg *CreateDatabaseResponseGetIdAttributeType, val CreateDatabaseResponseGetIdRetType) {
+	*arg = &val
+}
+
+type CreateDatabaseResponseGetIdArgType = string
+type CreateDatabaseResponseGetIdRetType = string
+
 // CreateDatabaseResponse struct for CreateDatabaseResponse
 type CreateDatabaseResponse struct {
-	Id *string `json:"id,omitempty"`
+	Id CreateDatabaseResponseGetIdAttributeType `json:"id,omitempty"`
 }
 
 // NewCreateDatabaseResponse instantiates a new CreateDatabaseResponse object
@@ -40,41 +61,32 @@ func NewCreateDatabaseResponseWithDefaults() *CreateDatabaseResponse {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateDatabaseResponse) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *CreateDatabaseResponse) GetId() (res CreateDatabaseResponseGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateDatabaseResponse) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CreateDatabaseResponse) GetIdOk() (ret CreateDatabaseResponseGetIdRetType, ok bool) {
+	return getCreateDatabaseResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateDatabaseResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateDatabaseResponse) SetId(v *string) {
-	o.Id = v
+func (o *CreateDatabaseResponse) SetId(v CreateDatabaseResponseGetIdRetType) {
+	setCreateDatabaseResponseGetIdAttributeType(&o.Id, v)
 }
 
 func (o CreateDatabaseResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getCreateDatabaseResponseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
 	return toSerialize, nil
 }

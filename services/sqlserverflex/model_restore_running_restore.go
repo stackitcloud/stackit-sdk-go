@@ -17,14 +17,118 @@ import (
 // checks if the RestoreRunningRestore type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RestoreRunningRestore{}
 
+/*
+	types and functions for command
+*/
+
+// isNotNullableString
+type RestoreRunningRestoreGetCommandAttributeType = *string
+
+func getRestoreRunningRestoreGetCommandAttributeTypeOk(arg RestoreRunningRestoreGetCommandAttributeType) (ret RestoreRunningRestoreGetCommandRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreRunningRestoreGetCommandAttributeType(arg *RestoreRunningRestoreGetCommandAttributeType, val RestoreRunningRestoreGetCommandRetType) {
+	*arg = &val
+}
+
+type RestoreRunningRestoreGetCommandArgType = string
+type RestoreRunningRestoreGetCommandRetType = string
+
+/*
+	types and functions for database_name
+*/
+
+// isNotNullableString
+type RestoreRunningRestoreGetDatabaseNameAttributeType = *string
+
+func getRestoreRunningRestoreGetDatabaseNameAttributeTypeOk(arg RestoreRunningRestoreGetDatabaseNameAttributeType) (ret RestoreRunningRestoreGetDatabaseNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreRunningRestoreGetDatabaseNameAttributeType(arg *RestoreRunningRestoreGetDatabaseNameAttributeType, val RestoreRunningRestoreGetDatabaseNameRetType) {
+	*arg = &val
+}
+
+type RestoreRunningRestoreGetDatabaseNameArgType = string
+type RestoreRunningRestoreGetDatabaseNameRetType = string
+
+/*
+	types and functions for estimated_completion_time
+*/
+
+// isNotNullableString
+type RestoreRunningRestoreGetEstimatedCompletionTimeAttributeType = *string
+
+func getRestoreRunningRestoreGetEstimatedCompletionTimeAttributeTypeOk(arg RestoreRunningRestoreGetEstimatedCompletionTimeAttributeType) (ret RestoreRunningRestoreGetEstimatedCompletionTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreRunningRestoreGetEstimatedCompletionTimeAttributeType(arg *RestoreRunningRestoreGetEstimatedCompletionTimeAttributeType, val RestoreRunningRestoreGetEstimatedCompletionTimeRetType) {
+	*arg = &val
+}
+
+type RestoreRunningRestoreGetEstimatedCompletionTimeArgType = string
+type RestoreRunningRestoreGetEstimatedCompletionTimeRetType = string
+
+/*
+	types and functions for percent_complete
+*/
+
+// isInteger
+type RestoreRunningRestoreGetPercentCompleteAttributeType = *int64
+type RestoreRunningRestoreGetPercentCompleteArgType = int64
+type RestoreRunningRestoreGetPercentCompleteRetType = int64
+
+func getRestoreRunningRestoreGetPercentCompleteAttributeTypeOk(arg RestoreRunningRestoreGetPercentCompleteAttributeType) (ret RestoreRunningRestoreGetPercentCompleteRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreRunningRestoreGetPercentCompleteAttributeType(arg *RestoreRunningRestoreGetPercentCompleteAttributeType, val RestoreRunningRestoreGetPercentCompleteRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for start_time
+*/
+
+// isNotNullableString
+type RestoreRunningRestoreGetStartTimeAttributeType = *string
+
+func getRestoreRunningRestoreGetStartTimeAttributeTypeOk(arg RestoreRunningRestoreGetStartTimeAttributeType) (ret RestoreRunningRestoreGetStartTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreRunningRestoreGetStartTimeAttributeType(arg *RestoreRunningRestoreGetStartTimeAttributeType, val RestoreRunningRestoreGetStartTimeRetType) {
+	*arg = &val
+}
+
+type RestoreRunningRestoreGetStartTimeArgType = string
+type RestoreRunningRestoreGetStartTimeRetType = string
+
 // RestoreRunningRestore struct for RestoreRunningRestore
 type RestoreRunningRestore struct {
-	Command                 *string `json:"command,omitempty"`
-	DatabaseName            *string `json:"database_name,omitempty"`
-	EstimatedCompletionTime *string `json:"estimated_completion_time,omitempty"`
+	Command                 RestoreRunningRestoreGetCommandAttributeType                 `json:"command,omitempty"`
+	DatabaseName            RestoreRunningRestoreGetDatabaseNameAttributeType            `json:"database_name,omitempty"`
+	EstimatedCompletionTime RestoreRunningRestoreGetEstimatedCompletionTimeAttributeType `json:"estimated_completion_time,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	PercentComplete *int64  `json:"percent_complete,omitempty"`
-	StartTime       *string `json:"start_time,omitempty"`
+	PercentComplete RestoreRunningRestoreGetPercentCompleteAttributeType `json:"percent_complete,omitempty"`
+	StartTime       RestoreRunningRestoreGetStartTimeAttributeType       `json:"start_time,omitempty"`
 }
 
 // NewRestoreRunningRestore instantiates a new RestoreRunningRestore object
@@ -45,181 +149,136 @@ func NewRestoreRunningRestoreWithDefaults() *RestoreRunningRestore {
 }
 
 // GetCommand returns the Command field value if set, zero value otherwise.
-func (o *RestoreRunningRestore) GetCommand() *string {
-	if o == nil || IsNil(o.Command) {
-		var ret *string
-		return ret
-	}
-	return o.Command
+func (o *RestoreRunningRestore) GetCommand() (res RestoreRunningRestoreGetCommandRetType) {
+	res, _ = o.GetCommandOk()
+	return
 }
 
 // GetCommandOk returns a tuple with the Command field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreRunningRestore) GetCommandOk() (*string, bool) {
-	if o == nil || IsNil(o.Command) {
-		return nil, false
-	}
-	return o.Command, true
+func (o *RestoreRunningRestore) GetCommandOk() (ret RestoreRunningRestoreGetCommandRetType, ok bool) {
+	return getRestoreRunningRestoreGetCommandAttributeTypeOk(o.Command)
 }
 
 // HasCommand returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasCommand() bool {
-	if o != nil && !IsNil(o.Command) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCommandOk()
+	return ok
 }
 
 // SetCommand gets a reference to the given string and assigns it to the Command field.
-func (o *RestoreRunningRestore) SetCommand(v *string) {
-	o.Command = v
+func (o *RestoreRunningRestore) SetCommand(v RestoreRunningRestoreGetCommandRetType) {
+	setRestoreRunningRestoreGetCommandAttributeType(&o.Command, v)
 }
 
 // GetDatabaseName returns the DatabaseName field value if set, zero value otherwise.
-func (o *RestoreRunningRestore) GetDatabaseName() *string {
-	if o == nil || IsNil(o.DatabaseName) {
-		var ret *string
-		return ret
-	}
-	return o.DatabaseName
+func (o *RestoreRunningRestore) GetDatabaseName() (res RestoreRunningRestoreGetDatabaseNameRetType) {
+	res, _ = o.GetDatabaseNameOk()
+	return
 }
 
 // GetDatabaseNameOk returns a tuple with the DatabaseName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreRunningRestore) GetDatabaseNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DatabaseName) {
-		return nil, false
-	}
-	return o.DatabaseName, true
+func (o *RestoreRunningRestore) GetDatabaseNameOk() (ret RestoreRunningRestoreGetDatabaseNameRetType, ok bool) {
+	return getRestoreRunningRestoreGetDatabaseNameAttributeTypeOk(o.DatabaseName)
 }
 
 // HasDatabaseName returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasDatabaseName() bool {
-	if o != nil && !IsNil(o.DatabaseName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDatabaseNameOk()
+	return ok
 }
 
 // SetDatabaseName gets a reference to the given string and assigns it to the DatabaseName field.
-func (o *RestoreRunningRestore) SetDatabaseName(v *string) {
-	o.DatabaseName = v
+func (o *RestoreRunningRestore) SetDatabaseName(v RestoreRunningRestoreGetDatabaseNameRetType) {
+	setRestoreRunningRestoreGetDatabaseNameAttributeType(&o.DatabaseName, v)
 }
 
 // GetEstimatedCompletionTime returns the EstimatedCompletionTime field value if set, zero value otherwise.
-func (o *RestoreRunningRestore) GetEstimatedCompletionTime() *string {
-	if o == nil || IsNil(o.EstimatedCompletionTime) {
-		var ret *string
-		return ret
-	}
-	return o.EstimatedCompletionTime
+func (o *RestoreRunningRestore) GetEstimatedCompletionTime() (res RestoreRunningRestoreGetEstimatedCompletionTimeRetType) {
+	res, _ = o.GetEstimatedCompletionTimeOk()
+	return
 }
 
 // GetEstimatedCompletionTimeOk returns a tuple with the EstimatedCompletionTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreRunningRestore) GetEstimatedCompletionTimeOk() (*string, bool) {
-	if o == nil || IsNil(o.EstimatedCompletionTime) {
-		return nil, false
-	}
-	return o.EstimatedCompletionTime, true
+func (o *RestoreRunningRestore) GetEstimatedCompletionTimeOk() (ret RestoreRunningRestoreGetEstimatedCompletionTimeRetType, ok bool) {
+	return getRestoreRunningRestoreGetEstimatedCompletionTimeAttributeTypeOk(o.EstimatedCompletionTime)
 }
 
 // HasEstimatedCompletionTime returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasEstimatedCompletionTime() bool {
-	if o != nil && !IsNil(o.EstimatedCompletionTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEstimatedCompletionTimeOk()
+	return ok
 }
 
 // SetEstimatedCompletionTime gets a reference to the given string and assigns it to the EstimatedCompletionTime field.
-func (o *RestoreRunningRestore) SetEstimatedCompletionTime(v *string) {
-	o.EstimatedCompletionTime = v
+func (o *RestoreRunningRestore) SetEstimatedCompletionTime(v RestoreRunningRestoreGetEstimatedCompletionTimeRetType) {
+	setRestoreRunningRestoreGetEstimatedCompletionTimeAttributeType(&o.EstimatedCompletionTime, v)
 }
 
 // GetPercentComplete returns the PercentComplete field value if set, zero value otherwise.
-func (o *RestoreRunningRestore) GetPercentComplete() *int64 {
-	if o == nil || IsNil(o.PercentComplete) {
-		var ret *int64
-		return ret
-	}
-	return o.PercentComplete
+func (o *RestoreRunningRestore) GetPercentComplete() (res RestoreRunningRestoreGetPercentCompleteRetType) {
+	res, _ = o.GetPercentCompleteOk()
+	return
 }
 
 // GetPercentCompleteOk returns a tuple with the PercentComplete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreRunningRestore) GetPercentCompleteOk() (*int64, bool) {
-	if o == nil || IsNil(o.PercentComplete) {
-		return nil, false
-	}
-	return o.PercentComplete, true
+func (o *RestoreRunningRestore) GetPercentCompleteOk() (ret RestoreRunningRestoreGetPercentCompleteRetType, ok bool) {
+	return getRestoreRunningRestoreGetPercentCompleteAttributeTypeOk(o.PercentComplete)
 }
 
 // HasPercentComplete returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasPercentComplete() bool {
-	if o != nil && !IsNil(o.PercentComplete) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPercentCompleteOk()
+	return ok
 }
 
 // SetPercentComplete gets a reference to the given int64 and assigns it to the PercentComplete field.
-func (o *RestoreRunningRestore) SetPercentComplete(v *int64) {
-	o.PercentComplete = v
+func (o *RestoreRunningRestore) SetPercentComplete(v RestoreRunningRestoreGetPercentCompleteRetType) {
+	setRestoreRunningRestoreGetPercentCompleteAttributeType(&o.PercentComplete, v)
 }
 
 // GetStartTime returns the StartTime field value if set, zero value otherwise.
-func (o *RestoreRunningRestore) GetStartTime() *string {
-	if o == nil || IsNil(o.StartTime) {
-		var ret *string
-		return ret
-	}
-	return o.StartTime
+func (o *RestoreRunningRestore) GetStartTime() (res RestoreRunningRestoreGetStartTimeRetType) {
+	res, _ = o.GetStartTimeOk()
+	return
 }
 
 // GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreRunningRestore) GetStartTimeOk() (*string, bool) {
-	if o == nil || IsNil(o.StartTime) {
-		return nil, false
-	}
-	return o.StartTime, true
+func (o *RestoreRunningRestore) GetStartTimeOk() (ret RestoreRunningRestoreGetStartTimeRetType, ok bool) {
+	return getRestoreRunningRestoreGetStartTimeAttributeTypeOk(o.StartTime)
 }
 
 // HasStartTime returns a boolean if a field has been set.
 func (o *RestoreRunningRestore) HasStartTime() bool {
-	if o != nil && !IsNil(o.StartTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStartTimeOk()
+	return ok
 }
 
 // SetStartTime gets a reference to the given string and assigns it to the StartTime field.
-func (o *RestoreRunningRestore) SetStartTime(v *string) {
-	o.StartTime = v
+func (o *RestoreRunningRestore) SetStartTime(v RestoreRunningRestoreGetStartTimeRetType) {
+	setRestoreRunningRestoreGetStartTimeAttributeType(&o.StartTime, v)
 }
 
 func (o RestoreRunningRestore) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Command) {
-		toSerialize["command"] = o.Command
+	if val, ok := getRestoreRunningRestoreGetCommandAttributeTypeOk(o.Command); ok {
+		toSerialize["Command"] = val
 	}
-	if !IsNil(o.DatabaseName) {
-		toSerialize["database_name"] = o.DatabaseName
+	if val, ok := getRestoreRunningRestoreGetDatabaseNameAttributeTypeOk(o.DatabaseName); ok {
+		toSerialize["DatabaseName"] = val
 	}
-	if !IsNil(o.EstimatedCompletionTime) {
-		toSerialize["estimated_completion_time"] = o.EstimatedCompletionTime
+	if val, ok := getRestoreRunningRestoreGetEstimatedCompletionTimeAttributeTypeOk(o.EstimatedCompletionTime); ok {
+		toSerialize["EstimatedCompletionTime"] = val
 	}
-	if !IsNil(o.PercentComplete) {
-		toSerialize["percent_complete"] = o.PercentComplete
+	if val, ok := getRestoreRunningRestoreGetPercentCompleteAttributeTypeOk(o.PercentComplete); ok {
+		toSerialize["PercentComplete"] = val
 	}
-	if !IsNil(o.StartTime) {
-		toSerialize["start_time"] = o.StartTime
+	if val, ok := getRestoreRunningRestoreGetStartTimeAttributeTypeOk(o.StartTime); ok {
+		toSerialize["StartTime"] = val
 	}
 	return toSerialize, nil
 }

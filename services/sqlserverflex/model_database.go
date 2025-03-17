@@ -17,12 +17,74 @@ import (
 // checks if the Database type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Database{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type DatabaseGetIdAttributeType = *string
+
+func getDatabaseGetIdAttributeTypeOk(arg DatabaseGetIdAttributeType) (ret DatabaseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDatabaseGetIdAttributeType(arg *DatabaseGetIdAttributeType, val DatabaseGetIdRetType) {
+	*arg = &val
+}
+
+type DatabaseGetIdArgType = string
+type DatabaseGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type DatabaseGetNameAttributeType = *string
+
+func getDatabaseGetNameAttributeTypeOk(arg DatabaseGetNameAttributeType) (ret DatabaseGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDatabaseGetNameAttributeType(arg *DatabaseGetNameAttributeType, val DatabaseGetNameRetType) {
+	*arg = &val
+}
+
+type DatabaseGetNameArgType = string
+type DatabaseGetNameRetType = string
+
+/*
+	types and functions for options
+*/
+
+// isFreeform
+type DatabaseGetOptionsAttributeType = *map[string]interface{}
+type DatabaseGetOptionsArgType = map[string]interface{}
+type DatabaseGetOptionsRetType = map[string]interface{}
+
+func getDatabaseGetOptionsAttributeTypeOk(arg DatabaseGetOptionsAttributeType) (ret DatabaseGetOptionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDatabaseGetOptionsAttributeType(arg *DatabaseGetOptionsAttributeType, val DatabaseGetOptionsRetType) {
+	*arg = &val
+}
+
 // Database struct for Database
 type Database struct {
-	Id   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Id   DatabaseGetIdAttributeType   `json:"id,omitempty"`
+	Name DatabaseGetNameAttributeType `json:"name,omitempty"`
 	// Database specific options
-	Options *map[string]interface{} `json:"options,omitempty"`
+	Options DatabaseGetOptionsAttributeType `json:"options,omitempty"`
 }
 
 // NewDatabase instantiates a new Database object
@@ -43,111 +105,84 @@ func NewDatabaseWithDefaults() *Database {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Database) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Database) GetId() (res DatabaseGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Database) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Database) GetIdOk() (ret DatabaseGetIdRetType, ok bool) {
+	return getDatabaseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Database) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Database) SetId(v *string) {
-	o.Id = v
+func (o *Database) SetId(v DatabaseGetIdRetType) {
+	setDatabaseGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Database) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Database) GetName() (res DatabaseGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Database) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Database) GetNameOk() (ret DatabaseGetNameRetType, ok bool) {
+	return getDatabaseGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Database) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Database) SetName(v *string) {
-	o.Name = v
+func (o *Database) SetName(v DatabaseGetNameRetType) {
+	setDatabaseGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *Database) GetOptions() *map[string]interface{} {
-	if o == nil || IsNil(o.Options) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Options
+func (o *Database) GetOptions() (res DatabaseGetOptionsRetType) {
+	res, _ = o.GetOptionsOk()
+	return
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Database) GetOptionsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Options) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Options, true
+func (o *Database) GetOptionsOk() (ret DatabaseGetOptionsRetType, ok bool) {
+	return getDatabaseGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Database) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOptionsOk()
+	return ok
 }
 
 // SetOptions gets a reference to the given map[string]interface{} and assigns it to the Options field.
-func (o *Database) SetOptions(v *map[string]interface{}) {
-	o.Options = v
+func (o *Database) SetOptions(v DatabaseGetOptionsRetType) {
+	setDatabaseGetOptionsAttributeType(&o.Options, v)
 }
 
 func (o Database) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getDatabaseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getDatabaseGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
+	if val, ok := getDatabaseGetOptionsAttributeTypeOk(o.Options); ok {
+		toSerialize["Options"] = val
 	}
 	return toSerialize, nil
 }

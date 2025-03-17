@@ -17,10 +17,50 @@ import (
 // checks if the StorageRange type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &StorageRange{}
 
+/*
+	types and functions for max
+*/
+
+// isLong
+type StorageRangeGetMaxAttributeType = *int64
+type StorageRangeGetMaxArgType = int64
+type StorageRangeGetMaxRetType = int64
+
+func getStorageRangeGetMaxAttributeTypeOk(arg StorageRangeGetMaxAttributeType) (ret StorageRangeGetMaxRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setStorageRangeGetMaxAttributeType(arg *StorageRangeGetMaxAttributeType, val StorageRangeGetMaxRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for min
+*/
+
+// isLong
+type StorageRangeGetMinAttributeType = *int64
+type StorageRangeGetMinArgType = int64
+type StorageRangeGetMinRetType = int64
+
+func getStorageRangeGetMinAttributeTypeOk(arg StorageRangeGetMinAttributeType) (ret StorageRangeGetMinRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setStorageRangeGetMinAttributeType(arg *StorageRangeGetMinAttributeType, val StorageRangeGetMinRetType) {
+	*arg = &val
+}
+
 // StorageRange struct for StorageRange
 type StorageRange struct {
-	Max *int64 `json:"max,omitempty"`
-	Min *int64 `json:"min,omitempty"`
+	Max StorageRangeGetMaxAttributeType `json:"max,omitempty"`
+	Min StorageRangeGetMinAttributeType `json:"min,omitempty"`
 }
 
 // NewStorageRange instantiates a new StorageRange object
@@ -41,76 +81,58 @@ func NewStorageRangeWithDefaults() *StorageRange {
 }
 
 // GetMax returns the Max field value if set, zero value otherwise.
-func (o *StorageRange) GetMax() *int64 {
-	if o == nil || IsNil(o.Max) {
-		var ret *int64
-		return ret
-	}
-	return o.Max
+func (o *StorageRange) GetMax() (res StorageRangeGetMaxRetType) {
+	res, _ = o.GetMaxOk()
+	return
 }
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageRange) GetMaxOk() (*int64, bool) {
-	if o == nil || IsNil(o.Max) {
-		return nil, false
-	}
-	return o.Max, true
+func (o *StorageRange) GetMaxOk() (ret StorageRangeGetMaxRetType, ok bool) {
+	return getStorageRangeGetMaxAttributeTypeOk(o.Max)
 }
 
 // HasMax returns a boolean if a field has been set.
 func (o *StorageRange) HasMax() bool {
-	if o != nil && !IsNil(o.Max) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxOk()
+	return ok
 }
 
 // SetMax gets a reference to the given int64 and assigns it to the Max field.
-func (o *StorageRange) SetMax(v *int64) {
-	o.Max = v
+func (o *StorageRange) SetMax(v StorageRangeGetMaxRetType) {
+	setStorageRangeGetMaxAttributeType(&o.Max, v)
 }
 
 // GetMin returns the Min field value if set, zero value otherwise.
-func (o *StorageRange) GetMin() *int64 {
-	if o == nil || IsNil(o.Min) {
-		var ret *int64
-		return ret
-	}
-	return o.Min
+func (o *StorageRange) GetMin() (res StorageRangeGetMinRetType) {
+	res, _ = o.GetMinOk()
+	return
 }
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageRange) GetMinOk() (*int64, bool) {
-	if o == nil || IsNil(o.Min) {
-		return nil, false
-	}
-	return o.Min, true
+func (o *StorageRange) GetMinOk() (ret StorageRangeGetMinRetType, ok bool) {
+	return getStorageRangeGetMinAttributeTypeOk(o.Min)
 }
 
 // HasMin returns a boolean if a field has been set.
 func (o *StorageRange) HasMin() bool {
-	if o != nil && !IsNil(o.Min) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMinOk()
+	return ok
 }
 
 // SetMin gets a reference to the given int64 and assigns it to the Min field.
-func (o *StorageRange) SetMin(v *int64) {
-	o.Min = v
+func (o *StorageRange) SetMin(v StorageRangeGetMinRetType) {
+	setStorageRangeGetMinAttributeType(&o.Min, v)
 }
 
 func (o StorageRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Max) {
-		toSerialize["max"] = o.Max
+	if val, ok := getStorageRangeGetMaxAttributeTypeOk(o.Max); ok {
+		toSerialize["Max"] = val
 	}
-	if !IsNil(o.Min) {
-		toSerialize["min"] = o.Min
+	if val, ok := getStorageRangeGetMinAttributeTypeOk(o.Min); ok {
+		toSerialize["Min"] = val
 	}
 	return toSerialize, nil
 }
