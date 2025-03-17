@@ -17,13 +17,53 @@ import (
 // checks if the RegisterTesting type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RegisterTesting{}
 
+/*
+	types and functions for registerTesting
+*/
+
+// isModel
+type RegisterTestingGetRegisterTestingAttributeType = *RegisterTestingRegisterTesting
+type RegisterTestingGetRegisterTestingArgType = RegisterTestingRegisterTesting
+type RegisterTestingGetRegisterTestingRetType = RegisterTestingRegisterTesting
+
+func getRegisterTestingGetRegisterTestingAttributeTypeOk(arg RegisterTestingGetRegisterTestingAttributeType) (ret RegisterTestingGetRegisterTestingRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRegisterTestingGetRegisterTestingAttributeType(arg *RegisterTestingGetRegisterTestingAttributeType, val RegisterTestingGetRegisterTestingRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type RegisterTestingGetTypeAttributeType = *string
+type RegisterTestingGetTypeArgType = string
+type RegisterTestingGetTypeRetType = string
+
+func getRegisterTestingGetTypeAttributeTypeOk(arg RegisterTestingGetTypeAttributeType) (ret RegisterTestingGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRegisterTestingGetTypeAttributeType(arg *RegisterTestingGetTypeAttributeType, val RegisterTestingGetTypeRetType) {
+	*arg = &val
+}
+
 // RegisterTesting Register for testing.
 type RegisterTesting struct {
 	// REQUIRED
-	RegisterTesting *RegisterTestingRegisterTesting `json:"registerTesting"`
+	RegisterTesting RegisterTestingGetRegisterTestingAttributeType `json:"registerTesting"`
 	// The form type.
 	// REQUIRED
-	Type *string `json:"type"`
+	Type RegisterTestingGetTypeAttributeType `json:"type"`
 }
 
 type _RegisterTesting RegisterTesting
@@ -32,10 +72,10 @@ type _RegisterTesting RegisterTesting
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterTesting(registerTesting *RegisterTestingRegisterTesting, type_ *string) *RegisterTesting {
+func NewRegisterTesting(registerTesting RegisterTestingGetRegisterTestingArgType, type_ RegisterTestingGetTypeArgType) *RegisterTesting {
 	this := RegisterTesting{}
-	this.RegisterTesting = registerTesting
-	this.Type = type_
+	setRegisterTestingGetRegisterTestingAttributeType(&this.RegisterTesting, registerTesting)
+	setRegisterTestingGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -48,57 +88,47 @@ func NewRegisterTestingWithDefaults() *RegisterTesting {
 }
 
 // GetRegisterTesting returns the RegisterTesting field value
-func (o *RegisterTesting) GetRegisterTesting() *RegisterTestingRegisterTesting {
-	if o == nil || IsNil(o.RegisterTesting) {
-		var ret *RegisterTestingRegisterTesting
-		return ret
-	}
-
-	return o.RegisterTesting
+func (o *RegisterTesting) GetRegisterTesting() (ret RegisterTestingGetRegisterTestingRetType) {
+	ret, _ = o.GetRegisterTestingOk()
+	return ret
 }
 
 // GetRegisterTestingOk returns a tuple with the RegisterTesting field value
 // and a boolean to check if the value has been set.
-func (o *RegisterTesting) GetRegisterTestingOk() (*RegisterTestingRegisterTesting, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RegisterTesting, true
+func (o *RegisterTesting) GetRegisterTestingOk() (ret RegisterTestingGetRegisterTestingRetType, ok bool) {
+	return getRegisterTestingGetRegisterTestingAttributeTypeOk(o.RegisterTesting)
 }
 
 // SetRegisterTesting sets field value
-func (o *RegisterTesting) SetRegisterTesting(v *RegisterTestingRegisterTesting) {
-	o.RegisterTesting = v
+func (o *RegisterTesting) SetRegisterTesting(v RegisterTestingGetRegisterTestingRetType) {
+	setRegisterTestingGetRegisterTestingAttributeType(&o.RegisterTesting, v)
 }
 
 // GetType returns the Type field value
-func (o *RegisterTesting) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *RegisterTesting) GetType() (ret RegisterTestingGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RegisterTesting) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *RegisterTesting) GetTypeOk() (ret RegisterTestingGetTypeRetType, ok bool) {
+	return getRegisterTestingGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *RegisterTesting) SetType(v *string) {
-	o.Type = v
+func (o *RegisterTesting) SetType(v RegisterTestingGetTypeRetType) {
+	setRegisterTestingGetTypeAttributeType(&o.Type, v)
 }
 
 func (o RegisterTesting) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["registerTesting"] = o.RegisterTesting
-	toSerialize["type"] = o.Type
+	if val, ok := getRegisterTestingGetRegisterTestingAttributeTypeOk(o.RegisterTesting); ok {
+		toSerialize["RegisterTesting"] = val
+	}
+	if val, ok := getRegisterTestingGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 
