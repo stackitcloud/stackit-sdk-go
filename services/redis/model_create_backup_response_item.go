@@ -17,12 +17,53 @@ import (
 // checks if the CreateBackupResponseItem type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateBackupResponseItem{}
 
+/*
+	types and functions for id
+*/
+
+// isInteger
+type CreateBackupResponseItemGetIdAttributeType = *int64
+type CreateBackupResponseItemGetIdArgType = int64
+type CreateBackupResponseItemGetIdRetType = int64
+
+func getCreateBackupResponseItemGetIdAttributeTypeOk(arg CreateBackupResponseItemGetIdAttributeType) (ret CreateBackupResponseItemGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateBackupResponseItemGetIdAttributeType(arg *CreateBackupResponseItemGetIdAttributeType, val CreateBackupResponseItemGetIdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type CreateBackupResponseItemGetMessageAttributeType = *string
+
+func getCreateBackupResponseItemGetMessageAttributeTypeOk(arg CreateBackupResponseItemGetMessageAttributeType) (ret CreateBackupResponseItemGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateBackupResponseItemGetMessageAttributeType(arg *CreateBackupResponseItemGetMessageAttributeType, val CreateBackupResponseItemGetMessageRetType) {
+	*arg = &val
+}
+
+type CreateBackupResponseItemGetMessageArgType = string
+type CreateBackupResponseItemGetMessageRetType = string
+
 // CreateBackupResponseItem struct for CreateBackupResponseItem
 type CreateBackupResponseItem struct {
 	// REQUIRED
-	Id *int64 `json:"id"`
+	Id CreateBackupResponseItemGetIdAttributeType `json:"id"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message CreateBackupResponseItemGetMessageAttributeType `json:"message"`
 }
 
 type _CreateBackupResponseItem CreateBackupResponseItem
@@ -31,10 +72,10 @@ type _CreateBackupResponseItem CreateBackupResponseItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBackupResponseItem(id *int64, message *string) *CreateBackupResponseItem {
+func NewCreateBackupResponseItem(id CreateBackupResponseItemGetIdArgType, message CreateBackupResponseItemGetMessageArgType) *CreateBackupResponseItem {
 	this := CreateBackupResponseItem{}
-	this.Id = id
-	this.Message = message
+	setCreateBackupResponseItemGetIdAttributeType(&this.Id, id)
+	setCreateBackupResponseItemGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewCreateBackupResponseItemWithDefaults() *CreateBackupResponseItem {
 }
 
 // GetId returns the Id field value
-func (o *CreateBackupResponseItem) GetId() *int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Id
+func (o *CreateBackupResponseItem) GetId() (ret CreateBackupResponseItemGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CreateBackupResponseItem) GetIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CreateBackupResponseItem) GetIdOk() (ret CreateBackupResponseItemGetIdRetType, ok bool) {
+	return getCreateBackupResponseItemGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *CreateBackupResponseItem) SetId(v *int64) {
-	o.Id = v
+func (o *CreateBackupResponseItem) SetId(v CreateBackupResponseItemGetIdRetType) {
+	setCreateBackupResponseItemGetIdAttributeType(&o.Id, v)
 }
 
 // GetMessage returns the Message field value
-func (o *CreateBackupResponseItem) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *CreateBackupResponseItem) GetMessage() (ret CreateBackupResponseItemGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *CreateBackupResponseItem) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *CreateBackupResponseItem) GetMessageOk() (ret CreateBackupResponseItemGetMessageRetType, ok bool) {
+	return getCreateBackupResponseItemGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *CreateBackupResponseItem) SetMessage(v *string) {
-	o.Message = v
+func (o *CreateBackupResponseItem) SetMessage(v CreateBackupResponseItemGetMessageRetType) {
+	setCreateBackupResponseItemGetMessageAttributeType(&o.Message, v)
 }
 
 func (o CreateBackupResponseItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["message"] = o.Message
+	if val, ok := getCreateBackupResponseItemGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getCreateBackupResponseItemGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 
