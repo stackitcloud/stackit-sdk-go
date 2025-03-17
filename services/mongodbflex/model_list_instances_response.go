@@ -17,10 +17,50 @@ import (
 // checks if the ListInstancesResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListInstancesResponse{}
 
+/*
+	types and functions for count
+*/
+
+// isInteger
+type ListInstancesResponseGetCountAttributeType = *int64
+type ListInstancesResponseGetCountArgType = int64
+type ListInstancesResponseGetCountRetType = int64
+
+func getListInstancesResponseGetCountAttributeTypeOk(arg ListInstancesResponseGetCountAttributeType) (ret ListInstancesResponseGetCountRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListInstancesResponseGetCountAttributeType(arg *ListInstancesResponseGetCountAttributeType, val ListInstancesResponseGetCountRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListInstancesResponseGetItemsAttributeType = *[]InstanceListInstance
+type ListInstancesResponseGetItemsArgType = []InstanceListInstance
+type ListInstancesResponseGetItemsRetType = []InstanceListInstance
+
+func getListInstancesResponseGetItemsAttributeTypeOk(arg ListInstancesResponseGetItemsAttributeType) (ret ListInstancesResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListInstancesResponseGetItemsAttributeType(arg *ListInstancesResponseGetItemsAttributeType, val ListInstancesResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // ListInstancesResponse struct for ListInstancesResponse
 type ListInstancesResponse struct {
-	Count *int64                  `json:"count,omitempty"`
-	Items *[]InstanceListInstance `json:"items,omitempty"`
+	Count ListInstancesResponseGetCountAttributeType `json:"count,omitempty"`
+	Items ListInstancesResponseGetItemsAttributeType `json:"items,omitempty"`
 }
 
 // NewListInstancesResponse instantiates a new ListInstancesResponse object
@@ -41,76 +81,58 @@ func NewListInstancesResponseWithDefaults() *ListInstancesResponse {
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *ListInstancesResponse) GetCount() *int64 {
-	if o == nil || IsNil(o.Count) {
-		var ret *int64
-		return ret
-	}
-	return o.Count
+func (o *ListInstancesResponse) GetCount() (res ListInstancesResponseGetCountRetType) {
+	res, _ = o.GetCountOk()
+	return
 }
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListInstancesResponse) GetCountOk() (*int64, bool) {
-	if o == nil || IsNil(o.Count) {
-		return nil, false
-	}
-	return o.Count, true
+func (o *ListInstancesResponse) GetCountOk() (ret ListInstancesResponseGetCountRetType, ok bool) {
+	return getListInstancesResponseGetCountAttributeTypeOk(o.Count)
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListInstancesResponse) HasCount() bool {
-	if o != nil && !IsNil(o.Count) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCountOk()
+	return ok
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
-func (o *ListInstancesResponse) SetCount(v *int64) {
-	o.Count = v
+func (o *ListInstancesResponse) SetCount(v ListInstancesResponseGetCountRetType) {
+	setListInstancesResponseGetCountAttributeType(&o.Count, v)
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *ListInstancesResponse) GetItems() *[]InstanceListInstance {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]InstanceListInstance
-		return ret
-	}
-	return o.Items
+func (o *ListInstancesResponse) GetItems() (res ListInstancesResponseGetItemsRetType) {
+	res, _ = o.GetItemsOk()
+	return
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListInstancesResponse) GetItemsOk() (*[]InstanceListInstance, bool) {
-	if o == nil || IsNil(o.Items) {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListInstancesResponse) GetItemsOk() (ret ListInstancesResponseGetItemsRetType, ok bool) {
+	return getListInstancesResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *ListInstancesResponse) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemsOk()
+	return ok
 }
 
 // SetItems gets a reference to the given []InstanceListInstance and assigns it to the Items field.
-func (o *ListInstancesResponse) SetItems(v *[]InstanceListInstance) {
-	o.Items = v
+func (o *ListInstancesResponse) SetItems(v ListInstancesResponseGetItemsRetType) {
+	setListInstancesResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o ListInstancesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Count) {
-		toSerialize["count"] = o.Count
+	if val, ok := getListInstancesResponseGetCountAttributeTypeOk(o.Count); ok {
+		toSerialize["Count"] = val
 	}
-	if !IsNil(o.Items) {
-		toSerialize["items"] = o.Items
+	if val, ok := getListInstancesResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
 }
