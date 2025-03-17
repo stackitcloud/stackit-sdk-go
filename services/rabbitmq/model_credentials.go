@@ -17,25 +17,273 @@ import (
 // checks if the Credentials type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Credentials{}
 
+/*
+	types and functions for host
+*/
+
+// isNotNullableString
+type CredentialsGetHostAttributeType = *string
+
+func getCredentialsGetHostAttributeTypeOk(arg CredentialsGetHostAttributeType) (ret CredentialsGetHostRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetHostAttributeType(arg *CredentialsGetHostAttributeType, val CredentialsGetHostRetType) {
+	*arg = &val
+}
+
+type CredentialsGetHostArgType = string
+type CredentialsGetHostRetType = string
+
+/*
+	types and functions for hosts
+*/
+
+// isArray
+type CredentialsGetHostsAttributeType = *[]string
+type CredentialsGetHostsArgType = []string
+type CredentialsGetHostsRetType = []string
+
+func getCredentialsGetHostsAttributeTypeOk(arg CredentialsGetHostsAttributeType) (ret CredentialsGetHostsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetHostsAttributeType(arg *CredentialsGetHostsAttributeType, val CredentialsGetHostsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for http_api_uri
+*/
+
+// isNotNullableString
+type CredentialsGetHttpApiUriAttributeType = *string
+
+func getCredentialsGetHttpApiUriAttributeTypeOk(arg CredentialsGetHttpApiUriAttributeType) (ret CredentialsGetHttpApiUriRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetHttpApiUriAttributeType(arg *CredentialsGetHttpApiUriAttributeType, val CredentialsGetHttpApiUriRetType) {
+	*arg = &val
+}
+
+type CredentialsGetHttpApiUriArgType = string
+type CredentialsGetHttpApiUriRetType = string
+
+/*
+	types and functions for http_api_uris
+*/
+
+// isArray
+type CredentialsGetHttpApiUrisAttributeType = *[]string
+type CredentialsGetHttpApiUrisArgType = []string
+type CredentialsGetHttpApiUrisRetType = []string
+
+func getCredentialsGetHttpApiUrisAttributeTypeOk(arg CredentialsGetHttpApiUrisAttributeType) (ret CredentialsGetHttpApiUrisRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetHttpApiUrisAttributeType(arg *CredentialsGetHttpApiUrisAttributeType, val CredentialsGetHttpApiUrisRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for management
+*/
+
+// isNotNullableString
+type CredentialsGetManagementAttributeType = *string
+
+func getCredentialsGetManagementAttributeTypeOk(arg CredentialsGetManagementAttributeType) (ret CredentialsGetManagementRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetManagementAttributeType(arg *CredentialsGetManagementAttributeType, val CredentialsGetManagementRetType) {
+	*arg = &val
+}
+
+type CredentialsGetManagementArgType = string
+type CredentialsGetManagementRetType = string
+
+/*
+	types and functions for mqtt
+*/
+
+// isNotNullableString
+type CredentialsGetMqttAttributeType = *string
+
+func getCredentialsGetMqttAttributeTypeOk(arg CredentialsGetMqttAttributeType) (ret CredentialsGetMqttRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetMqttAttributeType(arg *CredentialsGetMqttAttributeType, val CredentialsGetMqttRetType) {
+	*arg = &val
+}
+
+type CredentialsGetMqttArgType = string
+type CredentialsGetMqttRetType = string
+
+/*
+	types and functions for password
+*/
+
+// isNotNullableString
+type CredentialsGetPasswordAttributeType = *string
+
+func getCredentialsGetPasswordAttributeTypeOk(arg CredentialsGetPasswordAttributeType) (ret CredentialsGetPasswordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetPasswordAttributeType(arg *CredentialsGetPasswordAttributeType, val CredentialsGetPasswordRetType) {
+	*arg = &val
+}
+
+type CredentialsGetPasswordArgType = string
+type CredentialsGetPasswordRetType = string
+
+/*
+	types and functions for port
+*/
+
+// isInteger
+type CredentialsGetPortAttributeType = *int64
+type CredentialsGetPortArgType = int64
+type CredentialsGetPortRetType = int64
+
+func getCredentialsGetPortAttributeTypeOk(arg CredentialsGetPortAttributeType) (ret CredentialsGetPortRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetPortAttributeType(arg *CredentialsGetPortAttributeType, val CredentialsGetPortRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for stomp
+*/
+
+// isNotNullableString
+type CredentialsGetStompAttributeType = *string
+
+func getCredentialsGetStompAttributeTypeOk(arg CredentialsGetStompAttributeType) (ret CredentialsGetStompRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetStompAttributeType(arg *CredentialsGetStompAttributeType, val CredentialsGetStompRetType) {
+	*arg = &val
+}
+
+type CredentialsGetStompArgType = string
+type CredentialsGetStompRetType = string
+
+/*
+	types and functions for uri
+*/
+
+// isNotNullableString
+type CredentialsGetUriAttributeType = *string
+
+func getCredentialsGetUriAttributeTypeOk(arg CredentialsGetUriAttributeType) (ret CredentialsGetUriRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetUriAttributeType(arg *CredentialsGetUriAttributeType, val CredentialsGetUriRetType) {
+	*arg = &val
+}
+
+type CredentialsGetUriArgType = string
+type CredentialsGetUriRetType = string
+
+/*
+	types and functions for uris
+*/
+
+// isArray
+type CredentialsGetUrisAttributeType = *[]string
+type CredentialsGetUrisArgType = []string
+type CredentialsGetUrisRetType = []string
+
+func getCredentialsGetUrisAttributeTypeOk(arg CredentialsGetUrisAttributeType) (ret CredentialsGetUrisRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetUrisAttributeType(arg *CredentialsGetUrisAttributeType, val CredentialsGetUrisRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type CredentialsGetUsernameAttributeType = *string
+
+func getCredentialsGetUsernameAttributeTypeOk(arg CredentialsGetUsernameAttributeType) (ret CredentialsGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetUsernameAttributeType(arg *CredentialsGetUsernameAttributeType, val CredentialsGetUsernameRetType) {
+	*arg = &val
+}
+
+type CredentialsGetUsernameArgType = string
+type CredentialsGetUsernameRetType = string
+
 // Credentials struct for Credentials
 type Credentials struct {
 	// REQUIRED
-	Host  *string   `json:"host"`
-	Hosts *[]string `json:"hosts,omitempty"`
+	Host  CredentialsGetHostAttributeType  `json:"host"`
+	Hosts CredentialsGetHostsAttributeType `json:"hosts,omitempty"`
 	// for rabbitmq only
-	HttpApiUri  *string   `json:"http_api_uri,omitempty"`
-	HttpApiUris *[]string `json:"http_api_uris,omitempty"`
-	Management  *string   `json:"management,omitempty"`
-	Mqtt        *string   `json:"mqtt,omitempty"`
+	HttpApiUri  CredentialsGetHttpApiUriAttributeType  `json:"http_api_uri,omitempty"`
+	HttpApiUris CredentialsGetHttpApiUrisAttributeType `json:"http_api_uris,omitempty"`
+	Management  CredentialsGetManagementAttributeType  `json:"management,omitempty"`
+	Mqtt        CredentialsGetMqttAttributeType        `json:"mqtt,omitempty"`
 	// REQUIRED
-	Password *string `json:"password"`
+	Password CredentialsGetPasswordAttributeType `json:"password"`
 	// Can be cast to int32 without loss of precision.
-	Port  *int64    `json:"port,omitempty"`
-	Stomp *string   `json:"stomp,omitempty"`
-	Uri   *string   `json:"uri,omitempty"`
-	Uris  *[]string `json:"uris,omitempty"`
+	Port  CredentialsGetPortAttributeType  `json:"port,omitempty"`
+	Stomp CredentialsGetStompAttributeType `json:"stomp,omitempty"`
+	Uri   CredentialsGetUriAttributeType   `json:"uri,omitempty"`
+	Uris  CredentialsGetUrisAttributeType  `json:"uris,omitempty"`
 	// REQUIRED
-	Username *string `json:"username"`
+	Username CredentialsGetUsernameAttributeType `json:"username"`
 }
 
 type _Credentials Credentials
@@ -44,11 +292,11 @@ type _Credentials Credentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredentials(host *string, password *string, username *string) *Credentials {
+func NewCredentials(host CredentialsGetHostArgType, password CredentialsGetPasswordArgType, username CredentialsGetUsernameArgType) *Credentials {
 	this := Credentials{}
-	this.Host = host
-	this.Password = password
-	this.Username = username
+	setCredentialsGetHostAttributeType(&this.Host, host)
+	setCredentialsGetPasswordAttributeType(&this.Password, password)
+	setCredentialsGetUsernameAttributeType(&this.Username, username)
 	return &this
 }
 
@@ -61,397 +309,301 @@ func NewCredentialsWithDefaults() *Credentials {
 }
 
 // GetHost returns the Host field value
-func (o *Credentials) GetHost() *string {
-	if o == nil || IsNil(o.Host) {
-		var ret *string
-		return ret
-	}
-
-	return o.Host
+func (o *Credentials) GetHost() (ret CredentialsGetHostRetType) {
+	ret, _ = o.GetHostOk()
+	return ret
 }
 
 // GetHostOk returns a tuple with the Host field value
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetHostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Host, true
+func (o *Credentials) GetHostOk() (ret CredentialsGetHostRetType, ok bool) {
+	return getCredentialsGetHostAttributeTypeOk(o.Host)
 }
 
 // SetHost sets field value
-func (o *Credentials) SetHost(v *string) {
-	o.Host = v
+func (o *Credentials) SetHost(v CredentialsGetHostRetType) {
+	setCredentialsGetHostAttributeType(&o.Host, v)
 }
 
 // GetHosts returns the Hosts field value if set, zero value otherwise.
-func (o *Credentials) GetHosts() *[]string {
-	if o == nil || IsNil(o.Hosts) {
-		var ret *[]string
-		return ret
-	}
-	return o.Hosts
+func (o *Credentials) GetHosts() (res CredentialsGetHostsRetType) {
+	res, _ = o.GetHostsOk()
+	return
 }
 
 // GetHostsOk returns a tuple with the Hosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetHostsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Hosts) {
-		return nil, false
-	}
-	return o.Hosts, true
+func (o *Credentials) GetHostsOk() (ret CredentialsGetHostsRetType, ok bool) {
+	return getCredentialsGetHostsAttributeTypeOk(o.Hosts)
 }
 
 // HasHosts returns a boolean if a field has been set.
 func (o *Credentials) HasHosts() bool {
-	if o != nil && !IsNil(o.Hosts) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHostsOk()
+	return ok
 }
 
 // SetHosts gets a reference to the given []string and assigns it to the Hosts field.
-func (o *Credentials) SetHosts(v *[]string) {
-	o.Hosts = v
+func (o *Credentials) SetHosts(v CredentialsGetHostsRetType) {
+	setCredentialsGetHostsAttributeType(&o.Hosts, v)
 }
 
 // GetHttpApiUri returns the HttpApiUri field value if set, zero value otherwise.
-func (o *Credentials) GetHttpApiUri() *string {
-	if o == nil || IsNil(o.HttpApiUri) {
-		var ret *string
-		return ret
-	}
-	return o.HttpApiUri
+func (o *Credentials) GetHttpApiUri() (res CredentialsGetHttpApiUriRetType) {
+	res, _ = o.GetHttpApiUriOk()
+	return
 }
 
 // GetHttpApiUriOk returns a tuple with the HttpApiUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetHttpApiUriOk() (*string, bool) {
-	if o == nil || IsNil(o.HttpApiUri) {
-		return nil, false
-	}
-	return o.HttpApiUri, true
+func (o *Credentials) GetHttpApiUriOk() (ret CredentialsGetHttpApiUriRetType, ok bool) {
+	return getCredentialsGetHttpApiUriAttributeTypeOk(o.HttpApiUri)
 }
 
 // HasHttpApiUri returns a boolean if a field has been set.
 func (o *Credentials) HasHttpApiUri() bool {
-	if o != nil && !IsNil(o.HttpApiUri) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHttpApiUriOk()
+	return ok
 }
 
 // SetHttpApiUri gets a reference to the given string and assigns it to the HttpApiUri field.
-func (o *Credentials) SetHttpApiUri(v *string) {
-	o.HttpApiUri = v
+func (o *Credentials) SetHttpApiUri(v CredentialsGetHttpApiUriRetType) {
+	setCredentialsGetHttpApiUriAttributeType(&o.HttpApiUri, v)
 }
 
 // GetHttpApiUris returns the HttpApiUris field value if set, zero value otherwise.
-func (o *Credentials) GetHttpApiUris() *[]string {
-	if o == nil || IsNil(o.HttpApiUris) {
-		var ret *[]string
-		return ret
-	}
-	return o.HttpApiUris
+func (o *Credentials) GetHttpApiUris() (res CredentialsGetHttpApiUrisRetType) {
+	res, _ = o.GetHttpApiUrisOk()
+	return
 }
 
 // GetHttpApiUrisOk returns a tuple with the HttpApiUris field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetHttpApiUrisOk() (*[]string, bool) {
-	if o == nil || IsNil(o.HttpApiUris) {
-		return nil, false
-	}
-	return o.HttpApiUris, true
+func (o *Credentials) GetHttpApiUrisOk() (ret CredentialsGetHttpApiUrisRetType, ok bool) {
+	return getCredentialsGetHttpApiUrisAttributeTypeOk(o.HttpApiUris)
 }
 
 // HasHttpApiUris returns a boolean if a field has been set.
 func (o *Credentials) HasHttpApiUris() bool {
-	if o != nil && !IsNil(o.HttpApiUris) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHttpApiUrisOk()
+	return ok
 }
 
 // SetHttpApiUris gets a reference to the given []string and assigns it to the HttpApiUris field.
-func (o *Credentials) SetHttpApiUris(v *[]string) {
-	o.HttpApiUris = v
+func (o *Credentials) SetHttpApiUris(v CredentialsGetHttpApiUrisRetType) {
+	setCredentialsGetHttpApiUrisAttributeType(&o.HttpApiUris, v)
 }
 
 // GetManagement returns the Management field value if set, zero value otherwise.
-func (o *Credentials) GetManagement() *string {
-	if o == nil || IsNil(o.Management) {
-		var ret *string
-		return ret
-	}
-	return o.Management
+func (o *Credentials) GetManagement() (res CredentialsGetManagementRetType) {
+	res, _ = o.GetManagementOk()
+	return
 }
 
 // GetManagementOk returns a tuple with the Management field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetManagementOk() (*string, bool) {
-	if o == nil || IsNil(o.Management) {
-		return nil, false
-	}
-	return o.Management, true
+func (o *Credentials) GetManagementOk() (ret CredentialsGetManagementRetType, ok bool) {
+	return getCredentialsGetManagementAttributeTypeOk(o.Management)
 }
 
 // HasManagement returns a boolean if a field has been set.
 func (o *Credentials) HasManagement() bool {
-	if o != nil && !IsNil(o.Management) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetManagementOk()
+	return ok
 }
 
 // SetManagement gets a reference to the given string and assigns it to the Management field.
-func (o *Credentials) SetManagement(v *string) {
-	o.Management = v
+func (o *Credentials) SetManagement(v CredentialsGetManagementRetType) {
+	setCredentialsGetManagementAttributeType(&o.Management, v)
 }
 
 // GetMqtt returns the Mqtt field value if set, zero value otherwise.
-func (o *Credentials) GetMqtt() *string {
-	if o == nil || IsNil(o.Mqtt) {
-		var ret *string
-		return ret
-	}
-	return o.Mqtt
+func (o *Credentials) GetMqtt() (res CredentialsGetMqttRetType) {
+	res, _ = o.GetMqttOk()
+	return
 }
 
 // GetMqttOk returns a tuple with the Mqtt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetMqttOk() (*string, bool) {
-	if o == nil || IsNil(o.Mqtt) {
-		return nil, false
-	}
-	return o.Mqtt, true
+func (o *Credentials) GetMqttOk() (ret CredentialsGetMqttRetType, ok bool) {
+	return getCredentialsGetMqttAttributeTypeOk(o.Mqtt)
 }
 
 // HasMqtt returns a boolean if a field has been set.
 func (o *Credentials) HasMqtt() bool {
-	if o != nil && !IsNil(o.Mqtt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMqttOk()
+	return ok
 }
 
 // SetMqtt gets a reference to the given string and assigns it to the Mqtt field.
-func (o *Credentials) SetMqtt(v *string) {
-	o.Mqtt = v
+func (o *Credentials) SetMqtt(v CredentialsGetMqttRetType) {
+	setCredentialsGetMqttAttributeType(&o.Mqtt, v)
 }
 
 // GetPassword returns the Password field value
-func (o *Credentials) GetPassword() *string {
-	if o == nil || IsNil(o.Password) {
-		var ret *string
-		return ret
-	}
-
-	return o.Password
+func (o *Credentials) GetPassword() (ret CredentialsGetPasswordRetType) {
+	ret, _ = o.GetPasswordOk()
+	return ret
 }
 
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Password, true
+func (o *Credentials) GetPasswordOk() (ret CredentialsGetPasswordRetType, ok bool) {
+	return getCredentialsGetPasswordAttributeTypeOk(o.Password)
 }
 
 // SetPassword sets field value
-func (o *Credentials) SetPassword(v *string) {
-	o.Password = v
+func (o *Credentials) SetPassword(v CredentialsGetPasswordRetType) {
+	setCredentialsGetPasswordAttributeType(&o.Password, v)
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *Credentials) GetPort() *int64 {
-	if o == nil || IsNil(o.Port) {
-		var ret *int64
-		return ret
-	}
-	return o.Port
+func (o *Credentials) GetPort() (res CredentialsGetPortRetType) {
+	res, _ = o.GetPortOk()
+	return
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetPortOk() (*int64, bool) {
-	if o == nil || IsNil(o.Port) {
-		return nil, false
-	}
-	return o.Port, true
+func (o *Credentials) GetPortOk() (ret CredentialsGetPortRetType, ok bool) {
+	return getCredentialsGetPortAttributeTypeOk(o.Port)
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *Credentials) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPortOk()
+	return ok
 }
 
 // SetPort gets a reference to the given int64 and assigns it to the Port field.
-func (o *Credentials) SetPort(v *int64) {
-	o.Port = v
+func (o *Credentials) SetPort(v CredentialsGetPortRetType) {
+	setCredentialsGetPortAttributeType(&o.Port, v)
 }
 
 // GetStomp returns the Stomp field value if set, zero value otherwise.
-func (o *Credentials) GetStomp() *string {
-	if o == nil || IsNil(o.Stomp) {
-		var ret *string
-		return ret
-	}
-	return o.Stomp
+func (o *Credentials) GetStomp() (res CredentialsGetStompRetType) {
+	res, _ = o.GetStompOk()
+	return
 }
 
 // GetStompOk returns a tuple with the Stomp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetStompOk() (*string, bool) {
-	if o == nil || IsNil(o.Stomp) {
-		return nil, false
-	}
-	return o.Stomp, true
+func (o *Credentials) GetStompOk() (ret CredentialsGetStompRetType, ok bool) {
+	return getCredentialsGetStompAttributeTypeOk(o.Stomp)
 }
 
 // HasStomp returns a boolean if a field has been set.
 func (o *Credentials) HasStomp() bool {
-	if o != nil && !IsNil(o.Stomp) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStompOk()
+	return ok
 }
 
 // SetStomp gets a reference to the given string and assigns it to the Stomp field.
-func (o *Credentials) SetStomp(v *string) {
-	o.Stomp = v
+func (o *Credentials) SetStomp(v CredentialsGetStompRetType) {
+	setCredentialsGetStompAttributeType(&o.Stomp, v)
 }
 
 // GetUri returns the Uri field value if set, zero value otherwise.
-func (o *Credentials) GetUri() *string {
-	if o == nil || IsNil(o.Uri) {
-		var ret *string
-		return ret
-	}
-	return o.Uri
+func (o *Credentials) GetUri() (res CredentialsGetUriRetType) {
+	res, _ = o.GetUriOk()
+	return
 }
 
 // GetUriOk returns a tuple with the Uri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetUriOk() (*string, bool) {
-	if o == nil || IsNil(o.Uri) {
-		return nil, false
-	}
-	return o.Uri, true
+func (o *Credentials) GetUriOk() (ret CredentialsGetUriRetType, ok bool) {
+	return getCredentialsGetUriAttributeTypeOk(o.Uri)
 }
 
 // HasUri returns a boolean if a field has been set.
 func (o *Credentials) HasUri() bool {
-	if o != nil && !IsNil(o.Uri) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUriOk()
+	return ok
 }
 
 // SetUri gets a reference to the given string and assigns it to the Uri field.
-func (o *Credentials) SetUri(v *string) {
-	o.Uri = v
+func (o *Credentials) SetUri(v CredentialsGetUriRetType) {
+	setCredentialsGetUriAttributeType(&o.Uri, v)
 }
 
 // GetUris returns the Uris field value if set, zero value otherwise.
-func (o *Credentials) GetUris() *[]string {
-	if o == nil || IsNil(o.Uris) {
-		var ret *[]string
-		return ret
-	}
-	return o.Uris
+func (o *Credentials) GetUris() (res CredentialsGetUrisRetType) {
+	res, _ = o.GetUrisOk()
+	return
 }
 
 // GetUrisOk returns a tuple with the Uris field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetUrisOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Uris) {
-		return nil, false
-	}
-	return o.Uris, true
+func (o *Credentials) GetUrisOk() (ret CredentialsGetUrisRetType, ok bool) {
+	return getCredentialsGetUrisAttributeTypeOk(o.Uris)
 }
 
 // HasUris returns a boolean if a field has been set.
 func (o *Credentials) HasUris() bool {
-	if o != nil && !IsNil(o.Uris) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUrisOk()
+	return ok
 }
 
 // SetUris gets a reference to the given []string and assigns it to the Uris field.
-func (o *Credentials) SetUris(v *[]string) {
-	o.Uris = v
+func (o *Credentials) SetUris(v CredentialsGetUrisRetType) {
+	setCredentialsGetUrisAttributeType(&o.Uris, v)
 }
 
 // GetUsername returns the Username field value
-func (o *Credentials) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-
-	return o.Username
+func (o *Credentials) GetUsername() (ret CredentialsGetUsernameRetType) {
+	ret, _ = o.GetUsernameOk()
+	return ret
 }
 
 // GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetUsernameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Username, true
+func (o *Credentials) GetUsernameOk() (ret CredentialsGetUsernameRetType, ok bool) {
+	return getCredentialsGetUsernameAttributeTypeOk(o.Username)
 }
 
 // SetUsername sets field value
-func (o *Credentials) SetUsername(v *string) {
-	o.Username = v
+func (o *Credentials) SetUsername(v CredentialsGetUsernameRetType) {
+	setCredentialsGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o Credentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["host"] = o.Host
-	if !IsNil(o.Hosts) {
-		toSerialize["hosts"] = o.Hosts
+	if val, ok := getCredentialsGetHostAttributeTypeOk(o.Host); ok {
+		toSerialize["Host"] = val
 	}
-	if !IsNil(o.HttpApiUri) {
-		toSerialize["http_api_uri"] = o.HttpApiUri
+	if val, ok := getCredentialsGetHostsAttributeTypeOk(o.Hosts); ok {
+		toSerialize["Hosts"] = val
 	}
-	if !IsNil(o.HttpApiUris) {
-		toSerialize["http_api_uris"] = o.HttpApiUris
+	if val, ok := getCredentialsGetHttpApiUriAttributeTypeOk(o.HttpApiUri); ok {
+		toSerialize["HttpApiUri"] = val
 	}
-	if !IsNil(o.Management) {
-		toSerialize["management"] = o.Management
+	if val, ok := getCredentialsGetHttpApiUrisAttributeTypeOk(o.HttpApiUris); ok {
+		toSerialize["HttpApiUris"] = val
 	}
-	if !IsNil(o.Mqtt) {
-		toSerialize["mqtt"] = o.Mqtt
+	if val, ok := getCredentialsGetManagementAttributeTypeOk(o.Management); ok {
+		toSerialize["Management"] = val
 	}
-	toSerialize["password"] = o.Password
-	if !IsNil(o.Port) {
-		toSerialize["port"] = o.Port
+	if val, ok := getCredentialsGetMqttAttributeTypeOk(o.Mqtt); ok {
+		toSerialize["Mqtt"] = val
 	}
-	if !IsNil(o.Stomp) {
-		toSerialize["stomp"] = o.Stomp
+	if val, ok := getCredentialsGetPasswordAttributeTypeOk(o.Password); ok {
+		toSerialize["Password"] = val
 	}
-	if !IsNil(o.Uri) {
-		toSerialize["uri"] = o.Uri
+	if val, ok := getCredentialsGetPortAttributeTypeOk(o.Port); ok {
+		toSerialize["Port"] = val
 	}
-	if !IsNil(o.Uris) {
-		toSerialize["uris"] = o.Uris
+	if val, ok := getCredentialsGetStompAttributeTypeOk(o.Stomp); ok {
+		toSerialize["Stomp"] = val
 	}
-	toSerialize["username"] = o.Username
+	if val, ok := getCredentialsGetUriAttributeTypeOk(o.Uri); ok {
+		toSerialize["Uri"] = val
+	}
+	if val, ok := getCredentialsGetUrisAttributeTypeOk(o.Uris); ok {
+		toSerialize["Uris"] = val
+	}
+	if val, ok := getCredentialsGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
+	}
 	return toSerialize, nil
 }
 
