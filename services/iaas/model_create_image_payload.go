@@ -18,37 +18,343 @@ import (
 // checks if the CreateImagePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateImagePayload{}
 
+/*
+	types and functions for checksum
+*/
+
+// isModel
+type CreateImagePayloadGetChecksumAttributeType = *ImageChecksum
+type CreateImagePayloadGetChecksumArgType = ImageChecksum
+type CreateImagePayloadGetChecksumRetType = ImageChecksum
+
+func getCreateImagePayloadGetChecksumAttributeTypeOk(arg CreateImagePayloadGetChecksumAttributeType) (ret CreateImagePayloadGetChecksumRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetChecksumAttributeType(arg *CreateImagePayloadGetChecksumAttributeType, val CreateImagePayloadGetChecksumRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for config
+*/
+
+// isModel
+type CreateImagePayloadGetConfigAttributeType = *ImageConfig
+type CreateImagePayloadGetConfigArgType = ImageConfig
+type CreateImagePayloadGetConfigRetType = ImageConfig
+
+func getCreateImagePayloadGetConfigAttributeTypeOk(arg CreateImagePayloadGetConfigAttributeType) (ret CreateImagePayloadGetConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetConfigAttributeType(arg *CreateImagePayloadGetConfigAttributeType, val CreateImagePayloadGetConfigRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type CreateImagePayloadGetCreatedAtAttributeType = *time.Time
+type CreateImagePayloadGetCreatedAtArgType = time.Time
+type CreateImagePayloadGetCreatedAtRetType = time.Time
+
+func getCreateImagePayloadGetCreatedAtAttributeTypeOk(arg CreateImagePayloadGetCreatedAtAttributeType) (ret CreateImagePayloadGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetCreatedAtAttributeType(arg *CreateImagePayloadGetCreatedAtAttributeType, val CreateImagePayloadGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for diskFormat
+*/
+
+// isNotNullableString
+type CreateImagePayloadGetDiskFormatAttributeType = *string
+
+func getCreateImagePayloadGetDiskFormatAttributeTypeOk(arg CreateImagePayloadGetDiskFormatAttributeType) (ret CreateImagePayloadGetDiskFormatRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetDiskFormatAttributeType(arg *CreateImagePayloadGetDiskFormatAttributeType, val CreateImagePayloadGetDiskFormatRetType) {
+	*arg = &val
+}
+
+type CreateImagePayloadGetDiskFormatArgType = string
+type CreateImagePayloadGetDiskFormatRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CreateImagePayloadGetIdAttributeType = *string
+
+func getCreateImagePayloadGetIdAttributeTypeOk(arg CreateImagePayloadGetIdAttributeType) (ret CreateImagePayloadGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetIdAttributeType(arg *CreateImagePayloadGetIdAttributeType, val CreateImagePayloadGetIdRetType) {
+	*arg = &val
+}
+
+type CreateImagePayloadGetIdArgType = string
+type CreateImagePayloadGetIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type CreateImagePayloadGetLabelsAttributeType = *map[string]interface{}
+type CreateImagePayloadGetLabelsArgType = map[string]interface{}
+type CreateImagePayloadGetLabelsRetType = map[string]interface{}
+
+func getCreateImagePayloadGetLabelsAttributeTypeOk(arg CreateImagePayloadGetLabelsAttributeType) (ret CreateImagePayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetLabelsAttributeType(arg *CreateImagePayloadGetLabelsAttributeType, val CreateImagePayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for minDiskSize
+*/
+
+// isLong
+type CreateImagePayloadGetMinDiskSizeAttributeType = *int64
+type CreateImagePayloadGetMinDiskSizeArgType = int64
+type CreateImagePayloadGetMinDiskSizeRetType = int64
+
+func getCreateImagePayloadGetMinDiskSizeAttributeTypeOk(arg CreateImagePayloadGetMinDiskSizeAttributeType) (ret CreateImagePayloadGetMinDiskSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetMinDiskSizeAttributeType(arg *CreateImagePayloadGetMinDiskSizeAttributeType, val CreateImagePayloadGetMinDiskSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for minRam
+*/
+
+// isLong
+type CreateImagePayloadGetMinRamAttributeType = *int64
+type CreateImagePayloadGetMinRamArgType = int64
+type CreateImagePayloadGetMinRamRetType = int64
+
+func getCreateImagePayloadGetMinRamAttributeTypeOk(arg CreateImagePayloadGetMinRamAttributeType) (ret CreateImagePayloadGetMinRamRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetMinRamAttributeType(arg *CreateImagePayloadGetMinRamAttributeType, val CreateImagePayloadGetMinRamRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateImagePayloadGetNameAttributeType = *string
+
+func getCreateImagePayloadGetNameAttributeTypeOk(arg CreateImagePayloadGetNameAttributeType) (ret CreateImagePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetNameAttributeType(arg *CreateImagePayloadGetNameAttributeType, val CreateImagePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateImagePayloadGetNameArgType = string
+type CreateImagePayloadGetNameRetType = string
+
+/*
+	types and functions for owner
+*/
+
+// isNotNullableString
+type CreateImagePayloadGetOwnerAttributeType = *string
+
+func getCreateImagePayloadGetOwnerAttributeTypeOk(arg CreateImagePayloadGetOwnerAttributeType) (ret CreateImagePayloadGetOwnerRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetOwnerAttributeType(arg *CreateImagePayloadGetOwnerAttributeType, val CreateImagePayloadGetOwnerRetType) {
+	*arg = &val
+}
+
+type CreateImagePayloadGetOwnerArgType = string
+type CreateImagePayloadGetOwnerRetType = string
+
+/*
+	types and functions for protected
+*/
+
+// isBoolean
+type CreateImagePayloadgetProtectedAttributeType = *bool
+type CreateImagePayloadgetProtectedArgType = bool
+type CreateImagePayloadgetProtectedRetType = bool
+
+func getCreateImagePayloadgetProtectedAttributeTypeOk(arg CreateImagePayloadgetProtectedAttributeType) (ret CreateImagePayloadgetProtectedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadgetProtectedAttributeType(arg *CreateImagePayloadgetProtectedAttributeType, val CreateImagePayloadgetProtectedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for scope
+*/
+
+// isNotNullableString
+type CreateImagePayloadGetScopeAttributeType = *string
+
+func getCreateImagePayloadGetScopeAttributeTypeOk(arg CreateImagePayloadGetScopeAttributeType) (ret CreateImagePayloadGetScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetScopeAttributeType(arg *CreateImagePayloadGetScopeAttributeType, val CreateImagePayloadGetScopeRetType) {
+	*arg = &val
+}
+
+type CreateImagePayloadGetScopeArgType = string
+type CreateImagePayloadGetScopeRetType = string
+
+/*
+	types and functions for size
+*/
+
+// isLong
+type CreateImagePayloadGetSizeAttributeType = *int64
+type CreateImagePayloadGetSizeArgType = int64
+type CreateImagePayloadGetSizeRetType = int64
+
+func getCreateImagePayloadGetSizeAttributeTypeOk(arg CreateImagePayloadGetSizeAttributeType) (ret CreateImagePayloadGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetSizeAttributeType(arg *CreateImagePayloadGetSizeAttributeType, val CreateImagePayloadGetSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type CreateImagePayloadGetStatusAttributeType = *string
+
+func getCreateImagePayloadGetStatusAttributeTypeOk(arg CreateImagePayloadGetStatusAttributeType) (ret CreateImagePayloadGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetStatusAttributeType(arg *CreateImagePayloadGetStatusAttributeType, val CreateImagePayloadGetStatusRetType) {
+	*arg = &val
+}
+
+type CreateImagePayloadGetStatusArgType = string
+type CreateImagePayloadGetStatusRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type CreateImagePayloadGetUpdatedAtAttributeType = *time.Time
+type CreateImagePayloadGetUpdatedAtArgType = time.Time
+type CreateImagePayloadGetUpdatedAtRetType = time.Time
+
+func getCreateImagePayloadGetUpdatedAtAttributeTypeOk(arg CreateImagePayloadGetUpdatedAtAttributeType) (ret CreateImagePayloadGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetUpdatedAtAttributeType(arg *CreateImagePayloadGetUpdatedAtAttributeType, val CreateImagePayloadGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // CreateImagePayload Object that represents an Image and its parameters. Used for Creating and returning (get/list).
 type CreateImagePayload struct {
-	Checksum *ImageChecksum `json:"checksum,omitempty"`
-	Config   *ImageConfig   `json:"config,omitempty"`
+	Checksum CreateImagePayloadGetChecksumAttributeType `json:"checksum,omitempty"`
+	Config   CreateImagePayloadGetConfigAttributeType   `json:"config,omitempty"`
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt CreateImagePayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	// REQUIRED
-	DiskFormat *string `json:"diskFormat"`
+	DiskFormat CreateImagePayloadGetDiskFormatAttributeType `json:"diskFormat"`
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id CreateImagePayloadGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels CreateImagePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
-	MinDiskSize *int64 `json:"minDiskSize,omitempty"`
+	MinDiskSize CreateImagePayloadGetMinDiskSizeAttributeType `json:"minDiskSize,omitempty"`
 	// Size in Megabyte.
-	MinRam *int64 `json:"minRam,omitempty"`
+	MinRam CreateImagePayloadGetMinRamAttributeType `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CreateImagePayloadGetNameAttributeType `json:"name"`
 	// Universally Unique Identifier (UUID).
-	Owner     *string `json:"owner,omitempty"`
-	Protected *bool   `json:"protected,omitempty"`
+	Owner     CreateImagePayloadGetOwnerAttributeType     `json:"owner,omitempty"`
+	Protected CreateImagePayloadgetProtectedAttributeType `json:"protected,omitempty"`
 	// Scope of an Image. Possible values: `public`, `local`, `projects`, `organization`.
-	Scope *string `json:"scope,omitempty"`
+	Scope CreateImagePayloadGetScopeAttributeType `json:"scope,omitempty"`
 	// Size in bytes.
-	Size *int64 `json:"size,omitempty"`
+	Size CreateImagePayloadGetSizeAttributeType `json:"size,omitempty"`
 	// The status of an image object. Possible values: `AVAILABLE`, `CREATING`, `DEACTIVATED`, `DELETED`, `DELETING`, `ERROR`.
-	Status *string `json:"status,omitempty"`
+	Status CreateImagePayloadGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt CreateImagePayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 type _CreateImagePayload CreateImagePayload
@@ -57,10 +363,10 @@ type _CreateImagePayload CreateImagePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateImagePayload(diskFormat *string, name *string) *CreateImagePayload {
+func NewCreateImagePayload(diskFormat CreateImagePayloadGetDiskFormatArgType, name CreateImagePayloadGetNameArgType) *CreateImagePayload {
 	this := CreateImagePayload{}
-	this.DiskFormat = diskFormat
-	this.Name = name
+	setCreateImagePayloadGetDiskFormatAttributeType(&this.DiskFormat, diskFormat)
+	setCreateImagePayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -73,511 +379,384 @@ func NewCreateImagePayloadWithDefaults() *CreateImagePayload {
 }
 
 // GetChecksum returns the Checksum field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetChecksum() *ImageChecksum {
-	if o == nil || IsNil(o.Checksum) {
-		var ret *ImageChecksum
-		return ret
-	}
-	return o.Checksum
+func (o *CreateImagePayload) GetChecksum() (res CreateImagePayloadGetChecksumRetType) {
+	res, _ = o.GetChecksumOk()
+	return
 }
 
 // GetChecksumOk returns a tuple with the Checksum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetChecksumOk() (*ImageChecksum, bool) {
-	if o == nil || IsNil(o.Checksum) {
-		return nil, false
-	}
-	return o.Checksum, true
+func (o *CreateImagePayload) GetChecksumOk() (ret CreateImagePayloadGetChecksumRetType, ok bool) {
+	return getCreateImagePayloadGetChecksumAttributeTypeOk(o.Checksum)
 }
 
 // HasChecksum returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasChecksum() bool {
-	if o != nil && !IsNil(o.Checksum) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetChecksumOk()
+	return ok
 }
 
 // SetChecksum gets a reference to the given ImageChecksum and assigns it to the Checksum field.
-func (o *CreateImagePayload) SetChecksum(v *ImageChecksum) {
-	o.Checksum = v
+func (o *CreateImagePayload) SetChecksum(v CreateImagePayloadGetChecksumRetType) {
+	setCreateImagePayloadGetChecksumAttributeType(&o.Checksum, v)
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetConfig() *ImageConfig {
-	if o == nil || IsNil(o.Config) {
-		var ret *ImageConfig
-		return ret
-	}
-	return o.Config
+func (o *CreateImagePayload) GetConfig() (res CreateImagePayloadGetConfigRetType) {
+	res, _ = o.GetConfigOk()
+	return
 }
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetConfigOk() (*ImageConfig, bool) {
-	if o == nil || IsNil(o.Config) {
-		return nil, false
-	}
-	return o.Config, true
+func (o *CreateImagePayload) GetConfigOk() (ret CreateImagePayloadGetConfigRetType, ok bool) {
+	return getCreateImagePayloadGetConfigAttributeTypeOk(o.Config)
 }
 
 // HasConfig returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasConfig() bool {
-	if o != nil && !IsNil(o.Config) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetConfigOk()
+	return ok
 }
 
 // SetConfig gets a reference to the given ImageConfig and assigns it to the Config field.
-func (o *CreateImagePayload) SetConfig(v *ImageConfig) {
-	o.Config = v
+func (o *CreateImagePayload) SetConfig(v CreateImagePayloadGetConfigRetType) {
+	setCreateImagePayloadGetConfigAttributeType(&o.Config, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *CreateImagePayload) GetCreatedAt() (res CreateImagePayloadGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *CreateImagePayload) GetCreatedAtOk() (ret CreateImagePayloadGetCreatedAtRetType, ok bool) {
+	return getCreateImagePayloadGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *CreateImagePayload) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *CreateImagePayload) SetCreatedAt(v CreateImagePayloadGetCreatedAtRetType) {
+	setCreateImagePayloadGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetDiskFormat returns the DiskFormat field value
-func (o *CreateImagePayload) GetDiskFormat() *string {
-	if o == nil || IsNil(o.DiskFormat) {
-		var ret *string
-		return ret
-	}
-
-	return o.DiskFormat
+func (o *CreateImagePayload) GetDiskFormat() (ret CreateImagePayloadGetDiskFormatRetType) {
+	ret, _ = o.GetDiskFormatOk()
+	return ret
 }
 
 // GetDiskFormatOk returns a tuple with the DiskFormat field value
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetDiskFormatOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DiskFormat, true
+func (o *CreateImagePayload) GetDiskFormatOk() (ret CreateImagePayloadGetDiskFormatRetType, ok bool) {
+	return getCreateImagePayloadGetDiskFormatAttributeTypeOk(o.DiskFormat)
 }
 
 // SetDiskFormat sets field value
-func (o *CreateImagePayload) SetDiskFormat(v *string) {
-	o.DiskFormat = v
+func (o *CreateImagePayload) SetDiskFormat(v CreateImagePayloadGetDiskFormatRetType) {
+	setCreateImagePayloadGetDiskFormatAttributeType(&o.DiskFormat, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *CreateImagePayload) GetId() (res CreateImagePayloadGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CreateImagePayload) GetIdOk() (ret CreateImagePayloadGetIdRetType, ok bool) {
+	return getCreateImagePayloadGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateImagePayload) SetId(v *string) {
-	o.Id = v
+func (o *CreateImagePayload) SetId(v CreateImagePayloadGetIdRetType) {
+	setCreateImagePayloadGetIdAttributeType(&o.Id, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *CreateImagePayload) GetLabels() (res CreateImagePayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *CreateImagePayload) GetLabelsOk() (ret CreateImagePayloadGetLabelsRetType, ok bool) {
+	return getCreateImagePayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *CreateImagePayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *CreateImagePayload) SetLabels(v CreateImagePayloadGetLabelsRetType) {
+	setCreateImagePayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetMinDiskSize returns the MinDiskSize field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetMinDiskSize() *int64 {
-	if o == nil || IsNil(o.MinDiskSize) {
-		var ret *int64
-		return ret
-	}
-	return o.MinDiskSize
+func (o *CreateImagePayload) GetMinDiskSize() (res CreateImagePayloadGetMinDiskSizeRetType) {
+	res, _ = o.GetMinDiskSizeOk()
+	return
 }
 
 // GetMinDiskSizeOk returns a tuple with the MinDiskSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetMinDiskSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.MinDiskSize) {
-		return nil, false
-	}
-	return o.MinDiskSize, true
+func (o *CreateImagePayload) GetMinDiskSizeOk() (ret CreateImagePayloadGetMinDiskSizeRetType, ok bool) {
+	return getCreateImagePayloadGetMinDiskSizeAttributeTypeOk(o.MinDiskSize)
 }
 
 // HasMinDiskSize returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasMinDiskSize() bool {
-	if o != nil && !IsNil(o.MinDiskSize) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMinDiskSizeOk()
+	return ok
 }
 
 // SetMinDiskSize gets a reference to the given int64 and assigns it to the MinDiskSize field.
-func (o *CreateImagePayload) SetMinDiskSize(v *int64) {
-	o.MinDiskSize = v
+func (o *CreateImagePayload) SetMinDiskSize(v CreateImagePayloadGetMinDiskSizeRetType) {
+	setCreateImagePayloadGetMinDiskSizeAttributeType(&o.MinDiskSize, v)
 }
 
 // GetMinRam returns the MinRam field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetMinRam() *int64 {
-	if o == nil || IsNil(o.MinRam) {
-		var ret *int64
-		return ret
-	}
-	return o.MinRam
+func (o *CreateImagePayload) GetMinRam() (res CreateImagePayloadGetMinRamRetType) {
+	res, _ = o.GetMinRamOk()
+	return
 }
 
 // GetMinRamOk returns a tuple with the MinRam field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetMinRamOk() (*int64, bool) {
-	if o == nil || IsNil(o.MinRam) {
-		return nil, false
-	}
-	return o.MinRam, true
+func (o *CreateImagePayload) GetMinRamOk() (ret CreateImagePayloadGetMinRamRetType, ok bool) {
+	return getCreateImagePayloadGetMinRamAttributeTypeOk(o.MinRam)
 }
 
 // HasMinRam returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasMinRam() bool {
-	if o != nil && !IsNil(o.MinRam) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMinRamOk()
+	return ok
 }
 
 // SetMinRam gets a reference to the given int64 and assigns it to the MinRam field.
-func (o *CreateImagePayload) SetMinRam(v *int64) {
-	o.MinRam = v
+func (o *CreateImagePayload) SetMinRam(v CreateImagePayloadGetMinRamRetType) {
+	setCreateImagePayloadGetMinRamAttributeType(&o.MinRam, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateImagePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateImagePayload) GetName() (ret CreateImagePayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateImagePayload) GetNameOk() (ret CreateImagePayloadGetNameRetType, ok bool) {
+	return getCreateImagePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateImagePayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateImagePayload) SetName(v CreateImagePayloadGetNameRetType) {
+	setCreateImagePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetOwner() *string {
-	if o == nil || IsNil(o.Owner) {
-		var ret *string
-		return ret
-	}
-	return o.Owner
+func (o *CreateImagePayload) GetOwner() (res CreateImagePayloadGetOwnerRetType) {
+	res, _ = o.GetOwnerOk()
+	return
 }
 
 // GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetOwnerOk() (*string, bool) {
-	if o == nil || IsNil(o.Owner) {
-		return nil, false
-	}
-	return o.Owner, true
+func (o *CreateImagePayload) GetOwnerOk() (ret CreateImagePayloadGetOwnerRetType, ok bool) {
+	return getCreateImagePayloadGetOwnerAttributeTypeOk(o.Owner)
 }
 
 // HasOwner returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasOwner() bool {
-	if o != nil && !IsNil(o.Owner) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOwnerOk()
+	return ok
 }
 
 // SetOwner gets a reference to the given string and assigns it to the Owner field.
-func (o *CreateImagePayload) SetOwner(v *string) {
-	o.Owner = v
+func (o *CreateImagePayload) SetOwner(v CreateImagePayloadGetOwnerRetType) {
+	setCreateImagePayloadGetOwnerAttributeType(&o.Owner, v)
 }
 
 // GetProtected returns the Protected field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetProtected() *bool {
-	if o == nil || IsNil(o.Protected) {
-		var ret *bool
-		return ret
-	}
-	return o.Protected
+func (o *CreateImagePayload) GetProtected() (res CreateImagePayloadgetProtectedRetType) {
+	res, _ = o.GetProtectedOk()
+	return
 }
 
 // GetProtectedOk returns a tuple with the Protected field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetProtectedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Protected) {
-		return nil, false
-	}
-	return o.Protected, true
+func (o *CreateImagePayload) GetProtectedOk() (ret CreateImagePayloadgetProtectedRetType, ok bool) {
+	return getCreateImagePayloadgetProtectedAttributeTypeOk(o.Protected)
 }
 
 // HasProtected returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasProtected() bool {
-	if o != nil && !IsNil(o.Protected) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProtectedOk()
+	return ok
 }
 
 // SetProtected gets a reference to the given bool and assigns it to the Protected field.
-func (o *CreateImagePayload) SetProtected(v *bool) {
-	o.Protected = v
+func (o *CreateImagePayload) SetProtected(v CreateImagePayloadgetProtectedRetType) {
+	setCreateImagePayloadgetProtectedAttributeType(&o.Protected, v)
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetScope() *string {
-	if o == nil || IsNil(o.Scope) {
-		var ret *string
-		return ret
-	}
-	return o.Scope
+func (o *CreateImagePayload) GetScope() (res CreateImagePayloadGetScopeRetType) {
+	res, _ = o.GetScopeOk()
+	return
 }
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetScopeOk() (*string, bool) {
-	if o == nil || IsNil(o.Scope) {
-		return nil, false
-	}
-	return o.Scope, true
+func (o *CreateImagePayload) GetScopeOk() (ret CreateImagePayloadGetScopeRetType, ok bool) {
+	return getCreateImagePayloadGetScopeAttributeTypeOk(o.Scope)
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasScope() bool {
-	if o != nil && !IsNil(o.Scope) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetScopeOk()
+	return ok
 }
 
 // SetScope gets a reference to the given string and assigns it to the Scope field.
-func (o *CreateImagePayload) SetScope(v *string) {
-	o.Scope = v
+func (o *CreateImagePayload) SetScope(v CreateImagePayloadGetScopeRetType) {
+	setCreateImagePayloadGetScopeAttributeType(&o.Scope, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-	return o.Size
+func (o *CreateImagePayload) GetSize() (res CreateImagePayloadGetSizeRetType) {
+	res, _ = o.GetSizeOk()
+	return
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Size) {
-		return nil, false
-	}
-	return o.Size, true
+func (o *CreateImagePayload) GetSizeOk() (ret CreateImagePayloadGetSizeRetType, ok bool) {
+	return getCreateImagePayloadGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSizeOk()
+	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *CreateImagePayload) SetSize(v *int64) {
-	o.Size = v
+func (o *CreateImagePayload) SetSize(v CreateImagePayloadGetSizeRetType) {
+	setCreateImagePayloadGetSizeAttributeType(&o.Size, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *CreateImagePayload) GetStatus() (res CreateImagePayloadGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *CreateImagePayload) GetStatusOk() (ret CreateImagePayloadGetStatusRetType, ok bool) {
+	return getCreateImagePayloadGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *CreateImagePayload) SetStatus(v *string) {
-	o.Status = v
+func (o *CreateImagePayload) SetStatus(v CreateImagePayloadGetStatusRetType) {
+	setCreateImagePayloadGetStatusAttributeType(&o.Status, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *CreateImagePayload) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *CreateImagePayload) GetUpdatedAt() (res CreateImagePayloadGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateImagePayload) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *CreateImagePayload) GetUpdatedAtOk() (ret CreateImagePayloadGetUpdatedAtRetType, ok bool) {
+	return getCreateImagePayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *CreateImagePayload) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *CreateImagePayload) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *CreateImagePayload) SetUpdatedAt(v CreateImagePayloadGetUpdatedAtRetType) {
+	setCreateImagePayloadGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 func (o CreateImagePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Checksum) {
-		toSerialize["checksum"] = o.Checksum
+	if val, ok := getCreateImagePayloadGetChecksumAttributeTypeOk(o.Checksum); ok {
+		toSerialize["Checksum"] = val
 	}
-	if !IsNil(o.Config) {
-		toSerialize["config"] = o.Config
+	if val, ok := getCreateImagePayloadGetConfigAttributeTypeOk(o.Config); ok {
+		toSerialize["Config"] = val
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getCreateImagePayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	toSerialize["diskFormat"] = o.DiskFormat
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getCreateImagePayloadGetDiskFormatAttributeTypeOk(o.DiskFormat); ok {
+		toSerialize["DiskFormat"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getCreateImagePayloadGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.MinDiskSize) {
-		toSerialize["minDiskSize"] = o.MinDiskSize
+	if val, ok := getCreateImagePayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.MinRam) {
-		toSerialize["minRam"] = o.MinRam
+	if val, ok := getCreateImagePayloadGetMinDiskSizeAttributeTypeOk(o.MinDiskSize); ok {
+		toSerialize["MinDiskSize"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Owner) {
-		toSerialize["owner"] = o.Owner
+	if val, ok := getCreateImagePayloadGetMinRamAttributeTypeOk(o.MinRam); ok {
+		toSerialize["MinRam"] = val
 	}
-	if !IsNil(o.Protected) {
-		toSerialize["protected"] = o.Protected
+	if val, ok := getCreateImagePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
+	if val, ok := getCreateImagePayloadGetOwnerAttributeTypeOk(o.Owner); ok {
+		toSerialize["Owner"] = val
 	}
-	if !IsNil(o.Size) {
-		toSerialize["size"] = o.Size
+	if val, ok := getCreateImagePayloadgetProtectedAttributeTypeOk(o.Protected); ok {
+		toSerialize["Protected"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getCreateImagePayloadGetScopeAttributeTypeOk(o.Scope); ok {
+		toSerialize["Scope"] = val
 	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getCreateImagePayloadGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
+	}
+	if val, ok := getCreateImagePayloadGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
+	}
+	if val, ok := getCreateImagePayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }
