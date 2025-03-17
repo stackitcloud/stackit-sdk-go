@@ -17,12 +17,53 @@ import (
 // checks if the AlertConfigReceiversResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AlertConfigReceiversResponse{}
 
+/*
+	types and functions for data
+*/
+
+// isArray
+type AlertConfigReceiversResponseGetDataAttributeType = *[]Receivers
+type AlertConfigReceiversResponseGetDataArgType = []Receivers
+type AlertConfigReceiversResponseGetDataRetType = []Receivers
+
+func getAlertConfigReceiversResponseGetDataAttributeTypeOk(arg AlertConfigReceiversResponseGetDataAttributeType) (ret AlertConfigReceiversResponseGetDataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAlertConfigReceiversResponseGetDataAttributeType(arg *AlertConfigReceiversResponseGetDataAttributeType, val AlertConfigReceiversResponseGetDataRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type AlertConfigReceiversResponseGetMessageAttributeType = *string
+
+func getAlertConfigReceiversResponseGetMessageAttributeTypeOk(arg AlertConfigReceiversResponseGetMessageAttributeType) (ret AlertConfigReceiversResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAlertConfigReceiversResponseGetMessageAttributeType(arg *AlertConfigReceiversResponseGetMessageAttributeType, val AlertConfigReceiversResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type AlertConfigReceiversResponseGetMessageArgType = string
+type AlertConfigReceiversResponseGetMessageRetType = string
+
 // AlertConfigReceiversResponse struct for AlertConfigReceiversResponse
 type AlertConfigReceiversResponse struct {
 	// REQUIRED
-	Data *[]Receivers `json:"data"`
+	Data AlertConfigReceiversResponseGetDataAttributeType `json:"data"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message AlertConfigReceiversResponseGetMessageAttributeType `json:"message"`
 }
 
 type _AlertConfigReceiversResponse AlertConfigReceiversResponse
@@ -31,10 +72,10 @@ type _AlertConfigReceiversResponse AlertConfigReceiversResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlertConfigReceiversResponse(data *[]Receivers, message *string) *AlertConfigReceiversResponse {
+func NewAlertConfigReceiversResponse(data AlertConfigReceiversResponseGetDataArgType, message AlertConfigReceiversResponseGetMessageArgType) *AlertConfigReceiversResponse {
 	this := AlertConfigReceiversResponse{}
-	this.Data = data
-	this.Message = message
+	setAlertConfigReceiversResponseGetDataAttributeType(&this.Data, data)
+	setAlertConfigReceiversResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewAlertConfigReceiversResponseWithDefaults() *AlertConfigReceiversResponse
 }
 
 // GetData returns the Data field value
-func (o *AlertConfigReceiversResponse) GetData() *[]Receivers {
-	if o == nil || IsNil(o.Data) {
-		var ret *[]Receivers
-		return ret
-	}
-
-	return o.Data
+func (o *AlertConfigReceiversResponse) GetData() (ret AlertConfigReceiversResponseGetDataRetType) {
+	ret, _ = o.GetDataOk()
+	return ret
 }
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *AlertConfigReceiversResponse) GetDataOk() (*[]Receivers, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Data, true
+func (o *AlertConfigReceiversResponse) GetDataOk() (ret AlertConfigReceiversResponseGetDataRetType, ok bool) {
+	return getAlertConfigReceiversResponseGetDataAttributeTypeOk(o.Data)
 }
 
 // SetData sets field value
-func (o *AlertConfigReceiversResponse) SetData(v *[]Receivers) {
-	o.Data = v
+func (o *AlertConfigReceiversResponse) SetData(v AlertConfigReceiversResponseGetDataRetType) {
+	setAlertConfigReceiversResponseGetDataAttributeType(&o.Data, v)
 }
 
 // GetMessage returns the Message field value
-func (o *AlertConfigReceiversResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *AlertConfigReceiversResponse) GetMessage() (ret AlertConfigReceiversResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *AlertConfigReceiversResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *AlertConfigReceiversResponse) GetMessageOk() (ret AlertConfigReceiversResponseGetMessageRetType, ok bool) {
+	return getAlertConfigReceiversResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *AlertConfigReceiversResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *AlertConfigReceiversResponse) SetMessage(v AlertConfigReceiversResponseGetMessageRetType) {
+	setAlertConfigReceiversResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o AlertConfigReceiversResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["data"] = o.Data
-	toSerialize["message"] = o.Message
+	if val, ok := getAlertConfigReceiversResponseGetDataAttributeTypeOk(o.Data); ok {
+		toSerialize["Data"] = val
+	}
+	if val, ok := getAlertConfigReceiversResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

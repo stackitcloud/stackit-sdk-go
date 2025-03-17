@@ -17,10 +17,31 @@ import (
 // checks if the PermissionDenied type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PermissionDenied{}
 
+/*
+	types and functions for detail
+*/
+
+// isNotNullableString
+type PermissionDeniedGetDetailAttributeType = *string
+
+func getPermissionDeniedGetDetailAttributeTypeOk(arg PermissionDeniedGetDetailAttributeType) (ret PermissionDeniedGetDetailRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPermissionDeniedGetDetailAttributeType(arg *PermissionDeniedGetDetailAttributeType, val PermissionDeniedGetDetailRetType) {
+	*arg = &val
+}
+
+type PermissionDeniedGetDetailArgType = string
+type PermissionDeniedGetDetailRetType = string
+
 // PermissionDenied struct for PermissionDenied
 type PermissionDenied struct {
 	// REQUIRED
-	Detail *string `json:"detail"`
+	Detail PermissionDeniedGetDetailAttributeType `json:"detail"`
 }
 
 type _PermissionDenied PermissionDenied
@@ -29,9 +50,9 @@ type _PermissionDenied PermissionDenied
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPermissionDenied(detail *string) *PermissionDenied {
+func NewPermissionDenied(detail PermissionDeniedGetDetailArgType) *PermissionDenied {
 	this := PermissionDenied{}
-	this.Detail = detail
+	setPermissionDeniedGetDetailAttributeType(&this.Detail, detail)
 	return &this
 }
 
@@ -44,32 +65,27 @@ func NewPermissionDeniedWithDefaults() *PermissionDenied {
 }
 
 // GetDetail returns the Detail field value
-func (o *PermissionDenied) GetDetail() *string {
-	if o == nil || IsNil(o.Detail) {
-		var ret *string
-		return ret
-	}
-
-	return o.Detail
+func (o *PermissionDenied) GetDetail() (ret PermissionDeniedGetDetailRetType) {
+	ret, _ = o.GetDetailOk()
+	return ret
 }
 
 // GetDetailOk returns a tuple with the Detail field value
 // and a boolean to check if the value has been set.
-func (o *PermissionDenied) GetDetailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Detail, true
+func (o *PermissionDenied) GetDetailOk() (ret PermissionDeniedGetDetailRetType, ok bool) {
+	return getPermissionDeniedGetDetailAttributeTypeOk(o.Detail)
 }
 
 // SetDetail sets field value
-func (o *PermissionDenied) SetDetail(v *string) {
-	o.Detail = v
+func (o *PermissionDenied) SetDetail(v PermissionDeniedGetDetailRetType) {
+	setPermissionDeniedGetDetailAttributeType(&o.Detail, v)
 }
 
 func (o PermissionDenied) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["detail"] = o.Detail
+	if val, ok := getPermissionDeniedGetDetailAttributeTypeOk(o.Detail); ok {
+		toSerialize["Detail"] = val
+	}
 	return toSerialize, nil
 }
 

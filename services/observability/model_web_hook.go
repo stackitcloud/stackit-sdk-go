@@ -17,12 +17,73 @@ import (
 // checks if the WebHook type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &WebHook{}
 
+/*
+	types and functions for msTeams
+*/
+
+// isBoolean
+type WebHookgetMsTeamsAttributeType = *bool
+type WebHookgetMsTeamsArgType = bool
+type WebHookgetMsTeamsRetType = bool
+
+func getWebHookgetMsTeamsAttributeTypeOk(arg WebHookgetMsTeamsAttributeType) (ret WebHookgetMsTeamsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setWebHookgetMsTeamsAttributeType(arg *WebHookgetMsTeamsAttributeType, val WebHookgetMsTeamsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for sendResolved
+*/
+
+// isBoolean
+type WebHookgetSendResolvedAttributeType = *bool
+type WebHookgetSendResolvedArgType = bool
+type WebHookgetSendResolvedRetType = bool
+
+func getWebHookgetSendResolvedAttributeTypeOk(arg WebHookgetSendResolvedAttributeType) (ret WebHookgetSendResolvedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setWebHookgetSendResolvedAttributeType(arg *WebHookgetSendResolvedAttributeType, val WebHookgetSendResolvedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for url
+*/
+
+// isNotNullableString
+type WebHookGetUrlAttributeType = *string
+
+func getWebHookGetUrlAttributeTypeOk(arg WebHookGetUrlAttributeType) (ret WebHookGetUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setWebHookGetUrlAttributeType(arg *WebHookGetUrlAttributeType, val WebHookGetUrlRetType) {
+	*arg = &val
+}
+
+type WebHookGetUrlArgType = string
+type WebHookGetUrlRetType = string
+
 // WebHook struct for WebHook
 type WebHook struct {
-	MsTeams      *bool `json:"msTeams,omitempty"`
-	SendResolved *bool `json:"sendResolved,omitempty"`
+	MsTeams      WebHookgetMsTeamsAttributeType      `json:"msTeams,omitempty"`
+	SendResolved WebHookgetSendResolvedAttributeType `json:"sendResolved,omitempty"`
 	// REQUIRED
-	Url *string `json:"url"`
+	Url WebHookGetUrlAttributeType `json:"url"`
 }
 
 type _WebHook WebHook
@@ -31,13 +92,9 @@ type _WebHook WebHook
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebHook(url *string) *WebHook {
+func NewWebHook(url WebHookGetUrlArgType) *WebHook {
 	this := WebHook{}
-	var msTeams bool = false
-	this.MsTeams = &msTeams
-	var sendResolved bool = true
-	this.SendResolved = &sendResolved
-	this.Url = url
+	setWebHookGetUrlAttributeType(&this.Url, url)
 	return &this
 }
 
@@ -54,102 +111,79 @@ func NewWebHookWithDefaults() *WebHook {
 }
 
 // GetMsTeams returns the MsTeams field value if set, zero value otherwise.
-func (o *WebHook) GetMsTeams() *bool {
-	if o == nil || IsNil(o.MsTeams) {
-		var ret *bool
-		return ret
-	}
-	return o.MsTeams
+func (o *WebHook) GetMsTeams() (res WebHookgetMsTeamsRetType) {
+	res, _ = o.GetMsTeamsOk()
+	return
 }
 
 // GetMsTeamsOk returns a tuple with the MsTeams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebHook) GetMsTeamsOk() (*bool, bool) {
-	if o == nil || IsNil(o.MsTeams) {
-		return nil, false
-	}
-	return o.MsTeams, true
+func (o *WebHook) GetMsTeamsOk() (ret WebHookgetMsTeamsRetType, ok bool) {
+	return getWebHookgetMsTeamsAttributeTypeOk(o.MsTeams)
 }
 
 // HasMsTeams returns a boolean if a field has been set.
 func (o *WebHook) HasMsTeams() bool {
-	if o != nil && !IsNil(o.MsTeams) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMsTeamsOk()
+	return ok
 }
 
 // SetMsTeams gets a reference to the given bool and assigns it to the MsTeams field.
-func (o *WebHook) SetMsTeams(v *bool) {
-	o.MsTeams = v
+func (o *WebHook) SetMsTeams(v WebHookgetMsTeamsRetType) {
+	setWebHookgetMsTeamsAttributeType(&o.MsTeams, v)
 }
 
 // GetSendResolved returns the SendResolved field value if set, zero value otherwise.
-func (o *WebHook) GetSendResolved() *bool {
-	if o == nil || IsNil(o.SendResolved) {
-		var ret *bool
-		return ret
-	}
-	return o.SendResolved
+func (o *WebHook) GetSendResolved() (res WebHookgetSendResolvedRetType) {
+	res, _ = o.GetSendResolvedOk()
+	return
 }
 
 // GetSendResolvedOk returns a tuple with the SendResolved field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebHook) GetSendResolvedOk() (*bool, bool) {
-	if o == nil || IsNil(o.SendResolved) {
-		return nil, false
-	}
-	return o.SendResolved, true
+func (o *WebHook) GetSendResolvedOk() (ret WebHookgetSendResolvedRetType, ok bool) {
+	return getWebHookgetSendResolvedAttributeTypeOk(o.SendResolved)
 }
 
 // HasSendResolved returns a boolean if a field has been set.
 func (o *WebHook) HasSendResolved() bool {
-	if o != nil && !IsNil(o.SendResolved) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSendResolvedOk()
+	return ok
 }
 
 // SetSendResolved gets a reference to the given bool and assigns it to the SendResolved field.
-func (o *WebHook) SetSendResolved(v *bool) {
-	o.SendResolved = v
+func (o *WebHook) SetSendResolved(v WebHookgetSendResolvedRetType) {
+	setWebHookgetSendResolvedAttributeType(&o.SendResolved, v)
 }
 
 // GetUrl returns the Url field value
-func (o *WebHook) GetUrl() *string {
-	if o == nil || IsNil(o.Url) {
-		var ret *string
-		return ret
-	}
-
-	return o.Url
+func (o *WebHook) GetUrl() (ret WebHookGetUrlRetType) {
+	ret, _ = o.GetUrlOk()
+	return ret
 }
 
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
-func (o *WebHook) GetUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Url, true
+func (o *WebHook) GetUrlOk() (ret WebHookGetUrlRetType, ok bool) {
+	return getWebHookGetUrlAttributeTypeOk(o.Url)
 }
 
 // SetUrl sets field value
-func (o *WebHook) SetUrl(v *string) {
-	o.Url = v
+func (o *WebHook) SetUrl(v WebHookGetUrlRetType) {
+	setWebHookGetUrlAttributeType(&o.Url, v)
 }
 
 func (o WebHook) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.MsTeams) {
-		toSerialize["msTeams"] = o.MsTeams
+	if val, ok := getWebHookgetMsTeamsAttributeTypeOk(o.MsTeams); ok {
+		toSerialize["MsTeams"] = val
 	}
-	if !IsNil(o.SendResolved) {
-		toSerialize["sendResolved"] = o.SendResolved
+	if val, ok := getWebHookgetSendResolvedAttributeTypeOk(o.SendResolved); ok {
+		toSerialize["SendResolved"] = val
 	}
-	toSerialize["url"] = o.Url
+	if val, ok := getWebHookGetUrlAttributeTypeOk(o.Url); ok {
+		toSerialize["Url"] = val
+	}
 	return toSerialize, nil
 }
 
