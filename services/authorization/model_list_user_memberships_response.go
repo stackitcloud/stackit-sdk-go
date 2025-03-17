@@ -17,10 +17,30 @@ import (
 // checks if the ListUserMembershipsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListUserMembershipsResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListUserMembershipsResponseGetItemsAttributeType = *[]UserMembership
+type ListUserMembershipsResponseGetItemsArgType = []UserMembership
+type ListUserMembershipsResponseGetItemsRetType = []UserMembership
+
+func getListUserMembershipsResponseGetItemsAttributeTypeOk(arg ListUserMembershipsResponseGetItemsAttributeType) (ret ListUserMembershipsResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListUserMembershipsResponseGetItemsAttributeType(arg *ListUserMembershipsResponseGetItemsAttributeType, val ListUserMembershipsResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // ListUserMembershipsResponse struct for ListUserMembershipsResponse
 type ListUserMembershipsResponse struct {
 	// REQUIRED
-	Items *[]UserMembership `json:"items"`
+	Items ListUserMembershipsResponseGetItemsAttributeType `json:"items"`
 }
 
 type _ListUserMembershipsResponse ListUserMembershipsResponse
@@ -29,9 +49,9 @@ type _ListUserMembershipsResponse ListUserMembershipsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListUserMembershipsResponse(items *[]UserMembership) *ListUserMembershipsResponse {
+func NewListUserMembershipsResponse(items ListUserMembershipsResponseGetItemsArgType) *ListUserMembershipsResponse {
 	this := ListUserMembershipsResponse{}
-	this.Items = items
+	setListUserMembershipsResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewListUserMembershipsResponseWithDefaults() *ListUserMembershipsResponse {
 }
 
 // GetItems returns the Items field value
-func (o *ListUserMembershipsResponse) GetItems() *[]UserMembership {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]UserMembership
-		return ret
-	}
-
-	return o.Items
+func (o *ListUserMembershipsResponse) GetItems() (ret ListUserMembershipsResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *ListUserMembershipsResponse) GetItemsOk() (*[]UserMembership, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListUserMembershipsResponse) GetItemsOk() (ret ListUserMembershipsResponseGetItemsRetType, ok bool) {
+	return getListUserMembershipsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *ListUserMembershipsResponse) SetItems(v *[]UserMembership) {
-	o.Items = v
+func (o *ListUserMembershipsResponse) SetItems(v ListUserMembershipsResponseGetItemsRetType) {
+	setListUserMembershipsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o ListUserMembershipsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getListUserMembershipsResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 
