@@ -4,6 +4,9 @@
 - `cdn`: [0.1.0](services/cdn/CHANGELOG.md#v010-2025-xx-yy)
   - **New:** Introduce new API for content delivery
 - `serverupdate`: [1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-xx-yy)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `serverbackup`: [1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-xx-yy)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
 
 ## Release (2025-03-14)
