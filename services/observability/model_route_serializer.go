@@ -17,19 +17,223 @@ import (
 // checks if the RouteSerializer type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RouteSerializer{}
 
+/*
+	types and functions for continue
+*/
+
+// isBoolean
+type RouteSerializergetContinueAttributeType = *bool
+type RouteSerializergetContinueArgType = bool
+type RouteSerializergetContinueRetType = bool
+
+func getRouteSerializergetContinueAttributeTypeOk(arg RouteSerializergetContinueAttributeType) (ret RouteSerializergetContinueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializergetContinueAttributeType(arg *RouteSerializergetContinueAttributeType, val RouteSerializergetContinueRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for groupBy
+*/
+
+// isArray
+type RouteSerializerGetGroupByAttributeType = *[]string
+type RouteSerializerGetGroupByArgType = []string
+type RouteSerializerGetGroupByRetType = []string
+
+func getRouteSerializerGetGroupByAttributeTypeOk(arg RouteSerializerGetGroupByAttributeType) (ret RouteSerializerGetGroupByRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializerGetGroupByAttributeType(arg *RouteSerializerGetGroupByAttributeType, val RouteSerializerGetGroupByRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for groupInterval
+*/
+
+// isNotNullableString
+type RouteSerializerGetGroupIntervalAttributeType = *string
+
+func getRouteSerializerGetGroupIntervalAttributeTypeOk(arg RouteSerializerGetGroupIntervalAttributeType) (ret RouteSerializerGetGroupIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializerGetGroupIntervalAttributeType(arg *RouteSerializerGetGroupIntervalAttributeType, val RouteSerializerGetGroupIntervalRetType) {
+	*arg = &val
+}
+
+type RouteSerializerGetGroupIntervalArgType = string
+type RouteSerializerGetGroupIntervalRetType = string
+
+/*
+	types and functions for groupWait
+*/
+
+// isNotNullableString
+type RouteSerializerGetGroupWaitAttributeType = *string
+
+func getRouteSerializerGetGroupWaitAttributeTypeOk(arg RouteSerializerGetGroupWaitAttributeType) (ret RouteSerializerGetGroupWaitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializerGetGroupWaitAttributeType(arg *RouteSerializerGetGroupWaitAttributeType, val RouteSerializerGetGroupWaitRetType) {
+	*arg = &val
+}
+
+type RouteSerializerGetGroupWaitArgType = string
+type RouteSerializerGetGroupWaitRetType = string
+
+/*
+	types and functions for match
+*/
+
+// isContainer
+type RouteSerializerGetMatchAttributeType = *map[string]string
+type RouteSerializerGetMatchArgType = map[string]string
+type RouteSerializerGetMatchRetType = map[string]string
+
+func getRouteSerializerGetMatchAttributeTypeOk(arg RouteSerializerGetMatchAttributeType) (ret RouteSerializerGetMatchRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializerGetMatchAttributeType(arg *RouteSerializerGetMatchAttributeType, val RouteSerializerGetMatchRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for matchRe
+*/
+
+// isContainer
+type RouteSerializerGetMatchReAttributeType = *map[string]string
+type RouteSerializerGetMatchReArgType = map[string]string
+type RouteSerializerGetMatchReRetType = map[string]string
+
+func getRouteSerializerGetMatchReAttributeTypeOk(arg RouteSerializerGetMatchReAttributeType) (ret RouteSerializerGetMatchReRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializerGetMatchReAttributeType(arg *RouteSerializerGetMatchReAttributeType, val RouteSerializerGetMatchReRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for matchers
+*/
+
+// isArray
+type RouteSerializerGetMatchersAttributeType = *[]string
+type RouteSerializerGetMatchersArgType = []string
+type RouteSerializerGetMatchersRetType = []string
+
+func getRouteSerializerGetMatchersAttributeTypeOk(arg RouteSerializerGetMatchersAttributeType) (ret RouteSerializerGetMatchersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializerGetMatchersAttributeType(arg *RouteSerializerGetMatchersAttributeType, val RouteSerializerGetMatchersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for receiver
+*/
+
+// isNotNullableString
+type RouteSerializerGetReceiverAttributeType = *string
+
+func getRouteSerializerGetReceiverAttributeTypeOk(arg RouteSerializerGetReceiverAttributeType) (ret RouteSerializerGetReceiverRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializerGetReceiverAttributeType(arg *RouteSerializerGetReceiverAttributeType, val RouteSerializerGetReceiverRetType) {
+	*arg = &val
+}
+
+type RouteSerializerGetReceiverArgType = string
+type RouteSerializerGetReceiverRetType = string
+
+/*
+	types and functions for repeatInterval
+*/
+
+// isNotNullableString
+type RouteSerializerGetRepeatIntervalAttributeType = *string
+
+func getRouteSerializerGetRepeatIntervalAttributeTypeOk(arg RouteSerializerGetRepeatIntervalAttributeType) (ret RouteSerializerGetRepeatIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializerGetRepeatIntervalAttributeType(arg *RouteSerializerGetRepeatIntervalAttributeType, val RouteSerializerGetRepeatIntervalRetType) {
+	*arg = &val
+}
+
+type RouteSerializerGetRepeatIntervalArgType = string
+type RouteSerializerGetRepeatIntervalRetType = string
+
+/*
+	types and functions for routes
+*/
+
+// isArray
+type RouteSerializerGetRoutesAttributeType = *[]map[string]string
+type RouteSerializerGetRoutesArgType = []map[string]string
+type RouteSerializerGetRoutesRetType = []map[string]string
+
+func getRouteSerializerGetRoutesAttributeTypeOk(arg RouteSerializerGetRoutesAttributeType) (ret RouteSerializerGetRoutesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteSerializerGetRoutesAttributeType(arg *RouteSerializerGetRoutesAttributeType, val RouteSerializerGetRoutesRetType) {
+	*arg = &val
+}
+
 // RouteSerializer struct for RouteSerializer
 type RouteSerializer struct {
-	Continue      *bool              `json:"continue,omitempty"`
-	GroupBy       *[]string          `json:"groupBy,omitempty"`
-	GroupInterval *string            `json:"groupInterval,omitempty"`
-	GroupWait     *string            `json:"groupWait,omitempty"`
-	Match         *map[string]string `json:"match,omitempty"`
-	MatchRe       *map[string]string `json:"matchRe,omitempty"`
-	Matchers      *[]string          `json:"matchers,omitempty"`
+	Continue      RouteSerializergetContinueAttributeType      `json:"continue,omitempty"`
+	GroupBy       RouteSerializerGetGroupByAttributeType       `json:"groupBy,omitempty"`
+	GroupInterval RouteSerializerGetGroupIntervalAttributeType `json:"groupInterval,omitempty"`
+	GroupWait     RouteSerializerGetGroupWaitAttributeType     `json:"groupWait,omitempty"`
+	Match         RouteSerializerGetMatchAttributeType         `json:"match,omitempty"`
+	MatchRe       RouteSerializerGetMatchReAttributeType       `json:"matchRe,omitempty"`
+	Matchers      RouteSerializerGetMatchersAttributeType      `json:"matchers,omitempty"`
 	// REQUIRED
-	Receiver       *string              `json:"receiver"`
-	RepeatInterval *string              `json:"repeatInterval,omitempty"`
-	Routes         *[]map[string]string `json:"routes,omitempty"`
+	Receiver       RouteSerializerGetReceiverAttributeType       `json:"receiver"`
+	RepeatInterval RouteSerializerGetRepeatIntervalAttributeType `json:"repeatInterval,omitempty"`
+	Routes         RouteSerializerGetRoutesAttributeType         `json:"routes,omitempty"`
 }
 
 type _RouteSerializer RouteSerializer
@@ -38,17 +242,9 @@ type _RouteSerializer RouteSerializer
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRouteSerializer(receiver *string) *RouteSerializer {
+func NewRouteSerializer(receiver RouteSerializerGetReceiverArgType) *RouteSerializer {
 	this := RouteSerializer{}
-	var continue_ bool = false
-	this.Continue = &continue_
-	var groupInterval string = "5m"
-	this.GroupInterval = &groupInterval
-	var groupWait string = "30s"
-	this.GroupWait = &groupWait
-	this.Receiver = receiver
-	var repeatInterval string = "4h"
-	this.RepeatInterval = &repeatInterval
+	setRouteSerializerGetReceiverAttributeType(&this.Receiver, receiver)
 	return &this
 }
 
@@ -69,346 +265,260 @@ func NewRouteSerializerWithDefaults() *RouteSerializer {
 }
 
 // GetContinue returns the Continue field value if set, zero value otherwise.
-func (o *RouteSerializer) GetContinue() *bool {
-	if o == nil || IsNil(o.Continue) {
-		var ret *bool
-		return ret
-	}
-	return o.Continue
+func (o *RouteSerializer) GetContinue() (res RouteSerializergetContinueRetType) {
+	res, _ = o.GetContinueOk()
+	return
 }
 
 // GetContinueOk returns a tuple with the Continue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetContinueOk() (*bool, bool) {
-	if o == nil || IsNil(o.Continue) {
-		return nil, false
-	}
-	return o.Continue, true
+func (o *RouteSerializer) GetContinueOk() (ret RouteSerializergetContinueRetType, ok bool) {
+	return getRouteSerializergetContinueAttributeTypeOk(o.Continue)
 }
 
 // HasContinue returns a boolean if a field has been set.
 func (o *RouteSerializer) HasContinue() bool {
-	if o != nil && !IsNil(o.Continue) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetContinueOk()
+	return ok
 }
 
 // SetContinue gets a reference to the given bool and assigns it to the Continue field.
-func (o *RouteSerializer) SetContinue(v *bool) {
-	o.Continue = v
+func (o *RouteSerializer) SetContinue(v RouteSerializergetContinueRetType) {
+	setRouteSerializergetContinueAttributeType(&o.Continue, v)
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
-func (o *RouteSerializer) GetGroupBy() *[]string {
-	if o == nil || IsNil(o.GroupBy) {
-		var ret *[]string
-		return ret
-	}
-	return o.GroupBy
+func (o *RouteSerializer) GetGroupBy() (res RouteSerializerGetGroupByRetType) {
+	res, _ = o.GetGroupByOk()
+	return
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetGroupByOk() (*[]string, bool) {
-	if o == nil || IsNil(o.GroupBy) {
-		return nil, false
-	}
-	return o.GroupBy, true
+func (o *RouteSerializer) GetGroupByOk() (ret RouteSerializerGetGroupByRetType, ok bool) {
+	return getRouteSerializerGetGroupByAttributeTypeOk(o.GroupBy)
 }
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *RouteSerializer) HasGroupBy() bool {
-	if o != nil && !IsNil(o.GroupBy) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGroupByOk()
+	return ok
 }
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
-func (o *RouteSerializer) SetGroupBy(v *[]string) {
-	o.GroupBy = v
+func (o *RouteSerializer) SetGroupBy(v RouteSerializerGetGroupByRetType) {
+	setRouteSerializerGetGroupByAttributeType(&o.GroupBy, v)
 }
 
 // GetGroupInterval returns the GroupInterval field value if set, zero value otherwise.
-func (o *RouteSerializer) GetGroupInterval() *string {
-	if o == nil || IsNil(o.GroupInterval) {
-		var ret *string
-		return ret
-	}
-	return o.GroupInterval
+func (o *RouteSerializer) GetGroupInterval() (res RouteSerializerGetGroupIntervalRetType) {
+	res, _ = o.GetGroupIntervalOk()
+	return
 }
 
 // GetGroupIntervalOk returns a tuple with the GroupInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetGroupIntervalOk() (*string, bool) {
-	if o == nil || IsNil(o.GroupInterval) {
-		return nil, false
-	}
-	return o.GroupInterval, true
+func (o *RouteSerializer) GetGroupIntervalOk() (ret RouteSerializerGetGroupIntervalRetType, ok bool) {
+	return getRouteSerializerGetGroupIntervalAttributeTypeOk(o.GroupInterval)
 }
 
 // HasGroupInterval returns a boolean if a field has been set.
 func (o *RouteSerializer) HasGroupInterval() bool {
-	if o != nil && !IsNil(o.GroupInterval) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGroupIntervalOk()
+	return ok
 }
 
 // SetGroupInterval gets a reference to the given string and assigns it to the GroupInterval field.
-func (o *RouteSerializer) SetGroupInterval(v *string) {
-	o.GroupInterval = v
+func (o *RouteSerializer) SetGroupInterval(v RouteSerializerGetGroupIntervalRetType) {
+	setRouteSerializerGetGroupIntervalAttributeType(&o.GroupInterval, v)
 }
 
 // GetGroupWait returns the GroupWait field value if set, zero value otherwise.
-func (o *RouteSerializer) GetGroupWait() *string {
-	if o == nil || IsNil(o.GroupWait) {
-		var ret *string
-		return ret
-	}
-	return o.GroupWait
+func (o *RouteSerializer) GetGroupWait() (res RouteSerializerGetGroupWaitRetType) {
+	res, _ = o.GetGroupWaitOk()
+	return
 }
 
 // GetGroupWaitOk returns a tuple with the GroupWait field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetGroupWaitOk() (*string, bool) {
-	if o == nil || IsNil(o.GroupWait) {
-		return nil, false
-	}
-	return o.GroupWait, true
+func (o *RouteSerializer) GetGroupWaitOk() (ret RouteSerializerGetGroupWaitRetType, ok bool) {
+	return getRouteSerializerGetGroupWaitAttributeTypeOk(o.GroupWait)
 }
 
 // HasGroupWait returns a boolean if a field has been set.
 func (o *RouteSerializer) HasGroupWait() bool {
-	if o != nil && !IsNil(o.GroupWait) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGroupWaitOk()
+	return ok
 }
 
 // SetGroupWait gets a reference to the given string and assigns it to the GroupWait field.
-func (o *RouteSerializer) SetGroupWait(v *string) {
-	o.GroupWait = v
+func (o *RouteSerializer) SetGroupWait(v RouteSerializerGetGroupWaitRetType) {
+	setRouteSerializerGetGroupWaitAttributeType(&o.GroupWait, v)
 }
 
 // GetMatch returns the Match field value if set, zero value otherwise.
-func (o *RouteSerializer) GetMatch() *map[string]string {
-	if o == nil || IsNil(o.Match) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Match
+func (o *RouteSerializer) GetMatch() (res RouteSerializerGetMatchRetType) {
+	res, _ = o.GetMatchOk()
+	return
 }
 
 // GetMatchOk returns a tuple with the Match field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetMatchOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Match) {
-		return nil, false
-	}
-	return o.Match, true
+func (o *RouteSerializer) GetMatchOk() (ret RouteSerializerGetMatchRetType, ok bool) {
+	return getRouteSerializerGetMatchAttributeTypeOk(o.Match)
 }
 
 // HasMatch returns a boolean if a field has been set.
 func (o *RouteSerializer) HasMatch() bool {
-	if o != nil && !IsNil(o.Match) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMatchOk()
+	return ok
 }
 
 // SetMatch gets a reference to the given map[string]string and assigns it to the Match field.
-func (o *RouteSerializer) SetMatch(v *map[string]string) {
-	o.Match = v
+func (o *RouteSerializer) SetMatch(v RouteSerializerGetMatchRetType) {
+	setRouteSerializerGetMatchAttributeType(&o.Match, v)
 }
 
 // GetMatchRe returns the MatchRe field value if set, zero value otherwise.
-func (o *RouteSerializer) GetMatchRe() *map[string]string {
-	if o == nil || IsNil(o.MatchRe) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.MatchRe
+func (o *RouteSerializer) GetMatchRe() (res RouteSerializerGetMatchReRetType) {
+	res, _ = o.GetMatchReOk()
+	return
 }
 
 // GetMatchReOk returns a tuple with the MatchRe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetMatchReOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.MatchRe) {
-		return nil, false
-	}
-	return o.MatchRe, true
+func (o *RouteSerializer) GetMatchReOk() (ret RouteSerializerGetMatchReRetType, ok bool) {
+	return getRouteSerializerGetMatchReAttributeTypeOk(o.MatchRe)
 }
 
 // HasMatchRe returns a boolean if a field has been set.
 func (o *RouteSerializer) HasMatchRe() bool {
-	if o != nil && !IsNil(o.MatchRe) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMatchReOk()
+	return ok
 }
 
 // SetMatchRe gets a reference to the given map[string]string and assigns it to the MatchRe field.
-func (o *RouteSerializer) SetMatchRe(v *map[string]string) {
-	o.MatchRe = v
+func (o *RouteSerializer) SetMatchRe(v RouteSerializerGetMatchReRetType) {
+	setRouteSerializerGetMatchReAttributeType(&o.MatchRe, v)
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *RouteSerializer) GetMatchers() *[]string {
-	if o == nil || IsNil(o.Matchers) {
-		var ret *[]string
-		return ret
-	}
-	return o.Matchers
+func (o *RouteSerializer) GetMatchers() (res RouteSerializerGetMatchersRetType) {
+	res, _ = o.GetMatchersOk()
+	return
 }
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetMatchersOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Matchers) {
-		return nil, false
-	}
-	return o.Matchers, true
+func (o *RouteSerializer) GetMatchersOk() (ret RouteSerializerGetMatchersRetType, ok bool) {
+	return getRouteSerializerGetMatchersAttributeTypeOk(o.Matchers)
 }
 
 // HasMatchers returns a boolean if a field has been set.
 func (o *RouteSerializer) HasMatchers() bool {
-	if o != nil && !IsNil(o.Matchers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMatchersOk()
+	return ok
 }
 
 // SetMatchers gets a reference to the given []string and assigns it to the Matchers field.
-func (o *RouteSerializer) SetMatchers(v *[]string) {
-	o.Matchers = v
+func (o *RouteSerializer) SetMatchers(v RouteSerializerGetMatchersRetType) {
+	setRouteSerializerGetMatchersAttributeType(&o.Matchers, v)
 }
 
 // GetReceiver returns the Receiver field value
-func (o *RouteSerializer) GetReceiver() *string {
-	if o == nil || IsNil(o.Receiver) {
-		var ret *string
-		return ret
-	}
-
-	return o.Receiver
+func (o *RouteSerializer) GetReceiver() (ret RouteSerializerGetReceiverRetType) {
+	ret, _ = o.GetReceiverOk()
+	return ret
 }
 
 // GetReceiverOk returns a tuple with the Receiver field value
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetReceiverOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Receiver, true
+func (o *RouteSerializer) GetReceiverOk() (ret RouteSerializerGetReceiverRetType, ok bool) {
+	return getRouteSerializerGetReceiverAttributeTypeOk(o.Receiver)
 }
 
 // SetReceiver sets field value
-func (o *RouteSerializer) SetReceiver(v *string) {
-	o.Receiver = v
+func (o *RouteSerializer) SetReceiver(v RouteSerializerGetReceiverRetType) {
+	setRouteSerializerGetReceiverAttributeType(&o.Receiver, v)
 }
 
 // GetRepeatInterval returns the RepeatInterval field value if set, zero value otherwise.
-func (o *RouteSerializer) GetRepeatInterval() *string {
-	if o == nil || IsNil(o.RepeatInterval) {
-		var ret *string
-		return ret
-	}
-	return o.RepeatInterval
+func (o *RouteSerializer) GetRepeatInterval() (res RouteSerializerGetRepeatIntervalRetType) {
+	res, _ = o.GetRepeatIntervalOk()
+	return
 }
 
 // GetRepeatIntervalOk returns a tuple with the RepeatInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetRepeatIntervalOk() (*string, bool) {
-	if o == nil || IsNil(o.RepeatInterval) {
-		return nil, false
-	}
-	return o.RepeatInterval, true
+func (o *RouteSerializer) GetRepeatIntervalOk() (ret RouteSerializerGetRepeatIntervalRetType, ok bool) {
+	return getRouteSerializerGetRepeatIntervalAttributeTypeOk(o.RepeatInterval)
 }
 
 // HasRepeatInterval returns a boolean if a field has been set.
 func (o *RouteSerializer) HasRepeatInterval() bool {
-	if o != nil && !IsNil(o.RepeatInterval) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRepeatIntervalOk()
+	return ok
 }
 
 // SetRepeatInterval gets a reference to the given string and assigns it to the RepeatInterval field.
-func (o *RouteSerializer) SetRepeatInterval(v *string) {
-	o.RepeatInterval = v
+func (o *RouteSerializer) SetRepeatInterval(v RouteSerializerGetRepeatIntervalRetType) {
+	setRouteSerializerGetRepeatIntervalAttributeType(&o.RepeatInterval, v)
 }
 
 // GetRoutes returns the Routes field value if set, zero value otherwise.
-func (o *RouteSerializer) GetRoutes() *[]map[string]string {
-	if o == nil || IsNil(o.Routes) {
-		var ret *[]map[string]string
-		return ret
-	}
-	return o.Routes
+func (o *RouteSerializer) GetRoutes() (res RouteSerializerGetRoutesRetType) {
+	res, _ = o.GetRoutesOk()
+	return
 }
 
 // GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RouteSerializer) GetRoutesOk() (*[]map[string]string, bool) {
-	if o == nil || IsNil(o.Routes) {
-		return nil, false
-	}
-	return o.Routes, true
+func (o *RouteSerializer) GetRoutesOk() (ret RouteSerializerGetRoutesRetType, ok bool) {
+	return getRouteSerializerGetRoutesAttributeTypeOk(o.Routes)
 }
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *RouteSerializer) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRoutesOk()
+	return ok
 }
 
 // SetRoutes gets a reference to the given []map[string]string and assigns it to the Routes field.
-func (o *RouteSerializer) SetRoutes(v *[]map[string]string) {
-	o.Routes = v
+func (o *RouteSerializer) SetRoutes(v RouteSerializerGetRoutesRetType) {
+	setRouteSerializerGetRoutesAttributeType(&o.Routes, v)
 }
 
 func (o RouteSerializer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Continue) {
-		toSerialize["continue"] = o.Continue
+	if val, ok := getRouteSerializergetContinueAttributeTypeOk(o.Continue); ok {
+		toSerialize["Continue"] = val
 	}
-	if !IsNil(o.GroupBy) {
-		toSerialize["groupBy"] = o.GroupBy
+	if val, ok := getRouteSerializerGetGroupByAttributeTypeOk(o.GroupBy); ok {
+		toSerialize["GroupBy"] = val
 	}
-	if !IsNil(o.GroupInterval) {
-		toSerialize["groupInterval"] = o.GroupInterval
+	if val, ok := getRouteSerializerGetGroupIntervalAttributeTypeOk(o.GroupInterval); ok {
+		toSerialize["GroupInterval"] = val
 	}
-	if !IsNil(o.GroupWait) {
-		toSerialize["groupWait"] = o.GroupWait
+	if val, ok := getRouteSerializerGetGroupWaitAttributeTypeOk(o.GroupWait); ok {
+		toSerialize["GroupWait"] = val
 	}
-	if !IsNil(o.Match) {
-		toSerialize["match"] = o.Match
+	if val, ok := getRouteSerializerGetMatchAttributeTypeOk(o.Match); ok {
+		toSerialize["Match"] = val
 	}
-	if !IsNil(o.MatchRe) {
-		toSerialize["matchRe"] = o.MatchRe
+	if val, ok := getRouteSerializerGetMatchReAttributeTypeOk(o.MatchRe); ok {
+		toSerialize["MatchRe"] = val
 	}
-	if !IsNil(o.Matchers) {
-		toSerialize["matchers"] = o.Matchers
+	if val, ok := getRouteSerializerGetMatchersAttributeTypeOk(o.Matchers); ok {
+		toSerialize["Matchers"] = val
 	}
-	toSerialize["receiver"] = o.Receiver
-	if !IsNil(o.RepeatInterval) {
-		toSerialize["repeatInterval"] = o.RepeatInterval
+	if val, ok := getRouteSerializerGetReceiverAttributeTypeOk(o.Receiver); ok {
+		toSerialize["Receiver"] = val
 	}
-	if !IsNil(o.Routes) {
-		toSerialize["routes"] = o.Routes
+	if val, ok := getRouteSerializerGetRepeatIntervalAttributeTypeOk(o.RepeatInterval); ok {
+		toSerialize["RepeatInterval"] = val
+	}
+	if val, ok := getRouteSerializerGetRoutesAttributeTypeOk(o.Routes); ok {
+		toSerialize["Routes"] = val
 	}
 	return toSerialize, nil
 }
