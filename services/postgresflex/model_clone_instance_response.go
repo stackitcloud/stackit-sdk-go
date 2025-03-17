@@ -17,9 +17,30 @@ import (
 // checks if the CloneInstanceResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CloneInstanceResponse{}
 
+/*
+	types and functions for instanceId
+*/
+
+// isNotNullableString
+type CloneInstanceResponseGetInstanceIdAttributeType = *string
+
+func getCloneInstanceResponseGetInstanceIdAttributeTypeOk(arg CloneInstanceResponseGetInstanceIdAttributeType) (ret CloneInstanceResponseGetInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneInstanceResponseGetInstanceIdAttributeType(arg *CloneInstanceResponseGetInstanceIdAttributeType, val CloneInstanceResponseGetInstanceIdRetType) {
+	*arg = &val
+}
+
+type CloneInstanceResponseGetInstanceIdArgType = string
+type CloneInstanceResponseGetInstanceIdRetType = string
+
 // CloneInstanceResponse struct for CloneInstanceResponse
 type CloneInstanceResponse struct {
-	InstanceId *string `json:"instanceId,omitempty"`
+	InstanceId CloneInstanceResponseGetInstanceIdAttributeType `json:"instanceId,omitempty"`
 }
 
 // NewCloneInstanceResponse instantiates a new CloneInstanceResponse object
@@ -40,41 +61,32 @@ func NewCloneInstanceResponseWithDefaults() *CloneInstanceResponse {
 }
 
 // GetInstanceId returns the InstanceId field value if set, zero value otherwise.
-func (o *CloneInstanceResponse) GetInstanceId() *string {
-	if o == nil || IsNil(o.InstanceId) {
-		var ret *string
-		return ret
-	}
-	return o.InstanceId
+func (o *CloneInstanceResponse) GetInstanceId() (res CloneInstanceResponseGetInstanceIdRetType) {
+	res, _ = o.GetInstanceIdOk()
+	return
 }
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloneInstanceResponse) GetInstanceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.InstanceId) {
-		return nil, false
-	}
-	return o.InstanceId, true
+func (o *CloneInstanceResponse) GetInstanceIdOk() (ret CloneInstanceResponseGetInstanceIdRetType, ok bool) {
+	return getCloneInstanceResponseGetInstanceIdAttributeTypeOk(o.InstanceId)
 }
 
 // HasInstanceId returns a boolean if a field has been set.
 func (o *CloneInstanceResponse) HasInstanceId() bool {
-	if o != nil && !IsNil(o.InstanceId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInstanceIdOk()
+	return ok
 }
 
 // SetInstanceId gets a reference to the given string and assigns it to the InstanceId field.
-func (o *CloneInstanceResponse) SetInstanceId(v *string) {
-	o.InstanceId = v
+func (o *CloneInstanceResponse) SetInstanceId(v CloneInstanceResponseGetInstanceIdRetType) {
+	setCloneInstanceResponseGetInstanceIdAttributeType(&o.InstanceId, v)
 }
 
 func (o CloneInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.InstanceId) {
-		toSerialize["instanceId"] = o.InstanceId
+	if val, ok := getCloneInstanceResponseGetInstanceIdAttributeTypeOk(o.InstanceId); ok {
+		toSerialize["InstanceId"] = val
 	}
 	return toSerialize, nil
 }
