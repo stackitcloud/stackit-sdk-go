@@ -17,14 +17,77 @@ import (
 // checks if the CredentialsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CredentialsResponse{}
 
+/*
+	types and functions for credentialsRef
+*/
+
+// isNotNullableString
+type CredentialsResponseGetCredentialsRefAttributeType = *string
+
+func getCredentialsResponseGetCredentialsRefAttributeTypeOk(arg CredentialsResponseGetCredentialsRefAttributeType) (ret CredentialsResponseGetCredentialsRefRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsResponseGetCredentialsRefAttributeType(arg *CredentialsResponseGetCredentialsRefAttributeType, val CredentialsResponseGetCredentialsRefRetType) {
+	*arg = &val
+}
+
+type CredentialsResponseGetCredentialsRefArgType = string
+type CredentialsResponseGetCredentialsRefRetType = string
+
+/*
+	types and functions for displayName
+*/
+
+// isNotNullableString
+type CredentialsResponseGetDisplayNameAttributeType = *string
+
+func getCredentialsResponseGetDisplayNameAttributeTypeOk(arg CredentialsResponseGetDisplayNameAttributeType) (ret CredentialsResponseGetDisplayNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsResponseGetDisplayNameAttributeType(arg *CredentialsResponseGetDisplayNameAttributeType, val CredentialsResponseGetDisplayNameRetType) {
+	*arg = &val
+}
+
+type CredentialsResponseGetDisplayNameArgType = string
+type CredentialsResponseGetDisplayNameRetType = string
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type CredentialsResponseGetUsernameAttributeType = *string
+
+func getCredentialsResponseGetUsernameAttributeTypeOk(arg CredentialsResponseGetUsernameAttributeType) (ret CredentialsResponseGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsResponseGetUsernameAttributeType(arg *CredentialsResponseGetUsernameAttributeType, val CredentialsResponseGetUsernameRetType) {
+	*arg = &val
+}
+
+type CredentialsResponseGetUsernameArgType = string
+type CredentialsResponseGetUsernameRetType = string
+
 // CredentialsResponse struct for CredentialsResponse
 type CredentialsResponse struct {
 	// The credentials reference can be used for observability of the Application Load Balancer.
-	CredentialsRef *string `json:"credentialsRef,omitempty"`
+	CredentialsRef CredentialsResponseGetCredentialsRefAttributeType `json:"credentialsRef,omitempty"`
 	// Credential name
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName CredentialsResponseGetDisplayNameAttributeType `json:"displayName,omitempty"`
 	// The username used for the ARGUS instance
-	Username *string `json:"username,omitempty"`
+	Username CredentialsResponseGetUsernameAttributeType `json:"username,omitempty"`
 }
 
 // NewCredentialsResponse instantiates a new CredentialsResponse object
@@ -45,111 +108,84 @@ func NewCredentialsResponseWithDefaults() *CredentialsResponse {
 }
 
 // GetCredentialsRef returns the CredentialsRef field value if set, zero value otherwise.
-func (o *CredentialsResponse) GetCredentialsRef() *string {
-	if o == nil || IsNil(o.CredentialsRef) {
-		var ret *string
-		return ret
-	}
-	return o.CredentialsRef
+func (o *CredentialsResponse) GetCredentialsRef() (res CredentialsResponseGetCredentialsRefRetType) {
+	res, _ = o.GetCredentialsRefOk()
+	return
 }
 
 // GetCredentialsRefOk returns a tuple with the CredentialsRef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CredentialsResponse) GetCredentialsRefOk() (*string, bool) {
-	if o == nil || IsNil(o.CredentialsRef) {
-		return nil, false
-	}
-	return o.CredentialsRef, true
+func (o *CredentialsResponse) GetCredentialsRefOk() (ret CredentialsResponseGetCredentialsRefRetType, ok bool) {
+	return getCredentialsResponseGetCredentialsRefAttributeTypeOk(o.CredentialsRef)
 }
 
 // HasCredentialsRef returns a boolean if a field has been set.
 func (o *CredentialsResponse) HasCredentialsRef() bool {
-	if o != nil && !IsNil(o.CredentialsRef) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCredentialsRefOk()
+	return ok
 }
 
 // SetCredentialsRef gets a reference to the given string and assigns it to the CredentialsRef field.
-func (o *CredentialsResponse) SetCredentialsRef(v *string) {
-	o.CredentialsRef = v
+func (o *CredentialsResponse) SetCredentialsRef(v CredentialsResponseGetCredentialsRefRetType) {
+	setCredentialsResponseGetCredentialsRefAttributeType(&o.CredentialsRef, v)
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *CredentialsResponse) GetDisplayName() *string {
-	if o == nil || IsNil(o.DisplayName) {
-		var ret *string
-		return ret
-	}
-	return o.DisplayName
+func (o *CredentialsResponse) GetDisplayName() (res CredentialsResponseGetDisplayNameRetType) {
+	res, _ = o.GetDisplayNameOk()
+	return
 }
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CredentialsResponse) GetDisplayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
+func (o *CredentialsResponse) GetDisplayNameOk() (ret CredentialsResponseGetDisplayNameRetType, ok bool) {
+	return getCredentialsResponseGetDisplayNameAttributeTypeOk(o.DisplayName)
 }
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *CredentialsResponse) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDisplayNameOk()
+	return ok
 }
 
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *CredentialsResponse) SetDisplayName(v *string) {
-	o.DisplayName = v
+func (o *CredentialsResponse) SetDisplayName(v CredentialsResponseGetDisplayNameRetType) {
+	setCredentialsResponseGetDisplayNameAttributeType(&o.DisplayName, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *CredentialsResponse) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-	return o.Username
+func (o *CredentialsResponse) GetUsername() (res CredentialsResponseGetUsernameRetType) {
+	res, _ = o.GetUsernameOk()
+	return
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CredentialsResponse) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
+func (o *CredentialsResponse) GetUsernameOk() (ret CredentialsResponseGetUsernameRetType, ok bool) {
+	return getCredentialsResponseGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *CredentialsResponse) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUsernameOk()
+	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *CredentialsResponse) SetUsername(v *string) {
-	o.Username = v
+func (o *CredentialsResponse) SetUsername(v CredentialsResponseGetUsernameRetType) {
+	setCredentialsResponseGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o CredentialsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CredentialsRef) {
-		toSerialize["credentialsRef"] = o.CredentialsRef
+	if val, ok := getCredentialsResponseGetCredentialsRefAttributeTypeOk(o.CredentialsRef); ok {
+		toSerialize["CredentialsRef"] = val
 	}
-	if !IsNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
+	if val, ok := getCredentialsResponseGetDisplayNameAttributeTypeOk(o.DisplayName); ok {
+		toSerialize["DisplayName"] = val
 	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
+	if val, ok := getCredentialsResponseGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
 	}
 	return toSerialize, nil
 }
