@@ -17,14 +17,55 @@ import (
 // checks if the CreateUserPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateUserPayload{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type CreateUserPayloadGetDescriptionAttributeType = *string
+
+func getCreateUserPayloadGetDescriptionAttributeTypeOk(arg CreateUserPayloadGetDescriptionAttributeType) (ret CreateUserPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateUserPayloadGetDescriptionAttributeType(arg *CreateUserPayloadGetDescriptionAttributeType, val CreateUserPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+type CreateUserPayloadGetDescriptionArgType = string
+type CreateUserPayloadGetDescriptionRetType = string
+
+/*
+	types and functions for write
+*/
+
+// isBoolean
+type CreateUserPayloadgetWriteAttributeType = *bool
+type CreateUserPayloadgetWriteArgType = bool
+type CreateUserPayloadgetWriteRetType = bool
+
+func getCreateUserPayloadgetWriteAttributeTypeOk(arg CreateUserPayloadgetWriteAttributeType) (ret CreateUserPayloadgetWriteRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateUserPayloadgetWriteAttributeType(arg *CreateUserPayloadgetWriteAttributeType, val CreateUserPayloadgetWriteRetType) {
+	*arg = &val
+}
+
 // CreateUserPayload struct for CreateUserPayload
 type CreateUserPayload struct {
 	// A user chosen description to differentiate between multiple users.
 	// REQUIRED
-	Description *string `json:"description"`
+	Description CreateUserPayloadGetDescriptionAttributeType `json:"description"`
 	// Is true if the user has write access to the secrets engine. Is false for a read-only user.
 	// REQUIRED
-	Write *bool `json:"write"`
+	Write CreateUserPayloadgetWriteAttributeType `json:"write"`
 }
 
 type _CreateUserPayload CreateUserPayload
@@ -33,10 +74,10 @@ type _CreateUserPayload CreateUserPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateUserPayload(description *string, write *bool) *CreateUserPayload {
+func NewCreateUserPayload(description CreateUserPayloadGetDescriptionArgType, write CreateUserPayloadgetWriteArgType) *CreateUserPayload {
 	this := CreateUserPayload{}
-	this.Description = description
-	this.Write = write
+	setCreateUserPayloadGetDescriptionAttributeType(&this.Description, description)
+	setCreateUserPayloadgetWriteAttributeType(&this.Write, write)
 	return &this
 }
 
@@ -49,57 +90,47 @@ func NewCreateUserPayloadWithDefaults() *CreateUserPayload {
 }
 
 // GetDescription returns the Description field value
-func (o *CreateUserPayload) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *CreateUserPayload) GetDescription() (ret CreateUserPayloadGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *CreateUserPayload) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *CreateUserPayload) GetDescriptionOk() (ret CreateUserPayloadGetDescriptionRetType, ok bool) {
+	return getCreateUserPayloadGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *CreateUserPayload) SetDescription(v *string) {
-	o.Description = v
+func (o *CreateUserPayload) SetDescription(v CreateUserPayloadGetDescriptionRetType) {
+	setCreateUserPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetWrite returns the Write field value
-func (o *CreateUserPayload) GetWrite() *bool {
-	if o == nil || IsNil(o.Write) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Write
+func (o *CreateUserPayload) GetWrite() (ret CreateUserPayloadgetWriteRetType) {
+	ret, _ = o.GetWriteOk()
+	return ret
 }
 
 // GetWriteOk returns a tuple with the Write field value
 // and a boolean to check if the value has been set.
-func (o *CreateUserPayload) GetWriteOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Write, true
+func (o *CreateUserPayload) GetWriteOk() (ret CreateUserPayloadgetWriteRetType, ok bool) {
+	return getCreateUserPayloadgetWriteAttributeTypeOk(o.Write)
 }
 
 // SetWrite sets field value
-func (o *CreateUserPayload) SetWrite(v *bool) {
-	o.Write = v
+func (o *CreateUserPayload) SetWrite(v CreateUserPayloadgetWriteRetType) {
+	setCreateUserPayloadgetWriteAttributeType(&o.Write, v)
 }
 
 func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	toSerialize["write"] = o.Write
+	if val, ok := getCreateUserPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
+	if val, ok := getCreateUserPayloadgetWriteAttributeTypeOk(o.Write); ok {
+		toSerialize["Write"] = val
+	}
 	return toSerialize, nil
 }
 
