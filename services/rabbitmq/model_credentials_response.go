@@ -17,13 +17,75 @@ import (
 // checks if the CredentialsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CredentialsResponse{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CredentialsResponseGetIdAttributeType = *string
+
+func getCredentialsResponseGetIdAttributeTypeOk(arg CredentialsResponseGetIdAttributeType) (ret CredentialsResponseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsResponseGetIdAttributeType(arg *CredentialsResponseGetIdAttributeType, val CredentialsResponseGetIdRetType) {
+	*arg = &val
+}
+
+type CredentialsResponseGetIdArgType = string
+type CredentialsResponseGetIdRetType = string
+
+/*
+	types and functions for raw
+*/
+
+// isModel
+type CredentialsResponseGetRawAttributeType = *RawCredentials
+type CredentialsResponseGetRawArgType = RawCredentials
+type CredentialsResponseGetRawRetType = RawCredentials
+
+func getCredentialsResponseGetRawAttributeTypeOk(arg CredentialsResponseGetRawAttributeType) (ret CredentialsResponseGetRawRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsResponseGetRawAttributeType(arg *CredentialsResponseGetRawAttributeType, val CredentialsResponseGetRawRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for uri
+*/
+
+// isNotNullableString
+type CredentialsResponseGetUriAttributeType = *string
+
+func getCredentialsResponseGetUriAttributeTypeOk(arg CredentialsResponseGetUriAttributeType) (ret CredentialsResponseGetUriRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsResponseGetUriAttributeType(arg *CredentialsResponseGetUriAttributeType, val CredentialsResponseGetUriRetType) {
+	*arg = &val
+}
+
+type CredentialsResponseGetUriArgType = string
+type CredentialsResponseGetUriRetType = string
+
 // CredentialsResponse struct for CredentialsResponse
 type CredentialsResponse struct {
 	// REQUIRED
-	Id  *string         `json:"id"`
-	Raw *RawCredentials `json:"raw,omitempty"`
+	Id  CredentialsResponseGetIdAttributeType  `json:"id"`
+	Raw CredentialsResponseGetRawAttributeType `json:"raw,omitempty"`
 	// REQUIRED
-	Uri *string `json:"uri"`
+	Uri CredentialsResponseGetUriAttributeType `json:"uri"`
 }
 
 type _CredentialsResponse CredentialsResponse
@@ -32,10 +94,10 @@ type _CredentialsResponse CredentialsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredentialsResponse(id *string, uri *string) *CredentialsResponse {
+func NewCredentialsResponse(id CredentialsResponseGetIdArgType, uri CredentialsResponseGetUriArgType) *CredentialsResponse {
 	this := CredentialsResponse{}
-	this.Id = id
-	this.Uri = uri
+	setCredentialsResponseGetIdAttributeType(&this.Id, id)
+	setCredentialsResponseGetUriAttributeType(&this.Uri, uri)
 	return &this
 }
 
@@ -48,92 +110,73 @@ func NewCredentialsResponseWithDefaults() *CredentialsResponse {
 }
 
 // GetId returns the Id field value
-func (o *CredentialsResponse) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *CredentialsResponse) GetId() (ret CredentialsResponseGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsResponse) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CredentialsResponse) GetIdOk() (ret CredentialsResponseGetIdRetType, ok bool) {
+	return getCredentialsResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *CredentialsResponse) SetId(v *string) {
-	o.Id = v
+func (o *CredentialsResponse) SetId(v CredentialsResponseGetIdRetType) {
+	setCredentialsResponseGetIdAttributeType(&o.Id, v)
 }
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
-func (o *CredentialsResponse) GetRaw() *RawCredentials {
-	if o == nil || IsNil(o.Raw) {
-		var ret *RawCredentials
-		return ret
-	}
-	return o.Raw
+func (o *CredentialsResponse) GetRaw() (res CredentialsResponseGetRawRetType) {
+	res, _ = o.GetRawOk()
+	return
 }
 
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CredentialsResponse) GetRawOk() (*RawCredentials, bool) {
-	if o == nil || IsNil(o.Raw) {
-		return nil, false
-	}
-	return o.Raw, true
+func (o *CredentialsResponse) GetRawOk() (ret CredentialsResponseGetRawRetType, ok bool) {
+	return getCredentialsResponseGetRawAttributeTypeOk(o.Raw)
 }
 
 // HasRaw returns a boolean if a field has been set.
 func (o *CredentialsResponse) HasRaw() bool {
-	if o != nil && !IsNil(o.Raw) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRawOk()
+	return ok
 }
 
 // SetRaw gets a reference to the given RawCredentials and assigns it to the Raw field.
-func (o *CredentialsResponse) SetRaw(v *RawCredentials) {
-	o.Raw = v
+func (o *CredentialsResponse) SetRaw(v CredentialsResponseGetRawRetType) {
+	setCredentialsResponseGetRawAttributeType(&o.Raw, v)
 }
 
 // GetUri returns the Uri field value
-func (o *CredentialsResponse) GetUri() *string {
-	if o == nil || IsNil(o.Uri) {
-		var ret *string
-		return ret
-	}
-
-	return o.Uri
+func (o *CredentialsResponse) GetUri() (ret CredentialsResponseGetUriRetType) {
+	ret, _ = o.GetUriOk()
+	return ret
 }
 
 // GetUriOk returns a tuple with the Uri field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsResponse) GetUriOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Uri, true
+func (o *CredentialsResponse) GetUriOk() (ret CredentialsResponseGetUriRetType, ok bool) {
+	return getCredentialsResponseGetUriAttributeTypeOk(o.Uri)
 }
 
 // SetUri sets field value
-func (o *CredentialsResponse) SetUri(v *string) {
-	o.Uri = v
+func (o *CredentialsResponse) SetUri(v CredentialsResponseGetUriRetType) {
+	setCredentialsResponseGetUriAttributeType(&o.Uri, v)
 }
 
 func (o CredentialsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	if !IsNil(o.Raw) {
-		toSerialize["raw"] = o.Raw
+	if val, ok := getCredentialsResponseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	toSerialize["uri"] = o.Uri
+	if val, ok := getCredentialsResponseGetRawAttributeTypeOk(o.Raw); ok {
+		toSerialize["Raw"] = val
+	}
+	if val, ok := getCredentialsResponseGetUriAttributeTypeOk(o.Uri); ok {
+		toSerialize["Uri"] = val
+	}
 	return toSerialize, nil
 }
 
