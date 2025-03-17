@@ -17,9 +17,29 @@ import (
 // checks if the ListMetricsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListMetricsResponse{}
 
+/*
+	types and functions for hosts
+*/
+
+// isArray
+type ListMetricsResponseGetHostsAttributeType = *[]Host
+type ListMetricsResponseGetHostsArgType = []Host
+type ListMetricsResponseGetHostsRetType = []Host
+
+func getListMetricsResponseGetHostsAttributeTypeOk(arg ListMetricsResponseGetHostsAttributeType) (ret ListMetricsResponseGetHostsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListMetricsResponseGetHostsAttributeType(arg *ListMetricsResponseGetHostsAttributeType, val ListMetricsResponseGetHostsRetType) {
+	*arg = &val
+}
+
 // ListMetricsResponse struct for ListMetricsResponse
 type ListMetricsResponse struct {
-	Hosts *[]Host `json:"hosts,omitempty"`
+	Hosts ListMetricsResponseGetHostsAttributeType `json:"hosts,omitempty"`
 }
 
 // NewListMetricsResponse instantiates a new ListMetricsResponse object
@@ -40,41 +60,32 @@ func NewListMetricsResponseWithDefaults() *ListMetricsResponse {
 }
 
 // GetHosts returns the Hosts field value if set, zero value otherwise.
-func (o *ListMetricsResponse) GetHosts() *[]Host {
-	if o == nil || IsNil(o.Hosts) {
-		var ret *[]Host
-		return ret
-	}
-	return o.Hosts
+func (o *ListMetricsResponse) GetHosts() (res ListMetricsResponseGetHostsRetType) {
+	res, _ = o.GetHostsOk()
+	return
 }
 
 // GetHostsOk returns a tuple with the Hosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListMetricsResponse) GetHostsOk() (*[]Host, bool) {
-	if o == nil || IsNil(o.Hosts) {
-		return nil, false
-	}
-	return o.Hosts, true
+func (o *ListMetricsResponse) GetHostsOk() (ret ListMetricsResponseGetHostsRetType, ok bool) {
+	return getListMetricsResponseGetHostsAttributeTypeOk(o.Hosts)
 }
 
 // HasHosts returns a boolean if a field has been set.
 func (o *ListMetricsResponse) HasHosts() bool {
-	if o != nil && !IsNil(o.Hosts) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHostsOk()
+	return ok
 }
 
 // SetHosts gets a reference to the given []Host and assigns it to the Hosts field.
-func (o *ListMetricsResponse) SetHosts(v *[]Host) {
-	o.Hosts = v
+func (o *ListMetricsResponse) SetHosts(v ListMetricsResponseGetHostsRetType) {
+	setListMetricsResponseGetHostsAttributeType(&o.Hosts, v)
 }
 
 func (o ListMetricsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Hosts) {
-		toSerialize["hosts"] = o.Hosts
+	if val, ok := getListMetricsResponseGetHostsAttributeTypeOk(o.Hosts); ok {
+		toSerialize["Hosts"] = val
 	}
 	return toSerialize, nil
 }

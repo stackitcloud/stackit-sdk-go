@@ -17,10 +17,52 @@ import (
 // checks if the ListUser type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListUser{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ListUserGetIdAttributeType = *string
+
+func getListUserGetIdAttributeTypeOk(arg ListUserGetIdAttributeType) (ret ListUserGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListUserGetIdAttributeType(arg *ListUserGetIdAttributeType, val ListUserGetIdRetType) {
+	*arg = &val
+}
+
+type ListUserGetIdArgType = string
+type ListUserGetIdRetType = string
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type ListUserGetUsernameAttributeType = *string
+
+func getListUserGetUsernameAttributeTypeOk(arg ListUserGetUsernameAttributeType) (ret ListUserGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListUserGetUsernameAttributeType(arg *ListUserGetUsernameAttributeType, val ListUserGetUsernameRetType) {
+	*arg = &val
+}
+
+type ListUserGetUsernameArgType = string
+type ListUserGetUsernameRetType = string
+
 // ListUser struct for ListUser
 type ListUser struct {
-	Id       *string `json:"id,omitempty"`
-	Username *string `json:"username,omitempty"`
+	Id       ListUserGetIdAttributeType       `json:"id,omitempty"`
+	Username ListUserGetUsernameAttributeType `json:"username,omitempty"`
 }
 
 // NewListUser instantiates a new ListUser object
@@ -41,76 +83,58 @@ func NewListUserWithDefaults() *ListUser {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ListUser) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *ListUser) GetId() (res ListUserGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListUser) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *ListUser) GetIdOk() (ret ListUserGetIdRetType, ok bool) {
+	return getListUserGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *ListUser) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ListUser) SetId(v *string) {
-	o.Id = v
+func (o *ListUser) SetId(v ListUserGetIdRetType) {
+	setListUserGetIdAttributeType(&o.Id, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *ListUser) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-	return o.Username
+func (o *ListUser) GetUsername() (res ListUserGetUsernameRetType) {
+	res, _ = o.GetUsernameOk()
+	return
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListUser) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
+func (o *ListUser) GetUsernameOk() (ret ListUserGetUsernameRetType, ok bool) {
+	return getListUserGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *ListUser) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUsernameOk()
+	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *ListUser) SetUsername(v *string) {
-	o.Username = v
+func (o *ListUser) SetUsername(v ListUserGetUsernameRetType) {
+	setListUserGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o ListUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getListUserGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
+	if val, ok := getListUserGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
 	}
 	return toSerialize, nil
 }

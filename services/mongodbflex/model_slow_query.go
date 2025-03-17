@@ -17,12 +17,54 @@ import (
 // checks if the SlowQuery type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SlowQuery{}
 
+/*
+	types and functions for line
+*/
+
+// isNotNullableString
+type SlowQueryGetLineAttributeType = *string
+
+func getSlowQueryGetLineAttributeTypeOk(arg SlowQueryGetLineAttributeType) (ret SlowQueryGetLineRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSlowQueryGetLineAttributeType(arg *SlowQueryGetLineAttributeType, val SlowQueryGetLineRetType) {
+	*arg = &val
+}
+
+type SlowQueryGetLineArgType = string
+type SlowQueryGetLineRetType = string
+
+/*
+	types and functions for namespace
+*/
+
+// isNotNullableString
+type SlowQueryGetNamespaceAttributeType = *string
+
+func getSlowQueryGetNamespaceAttributeTypeOk(arg SlowQueryGetNamespaceAttributeType) (ret SlowQueryGetNamespaceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSlowQueryGetNamespaceAttributeType(arg *SlowQueryGetNamespaceAttributeType, val SlowQueryGetNamespaceRetType) {
+	*arg = &val
+}
+
+type SlowQueryGetNamespaceArgType = string
+type SlowQueryGetNamespaceRetType = string
+
 // SlowQuery struct for SlowQuery
 type SlowQuery struct {
 	// The raw log line pertaining to the slow query.
-	Line *string `json:"line,omitempty"`
+	Line SlowQueryGetLineAttributeType `json:"line,omitempty"`
 	// The namespace in which the slow query ran.
-	Namespace *string `json:"namespace,omitempty"`
+	Namespace SlowQueryGetNamespaceAttributeType `json:"namespace,omitempty"`
 }
 
 // NewSlowQuery instantiates a new SlowQuery object
@@ -43,76 +85,58 @@ func NewSlowQueryWithDefaults() *SlowQuery {
 }
 
 // GetLine returns the Line field value if set, zero value otherwise.
-func (o *SlowQuery) GetLine() *string {
-	if o == nil || IsNil(o.Line) {
-		var ret *string
-		return ret
-	}
-	return o.Line
+func (o *SlowQuery) GetLine() (res SlowQueryGetLineRetType) {
+	res, _ = o.GetLineOk()
+	return
 }
 
 // GetLineOk returns a tuple with the Line field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SlowQuery) GetLineOk() (*string, bool) {
-	if o == nil || IsNil(o.Line) {
-		return nil, false
-	}
-	return o.Line, true
+func (o *SlowQuery) GetLineOk() (ret SlowQueryGetLineRetType, ok bool) {
+	return getSlowQueryGetLineAttributeTypeOk(o.Line)
 }
 
 // HasLine returns a boolean if a field has been set.
 func (o *SlowQuery) HasLine() bool {
-	if o != nil && !IsNil(o.Line) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLineOk()
+	return ok
 }
 
 // SetLine gets a reference to the given string and assigns it to the Line field.
-func (o *SlowQuery) SetLine(v *string) {
-	o.Line = v
+func (o *SlowQuery) SetLine(v SlowQueryGetLineRetType) {
+	setSlowQueryGetLineAttributeType(&o.Line, v)
 }
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
-func (o *SlowQuery) GetNamespace() *string {
-	if o == nil || IsNil(o.Namespace) {
-		var ret *string
-		return ret
-	}
-	return o.Namespace
+func (o *SlowQuery) GetNamespace() (res SlowQueryGetNamespaceRetType) {
+	res, _ = o.GetNamespaceOk()
+	return
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SlowQuery) GetNamespaceOk() (*string, bool) {
-	if o == nil || IsNil(o.Namespace) {
-		return nil, false
-	}
-	return o.Namespace, true
+func (o *SlowQuery) GetNamespaceOk() (ret SlowQueryGetNamespaceRetType, ok bool) {
+	return getSlowQueryGetNamespaceAttributeTypeOk(o.Namespace)
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *SlowQuery) HasNamespace() bool {
-	if o != nil && !IsNil(o.Namespace) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNamespaceOk()
+	return ok
 }
 
 // SetNamespace gets a reference to the given string and assigns it to the Namespace field.
-func (o *SlowQuery) SetNamespace(v *string) {
-	o.Namespace = v
+func (o *SlowQuery) SetNamespace(v SlowQueryGetNamespaceRetType) {
+	setSlowQueryGetNamespaceAttributeType(&o.Namespace, v)
 }
 
 func (o SlowQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Line) {
-		toSerialize["line"] = o.Line
+	if val, ok := getSlowQueryGetLineAttributeTypeOk(o.Line); ok {
+		toSerialize["Line"] = val
 	}
-	if !IsNil(o.Namespace) {
-		toSerialize["namespace"] = o.Namespace
+	if val, ok := getSlowQueryGetNamespaceAttributeTypeOk(o.Namespace); ok {
+		toSerialize["Namespace"] = val
 	}
 	return toSerialize, nil
 }
