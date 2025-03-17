@@ -17,19 +17,101 @@ import (
 // checks if the CreateProjectPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateProjectPayload{}
 
+/*
+	types and functions for containerParentId
+*/
+
+// isNotNullableString
+type CreateProjectPayloadGetContainerParentIdAttributeType = *string
+
+func getCreateProjectPayloadGetContainerParentIdAttributeTypeOk(arg CreateProjectPayloadGetContainerParentIdAttributeType) (ret CreateProjectPayloadGetContainerParentIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateProjectPayloadGetContainerParentIdAttributeType(arg *CreateProjectPayloadGetContainerParentIdAttributeType, val CreateProjectPayloadGetContainerParentIdRetType) {
+	*arg = &val
+}
+
+type CreateProjectPayloadGetContainerParentIdArgType = string
+type CreateProjectPayloadGetContainerParentIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+type CreateProjectPayloadGetLabelsAttributeType = *map[string]string
+type CreateProjectPayloadGetLabelsArgType = map[string]string
+type CreateProjectPayloadGetLabelsRetType = map[string]string
+
+func getCreateProjectPayloadGetLabelsAttributeTypeOk(arg CreateProjectPayloadGetLabelsAttributeType) (ret CreateProjectPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateProjectPayloadGetLabelsAttributeType(arg *CreateProjectPayloadGetLabelsAttributeType, val CreateProjectPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for members
+*/
+
+// isArray
+type CreateProjectPayloadGetMembersAttributeType = *[]Member
+type CreateProjectPayloadGetMembersArgType = []Member
+type CreateProjectPayloadGetMembersRetType = []Member
+
+func getCreateProjectPayloadGetMembersAttributeTypeOk(arg CreateProjectPayloadGetMembersAttributeType) (ret CreateProjectPayloadGetMembersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateProjectPayloadGetMembersAttributeType(arg *CreateProjectPayloadGetMembersAttributeType, val CreateProjectPayloadGetMembersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateProjectPayloadGetNameAttributeType = *string
+
+func getCreateProjectPayloadGetNameAttributeTypeOk(arg CreateProjectPayloadGetNameAttributeType) (ret CreateProjectPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateProjectPayloadGetNameAttributeType(arg *CreateProjectPayloadGetNameAttributeType, val CreateProjectPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateProjectPayloadGetNameArgType = string
+type CreateProjectPayloadGetNameRetType = string
+
 // CreateProjectPayload struct for CreateProjectPayload
 type CreateProjectPayload struct {
 	// Identifier of the parent resource container - containerId as well as UUID identifier is supported.
 	// REQUIRED
-	ContainerParentId *string `json:"containerParentId"`
+	ContainerParentId CreateProjectPayloadGetContainerParentIdAttributeType `json:"containerParentId"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
-	Labels *map[string]string `json:"labels,omitempty"`
+	Labels CreateProjectPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
 	// REQUIRED
-	Members *[]Member `json:"members"`
+	Members CreateProjectPayloadGetMembersAttributeType `json:"members"`
 	// Project name matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CreateProjectPayloadGetNameAttributeType `json:"name"`
 }
 
 type _CreateProjectPayload CreateProjectPayload
@@ -38,11 +120,11 @@ type _CreateProjectPayload CreateProjectPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateProjectPayload(containerParentId *string, members *[]Member, name *string) *CreateProjectPayload {
+func NewCreateProjectPayload(containerParentId CreateProjectPayloadGetContainerParentIdArgType, members CreateProjectPayloadGetMembersArgType, name CreateProjectPayloadGetNameArgType) *CreateProjectPayload {
 	this := CreateProjectPayload{}
-	this.ContainerParentId = containerParentId
-	this.Members = members
-	this.Name = name
+	setCreateProjectPayloadGetContainerParentIdAttributeType(&this.ContainerParentId, containerParentId)
+	setCreateProjectPayloadGetMembersAttributeType(&this.Members, members)
+	setCreateProjectPayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -55,117 +137,93 @@ func NewCreateProjectPayloadWithDefaults() *CreateProjectPayload {
 }
 
 // GetContainerParentId returns the ContainerParentId field value
-func (o *CreateProjectPayload) GetContainerParentId() *string {
-	if o == nil || IsNil(o.ContainerParentId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ContainerParentId
+func (o *CreateProjectPayload) GetContainerParentId() (ret CreateProjectPayloadGetContainerParentIdRetType) {
+	ret, _ = o.GetContainerParentIdOk()
+	return ret
 }
 
 // GetContainerParentIdOk returns a tuple with the ContainerParentId field value
 // and a boolean to check if the value has been set.
-func (o *CreateProjectPayload) GetContainerParentIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContainerParentId, true
+func (o *CreateProjectPayload) GetContainerParentIdOk() (ret CreateProjectPayloadGetContainerParentIdRetType, ok bool) {
+	return getCreateProjectPayloadGetContainerParentIdAttributeTypeOk(o.ContainerParentId)
 }
 
 // SetContainerParentId sets field value
-func (o *CreateProjectPayload) SetContainerParentId(v *string) {
-	o.ContainerParentId = v
+func (o *CreateProjectPayload) SetContainerParentId(v CreateProjectPayloadGetContainerParentIdRetType) {
+	setCreateProjectPayloadGetContainerParentIdAttributeType(&o.ContainerParentId, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateProjectPayload) GetLabels() *map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Labels
+func (o *CreateProjectPayload) GetLabels() (res CreateProjectPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateProjectPayload) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *CreateProjectPayload) GetLabelsOk() (ret CreateProjectPayloadGetLabelsRetType, ok bool) {
+	return getCreateProjectPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateProjectPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *CreateProjectPayload) SetLabels(v *map[string]string) {
-	o.Labels = v
+func (o *CreateProjectPayload) SetLabels(v CreateProjectPayloadGetLabelsRetType) {
+	setCreateProjectPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetMembers returns the Members field value
-func (o *CreateProjectPayload) GetMembers() *[]Member {
-	if o == nil || IsNil(o.Members) {
-		var ret *[]Member
-		return ret
-	}
-
-	return o.Members
+func (o *CreateProjectPayload) GetMembers() (ret CreateProjectPayloadGetMembersRetType) {
+	ret, _ = o.GetMembersOk()
+	return ret
 }
 
 // GetMembersOk returns a tuple with the Members field value
 // and a boolean to check if the value has been set.
-func (o *CreateProjectPayload) GetMembersOk() (*[]Member, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Members, true
+func (o *CreateProjectPayload) GetMembersOk() (ret CreateProjectPayloadGetMembersRetType, ok bool) {
+	return getCreateProjectPayloadGetMembersAttributeTypeOk(o.Members)
 }
 
 // SetMembers sets field value
-func (o *CreateProjectPayload) SetMembers(v *[]Member) {
-	o.Members = v
+func (o *CreateProjectPayload) SetMembers(v CreateProjectPayloadGetMembersRetType) {
+	setCreateProjectPayloadGetMembersAttributeType(&o.Members, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateProjectPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateProjectPayload) GetName() (ret CreateProjectPayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateProjectPayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateProjectPayload) GetNameOk() (ret CreateProjectPayloadGetNameRetType, ok bool) {
+	return getCreateProjectPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateProjectPayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateProjectPayload) SetName(v CreateProjectPayloadGetNameRetType) {
+	setCreateProjectPayloadGetNameAttributeType(&o.Name, v)
 }
 
 func (o CreateProjectPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containerParentId"] = o.ContainerParentId
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getCreateProjectPayloadGetContainerParentIdAttributeTypeOk(o.ContainerParentId); ok {
+		toSerialize["ContainerParentId"] = val
 	}
-	toSerialize["members"] = o.Members
-	toSerialize["name"] = o.Name
+	if val, ok := getCreateProjectPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
+	}
+	if val, ok := getCreateProjectPayloadGetMembersAttributeTypeOk(o.Members); ok {
+		toSerialize["Members"] = val
+	}
+	if val, ok := getCreateProjectPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
 	return toSerialize, nil
 }
 

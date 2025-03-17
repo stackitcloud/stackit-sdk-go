@@ -17,14 +17,76 @@ import (
 // checks if the PartialUpdateProjectPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateProjectPayload{}
 
+/*
+	types and functions for containerParentId
+*/
+
+// isNotNullableString
+type PartialUpdateProjectPayloadGetContainerParentIdAttributeType = *string
+
+func getPartialUpdateProjectPayloadGetContainerParentIdAttributeTypeOk(arg PartialUpdateProjectPayloadGetContainerParentIdAttributeType) (ret PartialUpdateProjectPayloadGetContainerParentIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateProjectPayloadGetContainerParentIdAttributeType(arg *PartialUpdateProjectPayloadGetContainerParentIdAttributeType, val PartialUpdateProjectPayloadGetContainerParentIdRetType) {
+	*arg = &val
+}
+
+type PartialUpdateProjectPayloadGetContainerParentIdArgType = string
+type PartialUpdateProjectPayloadGetContainerParentIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+type PartialUpdateProjectPayloadGetLabelsAttributeType = *map[string]string
+type PartialUpdateProjectPayloadGetLabelsArgType = map[string]string
+type PartialUpdateProjectPayloadGetLabelsRetType = map[string]string
+
+func getPartialUpdateProjectPayloadGetLabelsAttributeTypeOk(arg PartialUpdateProjectPayloadGetLabelsAttributeType) (ret PartialUpdateProjectPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateProjectPayloadGetLabelsAttributeType(arg *PartialUpdateProjectPayloadGetLabelsAttributeType, val PartialUpdateProjectPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type PartialUpdateProjectPayloadGetNameAttributeType = *string
+
+func getPartialUpdateProjectPayloadGetNameAttributeTypeOk(arg PartialUpdateProjectPayloadGetNameAttributeType) (ret PartialUpdateProjectPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateProjectPayloadGetNameAttributeType(arg *PartialUpdateProjectPayloadGetNameAttributeType, val PartialUpdateProjectPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type PartialUpdateProjectPayloadGetNameArgType = string
+type PartialUpdateProjectPayloadGetNameRetType = string
+
 // PartialUpdateProjectPayload struct for PartialUpdateProjectPayload
 type PartialUpdateProjectPayload struct {
 	// New parent identifier for the resource container - containerId as well as UUID identifier is supported.
-	ContainerParentId *string `json:"containerParentId,omitempty"`
+	ContainerParentId PartialUpdateProjectPayloadGetContainerParentIdAttributeType `json:"containerParentId,omitempty"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
-	Labels *map[string]string `json:"labels,omitempty"`
+	Labels PartialUpdateProjectPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	Name *string `json:"name,omitempty"`
+	Name PartialUpdateProjectPayloadGetNameAttributeType `json:"name,omitempty"`
 }
 
 // NewPartialUpdateProjectPayload instantiates a new PartialUpdateProjectPayload object
@@ -45,111 +107,84 @@ func NewPartialUpdateProjectPayloadWithDefaults() *PartialUpdateProjectPayload {
 }
 
 // GetContainerParentId returns the ContainerParentId field value if set, zero value otherwise.
-func (o *PartialUpdateProjectPayload) GetContainerParentId() *string {
-	if o == nil || IsNil(o.ContainerParentId) {
-		var ret *string
-		return ret
-	}
-	return o.ContainerParentId
+func (o *PartialUpdateProjectPayload) GetContainerParentId() (res PartialUpdateProjectPayloadGetContainerParentIdRetType) {
+	res, _ = o.GetContainerParentIdOk()
+	return
 }
 
 // GetContainerParentIdOk returns a tuple with the ContainerParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateProjectPayload) GetContainerParentIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ContainerParentId) {
-		return nil, false
-	}
-	return o.ContainerParentId, true
+func (o *PartialUpdateProjectPayload) GetContainerParentIdOk() (ret PartialUpdateProjectPayloadGetContainerParentIdRetType, ok bool) {
+	return getPartialUpdateProjectPayloadGetContainerParentIdAttributeTypeOk(o.ContainerParentId)
 }
 
 // HasContainerParentId returns a boolean if a field has been set.
 func (o *PartialUpdateProjectPayload) HasContainerParentId() bool {
-	if o != nil && !IsNil(o.ContainerParentId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetContainerParentIdOk()
+	return ok
 }
 
 // SetContainerParentId gets a reference to the given string and assigns it to the ContainerParentId field.
-func (o *PartialUpdateProjectPayload) SetContainerParentId(v *string) {
-	o.ContainerParentId = v
+func (o *PartialUpdateProjectPayload) SetContainerParentId(v PartialUpdateProjectPayloadGetContainerParentIdRetType) {
+	setPartialUpdateProjectPayloadGetContainerParentIdAttributeType(&o.ContainerParentId, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *PartialUpdateProjectPayload) GetLabels() *map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Labels
+func (o *PartialUpdateProjectPayload) GetLabels() (res PartialUpdateProjectPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateProjectPayload) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *PartialUpdateProjectPayload) GetLabelsOk() (ret PartialUpdateProjectPayloadGetLabelsRetType, ok bool) {
+	return getPartialUpdateProjectPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *PartialUpdateProjectPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *PartialUpdateProjectPayload) SetLabels(v *map[string]string) {
-	o.Labels = v
+func (o *PartialUpdateProjectPayload) SetLabels(v PartialUpdateProjectPayloadGetLabelsRetType) {
+	setPartialUpdateProjectPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PartialUpdateProjectPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *PartialUpdateProjectPayload) GetName() (res PartialUpdateProjectPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateProjectPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *PartialUpdateProjectPayload) GetNameOk() (ret PartialUpdateProjectPayloadGetNameRetType, ok bool) {
+	return getPartialUpdateProjectPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateProjectPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PartialUpdateProjectPayload) SetName(v *string) {
-	o.Name = v
+func (o *PartialUpdateProjectPayload) SetName(v PartialUpdateProjectPayloadGetNameRetType) {
+	setPartialUpdateProjectPayloadGetNameAttributeType(&o.Name, v)
 }
 
 func (o PartialUpdateProjectPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ContainerParentId) {
-		toSerialize["containerParentId"] = o.ContainerParentId
+	if val, ok := getPartialUpdateProjectPayloadGetContainerParentIdAttributeTypeOk(o.ContainerParentId); ok {
+		toSerialize["ContainerParentId"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getPartialUpdateProjectPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getPartialUpdateProjectPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }
