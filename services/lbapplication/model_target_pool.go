@@ -17,15 +17,96 @@ import (
 // checks if the TargetPool type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &TargetPool{}
 
+/*
+	types and functions for activeHealthCheck
+*/
+
+// isModel
+type TargetPoolGetActiveHealthCheckAttributeType = *ActiveHealthCheck
+type TargetPoolGetActiveHealthCheckArgType = ActiveHealthCheck
+type TargetPoolGetActiveHealthCheckRetType = ActiveHealthCheck
+
+func getTargetPoolGetActiveHealthCheckAttributeTypeOk(arg TargetPoolGetActiveHealthCheckAttributeType) (ret TargetPoolGetActiveHealthCheckRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTargetPoolGetActiveHealthCheckAttributeType(arg *TargetPoolGetActiveHealthCheckAttributeType, val TargetPoolGetActiveHealthCheckRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type TargetPoolGetNameAttributeType = *string
+
+func getTargetPoolGetNameAttributeTypeOk(arg TargetPoolGetNameAttributeType) (ret TargetPoolGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTargetPoolGetNameAttributeType(arg *TargetPoolGetNameAttributeType, val TargetPoolGetNameRetType) {
+	*arg = &val
+}
+
+type TargetPoolGetNameArgType = string
+type TargetPoolGetNameRetType = string
+
+/*
+	types and functions for targetPort
+*/
+
+// isInteger
+type TargetPoolGetTargetPortAttributeType = *int64
+type TargetPoolGetTargetPortArgType = int64
+type TargetPoolGetTargetPortRetType = int64
+
+func getTargetPoolGetTargetPortAttributeTypeOk(arg TargetPoolGetTargetPortAttributeType) (ret TargetPoolGetTargetPortRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTargetPoolGetTargetPortAttributeType(arg *TargetPoolGetTargetPortAttributeType, val TargetPoolGetTargetPortRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targets
+*/
+
+// isArray
+type TargetPoolGetTargetsAttributeType = *[]Target
+type TargetPoolGetTargetsArgType = []Target
+type TargetPoolGetTargetsRetType = []Target
+
+func getTargetPoolGetTargetsAttributeTypeOk(arg TargetPoolGetTargetsAttributeType) (ret TargetPoolGetTargetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTargetPoolGetTargetsAttributeType(arg *TargetPoolGetTargetsAttributeType, val TargetPoolGetTargetsRetType) {
+	*arg = &val
+}
+
 // TargetPool struct for TargetPool
 type TargetPool struct {
-	ActiveHealthCheck *ActiveHealthCheck `json:"activeHealthCheck,omitempty"`
+	ActiveHealthCheck TargetPoolGetActiveHealthCheckAttributeType `json:"activeHealthCheck,omitempty"`
 	// Target pool name
-	Name *string `json:"name,omitempty"`
+	Name TargetPoolGetNameAttributeType `json:"name,omitempty"`
 	// The number identifying the port where each target listens for traffic.
-	TargetPort *int64 `json:"targetPort,omitempty"`
+	TargetPort TargetPoolGetTargetPortAttributeType `json:"targetPort,omitempty"`
 	// List of all targets which will be used in the pool. Limited to 250.
-	Targets *[]Target `json:"targets,omitempty"`
+	Targets TargetPoolGetTargetsAttributeType `json:"targets,omitempty"`
 }
 
 // NewTargetPool instantiates a new TargetPool object
@@ -46,146 +127,110 @@ func NewTargetPoolWithDefaults() *TargetPool {
 }
 
 // GetActiveHealthCheck returns the ActiveHealthCheck field value if set, zero value otherwise.
-func (o *TargetPool) GetActiveHealthCheck() *ActiveHealthCheck {
-	if o == nil || IsNil(o.ActiveHealthCheck) {
-		var ret *ActiveHealthCheck
-		return ret
-	}
-	return o.ActiveHealthCheck
+func (o *TargetPool) GetActiveHealthCheck() (res TargetPoolGetActiveHealthCheckRetType) {
+	res, _ = o.GetActiveHealthCheckOk()
+	return
 }
 
 // GetActiveHealthCheckOk returns a tuple with the ActiveHealthCheck field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TargetPool) GetActiveHealthCheckOk() (*ActiveHealthCheck, bool) {
-	if o == nil || IsNil(o.ActiveHealthCheck) {
-		return nil, false
-	}
-	return o.ActiveHealthCheck, true
+func (o *TargetPool) GetActiveHealthCheckOk() (ret TargetPoolGetActiveHealthCheckRetType, ok bool) {
+	return getTargetPoolGetActiveHealthCheckAttributeTypeOk(o.ActiveHealthCheck)
 }
 
 // HasActiveHealthCheck returns a boolean if a field has been set.
 func (o *TargetPool) HasActiveHealthCheck() bool {
-	if o != nil && !IsNil(o.ActiveHealthCheck) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetActiveHealthCheckOk()
+	return ok
 }
 
 // SetActiveHealthCheck gets a reference to the given ActiveHealthCheck and assigns it to the ActiveHealthCheck field.
-func (o *TargetPool) SetActiveHealthCheck(v *ActiveHealthCheck) {
-	o.ActiveHealthCheck = v
+func (o *TargetPool) SetActiveHealthCheck(v TargetPoolGetActiveHealthCheckRetType) {
+	setTargetPoolGetActiveHealthCheckAttributeType(&o.ActiveHealthCheck, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *TargetPool) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *TargetPool) GetName() (res TargetPoolGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TargetPool) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *TargetPool) GetNameOk() (ret TargetPoolGetNameRetType, ok bool) {
+	return getTargetPoolGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *TargetPool) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *TargetPool) SetName(v *string) {
-	o.Name = v
+func (o *TargetPool) SetName(v TargetPoolGetNameRetType) {
+	setTargetPoolGetNameAttributeType(&o.Name, v)
 }
 
 // GetTargetPort returns the TargetPort field value if set, zero value otherwise.
-func (o *TargetPool) GetTargetPort() *int64 {
-	if o == nil || IsNil(o.TargetPort) {
-		var ret *int64
-		return ret
-	}
-	return o.TargetPort
+func (o *TargetPool) GetTargetPort() (res TargetPoolGetTargetPortRetType) {
+	res, _ = o.GetTargetPortOk()
+	return
 }
 
 // GetTargetPortOk returns a tuple with the TargetPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TargetPool) GetTargetPortOk() (*int64, bool) {
-	if o == nil || IsNil(o.TargetPort) {
-		return nil, false
-	}
-	return o.TargetPort, true
+func (o *TargetPool) GetTargetPortOk() (ret TargetPoolGetTargetPortRetType, ok bool) {
+	return getTargetPoolGetTargetPortAttributeTypeOk(o.TargetPort)
 }
 
 // HasTargetPort returns a boolean if a field has been set.
 func (o *TargetPool) HasTargetPort() bool {
-	if o != nil && !IsNil(o.TargetPort) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetPortOk()
+	return ok
 }
 
 // SetTargetPort gets a reference to the given int64 and assigns it to the TargetPort field.
-func (o *TargetPool) SetTargetPort(v *int64) {
-	o.TargetPort = v
+func (o *TargetPool) SetTargetPort(v TargetPoolGetTargetPortRetType) {
+	setTargetPoolGetTargetPortAttributeType(&o.TargetPort, v)
 }
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
-func (o *TargetPool) GetTargets() *[]Target {
-	if o == nil || IsNil(o.Targets) {
-		var ret *[]Target
-		return ret
-	}
-	return o.Targets
+func (o *TargetPool) GetTargets() (res TargetPoolGetTargetsRetType) {
+	res, _ = o.GetTargetsOk()
+	return
 }
 
 // GetTargetsOk returns a tuple with the Targets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TargetPool) GetTargetsOk() (*[]Target, bool) {
-	if o == nil || IsNil(o.Targets) {
-		return nil, false
-	}
-	return o.Targets, true
+func (o *TargetPool) GetTargetsOk() (ret TargetPoolGetTargetsRetType, ok bool) {
+	return getTargetPoolGetTargetsAttributeTypeOk(o.Targets)
 }
 
 // HasTargets returns a boolean if a field has been set.
 func (o *TargetPool) HasTargets() bool {
-	if o != nil && !IsNil(o.Targets) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetsOk()
+	return ok
 }
 
 // SetTargets gets a reference to the given []Target and assigns it to the Targets field.
-func (o *TargetPool) SetTargets(v *[]Target) {
-	o.Targets = v
+func (o *TargetPool) SetTargets(v TargetPoolGetTargetsRetType) {
+	setTargetPoolGetTargetsAttributeType(&o.Targets, v)
 }
 
 func (o TargetPool) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ActiveHealthCheck) {
-		toSerialize["activeHealthCheck"] = o.ActiveHealthCheck
+	if val, ok := getTargetPoolGetActiveHealthCheckAttributeTypeOk(o.ActiveHealthCheck); ok {
+		toSerialize["ActiveHealthCheck"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getTargetPoolGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.TargetPort) {
-		toSerialize["targetPort"] = o.TargetPort
+	if val, ok := getTargetPoolGetTargetPortAttributeTypeOk(o.TargetPort); ok {
+		toSerialize["TargetPort"] = val
 	}
-	if !IsNil(o.Targets) {
-		toSerialize["targets"] = o.Targets
+	if val, ok := getTargetPoolGetTargetsAttributeTypeOk(o.Targets); ok {
+		toSerialize["Targets"] = val
 	}
 	return toSerialize, nil
 }

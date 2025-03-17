@@ -17,10 +17,30 @@ import (
 // checks if the GetServiceStatusResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetServiceStatusResponse{}
 
+/*
+	types and functions for status
+*/
+
+// isEnumRef
+type GetServiceStatusResponseGetStatusAttributeType = *string
+type GetServiceStatusResponseGetStatusArgType = string
+type GetServiceStatusResponseGetStatusRetType = string
+
+func getGetServiceStatusResponseGetStatusAttributeTypeOk(arg GetServiceStatusResponseGetStatusAttributeType) (ret GetServiceStatusResponseGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetServiceStatusResponseGetStatusAttributeType(arg *GetServiceStatusResponseGetStatusAttributeType, val GetServiceStatusResponseGetStatusRetType) {
+	*arg = &val
+}
+
 // GetServiceStatusResponse Response with customer project status.
 type GetServiceStatusResponse struct {
 	// status of the project
-	Status *string `json:"status,omitempty"`
+	Status GetServiceStatusResponseGetStatusAttributeType `json:"status,omitempty"`
 }
 
 // NewGetServiceStatusResponse instantiates a new GetServiceStatusResponse object
@@ -41,41 +61,32 @@ func NewGetServiceStatusResponseWithDefaults() *GetServiceStatusResponse {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *GetServiceStatusResponse) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *GetServiceStatusResponse) GetStatus() (res GetServiceStatusResponseGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetServiceStatusResponse) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *GetServiceStatusResponse) GetStatusOk() (ret GetServiceStatusResponseGetStatusRetType, ok bool) {
+	return getGetServiceStatusResponseGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetServiceStatusResponse) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *GetServiceStatusResponse) SetStatus(v *string) {
-	o.Status = v
+func (o *GetServiceStatusResponse) SetStatus(v GetServiceStatusResponseGetStatusRetType) {
+	setGetServiceStatusResponseGetStatusAttributeType(&o.Status, v)
 }
 
 func (o GetServiceStatusResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getGetServiceStatusResponseGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
 }
