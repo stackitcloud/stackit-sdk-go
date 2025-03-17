@@ -1,3 +1,7 @@
+## Release (2025-03-19)
+  - `serverupdate`: [v1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-03-19)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+
 ## Release (2025-03-14)
 - `certificates`: [v1.0.0](services/certificates/CHANGELOG.md#v100-2025-03-14)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
