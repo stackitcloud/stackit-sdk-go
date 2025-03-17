@@ -17,14 +17,75 @@ import (
 // checks if the CreateBackupPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateBackupPayload{}
 
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type CreateBackupPayloadGetLabelsAttributeType = *map[string]interface{}
+type CreateBackupPayloadGetLabelsArgType = map[string]interface{}
+type CreateBackupPayloadGetLabelsRetType = map[string]interface{}
+
+func getCreateBackupPayloadGetLabelsAttributeTypeOk(arg CreateBackupPayloadGetLabelsAttributeType) (ret CreateBackupPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateBackupPayloadGetLabelsAttributeType(arg *CreateBackupPayloadGetLabelsAttributeType, val CreateBackupPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateBackupPayloadGetNameAttributeType = *string
+
+func getCreateBackupPayloadGetNameAttributeTypeOk(arg CreateBackupPayloadGetNameAttributeType) (ret CreateBackupPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateBackupPayloadGetNameAttributeType(arg *CreateBackupPayloadGetNameAttributeType, val CreateBackupPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateBackupPayloadGetNameArgType = string
+type CreateBackupPayloadGetNameRetType = string
+
+/*
+	types and functions for source
+*/
+
+// isModel
+type CreateBackupPayloadGetSourceAttributeType = *BackupSource
+type CreateBackupPayloadGetSourceArgType = BackupSource
+type CreateBackupPayloadGetSourceRetType = BackupSource
+
+func getCreateBackupPayloadGetSourceAttributeTypeOk(arg CreateBackupPayloadGetSourceAttributeType) (ret CreateBackupPayloadGetSourceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateBackupPayloadGetSourceAttributeType(arg *CreateBackupPayloadGetSourceAttributeType, val CreateBackupPayloadGetSourceRetType) {
+	*arg = &val
+}
+
 // CreateBackupPayload Object that represents a backup create request body.
 type CreateBackupPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels CreateBackupPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty"`
+	Name CreateBackupPayloadGetNameAttributeType `json:"name,omitempty"`
 	// REQUIRED
-	Source *BackupSource `json:"source"`
+	Source CreateBackupPayloadGetSourceAttributeType `json:"source"`
 }
 
 type _CreateBackupPayload CreateBackupPayload
@@ -33,9 +94,9 @@ type _CreateBackupPayload CreateBackupPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBackupPayload(source *BackupSource) *CreateBackupPayload {
+func NewCreateBackupPayload(source CreateBackupPayloadGetSourceArgType) *CreateBackupPayload {
 	this := CreateBackupPayload{}
-	this.Source = source
+	setCreateBackupPayloadGetSourceAttributeType(&this.Source, source)
 	return &this
 }
 
@@ -48,102 +109,79 @@ func NewCreateBackupPayloadWithDefaults() *CreateBackupPayload {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateBackupPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *CreateBackupPayload) GetLabels() (res CreateBackupPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateBackupPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *CreateBackupPayload) GetLabelsOk() (ret CreateBackupPayloadGetLabelsRetType, ok bool) {
+	return getCreateBackupPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateBackupPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *CreateBackupPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *CreateBackupPayload) SetLabels(v CreateBackupPayloadGetLabelsRetType) {
+	setCreateBackupPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CreateBackupPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *CreateBackupPayload) GetName() (res CreateBackupPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateBackupPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateBackupPayload) GetNameOk() (ret CreateBackupPayloadGetNameRetType, ok bool) {
+	return getCreateBackupPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateBackupPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CreateBackupPayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateBackupPayload) SetName(v CreateBackupPayloadGetNameRetType) {
+	setCreateBackupPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetSource returns the Source field value
-func (o *CreateBackupPayload) GetSource() *BackupSource {
-	if o == nil || IsNil(o.Source) {
-		var ret *BackupSource
-		return ret
-	}
-
-	return o.Source
+func (o *CreateBackupPayload) GetSource() (ret CreateBackupPayloadGetSourceRetType) {
+	ret, _ = o.GetSourceOk()
+	return ret
 }
 
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
-func (o *CreateBackupPayload) GetSourceOk() (*BackupSource, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Source, true
+func (o *CreateBackupPayload) GetSourceOk() (ret CreateBackupPayloadGetSourceRetType, ok bool) {
+	return getCreateBackupPayloadGetSourceAttributeTypeOk(o.Source)
 }
 
 // SetSource sets field value
-func (o *CreateBackupPayload) SetSource(v *BackupSource) {
-	o.Source = v
+func (o *CreateBackupPayload) SetSource(v CreateBackupPayloadGetSourceRetType) {
+	setCreateBackupPayloadGetSourceAttributeType(&o.Source, v)
 }
 
 func (o CreateBackupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getCreateBackupPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getCreateBackupPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	toSerialize["source"] = o.Source
+	if val, ok := getCreateBackupPayloadGetSourceAttributeTypeOk(o.Source); ok {
+		toSerialize["Source"] = val
+	}
 	return toSerialize, nil
 }
 
