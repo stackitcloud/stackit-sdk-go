@@ -17,18 +17,123 @@ import (
 // checks if the CreateCertificatePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateCertificatePayload{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateCertificatePayloadGetNameAttributeType = *string
+
+func getCreateCertificatePayloadGetNameAttributeTypeOk(arg CreateCertificatePayloadGetNameAttributeType) (ret CreateCertificatePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCertificatePayloadGetNameAttributeType(arg *CreateCertificatePayloadGetNameAttributeType, val CreateCertificatePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateCertificatePayloadGetNameArgType = string
+type CreateCertificatePayloadGetNameRetType = string
+
+/*
+	types and functions for privateKey
+*/
+
+// isNotNullableString
+type CreateCertificatePayloadGetPrivateKeyAttributeType = *string
+
+func getCreateCertificatePayloadGetPrivateKeyAttributeTypeOk(arg CreateCertificatePayloadGetPrivateKeyAttributeType) (ret CreateCertificatePayloadGetPrivateKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCertificatePayloadGetPrivateKeyAttributeType(arg *CreateCertificatePayloadGetPrivateKeyAttributeType, val CreateCertificatePayloadGetPrivateKeyRetType) {
+	*arg = &val
+}
+
+type CreateCertificatePayloadGetPrivateKeyArgType = string
+type CreateCertificatePayloadGetPrivateKeyRetType = string
+
+/*
+	types and functions for projectId
+*/
+
+// isNotNullableString
+type CreateCertificatePayloadGetProjectIdAttributeType = *string
+
+func getCreateCertificatePayloadGetProjectIdAttributeTypeOk(arg CreateCertificatePayloadGetProjectIdAttributeType) (ret CreateCertificatePayloadGetProjectIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCertificatePayloadGetProjectIdAttributeType(arg *CreateCertificatePayloadGetProjectIdAttributeType, val CreateCertificatePayloadGetProjectIdRetType) {
+	*arg = &val
+}
+
+type CreateCertificatePayloadGetProjectIdArgType = string
+type CreateCertificatePayloadGetProjectIdRetType = string
+
+/*
+	types and functions for publicKey
+*/
+
+// isNotNullableString
+type CreateCertificatePayloadGetPublicKeyAttributeType = *string
+
+func getCreateCertificatePayloadGetPublicKeyAttributeTypeOk(arg CreateCertificatePayloadGetPublicKeyAttributeType) (ret CreateCertificatePayloadGetPublicKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCertificatePayloadGetPublicKeyAttributeType(arg *CreateCertificatePayloadGetPublicKeyAttributeType, val CreateCertificatePayloadGetPublicKeyRetType) {
+	*arg = &val
+}
+
+type CreateCertificatePayloadGetPublicKeyArgType = string
+type CreateCertificatePayloadGetPublicKeyRetType = string
+
+/*
+	types and functions for region
+*/
+
+// isNotNullableString
+type CreateCertificatePayloadGetRegionAttributeType = *string
+
+func getCreateCertificatePayloadGetRegionAttributeTypeOk(arg CreateCertificatePayloadGetRegionAttributeType) (ret CreateCertificatePayloadGetRegionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCertificatePayloadGetRegionAttributeType(arg *CreateCertificatePayloadGetRegionAttributeType, val CreateCertificatePayloadGetRegionRetType) {
+	*arg = &val
+}
+
+type CreateCertificatePayloadGetRegionArgType = string
+type CreateCertificatePayloadGetRegionRetType = string
+
 // CreateCertificatePayload Uploads a PEM encoded X509 public/private key pair
 type CreateCertificatePayload struct {
 	// TLS certificate name
-	Name *string `json:"name,omitempty"`
+	Name CreateCertificatePayloadGetNameAttributeType `json:"name,omitempty"`
 	// The PEM encoded private key part
-	PrivateKey *string `json:"privateKey,omitempty"`
+	PrivateKey CreateCertificatePayloadGetPrivateKeyAttributeType `json:"privateKey,omitempty"`
 	// Project identifier
-	ProjectId *string `json:"projectId,omitempty"`
+	ProjectId CreateCertificatePayloadGetProjectIdAttributeType `json:"projectId,omitempty"`
 	// The PEM encoded public key part
-	PublicKey *string `json:"publicKey,omitempty"`
+	PublicKey CreateCertificatePayloadGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// Region
-	Region *string `json:"region,omitempty"`
+	Region CreateCertificatePayloadGetRegionAttributeType `json:"region,omitempty"`
 }
 
 // NewCreateCertificatePayload instantiates a new CreateCertificatePayload object
@@ -49,181 +154,136 @@ func NewCreateCertificatePayloadWithDefaults() *CreateCertificatePayload {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CreateCertificatePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *CreateCertificatePayload) GetName() (res CreateCertificatePayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCertificatePayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateCertificatePayload) GetNameOk() (ret CreateCertificatePayloadGetNameRetType, ok bool) {
+	return getCreateCertificatePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateCertificatePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CreateCertificatePayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateCertificatePayload) SetName(v CreateCertificatePayloadGetNameRetType) {
+	setCreateCertificatePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
-func (o *CreateCertificatePayload) GetPrivateKey() *string {
-	if o == nil || IsNil(o.PrivateKey) {
-		var ret *string
-		return ret
-	}
-	return o.PrivateKey
+func (o *CreateCertificatePayload) GetPrivateKey() (res CreateCertificatePayloadGetPrivateKeyRetType) {
+	res, _ = o.GetPrivateKeyOk()
+	return
 }
 
 // GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCertificatePayload) GetPrivateKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.PrivateKey) {
-		return nil, false
-	}
-	return o.PrivateKey, true
+func (o *CreateCertificatePayload) GetPrivateKeyOk() (ret CreateCertificatePayloadGetPrivateKeyRetType, ok bool) {
+	return getCreateCertificatePayloadGetPrivateKeyAttributeTypeOk(o.PrivateKey)
 }
 
 // HasPrivateKey returns a boolean if a field has been set.
 func (o *CreateCertificatePayload) HasPrivateKey() bool {
-	if o != nil && !IsNil(o.PrivateKey) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPrivateKeyOk()
+	return ok
 }
 
 // SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.
-func (o *CreateCertificatePayload) SetPrivateKey(v *string) {
-	o.PrivateKey = v
+func (o *CreateCertificatePayload) SetPrivateKey(v CreateCertificatePayloadGetPrivateKeyRetType) {
+	setCreateCertificatePayloadGetPrivateKeyAttributeType(&o.PrivateKey, v)
 }
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
-func (o *CreateCertificatePayload) GetProjectId() *string {
-	if o == nil || IsNil(o.ProjectId) {
-		var ret *string
-		return ret
-	}
-	return o.ProjectId
+func (o *CreateCertificatePayload) GetProjectId() (res CreateCertificatePayloadGetProjectIdRetType) {
+	res, _ = o.GetProjectIdOk()
+	return
 }
 
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCertificatePayload) GetProjectIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ProjectId) {
-		return nil, false
-	}
-	return o.ProjectId, true
+func (o *CreateCertificatePayload) GetProjectIdOk() (ret CreateCertificatePayloadGetProjectIdRetType, ok bool) {
+	return getCreateCertificatePayloadGetProjectIdAttributeTypeOk(o.ProjectId)
 }
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *CreateCertificatePayload) HasProjectId() bool {
-	if o != nil && !IsNil(o.ProjectId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProjectIdOk()
+	return ok
 }
 
 // SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
-func (o *CreateCertificatePayload) SetProjectId(v *string) {
-	o.ProjectId = v
+func (o *CreateCertificatePayload) SetProjectId(v CreateCertificatePayloadGetProjectIdRetType) {
+	setCreateCertificatePayloadGetProjectIdAttributeType(&o.ProjectId, v)
 }
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
-func (o *CreateCertificatePayload) GetPublicKey() *string {
-	if o == nil || IsNil(o.PublicKey) {
-		var ret *string
-		return ret
-	}
-	return o.PublicKey
+func (o *CreateCertificatePayload) GetPublicKey() (res CreateCertificatePayloadGetPublicKeyRetType) {
+	res, _ = o.GetPublicKeyOk()
+	return
 }
 
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCertificatePayload) GetPublicKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.PublicKey) {
-		return nil, false
-	}
-	return o.PublicKey, true
+func (o *CreateCertificatePayload) GetPublicKeyOk() (ret CreateCertificatePayloadGetPublicKeyRetType, ok bool) {
+	return getCreateCertificatePayloadGetPublicKeyAttributeTypeOk(o.PublicKey)
 }
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *CreateCertificatePayload) HasPublicKey() bool {
-	if o != nil && !IsNil(o.PublicKey) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPublicKeyOk()
+	return ok
 }
 
 // SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
-func (o *CreateCertificatePayload) SetPublicKey(v *string) {
-	o.PublicKey = v
+func (o *CreateCertificatePayload) SetPublicKey(v CreateCertificatePayloadGetPublicKeyRetType) {
+	setCreateCertificatePayloadGetPublicKeyAttributeType(&o.PublicKey, v)
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
-func (o *CreateCertificatePayload) GetRegion() *string {
-	if o == nil || IsNil(o.Region) {
-		var ret *string
-		return ret
-	}
-	return o.Region
+func (o *CreateCertificatePayload) GetRegion() (res CreateCertificatePayloadGetRegionRetType) {
+	res, _ = o.GetRegionOk()
+	return
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCertificatePayload) GetRegionOk() (*string, bool) {
-	if o == nil || IsNil(o.Region) {
-		return nil, false
-	}
-	return o.Region, true
+func (o *CreateCertificatePayload) GetRegionOk() (ret CreateCertificatePayloadGetRegionRetType, ok bool) {
+	return getCreateCertificatePayloadGetRegionAttributeTypeOk(o.Region)
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *CreateCertificatePayload) HasRegion() bool {
-	if o != nil && !IsNil(o.Region) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRegionOk()
+	return ok
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *CreateCertificatePayload) SetRegion(v *string) {
-	o.Region = v
+func (o *CreateCertificatePayload) SetRegion(v CreateCertificatePayloadGetRegionRetType) {
+	setCreateCertificatePayloadGetRegionAttributeType(&o.Region, v)
 }
 
 func (o CreateCertificatePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getCreateCertificatePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.PrivateKey) {
-		toSerialize["privateKey"] = o.PrivateKey
+	if val, ok := getCreateCertificatePayloadGetPrivateKeyAttributeTypeOk(o.PrivateKey); ok {
+		toSerialize["PrivateKey"] = val
 	}
-	if !IsNil(o.ProjectId) {
-		toSerialize["projectId"] = o.ProjectId
+	if val, ok := getCreateCertificatePayloadGetProjectIdAttributeTypeOk(o.ProjectId); ok {
+		toSerialize["ProjectId"] = val
 	}
-	if !IsNil(o.PublicKey) {
-		toSerialize["publicKey"] = o.PublicKey
+	if val, ok := getCreateCertificatePayloadGetPublicKeyAttributeTypeOk(o.PublicKey); ok {
+		toSerialize["PublicKey"] = val
 	}
-	if !IsNil(o.Region) {
-		toSerialize["region"] = o.Region
+	if val, ok := getCreateCertificatePayloadGetRegionAttributeTypeOk(o.Region); ok {
+		toSerialize["Region"] = val
 	}
 	return toSerialize, nil
 }

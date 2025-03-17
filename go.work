@@ -32,8 +32,10 @@ use (
 	./examples/sqlserverflex
 	./examples/waiter
 	./scripts
+	./services/alb
 	./services/archiving
 	./services/authorization
+	./services/cdn
 	./services/certificates
 	./services/dns
 	./services/iaas
