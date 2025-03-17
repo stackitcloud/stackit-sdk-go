@@ -17,14 +17,56 @@ import (
 // checks if the BackupSource type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BackupSource{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type BackupSourceGetIdAttributeType = *string
+
+func getBackupSourceGetIdAttributeTypeOk(arg BackupSourceGetIdAttributeType) (ret BackupSourceGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupSourceGetIdAttributeType(arg *BackupSourceGetIdAttributeType, val BackupSourceGetIdRetType) {
+	*arg = &val
+}
+
+type BackupSourceGetIdArgType = string
+type BackupSourceGetIdRetType = string
+
+/*
+	types and functions for type
+*/
+
+// isNotNullableString
+type BackupSourceGetTypeAttributeType = *string
+
+func getBackupSourceGetTypeAttributeTypeOk(arg BackupSourceGetTypeAttributeType) (ret BackupSourceGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupSourceGetTypeAttributeType(arg *BackupSourceGetTypeAttributeType, val BackupSourceGetTypeRetType) {
+	*arg = &val
+}
+
+type BackupSourceGetTypeArgType = string
+type BackupSourceGetTypeRetType = string
+
 // BackupSource The source object of a backup.
 type BackupSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Id *string `json:"id"`
+	Id BackupSourceGetIdAttributeType `json:"id"`
 	// The source types of a backup. Possible values: `volume`, `snapshot`.
 	// REQUIRED
-	Type *string `json:"type"`
+	Type BackupSourceGetTypeAttributeType `json:"type"`
 }
 
 type _BackupSource BackupSource
@@ -33,10 +75,10 @@ type _BackupSource BackupSource
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBackupSource(id *string, type_ *string) *BackupSource {
+func NewBackupSource(id BackupSourceGetIdArgType, type_ BackupSourceGetTypeArgType) *BackupSource {
 	this := BackupSource{}
-	this.Id = id
-	this.Type = type_
+	setBackupSourceGetIdAttributeType(&this.Id, id)
+	setBackupSourceGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewBackupSourceWithDefaults() *BackupSource {
 }
 
 // GetId returns the Id field value
-func (o *BackupSource) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *BackupSource) GetId() (ret BackupSourceGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *BackupSource) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *BackupSource) GetIdOk() (ret BackupSourceGetIdRetType, ok bool) {
+	return getBackupSourceGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *BackupSource) SetId(v *string) {
-	o.Id = v
+func (o *BackupSource) SetId(v BackupSourceGetIdRetType) {
+	setBackupSourceGetIdAttributeType(&o.Id, v)
 }
 
 // GetType returns the Type field value
-func (o *BackupSource) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *BackupSource) GetType() (ret BackupSourceGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *BackupSource) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *BackupSource) GetTypeOk() (ret BackupSourceGetTypeRetType, ok bool) {
+	return getBackupSourceGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *BackupSource) SetType(v *string) {
-	o.Type = v
+func (o *BackupSource) SetType(v BackupSourceGetTypeRetType) {
+	setBackupSourceGetTypeAttributeType(&o.Type, v)
 }
 
 func (o BackupSource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["type"] = o.Type
+	if val, ok := getBackupSourceGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getBackupSourceGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

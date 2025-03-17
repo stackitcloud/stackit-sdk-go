@@ -17,11 +17,32 @@ import (
 // checks if the RemoveMemberFromVirtualIPPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RemoveMemberFromVirtualIPPayload{}
 
+/*
+	types and functions for member
+*/
+
+// isNotNullableString
+type RemoveMemberFromVirtualIPPayloadGetMemberAttributeType = *string
+
+func getRemoveMemberFromVirtualIPPayloadGetMemberAttributeTypeOk(arg RemoveMemberFromVirtualIPPayloadGetMemberAttributeType) (ret RemoveMemberFromVirtualIPPayloadGetMemberRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRemoveMemberFromVirtualIPPayloadGetMemberAttributeType(arg *RemoveMemberFromVirtualIPPayloadGetMemberAttributeType, val RemoveMemberFromVirtualIPPayloadGetMemberRetType) {
+	*arg = &val
+}
+
+type RemoveMemberFromVirtualIPPayloadGetMemberArgType = string
+type RemoveMemberFromVirtualIPPayloadGetMemberRetType = string
+
 // RemoveMemberFromVirtualIPPayload Object that represents a virtual IP member.
 type RemoveMemberFromVirtualIPPayload struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Member *string `json:"member"`
+	Member RemoveMemberFromVirtualIPPayloadGetMemberAttributeType `json:"member"`
 }
 
 type _RemoveMemberFromVirtualIPPayload RemoveMemberFromVirtualIPPayload
@@ -30,9 +51,9 @@ type _RemoveMemberFromVirtualIPPayload RemoveMemberFromVirtualIPPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRemoveMemberFromVirtualIPPayload(member *string) *RemoveMemberFromVirtualIPPayload {
+func NewRemoveMemberFromVirtualIPPayload(member RemoveMemberFromVirtualIPPayloadGetMemberArgType) *RemoveMemberFromVirtualIPPayload {
 	this := RemoveMemberFromVirtualIPPayload{}
-	this.Member = member
+	setRemoveMemberFromVirtualIPPayloadGetMemberAttributeType(&this.Member, member)
 	return &this
 }
 
@@ -45,32 +66,27 @@ func NewRemoveMemberFromVirtualIPPayloadWithDefaults() *RemoveMemberFromVirtualI
 }
 
 // GetMember returns the Member field value
-func (o *RemoveMemberFromVirtualIPPayload) GetMember() *string {
-	if o == nil || IsNil(o.Member) {
-		var ret *string
-		return ret
-	}
-
-	return o.Member
+func (o *RemoveMemberFromVirtualIPPayload) GetMember() (ret RemoveMemberFromVirtualIPPayloadGetMemberRetType) {
+	ret, _ = o.GetMemberOk()
+	return ret
 }
 
 // GetMemberOk returns a tuple with the Member field value
 // and a boolean to check if the value has been set.
-func (o *RemoveMemberFromVirtualIPPayload) GetMemberOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Member, true
+func (o *RemoveMemberFromVirtualIPPayload) GetMemberOk() (ret RemoveMemberFromVirtualIPPayloadGetMemberRetType, ok bool) {
+	return getRemoveMemberFromVirtualIPPayloadGetMemberAttributeTypeOk(o.Member)
 }
 
 // SetMember sets field value
-func (o *RemoveMemberFromVirtualIPPayload) SetMember(v *string) {
-	o.Member = v
+func (o *RemoveMemberFromVirtualIPPayload) SetMember(v RemoveMemberFromVirtualIPPayloadGetMemberRetType) {
+	setRemoveMemberFromVirtualIPPayloadGetMemberAttributeType(&o.Member, v)
 }
 
 func (o RemoveMemberFromVirtualIPPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["member"] = o.Member
+	if val, ok := getRemoveMemberFromVirtualIPPayloadGetMemberAttributeTypeOk(o.Member); ok {
+		toSerialize["Member"] = val
+	}
 	return toSerialize, nil
 }
 

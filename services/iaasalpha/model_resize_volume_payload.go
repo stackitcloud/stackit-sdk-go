@@ -17,11 +17,31 @@ import (
 // checks if the ResizeVolumePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ResizeVolumePayload{}
 
+/*
+	types and functions for size
+*/
+
+// isLong
+type ResizeVolumePayloadGetSizeAttributeType = *int64
+type ResizeVolumePayloadGetSizeArgType = int64
+type ResizeVolumePayloadGetSizeRetType = int64
+
+func getResizeVolumePayloadGetSizeAttributeTypeOk(arg ResizeVolumePayloadGetSizeAttributeType) (ret ResizeVolumePayloadGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setResizeVolumePayloadGetSizeAttributeType(arg *ResizeVolumePayloadGetSizeAttributeType, val ResizeVolumePayloadGetSizeRetType) {
+	*arg = &val
+}
+
 // ResizeVolumePayload struct for ResizeVolumePayload
 type ResizeVolumePayload struct {
 	// Size in Gigabyte.
 	// REQUIRED
-	Size *int64 `json:"size"`
+	Size ResizeVolumePayloadGetSizeAttributeType `json:"size"`
 }
 
 type _ResizeVolumePayload ResizeVolumePayload
@@ -30,9 +50,9 @@ type _ResizeVolumePayload ResizeVolumePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResizeVolumePayload(size *int64) *ResizeVolumePayload {
+func NewResizeVolumePayload(size ResizeVolumePayloadGetSizeArgType) *ResizeVolumePayload {
 	this := ResizeVolumePayload{}
-	this.Size = size
+	setResizeVolumePayloadGetSizeAttributeType(&this.Size, size)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewResizeVolumePayloadWithDefaults() *ResizeVolumePayload {
 }
 
 // GetSize returns the Size field value
-func (o *ResizeVolumePayload) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Size
+func (o *ResizeVolumePayload) GetSize() (ret ResizeVolumePayloadGetSizeRetType) {
+	ret, _ = o.GetSizeOk()
+	return ret
 }
 
 // GetSizeOk returns a tuple with the Size field value
 // and a boolean to check if the value has been set.
-func (o *ResizeVolumePayload) GetSizeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Size, true
+func (o *ResizeVolumePayload) GetSizeOk() (ret ResizeVolumePayloadGetSizeRetType, ok bool) {
+	return getResizeVolumePayloadGetSizeAttributeTypeOk(o.Size)
 }
 
 // SetSize sets field value
-func (o *ResizeVolumePayload) SetSize(v *int64) {
-	o.Size = v
+func (o *ResizeVolumePayload) SetSize(v ResizeVolumePayloadGetSizeRetType) {
+	setResizeVolumePayloadGetSizeAttributeType(&o.Size, v)
 }
 
 func (o ResizeVolumePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["size"] = o.Size
+	if val, ok := getResizeVolumePayloadGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
+	}
 	return toSerialize, nil
 }
 

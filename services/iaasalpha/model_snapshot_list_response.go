@@ -17,11 +17,31 @@ import (
 // checks if the SnapshotListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SnapshotListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type SnapshotListResponseGetItemsAttributeType = *[]Snapshot
+type SnapshotListResponseGetItemsArgType = []Snapshot
+type SnapshotListResponseGetItemsRetType = []Snapshot
+
+func getSnapshotListResponseGetItemsAttributeTypeOk(arg SnapshotListResponseGetItemsAttributeType) (ret SnapshotListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSnapshotListResponseGetItemsAttributeType(arg *SnapshotListResponseGetItemsAttributeType, val SnapshotListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // SnapshotListResponse Snapshot list response.
 type SnapshotListResponse struct {
 	// A list containing snapshot objects.
 	// REQUIRED
-	Items *[]Snapshot `json:"items"`
+	Items SnapshotListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _SnapshotListResponse SnapshotListResponse
@@ -30,9 +50,9 @@ type _SnapshotListResponse SnapshotListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSnapshotListResponse(items *[]Snapshot) *SnapshotListResponse {
+func NewSnapshotListResponse(items SnapshotListResponseGetItemsArgType) *SnapshotListResponse {
 	this := SnapshotListResponse{}
-	this.Items = items
+	setSnapshotListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewSnapshotListResponseWithDefaults() *SnapshotListResponse {
 }
 
 // GetItems returns the Items field value
-func (o *SnapshotListResponse) GetItems() *[]Snapshot {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]Snapshot
-		return ret
-	}
-
-	return o.Items
+func (o *SnapshotListResponse) GetItems() (ret SnapshotListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *SnapshotListResponse) GetItemsOk() (*[]Snapshot, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *SnapshotListResponse) GetItemsOk() (ret SnapshotListResponseGetItemsRetType, ok bool) {
+	return getSnapshotListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *SnapshotListResponse) SetItems(v *[]Snapshot) {
-	o.Items = v
+func (o *SnapshotListResponse) SetItems(v SnapshotListResponseGetItemsRetType) {
+	setSnapshotListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o SnapshotListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getSnapshotListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 
