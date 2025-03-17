@@ -17,26 +17,232 @@ import (
 // checks if the Offering type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Offering{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type OfferingGetDescriptionAttributeType = *string
+
+func getOfferingGetDescriptionAttributeTypeOk(arg OfferingGetDescriptionAttributeType) (ret OfferingGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferingGetDescriptionAttributeType(arg *OfferingGetDescriptionAttributeType, val OfferingGetDescriptionRetType) {
+	*arg = &val
+}
+
+type OfferingGetDescriptionArgType = string
+type OfferingGetDescriptionRetType = string
+
+/*
+	types and functions for documentationUrl
+*/
+
+// isNotNullableString
+type OfferingGetDocumentationUrlAttributeType = *string
+
+func getOfferingGetDocumentationUrlAttributeTypeOk(arg OfferingGetDocumentationUrlAttributeType) (ret OfferingGetDocumentationUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferingGetDocumentationUrlAttributeType(arg *OfferingGetDocumentationUrlAttributeType, val OfferingGetDocumentationUrlRetType) {
+	*arg = &val
+}
+
+type OfferingGetDocumentationUrlArgType = string
+type OfferingGetDocumentationUrlRetType = string
+
+/*
+	types and functions for imageUrl
+*/
+
+// isNotNullableString
+type OfferingGetImageUrlAttributeType = *string
+
+func getOfferingGetImageUrlAttributeTypeOk(arg OfferingGetImageUrlAttributeType) (ret OfferingGetImageUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferingGetImageUrlAttributeType(arg *OfferingGetImageUrlAttributeType, val OfferingGetImageUrlRetType) {
+	*arg = &val
+}
+
+type OfferingGetImageUrlArgType = string
+type OfferingGetImageUrlRetType = string
+
+/*
+	types and functions for latest
+*/
+
+// isBoolean
+type OfferinggetLatestAttributeType = *bool
+type OfferinggetLatestArgType = bool
+type OfferinggetLatestRetType = bool
+
+func getOfferinggetLatestAttributeTypeOk(arg OfferinggetLatestAttributeType) (ret OfferinggetLatestRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferinggetLatestAttributeType(arg *OfferinggetLatestAttributeType, val OfferinggetLatestRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for lifecycle
+*/
+
+// isNotNullableString
+type OfferingGetLifecycleAttributeType = *string
+
+func getOfferingGetLifecycleAttributeTypeOk(arg OfferingGetLifecycleAttributeType) (ret OfferingGetLifecycleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferingGetLifecycleAttributeType(arg *OfferingGetLifecycleAttributeType, val OfferingGetLifecycleRetType) {
+	*arg = &val
+}
+
+type OfferingGetLifecycleArgType = string
+type OfferingGetLifecycleRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type OfferingGetNameAttributeType = *string
+
+func getOfferingGetNameAttributeTypeOk(arg OfferingGetNameAttributeType) (ret OfferingGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferingGetNameAttributeType(arg *OfferingGetNameAttributeType, val OfferingGetNameRetType) {
+	*arg = &val
+}
+
+type OfferingGetNameArgType = string
+type OfferingGetNameRetType = string
+
+/*
+	types and functions for plans
+*/
+
+// isArray
+type OfferingGetPlansAttributeType = *[]Plan
+type OfferingGetPlansArgType = []Plan
+type OfferingGetPlansRetType = []Plan
+
+func getOfferingGetPlansAttributeTypeOk(arg OfferingGetPlansAttributeType) (ret OfferingGetPlansRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferingGetPlansAttributeType(arg *OfferingGetPlansAttributeType, val OfferingGetPlansRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for quotaCount
+*/
+
+// isInteger
+type OfferingGetQuotaCountAttributeType = *int64
+type OfferingGetQuotaCountArgType = int64
+type OfferingGetQuotaCountRetType = int64
+
+func getOfferingGetQuotaCountAttributeTypeOk(arg OfferingGetQuotaCountAttributeType) (ret OfferingGetQuotaCountRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferingGetQuotaCountAttributeType(arg *OfferingGetQuotaCountAttributeType, val OfferingGetQuotaCountRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for schema
+*/
+
+// isModel
+type OfferingGetSchemaAttributeType = *InstanceSchema
+type OfferingGetSchemaArgType = InstanceSchema
+type OfferingGetSchemaRetType = InstanceSchema
+
+func getOfferingGetSchemaAttributeTypeOk(arg OfferingGetSchemaAttributeType) (ret OfferingGetSchemaRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferingGetSchemaAttributeType(arg *OfferingGetSchemaAttributeType, val OfferingGetSchemaRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for version
+*/
+
+// isNotNullableString
+type OfferingGetVersionAttributeType = *string
+
+func getOfferingGetVersionAttributeTypeOk(arg OfferingGetVersionAttributeType) (ret OfferingGetVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOfferingGetVersionAttributeType(arg *OfferingGetVersionAttributeType, val OfferingGetVersionRetType) {
+	*arg = &val
+}
+
+type OfferingGetVersionArgType = string
+type OfferingGetVersionRetType = string
+
 // Offering struct for Offering
 type Offering struct {
 	// REQUIRED
-	Description *string `json:"description"`
+	Description OfferingGetDescriptionAttributeType `json:"description"`
 	// REQUIRED
-	DocumentationUrl *string `json:"documentationUrl"`
+	DocumentationUrl OfferingGetDocumentationUrlAttributeType `json:"documentationUrl"`
 	// REQUIRED
-	ImageUrl *string `json:"imageUrl"`
+	ImageUrl OfferingGetImageUrlAttributeType `json:"imageUrl"`
 	// REQUIRED
-	Latest    *bool   `json:"latest"`
-	Lifecycle *string `json:"lifecycle,omitempty"`
+	Latest    OfferinggetLatestAttributeType    `json:"latest"`
+	Lifecycle OfferingGetLifecycleAttributeType `json:"lifecycle,omitempty"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name OfferingGetNameAttributeType `json:"name"`
 	// REQUIRED
-	Plans *[]Plan `json:"plans"`
+	Plans OfferingGetPlansAttributeType `json:"plans"`
 	// REQUIRED
-	QuotaCount *int64          `json:"quotaCount"`
-	Schema     *InstanceSchema `json:"schema,omitempty"`
+	QuotaCount OfferingGetQuotaCountAttributeType `json:"quotaCount"`
+	Schema     OfferingGetSchemaAttributeType     `json:"schema,omitempty"`
 	// REQUIRED
-	Version *string `json:"version"`
+	Version OfferingGetVersionAttributeType `json:"version"`
 }
 
 type _Offering Offering
@@ -45,16 +251,16 @@ type _Offering Offering
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOffering(description *string, documentationUrl *string, imageUrl *string, latest *bool, name *string, plans *[]Plan, quotaCount *int64, version *string) *Offering {
+func NewOffering(description OfferingGetDescriptionArgType, documentationUrl OfferingGetDocumentationUrlArgType, imageUrl OfferingGetImageUrlArgType, latest OfferinggetLatestArgType, name OfferingGetNameArgType, plans OfferingGetPlansArgType, quotaCount OfferingGetQuotaCountArgType, version OfferingGetVersionArgType) *Offering {
 	this := Offering{}
-	this.Description = description
-	this.DocumentationUrl = documentationUrl
-	this.ImageUrl = imageUrl
-	this.Latest = latest
-	this.Name = name
-	this.Plans = plans
-	this.QuotaCount = quotaCount
-	this.Version = version
+	setOfferingGetDescriptionAttributeType(&this.Description, description)
+	setOfferingGetDocumentationUrlAttributeType(&this.DocumentationUrl, documentationUrl)
+	setOfferingGetImageUrlAttributeType(&this.ImageUrl, imageUrl)
+	setOfferinggetLatestAttributeType(&this.Latest, latest)
+	setOfferingGetNameAttributeType(&this.Name, name)
+	setOfferingGetPlansAttributeType(&this.Plans, plans)
+	setOfferingGetQuotaCountAttributeType(&this.QuotaCount, quotaCount)
+	setOfferingGetVersionAttributeType(&this.Version, version)
 	return &this
 }
 
@@ -67,277 +273,219 @@ func NewOfferingWithDefaults() *Offering {
 }
 
 // GetDescription returns the Description field value
-func (o *Offering) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *Offering) GetDescription() (ret OfferingGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *Offering) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *Offering) GetDescriptionOk() (ret OfferingGetDescriptionRetType, ok bool) {
+	return getOfferingGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *Offering) SetDescription(v *string) {
-	o.Description = v
+func (o *Offering) SetDescription(v OfferingGetDescriptionRetType) {
+	setOfferingGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDocumentationUrl returns the DocumentationUrl field value
-func (o *Offering) GetDocumentationUrl() *string {
-	if o == nil || IsNil(o.DocumentationUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.DocumentationUrl
+func (o *Offering) GetDocumentationUrl() (ret OfferingGetDocumentationUrlRetType) {
+	ret, _ = o.GetDocumentationUrlOk()
+	return ret
 }
 
 // GetDocumentationUrlOk returns a tuple with the DocumentationUrl field value
 // and a boolean to check if the value has been set.
-func (o *Offering) GetDocumentationUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DocumentationUrl, true
+func (o *Offering) GetDocumentationUrlOk() (ret OfferingGetDocumentationUrlRetType, ok bool) {
+	return getOfferingGetDocumentationUrlAttributeTypeOk(o.DocumentationUrl)
 }
 
 // SetDocumentationUrl sets field value
-func (o *Offering) SetDocumentationUrl(v *string) {
-	o.DocumentationUrl = v
+func (o *Offering) SetDocumentationUrl(v OfferingGetDocumentationUrlRetType) {
+	setOfferingGetDocumentationUrlAttributeType(&o.DocumentationUrl, v)
 }
 
 // GetImageUrl returns the ImageUrl field value
-func (o *Offering) GetImageUrl() *string {
-	if o == nil || IsNil(o.ImageUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.ImageUrl
+func (o *Offering) GetImageUrl() (ret OfferingGetImageUrlRetType) {
+	ret, _ = o.GetImageUrlOk()
+	return ret
 }
 
 // GetImageUrlOk returns a tuple with the ImageUrl field value
 // and a boolean to check if the value has been set.
-func (o *Offering) GetImageUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ImageUrl, true
+func (o *Offering) GetImageUrlOk() (ret OfferingGetImageUrlRetType, ok bool) {
+	return getOfferingGetImageUrlAttributeTypeOk(o.ImageUrl)
 }
 
 // SetImageUrl sets field value
-func (o *Offering) SetImageUrl(v *string) {
-	o.ImageUrl = v
+func (o *Offering) SetImageUrl(v OfferingGetImageUrlRetType) {
+	setOfferingGetImageUrlAttributeType(&o.ImageUrl, v)
 }
 
 // GetLatest returns the Latest field value
-func (o *Offering) GetLatest() *bool {
-	if o == nil || IsNil(o.Latest) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Latest
+func (o *Offering) GetLatest() (ret OfferinggetLatestRetType) {
+	ret, _ = o.GetLatestOk()
+	return ret
 }
 
 // GetLatestOk returns a tuple with the Latest field value
 // and a boolean to check if the value has been set.
-func (o *Offering) GetLatestOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Latest, true
+func (o *Offering) GetLatestOk() (ret OfferinggetLatestRetType, ok bool) {
+	return getOfferinggetLatestAttributeTypeOk(o.Latest)
 }
 
 // SetLatest sets field value
-func (o *Offering) SetLatest(v *bool) {
-	o.Latest = v
+func (o *Offering) SetLatest(v OfferinggetLatestRetType) {
+	setOfferinggetLatestAttributeType(&o.Latest, v)
 }
 
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
-func (o *Offering) GetLifecycle() *string {
-	if o == nil || IsNil(o.Lifecycle) {
-		var ret *string
-		return ret
-	}
-	return o.Lifecycle
+func (o *Offering) GetLifecycle() (res OfferingGetLifecycleRetType) {
+	res, _ = o.GetLifecycleOk()
+	return
 }
 
 // GetLifecycleOk returns a tuple with the Lifecycle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Offering) GetLifecycleOk() (*string, bool) {
-	if o == nil || IsNil(o.Lifecycle) {
-		return nil, false
-	}
-	return o.Lifecycle, true
+func (o *Offering) GetLifecycleOk() (ret OfferingGetLifecycleRetType, ok bool) {
+	return getOfferingGetLifecycleAttributeTypeOk(o.Lifecycle)
 }
 
 // HasLifecycle returns a boolean if a field has been set.
 func (o *Offering) HasLifecycle() bool {
-	if o != nil && !IsNil(o.Lifecycle) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLifecycleOk()
+	return ok
 }
 
 // SetLifecycle gets a reference to the given string and assigns it to the Lifecycle field.
-func (o *Offering) SetLifecycle(v *string) {
-	o.Lifecycle = v
+func (o *Offering) SetLifecycle(v OfferingGetLifecycleRetType) {
+	setOfferingGetLifecycleAttributeType(&o.Lifecycle, v)
 }
 
 // GetName returns the Name field value
-func (o *Offering) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Offering) GetName() (ret OfferingGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Offering) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Offering) GetNameOk() (ret OfferingGetNameRetType, ok bool) {
+	return getOfferingGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Offering) SetName(v *string) {
-	o.Name = v
+func (o *Offering) SetName(v OfferingGetNameRetType) {
+	setOfferingGetNameAttributeType(&o.Name, v)
 }
 
 // GetPlans returns the Plans field value
-func (o *Offering) GetPlans() *[]Plan {
-	if o == nil || IsNil(o.Plans) {
-		var ret *[]Plan
-		return ret
-	}
-
-	return o.Plans
+func (o *Offering) GetPlans() (ret OfferingGetPlansRetType) {
+	ret, _ = o.GetPlansOk()
+	return ret
 }
 
 // GetPlansOk returns a tuple with the Plans field value
 // and a boolean to check if the value has been set.
-func (o *Offering) GetPlansOk() (*[]Plan, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Plans, true
+func (o *Offering) GetPlansOk() (ret OfferingGetPlansRetType, ok bool) {
+	return getOfferingGetPlansAttributeTypeOk(o.Plans)
 }
 
 // SetPlans sets field value
-func (o *Offering) SetPlans(v *[]Plan) {
-	o.Plans = v
+func (o *Offering) SetPlans(v OfferingGetPlansRetType) {
+	setOfferingGetPlansAttributeType(&o.Plans, v)
 }
 
 // GetQuotaCount returns the QuotaCount field value
-func (o *Offering) GetQuotaCount() *int64 {
-	if o == nil || IsNil(o.QuotaCount) {
-		var ret *int64
-		return ret
-	}
-
-	return o.QuotaCount
+func (o *Offering) GetQuotaCount() (ret OfferingGetQuotaCountRetType) {
+	ret, _ = o.GetQuotaCountOk()
+	return ret
 }
 
 // GetQuotaCountOk returns a tuple with the QuotaCount field value
 // and a boolean to check if the value has been set.
-func (o *Offering) GetQuotaCountOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.QuotaCount, true
+func (o *Offering) GetQuotaCountOk() (ret OfferingGetQuotaCountRetType, ok bool) {
+	return getOfferingGetQuotaCountAttributeTypeOk(o.QuotaCount)
 }
 
 // SetQuotaCount sets field value
-func (o *Offering) SetQuotaCount(v *int64) {
-	o.QuotaCount = v
+func (o *Offering) SetQuotaCount(v OfferingGetQuotaCountRetType) {
+	setOfferingGetQuotaCountAttributeType(&o.QuotaCount, v)
 }
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *Offering) GetSchema() *InstanceSchema {
-	if o == nil || IsNil(o.Schema) {
-		var ret *InstanceSchema
-		return ret
-	}
-	return o.Schema
+func (o *Offering) GetSchema() (res OfferingGetSchemaRetType) {
+	res, _ = o.GetSchemaOk()
+	return
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Offering) GetSchemaOk() (*InstanceSchema, bool) {
-	if o == nil || IsNil(o.Schema) {
-		return nil, false
-	}
-	return o.Schema, true
+func (o *Offering) GetSchemaOk() (ret OfferingGetSchemaRetType, ok bool) {
+	return getOfferingGetSchemaAttributeTypeOk(o.Schema)
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Offering) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSchemaOk()
+	return ok
 }
 
 // SetSchema gets a reference to the given InstanceSchema and assigns it to the Schema field.
-func (o *Offering) SetSchema(v *InstanceSchema) {
-	o.Schema = v
+func (o *Offering) SetSchema(v OfferingGetSchemaRetType) {
+	setOfferingGetSchemaAttributeType(&o.Schema, v)
 }
 
 // GetVersion returns the Version field value
-func (o *Offering) GetVersion() *string {
-	if o == nil || IsNil(o.Version) {
-		var ret *string
-		return ret
-	}
-
-	return o.Version
+func (o *Offering) GetVersion() (ret OfferingGetVersionRetType) {
+	ret, _ = o.GetVersionOk()
+	return ret
 }
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *Offering) GetVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Version, true
+func (o *Offering) GetVersionOk() (ret OfferingGetVersionRetType, ok bool) {
+	return getOfferingGetVersionAttributeTypeOk(o.Version)
 }
 
 // SetVersion sets field value
-func (o *Offering) SetVersion(v *string) {
-	o.Version = v
+func (o *Offering) SetVersion(v OfferingGetVersionRetType) {
+	setOfferingGetVersionAttributeType(&o.Version, v)
 }
 
 func (o Offering) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	toSerialize["documentationUrl"] = o.DocumentationUrl
-	toSerialize["imageUrl"] = o.ImageUrl
-	toSerialize["latest"] = o.Latest
-	if !IsNil(o.Lifecycle) {
-		toSerialize["lifecycle"] = o.Lifecycle
+	if val, ok := getOfferingGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["plans"] = o.Plans
-	toSerialize["quotaCount"] = o.QuotaCount
-	if !IsNil(o.Schema) {
-		toSerialize["schema"] = o.Schema
+	if val, ok := getOfferingGetDocumentationUrlAttributeTypeOk(o.DocumentationUrl); ok {
+		toSerialize["DocumentationUrl"] = val
 	}
-	toSerialize["version"] = o.Version
+	if val, ok := getOfferingGetImageUrlAttributeTypeOk(o.ImageUrl); ok {
+		toSerialize["ImageUrl"] = val
+	}
+	if val, ok := getOfferinggetLatestAttributeTypeOk(o.Latest); ok {
+		toSerialize["Latest"] = val
+	}
+	if val, ok := getOfferingGetLifecycleAttributeTypeOk(o.Lifecycle); ok {
+		toSerialize["Lifecycle"] = val
+	}
+	if val, ok := getOfferingGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getOfferingGetPlansAttributeTypeOk(o.Plans); ok {
+		toSerialize["Plans"] = val
+	}
+	if val, ok := getOfferingGetQuotaCountAttributeTypeOk(o.QuotaCount); ok {
+		toSerialize["QuotaCount"] = val
+	}
+	if val, ok := getOfferingGetSchemaAttributeTypeOk(o.Schema); ok {
+		toSerialize["Schema"] = val
+	}
+	if val, ok := getOfferingGetVersionAttributeTypeOk(o.Version); ok {
+		toSerialize["Version"] = val
+	}
 	return toSerialize, nil
 }
 
