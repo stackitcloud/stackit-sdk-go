@@ -17,14 +17,77 @@ import (
 // checks if the CreateAlertConfigReceiverPayloadOpsgenieConfigsInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateAlertConfigReceiverPayloadOpsgenieConfigsInner{}
 
+/*
+	types and functions for apiKey
+*/
+
+// isNotNullableString
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeType = *string
+
+func getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeTypeOk(arg CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeType) (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeType(arg *CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeType, val CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyRetType) {
+	*arg = &val
+}
+
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyArgType = string
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyRetType = string
+
+/*
+	types and functions for apiUrl
+*/
+
+// isNotNullableString
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeType = *string
+
+func getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeTypeOk(arg CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeType) (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeType(arg *CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeType, val CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlRetType) {
+	*arg = &val
+}
+
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlArgType = string
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlRetType = string
+
+/*
+	types and functions for tags
+*/
+
+// isNotNullableString
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeType = *string
+
+func getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeTypeOk(arg CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeType) (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeType(arg *CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeType, val CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsRetType) {
+	*arg = &val
+}
+
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsArgType = string
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsRetType = string
+
 // CreateAlertConfigReceiverPayloadOpsgenieConfigsInner struct for CreateAlertConfigReceiverPayloadOpsgenieConfigsInner
 type CreateAlertConfigReceiverPayloadOpsgenieConfigsInner struct {
 	// The API key to use when talking to the OpsGenie API. `Additional Validators:` * should only include the characters: a-zA-Z0-9-
-	ApiKey *string `json:"apiKey,omitempty"`
+	ApiKey CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeType `json:"apiKey,omitempty"`
 	// The host to send OpsGenie API requests to. `Additional Validators:` * must be a syntactically valid url address
-	ApiUrl *string `json:"apiUrl,omitempty"`
+	ApiUrl CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeType `json:"apiUrl,omitempty"`
 	// Comma separated list of tags attached to the notifications.
-	Tags *string `json:"tags,omitempty"`
+	Tags CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeType `json:"tags,omitempty"`
 }
 
 // NewCreateAlertConfigReceiverPayloadOpsgenieConfigsInner instantiates a new CreateAlertConfigReceiverPayloadOpsgenieConfigsInner object
@@ -45,111 +108,84 @@ func NewCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerWithDefaults() *Crea
 }
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiKey() *string {
-	if o == nil || IsNil(o.ApiKey) {
-		var ret *string
-		return ret
-	}
-	return o.ApiKey
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiKey() (res CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyRetType) {
+	res, _ = o.GetApiKeyOk()
+	return
 }
 
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.ApiKey) {
-		return nil, false
-	}
-	return o.ApiKey, true
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiKeyOk() (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeTypeOk(o.ApiKey)
 }
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasApiKey() bool {
-	if o != nil && !IsNil(o.ApiKey) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetApiKeyOk()
+	return ok
 }
 
 // SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetApiKey(v *string) {
-	o.ApiKey = v
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetApiKey(v CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyRetType) {
+	setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeType(&o.ApiKey, v)
 }
 
 // GetApiUrl returns the ApiUrl field value if set, zero value otherwise.
-func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiUrl() *string {
-	if o == nil || IsNil(o.ApiUrl) {
-		var ret *string
-		return ret
-	}
-	return o.ApiUrl
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiUrl() (res CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlRetType) {
+	res, _ = o.GetApiUrlOk()
+	return
 }
 
 // GetApiUrlOk returns a tuple with the ApiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.ApiUrl) {
-		return nil, false
-	}
-	return o.ApiUrl, true
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetApiUrlOk() (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeTypeOk(o.ApiUrl)
 }
 
 // HasApiUrl returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasApiUrl() bool {
-	if o != nil && !IsNil(o.ApiUrl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetApiUrlOk()
+	return ok
 }
 
 // SetApiUrl gets a reference to the given string and assigns it to the ApiUrl field.
-func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetApiUrl(v *string) {
-	o.ApiUrl = v
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetApiUrl(v CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlRetType) {
+	setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeType(&o.ApiUrl, v)
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetTags() *string {
-	if o == nil || IsNil(o.Tags) {
-		var ret *string
-		return ret
-	}
-	return o.Tags
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetTags() (res CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsRetType) {
+	res, _ = o.GetTagsOk()
+	return
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetTagsOk() (*string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetTagsOk() (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeTypeOk(o.Tags)
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTagsOk()
+	return ok
 }
 
 // SetTags gets a reference to the given string and assigns it to the Tags field.
-func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetTags(v *string) {
-	o.Tags = v
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetTags(v CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsRetType) {
+	setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeType(&o.Tags, v)
 }
 
 func (o CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ApiKey) {
-		toSerialize["apiKey"] = o.ApiKey
+	if val, ok := getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeTypeOk(o.ApiKey); ok {
+		toSerialize["ApiKey"] = val
 	}
-	if !IsNil(o.ApiUrl) {
-		toSerialize["apiUrl"] = o.ApiUrl
+	if val, ok := getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeTypeOk(o.ApiUrl); ok {
+		toSerialize["ApiUrl"] = val
 	}
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	if val, ok := getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeTypeOk(o.Tags); ok {
+		toSerialize["Tags"] = val
 	}
 	return toSerialize, nil
 }

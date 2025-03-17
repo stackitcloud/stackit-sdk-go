@@ -17,11 +17,31 @@ import (
 // checks if the UpdateACLPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateACLPayload{}
 
+/*
+	types and functions for acl
+*/
+
+// isArray
+type UpdateACLPayloadGetAclAttributeType = *[]string
+type UpdateACLPayloadGetAclArgType = []string
+type UpdateACLPayloadGetAclRetType = []string
+
+func getUpdateACLPayloadGetAclAttributeTypeOk(arg UpdateACLPayloadGetAclAttributeType) (ret UpdateACLPayloadGetAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateACLPayloadGetAclAttributeType(arg *UpdateACLPayloadGetAclAttributeType, val UpdateACLPayloadGetAclRetType) {
+	*arg = &val
+}
+
 // UpdateACLPayload List of cidr. Send empty string to remove acl.
 type UpdateACLPayload struct {
 	// list of cidr
 	// REQUIRED
-	Acl *[]string `json:"acl"`
+	Acl UpdateACLPayloadGetAclAttributeType `json:"acl"`
 }
 
 type _UpdateACLPayload UpdateACLPayload
@@ -30,9 +50,9 @@ type _UpdateACLPayload UpdateACLPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateACLPayload(acl *[]string) *UpdateACLPayload {
+func NewUpdateACLPayload(acl UpdateACLPayloadGetAclArgType) *UpdateACLPayload {
 	this := UpdateACLPayload{}
-	this.Acl = acl
+	setUpdateACLPayloadGetAclAttributeType(&this.Acl, acl)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewUpdateACLPayloadWithDefaults() *UpdateACLPayload {
 }
 
 // GetAcl returns the Acl field value
-func (o *UpdateACLPayload) GetAcl() *[]string {
-	if o == nil || IsNil(o.Acl) {
-		var ret *[]string
-		return ret
-	}
-
-	return o.Acl
+func (o *UpdateACLPayload) GetAcl() (ret UpdateACLPayloadGetAclRetType) {
+	ret, _ = o.GetAclOk()
+	return ret
 }
 
 // GetAclOk returns a tuple with the Acl field value
 // and a boolean to check if the value has been set.
-func (o *UpdateACLPayload) GetAclOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Acl, true
+func (o *UpdateACLPayload) GetAclOk() (ret UpdateACLPayloadGetAclRetType, ok bool) {
+	return getUpdateACLPayloadGetAclAttributeTypeOk(o.Acl)
 }
 
 // SetAcl sets field value
-func (o *UpdateACLPayload) SetAcl(v *[]string) {
-	o.Acl = v
+func (o *UpdateACLPayload) SetAcl(v UpdateACLPayloadGetAclRetType) {
+	setUpdateACLPayloadGetAclAttributeType(&o.Acl, v)
 }
 
 func (o UpdateACLPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["acl"] = o.Acl
+	if val, ok := getUpdateACLPayloadGetAclAttributeTypeOk(o.Acl); ok {
+		toSerialize["Acl"] = val
+	}
 	return toSerialize, nil
 }
 

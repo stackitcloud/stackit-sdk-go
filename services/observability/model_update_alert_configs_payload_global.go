@@ -17,24 +17,192 @@ import (
 // checks if the UpdateAlertConfigsPayloadGlobal type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateAlertConfigsPayloadGlobal{}
 
+/*
+	types and functions for opsgenieApiKey
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeType = *string
+
+func getUpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeTypeOk(arg UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeType) (ret UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeType(arg *UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeType, val UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyArgType = string
+type UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyRetType = string
+
+/*
+	types and functions for opsgenieApiUrl
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlAttributeType = *string
+
+func getUpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlAttributeTypeOk(arg UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlAttributeType) (ret UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlAttributeType(arg *UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlAttributeType, val UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlArgType = string
+type UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlRetType = string
+
+/*
+	types and functions for resolveTimeout
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadGlobalGetResolveTimeoutAttributeType = *string
+
+func getUpdateAlertConfigsPayloadGlobalGetResolveTimeoutAttributeTypeOk(arg UpdateAlertConfigsPayloadGlobalGetResolveTimeoutAttributeType) (ret UpdateAlertConfigsPayloadGlobalGetResolveTimeoutRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadGlobalGetResolveTimeoutAttributeType(arg *UpdateAlertConfigsPayloadGlobalGetResolveTimeoutAttributeType, val UpdateAlertConfigsPayloadGlobalGetResolveTimeoutRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadGlobalGetResolveTimeoutArgType = string
+type UpdateAlertConfigsPayloadGlobalGetResolveTimeoutRetType = string
+
+/*
+	types and functions for smtpAuthIdentity
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityAttributeType = *string
+
+func getUpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityAttributeTypeOk(arg UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityAttributeType) (ret UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityAttributeType(arg *UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityAttributeType, val UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityArgType = string
+type UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityRetType = string
+
+/*
+	types and functions for smtpAuthPassword
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordAttributeType = *string
+
+func getUpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordAttributeTypeOk(arg UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordAttributeType) (ret UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordAttributeType(arg *UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordAttributeType, val UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordArgType = string
+type UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordRetType = string
+
+/*
+	types and functions for smtpAuthUsername
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameAttributeType = *string
+
+func getUpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameAttributeTypeOk(arg UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameAttributeType) (ret UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameAttributeType(arg *UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameAttributeType, val UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameArgType = string
+type UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameRetType = string
+
+/*
+	types and functions for smtpFrom
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadGlobalGetSmtpFromAttributeType = *string
+
+func getUpdateAlertConfigsPayloadGlobalGetSmtpFromAttributeTypeOk(arg UpdateAlertConfigsPayloadGlobalGetSmtpFromAttributeType) (ret UpdateAlertConfigsPayloadGlobalGetSmtpFromRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadGlobalGetSmtpFromAttributeType(arg *UpdateAlertConfigsPayloadGlobalGetSmtpFromAttributeType, val UpdateAlertConfigsPayloadGlobalGetSmtpFromRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadGlobalGetSmtpFromArgType = string
+type UpdateAlertConfigsPayloadGlobalGetSmtpFromRetType = string
+
+/*
+	types and functions for smtpSmarthost
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeType = *string
+
+func getUpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeTypeOk(arg UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeType) (ret UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeType(arg *UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeType, val UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostArgType = string
+type UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostRetType = string
+
 // UpdateAlertConfigsPayloadGlobal Global config. If nothing passed the default argus config will be used.
 type UpdateAlertConfigsPayloadGlobal struct {
 	// Opsgenie api key `Additional Validators:` * should only include the characters: a-zA-Z0-9-
-	OpsgenieApiKey *string `json:"opsgenieApiKey,omitempty"`
+	OpsgenieApiKey UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeType `json:"opsgenieApiKey,omitempty"`
 	// Opsgenie api url `Additional Validators:` * must be a syntactically valid url address
-	OpsgenieApiUrl *string `json:"opsgenieApiUrl,omitempty"`
+	OpsgenieApiUrl UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlAttributeType `json:"opsgenieApiUrl,omitempty"`
 	// ResolveTimeout is the default value used by alertmanager if the alert does not include EndsAt, after this time passes it can declare the alert as resolved if it has not been updated. This has no impact on alerts from Prometheus, as they always include EndsAt.  `Additional Validators:` * must be a valid time format
-	ResolveTimeout *string `json:"resolveTimeout,omitempty"`
+	ResolveTimeout UpdateAlertConfigsPayloadGlobalGetResolveTimeoutAttributeType `json:"resolveTimeout,omitempty"`
 	// Auth identity. `Additional Validators:` * must be a syntactically valid email address
-	SmtpAuthIdentity *string `json:"smtpAuthIdentity,omitempty"`
+	SmtpAuthIdentity UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityAttributeType `json:"smtpAuthIdentity,omitempty"`
 	// SMTP Auth using LOGIN and PLAIN.
-	SmtpAuthPassword *string `json:"smtpAuthPassword,omitempty"`
+	SmtpAuthPassword UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordAttributeType `json:"smtpAuthPassword,omitempty"`
 	// SMTP Auth using CRAM-MD5, LOGIN and PLAIN. If empty, Alertmanager doesn't authenticate to the SMTP server.
-	SmtpAuthUsername *string `json:"smtpAuthUsername,omitempty"`
+	SmtpAuthUsername UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameAttributeType `json:"smtpAuthUsername,omitempty"`
 	// The default SMTP From header field.  `Additional Validators:` * must be a syntactically valid email address
-	SmtpFrom *string `json:"smtpFrom,omitempty"`
+	SmtpFrom UpdateAlertConfigsPayloadGlobalGetSmtpFromAttributeType `json:"smtpFrom,omitempty"`
 	// The default SMTP smarthost used for sending emails, including port number. Port number usually is 25, or 587 for SMTP over TLS (sometimes referred to as STARTTLS). Example: smtp.example.org:587  `Additional Validators:` * should only include the characters: a-zA-Z0-9_./@&?:-
-	SmtpSmarthost *string `json:"smtpSmarthost,omitempty"`
+	SmtpSmarthost UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeType `json:"smtpSmarthost,omitempty"`
 }
 
 // NewUpdateAlertConfigsPayloadGlobal instantiates a new UpdateAlertConfigsPayloadGlobal object
@@ -43,8 +211,6 @@ type UpdateAlertConfigsPayloadGlobal struct {
 // will change when the set of required properties is changed
 func NewUpdateAlertConfigsPayloadGlobal() *UpdateAlertConfigsPayloadGlobal {
 	this := UpdateAlertConfigsPayloadGlobal{}
-	var resolveTimeout string = "5m"
-	this.ResolveTimeout = &resolveTimeout
 	return &this
 }
 
@@ -59,286 +225,214 @@ func NewUpdateAlertConfigsPayloadGlobalWithDefaults() *UpdateAlertConfigsPayload
 }
 
 // GetOpsgenieApiKey returns the OpsgenieApiKey field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiKey() *string {
-	if o == nil || IsNil(o.OpsgenieApiKey) {
-		var ret *string
-		return ret
-	}
-	return o.OpsgenieApiKey
+func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiKey() (res UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyRetType) {
+	res, _ = o.GetOpsgenieApiKeyOk()
+	return
 }
 
 // GetOpsgenieApiKeyOk returns a tuple with the OpsgenieApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.OpsgenieApiKey) {
-		return nil, false
-	}
-	return o.OpsgenieApiKey, true
+func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiKeyOk() (ret UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeTypeOk(o.OpsgenieApiKey)
 }
 
 // HasOpsgenieApiKey returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasOpsgenieApiKey() bool {
-	if o != nil && !IsNil(o.OpsgenieApiKey) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOpsgenieApiKeyOk()
+	return ok
 }
 
 // SetOpsgenieApiKey gets a reference to the given string and assigns it to the OpsgenieApiKey field.
-func (o *UpdateAlertConfigsPayloadGlobal) SetOpsgenieApiKey(v *string) {
-	o.OpsgenieApiKey = v
+func (o *UpdateAlertConfigsPayloadGlobal) SetOpsgenieApiKey(v UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyRetType) {
+	setUpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeType(&o.OpsgenieApiKey, v)
 }
 
 // GetOpsgenieApiUrl returns the OpsgenieApiUrl field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiUrl() *string {
-	if o == nil || IsNil(o.OpsgenieApiUrl) {
-		var ret *string
-		return ret
-	}
-	return o.OpsgenieApiUrl
+func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiUrl() (res UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlRetType) {
+	res, _ = o.GetOpsgenieApiUrlOk()
+	return
 }
 
 // GetOpsgenieApiUrlOk returns a tuple with the OpsgenieApiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.OpsgenieApiUrl) {
-		return nil, false
-	}
-	return o.OpsgenieApiUrl, true
+func (o *UpdateAlertConfigsPayloadGlobal) GetOpsgenieApiUrlOk() (ret UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlAttributeTypeOk(o.OpsgenieApiUrl)
 }
 
 // HasOpsgenieApiUrl returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasOpsgenieApiUrl() bool {
-	if o != nil && !IsNil(o.OpsgenieApiUrl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOpsgenieApiUrlOk()
+	return ok
 }
 
 // SetOpsgenieApiUrl gets a reference to the given string and assigns it to the OpsgenieApiUrl field.
-func (o *UpdateAlertConfigsPayloadGlobal) SetOpsgenieApiUrl(v *string) {
-	o.OpsgenieApiUrl = v
+func (o *UpdateAlertConfigsPayloadGlobal) SetOpsgenieApiUrl(v UpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlRetType) {
+	setUpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlAttributeType(&o.OpsgenieApiUrl, v)
 }
 
 // GetResolveTimeout returns the ResolveTimeout field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadGlobal) GetResolveTimeout() *string {
-	if o == nil || IsNil(o.ResolveTimeout) {
-		var ret *string
-		return ret
-	}
-	return o.ResolveTimeout
+func (o *UpdateAlertConfigsPayloadGlobal) GetResolveTimeout() (res UpdateAlertConfigsPayloadGlobalGetResolveTimeoutRetType) {
+	res, _ = o.GetResolveTimeoutOk()
+	return
 }
 
 // GetResolveTimeoutOk returns a tuple with the ResolveTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadGlobal) GetResolveTimeoutOk() (*string, bool) {
-	if o == nil || IsNil(o.ResolveTimeout) {
-		return nil, false
-	}
-	return o.ResolveTimeout, true
+func (o *UpdateAlertConfigsPayloadGlobal) GetResolveTimeoutOk() (ret UpdateAlertConfigsPayloadGlobalGetResolveTimeoutRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadGlobalGetResolveTimeoutAttributeTypeOk(o.ResolveTimeout)
 }
 
 // HasResolveTimeout returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasResolveTimeout() bool {
-	if o != nil && !IsNil(o.ResolveTimeout) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetResolveTimeoutOk()
+	return ok
 }
 
 // SetResolveTimeout gets a reference to the given string and assigns it to the ResolveTimeout field.
-func (o *UpdateAlertConfigsPayloadGlobal) SetResolveTimeout(v *string) {
-	o.ResolveTimeout = v
+func (o *UpdateAlertConfigsPayloadGlobal) SetResolveTimeout(v UpdateAlertConfigsPayloadGlobalGetResolveTimeoutRetType) {
+	setUpdateAlertConfigsPayloadGlobalGetResolveTimeoutAttributeType(&o.ResolveTimeout, v)
 }
 
 // GetSmtpAuthIdentity returns the SmtpAuthIdentity field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthIdentity() *string {
-	if o == nil || IsNil(o.SmtpAuthIdentity) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpAuthIdentity
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthIdentity() (res UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityRetType) {
+	res, _ = o.GetSmtpAuthIdentityOk()
+	return
 }
 
 // GetSmtpAuthIdentityOk returns a tuple with the SmtpAuthIdentity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthIdentityOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpAuthIdentity) {
-		return nil, false
-	}
-	return o.SmtpAuthIdentity, true
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthIdentityOk() (ret UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityAttributeTypeOk(o.SmtpAuthIdentity)
 }
 
 // HasSmtpAuthIdentity returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpAuthIdentity() bool {
-	if o != nil && !IsNil(o.SmtpAuthIdentity) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpAuthIdentityOk()
+	return ok
 }
 
 // SetSmtpAuthIdentity gets a reference to the given string and assigns it to the SmtpAuthIdentity field.
-func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpAuthIdentity(v *string) {
-	o.SmtpAuthIdentity = v
+func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpAuthIdentity(v UpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityRetType) {
+	setUpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityAttributeType(&o.SmtpAuthIdentity, v)
 }
 
 // GetSmtpAuthPassword returns the SmtpAuthPassword field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthPassword() *string {
-	if o == nil || IsNil(o.SmtpAuthPassword) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpAuthPassword
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthPassword() (res UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordRetType) {
+	res, _ = o.GetSmtpAuthPasswordOk()
+	return
 }
 
 // GetSmtpAuthPasswordOk returns a tuple with the SmtpAuthPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpAuthPassword) {
-		return nil, false
-	}
-	return o.SmtpAuthPassword, true
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthPasswordOk() (ret UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordAttributeTypeOk(o.SmtpAuthPassword)
 }
 
 // HasSmtpAuthPassword returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpAuthPassword() bool {
-	if o != nil && !IsNil(o.SmtpAuthPassword) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpAuthPasswordOk()
+	return ok
 }
 
 // SetSmtpAuthPassword gets a reference to the given string and assigns it to the SmtpAuthPassword field.
-func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpAuthPassword(v *string) {
-	o.SmtpAuthPassword = v
+func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpAuthPassword(v UpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordRetType) {
+	setUpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordAttributeType(&o.SmtpAuthPassword, v)
 }
 
 // GetSmtpAuthUsername returns the SmtpAuthUsername field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthUsername() *string {
-	if o == nil || IsNil(o.SmtpAuthUsername) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpAuthUsername
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthUsername() (res UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameRetType) {
+	res, _ = o.GetSmtpAuthUsernameOk()
+	return
 }
 
 // GetSmtpAuthUsernameOk returns a tuple with the SmtpAuthUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpAuthUsername) {
-		return nil, false
-	}
-	return o.SmtpAuthUsername, true
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpAuthUsernameOk() (ret UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameAttributeTypeOk(o.SmtpAuthUsername)
 }
 
 // HasSmtpAuthUsername returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpAuthUsername() bool {
-	if o != nil && !IsNil(o.SmtpAuthUsername) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpAuthUsernameOk()
+	return ok
 }
 
 // SetSmtpAuthUsername gets a reference to the given string and assigns it to the SmtpAuthUsername field.
-func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpAuthUsername(v *string) {
-	o.SmtpAuthUsername = v
+func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpAuthUsername(v UpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameRetType) {
+	setUpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameAttributeType(&o.SmtpAuthUsername, v)
 }
 
 // GetSmtpFrom returns the SmtpFrom field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpFrom() *string {
-	if o == nil || IsNil(o.SmtpFrom) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpFrom
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpFrom() (res UpdateAlertConfigsPayloadGlobalGetSmtpFromRetType) {
+	res, _ = o.GetSmtpFromOk()
+	return
 }
 
 // GetSmtpFromOk returns a tuple with the SmtpFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpFromOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpFrom) {
-		return nil, false
-	}
-	return o.SmtpFrom, true
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpFromOk() (ret UpdateAlertConfigsPayloadGlobalGetSmtpFromRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadGlobalGetSmtpFromAttributeTypeOk(o.SmtpFrom)
 }
 
 // HasSmtpFrom returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpFrom() bool {
-	if o != nil && !IsNil(o.SmtpFrom) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpFromOk()
+	return ok
 }
 
 // SetSmtpFrom gets a reference to the given string and assigns it to the SmtpFrom field.
-func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpFrom(v *string) {
-	o.SmtpFrom = v
+func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpFrom(v UpdateAlertConfigsPayloadGlobalGetSmtpFromRetType) {
+	setUpdateAlertConfigsPayloadGlobalGetSmtpFromAttributeType(&o.SmtpFrom, v)
 }
 
 // GetSmtpSmarthost returns the SmtpSmarthost field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpSmarthost() *string {
-	if o == nil || IsNil(o.SmtpSmarthost) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpSmarthost
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpSmarthost() (res UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostRetType) {
+	res, _ = o.GetSmtpSmarthostOk()
+	return
 }
 
 // GetSmtpSmarthostOk returns a tuple with the SmtpSmarthost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpSmarthostOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpSmarthost) {
-		return nil, false
-	}
-	return o.SmtpSmarthost, true
+func (o *UpdateAlertConfigsPayloadGlobal) GetSmtpSmarthostOk() (ret UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeTypeOk(o.SmtpSmarthost)
 }
 
 // HasSmtpSmarthost returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadGlobal) HasSmtpSmarthost() bool {
-	if o != nil && !IsNil(o.SmtpSmarthost) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpSmarthostOk()
+	return ok
 }
 
 // SetSmtpSmarthost gets a reference to the given string and assigns it to the SmtpSmarthost field.
-func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpSmarthost(v *string) {
-	o.SmtpSmarthost = v
+func (o *UpdateAlertConfigsPayloadGlobal) SetSmtpSmarthost(v UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostRetType) {
+	setUpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeType(&o.SmtpSmarthost, v)
 }
 
 func (o UpdateAlertConfigsPayloadGlobal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.OpsgenieApiKey) {
-		toSerialize["opsgenieApiKey"] = o.OpsgenieApiKey
+	if val, ok := getUpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeTypeOk(o.OpsgenieApiKey); ok {
+		toSerialize["OpsgenieApiKey"] = val
 	}
-	if !IsNil(o.OpsgenieApiUrl) {
-		toSerialize["opsgenieApiUrl"] = o.OpsgenieApiUrl
+	if val, ok := getUpdateAlertConfigsPayloadGlobalGetOpsgenieApiUrlAttributeTypeOk(o.OpsgenieApiUrl); ok {
+		toSerialize["OpsgenieApiUrl"] = val
 	}
-	if !IsNil(o.ResolveTimeout) {
-		toSerialize["resolveTimeout"] = o.ResolveTimeout
+	if val, ok := getUpdateAlertConfigsPayloadGlobalGetResolveTimeoutAttributeTypeOk(o.ResolveTimeout); ok {
+		toSerialize["ResolveTimeout"] = val
 	}
-	if !IsNil(o.SmtpAuthIdentity) {
-		toSerialize["smtpAuthIdentity"] = o.SmtpAuthIdentity
+	if val, ok := getUpdateAlertConfigsPayloadGlobalGetSmtpAuthIdentityAttributeTypeOk(o.SmtpAuthIdentity); ok {
+		toSerialize["SmtpAuthIdentity"] = val
 	}
-	if !IsNil(o.SmtpAuthPassword) {
-		toSerialize["smtpAuthPassword"] = o.SmtpAuthPassword
+	if val, ok := getUpdateAlertConfigsPayloadGlobalGetSmtpAuthPasswordAttributeTypeOk(o.SmtpAuthPassword); ok {
+		toSerialize["SmtpAuthPassword"] = val
 	}
-	if !IsNil(o.SmtpAuthUsername) {
-		toSerialize["smtpAuthUsername"] = o.SmtpAuthUsername
+	if val, ok := getUpdateAlertConfigsPayloadGlobalGetSmtpAuthUsernameAttributeTypeOk(o.SmtpAuthUsername); ok {
+		toSerialize["SmtpAuthUsername"] = val
 	}
-	if !IsNil(o.SmtpFrom) {
-		toSerialize["smtpFrom"] = o.SmtpFrom
+	if val, ok := getUpdateAlertConfigsPayloadGlobalGetSmtpFromAttributeTypeOk(o.SmtpFrom); ok {
+		toSerialize["SmtpFrom"] = val
 	}
-	if !IsNil(o.SmtpSmarthost) {
-		toSerialize["smtpSmarthost"] = o.SmtpSmarthost
+	if val, ok := getUpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeTypeOk(o.SmtpSmarthost); ok {
+		toSerialize["SmtpSmarthost"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,14 +17,77 @@ import (
 // checks if the CreateInstanceResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateInstanceResponse{}
 
+/*
+	types and functions for dashboardUrl
+*/
+
+// isNotNullableString
+type CreateInstanceResponseGetDashboardUrlAttributeType = *string
+
+func getCreateInstanceResponseGetDashboardUrlAttributeTypeOk(arg CreateInstanceResponseGetDashboardUrlAttributeType) (ret CreateInstanceResponseGetDashboardUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstanceResponseGetDashboardUrlAttributeType(arg *CreateInstanceResponseGetDashboardUrlAttributeType, val CreateInstanceResponseGetDashboardUrlRetType) {
+	*arg = &val
+}
+
+type CreateInstanceResponseGetDashboardUrlArgType = string
+type CreateInstanceResponseGetDashboardUrlRetType = string
+
+/*
+	types and functions for instanceId
+*/
+
+// isNotNullableString
+type CreateInstanceResponseGetInstanceIdAttributeType = *string
+
+func getCreateInstanceResponseGetInstanceIdAttributeTypeOk(arg CreateInstanceResponseGetInstanceIdAttributeType) (ret CreateInstanceResponseGetInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstanceResponseGetInstanceIdAttributeType(arg *CreateInstanceResponseGetInstanceIdAttributeType, val CreateInstanceResponseGetInstanceIdRetType) {
+	*arg = &val
+}
+
+type CreateInstanceResponseGetInstanceIdArgType = string
+type CreateInstanceResponseGetInstanceIdRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type CreateInstanceResponseGetMessageAttributeType = *string
+
+func getCreateInstanceResponseGetMessageAttributeTypeOk(arg CreateInstanceResponseGetMessageAttributeType) (ret CreateInstanceResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstanceResponseGetMessageAttributeType(arg *CreateInstanceResponseGetMessageAttributeType, val CreateInstanceResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type CreateInstanceResponseGetMessageArgType = string
+type CreateInstanceResponseGetMessageRetType = string
+
 // CreateInstanceResponse struct for CreateInstanceResponse
 type CreateInstanceResponse struct {
 	// REQUIRED
-	DashboardUrl *string `json:"dashboardUrl"`
+	DashboardUrl CreateInstanceResponseGetDashboardUrlAttributeType `json:"dashboardUrl"`
 	// REQUIRED
-	InstanceId *string `json:"instanceId"`
+	InstanceId CreateInstanceResponseGetInstanceIdAttributeType `json:"instanceId"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message CreateInstanceResponseGetMessageAttributeType `json:"message"`
 }
 
 type _CreateInstanceResponse CreateInstanceResponse
@@ -33,11 +96,11 @@ type _CreateInstanceResponse CreateInstanceResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInstanceResponse(dashboardUrl *string, instanceId *string, message *string) *CreateInstanceResponse {
+func NewCreateInstanceResponse(dashboardUrl CreateInstanceResponseGetDashboardUrlArgType, instanceId CreateInstanceResponseGetInstanceIdArgType, message CreateInstanceResponseGetMessageArgType) *CreateInstanceResponse {
 	this := CreateInstanceResponse{}
-	this.DashboardUrl = dashboardUrl
-	this.InstanceId = instanceId
-	this.Message = message
+	setCreateInstanceResponseGetDashboardUrlAttributeType(&this.DashboardUrl, dashboardUrl)
+	setCreateInstanceResponseGetInstanceIdAttributeType(&this.InstanceId, instanceId)
+	setCreateInstanceResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -50,82 +113,67 @@ func NewCreateInstanceResponseWithDefaults() *CreateInstanceResponse {
 }
 
 // GetDashboardUrl returns the DashboardUrl field value
-func (o *CreateInstanceResponse) GetDashboardUrl() *string {
-	if o == nil || IsNil(o.DashboardUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.DashboardUrl
+func (o *CreateInstanceResponse) GetDashboardUrl() (ret CreateInstanceResponseGetDashboardUrlRetType) {
+	ret, _ = o.GetDashboardUrlOk()
+	return ret
 }
 
 // GetDashboardUrlOk returns a tuple with the DashboardUrl field value
 // and a boolean to check if the value has been set.
-func (o *CreateInstanceResponse) GetDashboardUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DashboardUrl, true
+func (o *CreateInstanceResponse) GetDashboardUrlOk() (ret CreateInstanceResponseGetDashboardUrlRetType, ok bool) {
+	return getCreateInstanceResponseGetDashboardUrlAttributeTypeOk(o.DashboardUrl)
 }
 
 // SetDashboardUrl sets field value
-func (o *CreateInstanceResponse) SetDashboardUrl(v *string) {
-	o.DashboardUrl = v
+func (o *CreateInstanceResponse) SetDashboardUrl(v CreateInstanceResponseGetDashboardUrlRetType) {
+	setCreateInstanceResponseGetDashboardUrlAttributeType(&o.DashboardUrl, v)
 }
 
 // GetInstanceId returns the InstanceId field value
-func (o *CreateInstanceResponse) GetInstanceId() *string {
-	if o == nil || IsNil(o.InstanceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.InstanceId
+func (o *CreateInstanceResponse) GetInstanceId() (ret CreateInstanceResponseGetInstanceIdRetType) {
+	ret, _ = o.GetInstanceIdOk()
+	return ret
 }
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value
 // and a boolean to check if the value has been set.
-func (o *CreateInstanceResponse) GetInstanceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.InstanceId, true
+func (o *CreateInstanceResponse) GetInstanceIdOk() (ret CreateInstanceResponseGetInstanceIdRetType, ok bool) {
+	return getCreateInstanceResponseGetInstanceIdAttributeTypeOk(o.InstanceId)
 }
 
 // SetInstanceId sets field value
-func (o *CreateInstanceResponse) SetInstanceId(v *string) {
-	o.InstanceId = v
+func (o *CreateInstanceResponse) SetInstanceId(v CreateInstanceResponseGetInstanceIdRetType) {
+	setCreateInstanceResponseGetInstanceIdAttributeType(&o.InstanceId, v)
 }
 
 // GetMessage returns the Message field value
-func (o *CreateInstanceResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *CreateInstanceResponse) GetMessage() (ret CreateInstanceResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *CreateInstanceResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *CreateInstanceResponse) GetMessageOk() (ret CreateInstanceResponseGetMessageRetType, ok bool) {
+	return getCreateInstanceResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *CreateInstanceResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *CreateInstanceResponse) SetMessage(v CreateInstanceResponseGetMessageRetType) {
+	setCreateInstanceResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o CreateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["dashboardUrl"] = o.DashboardUrl
-	toSerialize["instanceId"] = o.InstanceId
-	toSerialize["message"] = o.Message
+	if val, ok := getCreateInstanceResponseGetDashboardUrlAttributeTypeOk(o.DashboardUrl); ok {
+		toSerialize["DashboardUrl"] = val
+	}
+	if val, ok := getCreateInstanceResponseGetInstanceIdAttributeTypeOk(o.InstanceId); ok {
+		toSerialize["InstanceId"] = val
+	}
+	if val, ok := getCreateInstanceResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

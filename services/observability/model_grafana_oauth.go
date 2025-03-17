@@ -17,26 +17,254 @@ import (
 // checks if the GrafanaOauth type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GrafanaOauth{}
 
+/*
+	types and functions for apiUrl
+*/
+
+// isNotNullableString
+type GrafanaOauthGetApiUrlAttributeType = *string
+
+func getGrafanaOauthGetApiUrlAttributeTypeOk(arg GrafanaOauthGetApiUrlAttributeType) (ret GrafanaOauthGetApiUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthGetApiUrlAttributeType(arg *GrafanaOauthGetApiUrlAttributeType, val GrafanaOauthGetApiUrlRetType) {
+	*arg = &val
+}
+
+type GrafanaOauthGetApiUrlArgType = string
+type GrafanaOauthGetApiUrlRetType = string
+
+/*
+	types and functions for authUrl
+*/
+
+// isNotNullableString
+type GrafanaOauthGetAuthUrlAttributeType = *string
+
+func getGrafanaOauthGetAuthUrlAttributeTypeOk(arg GrafanaOauthGetAuthUrlAttributeType) (ret GrafanaOauthGetAuthUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthGetAuthUrlAttributeType(arg *GrafanaOauthGetAuthUrlAttributeType, val GrafanaOauthGetAuthUrlRetType) {
+	*arg = &val
+}
+
+type GrafanaOauthGetAuthUrlArgType = string
+type GrafanaOauthGetAuthUrlRetType = string
+
+/*
+	types and functions for enabled
+*/
+
+// isBoolean
+type GrafanaOauthgetEnabledAttributeType = *bool
+type GrafanaOauthgetEnabledArgType = bool
+type GrafanaOauthgetEnabledRetType = bool
+
+func getGrafanaOauthgetEnabledAttributeTypeOk(arg GrafanaOauthgetEnabledAttributeType) (ret GrafanaOauthgetEnabledRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthgetEnabledAttributeType(arg *GrafanaOauthgetEnabledAttributeType, val GrafanaOauthgetEnabledRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type GrafanaOauthGetNameAttributeType = *string
+
+func getGrafanaOauthGetNameAttributeTypeOk(arg GrafanaOauthGetNameAttributeType) (ret GrafanaOauthGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthGetNameAttributeType(arg *GrafanaOauthGetNameAttributeType, val GrafanaOauthGetNameRetType) {
+	*arg = &val
+}
+
+type GrafanaOauthGetNameArgType = string
+type GrafanaOauthGetNameRetType = string
+
+/*
+	types and functions for oauthClientId
+*/
+
+// isNotNullableString
+type GrafanaOauthGetOauthClientIdAttributeType = *string
+
+func getGrafanaOauthGetOauthClientIdAttributeTypeOk(arg GrafanaOauthGetOauthClientIdAttributeType) (ret GrafanaOauthGetOauthClientIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthGetOauthClientIdAttributeType(arg *GrafanaOauthGetOauthClientIdAttributeType, val GrafanaOauthGetOauthClientIdRetType) {
+	*arg = &val
+}
+
+type GrafanaOauthGetOauthClientIdArgType = string
+type GrafanaOauthGetOauthClientIdRetType = string
+
+/*
+	types and functions for oauthClientSecret
+*/
+
+// isNotNullableString
+type GrafanaOauthGetOauthClientSecretAttributeType = *string
+
+func getGrafanaOauthGetOauthClientSecretAttributeTypeOk(arg GrafanaOauthGetOauthClientSecretAttributeType) (ret GrafanaOauthGetOauthClientSecretRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthGetOauthClientSecretAttributeType(arg *GrafanaOauthGetOauthClientSecretAttributeType, val GrafanaOauthGetOauthClientSecretRetType) {
+	*arg = &val
+}
+
+type GrafanaOauthGetOauthClientSecretArgType = string
+type GrafanaOauthGetOauthClientSecretRetType = string
+
+/*
+	types and functions for roleAttributePath
+*/
+
+// isNotNullableString
+type GrafanaOauthGetRoleAttributePathAttributeType = *string
+
+func getGrafanaOauthGetRoleAttributePathAttributeTypeOk(arg GrafanaOauthGetRoleAttributePathAttributeType) (ret GrafanaOauthGetRoleAttributePathRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthGetRoleAttributePathAttributeType(arg *GrafanaOauthGetRoleAttributePathAttributeType, val GrafanaOauthGetRoleAttributePathRetType) {
+	*arg = &val
+}
+
+type GrafanaOauthGetRoleAttributePathArgType = string
+type GrafanaOauthGetRoleAttributePathRetType = string
+
+/*
+	types and functions for roleAttributeStrict
+*/
+
+// isBoolean
+type GrafanaOauthgetRoleAttributeStrictAttributeType = *bool
+type GrafanaOauthgetRoleAttributeStrictArgType = bool
+type GrafanaOauthgetRoleAttributeStrictRetType = bool
+
+func getGrafanaOauthgetRoleAttributeStrictAttributeTypeOk(arg GrafanaOauthgetRoleAttributeStrictAttributeType) (ret GrafanaOauthgetRoleAttributeStrictRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthgetRoleAttributeStrictAttributeType(arg *GrafanaOauthgetRoleAttributeStrictAttributeType, val GrafanaOauthgetRoleAttributeStrictRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for scopes
+*/
+
+// isNotNullableString
+type GrafanaOauthGetScopesAttributeType = *string
+
+func getGrafanaOauthGetScopesAttributeTypeOk(arg GrafanaOauthGetScopesAttributeType) (ret GrafanaOauthGetScopesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthGetScopesAttributeType(arg *GrafanaOauthGetScopesAttributeType, val GrafanaOauthGetScopesRetType) {
+	*arg = &val
+}
+
+type GrafanaOauthGetScopesArgType = string
+type GrafanaOauthGetScopesRetType = string
+
+/*
+	types and functions for tokenUrl
+*/
+
+// isNotNullableString
+type GrafanaOauthGetTokenUrlAttributeType = *string
+
+func getGrafanaOauthGetTokenUrlAttributeTypeOk(arg GrafanaOauthGetTokenUrlAttributeType) (ret GrafanaOauthGetTokenUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthGetTokenUrlAttributeType(arg *GrafanaOauthGetTokenUrlAttributeType, val GrafanaOauthGetTokenUrlRetType) {
+	*arg = &val
+}
+
+type GrafanaOauthGetTokenUrlArgType = string
+type GrafanaOauthGetTokenUrlRetType = string
+
+/*
+	types and functions for usePkce
+*/
+
+// isBoolean
+type GrafanaOauthgetUsePkceAttributeType = *bool
+type GrafanaOauthgetUsePkceArgType = bool
+type GrafanaOauthgetUsePkceRetType = bool
+
+func getGrafanaOauthgetUsePkceAttributeTypeOk(arg GrafanaOauthgetUsePkceAttributeType) (ret GrafanaOauthgetUsePkceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthgetUsePkceAttributeType(arg *GrafanaOauthgetUsePkceAttributeType, val GrafanaOauthgetUsePkceRetType) {
+	*arg = &val
+}
+
 // GrafanaOauth struct for GrafanaOauth
 type GrafanaOauth struct {
 	// REQUIRED
-	ApiUrl *string `json:"apiUrl"`
+	ApiUrl GrafanaOauthGetApiUrlAttributeType `json:"apiUrl"`
 	// REQUIRED
-	AuthUrl *string `json:"authUrl"`
+	AuthUrl GrafanaOauthGetAuthUrlAttributeType `json:"authUrl"`
 	// REQUIRED
-	Enabled *bool   `json:"enabled"`
-	Name    *string `json:"name,omitempty"`
+	Enabled GrafanaOauthgetEnabledAttributeType `json:"enabled"`
+	Name    GrafanaOauthGetNameAttributeType    `json:"name,omitempty"`
 	// REQUIRED
-	OauthClientId *string `json:"oauthClientId"`
+	OauthClientId GrafanaOauthGetOauthClientIdAttributeType `json:"oauthClientId"`
 	// REQUIRED
-	OauthClientSecret *string `json:"oauthClientSecret"`
+	OauthClientSecret GrafanaOauthGetOauthClientSecretAttributeType `json:"oauthClientSecret"`
 	// REQUIRED
-	RoleAttributePath   *string `json:"roleAttributePath"`
-	RoleAttributeStrict *bool   `json:"roleAttributeStrict,omitempty"`
-	Scopes              *string `json:"scopes,omitempty"`
+	RoleAttributePath   GrafanaOauthGetRoleAttributePathAttributeType   `json:"roleAttributePath"`
+	RoleAttributeStrict GrafanaOauthgetRoleAttributeStrictAttributeType `json:"roleAttributeStrict,omitempty"`
+	Scopes              GrafanaOauthGetScopesAttributeType              `json:"scopes,omitempty"`
 	// REQUIRED
-	TokenUrl *string `json:"tokenUrl"`
-	UsePkce  *bool   `json:"usePkce,omitempty"`
+	TokenUrl GrafanaOauthGetTokenUrlAttributeType `json:"tokenUrl"`
+	UsePkce  GrafanaOauthgetUsePkceAttributeType  `json:"usePkce,omitempty"`
 }
 
 type _GrafanaOauth GrafanaOauth
@@ -45,19 +273,15 @@ type _GrafanaOauth GrafanaOauth
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGrafanaOauth(apiUrl *string, authUrl *string, enabled *bool, oauthClientId *string, oauthClientSecret *string, roleAttributePath *string, tokenUrl *string) *GrafanaOauth {
+func NewGrafanaOauth(apiUrl GrafanaOauthGetApiUrlArgType, authUrl GrafanaOauthGetAuthUrlArgType, enabled GrafanaOauthgetEnabledArgType, oauthClientId GrafanaOauthGetOauthClientIdArgType, oauthClientSecret GrafanaOauthGetOauthClientSecretArgType, roleAttributePath GrafanaOauthGetRoleAttributePathArgType, tokenUrl GrafanaOauthGetTokenUrlArgType) *GrafanaOauth {
 	this := GrafanaOauth{}
-	this.ApiUrl = apiUrl
-	this.AuthUrl = authUrl
-	this.Enabled = enabled
-	this.OauthClientId = oauthClientId
-	this.OauthClientSecret = oauthClientSecret
-	this.RoleAttributePath = roleAttributePath
-	var roleAttributeStrict bool = true
-	this.RoleAttributeStrict = &roleAttributeStrict
-	var scopes string = "openid profile email"
-	this.Scopes = &scopes
-	this.TokenUrl = tokenUrl
+	setGrafanaOauthGetApiUrlAttributeType(&this.ApiUrl, apiUrl)
+	setGrafanaOauthGetAuthUrlAttributeType(&this.AuthUrl, authUrl)
+	setGrafanaOauthgetEnabledAttributeType(&this.Enabled, enabled)
+	setGrafanaOauthGetOauthClientIdAttributeType(&this.OauthClientId, oauthClientId)
+	setGrafanaOauthGetOauthClientSecretAttributeType(&this.OauthClientSecret, oauthClientSecret)
+	setGrafanaOauthGetRoleAttributePathAttributeType(&this.RoleAttributePath, roleAttributePath)
+	setGrafanaOauthGetTokenUrlAttributeType(&this.TokenUrl, tokenUrl)
 	return &this
 }
 
@@ -74,321 +298,250 @@ func NewGrafanaOauthWithDefaults() *GrafanaOauth {
 }
 
 // GetApiUrl returns the ApiUrl field value
-func (o *GrafanaOauth) GetApiUrl() *string {
-	if o == nil || IsNil(o.ApiUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.ApiUrl
+func (o *GrafanaOauth) GetApiUrl() (ret GrafanaOauthGetApiUrlRetType) {
+	ret, _ = o.GetApiUrlOk()
+	return ret
 }
 
 // GetApiUrlOk returns a tuple with the ApiUrl field value
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetApiUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ApiUrl, true
+func (o *GrafanaOauth) GetApiUrlOk() (ret GrafanaOauthGetApiUrlRetType, ok bool) {
+	return getGrafanaOauthGetApiUrlAttributeTypeOk(o.ApiUrl)
 }
 
 // SetApiUrl sets field value
-func (o *GrafanaOauth) SetApiUrl(v *string) {
-	o.ApiUrl = v
+func (o *GrafanaOauth) SetApiUrl(v GrafanaOauthGetApiUrlRetType) {
+	setGrafanaOauthGetApiUrlAttributeType(&o.ApiUrl, v)
 }
 
 // GetAuthUrl returns the AuthUrl field value
-func (o *GrafanaOauth) GetAuthUrl() *string {
-	if o == nil || IsNil(o.AuthUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.AuthUrl
+func (o *GrafanaOauth) GetAuthUrl() (ret GrafanaOauthGetAuthUrlRetType) {
+	ret, _ = o.GetAuthUrlOk()
+	return ret
 }
 
 // GetAuthUrlOk returns a tuple with the AuthUrl field value
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetAuthUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AuthUrl, true
+func (o *GrafanaOauth) GetAuthUrlOk() (ret GrafanaOauthGetAuthUrlRetType, ok bool) {
+	return getGrafanaOauthGetAuthUrlAttributeTypeOk(o.AuthUrl)
 }
 
 // SetAuthUrl sets field value
-func (o *GrafanaOauth) SetAuthUrl(v *string) {
-	o.AuthUrl = v
+func (o *GrafanaOauth) SetAuthUrl(v GrafanaOauthGetAuthUrlRetType) {
+	setGrafanaOauthGetAuthUrlAttributeType(&o.AuthUrl, v)
 }
 
 // GetEnabled returns the Enabled field value
-func (o *GrafanaOauth) GetEnabled() *bool {
-	if o == nil || IsNil(o.Enabled) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Enabled
+func (o *GrafanaOauth) GetEnabled() (ret GrafanaOauthgetEnabledRetType) {
+	ret, _ = o.GetEnabledOk()
+	return ret
 }
 
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Enabled, true
+func (o *GrafanaOauth) GetEnabledOk() (ret GrafanaOauthgetEnabledRetType, ok bool) {
+	return getGrafanaOauthgetEnabledAttributeTypeOk(o.Enabled)
 }
 
 // SetEnabled sets field value
-func (o *GrafanaOauth) SetEnabled(v *bool) {
-	o.Enabled = v
+func (o *GrafanaOauth) SetEnabled(v GrafanaOauthgetEnabledRetType) {
+	setGrafanaOauthgetEnabledAttributeType(&o.Enabled, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *GrafanaOauth) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *GrafanaOauth) GetName() (res GrafanaOauthGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *GrafanaOauth) GetNameOk() (ret GrafanaOauthGetNameRetType, ok bool) {
+	return getGrafanaOauthGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GrafanaOauth) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *GrafanaOauth) SetName(v *string) {
-	o.Name = v
+func (o *GrafanaOauth) SetName(v GrafanaOauthGetNameRetType) {
+	setGrafanaOauthGetNameAttributeType(&o.Name, v)
 }
 
 // GetOauthClientId returns the OauthClientId field value
-func (o *GrafanaOauth) GetOauthClientId() *string {
-	if o == nil || IsNil(o.OauthClientId) {
-		var ret *string
-		return ret
-	}
-
-	return o.OauthClientId
+func (o *GrafanaOauth) GetOauthClientId() (ret GrafanaOauthGetOauthClientIdRetType) {
+	ret, _ = o.GetOauthClientIdOk()
+	return ret
 }
 
 // GetOauthClientIdOk returns a tuple with the OauthClientId field value
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetOauthClientIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OauthClientId, true
+func (o *GrafanaOauth) GetOauthClientIdOk() (ret GrafanaOauthGetOauthClientIdRetType, ok bool) {
+	return getGrafanaOauthGetOauthClientIdAttributeTypeOk(o.OauthClientId)
 }
 
 // SetOauthClientId sets field value
-func (o *GrafanaOauth) SetOauthClientId(v *string) {
-	o.OauthClientId = v
+func (o *GrafanaOauth) SetOauthClientId(v GrafanaOauthGetOauthClientIdRetType) {
+	setGrafanaOauthGetOauthClientIdAttributeType(&o.OauthClientId, v)
 }
 
 // GetOauthClientSecret returns the OauthClientSecret field value
-func (o *GrafanaOauth) GetOauthClientSecret() *string {
-	if o == nil || IsNil(o.OauthClientSecret) {
-		var ret *string
-		return ret
-	}
-
-	return o.OauthClientSecret
+func (o *GrafanaOauth) GetOauthClientSecret() (ret GrafanaOauthGetOauthClientSecretRetType) {
+	ret, _ = o.GetOauthClientSecretOk()
+	return ret
 }
 
 // GetOauthClientSecretOk returns a tuple with the OauthClientSecret field value
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetOauthClientSecretOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OauthClientSecret, true
+func (o *GrafanaOauth) GetOauthClientSecretOk() (ret GrafanaOauthGetOauthClientSecretRetType, ok bool) {
+	return getGrafanaOauthGetOauthClientSecretAttributeTypeOk(o.OauthClientSecret)
 }
 
 // SetOauthClientSecret sets field value
-func (o *GrafanaOauth) SetOauthClientSecret(v *string) {
-	o.OauthClientSecret = v
+func (o *GrafanaOauth) SetOauthClientSecret(v GrafanaOauthGetOauthClientSecretRetType) {
+	setGrafanaOauthGetOauthClientSecretAttributeType(&o.OauthClientSecret, v)
 }
 
 // GetRoleAttributePath returns the RoleAttributePath field value
-func (o *GrafanaOauth) GetRoleAttributePath() *string {
-	if o == nil || IsNil(o.RoleAttributePath) {
-		var ret *string
-		return ret
-	}
-
-	return o.RoleAttributePath
+func (o *GrafanaOauth) GetRoleAttributePath() (ret GrafanaOauthGetRoleAttributePathRetType) {
+	ret, _ = o.GetRoleAttributePathOk()
+	return ret
 }
 
 // GetRoleAttributePathOk returns a tuple with the RoleAttributePath field value
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetRoleAttributePathOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RoleAttributePath, true
+func (o *GrafanaOauth) GetRoleAttributePathOk() (ret GrafanaOauthGetRoleAttributePathRetType, ok bool) {
+	return getGrafanaOauthGetRoleAttributePathAttributeTypeOk(o.RoleAttributePath)
 }
 
 // SetRoleAttributePath sets field value
-func (o *GrafanaOauth) SetRoleAttributePath(v *string) {
-	o.RoleAttributePath = v
+func (o *GrafanaOauth) SetRoleAttributePath(v GrafanaOauthGetRoleAttributePathRetType) {
+	setGrafanaOauthGetRoleAttributePathAttributeType(&o.RoleAttributePath, v)
 }
 
 // GetRoleAttributeStrict returns the RoleAttributeStrict field value if set, zero value otherwise.
-func (o *GrafanaOauth) GetRoleAttributeStrict() *bool {
-	if o == nil || IsNil(o.RoleAttributeStrict) {
-		var ret *bool
-		return ret
-	}
-	return o.RoleAttributeStrict
+func (o *GrafanaOauth) GetRoleAttributeStrict() (res GrafanaOauthgetRoleAttributeStrictRetType) {
+	res, _ = o.GetRoleAttributeStrictOk()
+	return
 }
 
 // GetRoleAttributeStrictOk returns a tuple with the RoleAttributeStrict field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetRoleAttributeStrictOk() (*bool, bool) {
-	if o == nil || IsNil(o.RoleAttributeStrict) {
-		return nil, false
-	}
-	return o.RoleAttributeStrict, true
+func (o *GrafanaOauth) GetRoleAttributeStrictOk() (ret GrafanaOauthgetRoleAttributeStrictRetType, ok bool) {
+	return getGrafanaOauthgetRoleAttributeStrictAttributeTypeOk(o.RoleAttributeStrict)
 }
 
 // HasRoleAttributeStrict returns a boolean if a field has been set.
 func (o *GrafanaOauth) HasRoleAttributeStrict() bool {
-	if o != nil && !IsNil(o.RoleAttributeStrict) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRoleAttributeStrictOk()
+	return ok
 }
 
 // SetRoleAttributeStrict gets a reference to the given bool and assigns it to the RoleAttributeStrict field.
-func (o *GrafanaOauth) SetRoleAttributeStrict(v *bool) {
-	o.RoleAttributeStrict = v
+func (o *GrafanaOauth) SetRoleAttributeStrict(v GrafanaOauthgetRoleAttributeStrictRetType) {
+	setGrafanaOauthgetRoleAttributeStrictAttributeType(&o.RoleAttributeStrict, v)
 }
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
-func (o *GrafanaOauth) GetScopes() *string {
-	if o == nil || IsNil(o.Scopes) {
-		var ret *string
-		return ret
-	}
-	return o.Scopes
+func (o *GrafanaOauth) GetScopes() (res GrafanaOauthGetScopesRetType) {
+	res, _ = o.GetScopesOk()
+	return
 }
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetScopesOk() (*string, bool) {
-	if o == nil || IsNil(o.Scopes) {
-		return nil, false
-	}
-	return o.Scopes, true
+func (o *GrafanaOauth) GetScopesOk() (ret GrafanaOauthGetScopesRetType, ok bool) {
+	return getGrafanaOauthGetScopesAttributeTypeOk(o.Scopes)
 }
 
 // HasScopes returns a boolean if a field has been set.
 func (o *GrafanaOauth) HasScopes() bool {
-	if o != nil && !IsNil(o.Scopes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetScopesOk()
+	return ok
 }
 
 // SetScopes gets a reference to the given string and assigns it to the Scopes field.
-func (o *GrafanaOauth) SetScopes(v *string) {
-	o.Scopes = v
+func (o *GrafanaOauth) SetScopes(v GrafanaOauthGetScopesRetType) {
+	setGrafanaOauthGetScopesAttributeType(&o.Scopes, v)
 }
 
 // GetTokenUrl returns the TokenUrl field value
-func (o *GrafanaOauth) GetTokenUrl() *string {
-	if o == nil || IsNil(o.TokenUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.TokenUrl
+func (o *GrafanaOauth) GetTokenUrl() (ret GrafanaOauthGetTokenUrlRetType) {
+	ret, _ = o.GetTokenUrlOk()
+	return ret
 }
 
 // GetTokenUrlOk returns a tuple with the TokenUrl field value
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetTokenUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TokenUrl, true
+func (o *GrafanaOauth) GetTokenUrlOk() (ret GrafanaOauthGetTokenUrlRetType, ok bool) {
+	return getGrafanaOauthGetTokenUrlAttributeTypeOk(o.TokenUrl)
 }
 
 // SetTokenUrl sets field value
-func (o *GrafanaOauth) SetTokenUrl(v *string) {
-	o.TokenUrl = v
+func (o *GrafanaOauth) SetTokenUrl(v GrafanaOauthGetTokenUrlRetType) {
+	setGrafanaOauthGetTokenUrlAttributeType(&o.TokenUrl, v)
 }
 
 // GetUsePkce returns the UsePkce field value if set, zero value otherwise.
-func (o *GrafanaOauth) GetUsePkce() *bool {
-	if o == nil || IsNil(o.UsePkce) {
-		var ret *bool
-		return ret
-	}
-	return o.UsePkce
+func (o *GrafanaOauth) GetUsePkce() (res GrafanaOauthgetUsePkceRetType) {
+	res, _ = o.GetUsePkceOk()
+	return
 }
 
 // GetUsePkceOk returns a tuple with the UsePkce field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GrafanaOauth) GetUsePkceOk() (*bool, bool) {
-	if o == nil || IsNil(o.UsePkce) {
-		return nil, false
-	}
-	return o.UsePkce, true
+func (o *GrafanaOauth) GetUsePkceOk() (ret GrafanaOauthgetUsePkceRetType, ok bool) {
+	return getGrafanaOauthgetUsePkceAttributeTypeOk(o.UsePkce)
 }
 
 // HasUsePkce returns a boolean if a field has been set.
 func (o *GrafanaOauth) HasUsePkce() bool {
-	if o != nil && !IsNil(o.UsePkce) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUsePkceOk()
+	return ok
 }
 
 // SetUsePkce gets a reference to the given bool and assigns it to the UsePkce field.
-func (o *GrafanaOauth) SetUsePkce(v *bool) {
-	o.UsePkce = v
+func (o *GrafanaOauth) SetUsePkce(v GrafanaOauthgetUsePkceRetType) {
+	setGrafanaOauthgetUsePkceAttributeType(&o.UsePkce, v)
 }
 
 func (o GrafanaOauth) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["apiUrl"] = o.ApiUrl
-	toSerialize["authUrl"] = o.AuthUrl
-	toSerialize["enabled"] = o.Enabled
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getGrafanaOauthGetApiUrlAttributeTypeOk(o.ApiUrl); ok {
+		toSerialize["ApiUrl"] = val
 	}
-	toSerialize["oauthClientId"] = o.OauthClientId
-	toSerialize["oauthClientSecret"] = o.OauthClientSecret
-	toSerialize["roleAttributePath"] = o.RoleAttributePath
-	if !IsNil(o.RoleAttributeStrict) {
-		toSerialize["roleAttributeStrict"] = o.RoleAttributeStrict
+	if val, ok := getGrafanaOauthGetAuthUrlAttributeTypeOk(o.AuthUrl); ok {
+		toSerialize["AuthUrl"] = val
 	}
-	if !IsNil(o.Scopes) {
-		toSerialize["scopes"] = o.Scopes
+	if val, ok := getGrafanaOauthgetEnabledAttributeTypeOk(o.Enabled); ok {
+		toSerialize["Enabled"] = val
 	}
-	toSerialize["tokenUrl"] = o.TokenUrl
-	if !IsNil(o.UsePkce) {
-		toSerialize["usePkce"] = o.UsePkce
+	if val, ok := getGrafanaOauthGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getGrafanaOauthGetOauthClientIdAttributeTypeOk(o.OauthClientId); ok {
+		toSerialize["OauthClientId"] = val
+	}
+	if val, ok := getGrafanaOauthGetOauthClientSecretAttributeTypeOk(o.OauthClientSecret); ok {
+		toSerialize["OauthClientSecret"] = val
+	}
+	if val, ok := getGrafanaOauthGetRoleAttributePathAttributeTypeOk(o.RoleAttributePath); ok {
+		toSerialize["RoleAttributePath"] = val
+	}
+	if val, ok := getGrafanaOauthgetRoleAttributeStrictAttributeTypeOk(o.RoleAttributeStrict); ok {
+		toSerialize["RoleAttributeStrict"] = val
+	}
+	if val, ok := getGrafanaOauthGetScopesAttributeTypeOk(o.Scopes); ok {
+		toSerialize["Scopes"] = val
+	}
+	if val, ok := getGrafanaOauthGetTokenUrlAttributeTypeOk(o.TokenUrl); ok {
+		toSerialize["TokenUrl"] = val
+	}
+	if val, ok := getGrafanaOauthgetUsePkceAttributeTypeOk(o.UsePkce); ok {
+		toSerialize["UsePkce"] = val
 	}
 	return toSerialize, nil
 }

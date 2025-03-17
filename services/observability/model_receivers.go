@@ -17,13 +17,94 @@ import (
 // checks if the Receivers type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Receivers{}
 
+/*
+	types and functions for emailConfigs
+*/
+
+// isArray
+type ReceiversGetEmailConfigsAttributeType = *[]EmailConfig
+type ReceiversGetEmailConfigsArgType = []EmailConfig
+type ReceiversGetEmailConfigsRetType = []EmailConfig
+
+func getReceiversGetEmailConfigsAttributeTypeOk(arg ReceiversGetEmailConfigsAttributeType) (ret ReceiversGetEmailConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setReceiversGetEmailConfigsAttributeType(arg *ReceiversGetEmailConfigsAttributeType, val ReceiversGetEmailConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ReceiversGetNameAttributeType = *string
+
+func getReceiversGetNameAttributeTypeOk(arg ReceiversGetNameAttributeType) (ret ReceiversGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setReceiversGetNameAttributeType(arg *ReceiversGetNameAttributeType, val ReceiversGetNameRetType) {
+	*arg = &val
+}
+
+type ReceiversGetNameArgType = string
+type ReceiversGetNameRetType = string
+
+/*
+	types and functions for opsgenieConfigs
+*/
+
+// isArray
+type ReceiversGetOpsgenieConfigsAttributeType = *[]OpsgenieConfig
+type ReceiversGetOpsgenieConfigsArgType = []OpsgenieConfig
+type ReceiversGetOpsgenieConfigsRetType = []OpsgenieConfig
+
+func getReceiversGetOpsgenieConfigsAttributeTypeOk(arg ReceiversGetOpsgenieConfigsAttributeType) (ret ReceiversGetOpsgenieConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setReceiversGetOpsgenieConfigsAttributeType(arg *ReceiversGetOpsgenieConfigsAttributeType, val ReceiversGetOpsgenieConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for webHookConfigs
+*/
+
+// isArray
+type ReceiversGetWebHookConfigsAttributeType = *[]WebHook
+type ReceiversGetWebHookConfigsArgType = []WebHook
+type ReceiversGetWebHookConfigsRetType = []WebHook
+
+func getReceiversGetWebHookConfigsAttributeTypeOk(arg ReceiversGetWebHookConfigsAttributeType) (ret ReceiversGetWebHookConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setReceiversGetWebHookConfigsAttributeType(arg *ReceiversGetWebHookConfigsAttributeType, val ReceiversGetWebHookConfigsRetType) {
+	*arg = &val
+}
+
 // Receivers struct for Receivers
 type Receivers struct {
-	EmailConfigs *[]EmailConfig `json:"emailConfigs,omitempty"`
+	EmailConfigs ReceiversGetEmailConfigsAttributeType `json:"emailConfigs,omitempty"`
 	// REQUIRED
-	Name            *string           `json:"name"`
-	OpsgenieConfigs *[]OpsgenieConfig `json:"opsgenieConfigs,omitempty"`
-	WebHookConfigs  *[]WebHook        `json:"webHookConfigs,omitempty"`
+	Name            ReceiversGetNameAttributeType            `json:"name"`
+	OpsgenieConfigs ReceiversGetOpsgenieConfigsAttributeType `json:"opsgenieConfigs,omitempty"`
+	WebHookConfigs  ReceiversGetWebHookConfigsAttributeType  `json:"webHookConfigs,omitempty"`
 }
 
 type _Receivers Receivers
@@ -32,9 +113,9 @@ type _Receivers Receivers
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReceivers(name *string) *Receivers {
+func NewReceivers(name ReceiversGetNameArgType) *Receivers {
 	this := Receivers{}
-	this.Name = name
+	setReceiversGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -47,136 +128,104 @@ func NewReceiversWithDefaults() *Receivers {
 }
 
 // GetEmailConfigs returns the EmailConfigs field value if set, zero value otherwise.
-func (o *Receivers) GetEmailConfigs() *[]EmailConfig {
-	if o == nil || IsNil(o.EmailConfigs) {
-		var ret *[]EmailConfig
-		return ret
-	}
-	return o.EmailConfigs
+func (o *Receivers) GetEmailConfigs() (res ReceiversGetEmailConfigsRetType) {
+	res, _ = o.GetEmailConfigsOk()
+	return
 }
 
 // GetEmailConfigsOk returns a tuple with the EmailConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Receivers) GetEmailConfigsOk() (*[]EmailConfig, bool) {
-	if o == nil || IsNil(o.EmailConfigs) {
-		return nil, false
-	}
-	return o.EmailConfigs, true
+func (o *Receivers) GetEmailConfigsOk() (ret ReceiversGetEmailConfigsRetType, ok bool) {
+	return getReceiversGetEmailConfigsAttributeTypeOk(o.EmailConfigs)
 }
 
 // HasEmailConfigs returns a boolean if a field has been set.
 func (o *Receivers) HasEmailConfigs() bool {
-	if o != nil && !IsNil(o.EmailConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEmailConfigsOk()
+	return ok
 }
 
 // SetEmailConfigs gets a reference to the given []EmailConfig and assigns it to the EmailConfigs field.
-func (o *Receivers) SetEmailConfigs(v *[]EmailConfig) {
-	o.EmailConfigs = v
+func (o *Receivers) SetEmailConfigs(v ReceiversGetEmailConfigsRetType) {
+	setReceiversGetEmailConfigsAttributeType(&o.EmailConfigs, v)
 }
 
 // GetName returns the Name field value
-func (o *Receivers) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Receivers) GetName() (ret ReceiversGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Receivers) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Receivers) GetNameOk() (ret ReceiversGetNameRetType, ok bool) {
+	return getReceiversGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Receivers) SetName(v *string) {
-	o.Name = v
+func (o *Receivers) SetName(v ReceiversGetNameRetType) {
+	setReceiversGetNameAttributeType(&o.Name, v)
 }
 
 // GetOpsgenieConfigs returns the OpsgenieConfigs field value if set, zero value otherwise.
-func (o *Receivers) GetOpsgenieConfigs() *[]OpsgenieConfig {
-	if o == nil || IsNil(o.OpsgenieConfigs) {
-		var ret *[]OpsgenieConfig
-		return ret
-	}
-	return o.OpsgenieConfigs
+func (o *Receivers) GetOpsgenieConfigs() (res ReceiversGetOpsgenieConfigsRetType) {
+	res, _ = o.GetOpsgenieConfigsOk()
+	return
 }
 
 // GetOpsgenieConfigsOk returns a tuple with the OpsgenieConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Receivers) GetOpsgenieConfigsOk() (*[]OpsgenieConfig, bool) {
-	if o == nil || IsNil(o.OpsgenieConfigs) {
-		return nil, false
-	}
-	return o.OpsgenieConfigs, true
+func (o *Receivers) GetOpsgenieConfigsOk() (ret ReceiversGetOpsgenieConfigsRetType, ok bool) {
+	return getReceiversGetOpsgenieConfigsAttributeTypeOk(o.OpsgenieConfigs)
 }
 
 // HasOpsgenieConfigs returns a boolean if a field has been set.
 func (o *Receivers) HasOpsgenieConfigs() bool {
-	if o != nil && !IsNil(o.OpsgenieConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOpsgenieConfigsOk()
+	return ok
 }
 
 // SetOpsgenieConfigs gets a reference to the given []OpsgenieConfig and assigns it to the OpsgenieConfigs field.
-func (o *Receivers) SetOpsgenieConfigs(v *[]OpsgenieConfig) {
-	o.OpsgenieConfigs = v
+func (o *Receivers) SetOpsgenieConfigs(v ReceiversGetOpsgenieConfigsRetType) {
+	setReceiversGetOpsgenieConfigsAttributeType(&o.OpsgenieConfigs, v)
 }
 
 // GetWebHookConfigs returns the WebHookConfigs field value if set, zero value otherwise.
-func (o *Receivers) GetWebHookConfigs() *[]WebHook {
-	if o == nil || IsNil(o.WebHookConfigs) {
-		var ret *[]WebHook
-		return ret
-	}
-	return o.WebHookConfigs
+func (o *Receivers) GetWebHookConfigs() (res ReceiversGetWebHookConfigsRetType) {
+	res, _ = o.GetWebHookConfigsOk()
+	return
 }
 
 // GetWebHookConfigsOk returns a tuple with the WebHookConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Receivers) GetWebHookConfigsOk() (*[]WebHook, bool) {
-	if o == nil || IsNil(o.WebHookConfigs) {
-		return nil, false
-	}
-	return o.WebHookConfigs, true
+func (o *Receivers) GetWebHookConfigsOk() (ret ReceiversGetWebHookConfigsRetType, ok bool) {
+	return getReceiversGetWebHookConfigsAttributeTypeOk(o.WebHookConfigs)
 }
 
 // HasWebHookConfigs returns a boolean if a field has been set.
 func (o *Receivers) HasWebHookConfigs() bool {
-	if o != nil && !IsNil(o.WebHookConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetWebHookConfigsOk()
+	return ok
 }
 
 // SetWebHookConfigs gets a reference to the given []WebHook and assigns it to the WebHookConfigs field.
-func (o *Receivers) SetWebHookConfigs(v *[]WebHook) {
-	o.WebHookConfigs = v
+func (o *Receivers) SetWebHookConfigs(v ReceiversGetWebHookConfigsRetType) {
+	setReceiversGetWebHookConfigsAttributeType(&o.WebHookConfigs, v)
 }
 
 func (o Receivers) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.EmailConfigs) {
-		toSerialize["emailConfigs"] = o.EmailConfigs
+	if val, ok := getReceiversGetEmailConfigsAttributeTypeOk(o.EmailConfigs); ok {
+		toSerialize["EmailConfigs"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.OpsgenieConfigs) {
-		toSerialize["opsgenieConfigs"] = o.OpsgenieConfigs
+	if val, ok := getReceiversGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.WebHookConfigs) {
-		toSerialize["webHookConfigs"] = o.WebHookConfigs
+	if val, ok := getReceiversGetOpsgenieConfigsAttributeTypeOk(o.OpsgenieConfigs); ok {
+		toSerialize["OpsgenieConfigs"] = val
+	}
+	if val, ok := getReceiversGetWebHookConfigsAttributeTypeOk(o.WebHookConfigs); ok {
+		toSerialize["WebHookConfigs"] = val
 	}
 	return toSerialize, nil
 }
