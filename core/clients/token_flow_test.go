@@ -22,6 +22,10 @@ func TestTokenFlow_Init(t *testing.T) {
 		{"ok", args{&TokenFlowConfig{
 			ServiceAccountToken: "efg",
 		}}, false},
+		{"with transport", args{&TokenFlowConfig{
+			ServiceAccountToken: "efg",
+			HTTPTransport:       http.DefaultTransport,
+		}}, false},
 		{"error 1", args{&TokenFlowConfig{
 			ServiceAccountToken: "",
 		}}, true},
@@ -35,7 +39,7 @@ func TestTokenFlow_Init(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Setting service account token: %s", err)
 			}
-			if err := c.Init(tt.args.cfg, http.DefaultTransport); (err != nil) != tt.wantErr {
+			if err := c.Init(tt.args.cfg); (err != nil) != tt.wantErr {
 				t.Errorf("TokenFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			err = os.Setenv(ServiceAccountToken, b)

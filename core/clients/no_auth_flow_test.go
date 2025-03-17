@@ -21,11 +21,12 @@ func TestNoAuthFlow_Init(t *testing.T) {
 		wantErr bool
 	}{
 		{"ok", args{context.Background(), NoAuthFlowConfig{}}, false},
+		{"with transport", args{context.Background(), NoAuthFlowConfig{HTTPTransport: http.DefaultTransport}}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			c := &NoAuthFlow{}
-			if err := c.Init(tt.args.cfg, http.DefaultTransport); (err != nil) != tt.wantErr {
+			if err := c.Init(tt.args.cfg); (err != nil) != tt.wantErr {
 				t.Errorf("NoAuthFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})

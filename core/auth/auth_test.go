@@ -678,6 +678,28 @@ func TestNoAuth(t *testing.T) {
 	} {
 		t.Run(test.desc, func(t *testing.T) {
 			setTemporaryHome(t) // Get the default authentication client and ensure that it's not nil
+			authClient, err := NoAuth()
+			if err != nil {
+				t.Fatalf("Test returned error on valid test case: %v", err)
+			}
+
+			if authClient == nil {
+				t.Fatalf("Client returned is nil for valid test case")
+			}
+		})
+	}
+}
+
+func TestNoAuthWithConfig(t *testing.T) {
+	for _, test := range []struct {
+		desc string
+	}{
+		{
+			desc: "valid_case",
+		},
+	} {
+		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t) // Get the default authentication client and ensure that it's not nil
 			authClient, err := NoAuth(&config.Configuration{HTTPClient: http.DefaultClient})
 			if err != nil {
 				t.Fatalf("Test returned error on valid test case: %v", err)

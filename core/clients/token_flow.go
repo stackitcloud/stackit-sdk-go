@@ -23,7 +23,8 @@ type TokenFlowConfig struct {
 	ServiceAccountEmail string
 	ServiceAccountToken string
 	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
-	ClientRetry *RetryConfig
+	ClientRetry   *RetryConfig
+	HTTPTransport http.RoundTripper
 }
 
 // GetConfig returns the flow configuration
@@ -34,14 +35,12 @@ func (c *TokenFlow) GetConfig() TokenFlowConfig {
 	return *c.config
 }
 
-func (c *TokenFlow) Init(cfg *TokenFlowConfig, rt http.RoundTripper) error {
+func (c *TokenFlow) Init(cfg *TokenFlowConfig) error {
 	c.config = cfg
 
-	if rt == nil {
-		rt = http.DefaultTransport
+	if c.rt = cfg.HTTPTransport; c.rt == nil {
+		c.rt = http.DefaultTransport
 	}
-
-	c.rt = rt
 
 	return c.validate()
 }
@@ -54,7 +53,7 @@ func (c *TokenFlow) validate() error {
 	return nil
 }
 
-// Roundtrip performs the request
+// RoundTrip performs the request
 func (c *TokenFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 	if c.rt == nil {
 		return nil, fmt.Errorf("please run Init()")

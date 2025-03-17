@@ -98,17 +98,23 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 
 // NoAuth configures a flow without authentication and returns an http.RoundTripper
 // that can be used to make unauthenticated requests
-func NoAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
+func NoAuth(cfgs ...*config.Configuration) (rt http.RoundTripper, err error) {
 	noAuthConfig := clients.NoAuthFlowConfig{}
 	noAuthRoundTripper := &clients.NoAuthFlow{}
 
-	if cfg.HTTPClient == nil {
-		cfg.HTTPClient = &http.Client{
-			Timeout: clients.DefaultClientTimeout,
-		}
+	var cfg *config.Configuration
+
+	if len(cfgs) > 0 {
+		cfg = cfgs[0]
+	} else {
+		cfg = &config.Configuration{}
 	}
 
-	if err := noAuthRoundTripper.Init(noAuthConfig, cfg.HTTPClient.Transport); err != nil {
+	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
+		noAuthConfig.HTTPTransport = cfg.HTTPClient.Transport
+	}
+
+	if err := noAuthRoundTripper.Init(noAuthConfig); err != nil {
 		return nil, fmt.Errorf("initializing client: %w", err)
 	}
 	return noAuthRoundTripper, nil
@@ -137,14 +143,12 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		ServiceAccountToken: cfg.Token,
 	}
 
-	if cfg.HTTPClient == nil {
-		cfg.HTTPClient = &http.Client{
-			Timeout: clients.DefaultClientTimeout,
-		}
+	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
+		tokenCfg.HTTPTransport = cfg.HTTPClient.Transport
 	}
 
 	client := &clients.TokenFlow{}
-	if err := client.Init(&tokenCfg, cfg.HTTPClient.Transport); err != nil {
+	if err := client.Init(&tokenCfg); err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 
@@ -200,14 +204,12 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		BackgroundTokenRefreshContext: cfg.BackgroundTokenRefreshContext,
 	}
 
-	if cfg.HTTPClient == nil {
-		cfg.HTTPClient = &http.Client{
-			Timeout: clients.DefaultClientTimeout,
-		}
+	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
+		keyCfg.HTTPTransport = cfg.HTTPClient.Transport
 	}
 
 	client := &clients.KeyFlow{}
-	if err := client.Init(&keyCfg, cfg.HTTPClient.Transport); err != nil {
+	if err := client.Init(&keyCfg); err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 

@@ -53,6 +53,8 @@ type KeyFlowConfig struct {
 	ClientRetry                   *RetryConfig
 	TokenUrl                      string
 	BackgroundTokenRefreshContext context.Context // Functionality is enabled if this isn't nil
+	HTTPTransport                 http.RoundTripper
+	AuthHTTPClient                *http.Client
 }
 
 // TokenResponseBody is the API response
@@ -116,7 +118,7 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 	return *c.token
 }
 
-func (c *KeyFlow) Init(cfg *KeyFlowConfig, rt http.RoundTripper) error {
+func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	// No concurrency at this point, so no mutex check needed
 	c.token = &TokenResponseBody{}
 	c.config = cfg
@@ -125,14 +127,15 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig, rt http.RoundTripper) error {
 		c.config.TokenUrl = tokenAPI
 	}
 
-	if rt == nil {
-		rt = http.DefaultTransport
+	if c.rt = cfg.HTTPTransport; c.rt == nil {
+		c.rt = http.DefaultTransport
 	}
 
-	c.rt = rt
-	c.authClient = &http.Client{
-		Transport: rt,
-		Timeout:   DefaultClientTimeout,
+	if c.authClient = cfg.AuthHTTPClient; cfg.AuthHTTPClient == nil {
+		c.authClient = &http.Client{
+			Transport: c.rt,
+			Timeout:   DefaultClientTimeout,
+		}
 	}
 
 	err := c.validate()

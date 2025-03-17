@@ -114,7 +114,7 @@ func TestKeyFlowInit(t *testing.T) {
 			}
 
 			cfg.ServiceAccountKey = tt.serviceAccountKey
-			if err := c.Init(cfg, http.DefaultTransport); (err != nil) != tt.wantErr {
+			if err := c.Init(cfg); (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			if c.config == nil {
