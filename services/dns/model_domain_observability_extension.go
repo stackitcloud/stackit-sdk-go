@@ -17,11 +17,53 @@ import (
 // checks if the DomainObservabilityExtension type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DomainObservabilityExtension{}
 
+/*
+	types and functions for observabilityInstanceId
+*/
+
+// isNotNullableString
+type DomainObservabilityExtensionGetObservabilityInstanceIdAttributeType = *string
+
+func getDomainObservabilityExtensionGetObservabilityInstanceIdAttributeTypeOk(arg DomainObservabilityExtensionGetObservabilityInstanceIdAttributeType) (ret DomainObservabilityExtensionGetObservabilityInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDomainObservabilityExtensionGetObservabilityInstanceIdAttributeType(arg *DomainObservabilityExtensionGetObservabilityInstanceIdAttributeType, val DomainObservabilityExtensionGetObservabilityInstanceIdRetType) {
+	*arg = &val
+}
+
+type DomainObservabilityExtensionGetObservabilityInstanceIdArgType = string
+type DomainObservabilityExtensionGetObservabilityInstanceIdRetType = string
+
+/*
+	types and functions for state
+*/
+
+// isNotNullableString
+type DomainObservabilityExtensionGetStateAttributeType = *string
+
+func getDomainObservabilityExtensionGetStateAttributeTypeOk(arg DomainObservabilityExtensionGetStateAttributeType) (ret DomainObservabilityExtensionGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDomainObservabilityExtensionGetStateAttributeType(arg *DomainObservabilityExtensionGetStateAttributeType, val DomainObservabilityExtensionGetStateRetType) {
+	*arg = &val
+}
+
+type DomainObservabilityExtensionGetStateArgType = string
+type DomainObservabilityExtensionGetStateRetType = string
+
 // DomainObservabilityExtension struct for DomainObservabilityExtension
 type DomainObservabilityExtension struct {
 	// REQUIRED
-	ObservabilityInstanceId *string `json:"observabilityInstanceId"`
-	State                   *string `json:"state,omitempty"`
+	ObservabilityInstanceId DomainObservabilityExtensionGetObservabilityInstanceIdAttributeType `json:"observabilityInstanceId"`
+	State                   DomainObservabilityExtensionGetStateAttributeType                   `json:"state,omitempty"`
 }
 
 type _DomainObservabilityExtension DomainObservabilityExtension
@@ -30,9 +72,9 @@ type _DomainObservabilityExtension DomainObservabilityExtension
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDomainObservabilityExtension(observabilityInstanceId *string) *DomainObservabilityExtension {
+func NewDomainObservabilityExtension(observabilityInstanceId DomainObservabilityExtensionGetObservabilityInstanceIdArgType) *DomainObservabilityExtension {
 	this := DomainObservabilityExtension{}
-	this.ObservabilityInstanceId = observabilityInstanceId
+	setDomainObservabilityExtensionGetObservabilityInstanceIdAttributeType(&this.ObservabilityInstanceId, observabilityInstanceId)
 	return &this
 }
 
@@ -45,66 +87,52 @@ func NewDomainObservabilityExtensionWithDefaults() *DomainObservabilityExtension
 }
 
 // GetObservabilityInstanceId returns the ObservabilityInstanceId field value
-func (o *DomainObservabilityExtension) GetObservabilityInstanceId() *string {
-	if o == nil || IsNil(o.ObservabilityInstanceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ObservabilityInstanceId
+func (o *DomainObservabilityExtension) GetObservabilityInstanceId() (ret DomainObservabilityExtensionGetObservabilityInstanceIdRetType) {
+	ret, _ = o.GetObservabilityInstanceIdOk()
+	return ret
 }
 
 // GetObservabilityInstanceIdOk returns a tuple with the ObservabilityInstanceId field value
 // and a boolean to check if the value has been set.
-func (o *DomainObservabilityExtension) GetObservabilityInstanceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ObservabilityInstanceId, true
+func (o *DomainObservabilityExtension) GetObservabilityInstanceIdOk() (ret DomainObservabilityExtensionGetObservabilityInstanceIdRetType, ok bool) {
+	return getDomainObservabilityExtensionGetObservabilityInstanceIdAttributeTypeOk(o.ObservabilityInstanceId)
 }
 
 // SetObservabilityInstanceId sets field value
-func (o *DomainObservabilityExtension) SetObservabilityInstanceId(v *string) {
-	o.ObservabilityInstanceId = v
+func (o *DomainObservabilityExtension) SetObservabilityInstanceId(v DomainObservabilityExtensionGetObservabilityInstanceIdRetType) {
+	setDomainObservabilityExtensionGetObservabilityInstanceIdAttributeType(&o.ObservabilityInstanceId, v)
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *DomainObservabilityExtension) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-	return o.State
+func (o *DomainObservabilityExtension) GetState() (res DomainObservabilityExtensionGetStateRetType) {
+	res, _ = o.GetStateOk()
+	return
 }
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainObservabilityExtension) GetStateOk() (*string, bool) {
-	if o == nil || IsNil(o.State) {
-		return nil, false
-	}
-	return o.State, true
+func (o *DomainObservabilityExtension) GetStateOk() (ret DomainObservabilityExtensionGetStateRetType, ok bool) {
+	return getDomainObservabilityExtensionGetStateAttributeTypeOk(o.State)
 }
 
 // HasState returns a boolean if a field has been set.
 func (o *DomainObservabilityExtension) HasState() bool {
-	if o != nil && !IsNil(o.State) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStateOk()
+	return ok
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *DomainObservabilityExtension) SetState(v *string) {
-	o.State = v
+func (o *DomainObservabilityExtension) SetState(v DomainObservabilityExtensionGetStateRetType) {
+	setDomainObservabilityExtensionGetStateAttributeType(&o.State, v)
 }
 
 func (o DomainObservabilityExtension) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["observabilityInstanceId"] = o.ObservabilityInstanceId
-	if !IsNil(o.State) {
-		toSerialize["state"] = o.State
+	if val, ok := getDomainObservabilityExtensionGetObservabilityInstanceIdAttributeTypeOk(o.ObservabilityInstanceId); ok {
+		toSerialize["ObservabilityInstanceId"] = val
+	}
+	if val, ok := getDomainObservabilityExtensionGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
 	}
 	return toSerialize, nil
 }
