@@ -17,12 +17,54 @@ import (
 // checks if the Image type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Image{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ImageGetNameAttributeType = *string
+
+func getImageGetNameAttributeTypeOk(arg ImageGetNameAttributeType) (ret ImageGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetNameAttributeType(arg *ImageGetNameAttributeType, val ImageGetNameRetType) {
+	*arg = &val
+}
+
+type ImageGetNameArgType = string
+type ImageGetNameRetType = string
+
+/*
+	types and functions for version
+*/
+
+// isNotNullableString
+type ImageGetVersionAttributeType = *string
+
+func getImageGetVersionAttributeTypeOk(arg ImageGetVersionAttributeType) (ret ImageGetVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetVersionAttributeType(arg *ImageGetVersionAttributeType, val ImageGetVersionRetType) {
+	*arg = &val
+}
+
+type ImageGetVersionArgType = string
+type ImageGetVersionRetType = string
+
 // Image For valid names and versions please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `machineImages`.
 type Image struct {
 	// REQUIRED
-	Name *string `json:"name"`
+	Name ImageGetNameAttributeType `json:"name"`
 	// REQUIRED
-	Version *string `json:"version"`
+	Version ImageGetVersionAttributeType `json:"version"`
 }
 
 type _Image Image
@@ -31,10 +73,10 @@ type _Image Image
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImage(name *string, version *string) *Image {
+func NewImage(name ImageGetNameArgType, version ImageGetVersionArgType) *Image {
 	this := Image{}
-	this.Name = name
-	this.Version = version
+	setImageGetNameAttributeType(&this.Name, name)
+	setImageGetVersionAttributeType(&this.Version, version)
 	return &this
 }
 
@@ -47,57 +89,47 @@ func NewImageWithDefaults() *Image {
 }
 
 // GetName returns the Name field value
-func (o *Image) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Image) GetName() (ret ImageGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Image) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Image) GetNameOk() (ret ImageGetNameRetType, ok bool) {
+	return getImageGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Image) SetName(v *string) {
-	o.Name = v
+func (o *Image) SetName(v ImageGetNameRetType) {
+	setImageGetNameAttributeType(&o.Name, v)
 }
 
 // GetVersion returns the Version field value
-func (o *Image) GetVersion() *string {
-	if o == nil || IsNil(o.Version) {
-		var ret *string
-		return ret
-	}
-
-	return o.Version
+func (o *Image) GetVersion() (ret ImageGetVersionRetType) {
+	ret, _ = o.GetVersionOk()
+	return ret
 }
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *Image) GetVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Version, true
+func (o *Image) GetVersionOk() (ret ImageGetVersionRetType, ok bool) {
+	return getImageGetVersionAttributeTypeOk(o.Version)
 }
 
 // SetVersion sets field value
-func (o *Image) SetVersion(v *string) {
-	o.Version = v
+func (o *Image) SetVersion(v ImageGetVersionRetType) {
+	setImageGetVersionAttributeType(&o.Version, v)
 }
 
 func (o Image) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["version"] = o.Version
+	if val, ok := getImageGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getImageGetVersionAttributeTypeOk(o.Version); ok {
+		toSerialize["Version"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -18,16 +18,136 @@ import (
 // checks if the ClusterStatus type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ClusterStatus{}
 
+/*
+	types and functions for aggregated
+*/
+
+// isEnumRef
+type ClusterStatusGetAggregatedAttributeType = *ClusterStatusState
+type ClusterStatusGetAggregatedArgType = ClusterStatusState
+type ClusterStatusGetAggregatedRetType = ClusterStatusState
+
+func getClusterStatusGetAggregatedAttributeTypeOk(arg ClusterStatusGetAggregatedAttributeType) (ret ClusterStatusGetAggregatedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterStatusGetAggregatedAttributeType(arg *ClusterStatusGetAggregatedAttributeType, val ClusterStatusGetAggregatedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for creationTime
+*/
+
+// isDateTime
+type ClusterStatusGetCreationTimeAttributeType = *time.Time
+type ClusterStatusGetCreationTimeArgType = time.Time
+type ClusterStatusGetCreationTimeRetType = time.Time
+
+func getClusterStatusGetCreationTimeAttributeTypeOk(arg ClusterStatusGetCreationTimeAttributeType) (ret ClusterStatusGetCreationTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterStatusGetCreationTimeAttributeType(arg *ClusterStatusGetCreationTimeAttributeType, val ClusterStatusGetCreationTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for credentialsRotation
+*/
+
+// isModel
+type ClusterStatusGetCredentialsRotationAttributeType = *CredentialsRotationState
+type ClusterStatusGetCredentialsRotationArgType = CredentialsRotationState
+type ClusterStatusGetCredentialsRotationRetType = CredentialsRotationState
+
+func getClusterStatusGetCredentialsRotationAttributeTypeOk(arg ClusterStatusGetCredentialsRotationAttributeType) (ret ClusterStatusGetCredentialsRotationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterStatusGetCredentialsRotationAttributeType(arg *ClusterStatusGetCredentialsRotationAttributeType, val ClusterStatusGetCredentialsRotationRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for egressAddressRanges
+*/
+
+// isArray
+type ClusterStatusGetEgressAddressRangesAttributeType = *[]string
+type ClusterStatusGetEgressAddressRangesArgType = []string
+type ClusterStatusGetEgressAddressRangesRetType = []string
+
+func getClusterStatusGetEgressAddressRangesAttributeTypeOk(arg ClusterStatusGetEgressAddressRangesAttributeType) (ret ClusterStatusGetEgressAddressRangesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterStatusGetEgressAddressRangesAttributeType(arg *ClusterStatusGetEgressAddressRangesAttributeType, val ClusterStatusGetEgressAddressRangesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for error
+*/
+
+// isModel
+type ClusterStatusGetErrorAttributeType = *RuntimeError
+type ClusterStatusGetErrorArgType = RuntimeError
+type ClusterStatusGetErrorRetType = RuntimeError
+
+func getClusterStatusGetErrorAttributeTypeOk(arg ClusterStatusGetErrorAttributeType) (ret ClusterStatusGetErrorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterStatusGetErrorAttributeType(arg *ClusterStatusGetErrorAttributeType, val ClusterStatusGetErrorRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for hibernated
+*/
+
+// isBoolean
+type ClusterStatusgetHibernatedAttributeType = *bool
+type ClusterStatusgetHibernatedArgType = bool
+type ClusterStatusgetHibernatedRetType = bool
+
+func getClusterStatusgetHibernatedAttributeTypeOk(arg ClusterStatusgetHibernatedAttributeType) (ret ClusterStatusgetHibernatedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterStatusgetHibernatedAttributeType(arg *ClusterStatusgetHibernatedAttributeType, val ClusterStatusgetHibernatedRetType) {
+	*arg = &val
+}
+
 // ClusterStatus struct for ClusterStatus
 type ClusterStatus struct {
-	Aggregated *ClusterStatusState `json:"aggregated,omitempty"`
+	Aggregated ClusterStatusGetAggregatedAttributeType `json:"aggregated,omitempty"`
 	// Format: `2024-02-15T11:06:29Z`
-	CreationTime        *time.Time                `json:"creationTime,omitempty"`
-	CredentialsRotation *CredentialsRotationState `json:"credentialsRotation,omitempty"`
+	CreationTime        ClusterStatusGetCreationTimeAttributeType        `json:"creationTime,omitempty"`
+	CredentialsRotation ClusterStatusGetCredentialsRotationAttributeType `json:"credentialsRotation,omitempty"`
 	// The outgoing network ranges (in CIDR notation) of traffic originating from workload on the cluster.
-	EgressAddressRanges *[]string     `json:"egressAddressRanges,omitempty"`
-	Error               *RuntimeError `json:"error,omitempty"`
-	Hibernated          *bool         `json:"hibernated,omitempty"`
+	EgressAddressRanges ClusterStatusGetEgressAddressRangesAttributeType `json:"egressAddressRanges,omitempty"`
+	Error               ClusterStatusGetErrorAttributeType               `json:"error,omitempty"`
+	Hibernated          ClusterStatusgetHibernatedAttributeType          `json:"hibernated,omitempty"`
 }
 
 // NewClusterStatus instantiates a new ClusterStatus object
@@ -36,8 +156,6 @@ type ClusterStatus struct {
 // will change when the set of required properties is changed
 func NewClusterStatus() *ClusterStatus {
 	this := ClusterStatus{}
-	var aggregated ClusterStatusState = CLUSTERSTATUSSTATE_UNSPECIFIED
-	this.Aggregated = &aggregated
 	return &this
 }
 
@@ -52,216 +170,162 @@ func NewClusterStatusWithDefaults() *ClusterStatus {
 }
 
 // GetAggregated returns the Aggregated field value if set, zero value otherwise.
-func (o *ClusterStatus) GetAggregated() *ClusterStatusState {
-	if o == nil || IsNil(o.Aggregated) {
-		var ret *ClusterStatusState
-		return ret
-	}
-	return o.Aggregated
+func (o *ClusterStatus) GetAggregated() (res ClusterStatusGetAggregatedRetType) {
+	res, _ = o.GetAggregatedOk()
+	return
 }
 
 // GetAggregatedOk returns a tuple with the Aggregated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ClusterStatus) GetAggregatedOk() (*ClusterStatusState, bool) {
-	if o == nil || IsNil(o.Aggregated) {
-		return nil, false
-	}
-	return o.Aggregated, true
+func (o *ClusterStatus) GetAggregatedOk() (ret ClusterStatusGetAggregatedRetType, ok bool) {
+	return getClusterStatusGetAggregatedAttributeTypeOk(o.Aggregated)
 }
 
 // HasAggregated returns a boolean if a field has been set.
 func (o *ClusterStatus) HasAggregated() bool {
-	if o != nil && !IsNil(o.Aggregated) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAggregatedOk()
+	return ok
 }
 
 // SetAggregated gets a reference to the given ClusterStatusState and assigns it to the Aggregated field.
-func (o *ClusterStatus) SetAggregated(v *ClusterStatusState) {
-	o.Aggregated = v
+func (o *ClusterStatus) SetAggregated(v ClusterStatusGetAggregatedRetType) {
+	setClusterStatusGetAggregatedAttributeType(&o.Aggregated, v)
 }
 
 // GetCreationTime returns the CreationTime field value if set, zero value otherwise.
-func (o *ClusterStatus) GetCreationTime() *time.Time {
-	if o == nil || IsNil(o.CreationTime) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreationTime
+func (o *ClusterStatus) GetCreationTime() (res ClusterStatusGetCreationTimeRetType) {
+	res, _ = o.GetCreationTimeOk()
+	return
 }
 
 // GetCreationTimeOk returns a tuple with the CreationTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ClusterStatus) GetCreationTimeOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreationTime) {
-		return nil, false
-	}
-	return o.CreationTime, true
+func (o *ClusterStatus) GetCreationTimeOk() (ret ClusterStatusGetCreationTimeRetType, ok bool) {
+	return getClusterStatusGetCreationTimeAttributeTypeOk(o.CreationTime)
 }
 
 // HasCreationTime returns a boolean if a field has been set.
 func (o *ClusterStatus) HasCreationTime() bool {
-	if o != nil && !IsNil(o.CreationTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreationTimeOk()
+	return ok
 }
 
 // SetCreationTime gets a reference to the given time.Time and assigns it to the CreationTime field.
-func (o *ClusterStatus) SetCreationTime(v *time.Time) {
-	o.CreationTime = v
+func (o *ClusterStatus) SetCreationTime(v ClusterStatusGetCreationTimeRetType) {
+	setClusterStatusGetCreationTimeAttributeType(&o.CreationTime, v)
 }
 
 // GetCredentialsRotation returns the CredentialsRotation field value if set, zero value otherwise.
-func (o *ClusterStatus) GetCredentialsRotation() *CredentialsRotationState {
-	if o == nil || IsNil(o.CredentialsRotation) {
-		var ret *CredentialsRotationState
-		return ret
-	}
-	return o.CredentialsRotation
+func (o *ClusterStatus) GetCredentialsRotation() (res ClusterStatusGetCredentialsRotationRetType) {
+	res, _ = o.GetCredentialsRotationOk()
+	return
 }
 
 // GetCredentialsRotationOk returns a tuple with the CredentialsRotation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ClusterStatus) GetCredentialsRotationOk() (*CredentialsRotationState, bool) {
-	if o == nil || IsNil(o.CredentialsRotation) {
-		return nil, false
-	}
-	return o.CredentialsRotation, true
+func (o *ClusterStatus) GetCredentialsRotationOk() (ret ClusterStatusGetCredentialsRotationRetType, ok bool) {
+	return getClusterStatusGetCredentialsRotationAttributeTypeOk(o.CredentialsRotation)
 }
 
 // HasCredentialsRotation returns a boolean if a field has been set.
 func (o *ClusterStatus) HasCredentialsRotation() bool {
-	if o != nil && !IsNil(o.CredentialsRotation) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCredentialsRotationOk()
+	return ok
 }
 
 // SetCredentialsRotation gets a reference to the given CredentialsRotationState and assigns it to the CredentialsRotation field.
-func (o *ClusterStatus) SetCredentialsRotation(v *CredentialsRotationState) {
-	o.CredentialsRotation = v
+func (o *ClusterStatus) SetCredentialsRotation(v ClusterStatusGetCredentialsRotationRetType) {
+	setClusterStatusGetCredentialsRotationAttributeType(&o.CredentialsRotation, v)
 }
 
 // GetEgressAddressRanges returns the EgressAddressRanges field value if set, zero value otherwise.
-func (o *ClusterStatus) GetEgressAddressRanges() *[]string {
-	if o == nil || IsNil(o.EgressAddressRanges) {
-		var ret *[]string
-		return ret
-	}
-	return o.EgressAddressRanges
+func (o *ClusterStatus) GetEgressAddressRanges() (res ClusterStatusGetEgressAddressRangesRetType) {
+	res, _ = o.GetEgressAddressRangesOk()
+	return
 }
 
 // GetEgressAddressRangesOk returns a tuple with the EgressAddressRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ClusterStatus) GetEgressAddressRangesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.EgressAddressRanges) {
-		return nil, false
-	}
-	return o.EgressAddressRanges, true
+func (o *ClusterStatus) GetEgressAddressRangesOk() (ret ClusterStatusGetEgressAddressRangesRetType, ok bool) {
+	return getClusterStatusGetEgressAddressRangesAttributeTypeOk(o.EgressAddressRanges)
 }
 
 // HasEgressAddressRanges returns a boolean if a field has been set.
 func (o *ClusterStatus) HasEgressAddressRanges() bool {
-	if o != nil && !IsNil(o.EgressAddressRanges) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEgressAddressRangesOk()
+	return ok
 }
 
 // SetEgressAddressRanges gets a reference to the given []string and assigns it to the EgressAddressRanges field.
-func (o *ClusterStatus) SetEgressAddressRanges(v *[]string) {
-	o.EgressAddressRanges = v
+func (o *ClusterStatus) SetEgressAddressRanges(v ClusterStatusGetEgressAddressRangesRetType) {
+	setClusterStatusGetEgressAddressRangesAttributeType(&o.EgressAddressRanges, v)
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *ClusterStatus) GetError() *RuntimeError {
-	if o == nil || IsNil(o.Error) {
-		var ret *RuntimeError
-		return ret
-	}
-	return o.Error
+func (o *ClusterStatus) GetError() (res ClusterStatusGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ClusterStatus) GetErrorOk() (*RuntimeError, bool) {
-	if o == nil || IsNil(o.Error) {
-		return nil, false
-	}
-	return o.Error, true
+func (o *ClusterStatus) GetErrorOk() (ret ClusterStatusGetErrorRetType, ok bool) {
+	return getClusterStatusGetErrorAttributeTypeOk(o.Error)
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *ClusterStatus) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorOk()
+	return ok
 }
 
 // SetError gets a reference to the given RuntimeError and assigns it to the Error field.
-func (o *ClusterStatus) SetError(v *RuntimeError) {
-	o.Error = v
+func (o *ClusterStatus) SetError(v ClusterStatusGetErrorRetType) {
+	setClusterStatusGetErrorAttributeType(&o.Error, v)
 }
 
 // GetHibernated returns the Hibernated field value if set, zero value otherwise.
-func (o *ClusterStatus) GetHibernated() *bool {
-	if o == nil || IsNil(o.Hibernated) {
-		var ret *bool
-		return ret
-	}
-	return o.Hibernated
+func (o *ClusterStatus) GetHibernated() (res ClusterStatusgetHibernatedRetType) {
+	res, _ = o.GetHibernatedOk()
+	return
 }
 
 // GetHibernatedOk returns a tuple with the Hibernated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ClusterStatus) GetHibernatedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Hibernated) {
-		return nil, false
-	}
-	return o.Hibernated, true
+func (o *ClusterStatus) GetHibernatedOk() (ret ClusterStatusgetHibernatedRetType, ok bool) {
+	return getClusterStatusgetHibernatedAttributeTypeOk(o.Hibernated)
 }
 
 // HasHibernated returns a boolean if a field has been set.
 func (o *ClusterStatus) HasHibernated() bool {
-	if o != nil && !IsNil(o.Hibernated) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHibernatedOk()
+	return ok
 }
 
 // SetHibernated gets a reference to the given bool and assigns it to the Hibernated field.
-func (o *ClusterStatus) SetHibernated(v *bool) {
-	o.Hibernated = v
+func (o *ClusterStatus) SetHibernated(v ClusterStatusgetHibernatedRetType) {
+	setClusterStatusgetHibernatedAttributeType(&o.Hibernated, v)
 }
 
 func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Aggregated) {
-		toSerialize["aggregated"] = o.Aggregated
+	if val, ok := getClusterStatusGetAggregatedAttributeTypeOk(o.Aggregated); ok {
+		toSerialize["Aggregated"] = val
 	}
-	if !IsNil(o.CreationTime) {
-		toSerialize["creationTime"] = o.CreationTime
+	if val, ok := getClusterStatusGetCreationTimeAttributeTypeOk(o.CreationTime); ok {
+		toSerialize["CreationTime"] = val
 	}
-	if !IsNil(o.CredentialsRotation) {
-		toSerialize["credentialsRotation"] = o.CredentialsRotation
+	if val, ok := getClusterStatusGetCredentialsRotationAttributeTypeOk(o.CredentialsRotation); ok {
+		toSerialize["CredentialsRotation"] = val
 	}
-	if !IsNil(o.EgressAddressRanges) {
-		toSerialize["egressAddressRanges"] = o.EgressAddressRanges
+	if val, ok := getClusterStatusGetEgressAddressRangesAttributeTypeOk(o.EgressAddressRanges); ok {
+		toSerialize["EgressAddressRanges"] = val
 	}
-	if !IsNil(o.Error) {
-		toSerialize["error"] = o.Error
+	if val, ok := getClusterStatusGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
 	}
-	if !IsNil(o.Hibernated) {
-		toSerialize["hibernated"] = o.Hibernated
+	if val, ok := getClusterStatusgetHibernatedAttributeTypeOk(o.Hibernated); ok {
+		toSerialize["Hibernated"] = val
 	}
 	return toSerialize, nil
 }

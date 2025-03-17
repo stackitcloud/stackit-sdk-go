@@ -17,13 +17,54 @@ import (
 // checks if the Volume type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Volume{}
 
+/*
+	types and functions for size
+*/
+
+// isInteger
+type VolumeGetSizeAttributeType = *int64
+type VolumeGetSizeArgType = int64
+type VolumeGetSizeRetType = int64
+
+func getVolumeGetSizeAttributeTypeOk(arg VolumeGetSizeAttributeType) (ret VolumeGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetSizeAttributeType(arg *VolumeGetSizeAttributeType, val VolumeGetSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isNotNullableString
+type VolumeGetTypeAttributeType = *string
+
+func getVolumeGetTypeAttributeTypeOk(arg VolumeGetTypeAttributeType) (ret VolumeGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetTypeAttributeType(arg *VolumeGetTypeAttributeType, val VolumeGetTypeRetType) {
+	*arg = &val
+}
+
+type VolumeGetTypeArgType = string
+type VolumeGetTypeRetType = string
+
 // Volume struct for Volume
 type Volume struct {
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Size *int64 `json:"size"`
+	Size VolumeGetSizeAttributeType `json:"size"`
 	// For valid values please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `volumeTypes`.
-	Type *string `json:"type,omitempty"`
+	Type VolumeGetTypeAttributeType `json:"type,omitempty"`
 }
 
 type _Volume Volume
@@ -32,9 +73,9 @@ type _Volume Volume
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVolume(size *int64) *Volume {
+func NewVolume(size VolumeGetSizeArgType) *Volume {
 	this := Volume{}
-	this.Size = size
+	setVolumeGetSizeAttributeType(&this.Size, size)
 	return &this
 }
 
@@ -47,66 +88,52 @@ func NewVolumeWithDefaults() *Volume {
 }
 
 // GetSize returns the Size field value
-func (o *Volume) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Size
+func (o *Volume) GetSize() (ret VolumeGetSizeRetType) {
+	ret, _ = o.GetSizeOk()
+	return ret
 }
 
 // GetSizeOk returns a tuple with the Size field value
 // and a boolean to check if the value has been set.
-func (o *Volume) GetSizeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Size, true
+func (o *Volume) GetSizeOk() (ret VolumeGetSizeRetType, ok bool) {
+	return getVolumeGetSizeAttributeTypeOk(o.Size)
 }
 
 // SetSize sets field value
-func (o *Volume) SetSize(v *int64) {
-	o.Size = v
+func (o *Volume) SetSize(v VolumeGetSizeRetType) {
+	setVolumeGetSizeAttributeType(&o.Size, v)
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Volume) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-	return o.Type
+func (o *Volume) GetType() (res VolumeGetTypeRetType) {
+	res, _ = o.GetTypeOk()
+	return
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Volume) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
+func (o *Volume) GetTypeOk() (ret VolumeGetTypeRetType, ok bool) {
+	return getVolumeGetTypeAttributeTypeOk(o.Type)
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *Volume) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTypeOk()
+	return ok
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Volume) SetType(v *string) {
-	o.Type = v
+func (o *Volume) SetType(v VolumeGetTypeRetType) {
+	setVolumeGetTypeAttributeType(&o.Type, v)
 }
 
 func (o Volume) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["size"] = o.Size
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if val, ok := getVolumeGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
+	}
+	if val, ok := getVolumeGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,12 +17,74 @@ import (
 // checks if the RuntimeError type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RuntimeError{}
 
+/*
+	types and functions for code
+*/
+
+// isEnumRef
+type RuntimeErrorGetCodeAttributeType = *string
+type RuntimeErrorGetCodeArgType = string
+type RuntimeErrorGetCodeRetType = string
+
+func getRuntimeErrorGetCodeAttributeTypeOk(arg RuntimeErrorGetCodeAttributeType) (ret RuntimeErrorGetCodeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRuntimeErrorGetCodeAttributeType(arg *RuntimeErrorGetCodeAttributeType, val RuntimeErrorGetCodeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for details
+*/
+
+// isNotNullableString
+type RuntimeErrorGetDetailsAttributeType = *string
+
+func getRuntimeErrorGetDetailsAttributeTypeOk(arg RuntimeErrorGetDetailsAttributeType) (ret RuntimeErrorGetDetailsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRuntimeErrorGetDetailsAttributeType(arg *RuntimeErrorGetDetailsAttributeType, val RuntimeErrorGetDetailsRetType) {
+	*arg = &val
+}
+
+type RuntimeErrorGetDetailsArgType = string
+type RuntimeErrorGetDetailsRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type RuntimeErrorGetMessageAttributeType = *string
+
+func getRuntimeErrorGetMessageAttributeTypeOk(arg RuntimeErrorGetMessageAttributeType) (ret RuntimeErrorGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRuntimeErrorGetMessageAttributeType(arg *RuntimeErrorGetMessageAttributeType, val RuntimeErrorGetMessageRetType) {
+	*arg = &val
+}
+
+type RuntimeErrorGetMessageArgType = string
+type RuntimeErrorGetMessageRetType = string
+
 // RuntimeError struct for RuntimeError
 type RuntimeError struct {
 	// - Code:    `SKE_UNSPECIFIED`   Message: \"An error occurred. Please open a support ticket if this error persists.\" - Code:    `SKE_TMP_AUTH_ERROR`   Message: \"Authentication failed. This is a temporary error. Please wait while the system recovers.\" - Code:    `SKE_QUOTA_EXCEEDED`   Message: \"Your project's resource quotas are exhausted. Please make sure your quota is sufficient for the ordered cluster.\" - Code:    `SKE_ARGUS_INSTANCE_NOT_FOUND`   Message: \"The provided Argus instance could not be found.\" - Code:    `SKE_RATE_LIMITS`   Message: \"While provisioning your cluster, request rate limits where incurred. Please wait while the system recovers.\" - Code:    `SKE_INFRA_ERROR`   Message: \"An error occurred with the underlying infrastructure. Please open a support ticket if this error persists.\" - Code:    `SKE_REMAINING_RESOURCES`   Message: \"There are remaining Kubernetes resources in your cluster that prevent deletion. Please make sure to remove them.\" - Code:    `SKE_CONFIGURATION_PROBLEM`   Message: \"A configuration error occurred. Please open a support ticket if this error persists.\" - Code:    `SKE_UNREADY_NODES`   Message: \"Not all worker nodes are ready. Please open a support ticket if this error persists.\" - Code:    `SKE_API_SERVER_ERROR`   Message: \"The Kubernetes API server is not reporting readiness. Please open a support ticket if this error persists.\" - Code:    `SKE_DNS_ZONE_NOT_FOUND`   Message: \"The provided DNS zone for the STACKIT DNS extension could not be found. Please ensure you defined a valid domain that belongs to a STACKIT DNS zone.\"
-	Code    *string `json:"code,omitempty"`
-	Details *string `json:"details,omitempty"`
-	Message *string `json:"message,omitempty"`
+	Code    RuntimeErrorGetCodeAttributeType    `json:"code,omitempty"`
+	Details RuntimeErrorGetDetailsAttributeType `json:"details,omitempty"`
+	Message RuntimeErrorGetMessageAttributeType `json:"message,omitempty"`
 }
 
 // NewRuntimeError instantiates a new RuntimeError object
@@ -43,111 +105,84 @@ func NewRuntimeErrorWithDefaults() *RuntimeError {
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
-func (o *RuntimeError) GetCode() *string {
-	if o == nil || IsNil(o.Code) {
-		var ret *string
-		return ret
-	}
-	return o.Code
+func (o *RuntimeError) GetCode() (res RuntimeErrorGetCodeRetType) {
+	res, _ = o.GetCodeOk()
+	return
 }
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuntimeError) GetCodeOk() (*string, bool) {
-	if o == nil || IsNil(o.Code) {
-		return nil, false
-	}
-	return o.Code, true
+func (o *RuntimeError) GetCodeOk() (ret RuntimeErrorGetCodeRetType, ok bool) {
+	return getRuntimeErrorGetCodeAttributeTypeOk(o.Code)
 }
 
 // HasCode returns a boolean if a field has been set.
 func (o *RuntimeError) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCodeOk()
+	return ok
 }
 
 // SetCode gets a reference to the given string and assigns it to the Code field.
-func (o *RuntimeError) SetCode(v *string) {
-	o.Code = v
+func (o *RuntimeError) SetCode(v RuntimeErrorGetCodeRetType) {
+	setRuntimeErrorGetCodeAttributeType(&o.Code, v)
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
-func (o *RuntimeError) GetDetails() *string {
-	if o == nil || IsNil(o.Details) {
-		var ret *string
-		return ret
-	}
-	return o.Details
+func (o *RuntimeError) GetDetails() (res RuntimeErrorGetDetailsRetType) {
+	res, _ = o.GetDetailsOk()
+	return
 }
 
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuntimeError) GetDetailsOk() (*string, bool) {
-	if o == nil || IsNil(o.Details) {
-		return nil, false
-	}
-	return o.Details, true
+func (o *RuntimeError) GetDetailsOk() (ret RuntimeErrorGetDetailsRetType, ok bool) {
+	return getRuntimeErrorGetDetailsAttributeTypeOk(o.Details)
 }
 
 // HasDetails returns a boolean if a field has been set.
 func (o *RuntimeError) HasDetails() bool {
-	if o != nil && !IsNil(o.Details) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDetailsOk()
+	return ok
 }
 
 // SetDetails gets a reference to the given string and assigns it to the Details field.
-func (o *RuntimeError) SetDetails(v *string) {
-	o.Details = v
+func (o *RuntimeError) SetDetails(v RuntimeErrorGetDetailsRetType) {
+	setRuntimeErrorGetDetailsAttributeType(&o.Details, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *RuntimeError) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *RuntimeError) GetMessage() (res RuntimeErrorGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuntimeError) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *RuntimeError) GetMessageOk() (ret RuntimeErrorGetMessageRetType, ok bool) {
+	return getRuntimeErrorGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *RuntimeError) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *RuntimeError) SetMessage(v *string) {
-	o.Message = v
+func (o *RuntimeError) SetMessage(v RuntimeErrorGetMessageRetType) {
+	setRuntimeErrorGetMessageAttributeType(&o.Message, v)
 }
 
 func (o RuntimeError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Code) {
-		toSerialize["code"] = o.Code
+	if val, ok := getRuntimeErrorGetCodeAttributeTypeOk(o.Code); ok {
+		toSerialize["Code"] = val
 	}
-	if !IsNil(o.Details) {
-		toSerialize["details"] = o.Details
+	if val, ok := getRuntimeErrorGetDetailsAttributeTypeOk(o.Details); ok {
+		toSerialize["Details"] = val
 	}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getRuntimeErrorGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
 }
