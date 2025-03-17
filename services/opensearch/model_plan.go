@@ -17,18 +17,122 @@ import (
 // checks if the Plan type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Plan{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type PlanGetDescriptionAttributeType = *string
+
+func getPlanGetDescriptionAttributeTypeOk(arg PlanGetDescriptionAttributeType) (ret PlanGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetDescriptionAttributeType(arg *PlanGetDescriptionAttributeType, val PlanGetDescriptionRetType) {
+	*arg = &val
+}
+
+type PlanGetDescriptionArgType = string
+type PlanGetDescriptionRetType = string
+
+/*
+	types and functions for free
+*/
+
+// isBoolean
+type PlangetFreeAttributeType = *bool
+type PlangetFreeArgType = bool
+type PlangetFreeRetType = bool
+
+func getPlangetFreeAttributeTypeOk(arg PlangetFreeAttributeType) (ret PlangetFreeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlangetFreeAttributeType(arg *PlangetFreeAttributeType, val PlangetFreeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type PlanGetIdAttributeType = *string
+
+func getPlanGetIdAttributeTypeOk(arg PlanGetIdAttributeType) (ret PlanGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetIdAttributeType(arg *PlanGetIdAttributeType, val PlanGetIdRetType) {
+	*arg = &val
+}
+
+type PlanGetIdArgType = string
+type PlanGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type PlanGetNameAttributeType = *string
+
+func getPlanGetNameAttributeTypeOk(arg PlanGetNameAttributeType) (ret PlanGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetNameAttributeType(arg *PlanGetNameAttributeType, val PlanGetNameRetType) {
+	*arg = &val
+}
+
+type PlanGetNameArgType = string
+type PlanGetNameRetType = string
+
+/*
+	types and functions for skuName
+*/
+
+// isNotNullableString
+type PlanGetSkuNameAttributeType = *string
+
+func getPlanGetSkuNameAttributeTypeOk(arg PlanGetSkuNameAttributeType) (ret PlanGetSkuNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetSkuNameAttributeType(arg *PlanGetSkuNameAttributeType, val PlanGetSkuNameRetType) {
+	*arg = &val
+}
+
+type PlanGetSkuNameArgType = string
+type PlanGetSkuNameRetType = string
+
 // Plan struct for Plan
 type Plan struct {
 	// REQUIRED
-	Description *string `json:"description"`
+	Description PlanGetDescriptionAttributeType `json:"description"`
 	// REQUIRED
-	Free *bool `json:"free"`
+	Free PlangetFreeAttributeType `json:"free"`
 	// REQUIRED
-	Id *string `json:"id"`
+	Id PlanGetIdAttributeType `json:"id"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name PlanGetNameAttributeType `json:"name"`
 	// REQUIRED
-	SkuName *string `json:"skuName"`
+	SkuName PlanGetSkuNameAttributeType `json:"skuName"`
 }
 
 type _Plan Plan
@@ -37,13 +141,13 @@ type _Plan Plan
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlan(description *string, free *bool, id *string, name *string, skuName *string) *Plan {
+func NewPlan(description PlanGetDescriptionArgType, free PlangetFreeArgType, id PlanGetIdArgType, name PlanGetNameArgType, skuName PlanGetSkuNameArgType) *Plan {
 	this := Plan{}
-	this.Description = description
-	this.Free = free
-	this.Id = id
-	this.Name = name
-	this.SkuName = skuName
+	setPlanGetDescriptionAttributeType(&this.Description, description)
+	setPlangetFreeAttributeType(&this.Free, free)
+	setPlanGetIdAttributeType(&this.Id, id)
+	setPlanGetNameAttributeType(&this.Name, name)
+	setPlanGetSkuNameAttributeType(&this.SkuName, skuName)
 	return &this
 }
 
@@ -56,132 +160,107 @@ func NewPlanWithDefaults() *Plan {
 }
 
 // GetDescription returns the Description field value
-func (o *Plan) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *Plan) GetDescription() (ret PlanGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *Plan) GetDescriptionOk() (ret PlanGetDescriptionRetType, ok bool) {
+	return getPlanGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *Plan) SetDescription(v *string) {
-	o.Description = v
+func (o *Plan) SetDescription(v PlanGetDescriptionRetType) {
+	setPlanGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetFree returns the Free field value
-func (o *Plan) GetFree() *bool {
-	if o == nil || IsNil(o.Free) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Free
+func (o *Plan) GetFree() (ret PlangetFreeRetType) {
+	ret, _ = o.GetFreeOk()
+	return ret
 }
 
 // GetFreeOk returns a tuple with the Free field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetFreeOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Free, true
+func (o *Plan) GetFreeOk() (ret PlangetFreeRetType, ok bool) {
+	return getPlangetFreeAttributeTypeOk(o.Free)
 }
 
 // SetFree sets field value
-func (o *Plan) SetFree(v *bool) {
-	o.Free = v
+func (o *Plan) SetFree(v PlangetFreeRetType) {
+	setPlangetFreeAttributeType(&o.Free, v)
 }
 
 // GetId returns the Id field value
-func (o *Plan) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *Plan) GetId() (ret PlanGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Plan) GetIdOk() (ret PlanGetIdRetType, ok bool) {
+	return getPlanGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *Plan) SetId(v *string) {
-	o.Id = v
+func (o *Plan) SetId(v PlanGetIdRetType) {
+	setPlanGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value
-func (o *Plan) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Plan) GetName() (ret PlanGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Plan) GetNameOk() (ret PlanGetNameRetType, ok bool) {
+	return getPlanGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Plan) SetName(v *string) {
-	o.Name = v
+func (o *Plan) SetName(v PlanGetNameRetType) {
+	setPlanGetNameAttributeType(&o.Name, v)
 }
 
 // GetSkuName returns the SkuName field value
-func (o *Plan) GetSkuName() *string {
-	if o == nil || IsNil(o.SkuName) {
-		var ret *string
-		return ret
-	}
-
-	return o.SkuName
+func (o *Plan) GetSkuName() (ret PlanGetSkuNameRetType) {
+	ret, _ = o.GetSkuNameOk()
+	return ret
 }
 
 // GetSkuNameOk returns a tuple with the SkuName field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetSkuNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SkuName, true
+func (o *Plan) GetSkuNameOk() (ret PlanGetSkuNameRetType, ok bool) {
+	return getPlanGetSkuNameAttributeTypeOk(o.SkuName)
 }
 
 // SetSkuName sets field value
-func (o *Plan) SetSkuName(v *string) {
-	o.SkuName = v
+func (o *Plan) SetSkuName(v PlanGetSkuNameRetType) {
+	setPlanGetSkuNameAttributeType(&o.SkuName, v)
 }
 
 func (o Plan) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	toSerialize["free"] = o.Free
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["skuName"] = o.SkuName
+	if val, ok := getPlanGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
+	if val, ok := getPlangetFreeAttributeTypeOk(o.Free); ok {
+		toSerialize["Free"] = val
+	}
+	if val, ok := getPlanGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getPlanGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getPlanGetSkuNameAttributeTypeOk(o.SkuName); ok {
+		toSerialize["SkuName"] = val
+	}
 	return toSerialize, nil
 }
 
