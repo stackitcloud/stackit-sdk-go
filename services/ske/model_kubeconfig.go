@@ -18,10 +18,51 @@ import (
 // checks if the Kubeconfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Kubeconfig{}
 
+/*
+	types and functions for expirationTimestamp
+*/
+
+// isDateTime
+type KubeconfigGetExpirationTimestampAttributeType = *time.Time
+type KubeconfigGetExpirationTimestampArgType = time.Time
+type KubeconfigGetExpirationTimestampRetType = time.Time
+
+func getKubeconfigGetExpirationTimestampAttributeTypeOk(arg KubeconfigGetExpirationTimestampAttributeType) (ret KubeconfigGetExpirationTimestampRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKubeconfigGetExpirationTimestampAttributeType(arg *KubeconfigGetExpirationTimestampAttributeType, val KubeconfigGetExpirationTimestampRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for kubeconfig
+*/
+
+// isNotNullableString
+type KubeconfigGetKubeconfigAttributeType = *string
+
+func getKubeconfigGetKubeconfigAttributeTypeOk(arg KubeconfigGetKubeconfigAttributeType) (ret KubeconfigGetKubeconfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKubeconfigGetKubeconfigAttributeType(arg *KubeconfigGetKubeconfigAttributeType, val KubeconfigGetKubeconfigRetType) {
+	*arg = &val
+}
+
+type KubeconfigGetKubeconfigArgType = string
+type KubeconfigGetKubeconfigRetType = string
+
 // Kubeconfig struct for Kubeconfig
 type Kubeconfig struct {
-	ExpirationTimestamp *time.Time `json:"expirationTimestamp,omitempty"`
-	Kubeconfig          *string    `json:"kubeconfig,omitempty"`
+	ExpirationTimestamp KubeconfigGetExpirationTimestampAttributeType `json:"expirationTimestamp,omitempty"`
+	Kubeconfig          KubeconfigGetKubeconfigAttributeType          `json:"kubeconfig,omitempty"`
 }
 
 // NewKubeconfig instantiates a new Kubeconfig object
@@ -42,76 +83,58 @@ func NewKubeconfigWithDefaults() *Kubeconfig {
 }
 
 // GetExpirationTimestamp returns the ExpirationTimestamp field value if set, zero value otherwise.
-func (o *Kubeconfig) GetExpirationTimestamp() *time.Time {
-	if o == nil || IsNil(o.ExpirationTimestamp) {
-		var ret *time.Time
-		return ret
-	}
-	return o.ExpirationTimestamp
+func (o *Kubeconfig) GetExpirationTimestamp() (res KubeconfigGetExpirationTimestampRetType) {
+	res, _ = o.GetExpirationTimestampOk()
+	return
 }
 
 // GetExpirationTimestampOk returns a tuple with the ExpirationTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Kubeconfig) GetExpirationTimestampOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.ExpirationTimestamp) {
-		return nil, false
-	}
-	return o.ExpirationTimestamp, true
+func (o *Kubeconfig) GetExpirationTimestampOk() (ret KubeconfigGetExpirationTimestampRetType, ok bool) {
+	return getKubeconfigGetExpirationTimestampAttributeTypeOk(o.ExpirationTimestamp)
 }
 
 // HasExpirationTimestamp returns a boolean if a field has been set.
 func (o *Kubeconfig) HasExpirationTimestamp() bool {
-	if o != nil && !IsNil(o.ExpirationTimestamp) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExpirationTimestampOk()
+	return ok
 }
 
 // SetExpirationTimestamp gets a reference to the given time.Time and assigns it to the ExpirationTimestamp field.
-func (o *Kubeconfig) SetExpirationTimestamp(v *time.Time) {
-	o.ExpirationTimestamp = v
+func (o *Kubeconfig) SetExpirationTimestamp(v KubeconfigGetExpirationTimestampRetType) {
+	setKubeconfigGetExpirationTimestampAttributeType(&o.ExpirationTimestamp, v)
 }
 
 // GetKubeconfig returns the Kubeconfig field value if set, zero value otherwise.
-func (o *Kubeconfig) GetKubeconfig() *string {
-	if o == nil || IsNil(o.Kubeconfig) {
-		var ret *string
-		return ret
-	}
-	return o.Kubeconfig
+func (o *Kubeconfig) GetKubeconfig() (res KubeconfigGetKubeconfigRetType) {
+	res, _ = o.GetKubeconfigOk()
+	return
 }
 
 // GetKubeconfigOk returns a tuple with the Kubeconfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Kubeconfig) GetKubeconfigOk() (*string, bool) {
-	if o == nil || IsNil(o.Kubeconfig) {
-		return nil, false
-	}
-	return o.Kubeconfig, true
+func (o *Kubeconfig) GetKubeconfigOk() (ret KubeconfigGetKubeconfigRetType, ok bool) {
+	return getKubeconfigGetKubeconfigAttributeTypeOk(o.Kubeconfig)
 }
 
 // HasKubeconfig returns a boolean if a field has been set.
 func (o *Kubeconfig) HasKubeconfig() bool {
-	if o != nil && !IsNil(o.Kubeconfig) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetKubeconfigOk()
+	return ok
 }
 
 // SetKubeconfig gets a reference to the given string and assigns it to the Kubeconfig field.
-func (o *Kubeconfig) SetKubeconfig(v *string) {
-	o.Kubeconfig = v
+func (o *Kubeconfig) SetKubeconfig(v KubeconfigGetKubeconfigRetType) {
+	setKubeconfigGetKubeconfigAttributeType(&o.Kubeconfig, v)
 }
 
 func (o Kubeconfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ExpirationTimestamp) {
-		toSerialize["expirationTimestamp"] = o.ExpirationTimestamp
+	if val, ok := getKubeconfigGetExpirationTimestampAttributeTypeOk(o.ExpirationTimestamp); ok {
+		toSerialize["ExpirationTimestamp"] = val
 	}
-	if !IsNil(o.Kubeconfig) {
-		toSerialize["kubeconfig"] = o.Kubeconfig
+	if val, ok := getKubeconfigGetKubeconfigAttributeTypeOk(o.Kubeconfig); ok {
+		toSerialize["Kubeconfig"] = val
 	}
 	return toSerialize, nil
 }
