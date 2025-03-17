@@ -18,21 +18,166 @@ import (
 // checks if the TokenCreated type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &TokenCreated{}
 
+/*
+	types and functions for content
+*/
+
+// isNotNullableString
+type TokenCreatedGetContentAttributeType = *string
+
+func getTokenCreatedGetContentAttributeTypeOk(arg TokenCreatedGetContentAttributeType) (ret TokenCreatedGetContentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTokenCreatedGetContentAttributeType(arg *TokenCreatedGetContentAttributeType, val TokenCreatedGetContentRetType) {
+	*arg = &val
+}
+
+type TokenCreatedGetContentArgType = string
+type TokenCreatedGetContentRetType = string
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type TokenCreatedGetDescriptionAttributeType = *string
+
+func getTokenCreatedGetDescriptionAttributeTypeOk(arg TokenCreatedGetDescriptionAttributeType) (ret TokenCreatedGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTokenCreatedGetDescriptionAttributeType(arg *TokenCreatedGetDescriptionAttributeType, val TokenCreatedGetDescriptionRetType) {
+	*arg = &val
+}
+
+type TokenCreatedGetDescriptionArgType = string
+type TokenCreatedGetDescriptionRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type TokenCreatedGetIdAttributeType = *string
+
+func getTokenCreatedGetIdAttributeTypeOk(arg TokenCreatedGetIdAttributeType) (ret TokenCreatedGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTokenCreatedGetIdAttributeType(arg *TokenCreatedGetIdAttributeType, val TokenCreatedGetIdRetType) {
+	*arg = &val
+}
+
+type TokenCreatedGetIdArgType = string
+type TokenCreatedGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type TokenCreatedGetNameAttributeType = *string
+
+func getTokenCreatedGetNameAttributeTypeOk(arg TokenCreatedGetNameAttributeType) (ret TokenCreatedGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTokenCreatedGetNameAttributeType(arg *TokenCreatedGetNameAttributeType, val TokenCreatedGetNameRetType) {
+	*arg = &val
+}
+
+type TokenCreatedGetNameArgType = string
+type TokenCreatedGetNameRetType = string
+
+/*
+	types and functions for region
+*/
+
+// isNotNullableString
+type TokenCreatedGetRegionAttributeType = *string
+
+func getTokenCreatedGetRegionAttributeTypeOk(arg TokenCreatedGetRegionAttributeType) (ret TokenCreatedGetRegionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTokenCreatedGetRegionAttributeType(arg *TokenCreatedGetRegionAttributeType, val TokenCreatedGetRegionRetType) {
+	*arg = &val
+}
+
+type TokenCreatedGetRegionArgType = string
+type TokenCreatedGetRegionRetType = string
+
+/*
+	types and functions for state
+*/
+
+// isEnumRef
+type TokenCreatedGetStateAttributeType = *string
+type TokenCreatedGetStateArgType = string
+type TokenCreatedGetStateRetType = string
+
+func getTokenCreatedGetStateAttributeTypeOk(arg TokenCreatedGetStateAttributeType) (ret TokenCreatedGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTokenCreatedGetStateAttributeType(arg *TokenCreatedGetStateAttributeType, val TokenCreatedGetStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for validUntil
+*/
+
+// isDateTime
+type TokenCreatedGetValidUntilAttributeType = *time.Time
+type TokenCreatedGetValidUntilArgType = time.Time
+type TokenCreatedGetValidUntilRetType = time.Time
+
+func getTokenCreatedGetValidUntilAttributeTypeOk(arg TokenCreatedGetValidUntilAttributeType) (ret TokenCreatedGetValidUntilRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTokenCreatedGetValidUntilAttributeType(arg *TokenCreatedGetValidUntilAttributeType, val TokenCreatedGetValidUntilRetType) {
+	*arg = &val
+}
+
 // TokenCreated struct for TokenCreated
 type TokenCreated struct {
 	// REQUIRED
-	Content     *string `json:"content"`
-	Description *string `json:"description,omitempty"`
+	Content     TokenCreatedGetContentAttributeType     `json:"content"`
+	Description TokenCreatedGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
-	Id *string `json:"id"`
+	Id TokenCreatedGetIdAttributeType `json:"id"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name TokenCreatedGetNameAttributeType `json:"name"`
 	// REQUIRED
-	Region *string `json:"region"`
+	Region TokenCreatedGetRegionAttributeType `json:"region"`
 	// REQUIRED
-	State *string `json:"state"`
+	State TokenCreatedGetStateAttributeType `json:"state"`
 	// REQUIRED
-	ValidUntil *time.Time `json:"validUntil"`
+	ValidUntil TokenCreatedGetValidUntilAttributeType `json:"validUntil"`
 }
 
 type _TokenCreated TokenCreated
@@ -41,14 +186,14 @@ type _TokenCreated TokenCreated
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenCreated(content *string, id *string, name *string, region *string, state *string, validUntil *time.Time) *TokenCreated {
+func NewTokenCreated(content TokenCreatedGetContentArgType, id TokenCreatedGetIdArgType, name TokenCreatedGetNameArgType, region TokenCreatedGetRegionArgType, state TokenCreatedGetStateArgType, validUntil TokenCreatedGetValidUntilArgType) *TokenCreated {
 	this := TokenCreated{}
-	this.Content = content
-	this.Id = id
-	this.Name = name
-	this.Region = region
-	this.State = state
-	this.ValidUntil = validUntil
+	setTokenCreatedGetContentAttributeType(&this.Content, content)
+	setTokenCreatedGetIdAttributeType(&this.Id, id)
+	setTokenCreatedGetNameAttributeType(&this.Name, name)
+	setTokenCreatedGetRegionAttributeType(&this.Region, region)
+	setTokenCreatedGetStateAttributeType(&this.State, state)
+	setTokenCreatedGetValidUntilAttributeType(&this.ValidUntil, validUntil)
 	return &this
 }
 
@@ -61,192 +206,153 @@ func NewTokenCreatedWithDefaults() *TokenCreated {
 }
 
 // GetContent returns the Content field value
-func (o *TokenCreated) GetContent() *string {
-	if o == nil || IsNil(o.Content) {
-		var ret *string
-		return ret
-	}
-
-	return o.Content
+func (o *TokenCreated) GetContent() (ret TokenCreatedGetContentRetType) {
+	ret, _ = o.GetContentOk()
+	return ret
 }
 
 // GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
-func (o *TokenCreated) GetContentOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Content, true
+func (o *TokenCreated) GetContentOk() (ret TokenCreatedGetContentRetType, ok bool) {
+	return getTokenCreatedGetContentAttributeTypeOk(o.Content)
 }
 
 // SetContent sets field value
-func (o *TokenCreated) SetContent(v *string) {
-	o.Content = v
+func (o *TokenCreated) SetContent(v TokenCreatedGetContentRetType) {
+	setTokenCreatedGetContentAttributeType(&o.Content, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *TokenCreated) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *TokenCreated) GetDescription() (res TokenCreatedGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TokenCreated) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *TokenCreated) GetDescriptionOk() (ret TokenCreatedGetDescriptionRetType, ok bool) {
+	return getTokenCreatedGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *TokenCreated) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *TokenCreated) SetDescription(v *string) {
-	o.Description = v
+func (o *TokenCreated) SetDescription(v TokenCreatedGetDescriptionRetType) {
+	setTokenCreatedGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetId returns the Id field value
-func (o *TokenCreated) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *TokenCreated) GetId() (ret TokenCreatedGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TokenCreated) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *TokenCreated) GetIdOk() (ret TokenCreatedGetIdRetType, ok bool) {
+	return getTokenCreatedGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *TokenCreated) SetId(v *string) {
-	o.Id = v
+func (o *TokenCreated) SetId(v TokenCreatedGetIdRetType) {
+	setTokenCreatedGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value
-func (o *TokenCreated) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *TokenCreated) GetName() (ret TokenCreatedGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *TokenCreated) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *TokenCreated) GetNameOk() (ret TokenCreatedGetNameRetType, ok bool) {
+	return getTokenCreatedGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *TokenCreated) SetName(v *string) {
-	o.Name = v
+func (o *TokenCreated) SetName(v TokenCreatedGetNameRetType) {
+	setTokenCreatedGetNameAttributeType(&o.Name, v)
 }
 
 // GetRegion returns the Region field value
-func (o *TokenCreated) GetRegion() *string {
-	if o == nil || IsNil(o.Region) {
-		var ret *string
-		return ret
-	}
-
-	return o.Region
+func (o *TokenCreated) GetRegion() (ret TokenCreatedGetRegionRetType) {
+	ret, _ = o.GetRegionOk()
+	return ret
 }
 
 // GetRegionOk returns a tuple with the Region field value
 // and a boolean to check if the value has been set.
-func (o *TokenCreated) GetRegionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Region, true
+func (o *TokenCreated) GetRegionOk() (ret TokenCreatedGetRegionRetType, ok bool) {
+	return getTokenCreatedGetRegionAttributeTypeOk(o.Region)
 }
 
 // SetRegion sets field value
-func (o *TokenCreated) SetRegion(v *string) {
-	o.Region = v
+func (o *TokenCreated) SetRegion(v TokenCreatedGetRegionRetType) {
+	setTokenCreatedGetRegionAttributeType(&o.Region, v)
 }
 
 // GetState returns the State field value
-func (o *TokenCreated) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-
-	return o.State
+func (o *TokenCreated) GetState() (ret TokenCreatedGetStateRetType) {
+	ret, _ = o.GetStateOk()
+	return ret
 }
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *TokenCreated) GetStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.State, true
+func (o *TokenCreated) GetStateOk() (ret TokenCreatedGetStateRetType, ok bool) {
+	return getTokenCreatedGetStateAttributeTypeOk(o.State)
 }
 
 // SetState sets field value
-func (o *TokenCreated) SetState(v *string) {
-	o.State = v
+func (o *TokenCreated) SetState(v TokenCreatedGetStateRetType) {
+	setTokenCreatedGetStateAttributeType(&o.State, v)
 }
 
 // GetValidUntil returns the ValidUntil field value
-func (o *TokenCreated) GetValidUntil() *time.Time {
-	if o == nil || IsNil(o.ValidUntil) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.ValidUntil
+func (o *TokenCreated) GetValidUntil() (ret TokenCreatedGetValidUntilRetType) {
+	ret, _ = o.GetValidUntilOk()
+	return ret
 }
 
 // GetValidUntilOk returns a tuple with the ValidUntil field value
 // and a boolean to check if the value has been set.
-func (o *TokenCreated) GetValidUntilOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ValidUntil, true
+func (o *TokenCreated) GetValidUntilOk() (ret TokenCreatedGetValidUntilRetType, ok bool) {
+	return getTokenCreatedGetValidUntilAttributeTypeOk(o.ValidUntil)
 }
 
 // SetValidUntil sets field value
-func (o *TokenCreated) SetValidUntil(v *time.Time) {
-	o.ValidUntil = v
+func (o *TokenCreated) SetValidUntil(v TokenCreatedGetValidUntilRetType) {
+	setTokenCreatedGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
 func (o TokenCreated) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["content"] = o.Content
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getTokenCreatedGetContentAttributeTypeOk(o.Content); ok {
+		toSerialize["Content"] = val
 	}
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["region"] = o.Region
-	toSerialize["state"] = o.State
-	toSerialize["validUntil"] = o.ValidUntil
+	if val, ok := getTokenCreatedGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
+	if val, ok := getTokenCreatedGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getTokenCreatedGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getTokenCreatedGetRegionAttributeTypeOk(o.Region); ok {
+		toSerialize["Region"] = val
+	}
+	if val, ok := getTokenCreatedGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
+	}
+	if val, ok := getTokenCreatedGetValidUntilAttributeTypeOk(o.ValidUntil); ok {
+		toSerialize["ValidUntil"] = val
+	}
 	return toSerialize, nil
 }
 
