@@ -3,6 +3,7 @@
   - **New:** API for application load balancer
 - `cdn`: [0.1.0](services/cdn/CHANGELOG.md#v010-2025-xx-yy)
   - **New:** Introduce new API for content delivery
+- `serverupdate`: [1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-xx-yy)
 
 
 ## Release (2025-03-14)
