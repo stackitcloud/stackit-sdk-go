@@ -17,12 +17,54 @@ import (
 // checks if the Header type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Header{}
 
+/*
+	types and functions for exactMatch
+*/
+
+// isNotNullableString
+type HeaderGetExactMatchAttributeType = *string
+
+func getHeaderGetExactMatchAttributeTypeOk(arg HeaderGetExactMatchAttributeType) (ret HeaderGetExactMatchRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHeaderGetExactMatchAttributeType(arg *HeaderGetExactMatchAttributeType, val HeaderGetExactMatchRetType) {
+	*arg = &val
+}
+
+type HeaderGetExactMatchArgType = string
+type HeaderGetExactMatchRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type HeaderGetNameAttributeType = *string
+
+func getHeaderGetNameAttributeTypeOk(arg HeaderGetNameAttributeType) (ret HeaderGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHeaderGetNameAttributeType(arg *HeaderGetNameAttributeType, val HeaderGetNameRetType) {
+	*arg = &val
+}
+
+type HeaderGetNameArgType = string
+type HeaderGetNameRetType = string
+
 // Header struct for Header
 type Header struct {
 	// Exact match for the header value.
-	ExactMatch *string `json:"exactMatch,omitempty"`
+	ExactMatch HeaderGetExactMatchAttributeType `json:"exactMatch,omitempty"`
 	// Header name.
-	Name *string `json:"name,omitempty"`
+	Name HeaderGetNameAttributeType `json:"name,omitempty"`
 }
 
 // NewHeader instantiates a new Header object
@@ -43,76 +85,58 @@ func NewHeaderWithDefaults() *Header {
 }
 
 // GetExactMatch returns the ExactMatch field value if set, zero value otherwise.
-func (o *Header) GetExactMatch() *string {
-	if o == nil || IsNil(o.ExactMatch) {
-		var ret *string
-		return ret
-	}
-	return o.ExactMatch
+func (o *Header) GetExactMatch() (res HeaderGetExactMatchRetType) {
+	res, _ = o.GetExactMatchOk()
+	return
 }
 
 // GetExactMatchOk returns a tuple with the ExactMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Header) GetExactMatchOk() (*string, bool) {
-	if o == nil || IsNil(o.ExactMatch) {
-		return nil, false
-	}
-	return o.ExactMatch, true
+func (o *Header) GetExactMatchOk() (ret HeaderGetExactMatchRetType, ok bool) {
+	return getHeaderGetExactMatchAttributeTypeOk(o.ExactMatch)
 }
 
 // HasExactMatch returns a boolean if a field has been set.
 func (o *Header) HasExactMatch() bool {
-	if o != nil && !IsNil(o.ExactMatch) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExactMatchOk()
+	return ok
 }
 
 // SetExactMatch gets a reference to the given string and assigns it to the ExactMatch field.
-func (o *Header) SetExactMatch(v *string) {
-	o.ExactMatch = v
+func (o *Header) SetExactMatch(v HeaderGetExactMatchRetType) {
+	setHeaderGetExactMatchAttributeType(&o.ExactMatch, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Header) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Header) GetName() (res HeaderGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Header) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Header) GetNameOk() (ret HeaderGetNameRetType, ok bool) {
+	return getHeaderGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Header) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Header) SetName(v *string) {
-	o.Name = v
+func (o *Header) SetName(v HeaderGetNameRetType) {
+	setHeaderGetNameAttributeType(&o.Name, v)
 }
 
 func (o Header) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ExactMatch) {
-		toSerialize["exactMatch"] = o.ExactMatch
+	if val, ok := getHeaderGetExactMatchAttributeTypeOk(o.ExactMatch); ok {
+		toSerialize["ExactMatch"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getHeaderGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }
