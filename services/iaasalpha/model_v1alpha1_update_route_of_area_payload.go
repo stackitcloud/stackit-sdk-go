@@ -17,10 +17,30 @@ import (
 // checks if the V1alpha1UpdateRouteOfAreaPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &V1alpha1UpdateRouteOfAreaPayload{}
 
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type V1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeType = *map[string]interface{}
+type V1alpha1UpdateRouteOfAreaPayloadGetLabelsArgType = map[string]interface{}
+type V1alpha1UpdateRouteOfAreaPayloadGetLabelsRetType = map[string]interface{}
+
+func getV1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeTypeOk(arg V1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeType) (ret V1alpha1UpdateRouteOfAreaPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setV1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeType(arg *V1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeType, val V1alpha1UpdateRouteOfAreaPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
 // V1alpha1UpdateRouteOfAreaPayload Object that represents the request body for a route update.
 type V1alpha1UpdateRouteOfAreaPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels V1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 }
 
 // NewV1alpha1UpdateRouteOfAreaPayload instantiates a new V1alpha1UpdateRouteOfAreaPayload object
@@ -41,41 +61,32 @@ func NewV1alpha1UpdateRouteOfAreaPayloadWithDefaults() *V1alpha1UpdateRouteOfAre
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *V1alpha1UpdateRouteOfAreaPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *V1alpha1UpdateRouteOfAreaPayload) GetLabels() (res V1alpha1UpdateRouteOfAreaPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *V1alpha1UpdateRouteOfAreaPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *V1alpha1UpdateRouteOfAreaPayload) GetLabelsOk() (ret V1alpha1UpdateRouteOfAreaPayloadGetLabelsRetType, ok bool) {
+	return getV1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *V1alpha1UpdateRouteOfAreaPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *V1alpha1UpdateRouteOfAreaPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *V1alpha1UpdateRouteOfAreaPayload) SetLabels(v V1alpha1UpdateRouteOfAreaPayloadGetLabelsRetType) {
+	setV1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 func (o V1alpha1UpdateRouteOfAreaPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getV1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	return toSerialize, nil
 }

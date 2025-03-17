@@ -18,51 +18,501 @@ import (
 // checks if the CreateServerPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateServerPayload{}
 
+/*
+	types and functions for affinityGroup
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetAffinityGroupAttributeType = *string
+
+func getCreateServerPayloadGetAffinityGroupAttributeTypeOk(arg CreateServerPayloadGetAffinityGroupAttributeType) (ret CreateServerPayloadGetAffinityGroupRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetAffinityGroupAttributeType(arg *CreateServerPayloadGetAffinityGroupAttributeType, val CreateServerPayloadGetAffinityGroupRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetAffinityGroupArgType = string
+type CreateServerPayloadGetAffinityGroupRetType = string
+
+/*
+	types and functions for availabilityZone
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetAvailabilityZoneAttributeType = *string
+
+func getCreateServerPayloadGetAvailabilityZoneAttributeTypeOk(arg CreateServerPayloadGetAvailabilityZoneAttributeType) (ret CreateServerPayloadGetAvailabilityZoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetAvailabilityZoneAttributeType(arg *CreateServerPayloadGetAvailabilityZoneAttributeType, val CreateServerPayloadGetAvailabilityZoneRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetAvailabilityZoneArgType = string
+type CreateServerPayloadGetAvailabilityZoneRetType = string
+
+/*
+	types and functions for bootVolume
+*/
+
+// isModel
+type CreateServerPayloadGetBootVolumeAttributeType = *CreateServerPayloadBootVolume
+type CreateServerPayloadGetBootVolumeArgType = CreateServerPayloadBootVolume
+type CreateServerPayloadGetBootVolumeRetType = CreateServerPayloadBootVolume
+
+func getCreateServerPayloadGetBootVolumeAttributeTypeOk(arg CreateServerPayloadGetBootVolumeAttributeType) (ret CreateServerPayloadGetBootVolumeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetBootVolumeAttributeType(arg *CreateServerPayloadGetBootVolumeAttributeType, val CreateServerPayloadGetBootVolumeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type CreateServerPayloadGetCreatedAtAttributeType = *time.Time
+type CreateServerPayloadGetCreatedAtArgType = time.Time
+type CreateServerPayloadGetCreatedAtRetType = time.Time
+
+func getCreateServerPayloadGetCreatedAtAttributeTypeOk(arg CreateServerPayloadGetCreatedAtAttributeType) (ret CreateServerPayloadGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetCreatedAtAttributeType(arg *CreateServerPayloadGetCreatedAtAttributeType, val CreateServerPayloadGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for errorMessage
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetErrorMessageAttributeType = *string
+
+func getCreateServerPayloadGetErrorMessageAttributeTypeOk(arg CreateServerPayloadGetErrorMessageAttributeType) (ret CreateServerPayloadGetErrorMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetErrorMessageAttributeType(arg *CreateServerPayloadGetErrorMessageAttributeType, val CreateServerPayloadGetErrorMessageRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetErrorMessageArgType = string
+type CreateServerPayloadGetErrorMessageRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetIdAttributeType = *string
+
+func getCreateServerPayloadGetIdAttributeTypeOk(arg CreateServerPayloadGetIdAttributeType) (ret CreateServerPayloadGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetIdAttributeType(arg *CreateServerPayloadGetIdAttributeType, val CreateServerPayloadGetIdRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetIdArgType = string
+type CreateServerPayloadGetIdRetType = string
+
+/*
+	types and functions for imageId
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetImageIdAttributeType = *string
+
+func getCreateServerPayloadGetImageIdAttributeTypeOk(arg CreateServerPayloadGetImageIdAttributeType) (ret CreateServerPayloadGetImageIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetImageIdAttributeType(arg *CreateServerPayloadGetImageIdAttributeType, val CreateServerPayloadGetImageIdRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetImageIdArgType = string
+type CreateServerPayloadGetImageIdRetType = string
+
+/*
+	types and functions for keypairName
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetKeypairNameAttributeType = *string
+
+func getCreateServerPayloadGetKeypairNameAttributeTypeOk(arg CreateServerPayloadGetKeypairNameAttributeType) (ret CreateServerPayloadGetKeypairNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetKeypairNameAttributeType(arg *CreateServerPayloadGetKeypairNameAttributeType, val CreateServerPayloadGetKeypairNameRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetKeypairNameArgType = string
+type CreateServerPayloadGetKeypairNameRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type CreateServerPayloadGetLabelsAttributeType = *map[string]interface{}
+type CreateServerPayloadGetLabelsArgType = map[string]interface{}
+type CreateServerPayloadGetLabelsRetType = map[string]interface{}
+
+func getCreateServerPayloadGetLabelsAttributeTypeOk(arg CreateServerPayloadGetLabelsAttributeType) (ret CreateServerPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetLabelsAttributeType(arg *CreateServerPayloadGetLabelsAttributeType, val CreateServerPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for launchedAt
+*/
+
+// isDateTime
+type CreateServerPayloadGetLaunchedAtAttributeType = *time.Time
+type CreateServerPayloadGetLaunchedAtArgType = time.Time
+type CreateServerPayloadGetLaunchedAtRetType = time.Time
+
+func getCreateServerPayloadGetLaunchedAtAttributeTypeOk(arg CreateServerPayloadGetLaunchedAtAttributeType) (ret CreateServerPayloadGetLaunchedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetLaunchedAtAttributeType(arg *CreateServerPayloadGetLaunchedAtAttributeType, val CreateServerPayloadGetLaunchedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for machineType
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetMachineTypeAttributeType = *string
+
+func getCreateServerPayloadGetMachineTypeAttributeTypeOk(arg CreateServerPayloadGetMachineTypeAttributeType) (ret CreateServerPayloadGetMachineTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetMachineTypeAttributeType(arg *CreateServerPayloadGetMachineTypeAttributeType, val CreateServerPayloadGetMachineTypeRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetMachineTypeArgType = string
+type CreateServerPayloadGetMachineTypeRetType = string
+
+/*
+	types and functions for maintenanceWindow
+*/
+
+// isModel
+type CreateServerPayloadGetMaintenanceWindowAttributeType = *ServerMaintenance
+type CreateServerPayloadGetMaintenanceWindowArgType = ServerMaintenance
+type CreateServerPayloadGetMaintenanceWindowRetType = ServerMaintenance
+
+func getCreateServerPayloadGetMaintenanceWindowAttributeTypeOk(arg CreateServerPayloadGetMaintenanceWindowAttributeType) (ret CreateServerPayloadGetMaintenanceWindowRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetMaintenanceWindowAttributeType(arg *CreateServerPayloadGetMaintenanceWindowAttributeType, val CreateServerPayloadGetMaintenanceWindowRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetNameAttributeType = *string
+
+func getCreateServerPayloadGetNameAttributeTypeOk(arg CreateServerPayloadGetNameAttributeType) (ret CreateServerPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetNameAttributeType(arg *CreateServerPayloadGetNameAttributeType, val CreateServerPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetNameArgType = string
+type CreateServerPayloadGetNameRetType = string
+
+/*
+	types and functions for networking
+*/
+
+// isModel
+type CreateServerPayloadGetNetworkingAttributeType = *CreateServerPayloadNetworking
+type CreateServerPayloadGetNetworkingArgType = CreateServerPayloadNetworking
+type CreateServerPayloadGetNetworkingRetType = CreateServerPayloadNetworking
+
+func getCreateServerPayloadGetNetworkingAttributeTypeOk(arg CreateServerPayloadGetNetworkingAttributeType) (ret CreateServerPayloadGetNetworkingRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetNetworkingAttributeType(arg *CreateServerPayloadGetNetworkingAttributeType, val CreateServerPayloadGetNetworkingRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nics
+*/
+
+// isArray
+type CreateServerPayloadGetNicsAttributeType = *[]ServerNetwork
+type CreateServerPayloadGetNicsArgType = []ServerNetwork
+type CreateServerPayloadGetNicsRetType = []ServerNetwork
+
+func getCreateServerPayloadGetNicsAttributeTypeOk(arg CreateServerPayloadGetNicsAttributeType) (ret CreateServerPayloadGetNicsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetNicsAttributeType(arg *CreateServerPayloadGetNicsAttributeType, val CreateServerPayloadGetNicsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for powerStatus
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetPowerStatusAttributeType = *string
+
+func getCreateServerPayloadGetPowerStatusAttributeTypeOk(arg CreateServerPayloadGetPowerStatusAttributeType) (ret CreateServerPayloadGetPowerStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetPowerStatusAttributeType(arg *CreateServerPayloadGetPowerStatusAttributeType, val CreateServerPayloadGetPowerStatusRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetPowerStatusArgType = string
+type CreateServerPayloadGetPowerStatusRetType = string
+
+/*
+	types and functions for securityGroups
+*/
+
+// isArray
+type CreateServerPayloadGetSecurityGroupsAttributeType = *[]string
+type CreateServerPayloadGetSecurityGroupsArgType = []string
+type CreateServerPayloadGetSecurityGroupsRetType = []string
+
+func getCreateServerPayloadGetSecurityGroupsAttributeTypeOk(arg CreateServerPayloadGetSecurityGroupsAttributeType) (ret CreateServerPayloadGetSecurityGroupsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetSecurityGroupsAttributeType(arg *CreateServerPayloadGetSecurityGroupsAttributeType, val CreateServerPayloadGetSecurityGroupsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for serviceAccountMails
+*/
+
+// isArray
+type CreateServerPayloadGetServiceAccountMailsAttributeType = *[]string
+type CreateServerPayloadGetServiceAccountMailsArgType = []string
+type CreateServerPayloadGetServiceAccountMailsRetType = []string
+
+func getCreateServerPayloadGetServiceAccountMailsAttributeTypeOk(arg CreateServerPayloadGetServiceAccountMailsAttributeType) (ret CreateServerPayloadGetServiceAccountMailsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetServiceAccountMailsAttributeType(arg *CreateServerPayloadGetServiceAccountMailsAttributeType, val CreateServerPayloadGetServiceAccountMailsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type CreateServerPayloadGetStatusAttributeType = *string
+
+func getCreateServerPayloadGetStatusAttributeTypeOk(arg CreateServerPayloadGetStatusAttributeType) (ret CreateServerPayloadGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetStatusAttributeType(arg *CreateServerPayloadGetStatusAttributeType, val CreateServerPayloadGetStatusRetType) {
+	*arg = &val
+}
+
+type CreateServerPayloadGetStatusArgType = string
+type CreateServerPayloadGetStatusRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type CreateServerPayloadGetUpdatedAtAttributeType = *time.Time
+type CreateServerPayloadGetUpdatedAtArgType = time.Time
+type CreateServerPayloadGetUpdatedAtRetType = time.Time
+
+func getCreateServerPayloadGetUpdatedAtAttributeTypeOk(arg CreateServerPayloadGetUpdatedAtAttributeType) (ret CreateServerPayloadGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetUpdatedAtAttributeType(arg *CreateServerPayloadGetUpdatedAtAttributeType, val CreateServerPayloadGetUpdatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for userData
+*/
+
+// isByteArray
+type CreateServerPayloadGetUserDataAttributeType = *[]byte
+type CreateServerPayloadGetUserDataArgType = []byte
+type CreateServerPayloadGetUserDataRetType = []byte
+
+func getCreateServerPayloadGetUserDataAttributeTypeOk(arg CreateServerPayloadGetUserDataAttributeType) (ret CreateServerPayloadGetUserDataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetUserDataAttributeType(arg *CreateServerPayloadGetUserDataAttributeType, val CreateServerPayloadGetUserDataRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for volumes
+*/
+
+// isArray
+type CreateServerPayloadGetVolumesAttributeType = *[]string
+type CreateServerPayloadGetVolumesArgType = []string
+type CreateServerPayloadGetVolumesRetType = []string
+
+func getCreateServerPayloadGetVolumesAttributeTypeOk(arg CreateServerPayloadGetVolumesAttributeType) (ret CreateServerPayloadGetVolumesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetVolumesAttributeType(arg *CreateServerPayloadGetVolumesAttributeType, val CreateServerPayloadGetVolumesRetType) {
+	*arg = &val
+}
+
 // CreateServerPayload Representation of a single server object.
 type CreateServerPayload struct {
 	// Universally Unique Identifier (UUID).
-	AffinityGroup *string `json:"affinityGroup,omitempty"`
+	AffinityGroup CreateServerPayloadGetAffinityGroupAttributeType `json:"affinityGroup,omitempty"`
 	// Object that represents an availability zone.
-	AvailabilityZone *string                        `json:"availabilityZone,omitempty"`
-	BootVolume       *CreateServerPayloadBootVolume `json:"bootVolume,omitempty"`
+	AvailabilityZone CreateServerPayloadGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
+	BootVolume       CreateServerPayloadGetBootVolumeAttributeType       `json:"bootVolume,omitempty"`
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt CreateServerPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// An error message.
-	ErrorMessage *string `json:"errorMessage,omitempty"`
+	ErrorMessage CreateServerPayloadGetErrorMessageAttributeType `json:"errorMessage,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id CreateServerPayloadGetIdAttributeType `json:"id,omitempty"`
 	// Universally Unique Identifier (UUID).
-	ImageId *string `json:"imageId,omitempty"`
+	ImageId CreateServerPayloadGetImageIdAttributeType `json:"imageId,omitempty"`
 	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
-	KeypairName *string `json:"keypairName,omitempty"`
+	KeypairName CreateServerPayloadGetKeypairNameAttributeType `json:"keypairName,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels CreateServerPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Date-time when resource was launched.
-	LaunchedAt *time.Time `json:"launchedAt,omitempty"`
+	LaunchedAt CreateServerPayloadGetLaunchedAtAttributeType `json:"launchedAt,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	MachineType       *string            `json:"machineType"`
-	MaintenanceWindow *ServerMaintenance `json:"maintenanceWindow,omitempty"`
+	MachineType       CreateServerPayloadGetMachineTypeAttributeType       `json:"machineType"`
+	MaintenanceWindow CreateServerPayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
 	// The name for a Server.
 	// REQUIRED
-	Name       *string                        `json:"name"`
-	Networking *CreateServerPayloadNetworking `json:"networking,omitempty"`
+	Name       CreateServerPayloadGetNameAttributeType       `json:"name"`
+	Networking CreateServerPayloadGetNetworkingAttributeType `json:"networking,omitempty"`
 	// A list of networks attached to a server.
-	Nics *[]ServerNetwork `json:"nics,omitempty"`
+	Nics CreateServerPayloadGetNicsAttributeType `json:"nics,omitempty"`
 	// The power status of a server. Possible values: `CRASHED`, `ERROR`, `RUNNING`, `STOPPED`.
-	PowerStatus *string `json:"powerStatus,omitempty"`
+	PowerStatus CreateServerPayloadGetPowerStatusAttributeType `json:"powerStatus,omitempty"`
 	// A list of General Objects.
-	SecurityGroups *[]string `json:"securityGroups,omitempty"`
+	SecurityGroups CreateServerPayloadGetSecurityGroupsAttributeType `json:"securityGroups,omitempty"`
 	// A list of service account mails.
-	ServiceAccountMails *[]string `json:"serviceAccountMails,omitempty"`
+	ServiceAccountMails CreateServerPayloadGetServiceAccountMailsAttributeType `json:"serviceAccountMails,omitempty"`
 	// The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.
-	Status *string `json:"status,omitempty"`
+	Status CreateServerPayloadGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt CreateServerPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 	// User Data that is provided to the server. Must be base64 encoded and is passed via cloud-init to the server.
-	UserData *string `json:"userData,omitempty"`
+	UserData CreateServerPayloadGetUserDataAttributeType `json:"userData,omitempty"`
 	// A list of UUIDs.
-	Volumes *[]string `json:"volumes,omitempty"`
+	Volumes CreateServerPayloadGetVolumesAttributeType `json:"volumes,omitempty"`
 }
 
 type _CreateServerPayload CreateServerPayload
@@ -71,10 +521,10 @@ type _CreateServerPayload CreateServerPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateServerPayload(machineType *string, name *string) *CreateServerPayload {
+func NewCreateServerPayload(machineType CreateServerPayloadGetMachineTypeArgType, name CreateServerPayloadGetNameArgType) *CreateServerPayload {
 	this := CreateServerPayload{}
-	this.MachineType = machineType
-	this.Name = name
+	setCreateServerPayloadGetMachineTypeAttributeType(&this.MachineType, machineType)
+	setCreateServerPayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -87,756 +537,566 @@ func NewCreateServerPayloadWithDefaults() *CreateServerPayload {
 }
 
 // GetAffinityGroup returns the AffinityGroup field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetAffinityGroup() *string {
-	if o == nil || IsNil(o.AffinityGroup) {
-		var ret *string
-		return ret
-	}
-	return o.AffinityGroup
+func (o *CreateServerPayload) GetAffinityGroup() (res CreateServerPayloadGetAffinityGroupRetType) {
+	res, _ = o.GetAffinityGroupOk()
+	return
 }
 
 // GetAffinityGroupOk returns a tuple with the AffinityGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetAffinityGroupOk() (*string, bool) {
-	if o == nil || IsNil(o.AffinityGroup) {
-		return nil, false
-	}
-	return o.AffinityGroup, true
+func (o *CreateServerPayload) GetAffinityGroupOk() (ret CreateServerPayloadGetAffinityGroupRetType, ok bool) {
+	return getCreateServerPayloadGetAffinityGroupAttributeTypeOk(o.AffinityGroup)
 }
 
 // HasAffinityGroup returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasAffinityGroup() bool {
-	if o != nil && !IsNil(o.AffinityGroup) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAffinityGroupOk()
+	return ok
 }
 
 // SetAffinityGroup gets a reference to the given string and assigns it to the AffinityGroup field.
-func (o *CreateServerPayload) SetAffinityGroup(v *string) {
-	o.AffinityGroup = v
+func (o *CreateServerPayload) SetAffinityGroup(v CreateServerPayloadGetAffinityGroupRetType) {
+	setCreateServerPayloadGetAffinityGroupAttributeType(&o.AffinityGroup, v)
 }
 
 // GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetAvailabilityZone() *string {
-	if o == nil || IsNil(o.AvailabilityZone) {
-		var ret *string
-		return ret
-	}
-	return o.AvailabilityZone
+func (o *CreateServerPayload) GetAvailabilityZone() (res CreateServerPayloadGetAvailabilityZoneRetType) {
+	res, _ = o.GetAvailabilityZoneOk()
+	return
 }
 
 // GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetAvailabilityZoneOk() (*string, bool) {
-	if o == nil || IsNil(o.AvailabilityZone) {
-		return nil, false
-	}
-	return o.AvailabilityZone, true
+func (o *CreateServerPayload) GetAvailabilityZoneOk() (ret CreateServerPayloadGetAvailabilityZoneRetType, ok bool) {
+	return getCreateServerPayloadGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone)
 }
 
 // HasAvailabilityZone returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasAvailabilityZone() bool {
-	if o != nil && !IsNil(o.AvailabilityZone) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAvailabilityZoneOk()
+	return ok
 }
 
 // SetAvailabilityZone gets a reference to the given string and assigns it to the AvailabilityZone field.
-func (o *CreateServerPayload) SetAvailabilityZone(v *string) {
-	o.AvailabilityZone = v
+func (o *CreateServerPayload) SetAvailabilityZone(v CreateServerPayloadGetAvailabilityZoneRetType) {
+	setCreateServerPayloadGetAvailabilityZoneAttributeType(&o.AvailabilityZone, v)
 }
 
 // GetBootVolume returns the BootVolume field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetBootVolume() *CreateServerPayloadBootVolume {
-	if o == nil || IsNil(o.BootVolume) {
-		var ret *CreateServerPayloadBootVolume
-		return ret
-	}
-	return o.BootVolume
+func (o *CreateServerPayload) GetBootVolume() (res CreateServerPayloadGetBootVolumeRetType) {
+	res, _ = o.GetBootVolumeOk()
+	return
 }
 
 // GetBootVolumeOk returns a tuple with the BootVolume field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetBootVolumeOk() (*CreateServerPayloadBootVolume, bool) {
-	if o == nil || IsNil(o.BootVolume) {
-		return nil, false
-	}
-	return o.BootVolume, true
+func (o *CreateServerPayload) GetBootVolumeOk() (ret CreateServerPayloadGetBootVolumeRetType, ok bool) {
+	return getCreateServerPayloadGetBootVolumeAttributeTypeOk(o.BootVolume)
 }
 
 // HasBootVolume returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasBootVolume() bool {
-	if o != nil && !IsNil(o.BootVolume) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBootVolumeOk()
+	return ok
 }
 
 // SetBootVolume gets a reference to the given CreateServerPayloadBootVolume and assigns it to the BootVolume field.
-func (o *CreateServerPayload) SetBootVolume(v *CreateServerPayloadBootVolume) {
-	o.BootVolume = v
+func (o *CreateServerPayload) SetBootVolume(v CreateServerPayloadGetBootVolumeRetType) {
+	setCreateServerPayloadGetBootVolumeAttributeType(&o.BootVolume, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *CreateServerPayload) GetCreatedAt() (res CreateServerPayloadGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *CreateServerPayload) GetCreatedAtOk() (ret CreateServerPayloadGetCreatedAtRetType, ok bool) {
+	return getCreateServerPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *CreateServerPayload) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *CreateServerPayload) SetCreatedAt(v CreateServerPayloadGetCreatedAtRetType) {
+	setCreateServerPayloadGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetErrorMessage() *string {
-	if o == nil || IsNil(o.ErrorMessage) {
-		var ret *string
-		return ret
-	}
-	return o.ErrorMessage
+func (o *CreateServerPayload) GetErrorMessage() (res CreateServerPayloadGetErrorMessageRetType) {
+	res, _ = o.GetErrorMessageOk()
+	return
 }
 
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetErrorMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.ErrorMessage) {
-		return nil, false
-	}
-	return o.ErrorMessage, true
+func (o *CreateServerPayload) GetErrorMessageOk() (ret CreateServerPayloadGetErrorMessageRetType, ok bool) {
+	return getCreateServerPayloadGetErrorMessageAttributeTypeOk(o.ErrorMessage)
 }
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasErrorMessage() bool {
-	if o != nil && !IsNil(o.ErrorMessage) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorMessageOk()
+	return ok
 }
 
 // SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
-func (o *CreateServerPayload) SetErrorMessage(v *string) {
-	o.ErrorMessage = v
+func (o *CreateServerPayload) SetErrorMessage(v CreateServerPayloadGetErrorMessageRetType) {
+	setCreateServerPayloadGetErrorMessageAttributeType(&o.ErrorMessage, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *CreateServerPayload) GetId() (res CreateServerPayloadGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CreateServerPayload) GetIdOk() (ret CreateServerPayloadGetIdRetType, ok bool) {
+	return getCreateServerPayloadGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateServerPayload) SetId(v *string) {
-	o.Id = v
+func (o *CreateServerPayload) SetId(v CreateServerPayloadGetIdRetType) {
+	setCreateServerPayloadGetIdAttributeType(&o.Id, v)
 }
 
 // GetImageId returns the ImageId field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetImageId() *string {
-	if o == nil || IsNil(o.ImageId) {
-		var ret *string
-		return ret
-	}
-	return o.ImageId
+func (o *CreateServerPayload) GetImageId() (res CreateServerPayloadGetImageIdRetType) {
+	res, _ = o.GetImageIdOk()
+	return
 }
 
 // GetImageIdOk returns a tuple with the ImageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetImageIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ImageId) {
-		return nil, false
-	}
-	return o.ImageId, true
+func (o *CreateServerPayload) GetImageIdOk() (ret CreateServerPayloadGetImageIdRetType, ok bool) {
+	return getCreateServerPayloadGetImageIdAttributeTypeOk(o.ImageId)
 }
 
 // HasImageId returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasImageId() bool {
-	if o != nil && !IsNil(o.ImageId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetImageIdOk()
+	return ok
 }
 
 // SetImageId gets a reference to the given string and assigns it to the ImageId field.
-func (o *CreateServerPayload) SetImageId(v *string) {
-	o.ImageId = v
+func (o *CreateServerPayload) SetImageId(v CreateServerPayloadGetImageIdRetType) {
+	setCreateServerPayloadGetImageIdAttributeType(&o.ImageId, v)
 }
 
 // GetKeypairName returns the KeypairName field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetKeypairName() *string {
-	if o == nil || IsNil(o.KeypairName) {
-		var ret *string
-		return ret
-	}
-	return o.KeypairName
+func (o *CreateServerPayload) GetKeypairName() (res CreateServerPayloadGetKeypairNameRetType) {
+	res, _ = o.GetKeypairNameOk()
+	return
 }
 
 // GetKeypairNameOk returns a tuple with the KeypairName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetKeypairNameOk() (*string, bool) {
-	if o == nil || IsNil(o.KeypairName) {
-		return nil, false
-	}
-	return o.KeypairName, true
+func (o *CreateServerPayload) GetKeypairNameOk() (ret CreateServerPayloadGetKeypairNameRetType, ok bool) {
+	return getCreateServerPayloadGetKeypairNameAttributeTypeOk(o.KeypairName)
 }
 
 // HasKeypairName returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasKeypairName() bool {
-	if o != nil && !IsNil(o.KeypairName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetKeypairNameOk()
+	return ok
 }
 
 // SetKeypairName gets a reference to the given string and assigns it to the KeypairName field.
-func (o *CreateServerPayload) SetKeypairName(v *string) {
-	o.KeypairName = v
+func (o *CreateServerPayload) SetKeypairName(v CreateServerPayloadGetKeypairNameRetType) {
+	setCreateServerPayloadGetKeypairNameAttributeType(&o.KeypairName, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *CreateServerPayload) GetLabels() (res CreateServerPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *CreateServerPayload) GetLabelsOk() (ret CreateServerPayloadGetLabelsRetType, ok bool) {
+	return getCreateServerPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *CreateServerPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *CreateServerPayload) SetLabels(v CreateServerPayloadGetLabelsRetType) {
+	setCreateServerPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetLaunchedAt returns the LaunchedAt field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetLaunchedAt() *time.Time {
-	if o == nil || IsNil(o.LaunchedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.LaunchedAt
+func (o *CreateServerPayload) GetLaunchedAt() (res CreateServerPayloadGetLaunchedAtRetType) {
+	res, _ = o.GetLaunchedAtOk()
+	return
 }
 
 // GetLaunchedAtOk returns a tuple with the LaunchedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetLaunchedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.LaunchedAt) {
-		return nil, false
-	}
-	return o.LaunchedAt, true
+func (o *CreateServerPayload) GetLaunchedAtOk() (ret CreateServerPayloadGetLaunchedAtRetType, ok bool) {
+	return getCreateServerPayloadGetLaunchedAtAttributeTypeOk(o.LaunchedAt)
 }
 
 // HasLaunchedAt returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasLaunchedAt() bool {
-	if o != nil && !IsNil(o.LaunchedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLaunchedAtOk()
+	return ok
 }
 
 // SetLaunchedAt gets a reference to the given time.Time and assigns it to the LaunchedAt field.
-func (o *CreateServerPayload) SetLaunchedAt(v *time.Time) {
-	o.LaunchedAt = v
+func (o *CreateServerPayload) SetLaunchedAt(v CreateServerPayloadGetLaunchedAtRetType) {
+	setCreateServerPayloadGetLaunchedAtAttributeType(&o.LaunchedAt, v)
 }
 
 // GetMachineType returns the MachineType field value
-func (o *CreateServerPayload) GetMachineType() *string {
-	if o == nil || IsNil(o.MachineType) {
-		var ret *string
-		return ret
-	}
-
-	return o.MachineType
+func (o *CreateServerPayload) GetMachineType() (ret CreateServerPayloadGetMachineTypeRetType) {
+	ret, _ = o.GetMachineTypeOk()
+	return ret
 }
 
 // GetMachineTypeOk returns a tuple with the MachineType field value
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetMachineTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MachineType, true
+func (o *CreateServerPayload) GetMachineTypeOk() (ret CreateServerPayloadGetMachineTypeRetType, ok bool) {
+	return getCreateServerPayloadGetMachineTypeAttributeTypeOk(o.MachineType)
 }
 
 // SetMachineType sets field value
-func (o *CreateServerPayload) SetMachineType(v *string) {
-	o.MachineType = v
+func (o *CreateServerPayload) SetMachineType(v CreateServerPayloadGetMachineTypeRetType) {
+	setCreateServerPayloadGetMachineTypeAttributeType(&o.MachineType, v)
 }
 
 // GetMaintenanceWindow returns the MaintenanceWindow field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetMaintenanceWindow() *ServerMaintenance {
-	if o == nil || IsNil(o.MaintenanceWindow) {
-		var ret *ServerMaintenance
-		return ret
-	}
-	return o.MaintenanceWindow
+func (o *CreateServerPayload) GetMaintenanceWindow() (res CreateServerPayloadGetMaintenanceWindowRetType) {
+	res, _ = o.GetMaintenanceWindowOk()
+	return
 }
 
 // GetMaintenanceWindowOk returns a tuple with the MaintenanceWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetMaintenanceWindowOk() (*ServerMaintenance, bool) {
-	if o == nil || IsNil(o.MaintenanceWindow) {
-		return nil, false
-	}
-	return o.MaintenanceWindow, true
+func (o *CreateServerPayload) GetMaintenanceWindowOk() (ret CreateServerPayloadGetMaintenanceWindowRetType, ok bool) {
+	return getCreateServerPayloadGetMaintenanceWindowAttributeTypeOk(o.MaintenanceWindow)
 }
 
 // HasMaintenanceWindow returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasMaintenanceWindow() bool {
-	if o != nil && !IsNil(o.MaintenanceWindow) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaintenanceWindowOk()
+	return ok
 }
 
 // SetMaintenanceWindow gets a reference to the given ServerMaintenance and assigns it to the MaintenanceWindow field.
-func (o *CreateServerPayload) SetMaintenanceWindow(v *ServerMaintenance) {
-	o.MaintenanceWindow = v
+func (o *CreateServerPayload) SetMaintenanceWindow(v CreateServerPayloadGetMaintenanceWindowRetType) {
+	setCreateServerPayloadGetMaintenanceWindowAttributeType(&o.MaintenanceWindow, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateServerPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateServerPayload) GetName() (ret CreateServerPayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateServerPayload) GetNameOk() (ret CreateServerPayloadGetNameRetType, ok bool) {
+	return getCreateServerPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateServerPayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateServerPayload) SetName(v CreateServerPayloadGetNameRetType) {
+	setCreateServerPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetNetworking returns the Networking field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetNetworking() *CreateServerPayloadNetworking {
-	if o == nil || IsNil(o.Networking) {
-		var ret *CreateServerPayloadNetworking
-		return ret
-	}
-	return o.Networking
+func (o *CreateServerPayload) GetNetworking() (res CreateServerPayloadGetNetworkingRetType) {
+	res, _ = o.GetNetworkingOk()
+	return
 }
 
 // GetNetworkingOk returns a tuple with the Networking field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetNetworkingOk() (*CreateServerPayloadNetworking, bool) {
-	if o == nil || IsNil(o.Networking) {
-		return nil, false
-	}
-	return o.Networking, true
+func (o *CreateServerPayload) GetNetworkingOk() (ret CreateServerPayloadGetNetworkingRetType, ok bool) {
+	return getCreateServerPayloadGetNetworkingAttributeTypeOk(o.Networking)
 }
 
 // HasNetworking returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasNetworking() bool {
-	if o != nil && !IsNil(o.Networking) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNetworkingOk()
+	return ok
 }
 
 // SetNetworking gets a reference to the given CreateServerPayloadNetworking and assigns it to the Networking field.
-func (o *CreateServerPayload) SetNetworking(v *CreateServerPayloadNetworking) {
-	o.Networking = v
+func (o *CreateServerPayload) SetNetworking(v CreateServerPayloadGetNetworkingRetType) {
+	setCreateServerPayloadGetNetworkingAttributeType(&o.Networking, v)
 }
 
 // GetNics returns the Nics field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetNics() *[]ServerNetwork {
-	if o == nil || IsNil(o.Nics) {
-		var ret *[]ServerNetwork
-		return ret
-	}
-	return o.Nics
+func (o *CreateServerPayload) GetNics() (res CreateServerPayloadGetNicsRetType) {
+	res, _ = o.GetNicsOk()
+	return
 }
 
 // GetNicsOk returns a tuple with the Nics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetNicsOk() (*[]ServerNetwork, bool) {
-	if o == nil || IsNil(o.Nics) {
-		return nil, false
-	}
-	return o.Nics, true
+func (o *CreateServerPayload) GetNicsOk() (ret CreateServerPayloadGetNicsRetType, ok bool) {
+	return getCreateServerPayloadGetNicsAttributeTypeOk(o.Nics)
 }
 
 // HasNics returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasNics() bool {
-	if o != nil && !IsNil(o.Nics) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNicsOk()
+	return ok
 }
 
 // SetNics gets a reference to the given []ServerNetwork and assigns it to the Nics field.
-func (o *CreateServerPayload) SetNics(v *[]ServerNetwork) {
-	o.Nics = v
+func (o *CreateServerPayload) SetNics(v CreateServerPayloadGetNicsRetType) {
+	setCreateServerPayloadGetNicsAttributeType(&o.Nics, v)
 }
 
 // GetPowerStatus returns the PowerStatus field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetPowerStatus() *string {
-	if o == nil || IsNil(o.PowerStatus) {
-		var ret *string
-		return ret
-	}
-	return o.PowerStatus
+func (o *CreateServerPayload) GetPowerStatus() (res CreateServerPayloadGetPowerStatusRetType) {
+	res, _ = o.GetPowerStatusOk()
+	return
 }
 
 // GetPowerStatusOk returns a tuple with the PowerStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetPowerStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.PowerStatus) {
-		return nil, false
-	}
-	return o.PowerStatus, true
+func (o *CreateServerPayload) GetPowerStatusOk() (ret CreateServerPayloadGetPowerStatusRetType, ok bool) {
+	return getCreateServerPayloadGetPowerStatusAttributeTypeOk(o.PowerStatus)
 }
 
 // HasPowerStatus returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasPowerStatus() bool {
-	if o != nil && !IsNil(o.PowerStatus) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPowerStatusOk()
+	return ok
 }
 
 // SetPowerStatus gets a reference to the given string and assigns it to the PowerStatus field.
-func (o *CreateServerPayload) SetPowerStatus(v *string) {
-	o.PowerStatus = v
+func (o *CreateServerPayload) SetPowerStatus(v CreateServerPayloadGetPowerStatusRetType) {
+	setCreateServerPayloadGetPowerStatusAttributeType(&o.PowerStatus, v)
 }
 
 // GetSecurityGroups returns the SecurityGroups field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetSecurityGroups() *[]string {
-	if o == nil || IsNil(o.SecurityGroups) {
-		var ret *[]string
-		return ret
-	}
-	return o.SecurityGroups
+func (o *CreateServerPayload) GetSecurityGroups() (res CreateServerPayloadGetSecurityGroupsRetType) {
+	res, _ = o.GetSecurityGroupsOk()
+	return
 }
 
 // GetSecurityGroupsOk returns a tuple with the SecurityGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetSecurityGroupsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.SecurityGroups) {
-		return nil, false
-	}
-	return o.SecurityGroups, true
+func (o *CreateServerPayload) GetSecurityGroupsOk() (ret CreateServerPayloadGetSecurityGroupsRetType, ok bool) {
+	return getCreateServerPayloadGetSecurityGroupsAttributeTypeOk(o.SecurityGroups)
 }
 
 // HasSecurityGroups returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasSecurityGroups() bool {
-	if o != nil && !IsNil(o.SecurityGroups) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSecurityGroupsOk()
+	return ok
 }
 
 // SetSecurityGroups gets a reference to the given []string and assigns it to the SecurityGroups field.
-func (o *CreateServerPayload) SetSecurityGroups(v *[]string) {
-	o.SecurityGroups = v
+func (o *CreateServerPayload) SetSecurityGroups(v CreateServerPayloadGetSecurityGroupsRetType) {
+	setCreateServerPayloadGetSecurityGroupsAttributeType(&o.SecurityGroups, v)
 }
 
 // GetServiceAccountMails returns the ServiceAccountMails field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetServiceAccountMails() *[]string {
-	if o == nil || IsNil(o.ServiceAccountMails) {
-		var ret *[]string
-		return ret
-	}
-	return o.ServiceAccountMails
+func (o *CreateServerPayload) GetServiceAccountMails() (res CreateServerPayloadGetServiceAccountMailsRetType) {
+	res, _ = o.GetServiceAccountMailsOk()
+	return
 }
 
 // GetServiceAccountMailsOk returns a tuple with the ServiceAccountMails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetServiceAccountMailsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.ServiceAccountMails) {
-		return nil, false
-	}
-	return o.ServiceAccountMails, true
+func (o *CreateServerPayload) GetServiceAccountMailsOk() (ret CreateServerPayloadGetServiceAccountMailsRetType, ok bool) {
+	return getCreateServerPayloadGetServiceAccountMailsAttributeTypeOk(o.ServiceAccountMails)
 }
 
 // HasServiceAccountMails returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasServiceAccountMails() bool {
-	if o != nil && !IsNil(o.ServiceAccountMails) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetServiceAccountMailsOk()
+	return ok
 }
 
 // SetServiceAccountMails gets a reference to the given []string and assigns it to the ServiceAccountMails field.
-func (o *CreateServerPayload) SetServiceAccountMails(v *[]string) {
-	o.ServiceAccountMails = v
+func (o *CreateServerPayload) SetServiceAccountMails(v CreateServerPayloadGetServiceAccountMailsRetType) {
+	setCreateServerPayloadGetServiceAccountMailsAttributeType(&o.ServiceAccountMails, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *CreateServerPayload) GetStatus() (res CreateServerPayloadGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *CreateServerPayload) GetStatusOk() (ret CreateServerPayloadGetStatusRetType, ok bool) {
+	return getCreateServerPayloadGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *CreateServerPayload) SetStatus(v *string) {
-	o.Status = v
+func (o *CreateServerPayload) SetStatus(v CreateServerPayloadGetStatusRetType) {
+	setCreateServerPayloadGetStatusAttributeType(&o.Status, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *CreateServerPayload) GetUpdatedAt() (res CreateServerPayloadGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *CreateServerPayload) GetUpdatedAtOk() (ret CreateServerPayloadGetUpdatedAtRetType, ok bool) {
+	return getCreateServerPayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *CreateServerPayload) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *CreateServerPayload) SetUpdatedAt(v CreateServerPayloadGetUpdatedAtRetType) {
+	setCreateServerPayloadGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 // GetUserData returns the UserData field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetUserData() *string {
-	if o == nil || IsNil(o.UserData) {
-		var ret *string
-		return ret
-	}
-	return o.UserData
+func (o *CreateServerPayload) GetUserData() (res CreateServerPayloadGetUserDataRetType) {
+	res, _ = o.GetUserDataOk()
+	return
 }
 
 // GetUserDataOk returns a tuple with the UserData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetUserDataOk() (*string, bool) {
-	if o == nil || IsNil(o.UserData) {
-		return nil, false
-	}
-	return o.UserData, true
+func (o *CreateServerPayload) GetUserDataOk() (ret CreateServerPayloadGetUserDataRetType, ok bool) {
+	return getCreateServerPayloadGetUserDataAttributeTypeOk(o.UserData)
 }
 
 // HasUserData returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasUserData() bool {
-	if o != nil && !IsNil(o.UserData) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUserDataOk()
+	return ok
 }
 
 // SetUserData gets a reference to the given string and assigns it to the UserData field.
-func (o *CreateServerPayload) SetUserData(v *string) {
-	o.UserData = v
+func (o *CreateServerPayload) SetUserData(v CreateServerPayloadGetUserDataRetType) {
+	setCreateServerPayloadGetUserDataAttributeType(&o.UserData, v)
 }
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
-func (o *CreateServerPayload) GetVolumes() *[]string {
-	if o == nil || IsNil(o.Volumes) {
-		var ret *[]string
-		return ret
-	}
-	return o.Volumes
+func (o *CreateServerPayload) GetVolumes() (res CreateServerPayloadGetVolumesRetType) {
+	res, _ = o.GetVolumesOk()
+	return
 }
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServerPayload) GetVolumesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Volumes) {
-		return nil, false
-	}
-	return o.Volumes, true
+func (o *CreateServerPayload) GetVolumesOk() (ret CreateServerPayloadGetVolumesRetType, ok bool) {
+	return getCreateServerPayloadGetVolumesAttributeTypeOk(o.Volumes)
 }
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *CreateServerPayload) HasVolumes() bool {
-	if o != nil && !IsNil(o.Volumes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVolumesOk()
+	return ok
 }
 
 // SetVolumes gets a reference to the given []string and assigns it to the Volumes field.
-func (o *CreateServerPayload) SetVolumes(v *[]string) {
-	o.Volumes = v
+func (o *CreateServerPayload) SetVolumes(v CreateServerPayloadGetVolumesRetType) {
+	setCreateServerPayloadGetVolumesAttributeType(&o.Volumes, v)
 }
 
 func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AffinityGroup) {
-		toSerialize["affinityGroup"] = o.AffinityGroup
+	if val, ok := getCreateServerPayloadGetAffinityGroupAttributeTypeOk(o.AffinityGroup); ok {
+		toSerialize["AffinityGroup"] = val
 	}
-	if !IsNil(o.AvailabilityZone) {
-		toSerialize["availabilityZone"] = o.AvailabilityZone
+	if val, ok := getCreateServerPayloadGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone); ok {
+		toSerialize["AvailabilityZone"] = val
 	}
-	if !IsNil(o.BootVolume) {
-		toSerialize["bootVolume"] = o.BootVolume
+	if val, ok := getCreateServerPayloadGetBootVolumeAttributeTypeOk(o.BootVolume); ok {
+		toSerialize["BootVolume"] = val
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getCreateServerPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if !IsNil(o.ErrorMessage) {
-		toSerialize["errorMessage"] = o.ErrorMessage
+	if val, ok := getCreateServerPayloadGetErrorMessageAttributeTypeOk(o.ErrorMessage); ok {
+		toSerialize["ErrorMessage"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getCreateServerPayloadGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.ImageId) {
-		toSerialize["imageId"] = o.ImageId
+	if val, ok := getCreateServerPayloadGetImageIdAttributeTypeOk(o.ImageId); ok {
+		toSerialize["ImageId"] = val
 	}
-	if !IsNil(o.KeypairName) {
-		toSerialize["keypairName"] = o.KeypairName
+	if val, ok := getCreateServerPayloadGetKeypairNameAttributeTypeOk(o.KeypairName); ok {
+		toSerialize["KeypairName"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getCreateServerPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.LaunchedAt) {
-		toSerialize["launchedAt"] = o.LaunchedAt
+	if val, ok := getCreateServerPayloadGetLaunchedAtAttributeTypeOk(o.LaunchedAt); ok {
+		toSerialize["LaunchedAt"] = val
 	}
-	toSerialize["machineType"] = o.MachineType
-	if !IsNil(o.MaintenanceWindow) {
-		toSerialize["maintenanceWindow"] = o.MaintenanceWindow
+	if val, ok := getCreateServerPayloadGetMachineTypeAttributeTypeOk(o.MachineType); ok {
+		toSerialize["MachineType"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Networking) {
-		toSerialize["networking"] = o.Networking
+	if val, ok := getCreateServerPayloadGetMaintenanceWindowAttributeTypeOk(o.MaintenanceWindow); ok {
+		toSerialize["MaintenanceWindow"] = val
 	}
-	if !IsNil(o.Nics) {
-		toSerialize["nics"] = o.Nics
+	if val, ok := getCreateServerPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.PowerStatus) {
-		toSerialize["powerStatus"] = o.PowerStatus
+	if val, ok := getCreateServerPayloadGetNetworkingAttributeTypeOk(o.Networking); ok {
+		toSerialize["Networking"] = val
 	}
-	if !IsNil(o.SecurityGroups) {
-		toSerialize["securityGroups"] = o.SecurityGroups
+	if val, ok := getCreateServerPayloadGetNicsAttributeTypeOk(o.Nics); ok {
+		toSerialize["Nics"] = val
 	}
-	if !IsNil(o.ServiceAccountMails) {
-		toSerialize["serviceAccountMails"] = o.ServiceAccountMails
+	if val, ok := getCreateServerPayloadGetPowerStatusAttributeTypeOk(o.PowerStatus); ok {
+		toSerialize["PowerStatus"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getCreateServerPayloadGetSecurityGroupsAttributeTypeOk(o.SecurityGroups); ok {
+		toSerialize["SecurityGroups"] = val
 	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getCreateServerPayloadGetServiceAccountMailsAttributeTypeOk(o.ServiceAccountMails); ok {
+		toSerialize["ServiceAccountMails"] = val
 	}
-	if !IsNil(o.UserData) {
-		toSerialize["userData"] = o.UserData
+	if val, ok := getCreateServerPayloadGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
-	if !IsNil(o.Volumes) {
-		toSerialize["volumes"] = o.Volumes
+	if val, ok := getCreateServerPayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
+	}
+	if val, ok := getCreateServerPayloadGetUserDataAttributeTypeOk(o.UserData); ok {
+		toSerialize["UserData"] = val
+	}
+	if val, ok := getCreateServerPayloadGetVolumesAttributeTypeOk(o.Volumes); ok {
+		toSerialize["Volumes"] = val
 	}
 	return toSerialize, nil
 }
