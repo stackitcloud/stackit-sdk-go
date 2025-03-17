@@ -17,9 +17,29 @@ import (
 // checks if the ZoneDataExchange type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ZoneDataExchange{}
 
+/*
+	types and functions for rrSets
+*/
+
+// isArray
+type ZoneDataExchangeGetRrSetsAttributeType = *[]RecordDataExchange
+type ZoneDataExchangeGetRrSetsArgType = []RecordDataExchange
+type ZoneDataExchangeGetRrSetsRetType = []RecordDataExchange
+
+func getZoneDataExchangeGetRrSetsAttributeTypeOk(arg ZoneDataExchangeGetRrSetsAttributeType) (ret ZoneDataExchangeGetRrSetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneDataExchangeGetRrSetsAttributeType(arg *ZoneDataExchangeGetRrSetsAttributeType, val ZoneDataExchangeGetRrSetsRetType) {
+	*arg = &val
+}
+
 // ZoneDataExchange struct for ZoneDataExchange
 type ZoneDataExchange struct {
-	RrSets *[]RecordDataExchange `json:"rrSets,omitempty"`
+	RrSets ZoneDataExchangeGetRrSetsAttributeType `json:"rrSets,omitempty"`
 }
 
 // NewZoneDataExchange instantiates a new ZoneDataExchange object
@@ -40,41 +60,32 @@ func NewZoneDataExchangeWithDefaults() *ZoneDataExchange {
 }
 
 // GetRrSets returns the RrSets field value if set, zero value otherwise.
-func (o *ZoneDataExchange) GetRrSets() *[]RecordDataExchange {
-	if o == nil || IsNil(o.RrSets) {
-		var ret *[]RecordDataExchange
-		return ret
-	}
-	return o.RrSets
+func (o *ZoneDataExchange) GetRrSets() (res ZoneDataExchangeGetRrSetsRetType) {
+	res, _ = o.GetRrSetsOk()
+	return
 }
 
 // GetRrSetsOk returns a tuple with the RrSets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ZoneDataExchange) GetRrSetsOk() (*[]RecordDataExchange, bool) {
-	if o == nil || IsNil(o.RrSets) {
-		return nil, false
-	}
-	return o.RrSets, true
+func (o *ZoneDataExchange) GetRrSetsOk() (ret ZoneDataExchangeGetRrSetsRetType, ok bool) {
+	return getZoneDataExchangeGetRrSetsAttributeTypeOk(o.RrSets)
 }
 
 // HasRrSets returns a boolean if a field has been set.
 func (o *ZoneDataExchange) HasRrSets() bool {
-	if o != nil && !IsNil(o.RrSets) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRrSetsOk()
+	return ok
 }
 
 // SetRrSets gets a reference to the given []RecordDataExchange and assigns it to the RrSets field.
-func (o *ZoneDataExchange) SetRrSets(v *[]RecordDataExchange) {
-	o.RrSets = v
+func (o *ZoneDataExchange) SetRrSets(v ZoneDataExchangeGetRrSetsRetType) {
+	setZoneDataExchangeGetRrSetsAttributeType(&o.RrSets, v)
 }
 
 func (o ZoneDataExchange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.RrSets) {
-		toSerialize["rrSets"] = o.RrSets
+	if val, ok := getZoneDataExchangeGetRrSetsAttributeTypeOk(o.RrSets); ok {
+		toSerialize["RrSets"] = val
 	}
 	return toSerialize, nil
 }

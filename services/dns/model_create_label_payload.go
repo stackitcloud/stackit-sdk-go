@@ -17,12 +17,54 @@ import (
 // checks if the CreateLabelPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateLabelPayload{}
 
+/*
+	types and functions for key
+*/
+
+// isNotNullableString
+type CreateLabelPayloadGetKeyAttributeType = *string
+
+func getCreateLabelPayloadGetKeyAttributeTypeOk(arg CreateLabelPayloadGetKeyAttributeType) (ret CreateLabelPayloadGetKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateLabelPayloadGetKeyAttributeType(arg *CreateLabelPayloadGetKeyAttributeType, val CreateLabelPayloadGetKeyRetType) {
+	*arg = &val
+}
+
+type CreateLabelPayloadGetKeyArgType = string
+type CreateLabelPayloadGetKeyRetType = string
+
+/*
+	types and functions for value
+*/
+
+// isNotNullableString
+type CreateLabelPayloadGetValueAttributeType = *string
+
+func getCreateLabelPayloadGetValueAttributeTypeOk(arg CreateLabelPayloadGetValueAttributeType) (ret CreateLabelPayloadGetValueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateLabelPayloadGetValueAttributeType(arg *CreateLabelPayloadGetValueAttributeType, val CreateLabelPayloadGetValueRetType) {
+	*arg = &val
+}
+
+type CreateLabelPayloadGetValueArgType = string
+type CreateLabelPayloadGetValueRetType = string
+
 // CreateLabelPayload struct for CreateLabelPayload
 type CreateLabelPayload struct {
 	// REQUIRED
-	Key *string `json:"key"`
+	Key CreateLabelPayloadGetKeyAttributeType `json:"key"`
 	// REQUIRED
-	Value *string `json:"value"`
+	Value CreateLabelPayloadGetValueAttributeType `json:"value"`
 }
 
 type _CreateLabelPayload CreateLabelPayload
@@ -31,10 +73,10 @@ type _CreateLabelPayload CreateLabelPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateLabelPayload(key *string, value *string) *CreateLabelPayload {
+func NewCreateLabelPayload(key CreateLabelPayloadGetKeyArgType, value CreateLabelPayloadGetValueArgType) *CreateLabelPayload {
 	this := CreateLabelPayload{}
-	this.Key = key
-	this.Value = value
+	setCreateLabelPayloadGetKeyAttributeType(&this.Key, key)
+	setCreateLabelPayloadGetValueAttributeType(&this.Value, value)
 	return &this
 }
 
@@ -47,57 +89,47 @@ func NewCreateLabelPayloadWithDefaults() *CreateLabelPayload {
 }
 
 // GetKey returns the Key field value
-func (o *CreateLabelPayload) GetKey() *string {
-	if o == nil || IsNil(o.Key) {
-		var ret *string
-		return ret
-	}
-
-	return o.Key
+func (o *CreateLabelPayload) GetKey() (ret CreateLabelPayloadGetKeyRetType) {
+	ret, _ = o.GetKeyOk()
+	return ret
 }
 
 // GetKeyOk returns a tuple with the Key field value
 // and a boolean to check if the value has been set.
-func (o *CreateLabelPayload) GetKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Key, true
+func (o *CreateLabelPayload) GetKeyOk() (ret CreateLabelPayloadGetKeyRetType, ok bool) {
+	return getCreateLabelPayloadGetKeyAttributeTypeOk(o.Key)
 }
 
 // SetKey sets field value
-func (o *CreateLabelPayload) SetKey(v *string) {
-	o.Key = v
+func (o *CreateLabelPayload) SetKey(v CreateLabelPayloadGetKeyRetType) {
+	setCreateLabelPayloadGetKeyAttributeType(&o.Key, v)
 }
 
 // GetValue returns the Value field value
-func (o *CreateLabelPayload) GetValue() *string {
-	if o == nil || IsNil(o.Value) {
-		var ret *string
-		return ret
-	}
-
-	return o.Value
+func (o *CreateLabelPayload) GetValue() (ret CreateLabelPayloadGetValueRetType) {
+	ret, _ = o.GetValueOk()
+	return ret
 }
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *CreateLabelPayload) GetValueOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Value, true
+func (o *CreateLabelPayload) GetValueOk() (ret CreateLabelPayloadGetValueRetType, ok bool) {
+	return getCreateLabelPayloadGetValueAttributeTypeOk(o.Value)
 }
 
 // SetValue sets field value
-func (o *CreateLabelPayload) SetValue(v *string) {
-	o.Value = v
+func (o *CreateLabelPayload) SetValue(v CreateLabelPayloadGetValueRetType) {
+	setCreateLabelPayloadGetValueAttributeType(&o.Value, v)
 }
 
 func (o CreateLabelPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["key"] = o.Key
-	toSerialize["value"] = o.Value
+	if val, ok := getCreateLabelPayloadGetKeyAttributeTypeOk(o.Key); ok {
+		toSerialize["Key"] = val
+	}
+	if val, ok := getCreateLabelPayloadGetValueAttributeTypeOk(o.Value); ok {
+		toSerialize["Value"] = val
+	}
 	return toSerialize, nil
 }
 

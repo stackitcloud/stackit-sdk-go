@@ -17,11 +17,52 @@ import (
 // checks if the ImportRecordSetsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ImportRecordSetsResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ImportRecordSetsResponseGetMessageAttributeType = *string
+
+func getImportRecordSetsResponseGetMessageAttributeTypeOk(arg ImportRecordSetsResponseGetMessageAttributeType) (ret ImportRecordSetsResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImportRecordSetsResponseGetMessageAttributeType(arg *ImportRecordSetsResponseGetMessageAttributeType, val ImportRecordSetsResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ImportRecordSetsResponseGetMessageArgType = string
+type ImportRecordSetsResponseGetMessageRetType = string
+
+/*
+	types and functions for summary
+*/
+
+// isModel
+type ImportRecordSetsResponseGetSummaryAttributeType = *ImportSummary
+type ImportRecordSetsResponseGetSummaryArgType = ImportSummary
+type ImportRecordSetsResponseGetSummaryRetType = ImportSummary
+
+func getImportRecordSetsResponseGetSummaryAttributeTypeOk(arg ImportRecordSetsResponseGetSummaryAttributeType) (ret ImportRecordSetsResponseGetSummaryRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImportRecordSetsResponseGetSummaryAttributeType(arg *ImportRecordSetsResponseGetSummaryAttributeType, val ImportRecordSetsResponseGetSummaryRetType) {
+	*arg = &val
+}
+
 // ImportRecordSetsResponse ImportSummaryResponse is the response of the import.
 type ImportRecordSetsResponse struct {
-	Message *string `json:"message,omitempty"`
+	Message ImportRecordSetsResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Summary *ImportSummary `json:"summary"`
+	Summary ImportRecordSetsResponseGetSummaryAttributeType `json:"summary"`
 }
 
 type _ImportRecordSetsResponse ImportRecordSetsResponse
@@ -30,9 +71,9 @@ type _ImportRecordSetsResponse ImportRecordSetsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImportRecordSetsResponse(summary *ImportSummary) *ImportRecordSetsResponse {
+func NewImportRecordSetsResponse(summary ImportRecordSetsResponseGetSummaryArgType) *ImportRecordSetsResponse {
 	this := ImportRecordSetsResponse{}
-	this.Summary = summary
+	setImportRecordSetsResponseGetSummaryAttributeType(&this.Summary, summary)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewImportRecordSetsResponseWithDefaults() *ImportRecordSetsResponse {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ImportRecordSetsResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *ImportRecordSetsResponse) GetMessage() (res ImportRecordSetsResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportRecordSetsResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ImportRecordSetsResponse) GetMessageOk() (ret ImportRecordSetsResponseGetMessageRetType, ok bool) {
+	return getImportRecordSetsResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ImportRecordSetsResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ImportRecordSetsResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ImportRecordSetsResponse) SetMessage(v ImportRecordSetsResponseGetMessageRetType) {
+	setImportRecordSetsResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetSummary returns the Summary field value
-func (o *ImportRecordSetsResponse) GetSummary() *ImportSummary {
-	if o == nil || IsNil(o.Summary) {
-		var ret *ImportSummary
-		return ret
-	}
-
-	return o.Summary
+func (o *ImportRecordSetsResponse) GetSummary() (ret ImportRecordSetsResponseGetSummaryRetType) {
+	ret, _ = o.GetSummaryOk()
+	return ret
 }
 
 // GetSummaryOk returns a tuple with the Summary field value
 // and a boolean to check if the value has been set.
-func (o *ImportRecordSetsResponse) GetSummaryOk() (*ImportSummary, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Summary, true
+func (o *ImportRecordSetsResponse) GetSummaryOk() (ret ImportRecordSetsResponseGetSummaryRetType, ok bool) {
+	return getImportRecordSetsResponseGetSummaryAttributeTypeOk(o.Summary)
 }
 
 // SetSummary sets field value
-func (o *ImportRecordSetsResponse) SetSummary(v *ImportSummary) {
-	o.Summary = v
+func (o *ImportRecordSetsResponse) SetSummary(v ImportRecordSetsResponseGetSummaryRetType) {
+	setImportRecordSetsResponseGetSummaryAttributeType(&o.Summary, v)
 }
 
 func (o ImportRecordSetsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getImportRecordSetsResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	toSerialize["summary"] = o.Summary
+	if val, ok := getImportRecordSetsResponseGetSummaryAttributeTypeOk(o.Summary); ok {
+		toSerialize["Summary"] = val
+	}
 	return toSerialize, nil
 }
 

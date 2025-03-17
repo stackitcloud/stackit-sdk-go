@@ -17,11 +17,53 @@ import (
 // checks if the ZoneObservabilityExtension type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ZoneObservabilityExtension{}
 
+/*
+	types and functions for observabilityInstanceId
+*/
+
+// isNotNullableString
+type ZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType = *string
+
+func getZoneObservabilityExtensionGetObservabilityInstanceIdAttributeTypeOk(arg ZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType) (ret ZoneObservabilityExtensionGetObservabilityInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType(arg *ZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType, val ZoneObservabilityExtensionGetObservabilityInstanceIdRetType) {
+	*arg = &val
+}
+
+type ZoneObservabilityExtensionGetObservabilityInstanceIdArgType = string
+type ZoneObservabilityExtensionGetObservabilityInstanceIdRetType = string
+
+/*
+	types and functions for state
+*/
+
+// isNotNullableString
+type ZoneObservabilityExtensionGetStateAttributeType = *string
+
+func getZoneObservabilityExtensionGetStateAttributeTypeOk(arg ZoneObservabilityExtensionGetStateAttributeType) (ret ZoneObservabilityExtensionGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneObservabilityExtensionGetStateAttributeType(arg *ZoneObservabilityExtensionGetStateAttributeType, val ZoneObservabilityExtensionGetStateRetType) {
+	*arg = &val
+}
+
+type ZoneObservabilityExtensionGetStateArgType = string
+type ZoneObservabilityExtensionGetStateRetType = string
+
 // ZoneObservabilityExtension struct for ZoneObservabilityExtension
 type ZoneObservabilityExtension struct {
 	// REQUIRED
-	ObservabilityInstanceId *string `json:"observabilityInstanceId"`
-	State                   *string `json:"state,omitempty"`
+	ObservabilityInstanceId ZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType `json:"observabilityInstanceId"`
+	State                   ZoneObservabilityExtensionGetStateAttributeType                   `json:"state,omitempty"`
 }
 
 type _ZoneObservabilityExtension ZoneObservabilityExtension
@@ -30,9 +72,9 @@ type _ZoneObservabilityExtension ZoneObservabilityExtension
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewZoneObservabilityExtension(observabilityInstanceId *string) *ZoneObservabilityExtension {
+func NewZoneObservabilityExtension(observabilityInstanceId ZoneObservabilityExtensionGetObservabilityInstanceIdArgType) *ZoneObservabilityExtension {
 	this := ZoneObservabilityExtension{}
-	this.ObservabilityInstanceId = observabilityInstanceId
+	setZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType(&this.ObservabilityInstanceId, observabilityInstanceId)
 	return &this
 }
 
@@ -45,66 +87,52 @@ func NewZoneObservabilityExtensionWithDefaults() *ZoneObservabilityExtension {
 }
 
 // GetObservabilityInstanceId returns the ObservabilityInstanceId field value
-func (o *ZoneObservabilityExtension) GetObservabilityInstanceId() *string {
-	if o == nil || IsNil(o.ObservabilityInstanceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ObservabilityInstanceId
+func (o *ZoneObservabilityExtension) GetObservabilityInstanceId() (ret ZoneObservabilityExtensionGetObservabilityInstanceIdRetType) {
+	ret, _ = o.GetObservabilityInstanceIdOk()
+	return ret
 }
 
 // GetObservabilityInstanceIdOk returns a tuple with the ObservabilityInstanceId field value
 // and a boolean to check if the value has been set.
-func (o *ZoneObservabilityExtension) GetObservabilityInstanceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ObservabilityInstanceId, true
+func (o *ZoneObservabilityExtension) GetObservabilityInstanceIdOk() (ret ZoneObservabilityExtensionGetObservabilityInstanceIdRetType, ok bool) {
+	return getZoneObservabilityExtensionGetObservabilityInstanceIdAttributeTypeOk(o.ObservabilityInstanceId)
 }
 
 // SetObservabilityInstanceId sets field value
-func (o *ZoneObservabilityExtension) SetObservabilityInstanceId(v *string) {
-	o.ObservabilityInstanceId = v
+func (o *ZoneObservabilityExtension) SetObservabilityInstanceId(v ZoneObservabilityExtensionGetObservabilityInstanceIdRetType) {
+	setZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType(&o.ObservabilityInstanceId, v)
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *ZoneObservabilityExtension) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-	return o.State
+func (o *ZoneObservabilityExtension) GetState() (res ZoneObservabilityExtensionGetStateRetType) {
+	res, _ = o.GetStateOk()
+	return
 }
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ZoneObservabilityExtension) GetStateOk() (*string, bool) {
-	if o == nil || IsNil(o.State) {
-		return nil, false
-	}
-	return o.State, true
+func (o *ZoneObservabilityExtension) GetStateOk() (ret ZoneObservabilityExtensionGetStateRetType, ok bool) {
+	return getZoneObservabilityExtensionGetStateAttributeTypeOk(o.State)
 }
 
 // HasState returns a boolean if a field has been set.
 func (o *ZoneObservabilityExtension) HasState() bool {
-	if o != nil && !IsNil(o.State) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStateOk()
+	return ok
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *ZoneObservabilityExtension) SetState(v *string) {
-	o.State = v
+func (o *ZoneObservabilityExtension) SetState(v ZoneObservabilityExtensionGetStateRetType) {
+	setZoneObservabilityExtensionGetStateAttributeType(&o.State, v)
 }
 
 func (o ZoneObservabilityExtension) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["observabilityInstanceId"] = o.ObservabilityInstanceId
-	if !IsNil(o.State) {
-		toSerialize["state"] = o.State
+	if val, ok := getZoneObservabilityExtensionGetObservabilityInstanceIdAttributeTypeOk(o.ObservabilityInstanceId); ok {
+		toSerialize["ObservabilityInstanceId"] = val
+	}
+	if val, ok := getZoneObservabilityExtensionGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
 	}
 	return toSerialize, nil
 }
