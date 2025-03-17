@@ -17,9 +17,29 @@ import (
 // checks if the Parameters type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Parameters{}
 
+/*
+	types and functions for general
+*/
+
+// isModel
+type ParametersGetGeneralAttributeType = *ParametersGeneral
+type ParametersGetGeneralArgType = ParametersGeneral
+type ParametersGetGeneralRetType = ParametersGeneral
+
+func getParametersGetGeneralAttributeTypeOk(arg ParametersGetGeneralAttributeType) (ret ParametersGetGeneralRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setParametersGetGeneralAttributeType(arg *ParametersGetGeneralAttributeType, val ParametersGetGeneralRetType) {
+	*arg = &val
+}
+
 // Parameters service parameters
 type Parameters struct {
-	General *ParametersGeneral `json:"general,omitempty"`
+	General ParametersGetGeneralAttributeType `json:"general,omitempty"`
 }
 
 // NewParameters instantiates a new Parameters object
@@ -40,41 +60,32 @@ func NewParametersWithDefaults() *Parameters {
 }
 
 // GetGeneral returns the General field value if set, zero value otherwise.
-func (o *Parameters) GetGeneral() *ParametersGeneral {
-	if o == nil || IsNil(o.General) {
-		var ret *ParametersGeneral
-		return ret
-	}
-	return o.General
+func (o *Parameters) GetGeneral() (res ParametersGetGeneralRetType) {
+	res, _ = o.GetGeneralOk()
+	return
 }
 
 // GetGeneralOk returns a tuple with the General field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Parameters) GetGeneralOk() (*ParametersGeneral, bool) {
-	if o == nil || IsNil(o.General) {
-		return nil, false
-	}
-	return o.General, true
+func (o *Parameters) GetGeneralOk() (ret ParametersGetGeneralRetType, ok bool) {
+	return getParametersGetGeneralAttributeTypeOk(o.General)
 }
 
 // HasGeneral returns a boolean if a field has been set.
 func (o *Parameters) HasGeneral() bool {
-	if o != nil && !IsNil(o.General) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGeneralOk()
+	return ok
 }
 
 // SetGeneral gets a reference to the given ParametersGeneral and assigns it to the General field.
-func (o *Parameters) SetGeneral(v *ParametersGeneral) {
-	o.General = v
+func (o *Parameters) SetGeneral(v ParametersGetGeneralRetType) {
+	setParametersGetGeneralAttributeType(&o.General, v)
 }
 
 func (o Parameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.General) {
-		toSerialize["general"] = o.General
+	if val, ok := getParametersGetGeneralAttributeTypeOk(o.General); ok {
+		toSerialize["General"] = val
 	}
 	return toSerialize, nil
 }
