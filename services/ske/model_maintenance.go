@@ -17,12 +17,52 @@ import (
 // checks if the Maintenance type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Maintenance{}
 
+/*
+	types and functions for autoUpdate
+*/
+
+// isModel
+type MaintenanceGetAutoUpdateAttributeType = *MaintenanceAutoUpdate
+type MaintenanceGetAutoUpdateArgType = MaintenanceAutoUpdate
+type MaintenanceGetAutoUpdateRetType = MaintenanceAutoUpdate
+
+func getMaintenanceGetAutoUpdateAttributeTypeOk(arg MaintenanceGetAutoUpdateAttributeType) (ret MaintenanceGetAutoUpdateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMaintenanceGetAutoUpdateAttributeType(arg *MaintenanceGetAutoUpdateAttributeType, val MaintenanceGetAutoUpdateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for timeWindow
+*/
+
+// isModel
+type MaintenanceGetTimeWindowAttributeType = *TimeWindow
+type MaintenanceGetTimeWindowArgType = TimeWindow
+type MaintenanceGetTimeWindowRetType = TimeWindow
+
+func getMaintenanceGetTimeWindowAttributeTypeOk(arg MaintenanceGetTimeWindowAttributeType) (ret MaintenanceGetTimeWindowRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMaintenanceGetTimeWindowAttributeType(arg *MaintenanceGetTimeWindowAttributeType, val MaintenanceGetTimeWindowRetType) {
+	*arg = &val
+}
+
 // Maintenance struct for Maintenance
 type Maintenance struct {
 	// REQUIRED
-	AutoUpdate *MaintenanceAutoUpdate `json:"autoUpdate"`
+	AutoUpdate MaintenanceGetAutoUpdateAttributeType `json:"autoUpdate"`
 	// REQUIRED
-	TimeWindow *TimeWindow `json:"timeWindow"`
+	TimeWindow MaintenanceGetTimeWindowAttributeType `json:"timeWindow"`
 }
 
 type _Maintenance Maintenance
@@ -31,10 +71,10 @@ type _Maintenance Maintenance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMaintenance(autoUpdate *MaintenanceAutoUpdate, timeWindow *TimeWindow) *Maintenance {
+func NewMaintenance(autoUpdate MaintenanceGetAutoUpdateArgType, timeWindow MaintenanceGetTimeWindowArgType) *Maintenance {
 	this := Maintenance{}
-	this.AutoUpdate = autoUpdate
-	this.TimeWindow = timeWindow
+	setMaintenanceGetAutoUpdateAttributeType(&this.AutoUpdate, autoUpdate)
+	setMaintenanceGetTimeWindowAttributeType(&this.TimeWindow, timeWindow)
 	return &this
 }
 
@@ -47,57 +87,47 @@ func NewMaintenanceWithDefaults() *Maintenance {
 }
 
 // GetAutoUpdate returns the AutoUpdate field value
-func (o *Maintenance) GetAutoUpdate() *MaintenanceAutoUpdate {
-	if o == nil || IsNil(o.AutoUpdate) {
-		var ret *MaintenanceAutoUpdate
-		return ret
-	}
-
-	return o.AutoUpdate
+func (o *Maintenance) GetAutoUpdate() (ret MaintenanceGetAutoUpdateRetType) {
+	ret, _ = o.GetAutoUpdateOk()
+	return ret
 }
 
 // GetAutoUpdateOk returns a tuple with the AutoUpdate field value
 // and a boolean to check if the value has been set.
-func (o *Maintenance) GetAutoUpdateOk() (*MaintenanceAutoUpdate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AutoUpdate, true
+func (o *Maintenance) GetAutoUpdateOk() (ret MaintenanceGetAutoUpdateRetType, ok bool) {
+	return getMaintenanceGetAutoUpdateAttributeTypeOk(o.AutoUpdate)
 }
 
 // SetAutoUpdate sets field value
-func (o *Maintenance) SetAutoUpdate(v *MaintenanceAutoUpdate) {
-	o.AutoUpdate = v
+func (o *Maintenance) SetAutoUpdate(v MaintenanceGetAutoUpdateRetType) {
+	setMaintenanceGetAutoUpdateAttributeType(&o.AutoUpdate, v)
 }
 
 // GetTimeWindow returns the TimeWindow field value
-func (o *Maintenance) GetTimeWindow() *TimeWindow {
-	if o == nil || IsNil(o.TimeWindow) {
-		var ret *TimeWindow
-		return ret
-	}
-
-	return o.TimeWindow
+func (o *Maintenance) GetTimeWindow() (ret MaintenanceGetTimeWindowRetType) {
+	ret, _ = o.GetTimeWindowOk()
+	return ret
 }
 
 // GetTimeWindowOk returns a tuple with the TimeWindow field value
 // and a boolean to check if the value has been set.
-func (o *Maintenance) GetTimeWindowOk() (*TimeWindow, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TimeWindow, true
+func (o *Maintenance) GetTimeWindowOk() (ret MaintenanceGetTimeWindowRetType, ok bool) {
+	return getMaintenanceGetTimeWindowAttributeTypeOk(o.TimeWindow)
 }
 
 // SetTimeWindow sets field value
-func (o *Maintenance) SetTimeWindow(v *TimeWindow) {
-	o.TimeWindow = v
+func (o *Maintenance) SetTimeWindow(v MaintenanceGetTimeWindowRetType) {
+	setMaintenanceGetTimeWindowAttributeType(&o.TimeWindow, v)
 }
 
 func (o Maintenance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["autoUpdate"] = o.AutoUpdate
-	toSerialize["timeWindow"] = o.TimeWindow
+	if val, ok := getMaintenanceGetAutoUpdateAttributeTypeOk(o.AutoUpdate); ok {
+		toSerialize["AutoUpdate"] = val
+	}
+	if val, ok := getMaintenanceGetTimeWindowAttributeTypeOk(o.TimeWindow); ok {
+		toSerialize["TimeWindow"] = val
+	}
 	return toSerialize, nil
 }
 
