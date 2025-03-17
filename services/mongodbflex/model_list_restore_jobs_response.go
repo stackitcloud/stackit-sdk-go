@@ -17,9 +17,29 @@ import (
 // checks if the ListRestoreJobsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListRestoreJobsResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListRestoreJobsResponseGetItemsAttributeType = *[]RestoreInstanceStatus
+type ListRestoreJobsResponseGetItemsArgType = []RestoreInstanceStatus
+type ListRestoreJobsResponseGetItemsRetType = []RestoreInstanceStatus
+
+func getListRestoreJobsResponseGetItemsAttributeTypeOk(arg ListRestoreJobsResponseGetItemsAttributeType) (ret ListRestoreJobsResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListRestoreJobsResponseGetItemsAttributeType(arg *ListRestoreJobsResponseGetItemsAttributeType, val ListRestoreJobsResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // ListRestoreJobsResponse struct for ListRestoreJobsResponse
 type ListRestoreJobsResponse struct {
-	Items *[]RestoreInstanceStatus `json:"items,omitempty"`
+	Items ListRestoreJobsResponseGetItemsAttributeType `json:"items,omitempty"`
 }
 
 // NewListRestoreJobsResponse instantiates a new ListRestoreJobsResponse object
@@ -40,41 +60,32 @@ func NewListRestoreJobsResponseWithDefaults() *ListRestoreJobsResponse {
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *ListRestoreJobsResponse) GetItems() *[]RestoreInstanceStatus {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]RestoreInstanceStatus
-		return ret
-	}
-	return o.Items
+func (o *ListRestoreJobsResponse) GetItems() (res ListRestoreJobsResponseGetItemsRetType) {
+	res, _ = o.GetItemsOk()
+	return
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListRestoreJobsResponse) GetItemsOk() (*[]RestoreInstanceStatus, bool) {
-	if o == nil || IsNil(o.Items) {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListRestoreJobsResponse) GetItemsOk() (ret ListRestoreJobsResponseGetItemsRetType, ok bool) {
+	return getListRestoreJobsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *ListRestoreJobsResponse) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemsOk()
+	return ok
 }
 
 // SetItems gets a reference to the given []RestoreInstanceStatus and assigns it to the Items field.
-func (o *ListRestoreJobsResponse) SetItems(v *[]RestoreInstanceStatus) {
-	o.Items = v
+func (o *ListRestoreJobsResponse) SetItems(v ListRestoreJobsResponseGetItemsRetType) {
+	setListRestoreJobsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o ListRestoreJobsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Items) {
-		toSerialize["items"] = o.Items
+	if val, ok := getListRestoreJobsResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
 }
