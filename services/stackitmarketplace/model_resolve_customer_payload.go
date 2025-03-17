@@ -17,11 +17,32 @@ import (
 // checks if the ResolveCustomerPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ResolveCustomerPayload{}
 
+/*
+	types and functions for token
+*/
+
+// isNotNullableString
+type ResolveCustomerPayloadGetTokenAttributeType = *string
+
+func getResolveCustomerPayloadGetTokenAttributeTypeOk(arg ResolveCustomerPayloadGetTokenAttributeType) (ret ResolveCustomerPayloadGetTokenRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setResolveCustomerPayloadGetTokenAttributeType(arg *ResolveCustomerPayloadGetTokenAttributeType, val ResolveCustomerPayloadGetTokenRetType) {
+	*arg = &val
+}
+
+type ResolveCustomerPayloadGetTokenArgType = string
+type ResolveCustomerPayloadGetTokenRetType = string
+
 // ResolveCustomerPayload struct for ResolveCustomerPayload
 type ResolveCustomerPayload struct {
 	// Opaque token exchangeable for subscription details.
 	// REQUIRED
-	Token *string `json:"token"`
+	Token ResolveCustomerPayloadGetTokenAttributeType `json:"token"`
 }
 
 type _ResolveCustomerPayload ResolveCustomerPayload
@@ -30,9 +51,9 @@ type _ResolveCustomerPayload ResolveCustomerPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResolveCustomerPayload(token *string) *ResolveCustomerPayload {
+func NewResolveCustomerPayload(token ResolveCustomerPayloadGetTokenArgType) *ResolveCustomerPayload {
 	this := ResolveCustomerPayload{}
-	this.Token = token
+	setResolveCustomerPayloadGetTokenAttributeType(&this.Token, token)
 	return &this
 }
 
@@ -45,32 +66,27 @@ func NewResolveCustomerPayloadWithDefaults() *ResolveCustomerPayload {
 }
 
 // GetToken returns the Token field value
-func (o *ResolveCustomerPayload) GetToken() *string {
-	if o == nil || IsNil(o.Token) {
-		var ret *string
-		return ret
-	}
-
-	return o.Token
+func (o *ResolveCustomerPayload) GetToken() (ret ResolveCustomerPayloadGetTokenRetType) {
+	ret, _ = o.GetTokenOk()
+	return ret
 }
 
 // GetTokenOk returns a tuple with the Token field value
 // and a boolean to check if the value has been set.
-func (o *ResolveCustomerPayload) GetTokenOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Token, true
+func (o *ResolveCustomerPayload) GetTokenOk() (ret ResolveCustomerPayloadGetTokenRetType, ok bool) {
+	return getResolveCustomerPayloadGetTokenAttributeTypeOk(o.Token)
 }
 
 // SetToken sets field value
-func (o *ResolveCustomerPayload) SetToken(v *string) {
-	o.Token = v
+func (o *ResolveCustomerPayload) SetToken(v ResolveCustomerPayloadGetTokenRetType) {
+	setResolveCustomerPayloadGetTokenAttributeType(&o.Token, v)
 }
 
 func (o ResolveCustomerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["token"] = o.Token
+	if val, ok := getResolveCustomerPayloadGetTokenAttributeTypeOk(o.Token); ok {
+		toSerialize["Token"] = val
+	}
 	return toSerialize, nil
 }
 
