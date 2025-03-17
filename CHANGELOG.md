@@ -1,4 +1,6 @@
 ## Release (2025-03-14)
+- `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-03-19)
+ - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `certificates`: [v1.0.0](services/certificates/CHANGELOG.md#v100-2025-03-14)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `postgresflex`: [v1.0.1](services/postgresflex/CHANGELOG.md#v101-2025-03-12)
