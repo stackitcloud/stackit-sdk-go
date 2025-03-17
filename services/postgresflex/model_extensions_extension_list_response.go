@@ -17,9 +17,29 @@ import (
 // checks if the ExtensionsExtensionListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ExtensionsExtensionListResponse{}
 
+/*
+	types and functions for list
+*/
+
+// isArray
+type ExtensionsExtensionListResponseGetListAttributeType = *[]ApiExtensionList
+type ExtensionsExtensionListResponseGetListArgType = []ApiExtensionList
+type ExtensionsExtensionListResponseGetListRetType = []ApiExtensionList
+
+func getExtensionsExtensionListResponseGetListAttributeTypeOk(arg ExtensionsExtensionListResponseGetListAttributeType) (ret ExtensionsExtensionListResponseGetListRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExtensionsExtensionListResponseGetListAttributeType(arg *ExtensionsExtensionListResponseGetListAttributeType, val ExtensionsExtensionListResponseGetListRetType) {
+	*arg = &val
+}
+
 // ExtensionsExtensionListResponse struct for ExtensionsExtensionListResponse
 type ExtensionsExtensionListResponse struct {
-	List *[]ApiExtensionList `json:"list,omitempty"`
+	List ExtensionsExtensionListResponseGetListAttributeType `json:"list,omitempty"`
 }
 
 // NewExtensionsExtensionListResponse instantiates a new ExtensionsExtensionListResponse object
@@ -40,41 +60,32 @@ func NewExtensionsExtensionListResponseWithDefaults() *ExtensionsExtensionListRe
 }
 
 // GetList returns the List field value if set, zero value otherwise.
-func (o *ExtensionsExtensionListResponse) GetList() *[]ApiExtensionList {
-	if o == nil || IsNil(o.List) {
-		var ret *[]ApiExtensionList
-		return ret
-	}
-	return o.List
+func (o *ExtensionsExtensionListResponse) GetList() (res ExtensionsExtensionListResponseGetListRetType) {
+	res, _ = o.GetListOk()
+	return
 }
 
 // GetListOk returns a tuple with the List field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionsExtensionListResponse) GetListOk() (*[]ApiExtensionList, bool) {
-	if o == nil || IsNil(o.List) {
-		return nil, false
-	}
-	return o.List, true
+func (o *ExtensionsExtensionListResponse) GetListOk() (ret ExtensionsExtensionListResponseGetListRetType, ok bool) {
+	return getExtensionsExtensionListResponseGetListAttributeTypeOk(o.List)
 }
 
 // HasList returns a boolean if a field has been set.
 func (o *ExtensionsExtensionListResponse) HasList() bool {
-	if o != nil && !IsNil(o.List) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetListOk()
+	return ok
 }
 
 // SetList gets a reference to the given []ApiExtensionList and assigns it to the List field.
-func (o *ExtensionsExtensionListResponse) SetList(v *[]ApiExtensionList) {
-	o.List = v
+func (o *ExtensionsExtensionListResponse) SetList(v ExtensionsExtensionListResponseGetListRetType) {
+	setExtensionsExtensionListResponseGetListAttributeType(&o.List, v)
 }
 
 func (o ExtensionsExtensionListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.List) {
-		toSerialize["list"] = o.List
+	if val, ok := getExtensionsExtensionListResponseGetListAttributeTypeOk(o.List); ok {
+		toSerialize["List"] = val
 	}
 	return toSerialize, nil
 }

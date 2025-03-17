@@ -17,10 +17,30 @@ import (
 // checks if the ApiExtensionConfigLoadResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ApiExtensionConfigLoadResponse{}
 
+/*
+	types and functions for configuration
+*/
+
+// isArray
+type ApiExtensionConfigLoadResponseGetConfigurationAttributeType = *[]ApiConfiguration
+type ApiExtensionConfigLoadResponseGetConfigurationArgType = []ApiConfiguration
+type ApiExtensionConfigLoadResponseGetConfigurationRetType = []ApiConfiguration
+
+func getApiExtensionConfigLoadResponseGetConfigurationAttributeTypeOk(arg ApiExtensionConfigLoadResponseGetConfigurationAttributeType) (ret ApiExtensionConfigLoadResponseGetConfigurationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApiExtensionConfigLoadResponseGetConfigurationAttributeType(arg *ApiExtensionConfigLoadResponseGetConfigurationAttributeType, val ApiExtensionConfigLoadResponseGetConfigurationRetType) {
+	*arg = &val
+}
+
 // ApiExtensionConfigLoadResponse struct for ApiExtensionConfigLoadResponse
 type ApiExtensionConfigLoadResponse struct {
 	// Returns marshalled JSON of the new configuration of whatever extension is called
-	Configuration *[]ApiConfiguration `json:"configuration,omitempty"`
+	Configuration ApiExtensionConfigLoadResponseGetConfigurationAttributeType `json:"configuration,omitempty"`
 }
 
 // NewApiExtensionConfigLoadResponse instantiates a new ApiExtensionConfigLoadResponse object
@@ -41,41 +61,32 @@ func NewApiExtensionConfigLoadResponseWithDefaults() *ApiExtensionConfigLoadResp
 }
 
 // GetConfiguration returns the Configuration field value if set, zero value otherwise.
-func (o *ApiExtensionConfigLoadResponse) GetConfiguration() *[]ApiConfiguration {
-	if o == nil || IsNil(o.Configuration) {
-		var ret *[]ApiConfiguration
-		return ret
-	}
-	return o.Configuration
+func (o *ApiExtensionConfigLoadResponse) GetConfiguration() (res ApiExtensionConfigLoadResponseGetConfigurationRetType) {
+	res, _ = o.GetConfigurationOk()
+	return
 }
 
 // GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiExtensionConfigLoadResponse) GetConfigurationOk() (*[]ApiConfiguration, bool) {
-	if o == nil || IsNil(o.Configuration) {
-		return nil, false
-	}
-	return o.Configuration, true
+func (o *ApiExtensionConfigLoadResponse) GetConfigurationOk() (ret ApiExtensionConfigLoadResponseGetConfigurationRetType, ok bool) {
+	return getApiExtensionConfigLoadResponseGetConfigurationAttributeTypeOk(o.Configuration)
 }
 
 // HasConfiguration returns a boolean if a field has been set.
 func (o *ApiExtensionConfigLoadResponse) HasConfiguration() bool {
-	if o != nil && !IsNil(o.Configuration) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetConfigurationOk()
+	return ok
 }
 
 // SetConfiguration gets a reference to the given []ApiConfiguration and assigns it to the Configuration field.
-func (o *ApiExtensionConfigLoadResponse) SetConfiguration(v *[]ApiConfiguration) {
-	o.Configuration = v
+func (o *ApiExtensionConfigLoadResponse) SetConfiguration(v ApiExtensionConfigLoadResponseGetConfigurationRetType) {
+	setApiExtensionConfigLoadResponseGetConfigurationAttributeType(&o.Configuration, v)
 }
 
 func (o ApiExtensionConfigLoadResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Configuration) {
-		toSerialize["configuration"] = o.Configuration
+	if val, ok := getApiExtensionConfigLoadResponseGetConfigurationAttributeTypeOk(o.Configuration); ok {
+		toSerialize["Configuration"] = val
 	}
 	return toSerialize, nil
 }
