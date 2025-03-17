@@ -17,12 +17,54 @@ import (
 // checks if the CreateCertificateResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateCertificateResponse{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CreateCertificateResponseGetIdAttributeType = *string
+
+func getCreateCertificateResponseGetIdAttributeTypeOk(arg CreateCertificateResponseGetIdAttributeType) (ret CreateCertificateResponseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCertificateResponseGetIdAttributeType(arg *CreateCertificateResponseGetIdAttributeType, val CreateCertificateResponseGetIdRetType) {
+	*arg = &val
+}
+
+type CreateCertificateResponseGetIdArgType = string
+type CreateCertificateResponseGetIdRetType = string
+
+/*
+	types and functions for region
+*/
+
+// isNotNullableString
+type CreateCertificateResponseGetRegionAttributeType = *string
+
+func getCreateCertificateResponseGetRegionAttributeTypeOk(arg CreateCertificateResponseGetRegionAttributeType) (ret CreateCertificateResponseGetRegionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateCertificateResponseGetRegionAttributeType(arg *CreateCertificateResponseGetRegionAttributeType, val CreateCertificateResponseGetRegionRetType) {
+	*arg = &val
+}
+
+type CreateCertificateResponseGetRegionArgType = string
+type CreateCertificateResponseGetRegionRetType = string
+
 // CreateCertificateResponse CreateCertificateResponse returns unique resource id
 type CreateCertificateResponse struct {
 	// The certificates resource id
-	Id *string `json:"id,omitempty"`
+	Id CreateCertificateResponseGetIdAttributeType `json:"id,omitempty"`
 	// Region
-	Region *string `json:"region,omitempty"`
+	Region CreateCertificateResponseGetRegionAttributeType `json:"region,omitempty"`
 }
 
 // NewCreateCertificateResponse instantiates a new CreateCertificateResponse object
@@ -43,76 +85,58 @@ func NewCreateCertificateResponseWithDefaults() *CreateCertificateResponse {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateCertificateResponse) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *CreateCertificateResponse) GetId() (res CreateCertificateResponseGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCertificateResponse) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CreateCertificateResponse) GetIdOk() (ret CreateCertificateResponseGetIdRetType, ok bool) {
+	return getCreateCertificateResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateCertificateResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateCertificateResponse) SetId(v *string) {
-	o.Id = v
+func (o *CreateCertificateResponse) SetId(v CreateCertificateResponseGetIdRetType) {
+	setCreateCertificateResponseGetIdAttributeType(&o.Id, v)
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
-func (o *CreateCertificateResponse) GetRegion() *string {
-	if o == nil || IsNil(o.Region) {
-		var ret *string
-		return ret
-	}
-	return o.Region
+func (o *CreateCertificateResponse) GetRegion() (res CreateCertificateResponseGetRegionRetType) {
+	res, _ = o.GetRegionOk()
+	return
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateCertificateResponse) GetRegionOk() (*string, bool) {
-	if o == nil || IsNil(o.Region) {
-		return nil, false
-	}
-	return o.Region, true
+func (o *CreateCertificateResponse) GetRegionOk() (ret CreateCertificateResponseGetRegionRetType, ok bool) {
+	return getCreateCertificateResponseGetRegionAttributeTypeOk(o.Region)
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *CreateCertificateResponse) HasRegion() bool {
-	if o != nil && !IsNil(o.Region) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRegionOk()
+	return ok
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *CreateCertificateResponse) SetRegion(v *string) {
-	o.Region = v
+func (o *CreateCertificateResponse) SetRegion(v CreateCertificateResponseGetRegionRetType) {
+	setCreateCertificateResponseGetRegionAttributeType(&o.Region, v)
 }
 
 func (o CreateCertificateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getCreateCertificateResponseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Region) {
-		toSerialize["region"] = o.Region
+	if val, ok := getCreateCertificateResponseGetRegionAttributeTypeOk(o.Region); ok {
+		toSerialize["Region"] = val
 	}
 	return toSerialize, nil
 }
