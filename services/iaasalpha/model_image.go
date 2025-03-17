@@ -18,37 +18,343 @@ import (
 // checks if the Image type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Image{}
 
+/*
+	types and functions for checksum
+*/
+
+// isModel
+type ImageGetChecksumAttributeType = *ImageChecksum
+type ImageGetChecksumArgType = ImageChecksum
+type ImageGetChecksumRetType = ImageChecksum
+
+func getImageGetChecksumAttributeTypeOk(arg ImageGetChecksumAttributeType) (ret ImageGetChecksumRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetChecksumAttributeType(arg *ImageGetChecksumAttributeType, val ImageGetChecksumRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for config
+*/
+
+// isModel
+type ImageGetConfigAttributeType = *ImageConfig
+type ImageGetConfigArgType = ImageConfig
+type ImageGetConfigRetType = ImageConfig
+
+func getImageGetConfigAttributeTypeOk(arg ImageGetConfigAttributeType) (ret ImageGetConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetConfigAttributeType(arg *ImageGetConfigAttributeType, val ImageGetConfigRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type ImageGetCreatedAtAttributeType = *time.Time
+type ImageGetCreatedAtArgType = time.Time
+type ImageGetCreatedAtRetType = time.Time
+
+func getImageGetCreatedAtAttributeTypeOk(arg ImageGetCreatedAtAttributeType) (ret ImageGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetCreatedAtAttributeType(arg *ImageGetCreatedAtAttributeType, val ImageGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for diskFormat
+*/
+
+// isNotNullableString
+type ImageGetDiskFormatAttributeType = *string
+
+func getImageGetDiskFormatAttributeTypeOk(arg ImageGetDiskFormatAttributeType) (ret ImageGetDiskFormatRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetDiskFormatAttributeType(arg *ImageGetDiskFormatAttributeType, val ImageGetDiskFormatRetType) {
+	*arg = &val
+}
+
+type ImageGetDiskFormatArgType = string
+type ImageGetDiskFormatRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ImageGetIdAttributeType = *string
+
+func getImageGetIdAttributeTypeOk(arg ImageGetIdAttributeType) (ret ImageGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetIdAttributeType(arg *ImageGetIdAttributeType, val ImageGetIdRetType) {
+	*arg = &val
+}
+
+type ImageGetIdArgType = string
+type ImageGetIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type ImageGetLabelsAttributeType = *map[string]interface{}
+type ImageGetLabelsArgType = map[string]interface{}
+type ImageGetLabelsRetType = map[string]interface{}
+
+func getImageGetLabelsAttributeTypeOk(arg ImageGetLabelsAttributeType) (ret ImageGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetLabelsAttributeType(arg *ImageGetLabelsAttributeType, val ImageGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for minDiskSize
+*/
+
+// isLong
+type ImageGetMinDiskSizeAttributeType = *int64
+type ImageGetMinDiskSizeArgType = int64
+type ImageGetMinDiskSizeRetType = int64
+
+func getImageGetMinDiskSizeAttributeTypeOk(arg ImageGetMinDiskSizeAttributeType) (ret ImageGetMinDiskSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetMinDiskSizeAttributeType(arg *ImageGetMinDiskSizeAttributeType, val ImageGetMinDiskSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for minRam
+*/
+
+// isLong
+type ImageGetMinRamAttributeType = *int64
+type ImageGetMinRamArgType = int64
+type ImageGetMinRamRetType = int64
+
+func getImageGetMinRamAttributeTypeOk(arg ImageGetMinRamAttributeType) (ret ImageGetMinRamRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetMinRamAttributeType(arg *ImageGetMinRamAttributeType, val ImageGetMinRamRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ImageGetNameAttributeType = *string
+
+func getImageGetNameAttributeTypeOk(arg ImageGetNameAttributeType) (ret ImageGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetNameAttributeType(arg *ImageGetNameAttributeType, val ImageGetNameRetType) {
+	*arg = &val
+}
+
+type ImageGetNameArgType = string
+type ImageGetNameRetType = string
+
+/*
+	types and functions for owner
+*/
+
+// isNotNullableString
+type ImageGetOwnerAttributeType = *string
+
+func getImageGetOwnerAttributeTypeOk(arg ImageGetOwnerAttributeType) (ret ImageGetOwnerRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetOwnerAttributeType(arg *ImageGetOwnerAttributeType, val ImageGetOwnerRetType) {
+	*arg = &val
+}
+
+type ImageGetOwnerArgType = string
+type ImageGetOwnerRetType = string
+
+/*
+	types and functions for protected
+*/
+
+// isBoolean
+type ImagegetProtectedAttributeType = *bool
+type ImagegetProtectedArgType = bool
+type ImagegetProtectedRetType = bool
+
+func getImagegetProtectedAttributeTypeOk(arg ImagegetProtectedAttributeType) (ret ImagegetProtectedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImagegetProtectedAttributeType(arg *ImagegetProtectedAttributeType, val ImagegetProtectedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for scope
+*/
+
+// isNotNullableString
+type ImageGetScopeAttributeType = *string
+
+func getImageGetScopeAttributeTypeOk(arg ImageGetScopeAttributeType) (ret ImageGetScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetScopeAttributeType(arg *ImageGetScopeAttributeType, val ImageGetScopeRetType) {
+	*arg = &val
+}
+
+type ImageGetScopeArgType = string
+type ImageGetScopeRetType = string
+
+/*
+	types and functions for size
+*/
+
+// isLong
+type ImageGetSizeAttributeType = *int64
+type ImageGetSizeArgType = int64
+type ImageGetSizeRetType = int64
+
+func getImageGetSizeAttributeTypeOk(arg ImageGetSizeAttributeType) (ret ImageGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetSizeAttributeType(arg *ImageGetSizeAttributeType, val ImageGetSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type ImageGetStatusAttributeType = *string
+
+func getImageGetStatusAttributeTypeOk(arg ImageGetStatusAttributeType) (ret ImageGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetStatusAttributeType(arg *ImageGetStatusAttributeType, val ImageGetStatusRetType) {
+	*arg = &val
+}
+
+type ImageGetStatusArgType = string
+type ImageGetStatusRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type ImageGetUpdatedAtAttributeType = *time.Time
+type ImageGetUpdatedAtArgType = time.Time
+type ImageGetUpdatedAtRetType = time.Time
+
+func getImageGetUpdatedAtAttributeTypeOk(arg ImageGetUpdatedAtAttributeType) (ret ImageGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetUpdatedAtAttributeType(arg *ImageGetUpdatedAtAttributeType, val ImageGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // Image Object that represents an Image and its parameters. Used for Creating and returning (get/list).
 type Image struct {
-	Checksum *ImageChecksum `json:"checksum,omitempty"`
-	Config   *ImageConfig   `json:"config,omitempty"`
+	Checksum ImageGetChecksumAttributeType `json:"checksum,omitempty"`
+	Config   ImageGetConfigAttributeType   `json:"config,omitempty"`
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt ImageGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	// REQUIRED
-	DiskFormat *string `json:"diskFormat"`
+	DiskFormat ImageGetDiskFormatAttributeType `json:"diskFormat"`
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id ImageGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels ImageGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
-	MinDiskSize *int64 `json:"minDiskSize,omitempty"`
+	MinDiskSize ImageGetMinDiskSizeAttributeType `json:"minDiskSize,omitempty"`
 	// Size in Megabyte.
-	MinRam *int64 `json:"minRam,omitempty"`
+	MinRam ImageGetMinRamAttributeType `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name ImageGetNameAttributeType `json:"name"`
 	// Universally Unique Identifier (UUID).
-	Owner     *string `json:"owner,omitempty"`
-	Protected *bool   `json:"protected,omitempty"`
+	Owner     ImageGetOwnerAttributeType     `json:"owner,omitempty"`
+	Protected ImagegetProtectedAttributeType `json:"protected,omitempty"`
 	// Scope of an Image. Possible values: `public`, `local`, `projects`, `organization`.
-	Scope *string `json:"scope,omitempty"`
+	Scope ImageGetScopeAttributeType `json:"scope,omitempty"`
 	// Size in bytes.
-	Size *int64 `json:"size,omitempty"`
+	Size ImageGetSizeAttributeType `json:"size,omitempty"`
 	// The status of an image object. Possible values: `AVAILABLE`, `CREATING`, `DEACTIVATED`, `DELETED`, `DELETING`, `ERROR`.
-	Status *string `json:"status,omitempty"`
+	Status ImageGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt ImageGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 type _Image Image
@@ -57,10 +363,10 @@ type _Image Image
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImage(diskFormat *string, name *string) *Image {
+func NewImage(diskFormat ImageGetDiskFormatArgType, name ImageGetNameArgType) *Image {
 	this := Image{}
-	this.DiskFormat = diskFormat
-	this.Name = name
+	setImageGetDiskFormatAttributeType(&this.DiskFormat, diskFormat)
+	setImageGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -73,511 +379,384 @@ func NewImageWithDefaults() *Image {
 }
 
 // GetChecksum returns the Checksum field value if set, zero value otherwise.
-func (o *Image) GetChecksum() *ImageChecksum {
-	if o == nil || IsNil(o.Checksum) {
-		var ret *ImageChecksum
-		return ret
-	}
-	return o.Checksum
+func (o *Image) GetChecksum() (res ImageGetChecksumRetType) {
+	res, _ = o.GetChecksumOk()
+	return
 }
 
 // GetChecksumOk returns a tuple with the Checksum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetChecksumOk() (*ImageChecksum, bool) {
-	if o == nil || IsNil(o.Checksum) {
-		return nil, false
-	}
-	return o.Checksum, true
+func (o *Image) GetChecksumOk() (ret ImageGetChecksumRetType, ok bool) {
+	return getImageGetChecksumAttributeTypeOk(o.Checksum)
 }
 
 // HasChecksum returns a boolean if a field has been set.
 func (o *Image) HasChecksum() bool {
-	if o != nil && !IsNil(o.Checksum) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetChecksumOk()
+	return ok
 }
 
 // SetChecksum gets a reference to the given ImageChecksum and assigns it to the Checksum field.
-func (o *Image) SetChecksum(v *ImageChecksum) {
-	o.Checksum = v
+func (o *Image) SetChecksum(v ImageGetChecksumRetType) {
+	setImageGetChecksumAttributeType(&o.Checksum, v)
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
-func (o *Image) GetConfig() *ImageConfig {
-	if o == nil || IsNil(o.Config) {
-		var ret *ImageConfig
-		return ret
-	}
-	return o.Config
+func (o *Image) GetConfig() (res ImageGetConfigRetType) {
+	res, _ = o.GetConfigOk()
+	return
 }
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetConfigOk() (*ImageConfig, bool) {
-	if o == nil || IsNil(o.Config) {
-		return nil, false
-	}
-	return o.Config, true
+func (o *Image) GetConfigOk() (ret ImageGetConfigRetType, ok bool) {
+	return getImageGetConfigAttributeTypeOk(o.Config)
 }
 
 // HasConfig returns a boolean if a field has been set.
 func (o *Image) HasConfig() bool {
-	if o != nil && !IsNil(o.Config) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetConfigOk()
+	return ok
 }
 
 // SetConfig gets a reference to the given ImageConfig and assigns it to the Config field.
-func (o *Image) SetConfig(v *ImageConfig) {
-	o.Config = v
+func (o *Image) SetConfig(v ImageGetConfigRetType) {
+	setImageGetConfigAttributeType(&o.Config, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Image) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *Image) GetCreatedAt() (res ImageGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *Image) GetCreatedAtOk() (ret ImageGetCreatedAtRetType, ok bool) {
+	return getImageGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Image) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Image) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *Image) SetCreatedAt(v ImageGetCreatedAtRetType) {
+	setImageGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetDiskFormat returns the DiskFormat field value
-func (o *Image) GetDiskFormat() *string {
-	if o == nil || IsNil(o.DiskFormat) {
-		var ret *string
-		return ret
-	}
-
-	return o.DiskFormat
+func (o *Image) GetDiskFormat() (ret ImageGetDiskFormatRetType) {
+	ret, _ = o.GetDiskFormatOk()
+	return ret
 }
 
 // GetDiskFormatOk returns a tuple with the DiskFormat field value
 // and a boolean to check if the value has been set.
-func (o *Image) GetDiskFormatOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DiskFormat, true
+func (o *Image) GetDiskFormatOk() (ret ImageGetDiskFormatRetType, ok bool) {
+	return getImageGetDiskFormatAttributeTypeOk(o.DiskFormat)
 }
 
 // SetDiskFormat sets field value
-func (o *Image) SetDiskFormat(v *string) {
-	o.DiskFormat = v
+func (o *Image) SetDiskFormat(v ImageGetDiskFormatRetType) {
+	setImageGetDiskFormatAttributeType(&o.DiskFormat, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Image) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Image) GetId() (res ImageGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Image) GetIdOk() (ret ImageGetIdRetType, ok bool) {
+	return getImageGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Image) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Image) SetId(v *string) {
-	o.Id = v
+func (o *Image) SetId(v ImageGetIdRetType) {
+	setImageGetIdAttributeType(&o.Id, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Image) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *Image) GetLabels() (res ImageGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *Image) GetLabelsOk() (ret ImageGetLabelsRetType, ok bool) {
+	return getImageGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Image) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *Image) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *Image) SetLabels(v ImageGetLabelsRetType) {
+	setImageGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetMinDiskSize returns the MinDiskSize field value if set, zero value otherwise.
-func (o *Image) GetMinDiskSize() *int64 {
-	if o == nil || IsNil(o.MinDiskSize) {
-		var ret *int64
-		return ret
-	}
-	return o.MinDiskSize
+func (o *Image) GetMinDiskSize() (res ImageGetMinDiskSizeRetType) {
+	res, _ = o.GetMinDiskSizeOk()
+	return
 }
 
 // GetMinDiskSizeOk returns a tuple with the MinDiskSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetMinDiskSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.MinDiskSize) {
-		return nil, false
-	}
-	return o.MinDiskSize, true
+func (o *Image) GetMinDiskSizeOk() (ret ImageGetMinDiskSizeRetType, ok bool) {
+	return getImageGetMinDiskSizeAttributeTypeOk(o.MinDiskSize)
 }
 
 // HasMinDiskSize returns a boolean if a field has been set.
 func (o *Image) HasMinDiskSize() bool {
-	if o != nil && !IsNil(o.MinDiskSize) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMinDiskSizeOk()
+	return ok
 }
 
 // SetMinDiskSize gets a reference to the given int64 and assigns it to the MinDiskSize field.
-func (o *Image) SetMinDiskSize(v *int64) {
-	o.MinDiskSize = v
+func (o *Image) SetMinDiskSize(v ImageGetMinDiskSizeRetType) {
+	setImageGetMinDiskSizeAttributeType(&o.MinDiskSize, v)
 }
 
 // GetMinRam returns the MinRam field value if set, zero value otherwise.
-func (o *Image) GetMinRam() *int64 {
-	if o == nil || IsNil(o.MinRam) {
-		var ret *int64
-		return ret
-	}
-	return o.MinRam
+func (o *Image) GetMinRam() (res ImageGetMinRamRetType) {
+	res, _ = o.GetMinRamOk()
+	return
 }
 
 // GetMinRamOk returns a tuple with the MinRam field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetMinRamOk() (*int64, bool) {
-	if o == nil || IsNil(o.MinRam) {
-		return nil, false
-	}
-	return o.MinRam, true
+func (o *Image) GetMinRamOk() (ret ImageGetMinRamRetType, ok bool) {
+	return getImageGetMinRamAttributeTypeOk(o.MinRam)
 }
 
 // HasMinRam returns a boolean if a field has been set.
 func (o *Image) HasMinRam() bool {
-	if o != nil && !IsNil(o.MinRam) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMinRamOk()
+	return ok
 }
 
 // SetMinRam gets a reference to the given int64 and assigns it to the MinRam field.
-func (o *Image) SetMinRam(v *int64) {
-	o.MinRam = v
+func (o *Image) SetMinRam(v ImageGetMinRamRetType) {
+	setImageGetMinRamAttributeType(&o.MinRam, v)
 }
 
 // GetName returns the Name field value
-func (o *Image) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Image) GetName() (ret ImageGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Image) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Image) GetNameOk() (ret ImageGetNameRetType, ok bool) {
+	return getImageGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Image) SetName(v *string) {
-	o.Name = v
+func (o *Image) SetName(v ImageGetNameRetType) {
+	setImageGetNameAttributeType(&o.Name, v)
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
-func (o *Image) GetOwner() *string {
-	if o == nil || IsNil(o.Owner) {
-		var ret *string
-		return ret
-	}
-	return o.Owner
+func (o *Image) GetOwner() (res ImageGetOwnerRetType) {
+	res, _ = o.GetOwnerOk()
+	return
 }
 
 // GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetOwnerOk() (*string, bool) {
-	if o == nil || IsNil(o.Owner) {
-		return nil, false
-	}
-	return o.Owner, true
+func (o *Image) GetOwnerOk() (ret ImageGetOwnerRetType, ok bool) {
+	return getImageGetOwnerAttributeTypeOk(o.Owner)
 }
 
 // HasOwner returns a boolean if a field has been set.
 func (o *Image) HasOwner() bool {
-	if o != nil && !IsNil(o.Owner) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOwnerOk()
+	return ok
 }
 
 // SetOwner gets a reference to the given string and assigns it to the Owner field.
-func (o *Image) SetOwner(v *string) {
-	o.Owner = v
+func (o *Image) SetOwner(v ImageGetOwnerRetType) {
+	setImageGetOwnerAttributeType(&o.Owner, v)
 }
 
 // GetProtected returns the Protected field value if set, zero value otherwise.
-func (o *Image) GetProtected() *bool {
-	if o == nil || IsNil(o.Protected) {
-		var ret *bool
-		return ret
-	}
-	return o.Protected
+func (o *Image) GetProtected() (res ImagegetProtectedRetType) {
+	res, _ = o.GetProtectedOk()
+	return
 }
 
 // GetProtectedOk returns a tuple with the Protected field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetProtectedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Protected) {
-		return nil, false
-	}
-	return o.Protected, true
+func (o *Image) GetProtectedOk() (ret ImagegetProtectedRetType, ok bool) {
+	return getImagegetProtectedAttributeTypeOk(o.Protected)
 }
 
 // HasProtected returns a boolean if a field has been set.
 func (o *Image) HasProtected() bool {
-	if o != nil && !IsNil(o.Protected) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProtectedOk()
+	return ok
 }
 
 // SetProtected gets a reference to the given bool and assigns it to the Protected field.
-func (o *Image) SetProtected(v *bool) {
-	o.Protected = v
+func (o *Image) SetProtected(v ImagegetProtectedRetType) {
+	setImagegetProtectedAttributeType(&o.Protected, v)
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
-func (o *Image) GetScope() *string {
-	if o == nil || IsNil(o.Scope) {
-		var ret *string
-		return ret
-	}
-	return o.Scope
+func (o *Image) GetScope() (res ImageGetScopeRetType) {
+	res, _ = o.GetScopeOk()
+	return
 }
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetScopeOk() (*string, bool) {
-	if o == nil || IsNil(o.Scope) {
-		return nil, false
-	}
-	return o.Scope, true
+func (o *Image) GetScopeOk() (ret ImageGetScopeRetType, ok bool) {
+	return getImageGetScopeAttributeTypeOk(o.Scope)
 }
 
 // HasScope returns a boolean if a field has been set.
 func (o *Image) HasScope() bool {
-	if o != nil && !IsNil(o.Scope) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetScopeOk()
+	return ok
 }
 
 // SetScope gets a reference to the given string and assigns it to the Scope field.
-func (o *Image) SetScope(v *string) {
-	o.Scope = v
+func (o *Image) SetScope(v ImageGetScopeRetType) {
+	setImageGetScopeAttributeType(&o.Scope, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *Image) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-	return o.Size
+func (o *Image) GetSize() (res ImageGetSizeRetType) {
+	res, _ = o.GetSizeOk()
+	return
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Size) {
-		return nil, false
-	}
-	return o.Size, true
+func (o *Image) GetSizeOk() (ret ImageGetSizeRetType, ok bool) {
+	return getImageGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *Image) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSizeOk()
+	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *Image) SetSize(v *int64) {
-	o.Size = v
+func (o *Image) SetSize(v ImageGetSizeRetType) {
+	setImageGetSizeAttributeType(&o.Size, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Image) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *Image) GetStatus() (res ImageGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *Image) GetStatusOk() (ret ImageGetStatusRetType, ok bool) {
+	return getImageGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Image) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Image) SetStatus(v *string) {
-	o.Status = v
+func (o *Image) SetStatus(v ImageGetStatusRetType) {
+	setImageGetStatusAttributeType(&o.Status, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Image) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *Image) GetUpdatedAt() (res ImageGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Image) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *Image) GetUpdatedAtOk() (ret ImageGetUpdatedAtRetType, ok bool) {
+	return getImageGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Image) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Image) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *Image) SetUpdatedAt(v ImageGetUpdatedAtRetType) {
+	setImageGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 func (o Image) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Checksum) {
-		toSerialize["checksum"] = o.Checksum
+	if val, ok := getImageGetChecksumAttributeTypeOk(o.Checksum); ok {
+		toSerialize["Checksum"] = val
 	}
-	if !IsNil(o.Config) {
-		toSerialize["config"] = o.Config
+	if val, ok := getImageGetConfigAttributeTypeOk(o.Config); ok {
+		toSerialize["Config"] = val
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getImageGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	toSerialize["diskFormat"] = o.DiskFormat
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getImageGetDiskFormatAttributeTypeOk(o.DiskFormat); ok {
+		toSerialize["DiskFormat"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getImageGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.MinDiskSize) {
-		toSerialize["minDiskSize"] = o.MinDiskSize
+	if val, ok := getImageGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.MinRam) {
-		toSerialize["minRam"] = o.MinRam
+	if val, ok := getImageGetMinDiskSizeAttributeTypeOk(o.MinDiskSize); ok {
+		toSerialize["MinDiskSize"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Owner) {
-		toSerialize["owner"] = o.Owner
+	if val, ok := getImageGetMinRamAttributeTypeOk(o.MinRam); ok {
+		toSerialize["MinRam"] = val
 	}
-	if !IsNil(o.Protected) {
-		toSerialize["protected"] = o.Protected
+	if val, ok := getImageGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Scope) {
-		toSerialize["scope"] = o.Scope
+	if val, ok := getImageGetOwnerAttributeTypeOk(o.Owner); ok {
+		toSerialize["Owner"] = val
 	}
-	if !IsNil(o.Size) {
-		toSerialize["size"] = o.Size
+	if val, ok := getImagegetProtectedAttributeTypeOk(o.Protected); ok {
+		toSerialize["Protected"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getImageGetScopeAttributeTypeOk(o.Scope); ok {
+		toSerialize["Scope"] = val
 	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getImageGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
+	}
+	if val, ok := getImageGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
+	}
+	if val, ok := getImageGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

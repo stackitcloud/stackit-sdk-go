@@ -18,51 +18,501 @@ import (
 // checks if the Server type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Server{}
 
+/*
+	types and functions for affinityGroup
+*/
+
+// isNotNullableString
+type ServerGetAffinityGroupAttributeType = *string
+
+func getServerGetAffinityGroupAttributeTypeOk(arg ServerGetAffinityGroupAttributeType) (ret ServerGetAffinityGroupRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetAffinityGroupAttributeType(arg *ServerGetAffinityGroupAttributeType, val ServerGetAffinityGroupRetType) {
+	*arg = &val
+}
+
+type ServerGetAffinityGroupArgType = string
+type ServerGetAffinityGroupRetType = string
+
+/*
+	types and functions for availabilityZone
+*/
+
+// isNotNullableString
+type ServerGetAvailabilityZoneAttributeType = *string
+
+func getServerGetAvailabilityZoneAttributeTypeOk(arg ServerGetAvailabilityZoneAttributeType) (ret ServerGetAvailabilityZoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetAvailabilityZoneAttributeType(arg *ServerGetAvailabilityZoneAttributeType, val ServerGetAvailabilityZoneRetType) {
+	*arg = &val
+}
+
+type ServerGetAvailabilityZoneArgType = string
+type ServerGetAvailabilityZoneRetType = string
+
+/*
+	types and functions for bootVolume
+*/
+
+// isModel
+type ServerGetBootVolumeAttributeType = *CreateServerPayloadBootVolume
+type ServerGetBootVolumeArgType = CreateServerPayloadBootVolume
+type ServerGetBootVolumeRetType = CreateServerPayloadBootVolume
+
+func getServerGetBootVolumeAttributeTypeOk(arg ServerGetBootVolumeAttributeType) (ret ServerGetBootVolumeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetBootVolumeAttributeType(arg *ServerGetBootVolumeAttributeType, val ServerGetBootVolumeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type ServerGetCreatedAtAttributeType = *time.Time
+type ServerGetCreatedAtArgType = time.Time
+type ServerGetCreatedAtRetType = time.Time
+
+func getServerGetCreatedAtAttributeTypeOk(arg ServerGetCreatedAtAttributeType) (ret ServerGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetCreatedAtAttributeType(arg *ServerGetCreatedAtAttributeType, val ServerGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for errorMessage
+*/
+
+// isNotNullableString
+type ServerGetErrorMessageAttributeType = *string
+
+func getServerGetErrorMessageAttributeTypeOk(arg ServerGetErrorMessageAttributeType) (ret ServerGetErrorMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetErrorMessageAttributeType(arg *ServerGetErrorMessageAttributeType, val ServerGetErrorMessageRetType) {
+	*arg = &val
+}
+
+type ServerGetErrorMessageArgType = string
+type ServerGetErrorMessageRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ServerGetIdAttributeType = *string
+
+func getServerGetIdAttributeTypeOk(arg ServerGetIdAttributeType) (ret ServerGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetIdAttributeType(arg *ServerGetIdAttributeType, val ServerGetIdRetType) {
+	*arg = &val
+}
+
+type ServerGetIdArgType = string
+type ServerGetIdRetType = string
+
+/*
+	types and functions for imageId
+*/
+
+// isNotNullableString
+type ServerGetImageIdAttributeType = *string
+
+func getServerGetImageIdAttributeTypeOk(arg ServerGetImageIdAttributeType) (ret ServerGetImageIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetImageIdAttributeType(arg *ServerGetImageIdAttributeType, val ServerGetImageIdRetType) {
+	*arg = &val
+}
+
+type ServerGetImageIdArgType = string
+type ServerGetImageIdRetType = string
+
+/*
+	types and functions for keypairName
+*/
+
+// isNotNullableString
+type ServerGetKeypairNameAttributeType = *string
+
+func getServerGetKeypairNameAttributeTypeOk(arg ServerGetKeypairNameAttributeType) (ret ServerGetKeypairNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetKeypairNameAttributeType(arg *ServerGetKeypairNameAttributeType, val ServerGetKeypairNameRetType) {
+	*arg = &val
+}
+
+type ServerGetKeypairNameArgType = string
+type ServerGetKeypairNameRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type ServerGetLabelsAttributeType = *map[string]interface{}
+type ServerGetLabelsArgType = map[string]interface{}
+type ServerGetLabelsRetType = map[string]interface{}
+
+func getServerGetLabelsAttributeTypeOk(arg ServerGetLabelsAttributeType) (ret ServerGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetLabelsAttributeType(arg *ServerGetLabelsAttributeType, val ServerGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for launchedAt
+*/
+
+// isDateTime
+type ServerGetLaunchedAtAttributeType = *time.Time
+type ServerGetLaunchedAtArgType = time.Time
+type ServerGetLaunchedAtRetType = time.Time
+
+func getServerGetLaunchedAtAttributeTypeOk(arg ServerGetLaunchedAtAttributeType) (ret ServerGetLaunchedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetLaunchedAtAttributeType(arg *ServerGetLaunchedAtAttributeType, val ServerGetLaunchedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for machineType
+*/
+
+// isNotNullableString
+type ServerGetMachineTypeAttributeType = *string
+
+func getServerGetMachineTypeAttributeTypeOk(arg ServerGetMachineTypeAttributeType) (ret ServerGetMachineTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetMachineTypeAttributeType(arg *ServerGetMachineTypeAttributeType, val ServerGetMachineTypeRetType) {
+	*arg = &val
+}
+
+type ServerGetMachineTypeArgType = string
+type ServerGetMachineTypeRetType = string
+
+/*
+	types and functions for maintenanceWindow
+*/
+
+// isModel
+type ServerGetMaintenanceWindowAttributeType = *ServerMaintenance
+type ServerGetMaintenanceWindowArgType = ServerMaintenance
+type ServerGetMaintenanceWindowRetType = ServerMaintenance
+
+func getServerGetMaintenanceWindowAttributeTypeOk(arg ServerGetMaintenanceWindowAttributeType) (ret ServerGetMaintenanceWindowRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetMaintenanceWindowAttributeType(arg *ServerGetMaintenanceWindowAttributeType, val ServerGetMaintenanceWindowRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ServerGetNameAttributeType = *string
+
+func getServerGetNameAttributeTypeOk(arg ServerGetNameAttributeType) (ret ServerGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetNameAttributeType(arg *ServerGetNameAttributeType, val ServerGetNameRetType) {
+	*arg = &val
+}
+
+type ServerGetNameArgType = string
+type ServerGetNameRetType = string
+
+/*
+	types and functions for networking
+*/
+
+// isModel
+type ServerGetNetworkingAttributeType = *CreateServerPayloadNetworking
+type ServerGetNetworkingArgType = CreateServerPayloadNetworking
+type ServerGetNetworkingRetType = CreateServerPayloadNetworking
+
+func getServerGetNetworkingAttributeTypeOk(arg ServerGetNetworkingAttributeType) (ret ServerGetNetworkingRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetNetworkingAttributeType(arg *ServerGetNetworkingAttributeType, val ServerGetNetworkingRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nics
+*/
+
+// isArray
+type ServerGetNicsAttributeType = *[]ServerNetwork
+type ServerGetNicsArgType = []ServerNetwork
+type ServerGetNicsRetType = []ServerNetwork
+
+func getServerGetNicsAttributeTypeOk(arg ServerGetNicsAttributeType) (ret ServerGetNicsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetNicsAttributeType(arg *ServerGetNicsAttributeType, val ServerGetNicsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for powerStatus
+*/
+
+// isNotNullableString
+type ServerGetPowerStatusAttributeType = *string
+
+func getServerGetPowerStatusAttributeTypeOk(arg ServerGetPowerStatusAttributeType) (ret ServerGetPowerStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetPowerStatusAttributeType(arg *ServerGetPowerStatusAttributeType, val ServerGetPowerStatusRetType) {
+	*arg = &val
+}
+
+type ServerGetPowerStatusArgType = string
+type ServerGetPowerStatusRetType = string
+
+/*
+	types and functions for securityGroups
+*/
+
+// isArray
+type ServerGetSecurityGroupsAttributeType = *[]string
+type ServerGetSecurityGroupsArgType = []string
+type ServerGetSecurityGroupsRetType = []string
+
+func getServerGetSecurityGroupsAttributeTypeOk(arg ServerGetSecurityGroupsAttributeType) (ret ServerGetSecurityGroupsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetSecurityGroupsAttributeType(arg *ServerGetSecurityGroupsAttributeType, val ServerGetSecurityGroupsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for serviceAccountMails
+*/
+
+// isArray
+type ServerGetServiceAccountMailsAttributeType = *[]string
+type ServerGetServiceAccountMailsArgType = []string
+type ServerGetServiceAccountMailsRetType = []string
+
+func getServerGetServiceAccountMailsAttributeTypeOk(arg ServerGetServiceAccountMailsAttributeType) (ret ServerGetServiceAccountMailsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetServiceAccountMailsAttributeType(arg *ServerGetServiceAccountMailsAttributeType, val ServerGetServiceAccountMailsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type ServerGetStatusAttributeType = *string
+
+func getServerGetStatusAttributeTypeOk(arg ServerGetStatusAttributeType) (ret ServerGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetStatusAttributeType(arg *ServerGetStatusAttributeType, val ServerGetStatusRetType) {
+	*arg = &val
+}
+
+type ServerGetStatusArgType = string
+type ServerGetStatusRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type ServerGetUpdatedAtAttributeType = *time.Time
+type ServerGetUpdatedAtArgType = time.Time
+type ServerGetUpdatedAtRetType = time.Time
+
+func getServerGetUpdatedAtAttributeTypeOk(arg ServerGetUpdatedAtAttributeType) (ret ServerGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetUpdatedAtAttributeType(arg *ServerGetUpdatedAtAttributeType, val ServerGetUpdatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for userData
+*/
+
+// isByteArray
+type ServerGetUserDataAttributeType = *[]byte
+type ServerGetUserDataArgType = []byte
+type ServerGetUserDataRetType = []byte
+
+func getServerGetUserDataAttributeTypeOk(arg ServerGetUserDataAttributeType) (ret ServerGetUserDataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetUserDataAttributeType(arg *ServerGetUserDataAttributeType, val ServerGetUserDataRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for volumes
+*/
+
+// isArray
+type ServerGetVolumesAttributeType = *[]string
+type ServerGetVolumesArgType = []string
+type ServerGetVolumesRetType = []string
+
+func getServerGetVolumesAttributeTypeOk(arg ServerGetVolumesAttributeType) (ret ServerGetVolumesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetVolumesAttributeType(arg *ServerGetVolumesAttributeType, val ServerGetVolumesRetType) {
+	*arg = &val
+}
+
 // Server Representation of a single server object.
 type Server struct {
 	// Universally Unique Identifier (UUID).
-	AffinityGroup *string `json:"affinityGroup,omitempty"`
+	AffinityGroup ServerGetAffinityGroupAttributeType `json:"affinityGroup,omitempty"`
 	// Object that represents an availability zone.
-	AvailabilityZone *string                        `json:"availabilityZone,omitempty"`
-	BootVolume       *CreateServerPayloadBootVolume `json:"bootVolume,omitempty"`
+	AvailabilityZone ServerGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
+	BootVolume       ServerGetBootVolumeAttributeType       `json:"bootVolume,omitempty"`
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt ServerGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// An error message.
-	ErrorMessage *string `json:"errorMessage,omitempty"`
+	ErrorMessage ServerGetErrorMessageAttributeType `json:"errorMessage,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id ServerGetIdAttributeType `json:"id,omitempty"`
 	// Universally Unique Identifier (UUID).
-	ImageId *string `json:"imageId,omitempty"`
+	ImageId ServerGetImageIdAttributeType `json:"imageId,omitempty"`
 	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
-	KeypairName *string `json:"keypairName,omitempty"`
+	KeypairName ServerGetKeypairNameAttributeType `json:"keypairName,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels ServerGetLabelsAttributeType `json:"labels,omitempty"`
 	// Date-time when resource was launched.
-	LaunchedAt *time.Time `json:"launchedAt,omitempty"`
+	LaunchedAt ServerGetLaunchedAtAttributeType `json:"launchedAt,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	MachineType       *string            `json:"machineType"`
-	MaintenanceWindow *ServerMaintenance `json:"maintenanceWindow,omitempty"`
+	MachineType       ServerGetMachineTypeAttributeType       `json:"machineType"`
+	MaintenanceWindow ServerGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
 	// The name for a Server.
 	// REQUIRED
-	Name       *string                        `json:"name"`
-	Networking *CreateServerPayloadNetworking `json:"networking,omitempty"`
+	Name       ServerGetNameAttributeType       `json:"name"`
+	Networking ServerGetNetworkingAttributeType `json:"networking,omitempty"`
 	// A list of networks attached to a server.
-	Nics *[]ServerNetwork `json:"nics,omitempty"`
+	Nics ServerGetNicsAttributeType `json:"nics,omitempty"`
 	// The power status of a server. Possible values: `CRASHED`, `ERROR`, `RUNNING`, `STOPPED`.
-	PowerStatus *string `json:"powerStatus,omitempty"`
+	PowerStatus ServerGetPowerStatusAttributeType `json:"powerStatus,omitempty"`
 	// A list of General Objects.
-	SecurityGroups *[]string `json:"securityGroups,omitempty"`
+	SecurityGroups ServerGetSecurityGroupsAttributeType `json:"securityGroups,omitempty"`
 	// A list of service account mails.
-	ServiceAccountMails *[]string `json:"serviceAccountMails,omitempty"`
+	ServiceAccountMails ServerGetServiceAccountMailsAttributeType `json:"serviceAccountMails,omitempty"`
 	// The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.
-	Status *string `json:"status,omitempty"`
+	Status ServerGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt ServerGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 	// User Data that is provided to the server. Must be base64 encoded and is passed via cloud-init to the server.
-	UserData *string `json:"userData,omitempty"`
+	UserData ServerGetUserDataAttributeType `json:"userData,omitempty"`
 	// A list of UUIDs.
-	Volumes *[]string `json:"volumes,omitempty"`
+	Volumes ServerGetVolumesAttributeType `json:"volumes,omitempty"`
 }
 
 type _Server Server
@@ -71,10 +521,10 @@ type _Server Server
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServer(machineType *string, name *string) *Server {
+func NewServer(machineType ServerGetMachineTypeArgType, name ServerGetNameArgType) *Server {
 	this := Server{}
-	this.MachineType = machineType
-	this.Name = name
+	setServerGetMachineTypeAttributeType(&this.MachineType, machineType)
+	setServerGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -87,756 +537,566 @@ func NewServerWithDefaults() *Server {
 }
 
 // GetAffinityGroup returns the AffinityGroup field value if set, zero value otherwise.
-func (o *Server) GetAffinityGroup() *string {
-	if o == nil || IsNil(o.AffinityGroup) {
-		var ret *string
-		return ret
-	}
-	return o.AffinityGroup
+func (o *Server) GetAffinityGroup() (res ServerGetAffinityGroupRetType) {
+	res, _ = o.GetAffinityGroupOk()
+	return
 }
 
 // GetAffinityGroupOk returns a tuple with the AffinityGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetAffinityGroupOk() (*string, bool) {
-	if o == nil || IsNil(o.AffinityGroup) {
-		return nil, false
-	}
-	return o.AffinityGroup, true
+func (o *Server) GetAffinityGroupOk() (ret ServerGetAffinityGroupRetType, ok bool) {
+	return getServerGetAffinityGroupAttributeTypeOk(o.AffinityGroup)
 }
 
 // HasAffinityGroup returns a boolean if a field has been set.
 func (o *Server) HasAffinityGroup() bool {
-	if o != nil && !IsNil(o.AffinityGroup) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAffinityGroupOk()
+	return ok
 }
 
 // SetAffinityGroup gets a reference to the given string and assigns it to the AffinityGroup field.
-func (o *Server) SetAffinityGroup(v *string) {
-	o.AffinityGroup = v
+func (o *Server) SetAffinityGroup(v ServerGetAffinityGroupRetType) {
+	setServerGetAffinityGroupAttributeType(&o.AffinityGroup, v)
 }
 
 // GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
-func (o *Server) GetAvailabilityZone() *string {
-	if o == nil || IsNil(o.AvailabilityZone) {
-		var ret *string
-		return ret
-	}
-	return o.AvailabilityZone
+func (o *Server) GetAvailabilityZone() (res ServerGetAvailabilityZoneRetType) {
+	res, _ = o.GetAvailabilityZoneOk()
+	return
 }
 
 // GetAvailabilityZoneOk returns a tuple with the AvailabilityZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetAvailabilityZoneOk() (*string, bool) {
-	if o == nil || IsNil(o.AvailabilityZone) {
-		return nil, false
-	}
-	return o.AvailabilityZone, true
+func (o *Server) GetAvailabilityZoneOk() (ret ServerGetAvailabilityZoneRetType, ok bool) {
+	return getServerGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone)
 }
 
 // HasAvailabilityZone returns a boolean if a field has been set.
 func (o *Server) HasAvailabilityZone() bool {
-	if o != nil && !IsNil(o.AvailabilityZone) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAvailabilityZoneOk()
+	return ok
 }
 
 // SetAvailabilityZone gets a reference to the given string and assigns it to the AvailabilityZone field.
-func (o *Server) SetAvailabilityZone(v *string) {
-	o.AvailabilityZone = v
+func (o *Server) SetAvailabilityZone(v ServerGetAvailabilityZoneRetType) {
+	setServerGetAvailabilityZoneAttributeType(&o.AvailabilityZone, v)
 }
 
 // GetBootVolume returns the BootVolume field value if set, zero value otherwise.
-func (o *Server) GetBootVolume() *CreateServerPayloadBootVolume {
-	if o == nil || IsNil(o.BootVolume) {
-		var ret *CreateServerPayloadBootVolume
-		return ret
-	}
-	return o.BootVolume
+func (o *Server) GetBootVolume() (res ServerGetBootVolumeRetType) {
+	res, _ = o.GetBootVolumeOk()
+	return
 }
 
 // GetBootVolumeOk returns a tuple with the BootVolume field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetBootVolumeOk() (*CreateServerPayloadBootVolume, bool) {
-	if o == nil || IsNil(o.BootVolume) {
-		return nil, false
-	}
-	return o.BootVolume, true
+func (o *Server) GetBootVolumeOk() (ret ServerGetBootVolumeRetType, ok bool) {
+	return getServerGetBootVolumeAttributeTypeOk(o.BootVolume)
 }
 
 // HasBootVolume returns a boolean if a field has been set.
 func (o *Server) HasBootVolume() bool {
-	if o != nil && !IsNil(o.BootVolume) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBootVolumeOk()
+	return ok
 }
 
 // SetBootVolume gets a reference to the given CreateServerPayloadBootVolume and assigns it to the BootVolume field.
-func (o *Server) SetBootVolume(v *CreateServerPayloadBootVolume) {
-	o.BootVolume = v
+func (o *Server) SetBootVolume(v ServerGetBootVolumeRetType) {
+	setServerGetBootVolumeAttributeType(&o.BootVolume, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Server) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *Server) GetCreatedAt() (res ServerGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *Server) GetCreatedAtOk() (ret ServerGetCreatedAtRetType, ok bool) {
+	return getServerGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Server) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Server) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *Server) SetCreatedAt(v ServerGetCreatedAtRetType) {
+	setServerGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
-func (o *Server) GetErrorMessage() *string {
-	if o == nil || IsNil(o.ErrorMessage) {
-		var ret *string
-		return ret
-	}
-	return o.ErrorMessage
+func (o *Server) GetErrorMessage() (res ServerGetErrorMessageRetType) {
+	res, _ = o.GetErrorMessageOk()
+	return
 }
 
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetErrorMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.ErrorMessage) {
-		return nil, false
-	}
-	return o.ErrorMessage, true
+func (o *Server) GetErrorMessageOk() (ret ServerGetErrorMessageRetType, ok bool) {
+	return getServerGetErrorMessageAttributeTypeOk(o.ErrorMessage)
 }
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *Server) HasErrorMessage() bool {
-	if o != nil && !IsNil(o.ErrorMessage) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorMessageOk()
+	return ok
 }
 
 // SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
-func (o *Server) SetErrorMessage(v *string) {
-	o.ErrorMessage = v
+func (o *Server) SetErrorMessage(v ServerGetErrorMessageRetType) {
+	setServerGetErrorMessageAttributeType(&o.ErrorMessage, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Server) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Server) GetId() (res ServerGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Server) GetIdOk() (ret ServerGetIdRetType, ok bool) {
+	return getServerGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Server) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Server) SetId(v *string) {
-	o.Id = v
+func (o *Server) SetId(v ServerGetIdRetType) {
+	setServerGetIdAttributeType(&o.Id, v)
 }
 
 // GetImageId returns the ImageId field value if set, zero value otherwise.
-func (o *Server) GetImageId() *string {
-	if o == nil || IsNil(o.ImageId) {
-		var ret *string
-		return ret
-	}
-	return o.ImageId
+func (o *Server) GetImageId() (res ServerGetImageIdRetType) {
+	res, _ = o.GetImageIdOk()
+	return
 }
 
 // GetImageIdOk returns a tuple with the ImageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetImageIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ImageId) {
-		return nil, false
-	}
-	return o.ImageId, true
+func (o *Server) GetImageIdOk() (ret ServerGetImageIdRetType, ok bool) {
+	return getServerGetImageIdAttributeTypeOk(o.ImageId)
 }
 
 // HasImageId returns a boolean if a field has been set.
 func (o *Server) HasImageId() bool {
-	if o != nil && !IsNil(o.ImageId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetImageIdOk()
+	return ok
 }
 
 // SetImageId gets a reference to the given string and assigns it to the ImageId field.
-func (o *Server) SetImageId(v *string) {
-	o.ImageId = v
+func (o *Server) SetImageId(v ServerGetImageIdRetType) {
+	setServerGetImageIdAttributeType(&o.ImageId, v)
 }
 
 // GetKeypairName returns the KeypairName field value if set, zero value otherwise.
-func (o *Server) GetKeypairName() *string {
-	if o == nil || IsNil(o.KeypairName) {
-		var ret *string
-		return ret
-	}
-	return o.KeypairName
+func (o *Server) GetKeypairName() (res ServerGetKeypairNameRetType) {
+	res, _ = o.GetKeypairNameOk()
+	return
 }
 
 // GetKeypairNameOk returns a tuple with the KeypairName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetKeypairNameOk() (*string, bool) {
-	if o == nil || IsNil(o.KeypairName) {
-		return nil, false
-	}
-	return o.KeypairName, true
+func (o *Server) GetKeypairNameOk() (ret ServerGetKeypairNameRetType, ok bool) {
+	return getServerGetKeypairNameAttributeTypeOk(o.KeypairName)
 }
 
 // HasKeypairName returns a boolean if a field has been set.
 func (o *Server) HasKeypairName() bool {
-	if o != nil && !IsNil(o.KeypairName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetKeypairNameOk()
+	return ok
 }
 
 // SetKeypairName gets a reference to the given string and assigns it to the KeypairName field.
-func (o *Server) SetKeypairName(v *string) {
-	o.KeypairName = v
+func (o *Server) SetKeypairName(v ServerGetKeypairNameRetType) {
+	setServerGetKeypairNameAttributeType(&o.KeypairName, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Server) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *Server) GetLabels() (res ServerGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *Server) GetLabelsOk() (ret ServerGetLabelsRetType, ok bool) {
+	return getServerGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Server) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *Server) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *Server) SetLabels(v ServerGetLabelsRetType) {
+	setServerGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetLaunchedAt returns the LaunchedAt field value if set, zero value otherwise.
-func (o *Server) GetLaunchedAt() *time.Time {
-	if o == nil || IsNil(o.LaunchedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.LaunchedAt
+func (o *Server) GetLaunchedAt() (res ServerGetLaunchedAtRetType) {
+	res, _ = o.GetLaunchedAtOk()
+	return
 }
 
 // GetLaunchedAtOk returns a tuple with the LaunchedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetLaunchedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.LaunchedAt) {
-		return nil, false
-	}
-	return o.LaunchedAt, true
+func (o *Server) GetLaunchedAtOk() (ret ServerGetLaunchedAtRetType, ok bool) {
+	return getServerGetLaunchedAtAttributeTypeOk(o.LaunchedAt)
 }
 
 // HasLaunchedAt returns a boolean if a field has been set.
 func (o *Server) HasLaunchedAt() bool {
-	if o != nil && !IsNil(o.LaunchedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLaunchedAtOk()
+	return ok
 }
 
 // SetLaunchedAt gets a reference to the given time.Time and assigns it to the LaunchedAt field.
-func (o *Server) SetLaunchedAt(v *time.Time) {
-	o.LaunchedAt = v
+func (o *Server) SetLaunchedAt(v ServerGetLaunchedAtRetType) {
+	setServerGetLaunchedAtAttributeType(&o.LaunchedAt, v)
 }
 
 // GetMachineType returns the MachineType field value
-func (o *Server) GetMachineType() *string {
-	if o == nil || IsNil(o.MachineType) {
-		var ret *string
-		return ret
-	}
-
-	return o.MachineType
+func (o *Server) GetMachineType() (ret ServerGetMachineTypeRetType) {
+	ret, _ = o.GetMachineTypeOk()
+	return ret
 }
 
 // GetMachineTypeOk returns a tuple with the MachineType field value
 // and a boolean to check if the value has been set.
-func (o *Server) GetMachineTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MachineType, true
+func (o *Server) GetMachineTypeOk() (ret ServerGetMachineTypeRetType, ok bool) {
+	return getServerGetMachineTypeAttributeTypeOk(o.MachineType)
 }
 
 // SetMachineType sets field value
-func (o *Server) SetMachineType(v *string) {
-	o.MachineType = v
+func (o *Server) SetMachineType(v ServerGetMachineTypeRetType) {
+	setServerGetMachineTypeAttributeType(&o.MachineType, v)
 }
 
 // GetMaintenanceWindow returns the MaintenanceWindow field value if set, zero value otherwise.
-func (o *Server) GetMaintenanceWindow() *ServerMaintenance {
-	if o == nil || IsNil(o.MaintenanceWindow) {
-		var ret *ServerMaintenance
-		return ret
-	}
-	return o.MaintenanceWindow
+func (o *Server) GetMaintenanceWindow() (res ServerGetMaintenanceWindowRetType) {
+	res, _ = o.GetMaintenanceWindowOk()
+	return
 }
 
 // GetMaintenanceWindowOk returns a tuple with the MaintenanceWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetMaintenanceWindowOk() (*ServerMaintenance, bool) {
-	if o == nil || IsNil(o.MaintenanceWindow) {
-		return nil, false
-	}
-	return o.MaintenanceWindow, true
+func (o *Server) GetMaintenanceWindowOk() (ret ServerGetMaintenanceWindowRetType, ok bool) {
+	return getServerGetMaintenanceWindowAttributeTypeOk(o.MaintenanceWindow)
 }
 
 // HasMaintenanceWindow returns a boolean if a field has been set.
 func (o *Server) HasMaintenanceWindow() bool {
-	if o != nil && !IsNil(o.MaintenanceWindow) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaintenanceWindowOk()
+	return ok
 }
 
 // SetMaintenanceWindow gets a reference to the given ServerMaintenance and assigns it to the MaintenanceWindow field.
-func (o *Server) SetMaintenanceWindow(v *ServerMaintenance) {
-	o.MaintenanceWindow = v
+func (o *Server) SetMaintenanceWindow(v ServerGetMaintenanceWindowRetType) {
+	setServerGetMaintenanceWindowAttributeType(&o.MaintenanceWindow, v)
 }
 
 // GetName returns the Name field value
-func (o *Server) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Server) GetName() (ret ServerGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Server) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Server) GetNameOk() (ret ServerGetNameRetType, ok bool) {
+	return getServerGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Server) SetName(v *string) {
-	o.Name = v
+func (o *Server) SetName(v ServerGetNameRetType) {
+	setServerGetNameAttributeType(&o.Name, v)
 }
 
 // GetNetworking returns the Networking field value if set, zero value otherwise.
-func (o *Server) GetNetworking() *CreateServerPayloadNetworking {
-	if o == nil || IsNil(o.Networking) {
-		var ret *CreateServerPayloadNetworking
-		return ret
-	}
-	return o.Networking
+func (o *Server) GetNetworking() (res ServerGetNetworkingRetType) {
+	res, _ = o.GetNetworkingOk()
+	return
 }
 
 // GetNetworkingOk returns a tuple with the Networking field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetNetworkingOk() (*CreateServerPayloadNetworking, bool) {
-	if o == nil || IsNil(o.Networking) {
-		return nil, false
-	}
-	return o.Networking, true
+func (o *Server) GetNetworkingOk() (ret ServerGetNetworkingRetType, ok bool) {
+	return getServerGetNetworkingAttributeTypeOk(o.Networking)
 }
 
 // HasNetworking returns a boolean if a field has been set.
 func (o *Server) HasNetworking() bool {
-	if o != nil && !IsNil(o.Networking) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNetworkingOk()
+	return ok
 }
 
 // SetNetworking gets a reference to the given CreateServerPayloadNetworking and assigns it to the Networking field.
-func (o *Server) SetNetworking(v *CreateServerPayloadNetworking) {
-	o.Networking = v
+func (o *Server) SetNetworking(v ServerGetNetworkingRetType) {
+	setServerGetNetworkingAttributeType(&o.Networking, v)
 }
 
 // GetNics returns the Nics field value if set, zero value otherwise.
-func (o *Server) GetNics() *[]ServerNetwork {
-	if o == nil || IsNil(o.Nics) {
-		var ret *[]ServerNetwork
-		return ret
-	}
-	return o.Nics
+func (o *Server) GetNics() (res ServerGetNicsRetType) {
+	res, _ = o.GetNicsOk()
+	return
 }
 
 // GetNicsOk returns a tuple with the Nics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetNicsOk() (*[]ServerNetwork, bool) {
-	if o == nil || IsNil(o.Nics) {
-		return nil, false
-	}
-	return o.Nics, true
+func (o *Server) GetNicsOk() (ret ServerGetNicsRetType, ok bool) {
+	return getServerGetNicsAttributeTypeOk(o.Nics)
 }
 
 // HasNics returns a boolean if a field has been set.
 func (o *Server) HasNics() bool {
-	if o != nil && !IsNil(o.Nics) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNicsOk()
+	return ok
 }
 
 // SetNics gets a reference to the given []ServerNetwork and assigns it to the Nics field.
-func (o *Server) SetNics(v *[]ServerNetwork) {
-	o.Nics = v
+func (o *Server) SetNics(v ServerGetNicsRetType) {
+	setServerGetNicsAttributeType(&o.Nics, v)
 }
 
 // GetPowerStatus returns the PowerStatus field value if set, zero value otherwise.
-func (o *Server) GetPowerStatus() *string {
-	if o == nil || IsNil(o.PowerStatus) {
-		var ret *string
-		return ret
-	}
-	return o.PowerStatus
+func (o *Server) GetPowerStatus() (res ServerGetPowerStatusRetType) {
+	res, _ = o.GetPowerStatusOk()
+	return
 }
 
 // GetPowerStatusOk returns a tuple with the PowerStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetPowerStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.PowerStatus) {
-		return nil, false
-	}
-	return o.PowerStatus, true
+func (o *Server) GetPowerStatusOk() (ret ServerGetPowerStatusRetType, ok bool) {
+	return getServerGetPowerStatusAttributeTypeOk(o.PowerStatus)
 }
 
 // HasPowerStatus returns a boolean if a field has been set.
 func (o *Server) HasPowerStatus() bool {
-	if o != nil && !IsNil(o.PowerStatus) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPowerStatusOk()
+	return ok
 }
 
 // SetPowerStatus gets a reference to the given string and assigns it to the PowerStatus field.
-func (o *Server) SetPowerStatus(v *string) {
-	o.PowerStatus = v
+func (o *Server) SetPowerStatus(v ServerGetPowerStatusRetType) {
+	setServerGetPowerStatusAttributeType(&o.PowerStatus, v)
 }
 
 // GetSecurityGroups returns the SecurityGroups field value if set, zero value otherwise.
-func (o *Server) GetSecurityGroups() *[]string {
-	if o == nil || IsNil(o.SecurityGroups) {
-		var ret *[]string
-		return ret
-	}
-	return o.SecurityGroups
+func (o *Server) GetSecurityGroups() (res ServerGetSecurityGroupsRetType) {
+	res, _ = o.GetSecurityGroupsOk()
+	return
 }
 
 // GetSecurityGroupsOk returns a tuple with the SecurityGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetSecurityGroupsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.SecurityGroups) {
-		return nil, false
-	}
-	return o.SecurityGroups, true
+func (o *Server) GetSecurityGroupsOk() (ret ServerGetSecurityGroupsRetType, ok bool) {
+	return getServerGetSecurityGroupsAttributeTypeOk(o.SecurityGroups)
 }
 
 // HasSecurityGroups returns a boolean if a field has been set.
 func (o *Server) HasSecurityGroups() bool {
-	if o != nil && !IsNil(o.SecurityGroups) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSecurityGroupsOk()
+	return ok
 }
 
 // SetSecurityGroups gets a reference to the given []string and assigns it to the SecurityGroups field.
-func (o *Server) SetSecurityGroups(v *[]string) {
-	o.SecurityGroups = v
+func (o *Server) SetSecurityGroups(v ServerGetSecurityGroupsRetType) {
+	setServerGetSecurityGroupsAttributeType(&o.SecurityGroups, v)
 }
 
 // GetServiceAccountMails returns the ServiceAccountMails field value if set, zero value otherwise.
-func (o *Server) GetServiceAccountMails() *[]string {
-	if o == nil || IsNil(o.ServiceAccountMails) {
-		var ret *[]string
-		return ret
-	}
-	return o.ServiceAccountMails
+func (o *Server) GetServiceAccountMails() (res ServerGetServiceAccountMailsRetType) {
+	res, _ = o.GetServiceAccountMailsOk()
+	return
 }
 
 // GetServiceAccountMailsOk returns a tuple with the ServiceAccountMails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetServiceAccountMailsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.ServiceAccountMails) {
-		return nil, false
-	}
-	return o.ServiceAccountMails, true
+func (o *Server) GetServiceAccountMailsOk() (ret ServerGetServiceAccountMailsRetType, ok bool) {
+	return getServerGetServiceAccountMailsAttributeTypeOk(o.ServiceAccountMails)
 }
 
 // HasServiceAccountMails returns a boolean if a field has been set.
 func (o *Server) HasServiceAccountMails() bool {
-	if o != nil && !IsNil(o.ServiceAccountMails) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetServiceAccountMailsOk()
+	return ok
 }
 
 // SetServiceAccountMails gets a reference to the given []string and assigns it to the ServiceAccountMails field.
-func (o *Server) SetServiceAccountMails(v *[]string) {
-	o.ServiceAccountMails = v
+func (o *Server) SetServiceAccountMails(v ServerGetServiceAccountMailsRetType) {
+	setServerGetServiceAccountMailsAttributeType(&o.ServiceAccountMails, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Server) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *Server) GetStatus() (res ServerGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *Server) GetStatusOk() (ret ServerGetStatusRetType, ok bool) {
+	return getServerGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Server) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Server) SetStatus(v *string) {
-	o.Status = v
+func (o *Server) SetStatus(v ServerGetStatusRetType) {
+	setServerGetStatusAttributeType(&o.Status, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Server) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *Server) GetUpdatedAt() (res ServerGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *Server) GetUpdatedAtOk() (ret ServerGetUpdatedAtRetType, ok bool) {
+	return getServerGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Server) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Server) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *Server) SetUpdatedAt(v ServerGetUpdatedAtRetType) {
+	setServerGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 // GetUserData returns the UserData field value if set, zero value otherwise.
-func (o *Server) GetUserData() *string {
-	if o == nil || IsNil(o.UserData) {
-		var ret *string
-		return ret
-	}
-	return o.UserData
+func (o *Server) GetUserData() (res ServerGetUserDataRetType) {
+	res, _ = o.GetUserDataOk()
+	return
 }
 
 // GetUserDataOk returns a tuple with the UserData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetUserDataOk() (*string, bool) {
-	if o == nil || IsNil(o.UserData) {
-		return nil, false
-	}
-	return o.UserData, true
+func (o *Server) GetUserDataOk() (ret ServerGetUserDataRetType, ok bool) {
+	return getServerGetUserDataAttributeTypeOk(o.UserData)
 }
 
 // HasUserData returns a boolean if a field has been set.
 func (o *Server) HasUserData() bool {
-	if o != nil && !IsNil(o.UserData) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUserDataOk()
+	return ok
 }
 
 // SetUserData gets a reference to the given string and assigns it to the UserData field.
-func (o *Server) SetUserData(v *string) {
-	o.UserData = v
+func (o *Server) SetUserData(v ServerGetUserDataRetType) {
+	setServerGetUserDataAttributeType(&o.UserData, v)
 }
 
 // GetVolumes returns the Volumes field value if set, zero value otherwise.
-func (o *Server) GetVolumes() *[]string {
-	if o == nil || IsNil(o.Volumes) {
-		var ret *[]string
-		return ret
-	}
-	return o.Volumes
+func (o *Server) GetVolumes() (res ServerGetVolumesRetType) {
+	res, _ = o.GetVolumesOk()
+	return
 }
 
 // GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Server) GetVolumesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Volumes) {
-		return nil, false
-	}
-	return o.Volumes, true
+func (o *Server) GetVolumesOk() (ret ServerGetVolumesRetType, ok bool) {
+	return getServerGetVolumesAttributeTypeOk(o.Volumes)
 }
 
 // HasVolumes returns a boolean if a field has been set.
 func (o *Server) HasVolumes() bool {
-	if o != nil && !IsNil(o.Volumes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVolumesOk()
+	return ok
 }
 
 // SetVolumes gets a reference to the given []string and assigns it to the Volumes field.
-func (o *Server) SetVolumes(v *[]string) {
-	o.Volumes = v
+func (o *Server) SetVolumes(v ServerGetVolumesRetType) {
+	setServerGetVolumesAttributeType(&o.Volumes, v)
 }
 
 func (o Server) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AffinityGroup) {
-		toSerialize["affinityGroup"] = o.AffinityGroup
+	if val, ok := getServerGetAffinityGroupAttributeTypeOk(o.AffinityGroup); ok {
+		toSerialize["AffinityGroup"] = val
 	}
-	if !IsNil(o.AvailabilityZone) {
-		toSerialize["availabilityZone"] = o.AvailabilityZone
+	if val, ok := getServerGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone); ok {
+		toSerialize["AvailabilityZone"] = val
 	}
-	if !IsNil(o.BootVolume) {
-		toSerialize["bootVolume"] = o.BootVolume
+	if val, ok := getServerGetBootVolumeAttributeTypeOk(o.BootVolume); ok {
+		toSerialize["BootVolume"] = val
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getServerGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if !IsNil(o.ErrorMessage) {
-		toSerialize["errorMessage"] = o.ErrorMessage
+	if val, ok := getServerGetErrorMessageAttributeTypeOk(o.ErrorMessage); ok {
+		toSerialize["ErrorMessage"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getServerGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.ImageId) {
-		toSerialize["imageId"] = o.ImageId
+	if val, ok := getServerGetImageIdAttributeTypeOk(o.ImageId); ok {
+		toSerialize["ImageId"] = val
 	}
-	if !IsNil(o.KeypairName) {
-		toSerialize["keypairName"] = o.KeypairName
+	if val, ok := getServerGetKeypairNameAttributeTypeOk(o.KeypairName); ok {
+		toSerialize["KeypairName"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getServerGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.LaunchedAt) {
-		toSerialize["launchedAt"] = o.LaunchedAt
+	if val, ok := getServerGetLaunchedAtAttributeTypeOk(o.LaunchedAt); ok {
+		toSerialize["LaunchedAt"] = val
 	}
-	toSerialize["machineType"] = o.MachineType
-	if !IsNil(o.MaintenanceWindow) {
-		toSerialize["maintenanceWindow"] = o.MaintenanceWindow
+	if val, ok := getServerGetMachineTypeAttributeTypeOk(o.MachineType); ok {
+		toSerialize["MachineType"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Networking) {
-		toSerialize["networking"] = o.Networking
+	if val, ok := getServerGetMaintenanceWindowAttributeTypeOk(o.MaintenanceWindow); ok {
+		toSerialize["MaintenanceWindow"] = val
 	}
-	if !IsNil(o.Nics) {
-		toSerialize["nics"] = o.Nics
+	if val, ok := getServerGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.PowerStatus) {
-		toSerialize["powerStatus"] = o.PowerStatus
+	if val, ok := getServerGetNetworkingAttributeTypeOk(o.Networking); ok {
+		toSerialize["Networking"] = val
 	}
-	if !IsNil(o.SecurityGroups) {
-		toSerialize["securityGroups"] = o.SecurityGroups
+	if val, ok := getServerGetNicsAttributeTypeOk(o.Nics); ok {
+		toSerialize["Nics"] = val
 	}
-	if !IsNil(o.ServiceAccountMails) {
-		toSerialize["serviceAccountMails"] = o.ServiceAccountMails
+	if val, ok := getServerGetPowerStatusAttributeTypeOk(o.PowerStatus); ok {
+		toSerialize["PowerStatus"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getServerGetSecurityGroupsAttributeTypeOk(o.SecurityGroups); ok {
+		toSerialize["SecurityGroups"] = val
 	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getServerGetServiceAccountMailsAttributeTypeOk(o.ServiceAccountMails); ok {
+		toSerialize["ServiceAccountMails"] = val
 	}
-	if !IsNil(o.UserData) {
-		toSerialize["userData"] = o.UserData
+	if val, ok := getServerGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
-	if !IsNil(o.Volumes) {
-		toSerialize["volumes"] = o.Volumes
+	if val, ok := getServerGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
+	}
+	if val, ok := getServerGetUserDataAttributeTypeOk(o.UserData); ok {
+		toSerialize["UserData"] = val
+	}
+	if val, ok := getServerGetVolumesAttributeTypeOk(o.Volumes); ok {
+		toSerialize["Volumes"] = val
 	}
 	return toSerialize, nil
 }
