@@ -18,29 +18,211 @@ import (
 // checks if the CreateServiceAccountKeyResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateServiceAccountKeyResponse{}
 
+/*
+	types and functions for active
+*/
+
+// isBoolean
+type CreateServiceAccountKeyResponsegetActiveAttributeType = *bool
+type CreateServiceAccountKeyResponsegetActiveArgType = bool
+type CreateServiceAccountKeyResponsegetActiveRetType = bool
+
+func getCreateServiceAccountKeyResponsegetActiveAttributeTypeOk(arg CreateServiceAccountKeyResponsegetActiveAttributeType) (ret CreateServiceAccountKeyResponsegetActiveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyResponsegetActiveAttributeType(arg *CreateServiceAccountKeyResponsegetActiveAttributeType, val CreateServiceAccountKeyResponsegetActiveRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type CreateServiceAccountKeyResponseGetCreatedAtAttributeType = *time.Time
+type CreateServiceAccountKeyResponseGetCreatedAtArgType = time.Time
+type CreateServiceAccountKeyResponseGetCreatedAtRetType = time.Time
+
+func getCreateServiceAccountKeyResponseGetCreatedAtAttributeTypeOk(arg CreateServiceAccountKeyResponseGetCreatedAtAttributeType) (ret CreateServiceAccountKeyResponseGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyResponseGetCreatedAtAttributeType(arg *CreateServiceAccountKeyResponseGetCreatedAtAttributeType, val CreateServiceAccountKeyResponseGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for credentials
+*/
+
+// isModel
+type CreateServiceAccountKeyResponseGetCredentialsAttributeType = *CreateServiceAccountKeyResponseCredentials
+type CreateServiceAccountKeyResponseGetCredentialsArgType = CreateServiceAccountKeyResponseCredentials
+type CreateServiceAccountKeyResponseGetCredentialsRetType = CreateServiceAccountKeyResponseCredentials
+
+func getCreateServiceAccountKeyResponseGetCredentialsAttributeTypeOk(arg CreateServiceAccountKeyResponseGetCredentialsAttributeType) (ret CreateServiceAccountKeyResponseGetCredentialsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyResponseGetCredentialsAttributeType(arg *CreateServiceAccountKeyResponseGetCredentialsAttributeType, val CreateServiceAccountKeyResponseGetCredentialsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CreateServiceAccountKeyResponseGetIdAttributeType = *string
+
+func getCreateServiceAccountKeyResponseGetIdAttributeTypeOk(arg CreateServiceAccountKeyResponseGetIdAttributeType) (ret CreateServiceAccountKeyResponseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyResponseGetIdAttributeType(arg *CreateServiceAccountKeyResponseGetIdAttributeType, val CreateServiceAccountKeyResponseGetIdRetType) {
+	*arg = &val
+}
+
+type CreateServiceAccountKeyResponseGetIdArgType = string
+type CreateServiceAccountKeyResponseGetIdRetType = string
+
+/*
+	types and functions for keyAlgorithm
+*/
+
+// isEnumRef
+type CreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType = *string
+type CreateServiceAccountKeyResponseGetKeyAlgorithmArgType = string
+type CreateServiceAccountKeyResponseGetKeyAlgorithmRetType = string
+
+func getCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeTypeOk(arg CreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType) (ret CreateServiceAccountKeyResponseGetKeyAlgorithmRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *CreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType, val CreateServiceAccountKeyResponseGetKeyAlgorithmRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for keyOrigin
+*/
+
+// isEnumRef
+type CreateServiceAccountKeyResponseGetKeyOriginAttributeType = *string
+type CreateServiceAccountKeyResponseGetKeyOriginArgType = string
+type CreateServiceAccountKeyResponseGetKeyOriginRetType = string
+
+func getCreateServiceAccountKeyResponseGetKeyOriginAttributeTypeOk(arg CreateServiceAccountKeyResponseGetKeyOriginAttributeType) (ret CreateServiceAccountKeyResponseGetKeyOriginRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *CreateServiceAccountKeyResponseGetKeyOriginAttributeType, val CreateServiceAccountKeyResponseGetKeyOriginRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for keyType
+*/
+
+// isEnumRef
+type CreateServiceAccountKeyResponseGetKeyTypeAttributeType = *string
+type CreateServiceAccountKeyResponseGetKeyTypeArgType = string
+type CreateServiceAccountKeyResponseGetKeyTypeRetType = string
+
+func getCreateServiceAccountKeyResponseGetKeyTypeAttributeTypeOk(arg CreateServiceAccountKeyResponseGetKeyTypeAttributeType) (ret CreateServiceAccountKeyResponseGetKeyTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyResponseGetKeyTypeAttributeType(arg *CreateServiceAccountKeyResponseGetKeyTypeAttributeType, val CreateServiceAccountKeyResponseGetKeyTypeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for publicKey
+*/
+
+// isNotNullableString
+type CreateServiceAccountKeyResponseGetPublicKeyAttributeType = *string
+
+func getCreateServiceAccountKeyResponseGetPublicKeyAttributeTypeOk(arg CreateServiceAccountKeyResponseGetPublicKeyAttributeType) (ret CreateServiceAccountKeyResponseGetPublicKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyResponseGetPublicKeyAttributeType(arg *CreateServiceAccountKeyResponseGetPublicKeyAttributeType, val CreateServiceAccountKeyResponseGetPublicKeyRetType) {
+	*arg = &val
+}
+
+type CreateServiceAccountKeyResponseGetPublicKeyArgType = string
+type CreateServiceAccountKeyResponseGetPublicKeyRetType = string
+
+/*
+	types and functions for validUntil
+*/
+
+// isDateTime
+type CreateServiceAccountKeyResponseGetValidUntilAttributeType = *time.Time
+type CreateServiceAccountKeyResponseGetValidUntilArgType = time.Time
+type CreateServiceAccountKeyResponseGetValidUntilRetType = time.Time
+
+func getCreateServiceAccountKeyResponseGetValidUntilAttributeTypeOk(arg CreateServiceAccountKeyResponseGetValidUntilAttributeType) (ret CreateServiceAccountKeyResponseGetValidUntilRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyResponseGetValidUntilAttributeType(arg *CreateServiceAccountKeyResponseGetValidUntilAttributeType, val CreateServiceAccountKeyResponseGetValidUntilRetType) {
+	*arg = &val
+}
+
 // CreateServiceAccountKeyResponse struct for CreateServiceAccountKeyResponse
 type CreateServiceAccountKeyResponse struct {
 	// REQUIRED
-	Active *bool `json:"active"`
+	Active CreateServiceAccountKeyResponsegetActiveAttributeType `json:"active"`
 	// Creation time of the key
 	// REQUIRED
-	CreatedAt *time.Time `json:"createdAt"`
+	CreatedAt CreateServiceAccountKeyResponseGetCreatedAtAttributeType `json:"createdAt"`
 	// REQUIRED
-	Credentials *CreateServiceAccountKeyResponseCredentials `json:"credentials"`
+	Credentials CreateServiceAccountKeyResponseGetCredentialsAttributeType `json:"credentials"`
 	// Unique ID of the key.
 	// REQUIRED
-	Id *string `json:"id"`
+	Id CreateServiceAccountKeyResponseGetIdAttributeType `json:"id"`
 	// REQUIRED
-	KeyAlgorithm *string `json:"keyAlgorithm"`
+	KeyAlgorithm CreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType `json:"keyAlgorithm"`
 	// REQUIRED
-	KeyOrigin *string `json:"keyOrigin"`
+	KeyOrigin CreateServiceAccountKeyResponseGetKeyOriginAttributeType `json:"keyOrigin"`
 	// REQUIRED
-	KeyType *string `json:"keyType"`
+	KeyType CreateServiceAccountKeyResponseGetKeyTypeAttributeType `json:"keyType"`
 	// Public key, that was provider, or was generated by the service account API
 	// REQUIRED
-	PublicKey *string `json:"publicKey"`
+	PublicKey CreateServiceAccountKeyResponseGetPublicKeyAttributeType `json:"publicKey"`
 	// If specified, the timestamp until the key is active. May be null
-	ValidUntil *time.Time `json:"validUntil,omitempty"`
+	ValidUntil CreateServiceAccountKeyResponseGetValidUntilAttributeType `json:"validUntil,omitempty"`
 }
 
 type _CreateServiceAccountKeyResponse CreateServiceAccountKeyResponse
@@ -49,16 +231,16 @@ type _CreateServiceAccountKeyResponse CreateServiceAccountKeyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateServiceAccountKeyResponse(active *bool, createdAt *time.Time, credentials *CreateServiceAccountKeyResponseCredentials, id *string, keyAlgorithm *string, keyOrigin *string, keyType *string, publicKey *string) *CreateServiceAccountKeyResponse {
+func NewCreateServiceAccountKeyResponse(active CreateServiceAccountKeyResponsegetActiveArgType, createdAt CreateServiceAccountKeyResponseGetCreatedAtArgType, credentials CreateServiceAccountKeyResponseGetCredentialsArgType, id CreateServiceAccountKeyResponseGetIdArgType, keyAlgorithm CreateServiceAccountKeyResponseGetKeyAlgorithmArgType, keyOrigin CreateServiceAccountKeyResponseGetKeyOriginArgType, keyType CreateServiceAccountKeyResponseGetKeyTypeArgType, publicKey CreateServiceAccountKeyResponseGetPublicKeyArgType) *CreateServiceAccountKeyResponse {
 	this := CreateServiceAccountKeyResponse{}
-	this.Active = active
-	this.CreatedAt = createdAt
-	this.Credentials = credentials
-	this.Id = id
-	this.KeyAlgorithm = keyAlgorithm
-	this.KeyOrigin = keyOrigin
-	this.KeyType = keyType
-	this.PublicKey = publicKey
+	setCreateServiceAccountKeyResponsegetActiveAttributeType(&this.Active, active)
+	setCreateServiceAccountKeyResponseGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
+	setCreateServiceAccountKeyResponseGetCredentialsAttributeType(&this.Credentials, credentials)
+	setCreateServiceAccountKeyResponseGetIdAttributeType(&this.Id, id)
+	setCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(&this.KeyAlgorithm, keyAlgorithm)
+	setCreateServiceAccountKeyResponseGetKeyOriginAttributeType(&this.KeyOrigin, keyOrigin)
+	setCreateServiceAccountKeyResponseGetKeyTypeAttributeType(&this.KeyType, keyType)
+	setCreateServiceAccountKeyResponseGetPublicKeyAttributeType(&this.PublicKey, publicKey)
 	return &this
 }
 
@@ -71,241 +253,192 @@ func NewCreateServiceAccountKeyResponseWithDefaults() *CreateServiceAccountKeyRe
 }
 
 // GetActive returns the Active field value
-func (o *CreateServiceAccountKeyResponse) GetActive() *bool {
-	if o == nil || IsNil(o.Active) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Active
+func (o *CreateServiceAccountKeyResponse) GetActive() (ret CreateServiceAccountKeyResponsegetActiveRetType) {
+	ret, _ = o.GetActiveOk()
+	return ret
 }
 
 // GetActiveOk returns a tuple with the Active field value
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyResponse) GetActiveOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Active, true
+func (o *CreateServiceAccountKeyResponse) GetActiveOk() (ret CreateServiceAccountKeyResponsegetActiveRetType, ok bool) {
+	return getCreateServiceAccountKeyResponsegetActiveAttributeTypeOk(o.Active)
 }
 
 // SetActive sets field value
-func (o *CreateServiceAccountKeyResponse) SetActive(v *bool) {
-	o.Active = v
+func (o *CreateServiceAccountKeyResponse) SetActive(v CreateServiceAccountKeyResponsegetActiveRetType) {
+	setCreateServiceAccountKeyResponsegetActiveAttributeType(&o.Active, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *CreateServiceAccountKeyResponse) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.CreatedAt
+func (o *CreateServiceAccountKeyResponse) GetCreatedAt() (ret CreateServiceAccountKeyResponseGetCreatedAtRetType) {
+	ret, _ = o.GetCreatedAtOk()
+	return ret
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyResponse) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *CreateServiceAccountKeyResponse) GetCreatedAtOk() (ret CreateServiceAccountKeyResponseGetCreatedAtRetType, ok bool) {
+	return getCreateServiceAccountKeyResponseGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // SetCreatedAt sets field value
-func (o *CreateServiceAccountKeyResponse) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *CreateServiceAccountKeyResponse) SetCreatedAt(v CreateServiceAccountKeyResponseGetCreatedAtRetType) {
+	setCreateServiceAccountKeyResponseGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetCredentials returns the Credentials field value
-func (o *CreateServiceAccountKeyResponse) GetCredentials() *CreateServiceAccountKeyResponseCredentials {
-	if o == nil || IsNil(o.Credentials) {
-		var ret *CreateServiceAccountKeyResponseCredentials
-		return ret
-	}
-
-	return o.Credentials
+func (o *CreateServiceAccountKeyResponse) GetCredentials() (ret CreateServiceAccountKeyResponseGetCredentialsRetType) {
+	ret, _ = o.GetCredentialsOk()
+	return ret
 }
 
 // GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyResponse) GetCredentialsOk() (*CreateServiceAccountKeyResponseCredentials, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Credentials, true
+func (o *CreateServiceAccountKeyResponse) GetCredentialsOk() (ret CreateServiceAccountKeyResponseGetCredentialsRetType, ok bool) {
+	return getCreateServiceAccountKeyResponseGetCredentialsAttributeTypeOk(o.Credentials)
 }
 
 // SetCredentials sets field value
-func (o *CreateServiceAccountKeyResponse) SetCredentials(v *CreateServiceAccountKeyResponseCredentials) {
-	o.Credentials = v
+func (o *CreateServiceAccountKeyResponse) SetCredentials(v CreateServiceAccountKeyResponseGetCredentialsRetType) {
+	setCreateServiceAccountKeyResponseGetCredentialsAttributeType(&o.Credentials, v)
 }
 
 // GetId returns the Id field value
-func (o *CreateServiceAccountKeyResponse) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *CreateServiceAccountKeyResponse) GetId() (ret CreateServiceAccountKeyResponseGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyResponse) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CreateServiceAccountKeyResponse) GetIdOk() (ret CreateServiceAccountKeyResponseGetIdRetType, ok bool) {
+	return getCreateServiceAccountKeyResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *CreateServiceAccountKeyResponse) SetId(v *string) {
-	o.Id = v
+func (o *CreateServiceAccountKeyResponse) SetId(v CreateServiceAccountKeyResponseGetIdRetType) {
+	setCreateServiceAccountKeyResponseGetIdAttributeType(&o.Id, v)
 }
 
 // GetKeyAlgorithm returns the KeyAlgorithm field value
-func (o *CreateServiceAccountKeyResponse) GetKeyAlgorithm() *string {
-	if o == nil || IsNil(o.KeyAlgorithm) {
-		var ret *string
-		return ret
-	}
-
-	return o.KeyAlgorithm
+func (o *CreateServiceAccountKeyResponse) GetKeyAlgorithm() (ret CreateServiceAccountKeyResponseGetKeyAlgorithmRetType) {
+	ret, _ = o.GetKeyAlgorithmOk()
+	return ret
 }
 
 // GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field value
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyResponse) GetKeyAlgorithmOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyAlgorithm, true
+func (o *CreateServiceAccountKeyResponse) GetKeyAlgorithmOk() (ret CreateServiceAccountKeyResponseGetKeyAlgorithmRetType, ok bool) {
+	return getCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeTypeOk(o.KeyAlgorithm)
 }
 
 // SetKeyAlgorithm sets field value
-func (o *CreateServiceAccountKeyResponse) SetKeyAlgorithm(v *string) {
-	o.KeyAlgorithm = v
+func (o *CreateServiceAccountKeyResponse) SetKeyAlgorithm(v CreateServiceAccountKeyResponseGetKeyAlgorithmRetType) {
+	setCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(&o.KeyAlgorithm, v)
 }
 
 // GetKeyOrigin returns the KeyOrigin field value
-func (o *CreateServiceAccountKeyResponse) GetKeyOrigin() *string {
-	if o == nil || IsNil(o.KeyOrigin) {
-		var ret *string
-		return ret
-	}
-
-	return o.KeyOrigin
+func (o *CreateServiceAccountKeyResponse) GetKeyOrigin() (ret CreateServiceAccountKeyResponseGetKeyOriginRetType) {
+	ret, _ = o.GetKeyOriginOk()
+	return ret
 }
 
 // GetKeyOriginOk returns a tuple with the KeyOrigin field value
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyResponse) GetKeyOriginOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyOrigin, true
+func (o *CreateServiceAccountKeyResponse) GetKeyOriginOk() (ret CreateServiceAccountKeyResponseGetKeyOriginRetType, ok bool) {
+	return getCreateServiceAccountKeyResponseGetKeyOriginAttributeTypeOk(o.KeyOrigin)
 }
 
 // SetKeyOrigin sets field value
-func (o *CreateServiceAccountKeyResponse) SetKeyOrigin(v *string) {
-	o.KeyOrigin = v
+func (o *CreateServiceAccountKeyResponse) SetKeyOrigin(v CreateServiceAccountKeyResponseGetKeyOriginRetType) {
+	setCreateServiceAccountKeyResponseGetKeyOriginAttributeType(&o.KeyOrigin, v)
 }
 
 // GetKeyType returns the KeyType field value
-func (o *CreateServiceAccountKeyResponse) GetKeyType() *string {
-	if o == nil || IsNil(o.KeyType) {
-		var ret *string
-		return ret
-	}
-
-	return o.KeyType
+func (o *CreateServiceAccountKeyResponse) GetKeyType() (ret CreateServiceAccountKeyResponseGetKeyTypeRetType) {
+	ret, _ = o.GetKeyTypeOk()
+	return ret
 }
 
 // GetKeyTypeOk returns a tuple with the KeyType field value
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyResponse) GetKeyTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyType, true
+func (o *CreateServiceAccountKeyResponse) GetKeyTypeOk() (ret CreateServiceAccountKeyResponseGetKeyTypeRetType, ok bool) {
+	return getCreateServiceAccountKeyResponseGetKeyTypeAttributeTypeOk(o.KeyType)
 }
 
 // SetKeyType sets field value
-func (o *CreateServiceAccountKeyResponse) SetKeyType(v *string) {
-	o.KeyType = v
+func (o *CreateServiceAccountKeyResponse) SetKeyType(v CreateServiceAccountKeyResponseGetKeyTypeRetType) {
+	setCreateServiceAccountKeyResponseGetKeyTypeAttributeType(&o.KeyType, v)
 }
 
 // GetPublicKey returns the PublicKey field value
-func (o *CreateServiceAccountKeyResponse) GetPublicKey() *string {
-	if o == nil || IsNil(o.PublicKey) {
-		var ret *string
-		return ret
-	}
-
-	return o.PublicKey
+func (o *CreateServiceAccountKeyResponse) GetPublicKey() (ret CreateServiceAccountKeyResponseGetPublicKeyRetType) {
+	ret, _ = o.GetPublicKeyOk()
+	return ret
 }
 
 // GetPublicKeyOk returns a tuple with the PublicKey field value
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyResponse) GetPublicKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PublicKey, true
+func (o *CreateServiceAccountKeyResponse) GetPublicKeyOk() (ret CreateServiceAccountKeyResponseGetPublicKeyRetType, ok bool) {
+	return getCreateServiceAccountKeyResponseGetPublicKeyAttributeTypeOk(o.PublicKey)
 }
 
 // SetPublicKey sets field value
-func (o *CreateServiceAccountKeyResponse) SetPublicKey(v *string) {
-	o.PublicKey = v
+func (o *CreateServiceAccountKeyResponse) SetPublicKey(v CreateServiceAccountKeyResponseGetPublicKeyRetType) {
+	setCreateServiceAccountKeyResponseGetPublicKeyAttributeType(&o.PublicKey, v)
 }
 
 // GetValidUntil returns the ValidUntil field value if set, zero value otherwise.
-func (o *CreateServiceAccountKeyResponse) GetValidUntil() *time.Time {
-	if o == nil || IsNil(o.ValidUntil) {
-		var ret *time.Time
-		return ret
-	}
-	return o.ValidUntil
+func (o *CreateServiceAccountKeyResponse) GetValidUntil() (res CreateServiceAccountKeyResponseGetValidUntilRetType) {
+	res, _ = o.GetValidUntilOk()
+	return
 }
 
 // GetValidUntilOk returns a tuple with the ValidUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyResponse) GetValidUntilOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.ValidUntil) {
-		return nil, false
-	}
-	return o.ValidUntil, true
+func (o *CreateServiceAccountKeyResponse) GetValidUntilOk() (ret CreateServiceAccountKeyResponseGetValidUntilRetType, ok bool) {
+	return getCreateServiceAccountKeyResponseGetValidUntilAttributeTypeOk(o.ValidUntil)
 }
 
 // HasValidUntil returns a boolean if a field has been set.
 func (o *CreateServiceAccountKeyResponse) HasValidUntil() bool {
-	if o != nil && !IsNil(o.ValidUntil) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetValidUntilOk()
+	return ok
 }
 
 // SetValidUntil gets a reference to the given time.Time and assigns it to the ValidUntil field.
-func (o *CreateServiceAccountKeyResponse) SetValidUntil(v *time.Time) {
-	o.ValidUntil = v
+func (o *CreateServiceAccountKeyResponse) SetValidUntil(v CreateServiceAccountKeyResponseGetValidUntilRetType) {
+	setCreateServiceAccountKeyResponseGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
 func (o CreateServiceAccountKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["active"] = o.Active
-	toSerialize["createdAt"] = o.CreatedAt
-	toSerialize["credentials"] = o.Credentials
-	toSerialize["id"] = o.Id
-	toSerialize["keyAlgorithm"] = o.KeyAlgorithm
-	toSerialize["keyOrigin"] = o.KeyOrigin
-	toSerialize["keyType"] = o.KeyType
-	toSerialize["publicKey"] = o.PublicKey
-	if !IsNil(o.ValidUntil) {
-		toSerialize["validUntil"] = o.ValidUntil
+	if val, ok := getCreateServiceAccountKeyResponsegetActiveAttributeTypeOk(o.Active); ok {
+		toSerialize["Active"] = val
+	}
+	if val, ok := getCreateServiceAccountKeyResponseGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getCreateServiceAccountKeyResponseGetCredentialsAttributeTypeOk(o.Credentials); ok {
+		toSerialize["Credentials"] = val
+	}
+	if val, ok := getCreateServiceAccountKeyResponseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeTypeOk(o.KeyAlgorithm); ok {
+		toSerialize["KeyAlgorithm"] = val
+	}
+	if val, ok := getCreateServiceAccountKeyResponseGetKeyOriginAttributeTypeOk(o.KeyOrigin); ok {
+		toSerialize["KeyOrigin"] = val
+	}
+	if val, ok := getCreateServiceAccountKeyResponseGetKeyTypeAttributeTypeOk(o.KeyType); ok {
+		toSerialize["KeyType"] = val
+	}
+	if val, ok := getCreateServiceAccountKeyResponseGetPublicKeyAttributeTypeOk(o.PublicKey); ok {
+		toSerialize["PublicKey"] = val
+	}
+	if val, ok := getCreateServiceAccountKeyResponseGetValidUntilAttributeTypeOk(o.ValidUntil); ok {
+		toSerialize["ValidUntil"] = val
 	}
 	return toSerialize, nil
 }
