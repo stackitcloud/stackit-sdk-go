@@ -17,10 +17,30 @@ import (
 // checks if the AuthError type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AuthError{}
 
+/*
+	types and functions for error
+*/
+
+// isModel
+type AuthErrorGetErrorAttributeType = *AuthErrorError
+type AuthErrorGetErrorArgType = AuthErrorError
+type AuthErrorGetErrorRetType = AuthErrorError
+
+func getAuthErrorGetErrorAttributeTypeOk(arg AuthErrorGetErrorAttributeType) (ret AuthErrorGetErrorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAuthErrorGetErrorAttributeType(arg *AuthErrorGetErrorAttributeType, val AuthErrorGetErrorRetType) {
+	*arg = &val
+}
+
 // AuthError struct for AuthError
 type AuthError struct {
 	// REQUIRED
-	Error *AuthErrorError `json:"error"`
+	Error AuthErrorGetErrorAttributeType `json:"error"`
 }
 
 type _AuthError AuthError
@@ -29,9 +49,9 @@ type _AuthError AuthError
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuthError(error_ *AuthErrorError) *AuthError {
+func NewAuthError(error_ AuthErrorGetErrorArgType) *AuthError {
 	this := AuthError{}
-	this.Error = error_
+	setAuthErrorGetErrorAttributeType(&this.Error, error_)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewAuthErrorWithDefaults() *AuthError {
 }
 
 // GetError returns the Error field value
-func (o *AuthError) GetError() *AuthErrorError {
-	if o == nil || IsNil(o.Error) {
-		var ret *AuthErrorError
-		return ret
-	}
-
-	return o.Error
+func (o *AuthError) GetError() (ret AuthErrorGetErrorRetType) {
+	ret, _ = o.GetErrorOk()
+	return ret
 }
 
 // GetErrorOk returns a tuple with the Error field value
 // and a boolean to check if the value has been set.
-func (o *AuthError) GetErrorOk() (*AuthErrorError, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Error, true
+func (o *AuthError) GetErrorOk() (ret AuthErrorGetErrorRetType, ok bool) {
+	return getAuthErrorGetErrorAttributeTypeOk(o.Error)
 }
 
 // SetError sets field value
-func (o *AuthError) SetError(v *AuthErrorError) {
-	o.Error = v
+func (o *AuthError) SetError(v AuthErrorGetErrorRetType) {
+	setAuthErrorGetErrorAttributeType(&o.Error, v)
 }
 
 func (o AuthError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["error"] = o.Error
+	if val, ok := getAuthErrorGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
+	}
 	return toSerialize, nil
 }
 
