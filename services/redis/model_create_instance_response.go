@@ -17,10 +17,31 @@ import (
 // checks if the CreateInstanceResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateInstanceResponse{}
 
+/*
+	types and functions for instanceId
+*/
+
+// isNotNullableString
+type CreateInstanceResponseGetInstanceIdAttributeType = *string
+
+func getCreateInstanceResponseGetInstanceIdAttributeTypeOk(arg CreateInstanceResponseGetInstanceIdAttributeType) (ret CreateInstanceResponseGetInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstanceResponseGetInstanceIdAttributeType(arg *CreateInstanceResponseGetInstanceIdAttributeType, val CreateInstanceResponseGetInstanceIdRetType) {
+	*arg = &val
+}
+
+type CreateInstanceResponseGetInstanceIdArgType = string
+type CreateInstanceResponseGetInstanceIdRetType = string
+
 // CreateInstanceResponse struct for CreateInstanceResponse
 type CreateInstanceResponse struct {
 	// REQUIRED
-	InstanceId *string `json:"instanceId"`
+	InstanceId CreateInstanceResponseGetInstanceIdAttributeType `json:"instanceId"`
 }
 
 type _CreateInstanceResponse CreateInstanceResponse
@@ -29,9 +50,9 @@ type _CreateInstanceResponse CreateInstanceResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInstanceResponse(instanceId *string) *CreateInstanceResponse {
+func NewCreateInstanceResponse(instanceId CreateInstanceResponseGetInstanceIdArgType) *CreateInstanceResponse {
 	this := CreateInstanceResponse{}
-	this.InstanceId = instanceId
+	setCreateInstanceResponseGetInstanceIdAttributeType(&this.InstanceId, instanceId)
 	return &this
 }
 
@@ -44,32 +65,27 @@ func NewCreateInstanceResponseWithDefaults() *CreateInstanceResponse {
 }
 
 // GetInstanceId returns the InstanceId field value
-func (o *CreateInstanceResponse) GetInstanceId() *string {
-	if o == nil || IsNil(o.InstanceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.InstanceId
+func (o *CreateInstanceResponse) GetInstanceId() (ret CreateInstanceResponseGetInstanceIdRetType) {
+	ret, _ = o.GetInstanceIdOk()
+	return ret
 }
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value
 // and a boolean to check if the value has been set.
-func (o *CreateInstanceResponse) GetInstanceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.InstanceId, true
+func (o *CreateInstanceResponse) GetInstanceIdOk() (ret CreateInstanceResponseGetInstanceIdRetType, ok bool) {
+	return getCreateInstanceResponseGetInstanceIdAttributeTypeOk(o.InstanceId)
 }
 
 // SetInstanceId sets field value
-func (o *CreateInstanceResponse) SetInstanceId(v *string) {
-	o.InstanceId = v
+func (o *CreateInstanceResponse) SetInstanceId(v CreateInstanceResponseGetInstanceIdRetType) {
+	setCreateInstanceResponseGetInstanceIdAttributeType(&o.InstanceId, v)
 }
 
 func (o CreateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["instanceId"] = o.InstanceId
+	if val, ok := getCreateInstanceResponseGetInstanceIdAttributeTypeOk(o.InstanceId); ok {
+		toSerialize["InstanceId"] = val
+	}
 	return toSerialize, nil
 }
 
