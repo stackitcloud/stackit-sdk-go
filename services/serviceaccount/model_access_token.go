@@ -18,23 +18,125 @@ import (
 // checks if the AccessToken type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AccessToken{}
 
+/*
+	types and functions for active
+*/
+
+// isBoolean
+type AccessTokengetActiveAttributeType = *bool
+type AccessTokengetActiveArgType = bool
+type AccessTokengetActiveRetType = bool
+
+func getAccessTokengetActiveAttributeTypeOk(arg AccessTokengetActiveAttributeType) (ret AccessTokengetActiveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessTokengetActiveAttributeType(arg *AccessTokengetActiveAttributeType, val AccessTokengetActiveRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type AccessTokenGetCreatedAtAttributeType = *time.Time
+type AccessTokenGetCreatedAtArgType = time.Time
+type AccessTokenGetCreatedAtRetType = time.Time
+
+func getAccessTokenGetCreatedAtAttributeTypeOk(arg AccessTokenGetCreatedAtAttributeType) (ret AccessTokenGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessTokenGetCreatedAtAttributeType(arg *AccessTokenGetCreatedAtAttributeType, val AccessTokenGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type AccessTokenGetIdAttributeType = *string
+
+func getAccessTokenGetIdAttributeTypeOk(arg AccessTokenGetIdAttributeType) (ret AccessTokenGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessTokenGetIdAttributeType(arg *AccessTokenGetIdAttributeType, val AccessTokenGetIdRetType) {
+	*arg = &val
+}
+
+type AccessTokenGetIdArgType = string
+type AccessTokenGetIdRetType = string
+
+/*
+	types and functions for token
+*/
+
+// isNotNullableString
+type AccessTokenGetTokenAttributeType = *string
+
+func getAccessTokenGetTokenAttributeTypeOk(arg AccessTokenGetTokenAttributeType) (ret AccessTokenGetTokenRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessTokenGetTokenAttributeType(arg *AccessTokenGetTokenAttributeType, val AccessTokenGetTokenRetType) {
+	*arg = &val
+}
+
+type AccessTokenGetTokenArgType = string
+type AccessTokenGetTokenRetType = string
+
+/*
+	types and functions for validUntil
+*/
+
+// isDateTime
+type AccessTokenGetValidUntilAttributeType = *time.Time
+type AccessTokenGetValidUntilArgType = time.Time
+type AccessTokenGetValidUntilRetType = time.Time
+
+func getAccessTokenGetValidUntilAttributeTypeOk(arg AccessTokenGetValidUntilAttributeType) (ret AccessTokenGetValidUntilRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessTokenGetValidUntilAttributeType(arg *AccessTokenGetValidUntilAttributeType, val AccessTokenGetValidUntilRetType) {
+	*arg = &val
+}
+
 // AccessToken Contains token metadata and actual token.
 type AccessToken struct {
 	// Newly created access tokens are valid, and can be revoked if needed.
 	// REQUIRED
-	Active *bool `json:"active"`
+	Active AccessTokengetActiveAttributeType `json:"active"`
 	// Creation time of the access token.
 	// REQUIRED
-	CreatedAt *time.Time `json:"createdAt"`
+	CreatedAt AccessTokenGetCreatedAtAttributeType `json:"createdAt"`
 	// Unique ID of the access token. Also used as JTI field.
 	// REQUIRED
-	Id *string `json:"id"`
+	Id AccessTokenGetIdAttributeType `json:"id"`
 	// The access token in JWT format. Use this with `Bearer` prefix for API calls. Store it, as it is not recoverable later.
 	// REQUIRED
-	Token *string `json:"token"`
+	Token AccessTokenGetTokenAttributeType `json:"token"`
 	// Approximate expiration time of the access token. Check the JWT for actual validity date.
 	// REQUIRED
-	ValidUntil *time.Time `json:"validUntil"`
+	ValidUntil AccessTokenGetValidUntilAttributeType `json:"validUntil"`
 }
 
 type _AccessToken AccessToken
@@ -43,13 +145,13 @@ type _AccessToken AccessToken
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccessToken(active *bool, createdAt *time.Time, id *string, token *string, validUntil *time.Time) *AccessToken {
+func NewAccessToken(active AccessTokengetActiveArgType, createdAt AccessTokenGetCreatedAtArgType, id AccessTokenGetIdArgType, token AccessTokenGetTokenArgType, validUntil AccessTokenGetValidUntilArgType) *AccessToken {
 	this := AccessToken{}
-	this.Active = active
-	this.CreatedAt = createdAt
-	this.Id = id
-	this.Token = token
-	this.ValidUntil = validUntil
+	setAccessTokengetActiveAttributeType(&this.Active, active)
+	setAccessTokenGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
+	setAccessTokenGetIdAttributeType(&this.Id, id)
+	setAccessTokenGetTokenAttributeType(&this.Token, token)
+	setAccessTokenGetValidUntilAttributeType(&this.ValidUntil, validUntil)
 	return &this
 }
 
@@ -62,132 +164,107 @@ func NewAccessTokenWithDefaults() *AccessToken {
 }
 
 // GetActive returns the Active field value
-func (o *AccessToken) GetActive() *bool {
-	if o == nil || IsNil(o.Active) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Active
+func (o *AccessToken) GetActive() (ret AccessTokengetActiveRetType) {
+	ret, _ = o.GetActiveOk()
+	return ret
 }
 
 // GetActiveOk returns a tuple with the Active field value
 // and a boolean to check if the value has been set.
-func (o *AccessToken) GetActiveOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Active, true
+func (o *AccessToken) GetActiveOk() (ret AccessTokengetActiveRetType, ok bool) {
+	return getAccessTokengetActiveAttributeTypeOk(o.Active)
 }
 
 // SetActive sets field value
-func (o *AccessToken) SetActive(v *bool) {
-	o.Active = v
+func (o *AccessToken) SetActive(v AccessTokengetActiveRetType) {
+	setAccessTokengetActiveAttributeType(&o.Active, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *AccessToken) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.CreatedAt
+func (o *AccessToken) GetCreatedAt() (ret AccessTokenGetCreatedAtRetType) {
+	ret, _ = o.GetCreatedAtOk()
+	return ret
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *AccessToken) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *AccessToken) GetCreatedAtOk() (ret AccessTokenGetCreatedAtRetType, ok bool) {
+	return getAccessTokenGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // SetCreatedAt sets field value
-func (o *AccessToken) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *AccessToken) SetCreatedAt(v AccessTokenGetCreatedAtRetType) {
+	setAccessTokenGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetId returns the Id field value
-func (o *AccessToken) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *AccessToken) GetId() (ret AccessTokenGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AccessToken) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *AccessToken) GetIdOk() (ret AccessTokenGetIdRetType, ok bool) {
+	return getAccessTokenGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *AccessToken) SetId(v *string) {
-	o.Id = v
+func (o *AccessToken) SetId(v AccessTokenGetIdRetType) {
+	setAccessTokenGetIdAttributeType(&o.Id, v)
 }
 
 // GetToken returns the Token field value
-func (o *AccessToken) GetToken() *string {
-	if o == nil || IsNil(o.Token) {
-		var ret *string
-		return ret
-	}
-
-	return o.Token
+func (o *AccessToken) GetToken() (ret AccessTokenGetTokenRetType) {
+	ret, _ = o.GetTokenOk()
+	return ret
 }
 
 // GetTokenOk returns a tuple with the Token field value
 // and a boolean to check if the value has been set.
-func (o *AccessToken) GetTokenOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Token, true
+func (o *AccessToken) GetTokenOk() (ret AccessTokenGetTokenRetType, ok bool) {
+	return getAccessTokenGetTokenAttributeTypeOk(o.Token)
 }
 
 // SetToken sets field value
-func (o *AccessToken) SetToken(v *string) {
-	o.Token = v
+func (o *AccessToken) SetToken(v AccessTokenGetTokenRetType) {
+	setAccessTokenGetTokenAttributeType(&o.Token, v)
 }
 
 // GetValidUntil returns the ValidUntil field value
-func (o *AccessToken) GetValidUntil() *time.Time {
-	if o == nil || IsNil(o.ValidUntil) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.ValidUntil
+func (o *AccessToken) GetValidUntil() (ret AccessTokenGetValidUntilRetType) {
+	ret, _ = o.GetValidUntilOk()
+	return ret
 }
 
 // GetValidUntilOk returns a tuple with the ValidUntil field value
 // and a boolean to check if the value has been set.
-func (o *AccessToken) GetValidUntilOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ValidUntil, true
+func (o *AccessToken) GetValidUntilOk() (ret AccessTokenGetValidUntilRetType, ok bool) {
+	return getAccessTokenGetValidUntilAttributeTypeOk(o.ValidUntil)
 }
 
 // SetValidUntil sets field value
-func (o *AccessToken) SetValidUntil(v *time.Time) {
-	o.ValidUntil = v
+func (o *AccessToken) SetValidUntil(v AccessTokenGetValidUntilRetType) {
+	setAccessTokenGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
 func (o AccessToken) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["active"] = o.Active
-	toSerialize["createdAt"] = o.CreatedAt
-	toSerialize["id"] = o.Id
-	toSerialize["token"] = o.Token
-	toSerialize["validUntil"] = o.ValidUntil
+	if val, ok := getAccessTokengetActiveAttributeTypeOk(o.Active); ok {
+		toSerialize["Active"] = val
+	}
+	if val, ok := getAccessTokenGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getAccessTokenGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getAccessTokenGetTokenAttributeTypeOk(o.Token); ok {
+		toSerialize["Token"] = val
+	}
+	if val, ok := getAccessTokenGetValidUntilAttributeTypeOk(o.ValidUntil); ok {
+		toSerialize["ValidUntil"] = val
+	}
 	return toSerialize, nil
 }
 

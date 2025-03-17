@@ -18,20 +18,101 @@ import (
 // checks if the AccessTokenMetadata type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AccessTokenMetadata{}
 
+/*
+	types and functions for active
+*/
+
+// isBoolean
+type AccessTokenMetadatagetActiveAttributeType = *bool
+type AccessTokenMetadatagetActiveArgType = bool
+type AccessTokenMetadatagetActiveRetType = bool
+
+func getAccessTokenMetadatagetActiveAttributeTypeOk(arg AccessTokenMetadatagetActiveAttributeType) (ret AccessTokenMetadatagetActiveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessTokenMetadatagetActiveAttributeType(arg *AccessTokenMetadatagetActiveAttributeType, val AccessTokenMetadatagetActiveRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type AccessTokenMetadataGetCreatedAtAttributeType = *time.Time
+type AccessTokenMetadataGetCreatedAtArgType = time.Time
+type AccessTokenMetadataGetCreatedAtRetType = time.Time
+
+func getAccessTokenMetadataGetCreatedAtAttributeTypeOk(arg AccessTokenMetadataGetCreatedAtAttributeType) (ret AccessTokenMetadataGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessTokenMetadataGetCreatedAtAttributeType(arg *AccessTokenMetadataGetCreatedAtAttributeType, val AccessTokenMetadataGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type AccessTokenMetadataGetIdAttributeType = *string
+
+func getAccessTokenMetadataGetIdAttributeTypeOk(arg AccessTokenMetadataGetIdAttributeType) (ret AccessTokenMetadataGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessTokenMetadataGetIdAttributeType(arg *AccessTokenMetadataGetIdAttributeType, val AccessTokenMetadataGetIdRetType) {
+	*arg = &val
+}
+
+type AccessTokenMetadataGetIdArgType = string
+type AccessTokenMetadataGetIdRetType = string
+
+/*
+	types and functions for validUntil
+*/
+
+// isDateTime
+type AccessTokenMetadataGetValidUntilAttributeType = *time.Time
+type AccessTokenMetadataGetValidUntilArgType = time.Time
+type AccessTokenMetadataGetValidUntilRetType = time.Time
+
+func getAccessTokenMetadataGetValidUntilAttributeTypeOk(arg AccessTokenMetadataGetValidUntilAttributeType) (ret AccessTokenMetadataGetValidUntilRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAccessTokenMetadataGetValidUntilAttributeType(arg *AccessTokenMetadataGetValidUntilAttributeType, val AccessTokenMetadataGetValidUntilRetType) {
+	*arg = &val
+}
+
 // AccessTokenMetadata Does not contain the actual token.
 type AccessTokenMetadata struct {
 	// If true, access token can be used for authorized API calls, if false, the token is not usable anymore.
 	// REQUIRED
-	Active *bool `json:"active"`
+	Active AccessTokenMetadatagetActiveAttributeType `json:"active"`
 	// Creation time of the access token.
 	// REQUIRED
-	CreatedAt *time.Time `json:"createdAt"`
+	CreatedAt AccessTokenMetadataGetCreatedAtAttributeType `json:"createdAt"`
 	// Unique ID of the access token. Also used as JTI field.
 	// REQUIRED
-	Id *string `json:"id"`
+	Id AccessTokenMetadataGetIdAttributeType `json:"id"`
 	// Approximate expiration time of the access token. Check the JWT for actual validity date.
 	// REQUIRED
-	ValidUntil *time.Time `json:"validUntil"`
+	ValidUntil AccessTokenMetadataGetValidUntilAttributeType `json:"validUntil"`
 }
 
 type _AccessTokenMetadata AccessTokenMetadata
@@ -40,12 +121,12 @@ type _AccessTokenMetadata AccessTokenMetadata
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccessTokenMetadata(active *bool, createdAt *time.Time, id *string, validUntil *time.Time) *AccessTokenMetadata {
+func NewAccessTokenMetadata(active AccessTokenMetadatagetActiveArgType, createdAt AccessTokenMetadataGetCreatedAtArgType, id AccessTokenMetadataGetIdArgType, validUntil AccessTokenMetadataGetValidUntilArgType) *AccessTokenMetadata {
 	this := AccessTokenMetadata{}
-	this.Active = active
-	this.CreatedAt = createdAt
-	this.Id = id
-	this.ValidUntil = validUntil
+	setAccessTokenMetadatagetActiveAttributeType(&this.Active, active)
+	setAccessTokenMetadataGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
+	setAccessTokenMetadataGetIdAttributeType(&this.Id, id)
+	setAccessTokenMetadataGetValidUntilAttributeType(&this.ValidUntil, validUntil)
 	return &this
 }
 
@@ -58,107 +139,87 @@ func NewAccessTokenMetadataWithDefaults() *AccessTokenMetadata {
 }
 
 // GetActive returns the Active field value
-func (o *AccessTokenMetadata) GetActive() *bool {
-	if o == nil || IsNil(o.Active) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Active
+func (o *AccessTokenMetadata) GetActive() (ret AccessTokenMetadatagetActiveRetType) {
+	ret, _ = o.GetActiveOk()
+	return ret
 }
 
 // GetActiveOk returns a tuple with the Active field value
 // and a boolean to check if the value has been set.
-func (o *AccessTokenMetadata) GetActiveOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Active, true
+func (o *AccessTokenMetadata) GetActiveOk() (ret AccessTokenMetadatagetActiveRetType, ok bool) {
+	return getAccessTokenMetadatagetActiveAttributeTypeOk(o.Active)
 }
 
 // SetActive sets field value
-func (o *AccessTokenMetadata) SetActive(v *bool) {
-	o.Active = v
+func (o *AccessTokenMetadata) SetActive(v AccessTokenMetadatagetActiveRetType) {
+	setAccessTokenMetadatagetActiveAttributeType(&o.Active, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *AccessTokenMetadata) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.CreatedAt
+func (o *AccessTokenMetadata) GetCreatedAt() (ret AccessTokenMetadataGetCreatedAtRetType) {
+	ret, _ = o.GetCreatedAtOk()
+	return ret
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *AccessTokenMetadata) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *AccessTokenMetadata) GetCreatedAtOk() (ret AccessTokenMetadataGetCreatedAtRetType, ok bool) {
+	return getAccessTokenMetadataGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // SetCreatedAt sets field value
-func (o *AccessTokenMetadata) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *AccessTokenMetadata) SetCreatedAt(v AccessTokenMetadataGetCreatedAtRetType) {
+	setAccessTokenMetadataGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetId returns the Id field value
-func (o *AccessTokenMetadata) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *AccessTokenMetadata) GetId() (ret AccessTokenMetadataGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AccessTokenMetadata) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *AccessTokenMetadata) GetIdOk() (ret AccessTokenMetadataGetIdRetType, ok bool) {
+	return getAccessTokenMetadataGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *AccessTokenMetadata) SetId(v *string) {
-	o.Id = v
+func (o *AccessTokenMetadata) SetId(v AccessTokenMetadataGetIdRetType) {
+	setAccessTokenMetadataGetIdAttributeType(&o.Id, v)
 }
 
 // GetValidUntil returns the ValidUntil field value
-func (o *AccessTokenMetadata) GetValidUntil() *time.Time {
-	if o == nil || IsNil(o.ValidUntil) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.ValidUntil
+func (o *AccessTokenMetadata) GetValidUntil() (ret AccessTokenMetadataGetValidUntilRetType) {
+	ret, _ = o.GetValidUntilOk()
+	return ret
 }
 
 // GetValidUntilOk returns a tuple with the ValidUntil field value
 // and a boolean to check if the value has been set.
-func (o *AccessTokenMetadata) GetValidUntilOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ValidUntil, true
+func (o *AccessTokenMetadata) GetValidUntilOk() (ret AccessTokenMetadataGetValidUntilRetType, ok bool) {
+	return getAccessTokenMetadataGetValidUntilAttributeTypeOk(o.ValidUntil)
 }
 
 // SetValidUntil sets field value
-func (o *AccessTokenMetadata) SetValidUntil(v *time.Time) {
-	o.ValidUntil = v
+func (o *AccessTokenMetadata) SetValidUntil(v AccessTokenMetadataGetValidUntilRetType) {
+	setAccessTokenMetadataGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
 func (o AccessTokenMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["active"] = o.Active
-	toSerialize["createdAt"] = o.CreatedAt
-	toSerialize["id"] = o.Id
-	toSerialize["validUntil"] = o.ValidUntil
+	if val, ok := getAccessTokenMetadatagetActiveAttributeTypeOk(o.Active); ok {
+		toSerialize["Active"] = val
+	}
+	if val, ok := getAccessTokenMetadataGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getAccessTokenMetadataGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getAccessTokenMetadataGetValidUntilAttributeTypeOk(o.ValidUntil); ok {
+		toSerialize["ValidUntil"] = val
+	}
 	return toSerialize, nil
 }
 
