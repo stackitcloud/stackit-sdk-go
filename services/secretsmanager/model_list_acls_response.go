@@ -17,10 +17,30 @@ import (
 // checks if the ListACLsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListACLsResponse{}
 
+/*
+	types and functions for acls
+*/
+
+// isArray
+type ListACLsResponseGetAclsAttributeType = *[]ACL
+type ListACLsResponseGetAclsArgType = []ACL
+type ListACLsResponseGetAclsRetType = []ACL
+
+func getListACLsResponseGetAclsAttributeTypeOk(arg ListACLsResponseGetAclsAttributeType) (ret ListACLsResponseGetAclsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListACLsResponseGetAclsAttributeType(arg *ListACLsResponseGetAclsAttributeType, val ListACLsResponseGetAclsRetType) {
+	*arg = &val
+}
+
 // ListACLsResponse struct for ListACLsResponse
 type ListACLsResponse struct {
 	// REQUIRED
-	Acls *[]ACL `json:"acls"`
+	Acls ListACLsResponseGetAclsAttributeType `json:"acls"`
 }
 
 type _ListACLsResponse ListACLsResponse
@@ -29,9 +49,9 @@ type _ListACLsResponse ListACLsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListACLsResponse(acls *[]ACL) *ListACLsResponse {
+func NewListACLsResponse(acls ListACLsResponseGetAclsArgType) *ListACLsResponse {
 	this := ListACLsResponse{}
-	this.Acls = acls
+	setListACLsResponseGetAclsAttributeType(&this.Acls, acls)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewListACLsResponseWithDefaults() *ListACLsResponse {
 }
 
 // GetAcls returns the Acls field value
-func (o *ListACLsResponse) GetAcls() *[]ACL {
-	if o == nil || IsNil(o.Acls) {
-		var ret *[]ACL
-		return ret
-	}
-
-	return o.Acls
+func (o *ListACLsResponse) GetAcls() (ret ListACLsResponseGetAclsRetType) {
+	ret, _ = o.GetAclsOk()
+	return ret
 }
 
 // GetAclsOk returns a tuple with the Acls field value
 // and a boolean to check if the value has been set.
-func (o *ListACLsResponse) GetAclsOk() (*[]ACL, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Acls, true
+func (o *ListACLsResponse) GetAclsOk() (ret ListACLsResponseGetAclsRetType, ok bool) {
+	return getListACLsResponseGetAclsAttributeTypeOk(o.Acls)
 }
 
 // SetAcls sets field value
-func (o *ListACLsResponse) SetAcls(v *[]ACL) {
-	o.Acls = v
+func (o *ListACLsResponse) SetAcls(v ListACLsResponseGetAclsRetType) {
+	setListACLsResponseGetAclsAttributeType(&o.Acls, v)
 }
 
 func (o ListACLsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["acls"] = o.Acls
+	if val, ok := getListACLsResponseGetAclsAttributeTypeOk(o.Acls); ok {
+		toSerialize["Acls"] = val
+	}
 	return toSerialize, nil
 }
 
