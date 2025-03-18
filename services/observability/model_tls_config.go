@@ -17,9 +17,29 @@ import (
 // checks if the TLSConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &TLSConfig{}
 
+/*
+	types and functions for insecureSkipVerify
+*/
+
+// isBoolean
+type TLSConfiggetInsecureSkipVerifyAttributeType = *bool
+type TLSConfiggetInsecureSkipVerifyArgType = bool
+type TLSConfiggetInsecureSkipVerifyRetType = bool
+
+func getTLSConfiggetInsecureSkipVerifyAttributeTypeOk(arg TLSConfiggetInsecureSkipVerifyAttributeType) (ret TLSConfiggetInsecureSkipVerifyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTLSConfiggetInsecureSkipVerifyAttributeType(arg *TLSConfiggetInsecureSkipVerifyAttributeType, val TLSConfiggetInsecureSkipVerifyRetType) {
+	*arg = &val
+}
+
 // TLSConfig struct for TLSConfig
 type TLSConfig struct {
-	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
+	InsecureSkipVerify TLSConfiggetInsecureSkipVerifyAttributeType `json:"insecureSkipVerify,omitempty"`
 }
 
 // NewTLSConfig instantiates a new TLSConfig object
@@ -28,8 +48,6 @@ type TLSConfig struct {
 // will change when the set of required properties is changed
 func NewTLSConfig() *TLSConfig {
 	this := TLSConfig{}
-	var insecureSkipVerify bool = false
-	this.InsecureSkipVerify = &insecureSkipVerify
 	return &this
 }
 
@@ -44,41 +62,32 @@ func NewTLSConfigWithDefaults() *TLSConfig {
 }
 
 // GetInsecureSkipVerify returns the InsecureSkipVerify field value if set, zero value otherwise.
-func (o *TLSConfig) GetInsecureSkipVerify() *bool {
-	if o == nil || IsNil(o.InsecureSkipVerify) {
-		var ret *bool
-		return ret
-	}
-	return o.InsecureSkipVerify
+func (o *TLSConfig) GetInsecureSkipVerify() (res TLSConfiggetInsecureSkipVerifyRetType) {
+	res, _ = o.GetInsecureSkipVerifyOk()
+	return
 }
 
 // GetInsecureSkipVerifyOk returns a tuple with the InsecureSkipVerify field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TLSConfig) GetInsecureSkipVerifyOk() (*bool, bool) {
-	if o == nil || IsNil(o.InsecureSkipVerify) {
-		return nil, false
-	}
-	return o.InsecureSkipVerify, true
+func (o *TLSConfig) GetInsecureSkipVerifyOk() (ret TLSConfiggetInsecureSkipVerifyRetType, ok bool) {
+	return getTLSConfiggetInsecureSkipVerifyAttributeTypeOk(o.InsecureSkipVerify)
 }
 
 // HasInsecureSkipVerify returns a boolean if a field has been set.
 func (o *TLSConfig) HasInsecureSkipVerify() bool {
-	if o != nil && !IsNil(o.InsecureSkipVerify) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInsecureSkipVerifyOk()
+	return ok
 }
 
 // SetInsecureSkipVerify gets a reference to the given bool and assigns it to the InsecureSkipVerify field.
-func (o *TLSConfig) SetInsecureSkipVerify(v *bool) {
-	o.InsecureSkipVerify = v
+func (o *TLSConfig) SetInsecureSkipVerify(v TLSConfiggetInsecureSkipVerifyRetType) {
+	setTLSConfiggetInsecureSkipVerifyAttributeType(&o.InsecureSkipVerify, v)
 }
 
 func (o TLSConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.InsecureSkipVerify) {
-		toSerialize["insecureSkipVerify"] = o.InsecureSkipVerify
+	if val, ok := getTLSConfiggetInsecureSkipVerifyAttributeTypeOk(o.InsecureSkipVerify); ok {
+		toSerialize["InsecureSkipVerify"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,14 +17,94 @@ import (
 // checks if the Alert type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Alert{}
 
+/*
+	types and functions for global
+*/
+
+// isModel
+type AlertGetGlobalAttributeType = *Global
+type AlertGetGlobalArgType = Global
+type AlertGetGlobalRetType = Global
+
+func getAlertGetGlobalAttributeTypeOk(arg AlertGetGlobalAttributeType) (ret AlertGetGlobalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAlertGetGlobalAttributeType(arg *AlertGetGlobalAttributeType, val AlertGetGlobalRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for inhibitRules
+*/
+
+// isArray
+type AlertGetInhibitRulesAttributeType = *[]InhibitRules
+type AlertGetInhibitRulesArgType = []InhibitRules
+type AlertGetInhibitRulesRetType = []InhibitRules
+
+func getAlertGetInhibitRulesAttributeTypeOk(arg AlertGetInhibitRulesAttributeType) (ret AlertGetInhibitRulesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAlertGetInhibitRulesAttributeType(arg *AlertGetInhibitRulesAttributeType, val AlertGetInhibitRulesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for receivers
+*/
+
+// isArray
+type AlertGetReceiversAttributeType = *[]Receivers
+type AlertGetReceiversArgType = []Receivers
+type AlertGetReceiversRetType = []Receivers
+
+func getAlertGetReceiversAttributeTypeOk(arg AlertGetReceiversAttributeType) (ret AlertGetReceiversRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAlertGetReceiversAttributeType(arg *AlertGetReceiversAttributeType, val AlertGetReceiversRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for route
+*/
+
+// isModel
+type AlertGetRouteAttributeType = *Route
+type AlertGetRouteArgType = Route
+type AlertGetRouteRetType = Route
+
+func getAlertGetRouteAttributeTypeOk(arg AlertGetRouteAttributeType) (ret AlertGetRouteRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAlertGetRouteAttributeType(arg *AlertGetRouteAttributeType, val AlertGetRouteRetType) {
+	*arg = &val
+}
+
 // Alert struct for Alert
 type Alert struct {
-	Global       *Global         `json:"global,omitempty"`
-	InhibitRules *[]InhibitRules `json:"inhibitRules,omitempty"`
+	Global       AlertGetGlobalAttributeType       `json:"global,omitempty"`
+	InhibitRules AlertGetInhibitRulesAttributeType `json:"inhibitRules,omitempty"`
 	// REQUIRED
-	Receivers *[]Receivers `json:"receivers"`
+	Receivers AlertGetReceiversAttributeType `json:"receivers"`
 	// REQUIRED
-	Route *Route `json:"route"`
+	Route AlertGetRouteAttributeType `json:"route"`
 }
 
 type _Alert Alert
@@ -33,10 +113,10 @@ type _Alert Alert
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlert(receivers *[]Receivers, route *Route) *Alert {
+func NewAlert(receivers AlertGetReceiversArgType, route AlertGetRouteArgType) *Alert {
 	this := Alert{}
-	this.Receivers = receivers
-	this.Route = route
+	setAlertGetReceiversAttributeType(&this.Receivers, receivers)
+	setAlertGetRouteAttributeType(&this.Route, route)
 	return &this
 }
 
@@ -49,127 +129,99 @@ func NewAlertWithDefaults() *Alert {
 }
 
 // GetGlobal returns the Global field value if set, zero value otherwise.
-func (o *Alert) GetGlobal() *Global {
-	if o == nil || IsNil(o.Global) {
-		var ret *Global
-		return ret
-	}
-	return o.Global
+func (o *Alert) GetGlobal() (res AlertGetGlobalRetType) {
+	res, _ = o.GetGlobalOk()
+	return
 }
 
 // GetGlobalOk returns a tuple with the Global field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Alert) GetGlobalOk() (*Global, bool) {
-	if o == nil || IsNil(o.Global) {
-		return nil, false
-	}
-	return o.Global, true
+func (o *Alert) GetGlobalOk() (ret AlertGetGlobalRetType, ok bool) {
+	return getAlertGetGlobalAttributeTypeOk(o.Global)
 }
 
 // HasGlobal returns a boolean if a field has been set.
 func (o *Alert) HasGlobal() bool {
-	if o != nil && !IsNil(o.Global) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGlobalOk()
+	return ok
 }
 
 // SetGlobal gets a reference to the given Global and assigns it to the Global field.
-func (o *Alert) SetGlobal(v *Global) {
-	o.Global = v
+func (o *Alert) SetGlobal(v AlertGetGlobalRetType) {
+	setAlertGetGlobalAttributeType(&o.Global, v)
 }
 
 // GetInhibitRules returns the InhibitRules field value if set, zero value otherwise.
-func (o *Alert) GetInhibitRules() *[]InhibitRules {
-	if o == nil || IsNil(o.InhibitRules) {
-		var ret *[]InhibitRules
-		return ret
-	}
-	return o.InhibitRules
+func (o *Alert) GetInhibitRules() (res AlertGetInhibitRulesRetType) {
+	res, _ = o.GetInhibitRulesOk()
+	return
 }
 
 // GetInhibitRulesOk returns a tuple with the InhibitRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Alert) GetInhibitRulesOk() (*[]InhibitRules, bool) {
-	if o == nil || IsNil(o.InhibitRules) {
-		return nil, false
-	}
-	return o.InhibitRules, true
+func (o *Alert) GetInhibitRulesOk() (ret AlertGetInhibitRulesRetType, ok bool) {
+	return getAlertGetInhibitRulesAttributeTypeOk(o.InhibitRules)
 }
 
 // HasInhibitRules returns a boolean if a field has been set.
 func (o *Alert) HasInhibitRules() bool {
-	if o != nil && !IsNil(o.InhibitRules) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInhibitRulesOk()
+	return ok
 }
 
 // SetInhibitRules gets a reference to the given []InhibitRules and assigns it to the InhibitRules field.
-func (o *Alert) SetInhibitRules(v *[]InhibitRules) {
-	o.InhibitRules = v
+func (o *Alert) SetInhibitRules(v AlertGetInhibitRulesRetType) {
+	setAlertGetInhibitRulesAttributeType(&o.InhibitRules, v)
 }
 
 // GetReceivers returns the Receivers field value
-func (o *Alert) GetReceivers() *[]Receivers {
-	if o == nil || IsNil(o.Receivers) {
-		var ret *[]Receivers
-		return ret
-	}
-
-	return o.Receivers
+func (o *Alert) GetReceivers() (ret AlertGetReceiversRetType) {
+	ret, _ = o.GetReceiversOk()
+	return ret
 }
 
 // GetReceiversOk returns a tuple with the Receivers field value
 // and a boolean to check if the value has been set.
-func (o *Alert) GetReceiversOk() (*[]Receivers, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Receivers, true
+func (o *Alert) GetReceiversOk() (ret AlertGetReceiversRetType, ok bool) {
+	return getAlertGetReceiversAttributeTypeOk(o.Receivers)
 }
 
 // SetReceivers sets field value
-func (o *Alert) SetReceivers(v *[]Receivers) {
-	o.Receivers = v
+func (o *Alert) SetReceivers(v AlertGetReceiversRetType) {
+	setAlertGetReceiversAttributeType(&o.Receivers, v)
 }
 
 // GetRoute returns the Route field value
-func (o *Alert) GetRoute() *Route {
-	if o == nil || IsNil(o.Route) {
-		var ret *Route
-		return ret
-	}
-
-	return o.Route
+func (o *Alert) GetRoute() (ret AlertGetRouteRetType) {
+	ret, _ = o.GetRouteOk()
+	return ret
 }
 
 // GetRouteOk returns a tuple with the Route field value
 // and a boolean to check if the value has been set.
-func (o *Alert) GetRouteOk() (*Route, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Route, true
+func (o *Alert) GetRouteOk() (ret AlertGetRouteRetType, ok bool) {
+	return getAlertGetRouteAttributeTypeOk(o.Route)
 }
 
 // SetRoute sets field value
-func (o *Alert) SetRoute(v *Route) {
-	o.Route = v
+func (o *Alert) SetRoute(v AlertGetRouteRetType) {
+	setAlertGetRouteAttributeType(&o.Route, v)
 }
 
 func (o Alert) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Global) {
-		toSerialize["global"] = o.Global
+	if val, ok := getAlertGetGlobalAttributeTypeOk(o.Global); ok {
+		toSerialize["Global"] = val
 	}
-	if !IsNil(o.InhibitRules) {
-		toSerialize["inhibitRules"] = o.InhibitRules
+	if val, ok := getAlertGetInhibitRulesAttributeTypeOk(o.InhibitRules); ok {
+		toSerialize["InhibitRules"] = val
 	}
-	toSerialize["receivers"] = o.Receivers
-	toSerialize["route"] = o.Route
+	if val, ok := getAlertGetReceiversAttributeTypeOk(o.Receivers); ok {
+		toSerialize["Receivers"] = val
+	}
+	if val, ok := getAlertGetRouteAttributeTypeOk(o.Route); ok {
+		toSerialize["Route"] = val
+	}
 	return toSerialize, nil
 }
 

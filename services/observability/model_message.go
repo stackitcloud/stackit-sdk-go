@@ -17,10 +17,31 @@ import (
 // checks if the Message type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Message{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type MessageGetMessageAttributeType = *string
+
+func getMessageGetMessageAttributeTypeOk(arg MessageGetMessageAttributeType) (ret MessageGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMessageGetMessageAttributeType(arg *MessageGetMessageAttributeType, val MessageGetMessageRetType) {
+	*arg = &val
+}
+
+type MessageGetMessageArgType = string
+type MessageGetMessageRetType = string
+
 // Message struct for Message
 type Message struct {
 	// REQUIRED
-	Message *string `json:"message"`
+	Message MessageGetMessageAttributeType `json:"message"`
 }
 
 type _Message Message
@@ -29,9 +50,9 @@ type _Message Message
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessage(message *string) *Message {
+func NewMessage(message MessageGetMessageArgType) *Message {
 	this := Message{}
-	this.Message = message
+	setMessageGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -44,32 +65,27 @@ func NewMessageWithDefaults() *Message {
 }
 
 // GetMessage returns the Message field value
-func (o *Message) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *Message) GetMessage() (ret MessageGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *Message) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *Message) GetMessageOk() (ret MessageGetMessageRetType, ok bool) {
+	return getMessageGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *Message) SetMessage(v *string) {
-	o.Message = v
+func (o *Message) SetMessage(v MessageGetMessageRetType) {
+	setMessageGetMessageAttributeType(&o.Message, v)
 }
 
 func (o Message) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.Message
+	if val, ok := getMessageGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 
