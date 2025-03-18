@@ -17,10 +17,30 @@ import (
 // checks if the ListServiceAccountsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListServiceAccountsResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListServiceAccountsResponseGetItemsAttributeType = *[]ServiceAccount
+type ListServiceAccountsResponseGetItemsArgType = []ServiceAccount
+type ListServiceAccountsResponseGetItemsRetType = []ServiceAccount
+
+func getListServiceAccountsResponseGetItemsAttributeTypeOk(arg ListServiceAccountsResponseGetItemsAttributeType) (ret ListServiceAccountsResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListServiceAccountsResponseGetItemsAttributeType(arg *ListServiceAccountsResponseGetItemsAttributeType, val ListServiceAccountsResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // ListServiceAccountsResponse struct for ListServiceAccountsResponse
 type ListServiceAccountsResponse struct {
 	// REQUIRED
-	Items *[]ServiceAccount `json:"items"`
+	Items ListServiceAccountsResponseGetItemsAttributeType `json:"items"`
 }
 
 type _ListServiceAccountsResponse ListServiceAccountsResponse
@@ -29,9 +49,9 @@ type _ListServiceAccountsResponse ListServiceAccountsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListServiceAccountsResponse(items *[]ServiceAccount) *ListServiceAccountsResponse {
+func NewListServiceAccountsResponse(items ListServiceAccountsResponseGetItemsArgType) *ListServiceAccountsResponse {
 	this := ListServiceAccountsResponse{}
-	this.Items = items
+	setListServiceAccountsResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewListServiceAccountsResponseWithDefaults() *ListServiceAccountsResponse {
 }
 
 // GetItems returns the Items field value
-func (o *ListServiceAccountsResponse) GetItems() *[]ServiceAccount {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]ServiceAccount
-		return ret
-	}
-
-	return o.Items
+func (o *ListServiceAccountsResponse) GetItems() (ret ListServiceAccountsResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *ListServiceAccountsResponse) GetItemsOk() (*[]ServiceAccount, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListServiceAccountsResponse) GetItemsOk() (ret ListServiceAccountsResponseGetItemsRetType, ok bool) {
+	return getListServiceAccountsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *ListServiceAccountsResponse) SetItems(v *[]ServiceAccount) {
-	o.Items = v
+func (o *ListServiceAccountsResponse) SetItems(v ListServiceAccountsResponseGetItemsRetType) {
+	setListServiceAccountsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o ListServiceAccountsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getListServiceAccountsResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 
