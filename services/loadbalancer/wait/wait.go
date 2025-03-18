@@ -21,26 +21,17 @@ const (
 	InstanceStatusTerminating = "STATUS_TERMINATING"
 )
 
-// Load balancing functionality status
-const (
-	FunctionalityStatusUnspecified = "STATUS_UNSPECIFIED"
-	FunctionalityStatusReady       = "STATUS_READY"
-	FunctionalityStatusFailed      = "STATUS_FAILED"
-	FunctionalityStatusUpdating    = "STATUS_UPDATING"
-	FunctionalityStatusDeleting    = "STATUS_DELETING"
-	FunctionalityStatusDisabled    = "STATUS_DISABLED"
-)
+var _ APIClientInterface = &loadbalancer.APIClient{}
 
 // Interface needed for tests
 type APIClientInterface interface {
-	GetLoadBalancerExecute(ctx context.Context, projectId, name string) (*loadbalancer.LoadBalancer, error)
-	GetServiceStatusExecute(ctx context.Context, projectId string) (*loadbalancer.GetServiceStatusResponse, error)
+	GetLoadBalancerExecute(ctx context.Context, projectId, region, name string) (*loadbalancer.LoadBalancer, error)
 }
 
 // CreateLoadBalancerWaitHandler will wait for load balancer creation
-func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceName string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
+func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, instanceName string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
 	handler := wait.New(func() (waitFinished bool, response *loadbalancer.LoadBalancer, err error) {
-		s, err := a.GetLoadBalancerExecute(ctx, projectId, instanceName)
+		s, err := a.GetLoadBalancerExecute(ctx, projectId, region, instanceName)
 		if err != nil {
 			return false, nil, err
 		}
@@ -76,9 +67,9 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 }
 
 // DeleteLoadBalancerWaitHandler will wait for load balancer deletion
-func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
+func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		_, err = a.GetLoadBalancerExecute(ctx, projectId, instanceId)
+		_, err = a.GetLoadBalancerExecute(ctx, projectId, region, instanceId)
 		if err == nil {
 			return false, nil, nil
 		}
@@ -90,37 +81,6 @@ func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 			return false, nil, err
 		}
 		return true, nil, nil
-	})
-	handler.SetTimeout(15 * time.Minute)
-	return handler
-}
-
-// EnableServiceWaitHandler will wait for functionality to be enabled
-func EnableServiceWaitHandler(ctx context.Context, a APIClientInterface, projectId string) *wait.AsyncActionHandler[loadbalancer.GetServiceStatusResponse] {
-	handler := wait.New(func() (waitFinished bool, response *loadbalancer.GetServiceStatusResponse, err error) {
-		s, err := a.GetServiceStatusExecute(ctx, projectId)
-		if err != nil {
-			return false, nil, err
-		}
-		if s == nil || s.Status == nil {
-			return false, nil, nil
-		}
-		switch *s.Status {
-		case FunctionalityStatusReady:
-			return true, s, nil
-		case FunctionalityStatusUnspecified:
-			return false, nil, nil
-		case FunctionalityStatusDisabled:
-			return false, nil, nil
-		case FunctionalityStatusUpdating:
-			return false, nil, nil
-		case FunctionalityStatusDeleting:
-			return true, s, fmt.Errorf("enabling load balancing failed for project %s, got status %s", projectId, FunctionalityStatusDeleting)
-		case FunctionalityStatusFailed:
-			return true, s, fmt.Errorf("enabling load balancing failed for project %s, got status %s", projectId, FunctionalityStatusFailed)
-		default:
-			return true, s, fmt.Errorf("load balancing for project %s has unexpected status %s", projectId, *s.Status)
-		}
 	})
 	handler.SetTimeout(15 * time.Minute)
 	return handler

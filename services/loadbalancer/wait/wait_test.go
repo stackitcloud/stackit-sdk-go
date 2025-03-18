@@ -13,15 +13,15 @@ import (
 
 // Used for testing instance operations
 type apiClientMocked struct {
-	instanceName                string
-	instanceStatus              string
-	instanceIsDeleted           bool
-	instanceGetFails            bool
-	functionalityStatus         string
-	functionalityStatusGetFails bool
+	instanceName      string
+	instanceStatus    string
+	instanceIsDeleted bool
+	instanceGetFails  bool
 }
 
-func (a *apiClientMocked) GetLoadBalancerExecute(_ context.Context, _, _ string) (*loadbalancer.LoadBalancer, error) {
+const testRegion = "eu01"
+
+func (a *apiClientMocked) GetLoadBalancerExecute(_ context.Context, _, _, _ string) (*loadbalancer.LoadBalancer, error) {
 	if a.instanceGetFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -37,17 +37,6 @@ func (a *apiClientMocked) GetLoadBalancerExecute(_ context.Context, _, _ string)
 	return &loadbalancer.LoadBalancer{
 		Name:   &a.instanceName,
 		Status: &a.instanceStatus,
-	}, nil
-}
-func (a *apiClientMocked) GetServiceStatusExecute(_ context.Context, _ string) (*loadbalancer.GetServiceStatusResponse, error) {
-	if a.functionalityStatusGetFails {
-		return nil, &oapierror.GenericOpenAPIError{
-			StatusCode: 500,
-		}
-	}
-
-	return &loadbalancer.GetServiceStatusResponse{
-		Status: &a.functionalityStatus,
 	}, nil
 }
 
@@ -112,7 +101,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateLoadBalancerWaitHandler(context.Background(), apiClient, "", instanceName)
+			handler := CreateLoadBalancerWaitHandler(context.Background(), apiClient, "", testRegion, instanceName)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -161,77 +150,12 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				instanceIsDeleted: tt.instanceIsDeleted,
 			}
 
-			handler := DeleteLoadBalancerWaitHandler(context.Background(), apiClient, "", instanceName)
+			handler := DeleteLoadBalancerWaitHandler(context.Background(), apiClient, "", testRegion, instanceName)
 
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-		})
-	}
-}
-
-func TestEnableServiceWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc                        string
-		functionalityStatus         string
-		functionalityStatusGetFails bool
-		wantErr                     bool
-		wantResp                    bool
-	}{
-		{
-			desc:                        "enable_succeeded",
-			functionalityStatus:         FunctionalityStatusReady,
-			functionalityStatusGetFails: false,
-			wantErr:                     false,
-			wantResp:                    true,
-		},
-		{
-			desc:                        "enable_updating",
-			functionalityStatus:         FunctionalityStatusUpdating,
-			functionalityStatusGetFails: false,
-			wantErr:                     true,
-			wantResp:                    false,
-		},
-		{
-			desc:                        "enable_failed",
-			functionalityStatus:         FunctionalityStatusFailed,
-			functionalityStatusGetFails: false,
-			wantErr:                     true,
-			wantResp:                    true,
-		},
-		{
-			desc:                        "enable_failed_2",
-			functionalityStatus:         FunctionalityStatusUnspecified,
-			functionalityStatusGetFails: true,
-			wantErr:                     true,
-			wantResp:                    false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				functionalityStatus:         tt.functionalityStatus,
-				functionalityStatusGetFails: tt.functionalityStatusGetFails,
-			}
-
-			var wantRes *loadbalancer.GetServiceStatusResponse
-			if tt.wantResp {
-				wantRes = &loadbalancer.GetServiceStatusResponse{
-					Status: utils.Ptr(tt.functionalityStatus),
-				}
-			}
-
-			handler := EnableServiceWaitHandler(context.Background(), apiClient, "")
-
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
 	}

@@ -1,3 +1,6 @@
+## v1.0.0 (2025-XX-YY)
+- **Breaking Change:** The region is no longer specified within the client configuration. 
+
 ## v0.6.0 (2025-02-21)
 - **New:** Minimal go version is now Go 1.21
 
