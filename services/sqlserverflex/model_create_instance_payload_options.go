@@ -17,12 +17,54 @@ import (
 // checks if the CreateInstancePayloadOptions type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateInstancePayloadOptions{}
 
+/*
+	types and functions for edition
+*/
+
+// isNotNullableString
+type CreateInstancePayloadOptionsGetEditionAttributeType = *string
+
+func getCreateInstancePayloadOptionsGetEditionAttributeTypeOk(arg CreateInstancePayloadOptionsGetEditionAttributeType) (ret CreateInstancePayloadOptionsGetEditionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadOptionsGetEditionAttributeType(arg *CreateInstancePayloadOptionsGetEditionAttributeType, val CreateInstancePayloadOptionsGetEditionRetType) {
+	*arg = &val
+}
+
+type CreateInstancePayloadOptionsGetEditionArgType = string
+type CreateInstancePayloadOptionsGetEditionRetType = string
+
+/*
+	types and functions for retentionDays
+*/
+
+// isNotNullableString
+type CreateInstancePayloadOptionsGetRetentionDaysAttributeType = *string
+
+func getCreateInstancePayloadOptionsGetRetentionDaysAttributeTypeOk(arg CreateInstancePayloadOptionsGetRetentionDaysAttributeType) (ret CreateInstancePayloadOptionsGetRetentionDaysRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadOptionsGetRetentionDaysAttributeType(arg *CreateInstancePayloadOptionsGetRetentionDaysAttributeType, val CreateInstancePayloadOptionsGetRetentionDaysRetType) {
+	*arg = &val
+}
+
+type CreateInstancePayloadOptionsGetRetentionDaysArgType = string
+type CreateInstancePayloadOptionsGetRetentionDaysRetType = string
+
 // CreateInstancePayloadOptions Database instance specific options are requested via this field
 type CreateInstancePayloadOptions struct {
 	// Edition of the MSSQL server instance
-	Edition *string `json:"edition,omitempty"`
+	Edition CreateInstancePayloadOptionsGetEditionAttributeType `json:"edition,omitempty"`
 	// The days for how long the backup files should be stored before cleaned up. 30 to 365
-	RetentionDays *string `json:"retentionDays,omitempty"`
+	RetentionDays CreateInstancePayloadOptionsGetRetentionDaysAttributeType `json:"retentionDays,omitempty"`
 }
 
 // NewCreateInstancePayloadOptions instantiates a new CreateInstancePayloadOptions object
@@ -31,10 +73,6 @@ type CreateInstancePayloadOptions struct {
 // will change when the set of required properties is changed
 func NewCreateInstancePayloadOptions() *CreateInstancePayloadOptions {
 	this := CreateInstancePayloadOptions{}
-	var edition string = "developer"
-	this.Edition = &edition
-	var retentionDays string = "32"
-	this.RetentionDays = &retentionDays
 	return &this
 }
 
@@ -51,76 +89,58 @@ func NewCreateInstancePayloadOptionsWithDefaults() *CreateInstancePayloadOptions
 }
 
 // GetEdition returns the Edition field value if set, zero value otherwise.
-func (o *CreateInstancePayloadOptions) GetEdition() *string {
-	if o == nil || IsNil(o.Edition) {
-		var ret *string
-		return ret
-	}
-	return o.Edition
+func (o *CreateInstancePayloadOptions) GetEdition() (res CreateInstancePayloadOptionsGetEditionRetType) {
+	res, _ = o.GetEditionOk()
+	return
 }
 
 // GetEditionOk returns a tuple with the Edition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayloadOptions) GetEditionOk() (*string, bool) {
-	if o == nil || IsNil(o.Edition) {
-		return nil, false
-	}
-	return o.Edition, true
+func (o *CreateInstancePayloadOptions) GetEditionOk() (ret CreateInstancePayloadOptionsGetEditionRetType, ok bool) {
+	return getCreateInstancePayloadOptionsGetEditionAttributeTypeOk(o.Edition)
 }
 
 // HasEdition returns a boolean if a field has been set.
 func (o *CreateInstancePayloadOptions) HasEdition() bool {
-	if o != nil && !IsNil(o.Edition) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEditionOk()
+	return ok
 }
 
 // SetEdition gets a reference to the given string and assigns it to the Edition field.
-func (o *CreateInstancePayloadOptions) SetEdition(v *string) {
-	o.Edition = v
+func (o *CreateInstancePayloadOptions) SetEdition(v CreateInstancePayloadOptionsGetEditionRetType) {
+	setCreateInstancePayloadOptionsGetEditionAttributeType(&o.Edition, v)
 }
 
 // GetRetentionDays returns the RetentionDays field value if set, zero value otherwise.
-func (o *CreateInstancePayloadOptions) GetRetentionDays() *string {
-	if o == nil || IsNil(o.RetentionDays) {
-		var ret *string
-		return ret
-	}
-	return o.RetentionDays
+func (o *CreateInstancePayloadOptions) GetRetentionDays() (res CreateInstancePayloadOptionsGetRetentionDaysRetType) {
+	res, _ = o.GetRetentionDaysOk()
+	return
 }
 
 // GetRetentionDaysOk returns a tuple with the RetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayloadOptions) GetRetentionDaysOk() (*string, bool) {
-	if o == nil || IsNil(o.RetentionDays) {
-		return nil, false
-	}
-	return o.RetentionDays, true
+func (o *CreateInstancePayloadOptions) GetRetentionDaysOk() (ret CreateInstancePayloadOptionsGetRetentionDaysRetType, ok bool) {
+	return getCreateInstancePayloadOptionsGetRetentionDaysAttributeTypeOk(o.RetentionDays)
 }
 
 // HasRetentionDays returns a boolean if a field has been set.
 func (o *CreateInstancePayloadOptions) HasRetentionDays() bool {
-	if o != nil && !IsNil(o.RetentionDays) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRetentionDaysOk()
+	return ok
 }
 
 // SetRetentionDays gets a reference to the given string and assigns it to the RetentionDays field.
-func (o *CreateInstancePayloadOptions) SetRetentionDays(v *string) {
-	o.RetentionDays = v
+func (o *CreateInstancePayloadOptions) SetRetentionDays(v CreateInstancePayloadOptionsGetRetentionDaysRetType) {
+	setCreateInstancePayloadOptionsGetRetentionDaysAttributeType(&o.RetentionDays, v)
 }
 
 func (o CreateInstancePayloadOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Edition) {
-		toSerialize["edition"] = o.Edition
+	if val, ok := getCreateInstancePayloadOptionsGetEditionAttributeTypeOk(o.Edition); ok {
+		toSerialize["Edition"] = val
 	}
-	if !IsNil(o.RetentionDays) {
-		toSerialize["retentionDays"] = o.RetentionDays
+	if val, ok := getCreateInstancePayloadOptionsGetRetentionDaysAttributeTypeOk(o.RetentionDays); ok {
+		toSerialize["RetentionDays"] = val
 	}
 	return toSerialize, nil
 }

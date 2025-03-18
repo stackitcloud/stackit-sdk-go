@@ -17,9 +17,29 @@ import (
 // checks if the ListRestoreJobsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListRestoreJobsResponse{}
 
+/*
+	types and functions for runningRestores
+*/
+
+// isArray
+type ListRestoreJobsResponseGetRunningRestoresAttributeType = *[]RestoreRunningRestore
+type ListRestoreJobsResponseGetRunningRestoresArgType = []RestoreRunningRestore
+type ListRestoreJobsResponseGetRunningRestoresRetType = []RestoreRunningRestore
+
+func getListRestoreJobsResponseGetRunningRestoresAttributeTypeOk(arg ListRestoreJobsResponseGetRunningRestoresAttributeType) (ret ListRestoreJobsResponseGetRunningRestoresRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListRestoreJobsResponseGetRunningRestoresAttributeType(arg *ListRestoreJobsResponseGetRunningRestoresAttributeType, val ListRestoreJobsResponseGetRunningRestoresRetType) {
+	*arg = &val
+}
+
 // ListRestoreJobsResponse struct for ListRestoreJobsResponse
 type ListRestoreJobsResponse struct {
-	RunningRestores *[]RestoreRunningRestore `json:"runningRestores,omitempty"`
+	RunningRestores ListRestoreJobsResponseGetRunningRestoresAttributeType `json:"runningRestores,omitempty"`
 }
 
 // NewListRestoreJobsResponse instantiates a new ListRestoreJobsResponse object
@@ -40,41 +60,32 @@ func NewListRestoreJobsResponseWithDefaults() *ListRestoreJobsResponse {
 }
 
 // GetRunningRestores returns the RunningRestores field value if set, zero value otherwise.
-func (o *ListRestoreJobsResponse) GetRunningRestores() *[]RestoreRunningRestore {
-	if o == nil || IsNil(o.RunningRestores) {
-		var ret *[]RestoreRunningRestore
-		return ret
-	}
-	return o.RunningRestores
+func (o *ListRestoreJobsResponse) GetRunningRestores() (res ListRestoreJobsResponseGetRunningRestoresRetType) {
+	res, _ = o.GetRunningRestoresOk()
+	return
 }
 
 // GetRunningRestoresOk returns a tuple with the RunningRestores field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListRestoreJobsResponse) GetRunningRestoresOk() (*[]RestoreRunningRestore, bool) {
-	if o == nil || IsNil(o.RunningRestores) {
-		return nil, false
-	}
-	return o.RunningRestores, true
+func (o *ListRestoreJobsResponse) GetRunningRestoresOk() (ret ListRestoreJobsResponseGetRunningRestoresRetType, ok bool) {
+	return getListRestoreJobsResponseGetRunningRestoresAttributeTypeOk(o.RunningRestores)
 }
 
 // HasRunningRestores returns a boolean if a field has been set.
 func (o *ListRestoreJobsResponse) HasRunningRestores() bool {
-	if o != nil && !IsNil(o.RunningRestores) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRunningRestoresOk()
+	return ok
 }
 
 // SetRunningRestores gets a reference to the given []RestoreRunningRestore and assigns it to the RunningRestores field.
-func (o *ListRestoreJobsResponse) SetRunningRestores(v *[]RestoreRunningRestore) {
-	o.RunningRestores = v
+func (o *ListRestoreJobsResponse) SetRunningRestores(v ListRestoreJobsResponseGetRunningRestoresRetType) {
+	setListRestoreJobsResponseGetRunningRestoresAttributeType(&o.RunningRestores, v)
 }
 
 func (o ListRestoreJobsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.RunningRestores) {
-		toSerialize["runningRestores"] = o.RunningRestores
+	if val, ok := getListRestoreJobsResponseGetRunningRestoresAttributeTypeOk(o.RunningRestores); ok {
+		toSerialize["RunningRestores"] = val
 	}
 	return toSerialize, nil
 }

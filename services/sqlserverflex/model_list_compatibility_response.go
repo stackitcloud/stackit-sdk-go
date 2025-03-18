@@ -17,9 +17,29 @@ import (
 // checks if the ListCompatibilityResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListCompatibilityResponse{}
 
+/*
+	types and functions for compatibilities
+*/
+
+// isArray
+type ListCompatibilityResponseGetCompatibilitiesAttributeType = *[]MssqlDatabaseCompatibility
+type ListCompatibilityResponseGetCompatibilitiesArgType = []MssqlDatabaseCompatibility
+type ListCompatibilityResponseGetCompatibilitiesRetType = []MssqlDatabaseCompatibility
+
+func getListCompatibilityResponseGetCompatibilitiesAttributeTypeOk(arg ListCompatibilityResponseGetCompatibilitiesAttributeType) (ret ListCompatibilityResponseGetCompatibilitiesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListCompatibilityResponseGetCompatibilitiesAttributeType(arg *ListCompatibilityResponseGetCompatibilitiesAttributeType, val ListCompatibilityResponseGetCompatibilitiesRetType) {
+	*arg = &val
+}
+
 // ListCompatibilityResponse struct for ListCompatibilityResponse
 type ListCompatibilityResponse struct {
-	Compatibilities *[]MssqlDatabaseCompatibility `json:"compatibilities,omitempty"`
+	Compatibilities ListCompatibilityResponseGetCompatibilitiesAttributeType `json:"compatibilities,omitempty"`
 }
 
 // NewListCompatibilityResponse instantiates a new ListCompatibilityResponse object
@@ -40,41 +60,32 @@ func NewListCompatibilityResponseWithDefaults() *ListCompatibilityResponse {
 }
 
 // GetCompatibilities returns the Compatibilities field value if set, zero value otherwise.
-func (o *ListCompatibilityResponse) GetCompatibilities() *[]MssqlDatabaseCompatibility {
-	if o == nil || IsNil(o.Compatibilities) {
-		var ret *[]MssqlDatabaseCompatibility
-		return ret
-	}
-	return o.Compatibilities
+func (o *ListCompatibilityResponse) GetCompatibilities() (res ListCompatibilityResponseGetCompatibilitiesRetType) {
+	res, _ = o.GetCompatibilitiesOk()
+	return
 }
 
 // GetCompatibilitiesOk returns a tuple with the Compatibilities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListCompatibilityResponse) GetCompatibilitiesOk() (*[]MssqlDatabaseCompatibility, bool) {
-	if o == nil || IsNil(o.Compatibilities) {
-		return nil, false
-	}
-	return o.Compatibilities, true
+func (o *ListCompatibilityResponse) GetCompatibilitiesOk() (ret ListCompatibilityResponseGetCompatibilitiesRetType, ok bool) {
+	return getListCompatibilityResponseGetCompatibilitiesAttributeTypeOk(o.Compatibilities)
 }
 
 // HasCompatibilities returns a boolean if a field has been set.
 func (o *ListCompatibilityResponse) HasCompatibilities() bool {
-	if o != nil && !IsNil(o.Compatibilities) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCompatibilitiesOk()
+	return ok
 }
 
 // SetCompatibilities gets a reference to the given []MssqlDatabaseCompatibility and assigns it to the Compatibilities field.
-func (o *ListCompatibilityResponse) SetCompatibilities(v *[]MssqlDatabaseCompatibility) {
-	o.Compatibilities = v
+func (o *ListCompatibilityResponse) SetCompatibilities(v ListCompatibilityResponseGetCompatibilitiesRetType) {
+	setListCompatibilityResponseGetCompatibilitiesAttributeType(&o.Compatibilities, v)
 }
 
 func (o ListCompatibilityResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Compatibilities) {
-		toSerialize["compatibilities"] = o.Compatibilities
+	if val, ok := getListCompatibilityResponseGetCompatibilitiesAttributeTypeOk(o.Compatibilities); ok {
+		toSerialize["Compatibilities"] = val
 	}
 	return toSerialize, nil
 }
