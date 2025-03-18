@@ -17,14 +17,56 @@ import (
 // checks if the Member type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Member{}
 
+/*
+	types and functions for role
+*/
+
+// isNotNullableString
+type MemberGetRoleAttributeType = *string
+
+func getMemberGetRoleAttributeTypeOk(arg MemberGetRoleAttributeType) (ret MemberGetRoleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMemberGetRoleAttributeType(arg *MemberGetRoleAttributeType, val MemberGetRoleRetType) {
+	*arg = &val
+}
+
+type MemberGetRoleArgType = string
+type MemberGetRoleRetType = string
+
+/*
+	types and functions for subject
+*/
+
+// isNotNullableString
+type MemberGetSubjectAttributeType = *string
+
+func getMemberGetSubjectAttributeTypeOk(arg MemberGetSubjectAttributeType) (ret MemberGetSubjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMemberGetSubjectAttributeType(arg *MemberGetSubjectAttributeType, val MemberGetSubjectRetType) {
+	*arg = &val
+}
+
+type MemberGetSubjectArgType = string
+type MemberGetSubjectRetType = string
+
 // Member struct for Member
 type Member struct {
 	// A valid role defined for the resource.
 	// REQUIRED
-	Role *string `json:"role"`
+	Role MemberGetRoleAttributeType `json:"role"`
 	// Unique identifier of the user, service account or client.
 	// REQUIRED
-	Subject *string `json:"subject"`
+	Subject MemberGetSubjectAttributeType `json:"subject"`
 }
 
 type _Member Member
@@ -33,10 +75,10 @@ type _Member Member
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMember(role *string, subject *string) *Member {
+func NewMember(role MemberGetRoleArgType, subject MemberGetSubjectArgType) *Member {
 	this := Member{}
-	this.Role = role
-	this.Subject = subject
+	setMemberGetRoleAttributeType(&this.Role, role)
+	setMemberGetSubjectAttributeType(&this.Subject, subject)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewMemberWithDefaults() *Member {
 }
 
 // GetRole returns the Role field value
-func (o *Member) GetRole() *string {
-	if o == nil || IsNil(o.Role) {
-		var ret *string
-		return ret
-	}
-
-	return o.Role
+func (o *Member) GetRole() (ret MemberGetRoleRetType) {
+	ret, _ = o.GetRoleOk()
+	return ret
 }
 
 // GetRoleOk returns a tuple with the Role field value
 // and a boolean to check if the value has been set.
-func (o *Member) GetRoleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Role, true
+func (o *Member) GetRoleOk() (ret MemberGetRoleRetType, ok bool) {
+	return getMemberGetRoleAttributeTypeOk(o.Role)
 }
 
 // SetRole sets field value
-func (o *Member) SetRole(v *string) {
-	o.Role = v
+func (o *Member) SetRole(v MemberGetRoleRetType) {
+	setMemberGetRoleAttributeType(&o.Role, v)
 }
 
 // GetSubject returns the Subject field value
-func (o *Member) GetSubject() *string {
-	if o == nil || IsNil(o.Subject) {
-		var ret *string
-		return ret
-	}
-
-	return o.Subject
+func (o *Member) GetSubject() (ret MemberGetSubjectRetType) {
+	ret, _ = o.GetSubjectOk()
+	return ret
 }
 
 // GetSubjectOk returns a tuple with the Subject field value
 // and a boolean to check if the value has been set.
-func (o *Member) GetSubjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Subject, true
+func (o *Member) GetSubjectOk() (ret MemberGetSubjectRetType, ok bool) {
+	return getMemberGetSubjectAttributeTypeOk(o.Subject)
 }
 
 // SetSubject sets field value
-func (o *Member) SetSubject(v *string) {
-	o.Subject = v
+func (o *Member) SetSubject(v MemberGetSubjectRetType) {
+	setMemberGetSubjectAttributeType(&o.Subject, v)
 }
 
 func (o Member) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["role"] = o.Role
-	toSerialize["subject"] = o.Subject
+	if val, ok := getMemberGetRoleAttributeTypeOk(o.Role); ok {
+		toSerialize["Role"] = val
+	}
+	if val, ok := getMemberGetSubjectAttributeTypeOk(o.Subject); ok {
+		toSerialize["Subject"] = val
+	}
 	return toSerialize, nil
 }
 
