@@ -17,9 +17,29 @@ import (
 // checks if the PartialUpdateInstanceResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateInstanceResponse{}
 
+/*
+	types and functions for item
+*/
+
+// isModel
+type PartialUpdateInstanceResponseGetItemAttributeType = *Instance
+type PartialUpdateInstanceResponseGetItemArgType = Instance
+type PartialUpdateInstanceResponseGetItemRetType = Instance
+
+func getPartialUpdateInstanceResponseGetItemAttributeTypeOk(arg PartialUpdateInstanceResponseGetItemAttributeType) (ret PartialUpdateInstanceResponseGetItemRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstanceResponseGetItemAttributeType(arg *PartialUpdateInstanceResponseGetItemAttributeType, val PartialUpdateInstanceResponseGetItemRetType) {
+	*arg = &val
+}
+
 // PartialUpdateInstanceResponse struct for PartialUpdateInstanceResponse
 type PartialUpdateInstanceResponse struct {
-	Item *Instance `json:"item,omitempty"`
+	Item PartialUpdateInstanceResponseGetItemAttributeType `json:"item,omitempty"`
 }
 
 // NewPartialUpdateInstanceResponse instantiates a new PartialUpdateInstanceResponse object
@@ -40,41 +60,32 @@ func NewPartialUpdateInstanceResponseWithDefaults() *PartialUpdateInstanceRespon
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
-func (o *PartialUpdateInstanceResponse) GetItem() *Instance {
-	if o == nil || IsNil(o.Item) {
-		var ret *Instance
-		return ret
-	}
-	return o.Item
+func (o *PartialUpdateInstanceResponse) GetItem() (res PartialUpdateInstanceResponseGetItemRetType) {
+	res, _ = o.GetItemOk()
+	return
 }
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstanceResponse) GetItemOk() (*Instance, bool) {
-	if o == nil || IsNil(o.Item) {
-		return nil, false
-	}
-	return o.Item, true
+func (o *PartialUpdateInstanceResponse) GetItemOk() (ret PartialUpdateInstanceResponseGetItemRetType, ok bool) {
+	return getPartialUpdateInstanceResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
 func (o *PartialUpdateInstanceResponse) HasItem() bool {
-	if o != nil && !IsNil(o.Item) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemOk()
+	return ok
 }
 
 // SetItem gets a reference to the given Instance and assigns it to the Item field.
-func (o *PartialUpdateInstanceResponse) SetItem(v *Instance) {
-	o.Item = v
+func (o *PartialUpdateInstanceResponse) SetItem(v PartialUpdateInstanceResponseGetItemRetType) {
+	setPartialUpdateInstanceResponseGetItemAttributeType(&o.Item, v)
 }
 
 func (o PartialUpdateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Item) {
-		toSerialize["item"] = o.Item
+	if val, ok := getPartialUpdateInstanceResponseGetItemAttributeTypeOk(o.Item); ok {
+		toSerialize["Item"] = val
 	}
 	return toSerialize, nil
 }

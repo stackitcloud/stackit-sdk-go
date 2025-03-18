@@ -17,12 +17,74 @@ import (
 // checks if the InstanceDatabase type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceDatabase{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type InstanceDatabaseGetIdAttributeType = *string
+
+func getInstanceDatabaseGetIdAttributeTypeOk(arg InstanceDatabaseGetIdAttributeType) (ret InstanceDatabaseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceDatabaseGetIdAttributeType(arg *InstanceDatabaseGetIdAttributeType, val InstanceDatabaseGetIdRetType) {
+	*arg = &val
+}
+
+type InstanceDatabaseGetIdArgType = string
+type InstanceDatabaseGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type InstanceDatabaseGetNameAttributeType = *string
+
+func getInstanceDatabaseGetNameAttributeTypeOk(arg InstanceDatabaseGetNameAttributeType) (ret InstanceDatabaseGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceDatabaseGetNameAttributeType(arg *InstanceDatabaseGetNameAttributeType, val InstanceDatabaseGetNameRetType) {
+	*arg = &val
+}
+
+type InstanceDatabaseGetNameArgType = string
+type InstanceDatabaseGetNameRetType = string
+
+/*
+	types and functions for options
+*/
+
+// isFreeform
+type InstanceDatabaseGetOptionsAttributeType = *map[string]interface{}
+type InstanceDatabaseGetOptionsArgType = map[string]interface{}
+type InstanceDatabaseGetOptionsRetType = map[string]interface{}
+
+func getInstanceDatabaseGetOptionsAttributeTypeOk(arg InstanceDatabaseGetOptionsAttributeType) (ret InstanceDatabaseGetOptionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceDatabaseGetOptionsAttributeType(arg *InstanceDatabaseGetOptionsAttributeType, val InstanceDatabaseGetOptionsRetType) {
+	*arg = &val
+}
+
 // InstanceDatabase struct for InstanceDatabase
 type InstanceDatabase struct {
-	Id   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Id   InstanceDatabaseGetIdAttributeType   `json:"id,omitempty"`
+	Name InstanceDatabaseGetNameAttributeType `json:"name,omitempty"`
 	// Database specific options
-	Options *map[string]interface{} `json:"options,omitempty"`
+	Options InstanceDatabaseGetOptionsAttributeType `json:"options,omitempty"`
 }
 
 // NewInstanceDatabase instantiates a new InstanceDatabase object
@@ -43,111 +105,84 @@ func NewInstanceDatabaseWithDefaults() *InstanceDatabase {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *InstanceDatabase) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *InstanceDatabase) GetId() (res InstanceDatabaseGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceDatabase) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *InstanceDatabase) GetIdOk() (ret InstanceDatabaseGetIdRetType, ok bool) {
+	return getInstanceDatabaseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *InstanceDatabase) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *InstanceDatabase) SetId(v *string) {
-	o.Id = v
+func (o *InstanceDatabase) SetId(v InstanceDatabaseGetIdRetType) {
+	setInstanceDatabaseGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *InstanceDatabase) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *InstanceDatabase) GetName() (res InstanceDatabaseGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceDatabase) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *InstanceDatabase) GetNameOk() (ret InstanceDatabaseGetNameRetType, ok bool) {
+	return getInstanceDatabaseGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *InstanceDatabase) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *InstanceDatabase) SetName(v *string) {
-	o.Name = v
+func (o *InstanceDatabase) SetName(v InstanceDatabaseGetNameRetType) {
+	setInstanceDatabaseGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *InstanceDatabase) GetOptions() *map[string]interface{} {
-	if o == nil || IsNil(o.Options) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Options
+func (o *InstanceDatabase) GetOptions() (res InstanceDatabaseGetOptionsRetType) {
+	res, _ = o.GetOptionsOk()
+	return
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceDatabase) GetOptionsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Options) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Options, true
+func (o *InstanceDatabase) GetOptionsOk() (ret InstanceDatabaseGetOptionsRetType, ok bool) {
+	return getInstanceDatabaseGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
 func (o *InstanceDatabase) HasOptions() bool {
-	if o != nil && !IsNil(o.Options) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOptionsOk()
+	return ok
 }
 
 // SetOptions gets a reference to the given map[string]interface{} and assigns it to the Options field.
-func (o *InstanceDatabase) SetOptions(v *map[string]interface{}) {
-	o.Options = v
+func (o *InstanceDatabase) SetOptions(v InstanceDatabaseGetOptionsRetType) {
+	setInstanceDatabaseGetOptionsAttributeType(&o.Options, v)
 }
 
 func (o InstanceDatabase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getInstanceDatabaseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getInstanceDatabaseGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Options) {
-		toSerialize["options"] = o.Options
+	if val, ok := getInstanceDatabaseGetOptionsAttributeTypeOk(o.Options); ok {
+		toSerialize["Options"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,10 +17,52 @@ import (
 // checks if the ExtensionsConfiguration type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ExtensionsConfiguration{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ExtensionsConfigurationGetNameAttributeType = *string
+
+func getExtensionsConfigurationGetNameAttributeTypeOk(arg ExtensionsConfigurationGetNameAttributeType) (ret ExtensionsConfigurationGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExtensionsConfigurationGetNameAttributeType(arg *ExtensionsConfigurationGetNameAttributeType, val ExtensionsConfigurationGetNameRetType) {
+	*arg = &val
+}
+
+type ExtensionsConfigurationGetNameArgType = string
+type ExtensionsConfigurationGetNameRetType = string
+
+/*
+	types and functions for setting
+*/
+
+// isNotNullableString
+type ExtensionsConfigurationGetSettingAttributeType = *string
+
+func getExtensionsConfigurationGetSettingAttributeTypeOk(arg ExtensionsConfigurationGetSettingAttributeType) (ret ExtensionsConfigurationGetSettingRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExtensionsConfigurationGetSettingAttributeType(arg *ExtensionsConfigurationGetSettingAttributeType, val ExtensionsConfigurationGetSettingRetType) {
+	*arg = &val
+}
+
+type ExtensionsConfigurationGetSettingArgType = string
+type ExtensionsConfigurationGetSettingRetType = string
+
 // ExtensionsConfiguration struct for ExtensionsConfiguration
 type ExtensionsConfiguration struct {
-	Name    *string `json:"name,omitempty"`
-	Setting *string `json:"setting,omitempty"`
+	Name    ExtensionsConfigurationGetNameAttributeType    `json:"name,omitempty"`
+	Setting ExtensionsConfigurationGetSettingAttributeType `json:"setting,omitempty"`
 }
 
 // NewExtensionsConfiguration instantiates a new ExtensionsConfiguration object
@@ -41,76 +83,58 @@ func NewExtensionsConfigurationWithDefaults() *ExtensionsConfiguration {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ExtensionsConfiguration) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *ExtensionsConfiguration) GetName() (res ExtensionsConfigurationGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionsConfiguration) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *ExtensionsConfiguration) GetNameOk() (ret ExtensionsConfigurationGetNameRetType, ok bool) {
+	return getExtensionsConfigurationGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ExtensionsConfiguration) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ExtensionsConfiguration) SetName(v *string) {
-	o.Name = v
+func (o *ExtensionsConfiguration) SetName(v ExtensionsConfigurationGetNameRetType) {
+	setExtensionsConfigurationGetNameAttributeType(&o.Name, v)
 }
 
 // GetSetting returns the Setting field value if set, zero value otherwise.
-func (o *ExtensionsConfiguration) GetSetting() *string {
-	if o == nil || IsNil(o.Setting) {
-		var ret *string
-		return ret
-	}
-	return o.Setting
+func (o *ExtensionsConfiguration) GetSetting() (res ExtensionsConfigurationGetSettingRetType) {
+	res, _ = o.GetSettingOk()
+	return
 }
 
 // GetSettingOk returns a tuple with the Setting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionsConfiguration) GetSettingOk() (*string, bool) {
-	if o == nil || IsNil(o.Setting) {
-		return nil, false
-	}
-	return o.Setting, true
+func (o *ExtensionsConfiguration) GetSettingOk() (ret ExtensionsConfigurationGetSettingRetType, ok bool) {
+	return getExtensionsConfigurationGetSettingAttributeTypeOk(o.Setting)
 }
 
 // HasSetting returns a boolean if a field has been set.
 func (o *ExtensionsConfiguration) HasSetting() bool {
-	if o != nil && !IsNil(o.Setting) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSettingOk()
+	return ok
 }
 
 // SetSetting gets a reference to the given string and assigns it to the Setting field.
-func (o *ExtensionsConfiguration) SetSetting(v *string) {
-	o.Setting = v
+func (o *ExtensionsConfiguration) SetSetting(v ExtensionsConfigurationGetSettingRetType) {
+	setExtensionsConfigurationGetSettingAttributeType(&o.Setting, v)
 }
 
 func (o ExtensionsConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getExtensionsConfigurationGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Setting) {
-		toSerialize["setting"] = o.Setting
+	if val, ok := getExtensionsConfigurationGetSettingAttributeTypeOk(o.Setting); ok {
+		toSerialize["Setting"] = val
 	}
 	return toSerialize, nil
 }
