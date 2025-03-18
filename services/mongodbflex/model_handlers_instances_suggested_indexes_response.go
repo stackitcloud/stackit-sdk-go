@@ -17,12 +17,52 @@ import (
 // checks if the HandlersInstancesSuggestedIndexesResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HandlersInstancesSuggestedIndexesResponse{}
 
+/*
+	types and functions for shapes
+*/
+
+// isArray
+type HandlersInstancesSuggestedIndexesResponseGetShapesAttributeType = *[]Shape
+type HandlersInstancesSuggestedIndexesResponseGetShapesArgType = []Shape
+type HandlersInstancesSuggestedIndexesResponseGetShapesRetType = []Shape
+
+func getHandlersInstancesSuggestedIndexesResponseGetShapesAttributeTypeOk(arg HandlersInstancesSuggestedIndexesResponseGetShapesAttributeType) (ret HandlersInstancesSuggestedIndexesResponseGetShapesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInstancesSuggestedIndexesResponseGetShapesAttributeType(arg *HandlersInstancesSuggestedIndexesResponseGetShapesAttributeType, val HandlersInstancesSuggestedIndexesResponseGetShapesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for suggestedIndexes
+*/
+
+// isArray
+type HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeType = *[]SuggestedIndex
+type HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesArgType = []SuggestedIndex
+type HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesRetType = []SuggestedIndex
+
+func getHandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeTypeOk(arg HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeType) (ret HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeType(arg *HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeType, val HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesRetType) {
+	*arg = &val
+}
+
 // HandlersInstancesSuggestedIndexesResponse struct for HandlersInstancesSuggestedIndexesResponse
 type HandlersInstancesSuggestedIndexesResponse struct {
 	// Documents with information about the query shapes that are served by the suggested indexes.
-	Shapes *[]Shape `json:"shapes,omitempty"`
+	Shapes HandlersInstancesSuggestedIndexesResponseGetShapesAttributeType `json:"shapes,omitempty"`
 	// Documents with information about the indexes suggested by the Performance Advisor.
-	SuggestedIndexes *[]SuggestedIndex `json:"suggestedIndexes,omitempty"`
+	SuggestedIndexes HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeType `json:"suggestedIndexes,omitempty"`
 }
 
 // NewHandlersInstancesSuggestedIndexesResponse instantiates a new HandlersInstancesSuggestedIndexesResponse object
@@ -43,76 +83,58 @@ func NewHandlersInstancesSuggestedIndexesResponseWithDefaults() *HandlersInstanc
 }
 
 // GetShapes returns the Shapes field value if set, zero value otherwise.
-func (o *HandlersInstancesSuggestedIndexesResponse) GetShapes() *[]Shape {
-	if o == nil || IsNil(o.Shapes) {
-		var ret *[]Shape
-		return ret
-	}
-	return o.Shapes
+func (o *HandlersInstancesSuggestedIndexesResponse) GetShapes() (res HandlersInstancesSuggestedIndexesResponseGetShapesRetType) {
+	res, _ = o.GetShapesOk()
+	return
 }
 
 // GetShapesOk returns a tuple with the Shapes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInstancesSuggestedIndexesResponse) GetShapesOk() (*[]Shape, bool) {
-	if o == nil || IsNil(o.Shapes) {
-		return nil, false
-	}
-	return o.Shapes, true
+func (o *HandlersInstancesSuggestedIndexesResponse) GetShapesOk() (ret HandlersInstancesSuggestedIndexesResponseGetShapesRetType, ok bool) {
+	return getHandlersInstancesSuggestedIndexesResponseGetShapesAttributeTypeOk(o.Shapes)
 }
 
 // HasShapes returns a boolean if a field has been set.
 func (o *HandlersInstancesSuggestedIndexesResponse) HasShapes() bool {
-	if o != nil && !IsNil(o.Shapes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetShapesOk()
+	return ok
 }
 
 // SetShapes gets a reference to the given []Shape and assigns it to the Shapes field.
-func (o *HandlersInstancesSuggestedIndexesResponse) SetShapes(v *[]Shape) {
-	o.Shapes = v
+func (o *HandlersInstancesSuggestedIndexesResponse) SetShapes(v HandlersInstancesSuggestedIndexesResponseGetShapesRetType) {
+	setHandlersInstancesSuggestedIndexesResponseGetShapesAttributeType(&o.Shapes, v)
 }
 
 // GetSuggestedIndexes returns the SuggestedIndexes field value if set, zero value otherwise.
-func (o *HandlersInstancesSuggestedIndexesResponse) GetSuggestedIndexes() *[]SuggestedIndex {
-	if o == nil || IsNil(o.SuggestedIndexes) {
-		var ret *[]SuggestedIndex
-		return ret
-	}
-	return o.SuggestedIndexes
+func (o *HandlersInstancesSuggestedIndexesResponse) GetSuggestedIndexes() (res HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesRetType) {
+	res, _ = o.GetSuggestedIndexesOk()
+	return
 }
 
 // GetSuggestedIndexesOk returns a tuple with the SuggestedIndexes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInstancesSuggestedIndexesResponse) GetSuggestedIndexesOk() (*[]SuggestedIndex, bool) {
-	if o == nil || IsNil(o.SuggestedIndexes) {
-		return nil, false
-	}
-	return o.SuggestedIndexes, true
+func (o *HandlersInstancesSuggestedIndexesResponse) GetSuggestedIndexesOk() (ret HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesRetType, ok bool) {
+	return getHandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeTypeOk(o.SuggestedIndexes)
 }
 
 // HasSuggestedIndexes returns a boolean if a field has been set.
 func (o *HandlersInstancesSuggestedIndexesResponse) HasSuggestedIndexes() bool {
-	if o != nil && !IsNil(o.SuggestedIndexes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSuggestedIndexesOk()
+	return ok
 }
 
 // SetSuggestedIndexes gets a reference to the given []SuggestedIndex and assigns it to the SuggestedIndexes field.
-func (o *HandlersInstancesSuggestedIndexesResponse) SetSuggestedIndexes(v *[]SuggestedIndex) {
-	o.SuggestedIndexes = v
+func (o *HandlersInstancesSuggestedIndexesResponse) SetSuggestedIndexes(v HandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesRetType) {
+	setHandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeType(&o.SuggestedIndexes, v)
 }
 
 func (o HandlersInstancesSuggestedIndexesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Shapes) {
-		toSerialize["shapes"] = o.Shapes
+	if val, ok := getHandlersInstancesSuggestedIndexesResponseGetShapesAttributeTypeOk(o.Shapes); ok {
+		toSerialize["Shapes"] = val
 	}
-	if !IsNil(o.SuggestedIndexes) {
-		toSerialize["suggestedIndexes"] = o.SuggestedIndexes
+	if val, ok := getHandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeTypeOk(o.SuggestedIndexes); ok {
+		toSerialize["SuggestedIndexes"] = val
 	}
 	return toSerialize, nil
 }

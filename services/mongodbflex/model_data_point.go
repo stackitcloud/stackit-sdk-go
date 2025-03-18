@@ -17,10 +17,51 @@ import (
 // checks if the DataPoint type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DataPoint{}
 
+/*
+	types and functions for timestamp
+*/
+
+// isNotNullableString
+type DataPointGetTimestampAttributeType = *string
+
+func getDataPointGetTimestampAttributeTypeOk(arg DataPointGetTimestampAttributeType) (ret DataPointGetTimestampRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDataPointGetTimestampAttributeType(arg *DataPointGetTimestampAttributeType, val DataPointGetTimestampRetType) {
+	*arg = &val
+}
+
+type DataPointGetTimestampArgType = string
+type DataPointGetTimestampRetType = string
+
+/*
+	types and functions for value
+*/
+
+// isNumber
+type DataPointGetValueAttributeType = *float64
+type DataPointGetValueArgType = float64
+type DataPointGetValueRetType = float64
+
+func getDataPointGetValueAttributeTypeOk(arg DataPointGetValueAttributeType) (ret DataPointGetValueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDataPointGetValueAttributeType(arg *DataPointGetValueAttributeType, val DataPointGetValueRetType) {
+	*arg = &val
+}
+
 // DataPoint struct for DataPoint
 type DataPoint struct {
-	Timestamp *string  `json:"timestamp,omitempty"`
-	Value     *float64 `json:"value,omitempty"`
+	Timestamp DataPointGetTimestampAttributeType `json:"timestamp,omitempty"`
+	Value     DataPointGetValueAttributeType     `json:"value,omitempty"`
 }
 
 // NewDataPoint instantiates a new DataPoint object
@@ -41,76 +82,58 @@ func NewDataPointWithDefaults() *DataPoint {
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *DataPoint) GetTimestamp() *string {
-	if o == nil || IsNil(o.Timestamp) {
-		var ret *string
-		return ret
-	}
-	return o.Timestamp
+func (o *DataPoint) GetTimestamp() (res DataPointGetTimestampRetType) {
+	res, _ = o.GetTimestampOk()
+	return
 }
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataPoint) GetTimestampOk() (*string, bool) {
-	if o == nil || IsNil(o.Timestamp) {
-		return nil, false
-	}
-	return o.Timestamp, true
+func (o *DataPoint) GetTimestampOk() (ret DataPointGetTimestampRetType, ok bool) {
+	return getDataPointGetTimestampAttributeTypeOk(o.Timestamp)
 }
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *DataPoint) HasTimestamp() bool {
-	if o != nil && !IsNil(o.Timestamp) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTimestampOk()
+	return ok
 }
 
 // SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
-func (o *DataPoint) SetTimestamp(v *string) {
-	o.Timestamp = v
+func (o *DataPoint) SetTimestamp(v DataPointGetTimestampRetType) {
+	setDataPointGetTimestampAttributeType(&o.Timestamp, v)
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *DataPoint) GetValue() *float64 {
-	if o == nil || IsNil(o.Value) {
-		var ret *float64
-		return ret
-	}
-	return o.Value
+func (o *DataPoint) GetValue() (res DataPointGetValueRetType) {
+	res, _ = o.GetValueOk()
+	return
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataPoint) GetValueOk() (*float64, bool) {
-	if o == nil || IsNil(o.Value) {
-		return nil, false
-	}
-	return o.Value, true
+func (o *DataPoint) GetValueOk() (ret DataPointGetValueRetType, ok bool) {
+	return getDataPointGetValueAttributeTypeOk(o.Value)
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *DataPoint) HasValue() bool {
-	if o != nil && !IsNil(o.Value) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetValueOk()
+	return ok
 }
 
 // SetValue gets a reference to the given float64 and assigns it to the Value field.
-func (o *DataPoint) SetValue(v *float64) {
-	o.Value = v
+func (o *DataPoint) SetValue(v DataPointGetValueRetType) {
+	setDataPointGetValueAttributeType(&o.Value, v)
 }
 
 func (o DataPoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Timestamp) {
-		toSerialize["timestamp"] = o.Timestamp
+	if val, ok := getDataPointGetTimestampAttributeTypeOk(o.Timestamp); ok {
+		toSerialize["Timestamp"] = val
 	}
-	if !IsNil(o.Value) {
-		toSerialize["value"] = o.Value
+	if val, ok := getDataPointGetValueAttributeTypeOk(o.Value); ok {
+		toSerialize["Value"] = val
 	}
 	return toSerialize, nil
 }

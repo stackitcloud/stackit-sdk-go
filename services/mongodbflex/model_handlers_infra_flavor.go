@@ -17,13 +17,115 @@ import (
 // checks if the HandlersInfraFlavor type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HandlersInfraFlavor{}
 
+/*
+	types and functions for categories
+*/
+
+// isArray
+type HandlersInfraFlavorGetCategoriesAttributeType = *[]string
+type HandlersInfraFlavorGetCategoriesArgType = []string
+type HandlersInfraFlavorGetCategoriesRetType = []string
+
+func getHandlersInfraFlavorGetCategoriesAttributeTypeOk(arg HandlersInfraFlavorGetCategoriesAttributeType) (ret HandlersInfraFlavorGetCategoriesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInfraFlavorGetCategoriesAttributeType(arg *HandlersInfraFlavorGetCategoriesAttributeType, val HandlersInfraFlavorGetCategoriesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for cpu
+*/
+
+// isInteger
+type HandlersInfraFlavorGetCpuAttributeType = *int64
+type HandlersInfraFlavorGetCpuArgType = int64
+type HandlersInfraFlavorGetCpuRetType = int64
+
+func getHandlersInfraFlavorGetCpuAttributeTypeOk(arg HandlersInfraFlavorGetCpuAttributeType) (ret HandlersInfraFlavorGetCpuRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInfraFlavorGetCpuAttributeType(arg *HandlersInfraFlavorGetCpuAttributeType, val HandlersInfraFlavorGetCpuRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type HandlersInfraFlavorGetDescriptionAttributeType = *string
+
+func getHandlersInfraFlavorGetDescriptionAttributeTypeOk(arg HandlersInfraFlavorGetDescriptionAttributeType) (ret HandlersInfraFlavorGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInfraFlavorGetDescriptionAttributeType(arg *HandlersInfraFlavorGetDescriptionAttributeType, val HandlersInfraFlavorGetDescriptionRetType) {
+	*arg = &val
+}
+
+type HandlersInfraFlavorGetDescriptionArgType = string
+type HandlersInfraFlavorGetDescriptionRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type HandlersInfraFlavorGetIdAttributeType = *string
+
+func getHandlersInfraFlavorGetIdAttributeTypeOk(arg HandlersInfraFlavorGetIdAttributeType) (ret HandlersInfraFlavorGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInfraFlavorGetIdAttributeType(arg *HandlersInfraFlavorGetIdAttributeType, val HandlersInfraFlavorGetIdRetType) {
+	*arg = &val
+}
+
+type HandlersInfraFlavorGetIdArgType = string
+type HandlersInfraFlavorGetIdRetType = string
+
+/*
+	types and functions for memory
+*/
+
+// isInteger
+type HandlersInfraFlavorGetMemoryAttributeType = *int64
+type HandlersInfraFlavorGetMemoryArgType = int64
+type HandlersInfraFlavorGetMemoryRetType = int64
+
+func getHandlersInfraFlavorGetMemoryAttributeTypeOk(arg HandlersInfraFlavorGetMemoryAttributeType) (ret HandlersInfraFlavorGetMemoryRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInfraFlavorGetMemoryAttributeType(arg *HandlersInfraFlavorGetMemoryAttributeType, val HandlersInfraFlavorGetMemoryRetType) {
+	*arg = &val
+}
+
 // HandlersInfraFlavor struct for HandlersInfraFlavor
 type HandlersInfraFlavor struct {
-	Categories  *[]string `json:"categories,omitempty"`
-	Cpu         *int64    `json:"cpu,omitempty"`
-	Description *string   `json:"description,omitempty"`
-	Id          *string   `json:"id,omitempty"`
-	Memory      *int64    `json:"memory,omitempty"`
+	Categories  HandlersInfraFlavorGetCategoriesAttributeType  `json:"categories,omitempty"`
+	Cpu         HandlersInfraFlavorGetCpuAttributeType         `json:"cpu,omitempty"`
+	Description HandlersInfraFlavorGetDescriptionAttributeType `json:"description,omitempty"`
+	Id          HandlersInfraFlavorGetIdAttributeType          `json:"id,omitempty"`
+	Memory      HandlersInfraFlavorGetMemoryAttributeType      `json:"memory,omitempty"`
 }
 
 // NewHandlersInfraFlavor instantiates a new HandlersInfraFlavor object
@@ -44,181 +146,136 @@ func NewHandlersInfraFlavorWithDefaults() *HandlersInfraFlavor {
 }
 
 // GetCategories returns the Categories field value if set, zero value otherwise.
-func (o *HandlersInfraFlavor) GetCategories() *[]string {
-	if o == nil || IsNil(o.Categories) {
-		var ret *[]string
-		return ret
-	}
-	return o.Categories
+func (o *HandlersInfraFlavor) GetCategories() (res HandlersInfraFlavorGetCategoriesRetType) {
+	res, _ = o.GetCategoriesOk()
+	return
 }
 
 // GetCategoriesOk returns a tuple with the Categories field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInfraFlavor) GetCategoriesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Categories) {
-		return nil, false
-	}
-	return o.Categories, true
+func (o *HandlersInfraFlavor) GetCategoriesOk() (ret HandlersInfraFlavorGetCategoriesRetType, ok bool) {
+	return getHandlersInfraFlavorGetCategoriesAttributeTypeOk(o.Categories)
 }
 
 // HasCategories returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasCategories() bool {
-	if o != nil && !IsNil(o.Categories) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCategoriesOk()
+	return ok
 }
 
 // SetCategories gets a reference to the given []string and assigns it to the Categories field.
-func (o *HandlersInfraFlavor) SetCategories(v *[]string) {
-	o.Categories = v
+func (o *HandlersInfraFlavor) SetCategories(v HandlersInfraFlavorGetCategoriesRetType) {
+	setHandlersInfraFlavorGetCategoriesAttributeType(&o.Categories, v)
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
-func (o *HandlersInfraFlavor) GetCpu() *int64 {
-	if o == nil || IsNil(o.Cpu) {
-		var ret *int64
-		return ret
-	}
-	return o.Cpu
+func (o *HandlersInfraFlavor) GetCpu() (res HandlersInfraFlavorGetCpuRetType) {
+	res, _ = o.GetCpuOk()
+	return
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInfraFlavor) GetCpuOk() (*int64, bool) {
-	if o == nil || IsNil(o.Cpu) {
-		return nil, false
-	}
-	return o.Cpu, true
+func (o *HandlersInfraFlavor) GetCpuOk() (ret HandlersInfraFlavorGetCpuRetType, ok bool) {
+	return getHandlersInfraFlavorGetCpuAttributeTypeOk(o.Cpu)
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasCpu() bool {
-	if o != nil && !IsNil(o.Cpu) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCpuOk()
+	return ok
 }
 
 // SetCpu gets a reference to the given int64 and assigns it to the Cpu field.
-func (o *HandlersInfraFlavor) SetCpu(v *int64) {
-	o.Cpu = v
+func (o *HandlersInfraFlavor) SetCpu(v HandlersInfraFlavorGetCpuRetType) {
+	setHandlersInfraFlavorGetCpuAttributeType(&o.Cpu, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *HandlersInfraFlavor) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *HandlersInfraFlavor) GetDescription() (res HandlersInfraFlavorGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInfraFlavor) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *HandlersInfraFlavor) GetDescriptionOk() (ret HandlersInfraFlavorGetDescriptionRetType, ok bool) {
+	return getHandlersInfraFlavorGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *HandlersInfraFlavor) SetDescription(v *string) {
-	o.Description = v
+func (o *HandlersInfraFlavor) SetDescription(v HandlersInfraFlavorGetDescriptionRetType) {
+	setHandlersInfraFlavorGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *HandlersInfraFlavor) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *HandlersInfraFlavor) GetId() (res HandlersInfraFlavorGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInfraFlavor) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *HandlersInfraFlavor) GetIdOk() (ret HandlersInfraFlavorGetIdRetType, ok bool) {
+	return getHandlersInfraFlavorGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *HandlersInfraFlavor) SetId(v *string) {
-	o.Id = v
+func (o *HandlersInfraFlavor) SetId(v HandlersInfraFlavorGetIdRetType) {
+	setHandlersInfraFlavorGetIdAttributeType(&o.Id, v)
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *HandlersInfraFlavor) GetMemory() *int64 {
-	if o == nil || IsNil(o.Memory) {
-		var ret *int64
-		return ret
-	}
-	return o.Memory
+func (o *HandlersInfraFlavor) GetMemory() (res HandlersInfraFlavorGetMemoryRetType) {
+	res, _ = o.GetMemoryOk()
+	return
 }
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInfraFlavor) GetMemoryOk() (*int64, bool) {
-	if o == nil || IsNil(o.Memory) {
-		return nil, false
-	}
-	return o.Memory, true
+func (o *HandlersInfraFlavor) GetMemoryOk() (ret HandlersInfraFlavorGetMemoryRetType, ok bool) {
+	return getHandlersInfraFlavorGetMemoryAttributeTypeOk(o.Memory)
 }
 
 // HasMemory returns a boolean if a field has been set.
 func (o *HandlersInfraFlavor) HasMemory() bool {
-	if o != nil && !IsNil(o.Memory) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMemoryOk()
+	return ok
 }
 
 // SetMemory gets a reference to the given int64 and assigns it to the Memory field.
-func (o *HandlersInfraFlavor) SetMemory(v *int64) {
-	o.Memory = v
+func (o *HandlersInfraFlavor) SetMemory(v HandlersInfraFlavorGetMemoryRetType) {
+	setHandlersInfraFlavorGetMemoryAttributeType(&o.Memory, v)
 }
 
 func (o HandlersInfraFlavor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Categories) {
-		toSerialize["categories"] = o.Categories
+	if val, ok := getHandlersInfraFlavorGetCategoriesAttributeTypeOk(o.Categories); ok {
+		toSerialize["Categories"] = val
 	}
-	if !IsNil(o.Cpu) {
-		toSerialize["cpu"] = o.Cpu
+	if val, ok := getHandlersInfraFlavorGetCpuAttributeTypeOk(o.Cpu); ok {
+		toSerialize["Cpu"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getHandlersInfraFlavorGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getHandlersInfraFlavorGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Memory) {
-		toSerialize["memory"] = o.Memory
+	if val, ok := getHandlersInfraFlavorGetMemoryAttributeTypeOk(o.Memory); ok {
+		toSerialize["Memory"] = val
 	}
 	return toSerialize, nil
 }

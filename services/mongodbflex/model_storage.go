@@ -17,10 +17,51 @@ import (
 // checks if the Storage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Storage{}
 
+/*
+	types and functions for class
+*/
+
+// isNotNullableString
+type StorageGetClassAttributeType = *string
+
+func getStorageGetClassAttributeTypeOk(arg StorageGetClassAttributeType) (ret StorageGetClassRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setStorageGetClassAttributeType(arg *StorageGetClassAttributeType, val StorageGetClassRetType) {
+	*arg = &val
+}
+
+type StorageGetClassArgType = string
+type StorageGetClassRetType = string
+
+/*
+	types and functions for size
+*/
+
+// isInteger
+type StorageGetSizeAttributeType = *int64
+type StorageGetSizeArgType = int64
+type StorageGetSizeRetType = int64
+
+func getStorageGetSizeAttributeTypeOk(arg StorageGetSizeAttributeType) (ret StorageGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setStorageGetSizeAttributeType(arg *StorageGetSizeAttributeType, val StorageGetSizeRetType) {
+	*arg = &val
+}
+
 // Storage struct for Storage
 type Storage struct {
-	Class *string `json:"class,omitempty"`
-	Size  *int64  `json:"size,omitempty"`
+	Class StorageGetClassAttributeType `json:"class,omitempty"`
+	Size  StorageGetSizeAttributeType  `json:"size,omitempty"`
 }
 
 // NewStorage instantiates a new Storage object
@@ -41,76 +82,58 @@ func NewStorageWithDefaults() *Storage {
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
-func (o *Storage) GetClass() *string {
-	if o == nil || IsNil(o.Class) {
-		var ret *string
-		return ret
-	}
-	return o.Class
+func (o *Storage) GetClass() (res StorageGetClassRetType) {
+	res, _ = o.GetClassOk()
+	return
 }
 
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Storage) GetClassOk() (*string, bool) {
-	if o == nil || IsNil(o.Class) {
-		return nil, false
-	}
-	return o.Class, true
+func (o *Storage) GetClassOk() (ret StorageGetClassRetType, ok bool) {
+	return getStorageGetClassAttributeTypeOk(o.Class)
 }
 
 // HasClass returns a boolean if a field has been set.
 func (o *Storage) HasClass() bool {
-	if o != nil && !IsNil(o.Class) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetClassOk()
+	return ok
 }
 
 // SetClass gets a reference to the given string and assigns it to the Class field.
-func (o *Storage) SetClass(v *string) {
-	o.Class = v
+func (o *Storage) SetClass(v StorageGetClassRetType) {
+	setStorageGetClassAttributeType(&o.Class, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *Storage) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-	return o.Size
+func (o *Storage) GetSize() (res StorageGetSizeRetType) {
+	res, _ = o.GetSizeOk()
+	return
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Storage) GetSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Size) {
-		return nil, false
-	}
-	return o.Size, true
+func (o *Storage) GetSizeOk() (ret StorageGetSizeRetType, ok bool) {
+	return getStorageGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *Storage) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSizeOk()
+	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *Storage) SetSize(v *int64) {
-	o.Size = v
+func (o *Storage) SetSize(v StorageGetSizeRetType) {
+	setStorageGetSizeAttributeType(&o.Size, v)
 }
 
 func (o Storage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Class) {
-		toSerialize["class"] = o.Class
+	if val, ok := getStorageGetClassAttributeTypeOk(o.Class); ok {
+		toSerialize["Class"] = val
 	}
-	if !IsNil(o.Size) {
-		toSerialize["size"] = o.Size
+	if val, ok := getStorageGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
 	}
 	return toSerialize, nil
 }
