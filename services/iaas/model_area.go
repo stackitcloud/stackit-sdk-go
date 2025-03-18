@@ -17,16 +17,97 @@ import (
 // checks if the Area type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Area{}
 
+/*
+	types and functions for defaultNameservers
+*/
+
+// isArray
+type AreaGetDefaultNameserversAttributeType = *[]string
+type AreaGetDefaultNameserversArgType = []string
+type AreaGetDefaultNameserversRetType = []string
+
+func getAreaGetDefaultNameserversAttributeTypeOk(arg AreaGetDefaultNameserversAttributeType) (ret AreaGetDefaultNameserversRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAreaGetDefaultNameserversAttributeType(arg *AreaGetDefaultNameserversAttributeType, val AreaGetDefaultNameserversRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for networkRanges
+*/
+
+// isArray
+type AreaGetNetworkRangesAttributeType = *[]NetworkRange
+type AreaGetNetworkRangesArgType = []NetworkRange
+type AreaGetNetworkRangesRetType = []NetworkRange
+
+func getAreaGetNetworkRangesAttributeTypeOk(arg AreaGetNetworkRangesAttributeType) (ret AreaGetNetworkRangesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAreaGetNetworkRangesAttributeType(arg *AreaGetNetworkRangesAttributeType, val AreaGetNetworkRangesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for routes
+*/
+
+// isArray
+type AreaGetRoutesAttributeType = *[]Route
+type AreaGetRoutesArgType = []Route
+type AreaGetRoutesRetType = []Route
+
+func getAreaGetRoutesAttributeTypeOk(arg AreaGetRoutesAttributeType) (ret AreaGetRoutesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAreaGetRoutesAttributeType(arg *AreaGetRoutesAttributeType, val AreaGetRoutesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for transferNetwork
+*/
+
+// isNotNullableString
+type AreaGetTransferNetworkAttributeType = *string
+
+func getAreaGetTransferNetworkAttributeTypeOk(arg AreaGetTransferNetworkAttributeType) (ret AreaGetTransferNetworkRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAreaGetTransferNetworkAttributeType(arg *AreaGetTransferNetworkAttributeType, val AreaGetTransferNetworkRetType) {
+	*arg = &val
+}
+
+type AreaGetTransferNetworkArgType = string
+type AreaGetTransferNetworkRetType = string
+
 // Area The basic properties of a network area.
 type Area struct {
 	// A list containing DNS Servers/Nameservers for IPv4.
-	DefaultNameservers *[]string `json:"defaultNameservers,omitempty"`
+	DefaultNameservers AreaGetDefaultNameserversAttributeType `json:"defaultNameservers,omitempty"`
 	// A list of network ranges.
-	NetworkRanges *[]NetworkRange `json:"networkRanges,omitempty"`
+	NetworkRanges AreaGetNetworkRangesAttributeType `json:"networkRanges,omitempty"`
 	// A list of routes.
-	Routes *[]Route `json:"routes,omitempty"`
+	Routes AreaGetRoutesAttributeType `json:"routes,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
-	TransferNetwork *string `json:"transferNetwork,omitempty"`
+	TransferNetwork AreaGetTransferNetworkAttributeType `json:"transferNetwork,omitempty"`
 }
 
 // NewArea instantiates a new Area object
@@ -47,146 +128,110 @@ func NewAreaWithDefaults() *Area {
 }
 
 // GetDefaultNameservers returns the DefaultNameservers field value if set, zero value otherwise.
-func (o *Area) GetDefaultNameservers() *[]string {
-	if o == nil || IsNil(o.DefaultNameservers) {
-		var ret *[]string
-		return ret
-	}
-	return o.DefaultNameservers
+func (o *Area) GetDefaultNameservers() (res AreaGetDefaultNameserversRetType) {
+	res, _ = o.GetDefaultNameserversOk()
+	return
 }
 
 // GetDefaultNameserversOk returns a tuple with the DefaultNameservers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Area) GetDefaultNameserversOk() (*[]string, bool) {
-	if o == nil || IsNil(o.DefaultNameservers) {
-		return nil, false
-	}
-	return o.DefaultNameservers, true
+func (o *Area) GetDefaultNameserversOk() (ret AreaGetDefaultNameserversRetType, ok bool) {
+	return getAreaGetDefaultNameserversAttributeTypeOk(o.DefaultNameservers)
 }
 
 // HasDefaultNameservers returns a boolean if a field has been set.
 func (o *Area) HasDefaultNameservers() bool {
-	if o != nil && !IsNil(o.DefaultNameservers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDefaultNameserversOk()
+	return ok
 }
 
 // SetDefaultNameservers gets a reference to the given []string and assigns it to the DefaultNameservers field.
-func (o *Area) SetDefaultNameservers(v *[]string) {
-	o.DefaultNameservers = v
+func (o *Area) SetDefaultNameservers(v AreaGetDefaultNameserversRetType) {
+	setAreaGetDefaultNameserversAttributeType(&o.DefaultNameservers, v)
 }
 
 // GetNetworkRanges returns the NetworkRanges field value if set, zero value otherwise.
-func (o *Area) GetNetworkRanges() *[]NetworkRange {
-	if o == nil || IsNil(o.NetworkRanges) {
-		var ret *[]NetworkRange
-		return ret
-	}
-	return o.NetworkRanges
+func (o *Area) GetNetworkRanges() (res AreaGetNetworkRangesRetType) {
+	res, _ = o.GetNetworkRangesOk()
+	return
 }
 
 // GetNetworkRangesOk returns a tuple with the NetworkRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Area) GetNetworkRangesOk() (*[]NetworkRange, bool) {
-	if o == nil || IsNil(o.NetworkRanges) {
-		return nil, false
-	}
-	return o.NetworkRanges, true
+func (o *Area) GetNetworkRangesOk() (ret AreaGetNetworkRangesRetType, ok bool) {
+	return getAreaGetNetworkRangesAttributeTypeOk(o.NetworkRanges)
 }
 
 // HasNetworkRanges returns a boolean if a field has been set.
 func (o *Area) HasNetworkRanges() bool {
-	if o != nil && !IsNil(o.NetworkRanges) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNetworkRangesOk()
+	return ok
 }
 
 // SetNetworkRanges gets a reference to the given []NetworkRange and assigns it to the NetworkRanges field.
-func (o *Area) SetNetworkRanges(v *[]NetworkRange) {
-	o.NetworkRanges = v
+func (o *Area) SetNetworkRanges(v AreaGetNetworkRangesRetType) {
+	setAreaGetNetworkRangesAttributeType(&o.NetworkRanges, v)
 }
 
 // GetRoutes returns the Routes field value if set, zero value otherwise.
-func (o *Area) GetRoutes() *[]Route {
-	if o == nil || IsNil(o.Routes) {
-		var ret *[]Route
-		return ret
-	}
-	return o.Routes
+func (o *Area) GetRoutes() (res AreaGetRoutesRetType) {
+	res, _ = o.GetRoutesOk()
+	return
 }
 
 // GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Area) GetRoutesOk() (*[]Route, bool) {
-	if o == nil || IsNil(o.Routes) {
-		return nil, false
-	}
-	return o.Routes, true
+func (o *Area) GetRoutesOk() (ret AreaGetRoutesRetType, ok bool) {
+	return getAreaGetRoutesAttributeTypeOk(o.Routes)
 }
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *Area) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRoutesOk()
+	return ok
 }
 
 // SetRoutes gets a reference to the given []Route and assigns it to the Routes field.
-func (o *Area) SetRoutes(v *[]Route) {
-	o.Routes = v
+func (o *Area) SetRoutes(v AreaGetRoutesRetType) {
+	setAreaGetRoutesAttributeType(&o.Routes, v)
 }
 
 // GetTransferNetwork returns the TransferNetwork field value if set, zero value otherwise.
-func (o *Area) GetTransferNetwork() *string {
-	if o == nil || IsNil(o.TransferNetwork) {
-		var ret *string
-		return ret
-	}
-	return o.TransferNetwork
+func (o *Area) GetTransferNetwork() (res AreaGetTransferNetworkRetType) {
+	res, _ = o.GetTransferNetworkOk()
+	return
 }
 
 // GetTransferNetworkOk returns a tuple with the TransferNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Area) GetTransferNetworkOk() (*string, bool) {
-	if o == nil || IsNil(o.TransferNetwork) {
-		return nil, false
-	}
-	return o.TransferNetwork, true
+func (o *Area) GetTransferNetworkOk() (ret AreaGetTransferNetworkRetType, ok bool) {
+	return getAreaGetTransferNetworkAttributeTypeOk(o.TransferNetwork)
 }
 
 // HasTransferNetwork returns a boolean if a field has been set.
 func (o *Area) HasTransferNetwork() bool {
-	if o != nil && !IsNil(o.TransferNetwork) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTransferNetworkOk()
+	return ok
 }
 
 // SetTransferNetwork gets a reference to the given string and assigns it to the TransferNetwork field.
-func (o *Area) SetTransferNetwork(v *string) {
-	o.TransferNetwork = v
+func (o *Area) SetTransferNetwork(v AreaGetTransferNetworkRetType) {
+	setAreaGetTransferNetworkAttributeType(&o.TransferNetwork, v)
 }
 
 func (o Area) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.DefaultNameservers) {
-		toSerialize["defaultNameservers"] = o.DefaultNameservers
+	if val, ok := getAreaGetDefaultNameserversAttributeTypeOk(o.DefaultNameservers); ok {
+		toSerialize["DefaultNameservers"] = val
 	}
-	if !IsNil(o.NetworkRanges) {
-		toSerialize["networkRanges"] = o.NetworkRanges
+	if val, ok := getAreaGetNetworkRangesAttributeTypeOk(o.NetworkRanges); ok {
+		toSerialize["NetworkRanges"] = val
 	}
-	if !IsNil(o.Routes) {
-		toSerialize["routes"] = o.Routes
+	if val, ok := getAreaGetRoutesAttributeTypeOk(o.Routes); ok {
+		toSerialize["Routes"] = val
 	}
-	if !IsNil(o.TransferNetwork) {
-		toSerialize["transferNetwork"] = o.TransferNetwork
+	if val, ok := getAreaGetTransferNetworkAttributeTypeOk(o.TransferNetwork); ok {
+		toSerialize["TransferNetwork"] = val
 	}
 	return toSerialize, nil
 }
