@@ -18,36 +18,330 @@ import (
 // checks if the Network type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Network{}
 
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type NetworkGetCreatedAtAttributeType = *time.Time
+type NetworkGetCreatedAtArgType = time.Time
+type NetworkGetCreatedAtRetType = time.Time
+
+func getNetworkGetCreatedAtAttributeTypeOk(arg NetworkGetCreatedAtAttributeType) (ret NetworkGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetCreatedAtAttributeType(arg *NetworkGetCreatedAtAttributeType, val NetworkGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for gateway
+*/
+
+// isNullableString
+type NetworkGetGatewayAttributeType = *NullableString
+
+func getNetworkGetGatewayAttributeTypeOk(arg NetworkGetGatewayAttributeType) (ret NetworkGetGatewayRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setNetworkGetGatewayAttributeType(arg *NetworkGetGatewayAttributeType, val NetworkGetGatewayRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type NetworkGetGatewayArgType = *string
+type NetworkGetGatewayRetType = *string
+
+/*
+	types and functions for gatewayv6
+*/
+
+// isNullableString
+type NetworkGetGatewayv6AttributeType = *NullableString
+
+func getNetworkGetGatewayv6AttributeTypeOk(arg NetworkGetGatewayv6AttributeType) (ret NetworkGetGatewayv6RetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setNetworkGetGatewayv6AttributeType(arg *NetworkGetGatewayv6AttributeType, val NetworkGetGatewayv6RetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type NetworkGetGatewayv6ArgType = *string
+type NetworkGetGatewayv6RetType = *string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type NetworkGetLabelsAttributeType = *map[string]interface{}
+type NetworkGetLabelsArgType = map[string]interface{}
+type NetworkGetLabelsRetType = map[string]interface{}
+
+func getNetworkGetLabelsAttributeTypeOk(arg NetworkGetLabelsAttributeType) (ret NetworkGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetLabelsAttributeType(arg *NetworkGetLabelsAttributeType, val NetworkGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type NetworkGetNameAttributeType = *string
+
+func getNetworkGetNameAttributeTypeOk(arg NetworkGetNameAttributeType) (ret NetworkGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetNameAttributeType(arg *NetworkGetNameAttributeType, val NetworkGetNameRetType) {
+	*arg = &val
+}
+
+type NetworkGetNameArgType = string
+type NetworkGetNameRetType = string
+
+/*
+	types and functions for nameservers
+*/
+
+// isArray
+type NetworkGetNameserversAttributeType = *[]string
+type NetworkGetNameserversArgType = []string
+type NetworkGetNameserversRetType = []string
+
+func getNetworkGetNameserversAttributeTypeOk(arg NetworkGetNameserversAttributeType) (ret NetworkGetNameserversRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetNameserversAttributeType(arg *NetworkGetNameserversAttributeType, val NetworkGetNameserversRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nameserversV6
+*/
+
+// isArray
+type NetworkGetNameserversV6AttributeType = *[]string
+type NetworkGetNameserversV6ArgType = []string
+type NetworkGetNameserversV6RetType = []string
+
+func getNetworkGetNameserversV6AttributeTypeOk(arg NetworkGetNameserversV6AttributeType) (ret NetworkGetNameserversV6RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetNameserversV6AttributeType(arg *NetworkGetNameserversV6AttributeType, val NetworkGetNameserversV6RetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for networkId
+*/
+
+// isNotNullableString
+type NetworkGetNetworkIdAttributeType = *string
+
+func getNetworkGetNetworkIdAttributeTypeOk(arg NetworkGetNetworkIdAttributeType) (ret NetworkGetNetworkIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetNetworkIdAttributeType(arg *NetworkGetNetworkIdAttributeType, val NetworkGetNetworkIdRetType) {
+	*arg = &val
+}
+
+type NetworkGetNetworkIdArgType = string
+type NetworkGetNetworkIdRetType = string
+
+/*
+	types and functions for prefixes
+*/
+
+// isArray
+type NetworkGetPrefixesAttributeType = *[]string
+type NetworkGetPrefixesArgType = []string
+type NetworkGetPrefixesRetType = []string
+
+func getNetworkGetPrefixesAttributeTypeOk(arg NetworkGetPrefixesAttributeType) (ret NetworkGetPrefixesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetPrefixesAttributeType(arg *NetworkGetPrefixesAttributeType, val NetworkGetPrefixesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for prefixesV6
+*/
+
+// isArray
+type NetworkGetPrefixesV6AttributeType = *[]string
+type NetworkGetPrefixesV6ArgType = []string
+type NetworkGetPrefixesV6RetType = []string
+
+func getNetworkGetPrefixesV6AttributeTypeOk(arg NetworkGetPrefixesV6AttributeType) (ret NetworkGetPrefixesV6RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetPrefixesV6AttributeType(arg *NetworkGetPrefixesV6AttributeType, val NetworkGetPrefixesV6RetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for publicIp
+*/
+
+// isNotNullableString
+type NetworkGetPublicIpAttributeType = *string
+
+func getNetworkGetPublicIpAttributeTypeOk(arg NetworkGetPublicIpAttributeType) (ret NetworkGetPublicIpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetPublicIpAttributeType(arg *NetworkGetPublicIpAttributeType, val NetworkGetPublicIpRetType) {
+	*arg = &val
+}
+
+type NetworkGetPublicIpArgType = string
+type NetworkGetPublicIpRetType = string
+
+/*
+	types and functions for routed
+*/
+
+// isBoolean
+type NetworkgetRoutedAttributeType = *bool
+type NetworkgetRoutedArgType = bool
+type NetworkgetRoutedRetType = bool
+
+func getNetworkgetRoutedAttributeTypeOk(arg NetworkgetRoutedAttributeType) (ret NetworkgetRoutedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkgetRoutedAttributeType(arg *NetworkgetRoutedAttributeType, val NetworkgetRoutedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for state
+*/
+
+// isNotNullableString
+type NetworkGetStateAttributeType = *string
+
+func getNetworkGetStateAttributeTypeOk(arg NetworkGetStateAttributeType) (ret NetworkGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetStateAttributeType(arg *NetworkGetStateAttributeType, val NetworkGetStateRetType) {
+	*arg = &val
+}
+
+type NetworkGetStateArgType = string
+type NetworkGetStateRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type NetworkGetUpdatedAtAttributeType = *time.Time
+type NetworkGetUpdatedAtArgType = time.Time
+type NetworkGetUpdatedAtRetType = time.Time
+
+func getNetworkGetUpdatedAtAttributeTypeOk(arg NetworkGetUpdatedAtAttributeType) (ret NetworkGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetUpdatedAtAttributeType(arg *NetworkGetUpdatedAtAttributeType, val NetworkGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // Network Object that represents a network.
 type Network struct {
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt NetworkGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
-	Gateway *NullableString `json:"gateway,omitempty"`
+	Gateway NetworkGetGatewayAttributeType `json:"gateway,omitempty"`
 	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
-	Gatewayv6 *NullableString `json:"gatewayv6,omitempty"`
+	Gatewayv6 NetworkGetGatewayv6AttributeType `json:"gatewayv6,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels NetworkGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name NetworkGetNameAttributeType `json:"name"`
 	// A list containing DNS Servers/Nameservers for IPv4.
-	Nameservers *[]string `json:"nameservers,omitempty"`
+	Nameservers NetworkGetNameserversAttributeType `json:"nameservers,omitempty"`
 	// A list containing DNS Servers/Nameservers for IPv6.
-	NameserversV6 *[]string `json:"nameserversV6,omitempty"`
+	NameserversV6 NetworkGetNameserversV6AttributeType `json:"nameserversV6,omitempty"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	NetworkId  *string   `json:"networkId"`
-	Prefixes   *[]string `json:"prefixes,omitempty"`
-	PrefixesV6 *[]string `json:"prefixesV6,omitempty"`
+	NetworkId  NetworkGetNetworkIdAttributeType  `json:"networkId"`
+	Prefixes   NetworkGetPrefixesAttributeType   `json:"prefixes,omitempty"`
+	PrefixesV6 NetworkGetPrefixesV6AttributeType `json:"prefixesV6,omitempty"`
 	// Object that represents an IP address.
-	PublicIp *string `json:"publicIp,omitempty"`
+	PublicIp NetworkGetPublicIpAttributeType `json:"publicIp,omitempty"`
 	// Shows if the network is routed and therefore accessible from other networks.
-	Routed *bool `json:"routed,omitempty"`
+	Routed NetworkgetRoutedAttributeType `json:"routed,omitempty"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
-	State *string `json:"state"`
+	State NetworkGetStateAttributeType `json:"state"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt NetworkGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 type _Network Network
@@ -56,11 +350,11 @@ type _Network Network
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetwork(name *string, networkId *string, state *string) *Network {
+func NewNetwork(name NetworkGetNameArgType, networkId NetworkGetNetworkIdArgType, state NetworkGetStateArgType) *Network {
 	this := Network{}
-	this.Name = name
-	this.NetworkId = networkId
-	this.State = state
+	setNetworkGetNameAttributeType(&this.Name, name)
+	setNetworkGetNetworkIdAttributeType(&this.NetworkId, networkId)
+	setNetworkGetStateAttributeType(&this.State, state)
 	return &this
 }
 
@@ -73,506 +367,374 @@ func NewNetworkWithDefaults() *Network {
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Network) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *Network) GetCreatedAt() (res NetworkGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *Network) GetCreatedAtOk() (ret NetworkGetCreatedAtRetType, ok bool) {
+	return getNetworkGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Network) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Network) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *Network) SetCreatedAt(v NetworkGetCreatedAtRetType) {
+	setNetworkGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetGateway returns the Gateway field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Network) GetGateway() *string {
-	if o == nil || IsNil(o.Gateway) || IsNil(o.Gateway.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.Gateway.Get()
+func (o *Network) GetGateway() (res NetworkGetGatewayRetType) {
+	res, _ = o.GetGatewayOk()
+	return
 }
 
 // GetGatewayOk returns a tuple with the Gateway field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Network) GetGatewayOk() (*string, bool) {
-	if o == nil || IsNil(o.Gateway) {
-		return nil, false
-	}
-	return o.Gateway.Get(), o.Gateway.IsSet()
+func (o *Network) GetGatewayOk() (ret NetworkGetGatewayRetType, ok bool) {
+	return getNetworkGetGatewayAttributeTypeOk(o.Gateway)
 }
 
 // HasGateway returns a boolean if a field has been set.
 func (o *Network) HasGateway() bool {
-	if o != nil && !IsNil(o.Gateway) && o.Gateway.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGatewayOk()
+	return ok
 }
 
 // SetGateway gets a reference to the given string and assigns it to the Gateway field.
-func (o *Network) SetGateway(v *string) {
-	if IsNil(o.Gateway) {
-		o.Gateway = new(NullableString)
-	}
-	o.Gateway.Set(v)
+func (o *Network) SetGateway(v NetworkGetGatewayRetType) {
+	setNetworkGetGatewayAttributeType(&o.Gateway, v)
 }
 
 // SetGatewayNil sets the value for Gateway to be an explicit nil
 func (o *Network) SetGatewayNil() {
-	if IsNil(o.Gateway) {
-		o.Gateway = new(NullableString)
-	}
-	o.Gateway.Set(nil)
+	o.Gateway = nil
 }
 
 // UnsetGateway ensures that no value is present for Gateway, not even an explicit nil
 func (o *Network) UnsetGateway() {
-	if IsNil(o.Gateway) {
-		o.Gateway = new(NullableString)
-	}
-	o.Gateway.Unset()
+	o.Gateway = nil
 }
 
 // GetGatewayv6 returns the Gatewayv6 field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Network) GetGatewayv6() *string {
-	if o == nil || IsNil(o.Gatewayv6) || IsNil(o.Gatewayv6.Get()) {
-		var ret *string
-		return ret
-	}
-	return o.Gatewayv6.Get()
+func (o *Network) GetGatewayv6() (res NetworkGetGatewayv6RetType) {
+	res, _ = o.GetGatewayv6Ok()
+	return
 }
 
 // GetGatewayv6Ok returns a tuple with the Gatewayv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Network) GetGatewayv6Ok() (*string, bool) {
-	if o == nil || IsNil(o.Gatewayv6) {
-		return nil, false
-	}
-	return o.Gatewayv6.Get(), o.Gatewayv6.IsSet()
+func (o *Network) GetGatewayv6Ok() (ret NetworkGetGatewayv6RetType, ok bool) {
+	return getNetworkGetGatewayv6AttributeTypeOk(o.Gatewayv6)
 }
 
 // HasGatewayv6 returns a boolean if a field has been set.
 func (o *Network) HasGatewayv6() bool {
-	if o != nil && !IsNil(o.Gatewayv6) && o.Gatewayv6.IsSet() {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGatewayv6Ok()
+	return ok
 }
 
 // SetGatewayv6 gets a reference to the given string and assigns it to the Gatewayv6 field.
-func (o *Network) SetGatewayv6(v *string) {
-	if IsNil(o.Gatewayv6) {
-		o.Gatewayv6 = new(NullableString)
-	}
-	o.Gatewayv6.Set(v)
+func (o *Network) SetGatewayv6(v NetworkGetGatewayv6RetType) {
+	setNetworkGetGatewayv6AttributeType(&o.Gatewayv6, v)
 }
 
 // SetGatewayv6Nil sets the value for Gatewayv6 to be an explicit nil
 func (o *Network) SetGatewayv6Nil() {
-	if IsNil(o.Gatewayv6) {
-		o.Gatewayv6 = new(NullableString)
-	}
-	o.Gatewayv6.Set(nil)
+	o.Gatewayv6 = nil
 }
 
 // UnsetGatewayv6 ensures that no value is present for Gatewayv6, not even an explicit nil
 func (o *Network) UnsetGatewayv6() {
-	if IsNil(o.Gatewayv6) {
-		o.Gatewayv6 = new(NullableString)
-	}
-	o.Gatewayv6.Unset()
+	o.Gatewayv6 = nil
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Network) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *Network) GetLabels() (res NetworkGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *Network) GetLabelsOk() (ret NetworkGetLabelsRetType, ok bool) {
+	return getNetworkGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Network) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *Network) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *Network) SetLabels(v NetworkGetLabelsRetType) {
+	setNetworkGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value
-func (o *Network) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Network) GetName() (ret NetworkGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Network) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Network) GetNameOk() (ret NetworkGetNameRetType, ok bool) {
+	return getNetworkGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Network) SetName(v *string) {
-	o.Name = v
+func (o *Network) SetName(v NetworkGetNameRetType) {
+	setNetworkGetNameAttributeType(&o.Name, v)
 }
 
 // GetNameservers returns the Nameservers field value if set, zero value otherwise.
-func (o *Network) GetNameservers() *[]string {
-	if o == nil || IsNil(o.Nameservers) {
-		var ret *[]string
-		return ret
-	}
-	return o.Nameservers
+func (o *Network) GetNameservers() (res NetworkGetNameserversRetType) {
+	res, _ = o.GetNameserversOk()
+	return
 }
 
 // GetNameserversOk returns a tuple with the Nameservers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetNameserversOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Nameservers) {
-		return nil, false
-	}
-	return o.Nameservers, true
+func (o *Network) GetNameserversOk() (ret NetworkGetNameserversRetType, ok bool) {
+	return getNetworkGetNameserversAttributeTypeOk(o.Nameservers)
 }
 
 // HasNameservers returns a boolean if a field has been set.
 func (o *Network) HasNameservers() bool {
-	if o != nil && !IsNil(o.Nameservers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameserversOk()
+	return ok
 }
 
 // SetNameservers gets a reference to the given []string and assigns it to the Nameservers field.
-func (o *Network) SetNameservers(v *[]string) {
-	o.Nameservers = v
+func (o *Network) SetNameservers(v NetworkGetNameserversRetType) {
+	setNetworkGetNameserversAttributeType(&o.Nameservers, v)
 }
 
 // GetNameserversV6 returns the NameserversV6 field value if set, zero value otherwise.
-func (o *Network) GetNameserversV6() *[]string {
-	if o == nil || IsNil(o.NameserversV6) {
-		var ret *[]string
-		return ret
-	}
-	return o.NameserversV6
+func (o *Network) GetNameserversV6() (res NetworkGetNameserversV6RetType) {
+	res, _ = o.GetNameserversV6Ok()
+	return
 }
 
 // GetNameserversV6Ok returns a tuple with the NameserversV6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetNameserversV6Ok() (*[]string, bool) {
-	if o == nil || IsNil(o.NameserversV6) {
-		return nil, false
-	}
-	return o.NameserversV6, true
+func (o *Network) GetNameserversV6Ok() (ret NetworkGetNameserversV6RetType, ok bool) {
+	return getNetworkGetNameserversV6AttributeTypeOk(o.NameserversV6)
 }
 
 // HasNameserversV6 returns a boolean if a field has been set.
 func (o *Network) HasNameserversV6() bool {
-	if o != nil && !IsNil(o.NameserversV6) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameserversV6Ok()
+	return ok
 }
 
 // SetNameserversV6 gets a reference to the given []string and assigns it to the NameserversV6 field.
-func (o *Network) SetNameserversV6(v *[]string) {
-	o.NameserversV6 = v
+func (o *Network) SetNameserversV6(v NetworkGetNameserversV6RetType) {
+	setNetworkGetNameserversV6AttributeType(&o.NameserversV6, v)
 }
 
 // GetNetworkId returns the NetworkId field value
-func (o *Network) GetNetworkId() *string {
-	if o == nil || IsNil(o.NetworkId) {
-		var ret *string
-		return ret
-	}
-
-	return o.NetworkId
+func (o *Network) GetNetworkId() (ret NetworkGetNetworkIdRetType) {
+	ret, _ = o.GetNetworkIdOk()
+	return ret
 }
 
 // GetNetworkIdOk returns a tuple with the NetworkId field value
 // and a boolean to check if the value has been set.
-func (o *Network) GetNetworkIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.NetworkId, true
+func (o *Network) GetNetworkIdOk() (ret NetworkGetNetworkIdRetType, ok bool) {
+	return getNetworkGetNetworkIdAttributeTypeOk(o.NetworkId)
 }
 
 // SetNetworkId sets field value
-func (o *Network) SetNetworkId(v *string) {
-	o.NetworkId = v
+func (o *Network) SetNetworkId(v NetworkGetNetworkIdRetType) {
+	setNetworkGetNetworkIdAttributeType(&o.NetworkId, v)
 }
 
 // GetPrefixes returns the Prefixes field value if set, zero value otherwise.
-func (o *Network) GetPrefixes() *[]string {
-	if o == nil || IsNil(o.Prefixes) {
-		var ret *[]string
-		return ret
-	}
-	return o.Prefixes
+func (o *Network) GetPrefixes() (res NetworkGetPrefixesRetType) {
+	res, _ = o.GetPrefixesOk()
+	return
 }
 
 // GetPrefixesOk returns a tuple with the Prefixes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetPrefixesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Prefixes) {
-		return nil, false
-	}
-	return o.Prefixes, true
+func (o *Network) GetPrefixesOk() (ret NetworkGetPrefixesRetType, ok bool) {
+	return getNetworkGetPrefixesAttributeTypeOk(o.Prefixes)
 }
 
 // HasPrefixes returns a boolean if a field has been set.
 func (o *Network) HasPrefixes() bool {
-	if o != nil && !IsNil(o.Prefixes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPrefixesOk()
+	return ok
 }
 
 // SetPrefixes gets a reference to the given []string and assigns it to the Prefixes field.
-func (o *Network) SetPrefixes(v *[]string) {
-	o.Prefixes = v
+func (o *Network) SetPrefixes(v NetworkGetPrefixesRetType) {
+	setNetworkGetPrefixesAttributeType(&o.Prefixes, v)
 }
 
 // GetPrefixesV6 returns the PrefixesV6 field value if set, zero value otherwise.
-func (o *Network) GetPrefixesV6() *[]string {
-	if o == nil || IsNil(o.PrefixesV6) {
-		var ret *[]string
-		return ret
-	}
-	return o.PrefixesV6
+func (o *Network) GetPrefixesV6() (res NetworkGetPrefixesV6RetType) {
+	res, _ = o.GetPrefixesV6Ok()
+	return
 }
 
 // GetPrefixesV6Ok returns a tuple with the PrefixesV6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetPrefixesV6Ok() (*[]string, bool) {
-	if o == nil || IsNil(o.PrefixesV6) {
-		return nil, false
-	}
-	return o.PrefixesV6, true
+func (o *Network) GetPrefixesV6Ok() (ret NetworkGetPrefixesV6RetType, ok bool) {
+	return getNetworkGetPrefixesV6AttributeTypeOk(o.PrefixesV6)
 }
 
 // HasPrefixesV6 returns a boolean if a field has been set.
 func (o *Network) HasPrefixesV6() bool {
-	if o != nil && !IsNil(o.PrefixesV6) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPrefixesV6Ok()
+	return ok
 }
 
 // SetPrefixesV6 gets a reference to the given []string and assigns it to the PrefixesV6 field.
-func (o *Network) SetPrefixesV6(v *[]string) {
-	o.PrefixesV6 = v
+func (o *Network) SetPrefixesV6(v NetworkGetPrefixesV6RetType) {
+	setNetworkGetPrefixesV6AttributeType(&o.PrefixesV6, v)
 }
 
 // GetPublicIp returns the PublicIp field value if set, zero value otherwise.
-func (o *Network) GetPublicIp() *string {
-	if o == nil || IsNil(o.PublicIp) {
-		var ret *string
-		return ret
-	}
-	return o.PublicIp
+func (o *Network) GetPublicIp() (res NetworkGetPublicIpRetType) {
+	res, _ = o.GetPublicIpOk()
+	return
 }
 
 // GetPublicIpOk returns a tuple with the PublicIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetPublicIpOk() (*string, bool) {
-	if o == nil || IsNil(o.PublicIp) {
-		return nil, false
-	}
-	return o.PublicIp, true
+func (o *Network) GetPublicIpOk() (ret NetworkGetPublicIpRetType, ok bool) {
+	return getNetworkGetPublicIpAttributeTypeOk(o.PublicIp)
 }
 
 // HasPublicIp returns a boolean if a field has been set.
 func (o *Network) HasPublicIp() bool {
-	if o != nil && !IsNil(o.PublicIp) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPublicIpOk()
+	return ok
 }
 
 // SetPublicIp gets a reference to the given string and assigns it to the PublicIp field.
-func (o *Network) SetPublicIp(v *string) {
-	o.PublicIp = v
+func (o *Network) SetPublicIp(v NetworkGetPublicIpRetType) {
+	setNetworkGetPublicIpAttributeType(&o.PublicIp, v)
 }
 
 // GetRouted returns the Routed field value if set, zero value otherwise.
-func (o *Network) GetRouted() *bool {
-	if o == nil || IsNil(o.Routed) {
-		var ret *bool
-		return ret
-	}
-	return o.Routed
+func (o *Network) GetRouted() (res NetworkgetRoutedRetType) {
+	res, _ = o.GetRoutedOk()
+	return
 }
 
 // GetRoutedOk returns a tuple with the Routed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetRoutedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Routed) {
-		return nil, false
-	}
-	return o.Routed, true
+func (o *Network) GetRoutedOk() (ret NetworkgetRoutedRetType, ok bool) {
+	return getNetworkgetRoutedAttributeTypeOk(o.Routed)
 }
 
 // HasRouted returns a boolean if a field has been set.
 func (o *Network) HasRouted() bool {
-	if o != nil && !IsNil(o.Routed) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRoutedOk()
+	return ok
 }
 
 // SetRouted gets a reference to the given bool and assigns it to the Routed field.
-func (o *Network) SetRouted(v *bool) {
-	o.Routed = v
+func (o *Network) SetRouted(v NetworkgetRoutedRetType) {
+	setNetworkgetRoutedAttributeType(&o.Routed, v)
 }
 
 // GetState returns the State field value
-func (o *Network) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-
-	return o.State
+func (o *Network) GetState() (ret NetworkGetStateRetType) {
+	ret, _ = o.GetStateOk()
+	return ret
 }
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *Network) GetStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.State, true
+func (o *Network) GetStateOk() (ret NetworkGetStateRetType, ok bool) {
+	return getNetworkGetStateAttributeTypeOk(o.State)
 }
 
 // SetState sets field value
-func (o *Network) SetState(v *string) {
-	o.State = v
+func (o *Network) SetState(v NetworkGetStateRetType) {
+	setNetworkGetStateAttributeType(&o.State, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Network) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *Network) GetUpdatedAt() (res NetworkGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Network) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *Network) GetUpdatedAtOk() (ret NetworkGetUpdatedAtRetType, ok bool) {
+	return getNetworkGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Network) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Network) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *Network) SetUpdatedAt(v NetworkGetUpdatedAtRetType) {
+	setNetworkGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getNetworkGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if o.Gateway.IsSet() {
-		toSerialize["gateway"] = o.Gateway.Get()
+	if val, ok := getNetworkGetGatewayAttributeTypeOk(o.Gateway); ok {
+		toSerialize["Gateway"] = val
 	}
-	if o.Gatewayv6.IsSet() {
-		toSerialize["gatewayv6"] = o.Gatewayv6.Get()
+	if val, ok := getNetworkGetGatewayv6AttributeTypeOk(o.Gatewayv6); ok {
+		toSerialize["Gatewayv6"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getNetworkGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Nameservers) {
-		toSerialize["nameservers"] = o.Nameservers
+	if val, ok := getNetworkGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.NameserversV6) {
-		toSerialize["nameserversV6"] = o.NameserversV6
+	if val, ok := getNetworkGetNameserversAttributeTypeOk(o.Nameservers); ok {
+		toSerialize["Nameservers"] = val
 	}
-	toSerialize["networkId"] = o.NetworkId
-	if !IsNil(o.Prefixes) {
-		toSerialize["prefixes"] = o.Prefixes
+	if val, ok := getNetworkGetNameserversV6AttributeTypeOk(o.NameserversV6); ok {
+		toSerialize["NameserversV6"] = val
 	}
-	if !IsNil(o.PrefixesV6) {
-		toSerialize["prefixesV6"] = o.PrefixesV6
+	if val, ok := getNetworkGetNetworkIdAttributeTypeOk(o.NetworkId); ok {
+		toSerialize["NetworkId"] = val
 	}
-	if !IsNil(o.PublicIp) {
-		toSerialize["publicIp"] = o.PublicIp
+	if val, ok := getNetworkGetPrefixesAttributeTypeOk(o.Prefixes); ok {
+		toSerialize["Prefixes"] = val
 	}
-	if !IsNil(o.Routed) {
-		toSerialize["routed"] = o.Routed
+	if val, ok := getNetworkGetPrefixesV6AttributeTypeOk(o.PrefixesV6); ok {
+		toSerialize["PrefixesV6"] = val
 	}
-	toSerialize["state"] = o.State
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getNetworkGetPublicIpAttributeTypeOk(o.PublicIp); ok {
+		toSerialize["PublicIp"] = val
+	}
+	if val, ok := getNetworkgetRoutedAttributeTypeOk(o.Routed); ok {
+		toSerialize["Routed"] = val
+	}
+	if val, ok := getNetworkGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
+	}
+	if val, ok := getNetworkGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

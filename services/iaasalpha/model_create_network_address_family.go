@@ -17,10 +17,50 @@ import (
 // checks if the CreateNetworkAddressFamily type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateNetworkAddressFamily{}
 
+/*
+	types and functions for ipv4
+*/
+
+// isModel
+type CreateNetworkAddressFamilyGetIpv4AttributeType = *CreateNetworkIPv4Body
+type CreateNetworkAddressFamilyGetIpv4ArgType = CreateNetworkIPv4Body
+type CreateNetworkAddressFamilyGetIpv4RetType = CreateNetworkIPv4Body
+
+func getCreateNetworkAddressFamilyGetIpv4AttributeTypeOk(arg CreateNetworkAddressFamilyGetIpv4AttributeType) (ret CreateNetworkAddressFamilyGetIpv4RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateNetworkAddressFamilyGetIpv4AttributeType(arg *CreateNetworkAddressFamilyGetIpv4AttributeType, val CreateNetworkAddressFamilyGetIpv4RetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for ipv6
+*/
+
+// isModel
+type CreateNetworkAddressFamilyGetIpv6AttributeType = *CreateNetworkIPv6Body
+type CreateNetworkAddressFamilyGetIpv6ArgType = CreateNetworkIPv6Body
+type CreateNetworkAddressFamilyGetIpv6RetType = CreateNetworkIPv6Body
+
+func getCreateNetworkAddressFamilyGetIpv6AttributeTypeOk(arg CreateNetworkAddressFamilyGetIpv6AttributeType) (ret CreateNetworkAddressFamilyGetIpv6RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateNetworkAddressFamilyGetIpv6AttributeType(arg *CreateNetworkAddressFamilyGetIpv6AttributeType, val CreateNetworkAddressFamilyGetIpv6RetType) {
+	*arg = &val
+}
+
 // CreateNetworkAddressFamily The addressFamily object for a network create request.
 type CreateNetworkAddressFamily struct {
-	Ipv4 *CreateNetworkIPv4Body `json:"ipv4,omitempty"`
-	Ipv6 *CreateNetworkIPv6Body `json:"ipv6,omitempty"`
+	Ipv4 CreateNetworkAddressFamilyGetIpv4AttributeType `json:"ipv4,omitempty"`
+	Ipv6 CreateNetworkAddressFamilyGetIpv6AttributeType `json:"ipv6,omitempty"`
 }
 
 // NewCreateNetworkAddressFamily instantiates a new CreateNetworkAddressFamily object
@@ -41,76 +81,58 @@ func NewCreateNetworkAddressFamilyWithDefaults() *CreateNetworkAddressFamily {
 }
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
-func (o *CreateNetworkAddressFamily) GetIpv4() *CreateNetworkIPv4Body {
-	if o == nil || IsNil(o.Ipv4) {
-		var ret *CreateNetworkIPv4Body
-		return ret
-	}
-	return o.Ipv4
+func (o *CreateNetworkAddressFamily) GetIpv4() (res CreateNetworkAddressFamilyGetIpv4RetType) {
+	res, _ = o.GetIpv4Ok()
+	return
 }
 
 // GetIpv4Ok returns a tuple with the Ipv4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkAddressFamily) GetIpv4Ok() (*CreateNetworkIPv4Body, bool) {
-	if o == nil || IsNil(o.Ipv4) {
-		return nil, false
-	}
-	return o.Ipv4, true
+func (o *CreateNetworkAddressFamily) GetIpv4Ok() (ret CreateNetworkAddressFamilyGetIpv4RetType, ok bool) {
+	return getCreateNetworkAddressFamilyGetIpv4AttributeTypeOk(o.Ipv4)
 }
 
 // HasIpv4 returns a boolean if a field has been set.
 func (o *CreateNetworkAddressFamily) HasIpv4() bool {
-	if o != nil && !IsNil(o.Ipv4) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIpv4Ok()
+	return ok
 }
 
 // SetIpv4 gets a reference to the given CreateNetworkIPv4Body and assigns it to the Ipv4 field.
-func (o *CreateNetworkAddressFamily) SetIpv4(v *CreateNetworkIPv4Body) {
-	o.Ipv4 = v
+func (o *CreateNetworkAddressFamily) SetIpv4(v CreateNetworkAddressFamilyGetIpv4RetType) {
+	setCreateNetworkAddressFamilyGetIpv4AttributeType(&o.Ipv4, v)
 }
 
 // GetIpv6 returns the Ipv6 field value if set, zero value otherwise.
-func (o *CreateNetworkAddressFamily) GetIpv6() *CreateNetworkIPv6Body {
-	if o == nil || IsNil(o.Ipv6) {
-		var ret *CreateNetworkIPv6Body
-		return ret
-	}
-	return o.Ipv6
+func (o *CreateNetworkAddressFamily) GetIpv6() (res CreateNetworkAddressFamilyGetIpv6RetType) {
+	res, _ = o.GetIpv6Ok()
+	return
 }
 
 // GetIpv6Ok returns a tuple with the Ipv6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNetworkAddressFamily) GetIpv6Ok() (*CreateNetworkIPv6Body, bool) {
-	if o == nil || IsNil(o.Ipv6) {
-		return nil, false
-	}
-	return o.Ipv6, true
+func (o *CreateNetworkAddressFamily) GetIpv6Ok() (ret CreateNetworkAddressFamilyGetIpv6RetType, ok bool) {
+	return getCreateNetworkAddressFamilyGetIpv6AttributeTypeOk(o.Ipv6)
 }
 
 // HasIpv6 returns a boolean if a field has been set.
 func (o *CreateNetworkAddressFamily) HasIpv6() bool {
-	if o != nil && !IsNil(o.Ipv6) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIpv6Ok()
+	return ok
 }
 
 // SetIpv6 gets a reference to the given CreateNetworkIPv6Body and assigns it to the Ipv6 field.
-func (o *CreateNetworkAddressFamily) SetIpv6(v *CreateNetworkIPv6Body) {
-	o.Ipv6 = v
+func (o *CreateNetworkAddressFamily) SetIpv6(v CreateNetworkAddressFamilyGetIpv6RetType) {
+	setCreateNetworkAddressFamilyGetIpv6AttributeType(&o.Ipv6, v)
 }
 
 func (o CreateNetworkAddressFamily) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Ipv4) {
-		toSerialize["ipv4"] = o.Ipv4
+	if val, ok := getCreateNetworkAddressFamilyGetIpv4AttributeTypeOk(o.Ipv4); ok {
+		toSerialize["Ipv4"] = val
 	}
-	if !IsNil(o.Ipv6) {
-		toSerialize["ipv6"] = o.Ipv6
+	if val, ok := getCreateNetworkAddressFamilyGetIpv6AttributeTypeOk(o.Ipv6); ok {
+		toSerialize["Ipv6"] = val
 	}
 	return toSerialize, nil
 }

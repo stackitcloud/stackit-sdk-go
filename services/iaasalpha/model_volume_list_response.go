@@ -17,11 +17,31 @@ import (
 // checks if the VolumeListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VolumeListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type VolumeListResponseGetItemsAttributeType = *[]Volume
+type VolumeListResponseGetItemsArgType = []Volume
+type VolumeListResponseGetItemsRetType = []Volume
+
+func getVolumeListResponseGetItemsAttributeTypeOk(arg VolumeListResponseGetItemsAttributeType) (ret VolumeListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeListResponseGetItemsAttributeType(arg *VolumeListResponseGetItemsAttributeType, val VolumeListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // VolumeListResponse Volume list response.
 type VolumeListResponse struct {
 	// A list containing volume objects.
 	// REQUIRED
-	Items *[]Volume `json:"items"`
+	Items VolumeListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _VolumeListResponse VolumeListResponse
@@ -30,9 +50,9 @@ type _VolumeListResponse VolumeListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVolumeListResponse(items *[]Volume) *VolumeListResponse {
+func NewVolumeListResponse(items VolumeListResponseGetItemsArgType) *VolumeListResponse {
 	this := VolumeListResponse{}
-	this.Items = items
+	setVolumeListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewVolumeListResponseWithDefaults() *VolumeListResponse {
 }
 
 // GetItems returns the Items field value
-func (o *VolumeListResponse) GetItems() *[]Volume {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]Volume
-		return ret
-	}
-
-	return o.Items
+func (o *VolumeListResponse) GetItems() (ret VolumeListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *VolumeListResponse) GetItemsOk() (*[]Volume, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *VolumeListResponse) GetItemsOk() (ret VolumeListResponseGetItemsRetType, ok bool) {
+	return getVolumeListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *VolumeListResponse) SetItems(v *[]Volume) {
-	o.Items = v
+func (o *VolumeListResponse) SetItems(v VolumeListResponseGetItemsRetType) {
+	setVolumeListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o VolumeListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getVolumeListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 

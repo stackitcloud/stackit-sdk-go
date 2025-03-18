@@ -18,22 +18,145 @@ import (
 // checks if the Route type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Route{}
 
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type RouteGetCreatedAtAttributeType = *time.Time
+type RouteGetCreatedAtArgType = time.Time
+type RouteGetCreatedAtRetType = time.Time
+
+func getRouteGetCreatedAtAttributeTypeOk(arg RouteGetCreatedAtAttributeType) (ret RouteGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetCreatedAtAttributeType(arg *RouteGetCreatedAtAttributeType, val RouteGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type RouteGetLabelsAttributeType = *map[string]interface{}
+type RouteGetLabelsArgType = map[string]interface{}
+type RouteGetLabelsRetType = map[string]interface{}
+
+func getRouteGetLabelsAttributeTypeOk(arg RouteGetLabelsAttributeType) (ret RouteGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetLabelsAttributeType(arg *RouteGetLabelsAttributeType, val RouteGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nexthop
+*/
+
+// isNotNullableString
+type RouteGetNexthopAttributeType = *string
+
+func getRouteGetNexthopAttributeTypeOk(arg RouteGetNexthopAttributeType) (ret RouteGetNexthopRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetNexthopAttributeType(arg *RouteGetNexthopAttributeType, val RouteGetNexthopRetType) {
+	*arg = &val
+}
+
+type RouteGetNexthopArgType = string
+type RouteGetNexthopRetType = string
+
+/*
+	types and functions for prefix
+*/
+
+// isNotNullableString
+type RouteGetPrefixAttributeType = *string
+
+func getRouteGetPrefixAttributeTypeOk(arg RouteGetPrefixAttributeType) (ret RouteGetPrefixRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetPrefixAttributeType(arg *RouteGetPrefixAttributeType, val RouteGetPrefixRetType) {
+	*arg = &val
+}
+
+type RouteGetPrefixArgType = string
+type RouteGetPrefixRetType = string
+
+/*
+	types and functions for routeId
+*/
+
+// isNotNullableString
+type RouteGetRouteIdAttributeType = *string
+
+func getRouteGetRouteIdAttributeTypeOk(arg RouteGetRouteIdAttributeType) (ret RouteGetRouteIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetRouteIdAttributeType(arg *RouteGetRouteIdAttributeType, val RouteGetRouteIdRetType) {
+	*arg = &val
+}
+
+type RouteGetRouteIdArgType = string
+type RouteGetRouteIdRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type RouteGetUpdatedAtAttributeType = *time.Time
+type RouteGetUpdatedAtArgType = time.Time
+type RouteGetUpdatedAtRetType = time.Time
+
+func getRouteGetUpdatedAtAttributeTypeOk(arg RouteGetUpdatedAtAttributeType) (ret RouteGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetUpdatedAtAttributeType(arg *RouteGetUpdatedAtAttributeType, val RouteGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // Route Object represents a network route.
 type Route struct {
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt RouteGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels RouteGetLabelsAttributeType `json:"labels,omitempty"`
 	// Object that represents an IP address.
 	// REQUIRED
-	Nexthop *string `json:"nexthop"`
+	Nexthop RouteGetNexthopAttributeType `json:"nexthop"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
-	Prefix *string `json:"prefix"`
+	Prefix RouteGetPrefixAttributeType `json:"prefix"`
 	// Universally Unique Identifier (UUID).
-	RouteId *string `json:"routeId,omitempty"`
+	RouteId RouteGetRouteIdAttributeType `json:"routeId,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt RouteGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 type _Route Route
@@ -42,10 +165,10 @@ type _Route Route
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRoute(nexthop *string, prefix *string) *Route {
+func NewRoute(nexthop RouteGetNexthopArgType, prefix RouteGetPrefixArgType) *Route {
 	this := Route{}
-	this.Nexthop = nexthop
-	this.Prefix = prefix
+	setRouteGetNexthopAttributeType(&this.Nexthop, nexthop)
+	setRouteGetPrefixAttributeType(&this.Prefix, prefix)
 	return &this
 }
 
@@ -58,196 +181,150 @@ func NewRouteWithDefaults() *Route {
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Route) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *Route) GetCreatedAt() (res RouteGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *Route) GetCreatedAtOk() (ret RouteGetCreatedAtRetType, ok bool) {
+	return getRouteGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Route) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Route) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *Route) SetCreatedAt(v RouteGetCreatedAtRetType) {
+	setRouteGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Route) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *Route) GetLabels() (res RouteGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *Route) GetLabelsOk() (ret RouteGetLabelsRetType, ok bool) {
+	return getRouteGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Route) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *Route) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *Route) SetLabels(v RouteGetLabelsRetType) {
+	setRouteGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetNexthop returns the Nexthop field value
-func (o *Route) GetNexthop() *string {
-	if o == nil || IsNil(o.Nexthop) {
-		var ret *string
-		return ret
-	}
-
-	return o.Nexthop
+func (o *Route) GetNexthop() (ret RouteGetNexthopRetType) {
+	ret, _ = o.GetNexthopOk()
+	return ret
 }
 
 // GetNexthopOk returns a tuple with the Nexthop field value
 // and a boolean to check if the value has been set.
-func (o *Route) GetNexthopOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Nexthop, true
+func (o *Route) GetNexthopOk() (ret RouteGetNexthopRetType, ok bool) {
+	return getRouteGetNexthopAttributeTypeOk(o.Nexthop)
 }
 
 // SetNexthop sets field value
-func (o *Route) SetNexthop(v *string) {
-	o.Nexthop = v
+func (o *Route) SetNexthop(v RouteGetNexthopRetType) {
+	setRouteGetNexthopAttributeType(&o.Nexthop, v)
 }
 
 // GetPrefix returns the Prefix field value
-func (o *Route) GetPrefix() *string {
-	if o == nil || IsNil(o.Prefix) {
-		var ret *string
-		return ret
-	}
-
-	return o.Prefix
+func (o *Route) GetPrefix() (ret RouteGetPrefixRetType) {
+	ret, _ = o.GetPrefixOk()
+	return ret
 }
 
 // GetPrefixOk returns a tuple with the Prefix field value
 // and a boolean to check if the value has been set.
-func (o *Route) GetPrefixOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Prefix, true
+func (o *Route) GetPrefixOk() (ret RouteGetPrefixRetType, ok bool) {
+	return getRouteGetPrefixAttributeTypeOk(o.Prefix)
 }
 
 // SetPrefix sets field value
-func (o *Route) SetPrefix(v *string) {
-	o.Prefix = v
+func (o *Route) SetPrefix(v RouteGetPrefixRetType) {
+	setRouteGetPrefixAttributeType(&o.Prefix, v)
 }
 
 // GetRouteId returns the RouteId field value if set, zero value otherwise.
-func (o *Route) GetRouteId() *string {
-	if o == nil || IsNil(o.RouteId) {
-		var ret *string
-		return ret
-	}
-	return o.RouteId
+func (o *Route) GetRouteId() (res RouteGetRouteIdRetType) {
+	res, _ = o.GetRouteIdOk()
+	return
 }
 
 // GetRouteIdOk returns a tuple with the RouteId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetRouteIdOk() (*string, bool) {
-	if o == nil || IsNil(o.RouteId) {
-		return nil, false
-	}
-	return o.RouteId, true
+func (o *Route) GetRouteIdOk() (ret RouteGetRouteIdRetType, ok bool) {
+	return getRouteGetRouteIdAttributeTypeOk(o.RouteId)
 }
 
 // HasRouteId returns a boolean if a field has been set.
 func (o *Route) HasRouteId() bool {
-	if o != nil && !IsNil(o.RouteId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRouteIdOk()
+	return ok
 }
 
 // SetRouteId gets a reference to the given string and assigns it to the RouteId field.
-func (o *Route) SetRouteId(v *string) {
-	o.RouteId = v
+func (o *Route) SetRouteId(v RouteGetRouteIdRetType) {
+	setRouteGetRouteIdAttributeType(&o.RouteId, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Route) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *Route) GetUpdatedAt() (res RouteGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *Route) GetUpdatedAtOk() (ret RouteGetUpdatedAtRetType, ok bool) {
+	return getRouteGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Route) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Route) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *Route) SetUpdatedAt(v RouteGetUpdatedAtRetType) {
+	setRouteGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 func (o Route) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getRouteGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getRouteGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	toSerialize["nexthop"] = o.Nexthop
-	toSerialize["prefix"] = o.Prefix
-	if !IsNil(o.RouteId) {
-		toSerialize["routeId"] = o.RouteId
+	if val, ok := getRouteGetNexthopAttributeTypeOk(o.Nexthop); ok {
+		toSerialize["Nexthop"] = val
 	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getRouteGetPrefixAttributeTypeOk(o.Prefix); ok {
+		toSerialize["Prefix"] = val
+	}
+	if val, ok := getRouteGetRouteIdAttributeTypeOk(o.RouteId); ok {
+		toSerialize["RouteId"] = val
+	}
+	if val, ok := getRouteGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }
