@@ -17,10 +17,30 @@ import (
 // checks if the UpdateCredentialsRemoteWriteConfigPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateCredentialsRemoteWriteConfigPayload{}
 
+/*
+	types and functions for maxLimit
+*/
+
+// isNumber
+type UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeType = *float64
+type UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitArgType = float64
+type UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitRetType = float64
+
+func getUpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeTypeOk(arg UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeType) (ret UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeType(arg *UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeType, val UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitRetType) {
+	*arg = &val
+}
+
 // UpdateCredentialsRemoteWriteConfigPayload Remote write limit config.
 type UpdateCredentialsRemoteWriteConfigPayload struct {
 	// Remote write metric sample limit for credential to push in a single minute.
-	MaxLimit *float64 `json:"maxLimit,omitempty"`
+	MaxLimit UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeType `json:"maxLimit,omitempty"`
 }
 
 // NewUpdateCredentialsRemoteWriteConfigPayload instantiates a new UpdateCredentialsRemoteWriteConfigPayload object
@@ -41,41 +61,32 @@ func NewUpdateCredentialsRemoteWriteConfigPayloadWithDefaults() *UpdateCredentia
 }
 
 // GetMaxLimit returns the MaxLimit field value if set, zero value otherwise.
-func (o *UpdateCredentialsRemoteWriteConfigPayload) GetMaxLimit() *float64 {
-	if o == nil || IsNil(o.MaxLimit) {
-		var ret *float64
-		return ret
-	}
-	return o.MaxLimit
+func (o *UpdateCredentialsRemoteWriteConfigPayload) GetMaxLimit() (res UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitRetType) {
+	res, _ = o.GetMaxLimitOk()
+	return
 }
 
 // GetMaxLimitOk returns a tuple with the MaxLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCredentialsRemoteWriteConfigPayload) GetMaxLimitOk() (*float64, bool) {
-	if o == nil || IsNil(o.MaxLimit) {
-		return nil, false
-	}
-	return o.MaxLimit, true
+func (o *UpdateCredentialsRemoteWriteConfigPayload) GetMaxLimitOk() (ret UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitRetType, ok bool) {
+	return getUpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeTypeOk(o.MaxLimit)
 }
 
 // HasMaxLimit returns a boolean if a field has been set.
 func (o *UpdateCredentialsRemoteWriteConfigPayload) HasMaxLimit() bool {
-	if o != nil && !IsNil(o.MaxLimit) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxLimitOk()
+	return ok
 }
 
 // SetMaxLimit gets a reference to the given float64 and assigns it to the MaxLimit field.
-func (o *UpdateCredentialsRemoteWriteConfigPayload) SetMaxLimit(v *float64) {
-	o.MaxLimit = v
+func (o *UpdateCredentialsRemoteWriteConfigPayload) SetMaxLimit(v UpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitRetType) {
+	setUpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeType(&o.MaxLimit, v)
 }
 
 func (o UpdateCredentialsRemoteWriteConfigPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.MaxLimit) {
-		toSerialize["maxLimit"] = o.MaxLimit
+	if val, ok := getUpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeTypeOk(o.MaxLimit); ok {
+		toSerialize["MaxLimit"] = val
 	}
 	return toSerialize, nil
 }

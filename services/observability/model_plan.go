@@ -17,46 +17,491 @@ import (
 // checks if the Plan type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Plan{}
 
+/*
+	types and functions for alertMatchers
+*/
+
+// isInteger
+type PlanGetAlertMatchersAttributeType = *int64
+type PlanGetAlertMatchersArgType = int64
+type PlanGetAlertMatchersRetType = int64
+
+func getPlanGetAlertMatchersAttributeTypeOk(arg PlanGetAlertMatchersAttributeType) (ret PlanGetAlertMatchersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetAlertMatchersAttributeType(arg *PlanGetAlertMatchersAttributeType, val PlanGetAlertMatchersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for alertReceivers
+*/
+
+// isInteger
+type PlanGetAlertReceiversAttributeType = *int64
+type PlanGetAlertReceiversArgType = int64
+type PlanGetAlertReceiversRetType = int64
+
+func getPlanGetAlertReceiversAttributeTypeOk(arg PlanGetAlertReceiversAttributeType) (ret PlanGetAlertReceiversRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetAlertReceiversAttributeType(arg *PlanGetAlertReceiversAttributeType, val PlanGetAlertReceiversRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for alertRules
+*/
+
+// isInteger
+type PlanGetAlertRulesAttributeType = *int64
+type PlanGetAlertRulesArgType = int64
+type PlanGetAlertRulesRetType = int64
+
+func getPlanGetAlertRulesAttributeTypeOk(arg PlanGetAlertRulesAttributeType) (ret PlanGetAlertRulesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetAlertRulesAttributeType(arg *PlanGetAlertRulesAttributeType, val PlanGetAlertRulesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for amount
+*/
+
+// isNumber
+type PlanGetAmountAttributeType = *float64
+type PlanGetAmountArgType = float64
+type PlanGetAmountRetType = float64
+
+func getPlanGetAmountAttributeTypeOk(arg PlanGetAmountAttributeType) (ret PlanGetAmountRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetAmountAttributeType(arg *PlanGetAmountAttributeType, val PlanGetAmountRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for bucketSize
+*/
+
+// isInteger
+type PlanGetBucketSizeAttributeType = *int64
+type PlanGetBucketSizeArgType = int64
+type PlanGetBucketSizeRetType = int64
+
+func getPlanGetBucketSizeAttributeTypeOk(arg PlanGetBucketSizeAttributeType) (ret PlanGetBucketSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetBucketSizeAttributeType(arg *PlanGetBucketSizeAttributeType, val PlanGetBucketSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type PlanGetDescriptionAttributeType = *string
+
+func getPlanGetDescriptionAttributeTypeOk(arg PlanGetDescriptionAttributeType) (ret PlanGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetDescriptionAttributeType(arg *PlanGetDescriptionAttributeType, val PlanGetDescriptionRetType) {
+	*arg = &val
+}
+
+type PlanGetDescriptionArgType = string
+type PlanGetDescriptionRetType = string
+
+/*
+	types and functions for grafanaGlobalDashboards
+*/
+
+// isInteger
+type PlanGetGrafanaGlobalDashboardsAttributeType = *int64
+type PlanGetGrafanaGlobalDashboardsArgType = int64
+type PlanGetGrafanaGlobalDashboardsRetType = int64
+
+func getPlanGetGrafanaGlobalDashboardsAttributeTypeOk(arg PlanGetGrafanaGlobalDashboardsAttributeType) (ret PlanGetGrafanaGlobalDashboardsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetGrafanaGlobalDashboardsAttributeType(arg *PlanGetGrafanaGlobalDashboardsAttributeType, val PlanGetGrafanaGlobalDashboardsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for grafanaGlobalOrgs
+*/
+
+// isInteger
+type PlanGetGrafanaGlobalOrgsAttributeType = *int64
+type PlanGetGrafanaGlobalOrgsArgType = int64
+type PlanGetGrafanaGlobalOrgsRetType = int64
+
+func getPlanGetGrafanaGlobalOrgsAttributeTypeOk(arg PlanGetGrafanaGlobalOrgsAttributeType) (ret PlanGetGrafanaGlobalOrgsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetGrafanaGlobalOrgsAttributeType(arg *PlanGetGrafanaGlobalOrgsAttributeType, val PlanGetGrafanaGlobalOrgsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for grafanaGlobalSessions
+*/
+
+// isInteger
+type PlanGetGrafanaGlobalSessionsAttributeType = *int64
+type PlanGetGrafanaGlobalSessionsArgType = int64
+type PlanGetGrafanaGlobalSessionsRetType = int64
+
+func getPlanGetGrafanaGlobalSessionsAttributeTypeOk(arg PlanGetGrafanaGlobalSessionsAttributeType) (ret PlanGetGrafanaGlobalSessionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetGrafanaGlobalSessionsAttributeType(arg *PlanGetGrafanaGlobalSessionsAttributeType, val PlanGetGrafanaGlobalSessionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for grafanaGlobalUsers
+*/
+
+// isInteger
+type PlanGetGrafanaGlobalUsersAttributeType = *int64
+type PlanGetGrafanaGlobalUsersArgType = int64
+type PlanGetGrafanaGlobalUsersRetType = int64
+
+func getPlanGetGrafanaGlobalUsersAttributeTypeOk(arg PlanGetGrafanaGlobalUsersAttributeType) (ret PlanGetGrafanaGlobalUsersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetGrafanaGlobalUsersAttributeType(arg *PlanGetGrafanaGlobalUsersAttributeType, val PlanGetGrafanaGlobalUsersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type PlanGetIdAttributeType = *string
+
+func getPlanGetIdAttributeTypeOk(arg PlanGetIdAttributeType) (ret PlanGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetIdAttributeType(arg *PlanGetIdAttributeType, val PlanGetIdRetType) {
+	*arg = &val
+}
+
+type PlanGetIdArgType = string
+type PlanGetIdRetType = string
+
+/*
+	types and functions for isFree
+*/
+
+// isBoolean
+type PlangetIsFreeAttributeType = *bool
+type PlangetIsFreeArgType = bool
+type PlangetIsFreeRetType = bool
+
+func getPlangetIsFreeAttributeTypeOk(arg PlangetIsFreeAttributeType) (ret PlangetIsFreeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlangetIsFreeAttributeType(arg *PlangetIsFreeAttributeType, val PlangetIsFreeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for isPublic
+*/
+
+// isBoolean
+type PlangetIsPublicAttributeType = *bool
+type PlangetIsPublicArgType = bool
+type PlangetIsPublicRetType = bool
+
+func getPlangetIsPublicAttributeTypeOk(arg PlangetIsPublicAttributeType) (ret PlangetIsPublicRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlangetIsPublicAttributeType(arg *PlangetIsPublicAttributeType, val PlangetIsPublicRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for logsAlert
+*/
+
+// isInteger
+type PlanGetLogsAlertAttributeType = *int64
+type PlanGetLogsAlertArgType = int64
+type PlanGetLogsAlertRetType = int64
+
+func getPlanGetLogsAlertAttributeTypeOk(arg PlanGetLogsAlertAttributeType) (ret PlanGetLogsAlertRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetLogsAlertAttributeType(arg *PlanGetLogsAlertAttributeType, val PlanGetLogsAlertRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for logsStorage
+*/
+
+// isInteger
+type PlanGetLogsStorageAttributeType = *int64
+type PlanGetLogsStorageArgType = int64
+type PlanGetLogsStorageRetType = int64
+
+func getPlanGetLogsStorageAttributeTypeOk(arg PlanGetLogsStorageAttributeType) (ret PlanGetLogsStorageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetLogsStorageAttributeType(arg *PlanGetLogsStorageAttributeType, val PlanGetLogsStorageRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type PlanGetNameAttributeType = *string
+
+func getPlanGetNameAttributeTypeOk(arg PlanGetNameAttributeType) (ret PlanGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetNameAttributeType(arg *PlanGetNameAttributeType, val PlanGetNameRetType) {
+	*arg = &val
+}
+
+type PlanGetNameArgType = string
+type PlanGetNameRetType = string
+
+/*
+	types and functions for planId
+*/
+
+// isNotNullableString
+type PlanGetPlanIdAttributeType = *string
+
+func getPlanGetPlanIdAttributeTypeOk(arg PlanGetPlanIdAttributeType) (ret PlanGetPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetPlanIdAttributeType(arg *PlanGetPlanIdAttributeType, val PlanGetPlanIdRetType) {
+	*arg = &val
+}
+
+type PlanGetPlanIdArgType = string
+type PlanGetPlanIdRetType = string
+
+/*
+	types and functions for samplesPerScrape
+*/
+
+// isInteger
+type PlanGetSamplesPerScrapeAttributeType = *int64
+type PlanGetSamplesPerScrapeArgType = int64
+type PlanGetSamplesPerScrapeRetType = int64
+
+func getPlanGetSamplesPerScrapeAttributeTypeOk(arg PlanGetSamplesPerScrapeAttributeType) (ret PlanGetSamplesPerScrapeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetSamplesPerScrapeAttributeType(arg *PlanGetSamplesPerScrapeAttributeType, val PlanGetSamplesPerScrapeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for schema
+*/
+
+// isNotNullableString
+type PlanGetSchemaAttributeType = *string
+
+func getPlanGetSchemaAttributeTypeOk(arg PlanGetSchemaAttributeType) (ret PlanGetSchemaRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetSchemaAttributeType(arg *PlanGetSchemaAttributeType, val PlanGetSchemaRetType) {
+	*arg = &val
+}
+
+type PlanGetSchemaArgType = string
+type PlanGetSchemaRetType = string
+
+/*
+	types and functions for targetNumber
+*/
+
+// isInteger
+type PlanGetTargetNumberAttributeType = *int64
+type PlanGetTargetNumberArgType = int64
+type PlanGetTargetNumberRetType = int64
+
+func getPlanGetTargetNumberAttributeTypeOk(arg PlanGetTargetNumberAttributeType) (ret PlanGetTargetNumberRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetTargetNumberAttributeType(arg *PlanGetTargetNumberAttributeType, val PlanGetTargetNumberRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for totalMetricSamples
+*/
+
+// isInteger
+type PlanGetTotalMetricSamplesAttributeType = *int64
+type PlanGetTotalMetricSamplesArgType = int64
+type PlanGetTotalMetricSamplesRetType = int64
+
+func getPlanGetTotalMetricSamplesAttributeTypeOk(arg PlanGetTotalMetricSamplesAttributeType) (ret PlanGetTotalMetricSamplesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetTotalMetricSamplesAttributeType(arg *PlanGetTotalMetricSamplesAttributeType, val PlanGetTotalMetricSamplesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tracesStorage
+*/
+
+// isInteger
+type PlanGetTracesStorageAttributeType = *int64
+type PlanGetTracesStorageArgType = int64
+type PlanGetTracesStorageRetType = int64
+
+func getPlanGetTracesStorageAttributeTypeOk(arg PlanGetTracesStorageAttributeType) (ret PlanGetTracesStorageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPlanGetTracesStorageAttributeType(arg *PlanGetTracesStorageAttributeType, val PlanGetTracesStorageRetType) {
+	*arg = &val
+}
+
 // Plan struct for Plan
 type Plan struct {
 	// REQUIRED
-	AlertMatchers *int64 `json:"alertMatchers"`
+	AlertMatchers PlanGetAlertMatchersAttributeType `json:"alertMatchers"`
 	// REQUIRED
-	AlertReceivers *int64 `json:"alertReceivers"`
+	AlertReceivers PlanGetAlertReceiversAttributeType `json:"alertReceivers"`
 	// REQUIRED
-	AlertRules *int64   `json:"alertRules"`
-	Amount     *float64 `json:"amount,omitempty"`
+	AlertRules PlanGetAlertRulesAttributeType `json:"alertRules"`
+	Amount     PlanGetAmountAttributeType     `json:"amount,omitempty"`
 	// REQUIRED
-	BucketSize  *int64  `json:"bucketSize"`
-	Description *string `json:"description,omitempty"`
+	BucketSize  PlanGetBucketSizeAttributeType  `json:"bucketSize"`
+	Description PlanGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
-	GrafanaGlobalDashboards *int64 `json:"grafanaGlobalDashboards"`
+	GrafanaGlobalDashboards PlanGetGrafanaGlobalDashboardsAttributeType `json:"grafanaGlobalDashboards"`
 	// REQUIRED
-	GrafanaGlobalOrgs *int64 `json:"grafanaGlobalOrgs"`
+	GrafanaGlobalOrgs PlanGetGrafanaGlobalOrgsAttributeType `json:"grafanaGlobalOrgs"`
 	// REQUIRED
-	GrafanaGlobalSessions *int64 `json:"grafanaGlobalSessions"`
+	GrafanaGlobalSessions PlanGetGrafanaGlobalSessionsAttributeType `json:"grafanaGlobalSessions"`
 	// REQUIRED
-	GrafanaGlobalUsers *int64 `json:"grafanaGlobalUsers"`
+	GrafanaGlobalUsers PlanGetGrafanaGlobalUsersAttributeType `json:"grafanaGlobalUsers"`
 	// REQUIRED
-	Id       *string `json:"id"`
-	IsFree   *bool   `json:"isFree,omitempty"`
-	IsPublic *bool   `json:"isPublic,omitempty"`
+	Id       PlanGetIdAttributeType       `json:"id"`
+	IsFree   PlangetIsFreeAttributeType   `json:"isFree,omitempty"`
+	IsPublic PlangetIsPublicAttributeType `json:"isPublic,omitempty"`
 	// REQUIRED
-	LogsAlert *int64 `json:"logsAlert"`
+	LogsAlert PlanGetLogsAlertAttributeType `json:"logsAlert"`
 	// REQUIRED
-	LogsStorage *int64  `json:"logsStorage"`
-	Name        *string `json:"name,omitempty"`
+	LogsStorage PlanGetLogsStorageAttributeType `json:"logsStorage"`
+	Name        PlanGetNameAttributeType        `json:"name,omitempty"`
 	// REQUIRED
-	PlanId *string `json:"planId"`
+	PlanId PlanGetPlanIdAttributeType `json:"planId"`
 	// REQUIRED
-	SamplesPerScrape *int64  `json:"samplesPerScrape"`
-	Schema           *string `json:"schema,omitempty"`
+	SamplesPerScrape PlanGetSamplesPerScrapeAttributeType `json:"samplesPerScrape"`
+	Schema           PlanGetSchemaAttributeType           `json:"schema,omitempty"`
 	// REQUIRED
-	TargetNumber *int64 `json:"targetNumber"`
+	TargetNumber PlanGetTargetNumberAttributeType `json:"targetNumber"`
 	// REQUIRED
-	TotalMetricSamples *int64 `json:"totalMetricSamples"`
+	TotalMetricSamples PlanGetTotalMetricSamplesAttributeType `json:"totalMetricSamples"`
 	// REQUIRED
-	TracesStorage *int64 `json:"tracesStorage"`
+	TracesStorage PlanGetTracesStorageAttributeType `json:"tracesStorage"`
 }
 
 type _Plan Plan
@@ -65,30 +510,24 @@ type _Plan Plan
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlan(alertMatchers *int64, alertReceivers *int64, alertRules *int64, bucketSize *int64, grafanaGlobalDashboards *int64, grafanaGlobalOrgs *int64, grafanaGlobalSessions *int64, grafanaGlobalUsers *int64, id *string, logsAlert *int64, logsStorage *int64, planId *string, samplesPerScrape *int64, targetNumber *int64, totalMetricSamples *int64, tracesStorage *int64) *Plan {
+func NewPlan(alertMatchers PlanGetAlertMatchersArgType, alertReceivers PlanGetAlertReceiversArgType, alertRules PlanGetAlertRulesArgType, bucketSize PlanGetBucketSizeArgType, grafanaGlobalDashboards PlanGetGrafanaGlobalDashboardsArgType, grafanaGlobalOrgs PlanGetGrafanaGlobalOrgsArgType, grafanaGlobalSessions PlanGetGrafanaGlobalSessionsArgType, grafanaGlobalUsers PlanGetGrafanaGlobalUsersArgType, id PlanGetIdArgType, logsAlert PlanGetLogsAlertArgType, logsStorage PlanGetLogsStorageArgType, planId PlanGetPlanIdArgType, samplesPerScrape PlanGetSamplesPerScrapeArgType, targetNumber PlanGetTargetNumberArgType, totalMetricSamples PlanGetTotalMetricSamplesArgType, tracesStorage PlanGetTracesStorageArgType) *Plan {
 	this := Plan{}
-	this.AlertMatchers = alertMatchers
-	this.AlertReceivers = alertReceivers
-	this.AlertRules = alertRules
-	this.BucketSize = bucketSize
-	this.GrafanaGlobalDashboards = grafanaGlobalDashboards
-	this.GrafanaGlobalOrgs = grafanaGlobalOrgs
-	this.GrafanaGlobalSessions = grafanaGlobalSessions
-	this.GrafanaGlobalUsers = grafanaGlobalUsers
-	this.Id = id
-	var isFree bool = false
-	this.IsFree = &isFree
-	var isPublic bool = true
-	this.IsPublic = &isPublic
-	this.LogsAlert = logsAlert
-	this.LogsStorage = logsStorage
-	this.PlanId = planId
-	this.SamplesPerScrape = samplesPerScrape
-	var schema string = ""
-	this.Schema = &schema
-	this.TargetNumber = targetNumber
-	this.TotalMetricSamples = totalMetricSamples
-	this.TracesStorage = tracesStorage
+	setPlanGetAlertMatchersAttributeType(&this.AlertMatchers, alertMatchers)
+	setPlanGetAlertReceiversAttributeType(&this.AlertReceivers, alertReceivers)
+	setPlanGetAlertRulesAttributeType(&this.AlertRules, alertRules)
+	setPlanGetBucketSizeAttributeType(&this.BucketSize, bucketSize)
+	setPlanGetGrafanaGlobalDashboardsAttributeType(&this.GrafanaGlobalDashboards, grafanaGlobalDashboards)
+	setPlanGetGrafanaGlobalOrgsAttributeType(&this.GrafanaGlobalOrgs, grafanaGlobalOrgs)
+	setPlanGetGrafanaGlobalSessionsAttributeType(&this.GrafanaGlobalSessions, grafanaGlobalSessions)
+	setPlanGetGrafanaGlobalUsersAttributeType(&this.GrafanaGlobalUsers, grafanaGlobalUsers)
+	setPlanGetIdAttributeType(&this.Id, id)
+	setPlanGetLogsAlertAttributeType(&this.LogsAlert, logsAlert)
+	setPlanGetLogsStorageAttributeType(&this.LogsStorage, logsStorage)
+	setPlanGetPlanIdAttributeType(&this.PlanId, planId)
+	setPlanGetSamplesPerScrapeAttributeType(&this.SamplesPerScrape, samplesPerScrape)
+	setPlanGetTargetNumberAttributeType(&this.TargetNumber, targetNumber)
+	setPlanGetTotalMetricSamplesAttributeType(&this.TotalMetricSamples, totalMetricSamples)
+	setPlanGetTracesStorageAttributeType(&this.TracesStorage, tracesStorage)
 	return &this
 }
 
@@ -107,617 +546,483 @@ func NewPlanWithDefaults() *Plan {
 }
 
 // GetAlertMatchers returns the AlertMatchers field value
-func (o *Plan) GetAlertMatchers() *int64 {
-	if o == nil || IsNil(o.AlertMatchers) {
-		var ret *int64
-		return ret
-	}
-
-	return o.AlertMatchers
+func (o *Plan) GetAlertMatchers() (ret PlanGetAlertMatchersRetType) {
+	ret, _ = o.GetAlertMatchersOk()
+	return ret
 }
 
 // GetAlertMatchersOk returns a tuple with the AlertMatchers field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetAlertMatchersOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AlertMatchers, true
+func (o *Plan) GetAlertMatchersOk() (ret PlanGetAlertMatchersRetType, ok bool) {
+	return getPlanGetAlertMatchersAttributeTypeOk(o.AlertMatchers)
 }
 
 // SetAlertMatchers sets field value
-func (o *Plan) SetAlertMatchers(v *int64) {
-	o.AlertMatchers = v
+func (o *Plan) SetAlertMatchers(v PlanGetAlertMatchersRetType) {
+	setPlanGetAlertMatchersAttributeType(&o.AlertMatchers, v)
 }
 
 // GetAlertReceivers returns the AlertReceivers field value
-func (o *Plan) GetAlertReceivers() *int64 {
-	if o == nil || IsNil(o.AlertReceivers) {
-		var ret *int64
-		return ret
-	}
-
-	return o.AlertReceivers
+func (o *Plan) GetAlertReceivers() (ret PlanGetAlertReceiversRetType) {
+	ret, _ = o.GetAlertReceiversOk()
+	return ret
 }
 
 // GetAlertReceiversOk returns a tuple with the AlertReceivers field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetAlertReceiversOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AlertReceivers, true
+func (o *Plan) GetAlertReceiversOk() (ret PlanGetAlertReceiversRetType, ok bool) {
+	return getPlanGetAlertReceiversAttributeTypeOk(o.AlertReceivers)
 }
 
 // SetAlertReceivers sets field value
-func (o *Plan) SetAlertReceivers(v *int64) {
-	o.AlertReceivers = v
+func (o *Plan) SetAlertReceivers(v PlanGetAlertReceiversRetType) {
+	setPlanGetAlertReceiversAttributeType(&o.AlertReceivers, v)
 }
 
 // GetAlertRules returns the AlertRules field value
-func (o *Plan) GetAlertRules() *int64 {
-	if o == nil || IsNil(o.AlertRules) {
-		var ret *int64
-		return ret
-	}
-
-	return o.AlertRules
+func (o *Plan) GetAlertRules() (ret PlanGetAlertRulesRetType) {
+	ret, _ = o.GetAlertRulesOk()
+	return ret
 }
 
 // GetAlertRulesOk returns a tuple with the AlertRules field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetAlertRulesOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AlertRules, true
+func (o *Plan) GetAlertRulesOk() (ret PlanGetAlertRulesRetType, ok bool) {
+	return getPlanGetAlertRulesAttributeTypeOk(o.AlertRules)
 }
 
 // SetAlertRules sets field value
-func (o *Plan) SetAlertRules(v *int64) {
-	o.AlertRules = v
+func (o *Plan) SetAlertRules(v PlanGetAlertRulesRetType) {
+	setPlanGetAlertRulesAttributeType(&o.AlertRules, v)
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *Plan) GetAmount() *float64 {
-	if o == nil || IsNil(o.Amount) {
-		var ret *float64
-		return ret
-	}
-	return o.Amount
+func (o *Plan) GetAmount() (res PlanGetAmountRetType) {
+	res, _ = o.GetAmountOk()
+	return
 }
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetAmountOk() (*float64, bool) {
-	if o == nil || IsNil(o.Amount) {
-		return nil, false
-	}
-	return o.Amount, true
+func (o *Plan) GetAmountOk() (ret PlanGetAmountRetType, ok bool) {
+	return getPlanGetAmountAttributeTypeOk(o.Amount)
 }
 
 // HasAmount returns a boolean if a field has been set.
 func (o *Plan) HasAmount() bool {
-	if o != nil && !IsNil(o.Amount) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAmountOk()
+	return ok
 }
 
 // SetAmount gets a reference to the given float64 and assigns it to the Amount field.
-func (o *Plan) SetAmount(v *float64) {
-	o.Amount = v
+func (o *Plan) SetAmount(v PlanGetAmountRetType) {
+	setPlanGetAmountAttributeType(&o.Amount, v)
 }
 
 // GetBucketSize returns the BucketSize field value
-func (o *Plan) GetBucketSize() *int64 {
-	if o == nil || IsNil(o.BucketSize) {
-		var ret *int64
-		return ret
-	}
-
-	return o.BucketSize
+func (o *Plan) GetBucketSize() (ret PlanGetBucketSizeRetType) {
+	ret, _ = o.GetBucketSizeOk()
+	return ret
 }
 
 // GetBucketSizeOk returns a tuple with the BucketSize field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetBucketSizeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.BucketSize, true
+func (o *Plan) GetBucketSizeOk() (ret PlanGetBucketSizeRetType, ok bool) {
+	return getPlanGetBucketSizeAttributeTypeOk(o.BucketSize)
 }
 
 // SetBucketSize sets field value
-func (o *Plan) SetBucketSize(v *int64) {
-	o.BucketSize = v
+func (o *Plan) SetBucketSize(v PlanGetBucketSizeRetType) {
+	setPlanGetBucketSizeAttributeType(&o.BucketSize, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Plan) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *Plan) GetDescription() (res PlanGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *Plan) GetDescriptionOk() (ret PlanGetDescriptionRetType, ok bool) {
+	return getPlanGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Plan) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Plan) SetDescription(v *string) {
-	o.Description = v
+func (o *Plan) SetDescription(v PlanGetDescriptionRetType) {
+	setPlanGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetGrafanaGlobalDashboards returns the GrafanaGlobalDashboards field value
-func (o *Plan) GetGrafanaGlobalDashboards() *int64 {
-	if o == nil || IsNil(o.GrafanaGlobalDashboards) {
-		var ret *int64
-		return ret
-	}
-
-	return o.GrafanaGlobalDashboards
+func (o *Plan) GetGrafanaGlobalDashboards() (ret PlanGetGrafanaGlobalDashboardsRetType) {
+	ret, _ = o.GetGrafanaGlobalDashboardsOk()
+	return ret
 }
 
 // GetGrafanaGlobalDashboardsOk returns a tuple with the GrafanaGlobalDashboards field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetGrafanaGlobalDashboardsOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaGlobalDashboards, true
+func (o *Plan) GetGrafanaGlobalDashboardsOk() (ret PlanGetGrafanaGlobalDashboardsRetType, ok bool) {
+	return getPlanGetGrafanaGlobalDashboardsAttributeTypeOk(o.GrafanaGlobalDashboards)
 }
 
 // SetGrafanaGlobalDashboards sets field value
-func (o *Plan) SetGrafanaGlobalDashboards(v *int64) {
-	o.GrafanaGlobalDashboards = v
+func (o *Plan) SetGrafanaGlobalDashboards(v PlanGetGrafanaGlobalDashboardsRetType) {
+	setPlanGetGrafanaGlobalDashboardsAttributeType(&o.GrafanaGlobalDashboards, v)
 }
 
 // GetGrafanaGlobalOrgs returns the GrafanaGlobalOrgs field value
-func (o *Plan) GetGrafanaGlobalOrgs() *int64 {
-	if o == nil || IsNil(o.GrafanaGlobalOrgs) {
-		var ret *int64
-		return ret
-	}
-
-	return o.GrafanaGlobalOrgs
+func (o *Plan) GetGrafanaGlobalOrgs() (ret PlanGetGrafanaGlobalOrgsRetType) {
+	ret, _ = o.GetGrafanaGlobalOrgsOk()
+	return ret
 }
 
 // GetGrafanaGlobalOrgsOk returns a tuple with the GrafanaGlobalOrgs field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetGrafanaGlobalOrgsOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaGlobalOrgs, true
+func (o *Plan) GetGrafanaGlobalOrgsOk() (ret PlanGetGrafanaGlobalOrgsRetType, ok bool) {
+	return getPlanGetGrafanaGlobalOrgsAttributeTypeOk(o.GrafanaGlobalOrgs)
 }
 
 // SetGrafanaGlobalOrgs sets field value
-func (o *Plan) SetGrafanaGlobalOrgs(v *int64) {
-	o.GrafanaGlobalOrgs = v
+func (o *Plan) SetGrafanaGlobalOrgs(v PlanGetGrafanaGlobalOrgsRetType) {
+	setPlanGetGrafanaGlobalOrgsAttributeType(&o.GrafanaGlobalOrgs, v)
 }
 
 // GetGrafanaGlobalSessions returns the GrafanaGlobalSessions field value
-func (o *Plan) GetGrafanaGlobalSessions() *int64 {
-	if o == nil || IsNil(o.GrafanaGlobalSessions) {
-		var ret *int64
-		return ret
-	}
-
-	return o.GrafanaGlobalSessions
+func (o *Plan) GetGrafanaGlobalSessions() (ret PlanGetGrafanaGlobalSessionsRetType) {
+	ret, _ = o.GetGrafanaGlobalSessionsOk()
+	return ret
 }
 
 // GetGrafanaGlobalSessionsOk returns a tuple with the GrafanaGlobalSessions field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetGrafanaGlobalSessionsOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaGlobalSessions, true
+func (o *Plan) GetGrafanaGlobalSessionsOk() (ret PlanGetGrafanaGlobalSessionsRetType, ok bool) {
+	return getPlanGetGrafanaGlobalSessionsAttributeTypeOk(o.GrafanaGlobalSessions)
 }
 
 // SetGrafanaGlobalSessions sets field value
-func (o *Plan) SetGrafanaGlobalSessions(v *int64) {
-	o.GrafanaGlobalSessions = v
+func (o *Plan) SetGrafanaGlobalSessions(v PlanGetGrafanaGlobalSessionsRetType) {
+	setPlanGetGrafanaGlobalSessionsAttributeType(&o.GrafanaGlobalSessions, v)
 }
 
 // GetGrafanaGlobalUsers returns the GrafanaGlobalUsers field value
-func (o *Plan) GetGrafanaGlobalUsers() *int64 {
-	if o == nil || IsNil(o.GrafanaGlobalUsers) {
-		var ret *int64
-		return ret
-	}
-
-	return o.GrafanaGlobalUsers
+func (o *Plan) GetGrafanaGlobalUsers() (ret PlanGetGrafanaGlobalUsersRetType) {
+	ret, _ = o.GetGrafanaGlobalUsersOk()
+	return ret
 }
 
 // GetGrafanaGlobalUsersOk returns a tuple with the GrafanaGlobalUsers field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetGrafanaGlobalUsersOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaGlobalUsers, true
+func (o *Plan) GetGrafanaGlobalUsersOk() (ret PlanGetGrafanaGlobalUsersRetType, ok bool) {
+	return getPlanGetGrafanaGlobalUsersAttributeTypeOk(o.GrafanaGlobalUsers)
 }
 
 // SetGrafanaGlobalUsers sets field value
-func (o *Plan) SetGrafanaGlobalUsers(v *int64) {
-	o.GrafanaGlobalUsers = v
+func (o *Plan) SetGrafanaGlobalUsers(v PlanGetGrafanaGlobalUsersRetType) {
+	setPlanGetGrafanaGlobalUsersAttributeType(&o.GrafanaGlobalUsers, v)
 }
 
 // GetId returns the Id field value
-func (o *Plan) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *Plan) GetId() (ret PlanGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Plan) GetIdOk() (ret PlanGetIdRetType, ok bool) {
+	return getPlanGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *Plan) SetId(v *string) {
-	o.Id = v
+func (o *Plan) SetId(v PlanGetIdRetType) {
+	setPlanGetIdAttributeType(&o.Id, v)
 }
 
 // GetIsFree returns the IsFree field value if set, zero value otherwise.
-func (o *Plan) GetIsFree() *bool {
-	if o == nil || IsNil(o.IsFree) {
-		var ret *bool
-		return ret
-	}
-	return o.IsFree
+func (o *Plan) GetIsFree() (res PlangetIsFreeRetType) {
+	res, _ = o.GetIsFreeOk()
+	return
 }
 
 // GetIsFreeOk returns a tuple with the IsFree field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetIsFreeOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsFree) {
-		return nil, false
-	}
-	return o.IsFree, true
+func (o *Plan) GetIsFreeOk() (ret PlangetIsFreeRetType, ok bool) {
+	return getPlangetIsFreeAttributeTypeOk(o.IsFree)
 }
 
 // HasIsFree returns a boolean if a field has been set.
 func (o *Plan) HasIsFree() bool {
-	if o != nil && !IsNil(o.IsFree) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIsFreeOk()
+	return ok
 }
 
 // SetIsFree gets a reference to the given bool and assigns it to the IsFree field.
-func (o *Plan) SetIsFree(v *bool) {
-	o.IsFree = v
+func (o *Plan) SetIsFree(v PlangetIsFreeRetType) {
+	setPlangetIsFreeAttributeType(&o.IsFree, v)
 }
 
 // GetIsPublic returns the IsPublic field value if set, zero value otherwise.
-func (o *Plan) GetIsPublic() *bool {
-	if o == nil || IsNil(o.IsPublic) {
-		var ret *bool
-		return ret
-	}
-	return o.IsPublic
+func (o *Plan) GetIsPublic() (res PlangetIsPublicRetType) {
+	res, _ = o.GetIsPublicOk()
+	return
 }
 
 // GetIsPublicOk returns a tuple with the IsPublic field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetIsPublicOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsPublic) {
-		return nil, false
-	}
-	return o.IsPublic, true
+func (o *Plan) GetIsPublicOk() (ret PlangetIsPublicRetType, ok bool) {
+	return getPlangetIsPublicAttributeTypeOk(o.IsPublic)
 }
 
 // HasIsPublic returns a boolean if a field has been set.
 func (o *Plan) HasIsPublic() bool {
-	if o != nil && !IsNil(o.IsPublic) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIsPublicOk()
+	return ok
 }
 
 // SetIsPublic gets a reference to the given bool and assigns it to the IsPublic field.
-func (o *Plan) SetIsPublic(v *bool) {
-	o.IsPublic = v
+func (o *Plan) SetIsPublic(v PlangetIsPublicRetType) {
+	setPlangetIsPublicAttributeType(&o.IsPublic, v)
 }
 
 // GetLogsAlert returns the LogsAlert field value
-func (o *Plan) GetLogsAlert() *int64 {
-	if o == nil || IsNil(o.LogsAlert) {
-		var ret *int64
-		return ret
-	}
-
-	return o.LogsAlert
+func (o *Plan) GetLogsAlert() (ret PlanGetLogsAlertRetType) {
+	ret, _ = o.GetLogsAlertOk()
+	return ret
 }
 
 // GetLogsAlertOk returns a tuple with the LogsAlert field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetLogsAlertOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LogsAlert, true
+func (o *Plan) GetLogsAlertOk() (ret PlanGetLogsAlertRetType, ok bool) {
+	return getPlanGetLogsAlertAttributeTypeOk(o.LogsAlert)
 }
 
 // SetLogsAlert sets field value
-func (o *Plan) SetLogsAlert(v *int64) {
-	o.LogsAlert = v
+func (o *Plan) SetLogsAlert(v PlanGetLogsAlertRetType) {
+	setPlanGetLogsAlertAttributeType(&o.LogsAlert, v)
 }
 
 // GetLogsStorage returns the LogsStorage field value
-func (o *Plan) GetLogsStorage() *int64 {
-	if o == nil || IsNil(o.LogsStorage) {
-		var ret *int64
-		return ret
-	}
-
-	return o.LogsStorage
+func (o *Plan) GetLogsStorage() (ret PlanGetLogsStorageRetType) {
+	ret, _ = o.GetLogsStorageOk()
+	return ret
 }
 
 // GetLogsStorageOk returns a tuple with the LogsStorage field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetLogsStorageOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LogsStorage, true
+func (o *Plan) GetLogsStorageOk() (ret PlanGetLogsStorageRetType, ok bool) {
+	return getPlanGetLogsStorageAttributeTypeOk(o.LogsStorage)
 }
 
 // SetLogsStorage sets field value
-func (o *Plan) SetLogsStorage(v *int64) {
-	o.LogsStorage = v
+func (o *Plan) SetLogsStorage(v PlanGetLogsStorageRetType) {
+	setPlanGetLogsStorageAttributeType(&o.LogsStorage, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Plan) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Plan) GetName() (res PlanGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Plan) GetNameOk() (ret PlanGetNameRetType, ok bool) {
+	return getPlanGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Plan) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Plan) SetName(v *string) {
-	o.Name = v
+func (o *Plan) SetName(v PlanGetNameRetType) {
+	setPlanGetNameAttributeType(&o.Name, v)
 }
 
 // GetPlanId returns the PlanId field value
-func (o *Plan) GetPlanId() *string {
-	if o == nil || IsNil(o.PlanId) {
-		var ret *string
-		return ret
-	}
-
-	return o.PlanId
+func (o *Plan) GetPlanId() (ret PlanGetPlanIdRetType) {
+	ret, _ = o.GetPlanIdOk()
+	return ret
 }
 
 // GetPlanIdOk returns a tuple with the PlanId field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetPlanIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PlanId, true
+func (o *Plan) GetPlanIdOk() (ret PlanGetPlanIdRetType, ok bool) {
+	return getPlanGetPlanIdAttributeTypeOk(o.PlanId)
 }
 
 // SetPlanId sets field value
-func (o *Plan) SetPlanId(v *string) {
-	o.PlanId = v
+func (o *Plan) SetPlanId(v PlanGetPlanIdRetType) {
+	setPlanGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 // GetSamplesPerScrape returns the SamplesPerScrape field value
-func (o *Plan) GetSamplesPerScrape() *int64 {
-	if o == nil || IsNil(o.SamplesPerScrape) {
-		var ret *int64
-		return ret
-	}
-
-	return o.SamplesPerScrape
+func (o *Plan) GetSamplesPerScrape() (ret PlanGetSamplesPerScrapeRetType) {
+	ret, _ = o.GetSamplesPerScrapeOk()
+	return ret
 }
 
 // GetSamplesPerScrapeOk returns a tuple with the SamplesPerScrape field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetSamplesPerScrapeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SamplesPerScrape, true
+func (o *Plan) GetSamplesPerScrapeOk() (ret PlanGetSamplesPerScrapeRetType, ok bool) {
+	return getPlanGetSamplesPerScrapeAttributeTypeOk(o.SamplesPerScrape)
 }
 
 // SetSamplesPerScrape sets field value
-func (o *Plan) SetSamplesPerScrape(v *int64) {
-	o.SamplesPerScrape = v
+func (o *Plan) SetSamplesPerScrape(v PlanGetSamplesPerScrapeRetType) {
+	setPlanGetSamplesPerScrapeAttributeType(&o.SamplesPerScrape, v)
 }
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *Plan) GetSchema() *string {
-	if o == nil || IsNil(o.Schema) {
-		var ret *string
-		return ret
-	}
-	return o.Schema
+func (o *Plan) GetSchema() (res PlanGetSchemaRetType) {
+	res, _ = o.GetSchemaOk()
+	return
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Plan) GetSchemaOk() (*string, bool) {
-	if o == nil || IsNil(o.Schema) {
-		return nil, false
-	}
-	return o.Schema, true
+func (o *Plan) GetSchemaOk() (ret PlanGetSchemaRetType, ok bool) {
+	return getPlanGetSchemaAttributeTypeOk(o.Schema)
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Plan) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSchemaOk()
+	return ok
 }
 
 // SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *Plan) SetSchema(v *string) {
-	o.Schema = v
+func (o *Plan) SetSchema(v PlanGetSchemaRetType) {
+	setPlanGetSchemaAttributeType(&o.Schema, v)
 }
 
 // GetTargetNumber returns the TargetNumber field value
-func (o *Plan) GetTargetNumber() *int64 {
-	if o == nil || IsNil(o.TargetNumber) {
-		var ret *int64
-		return ret
-	}
-
-	return o.TargetNumber
+func (o *Plan) GetTargetNumber() (ret PlanGetTargetNumberRetType) {
+	ret, _ = o.GetTargetNumberOk()
+	return ret
 }
 
 // GetTargetNumberOk returns a tuple with the TargetNumber field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetTargetNumberOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TargetNumber, true
+func (o *Plan) GetTargetNumberOk() (ret PlanGetTargetNumberRetType, ok bool) {
+	return getPlanGetTargetNumberAttributeTypeOk(o.TargetNumber)
 }
 
 // SetTargetNumber sets field value
-func (o *Plan) SetTargetNumber(v *int64) {
-	o.TargetNumber = v
+func (o *Plan) SetTargetNumber(v PlanGetTargetNumberRetType) {
+	setPlanGetTargetNumberAttributeType(&o.TargetNumber, v)
 }
 
 // GetTotalMetricSamples returns the TotalMetricSamples field value
-func (o *Plan) GetTotalMetricSamples() *int64 {
-	if o == nil || IsNil(o.TotalMetricSamples) {
-		var ret *int64
-		return ret
-	}
-
-	return o.TotalMetricSamples
+func (o *Plan) GetTotalMetricSamples() (ret PlanGetTotalMetricSamplesRetType) {
+	ret, _ = o.GetTotalMetricSamplesOk()
+	return ret
 }
 
 // GetTotalMetricSamplesOk returns a tuple with the TotalMetricSamples field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetTotalMetricSamplesOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TotalMetricSamples, true
+func (o *Plan) GetTotalMetricSamplesOk() (ret PlanGetTotalMetricSamplesRetType, ok bool) {
+	return getPlanGetTotalMetricSamplesAttributeTypeOk(o.TotalMetricSamples)
 }
 
 // SetTotalMetricSamples sets field value
-func (o *Plan) SetTotalMetricSamples(v *int64) {
-	o.TotalMetricSamples = v
+func (o *Plan) SetTotalMetricSamples(v PlanGetTotalMetricSamplesRetType) {
+	setPlanGetTotalMetricSamplesAttributeType(&o.TotalMetricSamples, v)
 }
 
 // GetTracesStorage returns the TracesStorage field value
-func (o *Plan) GetTracesStorage() *int64 {
-	if o == nil || IsNil(o.TracesStorage) {
-		var ret *int64
-		return ret
-	}
-
-	return o.TracesStorage
+func (o *Plan) GetTracesStorage() (ret PlanGetTracesStorageRetType) {
+	ret, _ = o.GetTracesStorageOk()
+	return ret
 }
 
 // GetTracesStorageOk returns a tuple with the TracesStorage field value
 // and a boolean to check if the value has been set.
-func (o *Plan) GetTracesStorageOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TracesStorage, true
+func (o *Plan) GetTracesStorageOk() (ret PlanGetTracesStorageRetType, ok bool) {
+	return getPlanGetTracesStorageAttributeTypeOk(o.TracesStorage)
 }
 
 // SetTracesStorage sets field value
-func (o *Plan) SetTracesStorage(v *int64) {
-	o.TracesStorage = v
+func (o *Plan) SetTracesStorage(v PlanGetTracesStorageRetType) {
+	setPlanGetTracesStorageAttributeType(&o.TracesStorage, v)
 }
 
 func (o Plan) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["alertMatchers"] = o.AlertMatchers
-	toSerialize["alertReceivers"] = o.AlertReceivers
-	toSerialize["alertRules"] = o.AlertRules
-	if !IsNil(o.Amount) {
-		toSerialize["amount"] = o.Amount
+	if val, ok := getPlanGetAlertMatchersAttributeTypeOk(o.AlertMatchers); ok {
+		toSerialize["AlertMatchers"] = val
 	}
-	toSerialize["bucketSize"] = o.BucketSize
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getPlanGetAlertReceiversAttributeTypeOk(o.AlertReceivers); ok {
+		toSerialize["AlertReceivers"] = val
 	}
-	toSerialize["grafanaGlobalDashboards"] = o.GrafanaGlobalDashboards
-	toSerialize["grafanaGlobalOrgs"] = o.GrafanaGlobalOrgs
-	toSerialize["grafanaGlobalSessions"] = o.GrafanaGlobalSessions
-	toSerialize["grafanaGlobalUsers"] = o.GrafanaGlobalUsers
-	toSerialize["id"] = o.Id
-	if !IsNil(o.IsFree) {
-		toSerialize["isFree"] = o.IsFree
+	if val, ok := getPlanGetAlertRulesAttributeTypeOk(o.AlertRules); ok {
+		toSerialize["AlertRules"] = val
 	}
-	if !IsNil(o.IsPublic) {
-		toSerialize["isPublic"] = o.IsPublic
+	if val, ok := getPlanGetAmountAttributeTypeOk(o.Amount); ok {
+		toSerialize["Amount"] = val
 	}
-	toSerialize["logsAlert"] = o.LogsAlert
-	toSerialize["logsStorage"] = o.LogsStorage
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getPlanGetBucketSizeAttributeTypeOk(o.BucketSize); ok {
+		toSerialize["BucketSize"] = val
 	}
-	toSerialize["planId"] = o.PlanId
-	toSerialize["samplesPerScrape"] = o.SamplesPerScrape
-	if !IsNil(o.Schema) {
-		toSerialize["schema"] = o.Schema
+	if val, ok := getPlanGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["targetNumber"] = o.TargetNumber
-	toSerialize["totalMetricSamples"] = o.TotalMetricSamples
-	toSerialize["tracesStorage"] = o.TracesStorage
+	if val, ok := getPlanGetGrafanaGlobalDashboardsAttributeTypeOk(o.GrafanaGlobalDashboards); ok {
+		toSerialize["GrafanaGlobalDashboards"] = val
+	}
+	if val, ok := getPlanGetGrafanaGlobalOrgsAttributeTypeOk(o.GrafanaGlobalOrgs); ok {
+		toSerialize["GrafanaGlobalOrgs"] = val
+	}
+	if val, ok := getPlanGetGrafanaGlobalSessionsAttributeTypeOk(o.GrafanaGlobalSessions); ok {
+		toSerialize["GrafanaGlobalSessions"] = val
+	}
+	if val, ok := getPlanGetGrafanaGlobalUsersAttributeTypeOk(o.GrafanaGlobalUsers); ok {
+		toSerialize["GrafanaGlobalUsers"] = val
+	}
+	if val, ok := getPlanGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getPlangetIsFreeAttributeTypeOk(o.IsFree); ok {
+		toSerialize["IsFree"] = val
+	}
+	if val, ok := getPlangetIsPublicAttributeTypeOk(o.IsPublic); ok {
+		toSerialize["IsPublic"] = val
+	}
+	if val, ok := getPlanGetLogsAlertAttributeTypeOk(o.LogsAlert); ok {
+		toSerialize["LogsAlert"] = val
+	}
+	if val, ok := getPlanGetLogsStorageAttributeTypeOk(o.LogsStorage); ok {
+		toSerialize["LogsStorage"] = val
+	}
+	if val, ok := getPlanGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getPlanGetPlanIdAttributeTypeOk(o.PlanId); ok {
+		toSerialize["PlanId"] = val
+	}
+	if val, ok := getPlanGetSamplesPerScrapeAttributeTypeOk(o.SamplesPerScrape); ok {
+		toSerialize["SamplesPerScrape"] = val
+	}
+	if val, ok := getPlanGetSchemaAttributeTypeOk(o.Schema); ok {
+		toSerialize["Schema"] = val
+	}
+	if val, ok := getPlanGetTargetNumberAttributeTypeOk(o.TargetNumber); ok {
+		toSerialize["TargetNumber"] = val
+	}
+	if val, ok := getPlanGetTotalMetricSamplesAttributeTypeOk(o.TotalMetricSamples); ok {
+		toSerialize["TotalMetricSamples"] = val
+	}
+	if val, ok := getPlanGetTracesStorageAttributeTypeOk(o.TracesStorage); ok {
+		toSerialize["TracesStorage"] = val
+	}
 	return toSerialize, nil
 }
 
