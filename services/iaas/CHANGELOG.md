@@ -1,3 +1,6 @@
+## v0.21.2 (2025-XX-YY)
+- **Internal:** Backwards compatible change to generated code
+
 ## v0.21.1 (2025-03-02)
 
 - Increase Timeouts for volume and network wait handlers
