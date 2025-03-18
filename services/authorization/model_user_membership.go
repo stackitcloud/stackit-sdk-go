@@ -17,16 +17,100 @@ import (
 // checks if the UserMembership type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UserMembership{}
 
+/*
+	types and functions for resourceId
+*/
+
+// isNotNullableString
+type UserMembershipGetResourceIdAttributeType = *string
+
+func getUserMembershipGetResourceIdAttributeTypeOk(arg UserMembershipGetResourceIdAttributeType) (ret UserMembershipGetResourceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserMembershipGetResourceIdAttributeType(arg *UserMembershipGetResourceIdAttributeType, val UserMembershipGetResourceIdRetType) {
+	*arg = &val
+}
+
+type UserMembershipGetResourceIdArgType = string
+type UserMembershipGetResourceIdRetType = string
+
+/*
+	types and functions for resourceType
+*/
+
+// isNotNullableString
+type UserMembershipGetResourceTypeAttributeType = *string
+
+func getUserMembershipGetResourceTypeAttributeTypeOk(arg UserMembershipGetResourceTypeAttributeType) (ret UserMembershipGetResourceTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserMembershipGetResourceTypeAttributeType(arg *UserMembershipGetResourceTypeAttributeType, val UserMembershipGetResourceTypeRetType) {
+	*arg = &val
+}
+
+type UserMembershipGetResourceTypeArgType = string
+type UserMembershipGetResourceTypeRetType = string
+
+/*
+	types and functions for role
+*/
+
+// isNotNullableString
+type UserMembershipGetRoleAttributeType = *string
+
+func getUserMembershipGetRoleAttributeTypeOk(arg UserMembershipGetRoleAttributeType) (ret UserMembershipGetRoleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserMembershipGetRoleAttributeType(arg *UserMembershipGetRoleAttributeType, val UserMembershipGetRoleRetType) {
+	*arg = &val
+}
+
+type UserMembershipGetRoleArgType = string
+type UserMembershipGetRoleRetType = string
+
+/*
+	types and functions for subject
+*/
+
+// isNotNullableString
+type UserMembershipGetSubjectAttributeType = *string
+
+func getUserMembershipGetSubjectAttributeTypeOk(arg UserMembershipGetSubjectAttributeType) (ret UserMembershipGetSubjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserMembershipGetSubjectAttributeType(arg *UserMembershipGetSubjectAttributeType, val UserMembershipGetSubjectRetType) {
+	*arg = &val
+}
+
+type UserMembershipGetSubjectArgType = string
+type UserMembershipGetSubjectRetType = string
+
 // UserMembership struct for UserMembership
 type UserMembership struct {
 	// REQUIRED
-	ResourceId *string `json:"resourceId"`
+	ResourceId UserMembershipGetResourceIdAttributeType `json:"resourceId"`
 	// REQUIRED
-	ResourceType *string `json:"resourceType"`
+	ResourceType UserMembershipGetResourceTypeAttributeType `json:"resourceType"`
 	// REQUIRED
-	Role *string `json:"role"`
+	Role UserMembershipGetRoleAttributeType `json:"role"`
 	// REQUIRED
-	Subject *string `json:"subject"`
+	Subject UserMembershipGetSubjectAttributeType `json:"subject"`
 }
 
 type _UserMembership UserMembership
@@ -35,12 +119,12 @@ type _UserMembership UserMembership
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserMembership(resourceId *string, resourceType *string, role *string, subject *string) *UserMembership {
+func NewUserMembership(resourceId UserMembershipGetResourceIdArgType, resourceType UserMembershipGetResourceTypeArgType, role UserMembershipGetRoleArgType, subject UserMembershipGetSubjectArgType) *UserMembership {
 	this := UserMembership{}
-	this.ResourceId = resourceId
-	this.ResourceType = resourceType
-	this.Role = role
-	this.Subject = subject
+	setUserMembershipGetResourceIdAttributeType(&this.ResourceId, resourceId)
+	setUserMembershipGetResourceTypeAttributeType(&this.ResourceType, resourceType)
+	setUserMembershipGetRoleAttributeType(&this.Role, role)
+	setUserMembershipGetSubjectAttributeType(&this.Subject, subject)
 	return &this
 }
 
@@ -53,107 +137,87 @@ func NewUserMembershipWithDefaults() *UserMembership {
 }
 
 // GetResourceId returns the ResourceId field value
-func (o *UserMembership) GetResourceId() *string {
-	if o == nil || IsNil(o.ResourceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceId
+func (o *UserMembership) GetResourceId() (ret UserMembershipGetResourceIdRetType) {
+	ret, _ = o.GetResourceIdOk()
+	return ret
 }
 
 // GetResourceIdOk returns a tuple with the ResourceId field value
 // and a boolean to check if the value has been set.
-func (o *UserMembership) GetResourceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceId, true
+func (o *UserMembership) GetResourceIdOk() (ret UserMembershipGetResourceIdRetType, ok bool) {
+	return getUserMembershipGetResourceIdAttributeTypeOk(o.ResourceId)
 }
 
 // SetResourceId sets field value
-func (o *UserMembership) SetResourceId(v *string) {
-	o.ResourceId = v
+func (o *UserMembership) SetResourceId(v UserMembershipGetResourceIdRetType) {
+	setUserMembershipGetResourceIdAttributeType(&o.ResourceId, v)
 }
 
 // GetResourceType returns the ResourceType field value
-func (o *UserMembership) GetResourceType() *string {
-	if o == nil || IsNil(o.ResourceType) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceType
+func (o *UserMembership) GetResourceType() (ret UserMembershipGetResourceTypeRetType) {
+	ret, _ = o.GetResourceTypeOk()
+	return ret
 }
 
 // GetResourceTypeOk returns a tuple with the ResourceType field value
 // and a boolean to check if the value has been set.
-func (o *UserMembership) GetResourceTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceType, true
+func (o *UserMembership) GetResourceTypeOk() (ret UserMembershipGetResourceTypeRetType, ok bool) {
+	return getUserMembershipGetResourceTypeAttributeTypeOk(o.ResourceType)
 }
 
 // SetResourceType sets field value
-func (o *UserMembership) SetResourceType(v *string) {
-	o.ResourceType = v
+func (o *UserMembership) SetResourceType(v UserMembershipGetResourceTypeRetType) {
+	setUserMembershipGetResourceTypeAttributeType(&o.ResourceType, v)
 }
 
 // GetRole returns the Role field value
-func (o *UserMembership) GetRole() *string {
-	if o == nil || IsNil(o.Role) {
-		var ret *string
-		return ret
-	}
-
-	return o.Role
+func (o *UserMembership) GetRole() (ret UserMembershipGetRoleRetType) {
+	ret, _ = o.GetRoleOk()
+	return ret
 }
 
 // GetRoleOk returns a tuple with the Role field value
 // and a boolean to check if the value has been set.
-func (o *UserMembership) GetRoleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Role, true
+func (o *UserMembership) GetRoleOk() (ret UserMembershipGetRoleRetType, ok bool) {
+	return getUserMembershipGetRoleAttributeTypeOk(o.Role)
 }
 
 // SetRole sets field value
-func (o *UserMembership) SetRole(v *string) {
-	o.Role = v
+func (o *UserMembership) SetRole(v UserMembershipGetRoleRetType) {
+	setUserMembershipGetRoleAttributeType(&o.Role, v)
 }
 
 // GetSubject returns the Subject field value
-func (o *UserMembership) GetSubject() *string {
-	if o == nil || IsNil(o.Subject) {
-		var ret *string
-		return ret
-	}
-
-	return o.Subject
+func (o *UserMembership) GetSubject() (ret UserMembershipGetSubjectRetType) {
+	ret, _ = o.GetSubjectOk()
+	return ret
 }
 
 // GetSubjectOk returns a tuple with the Subject field value
 // and a boolean to check if the value has been set.
-func (o *UserMembership) GetSubjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Subject, true
+func (o *UserMembership) GetSubjectOk() (ret UserMembershipGetSubjectRetType, ok bool) {
+	return getUserMembershipGetSubjectAttributeTypeOk(o.Subject)
 }
 
 // SetSubject sets field value
-func (o *UserMembership) SetSubject(v *string) {
-	o.Subject = v
+func (o *UserMembership) SetSubject(v UserMembershipGetSubjectRetType) {
+	setUserMembershipGetSubjectAttributeType(&o.Subject, v)
 }
 
 func (o UserMembership) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["resourceId"] = o.ResourceId
-	toSerialize["resourceType"] = o.ResourceType
-	toSerialize["role"] = o.Role
-	toSerialize["subject"] = o.Subject
+	if val, ok := getUserMembershipGetResourceIdAttributeTypeOk(o.ResourceId); ok {
+		toSerialize["ResourceId"] = val
+	}
+	if val, ok := getUserMembershipGetResourceTypeAttributeTypeOk(o.ResourceType); ok {
+		toSerialize["ResourceType"] = val
+	}
+	if val, ok := getUserMembershipGetRoleAttributeTypeOk(o.Role); ok {
+		toSerialize["Role"] = val
+	}
+	if val, ok := getUserMembershipGetSubjectAttributeTypeOk(o.Subject); ok {
+		toSerialize["Subject"] = val
+	}
 	return toSerialize, nil
 }
 
