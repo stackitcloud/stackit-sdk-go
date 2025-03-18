@@ -17,11 +17,31 @@ import (
 // checks if the BackupListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BackupListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type BackupListResponseGetItemsAttributeType = *[]Backup
+type BackupListResponseGetItemsArgType = []Backup
+type BackupListResponseGetItemsRetType = []Backup
+
+func getBackupListResponseGetItemsAttributeTypeOk(arg BackupListResponseGetItemsAttributeType) (ret BackupListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupListResponseGetItemsAttributeType(arg *BackupListResponseGetItemsAttributeType, val BackupListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // BackupListResponse Backup list response.
 type BackupListResponse struct {
 	// A list containing backup objects.
 	// REQUIRED
-	Items *[]Backup `json:"items"`
+	Items BackupListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _BackupListResponse BackupListResponse
@@ -30,9 +50,9 @@ type _BackupListResponse BackupListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBackupListResponse(items *[]Backup) *BackupListResponse {
+func NewBackupListResponse(items BackupListResponseGetItemsArgType) *BackupListResponse {
 	this := BackupListResponse{}
-	this.Items = items
+	setBackupListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewBackupListResponseWithDefaults() *BackupListResponse {
 }
 
 // GetItems returns the Items field value
-func (o *BackupListResponse) GetItems() *[]Backup {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]Backup
-		return ret
-	}
-
-	return o.Items
+func (o *BackupListResponse) GetItems() (ret BackupListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *BackupListResponse) GetItemsOk() (*[]Backup, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *BackupListResponse) GetItemsOk() (ret BackupListResponseGetItemsRetType, ok bool) {
+	return getBackupListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *BackupListResponse) SetItems(v *[]Backup) {
-	o.Items = v
+func (o *BackupListResponse) SetItems(v BackupListResponseGetItemsRetType) {
+	setBackupListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o BackupListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getBackupListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 
