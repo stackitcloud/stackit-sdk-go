@@ -18,14 +18,117 @@ import (
 // checks if the ErrorResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ErrorResponse{}
 
+/*
+	types and functions for error
+*/
+
+// isNotNullableString
+type ErrorResponseGetErrorAttributeType = *string
+
+func getErrorResponseGetErrorAttributeTypeOk(arg ErrorResponseGetErrorAttributeType) (ret ErrorResponseGetErrorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorResponseGetErrorAttributeType(arg *ErrorResponseGetErrorAttributeType, val ErrorResponseGetErrorRetType) {
+	*arg = &val
+}
+
+type ErrorResponseGetErrorArgType = string
+type ErrorResponseGetErrorRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ErrorResponseGetMessageAttributeType = *string
+
+func getErrorResponseGetMessageAttributeTypeOk(arg ErrorResponseGetMessageAttributeType) (ret ErrorResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorResponseGetMessageAttributeType(arg *ErrorResponseGetMessageAttributeType, val ErrorResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ErrorResponseGetMessageArgType = string
+type ErrorResponseGetMessageRetType = string
+
+/*
+	types and functions for path
+*/
+
+// isNotNullableString
+type ErrorResponseGetPathAttributeType = *string
+
+func getErrorResponseGetPathAttributeTypeOk(arg ErrorResponseGetPathAttributeType) (ret ErrorResponseGetPathRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorResponseGetPathAttributeType(arg *ErrorResponseGetPathAttributeType, val ErrorResponseGetPathRetType) {
+	*arg = &val
+}
+
+type ErrorResponseGetPathArgType = string
+type ErrorResponseGetPathRetType = string
+
+/*
+	types and functions for status
+*/
+
+// isInteger
+type ErrorResponseGetStatusAttributeType = *int64
+type ErrorResponseGetStatusArgType = int64
+type ErrorResponseGetStatusRetType = int64
+
+func getErrorResponseGetStatusAttributeTypeOk(arg ErrorResponseGetStatusAttributeType) (ret ErrorResponseGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorResponseGetStatusAttributeType(arg *ErrorResponseGetStatusAttributeType, val ErrorResponseGetStatusRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for timestamp
+*/
+
+// isDateTime
+type ErrorResponseGetTimestampAttributeType = *time.Time
+type ErrorResponseGetTimestampArgType = time.Time
+type ErrorResponseGetTimestampRetType = time.Time
+
+func getErrorResponseGetTimestampAttributeTypeOk(arg ErrorResponseGetTimestampAttributeType) (ret ErrorResponseGetTimestampRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorResponseGetTimestampAttributeType(arg *ErrorResponseGetTimestampAttributeType, val ErrorResponseGetTimestampRetType) {
+	*arg = &val
+}
+
 // ErrorResponse struct for ErrorResponse
 type ErrorResponse struct {
-	Error   *string `json:"error,omitempty"`
-	Message *string `json:"message,omitempty"`
-	Path    *string `json:"path,omitempty"`
+	Error   ErrorResponseGetErrorAttributeType   `json:"error,omitempty"`
+	Message ErrorResponseGetMessageAttributeType `json:"message,omitempty"`
+	Path    ErrorResponseGetPathAttributeType    `json:"path,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	Status    *int64     `json:"status,omitempty"`
-	Timestamp *time.Time `json:"timestamp,omitempty"`
+	Status    ErrorResponseGetStatusAttributeType    `json:"status,omitempty"`
+	Timestamp ErrorResponseGetTimestampAttributeType `json:"timestamp,omitempty"`
 }
 
 // NewErrorResponse instantiates a new ErrorResponse object
@@ -46,181 +149,136 @@ func NewErrorResponseWithDefaults() *ErrorResponse {
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *ErrorResponse) GetError() *string {
-	if o == nil || IsNil(o.Error) {
-		var ret *string
-		return ret
-	}
-	return o.Error
+func (o *ErrorResponse) GetError() (res ErrorResponseGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponse) GetErrorOk() (*string, bool) {
-	if o == nil || IsNil(o.Error) {
-		return nil, false
-	}
-	return o.Error, true
+func (o *ErrorResponse) GetErrorOk() (ret ErrorResponseGetErrorRetType, ok bool) {
+	return getErrorResponseGetErrorAttributeTypeOk(o.Error)
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *ErrorResponse) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorOk()
+	return ok
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
-func (o *ErrorResponse) SetError(v *string) {
-	o.Error = v
+func (o *ErrorResponse) SetError(v ErrorResponseGetErrorRetType) {
+	setErrorResponseGetErrorAttributeType(&o.Error, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ErrorResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *ErrorResponse) GetMessage() (res ErrorResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ErrorResponse) GetMessageOk() (ret ErrorResponseGetMessageRetType, ok bool) {
+	return getErrorResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ErrorResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ErrorResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ErrorResponse) SetMessage(v ErrorResponseGetMessageRetType) {
+	setErrorResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
-func (o *ErrorResponse) GetPath() *string {
-	if o == nil || IsNil(o.Path) {
-		var ret *string
-		return ret
-	}
-	return o.Path
+func (o *ErrorResponse) GetPath() (res ErrorResponseGetPathRetType) {
+	res, _ = o.GetPathOk()
+	return
 }
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponse) GetPathOk() (*string, bool) {
-	if o == nil || IsNil(o.Path) {
-		return nil, false
-	}
-	return o.Path, true
+func (o *ErrorResponse) GetPathOk() (ret ErrorResponseGetPathRetType, ok bool) {
+	return getErrorResponseGetPathAttributeTypeOk(o.Path)
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *ErrorResponse) HasPath() bool {
-	if o != nil && !IsNil(o.Path) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPathOk()
+	return ok
 }
 
 // SetPath gets a reference to the given string and assigns it to the Path field.
-func (o *ErrorResponse) SetPath(v *string) {
-	o.Path = v
+func (o *ErrorResponse) SetPath(v ErrorResponseGetPathRetType) {
+	setErrorResponseGetPathAttributeType(&o.Path, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ErrorResponse) GetStatus() *int64 {
-	if o == nil || IsNil(o.Status) {
-		var ret *int64
-		return ret
-	}
-	return o.Status
+func (o *ErrorResponse) GetStatus() (res ErrorResponseGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponse) GetStatusOk() (*int64, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *ErrorResponse) GetStatusOk() (ret ErrorResponseGetStatusRetType, ok bool) {
+	return getErrorResponseGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ErrorResponse) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given int64 and assigns it to the Status field.
-func (o *ErrorResponse) SetStatus(v *int64) {
-	o.Status = v
+func (o *ErrorResponse) SetStatus(v ErrorResponseGetStatusRetType) {
+	setErrorResponseGetStatusAttributeType(&o.Status, v)
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *ErrorResponse) GetTimestamp() *time.Time {
-	if o == nil || IsNil(o.Timestamp) {
-		var ret *time.Time
-		return ret
-	}
-	return o.Timestamp
+func (o *ErrorResponse) GetTimestamp() (res ErrorResponseGetTimestampRetType) {
+	res, _ = o.GetTimestampOk()
+	return
 }
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponse) GetTimestampOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.Timestamp) {
-		return nil, false
-	}
-	return o.Timestamp, true
+func (o *ErrorResponse) GetTimestampOk() (ret ErrorResponseGetTimestampRetType, ok bool) {
+	return getErrorResponseGetTimestampAttributeTypeOk(o.Timestamp)
 }
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *ErrorResponse) HasTimestamp() bool {
-	if o != nil && !IsNil(o.Timestamp) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTimestampOk()
+	return ok
 }
 
 // SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
-func (o *ErrorResponse) SetTimestamp(v *time.Time) {
-	o.Timestamp = v
+func (o *ErrorResponse) SetTimestamp(v ErrorResponseGetTimestampRetType) {
+	setErrorResponseGetTimestampAttributeType(&o.Timestamp, v)
 }
 
 func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Error) {
-		toSerialize["error"] = o.Error
+	if val, ok := getErrorResponseGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
 	}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getErrorResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	if !IsNil(o.Path) {
-		toSerialize["path"] = o.Path
+	if val, ok := getErrorResponseGetPathAttributeTypeOk(o.Path); ok {
+		toSerialize["Path"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getErrorResponseGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
-	if !IsNil(o.Timestamp) {
-		toSerialize["timestamp"] = o.Timestamp
+	if val, ok := getErrorResponseGetTimestampAttributeTypeOk(o.Timestamp); ok {
+		toSerialize["Timestamp"] = val
 	}
 	return toSerialize, nil
 }
