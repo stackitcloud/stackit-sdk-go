@@ -17,18 +17,79 @@ import (
 // checks if the ListVendorSubscriptionsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListVendorSubscriptionsResponse{}
 
+/*
+	types and functions for cursor
+*/
+
+// isNotNullableString
+type ListVendorSubscriptionsResponseGetCursorAttributeType = *string
+
+func getListVendorSubscriptionsResponseGetCursorAttributeTypeOk(arg ListVendorSubscriptionsResponseGetCursorAttributeType) (ret ListVendorSubscriptionsResponseGetCursorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListVendorSubscriptionsResponseGetCursorAttributeType(arg *ListVendorSubscriptionsResponseGetCursorAttributeType, val ListVendorSubscriptionsResponseGetCursorRetType) {
+	*arg = &val
+}
+
+type ListVendorSubscriptionsResponseGetCursorArgType = string
+type ListVendorSubscriptionsResponseGetCursorRetType = string
+
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListVendorSubscriptionsResponseGetItemsAttributeType = *[]VendorSubscription
+type ListVendorSubscriptionsResponseGetItemsArgType = []VendorSubscription
+type ListVendorSubscriptionsResponseGetItemsRetType = []VendorSubscription
+
+func getListVendorSubscriptionsResponseGetItemsAttributeTypeOk(arg ListVendorSubscriptionsResponseGetItemsAttributeType) (ret ListVendorSubscriptionsResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListVendorSubscriptionsResponseGetItemsAttributeType(arg *ListVendorSubscriptionsResponseGetItemsAttributeType, val ListVendorSubscriptionsResponseGetItemsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for limit
+*/
+
+// isInteger
+type ListVendorSubscriptionsResponseGetLimitAttributeType = *int64
+type ListVendorSubscriptionsResponseGetLimitArgType = int64
+type ListVendorSubscriptionsResponseGetLimitRetType = int64
+
+func getListVendorSubscriptionsResponseGetLimitAttributeTypeOk(arg ListVendorSubscriptionsResponseGetLimitAttributeType) (ret ListVendorSubscriptionsResponseGetLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListVendorSubscriptionsResponseGetLimitAttributeType(arg *ListVendorSubscriptionsResponseGetLimitAttributeType, val ListVendorSubscriptionsResponseGetLimitRetType) {
+	*arg = &val
+}
+
 // ListVendorSubscriptionsResponse struct for ListVendorSubscriptionsResponse
 type ListVendorSubscriptionsResponse struct {
 	// A pagination cursor that represents a position in the dataset. Use it in subsequent requests to continue retrieving data from this position. If `null`, there are no more results to retrieve.
 	// REQUIRED
-	Cursor *string `json:"cursor"`
+	Cursor ListVendorSubscriptionsResponseGetCursorAttributeType `json:"cursor"`
 	// List of subscriptions.
 	// REQUIRED
-	Items *[]VendorSubscription `json:"items"`
+	Items ListVendorSubscriptionsResponseGetItemsAttributeType `json:"items"`
 	// Number of subscriptions returned for a single request.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Limit *int64 `json:"limit"`
+	Limit ListVendorSubscriptionsResponseGetLimitAttributeType `json:"limit"`
 }
 
 type _ListVendorSubscriptionsResponse ListVendorSubscriptionsResponse
@@ -37,11 +98,11 @@ type _ListVendorSubscriptionsResponse ListVendorSubscriptionsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListVendorSubscriptionsResponse(cursor *string, items *[]VendorSubscription, limit *int64) *ListVendorSubscriptionsResponse {
+func NewListVendorSubscriptionsResponse(cursor ListVendorSubscriptionsResponseGetCursorArgType, items ListVendorSubscriptionsResponseGetItemsArgType, limit ListVendorSubscriptionsResponseGetLimitArgType) *ListVendorSubscriptionsResponse {
 	this := ListVendorSubscriptionsResponse{}
-	this.Cursor = cursor
-	this.Items = items
-	this.Limit = limit
+	setListVendorSubscriptionsResponseGetCursorAttributeType(&this.Cursor, cursor)
+	setListVendorSubscriptionsResponseGetItemsAttributeType(&this.Items, items)
+	setListVendorSubscriptionsResponseGetLimitAttributeType(&this.Limit, limit)
 	return &this
 }
 
@@ -56,82 +117,67 @@ func NewListVendorSubscriptionsResponseWithDefaults() *ListVendorSubscriptionsRe
 }
 
 // GetCursor returns the Cursor field value
-func (o *ListVendorSubscriptionsResponse) GetCursor() *string {
-	if o == nil || IsNil(o.Cursor) {
-		var ret *string
-		return ret
-	}
-
-	return o.Cursor
+func (o *ListVendorSubscriptionsResponse) GetCursor() (ret ListVendorSubscriptionsResponseGetCursorRetType) {
+	ret, _ = o.GetCursorOk()
+	return ret
 }
 
 // GetCursorOk returns a tuple with the Cursor field value
 // and a boolean to check if the value has been set.
-func (o *ListVendorSubscriptionsResponse) GetCursorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Cursor, true
+func (o *ListVendorSubscriptionsResponse) GetCursorOk() (ret ListVendorSubscriptionsResponseGetCursorRetType, ok bool) {
+	return getListVendorSubscriptionsResponseGetCursorAttributeTypeOk(o.Cursor)
 }
 
 // SetCursor sets field value
-func (o *ListVendorSubscriptionsResponse) SetCursor(v *string) {
-	o.Cursor = v
+func (o *ListVendorSubscriptionsResponse) SetCursor(v ListVendorSubscriptionsResponseGetCursorRetType) {
+	setListVendorSubscriptionsResponseGetCursorAttributeType(&o.Cursor, v)
 }
 
 // GetItems returns the Items field value
-func (o *ListVendorSubscriptionsResponse) GetItems() *[]VendorSubscription {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]VendorSubscription
-		return ret
-	}
-
-	return o.Items
+func (o *ListVendorSubscriptionsResponse) GetItems() (ret ListVendorSubscriptionsResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *ListVendorSubscriptionsResponse) GetItemsOk() (*[]VendorSubscription, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListVendorSubscriptionsResponse) GetItemsOk() (ret ListVendorSubscriptionsResponseGetItemsRetType, ok bool) {
+	return getListVendorSubscriptionsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *ListVendorSubscriptionsResponse) SetItems(v *[]VendorSubscription) {
-	o.Items = v
+func (o *ListVendorSubscriptionsResponse) SetItems(v ListVendorSubscriptionsResponseGetItemsRetType) {
+	setListVendorSubscriptionsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 // GetLimit returns the Limit field value
-func (o *ListVendorSubscriptionsResponse) GetLimit() *int64 {
-	if o == nil || IsNil(o.Limit) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Limit
+func (o *ListVendorSubscriptionsResponse) GetLimit() (ret ListVendorSubscriptionsResponseGetLimitRetType) {
+	ret, _ = o.GetLimitOk()
+	return ret
 }
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
-func (o *ListVendorSubscriptionsResponse) GetLimitOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Limit, true
+func (o *ListVendorSubscriptionsResponse) GetLimitOk() (ret ListVendorSubscriptionsResponseGetLimitRetType, ok bool) {
+	return getListVendorSubscriptionsResponseGetLimitAttributeTypeOk(o.Limit)
 }
 
 // SetLimit sets field value
-func (o *ListVendorSubscriptionsResponse) SetLimit(v *int64) {
-	o.Limit = v
+func (o *ListVendorSubscriptionsResponse) SetLimit(v ListVendorSubscriptionsResponseGetLimitRetType) {
+	setListVendorSubscriptionsResponseGetLimitAttributeType(&o.Limit, v)
 }
 
 func (o ListVendorSubscriptionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cursor"] = o.Cursor
-	toSerialize["items"] = o.Items
-	toSerialize["limit"] = o.Limit
+	if val, ok := getListVendorSubscriptionsResponseGetCursorAttributeTypeOk(o.Cursor); ok {
+		toSerialize["Cursor"] = val
+	}
+	if val, ok := getListVendorSubscriptionsResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
+	if val, ok := getListVendorSubscriptionsResponseGetLimitAttributeTypeOk(o.Limit); ok {
+		toSerialize["Limit"] = val
+	}
 	return toSerialize, nil
 }
 
