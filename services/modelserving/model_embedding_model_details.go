@@ -17,30 +17,236 @@ import (
 // checks if the EmbeddingModelDetails type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &EmbeddingModelDetails{}
 
+/*
+	types and functions for category
+*/
+
+// isEnumRef
+type EmbeddingModelDetailsGetCategoryAttributeType = *string
+type EmbeddingModelDetailsGetCategoryArgType = string
+type EmbeddingModelDetailsGetCategoryRetType = string
+
+func getEmbeddingModelDetailsGetCategoryAttributeTypeOk(arg EmbeddingModelDetailsGetCategoryAttributeType) (ret EmbeddingModelDetailsGetCategoryRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetCategoryAttributeType(arg *EmbeddingModelDetailsGetCategoryAttributeType, val EmbeddingModelDetailsGetCategoryRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type EmbeddingModelDetailsGetDescriptionAttributeType = *string
+
+func getEmbeddingModelDetailsGetDescriptionAttributeTypeOk(arg EmbeddingModelDetailsGetDescriptionAttributeType) (ret EmbeddingModelDetailsGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetDescriptionAttributeType(arg *EmbeddingModelDetailsGetDescriptionAttributeType, val EmbeddingModelDetailsGetDescriptionRetType) {
+	*arg = &val
+}
+
+type EmbeddingModelDetailsGetDescriptionArgType = string
+type EmbeddingModelDetailsGetDescriptionRetType = string
+
+/*
+	types and functions for displayedName
+*/
+
+// isNotNullableString
+type EmbeddingModelDetailsGetDisplayedNameAttributeType = *string
+
+func getEmbeddingModelDetailsGetDisplayedNameAttributeTypeOk(arg EmbeddingModelDetailsGetDisplayedNameAttributeType) (ret EmbeddingModelDetailsGetDisplayedNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetDisplayedNameAttributeType(arg *EmbeddingModelDetailsGetDisplayedNameAttributeType, val EmbeddingModelDetailsGetDisplayedNameRetType) {
+	*arg = &val
+}
+
+type EmbeddingModelDetailsGetDisplayedNameArgType = string
+type EmbeddingModelDetailsGetDisplayedNameRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type EmbeddingModelDetailsGetIdAttributeType = *string
+
+func getEmbeddingModelDetailsGetIdAttributeTypeOk(arg EmbeddingModelDetailsGetIdAttributeType) (ret EmbeddingModelDetailsGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetIdAttributeType(arg *EmbeddingModelDetailsGetIdAttributeType, val EmbeddingModelDetailsGetIdRetType) {
+	*arg = &val
+}
+
+type EmbeddingModelDetailsGetIdArgType = string
+type EmbeddingModelDetailsGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type EmbeddingModelDetailsGetNameAttributeType = *string
+
+func getEmbeddingModelDetailsGetNameAttributeTypeOk(arg EmbeddingModelDetailsGetNameAttributeType) (ret EmbeddingModelDetailsGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetNameAttributeType(arg *EmbeddingModelDetailsGetNameAttributeType, val EmbeddingModelDetailsGetNameRetType) {
+	*arg = &val
+}
+
+type EmbeddingModelDetailsGetNameArgType = string
+type EmbeddingModelDetailsGetNameRetType = string
+
+/*
+	types and functions for outputDimension
+*/
+
+// isLong
+type EmbeddingModelDetailsGetOutputDimensionAttributeType = *int64
+type EmbeddingModelDetailsGetOutputDimensionArgType = int64
+type EmbeddingModelDetailsGetOutputDimensionRetType = int64
+
+func getEmbeddingModelDetailsGetOutputDimensionAttributeTypeOk(arg EmbeddingModelDetailsGetOutputDimensionAttributeType) (ret EmbeddingModelDetailsGetOutputDimensionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetOutputDimensionAttributeType(arg *EmbeddingModelDetailsGetOutputDimensionAttributeType, val EmbeddingModelDetailsGetOutputDimensionRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for region
+*/
+
+// isNotNullableString
+type EmbeddingModelDetailsGetRegionAttributeType = *string
+
+func getEmbeddingModelDetailsGetRegionAttributeTypeOk(arg EmbeddingModelDetailsGetRegionAttributeType) (ret EmbeddingModelDetailsGetRegionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetRegionAttributeType(arg *EmbeddingModelDetailsGetRegionAttributeType, val EmbeddingModelDetailsGetRegionRetType) {
+	*arg = &val
+}
+
+type EmbeddingModelDetailsGetRegionArgType = string
+type EmbeddingModelDetailsGetRegionRetType = string
+
+/*
+	types and functions for skus
+*/
+
+// isArray
+type EmbeddingModelDetailsGetSkusAttributeType = *[]SKU
+type EmbeddingModelDetailsGetSkusArgType = []SKU
+type EmbeddingModelDetailsGetSkusRetType = []SKU
+
+func getEmbeddingModelDetailsGetSkusAttributeTypeOk(arg EmbeddingModelDetailsGetSkusAttributeType) (ret EmbeddingModelDetailsGetSkusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetSkusAttributeType(arg *EmbeddingModelDetailsGetSkusAttributeType, val EmbeddingModelDetailsGetSkusRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tags
+*/
+
+// isArray
+type EmbeddingModelDetailsGetTagsAttributeType = *[]string
+type EmbeddingModelDetailsGetTagsArgType = []string
+type EmbeddingModelDetailsGetTagsRetType = []string
+
+func getEmbeddingModelDetailsGetTagsAttributeTypeOk(arg EmbeddingModelDetailsGetTagsAttributeType) (ret EmbeddingModelDetailsGetTagsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetTagsAttributeType(arg *EmbeddingModelDetailsGetTagsAttributeType, val EmbeddingModelDetailsGetTagsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for url
+*/
+
+// isNotNullableString
+type EmbeddingModelDetailsGetUrlAttributeType = *string
+
+func getEmbeddingModelDetailsGetUrlAttributeTypeOk(arg EmbeddingModelDetailsGetUrlAttributeType) (ret EmbeddingModelDetailsGetUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setEmbeddingModelDetailsGetUrlAttributeType(arg *EmbeddingModelDetailsGetUrlAttributeType, val EmbeddingModelDetailsGetUrlRetType) {
+	*arg = &val
+}
+
+type EmbeddingModelDetailsGetUrlArgType = string
+type EmbeddingModelDetailsGetUrlRetType = string
+
 // EmbeddingModelDetails struct for EmbeddingModelDetails
 type EmbeddingModelDetails struct {
 	// REQUIRED
-	Category *string `json:"category"`
+	Category EmbeddingModelDetailsGetCategoryAttributeType `json:"category"`
 	// REQUIRED
-	Description *string `json:"description"`
+	Description EmbeddingModelDetailsGetDescriptionAttributeType `json:"description"`
 	// REQUIRED
-	DisplayedName *string `json:"displayedName"`
+	DisplayedName EmbeddingModelDetailsGetDisplayedNameAttributeType `json:"displayedName"`
 	// generated uuid to identify a model
 	// REQUIRED
-	Id *string `json:"id"`
+	Id EmbeddingModelDetailsGetIdAttributeType `json:"id"`
 	// huggingface name
 	// REQUIRED
-	Name *string `json:"name"`
+	Name EmbeddingModelDetailsGetNameAttributeType `json:"name"`
 	// REQUIRED
-	OutputDimension *int64 `json:"outputDimension"`
+	OutputDimension EmbeddingModelDetailsGetOutputDimensionAttributeType `json:"outputDimension"`
 	// REQUIRED
-	Region *string `json:"region"`
+	Region EmbeddingModelDetailsGetRegionAttributeType `json:"region"`
 	// REQUIRED
-	Skus *[]SKU    `json:"skus"`
-	Tags *[]string `json:"tags,omitempty"`
+	Skus EmbeddingModelDetailsGetSkusAttributeType `json:"skus"`
+	Tags EmbeddingModelDetailsGetTagsAttributeType `json:"tags,omitempty"`
 	// url of the model
 	// REQUIRED
-	Url *string `json:"url"`
+	Url EmbeddingModelDetailsGetUrlAttributeType `json:"url"`
 }
 
 type _EmbeddingModelDetails EmbeddingModelDetails
@@ -49,17 +255,17 @@ type _EmbeddingModelDetails EmbeddingModelDetails
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmbeddingModelDetails(category *string, description *string, displayedName *string, id *string, name *string, outputDimension *int64, region *string, skus *[]SKU, url *string) *EmbeddingModelDetails {
+func NewEmbeddingModelDetails(category EmbeddingModelDetailsGetCategoryArgType, description EmbeddingModelDetailsGetDescriptionArgType, displayedName EmbeddingModelDetailsGetDisplayedNameArgType, id EmbeddingModelDetailsGetIdArgType, name EmbeddingModelDetailsGetNameArgType, outputDimension EmbeddingModelDetailsGetOutputDimensionArgType, region EmbeddingModelDetailsGetRegionArgType, skus EmbeddingModelDetailsGetSkusArgType, url EmbeddingModelDetailsGetUrlArgType) *EmbeddingModelDetails {
 	this := EmbeddingModelDetails{}
-	this.Category = category
-	this.Description = description
-	this.DisplayedName = displayedName
-	this.Id = id
-	this.Name = name
-	this.OutputDimension = outputDimension
-	this.Region = region
-	this.Skus = skus
-	this.Url = url
+	setEmbeddingModelDetailsGetCategoryAttributeType(&this.Category, category)
+	setEmbeddingModelDetailsGetDescriptionAttributeType(&this.Description, description)
+	setEmbeddingModelDetailsGetDisplayedNameAttributeType(&this.DisplayedName, displayedName)
+	setEmbeddingModelDetailsGetIdAttributeType(&this.Id, id)
+	setEmbeddingModelDetailsGetNameAttributeType(&this.Name, name)
+	setEmbeddingModelDetailsGetOutputDimensionAttributeType(&this.OutputDimension, outputDimension)
+	setEmbeddingModelDetailsGetRegionAttributeType(&this.Region, region)
+	setEmbeddingModelDetailsGetSkusAttributeType(&this.Skus, skus)
+	setEmbeddingModelDetailsGetUrlAttributeType(&this.Url, url)
 	return &this
 }
 
@@ -72,267 +278,213 @@ func NewEmbeddingModelDetailsWithDefaults() *EmbeddingModelDetails {
 }
 
 // GetCategory returns the Category field value
-func (o *EmbeddingModelDetails) GetCategory() *string {
-	if o == nil || IsNil(o.Category) {
-		var ret *string
-		return ret
-	}
-
-	return o.Category
+func (o *EmbeddingModelDetails) GetCategory() (ret EmbeddingModelDetailsGetCategoryRetType) {
+	ret, _ = o.GetCategoryOk()
+	return ret
 }
 
 // GetCategoryOk returns a tuple with the Category field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetCategoryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Category, true
+func (o *EmbeddingModelDetails) GetCategoryOk() (ret EmbeddingModelDetailsGetCategoryRetType, ok bool) {
+	return getEmbeddingModelDetailsGetCategoryAttributeTypeOk(o.Category)
 }
 
 // SetCategory sets field value
-func (o *EmbeddingModelDetails) SetCategory(v *string) {
-	o.Category = v
+func (o *EmbeddingModelDetails) SetCategory(v EmbeddingModelDetailsGetCategoryRetType) {
+	setEmbeddingModelDetailsGetCategoryAttributeType(&o.Category, v)
 }
 
 // GetDescription returns the Description field value
-func (o *EmbeddingModelDetails) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *EmbeddingModelDetails) GetDescription() (ret EmbeddingModelDetailsGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *EmbeddingModelDetails) GetDescriptionOk() (ret EmbeddingModelDetailsGetDescriptionRetType, ok bool) {
+	return getEmbeddingModelDetailsGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *EmbeddingModelDetails) SetDescription(v *string) {
-	o.Description = v
+func (o *EmbeddingModelDetails) SetDescription(v EmbeddingModelDetailsGetDescriptionRetType) {
+	setEmbeddingModelDetailsGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDisplayedName returns the DisplayedName field value
-func (o *EmbeddingModelDetails) GetDisplayedName() *string {
-	if o == nil || IsNil(o.DisplayedName) {
-		var ret *string
-		return ret
-	}
-
-	return o.DisplayedName
+func (o *EmbeddingModelDetails) GetDisplayedName() (ret EmbeddingModelDetailsGetDisplayedNameRetType) {
+	ret, _ = o.GetDisplayedNameOk()
+	return ret
 }
 
 // GetDisplayedNameOk returns a tuple with the DisplayedName field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetDisplayedNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DisplayedName, true
+func (o *EmbeddingModelDetails) GetDisplayedNameOk() (ret EmbeddingModelDetailsGetDisplayedNameRetType, ok bool) {
+	return getEmbeddingModelDetailsGetDisplayedNameAttributeTypeOk(o.DisplayedName)
 }
 
 // SetDisplayedName sets field value
-func (o *EmbeddingModelDetails) SetDisplayedName(v *string) {
-	o.DisplayedName = v
+func (o *EmbeddingModelDetails) SetDisplayedName(v EmbeddingModelDetailsGetDisplayedNameRetType) {
+	setEmbeddingModelDetailsGetDisplayedNameAttributeType(&o.DisplayedName, v)
 }
 
 // GetId returns the Id field value
-func (o *EmbeddingModelDetails) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *EmbeddingModelDetails) GetId() (ret EmbeddingModelDetailsGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *EmbeddingModelDetails) GetIdOk() (ret EmbeddingModelDetailsGetIdRetType, ok bool) {
+	return getEmbeddingModelDetailsGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *EmbeddingModelDetails) SetId(v *string) {
-	o.Id = v
+func (o *EmbeddingModelDetails) SetId(v EmbeddingModelDetailsGetIdRetType) {
+	setEmbeddingModelDetailsGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value
-func (o *EmbeddingModelDetails) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *EmbeddingModelDetails) GetName() (ret EmbeddingModelDetailsGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *EmbeddingModelDetails) GetNameOk() (ret EmbeddingModelDetailsGetNameRetType, ok bool) {
+	return getEmbeddingModelDetailsGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *EmbeddingModelDetails) SetName(v *string) {
-	o.Name = v
+func (o *EmbeddingModelDetails) SetName(v EmbeddingModelDetailsGetNameRetType) {
+	setEmbeddingModelDetailsGetNameAttributeType(&o.Name, v)
 }
 
 // GetOutputDimension returns the OutputDimension field value
-func (o *EmbeddingModelDetails) GetOutputDimension() *int64 {
-	if o == nil || IsNil(o.OutputDimension) {
-		var ret *int64
-		return ret
-	}
-
-	return o.OutputDimension
+func (o *EmbeddingModelDetails) GetOutputDimension() (ret EmbeddingModelDetailsGetOutputDimensionRetType) {
+	ret, _ = o.GetOutputDimensionOk()
+	return ret
 }
 
 // GetOutputDimensionOk returns a tuple with the OutputDimension field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetOutputDimensionOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OutputDimension, true
+func (o *EmbeddingModelDetails) GetOutputDimensionOk() (ret EmbeddingModelDetailsGetOutputDimensionRetType, ok bool) {
+	return getEmbeddingModelDetailsGetOutputDimensionAttributeTypeOk(o.OutputDimension)
 }
 
 // SetOutputDimension sets field value
-func (o *EmbeddingModelDetails) SetOutputDimension(v *int64) {
-	o.OutputDimension = v
+func (o *EmbeddingModelDetails) SetOutputDimension(v EmbeddingModelDetailsGetOutputDimensionRetType) {
+	setEmbeddingModelDetailsGetOutputDimensionAttributeType(&o.OutputDimension, v)
 }
 
 // GetRegion returns the Region field value
-func (o *EmbeddingModelDetails) GetRegion() *string {
-	if o == nil || IsNil(o.Region) {
-		var ret *string
-		return ret
-	}
-
-	return o.Region
+func (o *EmbeddingModelDetails) GetRegion() (ret EmbeddingModelDetailsGetRegionRetType) {
+	ret, _ = o.GetRegionOk()
+	return ret
 }
 
 // GetRegionOk returns a tuple with the Region field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetRegionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Region, true
+func (o *EmbeddingModelDetails) GetRegionOk() (ret EmbeddingModelDetailsGetRegionRetType, ok bool) {
+	return getEmbeddingModelDetailsGetRegionAttributeTypeOk(o.Region)
 }
 
 // SetRegion sets field value
-func (o *EmbeddingModelDetails) SetRegion(v *string) {
-	o.Region = v
+func (o *EmbeddingModelDetails) SetRegion(v EmbeddingModelDetailsGetRegionRetType) {
+	setEmbeddingModelDetailsGetRegionAttributeType(&o.Region, v)
 }
 
 // GetSkus returns the Skus field value
-func (o *EmbeddingModelDetails) GetSkus() *[]SKU {
-	if o == nil || IsNil(o.Skus) {
-		var ret *[]SKU
-		return ret
-	}
-
-	return o.Skus
+func (o *EmbeddingModelDetails) GetSkus() (ret EmbeddingModelDetailsGetSkusRetType) {
+	ret, _ = o.GetSkusOk()
+	return ret
 }
 
 // GetSkusOk returns a tuple with the Skus field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetSkusOk() (*[]SKU, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Skus, true
+func (o *EmbeddingModelDetails) GetSkusOk() (ret EmbeddingModelDetailsGetSkusRetType, ok bool) {
+	return getEmbeddingModelDetailsGetSkusAttributeTypeOk(o.Skus)
 }
 
 // SetSkus sets field value
-func (o *EmbeddingModelDetails) SetSkus(v *[]SKU) {
-	o.Skus = v
+func (o *EmbeddingModelDetails) SetSkus(v EmbeddingModelDetailsGetSkusRetType) {
+	setEmbeddingModelDetailsGetSkusAttributeType(&o.Skus, v)
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *EmbeddingModelDetails) GetTags() *[]string {
-	if o == nil || IsNil(o.Tags) {
-		var ret *[]string
-		return ret
-	}
-	return o.Tags
+func (o *EmbeddingModelDetails) GetTags() (res EmbeddingModelDetailsGetTagsRetType) {
+	res, _ = o.GetTagsOk()
+	return
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetTagsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Tags) {
-		return nil, false
-	}
-	return o.Tags, true
+func (o *EmbeddingModelDetails) GetTagsOk() (ret EmbeddingModelDetailsGetTagsRetType, ok bool) {
+	return getEmbeddingModelDetailsGetTagsAttributeTypeOk(o.Tags)
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *EmbeddingModelDetails) HasTags() bool {
-	if o != nil && !IsNil(o.Tags) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTagsOk()
+	return ok
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *EmbeddingModelDetails) SetTags(v *[]string) {
-	o.Tags = v
+func (o *EmbeddingModelDetails) SetTags(v EmbeddingModelDetailsGetTagsRetType) {
+	setEmbeddingModelDetailsGetTagsAttributeType(&o.Tags, v)
 }
 
 // GetUrl returns the Url field value
-func (o *EmbeddingModelDetails) GetUrl() *string {
-	if o == nil || IsNil(o.Url) {
-		var ret *string
-		return ret
-	}
-
-	return o.Url
+func (o *EmbeddingModelDetails) GetUrl() (ret EmbeddingModelDetailsGetUrlRetType) {
+	ret, _ = o.GetUrlOk()
+	return ret
 }
 
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
-func (o *EmbeddingModelDetails) GetUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Url, true
+func (o *EmbeddingModelDetails) GetUrlOk() (ret EmbeddingModelDetailsGetUrlRetType, ok bool) {
+	return getEmbeddingModelDetailsGetUrlAttributeTypeOk(o.Url)
 }
 
 // SetUrl sets field value
-func (o *EmbeddingModelDetails) SetUrl(v *string) {
-	o.Url = v
+func (o *EmbeddingModelDetails) SetUrl(v EmbeddingModelDetailsGetUrlRetType) {
+	setEmbeddingModelDetailsGetUrlAttributeType(&o.Url, v)
 }
 
 func (o EmbeddingModelDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["category"] = o.Category
-	toSerialize["description"] = o.Description
-	toSerialize["displayedName"] = o.DisplayedName
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["outputDimension"] = o.OutputDimension
-	toSerialize["region"] = o.Region
-	toSerialize["skus"] = o.Skus
-	if !IsNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
+	if val, ok := getEmbeddingModelDetailsGetCategoryAttributeTypeOk(o.Category); ok {
+		toSerialize["Category"] = val
 	}
-	toSerialize["url"] = o.Url
+	if val, ok := getEmbeddingModelDetailsGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
+	if val, ok := getEmbeddingModelDetailsGetDisplayedNameAttributeTypeOk(o.DisplayedName); ok {
+		toSerialize["DisplayedName"] = val
+	}
+	if val, ok := getEmbeddingModelDetailsGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getEmbeddingModelDetailsGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getEmbeddingModelDetailsGetOutputDimensionAttributeTypeOk(o.OutputDimension); ok {
+		toSerialize["OutputDimension"] = val
+	}
+	if val, ok := getEmbeddingModelDetailsGetRegionAttributeTypeOk(o.Region); ok {
+		toSerialize["Region"] = val
+	}
+	if val, ok := getEmbeddingModelDetailsGetSkusAttributeTypeOk(o.Skus); ok {
+		toSerialize["Skus"] = val
+	}
+	if val, ok := getEmbeddingModelDetailsGetTagsAttributeTypeOk(o.Tags); ok {
+		toSerialize["Tags"] = val
+	}
+	if val, ok := getEmbeddingModelDetailsGetUrlAttributeTypeOk(o.Url); ok {
+		toSerialize["Url"] = val
+	}
 	return toSerialize, nil
 }
 
