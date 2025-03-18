@@ -17,10 +17,30 @@ import (
 // checks if the JWKS type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &JWKS{}
 
+/*
+	types and functions for keys
+*/
+
+// isArray
+type JWKSGetKeysAttributeType = *[]JWK
+type JWKSGetKeysArgType = []JWK
+type JWKSGetKeysRetType = []JWK
+
+func getJWKSGetKeysAttributeTypeOk(arg JWKSGetKeysAttributeType) (ret JWKSGetKeysRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJWKSGetKeysAttributeType(arg *JWKSGetKeysAttributeType, val JWKSGetKeysRetType) {
+	*arg = &val
+}
+
 // JWKS struct for JWKS
 type JWKS struct {
 	// REQUIRED
-	Keys *[]JWK `json:"keys"`
+	Keys JWKSGetKeysAttributeType `json:"keys"`
 }
 
 type _JWKS JWKS
@@ -29,9 +49,9 @@ type _JWKS JWKS
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJWKS(keys *[]JWK) *JWKS {
+func NewJWKS(keys JWKSGetKeysArgType) *JWKS {
 	this := JWKS{}
-	this.Keys = keys
+	setJWKSGetKeysAttributeType(&this.Keys, keys)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewJWKSWithDefaults() *JWKS {
 }
 
 // GetKeys returns the Keys field value
-func (o *JWKS) GetKeys() *[]JWK {
-	if o == nil || IsNil(o.Keys) {
-		var ret *[]JWK
-		return ret
-	}
-
-	return o.Keys
+func (o *JWKS) GetKeys() (ret JWKSGetKeysRetType) {
+	ret, _ = o.GetKeysOk()
+	return ret
 }
 
 // GetKeysOk returns a tuple with the Keys field value
 // and a boolean to check if the value has been set.
-func (o *JWKS) GetKeysOk() (*[]JWK, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Keys, true
+func (o *JWKS) GetKeysOk() (ret JWKSGetKeysRetType, ok bool) {
+	return getJWKSGetKeysAttributeTypeOk(o.Keys)
 }
 
 // SetKeys sets field value
-func (o *JWKS) SetKeys(v *[]JWK) {
-	o.Keys = v
+func (o *JWKS) SetKeys(v JWKSGetKeysRetType) {
+	setJWKSGetKeysAttributeType(&o.Keys, v)
 }
 
 func (o JWKS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["keys"] = o.Keys
+	if val, ok := getJWKSGetKeysAttributeTypeOk(o.Keys); ok {
+		toSerialize["Keys"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -18,12 +18,53 @@ import (
 // checks if the CreateServiceAccountKeyPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateServiceAccountKeyPayload{}
 
+/*
+	types and functions for publicKey
+*/
+
+// isNotNullableString
+type CreateServiceAccountKeyPayloadGetPublicKeyAttributeType = *string
+
+func getCreateServiceAccountKeyPayloadGetPublicKeyAttributeTypeOk(arg CreateServiceAccountKeyPayloadGetPublicKeyAttributeType) (ret CreateServiceAccountKeyPayloadGetPublicKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyPayloadGetPublicKeyAttributeType(arg *CreateServiceAccountKeyPayloadGetPublicKeyAttributeType, val CreateServiceAccountKeyPayloadGetPublicKeyRetType) {
+	*arg = &val
+}
+
+type CreateServiceAccountKeyPayloadGetPublicKeyArgType = string
+type CreateServiceAccountKeyPayloadGetPublicKeyRetType = string
+
+/*
+	types and functions for validUntil
+*/
+
+// isDateTime
+type CreateServiceAccountKeyPayloadGetValidUntilAttributeType = *time.Time
+type CreateServiceAccountKeyPayloadGetValidUntilArgType = time.Time
+type CreateServiceAccountKeyPayloadGetValidUntilRetType = time.Time
+
+func getCreateServiceAccountKeyPayloadGetValidUntilAttributeTypeOk(arg CreateServiceAccountKeyPayloadGetValidUntilAttributeType) (ret CreateServiceAccountKeyPayloadGetValidUntilRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyPayloadGetValidUntilAttributeType(arg *CreateServiceAccountKeyPayloadGetValidUntilAttributeType, val CreateServiceAccountKeyPayloadGetValidUntilRetType) {
+	*arg = &val
+}
+
 // CreateServiceAccountKeyPayload struct for CreateServiceAccountKeyPayload
 type CreateServiceAccountKeyPayload struct {
 	// Optional, public key part of the user generated RSA key-pair wrapped in a [X.509 v3 certificate](https://www.rfc-editor.org/rfc/rfc5280)
-	PublicKey *string `json:"publicKey,omitempty"`
+	PublicKey CreateServiceAccountKeyPayloadGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// Optional, date of key expiration. When omitted, key is valid until deleted
-	ValidUntil *time.Time `json:"validUntil,omitempty"`
+	ValidUntil CreateServiceAccountKeyPayloadGetValidUntilAttributeType `json:"validUntil,omitempty"`
 }
 
 // NewCreateServiceAccountKeyPayload instantiates a new CreateServiceAccountKeyPayload object
@@ -44,76 +85,58 @@ func NewCreateServiceAccountKeyPayloadWithDefaults() *CreateServiceAccountKeyPay
 }
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
-func (o *CreateServiceAccountKeyPayload) GetPublicKey() *string {
-	if o == nil || IsNil(o.PublicKey) {
-		var ret *string
-		return ret
-	}
-	return o.PublicKey
+func (o *CreateServiceAccountKeyPayload) GetPublicKey() (res CreateServiceAccountKeyPayloadGetPublicKeyRetType) {
+	res, _ = o.GetPublicKeyOk()
+	return
 }
 
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyPayload) GetPublicKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.PublicKey) {
-		return nil, false
-	}
-	return o.PublicKey, true
+func (o *CreateServiceAccountKeyPayload) GetPublicKeyOk() (ret CreateServiceAccountKeyPayloadGetPublicKeyRetType, ok bool) {
+	return getCreateServiceAccountKeyPayloadGetPublicKeyAttributeTypeOk(o.PublicKey)
 }
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *CreateServiceAccountKeyPayload) HasPublicKey() bool {
-	if o != nil && !IsNil(o.PublicKey) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPublicKeyOk()
+	return ok
 }
 
 // SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
-func (o *CreateServiceAccountKeyPayload) SetPublicKey(v *string) {
-	o.PublicKey = v
+func (o *CreateServiceAccountKeyPayload) SetPublicKey(v CreateServiceAccountKeyPayloadGetPublicKeyRetType) {
+	setCreateServiceAccountKeyPayloadGetPublicKeyAttributeType(&o.PublicKey, v)
 }
 
 // GetValidUntil returns the ValidUntil field value if set, zero value otherwise.
-func (o *CreateServiceAccountKeyPayload) GetValidUntil() *time.Time {
-	if o == nil || IsNil(o.ValidUntil) {
-		var ret *time.Time
-		return ret
-	}
-	return o.ValidUntil
+func (o *CreateServiceAccountKeyPayload) GetValidUntil() (res CreateServiceAccountKeyPayloadGetValidUntilRetType) {
+	res, _ = o.GetValidUntilOk()
+	return
 }
 
 // GetValidUntilOk returns a tuple with the ValidUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateServiceAccountKeyPayload) GetValidUntilOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.ValidUntil) {
-		return nil, false
-	}
-	return o.ValidUntil, true
+func (o *CreateServiceAccountKeyPayload) GetValidUntilOk() (ret CreateServiceAccountKeyPayloadGetValidUntilRetType, ok bool) {
+	return getCreateServiceAccountKeyPayloadGetValidUntilAttributeTypeOk(o.ValidUntil)
 }
 
 // HasValidUntil returns a boolean if a field has been set.
 func (o *CreateServiceAccountKeyPayload) HasValidUntil() bool {
-	if o != nil && !IsNil(o.ValidUntil) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetValidUntilOk()
+	return ok
 }
 
 // SetValidUntil gets a reference to the given time.Time and assigns it to the ValidUntil field.
-func (o *CreateServiceAccountKeyPayload) SetValidUntil(v *time.Time) {
-	o.ValidUntil = v
+func (o *CreateServiceAccountKeyPayload) SetValidUntil(v CreateServiceAccountKeyPayloadGetValidUntilRetType) {
+	setCreateServiceAccountKeyPayloadGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
 func (o CreateServiceAccountKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.PublicKey) {
-		toSerialize["publicKey"] = o.PublicKey
+	if val, ok := getCreateServiceAccountKeyPayloadGetPublicKeyAttributeTypeOk(o.PublicKey); ok {
+		toSerialize["PublicKey"] = val
 	}
-	if !IsNil(o.ValidUntil) {
-		toSerialize["validUntil"] = o.ValidUntil
+	if val, ok := getCreateServiceAccountKeyPayloadGetValidUntilAttributeTypeOk(o.ValidUntil); ok {
+		toSerialize["ValidUntil"] = val
 	}
 	return toSerialize, nil
 }

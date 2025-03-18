@@ -17,20 +17,104 @@ import (
 // checks if the GetServiceAccountKeyResponseCredentials type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetServiceAccountKeyResponseCredentials{}
 
+/*
+	types and functions for aud
+*/
+
+// isNotNullableString
+type GetServiceAccountKeyResponseCredentialsGetAudAttributeType = *string
+
+func getGetServiceAccountKeyResponseCredentialsGetAudAttributeTypeOk(arg GetServiceAccountKeyResponseCredentialsGetAudAttributeType) (ret GetServiceAccountKeyResponseCredentialsGetAudRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetServiceAccountKeyResponseCredentialsGetAudAttributeType(arg *GetServiceAccountKeyResponseCredentialsGetAudAttributeType, val GetServiceAccountKeyResponseCredentialsGetAudRetType) {
+	*arg = &val
+}
+
+type GetServiceAccountKeyResponseCredentialsGetAudArgType = string
+type GetServiceAccountKeyResponseCredentialsGetAudRetType = string
+
+/*
+	types and functions for iss
+*/
+
+// isNotNullableString
+type GetServiceAccountKeyResponseCredentialsGetIssAttributeType = *string
+
+func getGetServiceAccountKeyResponseCredentialsGetIssAttributeTypeOk(arg GetServiceAccountKeyResponseCredentialsGetIssAttributeType) (ret GetServiceAccountKeyResponseCredentialsGetIssRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetServiceAccountKeyResponseCredentialsGetIssAttributeType(arg *GetServiceAccountKeyResponseCredentialsGetIssAttributeType, val GetServiceAccountKeyResponseCredentialsGetIssRetType) {
+	*arg = &val
+}
+
+type GetServiceAccountKeyResponseCredentialsGetIssArgType = string
+type GetServiceAccountKeyResponseCredentialsGetIssRetType = string
+
+/*
+	types and functions for kid
+*/
+
+// isNotNullableString
+type GetServiceAccountKeyResponseCredentialsGetKidAttributeType = *string
+
+func getGetServiceAccountKeyResponseCredentialsGetKidAttributeTypeOk(arg GetServiceAccountKeyResponseCredentialsGetKidAttributeType) (ret GetServiceAccountKeyResponseCredentialsGetKidRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetServiceAccountKeyResponseCredentialsGetKidAttributeType(arg *GetServiceAccountKeyResponseCredentialsGetKidAttributeType, val GetServiceAccountKeyResponseCredentialsGetKidRetType) {
+	*arg = &val
+}
+
+type GetServiceAccountKeyResponseCredentialsGetKidArgType = string
+type GetServiceAccountKeyResponseCredentialsGetKidRetType = string
+
+/*
+	types and functions for sub
+*/
+
+// isNotNullableString
+type GetServiceAccountKeyResponseCredentialsGetSubAttributeType = *string
+
+func getGetServiceAccountKeyResponseCredentialsGetSubAttributeTypeOk(arg GetServiceAccountKeyResponseCredentialsGetSubAttributeType) (ret GetServiceAccountKeyResponseCredentialsGetSubRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetServiceAccountKeyResponseCredentialsGetSubAttributeType(arg *GetServiceAccountKeyResponseCredentialsGetSubAttributeType, val GetServiceAccountKeyResponseCredentialsGetSubRetType) {
+	*arg = &val
+}
+
+type GetServiceAccountKeyResponseCredentialsGetSubArgType = string
+type GetServiceAccountKeyResponseCredentialsGetSubRetType = string
+
 // GetServiceAccountKeyResponseCredentials struct for GetServiceAccountKeyResponseCredentials
 type GetServiceAccountKeyResponseCredentials struct {
 	// Audience - service account API URL
 	// REQUIRED
-	Aud *string `json:"aud"`
+	Aud GetServiceAccountKeyResponseCredentialsGetAudAttributeType `json:"aud"`
 	// Service account email
 	// REQUIRED
-	Iss *string `json:"iss"`
+	Iss GetServiceAccountKeyResponseCredentialsGetIssAttributeType `json:"iss"`
 	// Key id to use
 	// REQUIRED
-	Kid *string `json:"kid"`
+	Kid GetServiceAccountKeyResponseCredentialsGetKidAttributeType `json:"kid"`
 	// Service account id
 	// REQUIRED
-	Sub *string `json:"sub"`
+	Sub GetServiceAccountKeyResponseCredentialsGetSubAttributeType `json:"sub"`
 }
 
 type _GetServiceAccountKeyResponseCredentials GetServiceAccountKeyResponseCredentials
@@ -39,12 +123,12 @@ type _GetServiceAccountKeyResponseCredentials GetServiceAccountKeyResponseCreden
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetServiceAccountKeyResponseCredentials(aud *string, iss *string, kid *string, sub *string) *GetServiceAccountKeyResponseCredentials {
+func NewGetServiceAccountKeyResponseCredentials(aud GetServiceAccountKeyResponseCredentialsGetAudArgType, iss GetServiceAccountKeyResponseCredentialsGetIssArgType, kid GetServiceAccountKeyResponseCredentialsGetKidArgType, sub GetServiceAccountKeyResponseCredentialsGetSubArgType) *GetServiceAccountKeyResponseCredentials {
 	this := GetServiceAccountKeyResponseCredentials{}
-	this.Aud = aud
-	this.Iss = iss
-	this.Kid = kid
-	this.Sub = sub
+	setGetServiceAccountKeyResponseCredentialsGetAudAttributeType(&this.Aud, aud)
+	setGetServiceAccountKeyResponseCredentialsGetIssAttributeType(&this.Iss, iss)
+	setGetServiceAccountKeyResponseCredentialsGetKidAttributeType(&this.Kid, kid)
+	setGetServiceAccountKeyResponseCredentialsGetSubAttributeType(&this.Sub, sub)
 	return &this
 }
 
@@ -57,107 +141,87 @@ func NewGetServiceAccountKeyResponseCredentialsWithDefaults() *GetServiceAccount
 }
 
 // GetAud returns the Aud field value
-func (o *GetServiceAccountKeyResponseCredentials) GetAud() *string {
-	if o == nil || IsNil(o.Aud) {
-		var ret *string
-		return ret
-	}
-
-	return o.Aud
+func (o *GetServiceAccountKeyResponseCredentials) GetAud() (ret GetServiceAccountKeyResponseCredentialsGetAudRetType) {
+	ret, _ = o.GetAudOk()
+	return ret
 }
 
 // GetAudOk returns a tuple with the Aud field value
 // and a boolean to check if the value has been set.
-func (o *GetServiceAccountKeyResponseCredentials) GetAudOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Aud, true
+func (o *GetServiceAccountKeyResponseCredentials) GetAudOk() (ret GetServiceAccountKeyResponseCredentialsGetAudRetType, ok bool) {
+	return getGetServiceAccountKeyResponseCredentialsGetAudAttributeTypeOk(o.Aud)
 }
 
 // SetAud sets field value
-func (o *GetServiceAccountKeyResponseCredentials) SetAud(v *string) {
-	o.Aud = v
+func (o *GetServiceAccountKeyResponseCredentials) SetAud(v GetServiceAccountKeyResponseCredentialsGetAudRetType) {
+	setGetServiceAccountKeyResponseCredentialsGetAudAttributeType(&o.Aud, v)
 }
 
 // GetIss returns the Iss field value
-func (o *GetServiceAccountKeyResponseCredentials) GetIss() *string {
-	if o == nil || IsNil(o.Iss) {
-		var ret *string
-		return ret
-	}
-
-	return o.Iss
+func (o *GetServiceAccountKeyResponseCredentials) GetIss() (ret GetServiceAccountKeyResponseCredentialsGetIssRetType) {
+	ret, _ = o.GetIssOk()
+	return ret
 }
 
 // GetIssOk returns a tuple with the Iss field value
 // and a boolean to check if the value has been set.
-func (o *GetServiceAccountKeyResponseCredentials) GetIssOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Iss, true
+func (o *GetServiceAccountKeyResponseCredentials) GetIssOk() (ret GetServiceAccountKeyResponseCredentialsGetIssRetType, ok bool) {
+	return getGetServiceAccountKeyResponseCredentialsGetIssAttributeTypeOk(o.Iss)
 }
 
 // SetIss sets field value
-func (o *GetServiceAccountKeyResponseCredentials) SetIss(v *string) {
-	o.Iss = v
+func (o *GetServiceAccountKeyResponseCredentials) SetIss(v GetServiceAccountKeyResponseCredentialsGetIssRetType) {
+	setGetServiceAccountKeyResponseCredentialsGetIssAttributeType(&o.Iss, v)
 }
 
 // GetKid returns the Kid field value
-func (o *GetServiceAccountKeyResponseCredentials) GetKid() *string {
-	if o == nil || IsNil(o.Kid) {
-		var ret *string
-		return ret
-	}
-
-	return o.Kid
+func (o *GetServiceAccountKeyResponseCredentials) GetKid() (ret GetServiceAccountKeyResponseCredentialsGetKidRetType) {
+	ret, _ = o.GetKidOk()
+	return ret
 }
 
 // GetKidOk returns a tuple with the Kid field value
 // and a boolean to check if the value has been set.
-func (o *GetServiceAccountKeyResponseCredentials) GetKidOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Kid, true
+func (o *GetServiceAccountKeyResponseCredentials) GetKidOk() (ret GetServiceAccountKeyResponseCredentialsGetKidRetType, ok bool) {
+	return getGetServiceAccountKeyResponseCredentialsGetKidAttributeTypeOk(o.Kid)
 }
 
 // SetKid sets field value
-func (o *GetServiceAccountKeyResponseCredentials) SetKid(v *string) {
-	o.Kid = v
+func (o *GetServiceAccountKeyResponseCredentials) SetKid(v GetServiceAccountKeyResponseCredentialsGetKidRetType) {
+	setGetServiceAccountKeyResponseCredentialsGetKidAttributeType(&o.Kid, v)
 }
 
 // GetSub returns the Sub field value
-func (o *GetServiceAccountKeyResponseCredentials) GetSub() *string {
-	if o == nil || IsNil(o.Sub) {
-		var ret *string
-		return ret
-	}
-
-	return o.Sub
+func (o *GetServiceAccountKeyResponseCredentials) GetSub() (ret GetServiceAccountKeyResponseCredentialsGetSubRetType) {
+	ret, _ = o.GetSubOk()
+	return ret
 }
 
 // GetSubOk returns a tuple with the Sub field value
 // and a boolean to check if the value has been set.
-func (o *GetServiceAccountKeyResponseCredentials) GetSubOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Sub, true
+func (o *GetServiceAccountKeyResponseCredentials) GetSubOk() (ret GetServiceAccountKeyResponseCredentialsGetSubRetType, ok bool) {
+	return getGetServiceAccountKeyResponseCredentialsGetSubAttributeTypeOk(o.Sub)
 }
 
 // SetSub sets field value
-func (o *GetServiceAccountKeyResponseCredentials) SetSub(v *string) {
-	o.Sub = v
+func (o *GetServiceAccountKeyResponseCredentials) SetSub(v GetServiceAccountKeyResponseCredentialsGetSubRetType) {
+	setGetServiceAccountKeyResponseCredentialsGetSubAttributeType(&o.Sub, v)
 }
 
 func (o GetServiceAccountKeyResponseCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["aud"] = o.Aud
-	toSerialize["iss"] = o.Iss
-	toSerialize["kid"] = o.Kid
-	toSerialize["sub"] = o.Sub
+	if val, ok := getGetServiceAccountKeyResponseCredentialsGetAudAttributeTypeOk(o.Aud); ok {
+		toSerialize["Aud"] = val
+	}
+	if val, ok := getGetServiceAccountKeyResponseCredentialsGetIssAttributeTypeOk(o.Iss); ok {
+		toSerialize["Iss"] = val
+	}
+	if val, ok := getGetServiceAccountKeyResponseCredentialsGetKidAttributeTypeOk(o.Kid); ok {
+		toSerialize["Kid"] = val
+	}
+	if val, ok := getGetServiceAccountKeyResponseCredentialsGetSubAttributeTypeOk(o.Sub); ok {
+		toSerialize["Sub"] = val
+	}
 	return toSerialize, nil
 }
 
