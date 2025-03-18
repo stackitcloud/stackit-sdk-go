@@ -17,17 +17,80 @@ import (
 // checks if the CredentialsGroup type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CredentialsGroup{}
 
+/*
+	types and functions for credentialsGroupId
+*/
+
+// isNotNullableString
+type CredentialsGroupGetCredentialsGroupIdAttributeType = *string
+
+func getCredentialsGroupGetCredentialsGroupIdAttributeTypeOk(arg CredentialsGroupGetCredentialsGroupIdAttributeType) (ret CredentialsGroupGetCredentialsGroupIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGroupGetCredentialsGroupIdAttributeType(arg *CredentialsGroupGetCredentialsGroupIdAttributeType, val CredentialsGroupGetCredentialsGroupIdRetType) {
+	*arg = &val
+}
+
+type CredentialsGroupGetCredentialsGroupIdArgType = string
+type CredentialsGroupGetCredentialsGroupIdRetType = string
+
+/*
+	types and functions for displayName
+*/
+
+// isNotNullableString
+type CredentialsGroupGetDisplayNameAttributeType = *string
+
+func getCredentialsGroupGetDisplayNameAttributeTypeOk(arg CredentialsGroupGetDisplayNameAttributeType) (ret CredentialsGroupGetDisplayNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGroupGetDisplayNameAttributeType(arg *CredentialsGroupGetDisplayNameAttributeType, val CredentialsGroupGetDisplayNameRetType) {
+	*arg = &val
+}
+
+type CredentialsGroupGetDisplayNameArgType = string
+type CredentialsGroupGetDisplayNameRetType = string
+
+/*
+	types and functions for urn
+*/
+
+// isNotNullableString
+type CredentialsGroupGetUrnAttributeType = *string
+
+func getCredentialsGroupGetUrnAttributeTypeOk(arg CredentialsGroupGetUrnAttributeType) (ret CredentialsGroupGetUrnRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGroupGetUrnAttributeType(arg *CredentialsGroupGetUrnAttributeType, val CredentialsGroupGetUrnRetType) {
+	*arg = &val
+}
+
+type CredentialsGroupGetUrnArgType = string
+type CredentialsGroupGetUrnRetType = string
+
 // CredentialsGroup struct for CredentialsGroup
 type CredentialsGroup struct {
 	// The ID of the credentials group
 	// REQUIRED
-	CredentialsGroupId *string `json:"credentialsGroupId"`
+	CredentialsGroupId CredentialsGroupGetCredentialsGroupIdAttributeType `json:"credentialsGroupId"`
 	// Name of the group holding credentials
 	// REQUIRED
-	DisplayName *string `json:"displayName"`
+	DisplayName CredentialsGroupGetDisplayNameAttributeType `json:"displayName"`
 	// Credentials group URN
 	// REQUIRED
-	Urn *string `json:"urn"`
+	Urn CredentialsGroupGetUrnAttributeType `json:"urn"`
 }
 
 type _CredentialsGroup CredentialsGroup
@@ -36,11 +99,11 @@ type _CredentialsGroup CredentialsGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredentialsGroup(credentialsGroupId *string, displayName *string, urn *string) *CredentialsGroup {
+func NewCredentialsGroup(credentialsGroupId CredentialsGroupGetCredentialsGroupIdArgType, displayName CredentialsGroupGetDisplayNameArgType, urn CredentialsGroupGetUrnArgType) *CredentialsGroup {
 	this := CredentialsGroup{}
-	this.CredentialsGroupId = credentialsGroupId
-	this.DisplayName = displayName
-	this.Urn = urn
+	setCredentialsGroupGetCredentialsGroupIdAttributeType(&this.CredentialsGroupId, credentialsGroupId)
+	setCredentialsGroupGetDisplayNameAttributeType(&this.DisplayName, displayName)
+	setCredentialsGroupGetUrnAttributeType(&this.Urn, urn)
 	return &this
 }
 
@@ -53,82 +116,67 @@ func NewCredentialsGroupWithDefaults() *CredentialsGroup {
 }
 
 // GetCredentialsGroupId returns the CredentialsGroupId field value
-func (o *CredentialsGroup) GetCredentialsGroupId() *string {
-	if o == nil || IsNil(o.CredentialsGroupId) {
-		var ret *string
-		return ret
-	}
-
-	return o.CredentialsGroupId
+func (o *CredentialsGroup) GetCredentialsGroupId() (ret CredentialsGroupGetCredentialsGroupIdRetType) {
+	ret, _ = o.GetCredentialsGroupIdOk()
+	return ret
 }
 
 // GetCredentialsGroupIdOk returns a tuple with the CredentialsGroupId field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsGroup) GetCredentialsGroupIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CredentialsGroupId, true
+func (o *CredentialsGroup) GetCredentialsGroupIdOk() (ret CredentialsGroupGetCredentialsGroupIdRetType, ok bool) {
+	return getCredentialsGroupGetCredentialsGroupIdAttributeTypeOk(o.CredentialsGroupId)
 }
 
 // SetCredentialsGroupId sets field value
-func (o *CredentialsGroup) SetCredentialsGroupId(v *string) {
-	o.CredentialsGroupId = v
+func (o *CredentialsGroup) SetCredentialsGroupId(v CredentialsGroupGetCredentialsGroupIdRetType) {
+	setCredentialsGroupGetCredentialsGroupIdAttributeType(&o.CredentialsGroupId, v)
 }
 
 // GetDisplayName returns the DisplayName field value
-func (o *CredentialsGroup) GetDisplayName() *string {
-	if o == nil || IsNil(o.DisplayName) {
-		var ret *string
-		return ret
-	}
-
-	return o.DisplayName
+func (o *CredentialsGroup) GetDisplayName() (ret CredentialsGroupGetDisplayNameRetType) {
+	ret, _ = o.GetDisplayNameOk()
+	return ret
 }
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsGroup) GetDisplayNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DisplayName, true
+func (o *CredentialsGroup) GetDisplayNameOk() (ret CredentialsGroupGetDisplayNameRetType, ok bool) {
+	return getCredentialsGroupGetDisplayNameAttributeTypeOk(o.DisplayName)
 }
 
 // SetDisplayName sets field value
-func (o *CredentialsGroup) SetDisplayName(v *string) {
-	o.DisplayName = v
+func (o *CredentialsGroup) SetDisplayName(v CredentialsGroupGetDisplayNameRetType) {
+	setCredentialsGroupGetDisplayNameAttributeType(&o.DisplayName, v)
 }
 
 // GetUrn returns the Urn field value
-func (o *CredentialsGroup) GetUrn() *string {
-	if o == nil || IsNil(o.Urn) {
-		var ret *string
-		return ret
-	}
-
-	return o.Urn
+func (o *CredentialsGroup) GetUrn() (ret CredentialsGroupGetUrnRetType) {
+	ret, _ = o.GetUrnOk()
+	return ret
 }
 
 // GetUrnOk returns a tuple with the Urn field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsGroup) GetUrnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Urn, true
+func (o *CredentialsGroup) GetUrnOk() (ret CredentialsGroupGetUrnRetType, ok bool) {
+	return getCredentialsGroupGetUrnAttributeTypeOk(o.Urn)
 }
 
 // SetUrn sets field value
-func (o *CredentialsGroup) SetUrn(v *string) {
-	o.Urn = v
+func (o *CredentialsGroup) SetUrn(v CredentialsGroupGetUrnRetType) {
+	setCredentialsGroupGetUrnAttributeType(&o.Urn, v)
 }
 
 func (o CredentialsGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["credentialsGroupId"] = o.CredentialsGroupId
-	toSerialize["displayName"] = o.DisplayName
-	toSerialize["urn"] = o.Urn
+	if val, ok := getCredentialsGroupGetCredentialsGroupIdAttributeTypeOk(o.CredentialsGroupId); ok {
+		toSerialize["CredentialsGroupId"] = val
+	}
+	if val, ok := getCredentialsGroupGetDisplayNameAttributeTypeOk(o.DisplayName); ok {
+		toSerialize["DisplayName"] = val
+	}
+	if val, ok := getCredentialsGroupGetUrnAttributeTypeOk(o.Urn); ok {
+		toSerialize["Urn"] = val
+	}
 	return toSerialize, nil
 }
 
