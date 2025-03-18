@@ -17,10 +17,30 @@ import (
 // checks if the TriggerRestoreResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &TriggerRestoreResponse{}
 
+/*
+	types and functions for id
+*/
+
+// isInteger
+type TriggerRestoreResponseGetIdAttributeType = *int64
+type TriggerRestoreResponseGetIdArgType = int64
+type TriggerRestoreResponseGetIdRetType = int64
+
+func getTriggerRestoreResponseGetIdAttributeTypeOk(arg TriggerRestoreResponseGetIdAttributeType) (ret TriggerRestoreResponseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTriggerRestoreResponseGetIdAttributeType(arg *TriggerRestoreResponseGetIdAttributeType, val TriggerRestoreResponseGetIdRetType) {
+	*arg = &val
+}
+
 // TriggerRestoreResponse struct for TriggerRestoreResponse
 type TriggerRestoreResponse struct {
 	// REQUIRED
-	Id *int64 `json:"id"`
+	Id TriggerRestoreResponseGetIdAttributeType `json:"id"`
 }
 
 type _TriggerRestoreResponse TriggerRestoreResponse
@@ -29,9 +49,9 @@ type _TriggerRestoreResponse TriggerRestoreResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTriggerRestoreResponse(id *int64) *TriggerRestoreResponse {
+func NewTriggerRestoreResponse(id TriggerRestoreResponseGetIdArgType) *TriggerRestoreResponse {
 	this := TriggerRestoreResponse{}
-	this.Id = id
+	setTriggerRestoreResponseGetIdAttributeType(&this.Id, id)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewTriggerRestoreResponseWithDefaults() *TriggerRestoreResponse {
 }
 
 // GetId returns the Id field value
-func (o *TriggerRestoreResponse) GetId() *int64 {
-	if o == nil || IsNil(o.Id) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Id
+func (o *TriggerRestoreResponse) GetId() (ret TriggerRestoreResponseGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TriggerRestoreResponse) GetIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *TriggerRestoreResponse) GetIdOk() (ret TriggerRestoreResponseGetIdRetType, ok bool) {
+	return getTriggerRestoreResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *TriggerRestoreResponse) SetId(v *int64) {
-	o.Id = v
+func (o *TriggerRestoreResponse) SetId(v TriggerRestoreResponseGetIdRetType) {
+	setTriggerRestoreResponseGetIdAttributeType(&o.Id, v)
 }
 
 func (o TriggerRestoreResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if val, ok := getTriggerRestoreResponseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
 	return toSerialize, nil
 }
 
