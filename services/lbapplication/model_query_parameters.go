@@ -17,12 +17,54 @@ import (
 // checks if the QueryParameters type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &QueryParameters{}
 
+/*
+	types and functions for exactMatch
+*/
+
+// isNotNullableString
+type QueryParametersGetExactMatchAttributeType = *string
+
+func getQueryParametersGetExactMatchAttributeTypeOk(arg QueryParametersGetExactMatchAttributeType) (ret QueryParametersGetExactMatchRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setQueryParametersGetExactMatchAttributeType(arg *QueryParametersGetExactMatchAttributeType, val QueryParametersGetExactMatchRetType) {
+	*arg = &val
+}
+
+type QueryParametersGetExactMatchArgType = string
+type QueryParametersGetExactMatchRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type QueryParametersGetNameAttributeType = *string
+
+func getQueryParametersGetNameAttributeTypeOk(arg QueryParametersGetNameAttributeType) (ret QueryParametersGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setQueryParametersGetNameAttributeType(arg *QueryParametersGetNameAttributeType, val QueryParametersGetNameRetType) {
+	*arg = &val
+}
+
+type QueryParametersGetNameArgType = string
+type QueryParametersGetNameRetType = string
+
 // QueryParameters struct for QueryParameters
 type QueryParameters struct {
 	// Exact match for the parameter value
-	ExactMatch *string `json:"exactMatch,omitempty"`
+	ExactMatch QueryParametersGetExactMatchAttributeType `json:"exactMatch,omitempty"`
 	// Parameter name
-	Name *string `json:"name,omitempty"`
+	Name QueryParametersGetNameAttributeType `json:"name,omitempty"`
 }
 
 // NewQueryParameters instantiates a new QueryParameters object
@@ -43,76 +85,58 @@ func NewQueryParametersWithDefaults() *QueryParameters {
 }
 
 // GetExactMatch returns the ExactMatch field value if set, zero value otherwise.
-func (o *QueryParameters) GetExactMatch() *string {
-	if o == nil || IsNil(o.ExactMatch) {
-		var ret *string
-		return ret
-	}
-	return o.ExactMatch
+func (o *QueryParameters) GetExactMatch() (res QueryParametersGetExactMatchRetType) {
+	res, _ = o.GetExactMatchOk()
+	return
 }
 
 // GetExactMatchOk returns a tuple with the ExactMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryParameters) GetExactMatchOk() (*string, bool) {
-	if o == nil || IsNil(o.ExactMatch) {
-		return nil, false
-	}
-	return o.ExactMatch, true
+func (o *QueryParameters) GetExactMatchOk() (ret QueryParametersGetExactMatchRetType, ok bool) {
+	return getQueryParametersGetExactMatchAttributeTypeOk(o.ExactMatch)
 }
 
 // HasExactMatch returns a boolean if a field has been set.
 func (o *QueryParameters) HasExactMatch() bool {
-	if o != nil && !IsNil(o.ExactMatch) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExactMatchOk()
+	return ok
 }
 
 // SetExactMatch gets a reference to the given string and assigns it to the ExactMatch field.
-func (o *QueryParameters) SetExactMatch(v *string) {
-	o.ExactMatch = v
+func (o *QueryParameters) SetExactMatch(v QueryParametersGetExactMatchRetType) {
+	setQueryParametersGetExactMatchAttributeType(&o.ExactMatch, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *QueryParameters) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *QueryParameters) GetName() (res QueryParametersGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QueryParameters) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *QueryParameters) GetNameOk() (ret QueryParametersGetNameRetType, ok bool) {
+	return getQueryParametersGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *QueryParameters) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *QueryParameters) SetName(v *string) {
-	o.Name = v
+func (o *QueryParameters) SetName(v QueryParametersGetNameRetType) {
+	setQueryParametersGetNameAttributeType(&o.Name, v)
 }
 
 func (o QueryParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ExactMatch) {
-		toSerialize["exactMatch"] = o.ExactMatch
+	if val, ok := getQueryParametersGetExactMatchAttributeTypeOk(o.ExactMatch); ok {
+		toSerialize["ExactMatch"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getQueryParametersGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }
