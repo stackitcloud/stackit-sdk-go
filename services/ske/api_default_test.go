@@ -24,14 +24,14 @@ import (
 func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CompleteCredentialsRotation", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}/complete-credentials-rotation"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/complete-credentials-rotation"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := map[string]interface{}{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -65,28 +65,28 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 
 		resp, reqErr := apiClient.CompleteCredentialsRotation(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateKubeconfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}/kubeconfig"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/kubeconfig"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Kubeconfig{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -120,8 +120,8 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 		createKubeconfigPayload := CreateKubeconfigPayload{}
 
 		resp, reqErr := apiClient.CreateKubeconfig(context.Background(), projectId, clusterName).CreateKubeconfigPayload(createKubeconfigPayload).Execute()
@@ -129,20 +129,20 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateOrUpdateCluster", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Cluster{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -176,8 +176,8 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 		createOrUpdateClusterPayload := CreateOrUpdateClusterPayload{}
 
 		resp, reqErr := apiClient.CreateOrUpdateCluster(context.Background(), projectId, clusterName).CreateOrUpdateClusterPayload(createOrUpdateClusterPayload).Execute()
@@ -185,20 +185,20 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteCluster", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := map[string]interface{}{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -232,28 +232,28 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 
 		resp, reqErr := apiClient.DeleteCluster(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetCluster", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Cluster{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -287,28 +287,28 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 
 		resp, reqErr := apiClient.GetCluster(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetLoginKubeconfig", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}/kubeconfig/login"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/kubeconfig/login"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := LoginKubeconfig{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -342,26 +342,26 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 
 		resp, reqErr := apiClient.GetLoginKubeconfig(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListClusters", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListClustersResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -395,23 +395,23 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListClusters(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListProviderOptions", func(t *testing.T) {
-		path := "/v1/provider-options"
+		_apiUrlPath := "/v1/provider-options"
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ProviderOptions{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -450,20 +450,20 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService StartCredentialsRotation", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}/start-credentials-rotation"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/start-credentials-rotation"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := map[string]interface{}{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -497,28 +497,28 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 
 		resp, reqErr := apiClient.StartCredentialsRotation(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService TriggerHibernate", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}/hibernate"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/hibernate"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := map[string]interface{}{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -552,28 +552,28 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 
 		resp, reqErr := apiClient.TriggerHibernate(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService TriggerMaintenance", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}/maintenance"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/maintenance"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := map[string]interface{}{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -607,28 +607,28 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 
 		resp, reqErr := apiClient.TriggerMaintenance(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService TriggerReconcile", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/clusters/{clusterName}/reconcile"
+		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/reconcile"
 		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		clusterNameValue := "clusterName"
-		path = strings.Replace(path, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := map[string]interface{}{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -662,15 +662,15 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		clusterName := "clusterName"
+		projectId := projectIdValue
+		clusterName := clusterNameValue
 
 		resp, reqErr := apiClient.TriggerReconcile(context.Background(), projectId, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})

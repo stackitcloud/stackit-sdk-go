@@ -17,34 +17,275 @@ import (
 // checks if the Nodepool type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Nodepool{}
 
+/*
+	types and functions for allowSystemComponents
+*/
+
+// isBoolean
+type NodepoolgetAllowSystemComponentsAttributeType = *bool
+type NodepoolgetAllowSystemComponentsArgType = bool
+type NodepoolgetAllowSystemComponentsRetType = bool
+
+func getNodepoolgetAllowSystemComponentsAttributeTypeOk(arg NodepoolgetAllowSystemComponentsAttributeType) (ret NodepoolgetAllowSystemComponentsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolgetAllowSystemComponentsAttributeType(arg *NodepoolgetAllowSystemComponentsAttributeType, val NodepoolgetAllowSystemComponentsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for availabilityZones
+*/
+
+// isArray
+type NodepoolGetAvailabilityZonesAttributeType = *[]string
+type NodepoolGetAvailabilityZonesArgType = []string
+type NodepoolGetAvailabilityZonesRetType = []string
+
+func getNodepoolGetAvailabilityZonesAttributeTypeOk(arg NodepoolGetAvailabilityZonesAttributeType) (ret NodepoolGetAvailabilityZonesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetAvailabilityZonesAttributeType(arg *NodepoolGetAvailabilityZonesAttributeType, val NodepoolGetAvailabilityZonesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for cri
+*/
+
+// isModel
+type NodepoolGetCriAttributeType = *CRI
+type NodepoolGetCriArgType = CRI
+type NodepoolGetCriRetType = CRI
+
+func getNodepoolGetCriAttributeTypeOk(arg NodepoolGetCriAttributeType) (ret NodepoolGetCriRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetCriAttributeType(arg *NodepoolGetCriAttributeType, val NodepoolGetCriRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+type NodepoolGetLabelsAttributeType = *map[string]string
+type NodepoolGetLabelsArgType = map[string]string
+type NodepoolGetLabelsRetType = map[string]string
+
+func getNodepoolGetLabelsAttributeTypeOk(arg NodepoolGetLabelsAttributeType) (ret NodepoolGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetLabelsAttributeType(arg *NodepoolGetLabelsAttributeType, val NodepoolGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for machine
+*/
+
+// isModel
+type NodepoolGetMachineAttributeType = *Machine
+type NodepoolGetMachineArgType = Machine
+type NodepoolGetMachineRetType = Machine
+
+func getNodepoolGetMachineAttributeTypeOk(arg NodepoolGetMachineAttributeType) (ret NodepoolGetMachineRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetMachineAttributeType(arg *NodepoolGetMachineAttributeType, val NodepoolGetMachineRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maxSurge
+*/
+
+// isInteger
+type NodepoolGetMaxSurgeAttributeType = *int64
+type NodepoolGetMaxSurgeArgType = int64
+type NodepoolGetMaxSurgeRetType = int64
+
+func getNodepoolGetMaxSurgeAttributeTypeOk(arg NodepoolGetMaxSurgeAttributeType) (ret NodepoolGetMaxSurgeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetMaxSurgeAttributeType(arg *NodepoolGetMaxSurgeAttributeType, val NodepoolGetMaxSurgeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maxUnavailable
+*/
+
+// isInteger
+type NodepoolGetMaxUnavailableAttributeType = *int64
+type NodepoolGetMaxUnavailableArgType = int64
+type NodepoolGetMaxUnavailableRetType = int64
+
+func getNodepoolGetMaxUnavailableAttributeTypeOk(arg NodepoolGetMaxUnavailableAttributeType) (ret NodepoolGetMaxUnavailableRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetMaxUnavailableAttributeType(arg *NodepoolGetMaxUnavailableAttributeType, val NodepoolGetMaxUnavailableRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maximum
+*/
+
+// isInteger
+type NodepoolGetMaximumAttributeType = *int64
+type NodepoolGetMaximumArgType = int64
+type NodepoolGetMaximumRetType = int64
+
+func getNodepoolGetMaximumAttributeTypeOk(arg NodepoolGetMaximumAttributeType) (ret NodepoolGetMaximumRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetMaximumAttributeType(arg *NodepoolGetMaximumAttributeType, val NodepoolGetMaximumRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for minimum
+*/
+
+// isInteger
+type NodepoolGetMinimumAttributeType = *int64
+type NodepoolGetMinimumArgType = int64
+type NodepoolGetMinimumRetType = int64
+
+func getNodepoolGetMinimumAttributeTypeOk(arg NodepoolGetMinimumAttributeType) (ret NodepoolGetMinimumRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetMinimumAttributeType(arg *NodepoolGetMinimumAttributeType, val NodepoolGetMinimumRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type NodepoolGetNameAttributeType = *string
+
+func getNodepoolGetNameAttributeTypeOk(arg NodepoolGetNameAttributeType) (ret NodepoolGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetNameAttributeType(arg *NodepoolGetNameAttributeType, val NodepoolGetNameRetType) {
+	*arg = &val
+}
+
+type NodepoolGetNameArgType = string
+type NodepoolGetNameRetType = string
+
+/*
+	types and functions for taints
+*/
+
+// isArray
+type NodepoolGetTaintsAttributeType = *[]Taint
+type NodepoolGetTaintsArgType = []Taint
+type NodepoolGetTaintsRetType = []Taint
+
+func getNodepoolGetTaintsAttributeTypeOk(arg NodepoolGetTaintsAttributeType) (ret NodepoolGetTaintsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetTaintsAttributeType(arg *NodepoolGetTaintsAttributeType, val NodepoolGetTaintsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for volume
+*/
+
+// isModel
+type NodepoolGetVolumeAttributeType = *Volume
+type NodepoolGetVolumeArgType = Volume
+type NodepoolGetVolumeRetType = Volume
+
+func getNodepoolGetVolumeAttributeTypeOk(arg NodepoolGetVolumeAttributeType) (ret NodepoolGetVolumeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetVolumeAttributeType(arg *NodepoolGetVolumeAttributeType, val NodepoolGetVolumeRetType) {
+	*arg = &val
+}
+
 // Nodepool struct for Nodepool
 type Nodepool struct {
 	// This needs to be true for at least one node pool.
-	AllowSystemComponents *bool `json:"allowSystemComponents,omitempty"`
+	AllowSystemComponents NodepoolgetAllowSystemComponentsAttributeType `json:"allowSystemComponents,omitempty"`
 	// REQUIRED
-	AvailabilityZones *[]string          `json:"availabilityZones"`
-	Cri               *CRI               `json:"cri,omitempty"`
-	Labels            *map[string]string `json:"labels,omitempty"`
+	AvailabilityZones NodepoolGetAvailabilityZonesAttributeType `json:"availabilityZones"`
+	Cri               NodepoolGetCriAttributeType               `json:"cri,omitempty"`
+	Labels            NodepoolGetLabelsAttributeType            `json:"labels,omitempty"`
 	// REQUIRED
-	Machine *Machine `json:"machine"`
+	Machine NodepoolGetMachineAttributeType `json:"machine"`
 	// Can be cast to int32 without loss of precision.
-	MaxSurge *int64 `json:"maxSurge,omitempty"`
+	MaxSurge NodepoolGetMaxSurgeAttributeType `json:"maxSurge,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	MaxUnavailable *int64 `json:"maxUnavailable,omitempty"`
+	MaxUnavailable NodepoolGetMaxUnavailableAttributeType `json:"maxUnavailable,omitempty"`
 	// Maximum number of nodes in the pool. During runtime, the cluster will never scale beyond 1000 nodes, even if the total maximum would allow for a larger cluster.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Maximum *int64 `json:"maximum"`
+	Maximum NodepoolGetMaximumAttributeType `json:"maximum"`
 	// Minimum number of nodes in the pool. The sum of all minima must not exceed 1000.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Minimum *int64 `json:"minimum"`
+	Minimum NodepoolGetMinimumAttributeType `json:"minimum"`
 	// Maximum 15 chars
 	// REQUIRED
-	Name   *string  `json:"name"`
-	Taints *[]Taint `json:"taints,omitempty"`
+	Name   NodepoolGetNameAttributeType   `json:"name"`
+	Taints NodepoolGetTaintsAttributeType `json:"taints,omitempty"`
 	// REQUIRED
-	Volume *Volume `json:"volume"`
+	Volume NodepoolGetVolumeAttributeType `json:"volume"`
 }
 
 type _Nodepool Nodepool
@@ -53,14 +294,14 @@ type _Nodepool Nodepool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNodepool(availabilityZones *[]string, machine *Machine, maximum *int64, minimum *int64, name *string, volume *Volume) *Nodepool {
+func NewNodepool(availabilityZones NodepoolGetAvailabilityZonesArgType, machine NodepoolGetMachineArgType, maximum NodepoolGetMaximumArgType, minimum NodepoolGetMinimumArgType, name NodepoolGetNameArgType, volume NodepoolGetVolumeArgType) *Nodepool {
 	this := Nodepool{}
-	this.AvailabilityZones = availabilityZones
-	this.Machine = machine
-	this.Maximum = maximum
-	this.Minimum = minimum
-	this.Name = name
-	this.Volume = volume
+	setNodepoolGetAvailabilityZonesAttributeType(&this.AvailabilityZones, availabilityZones)
+	setNodepoolGetMachineAttributeType(&this.Machine, machine)
+	setNodepoolGetMaximumAttributeType(&this.Maximum, maximum)
+	setNodepoolGetMinimumAttributeType(&this.Minimum, minimum)
+	setNodepoolGetNameAttributeType(&this.Name, name)
+	setNodepoolGetVolumeAttributeType(&this.Volume, volume)
 	return &this
 }
 
@@ -73,367 +314,283 @@ func NewNodepoolWithDefaults() *Nodepool {
 }
 
 // GetAllowSystemComponents returns the AllowSystemComponents field value if set, zero value otherwise.
-func (o *Nodepool) GetAllowSystemComponents() *bool {
-	if o == nil || IsNil(o.AllowSystemComponents) {
-		var ret *bool
-		return ret
-	}
-	return o.AllowSystemComponents
+func (o *Nodepool) GetAllowSystemComponents() (res NodepoolgetAllowSystemComponentsRetType) {
+	res, _ = o.GetAllowSystemComponentsOk()
+	return
 }
 
 // GetAllowSystemComponentsOk returns a tuple with the AllowSystemComponents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetAllowSystemComponentsOk() (*bool, bool) {
-	if o == nil || IsNil(o.AllowSystemComponents) {
-		return nil, false
-	}
-	return o.AllowSystemComponents, true
+func (o *Nodepool) GetAllowSystemComponentsOk() (ret NodepoolgetAllowSystemComponentsRetType, ok bool) {
+	return getNodepoolgetAllowSystemComponentsAttributeTypeOk(o.AllowSystemComponents)
 }
 
 // HasAllowSystemComponents returns a boolean if a field has been set.
 func (o *Nodepool) HasAllowSystemComponents() bool {
-	if o != nil && !IsNil(o.AllowSystemComponents) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAllowSystemComponentsOk()
+	return ok
 }
 
 // SetAllowSystemComponents gets a reference to the given bool and assigns it to the AllowSystemComponents field.
-func (o *Nodepool) SetAllowSystemComponents(v *bool) {
-	o.AllowSystemComponents = v
+func (o *Nodepool) SetAllowSystemComponents(v NodepoolgetAllowSystemComponentsRetType) {
+	setNodepoolgetAllowSystemComponentsAttributeType(&o.AllowSystemComponents, v)
 }
 
 // GetAvailabilityZones returns the AvailabilityZones field value
-func (o *Nodepool) GetAvailabilityZones() *[]string {
-	if o == nil || IsNil(o.AvailabilityZones) {
-		var ret *[]string
-		return ret
-	}
-
-	return o.AvailabilityZones
+func (o *Nodepool) GetAvailabilityZones() (ret NodepoolGetAvailabilityZonesRetType) {
+	ret, _ = o.GetAvailabilityZonesOk()
+	return ret
 }
 
 // GetAvailabilityZonesOk returns a tuple with the AvailabilityZones field value
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetAvailabilityZonesOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AvailabilityZones, true
+func (o *Nodepool) GetAvailabilityZonesOk() (ret NodepoolGetAvailabilityZonesRetType, ok bool) {
+	return getNodepoolGetAvailabilityZonesAttributeTypeOk(o.AvailabilityZones)
 }
 
 // SetAvailabilityZones sets field value
-func (o *Nodepool) SetAvailabilityZones(v *[]string) {
-	o.AvailabilityZones = v
+func (o *Nodepool) SetAvailabilityZones(v NodepoolGetAvailabilityZonesRetType) {
+	setNodepoolGetAvailabilityZonesAttributeType(&o.AvailabilityZones, v)
 }
 
 // GetCri returns the Cri field value if set, zero value otherwise.
-func (o *Nodepool) GetCri() *CRI {
-	if o == nil || IsNil(o.Cri) {
-		var ret *CRI
-		return ret
-	}
-	return o.Cri
+func (o *Nodepool) GetCri() (res NodepoolGetCriRetType) {
+	res, _ = o.GetCriOk()
+	return
 }
 
 // GetCriOk returns a tuple with the Cri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetCriOk() (*CRI, bool) {
-	if o == nil || IsNil(o.Cri) {
-		return nil, false
-	}
-	return o.Cri, true
+func (o *Nodepool) GetCriOk() (ret NodepoolGetCriRetType, ok bool) {
+	return getNodepoolGetCriAttributeTypeOk(o.Cri)
 }
 
 // HasCri returns a boolean if a field has been set.
 func (o *Nodepool) HasCri() bool {
-	if o != nil && !IsNil(o.Cri) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCriOk()
+	return ok
 }
 
 // SetCri gets a reference to the given CRI and assigns it to the Cri field.
-func (o *Nodepool) SetCri(v *CRI) {
-	o.Cri = v
+func (o *Nodepool) SetCri(v NodepoolGetCriRetType) {
+	setNodepoolGetCriAttributeType(&o.Cri, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Nodepool) GetLabels() *map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Labels
+func (o *Nodepool) GetLabels() (res NodepoolGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *Nodepool) GetLabelsOk() (ret NodepoolGetLabelsRetType, ok bool) {
+	return getNodepoolGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Nodepool) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *Nodepool) SetLabels(v *map[string]string) {
-	o.Labels = v
+func (o *Nodepool) SetLabels(v NodepoolGetLabelsRetType) {
+	setNodepoolGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetMachine returns the Machine field value
-func (o *Nodepool) GetMachine() *Machine {
-	if o == nil || IsNil(o.Machine) {
-		var ret *Machine
-		return ret
-	}
-
-	return o.Machine
+func (o *Nodepool) GetMachine() (ret NodepoolGetMachineRetType) {
+	ret, _ = o.GetMachineOk()
+	return ret
 }
 
 // GetMachineOk returns a tuple with the Machine field value
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetMachineOk() (*Machine, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Machine, true
+func (o *Nodepool) GetMachineOk() (ret NodepoolGetMachineRetType, ok bool) {
+	return getNodepoolGetMachineAttributeTypeOk(o.Machine)
 }
 
 // SetMachine sets field value
-func (o *Nodepool) SetMachine(v *Machine) {
-	o.Machine = v
+func (o *Nodepool) SetMachine(v NodepoolGetMachineRetType) {
+	setNodepoolGetMachineAttributeType(&o.Machine, v)
 }
 
 // GetMaxSurge returns the MaxSurge field value if set, zero value otherwise.
-func (o *Nodepool) GetMaxSurge() *int64 {
-	if o == nil || IsNil(o.MaxSurge) {
-		var ret *int64
-		return ret
-	}
-	return o.MaxSurge
+func (o *Nodepool) GetMaxSurge() (res NodepoolGetMaxSurgeRetType) {
+	res, _ = o.GetMaxSurgeOk()
+	return
 }
 
 // GetMaxSurgeOk returns a tuple with the MaxSurge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetMaxSurgeOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxSurge) {
-		return nil, false
-	}
-	return o.MaxSurge, true
+func (o *Nodepool) GetMaxSurgeOk() (ret NodepoolGetMaxSurgeRetType, ok bool) {
+	return getNodepoolGetMaxSurgeAttributeTypeOk(o.MaxSurge)
 }
 
 // HasMaxSurge returns a boolean if a field has been set.
 func (o *Nodepool) HasMaxSurge() bool {
-	if o != nil && !IsNil(o.MaxSurge) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxSurgeOk()
+	return ok
 }
 
 // SetMaxSurge gets a reference to the given int64 and assigns it to the MaxSurge field.
-func (o *Nodepool) SetMaxSurge(v *int64) {
-	o.MaxSurge = v
+func (o *Nodepool) SetMaxSurge(v NodepoolGetMaxSurgeRetType) {
+	setNodepoolGetMaxSurgeAttributeType(&o.MaxSurge, v)
 }
 
 // GetMaxUnavailable returns the MaxUnavailable field value if set, zero value otherwise.
-func (o *Nodepool) GetMaxUnavailable() *int64 {
-	if o == nil || IsNil(o.MaxUnavailable) {
-		var ret *int64
-		return ret
-	}
-	return o.MaxUnavailable
+func (o *Nodepool) GetMaxUnavailable() (res NodepoolGetMaxUnavailableRetType) {
+	res, _ = o.GetMaxUnavailableOk()
+	return
 }
 
 // GetMaxUnavailableOk returns a tuple with the MaxUnavailable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetMaxUnavailableOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxUnavailable) {
-		return nil, false
-	}
-	return o.MaxUnavailable, true
+func (o *Nodepool) GetMaxUnavailableOk() (ret NodepoolGetMaxUnavailableRetType, ok bool) {
+	return getNodepoolGetMaxUnavailableAttributeTypeOk(o.MaxUnavailable)
 }
 
 // HasMaxUnavailable returns a boolean if a field has been set.
 func (o *Nodepool) HasMaxUnavailable() bool {
-	if o != nil && !IsNil(o.MaxUnavailable) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxUnavailableOk()
+	return ok
 }
 
 // SetMaxUnavailable gets a reference to the given int64 and assigns it to the MaxUnavailable field.
-func (o *Nodepool) SetMaxUnavailable(v *int64) {
-	o.MaxUnavailable = v
+func (o *Nodepool) SetMaxUnavailable(v NodepoolGetMaxUnavailableRetType) {
+	setNodepoolGetMaxUnavailableAttributeType(&o.MaxUnavailable, v)
 }
 
 // GetMaximum returns the Maximum field value
-func (o *Nodepool) GetMaximum() *int64 {
-	if o == nil || IsNil(o.Maximum) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Maximum
+func (o *Nodepool) GetMaximum() (ret NodepoolGetMaximumRetType) {
+	ret, _ = o.GetMaximumOk()
+	return ret
 }
 
 // GetMaximumOk returns a tuple with the Maximum field value
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetMaximumOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Maximum, true
+func (o *Nodepool) GetMaximumOk() (ret NodepoolGetMaximumRetType, ok bool) {
+	return getNodepoolGetMaximumAttributeTypeOk(o.Maximum)
 }
 
 // SetMaximum sets field value
-func (o *Nodepool) SetMaximum(v *int64) {
-	o.Maximum = v
+func (o *Nodepool) SetMaximum(v NodepoolGetMaximumRetType) {
+	setNodepoolGetMaximumAttributeType(&o.Maximum, v)
 }
 
 // GetMinimum returns the Minimum field value
-func (o *Nodepool) GetMinimum() *int64 {
-	if o == nil || IsNil(o.Minimum) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Minimum
+func (o *Nodepool) GetMinimum() (ret NodepoolGetMinimumRetType) {
+	ret, _ = o.GetMinimumOk()
+	return ret
 }
 
 // GetMinimumOk returns a tuple with the Minimum field value
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetMinimumOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Minimum, true
+func (o *Nodepool) GetMinimumOk() (ret NodepoolGetMinimumRetType, ok bool) {
+	return getNodepoolGetMinimumAttributeTypeOk(o.Minimum)
 }
 
 // SetMinimum sets field value
-func (o *Nodepool) SetMinimum(v *int64) {
-	o.Minimum = v
+func (o *Nodepool) SetMinimum(v NodepoolGetMinimumRetType) {
+	setNodepoolGetMinimumAttributeType(&o.Minimum, v)
 }
 
 // GetName returns the Name field value
-func (o *Nodepool) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Nodepool) GetName() (ret NodepoolGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Nodepool) GetNameOk() (ret NodepoolGetNameRetType, ok bool) {
+	return getNodepoolGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Nodepool) SetName(v *string) {
-	o.Name = v
+func (o *Nodepool) SetName(v NodepoolGetNameRetType) {
+	setNodepoolGetNameAttributeType(&o.Name, v)
 }
 
 // GetTaints returns the Taints field value if set, zero value otherwise.
-func (o *Nodepool) GetTaints() *[]Taint {
-	if o == nil || IsNil(o.Taints) {
-		var ret *[]Taint
-		return ret
-	}
-	return o.Taints
+func (o *Nodepool) GetTaints() (res NodepoolGetTaintsRetType) {
+	res, _ = o.GetTaintsOk()
+	return
 }
 
 // GetTaintsOk returns a tuple with the Taints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetTaintsOk() (*[]Taint, bool) {
-	if o == nil || IsNil(o.Taints) {
-		return nil, false
-	}
-	return o.Taints, true
+func (o *Nodepool) GetTaintsOk() (ret NodepoolGetTaintsRetType, ok bool) {
+	return getNodepoolGetTaintsAttributeTypeOk(o.Taints)
 }
 
 // HasTaints returns a boolean if a field has been set.
 func (o *Nodepool) HasTaints() bool {
-	if o != nil && !IsNil(o.Taints) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTaintsOk()
+	return ok
 }
 
 // SetTaints gets a reference to the given []Taint and assigns it to the Taints field.
-func (o *Nodepool) SetTaints(v *[]Taint) {
-	o.Taints = v
+func (o *Nodepool) SetTaints(v NodepoolGetTaintsRetType) {
+	setNodepoolGetTaintsAttributeType(&o.Taints, v)
 }
 
 // GetVolume returns the Volume field value
-func (o *Nodepool) GetVolume() *Volume {
-	if o == nil || IsNil(o.Volume) {
-		var ret *Volume
-		return ret
-	}
-
-	return o.Volume
+func (o *Nodepool) GetVolume() (ret NodepoolGetVolumeRetType) {
+	ret, _ = o.GetVolumeOk()
+	return ret
 }
 
 // GetVolumeOk returns a tuple with the Volume field value
 // and a boolean to check if the value has been set.
-func (o *Nodepool) GetVolumeOk() (*Volume, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Volume, true
+func (o *Nodepool) GetVolumeOk() (ret NodepoolGetVolumeRetType, ok bool) {
+	return getNodepoolGetVolumeAttributeTypeOk(o.Volume)
 }
 
 // SetVolume sets field value
-func (o *Nodepool) SetVolume(v *Volume) {
-	o.Volume = v
+func (o *Nodepool) SetVolume(v NodepoolGetVolumeRetType) {
+	setNodepoolGetVolumeAttributeType(&o.Volume, v)
 }
 
 func (o Nodepool) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AllowSystemComponents) {
-		toSerialize["allowSystemComponents"] = o.AllowSystemComponents
+	if val, ok := getNodepoolgetAllowSystemComponentsAttributeTypeOk(o.AllowSystemComponents); ok {
+		toSerialize["AllowSystemComponents"] = val
 	}
-	toSerialize["availabilityZones"] = o.AvailabilityZones
-	if !IsNil(o.Cri) {
-		toSerialize["cri"] = o.Cri
+	if val, ok := getNodepoolGetAvailabilityZonesAttributeTypeOk(o.AvailabilityZones); ok {
+		toSerialize["AvailabilityZones"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getNodepoolGetCriAttributeTypeOk(o.Cri); ok {
+		toSerialize["Cri"] = val
 	}
-	toSerialize["machine"] = o.Machine
-	if !IsNil(o.MaxSurge) {
-		toSerialize["maxSurge"] = o.MaxSurge
+	if val, ok := getNodepoolGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.MaxUnavailable) {
-		toSerialize["maxUnavailable"] = o.MaxUnavailable
+	if val, ok := getNodepoolGetMachineAttributeTypeOk(o.Machine); ok {
+		toSerialize["Machine"] = val
 	}
-	toSerialize["maximum"] = o.Maximum
-	toSerialize["minimum"] = o.Minimum
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Taints) {
-		toSerialize["taints"] = o.Taints
+	if val, ok := getNodepoolGetMaxSurgeAttributeTypeOk(o.MaxSurge); ok {
+		toSerialize["MaxSurge"] = val
 	}
-	toSerialize["volume"] = o.Volume
+	if val, ok := getNodepoolGetMaxUnavailableAttributeTypeOk(o.MaxUnavailable); ok {
+		toSerialize["MaxUnavailable"] = val
+	}
+	if val, ok := getNodepoolGetMaximumAttributeTypeOk(o.Maximum); ok {
+		toSerialize["Maximum"] = val
+	}
+	if val, ok := getNodepoolGetMinimumAttributeTypeOk(o.Minimum); ok {
+		toSerialize["Minimum"] = val
+	}
+	if val, ok := getNodepoolGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getNodepoolGetTaintsAttributeTypeOk(o.Taints); ok {
+		toSerialize["Taints"] = val
+	}
+	if val, ok := getNodepoolGetVolumeAttributeTypeOk(o.Volume); ok {
+		toSerialize["Volume"] = val
+	}
 	return toSerialize, nil
 }
 
