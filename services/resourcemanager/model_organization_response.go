@@ -18,27 +18,170 @@ import (
 // checks if the OrganizationResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OrganizationResponse{}
 
+/*
+	types and functions for containerId
+*/
+
+// isNotNullableString
+type OrganizationResponseGetContainerIdAttributeType = *string
+
+func getOrganizationResponseGetContainerIdAttributeTypeOk(arg OrganizationResponseGetContainerIdAttributeType) (ret OrganizationResponseGetContainerIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOrganizationResponseGetContainerIdAttributeType(arg *OrganizationResponseGetContainerIdAttributeType, val OrganizationResponseGetContainerIdRetType) {
+	*arg = &val
+}
+
+type OrganizationResponseGetContainerIdArgType = string
+type OrganizationResponseGetContainerIdRetType = string
+
+/*
+	types and functions for creationTime
+*/
+
+// isDateTime
+type OrganizationResponseGetCreationTimeAttributeType = *time.Time
+type OrganizationResponseGetCreationTimeArgType = time.Time
+type OrganizationResponseGetCreationTimeRetType = time.Time
+
+func getOrganizationResponseGetCreationTimeAttributeTypeOk(arg OrganizationResponseGetCreationTimeAttributeType) (ret OrganizationResponseGetCreationTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOrganizationResponseGetCreationTimeAttributeType(arg *OrganizationResponseGetCreationTimeAttributeType, val OrganizationResponseGetCreationTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isContainer
+type OrganizationResponseGetLabelsAttributeType = *map[string]string
+type OrganizationResponseGetLabelsArgType = map[string]string
+type OrganizationResponseGetLabelsRetType = map[string]string
+
+func getOrganizationResponseGetLabelsAttributeTypeOk(arg OrganizationResponseGetLabelsAttributeType) (ret OrganizationResponseGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOrganizationResponseGetLabelsAttributeType(arg *OrganizationResponseGetLabelsAttributeType, val OrganizationResponseGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for lifecycleState
+*/
+
+// isEnumRef
+type OrganizationResponseGetLifecycleStateAttributeType = *LifecycleState
+type OrganizationResponseGetLifecycleStateArgType = LifecycleState
+type OrganizationResponseGetLifecycleStateRetType = LifecycleState
+
+func getOrganizationResponseGetLifecycleStateAttributeTypeOk(arg OrganizationResponseGetLifecycleStateAttributeType) (ret OrganizationResponseGetLifecycleStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOrganizationResponseGetLifecycleStateAttributeType(arg *OrganizationResponseGetLifecycleStateAttributeType, val OrganizationResponseGetLifecycleStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type OrganizationResponseGetNameAttributeType = *string
+
+func getOrganizationResponseGetNameAttributeTypeOk(arg OrganizationResponseGetNameAttributeType) (ret OrganizationResponseGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOrganizationResponseGetNameAttributeType(arg *OrganizationResponseGetNameAttributeType, val OrganizationResponseGetNameRetType) {
+	*arg = &val
+}
+
+type OrganizationResponseGetNameArgType = string
+type OrganizationResponseGetNameRetType = string
+
+/*
+	types and functions for organizationId
+*/
+
+// isNotNullableString
+type OrganizationResponseGetOrganizationIdAttributeType = *string
+
+func getOrganizationResponseGetOrganizationIdAttributeTypeOk(arg OrganizationResponseGetOrganizationIdAttributeType) (ret OrganizationResponseGetOrganizationIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOrganizationResponseGetOrganizationIdAttributeType(arg *OrganizationResponseGetOrganizationIdAttributeType, val OrganizationResponseGetOrganizationIdRetType) {
+	*arg = &val
+}
+
+type OrganizationResponseGetOrganizationIdArgType = string
+type OrganizationResponseGetOrganizationIdRetType = string
+
+/*
+	types and functions for updateTime
+*/
+
+// isDateTime
+type OrganizationResponseGetUpdateTimeAttributeType = *time.Time
+type OrganizationResponseGetUpdateTimeArgType = time.Time
+type OrganizationResponseGetUpdateTimeRetType = time.Time
+
+func getOrganizationResponseGetUpdateTimeAttributeTypeOk(arg OrganizationResponseGetUpdateTimeAttributeType) (ret OrganizationResponseGetUpdateTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOrganizationResponseGetUpdateTimeAttributeType(arg *OrganizationResponseGetUpdateTimeAttributeType, val OrganizationResponseGetUpdateTimeRetType) {
+	*arg = &val
+}
+
 // OrganizationResponse struct for OrganizationResponse
 type OrganizationResponse struct {
 	// Globally unique, user-friendly identifier.
 	// REQUIRED
-	ContainerId *string `json:"containerId"`
+	ContainerId OrganizationResponseGetContainerIdAttributeType `json:"containerId"`
 	// Timestamp at which the organization was created.
 	// REQUIRED
-	CreationTime *time.Time `json:"creationTime"`
+	CreationTime OrganizationResponseGetCreationTimeAttributeType `json:"creationTime"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
-	Labels *map[string]string `json:"labels,omitempty"`
+	Labels OrganizationResponseGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	LifecycleState *LifecycleState `json:"lifecycleState"`
+	LifecycleState OrganizationResponseGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// Organization name.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name OrganizationResponseGetNameAttributeType `json:"name"`
 	// Globally unique, organization identifier.
 	// REQUIRED
-	OrganizationId *string `json:"organizationId"`
+	OrganizationId OrganizationResponseGetOrganizationIdAttributeType `json:"organizationId"`
 	// Timestamp at which the organization was last modified.
 	// REQUIRED
-	UpdateTime *time.Time `json:"updateTime"`
+	UpdateTime OrganizationResponseGetUpdateTimeAttributeType `json:"updateTime"`
 }
 
 type _OrganizationResponse OrganizationResponse
@@ -47,14 +190,14 @@ type _OrganizationResponse OrganizationResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrganizationResponse(containerId *string, creationTime *time.Time, lifecycleState *LifecycleState, name *string, organizationId *string, updateTime *time.Time) *OrganizationResponse {
+func NewOrganizationResponse(containerId OrganizationResponseGetContainerIdArgType, creationTime OrganizationResponseGetCreationTimeArgType, lifecycleState OrganizationResponseGetLifecycleStateArgType, name OrganizationResponseGetNameArgType, organizationId OrganizationResponseGetOrganizationIdArgType, updateTime OrganizationResponseGetUpdateTimeArgType) *OrganizationResponse {
 	this := OrganizationResponse{}
-	this.ContainerId = containerId
-	this.CreationTime = creationTime
-	this.LifecycleState = lifecycleState
-	this.Name = name
-	this.OrganizationId = organizationId
-	this.UpdateTime = updateTime
+	setOrganizationResponseGetContainerIdAttributeType(&this.ContainerId, containerId)
+	setOrganizationResponseGetCreationTimeAttributeType(&this.CreationTime, creationTime)
+	setOrganizationResponseGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
+	setOrganizationResponseGetNameAttributeType(&this.Name, name)
+	setOrganizationResponseGetOrganizationIdAttributeType(&this.OrganizationId, organizationId)
+	setOrganizationResponseGetUpdateTimeAttributeType(&this.UpdateTime, updateTime)
 	return &this
 }
 
@@ -67,192 +210,153 @@ func NewOrganizationResponseWithDefaults() *OrganizationResponse {
 }
 
 // GetContainerId returns the ContainerId field value
-func (o *OrganizationResponse) GetContainerId() *string {
-	if o == nil || IsNil(o.ContainerId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ContainerId
+func (o *OrganizationResponse) GetContainerId() (ret OrganizationResponseGetContainerIdRetType) {
+	ret, _ = o.GetContainerIdOk()
+	return ret
 }
 
 // GetContainerIdOk returns a tuple with the ContainerId field value
 // and a boolean to check if the value has been set.
-func (o *OrganizationResponse) GetContainerIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContainerId, true
+func (o *OrganizationResponse) GetContainerIdOk() (ret OrganizationResponseGetContainerIdRetType, ok bool) {
+	return getOrganizationResponseGetContainerIdAttributeTypeOk(o.ContainerId)
 }
 
 // SetContainerId sets field value
-func (o *OrganizationResponse) SetContainerId(v *string) {
-	o.ContainerId = v
+func (o *OrganizationResponse) SetContainerId(v OrganizationResponseGetContainerIdRetType) {
+	setOrganizationResponseGetContainerIdAttributeType(&o.ContainerId, v)
 }
 
 // GetCreationTime returns the CreationTime field value
-func (o *OrganizationResponse) GetCreationTime() *time.Time {
-	if o == nil || IsNil(o.CreationTime) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.CreationTime
+func (o *OrganizationResponse) GetCreationTime() (ret OrganizationResponseGetCreationTimeRetType) {
+	ret, _ = o.GetCreationTimeOk()
+	return ret
 }
 
 // GetCreationTimeOk returns a tuple with the CreationTime field value
 // and a boolean to check if the value has been set.
-func (o *OrganizationResponse) GetCreationTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreationTime, true
+func (o *OrganizationResponse) GetCreationTimeOk() (ret OrganizationResponseGetCreationTimeRetType, ok bool) {
+	return getOrganizationResponseGetCreationTimeAttributeTypeOk(o.CreationTime)
 }
 
 // SetCreationTime sets field value
-func (o *OrganizationResponse) SetCreationTime(v *time.Time) {
-	o.CreationTime = v
+func (o *OrganizationResponse) SetCreationTime(v OrganizationResponseGetCreationTimeRetType) {
+	setOrganizationResponseGetCreationTimeAttributeType(&o.CreationTime, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *OrganizationResponse) GetLabels() *map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Labels
+func (o *OrganizationResponse) GetLabels() (res OrganizationResponseGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrganizationResponse) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *OrganizationResponse) GetLabelsOk() (ret OrganizationResponseGetLabelsRetType, ok bool) {
+	return getOrganizationResponseGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *OrganizationResponse) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *OrganizationResponse) SetLabels(v *map[string]string) {
-	o.Labels = v
+func (o *OrganizationResponse) SetLabels(v OrganizationResponseGetLabelsRetType) {
+	setOrganizationResponseGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetLifecycleState returns the LifecycleState field value
-func (o *OrganizationResponse) GetLifecycleState() *LifecycleState {
-	if o == nil || IsNil(o.LifecycleState) {
-		var ret *LifecycleState
-		return ret
-	}
-
-	return o.LifecycleState
+func (o *OrganizationResponse) GetLifecycleState() (ret OrganizationResponseGetLifecycleStateRetType) {
+	ret, _ = o.GetLifecycleStateOk()
+	return ret
 }
 
 // GetLifecycleStateOk returns a tuple with the LifecycleState field value
 // and a boolean to check if the value has been set.
-func (o *OrganizationResponse) GetLifecycleStateOk() (*LifecycleState, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LifecycleState, true
+func (o *OrganizationResponse) GetLifecycleStateOk() (ret OrganizationResponseGetLifecycleStateRetType, ok bool) {
+	return getOrganizationResponseGetLifecycleStateAttributeTypeOk(o.LifecycleState)
 }
 
 // SetLifecycleState sets field value
-func (o *OrganizationResponse) SetLifecycleState(v *LifecycleState) {
-	o.LifecycleState = v
+func (o *OrganizationResponse) SetLifecycleState(v OrganizationResponseGetLifecycleStateRetType) {
+	setOrganizationResponseGetLifecycleStateAttributeType(&o.LifecycleState, v)
 }
 
 // GetName returns the Name field value
-func (o *OrganizationResponse) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *OrganizationResponse) GetName() (ret OrganizationResponseGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *OrganizationResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *OrganizationResponse) GetNameOk() (ret OrganizationResponseGetNameRetType, ok bool) {
+	return getOrganizationResponseGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *OrganizationResponse) SetName(v *string) {
-	o.Name = v
+func (o *OrganizationResponse) SetName(v OrganizationResponseGetNameRetType) {
+	setOrganizationResponseGetNameAttributeType(&o.Name, v)
 }
 
 // GetOrganizationId returns the OrganizationId field value
-func (o *OrganizationResponse) GetOrganizationId() *string {
-	if o == nil || IsNil(o.OrganizationId) {
-		var ret *string
-		return ret
-	}
-
-	return o.OrganizationId
+func (o *OrganizationResponse) GetOrganizationId() (ret OrganizationResponseGetOrganizationIdRetType) {
+	ret, _ = o.GetOrganizationIdOk()
+	return ret
 }
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value
 // and a boolean to check if the value has been set.
-func (o *OrganizationResponse) GetOrganizationIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OrganizationId, true
+func (o *OrganizationResponse) GetOrganizationIdOk() (ret OrganizationResponseGetOrganizationIdRetType, ok bool) {
+	return getOrganizationResponseGetOrganizationIdAttributeTypeOk(o.OrganizationId)
 }
 
 // SetOrganizationId sets field value
-func (o *OrganizationResponse) SetOrganizationId(v *string) {
-	o.OrganizationId = v
+func (o *OrganizationResponse) SetOrganizationId(v OrganizationResponseGetOrganizationIdRetType) {
+	setOrganizationResponseGetOrganizationIdAttributeType(&o.OrganizationId, v)
 }
 
 // GetUpdateTime returns the UpdateTime field value
-func (o *OrganizationResponse) GetUpdateTime() *time.Time {
-	if o == nil || IsNil(o.UpdateTime) {
-		var ret *time.Time
-		return ret
-	}
-
-	return o.UpdateTime
+func (o *OrganizationResponse) GetUpdateTime() (ret OrganizationResponseGetUpdateTimeRetType) {
+	ret, _ = o.GetUpdateTimeOk()
+	return ret
 }
 
 // GetUpdateTimeOk returns a tuple with the UpdateTime field value
 // and a boolean to check if the value has been set.
-func (o *OrganizationResponse) GetUpdateTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UpdateTime, true
+func (o *OrganizationResponse) GetUpdateTimeOk() (ret OrganizationResponseGetUpdateTimeRetType, ok bool) {
+	return getOrganizationResponseGetUpdateTimeAttributeTypeOk(o.UpdateTime)
 }
 
 // SetUpdateTime sets field value
-func (o *OrganizationResponse) SetUpdateTime(v *time.Time) {
-	o.UpdateTime = v
+func (o *OrganizationResponse) SetUpdateTime(v OrganizationResponseGetUpdateTimeRetType) {
+	setOrganizationResponseGetUpdateTimeAttributeType(&o.UpdateTime, v)
 }
 
 func (o OrganizationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containerId"] = o.ContainerId
-	toSerialize["creationTime"] = o.CreationTime
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getOrganizationResponseGetContainerIdAttributeTypeOk(o.ContainerId); ok {
+		toSerialize["ContainerId"] = val
 	}
-	toSerialize["lifecycleState"] = o.LifecycleState
-	toSerialize["name"] = o.Name
-	toSerialize["organizationId"] = o.OrganizationId
-	toSerialize["updateTime"] = o.UpdateTime
+	if val, ok := getOrganizationResponseGetCreationTimeAttributeTypeOk(o.CreationTime); ok {
+		toSerialize["CreationTime"] = val
+	}
+	if val, ok := getOrganizationResponseGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
+	}
+	if val, ok := getOrganizationResponseGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
+		toSerialize["LifecycleState"] = val
+	}
+	if val, ok := getOrganizationResponseGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getOrganizationResponseGetOrganizationIdAttributeTypeOk(o.OrganizationId); ok {
+		toSerialize["OrganizationId"] = val
+	}
+	if val, ok := getOrganizationResponseGetUpdateTimeAttributeTypeOk(o.UpdateTime); ok {
+		toSerialize["UpdateTime"] = val
+	}
 	return toSerialize, nil
 }
 
