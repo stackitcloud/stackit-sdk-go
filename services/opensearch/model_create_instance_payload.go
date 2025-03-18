@@ -17,13 +17,75 @@ import (
 // checks if the CreateInstancePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateInstancePayload{}
 
+/*
+	types and functions for instanceName
+*/
+
+// isNotNullableString
+type CreateInstancePayloadGetInstanceNameAttributeType = *string
+
+func getCreateInstancePayloadGetInstanceNameAttributeTypeOk(arg CreateInstancePayloadGetInstanceNameAttributeType) (ret CreateInstancePayloadGetInstanceNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetInstanceNameAttributeType(arg *CreateInstancePayloadGetInstanceNameAttributeType, val CreateInstancePayloadGetInstanceNameRetType) {
+	*arg = &val
+}
+
+type CreateInstancePayloadGetInstanceNameArgType = string
+type CreateInstancePayloadGetInstanceNameRetType = string
+
+/*
+	types and functions for parameters
+*/
+
+// isModel
+type CreateInstancePayloadGetParametersAttributeType = *InstanceParameters
+type CreateInstancePayloadGetParametersArgType = InstanceParameters
+type CreateInstancePayloadGetParametersRetType = InstanceParameters
+
+func getCreateInstancePayloadGetParametersAttributeTypeOk(arg CreateInstancePayloadGetParametersAttributeType) (ret CreateInstancePayloadGetParametersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetParametersAttributeType(arg *CreateInstancePayloadGetParametersAttributeType, val CreateInstancePayloadGetParametersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for planId
+*/
+
+// isNotNullableString
+type CreateInstancePayloadGetPlanIdAttributeType = *string
+
+func getCreateInstancePayloadGetPlanIdAttributeTypeOk(arg CreateInstancePayloadGetPlanIdAttributeType) (ret CreateInstancePayloadGetPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadGetPlanIdAttributeType(arg *CreateInstancePayloadGetPlanIdAttributeType, val CreateInstancePayloadGetPlanIdRetType) {
+	*arg = &val
+}
+
+type CreateInstancePayloadGetPlanIdArgType = string
+type CreateInstancePayloadGetPlanIdRetType = string
+
 // CreateInstancePayload struct for CreateInstancePayload
 type CreateInstancePayload struct {
 	// REQUIRED
-	InstanceName *string             `json:"instanceName"`
-	Parameters   *InstanceParameters `json:"parameters,omitempty"`
+	InstanceName CreateInstancePayloadGetInstanceNameAttributeType `json:"instanceName"`
+	Parameters   CreateInstancePayloadGetParametersAttributeType   `json:"parameters,omitempty"`
 	// REQUIRED
-	PlanId *string `json:"planId"`
+	PlanId CreateInstancePayloadGetPlanIdAttributeType `json:"planId"`
 }
 
 type _CreateInstancePayload CreateInstancePayload
@@ -32,10 +94,10 @@ type _CreateInstancePayload CreateInstancePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInstancePayload(instanceName *string, planId *string) *CreateInstancePayload {
+func NewCreateInstancePayload(instanceName CreateInstancePayloadGetInstanceNameArgType, planId CreateInstancePayloadGetPlanIdArgType) *CreateInstancePayload {
 	this := CreateInstancePayload{}
-	this.InstanceName = instanceName
-	this.PlanId = planId
+	setCreateInstancePayloadGetInstanceNameAttributeType(&this.InstanceName, instanceName)
+	setCreateInstancePayloadGetPlanIdAttributeType(&this.PlanId, planId)
 	return &this
 }
 
@@ -48,92 +110,73 @@ func NewCreateInstancePayloadWithDefaults() *CreateInstancePayload {
 }
 
 // GetInstanceName returns the InstanceName field value
-func (o *CreateInstancePayload) GetInstanceName() *string {
-	if o == nil || IsNil(o.InstanceName) {
-		var ret *string
-		return ret
-	}
-
-	return o.InstanceName
+func (o *CreateInstancePayload) GetInstanceName() (ret CreateInstancePayloadGetInstanceNameRetType) {
+	ret, _ = o.GetInstanceNameOk()
+	return ret
 }
 
 // GetInstanceNameOk returns a tuple with the InstanceName field value
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetInstanceNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.InstanceName, true
+func (o *CreateInstancePayload) GetInstanceNameOk() (ret CreateInstancePayloadGetInstanceNameRetType, ok bool) {
+	return getCreateInstancePayloadGetInstanceNameAttributeTypeOk(o.InstanceName)
 }
 
 // SetInstanceName sets field value
-func (o *CreateInstancePayload) SetInstanceName(v *string) {
-	o.InstanceName = v
+func (o *CreateInstancePayload) SetInstanceName(v CreateInstancePayloadGetInstanceNameRetType) {
+	setCreateInstancePayloadGetInstanceNameAttributeType(&o.InstanceName, v)
 }
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
-func (o *CreateInstancePayload) GetParameters() *InstanceParameters {
-	if o == nil || IsNil(o.Parameters) {
-		var ret *InstanceParameters
-		return ret
-	}
-	return o.Parameters
+func (o *CreateInstancePayload) GetParameters() (res CreateInstancePayloadGetParametersRetType) {
+	res, _ = o.GetParametersOk()
+	return
 }
 
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetParametersOk() (*InstanceParameters, bool) {
-	if o == nil || IsNil(o.Parameters) {
-		return nil, false
-	}
-	return o.Parameters, true
+func (o *CreateInstancePayload) GetParametersOk() (ret CreateInstancePayloadGetParametersRetType, ok bool) {
+	return getCreateInstancePayloadGetParametersAttributeTypeOk(o.Parameters)
 }
 
 // HasParameters returns a boolean if a field has been set.
 func (o *CreateInstancePayload) HasParameters() bool {
-	if o != nil && !IsNil(o.Parameters) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetParametersOk()
+	return ok
 }
 
 // SetParameters gets a reference to the given InstanceParameters and assigns it to the Parameters field.
-func (o *CreateInstancePayload) SetParameters(v *InstanceParameters) {
-	o.Parameters = v
+func (o *CreateInstancePayload) SetParameters(v CreateInstancePayloadGetParametersRetType) {
+	setCreateInstancePayloadGetParametersAttributeType(&o.Parameters, v)
 }
 
 // GetPlanId returns the PlanId field value
-func (o *CreateInstancePayload) GetPlanId() *string {
-	if o == nil || IsNil(o.PlanId) {
-		var ret *string
-		return ret
-	}
-
-	return o.PlanId
+func (o *CreateInstancePayload) GetPlanId() (ret CreateInstancePayloadGetPlanIdRetType) {
+	ret, _ = o.GetPlanIdOk()
+	return ret
 }
 
 // GetPlanIdOk returns a tuple with the PlanId field value
 // and a boolean to check if the value has been set.
-func (o *CreateInstancePayload) GetPlanIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PlanId, true
+func (o *CreateInstancePayload) GetPlanIdOk() (ret CreateInstancePayloadGetPlanIdRetType, ok bool) {
+	return getCreateInstancePayloadGetPlanIdAttributeTypeOk(o.PlanId)
 }
 
 // SetPlanId sets field value
-func (o *CreateInstancePayload) SetPlanId(v *string) {
-	o.PlanId = v
+func (o *CreateInstancePayload) SetPlanId(v CreateInstancePayloadGetPlanIdRetType) {
+	setCreateInstancePayloadGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["instanceName"] = o.InstanceName
-	if !IsNil(o.Parameters) {
-		toSerialize["parameters"] = o.Parameters
+	if val, ok := getCreateInstancePayloadGetInstanceNameAttributeTypeOk(o.InstanceName); ok {
+		toSerialize["InstanceName"] = val
 	}
-	toSerialize["planId"] = o.PlanId
+	if val, ok := getCreateInstancePayloadGetParametersAttributeTypeOk(o.Parameters); ok {
+		toSerialize["Parameters"] = val
+	}
+	if val, ok := getCreateInstancePayloadGetPlanIdAttributeTypeOk(o.PlanId); ok {
+		toSerialize["PlanId"] = val
+	}
 	return toSerialize, nil
 }
 

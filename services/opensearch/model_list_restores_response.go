@@ -17,10 +17,30 @@ import (
 // checks if the ListRestoresResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListRestoresResponse{}
 
+/*
+	types and functions for instanceRestores
+*/
+
+// isArray
+type ListRestoresResponseGetInstanceRestoresAttributeType = *[]Restore
+type ListRestoresResponseGetInstanceRestoresArgType = []Restore
+type ListRestoresResponseGetInstanceRestoresRetType = []Restore
+
+func getListRestoresResponseGetInstanceRestoresAttributeTypeOk(arg ListRestoresResponseGetInstanceRestoresAttributeType) (ret ListRestoresResponseGetInstanceRestoresRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListRestoresResponseGetInstanceRestoresAttributeType(arg *ListRestoresResponseGetInstanceRestoresAttributeType, val ListRestoresResponseGetInstanceRestoresRetType) {
+	*arg = &val
+}
+
 // ListRestoresResponse struct for ListRestoresResponse
 type ListRestoresResponse struct {
 	// REQUIRED
-	InstanceRestores *[]Restore `json:"instanceRestores"`
+	InstanceRestores ListRestoresResponseGetInstanceRestoresAttributeType `json:"instanceRestores"`
 }
 
 type _ListRestoresResponse ListRestoresResponse
@@ -29,9 +49,9 @@ type _ListRestoresResponse ListRestoresResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListRestoresResponse(instanceRestores *[]Restore) *ListRestoresResponse {
+func NewListRestoresResponse(instanceRestores ListRestoresResponseGetInstanceRestoresArgType) *ListRestoresResponse {
 	this := ListRestoresResponse{}
-	this.InstanceRestores = instanceRestores
+	setListRestoresResponseGetInstanceRestoresAttributeType(&this.InstanceRestores, instanceRestores)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewListRestoresResponseWithDefaults() *ListRestoresResponse {
 }
 
 // GetInstanceRestores returns the InstanceRestores field value
-func (o *ListRestoresResponse) GetInstanceRestores() *[]Restore {
-	if o == nil || IsNil(o.InstanceRestores) {
-		var ret *[]Restore
-		return ret
-	}
-
-	return o.InstanceRestores
+func (o *ListRestoresResponse) GetInstanceRestores() (ret ListRestoresResponseGetInstanceRestoresRetType) {
+	ret, _ = o.GetInstanceRestoresOk()
+	return ret
 }
 
 // GetInstanceRestoresOk returns a tuple with the InstanceRestores field value
 // and a boolean to check if the value has been set.
-func (o *ListRestoresResponse) GetInstanceRestoresOk() (*[]Restore, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.InstanceRestores, true
+func (o *ListRestoresResponse) GetInstanceRestoresOk() (ret ListRestoresResponseGetInstanceRestoresRetType, ok bool) {
+	return getListRestoresResponseGetInstanceRestoresAttributeTypeOk(o.InstanceRestores)
 }
 
 // SetInstanceRestores sets field value
-func (o *ListRestoresResponse) SetInstanceRestores(v *[]Restore) {
-	o.InstanceRestores = v
+func (o *ListRestoresResponse) SetInstanceRestores(v ListRestoresResponseGetInstanceRestoresRetType) {
+	setListRestoresResponseGetInstanceRestoresAttributeType(&o.InstanceRestores, v)
 }
 
 func (o ListRestoresResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["instanceRestores"] = o.InstanceRestores
+	if val, ok := getListRestoresResponseGetInstanceRestoresAttributeTypeOk(o.InstanceRestores); ok {
+		toSerialize["InstanceRestores"] = val
+	}
 	return toSerialize, nil
 }
 

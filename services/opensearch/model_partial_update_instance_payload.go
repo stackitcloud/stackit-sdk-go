@@ -17,11 +17,73 @@ import (
 // checks if the PartialUpdateInstancePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateInstancePayload{}
 
+/*
+	types and functions for instanceName
+*/
+
+// isNotNullableString
+type PartialUpdateInstancePayloadGetInstanceNameAttributeType = *string
+
+func getPartialUpdateInstancePayloadGetInstanceNameAttributeTypeOk(arg PartialUpdateInstancePayloadGetInstanceNameAttributeType) (ret PartialUpdateInstancePayloadGetInstanceNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetInstanceNameAttributeType(arg *PartialUpdateInstancePayloadGetInstanceNameAttributeType, val PartialUpdateInstancePayloadGetInstanceNameRetType) {
+	*arg = &val
+}
+
+type PartialUpdateInstancePayloadGetInstanceNameArgType = string
+type PartialUpdateInstancePayloadGetInstanceNameRetType = string
+
+/*
+	types and functions for parameters
+*/
+
+// isModel
+type PartialUpdateInstancePayloadGetParametersAttributeType = *InstanceParameters
+type PartialUpdateInstancePayloadGetParametersArgType = InstanceParameters
+type PartialUpdateInstancePayloadGetParametersRetType = InstanceParameters
+
+func getPartialUpdateInstancePayloadGetParametersAttributeTypeOk(arg PartialUpdateInstancePayloadGetParametersAttributeType) (ret PartialUpdateInstancePayloadGetParametersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetParametersAttributeType(arg *PartialUpdateInstancePayloadGetParametersAttributeType, val PartialUpdateInstancePayloadGetParametersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for planId
+*/
+
+// isNotNullableString
+type PartialUpdateInstancePayloadGetPlanIdAttributeType = *string
+
+func getPartialUpdateInstancePayloadGetPlanIdAttributeTypeOk(arg PartialUpdateInstancePayloadGetPlanIdAttributeType) (ret PartialUpdateInstancePayloadGetPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateInstancePayloadGetPlanIdAttributeType(arg *PartialUpdateInstancePayloadGetPlanIdAttributeType, val PartialUpdateInstancePayloadGetPlanIdRetType) {
+	*arg = &val
+}
+
+type PartialUpdateInstancePayloadGetPlanIdArgType = string
+type PartialUpdateInstancePayloadGetPlanIdRetType = string
+
 // PartialUpdateInstancePayload struct for PartialUpdateInstancePayload
 type PartialUpdateInstancePayload struct {
-	InstanceName *string             `json:"instanceName,omitempty"`
-	Parameters   *InstanceParameters `json:"parameters,omitempty"`
-	PlanId       *string             `json:"planId,omitempty"`
+	InstanceName PartialUpdateInstancePayloadGetInstanceNameAttributeType `json:"instanceName,omitempty"`
+	Parameters   PartialUpdateInstancePayloadGetParametersAttributeType   `json:"parameters,omitempty"`
+	PlanId       PartialUpdateInstancePayloadGetPlanIdAttributeType       `json:"planId,omitempty"`
 }
 
 // NewPartialUpdateInstancePayload instantiates a new PartialUpdateInstancePayload object
@@ -42,111 +104,84 @@ func NewPartialUpdateInstancePayloadWithDefaults() *PartialUpdateInstancePayload
 }
 
 // GetInstanceName returns the InstanceName field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetInstanceName() *string {
-	if o == nil || IsNil(o.InstanceName) {
-		var ret *string
-		return ret
-	}
-	return o.InstanceName
+func (o *PartialUpdateInstancePayload) GetInstanceName() (res PartialUpdateInstancePayloadGetInstanceNameRetType) {
+	res, _ = o.GetInstanceNameOk()
+	return
 }
 
 // GetInstanceNameOk returns a tuple with the InstanceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetInstanceNameOk() (*string, bool) {
-	if o == nil || IsNil(o.InstanceName) {
-		return nil, false
-	}
-	return o.InstanceName, true
+func (o *PartialUpdateInstancePayload) GetInstanceNameOk() (ret PartialUpdateInstancePayloadGetInstanceNameRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetInstanceNameAttributeTypeOk(o.InstanceName)
 }
 
 // HasInstanceName returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasInstanceName() bool {
-	if o != nil && !IsNil(o.InstanceName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInstanceNameOk()
+	return ok
 }
 
 // SetInstanceName gets a reference to the given string and assigns it to the InstanceName field.
-func (o *PartialUpdateInstancePayload) SetInstanceName(v *string) {
-	o.InstanceName = v
+func (o *PartialUpdateInstancePayload) SetInstanceName(v PartialUpdateInstancePayloadGetInstanceNameRetType) {
+	setPartialUpdateInstancePayloadGetInstanceNameAttributeType(&o.InstanceName, v)
 }
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetParameters() *InstanceParameters {
-	if o == nil || IsNil(o.Parameters) {
-		var ret *InstanceParameters
-		return ret
-	}
-	return o.Parameters
+func (o *PartialUpdateInstancePayload) GetParameters() (res PartialUpdateInstancePayloadGetParametersRetType) {
+	res, _ = o.GetParametersOk()
+	return
 }
 
 // GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetParametersOk() (*InstanceParameters, bool) {
-	if o == nil || IsNil(o.Parameters) {
-		return nil, false
-	}
-	return o.Parameters, true
+func (o *PartialUpdateInstancePayload) GetParametersOk() (ret PartialUpdateInstancePayloadGetParametersRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetParametersAttributeTypeOk(o.Parameters)
 }
 
 // HasParameters returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasParameters() bool {
-	if o != nil && !IsNil(o.Parameters) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetParametersOk()
+	return ok
 }
 
 // SetParameters gets a reference to the given InstanceParameters and assigns it to the Parameters field.
-func (o *PartialUpdateInstancePayload) SetParameters(v *InstanceParameters) {
-	o.Parameters = v
+func (o *PartialUpdateInstancePayload) SetParameters(v PartialUpdateInstancePayloadGetParametersRetType) {
+	setPartialUpdateInstancePayloadGetParametersAttributeType(&o.Parameters, v)
 }
 
 // GetPlanId returns the PlanId field value if set, zero value otherwise.
-func (o *PartialUpdateInstancePayload) GetPlanId() *string {
-	if o == nil || IsNil(o.PlanId) {
-		var ret *string
-		return ret
-	}
-	return o.PlanId
+func (o *PartialUpdateInstancePayload) GetPlanId() (res PartialUpdateInstancePayloadGetPlanIdRetType) {
+	res, _ = o.GetPlanIdOk()
+	return
 }
 
 // GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateInstancePayload) GetPlanIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PlanId) {
-		return nil, false
-	}
-	return o.PlanId, true
+func (o *PartialUpdateInstancePayload) GetPlanIdOk() (ret PartialUpdateInstancePayloadGetPlanIdRetType, ok bool) {
+	return getPartialUpdateInstancePayloadGetPlanIdAttributeTypeOk(o.PlanId)
 }
 
 // HasPlanId returns a boolean if a field has been set.
 func (o *PartialUpdateInstancePayload) HasPlanId() bool {
-	if o != nil && !IsNil(o.PlanId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPlanIdOk()
+	return ok
 }
 
 // SetPlanId gets a reference to the given string and assigns it to the PlanId field.
-func (o *PartialUpdateInstancePayload) SetPlanId(v *string) {
-	o.PlanId = v
+func (o *PartialUpdateInstancePayload) SetPlanId(v PartialUpdateInstancePayloadGetPlanIdRetType) {
+	setPartialUpdateInstancePayloadGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.InstanceName) {
-		toSerialize["instanceName"] = o.InstanceName
+	if val, ok := getPartialUpdateInstancePayloadGetInstanceNameAttributeTypeOk(o.InstanceName); ok {
+		toSerialize["InstanceName"] = val
 	}
-	if !IsNil(o.Parameters) {
-		toSerialize["parameters"] = o.Parameters
+	if val, ok := getPartialUpdateInstancePayloadGetParametersAttributeTypeOk(o.Parameters); ok {
+		toSerialize["Parameters"] = val
 	}
-	if !IsNil(o.PlanId) {
-		toSerialize["planId"] = o.PlanId
+	if val, ok := getPartialUpdateInstancePayloadGetPlanIdAttributeTypeOk(o.PlanId); ok {
+		toSerialize["PlanId"] = val
 	}
 	return toSerialize, nil
 }
