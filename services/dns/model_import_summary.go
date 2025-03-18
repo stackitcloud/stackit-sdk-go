@@ -17,14 +17,140 @@ import (
 // checks if the ImportSummary type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ImportSummary{}
 
+/*
+	types and functions for createdRRSets
+*/
+
+// isInteger
+type ImportSummaryGetCreatedRRSetsAttributeType = *int64
+type ImportSummaryGetCreatedRRSetsArgType = int64
+type ImportSummaryGetCreatedRRSetsRetType = int64
+
+func getImportSummaryGetCreatedRRSetsAttributeTypeOk(arg ImportSummaryGetCreatedRRSetsAttributeType) (ret ImportSummaryGetCreatedRRSetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImportSummaryGetCreatedRRSetsAttributeType(arg *ImportSummaryGetCreatedRRSetsAttributeType, val ImportSummaryGetCreatedRRSetsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdRecords
+*/
+
+// isInteger
+type ImportSummaryGetCreatedRecordsAttributeType = *int64
+type ImportSummaryGetCreatedRecordsArgType = int64
+type ImportSummaryGetCreatedRecordsRetType = int64
+
+func getImportSummaryGetCreatedRecordsAttributeTypeOk(arg ImportSummaryGetCreatedRecordsAttributeType) (ret ImportSummaryGetCreatedRecordsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImportSummaryGetCreatedRecordsAttributeType(arg *ImportSummaryGetCreatedRecordsAttributeType, val ImportSummaryGetCreatedRecordsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for deletedRRSets
+*/
+
+// isInteger
+type ImportSummaryGetDeletedRRSetsAttributeType = *int64
+type ImportSummaryGetDeletedRRSetsArgType = int64
+type ImportSummaryGetDeletedRRSetsRetType = int64
+
+func getImportSummaryGetDeletedRRSetsAttributeTypeOk(arg ImportSummaryGetDeletedRRSetsAttributeType) (ret ImportSummaryGetDeletedRRSetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImportSummaryGetDeletedRRSetsAttributeType(arg *ImportSummaryGetDeletedRRSetsAttributeType, val ImportSummaryGetDeletedRRSetsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for deletedRecords
+*/
+
+// isInteger
+type ImportSummaryGetDeletedRecordsAttributeType = *int64
+type ImportSummaryGetDeletedRecordsArgType = int64
+type ImportSummaryGetDeletedRecordsRetType = int64
+
+func getImportSummaryGetDeletedRecordsAttributeTypeOk(arg ImportSummaryGetDeletedRecordsAttributeType) (ret ImportSummaryGetDeletedRecordsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImportSummaryGetDeletedRecordsAttributeType(arg *ImportSummaryGetDeletedRecordsAttributeType, val ImportSummaryGetDeletedRecordsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for updatedRRSets
+*/
+
+// isInteger
+type ImportSummaryGetUpdatedRRSetsAttributeType = *int64
+type ImportSummaryGetUpdatedRRSetsArgType = int64
+type ImportSummaryGetUpdatedRRSetsRetType = int64
+
+func getImportSummaryGetUpdatedRRSetsAttributeTypeOk(arg ImportSummaryGetUpdatedRRSetsAttributeType) (ret ImportSummaryGetUpdatedRRSetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImportSummaryGetUpdatedRRSetsAttributeType(arg *ImportSummaryGetUpdatedRRSetsAttributeType, val ImportSummaryGetUpdatedRRSetsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for updatedRecords
+*/
+
+// isInteger
+type ImportSummaryGetUpdatedRecordsAttributeType = *int64
+type ImportSummaryGetUpdatedRecordsArgType = int64
+type ImportSummaryGetUpdatedRecordsRetType = int64
+
+func getImportSummaryGetUpdatedRecordsAttributeTypeOk(arg ImportSummaryGetUpdatedRecordsAttributeType) (ret ImportSummaryGetUpdatedRecordsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImportSummaryGetUpdatedRecordsAttributeType(arg *ImportSummaryGetUpdatedRecordsAttributeType, val ImportSummaryGetUpdatedRecordsRetType) {
+	*arg = &val
+}
+
 // ImportSummary ImportSummary is the summary of the import.
 type ImportSummary struct {
-	CreatedRRSets  *int64 `json:"createdRRSets,omitempty"`
-	CreatedRecords *int64 `json:"createdRecords,omitempty"`
-	DeletedRRSets  *int64 `json:"deletedRRSets,omitempty"`
-	DeletedRecords *int64 `json:"deletedRecords,omitempty"`
-	UpdatedRRSets  *int64 `json:"updatedRRSets,omitempty"`
-	UpdatedRecords *int64 `json:"updatedRecords,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	CreatedRRSets ImportSummaryGetCreatedRRSetsAttributeType `json:"createdRRSets,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	CreatedRecords ImportSummaryGetCreatedRecordsAttributeType `json:"createdRecords,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	DeletedRRSets ImportSummaryGetDeletedRRSetsAttributeType `json:"deletedRRSets,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	DeletedRecords ImportSummaryGetDeletedRecordsAttributeType `json:"deletedRecords,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	UpdatedRRSets ImportSummaryGetUpdatedRRSetsAttributeType `json:"updatedRRSets,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	UpdatedRecords ImportSummaryGetUpdatedRecordsAttributeType `json:"updatedRecords,omitempty"`
 }
 
 // NewImportSummary instantiates a new ImportSummary object
@@ -45,216 +171,162 @@ func NewImportSummaryWithDefaults() *ImportSummary {
 }
 
 // GetCreatedRRSets returns the CreatedRRSets field value if set, zero value otherwise.
-func (o *ImportSummary) GetCreatedRRSets() *int64 {
-	if o == nil || IsNil(o.CreatedRRSets) {
-		var ret *int64
-		return ret
-	}
-	return o.CreatedRRSets
+func (o *ImportSummary) GetCreatedRRSets() (res ImportSummaryGetCreatedRRSetsRetType) {
+	res, _ = o.GetCreatedRRSetsOk()
+	return
 }
 
 // GetCreatedRRSetsOk returns a tuple with the CreatedRRSets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportSummary) GetCreatedRRSetsOk() (*int64, bool) {
-	if o == nil || IsNil(o.CreatedRRSets) {
-		return nil, false
-	}
-	return o.CreatedRRSets, true
+func (o *ImportSummary) GetCreatedRRSetsOk() (ret ImportSummaryGetCreatedRRSetsRetType, ok bool) {
+	return getImportSummaryGetCreatedRRSetsAttributeTypeOk(o.CreatedRRSets)
 }
 
 // HasCreatedRRSets returns a boolean if a field has been set.
 func (o *ImportSummary) HasCreatedRRSets() bool {
-	if o != nil && !IsNil(o.CreatedRRSets) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedRRSetsOk()
+	return ok
 }
 
 // SetCreatedRRSets gets a reference to the given int64 and assigns it to the CreatedRRSets field.
-func (o *ImportSummary) SetCreatedRRSets(v *int64) {
-	o.CreatedRRSets = v
+func (o *ImportSummary) SetCreatedRRSets(v ImportSummaryGetCreatedRRSetsRetType) {
+	setImportSummaryGetCreatedRRSetsAttributeType(&o.CreatedRRSets, v)
 }
 
 // GetCreatedRecords returns the CreatedRecords field value if set, zero value otherwise.
-func (o *ImportSummary) GetCreatedRecords() *int64 {
-	if o == nil || IsNil(o.CreatedRecords) {
-		var ret *int64
-		return ret
-	}
-	return o.CreatedRecords
+func (o *ImportSummary) GetCreatedRecords() (res ImportSummaryGetCreatedRecordsRetType) {
+	res, _ = o.GetCreatedRecordsOk()
+	return
 }
 
 // GetCreatedRecordsOk returns a tuple with the CreatedRecords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportSummary) GetCreatedRecordsOk() (*int64, bool) {
-	if o == nil || IsNil(o.CreatedRecords) {
-		return nil, false
-	}
-	return o.CreatedRecords, true
+func (o *ImportSummary) GetCreatedRecordsOk() (ret ImportSummaryGetCreatedRecordsRetType, ok bool) {
+	return getImportSummaryGetCreatedRecordsAttributeTypeOk(o.CreatedRecords)
 }
 
 // HasCreatedRecords returns a boolean if a field has been set.
 func (o *ImportSummary) HasCreatedRecords() bool {
-	if o != nil && !IsNil(o.CreatedRecords) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedRecordsOk()
+	return ok
 }
 
 // SetCreatedRecords gets a reference to the given int64 and assigns it to the CreatedRecords field.
-func (o *ImportSummary) SetCreatedRecords(v *int64) {
-	o.CreatedRecords = v
+func (o *ImportSummary) SetCreatedRecords(v ImportSummaryGetCreatedRecordsRetType) {
+	setImportSummaryGetCreatedRecordsAttributeType(&o.CreatedRecords, v)
 }
 
 // GetDeletedRRSets returns the DeletedRRSets field value if set, zero value otherwise.
-func (o *ImportSummary) GetDeletedRRSets() *int64 {
-	if o == nil || IsNil(o.DeletedRRSets) {
-		var ret *int64
-		return ret
-	}
-	return o.DeletedRRSets
+func (o *ImportSummary) GetDeletedRRSets() (res ImportSummaryGetDeletedRRSetsRetType) {
+	res, _ = o.GetDeletedRRSetsOk()
+	return
 }
 
 // GetDeletedRRSetsOk returns a tuple with the DeletedRRSets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportSummary) GetDeletedRRSetsOk() (*int64, bool) {
-	if o == nil || IsNil(o.DeletedRRSets) {
-		return nil, false
-	}
-	return o.DeletedRRSets, true
+func (o *ImportSummary) GetDeletedRRSetsOk() (ret ImportSummaryGetDeletedRRSetsRetType, ok bool) {
+	return getImportSummaryGetDeletedRRSetsAttributeTypeOk(o.DeletedRRSets)
 }
 
 // HasDeletedRRSets returns a boolean if a field has been set.
 func (o *ImportSummary) HasDeletedRRSets() bool {
-	if o != nil && !IsNil(o.DeletedRRSets) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDeletedRRSetsOk()
+	return ok
 }
 
 // SetDeletedRRSets gets a reference to the given int64 and assigns it to the DeletedRRSets field.
-func (o *ImportSummary) SetDeletedRRSets(v *int64) {
-	o.DeletedRRSets = v
+func (o *ImportSummary) SetDeletedRRSets(v ImportSummaryGetDeletedRRSetsRetType) {
+	setImportSummaryGetDeletedRRSetsAttributeType(&o.DeletedRRSets, v)
 }
 
 // GetDeletedRecords returns the DeletedRecords field value if set, zero value otherwise.
-func (o *ImportSummary) GetDeletedRecords() *int64 {
-	if o == nil || IsNil(o.DeletedRecords) {
-		var ret *int64
-		return ret
-	}
-	return o.DeletedRecords
+func (o *ImportSummary) GetDeletedRecords() (res ImportSummaryGetDeletedRecordsRetType) {
+	res, _ = o.GetDeletedRecordsOk()
+	return
 }
 
 // GetDeletedRecordsOk returns a tuple with the DeletedRecords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportSummary) GetDeletedRecordsOk() (*int64, bool) {
-	if o == nil || IsNil(o.DeletedRecords) {
-		return nil, false
-	}
-	return o.DeletedRecords, true
+func (o *ImportSummary) GetDeletedRecordsOk() (ret ImportSummaryGetDeletedRecordsRetType, ok bool) {
+	return getImportSummaryGetDeletedRecordsAttributeTypeOk(o.DeletedRecords)
 }
 
 // HasDeletedRecords returns a boolean if a field has been set.
 func (o *ImportSummary) HasDeletedRecords() bool {
-	if o != nil && !IsNil(o.DeletedRecords) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDeletedRecordsOk()
+	return ok
 }
 
 // SetDeletedRecords gets a reference to the given int64 and assigns it to the DeletedRecords field.
-func (o *ImportSummary) SetDeletedRecords(v *int64) {
-	o.DeletedRecords = v
+func (o *ImportSummary) SetDeletedRecords(v ImportSummaryGetDeletedRecordsRetType) {
+	setImportSummaryGetDeletedRecordsAttributeType(&o.DeletedRecords, v)
 }
 
 // GetUpdatedRRSets returns the UpdatedRRSets field value if set, zero value otherwise.
-func (o *ImportSummary) GetUpdatedRRSets() *int64 {
-	if o == nil || IsNil(o.UpdatedRRSets) {
-		var ret *int64
-		return ret
-	}
-	return o.UpdatedRRSets
+func (o *ImportSummary) GetUpdatedRRSets() (res ImportSummaryGetUpdatedRRSetsRetType) {
+	res, _ = o.GetUpdatedRRSetsOk()
+	return
 }
 
 // GetUpdatedRRSetsOk returns a tuple with the UpdatedRRSets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportSummary) GetUpdatedRRSetsOk() (*int64, bool) {
-	if o == nil || IsNil(o.UpdatedRRSets) {
-		return nil, false
-	}
-	return o.UpdatedRRSets, true
+func (o *ImportSummary) GetUpdatedRRSetsOk() (ret ImportSummaryGetUpdatedRRSetsRetType, ok bool) {
+	return getImportSummaryGetUpdatedRRSetsAttributeTypeOk(o.UpdatedRRSets)
 }
 
 // HasUpdatedRRSets returns a boolean if a field has been set.
 func (o *ImportSummary) HasUpdatedRRSets() bool {
-	if o != nil && !IsNil(o.UpdatedRRSets) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedRRSetsOk()
+	return ok
 }
 
 // SetUpdatedRRSets gets a reference to the given int64 and assigns it to the UpdatedRRSets field.
-func (o *ImportSummary) SetUpdatedRRSets(v *int64) {
-	o.UpdatedRRSets = v
+func (o *ImportSummary) SetUpdatedRRSets(v ImportSummaryGetUpdatedRRSetsRetType) {
+	setImportSummaryGetUpdatedRRSetsAttributeType(&o.UpdatedRRSets, v)
 }
 
 // GetUpdatedRecords returns the UpdatedRecords field value if set, zero value otherwise.
-func (o *ImportSummary) GetUpdatedRecords() *int64 {
-	if o == nil || IsNil(o.UpdatedRecords) {
-		var ret *int64
-		return ret
-	}
-	return o.UpdatedRecords
+func (o *ImportSummary) GetUpdatedRecords() (res ImportSummaryGetUpdatedRecordsRetType) {
+	res, _ = o.GetUpdatedRecordsOk()
+	return
 }
 
 // GetUpdatedRecordsOk returns a tuple with the UpdatedRecords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportSummary) GetUpdatedRecordsOk() (*int64, bool) {
-	if o == nil || IsNil(o.UpdatedRecords) {
-		return nil, false
-	}
-	return o.UpdatedRecords, true
+func (o *ImportSummary) GetUpdatedRecordsOk() (ret ImportSummaryGetUpdatedRecordsRetType, ok bool) {
+	return getImportSummaryGetUpdatedRecordsAttributeTypeOk(o.UpdatedRecords)
 }
 
 // HasUpdatedRecords returns a boolean if a field has been set.
 func (o *ImportSummary) HasUpdatedRecords() bool {
-	if o != nil && !IsNil(o.UpdatedRecords) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedRecordsOk()
+	return ok
 }
 
 // SetUpdatedRecords gets a reference to the given int64 and assigns it to the UpdatedRecords field.
-func (o *ImportSummary) SetUpdatedRecords(v *int64) {
-	o.UpdatedRecords = v
+func (o *ImportSummary) SetUpdatedRecords(v ImportSummaryGetUpdatedRecordsRetType) {
+	setImportSummaryGetUpdatedRecordsAttributeType(&o.UpdatedRecords, v)
 }
 
 func (o ImportSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CreatedRRSets) {
-		toSerialize["createdRRSets"] = o.CreatedRRSets
+	if val, ok := getImportSummaryGetCreatedRRSetsAttributeTypeOk(o.CreatedRRSets); ok {
+		toSerialize["CreatedRRSets"] = val
 	}
-	if !IsNil(o.CreatedRecords) {
-		toSerialize["createdRecords"] = o.CreatedRecords
+	if val, ok := getImportSummaryGetCreatedRecordsAttributeTypeOk(o.CreatedRecords); ok {
+		toSerialize["CreatedRecords"] = val
 	}
-	if !IsNil(o.DeletedRRSets) {
-		toSerialize["deletedRRSets"] = o.DeletedRRSets
+	if val, ok := getImportSummaryGetDeletedRRSetsAttributeTypeOk(o.DeletedRRSets); ok {
+		toSerialize["DeletedRRSets"] = val
 	}
-	if !IsNil(o.DeletedRecords) {
-		toSerialize["deletedRecords"] = o.DeletedRecords
+	if val, ok := getImportSummaryGetDeletedRecordsAttributeTypeOk(o.DeletedRecords); ok {
+		toSerialize["DeletedRecords"] = val
 	}
-	if !IsNil(o.UpdatedRRSets) {
-		toSerialize["updatedRRSets"] = o.UpdatedRRSets
+	if val, ok := getImportSummaryGetUpdatedRRSetsAttributeTypeOk(o.UpdatedRRSets); ok {
+		toSerialize["UpdatedRRSets"] = val
 	}
-	if !IsNil(o.UpdatedRecords) {
-		toSerialize["updatedRecords"] = o.UpdatedRecords
+	if val, ok := getImportSummaryGetUpdatedRecordsAttributeTypeOk(o.UpdatedRecords); ok {
+		toSerialize["UpdatedRecords"] = val
 	}
 	return toSerialize, nil
 }

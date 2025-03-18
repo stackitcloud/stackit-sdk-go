@@ -17,13 +17,53 @@ import (
 // checks if the PartialUpdateRecordPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateRecordPayload{}
 
+/*
+	types and functions for action
+*/
+
+// isEnumRef
+type PartialUpdateRecordPayloadGetActionAttributeType = *string
+type PartialUpdateRecordPayloadGetActionArgType = string
+type PartialUpdateRecordPayloadGetActionRetType = string
+
+func getPartialUpdateRecordPayloadGetActionAttributeTypeOk(arg PartialUpdateRecordPayloadGetActionAttributeType) (ret PartialUpdateRecordPayloadGetActionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateRecordPayloadGetActionAttributeType(arg *PartialUpdateRecordPayloadGetActionAttributeType, val PartialUpdateRecordPayloadGetActionRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for records
+*/
+
+// isArray
+type PartialUpdateRecordPayloadGetRecordsAttributeType = *[]RecordPayload
+type PartialUpdateRecordPayloadGetRecordsArgType = []RecordPayload
+type PartialUpdateRecordPayloadGetRecordsRetType = []RecordPayload
+
+func getPartialUpdateRecordPayloadGetRecordsAttributeTypeOk(arg PartialUpdateRecordPayloadGetRecordsAttributeType) (ret PartialUpdateRecordPayloadGetRecordsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateRecordPayloadGetRecordsAttributeType(arg *PartialUpdateRecordPayloadGetRecordsAttributeType, val PartialUpdateRecordPayloadGetRecordsRetType) {
+	*arg = &val
+}
+
 // PartialUpdateRecordPayload RecordPatch for record patch in record set.
 type PartialUpdateRecordPayload struct {
 	// REQUIRED
-	Action *string `json:"action"`
+	Action PartialUpdateRecordPayloadGetActionAttributeType `json:"action"`
 	// records
 	// REQUIRED
-	Records *[]RecordPayload `json:"records"`
+	Records PartialUpdateRecordPayloadGetRecordsAttributeType `json:"records"`
 }
 
 type _PartialUpdateRecordPayload PartialUpdateRecordPayload
@@ -32,10 +72,10 @@ type _PartialUpdateRecordPayload PartialUpdateRecordPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPartialUpdateRecordPayload(action *string, records *[]RecordPayload) *PartialUpdateRecordPayload {
+func NewPartialUpdateRecordPayload(action PartialUpdateRecordPayloadGetActionArgType, records PartialUpdateRecordPayloadGetRecordsArgType) *PartialUpdateRecordPayload {
 	this := PartialUpdateRecordPayload{}
-	this.Action = action
-	this.Records = records
+	setPartialUpdateRecordPayloadGetActionAttributeType(&this.Action, action)
+	setPartialUpdateRecordPayloadGetRecordsAttributeType(&this.Records, records)
 	return &this
 }
 
@@ -48,57 +88,47 @@ func NewPartialUpdateRecordPayloadWithDefaults() *PartialUpdateRecordPayload {
 }
 
 // GetAction returns the Action field value
-func (o *PartialUpdateRecordPayload) GetAction() *string {
-	if o == nil || IsNil(o.Action) {
-		var ret *string
-		return ret
-	}
-
-	return o.Action
+func (o *PartialUpdateRecordPayload) GetAction() (ret PartialUpdateRecordPayloadGetActionRetType) {
+	ret, _ = o.GetActionOk()
+	return ret
 }
 
 // GetActionOk returns a tuple with the Action field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateRecordPayload) GetActionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Action, true
+func (o *PartialUpdateRecordPayload) GetActionOk() (ret PartialUpdateRecordPayloadGetActionRetType, ok bool) {
+	return getPartialUpdateRecordPayloadGetActionAttributeTypeOk(o.Action)
 }
 
 // SetAction sets field value
-func (o *PartialUpdateRecordPayload) SetAction(v *string) {
-	o.Action = v
+func (o *PartialUpdateRecordPayload) SetAction(v PartialUpdateRecordPayloadGetActionRetType) {
+	setPartialUpdateRecordPayloadGetActionAttributeType(&o.Action, v)
 }
 
 // GetRecords returns the Records field value
-func (o *PartialUpdateRecordPayload) GetRecords() *[]RecordPayload {
-	if o == nil || IsNil(o.Records) {
-		var ret *[]RecordPayload
-		return ret
-	}
-
-	return o.Records
+func (o *PartialUpdateRecordPayload) GetRecords() (ret PartialUpdateRecordPayloadGetRecordsRetType) {
+	ret, _ = o.GetRecordsOk()
+	return ret
 }
 
 // GetRecordsOk returns a tuple with the Records field value
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateRecordPayload) GetRecordsOk() (*[]RecordPayload, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Records, true
+func (o *PartialUpdateRecordPayload) GetRecordsOk() (ret PartialUpdateRecordPayloadGetRecordsRetType, ok bool) {
+	return getPartialUpdateRecordPayloadGetRecordsAttributeTypeOk(o.Records)
 }
 
 // SetRecords sets field value
-func (o *PartialUpdateRecordPayload) SetRecords(v *[]RecordPayload) {
-	o.Records = v
+func (o *PartialUpdateRecordPayload) SetRecords(v PartialUpdateRecordPayloadGetRecordsRetType) {
+	setPartialUpdateRecordPayloadGetRecordsAttributeType(&o.Records, v)
 }
 
 func (o PartialUpdateRecordPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["action"] = o.Action
-	toSerialize["records"] = o.Records
+	if val, ok := getPartialUpdateRecordPayloadGetActionAttributeTypeOk(o.Action); ok {
+		toSerialize["Action"] = val
+	}
+	if val, ok := getPartialUpdateRecordPayloadGetRecordsAttributeTypeOk(o.Records); ok {
+		toSerialize["Records"] = val
+	}
 	return toSerialize, nil
 }
 
