@@ -1,4 +1,4 @@
-## v1.0.1 (2025-XX-YY)
+## v1.0.1 (2025-03-18)
 - **Bugfix:** Corrected regional setup of client
 
 ## v1.0.0 (2025-03-14)

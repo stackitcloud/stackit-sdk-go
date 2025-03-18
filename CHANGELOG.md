@@ -1,55 +1,55 @@
 ## Release (2025-XX-YY)
-- `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-xx-yy)
+- `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-03-18)
   - **New:** API for application load balancer
-- `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-xx-yy)
+- `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-03-18)
   - **New:** Introduce new API for content delivery
-- `serverupdate`: [v1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-xx-yy)
+- `serverupdate`: [v1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-- `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-xx-yy)
+- `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-- `runcommand`: [v1.0.0](services/runcommand/CHANGELOG.md#v100-2025-xx-yy)
+- `runcommand`: [v1.0.0](services/runcommand/CHANGELOG.md#v100-2025-03-18)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-- `authorization`: [v0.6.1](services/authorization/CHANGELOG.md#v061-2025-xx-yy)
+- `authorization`: [v0.6.1](services/authorization/CHANGELOG.md#v061-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `dns`: [v0.13.1](services/dns/CHANGELOG.md#v0131-2025-xx-yy)
+- `dns`: [v0.13.1](services/dns/CHANGELOG.md#v0131-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `iaas`: [v0.21.2](services/iaas/CHANGELOG.md#v0212-2025-xx-yy)
+- `iaas`: [v0.21.2](services/iaas/CHANGELOG.md#v0212-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `loadbalancer`: [v1.0.1](services/loadbalancer/CHANGELOG.md#v101-2025-xx-yy)
+- `loadbalancer`: [v1.0.1](services/loadbalancer/CHANGELOG.md#v101-2025-03-18)
   - - **Bugfix:** Corrected regional setup of client
-- `logme`: [v0.21.1](services/logme/CHANGELOG.md#v0211-2025-xx-yy)
+- `logme`: [v0.21.1](services/logme/CHANGELOG.md#v0211-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `mariadb`: [v0.21.1](services/mariadb/CHANGELOG.md#v0211-2025-xx-yy)
+- `mariadb`: [v0.21.1](services/mariadb/CHANGELOG.md#v0211-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `modelserving`: [v0.2.1](services/modelserving/CHANGELOG.md#v021-2025-xx-yy)
+- `modelserving`: [v0.2.1](services/modelserving/CHANGELOG.md#v021-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `mongodbflex`: [v0.18.1](services/mongodbflex/CHANGELOG.md#v0181-2025-xx-yy)
+- `mongodbflex`: [v0.18.1](services/mongodbflex/CHANGELOG.md#v0181-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `objectstorage`: [v1.1.1](services/objectstorage/CHANGELOG.md#v111-2025-xx-yy)
+- `objectstorage`: [v1.1.1](services/objectstorage/CHANGELOG.md#v111-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `observability`: [v0.3.1](services/observability/CHANGELOG.md#v031-2025-xx-yy)
+- `observability`: [v0.3.1](services/observability/CHANGELOG.md#v031-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `opensearch`: [v0.20.1](services/opensearch/CHANGELOG.md#v0201-2025-xx-yy)
+- `opensearch`: [v0.20.1](services/opensearch/CHANGELOG.md#v0201-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `postgresflex`: [v1.0.2](services/postgresflex/CHANGELOG.md#v102-2025-xx-yy)
+- `postgresflex`: [v1.0.2](services/postgresflex/CHANGELOG.md#v102-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `rabbitmq`: [v0.21.1](services/rabbitmq/CHANGELOG.md#v0211-2025-xx-yy)
+- `rabbitmq`: [v0.21.1](services/rabbitmq/CHANGELOG.md#v0211-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `redis`: [v0.21.1](services/redis/CHANGELOG.md#v0211-2025-xx-yy)
+- `redis`: [v0.21.1](services/redis/CHANGELOG.md#v0211-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `resourcemanager`: [v0.13.1](services/resourcemanager/CHANGELOG.md#v0131-2025-xx-yy)
+- `resourcemanager`: [v0.13.1](services/resourcemanager/CHANGELOG.md#v0131-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `secretsmanager`: [v0.11.1](services/secretsmanager/CHANGELOG.md#v0111-2025-xx-yy)
+- `secretsmanager`: [v0.11.1](services/secretsmanager/CHANGELOG.md#v0111-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `serviceaccount`: [v0.6.1](services/serviceaccount/CHANGELOG.md#v061-2025-xx-yy)
+- `serviceaccount`: [v0.6.1](services/serviceaccount/CHANGELOG.md#v061-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `serviceenablement`: [v1.0.1](services/serviceenablement/CHANGELOG.md#v101-2025-xx-yy)
+- `serviceenablement`: [v1.0.1](services/serviceenablement/CHANGELOG.md#v101-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `ske`: [v0.22.1](services/ske/CHANGELOG.md#v0221-2025-xx-yy)
+- `ske`: [v0.22.1](services/ske/CHANGELOG.md#v0221-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `sqlserverflex`: [v1.0.1](services/sqlserverflex/CHANGELOG.md#v101-2025-xx-yy)
+- `sqlserverflex`: [v1.0.1](services/sqlserverflex/CHANGELOG.md#v101-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
-- `stackitmarketplace`: [v0.3.1](services/stackitmarketplace/CHANGELOG.md#v031-2025-xx-yy)
+- `stackitmarketplace`: [v0.3.1](services/stackitmarketplace/CHANGELOG.md#v031-2025-03-18)
   - **Internal:** Backwards compatible change to generated code
 
 
