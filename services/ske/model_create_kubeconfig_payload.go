@@ -17,9 +17,30 @@ import (
 // checks if the CreateKubeconfigPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateKubeconfigPayload{}
 
+/*
+	types and functions for expirationSeconds
+*/
+
+// isNotNullableString
+type CreateKubeconfigPayloadGetExpirationSecondsAttributeType = *string
+
+func getCreateKubeconfigPayloadGetExpirationSecondsAttributeTypeOk(arg CreateKubeconfigPayloadGetExpirationSecondsAttributeType) (ret CreateKubeconfigPayloadGetExpirationSecondsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateKubeconfigPayloadGetExpirationSecondsAttributeType(arg *CreateKubeconfigPayloadGetExpirationSecondsAttributeType, val CreateKubeconfigPayloadGetExpirationSecondsRetType) {
+	*arg = &val
+}
+
+type CreateKubeconfigPayloadGetExpirationSecondsArgType = string
+type CreateKubeconfigPayloadGetExpirationSecondsRetType = string
+
 // CreateKubeconfigPayload struct for CreateKubeconfigPayload
 type CreateKubeconfigPayload struct {
-	ExpirationSeconds *string `json:"expirationSeconds,omitempty"`
+	ExpirationSeconds CreateKubeconfigPayloadGetExpirationSecondsAttributeType `json:"expirationSeconds,omitempty"`
 }
 
 // NewCreateKubeconfigPayload instantiates a new CreateKubeconfigPayload object
@@ -40,41 +61,32 @@ func NewCreateKubeconfigPayloadWithDefaults() *CreateKubeconfigPayload {
 }
 
 // GetExpirationSeconds returns the ExpirationSeconds field value if set, zero value otherwise.
-func (o *CreateKubeconfigPayload) GetExpirationSeconds() *string {
-	if o == nil || IsNil(o.ExpirationSeconds) {
-		var ret *string
-		return ret
-	}
-	return o.ExpirationSeconds
+func (o *CreateKubeconfigPayload) GetExpirationSeconds() (res CreateKubeconfigPayloadGetExpirationSecondsRetType) {
+	res, _ = o.GetExpirationSecondsOk()
+	return
 }
 
 // GetExpirationSecondsOk returns a tuple with the ExpirationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateKubeconfigPayload) GetExpirationSecondsOk() (*string, bool) {
-	if o == nil || IsNil(o.ExpirationSeconds) {
-		return nil, false
-	}
-	return o.ExpirationSeconds, true
+func (o *CreateKubeconfigPayload) GetExpirationSecondsOk() (ret CreateKubeconfigPayloadGetExpirationSecondsRetType, ok bool) {
+	return getCreateKubeconfigPayloadGetExpirationSecondsAttributeTypeOk(o.ExpirationSeconds)
 }
 
 // HasExpirationSeconds returns a boolean if a field has been set.
 func (o *CreateKubeconfigPayload) HasExpirationSeconds() bool {
-	if o != nil && !IsNil(o.ExpirationSeconds) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExpirationSecondsOk()
+	return ok
 }
 
 // SetExpirationSeconds gets a reference to the given string and assigns it to the ExpirationSeconds field.
-func (o *CreateKubeconfigPayload) SetExpirationSeconds(v *string) {
-	o.ExpirationSeconds = v
+func (o *CreateKubeconfigPayload) SetExpirationSeconds(v CreateKubeconfigPayloadGetExpirationSecondsRetType) {
+	setCreateKubeconfigPayloadGetExpirationSecondsAttributeType(&o.ExpirationSeconds, v)
 }
 
 func (o CreateKubeconfigPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ExpirationSeconds) {
-		toSerialize["expirationSeconds"] = o.ExpirationSeconds
+	if val, ok := getCreateKubeconfigPayloadGetExpirationSecondsAttributeTypeOk(o.ExpirationSeconds); ok {
+		toSerialize["ExpirationSeconds"] = val
 	}
 	return toSerialize, nil
 }
