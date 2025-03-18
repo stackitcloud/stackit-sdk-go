@@ -17,9 +17,30 @@ import (
 // checks if the InstanceParametersGroksInner type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceParametersGroksInner{}
 
+/*
+	types and functions for pattern
+*/
+
+// isNotNullableString
+type InstanceParametersGroksInnerGetPatternAttributeType = *string
+
+func getInstanceParametersGroksInnerGetPatternAttributeTypeOk(arg InstanceParametersGroksInnerGetPatternAttributeType) (ret InstanceParametersGroksInnerGetPatternRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceParametersGroksInnerGetPatternAttributeType(arg *InstanceParametersGroksInnerGetPatternAttributeType, val InstanceParametersGroksInnerGetPatternRetType) {
+	*arg = &val
+}
+
+type InstanceParametersGroksInnerGetPatternArgType = string
+type InstanceParametersGroksInnerGetPatternRetType = string
+
 // InstanceParametersGroksInner struct for InstanceParametersGroksInner
 type InstanceParametersGroksInner struct {
-	Pattern *string `json:"pattern,omitempty"`
+	Pattern InstanceParametersGroksInnerGetPatternAttributeType `json:"pattern,omitempty"`
 }
 
 // NewInstanceParametersGroksInner instantiates a new InstanceParametersGroksInner object
@@ -40,41 +61,32 @@ func NewInstanceParametersGroksInnerWithDefaults() *InstanceParametersGroksInner
 }
 
 // GetPattern returns the Pattern field value if set, zero value otherwise.
-func (o *InstanceParametersGroksInner) GetPattern() *string {
-	if o == nil || IsNil(o.Pattern) {
-		var ret *string
-		return ret
-	}
-	return o.Pattern
+func (o *InstanceParametersGroksInner) GetPattern() (res InstanceParametersGroksInnerGetPatternRetType) {
+	res, _ = o.GetPatternOk()
+	return
 }
 
 // GetPatternOk returns a tuple with the Pattern field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceParametersGroksInner) GetPatternOk() (*string, bool) {
-	if o == nil || IsNil(o.Pattern) {
-		return nil, false
-	}
-	return o.Pattern, true
+func (o *InstanceParametersGroksInner) GetPatternOk() (ret InstanceParametersGroksInnerGetPatternRetType, ok bool) {
+	return getInstanceParametersGroksInnerGetPatternAttributeTypeOk(o.Pattern)
 }
 
 // HasPattern returns a boolean if a field has been set.
 func (o *InstanceParametersGroksInner) HasPattern() bool {
-	if o != nil && !IsNil(o.Pattern) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPatternOk()
+	return ok
 }
 
 // SetPattern gets a reference to the given string and assigns it to the Pattern field.
-func (o *InstanceParametersGroksInner) SetPattern(v *string) {
-	o.Pattern = v
+func (o *InstanceParametersGroksInner) SetPattern(v InstanceParametersGroksInnerGetPatternRetType) {
+	setInstanceParametersGroksInnerGetPatternAttributeType(&o.Pattern, v)
 }
 
 func (o InstanceParametersGroksInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Pattern) {
-		toSerialize["pattern"] = o.Pattern
+	if val, ok := getInstanceParametersGroksInnerGetPatternAttributeTypeOk(o.Pattern); ok {
+		toSerialize["Pattern"] = val
 	}
 	return toSerialize, nil
 }

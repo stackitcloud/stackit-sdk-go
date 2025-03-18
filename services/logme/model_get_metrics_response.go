@@ -17,53 +17,534 @@ import (
 // checks if the GetMetricsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetMetricsResponse{}
 
+/*
+	types and functions for cpuIdleTime
+*/
+
+// isLong
+type GetMetricsResponseGetCpuIdleTimeAttributeType = *int64
+type GetMetricsResponseGetCpuIdleTimeArgType = int64
+type GetMetricsResponseGetCpuIdleTimeRetType = int64
+
+func getGetMetricsResponseGetCpuIdleTimeAttributeTypeOk(arg GetMetricsResponseGetCpuIdleTimeAttributeType) (ret GetMetricsResponseGetCpuIdleTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetCpuIdleTimeAttributeType(arg *GetMetricsResponseGetCpuIdleTimeAttributeType, val GetMetricsResponseGetCpuIdleTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for cpuLoadPercent
+*/
+
+// isNumber
+type GetMetricsResponseGetCpuLoadPercentAttributeType = *float64
+type GetMetricsResponseGetCpuLoadPercentArgType = float64
+type GetMetricsResponseGetCpuLoadPercentRetType = float64
+
+func getGetMetricsResponseGetCpuLoadPercentAttributeTypeOk(arg GetMetricsResponseGetCpuLoadPercentAttributeType) (ret GetMetricsResponseGetCpuLoadPercentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetCpuLoadPercentAttributeType(arg *GetMetricsResponseGetCpuLoadPercentAttributeType, val GetMetricsResponseGetCpuLoadPercentRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for cpuSystemTime
+*/
+
+// isLong
+type GetMetricsResponseGetCpuSystemTimeAttributeType = *int64
+type GetMetricsResponseGetCpuSystemTimeArgType = int64
+type GetMetricsResponseGetCpuSystemTimeRetType = int64
+
+func getGetMetricsResponseGetCpuSystemTimeAttributeTypeOk(arg GetMetricsResponseGetCpuSystemTimeAttributeType) (ret GetMetricsResponseGetCpuSystemTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetCpuSystemTimeAttributeType(arg *GetMetricsResponseGetCpuSystemTimeAttributeType, val GetMetricsResponseGetCpuSystemTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for cpuUserTime
+*/
+
+// isLong
+type GetMetricsResponseGetCpuUserTimeAttributeType = *int64
+type GetMetricsResponseGetCpuUserTimeArgType = int64
+type GetMetricsResponseGetCpuUserTimeRetType = int64
+
+func getGetMetricsResponseGetCpuUserTimeAttributeTypeOk(arg GetMetricsResponseGetCpuUserTimeAttributeType) (ret GetMetricsResponseGetCpuUserTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetCpuUserTimeAttributeType(arg *GetMetricsResponseGetCpuUserTimeAttributeType, val GetMetricsResponseGetCpuUserTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for diskEphemeralTotal
+*/
+
+// isLong
+type GetMetricsResponseGetDiskEphemeralTotalAttributeType = *int64
+type GetMetricsResponseGetDiskEphemeralTotalArgType = int64
+type GetMetricsResponseGetDiskEphemeralTotalRetType = int64
+
+func getGetMetricsResponseGetDiskEphemeralTotalAttributeTypeOk(arg GetMetricsResponseGetDiskEphemeralTotalAttributeType) (ret GetMetricsResponseGetDiskEphemeralTotalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetDiskEphemeralTotalAttributeType(arg *GetMetricsResponseGetDiskEphemeralTotalAttributeType, val GetMetricsResponseGetDiskEphemeralTotalRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for diskEphemeralUsed
+*/
+
+// isLong
+type GetMetricsResponseGetDiskEphemeralUsedAttributeType = *int64
+type GetMetricsResponseGetDiskEphemeralUsedArgType = int64
+type GetMetricsResponseGetDiskEphemeralUsedRetType = int64
+
+func getGetMetricsResponseGetDiskEphemeralUsedAttributeTypeOk(arg GetMetricsResponseGetDiskEphemeralUsedAttributeType) (ret GetMetricsResponseGetDiskEphemeralUsedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetDiskEphemeralUsedAttributeType(arg *GetMetricsResponseGetDiskEphemeralUsedAttributeType, val GetMetricsResponseGetDiskEphemeralUsedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for diskPersistentTotal
+*/
+
+// isLong
+type GetMetricsResponseGetDiskPersistentTotalAttributeType = *int64
+type GetMetricsResponseGetDiskPersistentTotalArgType = int64
+type GetMetricsResponseGetDiskPersistentTotalRetType = int64
+
+func getGetMetricsResponseGetDiskPersistentTotalAttributeTypeOk(arg GetMetricsResponseGetDiskPersistentTotalAttributeType) (ret GetMetricsResponseGetDiskPersistentTotalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetDiskPersistentTotalAttributeType(arg *GetMetricsResponseGetDiskPersistentTotalAttributeType, val GetMetricsResponseGetDiskPersistentTotalRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for diskPersistentUsed
+*/
+
+// isLong
+type GetMetricsResponseGetDiskPersistentUsedAttributeType = *int64
+type GetMetricsResponseGetDiskPersistentUsedArgType = int64
+type GetMetricsResponseGetDiskPersistentUsedRetType = int64
+
+func getGetMetricsResponseGetDiskPersistentUsedAttributeTypeOk(arg GetMetricsResponseGetDiskPersistentUsedAttributeType) (ret GetMetricsResponseGetDiskPersistentUsedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetDiskPersistentUsedAttributeType(arg *GetMetricsResponseGetDiskPersistentUsedAttributeType, val GetMetricsResponseGetDiskPersistentUsedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for load1
+*/
+
+// isNumber
+type GetMetricsResponseGetLoad1AttributeType = *float64
+type GetMetricsResponseGetLoad1ArgType = float64
+type GetMetricsResponseGetLoad1RetType = float64
+
+func getGetMetricsResponseGetLoad1AttributeTypeOk(arg GetMetricsResponseGetLoad1AttributeType) (ret GetMetricsResponseGetLoad1RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetLoad1AttributeType(arg *GetMetricsResponseGetLoad1AttributeType, val GetMetricsResponseGetLoad1RetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for load15
+*/
+
+// isNumber
+type GetMetricsResponseGetLoad15AttributeType = *float64
+type GetMetricsResponseGetLoad15ArgType = float64
+type GetMetricsResponseGetLoad15RetType = float64
+
+func getGetMetricsResponseGetLoad15AttributeTypeOk(arg GetMetricsResponseGetLoad15AttributeType) (ret GetMetricsResponseGetLoad15RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetLoad15AttributeType(arg *GetMetricsResponseGetLoad15AttributeType, val GetMetricsResponseGetLoad15RetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for load5
+*/
+
+// isNumber
+type GetMetricsResponseGetLoad5AttributeType = *float64
+type GetMetricsResponseGetLoad5ArgType = float64
+type GetMetricsResponseGetLoad5RetType = float64
+
+func getGetMetricsResponseGetLoad5AttributeTypeOk(arg GetMetricsResponseGetLoad5AttributeType) (ret GetMetricsResponseGetLoad5RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetLoad5AttributeType(arg *GetMetricsResponseGetLoad5AttributeType, val GetMetricsResponseGetLoad5RetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for memoryTotal
+*/
+
+// isLong
+type GetMetricsResponseGetMemoryTotalAttributeType = *int64
+type GetMetricsResponseGetMemoryTotalArgType = int64
+type GetMetricsResponseGetMemoryTotalRetType = int64
+
+func getGetMetricsResponseGetMemoryTotalAttributeTypeOk(arg GetMetricsResponseGetMemoryTotalAttributeType) (ret GetMetricsResponseGetMemoryTotalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetMemoryTotalAttributeType(arg *GetMetricsResponseGetMemoryTotalAttributeType, val GetMetricsResponseGetMemoryTotalRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for memoryUsed
+*/
+
+// isLong
+type GetMetricsResponseGetMemoryUsedAttributeType = *int64
+type GetMetricsResponseGetMemoryUsedArgType = int64
+type GetMetricsResponseGetMemoryUsedRetType = int64
+
+func getGetMetricsResponseGetMemoryUsedAttributeTypeOk(arg GetMetricsResponseGetMemoryUsedAttributeType) (ret GetMetricsResponseGetMemoryUsedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetMemoryUsedAttributeType(arg *GetMetricsResponseGetMemoryUsedAttributeType, val GetMetricsResponseGetMemoryUsedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for opensearchDashboardURL
+*/
+
+// isNotNullableString
+type GetMetricsResponseGetOpensearchDashboardURLAttributeType = *string
+
+func getGetMetricsResponseGetOpensearchDashboardURLAttributeTypeOk(arg GetMetricsResponseGetOpensearchDashboardURLAttributeType) (ret GetMetricsResponseGetOpensearchDashboardURLRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetOpensearchDashboardURLAttributeType(arg *GetMetricsResponseGetOpensearchDashboardURLAttributeType, val GetMetricsResponseGetOpensearchDashboardURLRetType) {
+	*arg = &val
+}
+
+type GetMetricsResponseGetOpensearchDashboardURLArgType = string
+type GetMetricsResponseGetOpensearchDashboardURLRetType = string
+
+/*
+	types and functions for parachuteDiskEphemeralActivated
+*/
+
+// isBoolean
+type GetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeType = *bool
+type GetMetricsResponsegetParachuteDiskEphemeralActivatedArgType = bool
+type GetMetricsResponsegetParachuteDiskEphemeralActivatedRetType = bool
+
+func getGetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeTypeOk(arg GetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeType) (ret GetMetricsResponsegetParachuteDiskEphemeralActivatedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeType(arg *GetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeType, val GetMetricsResponsegetParachuteDiskEphemeralActivatedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parachuteDiskEphemeralTotal
+*/
+
+// isLong
+type GetMetricsResponseGetParachuteDiskEphemeralTotalAttributeType = *int64
+type GetMetricsResponseGetParachuteDiskEphemeralTotalArgType = int64
+type GetMetricsResponseGetParachuteDiskEphemeralTotalRetType = int64
+
+func getGetMetricsResponseGetParachuteDiskEphemeralTotalAttributeTypeOk(arg GetMetricsResponseGetParachuteDiskEphemeralTotalAttributeType) (ret GetMetricsResponseGetParachuteDiskEphemeralTotalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetParachuteDiskEphemeralTotalAttributeType(arg *GetMetricsResponseGetParachuteDiskEphemeralTotalAttributeType, val GetMetricsResponseGetParachuteDiskEphemeralTotalRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parachuteDiskEphemeralUsed
+*/
+
+// isLong
+type GetMetricsResponseGetParachuteDiskEphemeralUsedAttributeType = *int64
+type GetMetricsResponseGetParachuteDiskEphemeralUsedArgType = int64
+type GetMetricsResponseGetParachuteDiskEphemeralUsedRetType = int64
+
+func getGetMetricsResponseGetParachuteDiskEphemeralUsedAttributeTypeOk(arg GetMetricsResponseGetParachuteDiskEphemeralUsedAttributeType) (ret GetMetricsResponseGetParachuteDiskEphemeralUsedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetParachuteDiskEphemeralUsedAttributeType(arg *GetMetricsResponseGetParachuteDiskEphemeralUsedAttributeType, val GetMetricsResponseGetParachuteDiskEphemeralUsedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parachuteDiskEphemeralUsedPercent
+*/
+
+// isLong
+type GetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeType = *int64
+type GetMetricsResponseGetParachuteDiskEphemeralUsedPercentArgType = int64
+type GetMetricsResponseGetParachuteDiskEphemeralUsedPercentRetType = int64
+
+func getGetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeTypeOk(arg GetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeType) (ret GetMetricsResponseGetParachuteDiskEphemeralUsedPercentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeType(arg *GetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeType, val GetMetricsResponseGetParachuteDiskEphemeralUsedPercentRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parachuteDiskEphemeralUsedThreshold
+*/
+
+// isLong
+type GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeType = *int64
+type GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdArgType = int64
+type GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdRetType = int64
+
+func getGetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeTypeOk(arg GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeType) (ret GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeType(arg *GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeType, val GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parachuteDiskPersistentActivated
+*/
+
+// isBoolean
+type GetMetricsResponsegetParachuteDiskPersistentActivatedAttributeType = *bool
+type GetMetricsResponsegetParachuteDiskPersistentActivatedArgType = bool
+type GetMetricsResponsegetParachuteDiskPersistentActivatedRetType = bool
+
+func getGetMetricsResponsegetParachuteDiskPersistentActivatedAttributeTypeOk(arg GetMetricsResponsegetParachuteDiskPersistentActivatedAttributeType) (ret GetMetricsResponsegetParachuteDiskPersistentActivatedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponsegetParachuteDiskPersistentActivatedAttributeType(arg *GetMetricsResponsegetParachuteDiskPersistentActivatedAttributeType, val GetMetricsResponsegetParachuteDiskPersistentActivatedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parachuteDiskPersistentTotal
+*/
+
+// isLong
+type GetMetricsResponseGetParachuteDiskPersistentTotalAttributeType = *int64
+type GetMetricsResponseGetParachuteDiskPersistentTotalArgType = int64
+type GetMetricsResponseGetParachuteDiskPersistentTotalRetType = int64
+
+func getGetMetricsResponseGetParachuteDiskPersistentTotalAttributeTypeOk(arg GetMetricsResponseGetParachuteDiskPersistentTotalAttributeType) (ret GetMetricsResponseGetParachuteDiskPersistentTotalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetParachuteDiskPersistentTotalAttributeType(arg *GetMetricsResponseGetParachuteDiskPersistentTotalAttributeType, val GetMetricsResponseGetParachuteDiskPersistentTotalRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parachuteDiskPersistentUsed
+*/
+
+// isLong
+type GetMetricsResponseGetParachuteDiskPersistentUsedAttributeType = *int64
+type GetMetricsResponseGetParachuteDiskPersistentUsedArgType = int64
+type GetMetricsResponseGetParachuteDiskPersistentUsedRetType = int64
+
+func getGetMetricsResponseGetParachuteDiskPersistentUsedAttributeTypeOk(arg GetMetricsResponseGetParachuteDiskPersistentUsedAttributeType) (ret GetMetricsResponseGetParachuteDiskPersistentUsedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetParachuteDiskPersistentUsedAttributeType(arg *GetMetricsResponseGetParachuteDiskPersistentUsedAttributeType, val GetMetricsResponseGetParachuteDiskPersistentUsedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parachuteDiskPersistentUsedPercent
+*/
+
+// isLong
+type GetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeType = *int64
+type GetMetricsResponseGetParachuteDiskPersistentUsedPercentArgType = int64
+type GetMetricsResponseGetParachuteDiskPersistentUsedPercentRetType = int64
+
+func getGetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeTypeOk(arg GetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeType) (ret GetMetricsResponseGetParachuteDiskPersistentUsedPercentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeType(arg *GetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeType, val GetMetricsResponseGetParachuteDiskPersistentUsedPercentRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for parachuteDiskPersistentUsedThreshold
+*/
+
+// isLong
+type GetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType = *int64
+type GetMetricsResponseGetParachuteDiskPersistentUsedThresholdArgType = int64
+type GetMetricsResponseGetParachuteDiskPersistentUsedThresholdRetType = int64
+
+func getGetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeTypeOk(arg GetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType) (ret GetMetricsResponseGetParachuteDiskPersistentUsedThresholdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType(arg *GetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType, val GetMetricsResponseGetParachuteDiskPersistentUsedThresholdRetType) {
+	*arg = &val
+}
+
 // GetMetricsResponse struct for GetMetricsResponse
 type GetMetricsResponse struct {
-	CpuIdleTime *int64 `json:"cpuIdleTime,omitempty"`
+	CpuIdleTime GetMetricsResponseGetCpuIdleTimeAttributeType `json:"cpuIdleTime,omitempty"`
 	// REQUIRED
-	CpuLoadPercent *float64 `json:"cpuLoadPercent"`
-	CpuSystemTime  *int64   `json:"cpuSystemTime,omitempty"`
-	CpuUserTime    *int64   `json:"cpuUserTime,omitempty"`
+	CpuLoadPercent GetMetricsResponseGetCpuLoadPercentAttributeType `json:"cpuLoadPercent"`
+	CpuSystemTime  GetMetricsResponseGetCpuSystemTimeAttributeType  `json:"cpuSystemTime,omitempty"`
+	CpuUserTime    GetMetricsResponseGetCpuUserTimeAttributeType    `json:"cpuUserTime,omitempty"`
 	// REQUIRED
-	DiskEphemeralTotal *int64 `json:"diskEphemeralTotal"`
+	DiskEphemeralTotal GetMetricsResponseGetDiskEphemeralTotalAttributeType `json:"diskEphemeralTotal"`
 	// REQUIRED
-	DiskEphemeralUsed *int64 `json:"diskEphemeralUsed"`
+	DiskEphemeralUsed GetMetricsResponseGetDiskEphemeralUsedAttributeType `json:"diskEphemeralUsed"`
 	// REQUIRED
-	DiskPersistentTotal *int64 `json:"diskPersistentTotal"`
+	DiskPersistentTotal GetMetricsResponseGetDiskPersistentTotalAttributeType `json:"diskPersistentTotal"`
 	// REQUIRED
-	DiskPersistentUsed *int64 `json:"diskPersistentUsed"`
+	DiskPersistentUsed GetMetricsResponseGetDiskPersistentUsedAttributeType `json:"diskPersistentUsed"`
 	// REQUIRED
-	Load1 *float64 `json:"load1"`
+	Load1 GetMetricsResponseGetLoad1AttributeType `json:"load1"`
 	// REQUIRED
-	Load15 *float64 `json:"load15"`
+	Load15 GetMetricsResponseGetLoad15AttributeType `json:"load15"`
 	// REQUIRED
-	Load5 *float64 `json:"load5"`
+	Load5 GetMetricsResponseGetLoad5AttributeType `json:"load5"`
 	// REQUIRED
-	MemoryTotal *int64 `json:"memoryTotal"`
+	MemoryTotal GetMetricsResponseGetMemoryTotalAttributeType `json:"memoryTotal"`
 	// REQUIRED
-	MemoryUsed *int64 `json:"memoryUsed"`
+	MemoryUsed GetMetricsResponseGetMemoryUsedAttributeType `json:"memoryUsed"`
 	// REQUIRED
-	OpensearchDashboardURL *string `json:"opensearchDashboardURL"`
+	OpensearchDashboardURL GetMetricsResponseGetOpensearchDashboardURLAttributeType `json:"opensearchDashboardURL"`
 	// REQUIRED
-	ParachuteDiskEphemeralActivated *bool `json:"parachuteDiskEphemeralActivated"`
+	ParachuteDiskEphemeralActivated GetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeType `json:"parachuteDiskEphemeralActivated"`
 	// REQUIRED
-	ParachuteDiskEphemeralTotal *int64 `json:"parachuteDiskEphemeralTotal"`
+	ParachuteDiskEphemeralTotal GetMetricsResponseGetParachuteDiskEphemeralTotalAttributeType `json:"parachuteDiskEphemeralTotal"`
 	// REQUIRED
-	ParachuteDiskEphemeralUsed *int64 `json:"parachuteDiskEphemeralUsed"`
+	ParachuteDiskEphemeralUsed GetMetricsResponseGetParachuteDiskEphemeralUsedAttributeType `json:"parachuteDiskEphemeralUsed"`
 	// REQUIRED
-	ParachuteDiskEphemeralUsedPercent *int64 `json:"parachuteDiskEphemeralUsedPercent"`
+	ParachuteDiskEphemeralUsedPercent GetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeType `json:"parachuteDiskEphemeralUsedPercent"`
 	// REQUIRED
-	ParachuteDiskEphemeralUsedThreshold *int64 `json:"parachuteDiskEphemeralUsedThreshold"`
+	ParachuteDiskEphemeralUsedThreshold GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeType `json:"parachuteDiskEphemeralUsedThreshold"`
 	// REQUIRED
-	ParachuteDiskPersistentActivated *bool `json:"parachuteDiskPersistentActivated"`
+	ParachuteDiskPersistentActivated GetMetricsResponsegetParachuteDiskPersistentActivatedAttributeType `json:"parachuteDiskPersistentActivated"`
 	// REQUIRED
-	ParachuteDiskPersistentTotal *int64 `json:"parachuteDiskPersistentTotal"`
+	ParachuteDiskPersistentTotal GetMetricsResponseGetParachuteDiskPersistentTotalAttributeType `json:"parachuteDiskPersistentTotal"`
 	// REQUIRED
-	ParachuteDiskPersistentUsed *int64 `json:"parachuteDiskPersistentUsed"`
+	ParachuteDiskPersistentUsed GetMetricsResponseGetParachuteDiskPersistentUsedAttributeType `json:"parachuteDiskPersistentUsed"`
 	// REQUIRED
-	ParachuteDiskPersistentUsedPercent *int64 `json:"parachuteDiskPersistentUsedPercent"`
+	ParachuteDiskPersistentUsedPercent GetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeType `json:"parachuteDiskPersistentUsedPercent"`
 	// REQUIRED
-	ParachuteDiskPersistentUsedThreshold *int64 `json:"parachuteDiskPersistentUsedThreshold"`
+	ParachuteDiskPersistentUsedThreshold GetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType `json:"parachuteDiskPersistentUsedThreshold"`
 }
 
 type _GetMetricsResponse GetMetricsResponse
@@ -72,29 +553,29 @@ type _GetMetricsResponse GetMetricsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetMetricsResponse(cpuLoadPercent *float64, diskEphemeralTotal *int64, diskEphemeralUsed *int64, diskPersistentTotal *int64, diskPersistentUsed *int64, load1 *float64, load15 *float64, load5 *float64, memoryTotal *int64, memoryUsed *int64, opensearchDashboardURL *string, parachuteDiskEphemeralActivated *bool, parachuteDiskEphemeralTotal *int64, parachuteDiskEphemeralUsed *int64, parachuteDiskEphemeralUsedPercent *int64, parachuteDiskEphemeralUsedThreshold *int64, parachuteDiskPersistentActivated *bool, parachuteDiskPersistentTotal *int64, parachuteDiskPersistentUsed *int64, parachuteDiskPersistentUsedPercent *int64, parachuteDiskPersistentUsedThreshold *int64) *GetMetricsResponse {
+func NewGetMetricsResponse(cpuLoadPercent GetMetricsResponseGetCpuLoadPercentArgType, diskEphemeralTotal GetMetricsResponseGetDiskEphemeralTotalArgType, diskEphemeralUsed GetMetricsResponseGetDiskEphemeralUsedArgType, diskPersistentTotal GetMetricsResponseGetDiskPersistentTotalArgType, diskPersistentUsed GetMetricsResponseGetDiskPersistentUsedArgType, load1 GetMetricsResponseGetLoad1ArgType, load15 GetMetricsResponseGetLoad15ArgType, load5 GetMetricsResponseGetLoad5ArgType, memoryTotal GetMetricsResponseGetMemoryTotalArgType, memoryUsed GetMetricsResponseGetMemoryUsedArgType, opensearchDashboardURL GetMetricsResponseGetOpensearchDashboardURLArgType, parachuteDiskEphemeralActivated GetMetricsResponsegetParachuteDiskEphemeralActivatedArgType, parachuteDiskEphemeralTotal GetMetricsResponseGetParachuteDiskEphemeralTotalArgType, parachuteDiskEphemeralUsed GetMetricsResponseGetParachuteDiskEphemeralUsedArgType, parachuteDiskEphemeralUsedPercent GetMetricsResponseGetParachuteDiskEphemeralUsedPercentArgType, parachuteDiskEphemeralUsedThreshold GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdArgType, parachuteDiskPersistentActivated GetMetricsResponsegetParachuteDiskPersistentActivatedArgType, parachuteDiskPersistentTotal GetMetricsResponseGetParachuteDiskPersistentTotalArgType, parachuteDiskPersistentUsed GetMetricsResponseGetParachuteDiskPersistentUsedArgType, parachuteDiskPersistentUsedPercent GetMetricsResponseGetParachuteDiskPersistentUsedPercentArgType, parachuteDiskPersistentUsedThreshold GetMetricsResponseGetParachuteDiskPersistentUsedThresholdArgType) *GetMetricsResponse {
 	this := GetMetricsResponse{}
-	this.CpuLoadPercent = cpuLoadPercent
-	this.DiskEphemeralTotal = diskEphemeralTotal
-	this.DiskEphemeralUsed = diskEphemeralUsed
-	this.DiskPersistentTotal = diskPersistentTotal
-	this.DiskPersistentUsed = diskPersistentUsed
-	this.Load1 = load1
-	this.Load15 = load15
-	this.Load5 = load5
-	this.MemoryTotal = memoryTotal
-	this.MemoryUsed = memoryUsed
-	this.OpensearchDashboardURL = opensearchDashboardURL
-	this.ParachuteDiskEphemeralActivated = parachuteDiskEphemeralActivated
-	this.ParachuteDiskEphemeralTotal = parachuteDiskEphemeralTotal
-	this.ParachuteDiskEphemeralUsed = parachuteDiskEphemeralUsed
-	this.ParachuteDiskEphemeralUsedPercent = parachuteDiskEphemeralUsedPercent
-	this.ParachuteDiskEphemeralUsedThreshold = parachuteDiskEphemeralUsedThreshold
-	this.ParachuteDiskPersistentActivated = parachuteDiskPersistentActivated
-	this.ParachuteDiskPersistentTotal = parachuteDiskPersistentTotal
-	this.ParachuteDiskPersistentUsed = parachuteDiskPersistentUsed
-	this.ParachuteDiskPersistentUsedPercent = parachuteDiskPersistentUsedPercent
-	this.ParachuteDiskPersistentUsedThreshold = parachuteDiskPersistentUsedThreshold
+	setGetMetricsResponseGetCpuLoadPercentAttributeType(&this.CpuLoadPercent, cpuLoadPercent)
+	setGetMetricsResponseGetDiskEphemeralTotalAttributeType(&this.DiskEphemeralTotal, diskEphemeralTotal)
+	setGetMetricsResponseGetDiskEphemeralUsedAttributeType(&this.DiskEphemeralUsed, diskEphemeralUsed)
+	setGetMetricsResponseGetDiskPersistentTotalAttributeType(&this.DiskPersistentTotal, diskPersistentTotal)
+	setGetMetricsResponseGetDiskPersistentUsedAttributeType(&this.DiskPersistentUsed, diskPersistentUsed)
+	setGetMetricsResponseGetLoad1AttributeType(&this.Load1, load1)
+	setGetMetricsResponseGetLoad15AttributeType(&this.Load15, load15)
+	setGetMetricsResponseGetLoad5AttributeType(&this.Load5, load5)
+	setGetMetricsResponseGetMemoryTotalAttributeType(&this.MemoryTotal, memoryTotal)
+	setGetMetricsResponseGetMemoryUsedAttributeType(&this.MemoryUsed, memoryUsed)
+	setGetMetricsResponseGetOpensearchDashboardURLAttributeType(&this.OpensearchDashboardURL, opensearchDashboardURL)
+	setGetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeType(&this.ParachuteDiskEphemeralActivated, parachuteDiskEphemeralActivated)
+	setGetMetricsResponseGetParachuteDiskEphemeralTotalAttributeType(&this.ParachuteDiskEphemeralTotal, parachuteDiskEphemeralTotal)
+	setGetMetricsResponseGetParachuteDiskEphemeralUsedAttributeType(&this.ParachuteDiskEphemeralUsed, parachuteDiskEphemeralUsed)
+	setGetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeType(&this.ParachuteDiskEphemeralUsedPercent, parachuteDiskEphemeralUsedPercent)
+	setGetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeType(&this.ParachuteDiskEphemeralUsedThreshold, parachuteDiskEphemeralUsedThreshold)
+	setGetMetricsResponsegetParachuteDiskPersistentActivatedAttributeType(&this.ParachuteDiskPersistentActivated, parachuteDiskPersistentActivated)
+	setGetMetricsResponseGetParachuteDiskPersistentTotalAttributeType(&this.ParachuteDiskPersistentTotal, parachuteDiskPersistentTotal)
+	setGetMetricsResponseGetParachuteDiskPersistentUsedAttributeType(&this.ParachuteDiskPersistentUsed, parachuteDiskPersistentUsed)
+	setGetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeType(&this.ParachuteDiskPersistentUsedPercent, parachuteDiskPersistentUsedPercent)
+	setGetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType(&this.ParachuteDiskPersistentUsedThreshold, parachuteDiskPersistentUsedThreshold)
 	return &this
 }
 
@@ -107,637 +588,505 @@ func NewGetMetricsResponseWithDefaults() *GetMetricsResponse {
 }
 
 // GetCpuIdleTime returns the CpuIdleTime field value if set, zero value otherwise.
-func (o *GetMetricsResponse) GetCpuIdleTime() *int64 {
-	if o == nil || IsNil(o.CpuIdleTime) {
-		var ret *int64
-		return ret
-	}
-	return o.CpuIdleTime
+func (o *GetMetricsResponse) GetCpuIdleTime() (res GetMetricsResponseGetCpuIdleTimeRetType) {
+	res, _ = o.GetCpuIdleTimeOk()
+	return
 }
 
 // GetCpuIdleTimeOk returns a tuple with the CpuIdleTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetCpuIdleTimeOk() (*int64, bool) {
-	if o == nil || IsNil(o.CpuIdleTime) {
-		return nil, false
-	}
-	return o.CpuIdleTime, true
+func (o *GetMetricsResponse) GetCpuIdleTimeOk() (ret GetMetricsResponseGetCpuIdleTimeRetType, ok bool) {
+	return getGetMetricsResponseGetCpuIdleTimeAttributeTypeOk(o.CpuIdleTime)
 }
 
 // HasCpuIdleTime returns a boolean if a field has been set.
 func (o *GetMetricsResponse) HasCpuIdleTime() bool {
-	if o != nil && !IsNil(o.CpuIdleTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCpuIdleTimeOk()
+	return ok
 }
 
 // SetCpuIdleTime gets a reference to the given int64 and assigns it to the CpuIdleTime field.
-func (o *GetMetricsResponse) SetCpuIdleTime(v *int64) {
-	o.CpuIdleTime = v
+func (o *GetMetricsResponse) SetCpuIdleTime(v GetMetricsResponseGetCpuIdleTimeRetType) {
+	setGetMetricsResponseGetCpuIdleTimeAttributeType(&o.CpuIdleTime, v)
 }
 
 // GetCpuLoadPercent returns the CpuLoadPercent field value
-func (o *GetMetricsResponse) GetCpuLoadPercent() *float64 {
-	if o == nil || IsNil(o.CpuLoadPercent) {
-		var ret *float64
-		return ret
-	}
-
-	return o.CpuLoadPercent
+func (o *GetMetricsResponse) GetCpuLoadPercent() (ret GetMetricsResponseGetCpuLoadPercentRetType) {
+	ret, _ = o.GetCpuLoadPercentOk()
+	return ret
 }
 
 // GetCpuLoadPercentOk returns a tuple with the CpuLoadPercent field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetCpuLoadPercentOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CpuLoadPercent, true
+func (o *GetMetricsResponse) GetCpuLoadPercentOk() (ret GetMetricsResponseGetCpuLoadPercentRetType, ok bool) {
+	return getGetMetricsResponseGetCpuLoadPercentAttributeTypeOk(o.CpuLoadPercent)
 }
 
 // SetCpuLoadPercent sets field value
-func (o *GetMetricsResponse) SetCpuLoadPercent(v *float64) {
-	o.CpuLoadPercent = v
+func (o *GetMetricsResponse) SetCpuLoadPercent(v GetMetricsResponseGetCpuLoadPercentRetType) {
+	setGetMetricsResponseGetCpuLoadPercentAttributeType(&o.CpuLoadPercent, v)
 }
 
 // GetCpuSystemTime returns the CpuSystemTime field value if set, zero value otherwise.
-func (o *GetMetricsResponse) GetCpuSystemTime() *int64 {
-	if o == nil || IsNil(o.CpuSystemTime) {
-		var ret *int64
-		return ret
-	}
-	return o.CpuSystemTime
+func (o *GetMetricsResponse) GetCpuSystemTime() (res GetMetricsResponseGetCpuSystemTimeRetType) {
+	res, _ = o.GetCpuSystemTimeOk()
+	return
 }
 
 // GetCpuSystemTimeOk returns a tuple with the CpuSystemTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetCpuSystemTimeOk() (*int64, bool) {
-	if o == nil || IsNil(o.CpuSystemTime) {
-		return nil, false
-	}
-	return o.CpuSystemTime, true
+func (o *GetMetricsResponse) GetCpuSystemTimeOk() (ret GetMetricsResponseGetCpuSystemTimeRetType, ok bool) {
+	return getGetMetricsResponseGetCpuSystemTimeAttributeTypeOk(o.CpuSystemTime)
 }
 
 // HasCpuSystemTime returns a boolean if a field has been set.
 func (o *GetMetricsResponse) HasCpuSystemTime() bool {
-	if o != nil && !IsNil(o.CpuSystemTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCpuSystemTimeOk()
+	return ok
 }
 
 // SetCpuSystemTime gets a reference to the given int64 and assigns it to the CpuSystemTime field.
-func (o *GetMetricsResponse) SetCpuSystemTime(v *int64) {
-	o.CpuSystemTime = v
+func (o *GetMetricsResponse) SetCpuSystemTime(v GetMetricsResponseGetCpuSystemTimeRetType) {
+	setGetMetricsResponseGetCpuSystemTimeAttributeType(&o.CpuSystemTime, v)
 }
 
 // GetCpuUserTime returns the CpuUserTime field value if set, zero value otherwise.
-func (o *GetMetricsResponse) GetCpuUserTime() *int64 {
-	if o == nil || IsNil(o.CpuUserTime) {
-		var ret *int64
-		return ret
-	}
-	return o.CpuUserTime
+func (o *GetMetricsResponse) GetCpuUserTime() (res GetMetricsResponseGetCpuUserTimeRetType) {
+	res, _ = o.GetCpuUserTimeOk()
+	return
 }
 
 // GetCpuUserTimeOk returns a tuple with the CpuUserTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetCpuUserTimeOk() (*int64, bool) {
-	if o == nil || IsNil(o.CpuUserTime) {
-		return nil, false
-	}
-	return o.CpuUserTime, true
+func (o *GetMetricsResponse) GetCpuUserTimeOk() (ret GetMetricsResponseGetCpuUserTimeRetType, ok bool) {
+	return getGetMetricsResponseGetCpuUserTimeAttributeTypeOk(o.CpuUserTime)
 }
 
 // HasCpuUserTime returns a boolean if a field has been set.
 func (o *GetMetricsResponse) HasCpuUserTime() bool {
-	if o != nil && !IsNil(o.CpuUserTime) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCpuUserTimeOk()
+	return ok
 }
 
 // SetCpuUserTime gets a reference to the given int64 and assigns it to the CpuUserTime field.
-func (o *GetMetricsResponse) SetCpuUserTime(v *int64) {
-	o.CpuUserTime = v
+func (o *GetMetricsResponse) SetCpuUserTime(v GetMetricsResponseGetCpuUserTimeRetType) {
+	setGetMetricsResponseGetCpuUserTimeAttributeType(&o.CpuUserTime, v)
 }
 
 // GetDiskEphemeralTotal returns the DiskEphemeralTotal field value
-func (o *GetMetricsResponse) GetDiskEphemeralTotal() *int64 {
-	if o == nil || IsNil(o.DiskEphemeralTotal) {
-		var ret *int64
-		return ret
-	}
-
-	return o.DiskEphemeralTotal
+func (o *GetMetricsResponse) GetDiskEphemeralTotal() (ret GetMetricsResponseGetDiskEphemeralTotalRetType) {
+	ret, _ = o.GetDiskEphemeralTotalOk()
+	return ret
 }
 
 // GetDiskEphemeralTotalOk returns a tuple with the DiskEphemeralTotal field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetDiskEphemeralTotalOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DiskEphemeralTotal, true
+func (o *GetMetricsResponse) GetDiskEphemeralTotalOk() (ret GetMetricsResponseGetDiskEphemeralTotalRetType, ok bool) {
+	return getGetMetricsResponseGetDiskEphemeralTotalAttributeTypeOk(o.DiskEphemeralTotal)
 }
 
 // SetDiskEphemeralTotal sets field value
-func (o *GetMetricsResponse) SetDiskEphemeralTotal(v *int64) {
-	o.DiskEphemeralTotal = v
+func (o *GetMetricsResponse) SetDiskEphemeralTotal(v GetMetricsResponseGetDiskEphemeralTotalRetType) {
+	setGetMetricsResponseGetDiskEphemeralTotalAttributeType(&o.DiskEphemeralTotal, v)
 }
 
 // GetDiskEphemeralUsed returns the DiskEphemeralUsed field value
-func (o *GetMetricsResponse) GetDiskEphemeralUsed() *int64 {
-	if o == nil || IsNil(o.DiskEphemeralUsed) {
-		var ret *int64
-		return ret
-	}
-
-	return o.DiskEphemeralUsed
+func (o *GetMetricsResponse) GetDiskEphemeralUsed() (ret GetMetricsResponseGetDiskEphemeralUsedRetType) {
+	ret, _ = o.GetDiskEphemeralUsedOk()
+	return ret
 }
 
 // GetDiskEphemeralUsedOk returns a tuple with the DiskEphemeralUsed field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetDiskEphemeralUsedOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DiskEphemeralUsed, true
+func (o *GetMetricsResponse) GetDiskEphemeralUsedOk() (ret GetMetricsResponseGetDiskEphemeralUsedRetType, ok bool) {
+	return getGetMetricsResponseGetDiskEphemeralUsedAttributeTypeOk(o.DiskEphemeralUsed)
 }
 
 // SetDiskEphemeralUsed sets field value
-func (o *GetMetricsResponse) SetDiskEphemeralUsed(v *int64) {
-	o.DiskEphemeralUsed = v
+func (o *GetMetricsResponse) SetDiskEphemeralUsed(v GetMetricsResponseGetDiskEphemeralUsedRetType) {
+	setGetMetricsResponseGetDiskEphemeralUsedAttributeType(&o.DiskEphemeralUsed, v)
 }
 
 // GetDiskPersistentTotal returns the DiskPersistentTotal field value
-func (o *GetMetricsResponse) GetDiskPersistentTotal() *int64 {
-	if o == nil || IsNil(o.DiskPersistentTotal) {
-		var ret *int64
-		return ret
-	}
-
-	return o.DiskPersistentTotal
+func (o *GetMetricsResponse) GetDiskPersistentTotal() (ret GetMetricsResponseGetDiskPersistentTotalRetType) {
+	ret, _ = o.GetDiskPersistentTotalOk()
+	return ret
 }
 
 // GetDiskPersistentTotalOk returns a tuple with the DiskPersistentTotal field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetDiskPersistentTotalOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DiskPersistentTotal, true
+func (o *GetMetricsResponse) GetDiskPersistentTotalOk() (ret GetMetricsResponseGetDiskPersistentTotalRetType, ok bool) {
+	return getGetMetricsResponseGetDiskPersistentTotalAttributeTypeOk(o.DiskPersistentTotal)
 }
 
 // SetDiskPersistentTotal sets field value
-func (o *GetMetricsResponse) SetDiskPersistentTotal(v *int64) {
-	o.DiskPersistentTotal = v
+func (o *GetMetricsResponse) SetDiskPersistentTotal(v GetMetricsResponseGetDiskPersistentTotalRetType) {
+	setGetMetricsResponseGetDiskPersistentTotalAttributeType(&o.DiskPersistentTotal, v)
 }
 
 // GetDiskPersistentUsed returns the DiskPersistentUsed field value
-func (o *GetMetricsResponse) GetDiskPersistentUsed() *int64 {
-	if o == nil || IsNil(o.DiskPersistentUsed) {
-		var ret *int64
-		return ret
-	}
-
-	return o.DiskPersistentUsed
+func (o *GetMetricsResponse) GetDiskPersistentUsed() (ret GetMetricsResponseGetDiskPersistentUsedRetType) {
+	ret, _ = o.GetDiskPersistentUsedOk()
+	return ret
 }
 
 // GetDiskPersistentUsedOk returns a tuple with the DiskPersistentUsed field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetDiskPersistentUsedOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DiskPersistentUsed, true
+func (o *GetMetricsResponse) GetDiskPersistentUsedOk() (ret GetMetricsResponseGetDiskPersistentUsedRetType, ok bool) {
+	return getGetMetricsResponseGetDiskPersistentUsedAttributeTypeOk(o.DiskPersistentUsed)
 }
 
 // SetDiskPersistentUsed sets field value
-func (o *GetMetricsResponse) SetDiskPersistentUsed(v *int64) {
-	o.DiskPersistentUsed = v
+func (o *GetMetricsResponse) SetDiskPersistentUsed(v GetMetricsResponseGetDiskPersistentUsedRetType) {
+	setGetMetricsResponseGetDiskPersistentUsedAttributeType(&o.DiskPersistentUsed, v)
 }
 
 // GetLoad1 returns the Load1 field value
-func (o *GetMetricsResponse) GetLoad1() *float64 {
-	if o == nil || IsNil(o.Load1) {
-		var ret *float64
-		return ret
-	}
-
-	return o.Load1
+func (o *GetMetricsResponse) GetLoad1() (ret GetMetricsResponseGetLoad1RetType) {
+	ret, _ = o.GetLoad1Ok()
+	return ret
 }
 
 // GetLoad1Ok returns a tuple with the Load1 field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetLoad1Ok() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Load1, true
+func (o *GetMetricsResponse) GetLoad1Ok() (ret GetMetricsResponseGetLoad1RetType, ok bool) {
+	return getGetMetricsResponseGetLoad1AttributeTypeOk(o.Load1)
 }
 
 // SetLoad1 sets field value
-func (o *GetMetricsResponse) SetLoad1(v *float64) {
-	o.Load1 = v
+func (o *GetMetricsResponse) SetLoad1(v GetMetricsResponseGetLoad1RetType) {
+	setGetMetricsResponseGetLoad1AttributeType(&o.Load1, v)
 }
 
 // GetLoad15 returns the Load15 field value
-func (o *GetMetricsResponse) GetLoad15() *float64 {
-	if o == nil || IsNil(o.Load15) {
-		var ret *float64
-		return ret
-	}
-
-	return o.Load15
+func (o *GetMetricsResponse) GetLoad15() (ret GetMetricsResponseGetLoad15RetType) {
+	ret, _ = o.GetLoad15Ok()
+	return ret
 }
 
 // GetLoad15Ok returns a tuple with the Load15 field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetLoad15Ok() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Load15, true
+func (o *GetMetricsResponse) GetLoad15Ok() (ret GetMetricsResponseGetLoad15RetType, ok bool) {
+	return getGetMetricsResponseGetLoad15AttributeTypeOk(o.Load15)
 }
 
 // SetLoad15 sets field value
-func (o *GetMetricsResponse) SetLoad15(v *float64) {
-	o.Load15 = v
+func (o *GetMetricsResponse) SetLoad15(v GetMetricsResponseGetLoad15RetType) {
+	setGetMetricsResponseGetLoad15AttributeType(&o.Load15, v)
 }
 
 // GetLoad5 returns the Load5 field value
-func (o *GetMetricsResponse) GetLoad5() *float64 {
-	if o == nil || IsNil(o.Load5) {
-		var ret *float64
-		return ret
-	}
-
-	return o.Load5
+func (o *GetMetricsResponse) GetLoad5() (ret GetMetricsResponseGetLoad5RetType) {
+	ret, _ = o.GetLoad5Ok()
+	return ret
 }
 
 // GetLoad5Ok returns a tuple with the Load5 field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetLoad5Ok() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Load5, true
+func (o *GetMetricsResponse) GetLoad5Ok() (ret GetMetricsResponseGetLoad5RetType, ok bool) {
+	return getGetMetricsResponseGetLoad5AttributeTypeOk(o.Load5)
 }
 
 // SetLoad5 sets field value
-func (o *GetMetricsResponse) SetLoad5(v *float64) {
-	o.Load5 = v
+func (o *GetMetricsResponse) SetLoad5(v GetMetricsResponseGetLoad5RetType) {
+	setGetMetricsResponseGetLoad5AttributeType(&o.Load5, v)
 }
 
 // GetMemoryTotal returns the MemoryTotal field value
-func (o *GetMetricsResponse) GetMemoryTotal() *int64 {
-	if o == nil || IsNil(o.MemoryTotal) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MemoryTotal
+func (o *GetMetricsResponse) GetMemoryTotal() (ret GetMetricsResponseGetMemoryTotalRetType) {
+	ret, _ = o.GetMemoryTotalOk()
+	return ret
 }
 
 // GetMemoryTotalOk returns a tuple with the MemoryTotal field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetMemoryTotalOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MemoryTotal, true
+func (o *GetMetricsResponse) GetMemoryTotalOk() (ret GetMetricsResponseGetMemoryTotalRetType, ok bool) {
+	return getGetMetricsResponseGetMemoryTotalAttributeTypeOk(o.MemoryTotal)
 }
 
 // SetMemoryTotal sets field value
-func (o *GetMetricsResponse) SetMemoryTotal(v *int64) {
-	o.MemoryTotal = v
+func (o *GetMetricsResponse) SetMemoryTotal(v GetMetricsResponseGetMemoryTotalRetType) {
+	setGetMetricsResponseGetMemoryTotalAttributeType(&o.MemoryTotal, v)
 }
 
 // GetMemoryUsed returns the MemoryUsed field value
-func (o *GetMetricsResponse) GetMemoryUsed() *int64 {
-	if o == nil || IsNil(o.MemoryUsed) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MemoryUsed
+func (o *GetMetricsResponse) GetMemoryUsed() (ret GetMetricsResponseGetMemoryUsedRetType) {
+	ret, _ = o.GetMemoryUsedOk()
+	return ret
 }
 
 // GetMemoryUsedOk returns a tuple with the MemoryUsed field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetMemoryUsedOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MemoryUsed, true
+func (o *GetMetricsResponse) GetMemoryUsedOk() (ret GetMetricsResponseGetMemoryUsedRetType, ok bool) {
+	return getGetMetricsResponseGetMemoryUsedAttributeTypeOk(o.MemoryUsed)
 }
 
 // SetMemoryUsed sets field value
-func (o *GetMetricsResponse) SetMemoryUsed(v *int64) {
-	o.MemoryUsed = v
+func (o *GetMetricsResponse) SetMemoryUsed(v GetMetricsResponseGetMemoryUsedRetType) {
+	setGetMetricsResponseGetMemoryUsedAttributeType(&o.MemoryUsed, v)
 }
 
 // GetOpensearchDashboardURL returns the OpensearchDashboardURL field value
-func (o *GetMetricsResponse) GetOpensearchDashboardURL() *string {
-	if o == nil || IsNil(o.OpensearchDashboardURL) {
-		var ret *string
-		return ret
-	}
-
-	return o.OpensearchDashboardURL
+func (o *GetMetricsResponse) GetOpensearchDashboardURL() (ret GetMetricsResponseGetOpensearchDashboardURLRetType) {
+	ret, _ = o.GetOpensearchDashboardURLOk()
+	return ret
 }
 
 // GetOpensearchDashboardURLOk returns a tuple with the OpensearchDashboardURL field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetOpensearchDashboardURLOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OpensearchDashboardURL, true
+func (o *GetMetricsResponse) GetOpensearchDashboardURLOk() (ret GetMetricsResponseGetOpensearchDashboardURLRetType, ok bool) {
+	return getGetMetricsResponseGetOpensearchDashboardURLAttributeTypeOk(o.OpensearchDashboardURL)
 }
 
 // SetOpensearchDashboardURL sets field value
-func (o *GetMetricsResponse) SetOpensearchDashboardURL(v *string) {
-	o.OpensearchDashboardURL = v
+func (o *GetMetricsResponse) SetOpensearchDashboardURL(v GetMetricsResponseGetOpensearchDashboardURLRetType) {
+	setGetMetricsResponseGetOpensearchDashboardURLAttributeType(&o.OpensearchDashboardURL, v)
 }
 
 // GetParachuteDiskEphemeralActivated returns the ParachuteDiskEphemeralActivated field value
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralActivated() *bool {
-	if o == nil || IsNil(o.ParachuteDiskEphemeralActivated) {
-		var ret *bool
-		return ret
-	}
-
-	return o.ParachuteDiskEphemeralActivated
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralActivated() (ret GetMetricsResponsegetParachuteDiskEphemeralActivatedRetType) {
+	ret, _ = o.GetParachuteDiskEphemeralActivatedOk()
+	return ret
 }
 
 // GetParachuteDiskEphemeralActivatedOk returns a tuple with the ParachuteDiskEphemeralActivated field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralActivatedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskEphemeralActivated, true
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralActivatedOk() (ret GetMetricsResponsegetParachuteDiskEphemeralActivatedRetType, ok bool) {
+	return getGetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeTypeOk(o.ParachuteDiskEphemeralActivated)
 }
 
 // SetParachuteDiskEphemeralActivated sets field value
-func (o *GetMetricsResponse) SetParachuteDiskEphemeralActivated(v *bool) {
-	o.ParachuteDiskEphemeralActivated = v
+func (o *GetMetricsResponse) SetParachuteDiskEphemeralActivated(v GetMetricsResponsegetParachuteDiskEphemeralActivatedRetType) {
+	setGetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeType(&o.ParachuteDiskEphemeralActivated, v)
 }
 
 // GetParachuteDiskEphemeralTotal returns the ParachuteDiskEphemeralTotal field value
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralTotal() *int64 {
-	if o == nil || IsNil(o.ParachuteDiskEphemeralTotal) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ParachuteDiskEphemeralTotal
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralTotal() (ret GetMetricsResponseGetParachuteDiskEphemeralTotalRetType) {
+	ret, _ = o.GetParachuteDiskEphemeralTotalOk()
+	return ret
 }
 
 // GetParachuteDiskEphemeralTotalOk returns a tuple with the ParachuteDiskEphemeralTotal field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralTotalOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskEphemeralTotal, true
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralTotalOk() (ret GetMetricsResponseGetParachuteDiskEphemeralTotalRetType, ok bool) {
+	return getGetMetricsResponseGetParachuteDiskEphemeralTotalAttributeTypeOk(o.ParachuteDiskEphemeralTotal)
 }
 
 // SetParachuteDiskEphemeralTotal sets field value
-func (o *GetMetricsResponse) SetParachuteDiskEphemeralTotal(v *int64) {
-	o.ParachuteDiskEphemeralTotal = v
+func (o *GetMetricsResponse) SetParachuteDiskEphemeralTotal(v GetMetricsResponseGetParachuteDiskEphemeralTotalRetType) {
+	setGetMetricsResponseGetParachuteDiskEphemeralTotalAttributeType(&o.ParachuteDiskEphemeralTotal, v)
 }
 
 // GetParachuteDiskEphemeralUsed returns the ParachuteDiskEphemeralUsed field value
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsed() *int64 {
-	if o == nil || IsNil(o.ParachuteDiskEphemeralUsed) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ParachuteDiskEphemeralUsed
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsed() (ret GetMetricsResponseGetParachuteDiskEphemeralUsedRetType) {
+	ret, _ = o.GetParachuteDiskEphemeralUsedOk()
+	return ret
 }
 
 // GetParachuteDiskEphemeralUsedOk returns a tuple with the ParachuteDiskEphemeralUsed field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskEphemeralUsed, true
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedOk() (ret GetMetricsResponseGetParachuteDiskEphemeralUsedRetType, ok bool) {
+	return getGetMetricsResponseGetParachuteDiskEphemeralUsedAttributeTypeOk(o.ParachuteDiskEphemeralUsed)
 }
 
 // SetParachuteDiskEphemeralUsed sets field value
-func (o *GetMetricsResponse) SetParachuteDiskEphemeralUsed(v *int64) {
-	o.ParachuteDiskEphemeralUsed = v
+func (o *GetMetricsResponse) SetParachuteDiskEphemeralUsed(v GetMetricsResponseGetParachuteDiskEphemeralUsedRetType) {
+	setGetMetricsResponseGetParachuteDiskEphemeralUsedAttributeType(&o.ParachuteDiskEphemeralUsed, v)
 }
 
 // GetParachuteDiskEphemeralUsedPercent returns the ParachuteDiskEphemeralUsedPercent field value
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedPercent() *int64 {
-	if o == nil || IsNil(o.ParachuteDiskEphemeralUsedPercent) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ParachuteDiskEphemeralUsedPercent
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedPercent() (ret GetMetricsResponseGetParachuteDiskEphemeralUsedPercentRetType) {
+	ret, _ = o.GetParachuteDiskEphemeralUsedPercentOk()
+	return ret
 }
 
 // GetParachuteDiskEphemeralUsedPercentOk returns a tuple with the ParachuteDiskEphemeralUsedPercent field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedPercentOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskEphemeralUsedPercent, true
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedPercentOk() (ret GetMetricsResponseGetParachuteDiskEphemeralUsedPercentRetType, ok bool) {
+	return getGetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeTypeOk(o.ParachuteDiskEphemeralUsedPercent)
 }
 
 // SetParachuteDiskEphemeralUsedPercent sets field value
-func (o *GetMetricsResponse) SetParachuteDiskEphemeralUsedPercent(v *int64) {
-	o.ParachuteDiskEphemeralUsedPercent = v
+func (o *GetMetricsResponse) SetParachuteDiskEphemeralUsedPercent(v GetMetricsResponseGetParachuteDiskEphemeralUsedPercentRetType) {
+	setGetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeType(&o.ParachuteDiskEphemeralUsedPercent, v)
 }
 
 // GetParachuteDiskEphemeralUsedThreshold returns the ParachuteDiskEphemeralUsedThreshold field value
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedThreshold() *int64 {
-	if o == nil || IsNil(o.ParachuteDiskEphemeralUsedThreshold) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ParachuteDiskEphemeralUsedThreshold
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedThreshold() (ret GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdRetType) {
+	ret, _ = o.GetParachuteDiskEphemeralUsedThresholdOk()
+	return ret
 }
 
 // GetParachuteDiskEphemeralUsedThresholdOk returns a tuple with the ParachuteDiskEphemeralUsedThreshold field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedThresholdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskEphemeralUsedThreshold, true
+func (o *GetMetricsResponse) GetParachuteDiskEphemeralUsedThresholdOk() (ret GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdRetType, ok bool) {
+	return getGetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeTypeOk(o.ParachuteDiskEphemeralUsedThreshold)
 }
 
 // SetParachuteDiskEphemeralUsedThreshold sets field value
-func (o *GetMetricsResponse) SetParachuteDiskEphemeralUsedThreshold(v *int64) {
-	o.ParachuteDiskEphemeralUsedThreshold = v
+func (o *GetMetricsResponse) SetParachuteDiskEphemeralUsedThreshold(v GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdRetType) {
+	setGetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeType(&o.ParachuteDiskEphemeralUsedThreshold, v)
 }
 
 // GetParachuteDiskPersistentActivated returns the ParachuteDiskPersistentActivated field value
-func (o *GetMetricsResponse) GetParachuteDiskPersistentActivated() *bool {
-	if o == nil || IsNil(o.ParachuteDiskPersistentActivated) {
-		var ret *bool
-		return ret
-	}
-
-	return o.ParachuteDiskPersistentActivated
+func (o *GetMetricsResponse) GetParachuteDiskPersistentActivated() (ret GetMetricsResponsegetParachuteDiskPersistentActivatedRetType) {
+	ret, _ = o.GetParachuteDiskPersistentActivatedOk()
+	return ret
 }
 
 // GetParachuteDiskPersistentActivatedOk returns a tuple with the ParachuteDiskPersistentActivated field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskPersistentActivatedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskPersistentActivated, true
+func (o *GetMetricsResponse) GetParachuteDiskPersistentActivatedOk() (ret GetMetricsResponsegetParachuteDiskPersistentActivatedRetType, ok bool) {
+	return getGetMetricsResponsegetParachuteDiskPersistentActivatedAttributeTypeOk(o.ParachuteDiskPersistentActivated)
 }
 
 // SetParachuteDiskPersistentActivated sets field value
-func (o *GetMetricsResponse) SetParachuteDiskPersistentActivated(v *bool) {
-	o.ParachuteDiskPersistentActivated = v
+func (o *GetMetricsResponse) SetParachuteDiskPersistentActivated(v GetMetricsResponsegetParachuteDiskPersistentActivatedRetType) {
+	setGetMetricsResponsegetParachuteDiskPersistentActivatedAttributeType(&o.ParachuteDiskPersistentActivated, v)
 }
 
 // GetParachuteDiskPersistentTotal returns the ParachuteDiskPersistentTotal field value
-func (o *GetMetricsResponse) GetParachuteDiskPersistentTotal() *int64 {
-	if o == nil || IsNil(o.ParachuteDiskPersistentTotal) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ParachuteDiskPersistentTotal
+func (o *GetMetricsResponse) GetParachuteDiskPersistentTotal() (ret GetMetricsResponseGetParachuteDiskPersistentTotalRetType) {
+	ret, _ = o.GetParachuteDiskPersistentTotalOk()
+	return ret
 }
 
 // GetParachuteDiskPersistentTotalOk returns a tuple with the ParachuteDiskPersistentTotal field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskPersistentTotalOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskPersistentTotal, true
+func (o *GetMetricsResponse) GetParachuteDiskPersistentTotalOk() (ret GetMetricsResponseGetParachuteDiskPersistentTotalRetType, ok bool) {
+	return getGetMetricsResponseGetParachuteDiskPersistentTotalAttributeTypeOk(o.ParachuteDiskPersistentTotal)
 }
 
 // SetParachuteDiskPersistentTotal sets field value
-func (o *GetMetricsResponse) SetParachuteDiskPersistentTotal(v *int64) {
-	o.ParachuteDiskPersistentTotal = v
+func (o *GetMetricsResponse) SetParachuteDiskPersistentTotal(v GetMetricsResponseGetParachuteDiskPersistentTotalRetType) {
+	setGetMetricsResponseGetParachuteDiskPersistentTotalAttributeType(&o.ParachuteDiskPersistentTotal, v)
 }
 
 // GetParachuteDiskPersistentUsed returns the ParachuteDiskPersistentUsed field value
-func (o *GetMetricsResponse) GetParachuteDiskPersistentUsed() *int64 {
-	if o == nil || IsNil(o.ParachuteDiskPersistentUsed) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ParachuteDiskPersistentUsed
+func (o *GetMetricsResponse) GetParachuteDiskPersistentUsed() (ret GetMetricsResponseGetParachuteDiskPersistentUsedRetType) {
+	ret, _ = o.GetParachuteDiskPersistentUsedOk()
+	return ret
 }
 
 // GetParachuteDiskPersistentUsedOk returns a tuple with the ParachuteDiskPersistentUsed field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskPersistentUsed, true
+func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedOk() (ret GetMetricsResponseGetParachuteDiskPersistentUsedRetType, ok bool) {
+	return getGetMetricsResponseGetParachuteDiskPersistentUsedAttributeTypeOk(o.ParachuteDiskPersistentUsed)
 }
 
 // SetParachuteDiskPersistentUsed sets field value
-func (o *GetMetricsResponse) SetParachuteDiskPersistentUsed(v *int64) {
-	o.ParachuteDiskPersistentUsed = v
+func (o *GetMetricsResponse) SetParachuteDiskPersistentUsed(v GetMetricsResponseGetParachuteDiskPersistentUsedRetType) {
+	setGetMetricsResponseGetParachuteDiskPersistentUsedAttributeType(&o.ParachuteDiskPersistentUsed, v)
 }
 
 // GetParachuteDiskPersistentUsedPercent returns the ParachuteDiskPersistentUsedPercent field value
-func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedPercent() *int64 {
-	if o == nil || IsNil(o.ParachuteDiskPersistentUsedPercent) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ParachuteDiskPersistentUsedPercent
+func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedPercent() (ret GetMetricsResponseGetParachuteDiskPersistentUsedPercentRetType) {
+	ret, _ = o.GetParachuteDiskPersistentUsedPercentOk()
+	return ret
 }
 
 // GetParachuteDiskPersistentUsedPercentOk returns a tuple with the ParachuteDiskPersistentUsedPercent field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedPercentOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskPersistentUsedPercent, true
+func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedPercentOk() (ret GetMetricsResponseGetParachuteDiskPersistentUsedPercentRetType, ok bool) {
+	return getGetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeTypeOk(o.ParachuteDiskPersistentUsedPercent)
 }
 
 // SetParachuteDiskPersistentUsedPercent sets field value
-func (o *GetMetricsResponse) SetParachuteDiskPersistentUsedPercent(v *int64) {
-	o.ParachuteDiskPersistentUsedPercent = v
+func (o *GetMetricsResponse) SetParachuteDiskPersistentUsedPercent(v GetMetricsResponseGetParachuteDiskPersistentUsedPercentRetType) {
+	setGetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeType(&o.ParachuteDiskPersistentUsedPercent, v)
 }
 
 // GetParachuteDiskPersistentUsedThreshold returns the ParachuteDiskPersistentUsedThreshold field value
-func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedThreshold() *int64 {
-	if o == nil || IsNil(o.ParachuteDiskPersistentUsedThreshold) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ParachuteDiskPersistentUsedThreshold
+func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedThreshold() (ret GetMetricsResponseGetParachuteDiskPersistentUsedThresholdRetType) {
+	ret, _ = o.GetParachuteDiskPersistentUsedThresholdOk()
+	return ret
 }
 
 // GetParachuteDiskPersistentUsedThresholdOk returns a tuple with the ParachuteDiskPersistentUsedThreshold field value
 // and a boolean to check if the value has been set.
-func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedThresholdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ParachuteDiskPersistentUsedThreshold, true
+func (o *GetMetricsResponse) GetParachuteDiskPersistentUsedThresholdOk() (ret GetMetricsResponseGetParachuteDiskPersistentUsedThresholdRetType, ok bool) {
+	return getGetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeTypeOk(o.ParachuteDiskPersistentUsedThreshold)
 }
 
 // SetParachuteDiskPersistentUsedThreshold sets field value
-func (o *GetMetricsResponse) SetParachuteDiskPersistentUsedThreshold(v *int64) {
-	o.ParachuteDiskPersistentUsedThreshold = v
+func (o *GetMetricsResponse) SetParachuteDiskPersistentUsedThreshold(v GetMetricsResponseGetParachuteDiskPersistentUsedThresholdRetType) {
+	setGetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType(&o.ParachuteDiskPersistentUsedThreshold, v)
 }
 
 func (o GetMetricsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CpuIdleTime) {
-		toSerialize["cpuIdleTime"] = o.CpuIdleTime
+	if val, ok := getGetMetricsResponseGetCpuIdleTimeAttributeTypeOk(o.CpuIdleTime); ok {
+		toSerialize["CpuIdleTime"] = val
 	}
-	toSerialize["cpuLoadPercent"] = o.CpuLoadPercent
-	if !IsNil(o.CpuSystemTime) {
-		toSerialize["cpuSystemTime"] = o.CpuSystemTime
+	if val, ok := getGetMetricsResponseGetCpuLoadPercentAttributeTypeOk(o.CpuLoadPercent); ok {
+		toSerialize["CpuLoadPercent"] = val
 	}
-	if !IsNil(o.CpuUserTime) {
-		toSerialize["cpuUserTime"] = o.CpuUserTime
+	if val, ok := getGetMetricsResponseGetCpuSystemTimeAttributeTypeOk(o.CpuSystemTime); ok {
+		toSerialize["CpuSystemTime"] = val
 	}
-	toSerialize["diskEphemeralTotal"] = o.DiskEphemeralTotal
-	toSerialize["diskEphemeralUsed"] = o.DiskEphemeralUsed
-	toSerialize["diskPersistentTotal"] = o.DiskPersistentTotal
-	toSerialize["diskPersistentUsed"] = o.DiskPersistentUsed
-	toSerialize["load1"] = o.Load1
-	toSerialize["load15"] = o.Load15
-	toSerialize["load5"] = o.Load5
-	toSerialize["memoryTotal"] = o.MemoryTotal
-	toSerialize["memoryUsed"] = o.MemoryUsed
-	toSerialize["opensearchDashboardURL"] = o.OpensearchDashboardURL
-	toSerialize["parachuteDiskEphemeralActivated"] = o.ParachuteDiskEphemeralActivated
-	toSerialize["parachuteDiskEphemeralTotal"] = o.ParachuteDiskEphemeralTotal
-	toSerialize["parachuteDiskEphemeralUsed"] = o.ParachuteDiskEphemeralUsed
-	toSerialize["parachuteDiskEphemeralUsedPercent"] = o.ParachuteDiskEphemeralUsedPercent
-	toSerialize["parachuteDiskEphemeralUsedThreshold"] = o.ParachuteDiskEphemeralUsedThreshold
-	toSerialize["parachuteDiskPersistentActivated"] = o.ParachuteDiskPersistentActivated
-	toSerialize["parachuteDiskPersistentTotal"] = o.ParachuteDiskPersistentTotal
-	toSerialize["parachuteDiskPersistentUsed"] = o.ParachuteDiskPersistentUsed
-	toSerialize["parachuteDiskPersistentUsedPercent"] = o.ParachuteDiskPersistentUsedPercent
-	toSerialize["parachuteDiskPersistentUsedThreshold"] = o.ParachuteDiskPersistentUsedThreshold
+	if val, ok := getGetMetricsResponseGetCpuUserTimeAttributeTypeOk(o.CpuUserTime); ok {
+		toSerialize["CpuUserTime"] = val
+	}
+	if val, ok := getGetMetricsResponseGetDiskEphemeralTotalAttributeTypeOk(o.DiskEphemeralTotal); ok {
+		toSerialize["DiskEphemeralTotal"] = val
+	}
+	if val, ok := getGetMetricsResponseGetDiskEphemeralUsedAttributeTypeOk(o.DiskEphemeralUsed); ok {
+		toSerialize["DiskEphemeralUsed"] = val
+	}
+	if val, ok := getGetMetricsResponseGetDiskPersistentTotalAttributeTypeOk(o.DiskPersistentTotal); ok {
+		toSerialize["DiskPersistentTotal"] = val
+	}
+	if val, ok := getGetMetricsResponseGetDiskPersistentUsedAttributeTypeOk(o.DiskPersistentUsed); ok {
+		toSerialize["DiskPersistentUsed"] = val
+	}
+	if val, ok := getGetMetricsResponseGetLoad1AttributeTypeOk(o.Load1); ok {
+		toSerialize["Load1"] = val
+	}
+	if val, ok := getGetMetricsResponseGetLoad15AttributeTypeOk(o.Load15); ok {
+		toSerialize["Load15"] = val
+	}
+	if val, ok := getGetMetricsResponseGetLoad5AttributeTypeOk(o.Load5); ok {
+		toSerialize["Load5"] = val
+	}
+	if val, ok := getGetMetricsResponseGetMemoryTotalAttributeTypeOk(o.MemoryTotal); ok {
+		toSerialize["MemoryTotal"] = val
+	}
+	if val, ok := getGetMetricsResponseGetMemoryUsedAttributeTypeOk(o.MemoryUsed); ok {
+		toSerialize["MemoryUsed"] = val
+	}
+	if val, ok := getGetMetricsResponseGetOpensearchDashboardURLAttributeTypeOk(o.OpensearchDashboardURL); ok {
+		toSerialize["OpensearchDashboardURL"] = val
+	}
+	if val, ok := getGetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeTypeOk(o.ParachuteDiskEphemeralActivated); ok {
+		toSerialize["ParachuteDiskEphemeralActivated"] = val
+	}
+	if val, ok := getGetMetricsResponseGetParachuteDiskEphemeralTotalAttributeTypeOk(o.ParachuteDiskEphemeralTotal); ok {
+		toSerialize["ParachuteDiskEphemeralTotal"] = val
+	}
+	if val, ok := getGetMetricsResponseGetParachuteDiskEphemeralUsedAttributeTypeOk(o.ParachuteDiskEphemeralUsed); ok {
+		toSerialize["ParachuteDiskEphemeralUsed"] = val
+	}
+	if val, ok := getGetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeTypeOk(o.ParachuteDiskEphemeralUsedPercent); ok {
+		toSerialize["ParachuteDiskEphemeralUsedPercent"] = val
+	}
+	if val, ok := getGetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeTypeOk(o.ParachuteDiskEphemeralUsedThreshold); ok {
+		toSerialize["ParachuteDiskEphemeralUsedThreshold"] = val
+	}
+	if val, ok := getGetMetricsResponsegetParachuteDiskPersistentActivatedAttributeTypeOk(o.ParachuteDiskPersistentActivated); ok {
+		toSerialize["ParachuteDiskPersistentActivated"] = val
+	}
+	if val, ok := getGetMetricsResponseGetParachuteDiskPersistentTotalAttributeTypeOk(o.ParachuteDiskPersistentTotal); ok {
+		toSerialize["ParachuteDiskPersistentTotal"] = val
+	}
+	if val, ok := getGetMetricsResponseGetParachuteDiskPersistentUsedAttributeTypeOk(o.ParachuteDiskPersistentUsed); ok {
+		toSerialize["ParachuteDiskPersistentUsed"] = val
+	}
+	if val, ok := getGetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeTypeOk(o.ParachuteDiskPersistentUsedPercent); ok {
+		toSerialize["ParachuteDiskPersistentUsedPercent"] = val
+	}
+	if val, ok := getGetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeTypeOk(o.ParachuteDiskPersistentUsedThreshold); ok {
+		toSerialize["ParachuteDiskPersistentUsedThreshold"] = val
+	}
 	return toSerialize, nil
 }
 
