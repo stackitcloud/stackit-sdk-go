@@ -55,15 +55,19 @@
 
 
 ## Release (2025-03-14)
-- `certificates`: [v1.0.0](services/certificates/CHANGELOG.md##v100-2025-03-14)
+- `certificates`: [v1.0.0](services/certificates/CHANGELOG.md#v100-2025-03-14)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `postgresflex`: [v1.0.1](services/postgresflex/CHANGELOG.md#v101-2025-03-12)
   - **Bugfix:** `DeleteUserWaitHandler` is now also using the region as parameter.
 - `modelserving`: [v0.2.0](services/modelserving/CHANGELOG.md#v020-2025-03-14)
   - **New**: STACKIT Model Serving module wait handler added.
+- `loadbalancer`: [v1.0.0](services/loadbalancer/CHANGELOG.md#v100-2025-03-14)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+  - **Breaking Change:** Remove deprecated API methods `DisableService` and `EnableService`. They are no longer required because the service automatically enables and disable.
+  - **Breaking Change:** Remove WaitHandler `EnableServiceWaitHandler` for `EnableService`.
+
 
 ## Release (2025-03-05)
-
 - `core`: [v0.16.1](core/CHANGELOG.md#v0161-2025-02-25)
   - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.
 - `stackitmarketplace`: [v0.3.0](services/stackitmarketplace/CHANGELOG.md#v030-2025-02-25)
