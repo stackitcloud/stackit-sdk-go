@@ -1,3 +1,6 @@
+## v0.18.1 (2025-03-19)
+- **Internal:** Backwards compatible change to generated code
+
 ## v0.18.0 (2025-02-21)
 - **New:** Minimal go version is now Go 1.21
 
