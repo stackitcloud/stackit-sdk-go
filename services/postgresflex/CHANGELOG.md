@@ -1,4 +1,4 @@
-## v1.0.2 (2025-03-18)
+## v1.0.2 (2025-03-19)
 - **Internal:** Backwards compatible change to generated code
 
 ## v1.0.1 (2025-03-12)

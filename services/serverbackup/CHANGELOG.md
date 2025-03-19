@@ -1,4 +1,4 @@
-## v1.0.0 (2025-03-18)
+## v1.0.0 (2025-03-19)
 - **Breaking Change:** The region is no longer specified within the client configuration. 
 
 ## v0.6.0 (2025-02-21)
