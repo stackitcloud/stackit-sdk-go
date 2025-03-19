@@ -1,5 +1,5 @@
 ## Release (2025-XX-YY)
-- `alb`: [v0.1.1](services/alb/CHANGELOG.md#v011-2025-03-20)
+- `alb`: [v0.2.0](services/alb/CHANGELOG.md#v011-2025-03-20)
   - **New:** API for application load balancer
 - `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-03-19)
   - **New:** Introduce new API for content delivery
