@@ -1,5 +1,7 @@
 ## Release (2025-XX-YY)
-- `alb`: [v0.2.0](services/alb/CHANGELOG.md#v011-2025-03-20)
+- `core`: [0.17.0](core/CHANGELOG.md#v0170-2025-03-20)
+  - **New:** Helper functions for generic openapi error codes
+- `alb`: [v0.2.0](services/alb/CHANGELOG.md#v020-2025-03-20)
   - **New:** API for application load balancer
 - `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-03-19)
   - **New:** Introduce new API for content delivery
