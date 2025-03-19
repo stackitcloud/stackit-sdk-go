@@ -116,13 +116,6 @@ func TestCreateOrUpdateLoadbalancerWaitHandler(t *testing.T) {
 		})
 	}
 }
-func httpStatus(code int, status string) *oapierror.GenericOpenAPIError {
-	return &oapierror.GenericOpenAPIError{
-		StatusCode:   code,
-		ErrorMessage: status,
-		Model:        map[string]any{},
-	}
-}
 
 func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 	tests := []struct {
@@ -133,7 +126,7 @@ func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 		{
 			"Delete with '404' succeeded immediately",
 			[]response{
-				{nil, httpStatus(http.StatusNotFound, "not found")},
+				{nil, oapierror.NewError(http.StatusNotFound, "not found")},
 			},
 			false,
 		},
@@ -143,14 +136,14 @@ func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{nil, httpStatus(http.StatusNotFound, "not found")},
+				{nil, oapierror.NewError(http.StatusNotFound, "not found")},
 			},
 			false,
 		},
 		{
 			"Delete with 'gone' succeeded immediately",
 			[]response{
-				{nil, httpStatus(http.StatusGone, "gone")},
+				{nil, oapierror.NewError(http.StatusGone, "gone")},
 			},
 			false,
 		},
@@ -160,7 +153,7 @@ func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{nil, httpStatus(http.StatusGone, "not found")},
+				{nil, oapierror.NewError(http.StatusGone, "not found")},
 			},
 			false,
 		},
@@ -170,7 +163,7 @@ func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(string(StatusError))}, httpStatus(http.StatusInternalServerError, "kapow")},
+				{&alb.LoadBalancer{Status: utils.Ptr(string(StatusError))}, oapierror.NewError(http.StatusInternalServerError, "kapow")},
 			},
 			true,
 		},
@@ -180,7 +173,7 @@ func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
 				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(string(StatusError))}, httpStatus(http.StatusOK, "ok")},
+				{&alb.LoadBalancer{Status: utils.Ptr(string(StatusError))}, oapierror.NewError(http.StatusOK, "ok")},
 			},
 			true,
 		},
