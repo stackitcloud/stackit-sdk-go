@@ -41,6 +41,9 @@
   - **Internal:** Backwards compatible change to generated code
 - `secretsmanager`: [v0.11.1](services/secretsmanager/CHANGELOG.md#v0111-2025-03-19)
   - **Internal:** Backwards compatible change to generated code
+- `secretsmanager`: [v0.11.2](services/secretsmanager/CHANGELOG.md#v0112-2025-03-20)
+  - **Improvement:** Error handling
+  - **Feature:** Add description to `UpdateUserPayload`
 - `serviceaccount`: [v0.6.1](services/serviceaccount/CHANGELOG.md#v061-2025-03-19)
   - **Internal:** Backwards compatible change to generated code
 - `serviceenablement`: [v1.0.1](services/serviceenablement/CHANGELOG.md#v101-2025-03-19)

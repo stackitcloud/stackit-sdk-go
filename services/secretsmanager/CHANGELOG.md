@@ -1,3 +1,7 @@
+## v0.11.2 (2025-03-20)
+- **Improvement:** Error handling
+- **Feature:** Add description to `UpdateUserPayload`
+
 ## v0.11.1 (2025-03-19)
 - **Internal:** Backwards compatible change to generated code
 
