@@ -3,7 +3,8 @@
   - **New:** API for application load balancer
 - `cdn`: [0.1.0](services/cdn/CHANGELOG.md#v010-2025-xx-yy)
   - **New:** Introduce new API for content delivery
-
+- `core`: [v0.16.2](core/CHANGELOG.md#v0162-2025-03-21)
+  - **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
 
 ## Release (2025-03-14)
 - `certificates`: [v1.0.0](services/certificates/CHANGELOG.md#v100-2025-03-14)
