@@ -17,9 +17,29 @@ import (
 // checks if the DomainExtensions type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DomainExtensions{}
 
+/*
+	types and functions for observabilityExtension
+*/
+
+// isModel
+type DomainExtensionsGetObservabilityExtensionAttributeType = *DomainObservabilityExtension
+type DomainExtensionsGetObservabilityExtensionArgType = DomainObservabilityExtension
+type DomainExtensionsGetObservabilityExtensionRetType = DomainObservabilityExtension
+
+func getDomainExtensionsGetObservabilityExtensionAttributeTypeOk(arg DomainExtensionsGetObservabilityExtensionAttributeType) (ret DomainExtensionsGetObservabilityExtensionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDomainExtensionsGetObservabilityExtensionAttributeType(arg *DomainExtensionsGetObservabilityExtensionAttributeType, val DomainExtensionsGetObservabilityExtensionRetType) {
+	*arg = &val
+}
+
 // DomainExtensions struct for DomainExtensions
 type DomainExtensions struct {
-	ObservabilityExtension *DomainObservabilityExtension `json:"observabilityExtension,omitempty"`
+	ObservabilityExtension DomainExtensionsGetObservabilityExtensionAttributeType `json:"observabilityExtension,omitempty"`
 }
 
 // NewDomainExtensions instantiates a new DomainExtensions object
@@ -40,41 +60,32 @@ func NewDomainExtensionsWithDefaults() *DomainExtensions {
 }
 
 // GetObservabilityExtension returns the ObservabilityExtension field value if set, zero value otherwise.
-func (o *DomainExtensions) GetObservabilityExtension() *DomainObservabilityExtension {
-	if o == nil || IsNil(o.ObservabilityExtension) {
-		var ret *DomainObservabilityExtension
-		return ret
-	}
-	return o.ObservabilityExtension
+func (o *DomainExtensions) GetObservabilityExtension() (res DomainExtensionsGetObservabilityExtensionRetType) {
+	res, _ = o.GetObservabilityExtensionOk()
+	return
 }
 
 // GetObservabilityExtensionOk returns a tuple with the ObservabilityExtension field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainExtensions) GetObservabilityExtensionOk() (*DomainObservabilityExtension, bool) {
-	if o == nil || IsNil(o.ObservabilityExtension) {
-		return nil, false
-	}
-	return o.ObservabilityExtension, true
+func (o *DomainExtensions) GetObservabilityExtensionOk() (ret DomainExtensionsGetObservabilityExtensionRetType, ok bool) {
+	return getDomainExtensionsGetObservabilityExtensionAttributeTypeOk(o.ObservabilityExtension)
 }
 
 // HasObservabilityExtension returns a boolean if a field has been set.
 func (o *DomainExtensions) HasObservabilityExtension() bool {
-	if o != nil && !IsNil(o.ObservabilityExtension) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetObservabilityExtensionOk()
+	return ok
 }
 
 // SetObservabilityExtension gets a reference to the given DomainObservabilityExtension and assigns it to the ObservabilityExtension field.
-func (o *DomainExtensions) SetObservabilityExtension(v *DomainObservabilityExtension) {
-	o.ObservabilityExtension = v
+func (o *DomainExtensions) SetObservabilityExtension(v DomainExtensionsGetObservabilityExtensionRetType) {
+	setDomainExtensionsGetObservabilityExtensionAttributeType(&o.ObservabilityExtension, v)
 }
 
 func (o DomainExtensions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ObservabilityExtension) {
-		toSerialize["observabilityExtension"] = o.ObservabilityExtension
+	if val, ok := getDomainExtensionsGetObservabilityExtensionAttributeTypeOk(o.ObservabilityExtension); ok {
+		toSerialize["ObservabilityExtension"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,15 +17,155 @@ import (
 // checks if the InhibitRules type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InhibitRules{}
 
+/*
+	types and functions for equal
+*/
+
+// isArray
+type InhibitRulesGetEqualAttributeType = *[]string
+type InhibitRulesGetEqualArgType = []string
+type InhibitRulesGetEqualRetType = []string
+
+func getInhibitRulesGetEqualAttributeTypeOk(arg InhibitRulesGetEqualAttributeType) (ret InhibitRulesGetEqualRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInhibitRulesGetEqualAttributeType(arg *InhibitRulesGetEqualAttributeType, val InhibitRulesGetEqualRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for sourceMatch
+*/
+
+// isContainer
+type InhibitRulesGetSourceMatchAttributeType = *map[string]string
+type InhibitRulesGetSourceMatchArgType = map[string]string
+type InhibitRulesGetSourceMatchRetType = map[string]string
+
+func getInhibitRulesGetSourceMatchAttributeTypeOk(arg InhibitRulesGetSourceMatchAttributeType) (ret InhibitRulesGetSourceMatchRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInhibitRulesGetSourceMatchAttributeType(arg *InhibitRulesGetSourceMatchAttributeType, val InhibitRulesGetSourceMatchRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for sourceMatchRe
+*/
+
+// isContainer
+type InhibitRulesGetSourceMatchReAttributeType = *map[string]string
+type InhibitRulesGetSourceMatchReArgType = map[string]string
+type InhibitRulesGetSourceMatchReRetType = map[string]string
+
+func getInhibitRulesGetSourceMatchReAttributeTypeOk(arg InhibitRulesGetSourceMatchReAttributeType) (ret InhibitRulesGetSourceMatchReRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInhibitRulesGetSourceMatchReAttributeType(arg *InhibitRulesGetSourceMatchReAttributeType, val InhibitRulesGetSourceMatchReRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for sourceMatchers
+*/
+
+// isArray
+type InhibitRulesGetSourceMatchersAttributeType = *[]string
+type InhibitRulesGetSourceMatchersArgType = []string
+type InhibitRulesGetSourceMatchersRetType = []string
+
+func getInhibitRulesGetSourceMatchersAttributeTypeOk(arg InhibitRulesGetSourceMatchersAttributeType) (ret InhibitRulesGetSourceMatchersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInhibitRulesGetSourceMatchersAttributeType(arg *InhibitRulesGetSourceMatchersAttributeType, val InhibitRulesGetSourceMatchersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targetMatch
+*/
+
+// isContainer
+type InhibitRulesGetTargetMatchAttributeType = *map[string]string
+type InhibitRulesGetTargetMatchArgType = map[string]string
+type InhibitRulesGetTargetMatchRetType = map[string]string
+
+func getInhibitRulesGetTargetMatchAttributeTypeOk(arg InhibitRulesGetTargetMatchAttributeType) (ret InhibitRulesGetTargetMatchRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInhibitRulesGetTargetMatchAttributeType(arg *InhibitRulesGetTargetMatchAttributeType, val InhibitRulesGetTargetMatchRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targetMatchRe
+*/
+
+// isContainer
+type InhibitRulesGetTargetMatchReAttributeType = *map[string]string
+type InhibitRulesGetTargetMatchReArgType = map[string]string
+type InhibitRulesGetTargetMatchReRetType = map[string]string
+
+func getInhibitRulesGetTargetMatchReAttributeTypeOk(arg InhibitRulesGetTargetMatchReAttributeType) (ret InhibitRulesGetTargetMatchReRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInhibitRulesGetTargetMatchReAttributeType(arg *InhibitRulesGetTargetMatchReAttributeType, val InhibitRulesGetTargetMatchReRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targetMatchers
+*/
+
+// isArray
+type InhibitRulesGetTargetMatchersAttributeType = *[]string
+type InhibitRulesGetTargetMatchersArgType = []string
+type InhibitRulesGetTargetMatchersRetType = []string
+
+func getInhibitRulesGetTargetMatchersAttributeTypeOk(arg InhibitRulesGetTargetMatchersAttributeType) (ret InhibitRulesGetTargetMatchersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInhibitRulesGetTargetMatchersAttributeType(arg *InhibitRulesGetTargetMatchersAttributeType, val InhibitRulesGetTargetMatchersRetType) {
+	*arg = &val
+}
+
 // InhibitRules struct for InhibitRules
 type InhibitRules struct {
-	Equal          *[]string          `json:"equal,omitempty"`
-	SourceMatch    *map[string]string `json:"sourceMatch,omitempty"`
-	SourceMatchRe  *map[string]string `json:"sourceMatchRe,omitempty"`
-	SourceMatchers *[]string          `json:"sourceMatchers,omitempty"`
-	TargetMatch    *map[string]string `json:"targetMatch,omitempty"`
-	TargetMatchRe  *map[string]string `json:"targetMatchRe,omitempty"`
-	TargetMatchers *[]string          `json:"targetMatchers,omitempty"`
+	Equal          InhibitRulesGetEqualAttributeType          `json:"equal,omitempty"`
+	SourceMatch    InhibitRulesGetSourceMatchAttributeType    `json:"sourceMatch,omitempty"`
+	SourceMatchRe  InhibitRulesGetSourceMatchReAttributeType  `json:"sourceMatchRe,omitempty"`
+	SourceMatchers InhibitRulesGetSourceMatchersAttributeType `json:"sourceMatchers,omitempty"`
+	TargetMatch    InhibitRulesGetTargetMatchAttributeType    `json:"targetMatch,omitempty"`
+	TargetMatchRe  InhibitRulesGetTargetMatchReAttributeType  `json:"targetMatchRe,omitempty"`
+	TargetMatchers InhibitRulesGetTargetMatchersAttributeType `json:"targetMatchers,omitempty"`
 }
 
 // NewInhibitRules instantiates a new InhibitRules object
@@ -46,251 +186,188 @@ func NewInhibitRulesWithDefaults() *InhibitRules {
 }
 
 // GetEqual returns the Equal field value if set, zero value otherwise.
-func (o *InhibitRules) GetEqual() *[]string {
-	if o == nil || IsNil(o.Equal) {
-		var ret *[]string
-		return ret
-	}
-	return o.Equal
+func (o *InhibitRules) GetEqual() (res InhibitRulesGetEqualRetType) {
+	res, _ = o.GetEqualOk()
+	return
 }
 
 // GetEqualOk returns a tuple with the Equal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InhibitRules) GetEqualOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Equal) {
-		return nil, false
-	}
-	return o.Equal, true
+func (o *InhibitRules) GetEqualOk() (ret InhibitRulesGetEqualRetType, ok bool) {
+	return getInhibitRulesGetEqualAttributeTypeOk(o.Equal)
 }
 
 // HasEqual returns a boolean if a field has been set.
 func (o *InhibitRules) HasEqual() bool {
-	if o != nil && !IsNil(o.Equal) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEqualOk()
+	return ok
 }
 
 // SetEqual gets a reference to the given []string and assigns it to the Equal field.
-func (o *InhibitRules) SetEqual(v *[]string) {
-	o.Equal = v
+func (o *InhibitRules) SetEqual(v InhibitRulesGetEqualRetType) {
+	setInhibitRulesGetEqualAttributeType(&o.Equal, v)
 }
 
 // GetSourceMatch returns the SourceMatch field value if set, zero value otherwise.
-func (o *InhibitRules) GetSourceMatch() *map[string]string {
-	if o == nil || IsNil(o.SourceMatch) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.SourceMatch
+func (o *InhibitRules) GetSourceMatch() (res InhibitRulesGetSourceMatchRetType) {
+	res, _ = o.GetSourceMatchOk()
+	return
 }
 
 // GetSourceMatchOk returns a tuple with the SourceMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InhibitRules) GetSourceMatchOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.SourceMatch) {
-		return nil, false
-	}
-	return o.SourceMatch, true
+func (o *InhibitRules) GetSourceMatchOk() (ret InhibitRulesGetSourceMatchRetType, ok bool) {
+	return getInhibitRulesGetSourceMatchAttributeTypeOk(o.SourceMatch)
 }
 
 // HasSourceMatch returns a boolean if a field has been set.
 func (o *InhibitRules) HasSourceMatch() bool {
-	if o != nil && !IsNil(o.SourceMatch) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSourceMatchOk()
+	return ok
 }
 
 // SetSourceMatch gets a reference to the given map[string]string and assigns it to the SourceMatch field.
-func (o *InhibitRules) SetSourceMatch(v *map[string]string) {
-	o.SourceMatch = v
+func (o *InhibitRules) SetSourceMatch(v InhibitRulesGetSourceMatchRetType) {
+	setInhibitRulesGetSourceMatchAttributeType(&o.SourceMatch, v)
 }
 
 // GetSourceMatchRe returns the SourceMatchRe field value if set, zero value otherwise.
-func (o *InhibitRules) GetSourceMatchRe() *map[string]string {
-	if o == nil || IsNil(o.SourceMatchRe) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.SourceMatchRe
+func (o *InhibitRules) GetSourceMatchRe() (res InhibitRulesGetSourceMatchReRetType) {
+	res, _ = o.GetSourceMatchReOk()
+	return
 }
 
 // GetSourceMatchReOk returns a tuple with the SourceMatchRe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InhibitRules) GetSourceMatchReOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.SourceMatchRe) {
-		return nil, false
-	}
-	return o.SourceMatchRe, true
+func (o *InhibitRules) GetSourceMatchReOk() (ret InhibitRulesGetSourceMatchReRetType, ok bool) {
+	return getInhibitRulesGetSourceMatchReAttributeTypeOk(o.SourceMatchRe)
 }
 
 // HasSourceMatchRe returns a boolean if a field has been set.
 func (o *InhibitRules) HasSourceMatchRe() bool {
-	if o != nil && !IsNil(o.SourceMatchRe) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSourceMatchReOk()
+	return ok
 }
 
 // SetSourceMatchRe gets a reference to the given map[string]string and assigns it to the SourceMatchRe field.
-func (o *InhibitRules) SetSourceMatchRe(v *map[string]string) {
-	o.SourceMatchRe = v
+func (o *InhibitRules) SetSourceMatchRe(v InhibitRulesGetSourceMatchReRetType) {
+	setInhibitRulesGetSourceMatchReAttributeType(&o.SourceMatchRe, v)
 }
 
 // GetSourceMatchers returns the SourceMatchers field value if set, zero value otherwise.
-func (o *InhibitRules) GetSourceMatchers() *[]string {
-	if o == nil || IsNil(o.SourceMatchers) {
-		var ret *[]string
-		return ret
-	}
-	return o.SourceMatchers
+func (o *InhibitRules) GetSourceMatchers() (res InhibitRulesGetSourceMatchersRetType) {
+	res, _ = o.GetSourceMatchersOk()
+	return
 }
 
 // GetSourceMatchersOk returns a tuple with the SourceMatchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InhibitRules) GetSourceMatchersOk() (*[]string, bool) {
-	if o == nil || IsNil(o.SourceMatchers) {
-		return nil, false
-	}
-	return o.SourceMatchers, true
+func (o *InhibitRules) GetSourceMatchersOk() (ret InhibitRulesGetSourceMatchersRetType, ok bool) {
+	return getInhibitRulesGetSourceMatchersAttributeTypeOk(o.SourceMatchers)
 }
 
 // HasSourceMatchers returns a boolean if a field has been set.
 func (o *InhibitRules) HasSourceMatchers() bool {
-	if o != nil && !IsNil(o.SourceMatchers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSourceMatchersOk()
+	return ok
 }
 
 // SetSourceMatchers gets a reference to the given []string and assigns it to the SourceMatchers field.
-func (o *InhibitRules) SetSourceMatchers(v *[]string) {
-	o.SourceMatchers = v
+func (o *InhibitRules) SetSourceMatchers(v InhibitRulesGetSourceMatchersRetType) {
+	setInhibitRulesGetSourceMatchersAttributeType(&o.SourceMatchers, v)
 }
 
 // GetTargetMatch returns the TargetMatch field value if set, zero value otherwise.
-func (o *InhibitRules) GetTargetMatch() *map[string]string {
-	if o == nil || IsNil(o.TargetMatch) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.TargetMatch
+func (o *InhibitRules) GetTargetMatch() (res InhibitRulesGetTargetMatchRetType) {
+	res, _ = o.GetTargetMatchOk()
+	return
 }
 
 // GetTargetMatchOk returns a tuple with the TargetMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InhibitRules) GetTargetMatchOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.TargetMatch) {
-		return nil, false
-	}
-	return o.TargetMatch, true
+func (o *InhibitRules) GetTargetMatchOk() (ret InhibitRulesGetTargetMatchRetType, ok bool) {
+	return getInhibitRulesGetTargetMatchAttributeTypeOk(o.TargetMatch)
 }
 
 // HasTargetMatch returns a boolean if a field has been set.
 func (o *InhibitRules) HasTargetMatch() bool {
-	if o != nil && !IsNil(o.TargetMatch) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetMatchOk()
+	return ok
 }
 
 // SetTargetMatch gets a reference to the given map[string]string and assigns it to the TargetMatch field.
-func (o *InhibitRules) SetTargetMatch(v *map[string]string) {
-	o.TargetMatch = v
+func (o *InhibitRules) SetTargetMatch(v InhibitRulesGetTargetMatchRetType) {
+	setInhibitRulesGetTargetMatchAttributeType(&o.TargetMatch, v)
 }
 
 // GetTargetMatchRe returns the TargetMatchRe field value if set, zero value otherwise.
-func (o *InhibitRules) GetTargetMatchRe() *map[string]string {
-	if o == nil || IsNil(o.TargetMatchRe) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.TargetMatchRe
+func (o *InhibitRules) GetTargetMatchRe() (res InhibitRulesGetTargetMatchReRetType) {
+	res, _ = o.GetTargetMatchReOk()
+	return
 }
 
 // GetTargetMatchReOk returns a tuple with the TargetMatchRe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InhibitRules) GetTargetMatchReOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.TargetMatchRe) {
-		return nil, false
-	}
-	return o.TargetMatchRe, true
+func (o *InhibitRules) GetTargetMatchReOk() (ret InhibitRulesGetTargetMatchReRetType, ok bool) {
+	return getInhibitRulesGetTargetMatchReAttributeTypeOk(o.TargetMatchRe)
 }
 
 // HasTargetMatchRe returns a boolean if a field has been set.
 func (o *InhibitRules) HasTargetMatchRe() bool {
-	if o != nil && !IsNil(o.TargetMatchRe) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetMatchReOk()
+	return ok
 }
 
 // SetTargetMatchRe gets a reference to the given map[string]string and assigns it to the TargetMatchRe field.
-func (o *InhibitRules) SetTargetMatchRe(v *map[string]string) {
-	o.TargetMatchRe = v
+func (o *InhibitRules) SetTargetMatchRe(v InhibitRulesGetTargetMatchReRetType) {
+	setInhibitRulesGetTargetMatchReAttributeType(&o.TargetMatchRe, v)
 }
 
 // GetTargetMatchers returns the TargetMatchers field value if set, zero value otherwise.
-func (o *InhibitRules) GetTargetMatchers() *[]string {
-	if o == nil || IsNil(o.TargetMatchers) {
-		var ret *[]string
-		return ret
-	}
-	return o.TargetMatchers
+func (o *InhibitRules) GetTargetMatchers() (res InhibitRulesGetTargetMatchersRetType) {
+	res, _ = o.GetTargetMatchersOk()
+	return
 }
 
 // GetTargetMatchersOk returns a tuple with the TargetMatchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InhibitRules) GetTargetMatchersOk() (*[]string, bool) {
-	if o == nil || IsNil(o.TargetMatchers) {
-		return nil, false
-	}
-	return o.TargetMatchers, true
+func (o *InhibitRules) GetTargetMatchersOk() (ret InhibitRulesGetTargetMatchersRetType, ok bool) {
+	return getInhibitRulesGetTargetMatchersAttributeTypeOk(o.TargetMatchers)
 }
 
 // HasTargetMatchers returns a boolean if a field has been set.
 func (o *InhibitRules) HasTargetMatchers() bool {
-	if o != nil && !IsNil(o.TargetMatchers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetMatchersOk()
+	return ok
 }
 
 // SetTargetMatchers gets a reference to the given []string and assigns it to the TargetMatchers field.
-func (o *InhibitRules) SetTargetMatchers(v *[]string) {
-	o.TargetMatchers = v
+func (o *InhibitRules) SetTargetMatchers(v InhibitRulesGetTargetMatchersRetType) {
+	setInhibitRulesGetTargetMatchersAttributeType(&o.TargetMatchers, v)
 }
 
 func (o InhibitRules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Equal) {
-		toSerialize["equal"] = o.Equal
+	if val, ok := getInhibitRulesGetEqualAttributeTypeOk(o.Equal); ok {
+		toSerialize["Equal"] = val
 	}
-	if !IsNil(o.SourceMatch) {
-		toSerialize["sourceMatch"] = o.SourceMatch
+	if val, ok := getInhibitRulesGetSourceMatchAttributeTypeOk(o.SourceMatch); ok {
+		toSerialize["SourceMatch"] = val
 	}
-	if !IsNil(o.SourceMatchRe) {
-		toSerialize["sourceMatchRe"] = o.SourceMatchRe
+	if val, ok := getInhibitRulesGetSourceMatchReAttributeTypeOk(o.SourceMatchRe); ok {
+		toSerialize["SourceMatchRe"] = val
 	}
-	if !IsNil(o.SourceMatchers) {
-		toSerialize["sourceMatchers"] = o.SourceMatchers
+	if val, ok := getInhibitRulesGetSourceMatchersAttributeTypeOk(o.SourceMatchers); ok {
+		toSerialize["SourceMatchers"] = val
 	}
-	if !IsNil(o.TargetMatch) {
-		toSerialize["targetMatch"] = o.TargetMatch
+	if val, ok := getInhibitRulesGetTargetMatchAttributeTypeOk(o.TargetMatch); ok {
+		toSerialize["TargetMatch"] = val
 	}
-	if !IsNil(o.TargetMatchRe) {
-		toSerialize["targetMatchRe"] = o.TargetMatchRe
+	if val, ok := getInhibitRulesGetTargetMatchReAttributeTypeOk(o.TargetMatchRe); ok {
+		toSerialize["TargetMatchRe"] = val
 	}
-	if !IsNil(o.TargetMatchers) {
-		toSerialize["targetMatchers"] = o.TargetMatchers
+	if val, ok := getInhibitRulesGetTargetMatchersAttributeTypeOk(o.TargetMatchers); ok {
+		toSerialize["TargetMatchers"] = val
 	}
 	return toSerialize, nil
 }

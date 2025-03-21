@@ -17,14 +17,75 @@ import (
 // checks if the UpdateVirtualIPPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateVirtualIPPayload{}
 
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type UpdateVirtualIPPayloadGetLabelsAttributeType = *map[string]interface{}
+type UpdateVirtualIPPayloadGetLabelsArgType = map[string]interface{}
+type UpdateVirtualIPPayloadGetLabelsRetType = map[string]interface{}
+
+func getUpdateVirtualIPPayloadGetLabelsAttributeTypeOk(arg UpdateVirtualIPPayloadGetLabelsAttributeType) (ret UpdateVirtualIPPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateVirtualIPPayloadGetLabelsAttributeType(arg *UpdateVirtualIPPayloadGetLabelsAttributeType, val UpdateVirtualIPPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for members
+*/
+
+// isArray
+type UpdateVirtualIPPayloadGetMembersAttributeType = *[]string
+type UpdateVirtualIPPayloadGetMembersArgType = *[]string
+type UpdateVirtualIPPayloadGetMembersRetType = *[]string
+
+func getUpdateVirtualIPPayloadGetMembersAttributeTypeOk(arg UpdateVirtualIPPayloadGetMembersAttributeType) (ret UpdateVirtualIPPayloadGetMembersRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg, true
+}
+
+func setUpdateVirtualIPPayloadGetMembersAttributeType(arg *UpdateVirtualIPPayloadGetMembersAttributeType, val UpdateVirtualIPPayloadGetMembersRetType) {
+	*arg = val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type UpdateVirtualIPPayloadGetNameAttributeType = *string
+
+func getUpdateVirtualIPPayloadGetNameAttributeTypeOk(arg UpdateVirtualIPPayloadGetNameAttributeType) (ret UpdateVirtualIPPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateVirtualIPPayloadGetNameAttributeType(arg *UpdateVirtualIPPayloadGetNameAttributeType, val UpdateVirtualIPPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type UpdateVirtualIPPayloadGetNameArgType = string
+type UpdateVirtualIPPayloadGetNameRetType = string
+
 // UpdateVirtualIPPayload Object that represents a virtual IP update request body.
 type UpdateVirtualIPPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels UpdateVirtualIPPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// A list of UUIDs.
-	Members *[]string `json:"members,omitempty"`
+	Members UpdateVirtualIPPayloadGetMembersAttributeType `json:"members,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty"`
+	Name UpdateVirtualIPPayloadGetNameAttributeType `json:"name,omitempty"`
 }
 
 // NewUpdateVirtualIPPayload instantiates a new UpdateVirtualIPPayload object
@@ -45,112 +106,85 @@ func NewUpdateVirtualIPPayloadWithDefaults() *UpdateVirtualIPPayload {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateVirtualIPPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *UpdateVirtualIPPayload) GetLabels() (res UpdateVirtualIPPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVirtualIPPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *UpdateVirtualIPPayload) GetLabelsOk() (ret UpdateVirtualIPPayloadGetLabelsRetType, ok bool) {
+	return getUpdateVirtualIPPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *UpdateVirtualIPPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *UpdateVirtualIPPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *UpdateVirtualIPPayload) SetLabels(v UpdateVirtualIPPayloadGetLabelsRetType) {
+	setUpdateVirtualIPPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateVirtualIPPayload) GetMembers() *[]string {
-	if o == nil || IsNil(o.Members) {
-		var ret *[]string
-		return ret
-	}
-	return o.Members
+func (o *UpdateVirtualIPPayload) GetMembers() (res UpdateVirtualIPPayloadGetMembersRetType) {
+	res, _ = o.GetMembersOk()
+	return
 }
 
 // GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateVirtualIPPayload) GetMembersOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Members) {
-		return nil, false
-	}
-	return o.Members, true
+func (o *UpdateVirtualIPPayload) GetMembersOk() (ret UpdateVirtualIPPayloadGetMembersRetType, ok bool) {
+	return getUpdateVirtualIPPayloadGetMembersAttributeTypeOk(o.Members)
 }
 
 // HasMembers returns a boolean if a field has been set.
 func (o *UpdateVirtualIPPayload) HasMembers() bool {
-	if o != nil && !IsNil(o.Members) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMembersOk()
+	return ok
 }
 
 // SetMembers gets a reference to the given []string and assigns it to the Members field.
-func (o *UpdateVirtualIPPayload) SetMembers(v *[]string) {
-	o.Members = v
+func (o *UpdateVirtualIPPayload) SetMembers(v UpdateVirtualIPPayloadGetMembersRetType) {
+	setUpdateVirtualIPPayloadGetMembersAttributeType(&o.Members, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateVirtualIPPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *UpdateVirtualIPPayload) GetName() (res UpdateVirtualIPPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVirtualIPPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *UpdateVirtualIPPayload) GetNameOk() (ret UpdateVirtualIPPayloadGetNameRetType, ok bool) {
+	return getUpdateVirtualIPPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateVirtualIPPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateVirtualIPPayload) SetName(v *string) {
-	o.Name = v
+func (o *UpdateVirtualIPPayload) SetName(v UpdateVirtualIPPayloadGetNameRetType) {
+	setUpdateVirtualIPPayloadGetNameAttributeType(&o.Name, v)
 }
 
 func (o UpdateVirtualIPPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getUpdateVirtualIPPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if o.Members != nil {
-		toSerialize["members"] = o.Members
+	if val, ok := getUpdateVirtualIPPayloadGetMembersAttributeTypeOk(o.Members); ok {
+		toSerialize["Members"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getUpdateVirtualIPPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }

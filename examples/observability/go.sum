@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.16.0 h1:9caGZwGLZDyBBe6ojk9VR4B2m3/0H5It6znBz76sH1w=
 github.com/stackitcloud/stackit-sdk-go/core v0.16.0/go.mod h1:LRheSoXTFRHWAyA8Q9skWtWBp3ZZ+bFAKiKuf4lTDkE=
-github.com/stackitcloud/stackit-sdk-go/services/observability v0.3.0 h1:Hn4BwKCzzmUdIFCU74OD9KgDA9OgmzRJzGMGXjPCWkQ=
-github.com/stackitcloud/stackit-sdk-go/services/observability v0.3.0/go.mod h1:PxfwA6YFtxwOajB4iTp1Eq7G02qUC3HdQPJvHGjQ1hk=
+github.com/stackitcloud/stackit-sdk-go/services/observability v0.3.1 h1:V6vvH++exqeqzD7TtzLc86ZRFrbcmxlaQqBJewiUXrE=
+github.com/stackitcloud/stackit-sdk-go/services/observability v0.3.1/go.mod h1:/GFUX/OiR2/SsWh3Vsu7UnY6QLJzsbHwrcxiRBxmYOA=

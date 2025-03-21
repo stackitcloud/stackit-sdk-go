@@ -17,13 +17,54 @@ import (
 // checks if the Machine type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Machine{}
 
+/*
+	types and functions for image
+*/
+
+// isModel
+type MachineGetImageAttributeType = *Image
+type MachineGetImageArgType = Image
+type MachineGetImageRetType = Image
+
+func getMachineGetImageAttributeTypeOk(arg MachineGetImageAttributeType) (ret MachineGetImageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineGetImageAttributeType(arg *MachineGetImageAttributeType, val MachineGetImageRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isNotNullableString
+type MachineGetTypeAttributeType = *string
+
+func getMachineGetTypeAttributeTypeOk(arg MachineGetTypeAttributeType) (ret MachineGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineGetTypeAttributeType(arg *MachineGetTypeAttributeType, val MachineGetTypeRetType) {
+	*arg = &val
+}
+
+type MachineGetTypeArgType = string
+type MachineGetTypeRetType = string
+
 // Machine struct for Machine
 type Machine struct {
 	// REQUIRED
-	Image *Image `json:"image"`
+	Image MachineGetImageAttributeType `json:"image"`
 	// For valid types please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `machineTypes`.
 	// REQUIRED
-	Type *string `json:"type"`
+	Type MachineGetTypeAttributeType `json:"type"`
 }
 
 type _Machine Machine
@@ -32,10 +73,10 @@ type _Machine Machine
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMachine(image *Image, type_ *string) *Machine {
+func NewMachine(image MachineGetImageArgType, type_ MachineGetTypeArgType) *Machine {
 	this := Machine{}
-	this.Image = image
-	this.Type = type_
+	setMachineGetImageAttributeType(&this.Image, image)
+	setMachineGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -48,57 +89,47 @@ func NewMachineWithDefaults() *Machine {
 }
 
 // GetImage returns the Image field value
-func (o *Machine) GetImage() *Image {
-	if o == nil || IsNil(o.Image) {
-		var ret *Image
-		return ret
-	}
-
-	return o.Image
+func (o *Machine) GetImage() (ret MachineGetImageRetType) {
+	ret, _ = o.GetImageOk()
+	return ret
 }
 
 // GetImageOk returns a tuple with the Image field value
 // and a boolean to check if the value has been set.
-func (o *Machine) GetImageOk() (*Image, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Image, true
+func (o *Machine) GetImageOk() (ret MachineGetImageRetType, ok bool) {
+	return getMachineGetImageAttributeTypeOk(o.Image)
 }
 
 // SetImage sets field value
-func (o *Machine) SetImage(v *Image) {
-	o.Image = v
+func (o *Machine) SetImage(v MachineGetImageRetType) {
+	setMachineGetImageAttributeType(&o.Image, v)
 }
 
 // GetType returns the Type field value
-func (o *Machine) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *Machine) GetType() (ret MachineGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Machine) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *Machine) GetTypeOk() (ret MachineGetTypeRetType, ok bool) {
+	return getMachineGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *Machine) SetType(v *string) {
-	o.Type = v
+func (o *Machine) SetType(v MachineGetTypeRetType) {
+	setMachineGetTypeAttributeType(&o.Type, v)
 }
 
 func (o Machine) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["image"] = o.Image
-	toSerialize["type"] = o.Type
+	if val, ok := getMachineGetImageAttributeTypeOk(o.Image); ok {
+		toSerialize["Image"] = val
+	}
+	if val, ok := getMachineGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

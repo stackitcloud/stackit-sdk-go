@@ -17,13 +17,53 @@ import (
 // checks if the DNS type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DNS{}
 
+/*
+	types and functions for enabled
+*/
+
+// isBoolean
+type DNSgetEnabledAttributeType = *bool
+type DNSgetEnabledArgType = bool
+type DNSgetEnabledRetType = bool
+
+func getDNSgetEnabledAttributeTypeOk(arg DNSgetEnabledAttributeType) (ret DNSgetEnabledRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDNSgetEnabledAttributeType(arg *DNSgetEnabledAttributeType, val DNSgetEnabledRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for zones
+*/
+
+// isArray
+type DNSGetZonesAttributeType = *[]string
+type DNSGetZonesArgType = []string
+type DNSGetZonesRetType = []string
+
+func getDNSGetZonesAttributeTypeOk(arg DNSGetZonesAttributeType) (ret DNSGetZonesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDNSGetZonesAttributeType(arg *DNSGetZonesAttributeType, val DNSGetZonesRetType) {
+	*arg = &val
+}
+
 // DNS struct for DNS
 type DNS struct {
 	// Enables the dns extension.
 	// REQUIRED
-	Enabled *bool `json:"enabled"`
+	Enabled DNSgetEnabledAttributeType `json:"enabled"`
 	// Array of domain filters for externalDNS, e.g., *.runs.onstackit.cloud.
-	Zones *[]string `json:"zones,omitempty"`
+	Zones DNSGetZonesAttributeType `json:"zones,omitempty"`
 }
 
 type _DNS DNS
@@ -32,9 +72,9 @@ type _DNS DNS
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDNS(enabled *bool) *DNS {
+func NewDNS(enabled DNSgetEnabledArgType) *DNS {
 	this := DNS{}
-	this.Enabled = enabled
+	setDNSgetEnabledAttributeType(&this.Enabled, enabled)
 	return &this
 }
 
@@ -47,66 +87,52 @@ func NewDNSWithDefaults() *DNS {
 }
 
 // GetEnabled returns the Enabled field value
-func (o *DNS) GetEnabled() *bool {
-	if o == nil || IsNil(o.Enabled) {
-		var ret *bool
-		return ret
-	}
-
-	return o.Enabled
+func (o *DNS) GetEnabled() (ret DNSgetEnabledRetType) {
+	ret, _ = o.GetEnabledOk()
+	return ret
 }
 
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *DNS) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Enabled, true
+func (o *DNS) GetEnabledOk() (ret DNSgetEnabledRetType, ok bool) {
+	return getDNSgetEnabledAttributeTypeOk(o.Enabled)
 }
 
 // SetEnabled sets field value
-func (o *DNS) SetEnabled(v *bool) {
-	o.Enabled = v
+func (o *DNS) SetEnabled(v DNSgetEnabledRetType) {
+	setDNSgetEnabledAttributeType(&o.Enabled, v)
 }
 
 // GetZones returns the Zones field value if set, zero value otherwise.
-func (o *DNS) GetZones() *[]string {
-	if o == nil || IsNil(o.Zones) {
-		var ret *[]string
-		return ret
-	}
-	return o.Zones
+func (o *DNS) GetZones() (res DNSGetZonesRetType) {
+	res, _ = o.GetZonesOk()
+	return
 }
 
 // GetZonesOk returns a tuple with the Zones field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DNS) GetZonesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Zones) {
-		return nil, false
-	}
-	return o.Zones, true
+func (o *DNS) GetZonesOk() (ret DNSGetZonesRetType, ok bool) {
+	return getDNSGetZonesAttributeTypeOk(o.Zones)
 }
 
 // HasZones returns a boolean if a field has been set.
 func (o *DNS) HasZones() bool {
-	if o != nil && !IsNil(o.Zones) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetZonesOk()
+	return ok
 }
 
 // SetZones gets a reference to the given []string and assigns it to the Zones field.
-func (o *DNS) SetZones(v *[]string) {
-	o.Zones = v
+func (o *DNS) SetZones(v DNSGetZonesRetType) {
+	setDNSGetZonesAttributeType(&o.Zones, v)
 }
 
 func (o DNS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["enabled"] = o.Enabled
-	if !IsNil(o.Zones) {
-		toSerialize["zones"] = o.Zones
+	if val, ok := getDNSgetEnabledAttributeTypeOk(o.Enabled); ok {
+		toSerialize["Enabled"] = val
+	}
+	if val, ok := getDNSGetZonesAttributeTypeOk(o.Zones); ok {
+		toSerialize["Zones"] = val
 	}
 	return toSerialize, nil
 }

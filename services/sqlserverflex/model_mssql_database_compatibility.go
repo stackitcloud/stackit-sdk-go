@@ -17,10 +17,51 @@ import (
 // checks if the MssqlDatabaseCompatibility type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MssqlDatabaseCompatibility{}
 
+/*
+	types and functions for compatibility_level
+*/
+
+// isLong
+type MssqlDatabaseCompatibilityGetCompatibilityLevelAttributeType = *int64
+type MssqlDatabaseCompatibilityGetCompatibilityLevelArgType = int64
+type MssqlDatabaseCompatibilityGetCompatibilityLevelRetType = int64
+
+func getMssqlDatabaseCompatibilityGetCompatibilityLevelAttributeTypeOk(arg MssqlDatabaseCompatibilityGetCompatibilityLevelAttributeType) (ret MssqlDatabaseCompatibilityGetCompatibilityLevelRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMssqlDatabaseCompatibilityGetCompatibilityLevelAttributeType(arg *MssqlDatabaseCompatibilityGetCompatibilityLevelAttributeType, val MssqlDatabaseCompatibilityGetCompatibilityLevelRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type MssqlDatabaseCompatibilityGetDescriptionAttributeType = *string
+
+func getMssqlDatabaseCompatibilityGetDescriptionAttributeTypeOk(arg MssqlDatabaseCompatibilityGetDescriptionAttributeType) (ret MssqlDatabaseCompatibilityGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMssqlDatabaseCompatibilityGetDescriptionAttributeType(arg *MssqlDatabaseCompatibilityGetDescriptionAttributeType, val MssqlDatabaseCompatibilityGetDescriptionRetType) {
+	*arg = &val
+}
+
+type MssqlDatabaseCompatibilityGetDescriptionArgType = string
+type MssqlDatabaseCompatibilityGetDescriptionRetType = string
+
 // MssqlDatabaseCompatibility struct for MssqlDatabaseCompatibility
 type MssqlDatabaseCompatibility struct {
-	CompatibilityLevel *int64  `json:"compatibility_level,omitempty"`
-	Description        *string `json:"description,omitempty"`
+	CompatibilityLevel MssqlDatabaseCompatibilityGetCompatibilityLevelAttributeType `json:"compatibility_level,omitempty"`
+	Description        MssqlDatabaseCompatibilityGetDescriptionAttributeType        `json:"description,omitempty"`
 }
 
 // NewMssqlDatabaseCompatibility instantiates a new MssqlDatabaseCompatibility object
@@ -41,76 +82,58 @@ func NewMssqlDatabaseCompatibilityWithDefaults() *MssqlDatabaseCompatibility {
 }
 
 // GetCompatibilityLevel returns the CompatibilityLevel field value if set, zero value otherwise.
-func (o *MssqlDatabaseCompatibility) GetCompatibilityLevel() *int64 {
-	if o == nil || IsNil(o.CompatibilityLevel) {
-		var ret *int64
-		return ret
-	}
-	return o.CompatibilityLevel
+func (o *MssqlDatabaseCompatibility) GetCompatibilityLevel() (res MssqlDatabaseCompatibilityGetCompatibilityLevelRetType) {
+	res, _ = o.GetCompatibilityLevelOk()
+	return
 }
 
 // GetCompatibilityLevelOk returns a tuple with the CompatibilityLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MssqlDatabaseCompatibility) GetCompatibilityLevelOk() (*int64, bool) {
-	if o == nil || IsNil(o.CompatibilityLevel) {
-		return nil, false
-	}
-	return o.CompatibilityLevel, true
+func (o *MssqlDatabaseCompatibility) GetCompatibilityLevelOk() (ret MssqlDatabaseCompatibilityGetCompatibilityLevelRetType, ok bool) {
+	return getMssqlDatabaseCompatibilityGetCompatibilityLevelAttributeTypeOk(o.CompatibilityLevel)
 }
 
 // HasCompatibilityLevel returns a boolean if a field has been set.
 func (o *MssqlDatabaseCompatibility) HasCompatibilityLevel() bool {
-	if o != nil && !IsNil(o.CompatibilityLevel) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCompatibilityLevelOk()
+	return ok
 }
 
 // SetCompatibilityLevel gets a reference to the given int64 and assigns it to the CompatibilityLevel field.
-func (o *MssqlDatabaseCompatibility) SetCompatibilityLevel(v *int64) {
-	o.CompatibilityLevel = v
+func (o *MssqlDatabaseCompatibility) SetCompatibilityLevel(v MssqlDatabaseCompatibilityGetCompatibilityLevelRetType) {
+	setMssqlDatabaseCompatibilityGetCompatibilityLevelAttributeType(&o.CompatibilityLevel, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *MssqlDatabaseCompatibility) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *MssqlDatabaseCompatibility) GetDescription() (res MssqlDatabaseCompatibilityGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MssqlDatabaseCompatibility) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *MssqlDatabaseCompatibility) GetDescriptionOk() (ret MssqlDatabaseCompatibilityGetDescriptionRetType, ok bool) {
+	return getMssqlDatabaseCompatibilityGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *MssqlDatabaseCompatibility) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *MssqlDatabaseCompatibility) SetDescription(v *string) {
-	o.Description = v
+func (o *MssqlDatabaseCompatibility) SetDescription(v MssqlDatabaseCompatibilityGetDescriptionRetType) {
+	setMssqlDatabaseCompatibilityGetDescriptionAttributeType(&o.Description, v)
 }
 
 func (o MssqlDatabaseCompatibility) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CompatibilityLevel) {
-		toSerialize["compatibility_level"] = o.CompatibilityLevel
+	if val, ok := getMssqlDatabaseCompatibilityGetCompatibilityLevelAttributeTypeOk(o.CompatibilityLevel); ok {
+		toSerialize["CompatibilityLevel"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getMssqlDatabaseCompatibilityGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	return toSerialize, nil
 }

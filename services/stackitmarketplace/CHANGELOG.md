@@ -1,3 +1,6 @@
+## v0.3.1 (2025-03-19)
+- **Internal:** Backwards compatible change to generated code
+
 ## v0.3.0 (2025-02-25)
 - **Feature:** Add method to create inquiries: `InquiriesCreateInquiry`
 - **Feature:** Add `sort` property to `ApiListCatalogProductsRequest`

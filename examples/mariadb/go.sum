@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.16.0 h1:9caGZwGLZDyBBe6ojk9VR4B2m3/0H5It6znBz76sH1w=
 github.com/stackitcloud/stackit-sdk-go/core v0.16.0/go.mod h1:LRheSoXTFRHWAyA8Q9skWtWBp3ZZ+bFAKiKuf4lTDkE=
-github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.21.0 h1:ks1i+cfD/YPRss//4aq6uvxbLvUwb5QvcUrOPeboLFY=
-github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.21.0/go.mod h1:kGAT87SO5Wkv/CSZevMZcPml3V38G6tnT1Wvdkdmkv4=
+github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.21.1 h1:gAFstHEqncA6nFIrXKHrF1HDNF5jqhB1gzW/lNHAevI=
+github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.21.1/go.mod h1:kUOByn2sB5KSIiz8Bx3XOLF3z7B8JtqP2nhH+Cr2W7o=

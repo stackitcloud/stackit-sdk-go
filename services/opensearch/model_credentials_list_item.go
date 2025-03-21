@@ -17,10 +17,31 @@ import (
 // checks if the CredentialsListItem type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CredentialsListItem{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CredentialsListItemGetIdAttributeType = *string
+
+func getCredentialsListItemGetIdAttributeTypeOk(arg CredentialsListItemGetIdAttributeType) (ret CredentialsListItemGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsListItemGetIdAttributeType(arg *CredentialsListItemGetIdAttributeType, val CredentialsListItemGetIdRetType) {
+	*arg = &val
+}
+
+type CredentialsListItemGetIdArgType = string
+type CredentialsListItemGetIdRetType = string
+
 // CredentialsListItem struct for CredentialsListItem
 type CredentialsListItem struct {
 	// REQUIRED
-	Id *string `json:"id"`
+	Id CredentialsListItemGetIdAttributeType `json:"id"`
 }
 
 type _CredentialsListItem CredentialsListItem
@@ -29,9 +50,9 @@ type _CredentialsListItem CredentialsListItem
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredentialsListItem(id *string) *CredentialsListItem {
+func NewCredentialsListItem(id CredentialsListItemGetIdArgType) *CredentialsListItem {
 	this := CredentialsListItem{}
-	this.Id = id
+	setCredentialsListItemGetIdAttributeType(&this.Id, id)
 	return &this
 }
 
@@ -44,32 +65,27 @@ func NewCredentialsListItemWithDefaults() *CredentialsListItem {
 }
 
 // GetId returns the Id field value
-func (o *CredentialsListItem) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *CredentialsListItem) GetId() (ret CredentialsListItemGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CredentialsListItem) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CredentialsListItem) GetIdOk() (ret CredentialsListItemGetIdRetType, ok bool) {
+	return getCredentialsListItemGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *CredentialsListItem) SetId(v *string) {
-	o.Id = v
+func (o *CredentialsListItem) SetId(v CredentialsListItemGetIdRetType) {
+	setCredentialsListItemGetIdAttributeType(&o.Id, v)
 }
 
 func (o CredentialsListItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if val, ok := getCredentialsListItemGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
 	return toSerialize, nil
 }
 

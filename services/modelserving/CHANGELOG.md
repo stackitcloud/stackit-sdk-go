@@ -1,3 +1,6 @@
+## v0.2.1 (2025-03-19)
+- **Internal:** Backwards compatible change to generated code
+
 ## v0.2.0 (2025-03-14)
 
 - **New**: STACKIT Model Serving module wait handler added.

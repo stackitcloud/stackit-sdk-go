@@ -17,14 +17,56 @@ import (
 // checks if the BecomeVendorBecomeVendor type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BecomeVendorBecomeVendor{}
 
+/*
+	types and functions for contactEmail
+*/
+
+// isNotNullableString
+type BecomeVendorBecomeVendorGetContactEmailAttributeType = *string
+
+func getBecomeVendorBecomeVendorGetContactEmailAttributeTypeOk(arg BecomeVendorBecomeVendorGetContactEmailAttributeType) (ret BecomeVendorBecomeVendorGetContactEmailRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBecomeVendorBecomeVendorGetContactEmailAttributeType(arg *BecomeVendorBecomeVendorGetContactEmailAttributeType, val BecomeVendorBecomeVendorGetContactEmailRetType) {
+	*arg = &val
+}
+
+type BecomeVendorBecomeVendorGetContactEmailArgType = string
+type BecomeVendorBecomeVendorGetContactEmailRetType = string
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type BecomeVendorBecomeVendorGetMessageAttributeType = *string
+
+func getBecomeVendorBecomeVendorGetMessageAttributeTypeOk(arg BecomeVendorBecomeVendorGetMessageAttributeType) (ret BecomeVendorBecomeVendorGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBecomeVendorBecomeVendorGetMessageAttributeType(arg *BecomeVendorBecomeVendorGetMessageAttributeType, val BecomeVendorBecomeVendorGetMessageRetType) {
+	*arg = &val
+}
+
+type BecomeVendorBecomeVendorGetMessageArgType = string
+type BecomeVendorBecomeVendorGetMessageRetType = string
+
 // BecomeVendorBecomeVendor struct for BecomeVendorBecomeVendor
 type BecomeVendorBecomeVendor struct {
 	// The contact e-mail address.
 	// REQUIRED
-	ContactEmail *string `json:"contactEmail"`
+	ContactEmail BecomeVendorBecomeVendorGetContactEmailAttributeType `json:"contactEmail"`
 	// The message content.
 	// REQUIRED
-	Message *string `json:"message"`
+	Message BecomeVendorBecomeVendorGetMessageAttributeType `json:"message"`
 }
 
 type _BecomeVendorBecomeVendor BecomeVendorBecomeVendor
@@ -33,10 +75,10 @@ type _BecomeVendorBecomeVendor BecomeVendorBecomeVendor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBecomeVendorBecomeVendor(contactEmail *string, message *string) *BecomeVendorBecomeVendor {
+func NewBecomeVendorBecomeVendor(contactEmail BecomeVendorBecomeVendorGetContactEmailArgType, message BecomeVendorBecomeVendorGetMessageArgType) *BecomeVendorBecomeVendor {
 	this := BecomeVendorBecomeVendor{}
-	this.ContactEmail = contactEmail
-	this.Message = message
+	setBecomeVendorBecomeVendorGetContactEmailAttributeType(&this.ContactEmail, contactEmail)
+	setBecomeVendorBecomeVendorGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewBecomeVendorBecomeVendorWithDefaults() *BecomeVendorBecomeVendor {
 }
 
 // GetContactEmail returns the ContactEmail field value
-func (o *BecomeVendorBecomeVendor) GetContactEmail() *string {
-	if o == nil || IsNil(o.ContactEmail) {
-		var ret *string
-		return ret
-	}
-
-	return o.ContactEmail
+func (o *BecomeVendorBecomeVendor) GetContactEmail() (ret BecomeVendorBecomeVendorGetContactEmailRetType) {
+	ret, _ = o.GetContactEmailOk()
+	return ret
 }
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value
 // and a boolean to check if the value has been set.
-func (o *BecomeVendorBecomeVendor) GetContactEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactEmail, true
+func (o *BecomeVendorBecomeVendor) GetContactEmailOk() (ret BecomeVendorBecomeVendorGetContactEmailRetType, ok bool) {
+	return getBecomeVendorBecomeVendorGetContactEmailAttributeTypeOk(o.ContactEmail)
 }
 
 // SetContactEmail sets field value
-func (o *BecomeVendorBecomeVendor) SetContactEmail(v *string) {
-	o.ContactEmail = v
+func (o *BecomeVendorBecomeVendor) SetContactEmail(v BecomeVendorBecomeVendorGetContactEmailRetType) {
+	setBecomeVendorBecomeVendorGetContactEmailAttributeType(&o.ContactEmail, v)
 }
 
 // GetMessage returns the Message field value
-func (o *BecomeVendorBecomeVendor) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *BecomeVendorBecomeVendor) GetMessage() (ret BecomeVendorBecomeVendorGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *BecomeVendorBecomeVendor) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *BecomeVendorBecomeVendor) GetMessageOk() (ret BecomeVendorBecomeVendorGetMessageRetType, ok bool) {
+	return getBecomeVendorBecomeVendorGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *BecomeVendorBecomeVendor) SetMessage(v *string) {
-	o.Message = v
+func (o *BecomeVendorBecomeVendor) SetMessage(v BecomeVendorBecomeVendorGetMessageRetType) {
+	setBecomeVendorBecomeVendorGetMessageAttributeType(&o.Message, v)
 }
 
 func (o BecomeVendorBecomeVendor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["contactEmail"] = o.ContactEmail
-	toSerialize["message"] = o.Message
+	if val, ok := getBecomeVendorBecomeVendorGetContactEmailAttributeTypeOk(o.ContactEmail); ok {
+		toSerialize["ContactEmail"] = val
+	}
+	if val, ok := getBecomeVendorBecomeVendorGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

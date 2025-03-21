@@ -17,13 +17,54 @@ import (
 // checks if the ProjectStatus type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ProjectStatus{}
 
+/*
+	types and functions for project
+*/
+
+// isNotNullableString
+type ProjectStatusGetProjectAttributeType = *string
+
+func getProjectStatusGetProjectAttributeTypeOk(arg ProjectStatusGetProjectAttributeType) (ret ProjectStatusGetProjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectStatusGetProjectAttributeType(arg *ProjectStatusGetProjectAttributeType, val ProjectStatusGetProjectRetType) {
+	*arg = &val
+}
+
+type ProjectStatusGetProjectArgType = string
+type ProjectStatusGetProjectRetType = string
+
+/*
+	types and functions for scope
+*/
+
+// isEnumRef
+type ProjectStatusGetScopeAttributeType = *ProjectScope
+type ProjectStatusGetScopeArgType = ProjectScope
+type ProjectStatusGetScopeRetType = ProjectScope
+
+func getProjectStatusGetScopeAttributeTypeOk(arg ProjectStatusGetScopeAttributeType) (ret ProjectStatusGetScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectStatusGetScopeAttributeType(arg *ProjectStatusGetScopeAttributeType, val ProjectStatusGetScopeRetType) {
+	*arg = &val
+}
+
 // ProjectStatus struct for ProjectStatus
 type ProjectStatus struct {
 	// Project ID
 	// REQUIRED
-	Project *string `json:"project"`
+	Project ProjectStatusGetProjectAttributeType `json:"project"`
 	// REQUIRED
-	Scope *ProjectScope `json:"scope"`
+	Scope ProjectStatusGetScopeAttributeType `json:"scope"`
 }
 
 type _ProjectStatus ProjectStatus
@@ -32,10 +73,10 @@ type _ProjectStatus ProjectStatus
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectStatus(project *string, scope *ProjectScope) *ProjectStatus {
+func NewProjectStatus(project ProjectStatusGetProjectArgType, scope ProjectStatusGetScopeArgType) *ProjectStatus {
 	this := ProjectStatus{}
-	this.Project = project
-	this.Scope = scope
+	setProjectStatusGetProjectAttributeType(&this.Project, project)
+	setProjectStatusGetScopeAttributeType(&this.Scope, scope)
 	return &this
 }
 
@@ -48,57 +89,47 @@ func NewProjectStatusWithDefaults() *ProjectStatus {
 }
 
 // GetProject returns the Project field value
-func (o *ProjectStatus) GetProject() *string {
-	if o == nil || IsNil(o.Project) {
-		var ret *string
-		return ret
-	}
-
-	return o.Project
+func (o *ProjectStatus) GetProject() (ret ProjectStatusGetProjectRetType) {
+	ret, _ = o.GetProjectOk()
+	return ret
 }
 
 // GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *ProjectStatus) GetProjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Project, true
+func (o *ProjectStatus) GetProjectOk() (ret ProjectStatusGetProjectRetType, ok bool) {
+	return getProjectStatusGetProjectAttributeTypeOk(o.Project)
 }
 
 // SetProject sets field value
-func (o *ProjectStatus) SetProject(v *string) {
-	o.Project = v
+func (o *ProjectStatus) SetProject(v ProjectStatusGetProjectRetType) {
+	setProjectStatusGetProjectAttributeType(&o.Project, v)
 }
 
 // GetScope returns the Scope field value
-func (o *ProjectStatus) GetScope() *ProjectScope {
-	if o == nil || IsNil(o.Scope) {
-		var ret *ProjectScope
-		return ret
-	}
-
-	return o.Scope
+func (o *ProjectStatus) GetScope() (ret ProjectStatusGetScopeRetType) {
+	ret, _ = o.GetScopeOk()
+	return ret
 }
 
 // GetScopeOk returns a tuple with the Scope field value
 // and a boolean to check if the value has been set.
-func (o *ProjectStatus) GetScopeOk() (*ProjectScope, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Scope, true
+func (o *ProjectStatus) GetScopeOk() (ret ProjectStatusGetScopeRetType, ok bool) {
+	return getProjectStatusGetScopeAttributeTypeOk(o.Scope)
 }
 
 // SetScope sets field value
-func (o *ProjectStatus) SetScope(v *ProjectScope) {
-	o.Scope = v
+func (o *ProjectStatus) SetScope(v ProjectStatusGetScopeRetType) {
+	setProjectStatusGetScopeAttributeType(&o.Scope, v)
 }
 
 func (o ProjectStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["project"] = o.Project
-	toSerialize["scope"] = o.Scope
+	if val, ok := getProjectStatusGetProjectAttributeTypeOk(o.Project); ok {
+		toSerialize["Project"] = val
+	}
+	if val, ok := getProjectStatusGetScopeAttributeTypeOk(o.Scope); ok {
+		toSerialize["Scope"] = val
+	}
 	return toSerialize, nil
 }
 

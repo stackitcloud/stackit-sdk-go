@@ -18,21 +18,144 @@ import (
 // checks if the Keypair type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Keypair{}
 
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type KeypairGetCreatedAtAttributeType = *time.Time
+type KeypairGetCreatedAtArgType = time.Time
+type KeypairGetCreatedAtRetType = time.Time
+
+func getKeypairGetCreatedAtAttributeTypeOk(arg KeypairGetCreatedAtAttributeType) (ret KeypairGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeypairGetCreatedAtAttributeType(arg *KeypairGetCreatedAtAttributeType, val KeypairGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for fingerprint
+*/
+
+// isNotNullableString
+type KeypairGetFingerprintAttributeType = *string
+
+func getKeypairGetFingerprintAttributeTypeOk(arg KeypairGetFingerprintAttributeType) (ret KeypairGetFingerprintRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeypairGetFingerprintAttributeType(arg *KeypairGetFingerprintAttributeType, val KeypairGetFingerprintRetType) {
+	*arg = &val
+}
+
+type KeypairGetFingerprintArgType = string
+type KeypairGetFingerprintRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type KeypairGetLabelsAttributeType = *map[string]interface{}
+type KeypairGetLabelsArgType = map[string]interface{}
+type KeypairGetLabelsRetType = map[string]interface{}
+
+func getKeypairGetLabelsAttributeTypeOk(arg KeypairGetLabelsAttributeType) (ret KeypairGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeypairGetLabelsAttributeType(arg *KeypairGetLabelsAttributeType, val KeypairGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type KeypairGetNameAttributeType = *string
+
+func getKeypairGetNameAttributeTypeOk(arg KeypairGetNameAttributeType) (ret KeypairGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeypairGetNameAttributeType(arg *KeypairGetNameAttributeType, val KeypairGetNameRetType) {
+	*arg = &val
+}
+
+type KeypairGetNameArgType = string
+type KeypairGetNameRetType = string
+
+/*
+	types and functions for publicKey
+*/
+
+// isNotNullableString
+type KeypairGetPublicKeyAttributeType = *string
+
+func getKeypairGetPublicKeyAttributeTypeOk(arg KeypairGetPublicKeyAttributeType) (ret KeypairGetPublicKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeypairGetPublicKeyAttributeType(arg *KeypairGetPublicKeyAttributeType, val KeypairGetPublicKeyRetType) {
+	*arg = &val
+}
+
+type KeypairGetPublicKeyArgType = string
+type KeypairGetPublicKeyRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type KeypairGetUpdatedAtAttributeType = *time.Time
+type KeypairGetUpdatedAtArgType = time.Time
+type KeypairGetUpdatedAtRetType = time.Time
+
+func getKeypairGetUpdatedAtAttributeTypeOk(arg KeypairGetUpdatedAtAttributeType) (ret KeypairGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeypairGetUpdatedAtAttributeType(arg *KeypairGetUpdatedAtAttributeType, val KeypairGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // Keypair Object that represents the public key of an SSH keypair and its name.
 type Keypair struct {
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt KeypairGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Object that represents an SSH keypair MD5 fingerprint.
-	Fingerprint *string `json:"fingerprint,omitempty"`
+	Fingerprint KeypairGetFingerprintAttributeType `json:"fingerprint,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels KeypairGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
-	Name *string `json:"name,omitempty"`
+	Name KeypairGetNameAttributeType `json:"name,omitempty"`
 	// Object that represents a public SSH key.
 	// REQUIRED
-	PublicKey *string `json:"publicKey"`
+	PublicKey KeypairGetPublicKeyAttributeType `json:"publicKey"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt KeypairGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 type _Keypair Keypair
@@ -41,9 +164,9 @@ type _Keypair Keypair
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKeypair(publicKey *string) *Keypair {
+func NewKeypair(publicKey KeypairGetPublicKeyArgType) *Keypair {
 	this := Keypair{}
-	this.PublicKey = publicKey
+	setKeypairGetPublicKeyAttributeType(&this.PublicKey, publicKey)
 	return &this
 }
 
@@ -56,206 +179,156 @@ func NewKeypairWithDefaults() *Keypair {
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Keypair) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *Keypair) GetCreatedAt() (res KeypairGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Keypair) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *Keypair) GetCreatedAtOk() (ret KeypairGetCreatedAtRetType, ok bool) {
+	return getKeypairGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Keypair) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Keypair) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *Keypair) SetCreatedAt(v KeypairGetCreatedAtRetType) {
+	setKeypairGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetFingerprint returns the Fingerprint field value if set, zero value otherwise.
-func (o *Keypair) GetFingerprint() *string {
-	if o == nil || IsNil(o.Fingerprint) {
-		var ret *string
-		return ret
-	}
-	return o.Fingerprint
+func (o *Keypair) GetFingerprint() (res KeypairGetFingerprintRetType) {
+	res, _ = o.GetFingerprintOk()
+	return
 }
 
 // GetFingerprintOk returns a tuple with the Fingerprint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Keypair) GetFingerprintOk() (*string, bool) {
-	if o == nil || IsNil(o.Fingerprint) {
-		return nil, false
-	}
-	return o.Fingerprint, true
+func (o *Keypair) GetFingerprintOk() (ret KeypairGetFingerprintRetType, ok bool) {
+	return getKeypairGetFingerprintAttributeTypeOk(o.Fingerprint)
 }
 
 // HasFingerprint returns a boolean if a field has been set.
 func (o *Keypair) HasFingerprint() bool {
-	if o != nil && !IsNil(o.Fingerprint) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFingerprintOk()
+	return ok
 }
 
 // SetFingerprint gets a reference to the given string and assigns it to the Fingerprint field.
-func (o *Keypair) SetFingerprint(v *string) {
-	o.Fingerprint = v
+func (o *Keypair) SetFingerprint(v KeypairGetFingerprintRetType) {
+	setKeypairGetFingerprintAttributeType(&o.Fingerprint, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Keypair) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *Keypair) GetLabels() (res KeypairGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Keypair) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *Keypair) GetLabelsOk() (ret KeypairGetLabelsRetType, ok bool) {
+	return getKeypairGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Keypair) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *Keypair) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *Keypair) SetLabels(v KeypairGetLabelsRetType) {
+	setKeypairGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Keypair) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Keypair) GetName() (res KeypairGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Keypair) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Keypair) GetNameOk() (ret KeypairGetNameRetType, ok bool) {
+	return getKeypairGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Keypair) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Keypair) SetName(v *string) {
-	o.Name = v
+func (o *Keypair) SetName(v KeypairGetNameRetType) {
+	setKeypairGetNameAttributeType(&o.Name, v)
 }
 
 // GetPublicKey returns the PublicKey field value
-func (o *Keypair) GetPublicKey() *string {
-	if o == nil || IsNil(o.PublicKey) {
-		var ret *string
-		return ret
-	}
-
-	return o.PublicKey
+func (o *Keypair) GetPublicKey() (ret KeypairGetPublicKeyRetType) {
+	ret, _ = o.GetPublicKeyOk()
+	return ret
 }
 
 // GetPublicKeyOk returns a tuple with the PublicKey field value
 // and a boolean to check if the value has been set.
-func (o *Keypair) GetPublicKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PublicKey, true
+func (o *Keypair) GetPublicKeyOk() (ret KeypairGetPublicKeyRetType, ok bool) {
+	return getKeypairGetPublicKeyAttributeTypeOk(o.PublicKey)
 }
 
 // SetPublicKey sets field value
-func (o *Keypair) SetPublicKey(v *string) {
-	o.PublicKey = v
+func (o *Keypair) SetPublicKey(v KeypairGetPublicKeyRetType) {
+	setKeypairGetPublicKeyAttributeType(&o.PublicKey, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Keypair) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *Keypair) GetUpdatedAt() (res KeypairGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Keypair) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *Keypair) GetUpdatedAtOk() (ret KeypairGetUpdatedAtRetType, ok bool) {
+	return getKeypairGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Keypair) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Keypair) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *Keypair) SetUpdatedAt(v KeypairGetUpdatedAtRetType) {
+	setKeypairGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 func (o Keypair) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getKeypairGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if !IsNil(o.Fingerprint) {
-		toSerialize["fingerprint"] = o.Fingerprint
+	if val, ok := getKeypairGetFingerprintAttributeTypeOk(o.Fingerprint); ok {
+		toSerialize["Fingerprint"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getKeypairGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getKeypairGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	toSerialize["publicKey"] = o.PublicKey
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getKeypairGetPublicKeyAttributeTypeOk(o.PublicKey); ok {
+		toSerialize["PublicKey"] = val
+	}
+	if val, ok := getKeypairGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

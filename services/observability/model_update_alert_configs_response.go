@@ -17,12 +17,53 @@ import (
 // checks if the UpdateAlertConfigsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateAlertConfigsResponse{}
 
+/*
+	types and functions for data
+*/
+
+// isModel
+type UpdateAlertConfigsResponseGetDataAttributeType = *Alert
+type UpdateAlertConfigsResponseGetDataArgType = Alert
+type UpdateAlertConfigsResponseGetDataRetType = Alert
+
+func getUpdateAlertConfigsResponseGetDataAttributeTypeOk(arg UpdateAlertConfigsResponseGetDataAttributeType) (ret UpdateAlertConfigsResponseGetDataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsResponseGetDataAttributeType(arg *UpdateAlertConfigsResponseGetDataAttributeType, val UpdateAlertConfigsResponseGetDataRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsResponseGetMessageAttributeType = *string
+
+func getUpdateAlertConfigsResponseGetMessageAttributeTypeOk(arg UpdateAlertConfigsResponseGetMessageAttributeType) (ret UpdateAlertConfigsResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsResponseGetMessageAttributeType(arg *UpdateAlertConfigsResponseGetMessageAttributeType, val UpdateAlertConfigsResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsResponseGetMessageArgType = string
+type UpdateAlertConfigsResponseGetMessageRetType = string
+
 // UpdateAlertConfigsResponse struct for UpdateAlertConfigsResponse
 type UpdateAlertConfigsResponse struct {
 	// REQUIRED
-	Data *Alert `json:"data"`
+	Data UpdateAlertConfigsResponseGetDataAttributeType `json:"data"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message UpdateAlertConfigsResponseGetMessageAttributeType `json:"message"`
 }
 
 type _UpdateAlertConfigsResponse UpdateAlertConfigsResponse
@@ -31,10 +72,10 @@ type _UpdateAlertConfigsResponse UpdateAlertConfigsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateAlertConfigsResponse(data *Alert, message *string) *UpdateAlertConfigsResponse {
+func NewUpdateAlertConfigsResponse(data UpdateAlertConfigsResponseGetDataArgType, message UpdateAlertConfigsResponseGetMessageArgType) *UpdateAlertConfigsResponse {
 	this := UpdateAlertConfigsResponse{}
-	this.Data = data
-	this.Message = message
+	setUpdateAlertConfigsResponseGetDataAttributeType(&this.Data, data)
+	setUpdateAlertConfigsResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewUpdateAlertConfigsResponseWithDefaults() *UpdateAlertConfigsResponse {
 }
 
 // GetData returns the Data field value
-func (o *UpdateAlertConfigsResponse) GetData() *Alert {
-	if o == nil || IsNil(o.Data) {
-		var ret *Alert
-		return ret
-	}
-
-	return o.Data
+func (o *UpdateAlertConfigsResponse) GetData() (ret UpdateAlertConfigsResponseGetDataRetType) {
+	ret, _ = o.GetDataOk()
+	return ret
 }
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsResponse) GetDataOk() (*Alert, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Data, true
+func (o *UpdateAlertConfigsResponse) GetDataOk() (ret UpdateAlertConfigsResponseGetDataRetType, ok bool) {
+	return getUpdateAlertConfigsResponseGetDataAttributeTypeOk(o.Data)
 }
 
 // SetData sets field value
-func (o *UpdateAlertConfigsResponse) SetData(v *Alert) {
-	o.Data = v
+func (o *UpdateAlertConfigsResponse) SetData(v UpdateAlertConfigsResponseGetDataRetType) {
+	setUpdateAlertConfigsResponseGetDataAttributeType(&o.Data, v)
 }
 
 // GetMessage returns the Message field value
-func (o *UpdateAlertConfigsResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *UpdateAlertConfigsResponse) GetMessage() (ret UpdateAlertConfigsResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *UpdateAlertConfigsResponse) GetMessageOk() (ret UpdateAlertConfigsResponseGetMessageRetType, ok bool) {
+	return getUpdateAlertConfigsResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *UpdateAlertConfigsResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *UpdateAlertConfigsResponse) SetMessage(v UpdateAlertConfigsResponseGetMessageRetType) {
+	setUpdateAlertConfigsResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o UpdateAlertConfigsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["data"] = o.Data
-	toSerialize["message"] = o.Message
+	if val, ok := getUpdateAlertConfigsResponseGetDataAttributeTypeOk(o.Data); ok {
+		toSerialize["Data"] = val
+	}
+	if val, ok := getUpdateAlertConfigsResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

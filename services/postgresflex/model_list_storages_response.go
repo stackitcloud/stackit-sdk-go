@@ -17,10 +17,50 @@ import (
 // checks if the ListStoragesResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListStoragesResponse{}
 
+/*
+	types and functions for storageClasses
+*/
+
+// isArray
+type ListStoragesResponseGetStorageClassesAttributeType = *[]string
+type ListStoragesResponseGetStorageClassesArgType = []string
+type ListStoragesResponseGetStorageClassesRetType = []string
+
+func getListStoragesResponseGetStorageClassesAttributeTypeOk(arg ListStoragesResponseGetStorageClassesAttributeType) (ret ListStoragesResponseGetStorageClassesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListStoragesResponseGetStorageClassesAttributeType(arg *ListStoragesResponseGetStorageClassesAttributeType, val ListStoragesResponseGetStorageClassesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for storageRange
+*/
+
+// isModel
+type ListStoragesResponseGetStorageRangeAttributeType = *StorageRange
+type ListStoragesResponseGetStorageRangeArgType = StorageRange
+type ListStoragesResponseGetStorageRangeRetType = StorageRange
+
+func getListStoragesResponseGetStorageRangeAttributeTypeOk(arg ListStoragesResponseGetStorageRangeAttributeType) (ret ListStoragesResponseGetStorageRangeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListStoragesResponseGetStorageRangeAttributeType(arg *ListStoragesResponseGetStorageRangeAttributeType, val ListStoragesResponseGetStorageRangeRetType) {
+	*arg = &val
+}
+
 // ListStoragesResponse struct for ListStoragesResponse
 type ListStoragesResponse struct {
-	StorageClasses *[]string     `json:"storageClasses,omitempty"`
-	StorageRange   *StorageRange `json:"storageRange,omitempty"`
+	StorageClasses ListStoragesResponseGetStorageClassesAttributeType `json:"storageClasses,omitempty"`
+	StorageRange   ListStoragesResponseGetStorageRangeAttributeType   `json:"storageRange,omitempty"`
 }
 
 // NewListStoragesResponse instantiates a new ListStoragesResponse object
@@ -41,76 +81,58 @@ func NewListStoragesResponseWithDefaults() *ListStoragesResponse {
 }
 
 // GetStorageClasses returns the StorageClasses field value if set, zero value otherwise.
-func (o *ListStoragesResponse) GetStorageClasses() *[]string {
-	if o == nil || IsNil(o.StorageClasses) {
-		var ret *[]string
-		return ret
-	}
-	return o.StorageClasses
+func (o *ListStoragesResponse) GetStorageClasses() (res ListStoragesResponseGetStorageClassesRetType) {
+	res, _ = o.GetStorageClassesOk()
+	return
 }
 
 // GetStorageClassesOk returns a tuple with the StorageClasses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListStoragesResponse) GetStorageClassesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.StorageClasses) {
-		return nil, false
-	}
-	return o.StorageClasses, true
+func (o *ListStoragesResponse) GetStorageClassesOk() (ret ListStoragesResponseGetStorageClassesRetType, ok bool) {
+	return getListStoragesResponseGetStorageClassesAttributeTypeOk(o.StorageClasses)
 }
 
 // HasStorageClasses returns a boolean if a field has been set.
 func (o *ListStoragesResponse) HasStorageClasses() bool {
-	if o != nil && !IsNil(o.StorageClasses) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStorageClassesOk()
+	return ok
 }
 
 // SetStorageClasses gets a reference to the given []string and assigns it to the StorageClasses field.
-func (o *ListStoragesResponse) SetStorageClasses(v *[]string) {
-	o.StorageClasses = v
+func (o *ListStoragesResponse) SetStorageClasses(v ListStoragesResponseGetStorageClassesRetType) {
+	setListStoragesResponseGetStorageClassesAttributeType(&o.StorageClasses, v)
 }
 
 // GetStorageRange returns the StorageRange field value if set, zero value otherwise.
-func (o *ListStoragesResponse) GetStorageRange() *StorageRange {
-	if o == nil || IsNil(o.StorageRange) {
-		var ret *StorageRange
-		return ret
-	}
-	return o.StorageRange
+func (o *ListStoragesResponse) GetStorageRange() (res ListStoragesResponseGetStorageRangeRetType) {
+	res, _ = o.GetStorageRangeOk()
+	return
 }
 
 // GetStorageRangeOk returns a tuple with the StorageRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListStoragesResponse) GetStorageRangeOk() (*StorageRange, bool) {
-	if o == nil || IsNil(o.StorageRange) {
-		return nil, false
-	}
-	return o.StorageRange, true
+func (o *ListStoragesResponse) GetStorageRangeOk() (ret ListStoragesResponseGetStorageRangeRetType, ok bool) {
+	return getListStoragesResponseGetStorageRangeAttributeTypeOk(o.StorageRange)
 }
 
 // HasStorageRange returns a boolean if a field has been set.
 func (o *ListStoragesResponse) HasStorageRange() bool {
-	if o != nil && !IsNil(o.StorageRange) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStorageRangeOk()
+	return ok
 }
 
 // SetStorageRange gets a reference to the given StorageRange and assigns it to the StorageRange field.
-func (o *ListStoragesResponse) SetStorageRange(v *StorageRange) {
-	o.StorageRange = v
+func (o *ListStoragesResponse) SetStorageRange(v ListStoragesResponseGetStorageRangeRetType) {
+	setListStoragesResponseGetStorageRangeAttributeType(&o.StorageRange, v)
 }
 
 func (o ListStoragesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.StorageClasses) {
-		toSerialize["storageClasses"] = o.StorageClasses
+	if val, ok := getListStoragesResponseGetStorageClassesAttributeTypeOk(o.StorageClasses); ok {
+		toSerialize["StorageClasses"] = val
 	}
-	if !IsNil(o.StorageRange) {
-		toSerialize["storageRange"] = o.StorageRange
+	if val, ok := getListStoragesResponseGetStorageRangeAttributeTypeOk(o.StorageRange); ok {
+		toSerialize["StorageRange"] = val
 	}
 	return toSerialize, nil
 }

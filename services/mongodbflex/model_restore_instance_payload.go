@@ -17,12 +17,54 @@ import (
 // checks if the RestoreInstancePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RestoreInstancePayload{}
 
+/*
+	types and functions for backupId
+*/
+
+// isNotNullableString
+type RestoreInstancePayloadGetBackupIdAttributeType = *string
+
+func getRestoreInstancePayloadGetBackupIdAttributeTypeOk(arg RestoreInstancePayloadGetBackupIdAttributeType) (ret RestoreInstancePayloadGetBackupIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreInstancePayloadGetBackupIdAttributeType(arg *RestoreInstancePayloadGetBackupIdAttributeType, val RestoreInstancePayloadGetBackupIdRetType) {
+	*arg = &val
+}
+
+type RestoreInstancePayloadGetBackupIdArgType = string
+type RestoreInstancePayloadGetBackupIdRetType = string
+
+/*
+	types and functions for instanceId
+*/
+
+// isNotNullableString
+type RestoreInstancePayloadGetInstanceIdAttributeType = *string
+
+func getRestoreInstancePayloadGetInstanceIdAttributeTypeOk(arg RestoreInstancePayloadGetInstanceIdAttributeType) (ret RestoreInstancePayloadGetInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreInstancePayloadGetInstanceIdAttributeType(arg *RestoreInstancePayloadGetInstanceIdAttributeType, val RestoreInstancePayloadGetInstanceIdRetType) {
+	*arg = &val
+}
+
+type RestoreInstancePayloadGetInstanceIdArgType = string
+type RestoreInstancePayloadGetInstanceIdRetType = string
+
 // RestoreInstancePayload struct for RestoreInstancePayload
 type RestoreInstancePayload struct {
 	// REQUIRED
-	BackupId *string `json:"backupId"`
+	BackupId RestoreInstancePayloadGetBackupIdAttributeType `json:"backupId"`
 	// REQUIRED
-	InstanceId *string `json:"instanceId"`
+	InstanceId RestoreInstancePayloadGetInstanceIdAttributeType `json:"instanceId"`
 }
 
 type _RestoreInstancePayload RestoreInstancePayload
@@ -31,10 +73,10 @@ type _RestoreInstancePayload RestoreInstancePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRestoreInstancePayload(backupId *string, instanceId *string) *RestoreInstancePayload {
+func NewRestoreInstancePayload(backupId RestoreInstancePayloadGetBackupIdArgType, instanceId RestoreInstancePayloadGetInstanceIdArgType) *RestoreInstancePayload {
 	this := RestoreInstancePayload{}
-	this.BackupId = backupId
-	this.InstanceId = instanceId
+	setRestoreInstancePayloadGetBackupIdAttributeType(&this.BackupId, backupId)
+	setRestoreInstancePayloadGetInstanceIdAttributeType(&this.InstanceId, instanceId)
 	return &this
 }
 
@@ -47,57 +89,47 @@ func NewRestoreInstancePayloadWithDefaults() *RestoreInstancePayload {
 }
 
 // GetBackupId returns the BackupId field value
-func (o *RestoreInstancePayload) GetBackupId() *string {
-	if o == nil || IsNil(o.BackupId) {
-		var ret *string
-		return ret
-	}
-
-	return o.BackupId
+func (o *RestoreInstancePayload) GetBackupId() (ret RestoreInstancePayloadGetBackupIdRetType) {
+	ret, _ = o.GetBackupIdOk()
+	return ret
 }
 
 // GetBackupIdOk returns a tuple with the BackupId field value
 // and a boolean to check if the value has been set.
-func (o *RestoreInstancePayload) GetBackupIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.BackupId, true
+func (o *RestoreInstancePayload) GetBackupIdOk() (ret RestoreInstancePayloadGetBackupIdRetType, ok bool) {
+	return getRestoreInstancePayloadGetBackupIdAttributeTypeOk(o.BackupId)
 }
 
 // SetBackupId sets field value
-func (o *RestoreInstancePayload) SetBackupId(v *string) {
-	o.BackupId = v
+func (o *RestoreInstancePayload) SetBackupId(v RestoreInstancePayloadGetBackupIdRetType) {
+	setRestoreInstancePayloadGetBackupIdAttributeType(&o.BackupId, v)
 }
 
 // GetInstanceId returns the InstanceId field value
-func (o *RestoreInstancePayload) GetInstanceId() *string {
-	if o == nil || IsNil(o.InstanceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.InstanceId
+func (o *RestoreInstancePayload) GetInstanceId() (ret RestoreInstancePayloadGetInstanceIdRetType) {
+	ret, _ = o.GetInstanceIdOk()
+	return ret
 }
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value
 // and a boolean to check if the value has been set.
-func (o *RestoreInstancePayload) GetInstanceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.InstanceId, true
+func (o *RestoreInstancePayload) GetInstanceIdOk() (ret RestoreInstancePayloadGetInstanceIdRetType, ok bool) {
+	return getRestoreInstancePayloadGetInstanceIdAttributeTypeOk(o.InstanceId)
 }
 
 // SetInstanceId sets field value
-func (o *RestoreInstancePayload) SetInstanceId(v *string) {
-	o.InstanceId = v
+func (o *RestoreInstancePayload) SetInstanceId(v RestoreInstancePayloadGetInstanceIdRetType) {
+	setRestoreInstancePayloadGetInstanceIdAttributeType(&o.InstanceId, v)
 }
 
 func (o RestoreInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["backupId"] = o.BackupId
-	toSerialize["instanceId"] = o.InstanceId
+	if val, ok := getRestoreInstancePayloadGetBackupIdAttributeTypeOk(o.BackupId); ok {
+		toSerialize["BackupId"] = val
+	}
+	if val, ok := getRestoreInstancePayloadGetInstanceIdAttributeTypeOk(o.InstanceId); ok {
+		toSerialize["InstanceId"] = val
+	}
 	return toSerialize, nil
 }
 

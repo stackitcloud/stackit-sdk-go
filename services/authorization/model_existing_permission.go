@@ -17,12 +17,54 @@ import (
 // checks if the ExistingPermission type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ExistingPermission{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type ExistingPermissionGetDescriptionAttributeType = *string
+
+func getExistingPermissionGetDescriptionAttributeTypeOk(arg ExistingPermissionGetDescriptionAttributeType) (ret ExistingPermissionGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExistingPermissionGetDescriptionAttributeType(arg *ExistingPermissionGetDescriptionAttributeType, val ExistingPermissionGetDescriptionRetType) {
+	*arg = &val
+}
+
+type ExistingPermissionGetDescriptionArgType = string
+type ExistingPermissionGetDescriptionRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ExistingPermissionGetNameAttributeType = *string
+
+func getExistingPermissionGetNameAttributeTypeOk(arg ExistingPermissionGetNameAttributeType) (ret ExistingPermissionGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExistingPermissionGetNameAttributeType(arg *ExistingPermissionGetNameAttributeType, val ExistingPermissionGetNameRetType) {
+	*arg = &val
+}
+
+type ExistingPermissionGetNameArgType = string
+type ExistingPermissionGetNameRetType = string
+
 // ExistingPermission struct for ExistingPermission
 type ExistingPermission struct {
 	// REQUIRED
-	Description *string `json:"description"`
+	Description ExistingPermissionGetDescriptionAttributeType `json:"description"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name ExistingPermissionGetNameAttributeType `json:"name"`
 }
 
 type _ExistingPermission ExistingPermission
@@ -31,10 +73,10 @@ type _ExistingPermission ExistingPermission
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExistingPermission(description *string, name *string) *ExistingPermission {
+func NewExistingPermission(description ExistingPermissionGetDescriptionArgType, name ExistingPermissionGetNameArgType) *ExistingPermission {
 	this := ExistingPermission{}
-	this.Description = description
-	this.Name = name
+	setExistingPermissionGetDescriptionAttributeType(&this.Description, description)
+	setExistingPermissionGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -47,57 +89,47 @@ func NewExistingPermissionWithDefaults() *ExistingPermission {
 }
 
 // GetDescription returns the Description field value
-func (o *ExistingPermission) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *ExistingPermission) GetDescription() (ret ExistingPermissionGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *ExistingPermission) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *ExistingPermission) GetDescriptionOk() (ret ExistingPermissionGetDescriptionRetType, ok bool) {
+	return getExistingPermissionGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *ExistingPermission) SetDescription(v *string) {
-	o.Description = v
+func (o *ExistingPermission) SetDescription(v ExistingPermissionGetDescriptionRetType) {
+	setExistingPermissionGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetName returns the Name field value
-func (o *ExistingPermission) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *ExistingPermission) GetName() (ret ExistingPermissionGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ExistingPermission) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *ExistingPermission) GetNameOk() (ret ExistingPermissionGetNameRetType, ok bool) {
+	return getExistingPermissionGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *ExistingPermission) SetName(v *string) {
-	o.Name = v
+func (o *ExistingPermission) SetName(v ExistingPermissionGetNameRetType) {
+	setExistingPermissionGetNameAttributeType(&o.Name, v)
 }
 
 func (o ExistingPermission) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	toSerialize["name"] = o.Name
+	if val, ok := getExistingPermissionGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
+	if val, ok := getExistingPermissionGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
 	return toSerialize, nil
 }
 

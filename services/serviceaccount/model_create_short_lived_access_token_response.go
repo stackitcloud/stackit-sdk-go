@@ -17,21 +17,124 @@ import (
 // checks if the CreateShortLivedAccessTokenResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateShortLivedAccessTokenResponse{}
 
+/*
+	types and functions for access_token
+*/
+
+// isNotNullableString
+type CreateShortLivedAccessTokenResponseGetAccessTokenAttributeType = *string
+
+func getCreateShortLivedAccessTokenResponseGetAccessTokenAttributeTypeOk(arg CreateShortLivedAccessTokenResponseGetAccessTokenAttributeType) (ret CreateShortLivedAccessTokenResponseGetAccessTokenRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateShortLivedAccessTokenResponseGetAccessTokenAttributeType(arg *CreateShortLivedAccessTokenResponseGetAccessTokenAttributeType, val CreateShortLivedAccessTokenResponseGetAccessTokenRetType) {
+	*arg = &val
+}
+
+type CreateShortLivedAccessTokenResponseGetAccessTokenArgType = string
+type CreateShortLivedAccessTokenResponseGetAccessTokenRetType = string
+
+/*
+	types and functions for expires_in
+*/
+
+// isInteger
+type CreateShortLivedAccessTokenResponseGetExpiresInAttributeType = *int64
+type CreateShortLivedAccessTokenResponseGetExpiresInArgType = int64
+type CreateShortLivedAccessTokenResponseGetExpiresInRetType = int64
+
+func getCreateShortLivedAccessTokenResponseGetExpiresInAttributeTypeOk(arg CreateShortLivedAccessTokenResponseGetExpiresInAttributeType) (ret CreateShortLivedAccessTokenResponseGetExpiresInRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateShortLivedAccessTokenResponseGetExpiresInAttributeType(arg *CreateShortLivedAccessTokenResponseGetExpiresInAttributeType, val CreateShortLivedAccessTokenResponseGetExpiresInRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for refresh_token
+*/
+
+// isNotNullableString
+type CreateShortLivedAccessTokenResponseGetRefreshTokenAttributeType = *string
+
+func getCreateShortLivedAccessTokenResponseGetRefreshTokenAttributeTypeOk(arg CreateShortLivedAccessTokenResponseGetRefreshTokenAttributeType) (ret CreateShortLivedAccessTokenResponseGetRefreshTokenRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateShortLivedAccessTokenResponseGetRefreshTokenAttributeType(arg *CreateShortLivedAccessTokenResponseGetRefreshTokenAttributeType, val CreateShortLivedAccessTokenResponseGetRefreshTokenRetType) {
+	*arg = &val
+}
+
+type CreateShortLivedAccessTokenResponseGetRefreshTokenArgType = string
+type CreateShortLivedAccessTokenResponseGetRefreshTokenRetType = string
+
+/*
+	types and functions for scope
+*/
+
+// isNotNullableString
+type CreateShortLivedAccessTokenResponseGetScopeAttributeType = *string
+
+func getCreateShortLivedAccessTokenResponseGetScopeAttributeTypeOk(arg CreateShortLivedAccessTokenResponseGetScopeAttributeType) (ret CreateShortLivedAccessTokenResponseGetScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateShortLivedAccessTokenResponseGetScopeAttributeType(arg *CreateShortLivedAccessTokenResponseGetScopeAttributeType, val CreateShortLivedAccessTokenResponseGetScopeRetType) {
+	*arg = &val
+}
+
+type CreateShortLivedAccessTokenResponseGetScopeArgType = string
+type CreateShortLivedAccessTokenResponseGetScopeRetType = string
+
+/*
+	types and functions for token_type
+*/
+
+// isEnumRef
+type CreateShortLivedAccessTokenResponseGetTokenTypeAttributeType = *string
+type CreateShortLivedAccessTokenResponseGetTokenTypeArgType = string
+type CreateShortLivedAccessTokenResponseGetTokenTypeRetType = string
+
+func getCreateShortLivedAccessTokenResponseGetTokenTypeAttributeTypeOk(arg CreateShortLivedAccessTokenResponseGetTokenTypeAttributeType) (ret CreateShortLivedAccessTokenResponseGetTokenTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateShortLivedAccessTokenResponseGetTokenTypeAttributeType(arg *CreateShortLivedAccessTokenResponseGetTokenTypeAttributeType, val CreateShortLivedAccessTokenResponseGetTokenTypeRetType) {
+	*arg = &val
+}
+
 // CreateShortLivedAccessTokenResponse struct for CreateShortLivedAccessTokenResponse
 type CreateShortLivedAccessTokenResponse struct {
 	// The short lived token that can be used for API access
 	// REQUIRED
-	AccessToken *string `json:"access_token"`
+	AccessToken CreateShortLivedAccessTokenResponseGetAccessTokenAttributeType `json:"access_token"`
 	// REQUIRED
-	ExpiresIn *int64 `json:"expires_in"`
+	ExpiresIn CreateShortLivedAccessTokenResponseGetExpiresInAttributeType `json:"expires_in"`
 	// Refresh token that can be used to request a new access token when it expires (and before refresh token expires). Tokens are rotated.
 	// REQUIRED
-	RefreshToken *string `json:"refresh_token"`
+	RefreshToken CreateShortLivedAccessTokenResponseGetRefreshTokenAttributeType `json:"refresh_token"`
 	// scope field of the self signed token
 	// REQUIRED
-	Scope *string `json:"scope"`
+	Scope CreateShortLivedAccessTokenResponseGetScopeAttributeType `json:"scope"`
 	// REQUIRED
-	TokenType *string `json:"token_type"`
+	TokenType CreateShortLivedAccessTokenResponseGetTokenTypeAttributeType `json:"token_type"`
 }
 
 type _CreateShortLivedAccessTokenResponse CreateShortLivedAccessTokenResponse
@@ -40,13 +143,13 @@ type _CreateShortLivedAccessTokenResponse CreateShortLivedAccessTokenResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateShortLivedAccessTokenResponse(accessToken *string, expiresIn *int64, refreshToken *string, scope *string, tokenType *string) *CreateShortLivedAccessTokenResponse {
+func NewCreateShortLivedAccessTokenResponse(accessToken CreateShortLivedAccessTokenResponseGetAccessTokenArgType, expiresIn CreateShortLivedAccessTokenResponseGetExpiresInArgType, refreshToken CreateShortLivedAccessTokenResponseGetRefreshTokenArgType, scope CreateShortLivedAccessTokenResponseGetScopeArgType, tokenType CreateShortLivedAccessTokenResponseGetTokenTypeArgType) *CreateShortLivedAccessTokenResponse {
 	this := CreateShortLivedAccessTokenResponse{}
-	this.AccessToken = accessToken
-	this.ExpiresIn = expiresIn
-	this.RefreshToken = refreshToken
-	this.Scope = scope
-	this.TokenType = tokenType
+	setCreateShortLivedAccessTokenResponseGetAccessTokenAttributeType(&this.AccessToken, accessToken)
+	setCreateShortLivedAccessTokenResponseGetExpiresInAttributeType(&this.ExpiresIn, expiresIn)
+	setCreateShortLivedAccessTokenResponseGetRefreshTokenAttributeType(&this.RefreshToken, refreshToken)
+	setCreateShortLivedAccessTokenResponseGetScopeAttributeType(&this.Scope, scope)
+	setCreateShortLivedAccessTokenResponseGetTokenTypeAttributeType(&this.TokenType, tokenType)
 	return &this
 }
 
@@ -59,132 +162,107 @@ func NewCreateShortLivedAccessTokenResponseWithDefaults() *CreateShortLivedAcces
 }
 
 // GetAccessToken returns the AccessToken field value
-func (o *CreateShortLivedAccessTokenResponse) GetAccessToken() *string {
-	if o == nil || IsNil(o.AccessToken) {
-		var ret *string
-		return ret
-	}
-
-	return o.AccessToken
+func (o *CreateShortLivedAccessTokenResponse) GetAccessToken() (ret CreateShortLivedAccessTokenResponseGetAccessTokenRetType) {
+	ret, _ = o.GetAccessTokenOk()
+	return ret
 }
 
 // GetAccessTokenOk returns a tuple with the AccessToken field value
 // and a boolean to check if the value has been set.
-func (o *CreateShortLivedAccessTokenResponse) GetAccessTokenOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AccessToken, true
+func (o *CreateShortLivedAccessTokenResponse) GetAccessTokenOk() (ret CreateShortLivedAccessTokenResponseGetAccessTokenRetType, ok bool) {
+	return getCreateShortLivedAccessTokenResponseGetAccessTokenAttributeTypeOk(o.AccessToken)
 }
 
 // SetAccessToken sets field value
-func (o *CreateShortLivedAccessTokenResponse) SetAccessToken(v *string) {
-	o.AccessToken = v
+func (o *CreateShortLivedAccessTokenResponse) SetAccessToken(v CreateShortLivedAccessTokenResponseGetAccessTokenRetType) {
+	setCreateShortLivedAccessTokenResponseGetAccessTokenAttributeType(&o.AccessToken, v)
 }
 
 // GetExpiresIn returns the ExpiresIn field value
-func (o *CreateShortLivedAccessTokenResponse) GetExpiresIn() *int64 {
-	if o == nil || IsNil(o.ExpiresIn) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ExpiresIn
+func (o *CreateShortLivedAccessTokenResponse) GetExpiresIn() (ret CreateShortLivedAccessTokenResponseGetExpiresInRetType) {
+	ret, _ = o.GetExpiresInOk()
+	return ret
 }
 
 // GetExpiresInOk returns a tuple with the ExpiresIn field value
 // and a boolean to check if the value has been set.
-func (o *CreateShortLivedAccessTokenResponse) GetExpiresInOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExpiresIn, true
+func (o *CreateShortLivedAccessTokenResponse) GetExpiresInOk() (ret CreateShortLivedAccessTokenResponseGetExpiresInRetType, ok bool) {
+	return getCreateShortLivedAccessTokenResponseGetExpiresInAttributeTypeOk(o.ExpiresIn)
 }
 
 // SetExpiresIn sets field value
-func (o *CreateShortLivedAccessTokenResponse) SetExpiresIn(v *int64) {
-	o.ExpiresIn = v
+func (o *CreateShortLivedAccessTokenResponse) SetExpiresIn(v CreateShortLivedAccessTokenResponseGetExpiresInRetType) {
+	setCreateShortLivedAccessTokenResponseGetExpiresInAttributeType(&o.ExpiresIn, v)
 }
 
 // GetRefreshToken returns the RefreshToken field value
-func (o *CreateShortLivedAccessTokenResponse) GetRefreshToken() *string {
-	if o == nil || IsNil(o.RefreshToken) {
-		var ret *string
-		return ret
-	}
-
-	return o.RefreshToken
+func (o *CreateShortLivedAccessTokenResponse) GetRefreshToken() (ret CreateShortLivedAccessTokenResponseGetRefreshTokenRetType) {
+	ret, _ = o.GetRefreshTokenOk()
+	return ret
 }
 
 // GetRefreshTokenOk returns a tuple with the RefreshToken field value
 // and a boolean to check if the value has been set.
-func (o *CreateShortLivedAccessTokenResponse) GetRefreshTokenOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RefreshToken, true
+func (o *CreateShortLivedAccessTokenResponse) GetRefreshTokenOk() (ret CreateShortLivedAccessTokenResponseGetRefreshTokenRetType, ok bool) {
+	return getCreateShortLivedAccessTokenResponseGetRefreshTokenAttributeTypeOk(o.RefreshToken)
 }
 
 // SetRefreshToken sets field value
-func (o *CreateShortLivedAccessTokenResponse) SetRefreshToken(v *string) {
-	o.RefreshToken = v
+func (o *CreateShortLivedAccessTokenResponse) SetRefreshToken(v CreateShortLivedAccessTokenResponseGetRefreshTokenRetType) {
+	setCreateShortLivedAccessTokenResponseGetRefreshTokenAttributeType(&o.RefreshToken, v)
 }
 
 // GetScope returns the Scope field value
-func (o *CreateShortLivedAccessTokenResponse) GetScope() *string {
-	if o == nil || IsNil(o.Scope) {
-		var ret *string
-		return ret
-	}
-
-	return o.Scope
+func (o *CreateShortLivedAccessTokenResponse) GetScope() (ret CreateShortLivedAccessTokenResponseGetScopeRetType) {
+	ret, _ = o.GetScopeOk()
+	return ret
 }
 
 // GetScopeOk returns a tuple with the Scope field value
 // and a boolean to check if the value has been set.
-func (o *CreateShortLivedAccessTokenResponse) GetScopeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Scope, true
+func (o *CreateShortLivedAccessTokenResponse) GetScopeOk() (ret CreateShortLivedAccessTokenResponseGetScopeRetType, ok bool) {
+	return getCreateShortLivedAccessTokenResponseGetScopeAttributeTypeOk(o.Scope)
 }
 
 // SetScope sets field value
-func (o *CreateShortLivedAccessTokenResponse) SetScope(v *string) {
-	o.Scope = v
+func (o *CreateShortLivedAccessTokenResponse) SetScope(v CreateShortLivedAccessTokenResponseGetScopeRetType) {
+	setCreateShortLivedAccessTokenResponseGetScopeAttributeType(&o.Scope, v)
 }
 
 // GetTokenType returns the TokenType field value
-func (o *CreateShortLivedAccessTokenResponse) GetTokenType() *string {
-	if o == nil || IsNil(o.TokenType) {
-		var ret *string
-		return ret
-	}
-
-	return o.TokenType
+func (o *CreateShortLivedAccessTokenResponse) GetTokenType() (ret CreateShortLivedAccessTokenResponseGetTokenTypeRetType) {
+	ret, _ = o.GetTokenTypeOk()
+	return ret
 }
 
 // GetTokenTypeOk returns a tuple with the TokenType field value
 // and a boolean to check if the value has been set.
-func (o *CreateShortLivedAccessTokenResponse) GetTokenTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TokenType, true
+func (o *CreateShortLivedAccessTokenResponse) GetTokenTypeOk() (ret CreateShortLivedAccessTokenResponseGetTokenTypeRetType, ok bool) {
+	return getCreateShortLivedAccessTokenResponseGetTokenTypeAttributeTypeOk(o.TokenType)
 }
 
 // SetTokenType sets field value
-func (o *CreateShortLivedAccessTokenResponse) SetTokenType(v *string) {
-	o.TokenType = v
+func (o *CreateShortLivedAccessTokenResponse) SetTokenType(v CreateShortLivedAccessTokenResponseGetTokenTypeRetType) {
+	setCreateShortLivedAccessTokenResponseGetTokenTypeAttributeType(&o.TokenType, v)
 }
 
 func (o CreateShortLivedAccessTokenResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["access_token"] = o.AccessToken
-	toSerialize["expires_in"] = o.ExpiresIn
-	toSerialize["refresh_token"] = o.RefreshToken
-	toSerialize["scope"] = o.Scope
-	toSerialize["token_type"] = o.TokenType
+	if val, ok := getCreateShortLivedAccessTokenResponseGetAccessTokenAttributeTypeOk(o.AccessToken); ok {
+		toSerialize["AccessToken"] = val
+	}
+	if val, ok := getCreateShortLivedAccessTokenResponseGetExpiresInAttributeTypeOk(o.ExpiresIn); ok {
+		toSerialize["ExpiresIn"] = val
+	}
+	if val, ok := getCreateShortLivedAccessTokenResponseGetRefreshTokenAttributeTypeOk(o.RefreshToken); ok {
+		toSerialize["RefreshToken"] = val
+	}
+	if val, ok := getCreateShortLivedAccessTokenResponseGetScopeAttributeTypeOk(o.Scope); ok {
+		toSerialize["Scope"] = val
+	}
+	if val, ok := getCreateShortLivedAccessTokenResponseGetTokenTypeAttributeTypeOk(o.TokenType); ok {
+		toSerialize["TokenType"] = val
+	}
 	return toSerialize, nil
 }
 

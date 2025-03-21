@@ -17,10 +17,50 @@ import (
 // checks if the MaintenanceAutoUpdate type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MaintenanceAutoUpdate{}
 
+/*
+	types and functions for kubernetesVersion
+*/
+
+// isBoolean
+type MaintenanceAutoUpdategetKubernetesVersionAttributeType = *bool
+type MaintenanceAutoUpdategetKubernetesVersionArgType = bool
+type MaintenanceAutoUpdategetKubernetesVersionRetType = bool
+
+func getMaintenanceAutoUpdategetKubernetesVersionAttributeTypeOk(arg MaintenanceAutoUpdategetKubernetesVersionAttributeType) (ret MaintenanceAutoUpdategetKubernetesVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMaintenanceAutoUpdategetKubernetesVersionAttributeType(arg *MaintenanceAutoUpdategetKubernetesVersionAttributeType, val MaintenanceAutoUpdategetKubernetesVersionRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for machineImageVersion
+*/
+
+// isBoolean
+type MaintenanceAutoUpdategetMachineImageVersionAttributeType = *bool
+type MaintenanceAutoUpdategetMachineImageVersionArgType = bool
+type MaintenanceAutoUpdategetMachineImageVersionRetType = bool
+
+func getMaintenanceAutoUpdategetMachineImageVersionAttributeTypeOk(arg MaintenanceAutoUpdategetMachineImageVersionAttributeType) (ret MaintenanceAutoUpdategetMachineImageVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMaintenanceAutoUpdategetMachineImageVersionAttributeType(arg *MaintenanceAutoUpdategetMachineImageVersionAttributeType, val MaintenanceAutoUpdategetMachineImageVersionRetType) {
+	*arg = &val
+}
+
 // MaintenanceAutoUpdate struct for MaintenanceAutoUpdate
 type MaintenanceAutoUpdate struct {
-	KubernetesVersion   *bool `json:"kubernetesVersion,omitempty"`
-	MachineImageVersion *bool `json:"machineImageVersion,omitempty"`
+	KubernetesVersion   MaintenanceAutoUpdategetKubernetesVersionAttributeType   `json:"kubernetesVersion,omitempty"`
+	MachineImageVersion MaintenanceAutoUpdategetMachineImageVersionAttributeType `json:"machineImageVersion,omitempty"`
 }
 
 // NewMaintenanceAutoUpdate instantiates a new MaintenanceAutoUpdate object
@@ -41,76 +81,58 @@ func NewMaintenanceAutoUpdateWithDefaults() *MaintenanceAutoUpdate {
 }
 
 // GetKubernetesVersion returns the KubernetesVersion field value if set, zero value otherwise.
-func (o *MaintenanceAutoUpdate) GetKubernetesVersion() *bool {
-	if o == nil || IsNil(o.KubernetesVersion) {
-		var ret *bool
-		return ret
-	}
-	return o.KubernetesVersion
+func (o *MaintenanceAutoUpdate) GetKubernetesVersion() (res MaintenanceAutoUpdategetKubernetesVersionRetType) {
+	res, _ = o.GetKubernetesVersionOk()
+	return
 }
 
 // GetKubernetesVersionOk returns a tuple with the KubernetesVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MaintenanceAutoUpdate) GetKubernetesVersionOk() (*bool, bool) {
-	if o == nil || IsNil(o.KubernetesVersion) {
-		return nil, false
-	}
-	return o.KubernetesVersion, true
+func (o *MaintenanceAutoUpdate) GetKubernetesVersionOk() (ret MaintenanceAutoUpdategetKubernetesVersionRetType, ok bool) {
+	return getMaintenanceAutoUpdategetKubernetesVersionAttributeTypeOk(o.KubernetesVersion)
 }
 
 // HasKubernetesVersion returns a boolean if a field has been set.
 func (o *MaintenanceAutoUpdate) HasKubernetesVersion() bool {
-	if o != nil && !IsNil(o.KubernetesVersion) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetKubernetesVersionOk()
+	return ok
 }
 
 // SetKubernetesVersion gets a reference to the given bool and assigns it to the KubernetesVersion field.
-func (o *MaintenanceAutoUpdate) SetKubernetesVersion(v *bool) {
-	o.KubernetesVersion = v
+func (o *MaintenanceAutoUpdate) SetKubernetesVersion(v MaintenanceAutoUpdategetKubernetesVersionRetType) {
+	setMaintenanceAutoUpdategetKubernetesVersionAttributeType(&o.KubernetesVersion, v)
 }
 
 // GetMachineImageVersion returns the MachineImageVersion field value if set, zero value otherwise.
-func (o *MaintenanceAutoUpdate) GetMachineImageVersion() *bool {
-	if o == nil || IsNil(o.MachineImageVersion) {
-		var ret *bool
-		return ret
-	}
-	return o.MachineImageVersion
+func (o *MaintenanceAutoUpdate) GetMachineImageVersion() (res MaintenanceAutoUpdategetMachineImageVersionRetType) {
+	res, _ = o.GetMachineImageVersionOk()
+	return
 }
 
 // GetMachineImageVersionOk returns a tuple with the MachineImageVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MaintenanceAutoUpdate) GetMachineImageVersionOk() (*bool, bool) {
-	if o == nil || IsNil(o.MachineImageVersion) {
-		return nil, false
-	}
-	return o.MachineImageVersion, true
+func (o *MaintenanceAutoUpdate) GetMachineImageVersionOk() (ret MaintenanceAutoUpdategetMachineImageVersionRetType, ok bool) {
+	return getMaintenanceAutoUpdategetMachineImageVersionAttributeTypeOk(o.MachineImageVersion)
 }
 
 // HasMachineImageVersion returns a boolean if a field has been set.
 func (o *MaintenanceAutoUpdate) HasMachineImageVersion() bool {
-	if o != nil && !IsNil(o.MachineImageVersion) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMachineImageVersionOk()
+	return ok
 }
 
 // SetMachineImageVersion gets a reference to the given bool and assigns it to the MachineImageVersion field.
-func (o *MaintenanceAutoUpdate) SetMachineImageVersion(v *bool) {
-	o.MachineImageVersion = v
+func (o *MaintenanceAutoUpdate) SetMachineImageVersion(v MaintenanceAutoUpdategetMachineImageVersionRetType) {
+	setMaintenanceAutoUpdategetMachineImageVersionAttributeType(&o.MachineImageVersion, v)
 }
 
 func (o MaintenanceAutoUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.KubernetesVersion) {
-		toSerialize["kubernetesVersion"] = o.KubernetesVersion
+	if val, ok := getMaintenanceAutoUpdategetKubernetesVersionAttributeTypeOk(o.KubernetesVersion); ok {
+		toSerialize["KubernetesVersion"] = val
 	}
-	if !IsNil(o.MachineImageVersion) {
-		toSerialize["machineImageVersion"] = o.MachineImageVersion
+	if val, ok := getMaintenanceAutoUpdategetMachineImageVersionAttributeTypeOk(o.MachineImageVersion); ok {
+		toSerialize["MachineImageVersion"] = val
 	}
 	return toSerialize, nil
 }

@@ -1,10 +1,63 @@
 ## Release (2025-XX-YY)
-- `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-xx-yy)
+- `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-03-19)
   - **New:** API for application load balancer
-- `cdn`: [0.1.0](services/cdn/CHANGELOG.md#v010-2025-xx-yy)
+- `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-03-19)
   - **New:** Introduce new API for content delivery
 - `core`: [v0.16.2](core/CHANGELOG.md#v0162-2025-03-21)
   - **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
+- `serverupdate`: [v1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-03-19)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-03-19)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `runcommand`: [v1.0.0](services/runcommand/CHANGELOG.md#v100-2025-03-19)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `authorization`: [v0.6.1](services/authorization/CHANGELOG.md#v061-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `dns`: [v0.13.1](services/dns/CHANGELOG.md#v0131-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `iaas`: [v0.21.2](services/iaas/CHANGELOG.md#v0212-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `loadbalancer`: [v1.0.1](services/loadbalancer/CHANGELOG.md#v101-2025-03-19)
+  - - **Bugfix:** Corrected regional setup of client
+- `logme`: [v0.21.1](services/logme/CHANGELOG.md#v0211-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `mariadb`: [v0.21.1](services/mariadb/CHANGELOG.md#v0211-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `modelserving`: [v0.2.1](services/modelserving/CHANGELOG.md#v021-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `mongodbflex`: [v0.18.1](services/mongodbflex/CHANGELOG.md#v0181-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `objectstorage`: [v1.1.1](services/objectstorage/CHANGELOG.md#v111-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `observability`: [v0.3.1](services/observability/CHANGELOG.md#v031-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `opensearch`: [v0.20.1](services/opensearch/CHANGELOG.md#v0201-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `postgresflex`: [v1.0.2](services/postgresflex/CHANGELOG.md#v102-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `rabbitmq`: [v0.21.1](services/rabbitmq/CHANGELOG.md#v0211-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `redis`: [v0.21.1](services/redis/CHANGELOG.md#v0211-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `resourcemanager`: [v0.13.1](services/resourcemanager/CHANGELOG.md#v0131-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `secretsmanager`: [v0.11.1](services/secretsmanager/CHANGELOG.md#v0111-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `secretsmanager`: [v0.11.2](services/secretsmanager/CHANGELOG.md#v0112-2025-03-20)
+  - **Improvement:** Error handling
+  - **Feature:** Add description to `UpdateUserPayload`
+- `serviceaccount`: [v0.6.1](services/serviceaccount/CHANGELOG.md#v061-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `serviceenablement`: [v1.0.1](services/serviceenablement/CHANGELOG.md#v101-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `ske`: [v0.22.1](services/ske/CHANGELOG.md#v0221-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `sqlserverflex`: [v1.0.1](services/sqlserverflex/CHANGELOG.md#v101-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `stackitmarketplace`: [v0.3.1](services/stackitmarketplace/CHANGELOG.md#v031-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+
+
 
 ## Release (2025-03-14)
 - `certificates`: [v1.0.0](services/certificates/CHANGELOG.md#v100-2025-03-14)
@@ -13,9 +66,13 @@
   - **Bugfix:** `DeleteUserWaitHandler` is now also using the region as parameter.
 - `modelserving`: [v0.2.0](services/modelserving/CHANGELOG.md#v020-2025-03-14)
   - **New**: STACKIT Model Serving module wait handler added.
+- `loadbalancer`: [v1.0.0](services/loadbalancer/CHANGELOG.md#v100-2025-03-14)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+  - **Breaking Change:** Remove deprecated API methods `DisableService` and `EnableService`. They are no longer required because the service automatically enables and disable.
+  - **Breaking Change:** Remove WaitHandler `EnableServiceWaitHandler` for `EnableService`.
+
 
 ## Release (2025-03-05)
-
 - `core`: [v0.16.1](core/CHANGELOG.md#v0161-2025-02-25)
   - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.
 - `stackitmarketplace`: [v0.3.0](services/stackitmarketplace/CHANGELOG.md#v030-2025-02-25)

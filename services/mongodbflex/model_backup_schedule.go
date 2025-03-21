@@ -17,14 +17,135 @@ import (
 // checks if the BackupSchedule type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BackupSchedule{}
 
+/*
+	types and functions for backupSchedule
+*/
+
+// isNotNullableString
+type BackupScheduleGetBackupScheduleAttributeType = *string
+
+func getBackupScheduleGetBackupScheduleAttributeTypeOk(arg BackupScheduleGetBackupScheduleAttributeType) (ret BackupScheduleGetBackupScheduleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupScheduleGetBackupScheduleAttributeType(arg *BackupScheduleGetBackupScheduleAttributeType, val BackupScheduleGetBackupScheduleRetType) {
+	*arg = &val
+}
+
+type BackupScheduleGetBackupScheduleArgType = string
+type BackupScheduleGetBackupScheduleRetType = string
+
+/*
+	types and functions for dailySnapshotRetentionDays
+*/
+
+// isInteger
+type BackupScheduleGetDailySnapshotRetentionDaysAttributeType = *int64
+type BackupScheduleGetDailySnapshotRetentionDaysArgType = int64
+type BackupScheduleGetDailySnapshotRetentionDaysRetType = int64
+
+func getBackupScheduleGetDailySnapshotRetentionDaysAttributeTypeOk(arg BackupScheduleGetDailySnapshotRetentionDaysAttributeType) (ret BackupScheduleGetDailySnapshotRetentionDaysRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupScheduleGetDailySnapshotRetentionDaysAttributeType(arg *BackupScheduleGetDailySnapshotRetentionDaysAttributeType, val BackupScheduleGetDailySnapshotRetentionDaysRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for monthlySnapshotRetentionMonths
+*/
+
+// isInteger
+type BackupScheduleGetMonthlySnapshotRetentionMonthsAttributeType = *int64
+type BackupScheduleGetMonthlySnapshotRetentionMonthsArgType = int64
+type BackupScheduleGetMonthlySnapshotRetentionMonthsRetType = int64
+
+func getBackupScheduleGetMonthlySnapshotRetentionMonthsAttributeTypeOk(arg BackupScheduleGetMonthlySnapshotRetentionMonthsAttributeType) (ret BackupScheduleGetMonthlySnapshotRetentionMonthsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupScheduleGetMonthlySnapshotRetentionMonthsAttributeType(arg *BackupScheduleGetMonthlySnapshotRetentionMonthsAttributeType, val BackupScheduleGetMonthlySnapshotRetentionMonthsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for pointInTimeWindowHours
+*/
+
+// isInteger
+type BackupScheduleGetPointInTimeWindowHoursAttributeType = *int64
+type BackupScheduleGetPointInTimeWindowHoursArgType = int64
+type BackupScheduleGetPointInTimeWindowHoursRetType = int64
+
+func getBackupScheduleGetPointInTimeWindowHoursAttributeTypeOk(arg BackupScheduleGetPointInTimeWindowHoursAttributeType) (ret BackupScheduleGetPointInTimeWindowHoursRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupScheduleGetPointInTimeWindowHoursAttributeType(arg *BackupScheduleGetPointInTimeWindowHoursAttributeType, val BackupScheduleGetPointInTimeWindowHoursRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for snapshotRetentionDays
+*/
+
+// isInteger
+type BackupScheduleGetSnapshotRetentionDaysAttributeType = *int64
+type BackupScheduleGetSnapshotRetentionDaysArgType = int64
+type BackupScheduleGetSnapshotRetentionDaysRetType = int64
+
+func getBackupScheduleGetSnapshotRetentionDaysAttributeTypeOk(arg BackupScheduleGetSnapshotRetentionDaysAttributeType) (ret BackupScheduleGetSnapshotRetentionDaysRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupScheduleGetSnapshotRetentionDaysAttributeType(arg *BackupScheduleGetSnapshotRetentionDaysAttributeType, val BackupScheduleGetSnapshotRetentionDaysRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for weeklySnapshotRetentionWeeks
+*/
+
+// isInteger
+type BackupScheduleGetWeeklySnapshotRetentionWeeksAttributeType = *int64
+type BackupScheduleGetWeeklySnapshotRetentionWeeksArgType = int64
+type BackupScheduleGetWeeklySnapshotRetentionWeeksRetType = int64
+
+func getBackupScheduleGetWeeklySnapshotRetentionWeeksAttributeTypeOk(arg BackupScheduleGetWeeklySnapshotRetentionWeeksAttributeType) (ret BackupScheduleGetWeeklySnapshotRetentionWeeksRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupScheduleGetWeeklySnapshotRetentionWeeksAttributeType(arg *BackupScheduleGetWeeklySnapshotRetentionWeeksAttributeType, val BackupScheduleGetWeeklySnapshotRetentionWeeksRetType) {
+	*arg = &val
+}
+
 // BackupSchedule struct for BackupSchedule
 type BackupSchedule struct {
-	BackupSchedule                 *string `json:"backupSchedule,omitempty"`
-	DailySnapshotRetentionDays     *int64  `json:"dailySnapshotRetentionDays,omitempty"`
-	MonthlySnapshotRetentionMonths *int64  `json:"monthlySnapshotRetentionMonths,omitempty"`
-	PointInTimeWindowHours         *int64  `json:"pointInTimeWindowHours,omitempty"`
-	SnapshotRetentionDays          *int64  `json:"snapshotRetentionDays,omitempty"`
-	WeeklySnapshotRetentionWeeks   *int64  `json:"weeklySnapshotRetentionWeeks,omitempty"`
+	BackupSchedule                 BackupScheduleGetBackupScheduleAttributeType                 `json:"backupSchedule,omitempty"`
+	DailySnapshotRetentionDays     BackupScheduleGetDailySnapshotRetentionDaysAttributeType     `json:"dailySnapshotRetentionDays,omitempty"`
+	MonthlySnapshotRetentionMonths BackupScheduleGetMonthlySnapshotRetentionMonthsAttributeType `json:"monthlySnapshotRetentionMonths,omitempty"`
+	PointInTimeWindowHours         BackupScheduleGetPointInTimeWindowHoursAttributeType         `json:"pointInTimeWindowHours,omitempty"`
+	SnapshotRetentionDays          BackupScheduleGetSnapshotRetentionDaysAttributeType          `json:"snapshotRetentionDays,omitempty"`
+	WeeklySnapshotRetentionWeeks   BackupScheduleGetWeeklySnapshotRetentionWeeksAttributeType   `json:"weeklySnapshotRetentionWeeks,omitempty"`
 }
 
 // NewBackupSchedule instantiates a new BackupSchedule object
@@ -45,216 +166,162 @@ func NewBackupScheduleWithDefaults() *BackupSchedule {
 }
 
 // GetBackupSchedule returns the BackupSchedule field value if set, zero value otherwise.
-func (o *BackupSchedule) GetBackupSchedule() *string {
-	if o == nil || IsNil(o.BackupSchedule) {
-		var ret *string
-		return ret
-	}
-	return o.BackupSchedule
+func (o *BackupSchedule) GetBackupSchedule() (res BackupScheduleGetBackupScheduleRetType) {
+	res, _ = o.GetBackupScheduleOk()
+	return
 }
 
 // GetBackupScheduleOk returns a tuple with the BackupSchedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BackupSchedule) GetBackupScheduleOk() (*string, bool) {
-	if o == nil || IsNil(o.BackupSchedule) {
-		return nil, false
-	}
-	return o.BackupSchedule, true
+func (o *BackupSchedule) GetBackupScheduleOk() (ret BackupScheduleGetBackupScheduleRetType, ok bool) {
+	return getBackupScheduleGetBackupScheduleAttributeTypeOk(o.BackupSchedule)
 }
 
 // HasBackupSchedule returns a boolean if a field has been set.
 func (o *BackupSchedule) HasBackupSchedule() bool {
-	if o != nil && !IsNil(o.BackupSchedule) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBackupScheduleOk()
+	return ok
 }
 
 // SetBackupSchedule gets a reference to the given string and assigns it to the BackupSchedule field.
-func (o *BackupSchedule) SetBackupSchedule(v *string) {
-	o.BackupSchedule = v
+func (o *BackupSchedule) SetBackupSchedule(v BackupScheduleGetBackupScheduleRetType) {
+	setBackupScheduleGetBackupScheduleAttributeType(&o.BackupSchedule, v)
 }
 
 // GetDailySnapshotRetentionDays returns the DailySnapshotRetentionDays field value if set, zero value otherwise.
-func (o *BackupSchedule) GetDailySnapshotRetentionDays() *int64 {
-	if o == nil || IsNil(o.DailySnapshotRetentionDays) {
-		var ret *int64
-		return ret
-	}
-	return o.DailySnapshotRetentionDays
+func (o *BackupSchedule) GetDailySnapshotRetentionDays() (res BackupScheduleGetDailySnapshotRetentionDaysRetType) {
+	res, _ = o.GetDailySnapshotRetentionDaysOk()
+	return
 }
 
 // GetDailySnapshotRetentionDaysOk returns a tuple with the DailySnapshotRetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BackupSchedule) GetDailySnapshotRetentionDaysOk() (*int64, bool) {
-	if o == nil || IsNil(o.DailySnapshotRetentionDays) {
-		return nil, false
-	}
-	return o.DailySnapshotRetentionDays, true
+func (o *BackupSchedule) GetDailySnapshotRetentionDaysOk() (ret BackupScheduleGetDailySnapshotRetentionDaysRetType, ok bool) {
+	return getBackupScheduleGetDailySnapshotRetentionDaysAttributeTypeOk(o.DailySnapshotRetentionDays)
 }
 
 // HasDailySnapshotRetentionDays returns a boolean if a field has been set.
 func (o *BackupSchedule) HasDailySnapshotRetentionDays() bool {
-	if o != nil && !IsNil(o.DailySnapshotRetentionDays) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDailySnapshotRetentionDaysOk()
+	return ok
 }
 
 // SetDailySnapshotRetentionDays gets a reference to the given int64 and assigns it to the DailySnapshotRetentionDays field.
-func (o *BackupSchedule) SetDailySnapshotRetentionDays(v *int64) {
-	o.DailySnapshotRetentionDays = v
+func (o *BackupSchedule) SetDailySnapshotRetentionDays(v BackupScheduleGetDailySnapshotRetentionDaysRetType) {
+	setBackupScheduleGetDailySnapshotRetentionDaysAttributeType(&o.DailySnapshotRetentionDays, v)
 }
 
 // GetMonthlySnapshotRetentionMonths returns the MonthlySnapshotRetentionMonths field value if set, zero value otherwise.
-func (o *BackupSchedule) GetMonthlySnapshotRetentionMonths() *int64 {
-	if o == nil || IsNil(o.MonthlySnapshotRetentionMonths) {
-		var ret *int64
-		return ret
-	}
-	return o.MonthlySnapshotRetentionMonths
+func (o *BackupSchedule) GetMonthlySnapshotRetentionMonths() (res BackupScheduleGetMonthlySnapshotRetentionMonthsRetType) {
+	res, _ = o.GetMonthlySnapshotRetentionMonthsOk()
+	return
 }
 
 // GetMonthlySnapshotRetentionMonthsOk returns a tuple with the MonthlySnapshotRetentionMonths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BackupSchedule) GetMonthlySnapshotRetentionMonthsOk() (*int64, bool) {
-	if o == nil || IsNil(o.MonthlySnapshotRetentionMonths) {
-		return nil, false
-	}
-	return o.MonthlySnapshotRetentionMonths, true
+func (o *BackupSchedule) GetMonthlySnapshotRetentionMonthsOk() (ret BackupScheduleGetMonthlySnapshotRetentionMonthsRetType, ok bool) {
+	return getBackupScheduleGetMonthlySnapshotRetentionMonthsAttributeTypeOk(o.MonthlySnapshotRetentionMonths)
 }
 
 // HasMonthlySnapshotRetentionMonths returns a boolean if a field has been set.
 func (o *BackupSchedule) HasMonthlySnapshotRetentionMonths() bool {
-	if o != nil && !IsNil(o.MonthlySnapshotRetentionMonths) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMonthlySnapshotRetentionMonthsOk()
+	return ok
 }
 
 // SetMonthlySnapshotRetentionMonths gets a reference to the given int64 and assigns it to the MonthlySnapshotRetentionMonths field.
-func (o *BackupSchedule) SetMonthlySnapshotRetentionMonths(v *int64) {
-	o.MonthlySnapshotRetentionMonths = v
+func (o *BackupSchedule) SetMonthlySnapshotRetentionMonths(v BackupScheduleGetMonthlySnapshotRetentionMonthsRetType) {
+	setBackupScheduleGetMonthlySnapshotRetentionMonthsAttributeType(&o.MonthlySnapshotRetentionMonths, v)
 }
 
 // GetPointInTimeWindowHours returns the PointInTimeWindowHours field value if set, zero value otherwise.
-func (o *BackupSchedule) GetPointInTimeWindowHours() *int64 {
-	if o == nil || IsNil(o.PointInTimeWindowHours) {
-		var ret *int64
-		return ret
-	}
-	return o.PointInTimeWindowHours
+func (o *BackupSchedule) GetPointInTimeWindowHours() (res BackupScheduleGetPointInTimeWindowHoursRetType) {
+	res, _ = o.GetPointInTimeWindowHoursOk()
+	return
 }
 
 // GetPointInTimeWindowHoursOk returns a tuple with the PointInTimeWindowHours field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BackupSchedule) GetPointInTimeWindowHoursOk() (*int64, bool) {
-	if o == nil || IsNil(o.PointInTimeWindowHours) {
-		return nil, false
-	}
-	return o.PointInTimeWindowHours, true
+func (o *BackupSchedule) GetPointInTimeWindowHoursOk() (ret BackupScheduleGetPointInTimeWindowHoursRetType, ok bool) {
+	return getBackupScheduleGetPointInTimeWindowHoursAttributeTypeOk(o.PointInTimeWindowHours)
 }
 
 // HasPointInTimeWindowHours returns a boolean if a field has been set.
 func (o *BackupSchedule) HasPointInTimeWindowHours() bool {
-	if o != nil && !IsNil(o.PointInTimeWindowHours) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPointInTimeWindowHoursOk()
+	return ok
 }
 
 // SetPointInTimeWindowHours gets a reference to the given int64 and assigns it to the PointInTimeWindowHours field.
-func (o *BackupSchedule) SetPointInTimeWindowHours(v *int64) {
-	o.PointInTimeWindowHours = v
+func (o *BackupSchedule) SetPointInTimeWindowHours(v BackupScheduleGetPointInTimeWindowHoursRetType) {
+	setBackupScheduleGetPointInTimeWindowHoursAttributeType(&o.PointInTimeWindowHours, v)
 }
 
 // GetSnapshotRetentionDays returns the SnapshotRetentionDays field value if set, zero value otherwise.
-func (o *BackupSchedule) GetSnapshotRetentionDays() *int64 {
-	if o == nil || IsNil(o.SnapshotRetentionDays) {
-		var ret *int64
-		return ret
-	}
-	return o.SnapshotRetentionDays
+func (o *BackupSchedule) GetSnapshotRetentionDays() (res BackupScheduleGetSnapshotRetentionDaysRetType) {
+	res, _ = o.GetSnapshotRetentionDaysOk()
+	return
 }
 
 // GetSnapshotRetentionDaysOk returns a tuple with the SnapshotRetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BackupSchedule) GetSnapshotRetentionDaysOk() (*int64, bool) {
-	if o == nil || IsNil(o.SnapshotRetentionDays) {
-		return nil, false
-	}
-	return o.SnapshotRetentionDays, true
+func (o *BackupSchedule) GetSnapshotRetentionDaysOk() (ret BackupScheduleGetSnapshotRetentionDaysRetType, ok bool) {
+	return getBackupScheduleGetSnapshotRetentionDaysAttributeTypeOk(o.SnapshotRetentionDays)
 }
 
 // HasSnapshotRetentionDays returns a boolean if a field has been set.
 func (o *BackupSchedule) HasSnapshotRetentionDays() bool {
-	if o != nil && !IsNil(o.SnapshotRetentionDays) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSnapshotRetentionDaysOk()
+	return ok
 }
 
 // SetSnapshotRetentionDays gets a reference to the given int64 and assigns it to the SnapshotRetentionDays field.
-func (o *BackupSchedule) SetSnapshotRetentionDays(v *int64) {
-	o.SnapshotRetentionDays = v
+func (o *BackupSchedule) SetSnapshotRetentionDays(v BackupScheduleGetSnapshotRetentionDaysRetType) {
+	setBackupScheduleGetSnapshotRetentionDaysAttributeType(&o.SnapshotRetentionDays, v)
 }
 
 // GetWeeklySnapshotRetentionWeeks returns the WeeklySnapshotRetentionWeeks field value if set, zero value otherwise.
-func (o *BackupSchedule) GetWeeklySnapshotRetentionWeeks() *int64 {
-	if o == nil || IsNil(o.WeeklySnapshotRetentionWeeks) {
-		var ret *int64
-		return ret
-	}
-	return o.WeeklySnapshotRetentionWeeks
+func (o *BackupSchedule) GetWeeklySnapshotRetentionWeeks() (res BackupScheduleGetWeeklySnapshotRetentionWeeksRetType) {
+	res, _ = o.GetWeeklySnapshotRetentionWeeksOk()
+	return
 }
 
 // GetWeeklySnapshotRetentionWeeksOk returns a tuple with the WeeklySnapshotRetentionWeeks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BackupSchedule) GetWeeklySnapshotRetentionWeeksOk() (*int64, bool) {
-	if o == nil || IsNil(o.WeeklySnapshotRetentionWeeks) {
-		return nil, false
-	}
-	return o.WeeklySnapshotRetentionWeeks, true
+func (o *BackupSchedule) GetWeeklySnapshotRetentionWeeksOk() (ret BackupScheduleGetWeeklySnapshotRetentionWeeksRetType, ok bool) {
+	return getBackupScheduleGetWeeklySnapshotRetentionWeeksAttributeTypeOk(o.WeeklySnapshotRetentionWeeks)
 }
 
 // HasWeeklySnapshotRetentionWeeks returns a boolean if a field has been set.
 func (o *BackupSchedule) HasWeeklySnapshotRetentionWeeks() bool {
-	if o != nil && !IsNil(o.WeeklySnapshotRetentionWeeks) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetWeeklySnapshotRetentionWeeksOk()
+	return ok
 }
 
 // SetWeeklySnapshotRetentionWeeks gets a reference to the given int64 and assigns it to the WeeklySnapshotRetentionWeeks field.
-func (o *BackupSchedule) SetWeeklySnapshotRetentionWeeks(v *int64) {
-	o.WeeklySnapshotRetentionWeeks = v
+func (o *BackupSchedule) SetWeeklySnapshotRetentionWeeks(v BackupScheduleGetWeeklySnapshotRetentionWeeksRetType) {
+	setBackupScheduleGetWeeklySnapshotRetentionWeeksAttributeType(&o.WeeklySnapshotRetentionWeeks, v)
 }
 
 func (o BackupSchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BackupSchedule) {
-		toSerialize["backupSchedule"] = o.BackupSchedule
+	if val, ok := getBackupScheduleGetBackupScheduleAttributeTypeOk(o.BackupSchedule); ok {
+		toSerialize["BackupSchedule"] = val
 	}
-	if !IsNil(o.DailySnapshotRetentionDays) {
-		toSerialize["dailySnapshotRetentionDays"] = o.DailySnapshotRetentionDays
+	if val, ok := getBackupScheduleGetDailySnapshotRetentionDaysAttributeTypeOk(o.DailySnapshotRetentionDays); ok {
+		toSerialize["DailySnapshotRetentionDays"] = val
 	}
-	if !IsNil(o.MonthlySnapshotRetentionMonths) {
-		toSerialize["monthlySnapshotRetentionMonths"] = o.MonthlySnapshotRetentionMonths
+	if val, ok := getBackupScheduleGetMonthlySnapshotRetentionMonthsAttributeTypeOk(o.MonthlySnapshotRetentionMonths); ok {
+		toSerialize["MonthlySnapshotRetentionMonths"] = val
 	}
-	if !IsNil(o.PointInTimeWindowHours) {
-		toSerialize["pointInTimeWindowHours"] = o.PointInTimeWindowHours
+	if val, ok := getBackupScheduleGetPointInTimeWindowHoursAttributeTypeOk(o.PointInTimeWindowHours); ok {
+		toSerialize["PointInTimeWindowHours"] = val
 	}
-	if !IsNil(o.SnapshotRetentionDays) {
-		toSerialize["snapshotRetentionDays"] = o.SnapshotRetentionDays
+	if val, ok := getBackupScheduleGetSnapshotRetentionDaysAttributeTypeOk(o.SnapshotRetentionDays); ok {
+		toSerialize["SnapshotRetentionDays"] = val
 	}
-	if !IsNil(o.WeeklySnapshotRetentionWeeks) {
-		toSerialize["weeklySnapshotRetentionWeeks"] = o.WeeklySnapshotRetentionWeeks
+	if val, ok := getBackupScheduleGetWeeklySnapshotRetentionWeeksAttributeTypeOk(o.WeeklySnapshotRetentionWeeks); ok {
+		toSerialize["WeeklySnapshotRetentionWeeks"] = val
 	}
 	return toSerialize, nil
 }

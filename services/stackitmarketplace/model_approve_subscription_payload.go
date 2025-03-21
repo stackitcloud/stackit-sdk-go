@@ -17,10 +17,31 @@ import (
 // checks if the ApproveSubscriptionPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ApproveSubscriptionPayload{}
 
+/*
+	types and functions for instanceTarget
+*/
+
+// isNotNullableString
+type ApproveSubscriptionPayloadGetInstanceTargetAttributeType = *string
+
+func getApproveSubscriptionPayloadGetInstanceTargetAttributeTypeOk(arg ApproveSubscriptionPayloadGetInstanceTargetAttributeType) (ret ApproveSubscriptionPayloadGetInstanceTargetRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApproveSubscriptionPayloadGetInstanceTargetAttributeType(arg *ApproveSubscriptionPayloadGetInstanceTargetAttributeType, val ApproveSubscriptionPayloadGetInstanceTargetRetType) {
+	*arg = &val
+}
+
+type ApproveSubscriptionPayloadGetInstanceTargetArgType = string
+type ApproveSubscriptionPayloadGetInstanceTargetRetType = string
+
 // ApproveSubscriptionPayload struct for ApproveSubscriptionPayload
 type ApproveSubscriptionPayload struct {
 	// The target URL of the user instance, used to redirect the user to the instance after the subscription is active.
-	InstanceTarget *string `json:"instanceTarget,omitempty"`
+	InstanceTarget ApproveSubscriptionPayloadGetInstanceTargetAttributeType `json:"instanceTarget,omitempty"`
 }
 
 // NewApproveSubscriptionPayload instantiates a new ApproveSubscriptionPayload object
@@ -41,41 +62,32 @@ func NewApproveSubscriptionPayloadWithDefaults() *ApproveSubscriptionPayload {
 }
 
 // GetInstanceTarget returns the InstanceTarget field value if set, zero value otherwise.
-func (o *ApproveSubscriptionPayload) GetInstanceTarget() *string {
-	if o == nil || IsNil(o.InstanceTarget) {
-		var ret *string
-		return ret
-	}
-	return o.InstanceTarget
+func (o *ApproveSubscriptionPayload) GetInstanceTarget() (res ApproveSubscriptionPayloadGetInstanceTargetRetType) {
+	res, _ = o.GetInstanceTargetOk()
+	return
 }
 
 // GetInstanceTargetOk returns a tuple with the InstanceTarget field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApproveSubscriptionPayload) GetInstanceTargetOk() (*string, bool) {
-	if o == nil || IsNil(o.InstanceTarget) {
-		return nil, false
-	}
-	return o.InstanceTarget, true
+func (o *ApproveSubscriptionPayload) GetInstanceTargetOk() (ret ApproveSubscriptionPayloadGetInstanceTargetRetType, ok bool) {
+	return getApproveSubscriptionPayloadGetInstanceTargetAttributeTypeOk(o.InstanceTarget)
 }
 
 // HasInstanceTarget returns a boolean if a field has been set.
 func (o *ApproveSubscriptionPayload) HasInstanceTarget() bool {
-	if o != nil && !IsNil(o.InstanceTarget) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInstanceTargetOk()
+	return ok
 }
 
 // SetInstanceTarget gets a reference to the given string and assigns it to the InstanceTarget field.
-func (o *ApproveSubscriptionPayload) SetInstanceTarget(v *string) {
-	o.InstanceTarget = v
+func (o *ApproveSubscriptionPayload) SetInstanceTarget(v ApproveSubscriptionPayloadGetInstanceTargetRetType) {
+	setApproveSubscriptionPayloadGetInstanceTargetAttributeType(&o.InstanceTarget, v)
 }
 
 func (o ApproveSubscriptionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.InstanceTarget) {
-		toSerialize["instanceTarget"] = o.InstanceTarget
+	if val, ok := getApproveSubscriptionPayloadGetInstanceTargetAttributeTypeOk(o.InstanceTarget); ok {
+		toSerialize["InstanceTarget"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,9 +17,29 @@ import (
 // checks if the ExtensionsNewConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ExtensionsNewConfig{}
 
+/*
+	types and functions for configuration
+*/
+
+// isArray
+type ExtensionsNewConfigGetConfigurationAttributeType = *[]ExtensionsConfiguration
+type ExtensionsNewConfigGetConfigurationArgType = []ExtensionsConfiguration
+type ExtensionsNewConfigGetConfigurationRetType = []ExtensionsConfiguration
+
+func getExtensionsNewConfigGetConfigurationAttributeTypeOk(arg ExtensionsNewConfigGetConfigurationAttributeType) (ret ExtensionsNewConfigGetConfigurationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setExtensionsNewConfigGetConfigurationAttributeType(arg *ExtensionsNewConfigGetConfigurationAttributeType, val ExtensionsNewConfigGetConfigurationRetType) {
+	*arg = &val
+}
+
 // ExtensionsNewConfig struct for ExtensionsNewConfig
 type ExtensionsNewConfig struct {
-	Configuration *[]ExtensionsConfiguration `json:"configuration,omitempty"`
+	Configuration ExtensionsNewConfigGetConfigurationAttributeType `json:"configuration,omitempty"`
 }
 
 // NewExtensionsNewConfig instantiates a new ExtensionsNewConfig object
@@ -40,41 +60,32 @@ func NewExtensionsNewConfigWithDefaults() *ExtensionsNewConfig {
 }
 
 // GetConfiguration returns the Configuration field value if set, zero value otherwise.
-func (o *ExtensionsNewConfig) GetConfiguration() *[]ExtensionsConfiguration {
-	if o == nil || IsNil(o.Configuration) {
-		var ret *[]ExtensionsConfiguration
-		return ret
-	}
-	return o.Configuration
+func (o *ExtensionsNewConfig) GetConfiguration() (res ExtensionsNewConfigGetConfigurationRetType) {
+	res, _ = o.GetConfigurationOk()
+	return
 }
 
 // GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtensionsNewConfig) GetConfigurationOk() (*[]ExtensionsConfiguration, bool) {
-	if o == nil || IsNil(o.Configuration) {
-		return nil, false
-	}
-	return o.Configuration, true
+func (o *ExtensionsNewConfig) GetConfigurationOk() (ret ExtensionsNewConfigGetConfigurationRetType, ok bool) {
+	return getExtensionsNewConfigGetConfigurationAttributeTypeOk(o.Configuration)
 }
 
 // HasConfiguration returns a boolean if a field has been set.
 func (o *ExtensionsNewConfig) HasConfiguration() bool {
-	if o != nil && !IsNil(o.Configuration) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetConfigurationOk()
+	return ok
 }
 
 // SetConfiguration gets a reference to the given []ExtensionsConfiguration and assigns it to the Configuration field.
-func (o *ExtensionsNewConfig) SetConfiguration(v *[]ExtensionsConfiguration) {
-	o.Configuration = v
+func (o *ExtensionsNewConfig) SetConfiguration(v ExtensionsNewConfigGetConfigurationRetType) {
+	setExtensionsNewConfigGetConfigurationAttributeType(&o.Configuration, v)
 }
 
 func (o ExtensionsNewConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Configuration) {
-		toSerialize["configuration"] = o.Configuration
+	if val, ok := getExtensionsNewConfigGetConfigurationAttributeTypeOk(o.Configuration); ok {
+		toSerialize["Configuration"] = val
 	}
 	return toSerialize, nil
 }

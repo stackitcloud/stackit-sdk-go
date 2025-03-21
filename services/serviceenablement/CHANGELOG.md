@@ -1,3 +1,6 @@
+## v1.0.1 (2025-03-19)
+- **Internal:** Backwards compatible change to generated code
+
 ## v1.0.0 (2025-03-04)
 - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 

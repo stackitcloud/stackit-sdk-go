@@ -17,11 +17,31 @@ import (
 // checks if the KeyPairListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &KeyPairListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type KeyPairListResponseGetItemsAttributeType = *[]Keypair
+type KeyPairListResponseGetItemsArgType = []Keypair
+type KeyPairListResponseGetItemsRetType = []Keypair
+
+func getKeyPairListResponseGetItemsAttributeTypeOk(arg KeyPairListResponseGetItemsAttributeType) (ret KeyPairListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeyPairListResponseGetItemsAttributeType(arg *KeyPairListResponseGetItemsAttributeType, val KeyPairListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // KeyPairListResponse SSH keypair list response.
 type KeyPairListResponse struct {
 	// A list of SSH keypairs.
 	// REQUIRED
-	Items *[]Keypair `json:"items"`
+	Items KeyPairListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _KeyPairListResponse KeyPairListResponse
@@ -30,9 +50,9 @@ type _KeyPairListResponse KeyPairListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKeyPairListResponse(items *[]Keypair) *KeyPairListResponse {
+func NewKeyPairListResponse(items KeyPairListResponseGetItemsArgType) *KeyPairListResponse {
 	this := KeyPairListResponse{}
-	this.Items = items
+	setKeyPairListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewKeyPairListResponseWithDefaults() *KeyPairListResponse {
 }
 
 // GetItems returns the Items field value
-func (o *KeyPairListResponse) GetItems() *[]Keypair {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]Keypair
-		return ret
-	}
-
-	return o.Items
+func (o *KeyPairListResponse) GetItems() (ret KeyPairListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *KeyPairListResponse) GetItemsOk() (*[]Keypair, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *KeyPairListResponse) GetItemsOk() (ret KeyPairListResponseGetItemsRetType, ok bool) {
+	return getKeyPairListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *KeyPairListResponse) SetItems(v *[]Keypair) {
-	o.Items = v
+func (o *KeyPairListResponse) SetItems(v KeyPairListResponseGetItemsRetType) {
+	setKeyPairListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o KeyPairListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getKeyPairListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 

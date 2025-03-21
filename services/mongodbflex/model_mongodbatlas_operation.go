@@ -17,13 +17,74 @@ import (
 // checks if the MongodbatlasOperation type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MongodbatlasOperation{}
 
+/*
+	types and functions for predicates
+*/
+
+// isArray
+type MongodbatlasOperationGetPredicatesAttributeType = *[]map[string]interface{}
+type MongodbatlasOperationGetPredicatesArgType = []map[string]interface{}
+type MongodbatlasOperationGetPredicatesRetType = []map[string]interface{}
+
+func getMongodbatlasOperationGetPredicatesAttributeTypeOk(arg MongodbatlasOperationGetPredicatesAttributeType) (ret MongodbatlasOperationGetPredicatesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMongodbatlasOperationGetPredicatesAttributeType(arg *MongodbatlasOperationGetPredicatesAttributeType, val MongodbatlasOperationGetPredicatesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for raw
+*/
+
+// isNotNullableString
+type MongodbatlasOperationGetRawAttributeType = *string
+
+func getMongodbatlasOperationGetRawAttributeTypeOk(arg MongodbatlasOperationGetRawAttributeType) (ret MongodbatlasOperationGetRawRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMongodbatlasOperationGetRawAttributeType(arg *MongodbatlasOperationGetRawAttributeType, val MongodbatlasOperationGetRawRetType) {
+	*arg = &val
+}
+
+type MongodbatlasOperationGetRawArgType = string
+type MongodbatlasOperationGetRawRetType = string
+
+/*
+	types and functions for stats
+*/
+
+// isModel
+type MongodbatlasOperationGetStatsAttributeType = *MongodbatlasOperationStats
+type MongodbatlasOperationGetStatsArgType = MongodbatlasOperationStats
+type MongodbatlasOperationGetStatsRetType = MongodbatlasOperationStats
+
+func getMongodbatlasOperationGetStatsAttributeTypeOk(arg MongodbatlasOperationGetStatsAttributeType) (ret MongodbatlasOperationGetStatsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMongodbatlasOperationGetStatsAttributeType(arg *MongodbatlasOperationGetStatsAttributeType, val MongodbatlasOperationGetStatsRetType) {
+	*arg = &val
+}
+
 // MongodbatlasOperation struct for MongodbatlasOperation
 type MongodbatlasOperation struct {
 	// Documents containing the search criteria used by the query.
-	Predicates *[]map[string]interface{} `json:"predicates,omitempty"`
+	Predicates MongodbatlasOperationGetPredicatesAttributeType `json:"predicates,omitempty"`
 	// Raw log line produced by the query.
-	Raw   *string                     `json:"raw,omitempty"`
-	Stats *MongodbatlasOperationStats `json:"stats,omitempty"`
+	Raw   MongodbatlasOperationGetRawAttributeType   `json:"raw,omitempty"`
+	Stats MongodbatlasOperationGetStatsAttributeType `json:"stats,omitempty"`
 }
 
 // NewMongodbatlasOperation instantiates a new MongodbatlasOperation object
@@ -44,111 +105,84 @@ func NewMongodbatlasOperationWithDefaults() *MongodbatlasOperation {
 }
 
 // GetPredicates returns the Predicates field value if set, zero value otherwise.
-func (o *MongodbatlasOperation) GetPredicates() *[]map[string]interface{} {
-	if o == nil || IsNil(o.Predicates) {
-		var ret *[]map[string]interface{}
-		return ret
-	}
-	return o.Predicates
+func (o *MongodbatlasOperation) GetPredicates() (res MongodbatlasOperationGetPredicatesRetType) {
+	res, _ = o.GetPredicatesOk()
+	return
 }
 
 // GetPredicatesOk returns a tuple with the Predicates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MongodbatlasOperation) GetPredicatesOk() (*[]map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Predicates) {
-		return nil, false
-	}
-	return o.Predicates, true
+func (o *MongodbatlasOperation) GetPredicatesOk() (ret MongodbatlasOperationGetPredicatesRetType, ok bool) {
+	return getMongodbatlasOperationGetPredicatesAttributeTypeOk(o.Predicates)
 }
 
 // HasPredicates returns a boolean if a field has been set.
 func (o *MongodbatlasOperation) HasPredicates() bool {
-	if o != nil && !IsNil(o.Predicates) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPredicatesOk()
+	return ok
 }
 
 // SetPredicates gets a reference to the given []map[string]interface{} and assigns it to the Predicates field.
-func (o *MongodbatlasOperation) SetPredicates(v *[]map[string]interface{}) {
-	o.Predicates = v
+func (o *MongodbatlasOperation) SetPredicates(v MongodbatlasOperationGetPredicatesRetType) {
+	setMongodbatlasOperationGetPredicatesAttributeType(&o.Predicates, v)
 }
 
 // GetRaw returns the Raw field value if set, zero value otherwise.
-func (o *MongodbatlasOperation) GetRaw() *string {
-	if o == nil || IsNil(o.Raw) {
-		var ret *string
-		return ret
-	}
-	return o.Raw
+func (o *MongodbatlasOperation) GetRaw() (res MongodbatlasOperationGetRawRetType) {
+	res, _ = o.GetRawOk()
+	return
 }
 
 // GetRawOk returns a tuple with the Raw field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MongodbatlasOperation) GetRawOk() (*string, bool) {
-	if o == nil || IsNil(o.Raw) {
-		return nil, false
-	}
-	return o.Raw, true
+func (o *MongodbatlasOperation) GetRawOk() (ret MongodbatlasOperationGetRawRetType, ok bool) {
+	return getMongodbatlasOperationGetRawAttributeTypeOk(o.Raw)
 }
 
 // HasRaw returns a boolean if a field has been set.
 func (o *MongodbatlasOperation) HasRaw() bool {
-	if o != nil && !IsNil(o.Raw) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRawOk()
+	return ok
 }
 
 // SetRaw gets a reference to the given string and assigns it to the Raw field.
-func (o *MongodbatlasOperation) SetRaw(v *string) {
-	o.Raw = v
+func (o *MongodbatlasOperation) SetRaw(v MongodbatlasOperationGetRawRetType) {
+	setMongodbatlasOperationGetRawAttributeType(&o.Raw, v)
 }
 
 // GetStats returns the Stats field value if set, zero value otherwise.
-func (o *MongodbatlasOperation) GetStats() *MongodbatlasOperationStats {
-	if o == nil || IsNil(o.Stats) {
-		var ret *MongodbatlasOperationStats
-		return ret
-	}
-	return o.Stats
+func (o *MongodbatlasOperation) GetStats() (res MongodbatlasOperationGetStatsRetType) {
+	res, _ = o.GetStatsOk()
+	return
 }
 
 // GetStatsOk returns a tuple with the Stats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MongodbatlasOperation) GetStatsOk() (*MongodbatlasOperationStats, bool) {
-	if o == nil || IsNil(o.Stats) {
-		return nil, false
-	}
-	return o.Stats, true
+func (o *MongodbatlasOperation) GetStatsOk() (ret MongodbatlasOperationGetStatsRetType, ok bool) {
+	return getMongodbatlasOperationGetStatsAttributeTypeOk(o.Stats)
 }
 
 // HasStats returns a boolean if a field has been set.
 func (o *MongodbatlasOperation) HasStats() bool {
-	if o != nil && !IsNil(o.Stats) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatsOk()
+	return ok
 }
 
 // SetStats gets a reference to the given MongodbatlasOperationStats and assigns it to the Stats field.
-func (o *MongodbatlasOperation) SetStats(v *MongodbatlasOperationStats) {
-	o.Stats = v
+func (o *MongodbatlasOperation) SetStats(v MongodbatlasOperationGetStatsRetType) {
+	setMongodbatlasOperationGetStatsAttributeType(&o.Stats, v)
 }
 
 func (o MongodbatlasOperation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Predicates) {
-		toSerialize["predicates"] = o.Predicates
+	if val, ok := getMongodbatlasOperationGetPredicatesAttributeTypeOk(o.Predicates); ok {
+		toSerialize["Predicates"] = val
 	}
-	if !IsNil(o.Raw) {
-		toSerialize["raw"] = o.Raw
+	if val, ok := getMongodbatlasOperationGetRawAttributeTypeOk(o.Raw); ok {
+		toSerialize["Raw"] = val
 	}
-	if !IsNil(o.Stats) {
-		toSerialize["stats"] = o.Stats
+	if val, ok := getMongodbatlasOperationGetStatsAttributeTypeOk(o.Stats); ok {
+		toSerialize["Stats"] = val
 	}
 	return toSerialize, nil
 }
