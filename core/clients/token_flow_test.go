@@ -8,9 +8,6 @@ import (
 	"net/url"
 	"os"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 func TestTokenFlow_Init(t *testing.T) {
@@ -75,7 +72,9 @@ func TestTokenFlow_Do(t *testing.T) {
 				tb.Helper()
 
 				return func(w http.ResponseWriter, r *http.Request) {
-					assert.Equal(tb, "Bearer efg", r.Header.Get("Authorization"))
+					if r.Header.Get("Authorization") != "Bearer efg" {
+						tb.Errorf("expected Authorization header to be 'Bearer efg', but got %s", r.Header.Get("Authorization"))
+					}
 
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)
@@ -118,8 +117,13 @@ func TestTokenFlow_Do(t *testing.T) {
 				tb.Helper()
 
 				return func(w http.ResponseWriter, r *http.Request) {
-					assert.Equal(tb, "Bearer efg", r.Header.Get("Authorization"))
-					assert.Equal(tb, "custom_transport", r.Header.Get("User-Agent"))
+					if r.Header.Get("Authorization") != "Bearer efg" {
+						tb.Errorf("expected Authorization header to be 'Bearer efg', but got %s", r.Header.Get("Authorization"))
+					}
+
+					if r.Header.Get("User-Agent") != "custom_transport" {
+						tb.Errorf("expected User-Agent header to be 'custom_transport', but got %s", r.Header.Get("User-Agent"))
+					}
 
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)
@@ -158,10 +162,14 @@ func TestTokenFlow_Do(t *testing.T) {
 			t.Cleanup(server.Close)
 
 			u, err := url.Parse(server.URL)
-			require.NoError(t, err)
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
 
 			req, err := http.NewRequest(http.MethodGet, u.String(), http.NoBody)
-			require.NoError(t, err)
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
 
 			httpClient := &http.Client{
 				Transport: tt.tokenFlow,
@@ -170,17 +178,27 @@ func TestTokenFlow_Do(t *testing.T) {
 			res, err := httpClient.Do(req)
 
 			if tt.wantErr {
-				require.Error(t, err)
+				if err == nil {
+					t.Errorf("error is expected, but got %v", err)
+				}
 			} else {
-				require.NoError(t, err)
+				if err != nil {
+					t.Errorf("no error is expected, but got %v", err)
+				}
 
-				assert.Equal(t, tt.want, res.StatusCode)
+				if res.StatusCode != tt.want {
+					t.Errorf("expected status code %d, but got %d", tt.want, res.StatusCode)
+				}
 
 				// Defer discard and close the body
 				t.Cleanup(func() {
-					_, err := io.Copy(io.Discard, res.Body)
-					require.NoError(t, err)
-					require.NoError(t, res.Body.Close())
+					if _, err := io.Copy(io.Discard, res.Body); err != nil {
+						t.Errorf("no error is expected, but got %v", err)
+					}
+
+					if err := res.Body.Close(); err != nil {
+						t.Errorf("no error is expected, but got %v", err)
+					}
 				})
 			}
 		})

@@ -8,9 +8,6 @@ import (
 	"net/http/httptest"
 	"net/url"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 func TestNoAuthFlow_Init(t *testing.T) {
@@ -50,7 +47,7 @@ func TestNoAuthFlow_Do(t *testing.T) {
 			name:       "success with rt",
 			noAuthFlow: &NoAuthFlow{http.DefaultTransport, &NoAuthFlowConfig{}},
 			handlerFn: func(_ testing.TB) http.HandlerFunc {
-				return func(w http.ResponseWriter, r *http.Request) {
+				return func(w http.ResponseWriter, _ *http.Request) {
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)
 					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
@@ -63,7 +60,7 @@ func TestNoAuthFlow_Do(t *testing.T) {
 			name:       "success with code 500",
 			noAuthFlow: &NoAuthFlow{http.DefaultTransport, &NoAuthFlowConfig{}},
 			handlerFn: func(_ testing.TB) http.HandlerFunc {
-				return func(w http.ResponseWriter, r *http.Request) {
+				return func(w http.ResponseWriter, _ *http.Request) {
 					w.Header().Set("Content-Type", "text/html")
 					w.WriteHeader(http.StatusInternalServerError)
 					_, _ = fmt.Fprintln(w, `<html>Internal Server Error</html>`)
@@ -88,7 +85,9 @@ func TestNoAuthFlow_Do(t *testing.T) {
 				tb.Helper()
 
 				return func(w http.ResponseWriter, r *http.Request) {
-					assert.Equal(tb, "custom_transport", r.Header.Get("User-Agent"))
+					if r.Header.Get("User-Agent") != "custom_transport" {
+						tb.Errorf("expected User-Agent header to be 'custom_transport', but got %s", r.Header.Get("User-Agent"))
+					}
 
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)
@@ -109,7 +108,7 @@ func TestNoAuthFlow_Do(t *testing.T) {
 				&NoAuthFlowConfig{},
 			},
 			handlerFn: func(testing.TB) http.HandlerFunc {
-				return func(w http.ResponseWriter, r *http.Request) {
+				return func(w http.ResponseWriter, _ *http.Request) {
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)
 					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
@@ -125,10 +124,14 @@ func TestNoAuthFlow_Do(t *testing.T) {
 			t.Cleanup(server.Close)
 
 			u, err := url.Parse(server.URL)
-			require.NoError(t, err)
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
 
 			req, err := http.NewRequest(http.MethodGet, u.String(), http.NoBody)
-			require.NoError(t, err)
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
 
 			httpClient := &http.Client{
 				Transport: tt.noAuthFlow,
@@ -137,17 +140,27 @@ func TestNoAuthFlow_Do(t *testing.T) {
 			res, err := httpClient.Do(req)
 
 			if tt.wantErr {
-				require.Error(t, err)
+				if err == nil {
+					t.Errorf("error is expected, but got %v", err)
+				}
 			} else {
-				require.NoError(t, err)
+				if err != nil {
+					t.Errorf("no error is expected, but got %v", err)
+				}
 
-				assert.Equal(t, tt.want, res.StatusCode)
+				if res.StatusCode != tt.want {
+					t.Errorf("expected status code %d, but got %d", tt.want, res.StatusCode)
+				}
 
 				// Defer discard and close the body
 				t.Cleanup(func() {
-					_, err := io.Copy(io.Discard, res.Body)
-					require.NoError(t, err)
-					require.NoError(t, res.Body.Close())
+					if _, err := io.Copy(io.Discard, res.Body); err != nil {
+						t.Errorf("no error is expected, but got %v", err)
+					}
+
+					if err := res.Body.Close(); err != nil {
+						t.Errorf("no error is expected, but got %v", err)
+					}
 				})
 			}
 		})

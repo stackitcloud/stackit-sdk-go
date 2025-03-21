@@ -20,8 +20,6 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 var (
@@ -331,7 +329,9 @@ func TestKeyFlow_Do(t *testing.T) {
 				tb.Helper()
 
 				return func(w http.ResponseWriter, r *http.Request) {
-					assert.Equal(tb, "Bearer "+testBearerToken, r.Header.Get("Authorization"))
+					if r.Header.Get("Authorization") != "Bearer "+testBearerToken {
+						tb.Errorf("expected Authorization header to be 'Bearer %s', but got %s", testBearerToken, r.Header.Get("Authorization"))
+					}
 
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)
@@ -370,7 +370,9 @@ func TestKeyFlow_Do(t *testing.T) {
 				tb.Helper()
 
 				return func(w http.ResponseWriter, r *http.Request) {
-					assert.Equal(tb, "custom_transport", r.Header.Get("User-Agent"))
+					if r.Header.Get("User-Agent") != "custom_transport" {
+						tb.Errorf("expected User-Agent header to be 'custom_transport', but got %s", r.Header.Get("User-Agent"))
+					}
 
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)
@@ -409,14 +411,16 @@ func TestKeyFlow_Do(t *testing.T) {
 			t.Cleanup(cancel) // This cancels the refresher goroutine
 
 			privateKeyBytes, err := generatePrivateKey()
-			require.NoError(t, err)
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
 
 			tt.keyFlow.config.ServiceAccountKey = fixtureServiceAccountKey()
 			tt.keyFlow.config.PrivateKey = string(privateKeyBytes)
 			tt.keyFlow.config.BackgroundTokenRefreshContext = ctx
 			tt.keyFlow.authClient = &http.Client{
 				Transport: mockTransportFn{
-					fn: func(req *http.Request) (*http.Response, error) {
+					fn: func(_ *http.Request) (*http.Response, error) {
 						res := httptest.NewRecorder()
 						res.WriteHeader(http.StatusOK)
 						res.Header().Set("Content-Type", "application/json")
@@ -428,14 +432,18 @@ func TestKeyFlow_Do(t *testing.T) {
 							TokenType:    "Bearer",
 						}
 
-						assert.NoError(t, json.NewEncoder(res.Body).Encode(token))
+						if err := json.NewEncoder(res.Body).Encode(token); err != nil {
+							t.Logf("no error is expected, but got %v", err)
+						}
 
 						return res.Result(), nil
 					},
 				},
 			}
 
-			require.NoError(t, tt.keyFlow.validate())
+			if err := tt.keyFlow.validate(); err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
 
 			go continuousRefreshToken(tt.keyFlow)
 
@@ -445,7 +453,7 @@ func TestKeyFlow_Do(t *testing.T) {
 			for {
 				select {
 				case <-tokenCtx.Done():
-					require.Fail(t, tokenCtx.Err().Error())
+					t.Error(tokenCtx.Err())
 				case <-time.After(50 * time.Millisecond):
 					tt.keyFlow.tokenMutex.RLock()
 					if tt.keyFlow.token != nil {
@@ -462,10 +470,14 @@ func TestKeyFlow_Do(t *testing.T) {
 			t.Cleanup(server.Close)
 
 			u, err := url.Parse(server.URL)
-			require.NoError(t, err)
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
 
 			req, err := http.NewRequest(http.MethodGet, u.String(), http.NoBody)
-			require.NoError(t, err)
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
 
 			httpClient := &http.Client{
 				Transport: tt.keyFlow,
@@ -474,17 +486,27 @@ func TestKeyFlow_Do(t *testing.T) {
 			res, err := httpClient.Do(req)
 
 			if tt.wantErr {
-				require.Error(t, err)
+				if err == nil {
+					t.Errorf("error is expected, but got %v", err)
+				}
 			} else {
-				require.NoError(t, err)
+				if err != nil {
+					t.Errorf("no error is expected, but got %v", err)
+				}
 
-				assert.Equal(t, tt.want, res.StatusCode)
+				if res.StatusCode != tt.want {
+					t.Errorf("expected status code %d, but got %d", tt.want, res.StatusCode)
+				}
 
 				// Defer discard and close the body
 				t.Cleanup(func() {
-					_, err := io.Copy(io.Discard, res.Body)
-					require.NoError(t, err)
-					require.NoError(t, res.Body.Close())
+					if _, err := io.Copy(io.Discard, res.Body); err != nil {
+						t.Errorf("no error is expected, but got %v", err)
+					}
+
+					if err := res.Body.Close(); err != nil {
+						t.Errorf("no error is expected, but got %v", err)
+					}
 				})
 			}
 		})
