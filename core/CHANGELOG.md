@@ -1,3 +1,7 @@
+## v0.17.0 (2025-03-20)
+
+- **New:** Helper functions for generic openapi error codes
+
 ## v0.16.1 (2025-02-25)
 
 - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.
