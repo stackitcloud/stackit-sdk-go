@@ -194,8 +194,12 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 		return "", fmt.Errorf("nil http round tripper, please run Init()")
 	}
 
+	var accessToken string
+
 	c.tokenMutex.RLock()
-	accessToken := c.token.AccessToken
+	if c.token != nil {
+		accessToken = c.token.AccessToken
+	}
 	c.tokenMutex.RUnlock()
 
 	accessTokenExpired, err := tokenExpired(accessToken)
@@ -247,8 +251,12 @@ func (c *KeyFlow) validate() error {
 // recreateAccessToken is used to create a new access token
 // when the existing one isn't valid anymore
 func (c *KeyFlow) recreateAccessToken() error {
+	var refreshToken string
+
 	c.tokenMutex.RLock()
-	refreshToken := c.token.RefreshToken
+	if c.token != nil {
+		refreshToken = c.token.RefreshToken
+	}
 	c.tokenMutex.RUnlock()
 
 	refreshTokenExpired, err := tokenExpired(refreshToken)

@@ -1,14 +1,18 @@
 package clients
 
 import (
+	"context"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
+	"encoding/json"
 	"encoding/pem"
 	"errors"
 	"fmt"
 	"io"
 	"net/http"
+	"net/http/httptest"
+	"net/url"
 	"strings"
 	"testing"
 	"time"
@@ -16,11 +20,15 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 var (
 	testSigningKey = []byte(`Test`)
 )
+
+const testBearerToken = "eyJhbGciOiJub25lIn0.eyJleHAiOjIxNDc0ODM2NDd9."
 
 func fixtureServiceAccountKey(mods ...func(*ServiceAccountKeyResponse)) *ServiceAccountKeyResponse {
 	validUntil := time.Now().Add(time.Hour)
@@ -301,6 +309,183 @@ func TestRequestToken(t *testing.T) {
 				if !cmp.Equal(tt.mockResponse, res, cmp.AllowUnexported(strings.Reader{})) {
 					t.Errorf("The returned result is wrong. Expected %v, got %v", tt.mockResponse, res)
 				}
+			}
+		})
+	}
+}
+
+func TestKeyFlow_Do(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		name      string
+		keyFlow   *KeyFlow
+		handlerFn func(tb testing.TB) http.HandlerFunc
+		want      int
+		wantErr   bool
+	}{
+		{
+			name:    "success",
+			keyFlow: &KeyFlow{rt: http.DefaultTransport, config: &KeyFlowConfig{}},
+			handlerFn: func(tb testing.TB) http.HandlerFunc {
+				tb.Helper()
+
+				return func(w http.ResponseWriter, r *http.Request) {
+					assert.Equal(tb, "Bearer "+testBearerToken, r.Header.Get("Authorization"))
+
+					w.Header().Set("Content-Type", "application/json")
+					w.WriteHeader(http.StatusOK)
+					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
+				}
+			},
+			want:    http.StatusOK,
+			wantErr: false,
+		},
+		{
+			name:    "success with code 500",
+			keyFlow: &KeyFlow{rt: http.DefaultTransport, config: &KeyFlowConfig{}},
+			handlerFn: func(_ testing.TB) http.HandlerFunc {
+				return func(w http.ResponseWriter, r *http.Request) {
+					w.Header().Set("Content-Type", "text/html")
+					w.WriteHeader(http.StatusInternalServerError)
+					_, _ = fmt.Fprintln(w, `<html>Internal Server Error</html>`)
+				}
+			},
+			want:    http.StatusInternalServerError,
+			wantErr: false,
+		},
+		{
+			name: "success with custom transport",
+			keyFlow: &KeyFlow{
+				rt: mockTransportFn{
+					fn: func(req *http.Request) (*http.Response, error) {
+						req.Header.Set("User-Agent", "custom_transport")
+
+						return http.DefaultTransport.RoundTrip(req)
+					},
+				},
+				config: &KeyFlowConfig{},
+			},
+			handlerFn: func(tb testing.TB) http.HandlerFunc {
+				tb.Helper()
+
+				return func(w http.ResponseWriter, r *http.Request) {
+					assert.Equal(tb, "custom_transport", r.Header.Get("User-Agent"))
+
+					w.Header().Set("Content-Type", "application/json")
+					w.WriteHeader(http.StatusOK)
+					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
+				}
+			},
+			want:    http.StatusOK,
+			wantErr: false,
+		},
+		{
+			name: "fail with custom proxy",
+			keyFlow: &KeyFlow{
+				rt: &http.Transport{
+					Proxy: func(_ *http.Request) (*url.URL, error) {
+						return nil, fmt.Errorf("proxy error")
+					},
+				},
+				config: &KeyFlowConfig{},
+			},
+			handlerFn: func(testing.TB) http.HandlerFunc {
+				return func(w http.ResponseWriter, r *http.Request) {
+					w.Header().Set("Content-Type", "application/json")
+					w.WriteHeader(http.StatusOK)
+					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
+				}
+			},
+			want:    0,
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+
+			ctx := context.Background()
+			ctx, cancel := context.WithCancel(ctx)
+			t.Cleanup(cancel) // This cancels the refresher goroutine
+
+			privateKeyBytes, err := generatePrivateKey()
+			require.NoError(t, err)
+
+			tt.keyFlow.config.ServiceAccountKey = fixtureServiceAccountKey()
+			tt.keyFlow.config.PrivateKey = string(privateKeyBytes)
+			tt.keyFlow.config.BackgroundTokenRefreshContext = ctx
+			tt.keyFlow.authClient = &http.Client{
+				Transport: mockTransportFn{
+					fn: func(req *http.Request) (*http.Response, error) {
+						res := httptest.NewRecorder()
+						res.WriteHeader(http.StatusOK)
+						res.Header().Set("Content-Type", "application/json")
+
+						token := &TokenResponseBody{
+							AccessToken:  testBearerToken,
+							ExpiresIn:    2147483647,
+							RefreshToken: testBearerToken,
+							TokenType:    "Bearer",
+						}
+
+						assert.NoError(t, json.NewEncoder(res.Body).Encode(token))
+
+						return res.Result(), nil
+					},
+				},
+			}
+
+			require.NoError(t, tt.keyFlow.validate())
+
+			go continuousRefreshToken(tt.keyFlow)
+
+			tokenCtx, tokenCancel := context.WithTimeout(context.Background(), 1*time.Second)
+
+		token:
+			for {
+				select {
+				case <-tokenCtx.Done():
+					require.Fail(t, tokenCtx.Err().Error())
+				case <-time.After(50 * time.Millisecond):
+					tt.keyFlow.tokenMutex.RLock()
+					if tt.keyFlow.token != nil {
+						tt.keyFlow.tokenMutex.RUnlock()
+						tokenCancel()
+						break token
+					}
+
+					tt.keyFlow.tokenMutex.RUnlock()
+				}
+			}
+
+			server := httptest.NewServer(tt.handlerFn(t))
+			t.Cleanup(server.Close)
+
+			u, err := url.Parse(server.URL)
+			require.NoError(t, err)
+
+			req, err := http.NewRequest(http.MethodGet, u.String(), http.NoBody)
+			require.NoError(t, err)
+
+			httpClient := &http.Client{
+				Transport: tt.keyFlow,
+			}
+
+			res, err := httpClient.Do(req)
+
+			if tt.wantErr {
+				require.Error(t, err)
+			} else {
+				require.NoError(t, err)
+
+				assert.Equal(t, tt.want, res.StatusCode)
+
+				// Defer discard and close the body
+				t.Cleanup(func() {
+					_, err := io.Copy(io.Discard, res.Body)
+					require.NoError(t, err)
+					require.NoError(t, res.Body.Close())
+				})
 			}
 		})
 	}
