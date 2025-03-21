@@ -46,9 +46,12 @@ func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 	// Compute timestamp where we'll refresh token
 	// Access token may be empty at this point, we have to check it
 	var startRefreshTimestamp time.Time
+	var accessToken string
 
 	refresher.keyFlow.tokenMutex.RLock()
-	accessToken := refresher.keyFlow.token.AccessToken
+	if refresher.keyFlow.token != nil {
+		accessToken = refresher.keyFlow.token.AccessToken
+	}
 	refresher.keyFlow.tokenMutex.RUnlock()
 	if accessToken == "" {
 		startRefreshTimestamp = time.Now()

@@ -13,7 +13,7 @@ const (
 
 // TokenFlow handles auth with SA static token
 type TokenFlow struct {
-	client *http.Client
+	rt     http.RoundTripper
 	config *TokenFlowConfig
 }
 
@@ -23,7 +23,8 @@ type TokenFlowConfig struct {
 	ServiceAccountEmail string
 	ServiceAccountToken string
 	// Deprecated: retry options were removed to reduce complexity of the client. If this functionality is needed, you can provide your own custom HTTP client.
-	ClientRetry *RetryConfig
+	ClientRetry   *RetryConfig
+	HTTPTransport http.RoundTripper
 }
 
 // GetConfig returns the flow configuration
@@ -36,15 +37,12 @@ func (c *TokenFlow) GetConfig() TokenFlowConfig {
 
 func (c *TokenFlow) Init(cfg *TokenFlowConfig) error {
 	c.config = cfg
-	c.configureHTTPClient()
-	return c.validate()
-}
 
-// configureHTTPClient configures the HTTP client
-func (c *TokenFlow) configureHTTPClient() {
-	client := &http.Client{}
-	client.Timeout = DefaultClientTimeout
-	c.client = client
+	if c.rt = cfg.HTTPTransport; c.rt == nil {
+		c.rt = http.DefaultTransport
+	}
+
+	return c.validate()
 }
 
 // validate the client is configured well
@@ -55,11 +53,11 @@ func (c *TokenFlow) validate() error {
 	return nil
 }
 
-// Roundtrip performs the request
+// RoundTrip performs the request
 func (c *TokenFlow) RoundTrip(req *http.Request) (*http.Response, error) {
-	if c.client == nil {
+	if c.rt == nil {
 		return nil, fmt.Errorf("please run Init()")
 	}
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.config.ServiceAccountToken))
-	return c.client.Do(req)
+	return c.rt.RoundTrip(req)
 }
