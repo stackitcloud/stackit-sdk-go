@@ -393,7 +393,7 @@ func TestKeyFlow_Do(t *testing.T) {
 				config: &KeyFlowConfig{},
 			},
 			handlerFn: func(testing.TB) http.HandlerFunc {
-				return func(w http.ResponseWriter, r *http.Request) {
+				return func(w http.ResponseWriter, _ *http.Request) {
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)
 					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
