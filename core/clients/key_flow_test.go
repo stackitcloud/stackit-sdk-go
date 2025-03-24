@@ -26,7 +26,7 @@ var (
 	testSigningKey = []byte(`Test`)
 )
 
-const testBearerToken = "eyJhbGciOiJub25lIn0.eyJleHAiOjIxNDc0ODM2NDd9."
+const testBearerToken = "eyJhbGciOiJub25lIn0.eyJleHAiOjIxNDc0ODM2NDd9." //nolint:gosec // linter false positive
 
 func fixtureServiceAccountKey(mods ...func(*ServiceAccountKeyResponse)) *ServiceAccountKeyResponse {
 	validUntil := time.Now().Add(time.Hour)
@@ -345,7 +345,7 @@ func TestKeyFlow_Do(t *testing.T) {
 			name:    "success with code 500",
 			keyFlow: &KeyFlow{rt: http.DefaultTransport, config: &KeyFlowConfig{}},
 			handlerFn: func(_ testing.TB) http.HandlerFunc {
-				return func(w http.ResponseWriter, r *http.Request) {
+				return func(w http.ResponseWriter, _ *http.Request) {
 					w.Header().Set("Content-Type", "text/html")
 					w.WriteHeader(http.StatusInternalServerError)
 					_, _ = fmt.Fprintln(w, `<html>Internal Server Error</html>`)
@@ -405,7 +405,6 @@ func TestKeyFlow_Do(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-
 			ctx := context.Background()
 			ctx, cancel := context.WithCancel(ctx)
 			t.Cleanup(cancel) // This cancels the refresher goroutine

@@ -90,7 +90,7 @@ func TestTokenFlow_Do(t *testing.T) {
 				ServiceAccountToken: "efg",
 			}},
 			handlerFn: func(testing.TB) http.HandlerFunc {
-				return func(w http.ResponseWriter, r *http.Request) {
+				return func(w http.ResponseWriter, _ *http.Request) {
 					w.Header().Set("Content-Type", "text/html")
 					w.WriteHeader(http.StatusInternalServerError)
 					_, _ = fmt.Fprintln(w, `<html>Internal Server Error</html>`)
@@ -146,7 +146,7 @@ func TestTokenFlow_Do(t *testing.T) {
 				},
 			},
 			handlerFn: func(testing.TB) http.HandlerFunc {
-				return func(w http.ResponseWriter, r *http.Request) {
+				return func(w http.ResponseWriter, _ *http.Request) {
 					w.Header().Set("Content-Type", "application/json")
 					w.WriteHeader(http.StatusOK)
 					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
