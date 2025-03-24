@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.16.0
-	github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.11.1
+	github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.11.2
 )
 
 require (
