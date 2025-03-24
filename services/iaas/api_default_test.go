@@ -25,7 +25,7 @@ import (
 func Test_iaas_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddNetworkToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -77,7 +77,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddNicToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -129,7 +129,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddPublicIpToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -181,7 +181,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddSecurityGroupToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -233,7 +233,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddServiceAccountToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -291,7 +291,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddVolumeToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -349,7 +349,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateAffinityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/affinity-groups"
+		_apiUrlPath := "/v1/projects/{projectId}/affinity-groups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -402,7 +402,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/backups"
+		_apiUrlPath := "/v1/projects/{projectId}/backups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -455,7 +455,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateImage", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images"
+		_apiUrlPath := "/v1/projects/{projectId}/images"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -508,7 +508,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateKeyPair", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/keypairs"
+		_apiUrlPath := "/v1/keypairs"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -558,7 +558,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateNetwork", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks"
+		_apiUrlPath := "/v1/projects/{projectId}/networks"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -611,7 +611,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateNetworkArea", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
@@ -664,7 +664,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateNetworkAreaRange", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -720,7 +720,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateNetworkAreaRoute", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -776,7 +776,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateNic", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
+		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
@@ -832,7 +832,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreatePublicIP", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips"
+		_apiUrlPath := "/v1/projects/{projectId}/public-ips"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -885,7 +885,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateSecurityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups"
+		_apiUrlPath := "/v1/projects/{projectId}/security-groups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -938,7 +938,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateSecurityGroupRule", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules"
+		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}/rules"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
@@ -994,7 +994,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers"
+		_apiUrlPath := "/v1/projects/{projectId}/servers"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -1047,7 +1047,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots"
+		_apiUrlPath := "/v1/projects/{projectId}/snapshots"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -1100,7 +1100,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes"
+		_apiUrlPath := "/v1/projects/{projectId}/volumes"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -1153,7 +1153,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeallocateServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/deallocate"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/deallocate"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -1202,7 +1202,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteAffinityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/affinity-groups/{affinityGroupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/affinity-groups/{affinityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		affinityGroupIdValue := uuid.NewString()
@@ -1251,7 +1251,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/backups/{backupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/backups/{backupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		backupIdValue := uuid.NewString()
@@ -1300,7 +1300,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteImage", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -1349,7 +1349,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteImageShare", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -1398,7 +1398,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteImageShareConsumer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -1450,7 +1450,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteKeyPair", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/keypairs/{keypairName}"
+		_apiUrlPath := "/v1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
@@ -1496,7 +1496,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetwork", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}"
+		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
@@ -1545,7 +1545,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetworkArea", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -1594,7 +1594,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetworkAreaRange", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -1646,7 +1646,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetworkAreaRoute", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -1698,7 +1698,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNic", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
@@ -1750,7 +1750,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeletePublicIP", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v1/projects/{projectId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		publicIpIdValue := uuid.NewString()
@@ -1799,7 +1799,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteSecurityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
@@ -1848,7 +1848,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteSecurityGroupRule", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
+		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
@@ -1900,7 +1900,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -1949,7 +1949,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
+		_apiUrlPath := "/v1/projects/{projectId}/snapshots/{snapshotId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		snapshotIdValue := uuid.NewString()
@@ -1998,7 +1998,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes/{volumeId}"
+		_apiUrlPath := "/v1/projects/{projectId}/volumes/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumeIdValue := uuid.NewString()
@@ -2047,7 +2047,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetAffinityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/affinity-groups/{affinityGroupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/affinity-groups/{affinityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		affinityGroupIdValue := uuid.NewString()
@@ -2102,7 +2102,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetAttachedVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -2160,7 +2160,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/backups/{backupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/backups/{backupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		backupIdValue := uuid.NewString()
@@ -2215,7 +2215,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetImage", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -2270,7 +2270,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetImageShare", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -2325,7 +2325,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetImageShareConsumer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -2383,7 +2383,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetKeyPair", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/keypairs/{keypairName}"
+		_apiUrlPath := "/v1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
@@ -2435,7 +2435,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetMachineType", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/machine-types/{machineType}"
+		_apiUrlPath := "/v1/projects/{projectId}/machine-types/{machineType}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		machineTypeValue := "machineType"
@@ -2490,7 +2490,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNetwork", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}"
+		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
@@ -2545,7 +2545,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNetworkArea", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -2600,7 +2600,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNetworkAreaRange", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -2658,7 +2658,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNetworkAreaRoute", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -2716,7 +2716,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNic", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
@@ -2774,7 +2774,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetOrganizationRequest", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/requests/{requestId}"
+		_apiUrlPath := "/v1/organizations/{organizationId}/requests/{requestId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		requestIdValue := "requestId"
@@ -2829,7 +2829,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetProjectNIC", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/nics/{nicId}"
+		_apiUrlPath := "/v1/projects/{projectId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		nicIdValue := uuid.NewString()
@@ -2884,7 +2884,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetProjectRequest", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/requests/{requestId}"
+		_apiUrlPath := "/v1/projects/{projectId}/requests/{requestId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		requestIdValue := "requestId"
@@ -2939,7 +2939,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetPublicIP", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v1/projects/{projectId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		publicIpIdValue := uuid.NewString()
@@ -2994,7 +2994,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetSecurityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
@@ -3049,7 +3049,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetSecurityGroupRule", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
+		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
@@ -3107,7 +3107,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -3162,7 +3162,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetServerConsole", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/console"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/console"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -3217,7 +3217,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetServerLog", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/log"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/log"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -3272,7 +3272,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
+		_apiUrlPath := "/v1/projects/{projectId}/snapshots/{snapshotId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		snapshotIdValue := uuid.NewString()
@@ -3327,7 +3327,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes/{volumeId}"
+		_apiUrlPath := "/v1/projects/{projectId}/volumes/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumeIdValue := uuid.NewString()
@@ -3382,7 +3382,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetVolumePerformanceClass", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
+		_apiUrlPath := "/v1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumePerformanceClassValue := "volumePerformanceClass"
@@ -3437,7 +3437,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListAffinityGroups", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/affinity-groups"
+		_apiUrlPath := "/v1/projects/{projectId}/affinity-groups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -3489,7 +3489,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListAttachedVolumes", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -3544,7 +3544,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListAvailabilityZones", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/availability-zones"
+		_apiUrlPath := "/v1/availability-zones"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -3592,7 +3592,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/backups"
+		_apiUrlPath := "/v1/projects/{projectId}/backups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -3644,7 +3644,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListImages", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images"
+		_apiUrlPath := "/v1/projects/{projectId}/images"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -3696,7 +3696,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListKeyPairs", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/keypairs"
+		_apiUrlPath := "/v1/keypairs"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -3744,7 +3744,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListMachineTypes", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/machine-types"
+		_apiUrlPath := "/v1/projects/{projectId}/machine-types"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -3796,7 +3796,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreaProjects", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/projects"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/projects"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -3851,7 +3851,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreaRanges", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -3906,7 +3906,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreaRoutes", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -3961,7 +3961,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreas", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
@@ -4013,7 +4013,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworks", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks"
+		_apiUrlPath := "/v1/projects/{projectId}/networks"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -4065,7 +4065,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNics", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics"
+		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
@@ -4120,7 +4120,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListProjectNICs", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/nics"
+		_apiUrlPath := "/v1/projects/{projectId}/nics"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -4171,8 +4171,56 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService ListPublicIPRanges", func(t *testing.T) {
+		_apiUrlPath := "/v1/networks/public-ip-ranges"
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := PublicNetworkListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		resp, reqErr := apiClient.ListPublicIPRanges(context.Background()).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService ListPublicIPs", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips"
+		_apiUrlPath := "/v1/projects/{projectId}/public-ips"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -4223,56 +4271,8 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListPublicIpRanges", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/networks/public-ip-ranges"
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
-			data := PublicNetworkListResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for iaas_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		resp, reqErr := apiClient.ListPublicIpRanges(context.Background()).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-		if IsNil(resp) {
-			t.Fatalf("response not present")
-		}
-	})
-
 	t.Run("Test DefaultApiService ListQuotas", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/quotas"
+		_apiUrlPath := "/v1/projects/{projectId}/quotas"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -4324,7 +4324,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListSecurityGroupRules", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}/rules"
+		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}/rules"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
@@ -4379,7 +4379,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListSecurityGroups", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups"
+		_apiUrlPath := "/v1/projects/{projectId}/security-groups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -4431,7 +4431,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListServerNics", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/nics"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/nics"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -4486,7 +4486,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListServerServiceAccounts", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/service-accounts"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/service-accounts"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -4541,7 +4541,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListServers", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers"
+		_apiUrlPath := "/v1/projects/{projectId}/servers"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -4593,7 +4593,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListSnapshots", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots"
+		_apiUrlPath := "/v1/projects/{projectId}/snapshots"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -4645,7 +4645,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListVolumePerformanceClasses", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/volume-performance-classes"
+		_apiUrlPath := "/v1/projects/{projectId}/volume-performance-classes"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -4697,7 +4697,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListVolumes", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes"
+		_apiUrlPath := "/v1/projects/{projectId}/volumes"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -4749,7 +4749,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateNetwork", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}"
+		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
@@ -4799,7 +4799,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateNetworkArea", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -4855,7 +4855,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RebootServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/reboot"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/reboot"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -4904,7 +4904,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveNetworkFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -4956,7 +4956,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveNicFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5008,7 +5008,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemovePublicIpFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5060,7 +5060,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveSecurityGroupFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5112,7 +5112,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveServiceAccountFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5170,7 +5170,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveVolumeFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5222,7 +5222,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RescueServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/rescue"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/rescue"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5272,7 +5272,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResizeServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/resize"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/resize"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5322,7 +5322,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResizeVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes/{volumeId}/resize"
+		_apiUrlPath := "/v1/projects/{projectId}/volumes/{volumeId}/resize"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumeIdValue := uuid.NewString()
@@ -5371,7 +5371,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RestoreBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/backups/{backupId}/restore"
+		_apiUrlPath := "/v1/projects/{projectId}/backups/{backupId}/restore"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		backupIdValue := uuid.NewString()
@@ -5420,7 +5420,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService SetImageShare", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -5476,7 +5476,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService StartServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/start"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/start"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5525,7 +5525,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService StopServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/stop"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/stop"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5574,7 +5574,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UnrescueServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/unrescue"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/unrescue"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5623,7 +5623,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateAttachedVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -5682,7 +5682,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/backups/{backupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/backups/{backupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		backupIdValue := uuid.NewString()
@@ -5738,7 +5738,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateImage", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -5794,7 +5794,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateImageScopeLocal", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/publish"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/publish"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -5849,7 +5849,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateImageScopePublic", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/publish"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/publish"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -5904,7 +5904,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateImageShare", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/images/{imageId}/share"
+		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
@@ -5960,7 +5960,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateKeyPair", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/keypairs/{keypairName}"
+		_apiUrlPath := "/v1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
@@ -6013,7 +6013,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateNetworkAreaRoute", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
@@ -6072,7 +6072,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateNic", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
@@ -6131,7 +6131,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdatePublicIP", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v1/projects/{projectId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		publicIpIdValue := uuid.NewString()
@@ -6187,7 +6187,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateSecurityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
@@ -6243,7 +6243,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateServer", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/servers/{serverId}"
+		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
@@ -6299,7 +6299,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/snapshots/{snapshotId}"
+		_apiUrlPath := "/v1/projects/{projectId}/snapshots/{snapshotId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		snapshotIdValue := uuid.NewString()
@@ -6355,7 +6355,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/volumes/{volumeId}"
+		_apiUrlPath := "/v1/projects/{projectId}/volumes/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumeIdValue := uuid.NewString()

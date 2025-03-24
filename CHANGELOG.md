@@ -17,6 +17,9 @@
   - **Internal:** Backwards compatible change to generated code
 - `iaas`: [v0.21.2](services/iaas/CHANGELOG.md#v0212-2025-03-19)
   - **Internal:** Backwards compatible change to generated code
+- `iaas`: [v0.22.0](services/iaas/CHANGELOG.md#v0220-2025-03-24)
+  - **Improvement:** Upgrading from IaaS **beta** endpoints to **v1**
+  - **Feature:** Add new method to filter `ListMachineTypes`: `Filter`
 - `loadbalancer`: [v1.0.1](services/loadbalancer/CHANGELOG.md#v101-2025-03-19)
   - - **Bugfix:** Corrected regional setup of client
 - `logme`: [v0.21.1](services/logme/CHANGELOG.md#v0211-2025-03-19)

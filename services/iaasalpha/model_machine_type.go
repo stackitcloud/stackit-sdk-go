@@ -139,7 +139,7 @@ func setMachineTypeGetVcpusAttributeType(arg *MachineTypeGetVcpusAttributeType, 
 	*arg = &val
 }
 
-// MachineType Machine Type.
+// MachineType Machine Type. Filterable Fields: name, ram, vcpus, disk, extraSpecs.
 type MachineType struct {
 	// Description Object. Allows string up to 127 Characters.
 	Description MachineTypeGetDescriptionAttributeType `json:"description,omitempty"`
