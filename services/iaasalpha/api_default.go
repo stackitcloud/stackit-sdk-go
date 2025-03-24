@@ -14379,6 +14379,14 @@ type ApiListMachineTypesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
+	filter     *string
+}
+
+// Filter resources by fields. A subset of expr-lang is supported. See https://expr-lang.org/docs/language-definition for usage details.
+
+func (r ApiListMachineTypesRequest) Filter(filter string) ApiListMachineTypesRequest {
+	r.filter = &filter
+	return r
 }
 
 func (r ApiListMachineTypesRequest) Execute() (*MachineTypeListResponse, error) {
@@ -14407,6 +14415,9 @@ func (r ApiListMachineTypesRequest) Execute() (*MachineTypeListResponse, error) 
 		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
 	}
 
+	if r.filter != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "filter", r.filter, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
