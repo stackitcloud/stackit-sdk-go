@@ -35,7 +35,7 @@ func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client APIClient
 			case StatusPending:
 				return false, nil, nil
 			case StatusUnspecified:
-				return true, response, nil
+				return false, nil, nil
 			case StatusError:
 				return true, response, fmt.Errorf("loadbalancer in error: %s", *response.Status)
 			default:
@@ -51,15 +51,15 @@ func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client APIClient
 
 func DeleteLoadbalancerWaitHandler(ctx context.Context, client APIClientLoadbalancerInterface, projectId, region, name string) *wait.AsyncActionHandler[alb.LoadBalancer] {
 	handler := wait.New(func() (bool, *alb.LoadBalancer, error) {
-		loadBalancer, err := client.GetLoadBalancerExecute(ctx, projectId, region, name)
+		_, err := client.GetLoadBalancerExecute(ctx, projectId, region, name)
 		if err != nil {
 			var apiErr *oapierror.GenericOpenAPIError
 			if errors.As(err, &apiErr) {
 				if statusCode := apiErr.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, loadBalancer, nil
+					return true, nil, nil
 				}
 			}
-			return true, loadBalancer, err
+			return true, nil, err
 		}
 		return false, nil, nil
 	})
