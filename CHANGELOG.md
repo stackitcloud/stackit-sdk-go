@@ -1,10 +1,11 @@
 ## Release (2025-XX-YY)
-- `alb`: [v0.1.0](services/alb/CHANGELOG.md#v010-2025-03-19)
+- `core`: [0.17.0](core/CHANGELOG.md#v0170-2025-03-25)
+  - **New:** Helper functions for generic openapi error codes
+  - **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
+- `alb`: [v0.2.0](services/alb/CHANGELOG.md#v020-2025-03-20)
   - **New:** API for application load balancer
 - `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-03-19)
   - **New:** Introduce new API for content delivery
-- `core`: [v0.16.2](core/CHANGELOG.md#v0162-2025-03-21)
-  - **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
 - `serverupdate`: [v1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-03-19)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-03-19)

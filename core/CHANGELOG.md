@@ -1,3 +1,6 @@
+## v0.17.0 (2025-03-25)
+- **New:** Helper functions for generic openapi error codes
+
 ## v0.16.2 (2025-03-21)
 - **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
 
