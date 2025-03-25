@@ -45,7 +45,7 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 	if cfg.CustomAuth != nil {
 		return cfg.CustomAuth, nil
 	} else if cfg.NoAuth {
-		noAuthRoundTripper, err := NoAuth()
+		noAuthRoundTripper, err := NoAuth(cfg)
 		if err != nil {
 			return nil, fmt.Errorf("configuring no auth client: %w", err)
 		}
@@ -98,9 +98,22 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 
 // NoAuth configures a flow without authentication and returns an http.RoundTripper
 // that can be used to make unauthenticated requests
-func NoAuth() (rt http.RoundTripper, err error) {
+func NoAuth(cfgs ...*config.Configuration) (rt http.RoundTripper, err error) {
 	noAuthConfig := clients.NoAuthFlowConfig{}
 	noAuthRoundTripper := &clients.NoAuthFlow{}
+
+	var cfg *config.Configuration
+
+	if len(cfgs) > 0 {
+		cfg = cfgs[0]
+	} else {
+		cfg = &config.Configuration{}
+	}
+
+	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
+		noAuthConfig.HTTPTransport = cfg.HTTPClient.Transport
+	}
+
 	if err := noAuthRoundTripper.Init(noAuthConfig); err != nil {
 		return nil, fmt.Errorf("initializing client: %w", err)
 	}
@@ -128,6 +141,10 @@ func TokenAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 
 	tokenCfg := clients.TokenFlowConfig{
 		ServiceAccountToken: cfg.Token,
+	}
+
+	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
+		tokenCfg.HTTPTransport = cfg.HTTPClient.Transport
 	}
 
 	client := &clients.TokenFlow{}
@@ -185,6 +202,10 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 		PrivateKey:                    cfg.PrivateKey,
 		TokenUrl:                      cfg.TokenCustomUrl,
 		BackgroundTokenRefreshContext: cfg.BackgroundTokenRefreshContext,
+	}
+
+	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
+		keyCfg.HTTPTransport = cfg.HTTPClient.Transport
 	}
 
 	client := &clients.KeyFlow{}

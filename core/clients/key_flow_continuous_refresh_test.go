@@ -137,8 +137,9 @@ func TestContinuousRefreshToken(t *testing.T) {
 				config: &KeyFlowConfig{
 					BackgroundTokenRefreshContext: ctx,
 				},
-				client: &http.Client{},
-				doer:   mockDo,
+				authClient: &http.Client{
+					Transport: mockTransportFn{mockDo},
+				},
 				token: &TokenResponseBody{
 					AccessToken:  accessToken,
 					RefreshToken: refreshToken,
@@ -328,11 +329,13 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	}
 
 	keyFlow := &KeyFlow{
-		client: &http.Client{},
 		config: &KeyFlowConfig{
 			BackgroundTokenRefreshContext: ctx,
 		},
-		doer: mockDo,
+		authClient: &http.Client{
+			Transport: mockTransportFn{mockDo},
+		},
+		rt: mockTransportFn{mockDo},
 		token: &TokenResponseBody{
 			AccessToken:  accessTokenFirst,
 			RefreshToken: refreshToken,

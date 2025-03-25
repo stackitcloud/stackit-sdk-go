@@ -1,3 +1,6 @@
+## v0.16.2 (2025-03-21)
+- **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
+
 ## v0.16.1 (2025-02-25)
 
 - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.
