@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/go-git/go-git/v5 v5.13.2
-	github.com/stackitcloud/stackit-sdk-go/core v0.16.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.16.2
 	golang.org/x/mod v0.20.0
 	golang.org/x/term v0.29.0
 )
@@ -24,7 +24,6 @@ require (
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
-	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 // indirect
