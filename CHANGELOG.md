@@ -44,8 +44,11 @@
   - **Internal:** Backwards compatible change to generated code
 - `objectstorage`: [v1.1.1](services/objectstorage/CHANGELOG.md#v111-2025-03-19)
   - **Internal:** Backwards compatible change to generated code
-- `observability`: [v0.3.1](services/observability/CHANGELOG.md#v031-2025-03-19)
-  - **Internal:** Backwards compatible change to generated code
+- `observability`
+    - [0.4.0](services/observability/CHANGELOG.md#v040-2025-03-27)
+      - **New:** Support for alert groups
+    - [v0.3.1](services/observability/CHANGELOG.md#v031-2025-03-19)
+      - **Internal:** Backwards compatible change to generated code
 - `opensearch`: [v0.20.1](services/opensearch/CHANGELOG.md#v0201-2025-03-19)
   - **Internal:** Backwards compatible change to generated code
 - `postgresflex`: [v1.0.2](services/postgresflex/CHANGELOG.md#v102-2025-03-19)

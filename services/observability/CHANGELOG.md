@@ -1,3 +1,6 @@
+## v0.4.0 (2025-03-27)
+- **New:** Support for alert groups
+
 ## v0.3.1 (2025-03-19)
 - **Internal:** Backwards compatible change to generated code
 
