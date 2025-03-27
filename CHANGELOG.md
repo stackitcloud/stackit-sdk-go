@@ -1,4 +1,15 @@
 ## Release (2025-XX-YY)
+
+- `alb`: [v0.2.1](services/alb/CHANGELOG.md#v021-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
+- `cdn`: [v0.1.1](services/cdn/CHANGELOG.md#v011-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
+- `certificates`: [v1.0.1](services/certificates/CHANGELOG.md#v101-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
+- `serverupdate`: [v1.0.1](services/serverupdate/CHANGELOG.md#v101-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
+- `serverbackup`: [v1.0.1](services/serverbackup/CHANGELOG.md#v101-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
 - `core`: [0.17.0](core/CHANGELOG.md#v0170-2025-03-25)
   - **New:** Helper functions for generic openapi error codes
   - **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
