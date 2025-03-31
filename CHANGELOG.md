@@ -1,5 +1,8 @@
 ## Release (2025-XX-YY)
+- `cdn`: [v0.2.0](services/cdn/CHANGELOG.md#v020-2025-04-01)
+  - **API enhancement:** Provide waiter infrastructure
 
+## Release (2025-03-27)
 - `alb`: [v0.2.1](services/alb/CHANGELOG.md#v021-2025-03-27)
   - **Bugfix:** Removed ConfigureRegion() from API client
 - `cdn`: [v0.1.1](services/cdn/CHANGELOG.md#v011-2025-03-27)
