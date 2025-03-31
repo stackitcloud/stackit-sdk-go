@@ -21,10 +21,8 @@ type apiClientInstanceMocked struct {
 	resourceDescription        string
 }
 
-var (
-	instanceTypeCreate = InstanceTypeCreate
-	instanceTypeUpdate = InstanceTypeUpdate
-	instanceTypeDelete = InstanceTypeDelete
+const (
+	instanceTypeDelete = "delete"
 )
 
 func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*opensearch.Instance, error) {
@@ -33,10 +31,11 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 			StatusCode: 500,
 		}
 	}
-	if *a.resourceOperation == InstanceTypeDelete && a.resourceState == InstanceStateSuccess {
+	if a.resourceOperation != nil && *a.resourceOperation == instanceTypeDelete && a.resourceState == InstanceStateSuccess {
 		if a.deletionSucceedsWithErrors {
 			return &opensearch.Instance{
 				InstanceId: &a.resourceId,
+				Status:     &a.resourceState,
 				LastOperation: &opensearch.InstanceLastOperation{
 					Description: &a.resourceDescription,
 					Type:        a.resourceOperation,
@@ -51,11 +50,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 
 	return &opensearch.Instance{
 		InstanceId: &a.resourceId,
-		LastOperation: &opensearch.InstanceLastOperation{
-			Description: &a.resourceDescription,
-			Type:        a.resourceOperation,
-			State:       &a.resourceState,
-		},
+		Status:     utils.Ptr(a.resourceState),
 	}, nil
 }
 
@@ -96,14 +91,14 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: InstanceStateSuccess,
+			resourceState: InstanceStatusActive,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: InstanceStateFailed,
+			resourceState: InstanceStatusFailed,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -126,21 +121,16 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			instanceId := "foo-bar"
 
 			apiClient := &apiClientInstanceMocked{
-				getFails:          tt.getFails,
-				resourceId:        instanceId,
-				resourceOperation: &instanceTypeCreate,
-				resourceState:     tt.resourceState,
+				getFails:      tt.getFails,
+				resourceId:    instanceId,
+				resourceState: tt.resourceState,
 			}
 
 			var wantRes *opensearch.Instance
 			if tt.wantResp {
 				wantRes = &opensearch.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &opensearch.InstanceLastOperation{
-						Type:        &instanceTypeCreate,
-						State:       utils.Ptr(tt.resourceState),
-						Description: utils.Ptr(""),
-					},
+					Status:     utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -170,14 +160,14 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: InstanceStateSuccess,
+			resourceState: InstanceStatusActive,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: InstanceStateFailed,
+			resourceState: InstanceStatusFailed,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -200,21 +190,16 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			instanceId := "foo-bar"
 
 			apiClient := &apiClientInstanceMocked{
-				getFails:          tt.getFails,
-				resourceId:        instanceId,
-				resourceOperation: &instanceTypeUpdate,
-				resourceState:     tt.resourceState,
+				getFails:      tt.getFails,
+				resourceId:    instanceId,
+				resourceState: tt.resourceState,
 			}
 
 			var wantRes *opensearch.Instance
 			if tt.wantResp {
 				wantRes = &opensearch.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &opensearch.InstanceLastOperation{
-						Type:        &instanceTypeUpdate,
-						State:       utils.Ptr(tt.resourceState),
-						Description: utils.Ptr(""),
-					},
+					Status:     utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -252,7 +237,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			desc:                      "delete_failed",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             InstanceStateFailed,
+			resourceState:             InstanceStatusFailed,
 			wantErr:                   true,
 		},
 		{
@@ -278,7 +263,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				getFails:                   tt.getFails,
 				deletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
 				resourceId:                 instanceId,
-				resourceOperation:          &instanceTypeDelete,
+				resourceOperation:          utils.Ptr(instanceTypeDelete),
 				resourceDescription:        tt.resourceDescription,
 				resourceState:              tt.resourceState,
 			}

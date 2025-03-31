@@ -1,3 +1,6 @@
+## v0.20.2 (2025-04-01)
+- **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+
 ## v0.20.1 (2025-03-19)
 - **Internal:** Backwards compatible change to generated code
 

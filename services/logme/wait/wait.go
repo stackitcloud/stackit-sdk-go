@@ -13,11 +13,10 @@ import (
 )
 
 const (
-	InstanceStateSuccess = "succeeded"
-	InstanceStateFailed  = "failed"
-	InstanceTypeCreate   = "create"
-	InstanceTypeUpdate   = "update"
-	InstanceTypeDelete   = "delete"
+	InstanceStatusActive   = "active"
+	InstanceStatusFailed   = "failed"
+	InstanceStatusDeleting = "deleting"
+	InstanceStateSuccess   = "succeeded"
 )
 
 // Interface needed for tests
@@ -37,14 +36,18 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if err != nil {
 			return false, nil, err
 		}
-		if s.InstanceId == nil || s.LastOperation == nil || s.LastOperation.Type == nil || s.LastOperation.State == nil {
-			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the instance id, the last operation type or the state are missing", instanceId)
+		if s.InstanceId == nil || s.Status == nil {
+			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
 		}
-		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeCreate && *s.LastOperation.State == InstanceStateSuccess {
+		if *s.InstanceId == instanceId && *s.Status == InstanceStatusActive {
 			return true, s, nil
 		}
-		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeCreate && *s.LastOperation.State == InstanceStateFailed {
-			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, *s.LastOperation.Description)
+		if *s.InstanceId == instanceId && *s.Status == InstanceStatusFailed {
+			var failedDescription string
+			if s.LastOperation != nil && s.LastOperation.Description != nil {
+				failedDescription = *s.LastOperation.Description
+			}
+			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, failedDescription)
 		}
 		return false, nil, nil
 	})
@@ -59,14 +62,18 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceIn
 		if err != nil {
 			return false, nil, err
 		}
-		if s.InstanceId == nil || s.LastOperation == nil || s.LastOperation.Type == nil || s.LastOperation.State == nil {
-			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id, the last operation type or the state are missing", instanceId)
+		if s.InstanceId == nil || s.Status == nil {
+			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
 		}
-		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeUpdate && *s.LastOperation.State == InstanceStateSuccess {
+		if *s.InstanceId == instanceId && *s.Status == InstanceStatusActive {
 			return true, s, nil
 		}
-		if *s.InstanceId == instanceId && *s.LastOperation.Type == InstanceTypeUpdate && *s.LastOperation.State == InstanceStateFailed {
-			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, *s.LastOperation.Description)
+		if *s.InstanceId == instanceId && *s.Status == InstanceStatusFailed {
+			var failedDescription string
+			if s.LastOperation != nil && s.LastOperation.Description != nil {
+				failedDescription = *s.LastOperation.Description
+			}
+			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, failedDescription)
 		}
 		return false, nil, nil
 	})
@@ -79,10 +86,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err == nil {
-			if s.LastOperation == nil || s.LastOperation.Type == nil || s.LastOperation.State == nil || s.LastOperation.Description == nil {
-				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The last operation type, description or the state are missing", instanceId)
+			if s.LastOperation == nil || s.Status == nil || s.LastOperation.State == nil || s.LastOperation.Description == nil {
+				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status last operation type, description or the state are missing", instanceId)
 			}
-			if *s.LastOperation.Type != InstanceTypeDelete {
+			if *s.Status != InstanceStatusDeleting {
 				return false, nil, nil
 			}
 			if *s.LastOperation.State == InstanceStateSuccess {
