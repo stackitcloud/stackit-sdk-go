@@ -23,7 +23,7 @@ type apiClientMock struct {
 }
 
 // GetDistributionExecute implements APIClientInterface.
-func (mock *apiClientMock) GetDistributionExecute(ctx context.Context, projectId string, distributionId string) (*cdn.GetDistributionResponse, error) {
+func (mock *apiClientMock) GetDistributionExecute(_ context.Context, _, _ string) (*cdn.GetDistributionResponse, error) {
 	response := mock.responses[mock.responseIndex]
 	mock.responseIndex++
 	mock.responseIndex %= len(mock.responses)
