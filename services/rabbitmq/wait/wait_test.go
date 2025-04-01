@@ -21,12 +21,6 @@ type apiClientInstanceMocked struct {
 	resourceDescription        string
 }
 
-var (
-	instanceTypeCreate = InstanceTypeCreate
-	instanceTypeUpdate = InstanceTypeUpdate
-	instanceTypeDelete = InstanceTypeDelete
-)
-
 func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*rabbitmq.Instance, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
@@ -37,6 +31,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 		if a.deletionSucceedsWithErrors {
 			return &rabbitmq.Instance{
 				InstanceId: &a.resourceId,
+				Status:     &a.resourceState,
 				LastOperation: &rabbitmq.InstanceLastOperation{
 					Description: &a.resourceDescription,
 					Type:        a.resourceOperation,
@@ -51,11 +46,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 
 	return &rabbitmq.Instance{
 		InstanceId: &a.resourceId,
-		LastOperation: &rabbitmq.InstanceLastOperation{
-			Description: &a.resourceDescription,
-			Type:        a.resourceOperation,
-			State:       &a.resourceState,
-		},
+		Status:     utils.Ptr(a.resourceState),
 	}, nil
 }
 
@@ -96,14 +87,14 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: InstanceStateSuccess,
+			resourceState: InstanceStatusActive,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: InstanceStateFailed,
+			resourceState: InstanceStatusFailed,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -128,7 +119,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			apiClient := &apiClientInstanceMocked{
 				getFails:          tt.getFails,
 				resourceId:        instanceId,
-				resourceOperation: &instanceTypeCreate,
+				resourceOperation: utils.Ptr(InstanceTypeCreate),
 				resourceState:     tt.resourceState,
 			}
 
@@ -136,11 +127,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &rabbitmq.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &rabbitmq.InstanceLastOperation{
-						Type:        &instanceTypeCreate,
-						State:       utils.Ptr(tt.resourceState),
-						Description: utils.Ptr(""),
-					},
+					Status:     utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -170,14 +157,14 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: InstanceStateSuccess,
+			resourceState: InstanceStatusActive,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: InstanceStateFailed,
+			resourceState: InstanceStatusFailed,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -202,7 +189,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			apiClient := &apiClientInstanceMocked{
 				getFails:          tt.getFails,
 				resourceId:        instanceId,
-				resourceOperation: &instanceTypeUpdate,
+				resourceOperation: utils.Ptr(InstanceTypeUpdate),
 				resourceState:     tt.resourceState,
 			}
 
@@ -210,11 +197,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			if tt.wantResp {
 				wantRes = &rabbitmq.Instance{
 					InstanceId: &instanceId,
-					LastOperation: &rabbitmq.InstanceLastOperation{
-						Type:        &instanceTypeUpdate,
-						State:       utils.Ptr(tt.resourceState),
-						Description: utils.Ptr(""),
-					},
+					Status:     utils.Ptr(tt.resourceState),
 				}
 			}
 
@@ -278,7 +261,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				getFails:                   tt.getFails,
 				deletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
 				resourceId:                 instanceId,
-				resourceOperation:          &instanceTypeDelete,
+				resourceOperation:          utils.Ptr(InstanceTypeDelete),
 				resourceDescription:        tt.resourceDescription,
 				resourceState:              tt.resourceState,
 			}

@@ -9,6 +9,8 @@
   - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
 - `redis`: [v0.21.2](services/redis/CHANGELOG.md#v0212-2025-04-01)
   - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+- `rabbitmq`: [v0.21.2](services/rabbitmq/CHANGELOG.md#v0212-2025-04-01)
+  - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
 
 
 
