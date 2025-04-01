@@ -17,6 +17,9 @@ const (
 	InstanceStatusFailed   = "failed"
 	InstanceStatusDeleting = "deleting"
 	InstanceStateSuccess   = "succeeded"
+	InstanceTypeCreate     = "create"
+	InstanceTypeUpdate     = "update"
+	InstanceTypeDelete     = "delete"
 )
 
 // Interface needed for tests

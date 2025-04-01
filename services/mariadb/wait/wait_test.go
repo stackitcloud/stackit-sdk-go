@@ -21,17 +21,13 @@ type apiClientInstanceMocked struct {
 	resourceDescription        string
 }
 
-const (
-	instanceTypeDelete = "delete"
-)
-
 func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*mariadb.Instance, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
 		}
 	}
-	if a.resourceOperation != nil && *a.resourceOperation == instanceTypeDelete && a.resourceState == InstanceStateSuccess {
+	if a.resourceOperation != nil && *a.resourceOperation == InstanceTypeDelete && a.resourceState == InstanceStateSuccess {
 		if a.deletionSucceedsWithErrors {
 			return &mariadb.Instance{
 				InstanceId: &a.resourceId,
@@ -121,9 +117,10 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 			instanceId := "foo-bar"
 
 			apiClient := &apiClientInstanceMocked{
-				getFails:      tt.getFails,
-				resourceId:    instanceId,
-				resourceState: tt.resourceState,
+				getFails:          tt.getFails,
+				resourceId:        instanceId,
+				resourceOperation: utils.Ptr(InstanceTypeCreate),
+				resourceState:     tt.resourceState,
 			}
 
 			var wantRes *mariadb.Instance
@@ -190,9 +187,10 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 			instanceId := "foo-bar"
 
 			apiClient := &apiClientInstanceMocked{
-				getFails:      tt.getFails,
-				resourceId:    instanceId,
-				resourceState: tt.resourceState,
+				getFails:          tt.getFails,
+				resourceId:        instanceId,
+				resourceOperation: utils.Ptr(InstanceTypeUpdate),
+				resourceState:     tt.resourceState,
 			}
 
 			var wantRes *mariadb.Instance
@@ -263,7 +261,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				getFails:                   tt.getFails,
 				deletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
 				resourceId:                 instanceId,
-				resourceOperation:          utils.Ptr(instanceTypeDelete),
+				resourceOperation:          utils.Ptr(InstanceTypeDelete),
 				resourceDescription:        tt.resourceDescription,
 				resourceState:              tt.resourceState,
 			}
