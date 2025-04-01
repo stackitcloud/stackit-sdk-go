@@ -1,3 +1,6 @@
+## v0.2.0 (2025-04-01)
+- **API enhancement:** Provide waiter infrastructure
+
 ## v0.1.1 (2025-03-27)
 - **Bugfix:** Removed ConfigureRegion() from API client
 
