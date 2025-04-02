@@ -1,5 +1,6 @@
-## v0.20.2 (2025-04-01)
+## v0.20.2 (2025-04-02)
 - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+- **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
 
 ## v0.20.1 (2025-03-19)
 - **Internal:** Backwards compatible change to generated code

@@ -1,16 +1,21 @@
 ## Release (2025-XX-YY)
 - `cdn`: [v0.2.0](services/cdn/CHANGELOG.md#v020-2025-04-01)
   - **API enhancement:** Provide waiter infrastructure
-- `logme`: [v0.21.2](services/logme/CHANGELOG.md#v0212-2025-04-01)
+- `logme`: [v0.21.2](services/logme/CHANGELOG.md#v0212-2025-04-02)
   - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
-- `mariadb`: [v0.21.2](services/mariadb/CHANGELOG.md#v0212-2025-04-01)
+  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+- `mariadb`: [v0.21.2](services/mariadb/CHANGELOG.md#v0212-2025-04-02)
   - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
-- `opensearch`: [v0.20.2](services/opensearch/CHANGELOG.md#v0202-2025-04-01)
+  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+- `opensearch`: [v0.20.2](services/opensearch/CHANGELOG.md#v0202-2025-04-02)
   - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
-- `redis`: [v0.21.2](services/redis/CHANGELOG.md#v0212-2025-04-01)
+  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+- `redis`: [v0.21.2](services/redis/CHANGELOG.md#v0212-2025-04-02)
   - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
-- `rabbitmq`: [v0.21.2](services/rabbitmq/CHANGELOG.md#v0212-2025-04-01)
+  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+- `rabbitmq`: [v0.21.2](services/rabbitmq/CHANGELOG.md#v0212-2025-04-02)
   - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
 
 
 
