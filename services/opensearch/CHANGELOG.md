@@ -1,3 +1,6 @@
+## v0.21.0 (2025-04-03)
+  - **Feature:** Adapt constants to evolved API.
+  
 ## v0.20.2 (2025-04-02)
 - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
 - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
