@@ -38,6 +38,7 @@ use (
 	./services/dns
 	./services/iaas
 	./services/iaasalpha
+	./services/kms
 	./services/lbapplication
 	./services/loadbalancer
 	./services/logme
