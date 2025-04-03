@@ -20,15 +20,23 @@ const (
 	InstanceStatusDeleting = "deleting"
 	InstanceStatusUpdating = "updating"
 
-	// Deprecated: InstanceStateSuccess is deprecated and will be removed after 2nd October 2025.
+	InstanceOperationStateInProgress = "in progress"
+	InstanceOperationStateSucceeded  = "succeeded"
+	InstanceOperationStateFailed     = "failed"
+
+	InstanceOperationTypeCreate = "create"
+	InstanceOperationTypeUpdate = "update"
+	InstanceOperationTypeDelete = "delete"
+
+	// Deprecated: InstanceStateSuccess is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationStateSucceeded] instead.
 	InstanceStateSuccess = "succeeded"
-	// Deprecated: InstanceStateFailed is deprecated and will be removed after 2nd October 2025.
+	// Deprecated: InstanceStateFailed is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationStateFailed] instead.
 	InstanceStateFailed = "failed"
-	// Deprecated: InstanceTypeCreate is deprecated and will be removed after 2nd October 2025.
+	// Deprecated: InstanceTypeCreate is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationTypeCreate] instead.
 	InstanceTypeCreate = "create"
-	// Deprecated: InstanceTypeUpdate is deprecated and will be removed after 2nd October 2025.
+	// Deprecated: InstanceTypeUpdate is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationTypeUpdate] instead.
 	InstanceTypeUpdate = "update"
-	// Deprecated: InstanceTypeDelete is deprecated and will be removed after 2nd October 2025.
+	// Deprecated: InstanceTypeDelete is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationTypeDelete] instead.
 	InstanceTypeDelete = "delete"
 )
 
