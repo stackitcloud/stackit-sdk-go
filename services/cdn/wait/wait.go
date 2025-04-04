@@ -98,3 +98,4 @@ func DeleteDistributionWaitHandler(ctx context.Context, api APIClientInterface, 
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
+
