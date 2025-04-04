@@ -1,3 +1,6 @@
+## v0.3.0 (2025-04-04)
+- **New:** Add waiter for creation of `CustomDomain`
+
 ## v0.2.0 (2025-04-01)
 - **API enhancement:** Provide waiter infrastructure
 
