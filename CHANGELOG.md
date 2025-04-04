@@ -35,7 +35,8 @@
     - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
   - [v0.22.0](services/rabbitmq/CHANGELOG.md#v0220-2025-04-03)
     - **Feature:** Adapt constants to evolved API.
-
+  - [0.4.0](services/stackitmarketplace/CHANGELOG.md#v040-2025-04-04)
+    - **Feature:** Add new `VendorProductId` attribute for subscription products
 
 
 ## Release (2025-03-27)

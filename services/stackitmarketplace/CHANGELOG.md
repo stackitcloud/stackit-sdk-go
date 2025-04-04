@@ -1,3 +1,6 @@
+## v0.4.0 (2025-04-04)
+- **Feature:** Add new `VendorProductId` attribute for subscription products
+
 ## v0.3.1 (2025-03-19)
 - **Internal:** Backwards compatible change to generated code
 

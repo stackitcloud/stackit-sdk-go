@@ -162,6 +162,27 @@ type SubscriptionProductGetVendorNameArgType = string
 type SubscriptionProductGetVendorNameRetType = string
 
 /*
+	types and functions for vendorProductId
+*/
+
+// isNotNullableString
+type SubscriptionProductGetVendorProductIdAttributeType = *string
+
+func getSubscriptionProductGetVendorProductIdAttributeTypeOk(arg SubscriptionProductGetVendorProductIdAttributeType) (ret SubscriptionProductGetVendorProductIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetVendorProductIdAttributeType(arg *SubscriptionProductGetVendorProductIdAttributeType, val SubscriptionProductGetVendorProductIdRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetVendorProductIdArgType = string
+type SubscriptionProductGetVendorProductIdRetType = string
+
+/*
 	types and functions for vendorWebsiteUrl
 */
 
@@ -205,6 +226,8 @@ type SubscriptionProduct struct {
 	// The product's vendor name.
 	// REQUIRED
 	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName"`
+	// The product ID provided by the Vendor.
+	VendorProductId SubscriptionProductGetVendorProductIdAttributeType `json:"vendorProductId,omitempty"`
 	// The vendor's website.
 	// REQUIRED
 	VendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlAttributeType `json:"vendorWebsiteUrl"`
@@ -356,6 +379,29 @@ func (o *SubscriptionProduct) SetVendorName(v SubscriptionProductGetVendorNameRe
 	setSubscriptionProductGetVendorNameAttributeType(&o.VendorName, v)
 }
 
+// GetVendorProductId returns the VendorProductId field value if set, zero value otherwise.
+func (o *SubscriptionProduct) GetVendorProductId() (res SubscriptionProductGetVendorProductIdRetType) {
+	res, _ = o.GetVendorProductIdOk()
+	return
+}
+
+// GetVendorProductIdOk returns a tuple with the VendorProductId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionProduct) GetVendorProductIdOk() (ret SubscriptionProductGetVendorProductIdRetType, ok bool) {
+	return getSubscriptionProductGetVendorProductIdAttributeTypeOk(o.VendorProductId)
+}
+
+// HasVendorProductId returns a boolean if a field has been set.
+func (o *SubscriptionProduct) HasVendorProductId() bool {
+	_, ok := o.GetVendorProductIdOk()
+	return ok
+}
+
+// SetVendorProductId gets a reference to the given string and assigns it to the VendorProductId field.
+func (o *SubscriptionProduct) SetVendorProductId(v SubscriptionProductGetVendorProductIdRetType) {
+	setSubscriptionProductGetVendorProductIdAttributeType(&o.VendorProductId, v)
+}
+
 // GetVendorWebsiteUrl returns the VendorWebsiteUrl field value
 func (o *SubscriptionProduct) GetVendorWebsiteUrl() (ret SubscriptionProductGetVendorWebsiteUrlRetType) {
 	ret, _ = o.GetVendorWebsiteUrlOk()
@@ -395,6 +441,9 @@ func (o SubscriptionProduct) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getSubscriptionProductGetVendorNameAttributeTypeOk(o.VendorName); ok {
 		toSerialize["VendorName"] = val
+	}
+	if val, ok := getSubscriptionProductGetVendorProductIdAttributeTypeOk(o.VendorProductId); ok {
+		toSerialize["VendorProductId"] = val
 	}
 	if val, ok := getSubscriptionProductGetVendorWebsiteUrlAttributeTypeOk(o.VendorWebsiteUrl); ok {
 		toSerialize["VendorWebsiteUrl"] = val
