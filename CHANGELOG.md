@@ -1,21 +1,36 @@
 ## Release (2025-XX-YY)
 - `cdn`: [v0.2.0](services/cdn/CHANGELOG.md#v020-2025-04-01)
   - **API enhancement:** Provide waiter infrastructure
-- `logme`: [v0.21.2](services/logme/CHANGELOG.md#v0212-2025-04-02)
-  - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
-  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
-- `mariadb`: [v0.21.2](services/mariadb/CHANGELOG.md#v0212-2025-04-02)
-  - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
-  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
-- `opensearch`: [v0.20.2](services/opensearch/CHANGELOG.md#v0202-2025-04-02)
-  - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
-  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
-- `redis`: [v0.21.2](services/redis/CHANGELOG.md#v0212-2025-04-02)
-  - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
-  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
-- `rabbitmq`: [v0.21.2](services/rabbitmq/CHANGELOG.md#v0212-2025-04-02)
-  - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
-  - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+- `logme`: 
+  - [v0.21.2](services/logme/CHANGELOG.md#v0212-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.22.0](services/logme/CHANGELOG.md#v0220-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
+- `mariadb`: 
+  - [v0.21.2](services/mariadb/CHANGELOG.md#v0212-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.22.0](services/logme/CHANGELOG.md#v0220-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
+- `opensearch`: 
+  - [v0.20.2](services/opensearch/CHANGELOG.md#v0202-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.21.0](services/opensearch/CHANGELOG.md#v0210-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
+- `redis`: 
+  - [v0.21.2](services/redis/CHANGELOG.md#v0212-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.22.0](services/redis/CHANGELOG.md#v0220-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
+- `rabbitmq`: 
+  - [v0.21.2](services/rabbitmq/CHANGELOG.md#v0212-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.22.0](services/rabbitmq/CHANGELOG.md#v0220-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
 
 
 
