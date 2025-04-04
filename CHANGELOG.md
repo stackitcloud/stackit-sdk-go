@@ -1,4 +1,8 @@
 ## Release (2025-XX-YY)
+  - `cdn`: [v0.3.0](services/cdn/CHANGELOG.md#v030-2025-04-04)
+    - **New:** Add waiter for creation of `CustomDomain`
+
+## Release (2025-XX-YY)
 - `cdn`: [v0.2.0](services/cdn/CHANGELOG.md#v020-2025-04-01)
   - **API enhancement:** Provide waiter infrastructure
 - `logme`: 
