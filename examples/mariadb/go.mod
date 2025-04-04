@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.16.2
-	github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.21.1
+	github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.21.2
 )
 
 require (
