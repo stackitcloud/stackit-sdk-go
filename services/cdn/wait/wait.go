@@ -74,8 +74,14 @@ func UpdateDistributionWaitHandler(ctx context.Context, api APIClientInterface, 
 			switch *distribution.Distribution.Status {
 			case DistributionStatusActive:
 				return true, distribution, err
+			case DistributionStatusUpdating:
+				return false, nil, nil
+			case DistributionStatusDeleting:
+				return true, nil, fmt.Errorf("updating CDN distribution failed")
+			case DistributionStatusError:
+				return true, nil, fmt.Errorf("updating CDN distribution failed")
 			default:
-				return false, distribution, err
+				return true, nil, fmt.Errorf("UpdateDistributionWaitHandler: unexpected status %s", *distribution.Distribution.Status)
 			}
 		}
 
@@ -88,16 +94,19 @@ func UpdateDistributionWaitHandler(ctx context.Context, api APIClientInterface, 
 
 func DeleteDistributionWaitHandler(ctx context.Context, api APIClientInterface, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
 	handler := wait.New(func() (waitFinished bool, distribution *cdn.GetDistributionResponse, err error) {
-		distribution, err = api.GetDistributionExecute(ctx, projectId, distributionId)
+		_, err = api.GetDistributionExecute(ctx, projectId, distributionId)
 
 		// the distribution is still gettable, e.g. not deleted
 		if err == nil {
 			return false, nil, nil
 		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if ok && oapiErr.StatusCode == http.StatusNotFound {
-			return true, nil, nil
+		var oapiError *oapierror.GenericOpenAPIError
+		if errors.As(err, &oapiError) {
+			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
+				return true, nil, nil
+			}
 		}
+
 		return false, nil, err
 	})
 	handler.SetTimeout(30 * time.Second)
@@ -139,9 +148,11 @@ func DeleteCDNCustomDomainWaitHandler(ctx context.Context, a APIClientInterface,
 		if err == nil {
 			return false, nil, nil
 		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if ok && oapiErr.StatusCode == http.StatusNotFound {
-			return true, nil, nil
+		var oapiError *oapierror.GenericOpenAPIError
+		if errors.As(err, &oapiError) {
+			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
+				return true, nil, nil
+			}
 		}
 		return false, nil, err
 	})
