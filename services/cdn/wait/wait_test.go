@@ -3,27 +3,327 @@ package wait
 import (
 	"context"
 	"net/http"
+	"strings"
 	"testing"
 	"time"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/services/cdn"
 )
 
-var _ APIClientInterface = (*apiClientMock)(nil)
+type mockApiClient struct {
+	distributions              []*cdn.Distribution
+	getDistributionError       *oapierror.GenericOpenAPIError
+	customDomains              []*cdn.CustomDomain
+	customDomainProjectId      string
+	customDomainDistributionId string
+	getCustomDomainError       *oapierror.GenericOpenAPIError
+}
+
+func isNil(t *testing.T, err error) {
+	t.Helper()
+	if err != nil {
+		t.Fatalf("expected to get no error: %v", err)
+	}
+}
+
+func (m *mockApiClient) GetDistributionExecute(_ context.Context, projectId, distributionId string) (*cdn.GetDistributionResponse, error) {
+	if m.getDistributionError != nil {
+		return nil, m.getDistributionError
+	}
+	for _, d := range m.distributions {
+		if *d.ProjectId == projectId && *d.Id == distributionId {
+			return &cdn.GetDistributionResponse{
+				Distribution: d,
+			}, nil
+		}
+	}
+	return nil, &oapierror.GenericOpenAPIError{
+		StatusCode: http.StatusNotFound,
+	}
+}
+
+func (m *mockApiClient) GetCustomDomainExecute(_ context.Context, projectId, distributionId, domain string) (*cdn.GetCustomDomainResponse, error) {
+	if m.getCustomDomainError != nil {
+		return nil, m.getCustomDomainError
+	}
+	if projectId == m.customDomainProjectId && distributionId == m.customDomainDistributionId {
+		for _, d := range m.customDomains {
+			if *d.Name == domain {
+				return &cdn.GetCustomDomainResponse{
+					CustomDomain: d,
+				}, nil
+			}
+		}
+	}
+	return nil, &oapierror.GenericOpenAPIError{
+		StatusCode: http.StatusNotFound,
+	}
+}
+
+func TestCreateDistributionWaitHandler(t *testing.T) {
+	projectId := "test-project-id"
+	distributionId := "test-distribution-id"
+	statusActive := DistributionStatusActive
+	statusUpdating := DistributionStatusUpdating
+	statusCreating := DistributionStatusCreating
+	statusError := DistributionStatusError
+	statusDeleting := DistributionStatusDeleting
+
+	mockClientFixture := func(patches ...func(tc *mockApiClient)) *mockApiClient {
+		client := &mockApiClient{
+			distributions: []*cdn.Distribution{
+				{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusActive,
+				},
+			},
+			getDistributionError: nil,
+		}
+		for _, p := range patches {
+			p(client)
+		}
+		return client
+	}
+	tests := map[string]struct {
+		apiClient            *mockApiClient
+		projectId            string
+		distributionId       string
+		expectedDistribution *cdn.GetDistributionResponse
+		errCheck             func(*testing.T, error)
+	}{
+		"happyPath": {
+			apiClient:      mockClientFixture(),
+			projectId:      projectId,
+			distributionId: distributionId,
+			expectedDistribution: &cdn.GetDistributionResponse{
+				Distribution: &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusActive,
+				},
+			},
+			errCheck: isNil,
+		},
+		"statusUpdating": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.distributions[0].Status = &statusUpdating
+			}),
+			projectId:            projectId,
+			distributionId:       distributionId,
+			expectedDistribution: nil,
+			errCheck: func(t *testing.T, err error) {
+				if err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"statusCreating": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.distributions[0].Status = &statusCreating
+			}),
+			projectId:            projectId,
+			distributionId:       distributionId,
+			expectedDistribution: nil,
+			errCheck: func(t *testing.T, err error) {
+				if err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"statusDeleting": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.distributions[0].Status = &statusDeleting
+			}),
+			projectId:            projectId,
+			distributionId:       distributionId,
+			expectedDistribution: nil,
+			errCheck: func(t *testing.T, err error) {
+				if strings.Contains(err.Error(), "creating CDN distribution failed") {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"statusError": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.distributions[0].Status = &statusError
+			}),
+			projectId:            projectId,
+			distributionId:       distributionId,
+			expectedDistribution: nil,
+			errCheck: func(t *testing.T, err error) {
+				if strings.Contains(err.Error(), "creating CDN distribution failed") {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+	}
+
+	for name, tc := range tests {
+		t.Run(name, func(t *testing.T) {
+			handler := CreateDistributionPoolWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId)
+			dist, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			tc.errCheck(t, err)
+			if diff := cmp.Diff(tc.expectedDistribution, dist); diff != "" {
+				t.Fatalf("Unexpected response (-want, +got):\n%s", diff)
+			}
+		})
+	}
+}
+
+func TestDeleteDistributionWaitHandler(t *testing.T) {
+	projectId := "test-project-id"
+	distributionId := "test-distribution-id"
+	statusActive := DistributionStatusActive
+	statusUpdating := DistributionStatusUpdating
+	statusCreating := DistributionStatusCreating
+	statusError := DistributionStatusError
+	statusDeleting := DistributionStatusDeleting
+
+	mockClientFixture := func(patches ...func(tc *mockApiClient)) *mockApiClient {
+		client := &mockApiClient{
+			distributions:        []*cdn.Distribution{},
+			getDistributionError: nil,
+		}
+		for _, p := range patches {
+			p(client)
+		}
+		return client
+	}
+	tests := map[string]struct {
+		apiClient      *mockApiClient
+		projectId      string
+		distributionId string
+		errCheck       func(*testing.T, error)
+	}{
+		"happyPath": {
+			apiClient:      mockClientFixture(),
+			projectId:      projectId,
+			distributionId: distributionId,
+			errCheck:       isNil,
+		},
+		"statusActive": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.distributions = append(tc.distributions, &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusActive,
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			errCheck: func(t *testing.T, err error) {
+				if err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"statusUpdating": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.distributions = append(tc.distributions, &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusUpdating,
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			errCheck: func(t *testing.T, err error) {
+				if err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"statusCreating": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.distributions = append(tc.distributions, &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusCreating,
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			errCheck: func(t *testing.T, err error) {
+				if err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"statusError": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.distributions = append(tc.distributions, &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusError,
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			errCheck: func(t *testing.T, err error) {
+				if err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"statusDeleting": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.distributions = append(tc.distributions, &cdn.Distribution{
+					Id:        &distributionId,
+					ProjectId: &projectId,
+					Status:    &statusDeleting,
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			errCheck: func(t *testing.T, err error) {
+				if err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+	}
+
+	for name, tc := range tests {
+		t.Run(name, func(t *testing.T) {
+			handler := DeleteDistributionWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId)
+			dist, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			tc.errCheck(t, err)
+			if dist != nil {
+				t.Fatalf("Distribution not deleted")
+			}
+		})
+	}
+}
 
 type response struct {
 	state  string
 	status int
 }
 
-type apiClientMock struct {
+var (
+	testProjectId      = "testProjectId"
+	testDistributionId = "testDistributionId"
+	testCustomDomain   = "testCustomDomain"
+)
+
+type repeatableClientMock struct {
 	responseIndex int
 	responses     []response
 }
 
-// GetDistributionExecute implements APIClientInterface.
-func (mock *apiClientMock) GetDistributionExecute(_ context.Context, _, _ string) (*cdn.GetDistributionResponse, error) {
+func (mock *repeatableClientMock) GetDistributionExecute(_ context.Context, _, _ string) (*cdn.GetDistributionResponse, error) {
 	response := mock.responses[mock.responseIndex]
 	mock.responseIndex++
 	mock.responseIndex %= len(mock.responses)
@@ -41,113 +341,26 @@ func (mock *apiClientMock) GetDistributionExecute(_ context.Context, _, _ string
 	}, nil
 }
 
-var (
-	testProjectId      = "testProjectId"
-	testDistributionId = "testDistributionId"
-)
-
-func TestCreateDistributionPoolWaitHandler(t *testing.T) {
-	type args struct {
-		projectId      string
-		distributionId string
+func (mock *repeatableClientMock) GetCustomDomainExecute(_ context.Context, _, _, _ string) (*cdn.GetCustomDomainResponse, error) {
+	response := mock.responses[mock.responseIndex]
+	mock.responseIndex++
+	mock.responseIndex %= len(mock.responses)
+	if response.status >= http.StatusBadRequest {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode:   response.status,
+			ErrorMessage: "simulated error",
+		}
 	}
-	type fields struct {
-		responses []response
-	}
-	tests := []struct {
-		name      string
-		args      args
-		fields    fields
-		wantState string
-		wantErr   bool
-	}{
-		{
-			"success immediately",
-			args{
-				projectId:      testProjectId,
-				distributionId: testDistributionId,
-			},
-			fields{
-				responses: []response{
-					{DistributionStateActive, 0},
-				},
-			},
-			DistributionStateActive,
-			false,
+	return &cdn.GetCustomDomainResponse{
+		CustomDomain: &cdn.CustomDomain{
+			Name:   &testCustomDomain,
+			Status: cdn.DOMAINSTATUS_ACTIVE.Ptr(),
 		},
-		{
-			"success delayed",
-			args{
-				projectId:      testProjectId,
-				distributionId: testDistributionId,
-			},
-			fields{
-				responses: []response{
-					{DistributionStateUpdating, 0},
-					{DistributionStateUpdating, 0},
-					{DistributionStateActive, http.StatusOK},
-				},
-			},
-			DistributionStateActive,
-			false,
-		},
-		{
-			"request fails",
-			args{
-				projectId:      testProjectId,
-				distributionId: testDistributionId,
-			},
-			fields{
-				responses: []response{
-					{DistributionStateUpdating, 0},
-					{DistributionStateUpdating, 0},
-					{DistributionStateUpdating, http.StatusInternalServerError},
-				},
-			},
-			"",
-			true,
-		},
-		{
-			"timeout",
-			args{
-				projectId:      testProjectId,
-				distributionId: testDistributionId,
-			},
-			fields{
-				responses: []response{
-					{DistributionStateUpdating, 0},
-				},
-			},
-			DistributionStateUpdating,
-			true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			apiClientMock := apiClientMock{
-				responses: tt.fields.responses,
-			}
-			ctx := context.Background()
-			handler := CreateDistributionPoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.distributionId)
-			handler.SetTimeout(2 * time.Second)
-			handler.SetSleepBeforeWait(100 * time.Millisecond)
-			handler.SetThrottle(50 * time.Millisecond)
-			response, err := handler.WaitWithContext(ctx)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
-			}
-			var actualState string
-			if response != nil {
-				actualState = *response.Distribution.Status
-			}
-			if tt.wantState != actualState {
-				t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
-			}
-		})
-	}
+	}, nil
 }
 
 func TestUpdateDistributionWaitHandler(t *testing.T) {
+
 	type args struct {
 		projectId      string
 		distributionId string
@@ -156,11 +369,11 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 		responses []response
 	}
 	tests := []struct {
-		name      string
-		args      args
-		fields    fields
-		wantState string
-		wantErr   bool
+		name       string
+		args       args
+		fields     fields
+		wantStatus string
+		wantErr    bool
 	}{
 		{
 			"success immediately",
@@ -170,10 +383,10 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 			},
 			fields{
 				responses: []response{
-					{DistributionStateActive, 0},
+					{DistributionStatusActive, 0},
 				},
 			},
-			DistributionStateActive,
+			DistributionStatusActive,
 			false,
 		},
 		{
@@ -184,12 +397,12 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 			},
 			fields{
 				responses: []response{
-					{DistributionStateUpdating, 0},
-					{DistributionStateUpdating, 0},
-					{DistributionStateActive, http.StatusOK},
+					{DistributionStatusUpdating, 0},
+					{DistributionStatusUpdating, 0},
+					{DistributionStatusActive, http.StatusOK},
 				},
 			},
-			DistributionStateActive,
+			DistributionStatusActive,
 			false,
 		},
 		{
@@ -200,9 +413,9 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 			},
 			fields{
 				responses: []response{
-					{DistributionStateUpdating, 0},
-					{DistributionStateUpdating, 0},
-					{DistributionStateUpdating, http.StatusInternalServerError},
+					{DistributionStatusUpdating, 0},
+					{DistributionStatusUpdating, 0},
+					{DistributionStatusUpdating, http.StatusInternalServerError},
 				},
 			},
 			"",
@@ -216,16 +429,16 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 			},
 			fields{
 				responses: []response{
-					{DistributionStateUpdating, 0},
+					{DistributionStatusUpdating, 0},
 				},
 			},
-			DistributionStateUpdating,
+			DistributionStatusUpdating,
 			true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			apiClientMock := apiClientMock{
+			apiClientMock := repeatableClientMock{
 				responses: tt.fields.responses,
 			}
 			ctx := context.Background()
@@ -237,99 +450,258 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
 			}
-			var actualState string
+			var actualStatus string
 			if response != nil {
-				actualState = *response.Distribution.Status
+				actualStatus = *response.Distribution.Status
 			}
-			if tt.wantState != actualState {
-				t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
+			if tt.wantStatus != actualStatus {
+				t.Errorf("wrong state want %q but got %q", tt.wantStatus, actualStatus)
 			}
 		})
 	}
 }
 
-func TestDeleteDistributionWaitHandler(t *testing.T) {
-	type args struct {
+func TestCreateCustomDomainWaitHandler(t *testing.T) {
+	projectId := "test-project-id"
+	distributionId := "test-distribution-id"
+	customDomain := "myCustomDomain.com"
+
+	mockClientFixture := func(patches ...func(tc *mockApiClient)) *mockApiClient {
+		client := &mockApiClient{
+			customDomains: []*cdn.CustomDomain{
+				{
+					Name:   &customDomain,
+					Status: cdn.DOMAINSTATUS_ACTIVE.Ptr(),
+				},
+			},
+			customDomainProjectId:      projectId,
+			customDomainDistributionId: distributionId,
+			getCustomDomainError:       nil,
+		}
+		for _, p := range patches {
+			p(client)
+		}
+		return client
+	}
+	tests := map[string]struct {
+		apiClient            *mockApiClient
+		projectId            string
+		distributionId       string
+		customDomain         string
+		expectedCustomDomain *cdn.CustomDomain
+		errCheck             func(*testing.T, error)
+	}{
+		"happyPath": {
+			apiClient:      mockClientFixture(),
+			projectId:      projectId,
+			distributionId: distributionId,
+			customDomain:   customDomain,
+			expectedCustomDomain: &cdn.CustomDomain{
+				Name:   &customDomain,
+				Status: cdn.DOMAINSTATUS_ACTIVE.Ptr(),
+			},
+			errCheck: isNil,
+		},
+		"statusCreating": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.customDomains[0].Status = cdn.DOMAINSTATUS_CREATING.Ptr()
+			}),
+			projectId:            projectId,
+			distributionId:       distributionId,
+			customDomain:         customDomain,
+			expectedCustomDomain: nil,
+			errCheck: func(t *testing.T, err error) {
+				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"statusDeleting": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.customDomains[0].Status = cdn.DOMAINSTATUS_DELETING.Ptr()
+			}),
+			projectId:            projectId,
+			distributionId:       distributionId,
+			customDomain:         customDomain,
+			expectedCustomDomain: nil,
+			errCheck: func(t *testing.T, err error) {
+				if strings.Contains(err.Error(), "creating CDN custom domain failed") {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"statusError": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.customDomains[0].Status = cdn.DOMAINSTATUS_ERROR.Ptr()
+			}),
+			projectId:            projectId,
+			distributionId:       distributionId,
+			customDomain:         customDomain,
+			expectedCustomDomain: nil,
+			errCheck: func(t *testing.T, err error) {
+				if strings.Contains(err.Error(), "creating CDN custom domain failed") {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+		"CustomDomainMissing": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.customDomains = []*cdn.CustomDomain{}
+			}),
+			projectId:            projectId,
+			distributionId:       distributionId,
+			customDomain:         customDomain,
+			expectedCustomDomain: nil,
+			errCheck: func(t *testing.T, err error) {
+				oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+				if ok && oapiErr.StatusCode == http.StatusNotFound {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
+		},
+	}
+
+	for name, tc := range tests {
+		t.Run(name, func(t *testing.T) {
+			handler := CreateCDNCustomDomainWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId, tc.customDomain)
+			customDomain, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			tc.errCheck(t, err)
+			if diff := cmp.Diff(tc.expectedCustomDomain, customDomain); diff != "" {
+				t.Fatalf("Unexpected response (-want, +got):\n%s", diff)
+			}
+		})
+	}
+}
+
+func TestDeleteCustomDomainHandler(t *testing.T) {
+	projectId := "test-project-id"
+	distributionId := "test-distribution-id"
+	customDomain := "myCustomDomain.com"
+
+	mockClientFixture := func(patches ...func(tc *mockApiClient)) *mockApiClient {
+		client := &mockApiClient{
+			customDomains:              []*cdn.CustomDomain{},
+			customDomainProjectId:      projectId,
+			customDomainDistributionId: distributionId,
+			getCustomDomainError:       nil,
+		}
+		for _, p := range patches {
+			p(client)
+		}
+		return client
+	}
+	tests := map[string]struct {
+		apiClient      *mockApiClient
 		projectId      string
 		distributionId string
-	}
-	type fields struct {
-		responses []response
-	}
-	tests := []struct {
-		name    string
-		args    args
-		fields  fields
-		wantErr bool
+		customDomain   string
+		errCheck       func(*testing.T, error)
 	}{
-		{
-			"success immediately",
-			args{
-				projectId:      testProjectId,
-				distributionId: testDistributionId,
-			},
-			fields{
-				responses: []response{
-					{DistributionStateActive, http.StatusNotFound},
-				},
-			},
-			false,
+		"happyPath": {
+			apiClient:      mockClientFixture(),
+			projectId:      projectId,
+			customDomain:   customDomain,
+			distributionId: distributionId,
+			errCheck:       isNil,
 		},
-		{
-			"success delayed",
-			args{
-				projectId:      testProjectId,
-				distributionId: testDistributionId,
+		"statusActive": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.customDomains = append(tc.customDomains, &cdn.CustomDomain{
+					Name:   &customDomain,
+					Status: cdn.DOMAINSTATUS_ACTIVE.Ptr(),
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			customDomain:   customDomain,
+			errCheck: func(t *testing.T, err error) {
+				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
 			},
-			fields{
-				responses: []response{
-					{DistributionStateUpdating, http.StatusOK},
-					{DistributionStateUpdating, http.StatusOK},
-					{DistributionStateActive, http.StatusNotFound},
-				},
-			},
-			false,
 		},
-		{
-			"request fails",
-			args{
-				projectId:      testProjectId,
-				distributionId: testDistributionId,
+		"statusUpdating": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.customDomains = append(tc.customDomains, &cdn.CustomDomain{
+					Name:   &customDomain,
+					Status: cdn.DOMAINSTATUS_UPDATING.Ptr(),
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			customDomain:   customDomain,
+			errCheck: func(t *testing.T, err error) {
+				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
 			},
-			fields{
-				responses: []response{
-					{DistributionStateUpdating, http.StatusInternalServerError},
-				},
-			},
-			true,
 		},
-		{
-			"timeout",
-			args{
-				projectId:      testProjectId,
-				distributionId: testDistributionId,
+		"statusCreating": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.customDomains = append(tc.customDomains, &cdn.CustomDomain{
+					Name:   &customDomain,
+					Status: cdn.DOMAINSTATUS_CREATING.Ptr(),
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			customDomain:   customDomain,
+			errCheck: func(t *testing.T, err error) {
+				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
 			},
-			fields{
-				responses: []response{
-					{DistributionStateUpdating, 0},
-				},
+		},
+		"statusError": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.customDomains = append(tc.customDomains, &cdn.CustomDomain{
+					Name:   &customDomain,
+					Status: cdn.DOMAINSTATUS_ERROR.Ptr(),
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			customDomain:   customDomain,
+			errCheck: func(t *testing.T, err error) {
+				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
 			},
-			true,
+		},
+		"statusDeleting": {
+			apiClient: mockClientFixture(func(tc *mockApiClient) {
+				tc.customDomains = append(tc.customDomains, &cdn.CustomDomain{
+					Name:   &customDomain,
+					Status: cdn.DOMAINSTATUS_DELETING.Ptr(),
+				})
+			}),
+			projectId:      projectId,
+			distributionId: distributionId,
+			customDomain:   customDomain,
+			errCheck: func(t *testing.T, err error) {
+				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+					return
+				}
+				t.Fatalf("Unexpected error: %v", err)
+			},
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			apiClientMock := apiClientMock{
-				responses: tt.fields.responses,
-			}
-			ctx := context.Background()
-			handler := DeleteDistributionWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.distributionId)
-			handler.SetTimeout(2 * time.Second)
-			handler.SetSleepBeforeWait(100 * time.Millisecond)
-			handler.SetThrottle(50 * time.Millisecond)
-			_, err := handler.WaitWithContext(ctx)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
+
+	for name, tc := range tests {
+		t.Run(name, func(t *testing.T) {
+			handler := DeleteCDNCustomDomainWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId, tc.customDomain)
+			customDomain, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			tc.errCheck(t, err)
+			if customDomain != nil {
+				t.Fatalf("Custom domain not deleted")
 			}
 		})
 	}
