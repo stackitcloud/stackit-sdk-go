@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.16.2 h1:F8A4P/LLlQSbz0S0+G3m8rb3BUOK6EcR/CKx5UQY5jQ=
 github.com/stackitcloud/stackit-sdk-go/core v0.16.2/go.mod h1:8KIw3czdNJ9sdil9QQimxjR6vHjeINFrRv0iZ67wfn0=
-github.com/stackitcloud/stackit-sdk-go/services/logme v0.21.1 h1:LwZlY0cANz2HR6U7I6hR+kFShmTKlTPNxBp1XHDoUzE=
-github.com/stackitcloud/stackit-sdk-go/services/logme v0.21.1/go.mod h1:aSdF3zcNoudRx5AzHqGVQVN7Cq05OseCQFyDa7P2cC8=
+github.com/stackitcloud/stackit-sdk-go/services/logme v0.22.0 h1:5pcvoWS2sO3MIBP026OZEdImBNVvI27lksehqDMbAh0=
+github.com/stackitcloud/stackit-sdk-go/services/logme v0.22.0/go.mod h1:Lb1emAS4KI+pWDXQlbmST058wTsWyD8vLmdsJpRjfEg=
