@@ -33,7 +33,7 @@
       "cd $(git rev-parse --show-toplevel) && make sync-tidy"
     ]
   },
-  "constraints": {
-    "go": "1.21"
+  "env": {
+    "GOTOOLCHAIN": "go1.21.13"
   }
 }
