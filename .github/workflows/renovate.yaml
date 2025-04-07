@@ -5,6 +5,9 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+env:
+  GOVERSION: 1.21.13
+
 jobs:
   renovate:
     name: Renovate
@@ -12,8 +15,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: "chore/renovate"
+      - name: Install Go ${{env.GOVERSION}}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{env.GOVERSION}}
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v41.0.0
+        env:
+          GOTOOLCHAIN: go1.21.13
+          LOG_LEVEL: debug
         with:
           configurationFile: .github/renovate.json
           token: ${{ secrets.RENOVATE_TOKEN }}
+          env-regex: "^(?:GOTOOLCHAIN|RENOVATE_\\w+|LOG_LEVEL|GITHUB_COM_TOKEN|NODE_OPTIONS|AWS_TOKEN)$"
+

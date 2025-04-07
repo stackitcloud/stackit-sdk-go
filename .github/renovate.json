@@ -35,5 +35,8 @@
   },
   "env": {
     "GOTOOLCHAIN": "go1.21.13"
+  },
+  "constraints": {
+    "go": "1.21"
   }
 }
