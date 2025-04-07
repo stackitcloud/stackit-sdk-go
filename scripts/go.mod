@@ -6,7 +6,7 @@ require (
 	github.com/go-git/go-git/v5 v5.13.2
 	github.com/stackitcloud/stackit-sdk-go/core v0.16.2
 	golang.org/x/mod v0.20.0
-	golang.org/x/term v0.29.0
+	golang.org/x/term v0.31.0
 )
 
 require (
