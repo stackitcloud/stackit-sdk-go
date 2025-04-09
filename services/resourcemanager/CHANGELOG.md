@@ -1,3 +1,6 @@
+## v0.14.0 (2025-04-09)
+- **Feature:** Add support for folder management
+
 ## v0.13.1 (2025-03-19)
 - **Internal:** Backwards compatible change to generated code
 
