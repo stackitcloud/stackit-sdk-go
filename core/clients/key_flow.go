@@ -214,7 +214,7 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 	if err = c.recreateAccessToken(); err != nil {
 		var oapiErr *oapierror.GenericOpenAPIError
 		if ok := errors.As(err, &oapiErr); ok {
-			reg := regexp.MustCompile("Key with kid ([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}) was not found")
+			reg := regexp.MustCompile("Key with kid .*? was not found")
 			if reg.Match(oapiErr.Body) {
 				err = fmt.Errorf("check if your configured key is valid and if the token endpoint is configured correct: %w", err)
 			}
