@@ -6,10 +6,12 @@ import (
 	"crypto/x509"
 	"encoding/json"
 	"encoding/pem"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"net/url"
+	"regexp"
 	"strings"
 	"sync"
 	"time"
@@ -209,7 +211,14 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 	if !accessTokenExpired {
 		return accessToken, nil
 	}
-	if err := c.recreateAccessToken(); err != nil {
+	if err = c.recreateAccessToken(); err != nil {
+		var oapiErr *oapierror.GenericOpenAPIError
+		if ok := errors.As(err, &oapiErr); ok {
+			reg := regexp.MustCompile("Key with kid ([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}) was not found")
+			if reg.Match(oapiErr.Body) {
+				err = fmt.Errorf("check if your configured key is valid and if the token endpoint is configured correct: %w", err)
+			}
+		}
 		return "", fmt.Errorf("get new access token: %w", err)
 	}
 
