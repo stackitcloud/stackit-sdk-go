@@ -62,10 +62,10 @@ func setListCatalogProductsResponseGetItemsAttributeType(arg *ListCatalogProduct
 	types and functions for limit
 */
 
-// isInteger
-type ListCatalogProductsResponseGetLimitAttributeType = *int64
-type ListCatalogProductsResponseGetLimitArgType = int64
-type ListCatalogProductsResponseGetLimitRetType = int64
+// isNumber
+type ListCatalogProductsResponseGetLimitAttributeType = *float64
+type ListCatalogProductsResponseGetLimitArgType = float64
+type ListCatalogProductsResponseGetLimitRetType = float64
 
 func getListCatalogProductsResponseGetLimitAttributeTypeOk(arg ListCatalogProductsResponseGetLimitAttributeType) (ret ListCatalogProductsResponseGetLimitRetType, ok bool) {
 	if arg == nil {
@@ -80,13 +80,12 @@ func setListCatalogProductsResponseGetLimitAttributeType(arg *ListCatalogProduct
 
 // ListCatalogProductsResponse struct for ListCatalogProductsResponse
 type ListCatalogProductsResponse struct {
-	// A pagination cursor that represents a position in the dataset. Use it in subsequent requests to continue retrieving data from this position. If `null`, there are no more results to retrieve.
+	// A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
 	// REQUIRED
 	Cursor ListCatalogProductsResponseGetCursorAttributeType `json:"cursor"`
 	// REQUIRED
 	Items ListCatalogProductsResponseGetItemsAttributeType `json:"items"`
-	// The maximum number of items to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
-	// Can be cast to int32 without loss of precision.
+	// Limit for returned Objects.
 	// REQUIRED
 	Limit ListCatalogProductsResponseGetLimitAttributeType `json:"limit"`
 }
@@ -110,7 +109,7 @@ func NewListCatalogProductsResponse(cursor ListCatalogProductsResponseGetCursorA
 // but it doesn't guarantee that properties required by API are set
 func NewListCatalogProductsResponseWithDefaults() *ListCatalogProductsResponse {
 	this := ListCatalogProductsResponse{}
-	var limit int64 = 50
+	var limit float64 = 50
 	this.Limit = &limit
 	return &this
 }

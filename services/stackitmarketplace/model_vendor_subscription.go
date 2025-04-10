@@ -22,9 +22,9 @@ var _ MappedNullable = &VendorSubscription{}
 */
 
 // isEnumRef
-type VendorSubscriptionGetLifecycleStateAttributeType = *string
-type VendorSubscriptionGetLifecycleStateArgType = string
-type VendorSubscriptionGetLifecycleStateRetType = string
+type VendorSubscriptionGetLifecycleStateAttributeType = *SubscriptionLifecycleState
+type VendorSubscriptionGetLifecycleStateArgType = SubscriptionLifecycleState
+type VendorSubscriptionGetLifecycleStateRetType = SubscriptionLifecycleState
 
 func getVendorSubscriptionGetLifecycleStateAttributeTypeOk(arg VendorSubscriptionGetLifecycleStateAttributeType) (ret VendorSubscriptionGetLifecycleStateRetType, ok bool) {
 	if arg == nil {
@@ -61,8 +61,10 @@ func setVendorSubscriptionGetProductAttributeType(arg *VendorSubscriptionGetProd
 	types and functions for projectId
 */
 
-// isNotNullableString
-type VendorSubscriptionGetProjectIdAttributeType = *string
+// isModel
+type VendorSubscriptionGetProjectIdAttributeType = *ProjectId
+type VendorSubscriptionGetProjectIdArgType = ProjectId
+type VendorSubscriptionGetProjectIdRetType = ProjectId
 
 func getVendorSubscriptionGetProjectIdAttributeTypeOk(arg VendorSubscriptionGetProjectIdAttributeType) (ret VendorSubscriptionGetProjectIdRetType, ok bool) {
 	if arg == nil {
@@ -75,15 +77,14 @@ func setVendorSubscriptionGetProjectIdAttributeType(arg *VendorSubscriptionGetPr
 	*arg = &val
 }
 
-type VendorSubscriptionGetProjectIdArgType = string
-type VendorSubscriptionGetProjectIdRetType = string
-
 /*
 	types and functions for subscriptionId
 */
 
-// isNotNullableString
-type VendorSubscriptionGetSubscriptionIdAttributeType = *string
+// isModel
+type VendorSubscriptionGetSubscriptionIdAttributeType = *SubscriptionId
+type VendorSubscriptionGetSubscriptionIdArgType = SubscriptionId
+type VendorSubscriptionGetSubscriptionIdRetType = SubscriptionId
 
 func getVendorSubscriptionGetSubscriptionIdAttributeTypeOk(arg VendorSubscriptionGetSubscriptionIdAttributeType) (ret VendorSubscriptionGetSubscriptionIdRetType, ok bool) {
 	if arg == nil {
@@ -96,20 +97,14 @@ func setVendorSubscriptionGetSubscriptionIdAttributeType(arg *VendorSubscription
 	*arg = &val
 }
 
-type VendorSubscriptionGetSubscriptionIdArgType = string
-type VendorSubscriptionGetSubscriptionIdRetType = string
-
 // VendorSubscription struct for VendorSubscription
 type VendorSubscription struct {
-	// Lifecycle state of the subscription.
 	// REQUIRED
 	LifecycleState VendorSubscriptionGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// REQUIRED
 	Product VendorSubscriptionGetProductAttributeType `json:"product"`
-	// The associated consumer project ID.
 	// REQUIRED
 	ProjectId VendorSubscriptionGetProjectIdAttributeType `json:"projectId"`
-	// The subscription ID.
 	// REQUIRED
 	SubscriptionId VendorSubscriptionGetSubscriptionIdAttributeType `json:"subscriptionId"`
 }

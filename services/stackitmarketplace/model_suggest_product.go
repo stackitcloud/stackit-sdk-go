@@ -22,9 +22,9 @@ var _ MappedNullable = &SuggestProduct{}
 */
 
 // isModel
-type SuggestProductGetSuggestProductAttributeType = *SuggestProductSuggestProduct
-type SuggestProductGetSuggestProductArgType = SuggestProductSuggestProduct
-type SuggestProductGetSuggestProductRetType = SuggestProductSuggestProduct
+type SuggestProductGetSuggestProductAttributeType = *InquirySuggestProduct
+type SuggestProductGetSuggestProductArgType = InquirySuggestProduct
+type SuggestProductGetSuggestProductRetType = InquirySuggestProduct
 
 func getSuggestProductGetSuggestProductAttributeTypeOk(arg SuggestProductGetSuggestProductAttributeType) (ret SuggestProductGetSuggestProductRetType, ok bool) {
 	if arg == nil {
@@ -42,9 +42,9 @@ func setSuggestProductGetSuggestProductAttributeType(arg *SuggestProductGetSugge
 */
 
 // isEnumRef
-type SuggestProductGetTypeAttributeType = *string
-type SuggestProductGetTypeArgType = string
-type SuggestProductGetTypeRetType = string
+type SuggestProductGetTypeAttributeType = *InquiryFormType
+type SuggestProductGetTypeArgType = InquiryFormType
+type SuggestProductGetTypeRetType = InquiryFormType
 
 func getSuggestProductGetTypeAttributeTypeOk(arg SuggestProductGetTypeAttributeType) (ret SuggestProductGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -61,7 +61,6 @@ func setSuggestProductGetTypeAttributeType(arg *SuggestProductGetTypeAttributeTy
 type SuggestProduct struct {
 	// REQUIRED
 	SuggestProduct SuggestProductGetSuggestProductAttributeType `json:"suggestProduct"`
-	// The form type.
 	// REQUIRED
 	Type SuggestProductGetTypeAttributeType `json:"type"`
 }

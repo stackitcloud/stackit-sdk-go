@@ -22,9 +22,9 @@ var _ MappedNullable = &ContactSales{}
 */
 
 // isModel
-type ContactSalesGetContactSalesAttributeType = *ContactSalesContactSales
-type ContactSalesGetContactSalesArgType = ContactSalesContactSales
-type ContactSalesGetContactSalesRetType = ContactSalesContactSales
+type ContactSalesGetContactSalesAttributeType = *InquiryContactSales
+type ContactSalesGetContactSalesArgType = InquiryContactSales
+type ContactSalesGetContactSalesRetType = InquiryContactSales
 
 func getContactSalesGetContactSalesAttributeTypeOk(arg ContactSalesGetContactSalesAttributeType) (ret ContactSalesGetContactSalesRetType, ok bool) {
 	if arg == nil {
@@ -42,9 +42,9 @@ func setContactSalesGetContactSalesAttributeType(arg *ContactSalesGetContactSale
 */
 
 // isEnumRef
-type ContactSalesGetTypeAttributeType = *string
-type ContactSalesGetTypeArgType = string
-type ContactSalesGetTypeRetType = string
+type ContactSalesGetTypeAttributeType = *InquiryFormType
+type ContactSalesGetTypeArgType = InquiryFormType
+type ContactSalesGetTypeRetType = InquiryFormType
 
 func getContactSalesGetTypeAttributeTypeOk(arg ContactSalesGetTypeAttributeType) (ret ContactSalesGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -61,7 +61,6 @@ func setContactSalesGetTypeAttributeType(arg *ContactSalesGetTypeAttributeType, 
 type ContactSales struct {
 	// REQUIRED
 	ContactSales ContactSalesGetContactSalesAttributeType `json:"contactSales"`
-	// The form type.
 	// REQUIRED
 	Type ContactSalesGetTypeAttributeType `json:"type"`
 }

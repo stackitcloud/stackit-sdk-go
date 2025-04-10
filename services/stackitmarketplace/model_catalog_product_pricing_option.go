@@ -84,9 +84,9 @@ type CatalogProductPricingOptionGetNameRetType = string
 */
 
 // isEnumRef
-type CatalogProductPricingOptionGetPriceTypeAttributeType = *string
-type CatalogProductPricingOptionGetPriceTypeArgType = string
-type CatalogProductPricingOptionGetPriceTypeRetType = string
+type CatalogProductPricingOptionGetPriceTypeAttributeType = *PriceType
+type CatalogProductPricingOptionGetPriceTypeArgType = PriceType
+type CatalogProductPricingOptionGetPriceTypeRetType = PriceType
 
 func getCatalogProductPricingOptionGetPriceTypeAttributeTypeOk(arg CatalogProductPricingOptionGetPriceTypeAttributeType) (ret CatalogProductPricingOptionGetPriceTypeRetType, ok bool) {
 	if arg == nil {
@@ -208,8 +208,10 @@ type CatalogProductPricingOptionGetSkuInfoDetailsRetType = string
 	types and functions for unit
 */
 
-// isNotNullableString
-type CatalogProductPricingOptionGetUnitAttributeType = *string
+// isEnumRef
+type CatalogProductPricingOptionGetUnitAttributeType = *PricingOptionUnit
+type CatalogProductPricingOptionGetUnitArgType = PricingOptionUnit
+type CatalogProductPricingOptionGetUnitRetType = PricingOptionUnit
 
 func getCatalogProductPricingOptionGetUnitAttributeTypeOk(arg CatalogProductPricingOptionGetUnitAttributeType) (ret CatalogProductPricingOptionGetUnitRetType, ok bool) {
 	if arg == nil {
@@ -222,9 +224,6 @@ func setCatalogProductPricingOptionGetUnitAttributeType(arg *CatalogProductPrici
 	*arg = &val
 }
 
-type CatalogProductPricingOptionGetUnitArgType = string
-type CatalogProductPricingOptionGetUnitRetType = string
-
 // CatalogProductPricingOption struct for CatalogProductPricingOption
 type CatalogProductPricingOption struct {
 	// The pricing option description.
@@ -235,8 +234,7 @@ type CatalogProductPricingOption struct {
 	Highlights CatalogProductPricingOptionGetHighlightsAttributeType `json:"highlights"`
 	// The pricing option name.
 	// REQUIRED
-	Name CatalogProductPricingOptionGetNameAttributeType `json:"name"`
-	// The price type / pricing model.
+	Name      CatalogProductPricingOptionGetNameAttributeType      `json:"name"`
 	PriceType CatalogProductPricingOptionGetPriceTypeAttributeType `json:"priceType,omitempty"`
 	// Additional price type information.
 	PricingPlan CatalogProductPricingOptionGetPricingPlanAttributeType `json:"pricingPlan,omitempty"`
@@ -251,8 +249,7 @@ type CatalogProductPricingOption struct {
 	// More details about what this offering entails.
 	// REQUIRED
 	SkuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsAttributeType `json:"skuInfoDetails"`
-	// The interval to which the rate applies.
-	Unit CatalogProductPricingOptionGetUnitAttributeType `json:"unit,omitempty"`
+	Unit           CatalogProductPricingOptionGetUnitAttributeType           `json:"unit,omitempty"`
 }
 
 type _CatalogProductPricingOption CatalogProductPricingOption
@@ -349,7 +346,7 @@ func (o *CatalogProductPricingOption) HasPriceType() bool {
 	return ok
 }
 
-// SetPriceType gets a reference to the given string and assigns it to the PriceType field.
+// SetPriceType gets a reference to the given PriceType and assigns it to the PriceType field.
 func (o *CatalogProductPricingOption) SetPriceType(v CatalogProductPricingOptionGetPriceTypeRetType) {
 	setCatalogProductPricingOptionGetPriceTypeAttributeType(&o.PriceType, v)
 }
@@ -469,7 +466,7 @@ func (o *CatalogProductPricingOption) HasUnit() bool {
 	return ok
 }
 
-// SetUnit gets a reference to the given string and assigns it to the Unit field.
+// SetUnit gets a reference to the given PricingOptionUnit and assigns it to the Unit field.
 func (o *CatalogProductPricingOption) SetUnit(v CatalogProductPricingOptionGetUnitRetType) {
 	setCatalogProductPricingOptionGetUnitAttributeType(&o.Unit, v)
 }

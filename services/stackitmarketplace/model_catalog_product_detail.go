@@ -42,9 +42,9 @@ func setCatalogProductDetailGetCategoriesAttributeType(arg *CatalogProductDetail
 */
 
 // isEnumRef
-type CatalogProductDetailGetDeliveryMethodAttributeType = *string
-type CatalogProductDetailGetDeliveryMethodArgType = string
-type CatalogProductDetailGetDeliveryMethodRetType = string
+type CatalogProductDetailGetDeliveryMethodAttributeType = *DeliveryMethod
+type CatalogProductDetailGetDeliveryMethodArgType = DeliveryMethod
+type CatalogProductDetailGetDeliveryMethodRetType = DeliveryMethod
 
 func getCatalogProductDetailGetDeliveryMethodAttributeTypeOk(arg CatalogProductDetailGetDeliveryMethodAttributeType) (ret CatalogProductDetailGetDeliveryMethodRetType, ok bool) {
 	if arg == nil {
@@ -100,6 +100,27 @@ type CatalogProductDetailGetDocumentationUrlArgType = string
 type CatalogProductDetailGetDocumentationUrlRetType = string
 
 /*
+	types and functions for email
+*/
+
+// isNotNullableString
+type CatalogProductDetailGetEmailAttributeType = *string
+
+func getCatalogProductDetailGetEmailAttributeTypeOk(arg CatalogProductDetailGetEmailAttributeType) (ret CatalogProductDetailGetEmailRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductDetailGetEmailAttributeType(arg *CatalogProductDetailGetEmailAttributeType, val CatalogProductDetailGetEmailRetType) {
+	*arg = &val
+}
+
+type CatalogProductDetailGetEmailArgType = string
+type CatalogProductDetailGetEmailRetType = string
+
+/*
 	types and functions for highlights
 */
 
@@ -144,9 +165,9 @@ func setCatalogProductDetailgetIsProductListingAttributeType(arg *CatalogProduct
 */
 
 // isEnumRef
-type CatalogProductDetailGetLifecycleStateAttributeType = *string
-type CatalogProductDetailGetLifecycleStateArgType = string
-type CatalogProductDetailGetLifecycleStateRetType = string
+type CatalogProductDetailGetLifecycleStateAttributeType = *ProductLifecycleState
+type CatalogProductDetailGetLifecycleStateArgType = ProductLifecycleState
+type CatalogProductDetailGetLifecycleStateRetType = ProductLifecycleState
 
 func getCatalogProductDetailGetLifecycleStateAttributeTypeOk(arg CatalogProductDetailGetLifecycleStateAttributeType) (ret CatalogProductDetailGetLifecycleStateRetType, ok bool) {
 	if arg == nil {
@@ -163,8 +184,10 @@ func setCatalogProductDetailGetLifecycleStateAttributeType(arg *CatalogProductDe
 	types and functions for logo
 */
 
-// isNotNullableString
-type CatalogProductDetailGetLogoAttributeType = *string
+// isByteArray
+type CatalogProductDetailGetLogoAttributeType = *[]byte
+type CatalogProductDetailGetLogoArgType = []byte
+type CatalogProductDetailGetLogoRetType = []byte
 
 func getCatalogProductDetailGetLogoAttributeTypeOk(arg CatalogProductDetailGetLogoAttributeType) (ret CatalogProductDetailGetLogoRetType, ok bool) {
 	if arg == nil {
@@ -176,9 +199,6 @@ func getCatalogProductDetailGetLogoAttributeTypeOk(arg CatalogProductDetailGetLo
 func setCatalogProductDetailGetLogoAttributeType(arg *CatalogProductDetailGetLogoAttributeType, val CatalogProductDetailGetLogoRetType) {
 	*arg = &val
 }
-
-type CatalogProductDetailGetLogoArgType = string
-type CatalogProductDetailGetLogoRetType = string
 
 /*
 	types and functions for name
@@ -225,8 +245,10 @@ func setCatalogProductDetailGetPricingOptionsAttributeType(arg *CatalogProductDe
 	types and functions for productId
 */
 
-// isNotNullableString
-type CatalogProductDetailGetProductIdAttributeType = *string
+// isModel
+type CatalogProductDetailGetProductIdAttributeType = *ProductId
+type CatalogProductDetailGetProductIdArgType = ProductId
+type CatalogProductDetailGetProductIdRetType = ProductId
 
 func getCatalogProductDetailGetProductIdAttributeTypeOk(arg CatalogProductDetailGetProductIdAttributeType) (ret CatalogProductDetailGetProductIdRetType, ok bool) {
 	if arg == nil {
@@ -238,9 +260,6 @@ func getCatalogProductDetailGetProductIdAttributeTypeOk(arg CatalogProductDetail
 func setCatalogProductDetailGetProductIdAttributeType(arg *CatalogProductDetailGetProductIdAttributeType, val CatalogProductDetailGetProductIdRetType) {
 	*arg = &val
 }
-
-type CatalogProductDetailGetProductIdArgType = string
-type CatalogProductDetailGetProductIdRetType = string
 
 /*
 	types and functions for summary
@@ -262,27 +281,6 @@ func setCatalogProductDetailGetSummaryAttributeType(arg *CatalogProductDetailGet
 
 type CatalogProductDetailGetSummaryArgType = string
 type CatalogProductDetailGetSummaryRetType = string
-
-/*
-	types and functions for supportEmail
-*/
-
-// isNotNullableString
-type CatalogProductDetailGetSupportEmailAttributeType = *string
-
-func getCatalogProductDetailGetSupportEmailAttributeTypeOk(arg CatalogProductDetailGetSupportEmailAttributeType) (ret CatalogProductDetailGetSupportEmailRetType, ok bool) {
-	if arg == nil {
-		return ret, false
-	}
-	return *arg, true
-}
-
-func setCatalogProductDetailGetSupportEmailAttributeType(arg *CatalogProductDetailGetSupportEmailAttributeType, val CatalogProductDetailGetSupportEmailRetType) {
-	*arg = &val
-}
-
-type CatalogProductDetailGetSupportEmailArgType = string
-type CatalogProductDetailGetSupportEmailRetType = string
 
 /*
 	types and functions for supportFaq
@@ -411,42 +409,39 @@ type CatalogProductDetailGetVideoUrlRetType = string
 type CatalogProductDetail struct {
 	// The list of categories associated to the product.
 	Categories CatalogProductDetailGetCategoriesAttributeType `json:"categories,omitempty"`
-	// The product type. For reference: SAAS - Software as a Service, SAI - STACKIT Application Image
 	// REQUIRED
 	DeliveryMethod CatalogProductDetailGetDeliveryMethodAttributeType `json:"deliveryMethod"`
 	// The product description.
 	// REQUIRED
 	Description CatalogProductDetailGetDescriptionAttributeType `json:"description"`
-	// The documentation URL.
+	// Uniform Resource Locator.
 	// REQUIRED
 	DocumentationUrl CatalogProductDetailGetDocumentationUrlAttributeType `json:"documentationUrl"`
+	// A e-mail address.
+	Email CatalogProductDetailGetEmailAttributeType `json:"email,omitempty"`
 	// The list of highlights.
 	// REQUIRED
 	Highlights CatalogProductDetailGetHighlightsAttributeType `json:"highlights"`
-	// If true, the product is not fully integrated but only listed. Product listings may not have prices and support information.
+	// Boolean data type.
 	// REQUIRED
 	IsProductListing CatalogProductDetailgetIsProductListingAttributeType `json:"isProductListing"`
-	// The lifecycle state of the product.
 	// REQUIRED
 	LifecycleState CatalogProductDetailGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// The logo base64 encoded.
 	// REQUIRED
 	Logo CatalogProductDetailGetLogoAttributeType `json:"logo"`
-	// The product name.
+	// The name of the product.
 	// REQUIRED
 	Name CatalogProductDetailGetNameAttributeType `json:"name"`
 	// The list of pricing options.
 	// REQUIRED
 	PricingOptions CatalogProductDetailGetPricingOptionsAttributeType `json:"pricingOptions"`
-	// The product ID.
 	// REQUIRED
 	ProductId CatalogProductDetailGetProductIdAttributeType `json:"productId"`
 	// The short summary of the product.
 	// REQUIRED
 	Summary CatalogProductDetailGetSummaryAttributeType `json:"summary"`
-	// The e-mail address for support inquiries.
-	SupportEmail CatalogProductDetailGetSupportEmailAttributeType `json:"supportEmail,omitempty"`
-	// The support FAQ URL.
+	// Uniform Resource Locator.
 	SupportFaq CatalogProductDetailGetSupportFaqAttributeType `json:"supportFaq,omitempty"`
 	// The phone number for support inquiries.
 	SupportPhone CatalogProductDetailGetSupportPhoneAttributeType `json:"supportPhone,omitempty"`
@@ -456,7 +451,7 @@ type CatalogProductDetail struct {
 	Vendor CatalogProductDetailGetVendorAttributeType `json:"vendor"`
 	// The list of terms of use.
 	VendorTerms CatalogProductDetailGetVendorTermsAttributeType `json:"vendorTerms,omitempty"`
-	// The video URL.
+	// Uniform Resource Locator.
 	// REQUIRED
 	VideoUrl CatalogProductDetailGetVideoUrlAttributeType `json:"videoUrl"`
 }
@@ -565,6 +560,29 @@ func (o *CatalogProductDetail) GetDocumentationUrlOk() (ret CatalogProductDetail
 // SetDocumentationUrl sets field value
 func (o *CatalogProductDetail) SetDocumentationUrl(v CatalogProductDetailGetDocumentationUrlRetType) {
 	setCatalogProductDetailGetDocumentationUrlAttributeType(&o.DocumentationUrl, v)
+}
+
+// GetEmail returns the Email field value if set, zero value otherwise.
+func (o *CatalogProductDetail) GetEmail() (res CatalogProductDetailGetEmailRetType) {
+	res, _ = o.GetEmailOk()
+	return
+}
+
+// GetEmailOk returns a tuple with the Email field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogProductDetail) GetEmailOk() (ret CatalogProductDetailGetEmailRetType, ok bool) {
+	return getCatalogProductDetailGetEmailAttributeTypeOk(o.Email)
+}
+
+// HasEmail returns a boolean if a field has been set.
+func (o *CatalogProductDetail) HasEmail() bool {
+	_, ok := o.GetEmailOk()
+	return ok
+}
+
+// SetEmail gets a reference to the given string and assigns it to the Email field.
+func (o *CatalogProductDetail) SetEmail(v CatalogProductDetailGetEmailRetType) {
+	setCatalogProductDetailGetEmailAttributeType(&o.Email, v)
 }
 
 // GetHighlights returns the Highlights field value
@@ -701,29 +719,6 @@ func (o *CatalogProductDetail) GetSummaryOk() (ret CatalogProductDetailGetSummar
 // SetSummary sets field value
 func (o *CatalogProductDetail) SetSummary(v CatalogProductDetailGetSummaryRetType) {
 	setCatalogProductDetailGetSummaryAttributeType(&o.Summary, v)
-}
-
-// GetSupportEmail returns the SupportEmail field value if set, zero value otherwise.
-func (o *CatalogProductDetail) GetSupportEmail() (res CatalogProductDetailGetSupportEmailRetType) {
-	res, _ = o.GetSupportEmailOk()
-	return
-}
-
-// GetSupportEmailOk returns a tuple with the SupportEmail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CatalogProductDetail) GetSupportEmailOk() (ret CatalogProductDetailGetSupportEmailRetType, ok bool) {
-	return getCatalogProductDetailGetSupportEmailAttributeTypeOk(o.SupportEmail)
-}
-
-// HasSupportEmail returns a boolean if a field has been set.
-func (o *CatalogProductDetail) HasSupportEmail() bool {
-	_, ok := o.GetSupportEmailOk()
-	return ok
-}
-
-// SetSupportEmail gets a reference to the given string and assigns it to the SupportEmail field.
-func (o *CatalogProductDetail) SetSupportEmail(v CatalogProductDetailGetSupportEmailRetType) {
-	setCatalogProductDetailGetSupportEmailAttributeType(&o.SupportEmail, v)
 }
 
 // GetSupportFaq returns the SupportFaq field value if set, zero value otherwise.
@@ -866,6 +861,9 @@ func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 	if val, ok := getCatalogProductDetailGetDocumentationUrlAttributeTypeOk(o.DocumentationUrl); ok {
 		toSerialize["DocumentationUrl"] = val
 	}
+	if val, ok := getCatalogProductDetailGetEmailAttributeTypeOk(o.Email); ok {
+		toSerialize["Email"] = val
+	}
 	if val, ok := getCatalogProductDetailGetHighlightsAttributeTypeOk(o.Highlights); ok {
 		toSerialize["Highlights"] = val
 	}
@@ -889,9 +887,6 @@ func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCatalogProductDetailGetSummaryAttributeTypeOk(o.Summary); ok {
 		toSerialize["Summary"] = val
-	}
-	if val, ok := getCatalogProductDetailGetSupportEmailAttributeTypeOk(o.SupportEmail); ok {
-		toSerialize["SupportEmail"] = val
 	}
 	if val, ok := getCatalogProductDetailGetSupportFaqAttributeTypeOk(o.SupportFaq); ok {
 		toSerialize["SupportFaq"] = val
