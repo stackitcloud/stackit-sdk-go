@@ -58,6 +58,18 @@ func (r ApiApproveSubscriptionRequest) Execute() error {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.subscriptionId) < 36 {
+		return fmt.Errorf("subscriptionId must have at least 36 elements")
+	}
+	if strlen(r.subscriptionId) > 36 {
+		return fmt.Errorf("subscriptionId must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -221,6 +233,12 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.productId) < 36 {
+		return localVarReturnValue, fmt.Errorf("productId must have at least 36 elements")
+	}
+	if strlen(r.productId) > 36 {
+		return localVarReturnValue, fmt.Errorf("productId must have less than 36 elements")
+	}
 
 	if r.locale != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "locale", r.locale, "")
@@ -386,6 +404,18 @@ func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.subscriptionId) < 36 {
+		return localVarReturnValue, fmt.Errorf("subscriptionId must have at least 36 elements")
+	}
+	if strlen(r.subscriptionId) > 36 {
+		return localVarReturnValue, fmt.Errorf("subscriptionId must have less than 36 elements")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -927,6 +957,12 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
 
 	if r.cursor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "")
@@ -1091,6 +1127,12 @@ func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
 	if r.resolveCustomerPayload == nil {
 		return localVarReturnValue, fmt.Errorf("resolveCustomerPayload is required and must be specified")
 	}

@@ -61,7 +61,7 @@ type CatalogProductSupportResourceGetSupportLinkTitleRetType = string
 
 // CatalogProductSupportResource struct for CatalogProductSupportResource
 type CatalogProductSupportResource struct {
-	// The support resource link.
+	// Uniform Resource Locator.
 	SupportLink CatalogProductSupportResourceGetSupportLinkAttributeType `json:"supportLink,omitempty"`
 	// The support resource link title.
 	SupportLinkTitle CatalogProductSupportResourceGetSupportLinkTitleAttributeType `json:"supportLinkTitle,omitempty"`

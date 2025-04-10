@@ -82,13 +82,13 @@ type CatalogProductVendorTermsGetUrlRetType = string
 
 // CatalogProductVendorTerms struct for CatalogProductVendorTerms
 type CatalogProductVendorTerms struct {
-	// The terms of use description.
+	// The terms of service description.
 	// REQUIRED
 	Description CatalogProductVendorTermsGetDescriptionAttributeType `json:"description"`
-	// The terms of use title.
+	// The terms of service title.
 	// REQUIRED
 	Title CatalogProductVendorTermsGetTitleAttributeType `json:"title"`
-	// The terms of use url.
+	// Uniform Resource Locator.
 	// REQUIRED
 	Url CatalogProductVendorTermsGetUrlAttributeType `json:"url"`
 }

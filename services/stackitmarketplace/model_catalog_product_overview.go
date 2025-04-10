@@ -22,9 +22,9 @@ var _ MappedNullable = &CatalogProductOverview{}
 */
 
 // isEnumRef
-type CatalogProductOverviewGetDeliveryMethodAttributeType = *string
-type CatalogProductOverviewGetDeliveryMethodArgType = string
-type CatalogProductOverviewGetDeliveryMethodRetType = string
+type CatalogProductOverviewGetDeliveryMethodAttributeType = *DeliveryMethod
+type CatalogProductOverviewGetDeliveryMethodArgType = DeliveryMethod
+type CatalogProductOverviewGetDeliveryMethodRetType = DeliveryMethod
 
 func getCatalogProductOverviewGetDeliveryMethodAttributeTypeOk(arg CatalogProductOverviewGetDeliveryMethodAttributeType) (ret CatalogProductOverviewGetDeliveryMethodRetType, ok bool) {
 	if arg == nil {
@@ -42,9 +42,9 @@ func setCatalogProductOverviewGetDeliveryMethodAttributeType(arg *CatalogProduct
 */
 
 // isEnumRef
-type CatalogProductOverviewGetLifecycleStateAttributeType = *string
-type CatalogProductOverviewGetLifecycleStateArgType = string
-type CatalogProductOverviewGetLifecycleStateRetType = string
+type CatalogProductOverviewGetLifecycleStateAttributeType = *ProductLifecycleState
+type CatalogProductOverviewGetLifecycleStateArgType = ProductLifecycleState
+type CatalogProductOverviewGetLifecycleStateRetType = ProductLifecycleState
 
 func getCatalogProductOverviewGetLifecycleStateAttributeTypeOk(arg CatalogProductOverviewGetLifecycleStateAttributeType) (ret CatalogProductOverviewGetLifecycleStateRetType, ok bool) {
 	if arg == nil {
@@ -61,8 +61,10 @@ func setCatalogProductOverviewGetLifecycleStateAttributeType(arg *CatalogProduct
 	types and functions for logo
 */
 
-// isNotNullableString
-type CatalogProductOverviewGetLogoAttributeType = *string
+// isByteArray
+type CatalogProductOverviewGetLogoAttributeType = *[]byte
+type CatalogProductOverviewGetLogoArgType = []byte
+type CatalogProductOverviewGetLogoRetType = []byte
 
 func getCatalogProductOverviewGetLogoAttributeTypeOk(arg CatalogProductOverviewGetLogoAttributeType) (ret CatalogProductOverviewGetLogoRetType, ok bool) {
 	if arg == nil {
@@ -74,9 +76,6 @@ func getCatalogProductOverviewGetLogoAttributeTypeOk(arg CatalogProductOverviewG
 func setCatalogProductOverviewGetLogoAttributeType(arg *CatalogProductOverviewGetLogoAttributeType, val CatalogProductOverviewGetLogoRetType) {
 	*arg = &val
 }
-
-type CatalogProductOverviewGetLogoArgType = string
-type CatalogProductOverviewGetLogoRetType = string
 
 /*
 	types and functions for name
@@ -103,8 +102,10 @@ type CatalogProductOverviewGetNameRetType = string
 	types and functions for productId
 */
 
-// isNotNullableString
-type CatalogProductOverviewGetProductIdAttributeType = *string
+// isModel
+type CatalogProductOverviewGetProductIdAttributeType = *ProductId
+type CatalogProductOverviewGetProductIdArgType = ProductId
+type CatalogProductOverviewGetProductIdRetType = ProductId
 
 func getCatalogProductOverviewGetProductIdAttributeTypeOk(arg CatalogProductOverviewGetProductIdAttributeType) (ret CatalogProductOverviewGetProductIdRetType, ok bool) {
 	if arg == nil {
@@ -116,9 +117,6 @@ func getCatalogProductOverviewGetProductIdAttributeTypeOk(arg CatalogProductOver
 func setCatalogProductOverviewGetProductIdAttributeType(arg *CatalogProductOverviewGetProductIdAttributeType, val CatalogProductOverviewGetProductIdRetType) {
 	*arg = &val
 }
-
-type CatalogProductOverviewGetProductIdArgType = string
-type CatalogProductOverviewGetProductIdRetType = string
 
 /*
 	types and functions for summary
@@ -163,21 +161,18 @@ func setCatalogProductOverviewGetVendorAttributeType(arg *CatalogProductOverview
 
 // CatalogProductOverview struct for CatalogProductOverview
 type CatalogProductOverview struct {
-	// The product type. For reference: SAAS - Software as a Service, SAI - STACKIT Application Image
 	// REQUIRED
 	DeliveryMethod CatalogProductOverviewGetDeliveryMethodAttributeType `json:"deliveryMethod"`
-	// The lifecycle state of the product.
 	// REQUIRED
 	LifecycleState CatalogProductOverviewGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// The logo base64 encoded.
 	Logo CatalogProductOverviewGetLogoAttributeType `json:"logo,omitempty"`
-	// The product name.
+	// The name of the product.
 	// REQUIRED
 	Name CatalogProductOverviewGetNameAttributeType `json:"name"`
-	// The product ID.
 	// REQUIRED
 	ProductId CatalogProductOverviewGetProductIdAttributeType `json:"productId"`
-	// The short summary of the product.
+	// A custom message.
 	// REQUIRED
 	Summary CatalogProductOverviewGetSummaryAttributeType `json:"summary"`
 	// REQUIRED

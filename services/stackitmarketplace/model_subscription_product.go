@@ -22,9 +22,9 @@ var _ MappedNullable = &SubscriptionProduct{}
 */
 
 // isEnumRef
-type SubscriptionProductGetDeliveryMethodAttributeType = *string
-type SubscriptionProductGetDeliveryMethodArgType = string
-type SubscriptionProductGetDeliveryMethodRetType = string
+type SubscriptionProductGetDeliveryMethodAttributeType = *DeliveryMethod
+type SubscriptionProductGetDeliveryMethodArgType = DeliveryMethod
+type SubscriptionProductGetDeliveryMethodRetType = DeliveryMethod
 
 func getSubscriptionProductGetDeliveryMethodAttributeTypeOk(arg SubscriptionProductGetDeliveryMethodAttributeType) (ret SubscriptionProductGetDeliveryMethodRetType, ok bool) {
 	if arg == nil {
@@ -42,9 +42,9 @@ func setSubscriptionProductGetDeliveryMethodAttributeType(arg *SubscriptionProdu
 */
 
 // isEnumRef
-type SubscriptionProductGetLifecycleStateAttributeType = *string
-type SubscriptionProductGetLifecycleStateArgType = string
-type SubscriptionProductGetLifecycleStateRetType = string
+type SubscriptionProductGetLifecycleStateAttributeType = *ProductLifecycleState
+type SubscriptionProductGetLifecycleStateArgType = ProductLifecycleState
+type SubscriptionProductGetLifecycleStateRetType = ProductLifecycleState
 
 func getSubscriptionProductGetLifecycleStateAttributeTypeOk(arg SubscriptionProductGetLifecycleStateAttributeType) (ret SubscriptionProductGetLifecycleStateRetType, ok bool) {
 	if arg == nil {
@@ -62,9 +62,9 @@ func setSubscriptionProductGetLifecycleStateAttributeType(arg *SubscriptionProdu
 */
 
 // isEnumRef
-type SubscriptionProductGetPriceTypeAttributeType = *string
-type SubscriptionProductGetPriceTypeArgType = string
-type SubscriptionProductGetPriceTypeRetType = string
+type SubscriptionProductGetPriceTypeAttributeType = *PriceType
+type SubscriptionProductGetPriceTypeArgType = PriceType
+type SubscriptionProductGetPriceTypeRetType = PriceType
 
 func getSubscriptionProductGetPriceTypeAttributeTypeOk(arg SubscriptionProductGetPriceTypeAttributeType) (ret SubscriptionProductGetPriceTypeRetType, ok bool) {
 	if arg == nil {
@@ -102,8 +102,10 @@ type SubscriptionProductGetPricingPlanRetType = string
 	types and functions for productId
 */
 
-// isNotNullableString
-type SubscriptionProductGetProductIdAttributeType = *string
+// isModel
+type SubscriptionProductGetProductIdAttributeType = *ProductId
+type SubscriptionProductGetProductIdArgType = ProductId
+type SubscriptionProductGetProductIdRetType = ProductId
 
 func getSubscriptionProductGetProductIdAttributeTypeOk(arg SubscriptionProductGetProductIdAttributeType) (ret SubscriptionProductGetProductIdRetType, ok bool) {
 	if arg == nil {
@@ -115,9 +117,6 @@ func getSubscriptionProductGetProductIdAttributeTypeOk(arg SubscriptionProductGe
 func setSubscriptionProductGetProductIdAttributeType(arg *SubscriptionProductGetProductIdAttributeType, val SubscriptionProductGetProductIdRetType) {
 	*arg = &val
 }
-
-type SubscriptionProductGetProductIdArgType = string
-type SubscriptionProductGetProductIdRetType = string
 
 /*
 	types and functions for productName
@@ -203,21 +202,17 @@ func setSubscriptionProductGetVendorWebsiteUrlAttributeType(arg *SubscriptionPro
 type SubscriptionProductGetVendorWebsiteUrlArgType = string
 type SubscriptionProductGetVendorWebsiteUrlRetType = string
 
-// SubscriptionProduct struct for SubscriptionProduct
+// SubscriptionProduct The product of a subscription
 type SubscriptionProduct struct {
-	// The product's delivery method.
 	// REQUIRED
 	DeliveryMethod SubscriptionProductGetDeliveryMethodAttributeType `json:"deliveryMethod"`
-	// The lifecycle state of the product.
 	// REQUIRED
 	LifecycleState SubscriptionProductGetLifecycleStateAttributeType `json:"lifecycleState"`
-	// The product's price type.
 	// REQUIRED
 	PriceType SubscriptionProductGetPriceTypeAttributeType `json:"priceType"`
-	// The product's pricing plan.
+	// Additional price type information.
 	// REQUIRED
 	PricingPlan SubscriptionProductGetPricingPlanAttributeType `json:"pricingPlan"`
-	// The product ID.
 	// REQUIRED
 	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId"`
 	// The name of the product.
@@ -226,9 +221,9 @@ type SubscriptionProduct struct {
 	// The product's vendor name.
 	// REQUIRED
 	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName"`
-	// The product ID provided by the Vendor.
+	// The vendor provided product ID.
 	VendorProductId SubscriptionProductGetVendorProductIdAttributeType `json:"vendorProductId,omitempty"`
-	// The vendor's website.
+	// Uniform Resource Locator.
 	// REQUIRED
 	VendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlAttributeType `json:"vendorWebsiteUrl"`
 }
