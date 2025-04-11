@@ -1,6 +1,8 @@
 ## Release (2025-XX-YY)
 - `core`: [v0.17.1](core/CHANGELOG.md#v0171-2025-04-09)
   - **Improvement:** Improve error message for key flow authentication
+- `stackitmarketplace`: [v0.5.0](services/stackitmarketplace/CHANGELOG.md#v050-2025-04-11)
+  - **Feature:** Add new `InquiryContactSales`, `InquirySuggestProduct`, `PriceType`, `PricingOption` and `DeliveryMethod`
 
 ## Release (2025-04-09)
 - `cdn`: [v0.3.0](services/cdn/CHANGELOG.md#v030-2025-04-04)
