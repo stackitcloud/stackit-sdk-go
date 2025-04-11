@@ -42,8 +42,10 @@ type CatalogProductDetailsVendorGetDescriptionRetType = string
 	types and functions for logo
 */
 
-// isNotNullableString
-type CatalogProductDetailsVendorGetLogoAttributeType = *string
+// isByteArray
+type CatalogProductDetailsVendorGetLogoAttributeType = *[]byte
+type CatalogProductDetailsVendorGetLogoArgType = []byte
+type CatalogProductDetailsVendorGetLogoRetType = []byte
 
 func getCatalogProductDetailsVendorGetLogoAttributeTypeOk(arg CatalogProductDetailsVendorGetLogoAttributeType) (ret CatalogProductDetailsVendorGetLogoRetType, ok bool) {
 	if arg == nil {
@@ -55,9 +57,6 @@ func getCatalogProductDetailsVendorGetLogoAttributeTypeOk(arg CatalogProductDeta
 func setCatalogProductDetailsVendorGetLogoAttributeType(arg *CatalogProductDetailsVendorGetLogoAttributeType, val CatalogProductDetailsVendorGetLogoRetType) {
 	*arg = &val
 }
-
-type CatalogProductDetailsVendorGetLogoArgType = string
-type CatalogProductDetailsVendorGetLogoRetType = string
 
 /*
 	types and functions for name
@@ -84,8 +83,10 @@ type CatalogProductDetailsVendorGetNameRetType = string
 	types and functions for vendorId
 */
 
-// isNotNullableString
-type CatalogProductDetailsVendorGetVendorIdAttributeType = *string
+// isModel
+type CatalogProductDetailsVendorGetVendorIdAttributeType = *VendorId
+type CatalogProductDetailsVendorGetVendorIdArgType = VendorId
+type CatalogProductDetailsVendorGetVendorIdRetType = VendorId
 
 func getCatalogProductDetailsVendorGetVendorIdAttributeTypeOk(arg CatalogProductDetailsVendorGetVendorIdAttributeType) (ret CatalogProductDetailsVendorGetVendorIdRetType, ok bool) {
 	if arg == nil {
@@ -97,9 +98,6 @@ func getCatalogProductDetailsVendorGetVendorIdAttributeTypeOk(arg CatalogProduct
 func setCatalogProductDetailsVendorGetVendorIdAttributeType(arg *CatalogProductDetailsVendorGetVendorIdAttributeType, val CatalogProductDetailsVendorGetVendorIdRetType) {
 	*arg = &val
 }
-
-type CatalogProductDetailsVendorGetVendorIdArgType = string
-type CatalogProductDetailsVendorGetVendorIdRetType = string
 
 /*
 	types and functions for videoUrl
@@ -148,19 +146,18 @@ type CatalogProductDetailsVendor struct {
 	// The vendor description.
 	// REQUIRED
 	Description CatalogProductDetailsVendorGetDescriptionAttributeType `json:"description"`
-	// The vendor logo base64 encoded.
+	// The logo base64 encoded.
 	// REQUIRED
 	Logo CatalogProductDetailsVendorGetLogoAttributeType `json:"logo"`
-	// The vendor name.
+	// The product's vendor name.
 	// REQUIRED
 	Name CatalogProductDetailsVendorGetNameAttributeType `json:"name"`
-	// The vendor ID.
 	// REQUIRED
 	VendorId CatalogProductDetailsVendorGetVendorIdAttributeType `json:"vendorId"`
-	// The vendor video URL.
+	// Uniform Resource Locator.
 	// REQUIRED
 	VideoUrl CatalogProductDetailsVendorGetVideoUrlAttributeType `json:"videoUrl"`
-	// The vendor website URL.
+	// Uniform Resource Locator.
 	// REQUIRED
 	WebsiteUrl CatalogProductDetailsVendorGetWebsiteUrlAttributeType `json:"websiteUrl"`
 }

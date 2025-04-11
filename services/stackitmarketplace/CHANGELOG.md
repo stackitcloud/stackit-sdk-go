@@ -1,3 +1,6 @@
+## v0.5.0 (2025-04-11)
+- **Feature:** Add new `InquiryContactSales`, `InquirySuggestProduct`, `PriceType`, `PricingOption` and `DeliveryMethod`
+
 ## v0.4.0 (2025-04-04)
 - **Feature:** Add new `VendorProductId` attribute for subscription products
 

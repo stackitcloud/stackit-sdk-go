@@ -22,9 +22,9 @@ var _ MappedNullable = &RegisterTesting{}
 */
 
 // isModel
-type RegisterTestingGetRegisterTestingAttributeType = *RegisterTestingRegisterTesting
-type RegisterTestingGetRegisterTestingArgType = RegisterTestingRegisterTesting
-type RegisterTestingGetRegisterTestingRetType = RegisterTestingRegisterTesting
+type RegisterTestingGetRegisterTestingAttributeType = *InquiryRegisterTesting
+type RegisterTestingGetRegisterTestingArgType = InquiryRegisterTesting
+type RegisterTestingGetRegisterTestingRetType = InquiryRegisterTesting
 
 func getRegisterTestingGetRegisterTestingAttributeTypeOk(arg RegisterTestingGetRegisterTestingAttributeType) (ret RegisterTestingGetRegisterTestingRetType, ok bool) {
 	if arg == nil {
@@ -42,9 +42,9 @@ func setRegisterTestingGetRegisterTestingAttributeType(arg *RegisterTestingGetRe
 */
 
 // isEnumRef
-type RegisterTestingGetTypeAttributeType = *string
-type RegisterTestingGetTypeArgType = string
-type RegisterTestingGetTypeRetType = string
+type RegisterTestingGetTypeAttributeType = *InquiryFormType
+type RegisterTestingGetTypeArgType = InquiryFormType
+type RegisterTestingGetTypeRetType = InquiryFormType
 
 func getRegisterTestingGetTypeAttributeTypeOk(arg RegisterTestingGetTypeAttributeType) (ret RegisterTestingGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -61,7 +61,6 @@ func setRegisterTestingGetTypeAttributeType(arg *RegisterTestingGetTypeAttribute
 type RegisterTesting struct {
 	// REQUIRED
 	RegisterTesting RegisterTestingGetRegisterTestingAttributeType `json:"registerTesting"`
-	// The form type.
 	// REQUIRED
 	Type RegisterTestingGetTypeAttributeType `json:"type"`
 }

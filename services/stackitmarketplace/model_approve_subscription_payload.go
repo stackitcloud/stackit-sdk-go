@@ -40,7 +40,7 @@ type ApproveSubscriptionPayloadGetInstanceTargetRetType = string
 
 // ApproveSubscriptionPayload struct for ApproveSubscriptionPayload
 type ApproveSubscriptionPayload struct {
-	// The target URL of the user instance, used to redirect the user to the instance after the subscription is active.
+	// Uniform Resource Locator.
 	InstanceTarget ApproveSubscriptionPayloadGetInstanceTargetAttributeType `json:"instanceTarget,omitempty"`
 }
 

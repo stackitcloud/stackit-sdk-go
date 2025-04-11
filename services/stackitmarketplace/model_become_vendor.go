@@ -22,9 +22,9 @@ var _ MappedNullable = &BecomeVendor{}
 */
 
 // isModel
-type BecomeVendorGetBecomeVendorAttributeType = *BecomeVendorBecomeVendor
-type BecomeVendorGetBecomeVendorArgType = BecomeVendorBecomeVendor
-type BecomeVendorGetBecomeVendorRetType = BecomeVendorBecomeVendor
+type BecomeVendorGetBecomeVendorAttributeType = *InquiryBecomeVendor
+type BecomeVendorGetBecomeVendorArgType = InquiryBecomeVendor
+type BecomeVendorGetBecomeVendorRetType = InquiryBecomeVendor
 
 func getBecomeVendorGetBecomeVendorAttributeTypeOk(arg BecomeVendorGetBecomeVendorAttributeType) (ret BecomeVendorGetBecomeVendorRetType, ok bool) {
 	if arg == nil {
@@ -42,9 +42,9 @@ func setBecomeVendorGetBecomeVendorAttributeType(arg *BecomeVendorGetBecomeVendo
 */
 
 // isEnumRef
-type BecomeVendorGetTypeAttributeType = *string
-type BecomeVendorGetTypeArgType = string
-type BecomeVendorGetTypeRetType = string
+type BecomeVendorGetTypeAttributeType = *InquiryFormType
+type BecomeVendorGetTypeArgType = InquiryFormType
+type BecomeVendorGetTypeRetType = InquiryFormType
 
 func getBecomeVendorGetTypeAttributeTypeOk(arg BecomeVendorGetTypeAttributeType) (ret BecomeVendorGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -57,11 +57,10 @@ func setBecomeVendorGetTypeAttributeType(arg *BecomeVendorGetTypeAttributeType, 
 	*arg = &val
 }
 
-// BecomeVendor Become a vendor.
+// BecomeVendor Become a Vendor.
 type BecomeVendor struct {
 	// REQUIRED
 	BecomeVendor BecomeVendorGetBecomeVendorAttributeType `json:"becomeVendor"`
-	// The form type.
 	// REQUIRED
 	Type BecomeVendorGetTypeAttributeType `json:"type"`
 }

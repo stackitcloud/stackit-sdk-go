@@ -62,10 +62,10 @@ func setListVendorSubscriptionsResponseGetItemsAttributeType(arg *ListVendorSubs
 	types and functions for limit
 */
 
-// isInteger
-type ListVendorSubscriptionsResponseGetLimitAttributeType = *int64
-type ListVendorSubscriptionsResponseGetLimitArgType = int64
-type ListVendorSubscriptionsResponseGetLimitRetType = int64
+// isNumber
+type ListVendorSubscriptionsResponseGetLimitAttributeType = *float64
+type ListVendorSubscriptionsResponseGetLimitArgType = float64
+type ListVendorSubscriptionsResponseGetLimitRetType = float64
 
 func getListVendorSubscriptionsResponseGetLimitAttributeTypeOk(arg ListVendorSubscriptionsResponseGetLimitAttributeType) (ret ListVendorSubscriptionsResponseGetLimitRetType, ok bool) {
 	if arg == nil {
@@ -80,14 +80,13 @@ func setListVendorSubscriptionsResponseGetLimitAttributeType(arg *ListVendorSubs
 
 // ListVendorSubscriptionsResponse struct for ListVendorSubscriptionsResponse
 type ListVendorSubscriptionsResponse struct {
-	// A pagination cursor that represents a position in the dataset. Use it in subsequent requests to continue retrieving data from this position. If `null`, there are no more results to retrieve.
+	// A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
 	// REQUIRED
 	Cursor ListVendorSubscriptionsResponseGetCursorAttributeType `json:"cursor"`
 	// List of subscriptions.
 	// REQUIRED
 	Items ListVendorSubscriptionsResponseGetItemsAttributeType `json:"items"`
-	// Number of subscriptions returned for a single request.
-	// Can be cast to int32 without loss of precision.
+	// Limit for returned Objects.
 	// REQUIRED
 	Limit ListVendorSubscriptionsResponseGetLimitAttributeType `json:"limit"`
 }
@@ -111,7 +110,7 @@ func NewListVendorSubscriptionsResponse(cursor ListVendorSubscriptionsResponseGe
 // but it doesn't guarantee that properties required by API are set
 func NewListVendorSubscriptionsResponseWithDefaults() *ListVendorSubscriptionsResponse {
 	this := ListVendorSubscriptionsResponse{}
-	var limit int64 = 50
+	var limit float64 = 50
 	this.Limit = &limit
 	return &this
 }
