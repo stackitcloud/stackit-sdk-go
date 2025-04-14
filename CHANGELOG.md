@@ -3,6 +3,8 @@
   - **Improvement:** Improve error message for key flow authentication
 - `stackitmarketplace`: [v0.5.0](services/stackitmarketplace/CHANGELOG.md#v050-2025-04-11)
   - **Feature:** Add new `InquiryContactSales`, `InquirySuggestProduct`, `PriceType`, `PricingOption` and `DeliveryMethod`
+- `git`: [v0.1.0](services/git/CHANGELOG.md#v010-2025-04-14)
+ - **New**: STACKIT Git module can be used to manage STACKIT Git
 
 ## Release (2025-04-09)
 - `cdn`: [v0.3.0](services/cdn/CHANGELOG.md#v030-2025-04-04)
