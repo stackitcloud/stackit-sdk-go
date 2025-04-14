@@ -36,6 +36,7 @@ use (
 	./services/cdn
 	./services/certificates
 	./services/dns
+	./services/git
 	./services/iaas
 	./services/iaasalpha
 	./services/kms
