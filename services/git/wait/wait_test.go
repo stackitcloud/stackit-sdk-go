@@ -18,13 +18,9 @@ type apiClientMocked struct {
 	getFails       bool
 	returnInstance bool
 	wantErr        bool
-	created        time.Time
-	id             string
 	projectId      string
-	name           string
-	state          string
-	url            string
-	version        string
+	instanceId     string
+	getGitResponse *git.Instance
 }
 
 func (a *apiClientMocked) GetGitExecute(_ context.Context, _, _ string) (*git.Instance, error) {
@@ -37,14 +33,17 @@ func (a *apiClientMocked) GetGitExecute(_ context.Context, _, _ string) (*git.In
 		return nil, nil
 	}
 	return &git.Instance{
-		Created: utils.Ptr(a.created),
-		Id:      utils.Ptr(a.id),
-		Name:    utils.Ptr(a.name),
-		State:   utils.Ptr(a.state),
-		Url:     utils.Ptr(a.url),
-		Version: utils.Ptr(a.version),
+		Created: a.getGitResponse.Created,
+		Id:      a.getGitResponse.Id,
+		Name:    a.getGitResponse.Name,
+		State:   a.getGitResponse.State,
+		Url:     a.getGitResponse.Url,
+		Version: a.getGitResponse.Version,
 	}, nil
 }
+
+var PROJECT_ID = uuid.New().String()
+var INSTANCE_ID = uuid.New().String()
 
 func TestCreateGitInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
@@ -52,69 +51,77 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 		getFails       bool
 		wantErr        bool
 		wantResp       bool
-		created        time.Time
-		id             string
 		projectId      string
-		name           string
-		state          string
-		url            string
-		version        string
+		instanceId     string
 		returnInstance bool
+		getGitResponse *git.Instance
 	}{
 		{
 			desc:           "Creation of an instance succeeded",
 			getFails:       false,
 			wantErr:        false,
 			wantResp:       true,
-			created:        time.Now(),
-			id:             uuid.New().String(),
 			projectId:      uuid.New().String(),
-			name:           "instance-test",
-			state:          CreateSuccess,
-			url:            "https://testing.git.onstackit.cloud",
-			version:        "v1.6.0",
+			instanceId:     INSTANCE_ID,
 			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: utils.Ptr(time.Now()),
+				Id:      utils.Ptr(INSTANCE_ID),
+				Name:    utils.Ptr("instance-test"),
+				State:   utils.Ptr(InstanceStateReady),
+				Url:     utils.Ptr("https://testing.git.onstackit.cloud"),
+				Version: utils.Ptr("v1.6.0"),
+			},
 		},
 		{
 			desc:           "Creation of an instance Failed With Error",
 			getFails:       true,
 			wantErr:        true,
 			wantResp:       false,
-			created:        time.Now(),
-			id:             uuid.New().String(),
 			projectId:      uuid.New().String(),
-			name:           "instance-test",
-			state:          CreateFail,
-			url:            "https://testing.git.onstackit.cloud",
-			version:        "v1.6.0",
+			instanceId:     INSTANCE_ID,
 			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: utils.Ptr(time.Now()),
+				Id:      utils.Ptr(INSTANCE_ID),
+				Name:    utils.Ptr("instance-test"),
+				State:   utils.Ptr(InstanceStateReady),
+				Url:     utils.Ptr("https://testing.git.onstackit.cloud"),
+				Version: utils.Ptr("v1.6.0"),
+			},
 		},
 		{
 			desc:           "Creation of an instance with response failed and without error",
 			getFails:       false,
-			wantErr:        true,
+			wantErr:        false,
 			wantResp:       true,
-			created:        time.Now(),
-			id:             uuid.New().String(),
 			projectId:      uuid.New().String(),
-			name:           "instance-test",
-			state:          CreateFail,
-			url:            "https://testing.git.onstackit.cloud",
-			version:        "v1.6.0",
+			instanceId:     INSTANCE_ID,
 			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: utils.Ptr(time.Now()),
+				Id:      utils.Ptr(INSTANCE_ID),
+				Name:    utils.Ptr("instance-test"),
+				State:   utils.Ptr(InstanceStateReady),
+				Url:     utils.Ptr("https://testing.git.onstackit.cloud"),
+				Version: utils.Ptr("v1.6.0"),
+			},
 		},
 		{
 			desc:           "Creation of an instance failed without id on the response",
 			getFails:       false,
 			wantErr:        true,
 			wantResp:       false,
-			created:        time.Now(),
-			projectId:      uuid.New().String(),
-			name:           "instance-test",
-			state:          CreateFail,
-			url:            "https://testing.git.onstackit.cloud",
-			version:        "v1.6.0",
+			projectId:      PROJECT_ID,
+			instanceId:     INSTANCE_ID,
 			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: utils.Ptr(time.Now()),
+				Name:    utils.Ptr("instance-test"),
+				State:   utils.Ptr(InstanceStateError),
+				Url:     utils.Ptr("https://testing.git.onstackit.cloud"),
+				Version: utils.Ptr("v1.6.0"),
+			},
 		},
 
 		{
@@ -122,13 +129,16 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 			getFails:       false,
 			wantErr:        true,
 			wantResp:       false,
-			created:        time.Now(),
-			id:             uuid.New().String(),
-			projectId:      uuid.New().String(),
-			name:           "instance-test",
-			url:            "https://testing.git.onstackit.cloud",
-			version:        "v1.6.0",
+			projectId:      PROJECT_ID,
+			instanceId:     INSTANCE_ID,
 			returnInstance: true,
+			getGitResponse: &git.Instance{
+				Created: utils.Ptr(time.Now()),
+				Id:      utils.Ptr(INSTANCE_ID),
+				Name:    utils.Ptr("instance-test"),
+				Url:     utils.Ptr("https://testing.git.onstackit.cloud"),
+				Version: utils.Ptr("v1.6.0"),
+			},
 		},
 	}
 	for _, tt := range tests {
@@ -137,28 +147,24 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 				desc:           tt.desc,
 				getFails:       tt.getFails,
 				wantErr:        tt.wantErr,
-				created:        tt.created,
-				id:             tt.id,
 				projectId:      tt.projectId,
-				name:           tt.name,
-				state:          tt.state,
-				url:            tt.url,
-				version:        tt.version,
+				instanceId:     tt.instanceId,
+				getGitResponse: tt.getGitResponse,
 				returnInstance: tt.returnInstance,
 			}
 			var instanceWanted *git.Instance
 			if tt.wantResp {
 				instanceWanted = &git.Instance{
-					Created: utils.Ptr(tt.created),
-					Id:      utils.Ptr(tt.id),
-					Name:    utils.Ptr(tt.name),
-					State:   utils.Ptr(tt.state),
-					Url:     utils.Ptr(tt.url),
-					Version: utils.Ptr(tt.version),
+					Created: tt.getGitResponse.Created,
+					Id:      tt.getGitResponse.Id,
+					Name:    tt.getGitResponse.Name,
+					State:   tt.getGitResponse.State,
+					Url:     tt.getGitResponse.Url,
+					Version: tt.getGitResponse.Version,
 				}
 			}
 
-			handler := CreateGitInstanceWaitHandler(context.Background(), apiClient, apiClient.projectId, apiClient.id)
+			handler := CreateGitInstanceWaitHandler(context.Background(), apiClient, apiClient.projectId, apiClient.instanceId)
 
 			response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -179,12 +185,7 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 		wantReturnedInstance bool
 		getFails             bool
 		returnInstance       bool
-		created              time.Time
-		id                   string
-		name                 string
-		state                string
-		url                  string
-		version              string
+		getGitResponse       *git.Instance
 	}{
 		{
 			desc:     "Instance deletion failed with error",
@@ -193,16 +194,18 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 		},
 		{
 			desc:                 "Instance deletion failed returning existing instance",
-			wantErr:              false,
+			wantErr:              true,
 			getFails:             false,
 			wantReturnedInstance: true,
-			created:              time.Now(),
-			id:                   uuid.New().String(),
-			name:                 "instance-test",
-			state:                CreateSuccess,
 			returnInstance:       true,
-			url:                  "https://testing.git.onstackit.cloud",
-			version:              "v1.6.0",
+			getGitResponse: &git.Instance{
+				Created: utils.Ptr(time.Now()),
+				Id:      utils.Ptr(INSTANCE_ID),
+				Name:    utils.Ptr("instance-test"),
+				State:   utils.Ptr(InstanceStateReady),
+				Url:     utils.Ptr("https://testing.git.onstackit.cloud"),
+				Version: utils.Ptr("v1.6.0"),
+			},
 		},
 		{
 			desc:                 "Instance deletion succesfull",
@@ -218,16 +221,11 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 
 				projectId:      uuid.New().String(),
 				getFails:       tt.getFails,
-				created:        tt.created,
-				id:             tt.id,
-				name:           tt.name,
-				state:          tt.state,
-				url:            tt.url,
-				version:        tt.version,
 				returnInstance: tt.returnInstance,
+				getGitResponse: tt.getGitResponse,
 			}
 
-			handler := DeleteGitInstanceWaitHandler(context.Background(), apiClient, apiClient.projectId, apiClient.id)
+			handler := DeleteGitInstanceWaitHandler(context.Background(), apiClient, apiClient.projectId, apiClient.instanceId)
 			response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {

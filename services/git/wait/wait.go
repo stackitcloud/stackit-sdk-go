@@ -10,9 +10,9 @@ import (
 )
 
 const (
-	CreateSuccess = "Ready"
-	Creating      = "Creating"
-	CreateFail    = "Error"
+	InstanceStateReady    = "Ready"
+	InstanceStateCreating = "Creating"
+	InstanceStateError    = "Error"
 )
 
 // APIClientInterface Interfaces needed for tests
@@ -26,13 +26,13 @@ func CreateGitInstanceWaitHandler(ctx context.Context, a APIClientInterface, pro
 		if err != nil {
 			return false, nil, err
 		}
-		if *instance.Id == "" || *instance.State == "" {
+		if instance.Id == nil || instance.State == nil {
 			return false, nil, fmt.Errorf("could not get Instance id or State from response for project %s and instanceId %s", projectId, instanceId)
 		}
-		if *instance.Id == instanceId && *instance.State == CreateSuccess {
+		if *instance.Id == instanceId && *instance.State == InstanceStateReady {
 			return true, instance, nil
 		}
-		if *instance.Id == instanceId && *instance.State == CreateFail {
+		if *instance.Id == instanceId && *instance.State == InstanceStateError {
 			return true, instance, fmt.Errorf("create failed for Instance with id %s", instanceId)
 		}
 		return false, nil, nil
@@ -45,10 +45,10 @@ func DeleteGitInstanceWaitHandler(ctx context.Context, a APIClientInterface, pro
 	handler := wait.New(func() (waitFinished bool, response *git.Instance, err error) {
 		instance, err := a.GetGitExecute(ctx, projectId, instanceId)
 		if err != nil {
-			return true, nil, err
+			return false, nil, err
 		}
 		if instance != nil {
-			return true, instance, nil
+			return false, instance, nil
 		}
 		return true, nil, nil
 	})
