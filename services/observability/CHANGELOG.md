@@ -1,3 +1,6 @@
+## v0.5.0 (2025-04-16)
+- **Feature:** Add new methods `ListLogsAlertgroups`, `CreateLogsAlertgroups`, `GetLogsAlertgroup`, `UpdateLogsAlertgroup`, `DeleteLogsAlertgroup`
+
 ## v0.4.0 (2025-03-27)
 - **New:** Support for alert groups
 
