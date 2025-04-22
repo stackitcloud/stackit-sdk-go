@@ -190,7 +190,7 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 			},
 		},
 		{
-			desc:                 "Instance deletion succesful",
+			desc:                 "Instance deletion successful",
 			wantErr:              false,
 			getFails:             false,
 			wantReturnedInstance: false,
