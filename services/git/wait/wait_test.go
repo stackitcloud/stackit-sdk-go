@@ -15,6 +15,7 @@ import (
 
 type apiClientMocked struct {
 	getFails       bool
+	errorCode      int
 	returnInstance bool
 	projectId      string
 	instanceId     string
@@ -24,7 +25,7 @@ type apiClientMocked struct {
 func (a *apiClientMocked) GetInstanceExecute(_ context.Context, _, _ string) (*git.Instance, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
-			StatusCode: http.StatusInternalServerError,
+			StatusCode: a.errorCode,
 		}
 	}
 	if !a.returnInstance {
@@ -166,6 +167,7 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 		wantErr              bool
 		wantReturnedInstance bool
 		getFails             bool
+		errorCode            int
 		returnInstance       bool
 		getGitResponse       *git.Instance
 	}{
@@ -175,10 +177,11 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 			getFails: true,
 		},
 		{
-			desc:                 "Instance deletion failed returning existing instance",
-			wantErr:              true,
-			getFails:             false,
-			wantReturnedInstance: true,
+			desc:     "Instance deletion failed returning existing instance",
+			wantErr:  true,
+			getFails: false,
+
+			wantReturnedInstance: false,
 			returnInstance:       true,
 			getGitResponse: &git.Instance{
 				Created: utils.Ptr(time.Now()),
@@ -192,7 +195,8 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 		{
 			desc:                 "Instance deletion successful",
 			wantErr:              false,
-			getFails:             false,
+			getFails:             true,
+			errorCode:            http.StatusNotFound,
 			wantReturnedInstance: false,
 			returnInstance:       false,
 		},
@@ -203,6 +207,7 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 
 				projectId:      uuid.New().String(),
 				getFails:       tt.getFails,
+				errorCode:      tt.errorCode,
 				returnInstance: tt.returnInstance,
 				getGitResponse: tt.getGitResponse,
 			}
