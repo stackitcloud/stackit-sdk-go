@@ -8,6 +8,8 @@
     - **New**: STACKIT Git module can be used to manage STACKIT Git
   - [v0.2.0](services/git/CHANGELOG.md#v020-2025-04-16)
     - **Features**: Add new methods to manage the STACKIT Git: `CreateInstance`, `DeleteInstance`, `GetInstance`
+- `observability`: [v0.5.0](services/observability/CHANGELOG.md#v050-2025-04-16)
+  - **Feature:** Add new methods `ListLogsAlertgroups`, `CreateLogsAlertgroups`, `GetLogsAlertgroup`, `UpdateLogsAlertgroup`, `DeleteLogsAlertgroup`
 
 ## Release (2025-04-09)
 - `cdn`: [v0.3.0](services/cdn/CHANGELOG.md#v030-2025-04-04)
