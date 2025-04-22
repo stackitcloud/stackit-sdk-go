@@ -17,12 +17,12 @@ const (
 
 // APIClientInterface Interfaces needed for tests
 type APIClientInterface interface {
-	GetGitExecute(ctx context.Context, projectId string, instanceId string) (*git.Instance, error)
+	GetInstanceExecute(ctx context.Context, projectId string, instanceId string) (*git.Instance, error)
 }
 
 func CreateGitInstanceWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[git.Instance] {
 	handler := wait.New(func() (waitFinished bool, response *git.Instance, err error) {
-		instance, err := a.GetGitExecute(ctx, projectId, instanceId)
+		instance, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
 			return false, nil, err
 		}
@@ -43,7 +43,7 @@ func CreateGitInstanceWaitHandler(ctx context.Context, a APIClientInterface, pro
 
 func DeleteGitInstanceWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[git.Instance] {
 	handler := wait.New(func() (waitFinished bool, response *git.Instance, err error) {
-		instance, err := a.GetGitExecute(ctx, projectId, instanceId)
+		instance, err := a.GetInstanceExecute(ctx, projectId, instanceId)
 		if err != nil {
 			return false, nil, err
 		}

@@ -14,16 +14,14 @@ import (
 )
 
 type apiClientMocked struct {
-	desc           string
 	getFails       bool
 	returnInstance bool
-	wantErr        bool
 	projectId      string
 	instanceId     string
 	getGitResponse *git.Instance
 }
 
-func (a *apiClientMocked) GetGitExecute(_ context.Context, _, _ string) (*git.Instance, error) {
+func (a *apiClientMocked) GetInstanceExecute(_ context.Context, _, _ string) (*git.Instance, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
@@ -32,14 +30,7 @@ func (a *apiClientMocked) GetGitExecute(_ context.Context, _, _ string) (*git.In
 	if !a.returnInstance {
 		return nil, nil
 	}
-	return &git.Instance{
-		Created: a.getGitResponse.Created,
-		Id:      a.getGitResponse.Id,
-		Name:    a.getGitResponse.Name,
-		State:   a.getGitResponse.State,
-		Url:     a.getGitResponse.Url,
-		Version: a.getGitResponse.Version,
-	}, nil
+	return a.getGitResponse, nil
 }
 
 var PROJECT_ID = uuid.New().String()
@@ -74,7 +65,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 			},
 		},
 		{
-			desc:           "Creation of an instance Failed With Error",
+			desc:           "Creation of an instance failed with error",
 			getFails:       true,
 			wantErr:        true,
 			wantResp:       false,
@@ -93,7 +84,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 		{
 			desc:           "Creation of an instance with response failed and without error",
 			getFails:       false,
-			wantErr:        false,
+			wantErr:        true,
 			wantResp:       true,
 			projectId:      uuid.New().String(),
 			instanceId:     INSTANCE_ID,
@@ -102,7 +93,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 				Created: utils.Ptr(time.Now()),
 				Id:      utils.Ptr(INSTANCE_ID),
 				Name:    utils.Ptr("instance-test"),
-				State:   utils.Ptr(InstanceStateReady),
+				State:   utils.Ptr(InstanceStateError),
 				Url:     utils.Ptr("https://testing.git.onstackit.cloud"),
 				Version: utils.Ptr("v1.6.0"),
 			},
@@ -144,9 +135,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
 			apiClient := &apiClientMocked{
-				desc:           tt.desc,
 				getFails:       tt.getFails,
-				wantErr:        tt.wantErr,
 				projectId:      tt.projectId,
 				instanceId:     tt.instanceId,
 				getGitResponse: tt.getGitResponse,
@@ -154,14 +143,7 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 			}
 			var instanceWanted *git.Instance
 			if tt.wantResp {
-				instanceWanted = &git.Instance{
-					Created: tt.getGitResponse.Created,
-					Id:      tt.getGitResponse.Id,
-					Name:    tt.getGitResponse.Name,
-					State:   tt.getGitResponse.State,
-					Url:     tt.getGitResponse.Url,
-					Version: tt.getGitResponse.Version,
-				}
+				instanceWanted = tt.getGitResponse
 			}
 
 			handler := CreateGitInstanceWaitHandler(context.Background(), apiClient, apiClient.projectId, apiClient.instanceId)
@@ -208,7 +190,7 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 			},
 		},
 		{
-			desc:                 "Instance deletion succesfull",
+			desc:                 "Instance deletion succesful",
 			wantErr:              false,
 			getFails:             false,
 			wantReturnedInstance: false,
