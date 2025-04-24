@@ -79,6 +79,26 @@ func setKeyGetCreatedAtAttributeType(arg *KeyGetCreatedAtAttributeType, val KeyG
 }
 
 /*
+	types and functions for deletionDate
+*/
+
+// isDateTime
+type KeyGetDeletionDateAttributeType = *time.Time
+type KeyGetDeletionDateArgType = time.Time
+type KeyGetDeletionDateRetType = time.Time
+
+func getKeyGetDeletionDateAttributeTypeOk(arg KeyGetDeletionDateAttributeType) (ret KeyGetDeletionDateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeyGetDeletionDateAttributeType(arg *KeyGetDeletionDateAttributeType, val KeyGetDeletionDateRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for description
 */
 
@@ -231,6 +251,8 @@ type Key struct {
 	// The date and time the creation of the key was triggered.
 	// REQUIRED
 	CreatedAt KeyGetCreatedAtAttributeType `json:"createdAt"`
+	// This date is set when a key is pending deletion and refers to the scheduled date of deletion
+	DeletionDate KeyGetDeletionDateAttributeType `json:"deletionDate,omitempty"`
 	// A user chosen description to distinguish multiple keys.
 	Description KeyGetDescriptionAttributeType `json:"description,omitempty"`
 	// The display name to distinguish multiple keys.
@@ -329,6 +351,29 @@ func (o *Key) GetCreatedAtOk() (ret KeyGetCreatedAtRetType, ok bool) {
 // SetCreatedAt sets field value
 func (o *Key) SetCreatedAt(v KeyGetCreatedAtRetType) {
 	setKeyGetCreatedAtAttributeType(&o.CreatedAt, v)
+}
+
+// GetDeletionDate returns the DeletionDate field value if set, zero value otherwise.
+func (o *Key) GetDeletionDate() (res KeyGetDeletionDateRetType) {
+	res, _ = o.GetDeletionDateOk()
+	return
+}
+
+// GetDeletionDateOk returns a tuple with the DeletionDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Key) GetDeletionDateOk() (ret KeyGetDeletionDateRetType, ok bool) {
+	return getKeyGetDeletionDateAttributeTypeOk(o.DeletionDate)
+}
+
+// HasDeletionDate returns a boolean if a field has been set.
+func (o *Key) HasDeletionDate() bool {
+	_, ok := o.GetDeletionDateOk()
+	return ok
+}
+
+// SetDeletionDate gets a reference to the given time.Time and assigns it to the DeletionDate field.
+func (o *Key) SetDeletionDate(v KeyGetDeletionDateRetType) {
+	setKeyGetDeletionDateAttributeType(&o.DeletionDate, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -472,6 +517,9 @@ func (o Key) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getKeyGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getKeyGetDeletionDateAttributeTypeOk(o.DeletionDate); ok {
+		toSerialize["DeletionDate"] = val
 	}
 	if val, ok := getKeyGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
