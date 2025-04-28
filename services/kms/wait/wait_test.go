@@ -35,11 +35,26 @@ type versionResponse struct {
 	err     error
 }
 
+type wrappingKeyResponse struct {
+	wrappingKey *kms.WrappingKey
+	err         error
+}
+
 type apiKmsMocked struct {
-	idxKeyResponse     int
-	idxVersionResponse int
-	keyResponses       []keyResponse
-	versionResponses   []versionResponse
+	idxKeyResponse         int
+	idxVersionResponse     int
+	idxWrappingKeyResponse int
+	keyResponses           []keyResponse
+	versionResponses       []versionResponse
+	wrappingKeyResponses   []wrappingKeyResponse
+}
+
+// GetWrappingKeyExecute implements ApiKmsClient.
+func (a *apiKmsMocked) GetWrappingKeyExecute(_ context.Context, _, _, _, _ string) (*kms.WrappingKey, error) {
+	resp := a.wrappingKeyResponses[a.idxWrappingKeyResponse]
+	a.idxWrappingKeyResponse++
+	a.idxWrappingKeyResponse %= len(a.wrappingKeyResponses)
+	return resp.wrappingKey, resp.err
 }
 
 // GetVersionExecute implements ApiKmsClient.
@@ -71,6 +86,22 @@ func fixtureKey(state string) *kms.Key {
 		KeyRingId:    &testKeyRingId,
 		Purpose:      kms.PURPOSE_SYMMETRIC_ENCRYPT_DECRYPT.Ptr(),
 		State:        &state,
+	}
+}
+
+func fixtureWrappingKey(state string) *kms.WrappingKey {
+	return &kms.WrappingKey{
+		Algorithm:   kms.WRAPPINGALGORITHM__2048_OAEP_SHA256.Ptr(),
+		Backend:     kms.BACKEND_SOFTWARE.Ptr(),
+		CreatedAt:   &testDate,
+		Description: utils.Ptr("test-description"),
+		DisplayName: utils.Ptr("test-displayname"),
+		Id:          &testKeyId,
+		KeyRingId:   &testKeyRingId,
+		Purpose:     kms.WRAPPINGPURPOSE_SYMMETRIC_KEY.Ptr(),
+		State:       &state,
+		ExpiresAt:   &testDate,
+		PublicKey:   &testPublicKey,
 	}
 }
 
@@ -410,6 +441,84 @@ func TestDisableKeyVersionWaitHandler(t *testing.T) {
 				if !errors.As(err, &apiErr) {
 					t.Fatalf("expected openapi error, got %v", err)
 				}
+			}
+		})
+	}
+}
+
+func TestCreateWrappingWaitHandler(t *testing.T) {
+	tests := []struct {
+		name      string
+		responses []wrappingKeyResponse
+		want      *kms.WrappingKey
+		wantErr   bool
+	}{
+		{
+			"create succeeded immediately",
+			[]wrappingKeyResponse{
+				{fixtureWrappingKey(StatusWrappingKeyActive), nil},
+			},
+			fixtureWrappingKey(StatusWrappingKeyActive),
+			false,
+		},
+		{
+			"create succeeded delayed",
+			[]wrappingKeyResponse{
+				{fixtureWrappingKey(StatusWrappingKeyKeyMaterialNotReady), nil},
+				{fixtureWrappingKey(StatusWrappingKeyKeyMaterialNotReady), nil},
+				{fixtureWrappingKey(StatusWrappingKeyKeyMaterialNotReady), nil},
+				{fixtureWrappingKey(StatusWrappingKeyActive), nil},
+			},
+			fixtureWrappingKey(StatusWrappingKeyActive),
+			false,
+		},
+		{
+			"create failed delayed",
+			[]wrappingKeyResponse{
+				{fixtureWrappingKey(StatusWrappingKeyKeyMaterialNotReady), nil},
+				{fixtureWrappingKey(StatusWrappingKeyKeyMaterialNotReady), nil},
+				{fixtureWrappingKey(StatusWrappingKeyKeyMaterialNotReady), nil},
+				{fixtureWrappingKey(StatusWrappingKeyDeleting), nil},
+			},
+			fixtureWrappingKey(StatusWrappingKeyDeleting),
+			false,
+		},
+		{
+			"timeout",
+			[]wrappingKeyResponse{
+				{fixtureWrappingKey(StatusWrappingKeyKeyMaterialNotReady), nil},
+			},
+			nil,
+			true,
+		},
+		{
+			"broken state",
+			[]wrappingKeyResponse{
+				{fixtureWrappingKey("bogus"), nil},
+			},
+			fixtureWrappingKey("bogus"),
+			false,
+		},
+		// no special update tests needed as the states are the same
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ctx := context.Background()
+			client := &apiKmsMocked{
+				wrappingKeyResponses: tt.responses,
+			}
+
+			handler := CreateWrappingKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
+			got, err := handler.SetTimeout(1 * time.Second).
+				SetThrottle(250 * time.Millisecond).
+				WaitWithContext(ctx)
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
+			}
+
+			if diff := cmp.Diff(tt.want, got); diff != "" {
+				t.Errorf("differing key %s", diff)
 			}
 		})
 	}

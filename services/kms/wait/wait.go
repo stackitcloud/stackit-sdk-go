@@ -25,9 +25,17 @@ const (
 	StatusKeyVersionDestroyed           = "destroyed"
 )
 
+const (
+	StatusWrappingKeyActive              = "active"
+	StatusWrappingKeyKeyMaterialNotReady = "key_material_not_ready"
+	StatusWrappingKeyExpired             = "expired"
+	StatusWrappingKeyDeleting            = "deleting"
+)
+
 type ApiKmsClient interface {
 	GetKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*kms.Key, error)
 	GetVersionExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) (*kms.Version, error)
+	GetWrappingKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) (*kms.WrappingKey, error)
 }
 
 func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
@@ -110,6 +118,28 @@ func DisableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proj
 			}
 			return true, nil, err
 		}
+		return false, nil, nil
+	})
+	handler.SetTimeout(10 * time.Minute)
+	return handler
+}
+
+func CreateWrappingKeyWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId, wrappingKeyId string) *wait.AsyncActionHandler[kms.WrappingKey] {
+	handler := wait.New(func() (bool, *kms.WrappingKey, error) {
+		response, err := client.GetWrappingKeyExecute(ctx, projectId, region, keyRingId, wrappingKeyId)
+		if err != nil {
+			return false, nil, err
+		}
+
+		if state := response.State; state != nil {
+			switch *state {
+			case StatusWrappingKeyKeyMaterialNotReady:
+				return false, nil, nil
+			default:
+				return true, response, nil
+			}
+		}
+
 		return false, nil, nil
 	})
 	handler.SetTimeout(10 * time.Minute)
