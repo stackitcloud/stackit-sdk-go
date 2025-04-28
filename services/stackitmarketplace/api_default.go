@@ -233,11 +233,11 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.productId) < 36 {
-		return localVarReturnValue, fmt.Errorf("productId must have at least 36 elements")
+	if strlen(r.productId) < 10 {
+		return localVarReturnValue, fmt.Errorf("productId must have at least 10 elements")
 	}
-	if strlen(r.productId) > 36 {
-		return localVarReturnValue, fmt.Errorf("productId must have less than 36 elements")
+	if strlen(r.productId) > 29 {
+		return localVarReturnValue, fmt.Errorf("productId must have less than 29 elements")
 	}
 
 	if r.locale != nil {
@@ -747,7 +747,7 @@ func (r ApiListCatalogProductsRequest) Filter(filter string) ApiListCatalogProdu
 	return r
 }
 
-// Sort the products based on attributes and order (if specified). E.g &#x60;name:asc&#x60;. The supported attributes are &#x60;name&#x60;, &#x60;price&#x60;, and &#x60;deliveryMethod&#x60;. To set the sort order, append &#x60;asc&#x60; (ascending) or &#x60;desc&#x60; (descending) to the attribute, e.g. &#x60;name:asc&#x60;. To sort by multiple attributes, separate them with a comma. E.g &#x60;name,price:desc&#x60;. The order can be ommited to sort by the default order. E.g &#x60;name&#x60;.
+// Sort the products based on attributes and order e.g. &#x60;name:asc&#x60;. Attributes with scalar types (&#x60;createdAt&#x60;, &#x60;isProductListing&#x60;) or keywords (&#x60;name&#x60;, &#x60;deliveryMethod&#x60;, &#x60;lifecycleState&#x60;, &#x60;vendor.name&#x60;) can be used as sort criteria. To set the sort order, append &#x60;asc&#x60; (ascending) or &#x60;desc&#x60; (descending) to the attribute, e.g. &#x60;name:asc&#x60;. To sort by multiple attributes, separate them with a comma. E.g &#x60;name:asc,price:desc&#x60;.
 
 func (r ApiListCatalogProductsRequest) Sort(sort string) ApiListCatalogProductsRequest {
 	r.sort = &sort
