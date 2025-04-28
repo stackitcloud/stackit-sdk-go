@@ -25,9 +25,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -80,9 +80,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -135,7 +135,7 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -188,11 +188,11 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{credentialsId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		credentialsIdValue := "credentialsId"
+		credentialsIdValue := "credentialsId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"credentialsId"+"}", url.PathEscape(ParameterValueToString(credentialsIdValue, "credentialsId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -240,9 +240,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -291,9 +291,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}/download"
 		backupIdValue := int32(123)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -347,11 +347,11 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{credentialsId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		credentialsIdValue := "credentialsId"
+		credentialsIdValue := "credentialsId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"credentialsId"+"}", url.PathEscape(ParameterValueToString(credentialsIdValue, "credentialsId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -405,9 +405,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -460,9 +460,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetMetrics", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -515,9 +515,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -570,9 +570,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -625,7 +625,7 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -677,7 +677,7 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListOfferings", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/offerings"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -729,9 +729,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListRestores", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/restores"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -784,9 +784,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -834,9 +834,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService TriggerRecreate", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/recreate"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -889,9 +889,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService TriggerRestart", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/restart"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -944,9 +944,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService TriggerRestore", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}/restore"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		backupIdValue := int32(123)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
@@ -1002,9 +1002,9 @@ func Test_redis_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateBackupsConfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups-config"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
