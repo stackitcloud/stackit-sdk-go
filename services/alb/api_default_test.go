@@ -25,9 +25,9 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/credentials"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -81,9 +81,9 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateLoadBalancer", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/load-balancers"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -137,11 +137,11 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/credentials/{credentialsRef}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		credentialsRefValue := "credentialsRef"
+		credentialsRefValue := "credentialsRef-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(credentialsRefValue, "credentialsRef")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -195,11 +195,11 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteLoadBalancer", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/load-balancers/{name}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		nameValue := "name"
+		nameValue := "name-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -253,11 +253,11 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/credentials/{credentialsRef}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		credentialsRefValue := "credentialsRef"
+		credentialsRefValue := "credentialsRef-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(credentialsRefValue, "credentialsRef")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -311,11 +311,11 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetLoadBalancer", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/load-balancers/{name}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		nameValue := "name"
+		nameValue := "name-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -369,9 +369,9 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetQuota", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/quota"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -424,9 +424,9 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/credentials"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -479,9 +479,9 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListLoadBalancers", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/load-balancers"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -534,7 +534,7 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListPlans", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/regions/{region}/plans"
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -586,11 +586,11 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/credentials/{credentialsRef}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		credentialsRefValue := "credentialsRef"
+		credentialsRefValue := "credentialsRef-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"credentialsRef"+"}", url.PathEscape(ParameterValueToString(credentialsRefValue, "credentialsRef")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -645,11 +645,11 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateLoadBalancer", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/load-balancers/{name}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		nameValue := "name"
+		nameValue := "name-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -704,13 +704,13 @@ func Test_alb_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateTargetPool", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/load-balancers/{name}/target-pools/{targetPoolName}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		nameValue := "name"
+		nameValue := "name-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"name"+"}", url.PathEscape(ParameterValueToString(nameValue, "name")), -1)
-		targetPoolNameValue := "targetPoolName"
+		targetPoolNameValue := "targetPoolName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"targetPoolName"+"}", url.PathEscape(ParameterValueToString(targetPoolNameValue, "targetPoolName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
