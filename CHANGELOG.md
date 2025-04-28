@@ -12,6 +12,9 @@
     - **Features**: Add waiters to manage the STACKIT Git
 - `observability`: [v0.5.0](services/observability/CHANGELOG.md#v050-2025-04-16)
   - **Feature:** Add new methods `ListLogsAlertgroups`, `CreateLogsAlertgroups`, `GetLogsAlertgroup`, `UpdateLogsAlertgroup`, `DeleteLogsAlertgroup`
+- `kms`: [v0.0.1](services/kms/CHANGELOG.md#v001-2025-04-28)
+  - **New module:** Initial publication of Key Management Service API
+
 
 ## Release (2025-04-09)
 - `cdn`: [v0.3.0](services/cdn/CHANGELOG.md#v030-2025-04-04)
