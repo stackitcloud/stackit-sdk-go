@@ -1,4 +1,4 @@
-go 1.21
+go 1.24.2
 
 use (
 	./core
@@ -10,6 +10,7 @@ use (
 	./examples/errorhandling
 	./examples/iaas
 	./examples/iaasalpha
+	./examples/kms
 	./examples/loadbalancer
 	./examples/logme
 	./examples/mariadb
