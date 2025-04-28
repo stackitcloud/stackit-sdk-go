@@ -26,7 +26,7 @@ func Test_modelserving_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateToken", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/tokens"
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -81,7 +81,7 @@ func Test_modelserving_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteToken", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/tokens/{tId}"
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -139,7 +139,7 @@ func Test_modelserving_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetChatModel", func(t *testing.T) {
 		_apiUrlPath := "/v1/regions/{regionId}/chat/models/{modelId}"
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		modelIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"modelId"+"}", url.PathEscape(ParameterValueToString(modelIdValue, "modelId")), -1)
@@ -194,7 +194,7 @@ func Test_modelserving_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetEmbeddingModel", func(t *testing.T) {
 		_apiUrlPath := "/v1/regions/{regionId}/embedding/models/{modelId}"
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		modelIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"modelId"+"}", url.PathEscape(ParameterValueToString(modelIdValue, "modelId")), -1)
@@ -249,7 +249,7 @@ func Test_modelserving_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetToken", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/tokens/{tId}"
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -307,7 +307,7 @@ func Test_modelserving_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListModels", func(t *testing.T) {
 		_apiUrlPath := "/v1/regions/{regionId}/models"
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -359,7 +359,7 @@ func Test_modelserving_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListTokens", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/tokens"
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -414,7 +414,7 @@ func Test_modelserving_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateToken", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/tokens/{tId}"
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
