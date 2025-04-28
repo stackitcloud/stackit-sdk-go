@@ -102,10 +102,8 @@ type CatalogProductOverviewGetNameRetType = string
 	types and functions for productId
 */
 
-// isModel
-type CatalogProductOverviewGetProductIdAttributeType = *ProductId
-type CatalogProductOverviewGetProductIdArgType = ProductId
-type CatalogProductOverviewGetProductIdRetType = ProductId
+// isNotNullableString
+type CatalogProductOverviewGetProductIdAttributeType = *string
 
 func getCatalogProductOverviewGetProductIdAttributeTypeOk(arg CatalogProductOverviewGetProductIdAttributeType) (ret CatalogProductOverviewGetProductIdRetType, ok bool) {
 	if arg == nil {
@@ -117,6 +115,9 @@ func getCatalogProductOverviewGetProductIdAttributeTypeOk(arg CatalogProductOver
 func setCatalogProductOverviewGetProductIdAttributeType(arg *CatalogProductOverviewGetProductIdAttributeType, val CatalogProductOverviewGetProductIdRetType) {
 	*arg = &val
 }
+
+type CatalogProductOverviewGetProductIdArgType = string
+type CatalogProductOverviewGetProductIdRetType = string
 
 /*
 	types and functions for summary
@@ -170,6 +171,7 @@ type CatalogProductOverview struct {
 	// The name of the product.
 	// REQUIRED
 	Name CatalogProductOverviewGetNameAttributeType `json:"name"`
+	// The user-readable product ID.
 	// REQUIRED
 	ProductId CatalogProductOverviewGetProductIdAttributeType `json:"productId"`
 	// A custom message.
