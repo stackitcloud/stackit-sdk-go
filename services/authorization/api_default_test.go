@@ -25,7 +25,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddMembers", func(t *testing.T) {
 		_apiUrlPath := "/v2/{resourceId}/members"
-		resourceIdValue := "resourceId"
+		resourceIdValue := "resourceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -78,9 +78,9 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListMembers", func(t *testing.T) {
 		_apiUrlPath := "/v2/{resourceType}/{resourceId}/members"
-		resourceTypeValue := "resourceType"
+		resourceTypeValue := "resourceType-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(resourceTypeValue, "resourceType")), -1)
-		resourceIdValue := "resourceId"
+		resourceIdValue := "resourceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -181,9 +181,9 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListRoles", func(t *testing.T) {
 		_apiUrlPath := "/v2/{resourceType}/{resourceId}/roles"
-		resourceTypeValue := "resourceType"
+		resourceTypeValue := "resourceType-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(resourceTypeValue, "resourceType")), -1)
-		resourceIdValue := "resourceId"
+		resourceIdValue := "resourceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -236,7 +236,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListUserMemberships", func(t *testing.T) {
 		_apiUrlPath := "/v2/users/{email}/memberships"
-		emailValue := "email"
+		emailValue := "email-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"email"+"}", url.PathEscape(ParameterValueToString(emailValue, "email")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -288,7 +288,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListUserPermissions", func(t *testing.T) {
 		_apiUrlPath := "/v2/users/{email}/permissions"
-		emailValue := "email"
+		emailValue := "email-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"email"+"}", url.PathEscape(ParameterValueToString(emailValue, "email")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -340,7 +340,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemoveMembers", func(t *testing.T) {
 		_apiUrlPath := "/v2/{resourceId}/members/remove"
-		resourceIdValue := "resourceId"
+		resourceIdValue := "resourceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
