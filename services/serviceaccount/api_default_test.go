@@ -26,9 +26,9 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateAccessToken", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -81,7 +81,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateServiceAccount", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -133,9 +133,9 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateServiceAccountKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -238,9 +238,9 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteAccessToken", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens/{accessTokenId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 		accessTokenIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"accessTokenId"+"}", url.PathEscape(ParameterValueToString(accessTokenIdValue, "accessTokenId")), -1)
@@ -290,9 +290,9 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteServiceAccount", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -339,9 +339,9 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteServiceAccountKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 		keyIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyId"+"}", url.PathEscape(ParameterValueToString(keyIdValue, "keyId")), -1)
@@ -391,7 +391,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetJWKS", func(t *testing.T) {
 		_apiUrlPath := "/v2/service-accounts/public/jwk/{serviceAccountEmail}"
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -443,9 +443,9 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetServiceAccountKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 		keyIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyId"+"}", url.PathEscape(ParameterValueToString(keyIdValue, "keyId")), -1)
@@ -501,9 +501,9 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListAccessTokens", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -556,9 +556,9 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListServiceAccountKeys", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -611,7 +611,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListServiceAccounts", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -663,9 +663,9 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateServiceAccountKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serviceAccountEmailValue := "serviceAccountEmail"
+		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 		keyIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyId"+"}", url.PathEscape(ParameterValueToString(keyIdValue, "keyId")), -1)
