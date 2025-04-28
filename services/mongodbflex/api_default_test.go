@@ -25,9 +25,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CloneInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/clone"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -81,7 +81,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -134,9 +134,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -190,9 +190,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -239,11 +239,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -291,11 +291,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		backupIdValue := "backupId"
+		backupIdValue := "backupId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -349,9 +349,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -404,11 +404,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -462,9 +462,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListAdvisorSlowQueries", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/advisor/slow-queries"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -517,9 +517,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -572,7 +572,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListFlavors", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/flavors"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -624,7 +624,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -677,11 +677,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListMetrics", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics/{metric}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		metricValue := "metric"
+		metricValue := "metric-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"metric"+"}", url.PathEscape(ParameterValueToString(metricValue, "metric")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -736,9 +736,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListRestoreJobs", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/restores"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -791,9 +791,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListStorages", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/storages/{flavor}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		flavorValue := "flavor"
+		flavorValue := "flavor-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"flavor"+"}", url.PathEscape(ParameterValueToString(flavorValue, "flavor")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -846,9 +846,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListSuggestedIndexes", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/advisor/suggested-indexes"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -901,9 +901,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListUsers", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -956,7 +956,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListVersions", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/versions"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1008,9 +1008,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1064,11 +1064,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1117,11 +1117,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ResetUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}/reset"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1175,9 +1175,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RestoreInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/restores"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1231,9 +1231,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateBackupSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1287,9 +1287,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1343,11 +1343,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
