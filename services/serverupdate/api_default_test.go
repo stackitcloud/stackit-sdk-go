@@ -25,11 +25,11 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateUpdate", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/updates"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -83,11 +83,11 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateUpdateSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -141,13 +141,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteUpdateSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules/{scheduleId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		scheduleIdValue := "scheduleId"
+		scheduleIdValue := "scheduleId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"scheduleId"+"}", url.PathEscape(ParameterValueToString(scheduleIdValue, "scheduleId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -196,11 +196,11 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DisableServiceResource", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -248,11 +248,11 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService EnableServiceResource", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -300,11 +300,11 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetServiceResource", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -358,13 +358,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetUpdate", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/updates/{updateId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		updateIdValue := "updateId"
+		updateIdValue := "updateId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"updateId"+"}", url.PathEscape(ParameterValueToString(updateIdValue, "updateId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -419,13 +419,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetUpdateSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules/{scheduleId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		scheduleIdValue := "scheduleId"
+		scheduleIdValue := "scheduleId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"scheduleId"+"}", url.PathEscape(ParameterValueToString(scheduleIdValue, "scheduleId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -480,7 +480,7 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListUpdatePolicies", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/update-policies"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -532,11 +532,11 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListUpdateSchedules", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -590,11 +590,11 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListUpdates", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/updates"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -648,13 +648,13 @@ func Test_serverupdate_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateUpdateSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/update-schedules/{scheduleId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		scheduleIdValue := "scheduleId"
+		scheduleIdValue := "scheduleId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"scheduleId"+"}", url.PathEscape(ParameterValueToString(scheduleIdValue, "scheduleId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
