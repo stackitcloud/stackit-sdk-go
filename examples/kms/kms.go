@@ -3,12 +3,12 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/kms"
+	"github.com/stackitcloud/stackit-sdk-go/services/kms/wait"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 		DisplayName: utils.Ptr("test-keyring"),
 	}).Execute()
 	if err != nil {
-		log.Printf("cannot create keyring: %v", err)
+		fmt.Fprintf(os.Stderr, "cannot create keyring: %v\n", err)
 		return
 	}
 
@@ -42,33 +42,37 @@ func main() {
 		Purpose:     kms.PURPOSE_SYMMETRIC_ENCRYPT_DECRYPT.Ptr(),
 	}).Execute()
 	if err != nil {
-		log.Printf("cannot create key: %v", err)
+		fmt.Fprintf(os.Stderr, "cannot create key: %v\n", err)
 		return
 	}
-	log.Printf("created key %v", key.Id)
+	if err := wait.CreateOrUpdateKeyWaitHandler(ctx, kmsClient, projectId, region, *key.KeyRingId, *key.Id); err != nil {
+		fmt.Fprintf(os.Stderr, "failed to create key: %v", err)
+		return
+	}
+	fmt.Printf("created key %s\n", *key.Id)
 
 	keyRings, err := kmsClient.ListKeyRingsExecute(ctx, projectId, region)
 	if err != nil {
-		log.Printf("cannot list keyrings: %v", err)
+		fmt.Fprintf(os.Stderr, "cannot list keyrings: %v\n", err)
 		return
 	}
 	if keyrings := keyRings.KeyRings; keyrings != nil {
 		if len(*keyrings) == 0 {
-			log.Printf("no keyrings defined")
+			fmt.Printf("no keyrings defined\n")
 		} else {
 			for _, keyring := range *keyrings {
-				log.Printf("id=%s displayname=%s status=%s", *keyring.Id, *keyring.DisplayName, *keyring.State)
+				fmt.Printf("id=%s displayname=%s status=%s\n", *keyring.Id, *keyring.DisplayName, *keyring.State)
 				keylist, err := kmsClient.ListKeysExecute(ctx, projectId, region, *key.KeyRingId)
 				if err != nil {
-					log.Printf("cannot list keys: %v", err)
+					fmt.Fprintf(os.Stderr, "cannot list keys: %v", err)
 					return
 				}
 				if keys := keylist.Keys; keys != nil {
 					if len(*keys) == 0 {
-						log.Printf("no keys")
+						fmt.Printf("no keys\n")
 					} else {
 						for _, key := range *keys {
-							log.Printf("key id=%s key name=%s key status=%s", *key.Id, *key.DisplayName, *key.State)
+							fmt.Printf("key id=%s key name=%s key status=%s\n", *key.Id, *key.DisplayName, *key.State)
 						}
 					}
 				}
