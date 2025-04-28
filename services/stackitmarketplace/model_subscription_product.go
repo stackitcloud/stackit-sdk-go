@@ -102,10 +102,8 @@ type SubscriptionProductGetPricingPlanRetType = string
 	types and functions for productId
 */
 
-// isModel
-type SubscriptionProductGetProductIdAttributeType = *ProductId
-type SubscriptionProductGetProductIdArgType = ProductId
-type SubscriptionProductGetProductIdRetType = ProductId
+// isNotNullableString
+type SubscriptionProductGetProductIdAttributeType = *string
 
 func getSubscriptionProductGetProductIdAttributeTypeOk(arg SubscriptionProductGetProductIdAttributeType) (ret SubscriptionProductGetProductIdRetType, ok bool) {
 	if arg == nil {
@@ -117,6 +115,9 @@ func getSubscriptionProductGetProductIdAttributeTypeOk(arg SubscriptionProductGe
 func setSubscriptionProductGetProductIdAttributeType(arg *SubscriptionProductGetProductIdAttributeType, val SubscriptionProductGetProductIdRetType) {
 	*arg = &val
 }
+
+type SubscriptionProductGetProductIdArgType = string
+type SubscriptionProductGetProductIdRetType = string
 
 /*
 	types and functions for productName
@@ -213,6 +214,7 @@ type SubscriptionProduct struct {
 	// Additional price type information.
 	// REQUIRED
 	PricingPlan SubscriptionProductGetPricingPlanAttributeType `json:"pricingPlan"`
+	// The user-readable product ID.
 	// REQUIRED
 	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId"`
 	// The name of the product.
