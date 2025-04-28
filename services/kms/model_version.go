@@ -39,6 +39,26 @@ func setVersionGetCreatedAtAttributeType(arg *VersionGetCreatedAtAttributeType, 
 }
 
 /*
+	types and functions for destroyDate
+*/
+
+// isDateTime
+type VersionGetDestroyDateAttributeType = *time.Time
+type VersionGetDestroyDateArgType = time.Time
+type VersionGetDestroyDateRetType = time.Time
+
+func getVersionGetDestroyDateAttributeTypeOk(arg VersionGetDestroyDateAttributeType) (ret VersionGetDestroyDateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVersionGetDestroyDateAttributeType(arg *VersionGetDestroyDateAttributeType, val VersionGetDestroyDateRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for disabled
 */
 
@@ -166,6 +186,8 @@ type Version struct {
 	// The date and time the creation of the key was triggered.
 	// REQUIRED
 	CreatedAt VersionGetCreatedAtAttributeType `json:"createdAt"`
+	// The scheduled date when a version's key material will be erased completely from the backend
+	DestroyDate VersionGetDestroyDateAttributeType `json:"destroyDate,omitempty"`
 	// States whether versions is enabled or disabled.
 	Disabled VersiongetDisabledAttributeType `json:"disabled,omitempty"`
 	// The unique id of the key this version is assigned to.
@@ -225,6 +247,29 @@ func (o *Version) GetCreatedAtOk() (ret VersionGetCreatedAtRetType, ok bool) {
 // SetCreatedAt sets field value
 func (o *Version) SetCreatedAt(v VersionGetCreatedAtRetType) {
 	setVersionGetCreatedAtAttributeType(&o.CreatedAt, v)
+}
+
+// GetDestroyDate returns the DestroyDate field value if set, zero value otherwise.
+func (o *Version) GetDestroyDate() (res VersionGetDestroyDateRetType) {
+	res, _ = o.GetDestroyDateOk()
+	return
+}
+
+// GetDestroyDateOk returns a tuple with the DestroyDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Version) GetDestroyDateOk() (ret VersionGetDestroyDateRetType, ok bool) {
+	return getVersionGetDestroyDateAttributeTypeOk(o.DestroyDate)
+}
+
+// HasDestroyDate returns a boolean if a field has been set.
+func (o *Version) HasDestroyDate() bool {
+	_, ok := o.GetDestroyDateOk()
+	return ok
+}
+
+// SetDestroyDate gets a reference to the given time.Time and assigns it to the DestroyDate field.
+func (o *Version) SetDestroyDate(v VersionGetDestroyDateRetType) {
+	setVersionGetDestroyDateAttributeType(&o.DestroyDate, v)
 }
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
@@ -345,6 +390,9 @@ func (o Version) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getVersionGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getVersionGetDestroyDateAttributeTypeOk(o.DestroyDate); ok {
+		toSerialize["DestroyDate"] = val
 	}
 	if val, ok := getVersiongetDisabledAttributeTypeOk(o.Disabled); ok {
 		toSerialize["Disabled"] = val
