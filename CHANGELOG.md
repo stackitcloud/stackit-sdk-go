@@ -10,13 +10,58 @@
     - **Features**: Add new methods to manage the STACKIT Git: `CreateInstance`, `DeleteInstance`, `GetInstance`
   - [v0.3.0](services/git/CHANGELOG.md#v030-2025-04-22)
     - **Features**: Add waiters to manage the STACKIT Git
-- `observability`: [v0.5.0](services/observability/CHANGELOG.md#v050-2025-04-16)
-  - **Feature:** Add new methods `ListLogsAlertgroups`, `CreateLogsAlertgroups`, `GetLogsAlertgroup`, `UpdateLogsAlertgroup`, `DeleteLogsAlertgroup`
+  - [v0.3.1](services/git/CHANGELOG.md#v031-2025-04-29)
+    - **Bugfix:** Correctly handle empty payload in body
+- `observability`: 
+  - [v0.5.0](services/observability/CHANGELOG.md#v050-2025-04-16)
+    - **Feature:** Add new methods `ListLogsAlertgroups`, `CreateLogsAlertgroups`, `GetLogsAlertgroup`, `UpdateLogsAlertgroup`, `DeleteLogsAlertgroup`
+  - [v0.5.1](services/observability/CHANGELOG.md#v051-2025-04-29)
+    - **Bugfix:** Correctly handle empty payload in body
 - `kms`: [v0.0.1](services/kms/CHANGELOG.md#v001-2025-04-28)
   - **New module:** Initial publication of Key Management Service API
 - `serviceaccount`: [v0.6.2](services/serviceaccount/CHANGELOG.md#v062-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
 - `serverupdate`: [v1.0.2](services/serverupdate/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `sqlserverflex`: [v1.0.2](services/sqlserverflex/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `sqlserverflex`: [v0.22.2](services/ske/CHANGELOG.md#v0222-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `serviceenablement`: [v1.0.2](services/serviceenablement/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `serverbackup`: [v1.0.2](services/serverbackup/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `secretsmanager`: [v0.11.3](services/secretsmanager/CHANGELOG.md#v0113-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `runcommand`: [v1.0.1](services/runcommand/CHANGELOG.md#v101-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `redis`: [v0.22.1](services/runcommand/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `rabbitmq`: [v0.22.1](services/rabbitmq/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `postgresflex`: [v1.0.3](services/postgresflex/CHANGELOG.md#v103-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `opensearch`: [v0.21.1](services/opensearch/CHANGELOG.md#v0211-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `objectstorage`: [v1.1.2](services/objectstorage/CHANGELOG.md#v112-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `mongodbflex`: [v0.18.2](services/objectstorage/CHANGELOG.md#v0182-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `mariadb`: [v0.22.1](services/objectstorage/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `logme`: [v0.22.1](services/logme/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `loadbalancer`: [v1.0.2](services/logme/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `iaas`: [v0.22.1](services/iaas/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `dns`: [v0.13.2](services/dns/CHANGELOG.md#v0132-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `certificates`: [v1.0.2](services/certificates/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `cdn`: [v0.3.1](services/cdn/CHANGELOG.md#v031-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `authorization`: [v0.6.2](services/cdn/CHANGELOG.md#v062-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
 
 ## Release (2025-04-09)

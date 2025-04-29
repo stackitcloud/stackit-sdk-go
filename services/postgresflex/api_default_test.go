@@ -25,11 +25,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CloneInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/clone"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -84,11 +84,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateDatabase", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -143,9 +143,9 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -199,11 +199,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -258,13 +258,13 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteDatabase", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases/{databaseId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		databaseIdValue := "databaseId"
+		databaseIdValue := "databaseId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"databaseId"+"}", url.PathEscape(ParameterValueToString(databaseIdValue, "databaseId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -313,11 +313,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -365,13 +365,13 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -420,11 +420,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ForceDeleteInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/force"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -472,13 +472,13 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/{backupId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		backupIdValue := "backupId"
+		backupIdValue := "backupId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -533,11 +533,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -591,13 +591,13 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -652,11 +652,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -710,11 +710,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListDatabaseParameters", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/parameter"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -768,11 +768,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListDatabases", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -826,9 +826,9 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListFlavors", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/flavors"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -881,9 +881,9 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -936,13 +936,13 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListMetrics", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/metrics/{metric}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		metricValue := "metric"
+		metricValue := "metric-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"metric"+"}", url.PathEscape(ParameterValueToString(metricValue, "metric")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -998,11 +998,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListStorages", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/storages/{flavorId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		flavorIdValue := "flavorId"
+		flavorIdValue := "flavorId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"flavorId"+"}", url.PathEscape(ParameterValueToString(flavorIdValue, "flavorId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1056,11 +1056,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListUsers", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1114,9 +1114,9 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListVersions", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/versions"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1169,11 +1169,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1228,13 +1228,13 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1283,13 +1283,13 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ResetUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}/reset"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1344,11 +1344,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateBackupSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1397,11 +1397,11 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1456,13 +1456,13 @@ func Test_postgresflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		userIdValue := "userId"
+		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()

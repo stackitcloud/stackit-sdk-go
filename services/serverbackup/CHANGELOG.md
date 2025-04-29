@@ -1,3 +1,6 @@
+## v1.0.2 (2025-04-29)
+- **Bugfix:** Correctly handle empty payload in body
+
 ## v1.0.1 (2025-03-27)
 - **Bugfix:** Removed ConfigureRegion() from API client
 

@@ -25,9 +25,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CompleteCredentialsRotation", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/complete-credentials-rotation"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -80,9 +80,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateKubeconfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/kubeconfig"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -136,9 +136,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateOrUpdateCluster", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -192,9 +192,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteCluster", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -247,9 +247,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCluster", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -302,9 +302,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetLoginKubeconfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/kubeconfig/login"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -357,7 +357,7 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListClusters", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -457,9 +457,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService StartCredentialsRotation", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/start-credentials-rotation"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -512,9 +512,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService TriggerHibernate", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/hibernate"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -567,9 +567,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService TriggerMaintenance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/maintenance"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -622,9 +622,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService TriggerReconcile", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/reconcile"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		clusterNameValue := "clusterName"
+		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
