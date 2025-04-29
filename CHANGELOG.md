@@ -14,7 +14,8 @@
   - **Feature:** Add new methods `ListLogsAlertgroups`, `CreateLogsAlertgroups`, `GetLogsAlertgroup`, `UpdateLogsAlertgroup`, `DeleteLogsAlertgroup`
 - `kms`: [v0.0.1](services/kms/CHANGELOG.md#v001-2025-04-28)
   - **New module:** Initial publication of Key Management Service API
-
+- `serviceaccount`: [v0.6.2](services/serviceaccount/CHANGELOG.md#v062-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
 
 ## Release (2025-04-09)
 - `cdn`: [v0.3.0](services/cdn/CHANGELOG.md#v030-2025-04-04)
