@@ -1,3 +1,6 @@
+## v0.21.1 (2025-04-29)
+- **Bugfix:** Correctly handle empty payload in body
+
 ## v0.21.0 (2025-04-03)
   - **Feature:** Adapt constants to evolved API.
   

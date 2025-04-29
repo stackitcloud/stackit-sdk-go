@@ -1,3 +1,6 @@
+## v0.11.3 (2025-04-29)
+- **Bugfix:** Correctly handle empty payload in body
+
 ## v0.11.2 (2025-03-20)
 - **Improvement:** Error handling
 - **Feature:** Add description to `UpdateUserPayload`

@@ -1,3 +1,6 @@
+## v0.3.1 (2025-04-29)
+- **Bugfix:** Correctly handle empty payload in body
+
 ## v0.3.0 (2025-04-04)
 - **New:** Add waiter for creation of `CustomDomain`
 

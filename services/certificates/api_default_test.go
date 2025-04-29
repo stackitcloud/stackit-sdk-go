@@ -25,9 +25,9 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCertificate", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/certificates"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -81,11 +81,11 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteCertificate", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/certificates/{id}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		idValue := "id"
+		idValue := "id-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -139,11 +139,11 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCertificate", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/certificates/{id}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		idValue := "id"
+		idValue := "id-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -197,9 +197,9 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListCertificates", func(t *testing.T) {
 		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/certificates"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()

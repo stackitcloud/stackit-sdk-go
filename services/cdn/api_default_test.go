@@ -27,7 +27,7 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateDistribution", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -80,11 +80,11 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteCustomDomain", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}/customDomains/{domain}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		distributionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
-		domainValue := "domain"
+		domainValue := "domain-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"domain"+"}", url.PathEscape(ParameterValueToString(domainValue, "domain")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -138,7 +138,7 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteDistribution", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		distributionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
@@ -193,7 +193,7 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService FindCachePaths", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}/cache/paths"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		distributionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
@@ -249,7 +249,7 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCacheInfo", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}/cache"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		distributionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
@@ -304,11 +304,11 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCustomDomain", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}/customDomains/{domain}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		distributionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
-		domainValue := "domain"
+		domainValue := "domain-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"domain"+"}", url.PathEscape(ParameterValueToString(domainValue, "domain")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -362,7 +362,7 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetDistribution", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		distributionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
@@ -417,7 +417,7 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetStatistics", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}/statistics"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		distributionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
@@ -473,7 +473,7 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListDistributions", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -525,9 +525,9 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PatchDistribution", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		distributionIdValue := "distributionId"
+		distributionIdValue := "distributionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -580,7 +580,7 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PurgeCache", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}/cache/purge"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		distributionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
@@ -635,11 +635,11 @@ func Test_cdn_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PutCustomDomain", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/distributions/{distributionId}/customDomains/{domain}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		distributionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(distributionIdValue, "distributionId")), -1)
-		domainValue := "domain"
+		domainValue := "domain-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"domain"+"}", url.PathEscape(ParameterValueToString(domainValue, "domain")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()

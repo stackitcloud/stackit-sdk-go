@@ -1,3 +1,6 @@
+## v1.1.2 (2025-04-29)
+- **Bugfix:** Correctly handle empty payload in body
+
 ## v1.1.1 (2025-03-19)
 - **Internal:** Backwards compatible change to generated code
 

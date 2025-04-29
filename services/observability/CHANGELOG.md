@@ -1,3 +1,6 @@
+## v0.5.1 (2025-04-29)
+- **Bugfix:** Correctly handle empty payload in body
+
 ## v0.5.0 (2025-04-16)
 - **Feature:** Add new methods `ListLogsAlertgroups`, `CreateLogsAlertgroups`, `GetLogsAlertgroup`, `UpdateLogsAlertgroup`, `DeleteLogsAlertgroup`
 
