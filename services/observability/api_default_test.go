@@ -25,9 +25,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateAlertConfigReceiver", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -81,9 +81,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateAlertConfigRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -137,9 +137,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateAlertgroups", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -193,11 +193,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateAlertrules", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/alertrules"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -252,9 +252,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -307,7 +307,7 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -360,9 +360,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateLogsAlertgroups", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/logs-alertgroups"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -416,9 +416,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateScrapeConfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -472,11 +472,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteAlertConfigReceiver", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
+		receiverValue := "receiver-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -530,11 +530,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteAlertConfigRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
+		receiverValue := "receiver-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -588,11 +588,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteAlertgroup", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -646,9 +646,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteAlertgroups", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -702,11 +702,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteAlertrules", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/alertrules"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -761,11 +761,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		usernameValue := "username"
+		usernameValue := "username-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -819,11 +819,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteCredentialsRemoteWriteConfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		usernameValue := "username"
+		usernameValue := "username-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -877,9 +877,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -932,11 +932,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteLogsAlertgroup", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/logs-alertgroups/{groupName}"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -990,11 +990,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteScrapeConfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		jobNameValue := "jobName"
+		jobNameValue := "jobName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"jobName"+"}", url.PathEscape(ParameterValueToString(jobNameValue, "jobName")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1048,11 +1048,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetAlertConfigReceiver", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
+		receiverValue := "receiver-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1106,11 +1106,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetAlertConfigRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
+		receiverValue := "receiver-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1164,9 +1164,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetAlertConfigs", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1219,11 +1219,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetAlertgroup", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1277,11 +1277,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		usernameValue := "username"
+		usernameValue := "username-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1335,11 +1335,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCredentialsRemoteWriteConfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		usernameValue := "username"
+		usernameValue := "username-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1393,9 +1393,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetGrafanaConfigs", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1448,9 +1448,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1503,11 +1503,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetLogsAlertgroup", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/logs-alertgroups/{groupName}"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1561,9 +1561,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetMetricsStorageRetention", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1616,11 +1616,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetScrapeConfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		jobNameValue := "jobName"
+		jobNameValue := "jobName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"jobName"+"}", url.PathEscape(ParameterValueToString(jobNameValue, "jobName")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1674,9 +1674,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListACL", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acl"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1729,9 +1729,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListAlertConfigReceivers", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1784,9 +1784,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListAlertConfigRoutes", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1839,9 +1839,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListAlertgroups", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1894,11 +1894,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListAlertrules", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/alertrules"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1952,9 +1952,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListCredentials", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2007,7 +2007,7 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2059,9 +2059,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListLogsAlertgroups", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/logs-alertgroups"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2114,7 +2114,7 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListPlans", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/plans"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2166,9 +2166,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListScrapeConfigs", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2221,9 +2221,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateAlertgroups", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2277,11 +2277,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateAlertrules", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/alertrules"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2336,9 +2336,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateACL", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acl"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2391,11 +2391,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateAlertConfigReceiver", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/receivers/{receiver}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
+		receiverValue := "receiver-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2450,11 +2450,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateAlertConfigRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs/routes/{receiver}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		receiverValue := "receiver"
+		receiverValue := "receiver-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"receiver"+"}", url.PathEscape(ParameterValueToString(receiverValue, "receiver")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2509,9 +2509,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateAlertConfigs", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertconfigs"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2565,11 +2565,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateAlertgroup", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2624,9 +2624,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateAlertgroups", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/alertgroups"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2680,11 +2680,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateCredentialsRemoteWriteConfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/credentials/{username}/remote-write-limits"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		usernameValue := "username"
+		usernameValue := "username-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"username"+"}", url.PathEscape(ParameterValueToString(usernameValue, "username")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2739,9 +2739,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateGrafanaConfigs", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/grafana-configs"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2795,9 +2795,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2851,11 +2851,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateLogsAlertgroup", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/logs-alertgroups/{groupName}"
-		groupNameValue := "groupName"
+		groupNameValue := "groupName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(groupNameValue, "groupName")), -1)
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2910,9 +2910,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateMetricsStorageRetention", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2966,11 +2966,11 @@ func Test_observability_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateScrapeConfig", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/scrapeconfigs/{jobName}"
-		instanceIdValue := "instanceId"
+		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
-		jobNameValue := "jobName"
+		jobNameValue := "jobName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"jobName"+"}", url.PathEscape(ParameterValueToString(jobNameValue, "jobName")), -1)
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
