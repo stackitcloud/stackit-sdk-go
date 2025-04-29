@@ -238,7 +238,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		serviceAccountMailValue := "serviceAccountMail"
+		serviceAccountMailValue := "serviceAccountMail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1451,7 +1451,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1/keypairs/{keypairName}"
-		keypairNameValue := "keypairName"
+		keypairNameValue := "keypairName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2384,7 +2384,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1/keypairs/{keypairName}"
-		keypairNameValue := "keypairName"
+		keypairNameValue := "keypairName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2438,7 +2438,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/machine-types/{machineType}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		machineTypeValue := "machineType"
+		machineTypeValue := "machineType-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"machineType"+"}", url.PathEscape(ParameterValueToString(machineTypeValue, "machineType")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2777,7 +2777,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1/organizations/{organizationId}/requests/{requestId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		requestIdValue := "requestId"
+		requestIdValue := "requestId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2887,7 +2887,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/requests/{requestId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		requestIdValue := "requestId"
+		requestIdValue := "requestId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3385,7 +3385,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumePerformanceClassValue := "volumePerformanceClass"
+		volumePerformanceClassValue := "volumePerformanceClass-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumePerformanceClass"+"}", url.PathEscape(ParameterValueToString(volumePerformanceClassValue, "volumePerformanceClass")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5117,7 +5117,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		serviceAccountMailValue := "serviceAccountMail"
+		serviceAccountMailValue := "serviceAccountMail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5961,7 +5961,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1/keypairs/{keypairName}"
-		keypairNameValue := "keypairName"
+		keypairNameValue := "keypairName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
