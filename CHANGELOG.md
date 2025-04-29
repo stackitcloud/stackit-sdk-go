@@ -25,7 +25,7 @@
   - **Bugfix:** Correctly handle empty payload in body
 - `sqlserverflex`: [v1.0.2](services/sqlserverflex/CHANGELOG.md#v102-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
-- `sqlserverflex`: [v0.22.2](services/ske/CHANGELOG.md#v0222-2025-04-29)
+- `ske`: [v0.22.2](services/ske/CHANGELOG.md#v0222-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
 - `serviceenablement`: [v1.0.2](services/serviceenablement/CHANGELOG.md#v102-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
@@ -35,7 +35,7 @@
   - **Bugfix:** Correctly handle empty payload in body
 - `runcommand`: [v1.0.1](services/runcommand/CHANGELOG.md#v101-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
-- `redis`: [v0.22.1](services/runcommand/CHANGELOG.md#v0221-2025-04-29)
+- `redis`: [v0.22.1](services/redis/CHANGELOG.md#v0221-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
 - `rabbitmq`: [v0.22.1](services/rabbitmq/CHANGELOG.md#v0221-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
@@ -45,13 +45,13 @@
   - **Bugfix:** Correctly handle empty payload in body
 - `objectstorage`: [v1.1.2](services/objectstorage/CHANGELOG.md#v112-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
-- `mongodbflex`: [v0.18.2](services/objectstorage/CHANGELOG.md#v0182-2025-04-29)
+- `mongodbflex`: [v0.18.2](services/mongodbflex/CHANGELOG.md#v0182-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
-- `mariadb`: [v0.22.1](services/objectstorage/CHANGELOG.md#v0221-2025-04-29)
+- `mariadb`: [v0.22.1](services/mariadb/CHANGELOG.md#v0221-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
 - `logme`: [v0.22.1](services/logme/CHANGELOG.md#v0221-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
-- `loadbalancer`: [v1.0.2](services/logme/CHANGELOG.md#v102-2025-04-29)
+- `loadbalancer`: [v1.0.2](services/loadbalancer/CHANGELOG.md#v102-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
 - `iaas`: [v0.22.1](services/iaas/CHANGELOG.md#v0221-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
@@ -61,7 +61,7 @@
   - **Bugfix:** Correctly handle empty payload in body
 - `cdn`: [v0.3.1](services/cdn/CHANGELOG.md#v031-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
-- `authorization`: [v0.6.2](services/cdn/CHANGELOG.md#v062-2025-04-29)
+- `authorization`: [v0.6.2](services/authorization/CHANGELOG.md#v062-2025-04-29)
   - **Bugfix:** Correctly handle empty payload in body
 
 ## Release (2025-04-09)
