@@ -25,11 +25,11 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCommand", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/commands"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -83,13 +83,13 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCommand", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/commands/{commandId}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		commandIdValue := "commandId"
+		commandIdValue := "commandId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"commandId"+"}", url.PathEscape(ParameterValueToString(commandIdValue, "commandId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -144,13 +144,13 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCommandTemplate", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/command-templates/{commandTemplateName}"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		commandTemplateNameValue := "commandTemplateName"
+		commandTemplateNameValue := "commandTemplateName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"commandTemplateName"+"}", url.PathEscape(ParameterValueToString(commandTemplateNameValue, "commandTemplateName")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -253,11 +253,11 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListCommands", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/commands"
-		projectIdValue := "projectId"
+		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
+		serverIdValue := "serverId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		regionValue := "region"
+		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
