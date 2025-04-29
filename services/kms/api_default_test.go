@@ -28,7 +28,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -87,7 +87,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -143,7 +143,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/wrappingkeys"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -202,7 +202,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}/decrypt"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -267,7 +267,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -322,7 +322,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -374,7 +374,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}/destroy"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -432,7 +432,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}/disable"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -490,7 +490,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}/enable"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -548,7 +548,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}/encrypt"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -613,7 +613,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -674,7 +674,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -732,7 +732,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -796,7 +796,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/wrappingkeys/{wrappingKeyId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -857,7 +857,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/import"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -919,7 +919,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -974,7 +974,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -1032,7 +1032,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -1093,7 +1093,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/wrappingkeys"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -1151,7 +1151,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/restore"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -1206,7 +1206,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}/restore"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -1264,7 +1264,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/rotate"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -1325,7 +1325,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}/sign"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
@@ -1390,7 +1390,7 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}/verify"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId"
+		regionIdValue := "regionId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
 		keyRingIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
