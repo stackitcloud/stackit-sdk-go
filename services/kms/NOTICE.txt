@@ -1,0 +1,2 @@
+STACKIT Key Management Service API SDK for Go
+Copyright 2025 Schwarz IT KG

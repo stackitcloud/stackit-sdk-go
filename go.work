@@ -10,6 +10,7 @@ use (
 	./examples/errorhandling
 	./examples/iaas
 	./examples/iaasalpha
+	./examples/kms
 	./examples/loadbalancer
 	./examples/logme
 	./examples/mariadb
