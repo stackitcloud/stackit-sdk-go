@@ -105,10 +105,8 @@ type InquiryContactSalesGetMessageRetType = string
 	types and functions for productId
 */
 
-// isModel
-type InquiryContactSalesGetProductIdAttributeType = *ProductId
-type InquiryContactSalesGetProductIdArgType = ProductId
-type InquiryContactSalesGetProductIdRetType = ProductId
+// isNotNullableString
+type InquiryContactSalesGetProductIdAttributeType = *string
 
 func getInquiryContactSalesGetProductIdAttributeTypeOk(arg InquiryContactSalesGetProductIdAttributeType) (ret InquiryContactSalesGetProductIdRetType, ok bool) {
 	if arg == nil {
@@ -120,6 +118,9 @@ func getInquiryContactSalesGetProductIdAttributeTypeOk(arg InquiryContactSalesGe
 func setInquiryContactSalesGetProductIdAttributeType(arg *InquiryContactSalesGetProductIdAttributeType, val InquiryContactSalesGetProductIdRetType) {
 	*arg = &val
 }
+
+type InquiryContactSalesGetProductIdArgType = string
+type InquiryContactSalesGetProductIdRetType = string
 
 // InquiryContactSales Contact sales.
 type InquiryContactSales struct {
@@ -135,6 +136,7 @@ type InquiryContactSales struct {
 	// A custom message.
 	// REQUIRED
 	Message InquiryContactSalesGetMessageAttributeType `json:"message"`
+	// The user-readable product ID.
 	// REQUIRED
 	ProductId InquiryContactSalesGetProductIdAttributeType `json:"productId"`
 }
