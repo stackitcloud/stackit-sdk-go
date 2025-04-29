@@ -18,6 +18,46 @@ import (
 var _ MappedNullable = &CreateDistributionPayload{}
 
 /*
+	types and functions for blockedCountries
+*/
+
+// isArray
+type CreateDistributionPayloadGetBlockedCountriesAttributeType = *[]string
+type CreateDistributionPayloadGetBlockedCountriesArgType = []string
+type CreateDistributionPayloadGetBlockedCountriesRetType = []string
+
+func getCreateDistributionPayloadGetBlockedCountriesAttributeTypeOk(arg CreateDistributionPayloadGetBlockedCountriesAttributeType) (ret CreateDistributionPayloadGetBlockedCountriesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDistributionPayloadGetBlockedCountriesAttributeType(arg *CreateDistributionPayloadGetBlockedCountriesAttributeType, val CreateDistributionPayloadGetBlockedCountriesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for blockedIPs
+*/
+
+// isArray
+type CreateDistributionPayloadGetBlockedIPsAttributeType = *[]string
+type CreateDistributionPayloadGetBlockedIPsArgType = []string
+type CreateDistributionPayloadGetBlockedIPsRetType = []string
+
+func getCreateDistributionPayloadGetBlockedIPsAttributeTypeOk(arg CreateDistributionPayloadGetBlockedIPsAttributeType) (ret CreateDistributionPayloadGetBlockedIPsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDistributionPayloadGetBlockedIPsAttributeType(arg *CreateDistributionPayloadGetBlockedIPsAttributeType, val CreateDistributionPayloadGetBlockedIPsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for intentId
 */
 
@@ -37,6 +77,26 @@ func setCreateDistributionPayloadGetIntentIdAttributeType(arg *CreateDistributio
 
 type CreateDistributionPayloadGetIntentIdArgType = string
 type CreateDistributionPayloadGetIntentIdRetType = string
+
+/*
+	types and functions for monthlyLimitBytes
+*/
+
+// isLong
+type CreateDistributionPayloadGetMonthlyLimitBytesAttributeType = *int64
+type CreateDistributionPayloadGetMonthlyLimitBytesArgType = int64
+type CreateDistributionPayloadGetMonthlyLimitBytesRetType = int64
+
+func getCreateDistributionPayloadGetMonthlyLimitBytesAttributeTypeOk(arg CreateDistributionPayloadGetMonthlyLimitBytesAttributeType) (ret CreateDistributionPayloadGetMonthlyLimitBytesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDistributionPayloadGetMonthlyLimitBytesAttributeType(arg *CreateDistributionPayloadGetMonthlyLimitBytesAttributeType, val CreateDistributionPayloadGetMonthlyLimitBytesRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for originRequestHeaders
@@ -101,8 +161,14 @@ func setCreateDistributionPayloadGetRegionsAttributeType(arg *CreateDistribution
 
 // CreateDistributionPayload struct for CreateDistributionPayload
 type CreateDistributionPayload struct {
+	// Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB).  This setting blocks users from the specified countries.
+	BlockedCountries CreateDistributionPayloadGetBlockedCountriesAttributeType `json:"blockedCountries,omitempty"`
+	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
+	BlockedIPs CreateDistributionPayloadGetBlockedIPsAttributeType `json:"blockedIPs,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId CreateDistributionPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
+	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
+	MonthlyLimitBytes CreateDistributionPayloadGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	// Headers that will be sent with every request to the configured origin. WARNING: Do not store sensitive values in the headers. The data is stores as plain text.
 	OriginRequestHeaders CreateDistributionPayloadGetOriginRequestHeadersAttributeType `json:"originRequestHeaders,omitempty"`
 	// The origin of the content that should be made available through the CDN.   Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed.   So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
@@ -134,6 +200,52 @@ func NewCreateDistributionPayloadWithDefaults() *CreateDistributionPayload {
 	return &this
 }
 
+// GetBlockedCountries returns the BlockedCountries field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetBlockedCountries() (res CreateDistributionPayloadGetBlockedCountriesRetType) {
+	res, _ = o.GetBlockedCountriesOk()
+	return
+}
+
+// GetBlockedCountriesOk returns a tuple with the BlockedCountries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetBlockedCountriesOk() (ret CreateDistributionPayloadGetBlockedCountriesRetType, ok bool) {
+	return getCreateDistributionPayloadGetBlockedCountriesAttributeTypeOk(o.BlockedCountries)
+}
+
+// HasBlockedCountries returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasBlockedCountries() bool {
+	_, ok := o.GetBlockedCountriesOk()
+	return ok
+}
+
+// SetBlockedCountries gets a reference to the given []string and assigns it to the BlockedCountries field.
+func (o *CreateDistributionPayload) SetBlockedCountries(v CreateDistributionPayloadGetBlockedCountriesRetType) {
+	setCreateDistributionPayloadGetBlockedCountriesAttributeType(&o.BlockedCountries, v)
+}
+
+// GetBlockedIPs returns the BlockedIPs field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetBlockedIPs() (res CreateDistributionPayloadGetBlockedIPsRetType) {
+	res, _ = o.GetBlockedIPsOk()
+	return
+}
+
+// GetBlockedIPsOk returns a tuple with the BlockedIPs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetBlockedIPsOk() (ret CreateDistributionPayloadGetBlockedIPsRetType, ok bool) {
+	return getCreateDistributionPayloadGetBlockedIPsAttributeTypeOk(o.BlockedIPs)
+}
+
+// HasBlockedIPs returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasBlockedIPs() bool {
+	_, ok := o.GetBlockedIPsOk()
+	return ok
+}
+
+// SetBlockedIPs gets a reference to the given []string and assigns it to the BlockedIPs field.
+func (o *CreateDistributionPayload) SetBlockedIPs(v CreateDistributionPayloadGetBlockedIPsRetType) {
+	setCreateDistributionPayloadGetBlockedIPsAttributeType(&o.BlockedIPs, v)
+}
+
 // GetIntentId returns the IntentId field value if set, zero value otherwise.
 func (o *CreateDistributionPayload) GetIntentId() (res CreateDistributionPayloadGetIntentIdRetType) {
 	res, _ = o.GetIntentIdOk()
@@ -155,6 +267,29 @@ func (o *CreateDistributionPayload) HasIntentId() bool {
 // SetIntentId gets a reference to the given string and assigns it to the IntentId field.
 func (o *CreateDistributionPayload) SetIntentId(v CreateDistributionPayloadGetIntentIdRetType) {
 	setCreateDistributionPayloadGetIntentIdAttributeType(&o.IntentId, v)
+}
+
+// GetMonthlyLimitBytes returns the MonthlyLimitBytes field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetMonthlyLimitBytes() (res CreateDistributionPayloadGetMonthlyLimitBytesRetType) {
+	res, _ = o.GetMonthlyLimitBytesOk()
+	return
+}
+
+// GetMonthlyLimitBytesOk returns a tuple with the MonthlyLimitBytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetMonthlyLimitBytesOk() (ret CreateDistributionPayloadGetMonthlyLimitBytesRetType, ok bool) {
+	return getCreateDistributionPayloadGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes)
+}
+
+// HasMonthlyLimitBytes returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasMonthlyLimitBytes() bool {
+	_, ok := o.GetMonthlyLimitBytesOk()
+	return ok
+}
+
+// SetMonthlyLimitBytes gets a reference to the given int64 and assigns it to the MonthlyLimitBytes field.
+func (o *CreateDistributionPayload) SetMonthlyLimitBytes(v CreateDistributionPayloadGetMonthlyLimitBytesRetType) {
+	setCreateDistributionPayloadGetMonthlyLimitBytesAttributeType(&o.MonthlyLimitBytes, v)
 }
 
 // GetOriginRequestHeaders returns the OriginRequestHeaders field value if set, zero value otherwise.
@@ -216,8 +351,17 @@ func (o *CreateDistributionPayload) SetRegions(v CreateDistributionPayloadGetReg
 
 func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateDistributionPayloadGetBlockedCountriesAttributeTypeOk(o.BlockedCountries); ok {
+		toSerialize["BlockedCountries"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetBlockedIPsAttributeTypeOk(o.BlockedIPs); ok {
+		toSerialize["BlockedIPs"] = val
+	}
 	if val, ok := getCreateDistributionPayloadGetIntentIdAttributeTypeOk(o.IntentId); ok {
 		toSerialize["IntentId"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes); ok {
+		toSerialize["MonthlyLimitBytes"] = val
 	}
 	if val, ok := getCreateDistributionPayloadGetOriginRequestHeadersAttributeTypeOk(o.OriginRequestHeaders); ok {
 		toSerialize["OriginRequestHeaders"] = val

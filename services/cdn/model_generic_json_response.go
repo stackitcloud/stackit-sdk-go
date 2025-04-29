@@ -22,9 +22,9 @@ var _ MappedNullable = &GenericJSONResponse{}
 */
 
 // isArray
-type GenericJSONResponseGetDetailsAttributeType = *[]GenericJSONResponseDetailsInner
-type GenericJSONResponseGetDetailsArgType = []GenericJSONResponseDetailsInner
-type GenericJSONResponseGetDetailsRetType = []GenericJSONResponseDetailsInner
+type GenericJSONResponseGetDetailsAttributeType = *[]ErrorDetails
+type GenericJSONResponseGetDetailsArgType = []ErrorDetails
+type GenericJSONResponseGetDetailsRetType = []ErrorDetails
 
 func getGenericJSONResponseGetDetailsAttributeTypeOk(arg GenericJSONResponseGetDetailsAttributeType) (ret GenericJSONResponseGetDetailsRetType, ok bool) {
 	if arg == nil {
@@ -104,7 +104,7 @@ func (o *GenericJSONResponse) HasDetails() bool {
 	return ok
 }
 
-// SetDetails gets a reference to the given []GenericJSONResponseDetailsInner and assigns it to the Details field.
+// SetDetails gets a reference to the given []ErrorDetails and assigns it to the Details field.
 func (o *GenericJSONResponse) SetDetails(v GenericJSONResponseGetDetailsRetType) {
 	setGenericJSONResponseGetDetailsAttributeType(&o.Details, v)
 }
