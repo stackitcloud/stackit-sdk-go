@@ -164,8 +164,10 @@ func setInstanceGetReplicasAttributeType(arg *InstanceGetReplicasAttributeType, 
 	types and functions for status
 */
 
-// isNotNullableString
+// isEnumRef
 type InstanceGetStatusAttributeType = *string
+type InstanceGetStatusArgType = string
+type InstanceGetStatusRetType = string
 
 func getInstanceGetStatusAttributeTypeOk(arg InstanceGetStatusAttributeType) (ret InstanceGetStatusRetType, ok bool) {
 	if arg == nil {
@@ -177,9 +179,6 @@ func getInstanceGetStatusAttributeTypeOk(arg InstanceGetStatusAttributeType) (re
 func setInstanceGetStatusAttributeType(arg *InstanceGetStatusAttributeType, val InstanceGetStatusRetType) {
 	*arg = &val
 }
-
-type InstanceGetStatusArgType = string
-type InstanceGetStatusRetType = string
 
 /*
 	types and functions for storage
@@ -231,9 +230,10 @@ type Instance struct {
 	Name           InstanceGetNameAttributeType           `json:"name,omitempty"`
 	Options        InstanceGetOptionsAttributeType        `json:"options,omitempty"`
 	Replicas       InstanceGetReplicasAttributeType       `json:"replicas,omitempty"`
-	Status         InstanceGetStatusAttributeType         `json:"status,omitempty"`
-	Storage        InstanceGetStorageAttributeType        `json:"storage,omitempty"`
-	Version        InstanceGetVersionAttributeType        `json:"version,omitempty"`
+	// The current status of the instance.
+	Status  InstanceGetStatusAttributeType  `json:"status,omitempty"`
+	Storage InstanceGetStorageAttributeType `json:"storage,omitempty"`
+	Version InstanceGetVersionAttributeType `json:"version,omitempty"`
 }
 
 // NewInstance instantiates a new Instance object

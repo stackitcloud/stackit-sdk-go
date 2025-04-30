@@ -63,8 +63,10 @@ type InstanceListInstanceGetNameRetType = string
 	types and functions for status
 */
 
-// isNotNullableString
+// isEnumRef
 type InstanceListInstanceGetStatusAttributeType = *string
+type InstanceListInstanceGetStatusArgType = string
+type InstanceListInstanceGetStatusRetType = string
 
 func getInstanceListInstanceGetStatusAttributeTypeOk(arg InstanceListInstanceGetStatusAttributeType) (ret InstanceListInstanceGetStatusRetType, ok bool) {
 	if arg == nil {
@@ -77,13 +79,11 @@ func setInstanceListInstanceGetStatusAttributeType(arg *InstanceListInstanceGetS
 	*arg = &val
 }
 
-type InstanceListInstanceGetStatusArgType = string
-type InstanceListInstanceGetStatusRetType = string
-
 // InstanceListInstance struct for InstanceListInstance
 type InstanceListInstance struct {
-	Id     InstanceListInstanceGetIdAttributeType     `json:"id,omitempty"`
-	Name   InstanceListInstanceGetNameAttributeType   `json:"name,omitempty"`
+	Id   InstanceListInstanceGetIdAttributeType   `json:"id,omitempty"`
+	Name InstanceListInstanceGetNameAttributeType `json:"name,omitempty"`
+	// The current status of the instance.
 	Status InstanceListInstanceGetStatusAttributeType `json:"status,omitempty"`
 }
 
