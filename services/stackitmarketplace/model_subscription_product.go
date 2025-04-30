@@ -102,10 +102,8 @@ type SubscriptionProductGetPricingPlanRetType = string
 	types and functions for productId
 */
 
-// isModel
-type SubscriptionProductGetProductIdAttributeType = *ProductId
-type SubscriptionProductGetProductIdArgType = ProductId
-type SubscriptionProductGetProductIdRetType = ProductId
+// isNotNullableString
+type SubscriptionProductGetProductIdAttributeType = *string
 
 func getSubscriptionProductGetProductIdAttributeTypeOk(arg SubscriptionProductGetProductIdAttributeType) (ret SubscriptionProductGetProductIdRetType, ok bool) {
 	if arg == nil {
@@ -117,6 +115,9 @@ func getSubscriptionProductGetProductIdAttributeTypeOk(arg SubscriptionProductGe
 func setSubscriptionProductGetProductIdAttributeType(arg *SubscriptionProductGetProductIdAttributeType, val SubscriptionProductGetProductIdRetType) {
 	*arg = &val
 }
+
+type SubscriptionProductGetProductIdArgType = string
+type SubscriptionProductGetProductIdRetType = string
 
 /*
 	types and functions for productName
@@ -159,6 +160,27 @@ func setSubscriptionProductGetVendorNameAttributeType(arg *SubscriptionProductGe
 
 type SubscriptionProductGetVendorNameArgType = string
 type SubscriptionProductGetVendorNameRetType = string
+
+/*
+	types and functions for vendorPlanId
+*/
+
+// isNotNullableString
+type SubscriptionProductGetVendorPlanIdAttributeType = *string
+
+func getSubscriptionProductGetVendorPlanIdAttributeTypeOk(arg SubscriptionProductGetVendorPlanIdAttributeType) (ret SubscriptionProductGetVendorPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetVendorPlanIdAttributeType(arg *SubscriptionProductGetVendorPlanIdAttributeType, val SubscriptionProductGetVendorPlanIdRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetVendorPlanIdArgType = string
+type SubscriptionProductGetVendorPlanIdRetType = string
 
 /*
 	types and functions for vendorProductId
@@ -213,6 +235,7 @@ type SubscriptionProduct struct {
 	// Additional price type information.
 	// REQUIRED
 	PricingPlan SubscriptionProductGetPricingPlanAttributeType `json:"pricingPlan"`
+	// The user-readable product ID.
 	// REQUIRED
 	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId"`
 	// The name of the product.
@@ -221,6 +244,8 @@ type SubscriptionProduct struct {
 	// The product's vendor name.
 	// REQUIRED
 	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName"`
+	// The vendor provided plan ID.
+	VendorPlanId SubscriptionProductGetVendorPlanIdAttributeType `json:"vendorPlanId,omitempty"`
 	// The vendor provided product ID.
 	VendorProductId SubscriptionProductGetVendorProductIdAttributeType `json:"vendorProductId,omitempty"`
 	// Uniform Resource Locator.
@@ -374,6 +399,29 @@ func (o *SubscriptionProduct) SetVendorName(v SubscriptionProductGetVendorNameRe
 	setSubscriptionProductGetVendorNameAttributeType(&o.VendorName, v)
 }
 
+// GetVendorPlanId returns the VendorPlanId field value if set, zero value otherwise.
+func (o *SubscriptionProduct) GetVendorPlanId() (res SubscriptionProductGetVendorPlanIdRetType) {
+	res, _ = o.GetVendorPlanIdOk()
+	return
+}
+
+// GetVendorPlanIdOk returns a tuple with the VendorPlanId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionProduct) GetVendorPlanIdOk() (ret SubscriptionProductGetVendorPlanIdRetType, ok bool) {
+	return getSubscriptionProductGetVendorPlanIdAttributeTypeOk(o.VendorPlanId)
+}
+
+// HasVendorPlanId returns a boolean if a field has been set.
+func (o *SubscriptionProduct) HasVendorPlanId() bool {
+	_, ok := o.GetVendorPlanIdOk()
+	return ok
+}
+
+// SetVendorPlanId gets a reference to the given string and assigns it to the VendorPlanId field.
+func (o *SubscriptionProduct) SetVendorPlanId(v SubscriptionProductGetVendorPlanIdRetType) {
+	setSubscriptionProductGetVendorPlanIdAttributeType(&o.VendorPlanId, v)
+}
+
 // GetVendorProductId returns the VendorProductId field value if set, zero value otherwise.
 func (o *SubscriptionProduct) GetVendorProductId() (res SubscriptionProductGetVendorProductIdRetType) {
 	res, _ = o.GetVendorProductIdOk()
@@ -436,6 +484,9 @@ func (o SubscriptionProduct) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getSubscriptionProductGetVendorNameAttributeTypeOk(o.VendorName); ok {
 		toSerialize["VendorName"] = val
+	}
+	if val, ok := getSubscriptionProductGetVendorPlanIdAttributeTypeOk(o.VendorPlanId); ok {
+		toSerialize["VendorPlanId"] = val
 	}
 	if val, ok := getSubscriptionProductGetVendorProductIdAttributeTypeOk(o.VendorProductId); ok {
 		toSerialize["VendorProductId"] = val
