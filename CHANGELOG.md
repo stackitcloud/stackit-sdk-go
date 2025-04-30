@@ -1,4 +1,4 @@
-## Release (2025-XX-YY)
+## Release (2025-04-30)
 - `core`: [v0.17.1](core/CHANGELOG.md#v0171-2025-04-09)
   - **Improvement:** Improve error message for key flow authentication
 - `stackitmarketplace`: [v0.5.0](services/stackitmarketplace/CHANGELOG.md#v050-2025-04-11)
