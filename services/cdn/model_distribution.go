@@ -198,7 +198,7 @@ type Distribution struct {
 	// - `CREATING`: The distribution was just created.    All the relevant resources are created in the background. Once fully reconciled,   this switches to `ACTIVE`. If there are any issues, the status changes to    `ERROR`. You can look at the `errors` array to get more infos. - `ACTIVE`: The usual state. The desired configuration is synced, there are no errors - `UPDATING`: The state when there is a discrepancy between the desired and    actual configuration state. This occurs right after an update. Will switch to    `ACTIVE` or `ERROR`, depending on if synchronizing succeeds or not. - `DELETING`: The state right after a delete request was received. The distribution will stay in this status   until all resources have been successfully removed, or until we encounter an `ERROR` state.    **NOTE:** You can keep fetching the distribution while it is deleting.    After successful deletion, trying to get a distribution will return a 404 Not Found response - `ERROR`: The error state. Look at the `errors` array for more info.
 	// REQUIRED
 	Status DistributionGetStatusAttributeType `json:"status"`
-	// RFC3339 string which returns the last time the distribution's configuration was modified.
+	// RFC3339 string which returns the last time the distribution configuration was modified.
 	// REQUIRED
 	UpdatedAt DistributionGetUpdatedAtAttributeType `json:"updatedAt"`
 }

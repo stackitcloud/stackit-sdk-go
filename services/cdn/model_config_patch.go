@@ -38,6 +38,66 @@ func setConfigPatchGetBackendAttributeType(arg *ConfigPatchGetBackendAttributeTy
 }
 
 /*
+	types and functions for blockedCountries
+*/
+
+// isArray
+type ConfigPatchGetBlockedCountriesAttributeType = *[]string
+type ConfigPatchGetBlockedCountriesArgType = []string
+type ConfigPatchGetBlockedCountriesRetType = []string
+
+func getConfigPatchGetBlockedCountriesAttributeTypeOk(arg ConfigPatchGetBlockedCountriesAttributeType) (ret ConfigPatchGetBlockedCountriesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setConfigPatchGetBlockedCountriesAttributeType(arg *ConfigPatchGetBlockedCountriesAttributeType, val ConfigPatchGetBlockedCountriesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for blockedIPs
+*/
+
+// isArray
+type ConfigPatchGetBlockedIPsAttributeType = *[]string
+type ConfigPatchGetBlockedIPsArgType = []string
+type ConfigPatchGetBlockedIPsRetType = []string
+
+func getConfigPatchGetBlockedIPsAttributeTypeOk(arg ConfigPatchGetBlockedIPsAttributeType) (ret ConfigPatchGetBlockedIPsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setConfigPatchGetBlockedIPsAttributeType(arg *ConfigPatchGetBlockedIPsAttributeType, val ConfigPatchGetBlockedIPsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for monthlyLimitBytes
+*/
+
+// isLong
+type ConfigPatchGetMonthlyLimitBytesAttributeType = *int64
+type ConfigPatchGetMonthlyLimitBytesArgType = *int64
+type ConfigPatchGetMonthlyLimitBytesRetType = *int64
+
+func getConfigPatchGetMonthlyLimitBytesAttributeTypeOk(arg ConfigPatchGetMonthlyLimitBytesAttributeType) (ret ConfigPatchGetMonthlyLimitBytesRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg, true
+}
+
+func setConfigPatchGetMonthlyLimitBytesAttributeType(arg *ConfigPatchGetMonthlyLimitBytesAttributeType, val ConfigPatchGetMonthlyLimitBytesRetType) {
+	*arg = val
+}
+
+/*
 	types and functions for regions
 */
 
@@ -60,7 +120,13 @@ func setConfigPatchGetRegionsAttributeType(arg *ConfigPatchGetRegionsAttributeTy
 // ConfigPatch struct for ConfigPatch
 type ConfigPatch struct {
 	Backend ConfigPatchGetBackendAttributeType `json:"backend,omitempty"`
-	Regions ConfigPatchGetRegionsAttributeType `json:"regions,omitempty"`
+	// Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB).  This setting blocks users from the specified countries.
+	BlockedCountries ConfigPatchGetBlockedCountriesAttributeType `json:"blockedCountries,omitempty"`
+	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
+	BlockedIPs ConfigPatchGetBlockedIPsAttributeType `json:"blockedIPs,omitempty"`
+	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
+	MonthlyLimitBytes ConfigPatchGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
+	Regions           ConfigPatchGetRegionsAttributeType           `json:"regions,omitempty"`
 }
 
 // NewConfigPatch instantiates a new ConfigPatch object
@@ -103,6 +169,86 @@ func (o *ConfigPatch) SetBackend(v ConfigPatchGetBackendRetType) {
 	setConfigPatchGetBackendAttributeType(&o.Backend, v)
 }
 
+// GetBlockedCountries returns the BlockedCountries field value if set, zero value otherwise.
+func (o *ConfigPatch) GetBlockedCountries() (res ConfigPatchGetBlockedCountriesRetType) {
+	res, _ = o.GetBlockedCountriesOk()
+	return
+}
+
+// GetBlockedCountriesOk returns a tuple with the BlockedCountries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetBlockedCountriesOk() (ret ConfigPatchGetBlockedCountriesRetType, ok bool) {
+	return getConfigPatchGetBlockedCountriesAttributeTypeOk(o.BlockedCountries)
+}
+
+// HasBlockedCountries returns a boolean if a field has been set.
+func (o *ConfigPatch) HasBlockedCountries() bool {
+	_, ok := o.GetBlockedCountriesOk()
+	return ok
+}
+
+// SetBlockedCountries gets a reference to the given []string and assigns it to the BlockedCountries field.
+func (o *ConfigPatch) SetBlockedCountries(v ConfigPatchGetBlockedCountriesRetType) {
+	setConfigPatchGetBlockedCountriesAttributeType(&o.BlockedCountries, v)
+}
+
+// GetBlockedIPs returns the BlockedIPs field value if set, zero value otherwise.
+func (o *ConfigPatch) GetBlockedIPs() (res ConfigPatchGetBlockedIPsRetType) {
+	res, _ = o.GetBlockedIPsOk()
+	return
+}
+
+// GetBlockedIPsOk returns a tuple with the BlockedIPs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetBlockedIPsOk() (ret ConfigPatchGetBlockedIPsRetType, ok bool) {
+	return getConfigPatchGetBlockedIPsAttributeTypeOk(o.BlockedIPs)
+}
+
+// HasBlockedIPs returns a boolean if a field has been set.
+func (o *ConfigPatch) HasBlockedIPs() bool {
+	_, ok := o.GetBlockedIPsOk()
+	return ok
+}
+
+// SetBlockedIPs gets a reference to the given []string and assigns it to the BlockedIPs field.
+func (o *ConfigPatch) SetBlockedIPs(v ConfigPatchGetBlockedIPsRetType) {
+	setConfigPatchGetBlockedIPsAttributeType(&o.BlockedIPs, v)
+}
+
+// GetMonthlyLimitBytes returns the MonthlyLimitBytes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConfigPatch) GetMonthlyLimitBytes() (res ConfigPatchGetMonthlyLimitBytesRetType) {
+	res, _ = o.GetMonthlyLimitBytesOk()
+	return
+}
+
+// GetMonthlyLimitBytesOk returns a tuple with the MonthlyLimitBytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConfigPatch) GetMonthlyLimitBytesOk() (ret ConfigPatchGetMonthlyLimitBytesRetType, ok bool) {
+	return getConfigPatchGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes)
+}
+
+// HasMonthlyLimitBytes returns a boolean if a field has been set.
+func (o *ConfigPatch) HasMonthlyLimitBytes() bool {
+	_, ok := o.GetMonthlyLimitBytesOk()
+	return ok
+}
+
+// SetMonthlyLimitBytes gets a reference to the given int64 and assigns it to the MonthlyLimitBytes field.
+func (o *ConfigPatch) SetMonthlyLimitBytes(v ConfigPatchGetMonthlyLimitBytesRetType) {
+	setConfigPatchGetMonthlyLimitBytesAttributeType(&o.MonthlyLimitBytes, v)
+}
+
+// SetMonthlyLimitBytesNil sets the value for MonthlyLimitBytes to be an explicit nil
+func (o *ConfigPatch) SetMonthlyLimitBytesNil() {
+	o.MonthlyLimitBytes = nil
+}
+
+// UnsetMonthlyLimitBytes ensures that no value is present for MonthlyLimitBytes, not even an explicit nil
+func (o *ConfigPatch) UnsetMonthlyLimitBytes() {
+	o.MonthlyLimitBytes = nil
+}
+
 // GetRegions returns the Regions field value if set, zero value otherwise.
 func (o *ConfigPatch) GetRegions() (res ConfigPatchGetRegionsRetType) {
 	res, _ = o.GetRegionsOk()
@@ -130,6 +276,15 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getConfigPatchGetBackendAttributeTypeOk(o.Backend); ok {
 		toSerialize["Backend"] = val
+	}
+	if val, ok := getConfigPatchGetBlockedCountriesAttributeTypeOk(o.BlockedCountries); ok {
+		toSerialize["BlockedCountries"] = val
+	}
+	if val, ok := getConfigPatchGetBlockedIPsAttributeTypeOk(o.BlockedIPs); ok {
+		toSerialize["BlockedIPs"] = val
+	}
+	if val, ok := getConfigPatchGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes); ok {
+		toSerialize["MonthlyLimitBytes"] = val
 	}
 	if val, ok := getConfigPatchGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val

@@ -187,7 +187,7 @@ CreateDistribution: Create new distribution
 CreateDistribution will create a new CDN distribution
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@return ApiCreateDistributionRequest
 */
 func (a *APIClient) CreateDistribution(ctx context.Context, projectId string) ApiCreateDistributionRequest {
@@ -361,7 +361,7 @@ DeleteCustomDomain: Delete a custom domain
 # Removes a custom domain
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@param domain
 	@return ApiDeleteCustomDomainRequest
@@ -538,7 +538,7 @@ DeleteDistribution: Delete distribution
 DeleteDistribution accepts a project- and distribution-ID and will delete a distribution.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiDeleteDistributionRequest
 */
@@ -726,7 +726,7 @@ this would return the following paths, in the following order, assuming `/te` wa
 - `/test/2`
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiFindCachePathsRequest
 */
@@ -901,7 +901,7 @@ If (and only if) you provide the path query parameter, the history will also con
 The request will not fail if no data about a path is found.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiGetCacheInfoRequest
 */
@@ -1080,7 +1080,7 @@ GetCustomDomain: Retrieve a specific custom domain
 # Returns a 200 and the custom domain if this custom domain was associated to this distribution, else 404
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@param domain
 	@return ApiGetCustomDomainRequest
@@ -1257,7 +1257,7 @@ GetDistribution: Get distribution by ID
 This returns a specific distribution by its ID. If no distribution with the given ID exists the endpoint returns 404. Trying to get a deleted distributions also return 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiGetDistributionRequest
 */
@@ -1272,6 +1272,231 @@ func (a *APIClient) GetDistribution(ctx context.Context, projectId string, distr
 
 func (a *APIClient) GetDistributionExecute(ctx context.Context, projectId string, distributionId string) (*GetDistributionResponse, error) {
 	r := ApiGetDistributionRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		projectId:      projectId,
+		distributionId: distributionId,
+	}
+	return r.Execute()
+}
+
+type ApiGetLogsRequest struct {
+	ctx            context.Context
+	apiService     *DefaultApiService
+	projectId      string
+	distributionId string
+	from           *time.Time
+	to             *time.Time
+	pageSize       *int32
+	pageIdentifier *string
+	sortBy         *string
+	sortOrder      *string
+}
+
+// the start of the time range for which logs should be returned
+
+func (r ApiGetLogsRequest) From(from time.Time) ApiGetLogsRequest {
+	r.from = &from
+	return r
+}
+
+// the end of the time range for which logs should be returned. If not specified,  \&quot;now\&quot; is used.
+
+func (r ApiGetLogsRequest) To(to time.Time) ApiGetLogsRequest {
+	r.to = &to
+	return r
+}
+
+// Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+
+func (r ApiGetLogsRequest) PageSize(pageSize int32) ApiGetLogsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+
+func (r ApiGetLogsRequest) PageIdentifier(pageIdentifier string) ApiGetLogsRequest {
+	r.pageIdentifier = &pageIdentifier
+	return r
+}
+
+// The following sort options exist. We default to &#x60;timestamp&#x60; - &#x60;timestamp&#x60; - Sort by log message time stamp.
+
+func (r ApiGetLogsRequest) SortBy(sortBy string) ApiGetLogsRequest {
+	r.sortBy = &sortBy
+	return r
+}
+
+func (r ApiGetLogsRequest) SortOrder(sortOrder string) ApiGetLogsRequest {
+	r.sortOrder = &sortOrder
+	return r
+}
+
+func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetLogsResponse
+	)
+	a := r.apiService
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLogs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/distributions/{distributionId}/logs"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(r.distributionId, "distributionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.from != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+	}
+	if r.to != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.pageIdentifier != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageIdentifier", r.pageIdentifier, "")
+	}
+	if r.sortBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortBy", r.sortBy, "")
+	}
+	if r.sortOrder != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortOrder", r.sortOrder, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v GenericJSONResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericJSONResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		var v GenericJSONResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetLogs: Retrieve distribution logs
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Your STACKIT Project ID
+	@param distributionId Your CDN distribution ID
+	@return ApiGetLogsRequest
+*/
+func (a *APIClient) GetLogs(ctx context.Context, projectId string, distributionId string) ApiGetLogsRequest {
+	return ApiGetLogsRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		projectId:      projectId,
+		distributionId: distributionId,
+	}
+}
+
+func (a *APIClient) GetLogsExecute(ctx context.Context, projectId string, distributionId string) (*GetLogsResponse, error) {
+	r := ApiGetLogsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1297,7 +1522,7 @@ func (r ApiGetStatisticsRequest) From(from time.Time) ApiGetStatisticsRequest {
 	return r
 }
 
-// the end of the time range for which statistics should be returned. If not specified,  the end of the current time&#39;s interval is used, e.g. next day for daily,  next month for monthly, and so on.
+// the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
 
 func (r ApiGetStatisticsRequest) To(to time.Time) ApiGetStatisticsRequest {
 	r.to = &to
@@ -1464,7 +1689,7 @@ The upper bound is optional. If you omit it, the API will use the start of the n
 Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiGetStatisticsRequest
 */
@@ -1511,7 +1736,7 @@ func (r ApiListDistributionsRequest) PageIdentifier(pageIdentifier string) ApiLi
 	return r
 }
 
-// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by the distributions&#39;s ID using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution&#39;s configuration was last modified,    for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originURL using String comparison - &#x60;status&#x60; - Sort by looking at the distribution&#39;s status, using String comparison
+// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution ID using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originURL using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison
 
 func (r ApiListDistributionsRequest) SortBy(sortBy string) ApiListDistributionsRequest {
 	r.sortBy = &sortBy
@@ -1668,7 +1893,7 @@ ListDistributions returns a list of all CDN distributions associated with
 a given project, ordered by their distribution ID.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@return ApiListDistributionsRequest
 */
 func (a *APIClient) ListDistributions(ctx context.Context, projectId string) ApiListDistributionsRequest {
@@ -1836,7 +2061,7 @@ PatchDistribution: Update existing distribution
 Modify a CDN distribution with a partial update. Only the fields specified in the request will be modified.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiPatchDistributionRequest
 */
@@ -2002,13 +2227,13 @@ func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
 }
 
 /*
-PurgeCache: Clear distribution's cache
+PurgeCache: Clear distribution cache
 
 Clear the cache for this distribution.
 All content, regardless of its staleness, will get refetched from the host.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiPurgeCacheRequest
 */
@@ -2184,7 +2409,7 @@ PutCustomDomain: Create or update a custom domain
 Creates a new custom domain. If it already exists, this will overwrite the previous custom domain's properties.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId Your STACKIT Project's ID
+	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@param domain
 	@return ApiPutCustomDomainRequest
