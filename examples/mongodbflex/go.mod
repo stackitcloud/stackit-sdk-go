@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.17.1
-	github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v0.18.1
+	github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v0.18.2
 )
 
 require (
