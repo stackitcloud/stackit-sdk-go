@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.17.1 h1:TTrVoB1lERd/qfWzpe6HpwCJSjtaGnUI7UE7ITb5IT0=
 github.com/stackitcloud/stackit-sdk-go/core v0.17.1/go.mod h1:8KIw3czdNJ9sdil9QQimxjR6vHjeINFrRv0iZ67wfn0=
-github.com/stackitcloud/stackit-sdk-go/services/authorization v0.6.1 h1:2lq6SG8qOgPOx2OIA5Bca8mwRSlect3Yljk57bXqd5I=
-github.com/stackitcloud/stackit-sdk-go/services/authorization v0.6.1/go.mod h1:in9kC4GIBU5DpzXKFDL7RDl0fKyvN/RUIc7YbyWYEUA=
+github.com/stackitcloud/stackit-sdk-go/services/authorization v0.6.2 h1:erpN0BM7lTkV/zhxka5fTYHssQaOqdGjj76c2FWMec0=
+github.com/stackitcloud/stackit-sdk-go/services/authorization v0.6.2/go.mod h1:dJ19ZwFjp2bfC5ZobXV3vUdSpE3quUw3GuoFSKLpHIo=

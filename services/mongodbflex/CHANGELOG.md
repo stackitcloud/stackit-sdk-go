@@ -1,3 +1,6 @@
+## v1.0.0 (2025-05-02)
+- **Breaking Change:** Introduce typed enum constants for status attributes
+
 ## v0.18.2 (2025-04-29)
 - **Bugfix:** Correctly handle empty payload in body
 

@@ -1,3 +1,22 @@
+## Release (2025-05-XX)
+- `resourcemanager`: [v0.13.2](services/resourcemanager/CHANGELOG.md#v0132-2025-05-02)
+  - **Feature:**
+    - Added API calls for folder management
+- `stackitmarketplace`: [1.0.0](services/stackitmarketplace/CHANGELOG.md#v100-2025-05-02)
+  - **Breaking Change:**
+      - Introduced dedicated type for product id with appropriate validations
+  - **Feature:** 
+      - Improved nil-safety
+      - subscription products contain the plan id
+- `modelserving` [v0.2.2](services/modelserving/CHANGELOG.md#v022-2025-05-02)
+  - **Feature:** Improved nil-safety
+- `mongodbflex`: [1.0.0](services/mongodbflex/CHANGELOG.md#v100-2025-05-02)
+  - **Breaking Change:** Introduce typed enum constants for status attributes
+- `git`: [v0.3.2](services/git/CHANGELOG.md#v032-2025-05-02)
+  - **Bugfix**: Spelling corrections in documentation
+- `alb`: [v0.2.2](services/alb/CHANGELOG.md#v022-2025-05-02)
+  - **Feature:** Switch to beta2 API
+
 ## Release (2025-04-30)
 - `core`: [v0.17.1](core/CHANGELOG.md#v0171-2025-04-09)
   - **Improvement:** Improve error message for key flow authentication

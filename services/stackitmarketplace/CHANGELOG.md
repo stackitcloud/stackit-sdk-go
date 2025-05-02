@@ -1,3 +1,10 @@
+## v1.0.0 (2025-05-02)
+- **Breaking Change:**
+    - Introduced dedicated type for product id with appropriate validations
+- **Feature:** 
+    - Improved nil-safety
+    - subscription products contain the plan id
+
 ## v0.5.0 (2025-04-11)
 - **Feature:** Add new `InquiryContactSales`, `InquirySuggestProduct`, `PriceType`, `PricingOption` and `DeliveryMethod`
 
