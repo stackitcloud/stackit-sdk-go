@@ -1,3 +1,6 @@
+## v0.2.2 (2025-05-02)
+- **Feature:** Switch to beta2 API
+
 ## v0.2.1 (2025-03-27)
 - **Bugfix:** Removed ConfigureRegion() from API client
 
