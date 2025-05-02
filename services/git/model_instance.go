@@ -144,22 +144,22 @@ type InstanceGetVersionRetType = string
 
 // Instance Describes a STACKIT Git instance.
 type Instance struct {
-	// The date and time the creation of the STACKIT GIT instance was triggered.
+	// The date and time the creation of the STACKIT Git instance was triggered.
 	// REQUIRED
 	Created InstanceGetCreatedAttributeType `json:"created"`
-	// A auto generated unique id which identifies the STACKIT GIT instances.
+	// A auto generated unique id which identifies the STACKIT Git instances.
 	// REQUIRED
 	Id InstanceGetIdAttributeType `json:"id"`
-	// A user chosen name to distinguish multiple STACKIT GIT instances.
+	// A user chosen name to distinguish multiple STACKIT Git instances.
 	// REQUIRED
 	Name InstanceGetNameAttributeType `json:"name"`
-	// The current state of the STACKIT GIT instance.
+	// The current state of the STACKIT Git instance.
 	// REQUIRED
 	State InstanceGetStateAttributeType `json:"state"`
-	// The URL for reaching the STACKIT GIT instance.
+	// The URL for reaching the STACKIT Git instance.
 	// REQUIRED
 	Url InstanceGetUrlAttributeType `json:"url"`
-	// The current version of STACKIT GIT deployed to the instance.
+	// The current version of STACKIT Git deployed to the instance.
 	// REQUIRED
 	Version InstanceGetVersionAttributeType `json:"version"`
 }

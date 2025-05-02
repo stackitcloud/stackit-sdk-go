@@ -1,3 +1,6 @@
+## v0.3.2 (2025-05-02)
+- **Bugfix**: Spelling corrections in documentation
+
 ## v0.3.1 (2025-04-29)
 - **Bugfix:** Correctly handle empty payload in body
 

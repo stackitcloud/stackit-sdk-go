@@ -155,9 +155,11 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 }
 
 /*
-CreateInstance: Users with write-access to a project may create a new STACKIT Git instance by posting the instance creation request to this endpoint, which will schedule the creation of a new STACKIT Git instance within that project.
+CreateInstance: Creates a new STACKIT Git instance within the project.
 
-Creates a new STACKIT Git instance within the project.
+Users with write-access to a project may create a new STACKIT Git instance by posting
+the instance creation request to this endpoint, which will schedule the creation of a
+new STACKIT Git instance within that project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
@@ -290,9 +292,11 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 }
 
 /*
-DeleteInstance: Allows a user with write-access to a project to schedule the deletion of a STACKIT Git instance, which will soon eliminate all repositories & user metadata associated with that instance. This is a destructive operation.
+DeleteInstance: Deletes the given STACKIT Git instance.
 
-Deletes the given STACKIT Git instance.
+Allows a user with write-access to a project to schedule the deletion of a STACKIT Git
+instance, which will soon eliminate all repositories & user metadata associated with
+that instance. This is a destructive operation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
@@ -439,9 +443,10 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 }
 
 /*
-GetInstance: Provides detailed information about the state of an instance within the specified project including information about how to access the instance for further use.
+GetInstance: Returns the details for the given STACKIT Git instance.
 
-Returns the details for the given STACKIT Git instance.
+Provides detailed information about the state of an instance within the specified
+project including information about how to access the instance for further use.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
@@ -583,9 +588,11 @@ func (r ApiListInstancesRequest) Execute() (*ListInstances, error) {
 }
 
 /*
-ListInstances: STACKIT Git instances exist within a project, and a project may have zero or more instances. This endpoint allows a user with read-access to a project to list all instances that exist within the specified project.
+ListInstances: Returns a list of all STACKIT Git instances within the project.
 
-Returns a list of all STACKIT Git instances within the project.
+STACKIT Git instances exist within a project, and a project may have zero or more instances.
+This endpoint allows a user with read-access to a project to list all instances that exist
+within the specified project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
