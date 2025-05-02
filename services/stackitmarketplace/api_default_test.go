@@ -75,7 +75,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCatalogProduct", func(t *testing.T) {
 		_apiUrlPath := "/v1/catalog/products/{productId}"
-		productIdValue := uuid.NewString()
+		productIdValue := "productId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"productId"+"}", url.PathEscape(ParameterValueToString(productIdValue, "productId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()

@@ -245,10 +245,8 @@ func setCatalogProductDetailGetPricingOptionsAttributeType(arg *CatalogProductDe
 	types and functions for productId
 */
 
-// isModel
-type CatalogProductDetailGetProductIdAttributeType = *ProductId
-type CatalogProductDetailGetProductIdArgType = ProductId
-type CatalogProductDetailGetProductIdRetType = ProductId
+// isNotNullableString
+type CatalogProductDetailGetProductIdAttributeType = *string
 
 func getCatalogProductDetailGetProductIdAttributeTypeOk(arg CatalogProductDetailGetProductIdAttributeType) (ret CatalogProductDetailGetProductIdRetType, ok bool) {
 	if arg == nil {
@@ -260,6 +258,9 @@ func getCatalogProductDetailGetProductIdAttributeTypeOk(arg CatalogProductDetail
 func setCatalogProductDetailGetProductIdAttributeType(arg *CatalogProductDetailGetProductIdAttributeType, val CatalogProductDetailGetProductIdRetType) {
 	*arg = &val
 }
+
+type CatalogProductDetailGetProductIdArgType = string
+type CatalogProductDetailGetProductIdRetType = string
 
 /*
 	types and functions for summary
@@ -436,6 +437,7 @@ type CatalogProductDetail struct {
 	// The list of pricing options.
 	// REQUIRED
 	PricingOptions CatalogProductDetailGetPricingOptionsAttributeType `json:"pricingOptions"`
+	// The user-readable product ID.
 	// REQUIRED
 	ProductId CatalogProductDetailGetProductIdAttributeType `json:"productId"`
 	// The short summary of the product.
