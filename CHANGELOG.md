@@ -1,4 +1,7 @@
 ## Release (2025-05-XX)
+- `resourcemanager`: [v0.13.2](services/resourcemanager/CHANGELOG.md#v0132-2025-05-02)
+  - **Feature:**
+    - Added API calls for folder management
 - `stackitmarketplace`: [1.0.0](services/stackitmarketplace/CHANGELOG.md#v100-2025-05-02)
   - **Breaking Change:**
       - Introduced dedicated type for product id with appropriate validations
