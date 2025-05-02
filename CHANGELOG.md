@@ -14,6 +14,11 @@
   - **Breaking Change:** Introduce typed enum constants for status attributes
 - `git`: [v0.3.2](services/git/CHANGELOG.md#v032-2025-05-02)
   - **Bugfix**: Spelling corrections in documentation
+- `cdn`[v1.0.0](services/cdn/CHANGELOG.md#v100-2025-05-02)
+  - **Feature:** Support for log management
+  - **Feature:** Create distribution payload has additional optional attributes for blocked countries, IPs and volume limitation
+  - **Feature:** Config Patch payload has additional optional attributes for blocked countries, IPs and volume limitation
+  - **Breaking Change:** Config has additional required attributes for blocked countries, IPs and volume limitation
 - `alb`: [v0.2.2](services/alb/CHANGELOG.md#v022-2025-05-02)
   - **Feature:** Switch to beta2 API
 
