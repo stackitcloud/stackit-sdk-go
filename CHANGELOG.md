@@ -14,6 +14,8 @@
   - **Breaking Change:** Introduce typed enum constants for status attributes
 - `git`: [v0.3.2](services/git/CHANGELOG.md#v032-2025-05-02)
   - **Bugfix**: Spelling corrections in documentation
+- `alb`: [v0.2.2](services/alb/CHANGELOG.md#v022-2025-05-02)
+  - **Feature:** Switch to beta2 API
 
 ## Release (2025-04-30)
 - `core`: [v0.17.1](core/CHANGELOG.md#v0171-2025-04-09)
