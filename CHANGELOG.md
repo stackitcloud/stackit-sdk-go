@@ -1,3 +1,11 @@
+## Release (2025-05-XX)
+- `stackitmarketplace`: [0.6.0](services/stackitmarketplace/CHANGELOG.md#v060-2025-05-02)
+  - **Breaking Change:**
+      - Introduced dedicated type for product id with appropriate validations
+  - **Feature:** 
+      - Improved nil-safety
+      - subscription products contain the plan id
+
 ## Release (2025-04-30)
 - `core`: [v0.17.1](core/CHANGELOG.md#v0171-2025-04-09)
   - **Improvement:** Improve error message for key flow authentication
