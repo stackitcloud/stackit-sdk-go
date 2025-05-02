@@ -1,5 +1,5 @@
 ## Release (2025-05-XX)
-- `stackitmarketplace`: [0.6.0](services/stackitmarketplace/CHANGELOG.md#v060-2025-05-02)
+- `stackitmarketplace`: [1.0.0](services/stackitmarketplace/CHANGELOG.md#v100-2025-05-02)
   - **Breaking Change:**
       - Introduced dedicated type for product id with appropriate validations
   - **Feature:** 
