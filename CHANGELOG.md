@@ -8,6 +8,8 @@
   - **Feature:** 
       - Improved nil-safety
       - subscription products contain the plan id
+- `modelserving` [v0.2.2](services/modelserving/CHANGELOG.md#v022-2025-05-02)
+  - **Feature:** Improved nil-safety
 - `mongodbflex`: [1.0.0](services/mongodbflex/CHANGELOG.md#v100-2025-05-02)
   - **Breaking Change:** Introduce typed enum constants for status attributes
 
