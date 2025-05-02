@@ -10,6 +10,8 @@
       - subscription products contain the plan id
 - `mongodbflex`: [1.0.0](services/mongodbflex/CHANGELOG.md#v100-2025-05-02)
   - **Breaking Change:** Introduce typed enum constants for status attributes
+- `git`: [v0.3.2](services/git/CHANGELOG.md#v032-2025-05-02)
+  - **Bugfix**: Spelling corrections in documentation
 
 ## Release (2025-04-30)
 - `core`: [v0.17.1](core/CHANGELOG.md#v0171-2025-04-09)
