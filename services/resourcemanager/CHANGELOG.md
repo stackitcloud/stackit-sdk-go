@@ -1,3 +1,7 @@
+## v0.13.2 (2025-05-02)
+- **Feature:**
+  - Added API calls for folder management
+  
 ## v0.13.1 (2025-03-19)
 - **Internal:** Backwards compatible change to generated code
 
