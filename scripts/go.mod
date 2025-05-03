@@ -8,7 +8,6 @@ exclude (
 	github.com/go-git/go-git/v5 v5.16.0
 	// exclude versions not compatible with go 1.21
 	golang.org/x/sys v0.32.0
-	golang.org/x/term v0.30.0
 	golang.org/x/term v0.31.0
 )
 
