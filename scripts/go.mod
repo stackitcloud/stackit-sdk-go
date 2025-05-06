@@ -15,10 +15,10 @@ exclude (
 
 	github.com/skeema/knownhosts v1.3.1
 	golang.org/x/crypto v0.34.0
-	golang.org/x/crypto v0.35.0
-	golang.org/x/crypto v0.36.0
+	golang.org/x/crypto v0.38.0
+	golang.org/x/crypto v0.38.0
 
-	golang.org/x/crypto v0.37.0
+	golang.org/x/crypto v0.38.0
 	golang.org/x/mod v0.21.0
 	golang.org/x/mod v0.22.0
 
