@@ -33,9 +33,9 @@ exclude (
 	golang.org/x/net v0.35.0
 	golang.org/x/net v0.36.0
 	golang.org/x/net v0.37.0
-	golang.org/x/net v0.38.0
+	golang.org/x/net v0.40.0
 
-	golang.org/x/net v0.39.0
+	golang.org/x/net v0.40.0
 	golang.org/x/sys v0.31.0
 
 	golang.org/x/sys v0.32.0
