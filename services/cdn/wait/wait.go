@@ -54,7 +54,7 @@ func CreateDistributionPoolWaitHandler(ctx context.Context, api APIClientInterfa
 		}
 		return false, nil, nil
 	})
-	handler.SetTimeout(1 * time.Minute)
+	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
@@ -109,7 +109,7 @@ func DeleteDistributionWaitHandler(ctx context.Context, api APIClientInterface, 
 
 		return false, nil, err
 	})
-	handler.SetTimeout(30 * time.Second)
+	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
@@ -136,7 +136,7 @@ func CreateCDNCustomDomainWaitHandler(ctx context.Context, a APIClientInterface,
 			return true, nil, fmt.Errorf("CDNCustomDomainWaitHandler: unexpected status %s", *resp.CustomDomain.Status)
 		}
 	})
-	handler.SetTimeout(1 * time.Minute)
+	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
@@ -156,6 +156,6 @@ func DeleteCDNCustomDomainWaitHandler(ctx context.Context, a APIClientInterface,
 		}
 		return false, nil, err
 	})
-	handler.SetTimeout(30 * time.Second)
+	handler.SetTimeout(10 * time.Minute)
 	return handler
 }

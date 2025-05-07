@@ -1,3 +1,6 @@
+## v1.0.1 (2025-05-05)
+- **Enhancement:** Increase waiter timeouts
+
 ## v1.0.0 (2025-05-02)
 - **Feature:** Support for log management
 - **Feature:** Create distribution payload has additional optional attributes for blocked countries, IPs and volume limitation
