@@ -1,3 +1,7 @@
+## v0.16.2 (2025-XX-YY)
+
+- **New:** Add STACKIT CLI auth flow.
+
 ## v0.16.1 (2025-02-25)
 
 - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.

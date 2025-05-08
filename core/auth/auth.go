@@ -2,6 +2,7 @@ package auth
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -62,7 +63,14 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 			return nil, fmt.Errorf("configuring token authentication: %w", err)
 		}
 		return tokenRoundTripper, nil
+	} else if !cfg.DisableCLIAuthFlow {
+		cliRoundTripper, err := StackitCliAuth(cfg)
+		if err != nil {
+			return nil, fmt.Errorf("configuring CLI authentication: %w", err)
+		}
+		return cliRoundTripper, nil
 	}
+
 	authRoundTripper, err := DefaultAuth(cfg)
 	if err != nil {
 		return nil, fmt.Errorf("configuring default authentication: %w", err)
@@ -90,7 +98,17 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		// Token flow
 		rt, err = TokenAuth(cfg)
 		if err != nil {
-			return nil, fmt.Errorf("no valid credentials were found: trying key flow: %s, trying token flow: %w", keyFlowErr.Error(), err)
+			tokenFlowErr := err
+			if cfg.DisableCLIAuthFlow {
+				err = errors.New("CLI flow disabled")
+			} else {
+				// Stackit CLI flow
+				rt, err = StackitCliAuth(cfg)
+			}
+
+			if err != nil {
+				return nil, fmt.Errorf("no valid credentials were found: trying key flow: %s, trying token flow: %s, trying stackit cli flow: %w", keyFlowErr.Error(), tokenFlowErr.Error(), err)
+			}
 		}
 	}
 	return rt, nil
@@ -189,6 +207,16 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 
 	client := &clients.KeyFlow{}
 	if err := client.Init(&keyCfg); err != nil {
+		return nil, fmt.Errorf("error initializing client: %w", err)
+	}
+
+	return client, nil
+}
+
+// StackitCliAuth configures the [clients.STACKITCLIFlow] and returns an http.RoundTripper
+func StackitCliAuth(_ *config.Configuration) (http.RoundTripper, error) {
+	client := &clients.STACKITCLIFlow{}
+	if err := client.Init(&clients.STACKITCLIFlowConfig{}); err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 

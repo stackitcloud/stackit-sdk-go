@@ -17,6 +17,8 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
+      - name: Install STACKIT CLI
+        uses: jkroepke/setup-stackit-cli@v1
       - name: Test
         run: make test
 
