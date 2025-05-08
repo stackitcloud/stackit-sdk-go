@@ -17,16 +17,76 @@ import (
 // checks if the ListOrganizationsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListOrganizationsResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListOrganizationsResponseGetItemsAttributeType = *[]ListOrganizationsResponseItemsInner
+type ListOrganizationsResponseGetItemsArgType = []ListOrganizationsResponseItemsInner
+type ListOrganizationsResponseGetItemsRetType = []ListOrganizationsResponseItemsInner
+
+func getListOrganizationsResponseGetItemsAttributeTypeOk(arg ListOrganizationsResponseGetItemsAttributeType) (ret ListOrganizationsResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseGetItemsAttributeType(arg *ListOrganizationsResponseGetItemsAttributeType, val ListOrganizationsResponseGetItemsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for limit
+*/
+
+// isNumber
+type ListOrganizationsResponseGetLimitAttributeType = *float64
+type ListOrganizationsResponseGetLimitArgType = float64
+type ListOrganizationsResponseGetLimitRetType = float64
+
+func getListOrganizationsResponseGetLimitAttributeTypeOk(arg ListOrganizationsResponseGetLimitAttributeType) (ret ListOrganizationsResponseGetLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseGetLimitAttributeType(arg *ListOrganizationsResponseGetLimitAttributeType, val ListOrganizationsResponseGetLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for offset
+*/
+
+// isNumber
+type ListOrganizationsResponseGetOffsetAttributeType = *float64
+type ListOrganizationsResponseGetOffsetArgType = float64
+type ListOrganizationsResponseGetOffsetRetType = float64
+
+func getListOrganizationsResponseGetOffsetAttributeTypeOk(arg ListOrganizationsResponseGetOffsetAttributeType) (ret ListOrganizationsResponseGetOffsetRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListOrganizationsResponseGetOffsetAttributeType(arg *ListOrganizationsResponseGetOffsetAttributeType, val ListOrganizationsResponseGetOffsetRetType) {
+	*arg = &val
+}
+
 // ListOrganizationsResponse struct for ListOrganizationsResponse
 type ListOrganizationsResponse struct {
 	// REQUIRED
-	Items *[]ListOrganizationsResponseItemsInner `json:"items"`
+	Items ListOrganizationsResponseGetItemsAttributeType `json:"items"`
 	// The maximum number of projects to return in the response. If not present, an appropriate default will be used.
 	// REQUIRED
-	Limit *float64 `json:"limit"`
+	Limit ListOrganizationsResponseGetLimitAttributeType `json:"limit"`
 	// The offset of the first item in the collection to return.
 	// REQUIRED
-	Offset *float64 `json:"offset"`
+	Offset ListOrganizationsResponseGetOffsetAttributeType `json:"offset"`
 }
 
 type _ListOrganizationsResponse ListOrganizationsResponse
@@ -35,11 +95,11 @@ type _ListOrganizationsResponse ListOrganizationsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListOrganizationsResponse(items *[]ListOrganizationsResponseItemsInner, limit *float64, offset *float64) *ListOrganizationsResponse {
+func NewListOrganizationsResponse(items ListOrganizationsResponseGetItemsArgType, limit ListOrganizationsResponseGetLimitArgType, offset ListOrganizationsResponseGetOffsetArgType) *ListOrganizationsResponse {
 	this := ListOrganizationsResponse{}
-	this.Items = items
-	this.Limit = limit
-	this.Offset = offset
+	setListOrganizationsResponseGetItemsAttributeType(&this.Items, items)
+	setListOrganizationsResponseGetLimitAttributeType(&this.Limit, limit)
+	setListOrganizationsResponseGetOffsetAttributeType(&this.Offset, offset)
 	return &this
 }
 
@@ -56,82 +116,67 @@ func NewListOrganizationsResponseWithDefaults() *ListOrganizationsResponse {
 }
 
 // GetItems returns the Items field value
-func (o *ListOrganizationsResponse) GetItems() *[]ListOrganizationsResponseItemsInner {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]ListOrganizationsResponseItemsInner
-		return ret
-	}
-
-	return o.Items
+func (o *ListOrganizationsResponse) GetItems() (ret ListOrganizationsResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponse) GetItemsOk() (*[]ListOrganizationsResponseItemsInner, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListOrganizationsResponse) GetItemsOk() (ret ListOrganizationsResponseGetItemsRetType, ok bool) {
+	return getListOrganizationsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *ListOrganizationsResponse) SetItems(v *[]ListOrganizationsResponseItemsInner) {
-	o.Items = v
+func (o *ListOrganizationsResponse) SetItems(v ListOrganizationsResponseGetItemsRetType) {
+	setListOrganizationsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 // GetLimit returns the Limit field value
-func (o *ListOrganizationsResponse) GetLimit() *float64 {
-	if o == nil || IsNil(o.Limit) {
-		var ret *float64
-		return ret
-	}
-
-	return o.Limit
+func (o *ListOrganizationsResponse) GetLimit() (ret ListOrganizationsResponseGetLimitRetType) {
+	ret, _ = o.GetLimitOk()
+	return ret
 }
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponse) GetLimitOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Limit, true
+func (o *ListOrganizationsResponse) GetLimitOk() (ret ListOrganizationsResponseGetLimitRetType, ok bool) {
+	return getListOrganizationsResponseGetLimitAttributeTypeOk(o.Limit)
 }
 
 // SetLimit sets field value
-func (o *ListOrganizationsResponse) SetLimit(v *float64) {
-	o.Limit = v
+func (o *ListOrganizationsResponse) SetLimit(v ListOrganizationsResponseGetLimitRetType) {
+	setListOrganizationsResponseGetLimitAttributeType(&o.Limit, v)
 }
 
 // GetOffset returns the Offset field value
-func (o *ListOrganizationsResponse) GetOffset() *float64 {
-	if o == nil || IsNil(o.Offset) {
-		var ret *float64
-		return ret
-	}
-
-	return o.Offset
+func (o *ListOrganizationsResponse) GetOffset() (ret ListOrganizationsResponseGetOffsetRetType) {
+	ret, _ = o.GetOffsetOk()
+	return ret
 }
 
 // GetOffsetOk returns a tuple with the Offset field value
 // and a boolean to check if the value has been set.
-func (o *ListOrganizationsResponse) GetOffsetOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Offset, true
+func (o *ListOrganizationsResponse) GetOffsetOk() (ret ListOrganizationsResponseGetOffsetRetType, ok bool) {
+	return getListOrganizationsResponseGetOffsetAttributeTypeOk(o.Offset)
 }
 
 // SetOffset sets field value
-func (o *ListOrganizationsResponse) SetOffset(v *float64) {
-	o.Offset = v
+func (o *ListOrganizationsResponse) SetOffset(v ListOrganizationsResponseGetOffsetRetType) {
+	setListOrganizationsResponseGetOffsetAttributeType(&o.Offset, v)
 }
 
 func (o ListOrganizationsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
-	toSerialize["limit"] = o.Limit
-	toSerialize["offset"] = o.Offset
+	if val, ok := getListOrganizationsResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
+	if val, ok := getListOrganizationsResponseGetLimitAttributeTypeOk(o.Limit); ok {
+		toSerialize["Limit"] = val
+	}
+	if val, ok := getListOrganizationsResponseGetOffsetAttributeTypeOk(o.Offset); ok {
+		toSerialize["Offset"] = val
+	}
 	return toSerialize, nil
 }
 

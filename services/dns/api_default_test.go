@@ -24,14 +24,14 @@ import (
 func Test_dns_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CloneZone", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/clone"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/clone"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -65,8 +65,8 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 		cloneZonePayload := CloneZonePayload{}
 
 		resp, reqErr := apiClient.CloneZone(context.Background(), projectId, zoneId).CloneZonePayload(cloneZonePayload).Execute()
@@ -74,20 +74,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateLabel", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/labels"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/labels"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateLabelResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -121,8 +121,8 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 		createLabelPayload := CreateLabelPayload{}
 
 		resp, reqErr := apiClient.CreateLabel(context.Background(), projectId, zoneId).CreateLabelPayload(createLabelPayload).Execute()
@@ -130,20 +130,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateMoveCode", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/move-code"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/move-code"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := MoveCodeResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -177,28 +177,28 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 
 		resp, reqErr := apiClient.CreateMoveCode(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateRecordSet", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RecordSetResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -232,8 +232,8 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 		createRecordSetPayload := CreateRecordSetPayload{}
 
 		resp, reqErr := apiClient.CreateRecordSet(context.Background(), projectId, zoneId).CreateRecordSetPayload(createRecordSetPayload).Execute()
@@ -241,18 +241,18 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService CreateZone", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -286,7 +286,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		createZonePayload := CreateZonePayload{}
 
 		resp, reqErr := apiClient.CreateZone(context.Background(), projectId).CreateZonePayload(createZonePayload).Execute()
@@ -294,22 +294,22 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteLabel", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/labels/{key}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
-		keyValue := "key"
-		path = strings.Replace(path, "{"+"key"+"}", url.PathEscape(ParameterValueToString(keyValue, "key")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/labels/{key}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		keyValue := "key-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"key"+"}", url.PathEscape(ParameterValueToString(keyValue, "key")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := DeleteLabelResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -343,29 +343,29 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
-		key := "key"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
+		key := keyValue
 
 		resp, reqErr := apiClient.DeleteLabel(context.Background(), projectId, zoneId, key).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteMoveCode", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/move-code"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/move-code"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -399,30 +399,30 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 
 		resp, reqErr := apiClient.DeleteMoveCode(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteRecordSet", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
-		rrSetIdValue := "rrSetId"
-		path = strings.Replace(path, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		rrSetIdValue := "rrSetId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -456,29 +456,29 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
-		rrSetId := "rrSetId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
+		rrSetId := rrSetIdValue
 
 		resp, reqErr := apiClient.DeleteRecordSet(context.Background(), projectId, zoneId, rrSetId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteZone", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -512,28 +512,28 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 
 		resp, reqErr := apiClient.DeleteZone(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ExportRecordSets", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/export"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/export"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneDataExchange{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -567,8 +567,8 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 		exportRecordSetsPayload := ExportRecordSetsPayload{}
 
 		resp, reqErr := apiClient.ExportRecordSets(context.Background(), projectId, zoneId).ExportRecordSetsPayload(exportRecordSetsPayload).Execute()
@@ -576,22 +576,22 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetRecordSet", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
-		rrSetIdValue := "rrSetId"
-		path = strings.Replace(path, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		rrSetIdValue := "rrSetId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RecordSetResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -625,29 +625,29 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
-		rrSetId := "rrSetId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
+		rrSetId := rrSetIdValue
 
 		resp, reqErr := apiClient.GetRecordSet(context.Background(), projectId, zoneId, rrSetId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetZone", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -681,28 +681,28 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 
 		resp, reqErr := apiClient.GetZone(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ImportRecordSets", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/import"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/import"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImportRecordSetsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -736,8 +736,8 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 		importRecordSetsPayload := ImportRecordSetsPayload{}
 
 		resp, reqErr := apiClient.ImportRecordSets(context.Background(), projectId, zoneId).ImportRecordSetsPayload(importRecordSetsPayload).Execute()
@@ -745,20 +745,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListLabels", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/labels"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/labels"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListLabelsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -792,28 +792,28 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 
 		resp, reqErr := apiClient.ListLabels(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListRecordSets", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListRecordSetsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -847,26 +847,26 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 
 		resp, reqErr := apiClient.ListRecordSets(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListZones", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListZonesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -900,25 +900,25 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListZones(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService MoveZone", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/move-zone"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/move-zone"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -952,7 +952,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		moveZonePayload := MoveZonePayload{}
 
 		resp, reqErr := apiClient.MoveZone(context.Background(), projectId).MoveZonePayload(moveZonePayload).Execute()
@@ -960,22 +960,22 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateRecord", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}/records"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
-		rrSetIdValue := "rrSetId"
-		path = strings.Replace(path, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}/records"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		rrSetIdValue := "rrSetId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1009,9 +1009,9 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
-		rrSetId := "rrSetId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
+		rrSetId := rrSetIdValue
 		partialUpdateRecordPayload := PartialUpdateRecordPayload{}
 
 		resp, reqErr := apiClient.PartialUpdateRecord(context.Background(), projectId, zoneId, rrSetId).PartialUpdateRecordPayload(partialUpdateRecordPayload).Execute()
@@ -1019,22 +1019,22 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateRecordSet", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
-		rrSetIdValue := "rrSetId"
-		path = strings.Replace(path, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		rrSetIdValue := "rrSetId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1068,9 +1068,9 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
-		rrSetId := "rrSetId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
+		rrSetId := rrSetIdValue
 		partialUpdateRecordSetPayload := PartialUpdateRecordSetPayload{}
 
 		resp, reqErr := apiClient.PartialUpdateRecordSet(context.Background(), projectId, zoneId, rrSetId).PartialUpdateRecordSetPayload(partialUpdateRecordSetPayload).Execute()
@@ -1078,20 +1078,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateZone", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1125,8 +1125,8 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 		partialUpdateZonePayload := PartialUpdateZonePayload{}
 
 		resp, reqErr := apiClient.PartialUpdateZone(context.Background(), projectId, zoneId).PartialUpdateZonePayload(partialUpdateZonePayload).Execute()
@@ -1134,22 +1134,22 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService RestoreRecordSet", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}/restores"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
-		rrSetIdValue := "rrSetId"
-		path = strings.Replace(path, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}/restores"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		rrSetIdValue := "rrSetId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1183,29 +1183,29 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
-		rrSetId := "rrSetId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
+		rrSetId := rrSetIdValue
 
 		resp, reqErr := apiClient.RestoreRecordSet(context.Background(), projectId, zoneId, rrSetId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService RestoreZone", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/restores"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/restores"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1239,28 +1239,28 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 
 		resp, reqErr := apiClient.RestoreZone(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService RetrieveZone", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/retrieve"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/retrieve"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1294,28 +1294,28 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 
 		resp, reqErr := apiClient.RetrieveZone(context.Background(), projectId, zoneId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ValidateMoveCode", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/zones/{zoneId}/move-code-validation"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		zoneIdValue := "zoneId"
-		path = strings.Replace(path, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
+		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/move-code-validation"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		zoneIdValue := "zoneId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -1349,8 +1349,8 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		zoneId := "zoneId"
+		projectId := projectIdValue
+		zoneId := zoneIdValue
 		validateMoveCodePayload := ValidateMoveCodePayload{}
 
 		resp, reqErr := apiClient.ValidateMoveCode(context.Background(), projectId, zoneId).ValidateMoveCodePayload(validateMoveCodePayload).Execute()
@@ -1358,7 +1358,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})

@@ -17,9 +17,29 @@ import (
 // checks if the HandlersInfraGetFlavorsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HandlersInfraGetFlavorsResponse{}
 
+/*
+	types and functions for flavors
+*/
+
+// isArray
+type HandlersInfraGetFlavorsResponseGetFlavorsAttributeType = *[]HandlersInfraFlavor
+type HandlersInfraGetFlavorsResponseGetFlavorsArgType = []HandlersInfraFlavor
+type HandlersInfraGetFlavorsResponseGetFlavorsRetType = []HandlersInfraFlavor
+
+func getHandlersInfraGetFlavorsResponseGetFlavorsAttributeTypeOk(arg HandlersInfraGetFlavorsResponseGetFlavorsAttributeType) (ret HandlersInfraGetFlavorsResponseGetFlavorsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHandlersInfraGetFlavorsResponseGetFlavorsAttributeType(arg *HandlersInfraGetFlavorsResponseGetFlavorsAttributeType, val HandlersInfraGetFlavorsResponseGetFlavorsRetType) {
+	*arg = &val
+}
+
 // HandlersInfraGetFlavorsResponse struct for HandlersInfraGetFlavorsResponse
 type HandlersInfraGetFlavorsResponse struct {
-	Flavors *[]HandlersInfraFlavor `json:"flavors,omitempty"`
+	Flavors HandlersInfraGetFlavorsResponseGetFlavorsAttributeType `json:"flavors,omitempty"`
 }
 
 // NewHandlersInfraGetFlavorsResponse instantiates a new HandlersInfraGetFlavorsResponse object
@@ -40,41 +60,32 @@ func NewHandlersInfraGetFlavorsResponseWithDefaults() *HandlersInfraGetFlavorsRe
 }
 
 // GetFlavors returns the Flavors field value if set, zero value otherwise.
-func (o *HandlersInfraGetFlavorsResponse) GetFlavors() *[]HandlersInfraFlavor {
-	if o == nil || IsNil(o.Flavors) {
-		var ret *[]HandlersInfraFlavor
-		return ret
-	}
-	return o.Flavors
+func (o *HandlersInfraGetFlavorsResponse) GetFlavors() (res HandlersInfraGetFlavorsResponseGetFlavorsRetType) {
+	res, _ = o.GetFlavorsOk()
+	return
 }
 
 // GetFlavorsOk returns a tuple with the Flavors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlersInfraGetFlavorsResponse) GetFlavorsOk() (*[]HandlersInfraFlavor, bool) {
-	if o == nil || IsNil(o.Flavors) {
-		return nil, false
-	}
-	return o.Flavors, true
+func (o *HandlersInfraGetFlavorsResponse) GetFlavorsOk() (ret HandlersInfraGetFlavorsResponseGetFlavorsRetType, ok bool) {
+	return getHandlersInfraGetFlavorsResponseGetFlavorsAttributeTypeOk(o.Flavors)
 }
 
 // HasFlavors returns a boolean if a field has been set.
 func (o *HandlersInfraGetFlavorsResponse) HasFlavors() bool {
-	if o != nil && !IsNil(o.Flavors) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFlavorsOk()
+	return ok
 }
 
 // SetFlavors gets a reference to the given []HandlersInfraFlavor and assigns it to the Flavors field.
-func (o *HandlersInfraGetFlavorsResponse) SetFlavors(v *[]HandlersInfraFlavor) {
-	o.Flavors = v
+func (o *HandlersInfraGetFlavorsResponse) SetFlavors(v HandlersInfraGetFlavorsResponseGetFlavorsRetType) {
+	setHandlersInfraGetFlavorsResponseGetFlavorsAttributeType(&o.Flavors, v)
 }
 
 func (o HandlersInfraGetFlavorsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Flavors) {
-		toSerialize["flavors"] = o.Flavors
+	if val, ok := getHandlersInfraGetFlavorsResponseGetFlavorsAttributeTypeOk(o.Flavors); ok {
+		toSerialize["Flavors"] = val
 	}
 	return toSerialize, nil
 }

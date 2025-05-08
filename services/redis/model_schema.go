@@ -17,10 +17,30 @@ import (
 // checks if the Schema type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Schema{}
 
+/*
+	types and functions for parameters
+*/
+
+// isFreeform
+type SchemaGetParametersAttributeType = *map[string]interface{}
+type SchemaGetParametersArgType = map[string]interface{}
+type SchemaGetParametersRetType = map[string]interface{}
+
+func getSchemaGetParametersAttributeTypeOk(arg SchemaGetParametersAttributeType) (ret SchemaGetParametersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSchemaGetParametersAttributeType(arg *SchemaGetParametersAttributeType, val SchemaGetParametersRetType) {
+	*arg = &val
+}
+
 // Schema struct for Schema
 type Schema struct {
 	// REQUIRED
-	Parameters *map[string]interface{} `json:"parameters"`
+	Parameters SchemaGetParametersAttributeType `json:"parameters"`
 }
 
 type _Schema Schema
@@ -29,9 +49,9 @@ type _Schema Schema
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSchema(parameters *map[string]interface{}) *Schema {
+func NewSchema(parameters SchemaGetParametersArgType) *Schema {
 	this := Schema{}
-	this.Parameters = parameters
+	setSchemaGetParametersAttributeType(&this.Parameters, parameters)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewSchemaWithDefaults() *Schema {
 }
 
 // GetParameters returns the Parameters field value
-func (o *Schema) GetParameters() *map[string]interface{} {
-	if o == nil || IsNil(o.Parameters) {
-		var ret *map[string]interface{}
-		return ret
-	}
-
-	return o.Parameters
+func (o *Schema) GetParameters() (ret SchemaGetParametersRetType) {
+	ret, _ = o.GetParametersOk()
+	return ret
 }
 
 // GetParametersOk returns a tuple with the Parameters field value
 // and a boolean to check if the value has been set.
-func (o *Schema) GetParametersOk() (*map[string]interface{}, bool) {
-	if o == nil {
-		return &map[string]interface{}{}, false
-	}
-	return o.Parameters, true
+func (o *Schema) GetParametersOk() (ret SchemaGetParametersRetType, ok bool) {
+	return getSchemaGetParametersAttributeTypeOk(o.Parameters)
 }
 
 // SetParameters sets field value
-func (o *Schema) SetParameters(v *map[string]interface{}) {
-	o.Parameters = v
+func (o *Schema) SetParameters(v SchemaGetParametersRetType) {
+	setSchemaGetParametersAttributeType(&o.Parameters, v)
 }
 
 func (o Schema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["parameters"] = o.Parameters
+	if val, ok := getSchemaGetParametersAttributeTypeOk(o.Parameters); ok {
+		toSerialize["Parameters"] = val
+	}
 	return toSerialize, nil
 }
 

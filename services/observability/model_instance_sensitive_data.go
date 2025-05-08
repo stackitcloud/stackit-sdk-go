@@ -17,53 +17,530 @@ import (
 // checks if the InstanceSensitiveData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceSensitiveData{}
 
+/*
+	types and functions for alertingUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetAlertingUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetAlertingUrlAttributeTypeOk(arg InstanceSensitiveDataGetAlertingUrlAttributeType) (ret InstanceSensitiveDataGetAlertingUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetAlertingUrlAttributeType(arg *InstanceSensitiveDataGetAlertingUrlAttributeType, val InstanceSensitiveDataGetAlertingUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetAlertingUrlArgType = string
+type InstanceSensitiveDataGetAlertingUrlRetType = string
+
+/*
+	types and functions for cluster
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetClusterAttributeType = *string
+
+func getInstanceSensitiveDataGetClusterAttributeTypeOk(arg InstanceSensitiveDataGetClusterAttributeType) (ret InstanceSensitiveDataGetClusterRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetClusterAttributeType(arg *InstanceSensitiveDataGetClusterAttributeType, val InstanceSensitiveDataGetClusterRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetClusterArgType = string
+type InstanceSensitiveDataGetClusterRetType = string
+
+/*
+	types and functions for dashboardUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetDashboardUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetDashboardUrlAttributeTypeOk(arg InstanceSensitiveDataGetDashboardUrlAttributeType) (ret InstanceSensitiveDataGetDashboardUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetDashboardUrlAttributeType(arg *InstanceSensitiveDataGetDashboardUrlAttributeType, val InstanceSensitiveDataGetDashboardUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetDashboardUrlArgType = string
+type InstanceSensitiveDataGetDashboardUrlRetType = string
+
+/*
+	types and functions for grafanaAdminPassword
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetGrafanaAdminPasswordAttributeType = *string
+
+func getInstanceSensitiveDataGetGrafanaAdminPasswordAttributeTypeOk(arg InstanceSensitiveDataGetGrafanaAdminPasswordAttributeType) (ret InstanceSensitiveDataGetGrafanaAdminPasswordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetGrafanaAdminPasswordAttributeType(arg *InstanceSensitiveDataGetGrafanaAdminPasswordAttributeType, val InstanceSensitiveDataGetGrafanaAdminPasswordRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetGrafanaAdminPasswordArgType = string
+type InstanceSensitiveDataGetGrafanaAdminPasswordRetType = string
+
+/*
+	types and functions for grafanaAdminUser
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetGrafanaAdminUserAttributeType = *string
+
+func getInstanceSensitiveDataGetGrafanaAdminUserAttributeTypeOk(arg InstanceSensitiveDataGetGrafanaAdminUserAttributeType) (ret InstanceSensitiveDataGetGrafanaAdminUserRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetGrafanaAdminUserAttributeType(arg *InstanceSensitiveDataGetGrafanaAdminUserAttributeType, val InstanceSensitiveDataGetGrafanaAdminUserRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetGrafanaAdminUserArgType = string
+type InstanceSensitiveDataGetGrafanaAdminUserRetType = string
+
+/*
+	types and functions for grafanaPublicReadAccess
+*/
+
+// isBoolean
+type InstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType = *bool
+type InstanceSensitiveDatagetGrafanaPublicReadAccessArgType = bool
+type InstanceSensitiveDatagetGrafanaPublicReadAccessRetType = bool
+
+func getInstanceSensitiveDatagetGrafanaPublicReadAccessAttributeTypeOk(arg InstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType) (ret InstanceSensitiveDatagetGrafanaPublicReadAccessRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType(arg *InstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType, val InstanceSensitiveDatagetGrafanaPublicReadAccessRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for grafanaUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetGrafanaUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetGrafanaUrlAttributeTypeOk(arg InstanceSensitiveDataGetGrafanaUrlAttributeType) (ret InstanceSensitiveDataGetGrafanaUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetGrafanaUrlAttributeType(arg *InstanceSensitiveDataGetGrafanaUrlAttributeType, val InstanceSensitiveDataGetGrafanaUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetGrafanaUrlArgType = string
+type InstanceSensitiveDataGetGrafanaUrlRetType = string
+
+/*
+	types and functions for grafanaUseStackitSso
+*/
+
+// isBoolean
+type InstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType = *bool
+type InstanceSensitiveDatagetGrafanaUseStackitSsoArgType = bool
+type InstanceSensitiveDatagetGrafanaUseStackitSsoRetType = bool
+
+func getInstanceSensitiveDatagetGrafanaUseStackitSsoAttributeTypeOk(arg InstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType) (ret InstanceSensitiveDatagetGrafanaUseStackitSsoRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType(arg *InstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType, val InstanceSensitiveDatagetGrafanaUseStackitSsoRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for instance
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetInstanceAttributeType = *string
+
+func getInstanceSensitiveDataGetInstanceAttributeTypeOk(arg InstanceSensitiveDataGetInstanceAttributeType) (ret InstanceSensitiveDataGetInstanceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetInstanceAttributeType(arg *InstanceSensitiveDataGetInstanceAttributeType, val InstanceSensitiveDataGetInstanceRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetInstanceArgType = string
+type InstanceSensitiveDataGetInstanceRetType = string
+
+/*
+	types and functions for jaegerTracesUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetJaegerTracesUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetJaegerTracesUrlAttributeTypeOk(arg InstanceSensitiveDataGetJaegerTracesUrlAttributeType) (ret InstanceSensitiveDataGetJaegerTracesUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetJaegerTracesUrlAttributeType(arg *InstanceSensitiveDataGetJaegerTracesUrlAttributeType, val InstanceSensitiveDataGetJaegerTracesUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetJaegerTracesUrlArgType = string
+type InstanceSensitiveDataGetJaegerTracesUrlRetType = string
+
+/*
+	types and functions for jaegerUiUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetJaegerUiUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetJaegerUiUrlAttributeTypeOk(arg InstanceSensitiveDataGetJaegerUiUrlAttributeType) (ret InstanceSensitiveDataGetJaegerUiUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetJaegerUiUrlAttributeType(arg *InstanceSensitiveDataGetJaegerUiUrlAttributeType, val InstanceSensitiveDataGetJaegerUiUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetJaegerUiUrlArgType = string
+type InstanceSensitiveDataGetJaegerUiUrlRetType = string
+
+/*
+	types and functions for logsPushUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetLogsPushUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetLogsPushUrlAttributeTypeOk(arg InstanceSensitiveDataGetLogsPushUrlAttributeType) (ret InstanceSensitiveDataGetLogsPushUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetLogsPushUrlAttributeType(arg *InstanceSensitiveDataGetLogsPushUrlAttributeType, val InstanceSensitiveDataGetLogsPushUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetLogsPushUrlArgType = string
+type InstanceSensitiveDataGetLogsPushUrlRetType = string
+
+/*
+	types and functions for logsUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetLogsUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetLogsUrlAttributeTypeOk(arg InstanceSensitiveDataGetLogsUrlAttributeType) (ret InstanceSensitiveDataGetLogsUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetLogsUrlAttributeType(arg *InstanceSensitiveDataGetLogsUrlAttributeType, val InstanceSensitiveDataGetLogsUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetLogsUrlArgType = string
+type InstanceSensitiveDataGetLogsUrlRetType = string
+
+/*
+	types and functions for metricsRetentionTime1h
+*/
+
+// isInteger
+type InstanceSensitiveDataGetMetricsRetentionTime1hAttributeType = *int64
+type InstanceSensitiveDataGetMetricsRetentionTime1hArgType = int64
+type InstanceSensitiveDataGetMetricsRetentionTime1hRetType = int64
+
+func getInstanceSensitiveDataGetMetricsRetentionTime1hAttributeTypeOk(arg InstanceSensitiveDataGetMetricsRetentionTime1hAttributeType) (ret InstanceSensitiveDataGetMetricsRetentionTime1hRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetMetricsRetentionTime1hAttributeType(arg *InstanceSensitiveDataGetMetricsRetentionTime1hAttributeType, val InstanceSensitiveDataGetMetricsRetentionTime1hRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for metricsRetentionTime5m
+*/
+
+// isInteger
+type InstanceSensitiveDataGetMetricsRetentionTime5mAttributeType = *int64
+type InstanceSensitiveDataGetMetricsRetentionTime5mArgType = int64
+type InstanceSensitiveDataGetMetricsRetentionTime5mRetType = int64
+
+func getInstanceSensitiveDataGetMetricsRetentionTime5mAttributeTypeOk(arg InstanceSensitiveDataGetMetricsRetentionTime5mAttributeType) (ret InstanceSensitiveDataGetMetricsRetentionTime5mRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetMetricsRetentionTime5mAttributeType(arg *InstanceSensitiveDataGetMetricsRetentionTime5mAttributeType, val InstanceSensitiveDataGetMetricsRetentionTime5mRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for metricsRetentionTimeRaw
+*/
+
+// isInteger
+type InstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType = *int64
+type InstanceSensitiveDataGetMetricsRetentionTimeRawArgType = int64
+type InstanceSensitiveDataGetMetricsRetentionTimeRawRetType = int64
+
+func getInstanceSensitiveDataGetMetricsRetentionTimeRawAttributeTypeOk(arg InstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType) (ret InstanceSensitiveDataGetMetricsRetentionTimeRawRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType(arg *InstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType, val InstanceSensitiveDataGetMetricsRetentionTimeRawRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for metricsUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetMetricsUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetMetricsUrlAttributeTypeOk(arg InstanceSensitiveDataGetMetricsUrlAttributeType) (ret InstanceSensitiveDataGetMetricsUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetMetricsUrlAttributeType(arg *InstanceSensitiveDataGetMetricsUrlAttributeType, val InstanceSensitiveDataGetMetricsUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetMetricsUrlArgType = string
+type InstanceSensitiveDataGetMetricsUrlRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetNameAttributeType = *string
+
+func getInstanceSensitiveDataGetNameAttributeTypeOk(arg InstanceSensitiveDataGetNameAttributeType) (ret InstanceSensitiveDataGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetNameAttributeType(arg *InstanceSensitiveDataGetNameAttributeType, val InstanceSensitiveDataGetNameRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetNameArgType = string
+type InstanceSensitiveDataGetNameRetType = string
+
+/*
+	types and functions for otlpTracesUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetOtlpTracesUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetOtlpTracesUrlAttributeTypeOk(arg InstanceSensitiveDataGetOtlpTracesUrlAttributeType) (ret InstanceSensitiveDataGetOtlpTracesUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetOtlpTracesUrlAttributeType(arg *InstanceSensitiveDataGetOtlpTracesUrlAttributeType, val InstanceSensitiveDataGetOtlpTracesUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetOtlpTracesUrlArgType = string
+type InstanceSensitiveDataGetOtlpTracesUrlRetType = string
+
+/*
+	types and functions for plan
+*/
+
+// isModel
+type InstanceSensitiveDataGetPlanAttributeType = *PlanModel
+type InstanceSensitiveDataGetPlanArgType = PlanModel
+type InstanceSensitiveDataGetPlanRetType = PlanModel
+
+func getInstanceSensitiveDataGetPlanAttributeTypeOk(arg InstanceSensitiveDataGetPlanAttributeType) (ret InstanceSensitiveDataGetPlanRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetPlanAttributeType(arg *InstanceSensitiveDataGetPlanAttributeType, val InstanceSensitiveDataGetPlanRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for pushMetricsUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetPushMetricsUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetPushMetricsUrlAttributeTypeOk(arg InstanceSensitiveDataGetPushMetricsUrlAttributeType) (ret InstanceSensitiveDataGetPushMetricsUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetPushMetricsUrlAttributeType(arg *InstanceSensitiveDataGetPushMetricsUrlAttributeType, val InstanceSensitiveDataGetPushMetricsUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetPushMetricsUrlArgType = string
+type InstanceSensitiveDataGetPushMetricsUrlRetType = string
+
+/*
+	types and functions for targetsUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetTargetsUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetTargetsUrlAttributeTypeOk(arg InstanceSensitiveDataGetTargetsUrlAttributeType) (ret InstanceSensitiveDataGetTargetsUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetTargetsUrlAttributeType(arg *InstanceSensitiveDataGetTargetsUrlAttributeType, val InstanceSensitiveDataGetTargetsUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetTargetsUrlArgType = string
+type InstanceSensitiveDataGetTargetsUrlRetType = string
+
+/*
+	types and functions for zipkinSpansUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetZipkinSpansUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetZipkinSpansUrlAttributeTypeOk(arg InstanceSensitiveDataGetZipkinSpansUrlAttributeType) (ret InstanceSensitiveDataGetZipkinSpansUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetZipkinSpansUrlAttributeType(arg *InstanceSensitiveDataGetZipkinSpansUrlAttributeType, val InstanceSensitiveDataGetZipkinSpansUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetZipkinSpansUrlArgType = string
+type InstanceSensitiveDataGetZipkinSpansUrlRetType = string
+
 // InstanceSensitiveData struct for InstanceSensitiveData
 type InstanceSensitiveData struct {
 	// REQUIRED
-	AlertingUrl *string `json:"alertingUrl"`
+	AlertingUrl InstanceSensitiveDataGetAlertingUrlAttributeType `json:"alertingUrl"`
 	// REQUIRED
-	Cluster *string `json:"cluster"`
+	Cluster InstanceSensitiveDataGetClusterAttributeType `json:"cluster"`
 	// REQUIRED
-	DashboardUrl *string `json:"dashboardUrl"`
+	DashboardUrl InstanceSensitiveDataGetDashboardUrlAttributeType `json:"dashboardUrl"`
 	// REQUIRED
-	GrafanaAdminPassword *string `json:"grafanaAdminPassword"`
+	GrafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordAttributeType `json:"grafanaAdminPassword"`
 	// REQUIRED
-	GrafanaAdminUser *string `json:"grafanaAdminUser"`
+	GrafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserAttributeType `json:"grafanaAdminUser"`
 	// REQUIRED
-	GrafanaPublicReadAccess *bool `json:"grafanaPublicReadAccess"`
+	GrafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType `json:"grafanaPublicReadAccess"`
 	// REQUIRED
-	GrafanaUrl *string `json:"grafanaUrl"`
+	GrafanaUrl InstanceSensitiveDataGetGrafanaUrlAttributeType `json:"grafanaUrl"`
 	// REQUIRED
-	GrafanaUseStackitSso *bool `json:"grafanaUseStackitSso"`
+	GrafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType `json:"grafanaUseStackitSso"`
 	// REQUIRED
-	Instance *string `json:"instance"`
+	Instance InstanceSensitiveDataGetInstanceAttributeType `json:"instance"`
 	// REQUIRED
-	JaegerTracesUrl *string `json:"jaegerTracesUrl"`
+	JaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlAttributeType `json:"jaegerTracesUrl"`
 	// REQUIRED
-	JaegerUiUrl *string `json:"jaegerUiUrl"`
+	JaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlAttributeType `json:"jaegerUiUrl"`
 	// REQUIRED
-	LogsPushUrl *string `json:"logsPushUrl"`
+	LogsPushUrl InstanceSensitiveDataGetLogsPushUrlAttributeType `json:"logsPushUrl"`
 	// REQUIRED
-	LogsUrl *string `json:"logsUrl"`
+	LogsUrl InstanceSensitiveDataGetLogsUrlAttributeType `json:"logsUrl"`
 	// REQUIRED
-	MetricsRetentionTime1h *int64 `json:"metricsRetentionTime1h"`
+	MetricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h"`
 	// REQUIRED
-	MetricsRetentionTime5m *int64 `json:"metricsRetentionTime5m"`
+	MetricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m"`
 	// REQUIRED
-	MetricsRetentionTimeRaw *int64 `json:"metricsRetentionTimeRaw"`
+	MetricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw"`
 	// REQUIRED
-	MetricsUrl *string `json:"metricsUrl"`
-	Name       *string `json:"name,omitempty"`
+	MetricsUrl InstanceSensitiveDataGetMetricsUrlAttributeType `json:"metricsUrl"`
+	Name       InstanceSensitiveDataGetNameAttributeType       `json:"name,omitempty"`
 	// REQUIRED
-	OtlpTracesUrl *string `json:"otlpTracesUrl"`
+	OtlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlAttributeType `json:"otlpTracesUrl"`
 	// REQUIRED
-	Plan *PlanModel `json:"plan"`
+	Plan InstanceSensitiveDataGetPlanAttributeType `json:"plan"`
 	// REQUIRED
-	PushMetricsUrl *string `json:"pushMetricsUrl"`
+	PushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlAttributeType `json:"pushMetricsUrl"`
 	// REQUIRED
-	TargetsUrl *string `json:"targetsUrl"`
+	TargetsUrl InstanceSensitiveDataGetTargetsUrlAttributeType `json:"targetsUrl"`
 	// REQUIRED
-	ZipkinSpansUrl *string `json:"zipkinSpansUrl"`
+	ZipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlAttributeType `json:"zipkinSpansUrl"`
 }
 
 type _InstanceSensitiveData InstanceSensitiveData
@@ -72,32 +549,30 @@ type _InstanceSensitiveData InstanceSensitiveData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceSensitiveData(alertingUrl *string, cluster *string, dashboardUrl *string, grafanaAdminPassword *string, grafanaAdminUser *string, grafanaPublicReadAccess *bool, grafanaUrl *string, grafanaUseStackitSso *bool, instance *string, jaegerTracesUrl *string, jaegerUiUrl *string, logsPushUrl *string, logsUrl *string, metricsRetentionTime1h *int64, metricsRetentionTime5m *int64, metricsRetentionTimeRaw *int64, metricsUrl *string, otlpTracesUrl *string, plan *PlanModel, pushMetricsUrl *string, targetsUrl *string, zipkinSpansUrl *string) *InstanceSensitiveData {
+func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArgType, cluster InstanceSensitiveDataGetClusterArgType, dashboardUrl InstanceSensitiveDataGetDashboardUrlArgType, grafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordArgType, grafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserArgType, grafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessArgType, grafanaUrl InstanceSensitiveDataGetGrafanaUrlArgType, grafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoArgType, instance InstanceSensitiveDataGetInstanceArgType, jaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlArgType, jaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlArgType, logsPushUrl InstanceSensitiveDataGetLogsPushUrlArgType, logsUrl InstanceSensitiveDataGetLogsUrlArgType, metricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawArgType, metricsUrl InstanceSensitiveDataGetMetricsUrlArgType, otlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlArgType, plan InstanceSensitiveDataGetPlanArgType, pushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlArgType, targetsUrl InstanceSensitiveDataGetTargetsUrlArgType, zipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlArgType) *InstanceSensitiveData {
 	this := InstanceSensitiveData{}
-	this.AlertingUrl = alertingUrl
-	this.Cluster = cluster
-	this.DashboardUrl = dashboardUrl
-	this.GrafanaAdminPassword = grafanaAdminPassword
-	this.GrafanaAdminUser = grafanaAdminUser
-	this.GrafanaPublicReadAccess = grafanaPublicReadAccess
-	this.GrafanaUrl = grafanaUrl
-	this.GrafanaUseStackitSso = grafanaUseStackitSso
-	this.Instance = instance
-	this.JaegerTracesUrl = jaegerTracesUrl
-	this.JaegerUiUrl = jaegerUiUrl
-	this.LogsPushUrl = logsPushUrl
-	this.LogsUrl = logsUrl
-	this.MetricsRetentionTime1h = metricsRetentionTime1h
-	this.MetricsRetentionTime5m = metricsRetentionTime5m
-	this.MetricsRetentionTimeRaw = metricsRetentionTimeRaw
-	this.MetricsUrl = metricsUrl
-	var name string = ""
-	this.Name = &name
-	this.OtlpTracesUrl = otlpTracesUrl
-	this.Plan = plan
-	this.PushMetricsUrl = pushMetricsUrl
-	this.TargetsUrl = targetsUrl
-	this.ZipkinSpansUrl = zipkinSpansUrl
+	setInstanceSensitiveDataGetAlertingUrlAttributeType(&this.AlertingUrl, alertingUrl)
+	setInstanceSensitiveDataGetClusterAttributeType(&this.Cluster, cluster)
+	setInstanceSensitiveDataGetDashboardUrlAttributeType(&this.DashboardUrl, dashboardUrl)
+	setInstanceSensitiveDataGetGrafanaAdminPasswordAttributeType(&this.GrafanaAdminPassword, grafanaAdminPassword)
+	setInstanceSensitiveDataGetGrafanaAdminUserAttributeType(&this.GrafanaAdminUser, grafanaAdminUser)
+	setInstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType(&this.GrafanaPublicReadAccess, grafanaPublicReadAccess)
+	setInstanceSensitiveDataGetGrafanaUrlAttributeType(&this.GrafanaUrl, grafanaUrl)
+	setInstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType(&this.GrafanaUseStackitSso, grafanaUseStackitSso)
+	setInstanceSensitiveDataGetInstanceAttributeType(&this.Instance, instance)
+	setInstanceSensitiveDataGetJaegerTracesUrlAttributeType(&this.JaegerTracesUrl, jaegerTracesUrl)
+	setInstanceSensitiveDataGetJaegerUiUrlAttributeType(&this.JaegerUiUrl, jaegerUiUrl)
+	setInstanceSensitiveDataGetLogsPushUrlAttributeType(&this.LogsPushUrl, logsPushUrl)
+	setInstanceSensitiveDataGetLogsUrlAttributeType(&this.LogsUrl, logsUrl)
+	setInstanceSensitiveDataGetMetricsRetentionTime1hAttributeType(&this.MetricsRetentionTime1h, metricsRetentionTime1h)
+	setInstanceSensitiveDataGetMetricsRetentionTime5mAttributeType(&this.MetricsRetentionTime5m, metricsRetentionTime5m)
+	setInstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType(&this.MetricsRetentionTimeRaw, metricsRetentionTimeRaw)
+	setInstanceSensitiveDataGetMetricsUrlAttributeType(&this.MetricsUrl, metricsUrl)
+	setInstanceSensitiveDataGetOtlpTracesUrlAttributeType(&this.OtlpTracesUrl, otlpTracesUrl)
+	setInstanceSensitiveDataGetPlanAttributeType(&this.Plan, plan)
+	setInstanceSensitiveDataGetPushMetricsUrlAttributeType(&this.PushMetricsUrl, pushMetricsUrl)
+	setInstanceSensitiveDataGetTargetsUrlAttributeType(&this.TargetsUrl, targetsUrl)
+	setInstanceSensitiveDataGetZipkinSpansUrlAttributeType(&this.ZipkinSpansUrl, zipkinSpansUrl)
 	return &this
 }
 
@@ -112,592 +587,473 @@ func NewInstanceSensitiveDataWithDefaults() *InstanceSensitiveData {
 }
 
 // GetAlertingUrl returns the AlertingUrl field value
-func (o *InstanceSensitiveData) GetAlertingUrl() *string {
-	if o == nil || IsNil(o.AlertingUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.AlertingUrl
+func (o *InstanceSensitiveData) GetAlertingUrl() (ret InstanceSensitiveDataGetAlertingUrlRetType) {
+	ret, _ = o.GetAlertingUrlOk()
+	return ret
 }
 
 // GetAlertingUrlOk returns a tuple with the AlertingUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetAlertingUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AlertingUrl, true
+func (o *InstanceSensitiveData) GetAlertingUrlOk() (ret InstanceSensitiveDataGetAlertingUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetAlertingUrlAttributeTypeOk(o.AlertingUrl)
 }
 
 // SetAlertingUrl sets field value
-func (o *InstanceSensitiveData) SetAlertingUrl(v *string) {
-	o.AlertingUrl = v
+func (o *InstanceSensitiveData) SetAlertingUrl(v InstanceSensitiveDataGetAlertingUrlRetType) {
+	setInstanceSensitiveDataGetAlertingUrlAttributeType(&o.AlertingUrl, v)
 }
 
 // GetCluster returns the Cluster field value
-func (o *InstanceSensitiveData) GetCluster() *string {
-	if o == nil || IsNil(o.Cluster) {
-		var ret *string
-		return ret
-	}
-
-	return o.Cluster
+func (o *InstanceSensitiveData) GetCluster() (ret InstanceSensitiveDataGetClusterRetType) {
+	ret, _ = o.GetClusterOk()
+	return ret
 }
 
 // GetClusterOk returns a tuple with the Cluster field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetClusterOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Cluster, true
+func (o *InstanceSensitiveData) GetClusterOk() (ret InstanceSensitiveDataGetClusterRetType, ok bool) {
+	return getInstanceSensitiveDataGetClusterAttributeTypeOk(o.Cluster)
 }
 
 // SetCluster sets field value
-func (o *InstanceSensitiveData) SetCluster(v *string) {
-	o.Cluster = v
+func (o *InstanceSensitiveData) SetCluster(v InstanceSensitiveDataGetClusterRetType) {
+	setInstanceSensitiveDataGetClusterAttributeType(&o.Cluster, v)
 }
 
 // GetDashboardUrl returns the DashboardUrl field value
-func (o *InstanceSensitiveData) GetDashboardUrl() *string {
-	if o == nil || IsNil(o.DashboardUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.DashboardUrl
+func (o *InstanceSensitiveData) GetDashboardUrl() (ret InstanceSensitiveDataGetDashboardUrlRetType) {
+	ret, _ = o.GetDashboardUrlOk()
+	return ret
 }
 
 // GetDashboardUrlOk returns a tuple with the DashboardUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetDashboardUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DashboardUrl, true
+func (o *InstanceSensitiveData) GetDashboardUrlOk() (ret InstanceSensitiveDataGetDashboardUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetDashboardUrlAttributeTypeOk(o.DashboardUrl)
 }
 
 // SetDashboardUrl sets field value
-func (o *InstanceSensitiveData) SetDashboardUrl(v *string) {
-	o.DashboardUrl = v
+func (o *InstanceSensitiveData) SetDashboardUrl(v InstanceSensitiveDataGetDashboardUrlRetType) {
+	setInstanceSensitiveDataGetDashboardUrlAttributeType(&o.DashboardUrl, v)
 }
 
 // GetGrafanaAdminPassword returns the GrafanaAdminPassword field value
-func (o *InstanceSensitiveData) GetGrafanaAdminPassword() *string {
-	if o == nil || IsNil(o.GrafanaAdminPassword) {
-		var ret *string
-		return ret
-	}
-
-	return o.GrafanaAdminPassword
+func (o *InstanceSensitiveData) GetGrafanaAdminPassword() (ret InstanceSensitiveDataGetGrafanaAdminPasswordRetType) {
+	ret, _ = o.GetGrafanaAdminPasswordOk()
+	return ret
 }
 
 // GetGrafanaAdminPasswordOk returns a tuple with the GrafanaAdminPassword field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetGrafanaAdminPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaAdminPassword, true
+func (o *InstanceSensitiveData) GetGrafanaAdminPasswordOk() (ret InstanceSensitiveDataGetGrafanaAdminPasswordRetType, ok bool) {
+	return getInstanceSensitiveDataGetGrafanaAdminPasswordAttributeTypeOk(o.GrafanaAdminPassword)
 }
 
 // SetGrafanaAdminPassword sets field value
-func (o *InstanceSensitiveData) SetGrafanaAdminPassword(v *string) {
-	o.GrafanaAdminPassword = v
+func (o *InstanceSensitiveData) SetGrafanaAdminPassword(v InstanceSensitiveDataGetGrafanaAdminPasswordRetType) {
+	setInstanceSensitiveDataGetGrafanaAdminPasswordAttributeType(&o.GrafanaAdminPassword, v)
 }
 
 // GetGrafanaAdminUser returns the GrafanaAdminUser field value
-func (o *InstanceSensitiveData) GetGrafanaAdminUser() *string {
-	if o == nil || IsNil(o.GrafanaAdminUser) {
-		var ret *string
-		return ret
-	}
-
-	return o.GrafanaAdminUser
+func (o *InstanceSensitiveData) GetGrafanaAdminUser() (ret InstanceSensitiveDataGetGrafanaAdminUserRetType) {
+	ret, _ = o.GetGrafanaAdminUserOk()
+	return ret
 }
 
 // GetGrafanaAdminUserOk returns a tuple with the GrafanaAdminUser field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetGrafanaAdminUserOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaAdminUser, true
+func (o *InstanceSensitiveData) GetGrafanaAdminUserOk() (ret InstanceSensitiveDataGetGrafanaAdminUserRetType, ok bool) {
+	return getInstanceSensitiveDataGetGrafanaAdminUserAttributeTypeOk(o.GrafanaAdminUser)
 }
 
 // SetGrafanaAdminUser sets field value
-func (o *InstanceSensitiveData) SetGrafanaAdminUser(v *string) {
-	o.GrafanaAdminUser = v
+func (o *InstanceSensitiveData) SetGrafanaAdminUser(v InstanceSensitiveDataGetGrafanaAdminUserRetType) {
+	setInstanceSensitiveDataGetGrafanaAdminUserAttributeType(&o.GrafanaAdminUser, v)
 }
 
 // GetGrafanaPublicReadAccess returns the GrafanaPublicReadAccess field value
-func (o *InstanceSensitiveData) GetGrafanaPublicReadAccess() *bool {
-	if o == nil || IsNil(o.GrafanaPublicReadAccess) {
-		var ret *bool
-		return ret
-	}
-
-	return o.GrafanaPublicReadAccess
+func (o *InstanceSensitiveData) GetGrafanaPublicReadAccess() (ret InstanceSensitiveDatagetGrafanaPublicReadAccessRetType) {
+	ret, _ = o.GetGrafanaPublicReadAccessOk()
+	return ret
 }
 
 // GetGrafanaPublicReadAccessOk returns a tuple with the GrafanaPublicReadAccess field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetGrafanaPublicReadAccessOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaPublicReadAccess, true
+func (o *InstanceSensitiveData) GetGrafanaPublicReadAccessOk() (ret InstanceSensitiveDatagetGrafanaPublicReadAccessRetType, ok bool) {
+	return getInstanceSensitiveDatagetGrafanaPublicReadAccessAttributeTypeOk(o.GrafanaPublicReadAccess)
 }
 
 // SetGrafanaPublicReadAccess sets field value
-func (o *InstanceSensitiveData) SetGrafanaPublicReadAccess(v *bool) {
-	o.GrafanaPublicReadAccess = v
+func (o *InstanceSensitiveData) SetGrafanaPublicReadAccess(v InstanceSensitiveDatagetGrafanaPublicReadAccessRetType) {
+	setInstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType(&o.GrafanaPublicReadAccess, v)
 }
 
 // GetGrafanaUrl returns the GrafanaUrl field value
-func (o *InstanceSensitiveData) GetGrafanaUrl() *string {
-	if o == nil || IsNil(o.GrafanaUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.GrafanaUrl
+func (o *InstanceSensitiveData) GetGrafanaUrl() (ret InstanceSensitiveDataGetGrafanaUrlRetType) {
+	ret, _ = o.GetGrafanaUrlOk()
+	return ret
 }
 
 // GetGrafanaUrlOk returns a tuple with the GrafanaUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetGrafanaUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaUrl, true
+func (o *InstanceSensitiveData) GetGrafanaUrlOk() (ret InstanceSensitiveDataGetGrafanaUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetGrafanaUrlAttributeTypeOk(o.GrafanaUrl)
 }
 
 // SetGrafanaUrl sets field value
-func (o *InstanceSensitiveData) SetGrafanaUrl(v *string) {
-	o.GrafanaUrl = v
+func (o *InstanceSensitiveData) SetGrafanaUrl(v InstanceSensitiveDataGetGrafanaUrlRetType) {
+	setInstanceSensitiveDataGetGrafanaUrlAttributeType(&o.GrafanaUrl, v)
 }
 
 // GetGrafanaUseStackitSso returns the GrafanaUseStackitSso field value
-func (o *InstanceSensitiveData) GetGrafanaUseStackitSso() *bool {
-	if o == nil || IsNil(o.GrafanaUseStackitSso) {
-		var ret *bool
-		return ret
-	}
-
-	return o.GrafanaUseStackitSso
+func (o *InstanceSensitiveData) GetGrafanaUseStackitSso() (ret InstanceSensitiveDatagetGrafanaUseStackitSsoRetType) {
+	ret, _ = o.GetGrafanaUseStackitSsoOk()
+	return ret
 }
 
 // GetGrafanaUseStackitSsoOk returns a tuple with the GrafanaUseStackitSso field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetGrafanaUseStackitSsoOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaUseStackitSso, true
+func (o *InstanceSensitiveData) GetGrafanaUseStackitSsoOk() (ret InstanceSensitiveDatagetGrafanaUseStackitSsoRetType, ok bool) {
+	return getInstanceSensitiveDatagetGrafanaUseStackitSsoAttributeTypeOk(o.GrafanaUseStackitSso)
 }
 
 // SetGrafanaUseStackitSso sets field value
-func (o *InstanceSensitiveData) SetGrafanaUseStackitSso(v *bool) {
-	o.GrafanaUseStackitSso = v
+func (o *InstanceSensitiveData) SetGrafanaUseStackitSso(v InstanceSensitiveDatagetGrafanaUseStackitSsoRetType) {
+	setInstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType(&o.GrafanaUseStackitSso, v)
 }
 
 // GetInstance returns the Instance field value
-func (o *InstanceSensitiveData) GetInstance() *string {
-	if o == nil || IsNil(o.Instance) {
-		var ret *string
-		return ret
-	}
-
-	return o.Instance
+func (o *InstanceSensitiveData) GetInstance() (ret InstanceSensitiveDataGetInstanceRetType) {
+	ret, _ = o.GetInstanceOk()
+	return ret
 }
 
 // GetInstanceOk returns a tuple with the Instance field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetInstanceOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Instance, true
+func (o *InstanceSensitiveData) GetInstanceOk() (ret InstanceSensitiveDataGetInstanceRetType, ok bool) {
+	return getInstanceSensitiveDataGetInstanceAttributeTypeOk(o.Instance)
 }
 
 // SetInstance sets field value
-func (o *InstanceSensitiveData) SetInstance(v *string) {
-	o.Instance = v
+func (o *InstanceSensitiveData) SetInstance(v InstanceSensitiveDataGetInstanceRetType) {
+	setInstanceSensitiveDataGetInstanceAttributeType(&o.Instance, v)
 }
 
 // GetJaegerTracesUrl returns the JaegerTracesUrl field value
-func (o *InstanceSensitiveData) GetJaegerTracesUrl() *string {
-	if o == nil || IsNil(o.JaegerTracesUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.JaegerTracesUrl
+func (o *InstanceSensitiveData) GetJaegerTracesUrl() (ret InstanceSensitiveDataGetJaegerTracesUrlRetType) {
+	ret, _ = o.GetJaegerTracesUrlOk()
+	return ret
 }
 
 // GetJaegerTracesUrlOk returns a tuple with the JaegerTracesUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetJaegerTracesUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.JaegerTracesUrl, true
+func (o *InstanceSensitiveData) GetJaegerTracesUrlOk() (ret InstanceSensitiveDataGetJaegerTracesUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetJaegerTracesUrlAttributeTypeOk(o.JaegerTracesUrl)
 }
 
 // SetJaegerTracesUrl sets field value
-func (o *InstanceSensitiveData) SetJaegerTracesUrl(v *string) {
-	o.JaegerTracesUrl = v
+func (o *InstanceSensitiveData) SetJaegerTracesUrl(v InstanceSensitiveDataGetJaegerTracesUrlRetType) {
+	setInstanceSensitiveDataGetJaegerTracesUrlAttributeType(&o.JaegerTracesUrl, v)
 }
 
 // GetJaegerUiUrl returns the JaegerUiUrl field value
-func (o *InstanceSensitiveData) GetJaegerUiUrl() *string {
-	if o == nil || IsNil(o.JaegerUiUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.JaegerUiUrl
+func (o *InstanceSensitiveData) GetJaegerUiUrl() (ret InstanceSensitiveDataGetJaegerUiUrlRetType) {
+	ret, _ = o.GetJaegerUiUrlOk()
+	return ret
 }
 
 // GetJaegerUiUrlOk returns a tuple with the JaegerUiUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetJaegerUiUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.JaegerUiUrl, true
+func (o *InstanceSensitiveData) GetJaegerUiUrlOk() (ret InstanceSensitiveDataGetJaegerUiUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetJaegerUiUrlAttributeTypeOk(o.JaegerUiUrl)
 }
 
 // SetJaegerUiUrl sets field value
-func (o *InstanceSensitiveData) SetJaegerUiUrl(v *string) {
-	o.JaegerUiUrl = v
+func (o *InstanceSensitiveData) SetJaegerUiUrl(v InstanceSensitiveDataGetJaegerUiUrlRetType) {
+	setInstanceSensitiveDataGetJaegerUiUrlAttributeType(&o.JaegerUiUrl, v)
 }
 
 // GetLogsPushUrl returns the LogsPushUrl field value
-func (o *InstanceSensitiveData) GetLogsPushUrl() *string {
-	if o == nil || IsNil(o.LogsPushUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.LogsPushUrl
+func (o *InstanceSensitiveData) GetLogsPushUrl() (ret InstanceSensitiveDataGetLogsPushUrlRetType) {
+	ret, _ = o.GetLogsPushUrlOk()
+	return ret
 }
 
 // GetLogsPushUrlOk returns a tuple with the LogsPushUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetLogsPushUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LogsPushUrl, true
+func (o *InstanceSensitiveData) GetLogsPushUrlOk() (ret InstanceSensitiveDataGetLogsPushUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetLogsPushUrlAttributeTypeOk(o.LogsPushUrl)
 }
 
 // SetLogsPushUrl sets field value
-func (o *InstanceSensitiveData) SetLogsPushUrl(v *string) {
-	o.LogsPushUrl = v
+func (o *InstanceSensitiveData) SetLogsPushUrl(v InstanceSensitiveDataGetLogsPushUrlRetType) {
+	setInstanceSensitiveDataGetLogsPushUrlAttributeType(&o.LogsPushUrl, v)
 }
 
 // GetLogsUrl returns the LogsUrl field value
-func (o *InstanceSensitiveData) GetLogsUrl() *string {
-	if o == nil || IsNil(o.LogsUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.LogsUrl
+func (o *InstanceSensitiveData) GetLogsUrl() (ret InstanceSensitiveDataGetLogsUrlRetType) {
+	ret, _ = o.GetLogsUrlOk()
+	return ret
 }
 
 // GetLogsUrlOk returns a tuple with the LogsUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetLogsUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LogsUrl, true
+func (o *InstanceSensitiveData) GetLogsUrlOk() (ret InstanceSensitiveDataGetLogsUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetLogsUrlAttributeTypeOk(o.LogsUrl)
 }
 
 // SetLogsUrl sets field value
-func (o *InstanceSensitiveData) SetLogsUrl(v *string) {
-	o.LogsUrl = v
+func (o *InstanceSensitiveData) SetLogsUrl(v InstanceSensitiveDataGetLogsUrlRetType) {
+	setInstanceSensitiveDataGetLogsUrlAttributeType(&o.LogsUrl, v)
 }
 
 // GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
-func (o *InstanceSensitiveData) GetMetricsRetentionTime1h() *int64 {
-	if o == nil || IsNil(o.MetricsRetentionTime1h) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MetricsRetentionTime1h
+func (o *InstanceSensitiveData) GetMetricsRetentionTime1h() (ret InstanceSensitiveDataGetMetricsRetentionTime1hRetType) {
+	ret, _ = o.GetMetricsRetentionTime1hOk()
+	return ret
 }
 
 // GetMetricsRetentionTime1hOk returns a tuple with the MetricsRetentionTime1h field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetMetricsRetentionTime1hOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTime1h, true
+func (o *InstanceSensitiveData) GetMetricsRetentionTime1hOk() (ret InstanceSensitiveDataGetMetricsRetentionTime1hRetType, ok bool) {
+	return getInstanceSensitiveDataGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h)
 }
 
 // SetMetricsRetentionTime1h sets field value
-func (o *InstanceSensitiveData) SetMetricsRetentionTime1h(v *int64) {
-	o.MetricsRetentionTime1h = v
+func (o *InstanceSensitiveData) SetMetricsRetentionTime1h(v InstanceSensitiveDataGetMetricsRetentionTime1hRetType) {
+	setInstanceSensitiveDataGetMetricsRetentionTime1hAttributeType(&o.MetricsRetentionTime1h, v)
 }
 
 // GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
-func (o *InstanceSensitiveData) GetMetricsRetentionTime5m() *int64 {
-	if o == nil || IsNil(o.MetricsRetentionTime5m) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MetricsRetentionTime5m
+func (o *InstanceSensitiveData) GetMetricsRetentionTime5m() (ret InstanceSensitiveDataGetMetricsRetentionTime5mRetType) {
+	ret, _ = o.GetMetricsRetentionTime5mOk()
+	return ret
 }
 
 // GetMetricsRetentionTime5mOk returns a tuple with the MetricsRetentionTime5m field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetMetricsRetentionTime5mOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTime5m, true
+func (o *InstanceSensitiveData) GetMetricsRetentionTime5mOk() (ret InstanceSensitiveDataGetMetricsRetentionTime5mRetType, ok bool) {
+	return getInstanceSensitiveDataGetMetricsRetentionTime5mAttributeTypeOk(o.MetricsRetentionTime5m)
 }
 
 // SetMetricsRetentionTime5m sets field value
-func (o *InstanceSensitiveData) SetMetricsRetentionTime5m(v *int64) {
-	o.MetricsRetentionTime5m = v
+func (o *InstanceSensitiveData) SetMetricsRetentionTime5m(v InstanceSensitiveDataGetMetricsRetentionTime5mRetType) {
+	setInstanceSensitiveDataGetMetricsRetentionTime5mAttributeType(&o.MetricsRetentionTime5m, v)
 }
 
 // GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
-func (o *InstanceSensitiveData) GetMetricsRetentionTimeRaw() *int64 {
-	if o == nil || IsNil(o.MetricsRetentionTimeRaw) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MetricsRetentionTimeRaw
+func (o *InstanceSensitiveData) GetMetricsRetentionTimeRaw() (ret InstanceSensitiveDataGetMetricsRetentionTimeRawRetType) {
+	ret, _ = o.GetMetricsRetentionTimeRawOk()
+	return ret
 }
 
 // GetMetricsRetentionTimeRawOk returns a tuple with the MetricsRetentionTimeRaw field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetMetricsRetentionTimeRawOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTimeRaw, true
+func (o *InstanceSensitiveData) GetMetricsRetentionTimeRawOk() (ret InstanceSensitiveDataGetMetricsRetentionTimeRawRetType, ok bool) {
+	return getInstanceSensitiveDataGetMetricsRetentionTimeRawAttributeTypeOk(o.MetricsRetentionTimeRaw)
 }
 
 // SetMetricsRetentionTimeRaw sets field value
-func (o *InstanceSensitiveData) SetMetricsRetentionTimeRaw(v *int64) {
-	o.MetricsRetentionTimeRaw = v
+func (o *InstanceSensitiveData) SetMetricsRetentionTimeRaw(v InstanceSensitiveDataGetMetricsRetentionTimeRawRetType) {
+	setInstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType(&o.MetricsRetentionTimeRaw, v)
 }
 
 // GetMetricsUrl returns the MetricsUrl field value
-func (o *InstanceSensitiveData) GetMetricsUrl() *string {
-	if o == nil || IsNil(o.MetricsUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.MetricsUrl
+func (o *InstanceSensitiveData) GetMetricsUrl() (ret InstanceSensitiveDataGetMetricsUrlRetType) {
+	ret, _ = o.GetMetricsUrlOk()
+	return ret
 }
 
 // GetMetricsUrlOk returns a tuple with the MetricsUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetMetricsUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsUrl, true
+func (o *InstanceSensitiveData) GetMetricsUrlOk() (ret InstanceSensitiveDataGetMetricsUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetMetricsUrlAttributeTypeOk(o.MetricsUrl)
 }
 
 // SetMetricsUrl sets field value
-func (o *InstanceSensitiveData) SetMetricsUrl(v *string) {
-	o.MetricsUrl = v
+func (o *InstanceSensitiveData) SetMetricsUrl(v InstanceSensitiveDataGetMetricsUrlRetType) {
+	setInstanceSensitiveDataGetMetricsUrlAttributeType(&o.MetricsUrl, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *InstanceSensitiveData) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *InstanceSensitiveData) GetName() (res InstanceSensitiveDataGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *InstanceSensitiveData) GetNameOk() (ret InstanceSensitiveDataGetNameRetType, ok bool) {
+	return getInstanceSensitiveDataGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *InstanceSensitiveData) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *InstanceSensitiveData) SetName(v *string) {
-	o.Name = v
+func (o *InstanceSensitiveData) SetName(v InstanceSensitiveDataGetNameRetType) {
+	setInstanceSensitiveDataGetNameAttributeType(&o.Name, v)
 }
 
 // GetOtlpTracesUrl returns the OtlpTracesUrl field value
-func (o *InstanceSensitiveData) GetOtlpTracesUrl() *string {
-	if o == nil || IsNil(o.OtlpTracesUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.OtlpTracesUrl
+func (o *InstanceSensitiveData) GetOtlpTracesUrl() (ret InstanceSensitiveDataGetOtlpTracesUrlRetType) {
+	ret, _ = o.GetOtlpTracesUrlOk()
+	return ret
 }
 
 // GetOtlpTracesUrlOk returns a tuple with the OtlpTracesUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetOtlpTracesUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OtlpTracesUrl, true
+func (o *InstanceSensitiveData) GetOtlpTracesUrlOk() (ret InstanceSensitiveDataGetOtlpTracesUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetOtlpTracesUrlAttributeTypeOk(o.OtlpTracesUrl)
 }
 
 // SetOtlpTracesUrl sets field value
-func (o *InstanceSensitiveData) SetOtlpTracesUrl(v *string) {
-	o.OtlpTracesUrl = v
+func (o *InstanceSensitiveData) SetOtlpTracesUrl(v InstanceSensitiveDataGetOtlpTracesUrlRetType) {
+	setInstanceSensitiveDataGetOtlpTracesUrlAttributeType(&o.OtlpTracesUrl, v)
 }
 
 // GetPlan returns the Plan field value
-func (o *InstanceSensitiveData) GetPlan() *PlanModel {
-	if o == nil || IsNil(o.Plan) {
-		var ret *PlanModel
-		return ret
-	}
-
-	return o.Plan
+func (o *InstanceSensitiveData) GetPlan() (ret InstanceSensitiveDataGetPlanRetType) {
+	ret, _ = o.GetPlanOk()
+	return ret
 }
 
 // GetPlanOk returns a tuple with the Plan field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetPlanOk() (*PlanModel, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Plan, true
+func (o *InstanceSensitiveData) GetPlanOk() (ret InstanceSensitiveDataGetPlanRetType, ok bool) {
+	return getInstanceSensitiveDataGetPlanAttributeTypeOk(o.Plan)
 }
 
 // SetPlan sets field value
-func (o *InstanceSensitiveData) SetPlan(v *PlanModel) {
-	o.Plan = v
+func (o *InstanceSensitiveData) SetPlan(v InstanceSensitiveDataGetPlanRetType) {
+	setInstanceSensitiveDataGetPlanAttributeType(&o.Plan, v)
 }
 
 // GetPushMetricsUrl returns the PushMetricsUrl field value
-func (o *InstanceSensitiveData) GetPushMetricsUrl() *string {
-	if o == nil || IsNil(o.PushMetricsUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.PushMetricsUrl
+func (o *InstanceSensitiveData) GetPushMetricsUrl() (ret InstanceSensitiveDataGetPushMetricsUrlRetType) {
+	ret, _ = o.GetPushMetricsUrlOk()
+	return ret
 }
 
 // GetPushMetricsUrlOk returns a tuple with the PushMetricsUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetPushMetricsUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PushMetricsUrl, true
+func (o *InstanceSensitiveData) GetPushMetricsUrlOk() (ret InstanceSensitiveDataGetPushMetricsUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetPushMetricsUrlAttributeTypeOk(o.PushMetricsUrl)
 }
 
 // SetPushMetricsUrl sets field value
-func (o *InstanceSensitiveData) SetPushMetricsUrl(v *string) {
-	o.PushMetricsUrl = v
+func (o *InstanceSensitiveData) SetPushMetricsUrl(v InstanceSensitiveDataGetPushMetricsUrlRetType) {
+	setInstanceSensitiveDataGetPushMetricsUrlAttributeType(&o.PushMetricsUrl, v)
 }
 
 // GetTargetsUrl returns the TargetsUrl field value
-func (o *InstanceSensitiveData) GetTargetsUrl() *string {
-	if o == nil || IsNil(o.TargetsUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.TargetsUrl
+func (o *InstanceSensitiveData) GetTargetsUrl() (ret InstanceSensitiveDataGetTargetsUrlRetType) {
+	ret, _ = o.GetTargetsUrlOk()
+	return ret
 }
 
 // GetTargetsUrlOk returns a tuple with the TargetsUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetTargetsUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TargetsUrl, true
+func (o *InstanceSensitiveData) GetTargetsUrlOk() (ret InstanceSensitiveDataGetTargetsUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetTargetsUrlAttributeTypeOk(o.TargetsUrl)
 }
 
 // SetTargetsUrl sets field value
-func (o *InstanceSensitiveData) SetTargetsUrl(v *string) {
-	o.TargetsUrl = v
+func (o *InstanceSensitiveData) SetTargetsUrl(v InstanceSensitiveDataGetTargetsUrlRetType) {
+	setInstanceSensitiveDataGetTargetsUrlAttributeType(&o.TargetsUrl, v)
 }
 
 // GetZipkinSpansUrl returns the ZipkinSpansUrl field value
-func (o *InstanceSensitiveData) GetZipkinSpansUrl() *string {
-	if o == nil || IsNil(o.ZipkinSpansUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.ZipkinSpansUrl
+func (o *InstanceSensitiveData) GetZipkinSpansUrl() (ret InstanceSensitiveDataGetZipkinSpansUrlRetType) {
+	ret, _ = o.GetZipkinSpansUrlOk()
+	return ret
 }
 
 // GetZipkinSpansUrlOk returns a tuple with the ZipkinSpansUrl field value
 // and a boolean to check if the value has been set.
-func (o *InstanceSensitiveData) GetZipkinSpansUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ZipkinSpansUrl, true
+func (o *InstanceSensitiveData) GetZipkinSpansUrlOk() (ret InstanceSensitiveDataGetZipkinSpansUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetZipkinSpansUrlAttributeTypeOk(o.ZipkinSpansUrl)
 }
 
 // SetZipkinSpansUrl sets field value
-func (o *InstanceSensitiveData) SetZipkinSpansUrl(v *string) {
-	o.ZipkinSpansUrl = v
+func (o *InstanceSensitiveData) SetZipkinSpansUrl(v InstanceSensitiveDataGetZipkinSpansUrlRetType) {
+	setInstanceSensitiveDataGetZipkinSpansUrlAttributeType(&o.ZipkinSpansUrl, v)
 }
 
 func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["alertingUrl"] = o.AlertingUrl
-	toSerialize["cluster"] = o.Cluster
-	toSerialize["dashboardUrl"] = o.DashboardUrl
-	toSerialize["grafanaAdminPassword"] = o.GrafanaAdminPassword
-	toSerialize["grafanaAdminUser"] = o.GrafanaAdminUser
-	toSerialize["grafanaPublicReadAccess"] = o.GrafanaPublicReadAccess
-	toSerialize["grafanaUrl"] = o.GrafanaUrl
-	toSerialize["grafanaUseStackitSso"] = o.GrafanaUseStackitSso
-	toSerialize["instance"] = o.Instance
-	toSerialize["jaegerTracesUrl"] = o.JaegerTracesUrl
-	toSerialize["jaegerUiUrl"] = o.JaegerUiUrl
-	toSerialize["logsPushUrl"] = o.LogsPushUrl
-	toSerialize["logsUrl"] = o.LogsUrl
-	toSerialize["metricsRetentionTime1h"] = o.MetricsRetentionTime1h
-	toSerialize["metricsRetentionTime5m"] = o.MetricsRetentionTime5m
-	toSerialize["metricsRetentionTimeRaw"] = o.MetricsRetentionTimeRaw
-	toSerialize["metricsUrl"] = o.MetricsUrl
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getInstanceSensitiveDataGetAlertingUrlAttributeTypeOk(o.AlertingUrl); ok {
+		toSerialize["AlertingUrl"] = val
 	}
-	toSerialize["otlpTracesUrl"] = o.OtlpTracesUrl
-	toSerialize["plan"] = o.Plan
-	toSerialize["pushMetricsUrl"] = o.PushMetricsUrl
-	toSerialize["targetsUrl"] = o.TargetsUrl
-	toSerialize["zipkinSpansUrl"] = o.ZipkinSpansUrl
+	if val, ok := getInstanceSensitiveDataGetClusterAttributeTypeOk(o.Cluster); ok {
+		toSerialize["Cluster"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetDashboardUrlAttributeTypeOk(o.DashboardUrl); ok {
+		toSerialize["DashboardUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetGrafanaAdminPasswordAttributeTypeOk(o.GrafanaAdminPassword); ok {
+		toSerialize["GrafanaAdminPassword"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetGrafanaAdminUserAttributeTypeOk(o.GrafanaAdminUser); ok {
+		toSerialize["GrafanaAdminUser"] = val
+	}
+	if val, ok := getInstanceSensitiveDatagetGrafanaPublicReadAccessAttributeTypeOk(o.GrafanaPublicReadAccess); ok {
+		toSerialize["GrafanaPublicReadAccess"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetGrafanaUrlAttributeTypeOk(o.GrafanaUrl); ok {
+		toSerialize["GrafanaUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDatagetGrafanaUseStackitSsoAttributeTypeOk(o.GrafanaUseStackitSso); ok {
+		toSerialize["GrafanaUseStackitSso"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetInstanceAttributeTypeOk(o.Instance); ok {
+		toSerialize["Instance"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetJaegerTracesUrlAttributeTypeOk(o.JaegerTracesUrl); ok {
+		toSerialize["JaegerTracesUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetJaegerUiUrlAttributeTypeOk(o.JaegerUiUrl); ok {
+		toSerialize["JaegerUiUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetLogsPushUrlAttributeTypeOk(o.LogsPushUrl); ok {
+		toSerialize["LogsPushUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetLogsUrlAttributeTypeOk(o.LogsUrl); ok {
+		toSerialize["LogsUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h); ok {
+		toSerialize["MetricsRetentionTime1h"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetMetricsRetentionTime5mAttributeTypeOk(o.MetricsRetentionTime5m); ok {
+		toSerialize["MetricsRetentionTime5m"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetMetricsRetentionTimeRawAttributeTypeOk(o.MetricsRetentionTimeRaw); ok {
+		toSerialize["MetricsRetentionTimeRaw"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetMetricsUrlAttributeTypeOk(o.MetricsUrl); ok {
+		toSerialize["MetricsUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetOtlpTracesUrlAttributeTypeOk(o.OtlpTracesUrl); ok {
+		toSerialize["OtlpTracesUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetPlanAttributeTypeOk(o.Plan); ok {
+		toSerialize["Plan"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetPushMetricsUrlAttributeTypeOk(o.PushMetricsUrl); ok {
+		toSerialize["PushMetricsUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetTargetsUrlAttributeTypeOk(o.TargetsUrl); ok {
+		toSerialize["TargetsUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetZipkinSpansUrlAttributeTypeOk(o.ZipkinSpansUrl); ok {
+		toSerialize["ZipkinSpansUrl"] = val
+	}
 	return toSerialize, nil
 }
 

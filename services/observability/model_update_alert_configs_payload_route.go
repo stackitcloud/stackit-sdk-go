@@ -17,27 +17,211 @@ import (
 // checks if the UpdateAlertConfigsPayloadRoute type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateAlertConfigsPayloadRoute{}
 
+/*
+	types and functions for groupBy
+*/
+
+// isArray
+type UpdateAlertConfigsPayloadRouteGetGroupByAttributeType = *[]string
+type UpdateAlertConfigsPayloadRouteGetGroupByArgType = []string
+type UpdateAlertConfigsPayloadRouteGetGroupByRetType = []string
+
+func getUpdateAlertConfigsPayloadRouteGetGroupByAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetGroupByAttributeType) (ret UpdateAlertConfigsPayloadRouteGetGroupByRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRouteGetGroupByAttributeType(arg *UpdateAlertConfigsPayloadRouteGetGroupByAttributeType, val UpdateAlertConfigsPayloadRouteGetGroupByRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for groupInterval
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeType = *string
+
+func getUpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeType) (ret UpdateAlertConfigsPayloadRouteGetGroupIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeType(arg *UpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeType, val UpdateAlertConfigsPayloadRouteGetGroupIntervalRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadRouteGetGroupIntervalArgType = string
+type UpdateAlertConfigsPayloadRouteGetGroupIntervalRetType = string
+
+/*
+	types and functions for groupWait
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadRouteGetGroupWaitAttributeType = *string
+
+func getUpdateAlertConfigsPayloadRouteGetGroupWaitAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetGroupWaitAttributeType) (ret UpdateAlertConfigsPayloadRouteGetGroupWaitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRouteGetGroupWaitAttributeType(arg *UpdateAlertConfigsPayloadRouteGetGroupWaitAttributeType, val UpdateAlertConfigsPayloadRouteGetGroupWaitRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadRouteGetGroupWaitArgType = string
+type UpdateAlertConfigsPayloadRouteGetGroupWaitRetType = string
+
+/*
+	types and functions for match
+*/
+
+// isFreeform
+type UpdateAlertConfigsPayloadRouteGetMatchAttributeType = *map[string]interface{}
+type UpdateAlertConfigsPayloadRouteGetMatchArgType = map[string]interface{}
+type UpdateAlertConfigsPayloadRouteGetMatchRetType = map[string]interface{}
+
+func getUpdateAlertConfigsPayloadRouteGetMatchAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetMatchAttributeType) (ret UpdateAlertConfigsPayloadRouteGetMatchRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRouteGetMatchAttributeType(arg *UpdateAlertConfigsPayloadRouteGetMatchAttributeType, val UpdateAlertConfigsPayloadRouteGetMatchRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for matchRe
+*/
+
+// isFreeform
+type UpdateAlertConfigsPayloadRouteGetMatchReAttributeType = *map[string]interface{}
+type UpdateAlertConfigsPayloadRouteGetMatchReArgType = map[string]interface{}
+type UpdateAlertConfigsPayloadRouteGetMatchReRetType = map[string]interface{}
+
+func getUpdateAlertConfigsPayloadRouteGetMatchReAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetMatchReAttributeType) (ret UpdateAlertConfigsPayloadRouteGetMatchReRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRouteGetMatchReAttributeType(arg *UpdateAlertConfigsPayloadRouteGetMatchReAttributeType, val UpdateAlertConfigsPayloadRouteGetMatchReRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for matchers
+*/
+
+// isArray
+type UpdateAlertConfigsPayloadRouteGetMatchersAttributeType = *[]string
+type UpdateAlertConfigsPayloadRouteGetMatchersArgType = []string
+type UpdateAlertConfigsPayloadRouteGetMatchersRetType = []string
+
+func getUpdateAlertConfigsPayloadRouteGetMatchersAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetMatchersAttributeType) (ret UpdateAlertConfigsPayloadRouteGetMatchersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRouteGetMatchersAttributeType(arg *UpdateAlertConfigsPayloadRouteGetMatchersAttributeType, val UpdateAlertConfigsPayloadRouteGetMatchersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for receiver
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadRouteGetReceiverAttributeType = *string
+
+func getUpdateAlertConfigsPayloadRouteGetReceiverAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetReceiverAttributeType) (ret UpdateAlertConfigsPayloadRouteGetReceiverRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRouteGetReceiverAttributeType(arg *UpdateAlertConfigsPayloadRouteGetReceiverAttributeType, val UpdateAlertConfigsPayloadRouteGetReceiverRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadRouteGetReceiverArgType = string
+type UpdateAlertConfigsPayloadRouteGetReceiverRetType = string
+
+/*
+	types and functions for repeatInterval
+*/
+
+// isNotNullableString
+type UpdateAlertConfigsPayloadRouteGetRepeatIntervalAttributeType = *string
+
+func getUpdateAlertConfigsPayloadRouteGetRepeatIntervalAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetRepeatIntervalAttributeType) (ret UpdateAlertConfigsPayloadRouteGetRepeatIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRouteGetRepeatIntervalAttributeType(arg *UpdateAlertConfigsPayloadRouteGetRepeatIntervalAttributeType, val UpdateAlertConfigsPayloadRouteGetRepeatIntervalRetType) {
+	*arg = &val
+}
+
+type UpdateAlertConfigsPayloadRouteGetRepeatIntervalArgType = string
+type UpdateAlertConfigsPayloadRouteGetRepeatIntervalRetType = string
+
+/*
+	types and functions for routes
+*/
+
+// isArray
+type UpdateAlertConfigsPayloadRouteGetRoutesAttributeType = *[]CreateAlertConfigRoutePayloadRoutesInner
+type UpdateAlertConfigsPayloadRouteGetRoutesArgType = []CreateAlertConfigRoutePayloadRoutesInner
+type UpdateAlertConfigsPayloadRouteGetRoutesRetType = []CreateAlertConfigRoutePayloadRoutesInner
+
+func getUpdateAlertConfigsPayloadRouteGetRoutesAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetRoutesAttributeType) (ret UpdateAlertConfigsPayloadRouteGetRoutesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRouteGetRoutesAttributeType(arg *UpdateAlertConfigsPayloadRouteGetRoutesAttributeType, val UpdateAlertConfigsPayloadRouteGetRoutesRetType) {
+	*arg = &val
+}
+
 // UpdateAlertConfigsPayloadRoute The root node of the routing tree.
 type UpdateAlertConfigsPayloadRoute struct {
 	// The labels by which incoming alerts are grouped together. For example, multiple alerts coming in for cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels use the special value '...' as the sole label name, for example: group_by: ['...']. This effectively disables aggregation entirely, passing through all alerts as-is. This is unlikely to be what you want, unless you have a very low alert volume or your upstream notification system performs its own grouping.
-	GroupBy *[]string `json:"groupBy,omitempty"`
+	GroupBy UpdateAlertConfigsPayloadRouteGetGroupByAttributeType `json:"groupBy,omitempty"`
 	// How long to wait before sending a notification about new alerts that are added to a group of alerts for which an initial notification has already been sent. (Usually ~5m or more.) `Additional Validators:` * must be a valid time format
-	GroupInterval *string `json:"groupInterval,omitempty"`
+	GroupInterval UpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeType `json:"groupInterval,omitempty"`
 	// How long to initially wait to send a notification for a group of alerts. Allows to wait for an inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.) `Additional Validators:` * must be a valid time format
-	GroupWait *string `json:"groupWait,omitempty"`
+	GroupWait UpdateAlertConfigsPayloadRouteGetGroupWaitAttributeType `json:"groupWait,omitempty"`
 	// map of key:value. A set of equality matchers an alert has to fulfill to match the node.  `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters * key and values should only include the characters: a-zA-Z0-9_./@&?:-
-	Match *map[string]interface{} `json:"match,omitempty"`
+	Match UpdateAlertConfigsPayloadRouteGetMatchAttributeType `json:"match,omitempty"`
 	// map of key:value. A set of regex-matchers an alert has to fulfill to match the node.  `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
-	MatchRe *map[string]interface{} `json:"matchRe,omitempty"`
+	MatchRe UpdateAlertConfigsPayloadRouteGetMatchReAttributeType `json:"matchRe,omitempty"`
 	// A list of matchers that an alert has to fulfill to match the node. A matcher is a string with a syntax inspired by PromQL and OpenMetrics. The syntax of a matcher consists of three tokens: * A valid Prometheus label name. * One of =, !=, =~, or !~. = means equals, != means that the strings are not equal, =~ is used for equality of regex expressions and !~ is used for un-equality of regex expressions. They have the same meaning as known from PromQL selectors. * A UTF-8 string, which may be enclosed in double quotes. Before or after each token, there may be any amount of whitespace. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
-	Matchers *[]string `json:"matchers,omitempty"`
+	Matchers UpdateAlertConfigsPayloadRouteGetMatchersAttributeType `json:"matchers,omitempty"`
 	// Receiver that should be one item of receivers `Additional Validators:` * must be a in name of receivers
 	// REQUIRED
-	Receiver *string `json:"receiver"`
+	Receiver UpdateAlertConfigsPayloadRouteGetReceiverAttributeType `json:"receiver"`
 	// How long to wait before sending a notification again if it has already been sent successfully for an alert. (Usually ~3h or more). `Additional Validators:` * must be a valid time format
-	RepeatInterval *string `json:"repeatInterval,omitempty"`
+	RepeatInterval UpdateAlertConfigsPayloadRouteGetRepeatIntervalAttributeType `json:"repeatInterval,omitempty"`
 	// Zero or more child routes.
-	Routes *[]CreateAlertConfigRoutePayloadRoutesInner `json:"routes,omitempty"`
+	Routes UpdateAlertConfigsPayloadRouteGetRoutesAttributeType `json:"routes,omitempty"`
 }
 
 type _UpdateAlertConfigsPayloadRoute UpdateAlertConfigsPayloadRoute
@@ -46,15 +230,9 @@ type _UpdateAlertConfigsPayloadRoute UpdateAlertConfigsPayloadRoute
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateAlertConfigsPayloadRoute(receiver *string) *UpdateAlertConfigsPayloadRoute {
+func NewUpdateAlertConfigsPayloadRoute(receiver UpdateAlertConfigsPayloadRouteGetReceiverArgType) *UpdateAlertConfigsPayloadRoute {
 	this := UpdateAlertConfigsPayloadRoute{}
-	var groupInterval string = "5m"
-	this.GroupInterval = &groupInterval
-	var groupWait string = "30s"
-	this.GroupWait = &groupWait
-	this.Receiver = receiver
-	var repeatInterval string = "4h"
-	this.RepeatInterval = &repeatInterval
+	setUpdateAlertConfigsPayloadRouteGetReceiverAttributeType(&this.Receiver, receiver)
 	return &this
 }
 
@@ -73,311 +251,234 @@ func NewUpdateAlertConfigsPayloadRouteWithDefaults() *UpdateAlertConfigsPayloadR
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadRoute) GetGroupBy() *[]string {
-	if o == nil || IsNil(o.GroupBy) {
-		var ret *[]string
-		return ret
-	}
-	return o.GroupBy
+func (o *UpdateAlertConfigsPayloadRoute) GetGroupBy() (res UpdateAlertConfigsPayloadRouteGetGroupByRetType) {
+	res, _ = o.GetGroupByOk()
+	return
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetGroupByOk() (*[]string, bool) {
-	if o == nil || IsNil(o.GroupBy) {
-		return nil, false
-	}
-	return o.GroupBy, true
+func (o *UpdateAlertConfigsPayloadRoute) GetGroupByOk() (ret UpdateAlertConfigsPayloadRouteGetGroupByRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRouteGetGroupByAttributeTypeOk(o.GroupBy)
 }
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadRoute) HasGroupBy() bool {
-	if o != nil && !IsNil(o.GroupBy) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGroupByOk()
+	return ok
 }
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
-func (o *UpdateAlertConfigsPayloadRoute) SetGroupBy(v *[]string) {
-	o.GroupBy = v
+func (o *UpdateAlertConfigsPayloadRoute) SetGroupBy(v UpdateAlertConfigsPayloadRouteGetGroupByRetType) {
+	setUpdateAlertConfigsPayloadRouteGetGroupByAttributeType(&o.GroupBy, v)
 }
 
 // GetGroupInterval returns the GroupInterval field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadRoute) GetGroupInterval() *string {
-	if o == nil || IsNil(o.GroupInterval) {
-		var ret *string
-		return ret
-	}
-	return o.GroupInterval
+func (o *UpdateAlertConfigsPayloadRoute) GetGroupInterval() (res UpdateAlertConfigsPayloadRouteGetGroupIntervalRetType) {
+	res, _ = o.GetGroupIntervalOk()
+	return
 }
 
 // GetGroupIntervalOk returns a tuple with the GroupInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetGroupIntervalOk() (*string, bool) {
-	if o == nil || IsNil(o.GroupInterval) {
-		return nil, false
-	}
-	return o.GroupInterval, true
+func (o *UpdateAlertConfigsPayloadRoute) GetGroupIntervalOk() (ret UpdateAlertConfigsPayloadRouteGetGroupIntervalRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeTypeOk(o.GroupInterval)
 }
 
 // HasGroupInterval returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadRoute) HasGroupInterval() bool {
-	if o != nil && !IsNil(o.GroupInterval) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGroupIntervalOk()
+	return ok
 }
 
 // SetGroupInterval gets a reference to the given string and assigns it to the GroupInterval field.
-func (o *UpdateAlertConfigsPayloadRoute) SetGroupInterval(v *string) {
-	o.GroupInterval = v
+func (o *UpdateAlertConfigsPayloadRoute) SetGroupInterval(v UpdateAlertConfigsPayloadRouteGetGroupIntervalRetType) {
+	setUpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeType(&o.GroupInterval, v)
 }
 
 // GetGroupWait returns the GroupWait field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadRoute) GetGroupWait() *string {
-	if o == nil || IsNil(o.GroupWait) {
-		var ret *string
-		return ret
-	}
-	return o.GroupWait
+func (o *UpdateAlertConfigsPayloadRoute) GetGroupWait() (res UpdateAlertConfigsPayloadRouteGetGroupWaitRetType) {
+	res, _ = o.GetGroupWaitOk()
+	return
 }
 
 // GetGroupWaitOk returns a tuple with the GroupWait field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetGroupWaitOk() (*string, bool) {
-	if o == nil || IsNil(o.GroupWait) {
-		return nil, false
-	}
-	return o.GroupWait, true
+func (o *UpdateAlertConfigsPayloadRoute) GetGroupWaitOk() (ret UpdateAlertConfigsPayloadRouteGetGroupWaitRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRouteGetGroupWaitAttributeTypeOk(o.GroupWait)
 }
 
 // HasGroupWait returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadRoute) HasGroupWait() bool {
-	if o != nil && !IsNil(o.GroupWait) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGroupWaitOk()
+	return ok
 }
 
 // SetGroupWait gets a reference to the given string and assigns it to the GroupWait field.
-func (o *UpdateAlertConfigsPayloadRoute) SetGroupWait(v *string) {
-	o.GroupWait = v
+func (o *UpdateAlertConfigsPayloadRoute) SetGroupWait(v UpdateAlertConfigsPayloadRouteGetGroupWaitRetType) {
+	setUpdateAlertConfigsPayloadRouteGetGroupWaitAttributeType(&o.GroupWait, v)
 }
 
 // GetMatch returns the Match field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadRoute) GetMatch() *map[string]interface{} {
-	if o == nil || IsNil(o.Match) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Match
+func (o *UpdateAlertConfigsPayloadRoute) GetMatch() (res UpdateAlertConfigsPayloadRouteGetMatchRetType) {
+	res, _ = o.GetMatchOk()
+	return
 }
 
 // GetMatchOk returns a tuple with the Match field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetMatchOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Match) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Match, true
+func (o *UpdateAlertConfigsPayloadRoute) GetMatchOk() (ret UpdateAlertConfigsPayloadRouteGetMatchRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRouteGetMatchAttributeTypeOk(o.Match)
 }
 
 // HasMatch returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadRoute) HasMatch() bool {
-	if o != nil && !IsNil(o.Match) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMatchOk()
+	return ok
 }
 
 // SetMatch gets a reference to the given map[string]interface{} and assigns it to the Match field.
-func (o *UpdateAlertConfigsPayloadRoute) SetMatch(v *map[string]interface{}) {
-	o.Match = v
+func (o *UpdateAlertConfigsPayloadRoute) SetMatch(v UpdateAlertConfigsPayloadRouteGetMatchRetType) {
+	setUpdateAlertConfigsPayloadRouteGetMatchAttributeType(&o.Match, v)
 }
 
 // GetMatchRe returns the MatchRe field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadRoute) GetMatchRe() *map[string]interface{} {
-	if o == nil || IsNil(o.MatchRe) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.MatchRe
+func (o *UpdateAlertConfigsPayloadRoute) GetMatchRe() (res UpdateAlertConfigsPayloadRouteGetMatchReRetType) {
+	res, _ = o.GetMatchReOk()
+	return
 }
 
 // GetMatchReOk returns a tuple with the MatchRe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetMatchReOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.MatchRe) {
-		return &map[string]interface{}{}, false
-	}
-	return o.MatchRe, true
+func (o *UpdateAlertConfigsPayloadRoute) GetMatchReOk() (ret UpdateAlertConfigsPayloadRouteGetMatchReRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRouteGetMatchReAttributeTypeOk(o.MatchRe)
 }
 
 // HasMatchRe returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadRoute) HasMatchRe() bool {
-	if o != nil && !IsNil(o.MatchRe) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMatchReOk()
+	return ok
 }
 
 // SetMatchRe gets a reference to the given map[string]interface{} and assigns it to the MatchRe field.
-func (o *UpdateAlertConfigsPayloadRoute) SetMatchRe(v *map[string]interface{}) {
-	o.MatchRe = v
+func (o *UpdateAlertConfigsPayloadRoute) SetMatchRe(v UpdateAlertConfigsPayloadRouteGetMatchReRetType) {
+	setUpdateAlertConfigsPayloadRouteGetMatchReAttributeType(&o.MatchRe, v)
 }
 
 // GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadRoute) GetMatchers() *[]string {
-	if o == nil || IsNil(o.Matchers) {
-		var ret *[]string
-		return ret
-	}
-	return o.Matchers
+func (o *UpdateAlertConfigsPayloadRoute) GetMatchers() (res UpdateAlertConfigsPayloadRouteGetMatchersRetType) {
+	res, _ = o.GetMatchersOk()
+	return
 }
 
 // GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetMatchersOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Matchers) {
-		return nil, false
-	}
-	return o.Matchers, true
+func (o *UpdateAlertConfigsPayloadRoute) GetMatchersOk() (ret UpdateAlertConfigsPayloadRouteGetMatchersRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRouteGetMatchersAttributeTypeOk(o.Matchers)
 }
 
 // HasMatchers returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadRoute) HasMatchers() bool {
-	if o != nil && !IsNil(o.Matchers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMatchersOk()
+	return ok
 }
 
 // SetMatchers gets a reference to the given []string and assigns it to the Matchers field.
-func (o *UpdateAlertConfigsPayloadRoute) SetMatchers(v *[]string) {
-	o.Matchers = v
+func (o *UpdateAlertConfigsPayloadRoute) SetMatchers(v UpdateAlertConfigsPayloadRouteGetMatchersRetType) {
+	setUpdateAlertConfigsPayloadRouteGetMatchersAttributeType(&o.Matchers, v)
 }
 
 // GetReceiver returns the Receiver field value
-func (o *UpdateAlertConfigsPayloadRoute) GetReceiver() *string {
-	if o == nil || IsNil(o.Receiver) {
-		var ret *string
-		return ret
-	}
-
-	return o.Receiver
+func (o *UpdateAlertConfigsPayloadRoute) GetReceiver() (ret UpdateAlertConfigsPayloadRouteGetReceiverRetType) {
+	ret, _ = o.GetReceiverOk()
+	return ret
 }
 
 // GetReceiverOk returns a tuple with the Receiver field value
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetReceiverOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Receiver, true
+func (o *UpdateAlertConfigsPayloadRoute) GetReceiverOk() (ret UpdateAlertConfigsPayloadRouteGetReceiverRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRouteGetReceiverAttributeTypeOk(o.Receiver)
 }
 
 // SetReceiver sets field value
-func (o *UpdateAlertConfigsPayloadRoute) SetReceiver(v *string) {
-	o.Receiver = v
+func (o *UpdateAlertConfigsPayloadRoute) SetReceiver(v UpdateAlertConfigsPayloadRouteGetReceiverRetType) {
+	setUpdateAlertConfigsPayloadRouteGetReceiverAttributeType(&o.Receiver, v)
 }
 
 // GetRepeatInterval returns the RepeatInterval field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadRoute) GetRepeatInterval() *string {
-	if o == nil || IsNil(o.RepeatInterval) {
-		var ret *string
-		return ret
-	}
-	return o.RepeatInterval
+func (o *UpdateAlertConfigsPayloadRoute) GetRepeatInterval() (res UpdateAlertConfigsPayloadRouteGetRepeatIntervalRetType) {
+	res, _ = o.GetRepeatIntervalOk()
+	return
 }
 
 // GetRepeatIntervalOk returns a tuple with the RepeatInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetRepeatIntervalOk() (*string, bool) {
-	if o == nil || IsNil(o.RepeatInterval) {
-		return nil, false
-	}
-	return o.RepeatInterval, true
+func (o *UpdateAlertConfigsPayloadRoute) GetRepeatIntervalOk() (ret UpdateAlertConfigsPayloadRouteGetRepeatIntervalRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRouteGetRepeatIntervalAttributeTypeOk(o.RepeatInterval)
 }
 
 // HasRepeatInterval returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadRoute) HasRepeatInterval() bool {
-	if o != nil && !IsNil(o.RepeatInterval) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRepeatIntervalOk()
+	return ok
 }
 
 // SetRepeatInterval gets a reference to the given string and assigns it to the RepeatInterval field.
-func (o *UpdateAlertConfigsPayloadRoute) SetRepeatInterval(v *string) {
-	o.RepeatInterval = v
+func (o *UpdateAlertConfigsPayloadRoute) SetRepeatInterval(v UpdateAlertConfigsPayloadRouteGetRepeatIntervalRetType) {
+	setUpdateAlertConfigsPayloadRouteGetRepeatIntervalAttributeType(&o.RepeatInterval, v)
 }
 
 // GetRoutes returns the Routes field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadRoute) GetRoutes() *[]CreateAlertConfigRoutePayloadRoutesInner {
-	if o == nil || IsNil(o.Routes) {
-		var ret *[]CreateAlertConfigRoutePayloadRoutesInner
-		return ret
-	}
-	return o.Routes
+func (o *UpdateAlertConfigsPayloadRoute) GetRoutes() (res UpdateAlertConfigsPayloadRouteGetRoutesRetType) {
+	res, _ = o.GetRoutesOk()
+	return
 }
 
 // GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetRoutesOk() (*[]CreateAlertConfigRoutePayloadRoutesInner, bool) {
-	if o == nil || IsNil(o.Routes) {
-		return nil, false
-	}
-	return o.Routes, true
+func (o *UpdateAlertConfigsPayloadRoute) GetRoutesOk() (ret UpdateAlertConfigsPayloadRouteGetRoutesRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRouteGetRoutesAttributeTypeOk(o.Routes)
 }
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *UpdateAlertConfigsPayloadRoute) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRoutesOk()
+	return ok
 }
 
 // SetRoutes gets a reference to the given []CreateAlertConfigRoutePayloadRoutesInner and assigns it to the Routes field.
-func (o *UpdateAlertConfigsPayloadRoute) SetRoutes(v *[]CreateAlertConfigRoutePayloadRoutesInner) {
-	o.Routes = v
+func (o *UpdateAlertConfigsPayloadRoute) SetRoutes(v UpdateAlertConfigsPayloadRouteGetRoutesRetType) {
+	setUpdateAlertConfigsPayloadRouteGetRoutesAttributeType(&o.Routes, v)
 }
 
 func (o UpdateAlertConfigsPayloadRoute) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.GroupBy) {
-		toSerialize["groupBy"] = o.GroupBy
+	if val, ok := getUpdateAlertConfigsPayloadRouteGetGroupByAttributeTypeOk(o.GroupBy); ok {
+		toSerialize["GroupBy"] = val
 	}
-	if !IsNil(o.GroupInterval) {
-		toSerialize["groupInterval"] = o.GroupInterval
+	if val, ok := getUpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeTypeOk(o.GroupInterval); ok {
+		toSerialize["GroupInterval"] = val
 	}
-	if !IsNil(o.GroupWait) {
-		toSerialize["groupWait"] = o.GroupWait
+	if val, ok := getUpdateAlertConfigsPayloadRouteGetGroupWaitAttributeTypeOk(o.GroupWait); ok {
+		toSerialize["GroupWait"] = val
 	}
-	if !IsNil(o.Match) {
-		toSerialize["match"] = o.Match
+	if val, ok := getUpdateAlertConfigsPayloadRouteGetMatchAttributeTypeOk(o.Match); ok {
+		toSerialize["Match"] = val
 	}
-	if !IsNil(o.MatchRe) {
-		toSerialize["matchRe"] = o.MatchRe
+	if val, ok := getUpdateAlertConfigsPayloadRouteGetMatchReAttributeTypeOk(o.MatchRe); ok {
+		toSerialize["MatchRe"] = val
 	}
-	if !IsNil(o.Matchers) {
-		toSerialize["matchers"] = o.Matchers
+	if val, ok := getUpdateAlertConfigsPayloadRouteGetMatchersAttributeTypeOk(o.Matchers); ok {
+		toSerialize["Matchers"] = val
 	}
-	toSerialize["receiver"] = o.Receiver
-	if !IsNil(o.RepeatInterval) {
-		toSerialize["repeatInterval"] = o.RepeatInterval
+	if val, ok := getUpdateAlertConfigsPayloadRouteGetReceiverAttributeTypeOk(o.Receiver); ok {
+		toSerialize["Receiver"] = val
 	}
-	if !IsNil(o.Routes) {
-		toSerialize["routes"] = o.Routes
+	if val, ok := getUpdateAlertConfigsPayloadRouteGetRepeatIntervalAttributeTypeOk(o.RepeatInterval); ok {
+		toSerialize["RepeatInterval"] = val
+	}
+	if val, ok := getUpdateAlertConfigsPayloadRouteGetRoutesAttributeTypeOk(o.Routes); ok {
+		toSerialize["Routes"] = val
 	}
 	return toSerialize, nil
 }

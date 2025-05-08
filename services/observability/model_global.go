@@ -17,16 +17,184 @@ import (
 // checks if the Global type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Global{}
 
+/*
+	types and functions for opsgenieApiKey
+*/
+
+// isNotNullableString
+type GlobalGetOpsgenieApiKeyAttributeType = *string
+
+func getGlobalGetOpsgenieApiKeyAttributeTypeOk(arg GlobalGetOpsgenieApiKeyAttributeType) (ret GlobalGetOpsgenieApiKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGlobalGetOpsgenieApiKeyAttributeType(arg *GlobalGetOpsgenieApiKeyAttributeType, val GlobalGetOpsgenieApiKeyRetType) {
+	*arg = &val
+}
+
+type GlobalGetOpsgenieApiKeyArgType = string
+type GlobalGetOpsgenieApiKeyRetType = string
+
+/*
+	types and functions for opsgenieApiUrl
+*/
+
+// isNotNullableString
+type GlobalGetOpsgenieApiUrlAttributeType = *string
+
+func getGlobalGetOpsgenieApiUrlAttributeTypeOk(arg GlobalGetOpsgenieApiUrlAttributeType) (ret GlobalGetOpsgenieApiUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGlobalGetOpsgenieApiUrlAttributeType(arg *GlobalGetOpsgenieApiUrlAttributeType, val GlobalGetOpsgenieApiUrlRetType) {
+	*arg = &val
+}
+
+type GlobalGetOpsgenieApiUrlArgType = string
+type GlobalGetOpsgenieApiUrlRetType = string
+
+/*
+	types and functions for resolveTimeout
+*/
+
+// isNotNullableString
+type GlobalGetResolveTimeoutAttributeType = *string
+
+func getGlobalGetResolveTimeoutAttributeTypeOk(arg GlobalGetResolveTimeoutAttributeType) (ret GlobalGetResolveTimeoutRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGlobalGetResolveTimeoutAttributeType(arg *GlobalGetResolveTimeoutAttributeType, val GlobalGetResolveTimeoutRetType) {
+	*arg = &val
+}
+
+type GlobalGetResolveTimeoutArgType = string
+type GlobalGetResolveTimeoutRetType = string
+
+/*
+	types and functions for smtpAuthIdentity
+*/
+
+// isNotNullableString
+type GlobalGetSmtpAuthIdentityAttributeType = *string
+
+func getGlobalGetSmtpAuthIdentityAttributeTypeOk(arg GlobalGetSmtpAuthIdentityAttributeType) (ret GlobalGetSmtpAuthIdentityRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGlobalGetSmtpAuthIdentityAttributeType(arg *GlobalGetSmtpAuthIdentityAttributeType, val GlobalGetSmtpAuthIdentityRetType) {
+	*arg = &val
+}
+
+type GlobalGetSmtpAuthIdentityArgType = string
+type GlobalGetSmtpAuthIdentityRetType = string
+
+/*
+	types and functions for smtpAuthPassword
+*/
+
+// isNotNullableString
+type GlobalGetSmtpAuthPasswordAttributeType = *string
+
+func getGlobalGetSmtpAuthPasswordAttributeTypeOk(arg GlobalGetSmtpAuthPasswordAttributeType) (ret GlobalGetSmtpAuthPasswordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGlobalGetSmtpAuthPasswordAttributeType(arg *GlobalGetSmtpAuthPasswordAttributeType, val GlobalGetSmtpAuthPasswordRetType) {
+	*arg = &val
+}
+
+type GlobalGetSmtpAuthPasswordArgType = string
+type GlobalGetSmtpAuthPasswordRetType = string
+
+/*
+	types and functions for smtpAuthUsername
+*/
+
+// isNotNullableString
+type GlobalGetSmtpAuthUsernameAttributeType = *string
+
+func getGlobalGetSmtpAuthUsernameAttributeTypeOk(arg GlobalGetSmtpAuthUsernameAttributeType) (ret GlobalGetSmtpAuthUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGlobalGetSmtpAuthUsernameAttributeType(arg *GlobalGetSmtpAuthUsernameAttributeType, val GlobalGetSmtpAuthUsernameRetType) {
+	*arg = &val
+}
+
+type GlobalGetSmtpAuthUsernameArgType = string
+type GlobalGetSmtpAuthUsernameRetType = string
+
+/*
+	types and functions for smtpFrom
+*/
+
+// isNotNullableString
+type GlobalGetSmtpFromAttributeType = *string
+
+func getGlobalGetSmtpFromAttributeTypeOk(arg GlobalGetSmtpFromAttributeType) (ret GlobalGetSmtpFromRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGlobalGetSmtpFromAttributeType(arg *GlobalGetSmtpFromAttributeType, val GlobalGetSmtpFromRetType) {
+	*arg = &val
+}
+
+type GlobalGetSmtpFromArgType = string
+type GlobalGetSmtpFromRetType = string
+
+/*
+	types and functions for smtpSmarthost
+*/
+
+// isNotNullableString
+type GlobalGetSmtpSmarthostAttributeType = *string
+
+func getGlobalGetSmtpSmarthostAttributeTypeOk(arg GlobalGetSmtpSmarthostAttributeType) (ret GlobalGetSmtpSmarthostRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGlobalGetSmtpSmarthostAttributeType(arg *GlobalGetSmtpSmarthostAttributeType, val GlobalGetSmtpSmarthostRetType) {
+	*arg = &val
+}
+
+type GlobalGetSmtpSmarthostArgType = string
+type GlobalGetSmtpSmarthostRetType = string
+
 // Global struct for Global
 type Global struct {
-	OpsgenieApiKey   *string `json:"opsgenieApiKey,omitempty"`
-	OpsgenieApiUrl   *string `json:"opsgenieApiUrl,omitempty"`
-	ResolveTimeout   *string `json:"resolveTimeout,omitempty"`
-	SmtpAuthIdentity *string `json:"smtpAuthIdentity,omitempty"`
-	SmtpAuthPassword *string `json:"smtpAuthPassword,omitempty"`
-	SmtpAuthUsername *string `json:"smtpAuthUsername,omitempty"`
-	SmtpFrom         *string `json:"smtpFrom,omitempty"`
-	SmtpSmarthost    *string `json:"smtpSmarthost,omitempty"`
+	OpsgenieApiKey   GlobalGetOpsgenieApiKeyAttributeType   `json:"opsgenieApiKey,omitempty"`
+	OpsgenieApiUrl   GlobalGetOpsgenieApiUrlAttributeType   `json:"opsgenieApiUrl,omitempty"`
+	ResolveTimeout   GlobalGetResolveTimeoutAttributeType   `json:"resolveTimeout,omitempty"`
+	SmtpAuthIdentity GlobalGetSmtpAuthIdentityAttributeType `json:"smtpAuthIdentity,omitempty"`
+	SmtpAuthPassword GlobalGetSmtpAuthPasswordAttributeType `json:"smtpAuthPassword,omitempty"`
+	SmtpAuthUsername GlobalGetSmtpAuthUsernameAttributeType `json:"smtpAuthUsername,omitempty"`
+	SmtpFrom         GlobalGetSmtpFromAttributeType         `json:"smtpFrom,omitempty"`
+	SmtpSmarthost    GlobalGetSmtpSmarthostAttributeType    `json:"smtpSmarthost,omitempty"`
 }
 
 // NewGlobal instantiates a new Global object
@@ -35,8 +203,6 @@ type Global struct {
 // will change when the set of required properties is changed
 func NewGlobal() *Global {
 	this := Global{}
-	var resolveTimeout string = "5m"
-	this.ResolveTimeout = &resolveTimeout
 	return &this
 }
 
@@ -51,286 +217,214 @@ func NewGlobalWithDefaults() *Global {
 }
 
 // GetOpsgenieApiKey returns the OpsgenieApiKey field value if set, zero value otherwise.
-func (o *Global) GetOpsgenieApiKey() *string {
-	if o == nil || IsNil(o.OpsgenieApiKey) {
-		var ret *string
-		return ret
-	}
-	return o.OpsgenieApiKey
+func (o *Global) GetOpsgenieApiKey() (res GlobalGetOpsgenieApiKeyRetType) {
+	res, _ = o.GetOpsgenieApiKeyOk()
+	return
 }
 
 // GetOpsgenieApiKeyOk returns a tuple with the OpsgenieApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Global) GetOpsgenieApiKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.OpsgenieApiKey) {
-		return nil, false
-	}
-	return o.OpsgenieApiKey, true
+func (o *Global) GetOpsgenieApiKeyOk() (ret GlobalGetOpsgenieApiKeyRetType, ok bool) {
+	return getGlobalGetOpsgenieApiKeyAttributeTypeOk(o.OpsgenieApiKey)
 }
 
 // HasOpsgenieApiKey returns a boolean if a field has been set.
 func (o *Global) HasOpsgenieApiKey() bool {
-	if o != nil && !IsNil(o.OpsgenieApiKey) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOpsgenieApiKeyOk()
+	return ok
 }
 
 // SetOpsgenieApiKey gets a reference to the given string and assigns it to the OpsgenieApiKey field.
-func (o *Global) SetOpsgenieApiKey(v *string) {
-	o.OpsgenieApiKey = v
+func (o *Global) SetOpsgenieApiKey(v GlobalGetOpsgenieApiKeyRetType) {
+	setGlobalGetOpsgenieApiKeyAttributeType(&o.OpsgenieApiKey, v)
 }
 
 // GetOpsgenieApiUrl returns the OpsgenieApiUrl field value if set, zero value otherwise.
-func (o *Global) GetOpsgenieApiUrl() *string {
-	if o == nil || IsNil(o.OpsgenieApiUrl) {
-		var ret *string
-		return ret
-	}
-	return o.OpsgenieApiUrl
+func (o *Global) GetOpsgenieApiUrl() (res GlobalGetOpsgenieApiUrlRetType) {
+	res, _ = o.GetOpsgenieApiUrlOk()
+	return
 }
 
 // GetOpsgenieApiUrlOk returns a tuple with the OpsgenieApiUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Global) GetOpsgenieApiUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.OpsgenieApiUrl) {
-		return nil, false
-	}
-	return o.OpsgenieApiUrl, true
+func (o *Global) GetOpsgenieApiUrlOk() (ret GlobalGetOpsgenieApiUrlRetType, ok bool) {
+	return getGlobalGetOpsgenieApiUrlAttributeTypeOk(o.OpsgenieApiUrl)
 }
 
 // HasOpsgenieApiUrl returns a boolean if a field has been set.
 func (o *Global) HasOpsgenieApiUrl() bool {
-	if o != nil && !IsNil(o.OpsgenieApiUrl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOpsgenieApiUrlOk()
+	return ok
 }
 
 // SetOpsgenieApiUrl gets a reference to the given string and assigns it to the OpsgenieApiUrl field.
-func (o *Global) SetOpsgenieApiUrl(v *string) {
-	o.OpsgenieApiUrl = v
+func (o *Global) SetOpsgenieApiUrl(v GlobalGetOpsgenieApiUrlRetType) {
+	setGlobalGetOpsgenieApiUrlAttributeType(&o.OpsgenieApiUrl, v)
 }
 
 // GetResolveTimeout returns the ResolveTimeout field value if set, zero value otherwise.
-func (o *Global) GetResolveTimeout() *string {
-	if o == nil || IsNil(o.ResolveTimeout) {
-		var ret *string
-		return ret
-	}
-	return o.ResolveTimeout
+func (o *Global) GetResolveTimeout() (res GlobalGetResolveTimeoutRetType) {
+	res, _ = o.GetResolveTimeoutOk()
+	return
 }
 
 // GetResolveTimeoutOk returns a tuple with the ResolveTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Global) GetResolveTimeoutOk() (*string, bool) {
-	if o == nil || IsNil(o.ResolveTimeout) {
-		return nil, false
-	}
-	return o.ResolveTimeout, true
+func (o *Global) GetResolveTimeoutOk() (ret GlobalGetResolveTimeoutRetType, ok bool) {
+	return getGlobalGetResolveTimeoutAttributeTypeOk(o.ResolveTimeout)
 }
 
 // HasResolveTimeout returns a boolean if a field has been set.
 func (o *Global) HasResolveTimeout() bool {
-	if o != nil && !IsNil(o.ResolveTimeout) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetResolveTimeoutOk()
+	return ok
 }
 
 // SetResolveTimeout gets a reference to the given string and assigns it to the ResolveTimeout field.
-func (o *Global) SetResolveTimeout(v *string) {
-	o.ResolveTimeout = v
+func (o *Global) SetResolveTimeout(v GlobalGetResolveTimeoutRetType) {
+	setGlobalGetResolveTimeoutAttributeType(&o.ResolveTimeout, v)
 }
 
 // GetSmtpAuthIdentity returns the SmtpAuthIdentity field value if set, zero value otherwise.
-func (o *Global) GetSmtpAuthIdentity() *string {
-	if o == nil || IsNil(o.SmtpAuthIdentity) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpAuthIdentity
+func (o *Global) GetSmtpAuthIdentity() (res GlobalGetSmtpAuthIdentityRetType) {
+	res, _ = o.GetSmtpAuthIdentityOk()
+	return
 }
 
 // GetSmtpAuthIdentityOk returns a tuple with the SmtpAuthIdentity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Global) GetSmtpAuthIdentityOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpAuthIdentity) {
-		return nil, false
-	}
-	return o.SmtpAuthIdentity, true
+func (o *Global) GetSmtpAuthIdentityOk() (ret GlobalGetSmtpAuthIdentityRetType, ok bool) {
+	return getGlobalGetSmtpAuthIdentityAttributeTypeOk(o.SmtpAuthIdentity)
 }
 
 // HasSmtpAuthIdentity returns a boolean if a field has been set.
 func (o *Global) HasSmtpAuthIdentity() bool {
-	if o != nil && !IsNil(o.SmtpAuthIdentity) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpAuthIdentityOk()
+	return ok
 }
 
 // SetSmtpAuthIdentity gets a reference to the given string and assigns it to the SmtpAuthIdentity field.
-func (o *Global) SetSmtpAuthIdentity(v *string) {
-	o.SmtpAuthIdentity = v
+func (o *Global) SetSmtpAuthIdentity(v GlobalGetSmtpAuthIdentityRetType) {
+	setGlobalGetSmtpAuthIdentityAttributeType(&o.SmtpAuthIdentity, v)
 }
 
 // GetSmtpAuthPassword returns the SmtpAuthPassword field value if set, zero value otherwise.
-func (o *Global) GetSmtpAuthPassword() *string {
-	if o == nil || IsNil(o.SmtpAuthPassword) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpAuthPassword
+func (o *Global) GetSmtpAuthPassword() (res GlobalGetSmtpAuthPasswordRetType) {
+	res, _ = o.GetSmtpAuthPasswordOk()
+	return
 }
 
 // GetSmtpAuthPasswordOk returns a tuple with the SmtpAuthPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Global) GetSmtpAuthPasswordOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpAuthPassword) {
-		return nil, false
-	}
-	return o.SmtpAuthPassword, true
+func (o *Global) GetSmtpAuthPasswordOk() (ret GlobalGetSmtpAuthPasswordRetType, ok bool) {
+	return getGlobalGetSmtpAuthPasswordAttributeTypeOk(o.SmtpAuthPassword)
 }
 
 // HasSmtpAuthPassword returns a boolean if a field has been set.
 func (o *Global) HasSmtpAuthPassword() bool {
-	if o != nil && !IsNil(o.SmtpAuthPassword) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpAuthPasswordOk()
+	return ok
 }
 
 // SetSmtpAuthPassword gets a reference to the given string and assigns it to the SmtpAuthPassword field.
-func (o *Global) SetSmtpAuthPassword(v *string) {
-	o.SmtpAuthPassword = v
+func (o *Global) SetSmtpAuthPassword(v GlobalGetSmtpAuthPasswordRetType) {
+	setGlobalGetSmtpAuthPasswordAttributeType(&o.SmtpAuthPassword, v)
 }
 
 // GetSmtpAuthUsername returns the SmtpAuthUsername field value if set, zero value otherwise.
-func (o *Global) GetSmtpAuthUsername() *string {
-	if o == nil || IsNil(o.SmtpAuthUsername) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpAuthUsername
+func (o *Global) GetSmtpAuthUsername() (res GlobalGetSmtpAuthUsernameRetType) {
+	res, _ = o.GetSmtpAuthUsernameOk()
+	return
 }
 
 // GetSmtpAuthUsernameOk returns a tuple with the SmtpAuthUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Global) GetSmtpAuthUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpAuthUsername) {
-		return nil, false
-	}
-	return o.SmtpAuthUsername, true
+func (o *Global) GetSmtpAuthUsernameOk() (ret GlobalGetSmtpAuthUsernameRetType, ok bool) {
+	return getGlobalGetSmtpAuthUsernameAttributeTypeOk(o.SmtpAuthUsername)
 }
 
 // HasSmtpAuthUsername returns a boolean if a field has been set.
 func (o *Global) HasSmtpAuthUsername() bool {
-	if o != nil && !IsNil(o.SmtpAuthUsername) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpAuthUsernameOk()
+	return ok
 }
 
 // SetSmtpAuthUsername gets a reference to the given string and assigns it to the SmtpAuthUsername field.
-func (o *Global) SetSmtpAuthUsername(v *string) {
-	o.SmtpAuthUsername = v
+func (o *Global) SetSmtpAuthUsername(v GlobalGetSmtpAuthUsernameRetType) {
+	setGlobalGetSmtpAuthUsernameAttributeType(&o.SmtpAuthUsername, v)
 }
 
 // GetSmtpFrom returns the SmtpFrom field value if set, zero value otherwise.
-func (o *Global) GetSmtpFrom() *string {
-	if o == nil || IsNil(o.SmtpFrom) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpFrom
+func (o *Global) GetSmtpFrom() (res GlobalGetSmtpFromRetType) {
+	res, _ = o.GetSmtpFromOk()
+	return
 }
 
 // GetSmtpFromOk returns a tuple with the SmtpFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Global) GetSmtpFromOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpFrom) {
-		return nil, false
-	}
-	return o.SmtpFrom, true
+func (o *Global) GetSmtpFromOk() (ret GlobalGetSmtpFromRetType, ok bool) {
+	return getGlobalGetSmtpFromAttributeTypeOk(o.SmtpFrom)
 }
 
 // HasSmtpFrom returns a boolean if a field has been set.
 func (o *Global) HasSmtpFrom() bool {
-	if o != nil && !IsNil(o.SmtpFrom) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpFromOk()
+	return ok
 }
 
 // SetSmtpFrom gets a reference to the given string and assigns it to the SmtpFrom field.
-func (o *Global) SetSmtpFrom(v *string) {
-	o.SmtpFrom = v
+func (o *Global) SetSmtpFrom(v GlobalGetSmtpFromRetType) {
+	setGlobalGetSmtpFromAttributeType(&o.SmtpFrom, v)
 }
 
 // GetSmtpSmarthost returns the SmtpSmarthost field value if set, zero value otherwise.
-func (o *Global) GetSmtpSmarthost() *string {
-	if o == nil || IsNil(o.SmtpSmarthost) {
-		var ret *string
-		return ret
-	}
-	return o.SmtpSmarthost
+func (o *Global) GetSmtpSmarthost() (res GlobalGetSmtpSmarthostRetType) {
+	res, _ = o.GetSmtpSmarthostOk()
+	return
 }
 
 // GetSmtpSmarthostOk returns a tuple with the SmtpSmarthost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Global) GetSmtpSmarthostOk() (*string, bool) {
-	if o == nil || IsNil(o.SmtpSmarthost) {
-		return nil, false
-	}
-	return o.SmtpSmarthost, true
+func (o *Global) GetSmtpSmarthostOk() (ret GlobalGetSmtpSmarthostRetType, ok bool) {
+	return getGlobalGetSmtpSmarthostAttributeTypeOk(o.SmtpSmarthost)
 }
 
 // HasSmtpSmarthost returns a boolean if a field has been set.
 func (o *Global) HasSmtpSmarthost() bool {
-	if o != nil && !IsNil(o.SmtpSmarthost) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSmtpSmarthostOk()
+	return ok
 }
 
 // SetSmtpSmarthost gets a reference to the given string and assigns it to the SmtpSmarthost field.
-func (o *Global) SetSmtpSmarthost(v *string) {
-	o.SmtpSmarthost = v
+func (o *Global) SetSmtpSmarthost(v GlobalGetSmtpSmarthostRetType) {
+	setGlobalGetSmtpSmarthostAttributeType(&o.SmtpSmarthost, v)
 }
 
 func (o Global) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.OpsgenieApiKey) {
-		toSerialize["opsgenieApiKey"] = o.OpsgenieApiKey
+	if val, ok := getGlobalGetOpsgenieApiKeyAttributeTypeOk(o.OpsgenieApiKey); ok {
+		toSerialize["OpsgenieApiKey"] = val
 	}
-	if !IsNil(o.OpsgenieApiUrl) {
-		toSerialize["opsgenieApiUrl"] = o.OpsgenieApiUrl
+	if val, ok := getGlobalGetOpsgenieApiUrlAttributeTypeOk(o.OpsgenieApiUrl); ok {
+		toSerialize["OpsgenieApiUrl"] = val
 	}
-	if !IsNil(o.ResolveTimeout) {
-		toSerialize["resolveTimeout"] = o.ResolveTimeout
+	if val, ok := getGlobalGetResolveTimeoutAttributeTypeOk(o.ResolveTimeout); ok {
+		toSerialize["ResolveTimeout"] = val
 	}
-	if !IsNil(o.SmtpAuthIdentity) {
-		toSerialize["smtpAuthIdentity"] = o.SmtpAuthIdentity
+	if val, ok := getGlobalGetSmtpAuthIdentityAttributeTypeOk(o.SmtpAuthIdentity); ok {
+		toSerialize["SmtpAuthIdentity"] = val
 	}
-	if !IsNil(o.SmtpAuthPassword) {
-		toSerialize["smtpAuthPassword"] = o.SmtpAuthPassword
+	if val, ok := getGlobalGetSmtpAuthPasswordAttributeTypeOk(o.SmtpAuthPassword); ok {
+		toSerialize["SmtpAuthPassword"] = val
 	}
-	if !IsNil(o.SmtpAuthUsername) {
-		toSerialize["smtpAuthUsername"] = o.SmtpAuthUsername
+	if val, ok := getGlobalGetSmtpAuthUsernameAttributeTypeOk(o.SmtpAuthUsername); ok {
+		toSerialize["SmtpAuthUsername"] = val
 	}
-	if !IsNil(o.SmtpFrom) {
-		toSerialize["smtpFrom"] = o.SmtpFrom
+	if val, ok := getGlobalGetSmtpFromAttributeTypeOk(o.SmtpFrom); ok {
+		toSerialize["SmtpFrom"] = val
 	}
-	if !IsNil(o.SmtpSmarthost) {
-		toSerialize["smtpSmarthost"] = o.SmtpSmarthost
+	if val, ok := getGlobalGetSmtpSmarthostAttributeTypeOk(o.SmtpSmarthost); ok {
+		toSerialize["SmtpSmarthost"] = val
 	}
 	return toSerialize, nil
 }

@@ -6,6 +6,7 @@ import (
 	"crypto/x509"
 	"encoding/json"
 	"encoding/pem"
+	"net/http"
 	"os"
 	"reflect"
 	"testing"
@@ -125,6 +126,7 @@ func TestSetupAuth(t *testing.T) {
 		t.Fatalf("Creating temporary file: %s", err)
 	}
 	defer func() {
+		_ = credentialsKeyFile.Close()
 		err := os.Remove(credentialsKeyFile.Name())
 		if err != nil {
 			t.Fatalf("Removing temporary file: %s", err)
@@ -361,6 +363,7 @@ func TestDefaultAuth(t *testing.T) {
 		t.Fatalf("Creating temporary file: %s", err)
 	}
 	defer func() {
+		_ = saKeyFile.Close()
 		err := os.Remove(saKeyFile.Name())
 		if err != nil {
 			t.Fatalf("Removing temporary file: %s", err)
@@ -377,19 +380,13 @@ func TestDefaultAuth(t *testing.T) {
 		t.Fatalf("Writing private key to temporary file: %s", err)
 	}
 
-	defer func() {
-		err := saKeyFile.Close()
-		if err != nil {
-			t.Fatalf("Removing temporary file: %s", err)
-		}
-	}()
-
 	// create a credentials file with saKey and private key
 	credentialsKeyFile, errs := os.CreateTemp("", "temp-*.txt")
 	if errs != nil {
 		t.Fatalf("Creating temporary file: %s", err)
 	}
 	defer func() {
+		_ = credentialsKeyFile.Close()
 		err := os.Remove(credentialsKeyFile.Name())
 		if err != nil {
 			t.Fatalf("Removing temporary file: %s", err)
@@ -682,6 +679,28 @@ func TestNoAuth(t *testing.T) {
 		t.Run(test.desc, func(t *testing.T) {
 			setTemporaryHome(t) // Get the default authentication client and ensure that it's not nil
 			authClient, err := NoAuth()
+			if err != nil {
+				t.Fatalf("Test returned error on valid test case: %v", err)
+			}
+
+			if authClient == nil {
+				t.Fatalf("Client returned is nil for valid test case")
+			}
+		})
+	}
+}
+
+func TestNoAuthWithConfig(t *testing.T) {
+	for _, test := range []struct {
+		desc string
+	}{
+		{
+			desc: "valid_case",
+		},
+	} {
+		t.Run(test.desc, func(t *testing.T) {
+			setTemporaryHome(t) // Get the default authentication client and ensure that it's not nil
+			authClient, err := NoAuth(&config.Configuration{HTTPClient: http.DefaultClient})
 			if err != nil {
 				t.Fatalf("Test returned error on valid test case: %v", err)
 			}

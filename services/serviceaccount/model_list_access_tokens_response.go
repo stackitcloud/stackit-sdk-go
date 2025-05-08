@@ -17,9 +17,29 @@ import (
 // checks if the ListAccessTokensResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListAccessTokensResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListAccessTokensResponseGetItemsAttributeType = *[]AccessTokenMetadata
+type ListAccessTokensResponseGetItemsArgType = []AccessTokenMetadata
+type ListAccessTokensResponseGetItemsRetType = []AccessTokenMetadata
+
+func getListAccessTokensResponseGetItemsAttributeTypeOk(arg ListAccessTokensResponseGetItemsAttributeType) (ret ListAccessTokensResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListAccessTokensResponseGetItemsAttributeType(arg *ListAccessTokensResponseGetItemsAttributeType, val ListAccessTokensResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // ListAccessTokensResponse struct for ListAccessTokensResponse
 type ListAccessTokensResponse struct {
-	Items *[]AccessTokenMetadata `json:"items,omitempty"`
+	Items ListAccessTokensResponseGetItemsAttributeType `json:"items,omitempty"`
 }
 
 // NewListAccessTokensResponse instantiates a new ListAccessTokensResponse object
@@ -40,41 +60,32 @@ func NewListAccessTokensResponseWithDefaults() *ListAccessTokensResponse {
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *ListAccessTokensResponse) GetItems() *[]AccessTokenMetadata {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]AccessTokenMetadata
-		return ret
-	}
-	return o.Items
+func (o *ListAccessTokensResponse) GetItems() (res ListAccessTokensResponseGetItemsRetType) {
+	res, _ = o.GetItemsOk()
+	return
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListAccessTokensResponse) GetItemsOk() (*[]AccessTokenMetadata, bool) {
-	if o == nil || IsNil(o.Items) {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListAccessTokensResponse) GetItemsOk() (ret ListAccessTokensResponseGetItemsRetType, ok bool) {
+	return getListAccessTokensResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *ListAccessTokensResponse) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemsOk()
+	return ok
 }
 
 // SetItems gets a reference to the given []AccessTokenMetadata and assigns it to the Items field.
-func (o *ListAccessTokensResponse) SetItems(v *[]AccessTokenMetadata) {
-	o.Items = v
+func (o *ListAccessTokensResponse) SetItems(v ListAccessTokensResponseGetItemsRetType) {
+	setListAccessTokensResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o ListAccessTokensResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Items) {
-		toSerialize["items"] = o.Items
+	if val, ok := getListAccessTokensResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
 }

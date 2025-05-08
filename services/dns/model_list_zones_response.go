@@ -17,17 +17,121 @@ import (
 // checks if the ListZonesResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListZonesResponse{}
 
+/*
+	types and functions for itemsPerPage
+*/
+
+// isInteger
+type ListZonesResponseGetItemsPerPageAttributeType = *int64
+type ListZonesResponseGetItemsPerPageArgType = int64
+type ListZonesResponseGetItemsPerPageRetType = int64
+
+func getListZonesResponseGetItemsPerPageAttributeTypeOk(arg ListZonesResponseGetItemsPerPageAttributeType) (ret ListZonesResponseGetItemsPerPageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListZonesResponseGetItemsPerPageAttributeType(arg *ListZonesResponseGetItemsPerPageAttributeType, val ListZonesResponseGetItemsPerPageRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ListZonesResponseGetMessageAttributeType = *string
+
+func getListZonesResponseGetMessageAttributeTypeOk(arg ListZonesResponseGetMessageAttributeType) (ret ListZonesResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListZonesResponseGetMessageAttributeType(arg *ListZonesResponseGetMessageAttributeType, val ListZonesResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ListZonesResponseGetMessageArgType = string
+type ListZonesResponseGetMessageRetType = string
+
+/*
+	types and functions for totalItems
+*/
+
+// isInteger
+type ListZonesResponseGetTotalItemsAttributeType = *int64
+type ListZonesResponseGetTotalItemsArgType = int64
+type ListZonesResponseGetTotalItemsRetType = int64
+
+func getListZonesResponseGetTotalItemsAttributeTypeOk(arg ListZonesResponseGetTotalItemsAttributeType) (ret ListZonesResponseGetTotalItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListZonesResponseGetTotalItemsAttributeType(arg *ListZonesResponseGetTotalItemsAttributeType, val ListZonesResponseGetTotalItemsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for totalPages
+*/
+
+// isInteger
+type ListZonesResponseGetTotalPagesAttributeType = *int64
+type ListZonesResponseGetTotalPagesArgType = int64
+type ListZonesResponseGetTotalPagesRetType = int64
+
+func getListZonesResponseGetTotalPagesAttributeTypeOk(arg ListZonesResponseGetTotalPagesAttributeType) (ret ListZonesResponseGetTotalPagesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListZonesResponseGetTotalPagesAttributeType(arg *ListZonesResponseGetTotalPagesAttributeType, val ListZonesResponseGetTotalPagesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for zones
+*/
+
+// isArray
+type ListZonesResponseGetZonesAttributeType = *[]Zone
+type ListZonesResponseGetZonesArgType = []Zone
+type ListZonesResponseGetZonesRetType = []Zone
+
+func getListZonesResponseGetZonesAttributeTypeOk(arg ListZonesResponseGetZonesAttributeType) (ret ListZonesResponseGetZonesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListZonesResponseGetZonesAttributeType(arg *ListZonesResponseGetZonesAttributeType, val ListZonesResponseGetZonesRetType) {
+	*arg = &val
+}
+
 // ListZonesResponse ResponseZoneAll for filtered zones.
 type ListZonesResponse struct {
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	ItemsPerPage *int64  `json:"itemsPerPage"`
-	Message      *string `json:"message,omitempty"`
+	ItemsPerPage ListZonesResponseGetItemsPerPageAttributeType `json:"itemsPerPage"`
+	Message      ListZonesResponseGetMessageAttributeType      `json:"message,omitempty"`
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	TotalItems *int64 `json:"totalItems"`
+	TotalItems ListZonesResponseGetTotalItemsAttributeType `json:"totalItems"`
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	TotalPages *int64 `json:"totalPages"`
+	TotalPages ListZonesResponseGetTotalPagesAttributeType `json:"totalPages"`
 	// REQUIRED
-	Zones *[]Zone `json:"zones"`
+	Zones ListZonesResponseGetZonesAttributeType `json:"zones"`
 }
 
 type _ListZonesResponse ListZonesResponse
@@ -36,12 +140,12 @@ type _ListZonesResponse ListZonesResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListZonesResponse(itemsPerPage *int64, totalItems *int64, totalPages *int64, zones *[]Zone) *ListZonesResponse {
+func NewListZonesResponse(itemsPerPage ListZonesResponseGetItemsPerPageArgType, totalItems ListZonesResponseGetTotalItemsArgType, totalPages ListZonesResponseGetTotalPagesArgType, zones ListZonesResponseGetZonesArgType) *ListZonesResponse {
 	this := ListZonesResponse{}
-	this.ItemsPerPage = itemsPerPage
-	this.TotalItems = totalItems
-	this.TotalPages = totalPages
-	this.Zones = zones
+	setListZonesResponseGetItemsPerPageAttributeType(&this.ItemsPerPage, itemsPerPage)
+	setListZonesResponseGetTotalItemsAttributeType(&this.TotalItems, totalItems)
+	setListZonesResponseGetTotalPagesAttributeType(&this.TotalPages, totalPages)
+	setListZonesResponseGetZonesAttributeType(&this.Zones, zones)
 	return &this
 }
 
@@ -54,142 +158,113 @@ func NewListZonesResponseWithDefaults() *ListZonesResponse {
 }
 
 // GetItemsPerPage returns the ItemsPerPage field value
-func (o *ListZonesResponse) GetItemsPerPage() *int64 {
-	if o == nil || IsNil(o.ItemsPerPage) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ItemsPerPage
+func (o *ListZonesResponse) GetItemsPerPage() (ret ListZonesResponseGetItemsPerPageRetType) {
+	ret, _ = o.GetItemsPerPageOk()
+	return ret
 }
 
 // GetItemsPerPageOk returns a tuple with the ItemsPerPage field value
 // and a boolean to check if the value has been set.
-func (o *ListZonesResponse) GetItemsPerPageOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ItemsPerPage, true
+func (o *ListZonesResponse) GetItemsPerPageOk() (ret ListZonesResponseGetItemsPerPageRetType, ok bool) {
+	return getListZonesResponseGetItemsPerPageAttributeTypeOk(o.ItemsPerPage)
 }
 
 // SetItemsPerPage sets field value
-func (o *ListZonesResponse) SetItemsPerPage(v *int64) {
-	o.ItemsPerPage = v
+func (o *ListZonesResponse) SetItemsPerPage(v ListZonesResponseGetItemsPerPageRetType) {
+	setListZonesResponseGetItemsPerPageAttributeType(&o.ItemsPerPage, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ListZonesResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *ListZonesResponse) GetMessage() (res ListZonesResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListZonesResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ListZonesResponse) GetMessageOk() (ret ListZonesResponseGetMessageRetType, ok bool) {
+	return getListZonesResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ListZonesResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ListZonesResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ListZonesResponse) SetMessage(v ListZonesResponseGetMessageRetType) {
+	setListZonesResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetTotalItems returns the TotalItems field value
-func (o *ListZonesResponse) GetTotalItems() *int64 {
-	if o == nil || IsNil(o.TotalItems) {
-		var ret *int64
-		return ret
-	}
-
-	return o.TotalItems
+func (o *ListZonesResponse) GetTotalItems() (ret ListZonesResponseGetTotalItemsRetType) {
+	ret, _ = o.GetTotalItemsOk()
+	return ret
 }
 
 // GetTotalItemsOk returns a tuple with the TotalItems field value
 // and a boolean to check if the value has been set.
-func (o *ListZonesResponse) GetTotalItemsOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TotalItems, true
+func (o *ListZonesResponse) GetTotalItemsOk() (ret ListZonesResponseGetTotalItemsRetType, ok bool) {
+	return getListZonesResponseGetTotalItemsAttributeTypeOk(o.TotalItems)
 }
 
 // SetTotalItems sets field value
-func (o *ListZonesResponse) SetTotalItems(v *int64) {
-	o.TotalItems = v
+func (o *ListZonesResponse) SetTotalItems(v ListZonesResponseGetTotalItemsRetType) {
+	setListZonesResponseGetTotalItemsAttributeType(&o.TotalItems, v)
 }
 
 // GetTotalPages returns the TotalPages field value
-func (o *ListZonesResponse) GetTotalPages() *int64 {
-	if o == nil || IsNil(o.TotalPages) {
-		var ret *int64
-		return ret
-	}
-
-	return o.TotalPages
+func (o *ListZonesResponse) GetTotalPages() (ret ListZonesResponseGetTotalPagesRetType) {
+	ret, _ = o.GetTotalPagesOk()
+	return ret
 }
 
 // GetTotalPagesOk returns a tuple with the TotalPages field value
 // and a boolean to check if the value has been set.
-func (o *ListZonesResponse) GetTotalPagesOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TotalPages, true
+func (o *ListZonesResponse) GetTotalPagesOk() (ret ListZonesResponseGetTotalPagesRetType, ok bool) {
+	return getListZonesResponseGetTotalPagesAttributeTypeOk(o.TotalPages)
 }
 
 // SetTotalPages sets field value
-func (o *ListZonesResponse) SetTotalPages(v *int64) {
-	o.TotalPages = v
+func (o *ListZonesResponse) SetTotalPages(v ListZonesResponseGetTotalPagesRetType) {
+	setListZonesResponseGetTotalPagesAttributeType(&o.TotalPages, v)
 }
 
 // GetZones returns the Zones field value
-func (o *ListZonesResponse) GetZones() *[]Zone {
-	if o == nil || IsNil(o.Zones) {
-		var ret *[]Zone
-		return ret
-	}
-
-	return o.Zones
+func (o *ListZonesResponse) GetZones() (ret ListZonesResponseGetZonesRetType) {
+	ret, _ = o.GetZonesOk()
+	return ret
 }
 
 // GetZonesOk returns a tuple with the Zones field value
 // and a boolean to check if the value has been set.
-func (o *ListZonesResponse) GetZonesOk() (*[]Zone, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Zones, true
+func (o *ListZonesResponse) GetZonesOk() (ret ListZonesResponseGetZonesRetType, ok bool) {
+	return getListZonesResponseGetZonesAttributeTypeOk(o.Zones)
 }
 
 // SetZones sets field value
-func (o *ListZonesResponse) SetZones(v *[]Zone) {
-	o.Zones = v
+func (o *ListZonesResponse) SetZones(v ListZonesResponseGetZonesRetType) {
+	setListZonesResponseGetZonesAttributeType(&o.Zones, v)
 }
 
 func (o ListZonesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["itemsPerPage"] = o.ItemsPerPage
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getListZonesResponseGetItemsPerPageAttributeTypeOk(o.ItemsPerPage); ok {
+		toSerialize["ItemsPerPage"] = val
 	}
-	toSerialize["totalItems"] = o.TotalItems
-	toSerialize["totalPages"] = o.TotalPages
-	toSerialize["zones"] = o.Zones
+	if val, ok := getListZonesResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
+	if val, ok := getListZonesResponseGetTotalItemsAttributeTypeOk(o.TotalItems); ok {
+		toSerialize["TotalItems"] = val
+	}
+	if val, ok := getListZonesResponseGetTotalPagesAttributeTypeOk(o.TotalPages); ok {
+		toSerialize["TotalPages"] = val
+	}
+	if val, ok := getListZonesResponseGetZonesAttributeTypeOk(o.Zones); ok {
+		toSerialize["Zones"] = val
+	}
 	return toSerialize, nil
 }
 

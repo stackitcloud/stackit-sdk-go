@@ -19,6 +19,23 @@ type GenericOpenAPIError struct {
 	Model        interface{}
 }
 
+func NewError(code int, status string) *GenericOpenAPIError {
+	return &GenericOpenAPIError{
+		StatusCode:   code,
+		ErrorMessage: status,
+		Model:        map[string]any{},
+	}
+}
+
+func NewErrorWithBody(code int, status string, body []byte, model any) *GenericOpenAPIError {
+	return &GenericOpenAPIError{
+		StatusCode:   code,
+		ErrorMessage: status,
+		Body:         body,
+		Model:        model,
+	}
+}
+
 // Error returns non-empty string if there was an errorMessage.
 func (e GenericOpenAPIError) Error() string {
 	// Prevent panic in case of negative value

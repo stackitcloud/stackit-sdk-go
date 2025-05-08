@@ -1,6 +1,217 @@
 ## Release (2025-XX-YY)
-- `core`: [v0.16.2](core/CHANGELOG.md#v0162-2025-XX-YY)
+- `core`: [v0.17.2](core/CHANGELOG.md#v0172-2025-XX-YY)
   - **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
+
+## Release (2025-05-XX)
+- `resourcemanager`: [v0.13.2](services/resourcemanager/CHANGELOG.md#v0132-2025-05-02)
+  - **Feature:**
+    - Added API calls for folder management
+- `stackitmarketplace`: [1.0.0](services/stackitmarketplace/CHANGELOG.md#v100-2025-05-02)
+  - **Breaking Change:**
+      - Introduced dedicated type for product id with appropriate validations
+  - **Feature:** 
+      - Improved nil-safety
+      - subscription products contain the plan id
+- `modelserving` [v0.2.2](services/modelserving/CHANGELOG.md#v022-2025-05-02)
+  - **Feature:** Improved nil-safety
+- `mongodbflex`: [1.0.0](services/mongodbflex/CHANGELOG.md#v100-2025-05-02)
+  - **Breaking Change:** Introduce typed enum constants for status attributes
+- `git`: [v0.3.2](services/git/CHANGELOG.md#v032-2025-05-02)
+  - **Bugfix**: Spelling corrections in documentation
+- `cdn`:
+  - [v1.0.1](services/cdn/CHANGELOG.md#v101-2025-05-05)
+    - **Enhancement:** Increase waiter timeouts
+  - [v1.0.0](services/cdn/CHANGELOG.md#v100-2025-05-02)
+    - **Feature:** Support for log management
+    - **Feature:** Create distribution payload has additional optional attributes for blocked countries, IPs and volume limitation
+    - **Feature:** Config Patch payload has additional optional attributes for blocked countries, IPs and volume limitation
+    - **Breaking Change:** Config has additional required attributes for blocked countries, IPs and volume limitation
+- `alb`: [v0.2.2](services/alb/CHANGELOG.md#v022-2025-05-02)
+  - **Feature:** Switch to beta2 API
+
+## Release (2025-04-30)
+- `core`: [v0.17.1](core/CHANGELOG.md#v0171-2025-04-09)
+  - **Improvement:** Improve error message for key flow authentication
+- `stackitmarketplace`: [v0.5.0](services/stackitmarketplace/CHANGELOG.md#v050-2025-04-11)
+  - **Feature:** Add new `InquiryContactSales`, `InquirySuggestProduct`, `PriceType`, `PricingOption` and `DeliveryMethod`
+- `git`:
+  - [v0.1.0](services/git/CHANGELOG.md#v010-2025-04-14)
+    - **New**: STACKIT Git module can be used to manage STACKIT Git
+  - [v0.2.0](services/git/CHANGELOG.md#v020-2025-04-16)
+    - **Features**: Add new methods to manage the STACKIT Git: `CreateInstance`, `DeleteInstance`, `GetInstance`
+  - [v0.3.0](services/git/CHANGELOG.md#v030-2025-04-22)
+    - **Features**: Add waiters to manage the STACKIT Git
+  - [v0.3.1](services/git/CHANGELOG.md#v031-2025-04-29)
+    - **Bugfix:** Correctly handle empty payload in body
+- `observability`: 
+  - [v0.5.0](services/observability/CHANGELOG.md#v050-2025-04-16)
+    - **Feature:** Add new methods `ListLogsAlertgroups`, `CreateLogsAlertgroups`, `GetLogsAlertgroup`, `UpdateLogsAlertgroup`, `DeleteLogsAlertgroup`
+  - [v0.5.1](services/observability/CHANGELOG.md#v051-2025-04-29)
+    - **Bugfix:** Correctly handle empty payload in body
+- `kms`: [v0.0.1](services/kms/CHANGELOG.md#v001-2025-04-28)
+  - **New module:** Initial publication of Key Management Service API
+- `serviceaccount`: [v0.6.2](services/serviceaccount/CHANGELOG.md#v062-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `serverupdate`: [v1.0.2](services/serverupdate/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `sqlserverflex`: [v1.0.2](services/sqlserverflex/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `ske`: [v0.22.2](services/ske/CHANGELOG.md#v0222-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `serviceenablement`: [v1.0.2](services/serviceenablement/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `serverbackup`: [v1.0.2](services/serverbackup/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `secretsmanager`: [v0.11.3](services/secretsmanager/CHANGELOG.md#v0113-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `runcommand`: [v1.0.1](services/runcommand/CHANGELOG.md#v101-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `redis`: [v0.22.1](services/redis/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `rabbitmq`: [v0.22.1](services/rabbitmq/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `postgresflex`: [v1.0.3](services/postgresflex/CHANGELOG.md#v103-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `opensearch`: [v0.21.1](services/opensearch/CHANGELOG.md#v0211-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `objectstorage`: [v1.1.2](services/objectstorage/CHANGELOG.md#v112-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `mongodbflex`: [v0.18.2](services/mongodbflex/CHANGELOG.md#v0182-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `mariadb`: [v0.22.1](services/mariadb/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `logme`: [v0.22.1](services/logme/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `loadbalancer`: [v1.0.2](services/loadbalancer/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `iaas`: [v0.22.1](services/iaas/CHANGELOG.md#v0221-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `dns`: [v0.13.2](services/dns/CHANGELOG.md#v0132-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `certificates`: [v1.0.2](services/certificates/CHANGELOG.md#v102-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `cdn`: [v0.3.1](services/cdn/CHANGELOG.md#v031-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+- `authorization`: [v0.6.2](services/authorization/CHANGELOG.md#v062-2025-04-29)
+  - **Bugfix:** Correctly handle empty payload in body
+
+## Release (2025-04-09)
+- `cdn`: [v0.3.0](services/cdn/CHANGELOG.md#v030-2025-04-04)
+  - **New:** Add waiter for creation of `CustomDomain`
+- `cdn`: [v0.2.0](services/cdn/CHANGELOG.md#v020-2025-04-01)
+  - **API enhancement:** Provide waiter infrastructure
+- `logme`: 
+  - [v0.21.2](services/logme/CHANGELOG.md#v0212-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.22.0](services/logme/CHANGELOG.md#v0220-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
+- `mariadb`: 
+  - [v0.21.2](services/mariadb/CHANGELOG.md#v0212-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.22.0](services/logme/CHANGELOG.md#v0220-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
+- `opensearch`: 
+  - [v0.20.2](services/opensearch/CHANGELOG.md#v0202-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.21.0](services/opensearch/CHANGELOG.md#v0210-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
+- `redis`: 
+  - [v0.21.2](services/redis/CHANGELOG.md#v0212-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.22.0](services/redis/CHANGELOG.md#v0220-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
+- `rabbitmq`: 
+  - [v0.21.2](services/rabbitmq/CHANGELOG.md#v0212-2025-04-02)
+    - **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+    - **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+  - [v0.22.0](services/rabbitmq/CHANGELOG.md#v0220-2025-04-03)
+    - **Feature:** Adapt constants to evolved API.
+  - [0.4.0](services/stackitmarketplace/CHANGELOG.md#v040-2025-04-04)
+    - **Feature:** Add new `VendorProductId` attribute for subscription products
+
+
+## Release (2025-03-27)
+
+- `alb`: [v0.2.1](services/alb/CHANGELOG.md#v021-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
+- `cdn`: [v0.1.1](services/cdn/CHANGELOG.md#v011-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
+- `certificates`: [v1.0.1](services/certificates/CHANGELOG.md#v101-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
+- `serverupdate`: [v1.0.1](services/serverupdate/CHANGELOG.md#v101-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
+- `serverbackup`: [v1.0.1](services/serverbackup/CHANGELOG.md#v101-2025-03-27)
+  - **Bugfix:** Removed ConfigureRegion() from API client
+- `core`: [0.17.0](core/CHANGELOG.md#v0170-2025-03-25)
+  - **New:** Helper functions for generic openapi error codes
+  - **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
+- `alb`: [v0.2.0](services/alb/CHANGELOG.md#v020-2025-03-20)
+  - **New:** API for application load balancer
+- `cdn`: [v0.1.0](services/cdn/CHANGELOG.md#v010-2025-03-19)
+  - **New:** Introduce new API for content delivery
+- `serverupdate`: [v1.0.0](services/serverupdate/CHANGELOG.md#v100-2025-03-19)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `serverbackup`: [v1.0.0](services/serverbackup/CHANGELOG.md#v100-2025-03-19)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `runcommand`: [v1.0.0](services/runcommand/CHANGELOG.md#v100-2025-03-19)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `authorization`: [v0.6.1](services/authorization/CHANGELOG.md#v061-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `dns`: [v0.13.1](services/dns/CHANGELOG.md#v0131-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `iaas`: [v0.21.2](services/iaas/CHANGELOG.md#v0212-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `iaas`: [v0.22.0](services/iaas/CHANGELOG.md#v0220-2025-03-24)
+  - **Improvement:** Upgrading from IaaS **beta** endpoints to **v1**
+  - **Feature:** Add new method to filter `ListMachineTypes`: `Filter`
+- `loadbalancer`: [v1.0.1](services/loadbalancer/CHANGELOG.md#v101-2025-03-19)
+  - - **Bugfix:** Corrected regional setup of client
+- `logme`: [v0.21.1](services/logme/CHANGELOG.md#v0211-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `mariadb`: [v0.21.1](services/mariadb/CHANGELOG.md#v0211-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `modelserving`: [v0.2.1](services/modelserving/CHANGELOG.md#v021-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `mongodbflex`: [v0.18.1](services/mongodbflex/CHANGELOG.md#v0181-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `objectstorage`: [v1.1.1](services/objectstorage/CHANGELOG.md#v111-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `observability`
+    - [0.4.0](services/observability/CHANGELOG.md#v040-2025-03-27)
+      - **New:** Support for alert groups
+    - [v0.3.1](services/observability/CHANGELOG.md#v031-2025-03-19)
+      - **Internal:** Backwards compatible change to generated code
+- `opensearch`: [v0.20.1](services/opensearch/CHANGELOG.md#v0201-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `postgresflex`: [v1.0.2](services/postgresflex/CHANGELOG.md#v102-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `rabbitmq`: [v0.21.1](services/rabbitmq/CHANGELOG.md#v0211-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `redis`: [v0.21.1](services/redis/CHANGELOG.md#v0211-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `resourcemanager`: [v0.13.1](services/resourcemanager/CHANGELOG.md#v0131-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `secretsmanager`: [v0.11.1](services/secretsmanager/CHANGELOG.md#v0111-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `secretsmanager`: [v0.11.2](services/secretsmanager/CHANGELOG.md#v0112-2025-03-20)
+  - **Improvement:** Error handling
+  - **Feature:** Add description to `UpdateUserPayload`
+- `serviceaccount`: [v0.6.1](services/serviceaccount/CHANGELOG.md#v061-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `serviceenablement`: [v1.0.1](services/serviceenablement/CHANGELOG.md#v101-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `ske`: [v0.22.1](services/ske/CHANGELOG.md#v0221-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `sqlserverflex`: [v1.0.1](services/sqlserverflex/CHANGELOG.md#v101-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+- `stackitmarketplace`: [v0.3.1](services/stackitmarketplace/CHANGELOG.md#v031-2025-03-19)
+  - **Internal:** Backwards compatible change to generated code
+
+
 
 ## Release (2025-03-14)
 - `certificates`: [v1.0.0](services/certificates/CHANGELOG.md#v100-2025-03-14)
@@ -9,9 +220,13 @@
   - **Bugfix:** `DeleteUserWaitHandler` is now also using the region as parameter.
 - `modelserving`: [v0.2.0](services/modelserving/CHANGELOG.md#v020-2025-03-14)
   - **New**: STACKIT Model Serving module wait handler added.
+- `loadbalancer`: [v1.0.0](services/loadbalancer/CHANGELOG.md#v100-2025-03-14)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+  - **Breaking Change:** Remove deprecated API methods `DisableService` and `EnableService`. They are no longer required because the service automatically enables and disable.
+  - **Breaking Change:** Remove WaitHandler `EnableServiceWaitHandler` for `EnableService`.
+
 
 ## Release (2025-03-05)
-
 - `core`: [v0.16.1](core/CHANGELOG.md#v0161-2025-02-25)
   - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.
 - `stackitmarketplace`: [v0.3.0](services/stackitmarketplace/CHANGELOG.md#v030-2025-02-25)

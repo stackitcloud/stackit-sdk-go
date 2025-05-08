@@ -17,14 +17,56 @@ import (
 // checks if the MoveZonePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MoveZonePayload{}
 
+/*
+	types and functions for code
+*/
+
+// isNotNullableString
+type MoveZonePayloadGetCodeAttributeType = *string
+
+func getMoveZonePayloadGetCodeAttributeTypeOk(arg MoveZonePayloadGetCodeAttributeType) (ret MoveZonePayloadGetCodeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMoveZonePayloadGetCodeAttributeType(arg *MoveZonePayloadGetCodeAttributeType, val MoveZonePayloadGetCodeRetType) {
+	*arg = &val
+}
+
+type MoveZonePayloadGetCodeArgType = string
+type MoveZonePayloadGetCodeRetType = string
+
+/*
+	types and functions for zoneDnsName
+*/
+
+// isNotNullableString
+type MoveZonePayloadGetZoneDnsNameAttributeType = *string
+
+func getMoveZonePayloadGetZoneDnsNameAttributeTypeOk(arg MoveZonePayloadGetZoneDnsNameAttributeType) (ret MoveZonePayloadGetZoneDnsNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMoveZonePayloadGetZoneDnsNameAttributeType(arg *MoveZonePayloadGetZoneDnsNameAttributeType, val MoveZonePayloadGetZoneDnsNameRetType) {
+	*arg = &val
+}
+
+type MoveZonePayloadGetZoneDnsNameArgType = string
+type MoveZonePayloadGetZoneDnsNameRetType = string
+
 // MoveZonePayload body to move zone from one project to another.
 type MoveZonePayload struct {
 	// Code to move the zone. It must be valid, not expired and belong
 	// REQUIRED
-	Code *string `json:"code"`
+	Code MoveZonePayloadGetCodeAttributeType `json:"code"`
 	// ZoneDnsName is the dns name of the zone to move
 	// REQUIRED
-	ZoneDnsName *string `json:"zoneDnsName"`
+	ZoneDnsName MoveZonePayloadGetZoneDnsNameAttributeType `json:"zoneDnsName"`
 }
 
 type _MoveZonePayload MoveZonePayload
@@ -33,10 +75,10 @@ type _MoveZonePayload MoveZonePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMoveZonePayload(code *string, zoneDnsName *string) *MoveZonePayload {
+func NewMoveZonePayload(code MoveZonePayloadGetCodeArgType, zoneDnsName MoveZonePayloadGetZoneDnsNameArgType) *MoveZonePayload {
 	this := MoveZonePayload{}
-	this.Code = code
-	this.ZoneDnsName = zoneDnsName
+	setMoveZonePayloadGetCodeAttributeType(&this.Code, code)
+	setMoveZonePayloadGetZoneDnsNameAttributeType(&this.ZoneDnsName, zoneDnsName)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewMoveZonePayloadWithDefaults() *MoveZonePayload {
 }
 
 // GetCode returns the Code field value
-func (o *MoveZonePayload) GetCode() *string {
-	if o == nil || IsNil(o.Code) {
-		var ret *string
-		return ret
-	}
-
-	return o.Code
+func (o *MoveZonePayload) GetCode() (ret MoveZonePayloadGetCodeRetType) {
+	ret, _ = o.GetCodeOk()
+	return ret
 }
 
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-func (o *MoveZonePayload) GetCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Code, true
+func (o *MoveZonePayload) GetCodeOk() (ret MoveZonePayloadGetCodeRetType, ok bool) {
+	return getMoveZonePayloadGetCodeAttributeTypeOk(o.Code)
 }
 
 // SetCode sets field value
-func (o *MoveZonePayload) SetCode(v *string) {
-	o.Code = v
+func (o *MoveZonePayload) SetCode(v MoveZonePayloadGetCodeRetType) {
+	setMoveZonePayloadGetCodeAttributeType(&o.Code, v)
 }
 
 // GetZoneDnsName returns the ZoneDnsName field value
-func (o *MoveZonePayload) GetZoneDnsName() *string {
-	if o == nil || IsNil(o.ZoneDnsName) {
-		var ret *string
-		return ret
-	}
-
-	return o.ZoneDnsName
+func (o *MoveZonePayload) GetZoneDnsName() (ret MoveZonePayloadGetZoneDnsNameRetType) {
+	ret, _ = o.GetZoneDnsNameOk()
+	return ret
 }
 
 // GetZoneDnsNameOk returns a tuple with the ZoneDnsName field value
 // and a boolean to check if the value has been set.
-func (o *MoveZonePayload) GetZoneDnsNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ZoneDnsName, true
+func (o *MoveZonePayload) GetZoneDnsNameOk() (ret MoveZonePayloadGetZoneDnsNameRetType, ok bool) {
+	return getMoveZonePayloadGetZoneDnsNameAttributeTypeOk(o.ZoneDnsName)
 }
 
 // SetZoneDnsName sets field value
-func (o *MoveZonePayload) SetZoneDnsName(v *string) {
-	o.ZoneDnsName = v
+func (o *MoveZonePayload) SetZoneDnsName(v MoveZonePayloadGetZoneDnsNameRetType) {
+	setMoveZonePayloadGetZoneDnsNameAttributeType(&o.ZoneDnsName, v)
 }
 
 func (o MoveZonePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["code"] = o.Code
-	toSerialize["zoneDnsName"] = o.ZoneDnsName
+	if val, ok := getMoveZonePayloadGetCodeAttributeTypeOk(o.Code); ok {
+		toSerialize["Code"] = val
+	}
+	if val, ok := getMoveZonePayloadGetZoneDnsNameAttributeTypeOk(o.ZoneDnsName); ok {
+		toSerialize["ZoneDnsName"] = val
+	}
 	return toSerialize, nil
 }
 

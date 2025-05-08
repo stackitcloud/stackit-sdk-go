@@ -24,14 +24,16 @@ import (
 func Test_runcommand_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCommand", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/commands"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/commands"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := "serverId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NewCommandResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -65,30 +67,33 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.CreateCommand(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.CreateCommand(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetCommand", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/commands/{commandId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		commandIdValue := "commandId"
-		path = strings.Replace(path, "{"+"commandId"+"}", url.PathEscape(ParameterValueToString(commandIdValue, "commandId")), -1)
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/commands/{commandId}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		serverIdValue := "serverId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		commandIdValue := "commandId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"commandId"+"}", url.PathEscape(ParameterValueToString(commandIdValue, "commandId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CommandDetails{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -122,31 +127,34 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		commandId := "commandId"
+		projectId := projectIdValue
+		region := regionValue
+		serverId := serverIdValue
+		commandId := commandIdValue
 
-		resp, reqErr := apiClient.GetCommand(context.Background(), projectId, serverId, commandId).Execute()
+		resp, reqErr := apiClient.GetCommand(context.Background(), projectId, region, serverId, commandId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetCommandTemplate", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/command-templates/{commandTemplateName}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		commandTemplateNameValue := "commandTemplateName"
-		path = strings.Replace(path, "{"+"commandTemplateName"+"}", url.PathEscape(ParameterValueToString(commandTemplateNameValue, "commandTemplateName")), -1)
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/command-templates/{commandTemplateName}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := "serverId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		commandTemplateNameValue := "commandTemplateName-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"commandTemplateName"+"}", url.PathEscape(ParameterValueToString(commandTemplateNameValue, "commandTemplateName")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CommandTemplateSchema{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -180,25 +188,26 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
-		commandTemplateName := "commandTemplateName"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		commandTemplateName := commandTemplateNameValue
+		region := regionValue
 
-		resp, reqErr := apiClient.GetCommandTemplate(context.Background(), projectId, serverId, commandTemplateName).Execute()
+		resp, reqErr := apiClient.GetCommandTemplate(context.Background(), projectId, serverId, commandTemplateName, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListCommandTemplates", func(t *testing.T) {
-		path := "/v1/command-templates"
+		_apiUrlPath := "/v2/command-templates"
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CommandTemplateResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -237,20 +246,22 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListCommands", func(t *testing.T) {
-		path := "/v1/projects/{projectId}/servers/{serverId}/commands"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := "serverId"
-		path = strings.Replace(path, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/commands"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		serverIdValue := "serverId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetCommandsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -284,15 +295,16 @@ func Test_runcommand_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		serverId := "serverId"
+		projectId := projectIdValue
+		serverId := serverIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListCommands(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.ListCommands(context.Background(), projectId, serverId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})

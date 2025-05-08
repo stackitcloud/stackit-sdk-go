@@ -17,9 +17,29 @@ import (
 // checks if the ACL type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ACL{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ACLGetItemsAttributeType = *[]string
+type ACLGetItemsArgType = []string
+type ACLGetItemsRetType = []string
+
+func getACLGetItemsAttributeTypeOk(arg ACLGetItemsAttributeType) (ret ACLGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setACLGetItemsAttributeType(arg *ACLGetItemsAttributeType, val ACLGetItemsRetType) {
+	*arg = &val
+}
+
 // ACL struct for ACL
 type ACL struct {
-	Items *[]string `json:"items,omitempty"`
+	Items ACLGetItemsAttributeType `json:"items,omitempty"`
 }
 
 // NewACL instantiates a new ACL object
@@ -40,41 +60,32 @@ func NewACLWithDefaults() *ACL {
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *ACL) GetItems() *[]string {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]string
-		return ret
-	}
-	return o.Items
+func (o *ACL) GetItems() (res ACLGetItemsRetType) {
+	res, _ = o.GetItemsOk()
+	return
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ACL) GetItemsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Items) {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ACL) GetItemsOk() (ret ACLGetItemsRetType, ok bool) {
+	return getACLGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *ACL) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemsOk()
+	return ok
 }
 
 // SetItems gets a reference to the given []string and assigns it to the Items field.
-func (o *ACL) SetItems(v *[]string) {
-	o.Items = v
+func (o *ACL) SetItems(v ACLGetItemsRetType) {
+	setACLGetItemsAttributeType(&o.Items, v)
 }
 
 func (o ACL) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Items) {
-		toSerialize["items"] = o.Items
+	if val, ok := getACLGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
 }

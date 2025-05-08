@@ -17,12 +17,54 @@ import (
 // checks if the CatalogProductSupportResource type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CatalogProductSupportResource{}
 
+/*
+	types and functions for supportLink
+*/
+
+// isNotNullableString
+type CatalogProductSupportResourceGetSupportLinkAttributeType = *string
+
+func getCatalogProductSupportResourceGetSupportLinkAttributeTypeOk(arg CatalogProductSupportResourceGetSupportLinkAttributeType) (ret CatalogProductSupportResourceGetSupportLinkRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductSupportResourceGetSupportLinkAttributeType(arg *CatalogProductSupportResourceGetSupportLinkAttributeType, val CatalogProductSupportResourceGetSupportLinkRetType) {
+	*arg = &val
+}
+
+type CatalogProductSupportResourceGetSupportLinkArgType = string
+type CatalogProductSupportResourceGetSupportLinkRetType = string
+
+/*
+	types and functions for supportLinkTitle
+*/
+
+// isNotNullableString
+type CatalogProductSupportResourceGetSupportLinkTitleAttributeType = *string
+
+func getCatalogProductSupportResourceGetSupportLinkTitleAttributeTypeOk(arg CatalogProductSupportResourceGetSupportLinkTitleAttributeType) (ret CatalogProductSupportResourceGetSupportLinkTitleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductSupportResourceGetSupportLinkTitleAttributeType(arg *CatalogProductSupportResourceGetSupportLinkTitleAttributeType, val CatalogProductSupportResourceGetSupportLinkTitleRetType) {
+	*arg = &val
+}
+
+type CatalogProductSupportResourceGetSupportLinkTitleArgType = string
+type CatalogProductSupportResourceGetSupportLinkTitleRetType = string
+
 // CatalogProductSupportResource struct for CatalogProductSupportResource
 type CatalogProductSupportResource struct {
-	// The support resource link.
-	SupportLink *string `json:"supportLink,omitempty"`
+	// Uniform Resource Locator.
+	SupportLink CatalogProductSupportResourceGetSupportLinkAttributeType `json:"supportLink,omitempty"`
 	// The support resource link title.
-	SupportLinkTitle *string `json:"supportLinkTitle,omitempty"`
+	SupportLinkTitle CatalogProductSupportResourceGetSupportLinkTitleAttributeType `json:"supportLinkTitle,omitempty"`
 }
 
 // NewCatalogProductSupportResource instantiates a new CatalogProductSupportResource object
@@ -43,76 +85,58 @@ func NewCatalogProductSupportResourceWithDefaults() *CatalogProductSupportResour
 }
 
 // GetSupportLink returns the SupportLink field value if set, zero value otherwise.
-func (o *CatalogProductSupportResource) GetSupportLink() *string {
-	if o == nil || IsNil(o.SupportLink) {
-		var ret *string
-		return ret
-	}
-	return o.SupportLink
+func (o *CatalogProductSupportResource) GetSupportLink() (res CatalogProductSupportResourceGetSupportLinkRetType) {
+	res, _ = o.GetSupportLinkOk()
+	return
 }
 
 // GetSupportLinkOk returns a tuple with the SupportLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductSupportResource) GetSupportLinkOk() (*string, bool) {
-	if o == nil || IsNil(o.SupportLink) {
-		return nil, false
-	}
-	return o.SupportLink, true
+func (o *CatalogProductSupportResource) GetSupportLinkOk() (ret CatalogProductSupportResourceGetSupportLinkRetType, ok bool) {
+	return getCatalogProductSupportResourceGetSupportLinkAttributeTypeOk(o.SupportLink)
 }
 
 // HasSupportLink returns a boolean if a field has been set.
 func (o *CatalogProductSupportResource) HasSupportLink() bool {
-	if o != nil && !IsNil(o.SupportLink) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSupportLinkOk()
+	return ok
 }
 
 // SetSupportLink gets a reference to the given string and assigns it to the SupportLink field.
-func (o *CatalogProductSupportResource) SetSupportLink(v *string) {
-	o.SupportLink = v
+func (o *CatalogProductSupportResource) SetSupportLink(v CatalogProductSupportResourceGetSupportLinkRetType) {
+	setCatalogProductSupportResourceGetSupportLinkAttributeType(&o.SupportLink, v)
 }
 
 // GetSupportLinkTitle returns the SupportLinkTitle field value if set, zero value otherwise.
-func (o *CatalogProductSupportResource) GetSupportLinkTitle() *string {
-	if o == nil || IsNil(o.SupportLinkTitle) {
-		var ret *string
-		return ret
-	}
-	return o.SupportLinkTitle
+func (o *CatalogProductSupportResource) GetSupportLinkTitle() (res CatalogProductSupportResourceGetSupportLinkTitleRetType) {
+	res, _ = o.GetSupportLinkTitleOk()
+	return
 }
 
 // GetSupportLinkTitleOk returns a tuple with the SupportLinkTitle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductSupportResource) GetSupportLinkTitleOk() (*string, bool) {
-	if o == nil || IsNil(o.SupportLinkTitle) {
-		return nil, false
-	}
-	return o.SupportLinkTitle, true
+func (o *CatalogProductSupportResource) GetSupportLinkTitleOk() (ret CatalogProductSupportResourceGetSupportLinkTitleRetType, ok bool) {
+	return getCatalogProductSupportResourceGetSupportLinkTitleAttributeTypeOk(o.SupportLinkTitle)
 }
 
 // HasSupportLinkTitle returns a boolean if a field has been set.
 func (o *CatalogProductSupportResource) HasSupportLinkTitle() bool {
-	if o != nil && !IsNil(o.SupportLinkTitle) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSupportLinkTitleOk()
+	return ok
 }
 
 // SetSupportLinkTitle gets a reference to the given string and assigns it to the SupportLinkTitle field.
-func (o *CatalogProductSupportResource) SetSupportLinkTitle(v *string) {
-	o.SupportLinkTitle = v
+func (o *CatalogProductSupportResource) SetSupportLinkTitle(v CatalogProductSupportResourceGetSupportLinkTitleRetType) {
+	setCatalogProductSupportResourceGetSupportLinkTitleAttributeType(&o.SupportLinkTitle, v)
 }
 
 func (o CatalogProductSupportResource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.SupportLink) {
-		toSerialize["supportLink"] = o.SupportLink
+	if val, ok := getCatalogProductSupportResourceGetSupportLinkAttributeTypeOk(o.SupportLink); ok {
+		toSerialize["SupportLink"] = val
 	}
-	if !IsNil(o.SupportLinkTitle) {
-		toSerialize["supportLinkTitle"] = o.SupportLinkTitle
+	if val, ok := getCatalogProductSupportResourceGetSupportLinkTitleAttributeTypeOk(o.SupportLinkTitle); ok {
+		toSerialize["SupportLinkTitle"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,32 +17,282 @@ import (
 // checks if the PostgresDatabaseParameter type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PostgresDatabaseParameter{}
 
+/*
+	types and functions for context
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetContextAttributeType = *string
+
+func getPostgresDatabaseParameterGetContextAttributeTypeOk(arg PostgresDatabaseParameterGetContextAttributeType) (ret PostgresDatabaseParameterGetContextRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetContextAttributeType(arg *PostgresDatabaseParameterGetContextAttributeType, val PostgresDatabaseParameterGetContextRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetContextArgType = string
+type PostgresDatabaseParameterGetContextRetType = string
+
+/*
+	types and functions for dataType
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetDataTypeAttributeType = *string
+
+func getPostgresDatabaseParameterGetDataTypeAttributeTypeOk(arg PostgresDatabaseParameterGetDataTypeAttributeType) (ret PostgresDatabaseParameterGetDataTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetDataTypeAttributeType(arg *PostgresDatabaseParameterGetDataTypeAttributeType, val PostgresDatabaseParameterGetDataTypeRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetDataTypeArgType = string
+type PostgresDatabaseParameterGetDataTypeRetType = string
+
+/*
+	types and functions for defaultValue
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetDefaultValueAttributeType = *string
+
+func getPostgresDatabaseParameterGetDefaultValueAttributeTypeOk(arg PostgresDatabaseParameterGetDefaultValueAttributeType) (ret PostgresDatabaseParameterGetDefaultValueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetDefaultValueAttributeType(arg *PostgresDatabaseParameterGetDefaultValueAttributeType, val PostgresDatabaseParameterGetDefaultValueRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetDefaultValueArgType = string
+type PostgresDatabaseParameterGetDefaultValueRetType = string
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetDescriptionAttributeType = *string
+
+func getPostgresDatabaseParameterGetDescriptionAttributeTypeOk(arg PostgresDatabaseParameterGetDescriptionAttributeType) (ret PostgresDatabaseParameterGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetDescriptionAttributeType(arg *PostgresDatabaseParameterGetDescriptionAttributeType, val PostgresDatabaseParameterGetDescriptionRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetDescriptionArgType = string
+type PostgresDatabaseParameterGetDescriptionRetType = string
+
+/*
+	types and functions for edit
+*/
+
+// isBoolean
+type PostgresDatabaseParametergetEditAttributeType = *bool
+type PostgresDatabaseParametergetEditArgType = bool
+type PostgresDatabaseParametergetEditRetType = bool
+
+func getPostgresDatabaseParametergetEditAttributeTypeOk(arg PostgresDatabaseParametergetEditAttributeType) (ret PostgresDatabaseParametergetEditRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParametergetEditAttributeType(arg *PostgresDatabaseParametergetEditAttributeType, val PostgresDatabaseParametergetEditRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maxValue
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetMaxValueAttributeType = *string
+
+func getPostgresDatabaseParameterGetMaxValueAttributeTypeOk(arg PostgresDatabaseParameterGetMaxValueAttributeType) (ret PostgresDatabaseParameterGetMaxValueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetMaxValueAttributeType(arg *PostgresDatabaseParameterGetMaxValueAttributeType, val PostgresDatabaseParameterGetMaxValueRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetMaxValueArgType = string
+type PostgresDatabaseParameterGetMaxValueRetType = string
+
+/*
+	types and functions for minValue
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetMinValueAttributeType = *string
+
+func getPostgresDatabaseParameterGetMinValueAttributeTypeOk(arg PostgresDatabaseParameterGetMinValueAttributeType) (ret PostgresDatabaseParameterGetMinValueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetMinValueAttributeType(arg *PostgresDatabaseParameterGetMinValueAttributeType, val PostgresDatabaseParameterGetMinValueRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetMinValueArgType = string
+type PostgresDatabaseParameterGetMinValueRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetNameAttributeType = *string
+
+func getPostgresDatabaseParameterGetNameAttributeTypeOk(arg PostgresDatabaseParameterGetNameAttributeType) (ret PostgresDatabaseParameterGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetNameAttributeType(arg *PostgresDatabaseParameterGetNameAttributeType, val PostgresDatabaseParameterGetNameRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetNameArgType = string
+type PostgresDatabaseParameterGetNameRetType = string
+
+/*
+	types and functions for pendingRestart
+*/
+
+// isBoolean
+type PostgresDatabaseParametergetPendingRestartAttributeType = *bool
+type PostgresDatabaseParametergetPendingRestartArgType = bool
+type PostgresDatabaseParametergetPendingRestartRetType = bool
+
+func getPostgresDatabaseParametergetPendingRestartAttributeTypeOk(arg PostgresDatabaseParametergetPendingRestartAttributeType) (ret PostgresDatabaseParametergetPendingRestartRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParametergetPendingRestartAttributeType(arg *PostgresDatabaseParametergetPendingRestartAttributeType, val PostgresDatabaseParametergetPendingRestartRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for resetValue
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetResetValueAttributeType = *string
+
+func getPostgresDatabaseParameterGetResetValueAttributeTypeOk(arg PostgresDatabaseParameterGetResetValueAttributeType) (ret PostgresDatabaseParameterGetResetValueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetResetValueAttributeType(arg *PostgresDatabaseParameterGetResetValueAttributeType, val PostgresDatabaseParameterGetResetValueRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetResetValueArgType = string
+type PostgresDatabaseParameterGetResetValueRetType = string
+
+/*
+	types and functions for unit
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetUnitAttributeType = *string
+
+func getPostgresDatabaseParameterGetUnitAttributeTypeOk(arg PostgresDatabaseParameterGetUnitAttributeType) (ret PostgresDatabaseParameterGetUnitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetUnitAttributeType(arg *PostgresDatabaseParameterGetUnitAttributeType, val PostgresDatabaseParameterGetUnitRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetUnitArgType = string
+type PostgresDatabaseParameterGetUnitRetType = string
+
+/*
+	types and functions for value
+*/
+
+// isNotNullableString
+type PostgresDatabaseParameterGetValueAttributeType = *string
+
+func getPostgresDatabaseParameterGetValueAttributeTypeOk(arg PostgresDatabaseParameterGetValueAttributeType) (ret PostgresDatabaseParameterGetValueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPostgresDatabaseParameterGetValueAttributeType(arg *PostgresDatabaseParameterGetValueAttributeType, val PostgresDatabaseParameterGetValueRetType) {
+	*arg = &val
+}
+
+type PostgresDatabaseParameterGetValueArgType = string
+type PostgresDatabaseParameterGetValueRetType = string
+
 // PostgresDatabaseParameter struct for PostgresDatabaseParameter
 type PostgresDatabaseParameter struct {
 	// Context of the parameter.
-	Context *string `json:"context,omitempty"`
+	Context PostgresDatabaseParameterGetContextAttributeType `json:"context,omitempty"`
 	// Datatype describes the type of data that is used in the Value field.
-	DataType *string `json:"dataType,omitempty"`
+	DataType PostgresDatabaseParameterGetDataTypeAttributeType `json:"dataType,omitempty"`
 	// DefaultValue for the value field.
-	DefaultValue *string `json:"defaultValue,omitempty"`
+	DefaultValue PostgresDatabaseParameterGetDefaultValueAttributeType `json:"defaultValue,omitempty"`
 	// Description of the parameter.
-	Description *string `json:"description,omitempty"`
+	Description PostgresDatabaseParameterGetDescriptionAttributeType `json:"description,omitempty"`
 	// Edit shows if the user can change this value.
-	Edit *bool `json:"edit,omitempty"`
+	Edit PostgresDatabaseParametergetEditAttributeType `json:"edit,omitempty"`
 	// MaxValue describes the highest possible value that can be set.
-	MaxValue *string `json:"maxValue,omitempty"`
+	MaxValue PostgresDatabaseParameterGetMaxValueAttributeType `json:"maxValue,omitempty"`
 	// MinValue describes the lowest possible value that can be set.
-	MinValue *string `json:"minValue,omitempty"`
+	MinValue PostgresDatabaseParameterGetMinValueAttributeType `json:"minValue,omitempty"`
 	// Name of the parameter.
-	Name *string `json:"name,omitempty"`
+	Name PostgresDatabaseParameterGetNameAttributeType `json:"name,omitempty"`
 	// PendingRestart describes if a parameter change requires a restart of the server.
-	PendingRestart *bool `json:"pendingRestart,omitempty"`
+	PendingRestart PostgresDatabaseParametergetPendingRestartAttributeType `json:"pendingRestart,omitempty"`
 	// ResetValue for the value field af.ter a reset.
-	ResetValue *string `json:"resetValue,omitempty"`
+	ResetValue PostgresDatabaseParameterGetResetValueAttributeType `json:"resetValue,omitempty"`
 	// Unit if the parameter has a unit if not empty.
-	Unit *string `json:"unit,omitempty"`
+	Unit PostgresDatabaseParameterGetUnitAttributeType `json:"unit,omitempty"`
 	// Value of this parameter.
-	Value *string `json:"value,omitempty"`
+	Value PostgresDatabaseParameterGetValueAttributeType `json:"value,omitempty"`
 }
 
 // NewPostgresDatabaseParameter instantiates a new PostgresDatabaseParameter object
@@ -63,426 +313,318 @@ func NewPostgresDatabaseParameterWithDefaults() *PostgresDatabaseParameter {
 }
 
 // GetContext returns the Context field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetContext() *string {
-	if o == nil || IsNil(o.Context) {
-		var ret *string
-		return ret
-	}
-	return o.Context
+func (o *PostgresDatabaseParameter) GetContext() (res PostgresDatabaseParameterGetContextRetType) {
+	res, _ = o.GetContextOk()
+	return
 }
 
 // GetContextOk returns a tuple with the Context field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetContextOk() (*string, bool) {
-	if o == nil || IsNil(o.Context) {
-		return nil, false
-	}
-	return o.Context, true
+func (o *PostgresDatabaseParameter) GetContextOk() (ret PostgresDatabaseParameterGetContextRetType, ok bool) {
+	return getPostgresDatabaseParameterGetContextAttributeTypeOk(o.Context)
 }
 
 // HasContext returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasContext() bool {
-	if o != nil && !IsNil(o.Context) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetContextOk()
+	return ok
 }
 
 // SetContext gets a reference to the given string and assigns it to the Context field.
-func (o *PostgresDatabaseParameter) SetContext(v *string) {
-	o.Context = v
+func (o *PostgresDatabaseParameter) SetContext(v PostgresDatabaseParameterGetContextRetType) {
+	setPostgresDatabaseParameterGetContextAttributeType(&o.Context, v)
 }
 
 // GetDataType returns the DataType field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetDataType() *string {
-	if o == nil || IsNil(o.DataType) {
-		var ret *string
-		return ret
-	}
-	return o.DataType
+func (o *PostgresDatabaseParameter) GetDataType() (res PostgresDatabaseParameterGetDataTypeRetType) {
+	res, _ = o.GetDataTypeOk()
+	return
 }
 
 // GetDataTypeOk returns a tuple with the DataType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetDataTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.DataType) {
-		return nil, false
-	}
-	return o.DataType, true
+func (o *PostgresDatabaseParameter) GetDataTypeOk() (ret PostgresDatabaseParameterGetDataTypeRetType, ok bool) {
+	return getPostgresDatabaseParameterGetDataTypeAttributeTypeOk(o.DataType)
 }
 
 // HasDataType returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasDataType() bool {
-	if o != nil && !IsNil(o.DataType) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDataTypeOk()
+	return ok
 }
 
 // SetDataType gets a reference to the given string and assigns it to the DataType field.
-func (o *PostgresDatabaseParameter) SetDataType(v *string) {
-	o.DataType = v
+func (o *PostgresDatabaseParameter) SetDataType(v PostgresDatabaseParameterGetDataTypeRetType) {
+	setPostgresDatabaseParameterGetDataTypeAttributeType(&o.DataType, v)
 }
 
 // GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetDefaultValue() *string {
-	if o == nil || IsNil(o.DefaultValue) {
-		var ret *string
-		return ret
-	}
-	return o.DefaultValue
+func (o *PostgresDatabaseParameter) GetDefaultValue() (res PostgresDatabaseParameterGetDefaultValueRetType) {
+	res, _ = o.GetDefaultValueOk()
+	return
 }
 
 // GetDefaultValueOk returns a tuple with the DefaultValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetDefaultValueOk() (*string, bool) {
-	if o == nil || IsNil(o.DefaultValue) {
-		return nil, false
-	}
-	return o.DefaultValue, true
+func (o *PostgresDatabaseParameter) GetDefaultValueOk() (ret PostgresDatabaseParameterGetDefaultValueRetType, ok bool) {
+	return getPostgresDatabaseParameterGetDefaultValueAttributeTypeOk(o.DefaultValue)
 }
 
 // HasDefaultValue returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasDefaultValue() bool {
-	if o != nil && !IsNil(o.DefaultValue) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDefaultValueOk()
+	return ok
 }
 
 // SetDefaultValue gets a reference to the given string and assigns it to the DefaultValue field.
-func (o *PostgresDatabaseParameter) SetDefaultValue(v *string) {
-	o.DefaultValue = v
+func (o *PostgresDatabaseParameter) SetDefaultValue(v PostgresDatabaseParameterGetDefaultValueRetType) {
+	setPostgresDatabaseParameterGetDefaultValueAttributeType(&o.DefaultValue, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *PostgresDatabaseParameter) GetDescription() (res PostgresDatabaseParameterGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *PostgresDatabaseParameter) GetDescriptionOk() (ret PostgresDatabaseParameterGetDescriptionRetType, ok bool) {
+	return getPostgresDatabaseParameterGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *PostgresDatabaseParameter) SetDescription(v *string) {
-	o.Description = v
+func (o *PostgresDatabaseParameter) SetDescription(v PostgresDatabaseParameterGetDescriptionRetType) {
+	setPostgresDatabaseParameterGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetEdit returns the Edit field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetEdit() *bool {
-	if o == nil || IsNil(o.Edit) {
-		var ret *bool
-		return ret
-	}
-	return o.Edit
+func (o *PostgresDatabaseParameter) GetEdit() (res PostgresDatabaseParametergetEditRetType) {
+	res, _ = o.GetEditOk()
+	return
 }
 
 // GetEditOk returns a tuple with the Edit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetEditOk() (*bool, bool) {
-	if o == nil || IsNil(o.Edit) {
-		return nil, false
-	}
-	return o.Edit, true
+func (o *PostgresDatabaseParameter) GetEditOk() (ret PostgresDatabaseParametergetEditRetType, ok bool) {
+	return getPostgresDatabaseParametergetEditAttributeTypeOk(o.Edit)
 }
 
 // HasEdit returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasEdit() bool {
-	if o != nil && !IsNil(o.Edit) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEditOk()
+	return ok
 }
 
 // SetEdit gets a reference to the given bool and assigns it to the Edit field.
-func (o *PostgresDatabaseParameter) SetEdit(v *bool) {
-	o.Edit = v
+func (o *PostgresDatabaseParameter) SetEdit(v PostgresDatabaseParametergetEditRetType) {
+	setPostgresDatabaseParametergetEditAttributeType(&o.Edit, v)
 }
 
 // GetMaxValue returns the MaxValue field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetMaxValue() *string {
-	if o == nil || IsNil(o.MaxValue) {
-		var ret *string
-		return ret
-	}
-	return o.MaxValue
+func (o *PostgresDatabaseParameter) GetMaxValue() (res PostgresDatabaseParameterGetMaxValueRetType) {
+	res, _ = o.GetMaxValueOk()
+	return
 }
 
 // GetMaxValueOk returns a tuple with the MaxValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetMaxValueOk() (*string, bool) {
-	if o == nil || IsNil(o.MaxValue) {
-		return nil, false
-	}
-	return o.MaxValue, true
+func (o *PostgresDatabaseParameter) GetMaxValueOk() (ret PostgresDatabaseParameterGetMaxValueRetType, ok bool) {
+	return getPostgresDatabaseParameterGetMaxValueAttributeTypeOk(o.MaxValue)
 }
 
 // HasMaxValue returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasMaxValue() bool {
-	if o != nil && !IsNil(o.MaxValue) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaxValueOk()
+	return ok
 }
 
 // SetMaxValue gets a reference to the given string and assigns it to the MaxValue field.
-func (o *PostgresDatabaseParameter) SetMaxValue(v *string) {
-	o.MaxValue = v
+func (o *PostgresDatabaseParameter) SetMaxValue(v PostgresDatabaseParameterGetMaxValueRetType) {
+	setPostgresDatabaseParameterGetMaxValueAttributeType(&o.MaxValue, v)
 }
 
 // GetMinValue returns the MinValue field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetMinValue() *string {
-	if o == nil || IsNil(o.MinValue) {
-		var ret *string
-		return ret
-	}
-	return o.MinValue
+func (o *PostgresDatabaseParameter) GetMinValue() (res PostgresDatabaseParameterGetMinValueRetType) {
+	res, _ = o.GetMinValueOk()
+	return
 }
 
 // GetMinValueOk returns a tuple with the MinValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetMinValueOk() (*string, bool) {
-	if o == nil || IsNil(o.MinValue) {
-		return nil, false
-	}
-	return o.MinValue, true
+func (o *PostgresDatabaseParameter) GetMinValueOk() (ret PostgresDatabaseParameterGetMinValueRetType, ok bool) {
+	return getPostgresDatabaseParameterGetMinValueAttributeTypeOk(o.MinValue)
 }
 
 // HasMinValue returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasMinValue() bool {
-	if o != nil && !IsNil(o.MinValue) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMinValueOk()
+	return ok
 }
 
 // SetMinValue gets a reference to the given string and assigns it to the MinValue field.
-func (o *PostgresDatabaseParameter) SetMinValue(v *string) {
-	o.MinValue = v
+func (o *PostgresDatabaseParameter) SetMinValue(v PostgresDatabaseParameterGetMinValueRetType) {
+	setPostgresDatabaseParameterGetMinValueAttributeType(&o.MinValue, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *PostgresDatabaseParameter) GetName() (res PostgresDatabaseParameterGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *PostgresDatabaseParameter) GetNameOk() (ret PostgresDatabaseParameterGetNameRetType, ok bool) {
+	return getPostgresDatabaseParameterGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PostgresDatabaseParameter) SetName(v *string) {
-	o.Name = v
+func (o *PostgresDatabaseParameter) SetName(v PostgresDatabaseParameterGetNameRetType) {
+	setPostgresDatabaseParameterGetNameAttributeType(&o.Name, v)
 }
 
 // GetPendingRestart returns the PendingRestart field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetPendingRestart() *bool {
-	if o == nil || IsNil(o.PendingRestart) {
-		var ret *bool
-		return ret
-	}
-	return o.PendingRestart
+func (o *PostgresDatabaseParameter) GetPendingRestart() (res PostgresDatabaseParametergetPendingRestartRetType) {
+	res, _ = o.GetPendingRestartOk()
+	return
 }
 
 // GetPendingRestartOk returns a tuple with the PendingRestart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetPendingRestartOk() (*bool, bool) {
-	if o == nil || IsNil(o.PendingRestart) {
-		return nil, false
-	}
-	return o.PendingRestart, true
+func (o *PostgresDatabaseParameter) GetPendingRestartOk() (ret PostgresDatabaseParametergetPendingRestartRetType, ok bool) {
+	return getPostgresDatabaseParametergetPendingRestartAttributeTypeOk(o.PendingRestart)
 }
 
 // HasPendingRestart returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasPendingRestart() bool {
-	if o != nil && !IsNil(o.PendingRestart) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPendingRestartOk()
+	return ok
 }
 
 // SetPendingRestart gets a reference to the given bool and assigns it to the PendingRestart field.
-func (o *PostgresDatabaseParameter) SetPendingRestart(v *bool) {
-	o.PendingRestart = v
+func (o *PostgresDatabaseParameter) SetPendingRestart(v PostgresDatabaseParametergetPendingRestartRetType) {
+	setPostgresDatabaseParametergetPendingRestartAttributeType(&o.PendingRestart, v)
 }
 
 // GetResetValue returns the ResetValue field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetResetValue() *string {
-	if o == nil || IsNil(o.ResetValue) {
-		var ret *string
-		return ret
-	}
-	return o.ResetValue
+func (o *PostgresDatabaseParameter) GetResetValue() (res PostgresDatabaseParameterGetResetValueRetType) {
+	res, _ = o.GetResetValueOk()
+	return
 }
 
 // GetResetValueOk returns a tuple with the ResetValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetResetValueOk() (*string, bool) {
-	if o == nil || IsNil(o.ResetValue) {
-		return nil, false
-	}
-	return o.ResetValue, true
+func (o *PostgresDatabaseParameter) GetResetValueOk() (ret PostgresDatabaseParameterGetResetValueRetType, ok bool) {
+	return getPostgresDatabaseParameterGetResetValueAttributeTypeOk(o.ResetValue)
 }
 
 // HasResetValue returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasResetValue() bool {
-	if o != nil && !IsNil(o.ResetValue) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetResetValueOk()
+	return ok
 }
 
 // SetResetValue gets a reference to the given string and assigns it to the ResetValue field.
-func (o *PostgresDatabaseParameter) SetResetValue(v *string) {
-	o.ResetValue = v
+func (o *PostgresDatabaseParameter) SetResetValue(v PostgresDatabaseParameterGetResetValueRetType) {
+	setPostgresDatabaseParameterGetResetValueAttributeType(&o.ResetValue, v)
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetUnit() *string {
-	if o == nil || IsNil(o.Unit) {
-		var ret *string
-		return ret
-	}
-	return o.Unit
+func (o *PostgresDatabaseParameter) GetUnit() (res PostgresDatabaseParameterGetUnitRetType) {
+	res, _ = o.GetUnitOk()
+	return
 }
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetUnitOk() (*string, bool) {
-	if o == nil || IsNil(o.Unit) {
-		return nil, false
-	}
-	return o.Unit, true
+func (o *PostgresDatabaseParameter) GetUnitOk() (ret PostgresDatabaseParameterGetUnitRetType, ok bool) {
+	return getPostgresDatabaseParameterGetUnitAttributeTypeOk(o.Unit)
 }
 
 // HasUnit returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasUnit() bool {
-	if o != nil && !IsNil(o.Unit) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUnitOk()
+	return ok
 }
 
 // SetUnit gets a reference to the given string and assigns it to the Unit field.
-func (o *PostgresDatabaseParameter) SetUnit(v *string) {
-	o.Unit = v
+func (o *PostgresDatabaseParameter) SetUnit(v PostgresDatabaseParameterGetUnitRetType) {
+	setPostgresDatabaseParameterGetUnitAttributeType(&o.Unit, v)
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *PostgresDatabaseParameter) GetValue() *string {
-	if o == nil || IsNil(o.Value) {
-		var ret *string
-		return ret
-	}
-	return o.Value
+func (o *PostgresDatabaseParameter) GetValue() (res PostgresDatabaseParameterGetValueRetType) {
+	res, _ = o.GetValueOk()
+	return
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresDatabaseParameter) GetValueOk() (*string, bool) {
-	if o == nil || IsNil(o.Value) {
-		return nil, false
-	}
-	return o.Value, true
+func (o *PostgresDatabaseParameter) GetValueOk() (ret PostgresDatabaseParameterGetValueRetType, ok bool) {
+	return getPostgresDatabaseParameterGetValueAttributeTypeOk(o.Value)
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *PostgresDatabaseParameter) HasValue() bool {
-	if o != nil && !IsNil(o.Value) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetValueOk()
+	return ok
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *PostgresDatabaseParameter) SetValue(v *string) {
-	o.Value = v
+func (o *PostgresDatabaseParameter) SetValue(v PostgresDatabaseParameterGetValueRetType) {
+	setPostgresDatabaseParameterGetValueAttributeType(&o.Value, v)
 }
 
 func (o PostgresDatabaseParameter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Context) {
-		toSerialize["context"] = o.Context
+	if val, ok := getPostgresDatabaseParameterGetContextAttributeTypeOk(o.Context); ok {
+		toSerialize["Context"] = val
 	}
-	if !IsNil(o.DataType) {
-		toSerialize["dataType"] = o.DataType
+	if val, ok := getPostgresDatabaseParameterGetDataTypeAttributeTypeOk(o.DataType); ok {
+		toSerialize["DataType"] = val
 	}
-	if !IsNil(o.DefaultValue) {
-		toSerialize["defaultValue"] = o.DefaultValue
+	if val, ok := getPostgresDatabaseParameterGetDefaultValueAttributeTypeOk(o.DefaultValue); ok {
+		toSerialize["DefaultValue"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getPostgresDatabaseParameterGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.Edit) {
-		toSerialize["edit"] = o.Edit
+	if val, ok := getPostgresDatabaseParametergetEditAttributeTypeOk(o.Edit); ok {
+		toSerialize["Edit"] = val
 	}
-	if !IsNil(o.MaxValue) {
-		toSerialize["maxValue"] = o.MaxValue
+	if val, ok := getPostgresDatabaseParameterGetMaxValueAttributeTypeOk(o.MaxValue); ok {
+		toSerialize["MaxValue"] = val
 	}
-	if !IsNil(o.MinValue) {
-		toSerialize["minValue"] = o.MinValue
+	if val, ok := getPostgresDatabaseParameterGetMinValueAttributeTypeOk(o.MinValue); ok {
+		toSerialize["MinValue"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getPostgresDatabaseParameterGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.PendingRestart) {
-		toSerialize["pendingRestart"] = o.PendingRestart
+	if val, ok := getPostgresDatabaseParametergetPendingRestartAttributeTypeOk(o.PendingRestart); ok {
+		toSerialize["PendingRestart"] = val
 	}
-	if !IsNil(o.ResetValue) {
-		toSerialize["resetValue"] = o.ResetValue
+	if val, ok := getPostgresDatabaseParameterGetResetValueAttributeTypeOk(o.ResetValue); ok {
+		toSerialize["ResetValue"] = val
 	}
-	if !IsNil(o.Unit) {
-		toSerialize["unit"] = o.Unit
+	if val, ok := getPostgresDatabaseParameterGetUnitAttributeTypeOk(o.Unit); ok {
+		toSerialize["Unit"] = val
 	}
-	if !IsNil(o.Value) {
-		toSerialize["value"] = o.Value
+	if val, ok := getPostgresDatabaseParameterGetValueAttributeTypeOk(o.Value); ok {
+		toSerialize["Value"] = val
 	}
 	return toSerialize, nil
 }

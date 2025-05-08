@@ -17,9 +17,29 @@ import (
 // checks if the CRI type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CRI{}
 
+/*
+	types and functions for name
+*/
+
+// isEnumRef
+type CRIGetNameAttributeType = *string
+type CRIGetNameArgType = string
+type CRIGetNameRetType = string
+
+func getCRIGetNameAttributeTypeOk(arg CRIGetNameAttributeType) (ret CRIGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCRIGetNameAttributeType(arg *CRIGetNameAttributeType, val CRIGetNameRetType) {
+	*arg = &val
+}
+
 // CRI struct for CRI
 type CRI struct {
-	Name *string `json:"name,omitempty"`
+	Name CRIGetNameAttributeType `json:"name,omitempty"`
 }
 
 // NewCRI instantiates a new CRI object
@@ -40,41 +60,32 @@ func NewCRIWithDefaults() *CRI {
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CRI) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *CRI) GetName() (res CRIGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CRI) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CRI) GetNameOk() (ret CRIGetNameRetType, ok bool) {
+	return getCRIGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CRI) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CRI) SetName(v *string) {
-	o.Name = v
+func (o *CRI) SetName(v CRIGetNameRetType) {
+	setCRIGetNameAttributeType(&o.Name, v)
 }
 
 func (o CRI) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getCRIGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }

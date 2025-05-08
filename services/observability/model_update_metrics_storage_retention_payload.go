@@ -17,17 +17,80 @@ import (
 // checks if the UpdateMetricsStorageRetentionPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateMetricsStorageRetentionPayload{}
 
+/*
+	types and functions for metricsRetentionTime1h
+*/
+
+// isNotNullableString
+type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeType = *string
+
+func getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeTypeOk(arg UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeType) (ret UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeType(arg *UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeType, val UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hRetType) {
+	*arg = &val
+}
+
+type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hArgType = string
+type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hRetType = string
+
+/*
+	types and functions for metricsRetentionTime5m
+*/
+
+// isNotNullableString
+type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeType = *string
+
+func getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeTypeOk(arg UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeType) (ret UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeType(arg *UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeType, val UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mRetType) {
+	*arg = &val
+}
+
+type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mArgType = string
+type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mRetType = string
+
+/*
+	types and functions for metricsRetentionTimeRaw
+*/
+
+// isNotNullableString
+type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType = *string
+
+func getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeTypeOk(arg UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType) (ret UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType(arg *UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType, val UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawRetType) {
+	*arg = &val
+}
+
+type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawArgType = string
+type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawRetType = string
+
 // UpdateMetricsStorageRetentionPayload struct for UpdateMetricsStorageRetentionPayload
 type UpdateMetricsStorageRetentionPayload struct {
 	// Retention time of longtime storage of 1h sampled data. After that time the data will be deleted permanently. `Additional Validators:` * Should be a valid time string * Should not be bigger than metricsRetentionTime5m
 	// REQUIRED
-	MetricsRetentionTime1h *string `json:"metricsRetentionTime1h"`
+	MetricsRetentionTime1h UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h"`
 	// Retention time of longtime storage of 5m sampled data. After that time the data will be down sampled to 1h. `Additional Validators:` * Should be a valid time string * Should not be bigger than metricsRetentionTimeRaw
 	// REQUIRED
-	MetricsRetentionTime5m *string `json:"metricsRetentionTime5m"`
+	MetricsRetentionTime5m UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m"`
 	// Retention time of longtime storage of raw sampled data. After that time the data will be down sampled to 5m. Keep in mind, that the initial goal of downsampling is not saving disk or object storage space. In fact, downsampling doesn't save you any space but instead, it adds 2 more blocks for each raw block which are only slightly smaller or relatively similar size to raw block. This is done by internal downsampling implementation which to be mathematically correct holds various aggregations. This means that downsampling can increase the size of your storage a bit (~3x), if you choose to store all resolutions (recommended). The goal of downsampling is to provide an opportunity to get fast results for range queries of big time intervals like months or years. `Additional Validators:` * Should be a valid time string * Should not be bigger than 13 months
 	// REQUIRED
-	MetricsRetentionTimeRaw *string `json:"metricsRetentionTimeRaw"`
+	MetricsRetentionTimeRaw UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw"`
 }
 
 type _UpdateMetricsStorageRetentionPayload UpdateMetricsStorageRetentionPayload
@@ -36,11 +99,11 @@ type _UpdateMetricsStorageRetentionPayload UpdateMetricsStorageRetentionPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateMetricsStorageRetentionPayload(metricsRetentionTime1h *string, metricsRetentionTime5m *string, metricsRetentionTimeRaw *string) *UpdateMetricsStorageRetentionPayload {
+func NewUpdateMetricsStorageRetentionPayload(metricsRetentionTime1h UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hArgType, metricsRetentionTime5m UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawArgType) *UpdateMetricsStorageRetentionPayload {
 	this := UpdateMetricsStorageRetentionPayload{}
-	this.MetricsRetentionTime1h = metricsRetentionTime1h
-	this.MetricsRetentionTime5m = metricsRetentionTime5m
-	this.MetricsRetentionTimeRaw = metricsRetentionTimeRaw
+	setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeType(&this.MetricsRetentionTime1h, metricsRetentionTime1h)
+	setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeType(&this.MetricsRetentionTime5m, metricsRetentionTime5m)
+	setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType(&this.MetricsRetentionTimeRaw, metricsRetentionTimeRaw)
 	return &this
 }
 
@@ -53,82 +116,67 @@ func NewUpdateMetricsStorageRetentionPayloadWithDefaults() *UpdateMetricsStorage
 }
 
 // GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
-func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime1h() *string {
-	if o == nil || IsNil(o.MetricsRetentionTime1h) {
-		var ret *string
-		return ret
-	}
-
-	return o.MetricsRetentionTime1h
+func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime1h() (ret UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hRetType) {
+	ret, _ = o.GetMetricsRetentionTime1hOk()
+	return ret
 }
 
 // GetMetricsRetentionTime1hOk returns a tuple with the MetricsRetentionTime1h field value
 // and a boolean to check if the value has been set.
-func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime1hOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTime1h, true
+func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime1hOk() (ret UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hRetType, ok bool) {
+	return getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h)
 }
 
 // SetMetricsRetentionTime1h sets field value
-func (o *UpdateMetricsStorageRetentionPayload) SetMetricsRetentionTime1h(v *string) {
-	o.MetricsRetentionTime1h = v
+func (o *UpdateMetricsStorageRetentionPayload) SetMetricsRetentionTime1h(v UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hRetType) {
+	setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeType(&o.MetricsRetentionTime1h, v)
 }
 
 // GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
-func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime5m() *string {
-	if o == nil || IsNil(o.MetricsRetentionTime5m) {
-		var ret *string
-		return ret
-	}
-
-	return o.MetricsRetentionTime5m
+func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime5m() (ret UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mRetType) {
+	ret, _ = o.GetMetricsRetentionTime5mOk()
+	return ret
 }
 
 // GetMetricsRetentionTime5mOk returns a tuple with the MetricsRetentionTime5m field value
 // and a boolean to check if the value has been set.
-func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime5mOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTime5m, true
+func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTime5mOk() (ret UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mRetType, ok bool) {
+	return getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeTypeOk(o.MetricsRetentionTime5m)
 }
 
 // SetMetricsRetentionTime5m sets field value
-func (o *UpdateMetricsStorageRetentionPayload) SetMetricsRetentionTime5m(v *string) {
-	o.MetricsRetentionTime5m = v
+func (o *UpdateMetricsStorageRetentionPayload) SetMetricsRetentionTime5m(v UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mRetType) {
+	setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeType(&o.MetricsRetentionTime5m, v)
 }
 
 // GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
-func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTimeRaw() *string {
-	if o == nil || IsNil(o.MetricsRetentionTimeRaw) {
-		var ret *string
-		return ret
-	}
-
-	return o.MetricsRetentionTimeRaw
+func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTimeRaw() (ret UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawRetType) {
+	ret, _ = o.GetMetricsRetentionTimeRawOk()
+	return ret
 }
 
 // GetMetricsRetentionTimeRawOk returns a tuple with the MetricsRetentionTimeRaw field value
 // and a boolean to check if the value has been set.
-func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTimeRawOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTimeRaw, true
+func (o *UpdateMetricsStorageRetentionPayload) GetMetricsRetentionTimeRawOk() (ret UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawRetType, ok bool) {
+	return getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeTypeOk(o.MetricsRetentionTimeRaw)
 }
 
 // SetMetricsRetentionTimeRaw sets field value
-func (o *UpdateMetricsStorageRetentionPayload) SetMetricsRetentionTimeRaw(v *string) {
-	o.MetricsRetentionTimeRaw = v
+func (o *UpdateMetricsStorageRetentionPayload) SetMetricsRetentionTimeRaw(v UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawRetType) {
+	setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType(&o.MetricsRetentionTimeRaw, v)
 }
 
 func (o UpdateMetricsStorageRetentionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["metricsRetentionTime1h"] = o.MetricsRetentionTime1h
-	toSerialize["metricsRetentionTime5m"] = o.MetricsRetentionTime5m
-	toSerialize["metricsRetentionTimeRaw"] = o.MetricsRetentionTimeRaw
+	if val, ok := getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h); ok {
+		toSerialize["MetricsRetentionTime1h"] = val
+	}
+	if val, ok := getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeTypeOk(o.MetricsRetentionTime5m); ok {
+		toSerialize["MetricsRetentionTime5m"] = val
+	}
+	if val, ok := getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeTypeOk(o.MetricsRetentionTimeRaw); ok {
+		toSerialize["MetricsRetentionTimeRaw"] = val
+	}
 	return toSerialize, nil
 }
 

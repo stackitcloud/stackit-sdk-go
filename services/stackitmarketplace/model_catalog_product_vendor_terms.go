@@ -17,17 +17,80 @@ import (
 // checks if the CatalogProductVendorTerms type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CatalogProductVendorTerms{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type CatalogProductVendorTermsGetDescriptionAttributeType = *string
+
+func getCatalogProductVendorTermsGetDescriptionAttributeTypeOk(arg CatalogProductVendorTermsGetDescriptionAttributeType) (ret CatalogProductVendorTermsGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductVendorTermsGetDescriptionAttributeType(arg *CatalogProductVendorTermsGetDescriptionAttributeType, val CatalogProductVendorTermsGetDescriptionRetType) {
+	*arg = &val
+}
+
+type CatalogProductVendorTermsGetDescriptionArgType = string
+type CatalogProductVendorTermsGetDescriptionRetType = string
+
+/*
+	types and functions for title
+*/
+
+// isNotNullableString
+type CatalogProductVendorTermsGetTitleAttributeType = *string
+
+func getCatalogProductVendorTermsGetTitleAttributeTypeOk(arg CatalogProductVendorTermsGetTitleAttributeType) (ret CatalogProductVendorTermsGetTitleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductVendorTermsGetTitleAttributeType(arg *CatalogProductVendorTermsGetTitleAttributeType, val CatalogProductVendorTermsGetTitleRetType) {
+	*arg = &val
+}
+
+type CatalogProductVendorTermsGetTitleArgType = string
+type CatalogProductVendorTermsGetTitleRetType = string
+
+/*
+	types and functions for url
+*/
+
+// isNotNullableString
+type CatalogProductVendorTermsGetUrlAttributeType = *string
+
+func getCatalogProductVendorTermsGetUrlAttributeTypeOk(arg CatalogProductVendorTermsGetUrlAttributeType) (ret CatalogProductVendorTermsGetUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductVendorTermsGetUrlAttributeType(arg *CatalogProductVendorTermsGetUrlAttributeType, val CatalogProductVendorTermsGetUrlRetType) {
+	*arg = &val
+}
+
+type CatalogProductVendorTermsGetUrlArgType = string
+type CatalogProductVendorTermsGetUrlRetType = string
+
 // CatalogProductVendorTerms struct for CatalogProductVendorTerms
 type CatalogProductVendorTerms struct {
-	// The terms of use description.
+	// The terms of service description.
 	// REQUIRED
-	Description *string `json:"description"`
-	// The terms of use title.
+	Description CatalogProductVendorTermsGetDescriptionAttributeType `json:"description"`
+	// The terms of service title.
 	// REQUIRED
-	Title *string `json:"title"`
-	// The terms of use url.
+	Title CatalogProductVendorTermsGetTitleAttributeType `json:"title"`
+	// Uniform Resource Locator.
 	// REQUIRED
-	Url *string `json:"url"`
+	Url CatalogProductVendorTermsGetUrlAttributeType `json:"url"`
 }
 
 type _CatalogProductVendorTerms CatalogProductVendorTerms
@@ -36,11 +99,11 @@ type _CatalogProductVendorTerms CatalogProductVendorTerms
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCatalogProductVendorTerms(description *string, title *string, url *string) *CatalogProductVendorTerms {
+func NewCatalogProductVendorTerms(description CatalogProductVendorTermsGetDescriptionArgType, title CatalogProductVendorTermsGetTitleArgType, url CatalogProductVendorTermsGetUrlArgType) *CatalogProductVendorTerms {
 	this := CatalogProductVendorTerms{}
-	this.Description = description
-	this.Title = title
-	this.Url = url
+	setCatalogProductVendorTermsGetDescriptionAttributeType(&this.Description, description)
+	setCatalogProductVendorTermsGetTitleAttributeType(&this.Title, title)
+	setCatalogProductVendorTermsGetUrlAttributeType(&this.Url, url)
 	return &this
 }
 
@@ -53,82 +116,67 @@ func NewCatalogProductVendorTermsWithDefaults() *CatalogProductVendorTerms {
 }
 
 // GetDescription returns the Description field value
-func (o *CatalogProductVendorTerms) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *CatalogProductVendorTerms) GetDescription() (ret CatalogProductVendorTermsGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductVendorTerms) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *CatalogProductVendorTerms) GetDescriptionOk() (ret CatalogProductVendorTermsGetDescriptionRetType, ok bool) {
+	return getCatalogProductVendorTermsGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *CatalogProductVendorTerms) SetDescription(v *string) {
-	o.Description = v
+func (o *CatalogProductVendorTerms) SetDescription(v CatalogProductVendorTermsGetDescriptionRetType) {
+	setCatalogProductVendorTermsGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetTitle returns the Title field value
-func (o *CatalogProductVendorTerms) GetTitle() *string {
-	if o == nil || IsNil(o.Title) {
-		var ret *string
-		return ret
-	}
-
-	return o.Title
+func (o *CatalogProductVendorTerms) GetTitle() (ret CatalogProductVendorTermsGetTitleRetType) {
+	ret, _ = o.GetTitleOk()
+	return ret
 }
 
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductVendorTerms) GetTitleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Title, true
+func (o *CatalogProductVendorTerms) GetTitleOk() (ret CatalogProductVendorTermsGetTitleRetType, ok bool) {
+	return getCatalogProductVendorTermsGetTitleAttributeTypeOk(o.Title)
 }
 
 // SetTitle sets field value
-func (o *CatalogProductVendorTerms) SetTitle(v *string) {
-	o.Title = v
+func (o *CatalogProductVendorTerms) SetTitle(v CatalogProductVendorTermsGetTitleRetType) {
+	setCatalogProductVendorTermsGetTitleAttributeType(&o.Title, v)
 }
 
 // GetUrl returns the Url field value
-func (o *CatalogProductVendorTerms) GetUrl() *string {
-	if o == nil || IsNil(o.Url) {
-		var ret *string
-		return ret
-	}
-
-	return o.Url
+func (o *CatalogProductVendorTerms) GetUrl() (ret CatalogProductVendorTermsGetUrlRetType) {
+	ret, _ = o.GetUrlOk()
+	return ret
 }
 
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductVendorTerms) GetUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Url, true
+func (o *CatalogProductVendorTerms) GetUrlOk() (ret CatalogProductVendorTermsGetUrlRetType, ok bool) {
+	return getCatalogProductVendorTermsGetUrlAttributeTypeOk(o.Url)
 }
 
 // SetUrl sets field value
-func (o *CatalogProductVendorTerms) SetUrl(v *string) {
-	o.Url = v
+func (o *CatalogProductVendorTerms) SetUrl(v CatalogProductVendorTermsGetUrlRetType) {
+	setCatalogProductVendorTermsGetUrlAttributeType(&o.Url, v)
 }
 
 func (o CatalogProductVendorTerms) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	toSerialize["title"] = o.Title
-	toSerialize["url"] = o.Url
+	if val, ok := getCatalogProductVendorTermsGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
+	if val, ok := getCatalogProductVendorTermsGetTitleAttributeTypeOk(o.Title); ok {
+		toSerialize["Title"] = val
+	}
+	if val, ok := getCatalogProductVendorTermsGetUrlAttributeTypeOk(o.Url); ok {
+		toSerialize["Url"] = val
+	}
 	return toSerialize, nil
 }
 

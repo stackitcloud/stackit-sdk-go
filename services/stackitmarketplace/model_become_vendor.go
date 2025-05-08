@@ -17,13 +17,52 @@ import (
 // checks if the BecomeVendor type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BecomeVendor{}
 
-// BecomeVendor Become a vendor.
+/*
+	types and functions for becomeVendor
+*/
+
+// isModel
+type BecomeVendorGetBecomeVendorAttributeType = *InquiryBecomeVendor
+type BecomeVendorGetBecomeVendorArgType = InquiryBecomeVendor
+type BecomeVendorGetBecomeVendorRetType = InquiryBecomeVendor
+
+func getBecomeVendorGetBecomeVendorAttributeTypeOk(arg BecomeVendorGetBecomeVendorAttributeType) (ret BecomeVendorGetBecomeVendorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBecomeVendorGetBecomeVendorAttributeType(arg *BecomeVendorGetBecomeVendorAttributeType, val BecomeVendorGetBecomeVendorRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type BecomeVendorGetTypeAttributeType = *InquiryFormType
+type BecomeVendorGetTypeArgType = InquiryFormType
+type BecomeVendorGetTypeRetType = InquiryFormType
+
+func getBecomeVendorGetTypeAttributeTypeOk(arg BecomeVendorGetTypeAttributeType) (ret BecomeVendorGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBecomeVendorGetTypeAttributeType(arg *BecomeVendorGetTypeAttributeType, val BecomeVendorGetTypeRetType) {
+	*arg = &val
+}
+
+// BecomeVendor Become a Vendor.
 type BecomeVendor struct {
 	// REQUIRED
-	BecomeVendor *BecomeVendorBecomeVendor `json:"becomeVendor"`
-	// The form type.
+	BecomeVendor BecomeVendorGetBecomeVendorAttributeType `json:"becomeVendor"`
 	// REQUIRED
-	Type *string `json:"type"`
+	Type BecomeVendorGetTypeAttributeType `json:"type"`
 }
 
 type _BecomeVendor BecomeVendor
@@ -32,10 +71,10 @@ type _BecomeVendor BecomeVendor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBecomeVendor(becomeVendor *BecomeVendorBecomeVendor, type_ *string) *BecomeVendor {
+func NewBecomeVendor(becomeVendor BecomeVendorGetBecomeVendorArgType, type_ BecomeVendorGetTypeArgType) *BecomeVendor {
 	this := BecomeVendor{}
-	this.BecomeVendor = becomeVendor
-	this.Type = type_
+	setBecomeVendorGetBecomeVendorAttributeType(&this.BecomeVendor, becomeVendor)
+	setBecomeVendorGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -48,57 +87,47 @@ func NewBecomeVendorWithDefaults() *BecomeVendor {
 }
 
 // GetBecomeVendor returns the BecomeVendor field value
-func (o *BecomeVendor) GetBecomeVendor() *BecomeVendorBecomeVendor {
-	if o == nil || IsNil(o.BecomeVendor) {
-		var ret *BecomeVendorBecomeVendor
-		return ret
-	}
-
-	return o.BecomeVendor
+func (o *BecomeVendor) GetBecomeVendor() (ret BecomeVendorGetBecomeVendorRetType) {
+	ret, _ = o.GetBecomeVendorOk()
+	return ret
 }
 
 // GetBecomeVendorOk returns a tuple with the BecomeVendor field value
 // and a boolean to check if the value has been set.
-func (o *BecomeVendor) GetBecomeVendorOk() (*BecomeVendorBecomeVendor, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.BecomeVendor, true
+func (o *BecomeVendor) GetBecomeVendorOk() (ret BecomeVendorGetBecomeVendorRetType, ok bool) {
+	return getBecomeVendorGetBecomeVendorAttributeTypeOk(o.BecomeVendor)
 }
 
 // SetBecomeVendor sets field value
-func (o *BecomeVendor) SetBecomeVendor(v *BecomeVendorBecomeVendor) {
-	o.BecomeVendor = v
+func (o *BecomeVendor) SetBecomeVendor(v BecomeVendorGetBecomeVendorRetType) {
+	setBecomeVendorGetBecomeVendorAttributeType(&o.BecomeVendor, v)
 }
 
 // GetType returns the Type field value
-func (o *BecomeVendor) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *BecomeVendor) GetType() (ret BecomeVendorGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *BecomeVendor) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *BecomeVendor) GetTypeOk() (ret BecomeVendorGetTypeRetType, ok bool) {
+	return getBecomeVendorGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *BecomeVendor) SetType(v *string) {
-	o.Type = v
+func (o *BecomeVendor) SetType(v BecomeVendorGetTypeRetType) {
+	setBecomeVendorGetTypeAttributeType(&o.Type, v)
 }
 
 func (o BecomeVendor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["becomeVendor"] = o.BecomeVendor
-	toSerialize["type"] = o.Type
+	if val, ok := getBecomeVendorGetBecomeVendorAttributeTypeOk(o.BecomeVendor); ok {
+		toSerialize["BecomeVendor"] = val
+	}
+	if val, ok := getBecomeVendorGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

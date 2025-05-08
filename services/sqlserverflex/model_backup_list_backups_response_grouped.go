@@ -17,10 +17,51 @@ import (
 // checks if the BackupListBackupsResponseGrouped type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BackupListBackupsResponseGrouped{}
 
+/*
+	types and functions for backups
+*/
+
+// isArray
+type BackupListBackupsResponseGroupedGetBackupsAttributeType = *[]Backup
+type BackupListBackupsResponseGroupedGetBackupsArgType = []Backup
+type BackupListBackupsResponseGroupedGetBackupsRetType = []Backup
+
+func getBackupListBackupsResponseGroupedGetBackupsAttributeTypeOk(arg BackupListBackupsResponseGroupedGetBackupsAttributeType) (ret BackupListBackupsResponseGroupedGetBackupsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupListBackupsResponseGroupedGetBackupsAttributeType(arg *BackupListBackupsResponseGroupedGetBackupsAttributeType, val BackupListBackupsResponseGroupedGetBackupsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type BackupListBackupsResponseGroupedGetNameAttributeType = *string
+
+func getBackupListBackupsResponseGroupedGetNameAttributeTypeOk(arg BackupListBackupsResponseGroupedGetNameAttributeType) (ret BackupListBackupsResponseGroupedGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupListBackupsResponseGroupedGetNameAttributeType(arg *BackupListBackupsResponseGroupedGetNameAttributeType, val BackupListBackupsResponseGroupedGetNameRetType) {
+	*arg = &val
+}
+
+type BackupListBackupsResponseGroupedGetNameArgType = string
+type BackupListBackupsResponseGroupedGetNameRetType = string
+
 // BackupListBackupsResponseGrouped struct for BackupListBackupsResponseGrouped
 type BackupListBackupsResponseGrouped struct {
-	Backups *[]Backup `json:"backups,omitempty"`
-	Name    *string   `json:"name,omitempty"`
+	Backups BackupListBackupsResponseGroupedGetBackupsAttributeType `json:"backups,omitempty"`
+	Name    BackupListBackupsResponseGroupedGetNameAttributeType    `json:"name,omitempty"`
 }
 
 // NewBackupListBackupsResponseGrouped instantiates a new BackupListBackupsResponseGrouped object
@@ -41,76 +82,58 @@ func NewBackupListBackupsResponseGroupedWithDefaults() *BackupListBackupsRespons
 }
 
 // GetBackups returns the Backups field value if set, zero value otherwise.
-func (o *BackupListBackupsResponseGrouped) GetBackups() *[]Backup {
-	if o == nil || IsNil(o.Backups) {
-		var ret *[]Backup
-		return ret
-	}
-	return o.Backups
+func (o *BackupListBackupsResponseGrouped) GetBackups() (res BackupListBackupsResponseGroupedGetBackupsRetType) {
+	res, _ = o.GetBackupsOk()
+	return
 }
 
 // GetBackupsOk returns a tuple with the Backups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BackupListBackupsResponseGrouped) GetBackupsOk() (*[]Backup, bool) {
-	if o == nil || IsNil(o.Backups) {
-		return nil, false
-	}
-	return o.Backups, true
+func (o *BackupListBackupsResponseGrouped) GetBackupsOk() (ret BackupListBackupsResponseGroupedGetBackupsRetType, ok bool) {
+	return getBackupListBackupsResponseGroupedGetBackupsAttributeTypeOk(o.Backups)
 }
 
 // HasBackups returns a boolean if a field has been set.
 func (o *BackupListBackupsResponseGrouped) HasBackups() bool {
-	if o != nil && !IsNil(o.Backups) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBackupsOk()
+	return ok
 }
 
 // SetBackups gets a reference to the given []Backup and assigns it to the Backups field.
-func (o *BackupListBackupsResponseGrouped) SetBackups(v *[]Backup) {
-	o.Backups = v
+func (o *BackupListBackupsResponseGrouped) SetBackups(v BackupListBackupsResponseGroupedGetBackupsRetType) {
+	setBackupListBackupsResponseGroupedGetBackupsAttributeType(&o.Backups, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *BackupListBackupsResponseGrouped) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *BackupListBackupsResponseGrouped) GetName() (res BackupListBackupsResponseGroupedGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BackupListBackupsResponseGrouped) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *BackupListBackupsResponseGrouped) GetNameOk() (ret BackupListBackupsResponseGroupedGetNameRetType, ok bool) {
+	return getBackupListBackupsResponseGroupedGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *BackupListBackupsResponseGrouped) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *BackupListBackupsResponseGrouped) SetName(v *string) {
-	o.Name = v
+func (o *BackupListBackupsResponseGrouped) SetName(v BackupListBackupsResponseGroupedGetNameRetType) {
+	setBackupListBackupsResponseGroupedGetNameAttributeType(&o.Name, v)
 }
 
 func (o BackupListBackupsResponseGrouped) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Backups) {
-		toSerialize["backups"] = o.Backups
+	if val, ok := getBackupListBackupsResponseGroupedGetBackupsAttributeTypeOk(o.Backups); ok {
+		toSerialize["Backups"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getBackupListBackupsResponseGroupedGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }

@@ -1,3 +1,13 @@
+## v0.22.1 (2025-04-29)
+- **Bugfix:** Correctly handle empty payload in body
+
+## v0.22.0 (2025-03-24)
+- **Improvement:** Upgrading from IaaS **beta** endpoints to **v1**
+- **Feature:** Add new method to filter `ListMachineTypes`: `Filter`
+
+## v0.21.2 (2025-03-19)
+- **Internal:** Backwards compatible change to generated code
+
 ## v0.21.1 (2025-03-02)
 
 - Increase Timeouts for volume and network wait handlers

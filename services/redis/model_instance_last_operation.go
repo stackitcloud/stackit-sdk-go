@@ -17,14 +17,75 @@ import (
 // checks if the InstanceLastOperation type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceLastOperation{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type InstanceLastOperationGetDescriptionAttributeType = *string
+
+func getInstanceLastOperationGetDescriptionAttributeTypeOk(arg InstanceLastOperationGetDescriptionAttributeType) (ret InstanceLastOperationGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceLastOperationGetDescriptionAttributeType(arg *InstanceLastOperationGetDescriptionAttributeType, val InstanceLastOperationGetDescriptionRetType) {
+	*arg = &val
+}
+
+type InstanceLastOperationGetDescriptionArgType = string
+type InstanceLastOperationGetDescriptionRetType = string
+
+/*
+	types and functions for state
+*/
+
+// isEnumRef
+type InstanceLastOperationGetStateAttributeType = *string
+type InstanceLastOperationGetStateArgType = string
+type InstanceLastOperationGetStateRetType = string
+
+func getInstanceLastOperationGetStateAttributeTypeOk(arg InstanceLastOperationGetStateAttributeType) (ret InstanceLastOperationGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceLastOperationGetStateAttributeType(arg *InstanceLastOperationGetStateAttributeType, val InstanceLastOperationGetStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type InstanceLastOperationGetTypeAttributeType = *string
+type InstanceLastOperationGetTypeArgType = string
+type InstanceLastOperationGetTypeRetType = string
+
+func getInstanceLastOperationGetTypeAttributeTypeOk(arg InstanceLastOperationGetTypeAttributeType) (ret InstanceLastOperationGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceLastOperationGetTypeAttributeType(arg *InstanceLastOperationGetTypeAttributeType, val InstanceLastOperationGetTypeRetType) {
+	*arg = &val
+}
+
 // InstanceLastOperation struct for InstanceLastOperation
 type InstanceLastOperation struct {
 	// REQUIRED
-	Description *string `json:"description"`
+	Description InstanceLastOperationGetDescriptionAttributeType `json:"description"`
 	// REQUIRED
-	State *string `json:"state"`
+	State InstanceLastOperationGetStateAttributeType `json:"state"`
 	// REQUIRED
-	Type *string `json:"type"`
+	Type InstanceLastOperationGetTypeAttributeType `json:"type"`
 }
 
 type _InstanceLastOperation InstanceLastOperation
@@ -33,11 +94,11 @@ type _InstanceLastOperation InstanceLastOperation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceLastOperation(description *string, state *string, type_ *string) *InstanceLastOperation {
+func NewInstanceLastOperation(description InstanceLastOperationGetDescriptionArgType, state InstanceLastOperationGetStateArgType, type_ InstanceLastOperationGetTypeArgType) *InstanceLastOperation {
 	this := InstanceLastOperation{}
-	this.Description = description
-	this.State = state
-	this.Type = type_
+	setInstanceLastOperationGetDescriptionAttributeType(&this.Description, description)
+	setInstanceLastOperationGetStateAttributeType(&this.State, state)
+	setInstanceLastOperationGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -50,82 +111,67 @@ func NewInstanceLastOperationWithDefaults() *InstanceLastOperation {
 }
 
 // GetDescription returns the Description field value
-func (o *InstanceLastOperation) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *InstanceLastOperation) GetDescription() (ret InstanceLastOperationGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *InstanceLastOperation) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *InstanceLastOperation) GetDescriptionOk() (ret InstanceLastOperationGetDescriptionRetType, ok bool) {
+	return getInstanceLastOperationGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *InstanceLastOperation) SetDescription(v *string) {
-	o.Description = v
+func (o *InstanceLastOperation) SetDescription(v InstanceLastOperationGetDescriptionRetType) {
+	setInstanceLastOperationGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetState returns the State field value
-func (o *InstanceLastOperation) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-
-	return o.State
+func (o *InstanceLastOperation) GetState() (ret InstanceLastOperationGetStateRetType) {
+	ret, _ = o.GetStateOk()
+	return ret
 }
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *InstanceLastOperation) GetStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.State, true
+func (o *InstanceLastOperation) GetStateOk() (ret InstanceLastOperationGetStateRetType, ok bool) {
+	return getInstanceLastOperationGetStateAttributeTypeOk(o.State)
 }
 
 // SetState sets field value
-func (o *InstanceLastOperation) SetState(v *string) {
-	o.State = v
+func (o *InstanceLastOperation) SetState(v InstanceLastOperationGetStateRetType) {
+	setInstanceLastOperationGetStateAttributeType(&o.State, v)
 }
 
 // GetType returns the Type field value
-func (o *InstanceLastOperation) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *InstanceLastOperation) GetType() (ret InstanceLastOperationGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *InstanceLastOperation) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *InstanceLastOperation) GetTypeOk() (ret InstanceLastOperationGetTypeRetType, ok bool) {
+	return getInstanceLastOperationGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *InstanceLastOperation) SetType(v *string) {
-	o.Type = v
+func (o *InstanceLastOperation) SetType(v InstanceLastOperationGetTypeRetType) {
+	setInstanceLastOperationGetTypeAttributeType(&o.Type, v)
 }
 
 func (o InstanceLastOperation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	toSerialize["state"] = o.State
-	toSerialize["type"] = o.Type
+	if val, ok := getInstanceLastOperationGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
+	if val, ok := getInstanceLastOperationGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
+	}
+	if val, ok := getInstanceLastOperationGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

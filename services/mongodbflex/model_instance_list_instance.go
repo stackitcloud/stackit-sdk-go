@@ -17,11 +17,74 @@ import (
 // checks if the InstanceListInstance type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceListInstance{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type InstanceListInstanceGetIdAttributeType = *string
+
+func getInstanceListInstanceGetIdAttributeTypeOk(arg InstanceListInstanceGetIdAttributeType) (ret InstanceListInstanceGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceListInstanceGetIdAttributeType(arg *InstanceListInstanceGetIdAttributeType, val InstanceListInstanceGetIdRetType) {
+	*arg = &val
+}
+
+type InstanceListInstanceGetIdArgType = string
+type InstanceListInstanceGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type InstanceListInstanceGetNameAttributeType = *string
+
+func getInstanceListInstanceGetNameAttributeTypeOk(arg InstanceListInstanceGetNameAttributeType) (ret InstanceListInstanceGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceListInstanceGetNameAttributeType(arg *InstanceListInstanceGetNameAttributeType, val InstanceListInstanceGetNameRetType) {
+	*arg = &val
+}
+
+type InstanceListInstanceGetNameArgType = string
+type InstanceListInstanceGetNameRetType = string
+
+/*
+	types and functions for status
+*/
+
+// isEnumRef
+type InstanceListInstanceGetStatusAttributeType = *string
+type InstanceListInstanceGetStatusArgType = string
+type InstanceListInstanceGetStatusRetType = string
+
+func getInstanceListInstanceGetStatusAttributeTypeOk(arg InstanceListInstanceGetStatusAttributeType) (ret InstanceListInstanceGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceListInstanceGetStatusAttributeType(arg *InstanceListInstanceGetStatusAttributeType, val InstanceListInstanceGetStatusRetType) {
+	*arg = &val
+}
+
 // InstanceListInstance struct for InstanceListInstance
 type InstanceListInstance struct {
-	Id     *string `json:"id,omitempty"`
-	Name   *string `json:"name,omitempty"`
-	Status *string `json:"status,omitempty"`
+	Id   InstanceListInstanceGetIdAttributeType   `json:"id,omitempty"`
+	Name InstanceListInstanceGetNameAttributeType `json:"name,omitempty"`
+	// The current status of the instance.
+	Status InstanceListInstanceGetStatusAttributeType `json:"status,omitempty"`
 }
 
 // NewInstanceListInstance instantiates a new InstanceListInstance object
@@ -42,111 +105,84 @@ func NewInstanceListInstanceWithDefaults() *InstanceListInstance {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *InstanceListInstance) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *InstanceListInstance) GetId() (res InstanceListInstanceGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListInstance) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *InstanceListInstance) GetIdOk() (ret InstanceListInstanceGetIdRetType, ok bool) {
+	return getInstanceListInstanceGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *InstanceListInstance) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *InstanceListInstance) SetId(v *string) {
-	o.Id = v
+func (o *InstanceListInstance) SetId(v InstanceListInstanceGetIdRetType) {
+	setInstanceListInstanceGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *InstanceListInstance) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *InstanceListInstance) GetName() (res InstanceListInstanceGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListInstance) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *InstanceListInstance) GetNameOk() (ret InstanceListInstanceGetNameRetType, ok bool) {
+	return getInstanceListInstanceGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *InstanceListInstance) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *InstanceListInstance) SetName(v *string) {
-	o.Name = v
+func (o *InstanceListInstance) SetName(v InstanceListInstanceGetNameRetType) {
+	setInstanceListInstanceGetNameAttributeType(&o.Name, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *InstanceListInstance) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *InstanceListInstance) GetStatus() (res InstanceListInstanceGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListInstance) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *InstanceListInstance) GetStatusOk() (ret InstanceListInstanceGetStatusRetType, ok bool) {
+	return getInstanceListInstanceGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *InstanceListInstance) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *InstanceListInstance) SetStatus(v *string) {
-	o.Status = v
+func (o *InstanceListInstance) SetStatus(v InstanceListInstanceGetStatusRetType) {
+	setInstanceListInstanceGetStatusAttributeType(&o.Status, v)
 }
 
 func (o InstanceListInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getInstanceListInstanceGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getInstanceListInstanceGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getInstanceListInstanceGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
 }

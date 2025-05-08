@@ -17,13 +17,52 @@ import (
 // checks if the ContactSales type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ContactSales{}
 
+/*
+	types and functions for contactSales
+*/
+
+// isModel
+type ContactSalesGetContactSalesAttributeType = *InquiryContactSales
+type ContactSalesGetContactSalesArgType = InquiryContactSales
+type ContactSalesGetContactSalesRetType = InquiryContactSales
+
+func getContactSalesGetContactSalesAttributeTypeOk(arg ContactSalesGetContactSalesAttributeType) (ret ContactSalesGetContactSalesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setContactSalesGetContactSalesAttributeType(arg *ContactSalesGetContactSalesAttributeType, val ContactSalesGetContactSalesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type ContactSalesGetTypeAttributeType = *InquiryFormType
+type ContactSalesGetTypeArgType = InquiryFormType
+type ContactSalesGetTypeRetType = InquiryFormType
+
+func getContactSalesGetTypeAttributeTypeOk(arg ContactSalesGetTypeAttributeType) (ret ContactSalesGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setContactSalesGetTypeAttributeType(arg *ContactSalesGetTypeAttributeType, val ContactSalesGetTypeRetType) {
+	*arg = &val
+}
+
 // ContactSales Contact sales.
 type ContactSales struct {
 	// REQUIRED
-	ContactSales *ContactSalesContactSales `json:"contactSales"`
-	// The form type.
+	ContactSales ContactSalesGetContactSalesAttributeType `json:"contactSales"`
 	// REQUIRED
-	Type *string `json:"type"`
+	Type ContactSalesGetTypeAttributeType `json:"type"`
 }
 
 type _ContactSales ContactSales
@@ -32,10 +71,10 @@ type _ContactSales ContactSales
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContactSales(contactSales *ContactSalesContactSales, type_ *string) *ContactSales {
+func NewContactSales(contactSales ContactSalesGetContactSalesArgType, type_ ContactSalesGetTypeArgType) *ContactSales {
 	this := ContactSales{}
-	this.ContactSales = contactSales
-	this.Type = type_
+	setContactSalesGetContactSalesAttributeType(&this.ContactSales, contactSales)
+	setContactSalesGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -48,57 +87,47 @@ func NewContactSalesWithDefaults() *ContactSales {
 }
 
 // GetContactSales returns the ContactSales field value
-func (o *ContactSales) GetContactSales() *ContactSalesContactSales {
-	if o == nil || IsNil(o.ContactSales) {
-		var ret *ContactSalesContactSales
-		return ret
-	}
-
-	return o.ContactSales
+func (o *ContactSales) GetContactSales() (ret ContactSalesGetContactSalesRetType) {
+	ret, _ = o.GetContactSalesOk()
+	return ret
 }
 
 // GetContactSalesOk returns a tuple with the ContactSales field value
 // and a boolean to check if the value has been set.
-func (o *ContactSales) GetContactSalesOk() (*ContactSalesContactSales, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactSales, true
+func (o *ContactSales) GetContactSalesOk() (ret ContactSalesGetContactSalesRetType, ok bool) {
+	return getContactSalesGetContactSalesAttributeTypeOk(o.ContactSales)
 }
 
 // SetContactSales sets field value
-func (o *ContactSales) SetContactSales(v *ContactSalesContactSales) {
-	o.ContactSales = v
+func (o *ContactSales) SetContactSales(v ContactSalesGetContactSalesRetType) {
+	setContactSalesGetContactSalesAttributeType(&o.ContactSales, v)
 }
 
 // GetType returns the Type field value
-func (o *ContactSales) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *ContactSales) GetType() (ret ContactSalesGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ContactSales) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *ContactSales) GetTypeOk() (ret ContactSalesGetTypeRetType, ok bool) {
+	return getContactSalesGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *ContactSales) SetType(v *string) {
-	o.Type = v
+func (o *ContactSales) SetType(v ContactSalesGetTypeRetType) {
+	setContactSalesGetTypeAttributeType(&o.Type, v)
 }
 
 func (o ContactSales) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["contactSales"] = o.ContactSales
-	toSerialize["type"] = o.Type
+	if val, ok := getContactSalesGetContactSalesAttributeTypeOk(o.ContactSales); ok {
+		toSerialize["ContactSales"] = val
+	}
+	if val, ok := getContactSalesGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

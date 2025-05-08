@@ -17,16 +17,118 @@ import (
 // checks if the MachineType type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MachineType{}
 
+/*
+	types and functions for architecture
+*/
+
+// isNotNullableString
+type MachineTypeGetArchitectureAttributeType = *string
+
+func getMachineTypeGetArchitectureAttributeTypeOk(arg MachineTypeGetArchitectureAttributeType) (ret MachineTypeGetArchitectureRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetArchitectureAttributeType(arg *MachineTypeGetArchitectureAttributeType, val MachineTypeGetArchitectureRetType) {
+	*arg = &val
+}
+
+type MachineTypeGetArchitectureArgType = string
+type MachineTypeGetArchitectureRetType = string
+
+/*
+	types and functions for cpu
+*/
+
+// isInteger
+type MachineTypeGetCpuAttributeType = *int64
+type MachineTypeGetCpuArgType = int64
+type MachineTypeGetCpuRetType = int64
+
+func getMachineTypeGetCpuAttributeTypeOk(arg MachineTypeGetCpuAttributeType) (ret MachineTypeGetCpuRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetCpuAttributeType(arg *MachineTypeGetCpuAttributeType, val MachineTypeGetCpuRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for gpu
+*/
+
+// isInteger
+type MachineTypeGetGpuAttributeType = *int64
+type MachineTypeGetGpuArgType = int64
+type MachineTypeGetGpuRetType = int64
+
+func getMachineTypeGetGpuAttributeTypeOk(arg MachineTypeGetGpuAttributeType) (ret MachineTypeGetGpuRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetGpuAttributeType(arg *MachineTypeGetGpuAttributeType, val MachineTypeGetGpuRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for memory
+*/
+
+// isInteger
+type MachineTypeGetMemoryAttributeType = *int64
+type MachineTypeGetMemoryArgType = int64
+type MachineTypeGetMemoryRetType = int64
+
+func getMachineTypeGetMemoryAttributeTypeOk(arg MachineTypeGetMemoryAttributeType) (ret MachineTypeGetMemoryRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetMemoryAttributeType(arg *MachineTypeGetMemoryAttributeType, val MachineTypeGetMemoryRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type MachineTypeGetNameAttributeType = *string
+
+func getMachineTypeGetNameAttributeTypeOk(arg MachineTypeGetNameAttributeType) (ret MachineTypeGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetNameAttributeType(arg *MachineTypeGetNameAttributeType, val MachineTypeGetNameRetType) {
+	*arg = &val
+}
+
+type MachineTypeGetNameArgType = string
+type MachineTypeGetNameRetType = string
+
 // MachineType struct for MachineType
 type MachineType struct {
-	Architecture *string `json:"architecture,omitempty"`
+	Architecture MachineTypeGetArchitectureAttributeType `json:"architecture,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	Cpu *int64 `json:"cpu,omitempty"`
+	Cpu MachineTypeGetCpuAttributeType `json:"cpu,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	Gpu *int64 `json:"gpu,omitempty"`
+	Gpu MachineTypeGetGpuAttributeType `json:"gpu,omitempty"`
 	// Can be cast to int32 without loss of precision.
-	Memory *int64  `json:"memory,omitempty"`
-	Name   *string `json:"name,omitempty"`
+	Memory MachineTypeGetMemoryAttributeType `json:"memory,omitempty"`
+	Name   MachineTypeGetNameAttributeType   `json:"name,omitempty"`
 }
 
 // NewMachineType instantiates a new MachineType object
@@ -47,181 +149,136 @@ func NewMachineTypeWithDefaults() *MachineType {
 }
 
 // GetArchitecture returns the Architecture field value if set, zero value otherwise.
-func (o *MachineType) GetArchitecture() *string {
-	if o == nil || IsNil(o.Architecture) {
-		var ret *string
-		return ret
-	}
-	return o.Architecture
+func (o *MachineType) GetArchitecture() (res MachineTypeGetArchitectureRetType) {
+	res, _ = o.GetArchitectureOk()
+	return
 }
 
 // GetArchitectureOk returns a tuple with the Architecture field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetArchitectureOk() (*string, bool) {
-	if o == nil || IsNil(o.Architecture) {
-		return nil, false
-	}
-	return o.Architecture, true
+func (o *MachineType) GetArchitectureOk() (ret MachineTypeGetArchitectureRetType, ok bool) {
+	return getMachineTypeGetArchitectureAttributeTypeOk(o.Architecture)
 }
 
 // HasArchitecture returns a boolean if a field has been set.
 func (o *MachineType) HasArchitecture() bool {
-	if o != nil && !IsNil(o.Architecture) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetArchitectureOk()
+	return ok
 }
 
 // SetArchitecture gets a reference to the given string and assigns it to the Architecture field.
-func (o *MachineType) SetArchitecture(v *string) {
-	o.Architecture = v
+func (o *MachineType) SetArchitecture(v MachineTypeGetArchitectureRetType) {
+	setMachineTypeGetArchitectureAttributeType(&o.Architecture, v)
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
-func (o *MachineType) GetCpu() *int64 {
-	if o == nil || IsNil(o.Cpu) {
-		var ret *int64
-		return ret
-	}
-	return o.Cpu
+func (o *MachineType) GetCpu() (res MachineTypeGetCpuRetType) {
+	res, _ = o.GetCpuOk()
+	return
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetCpuOk() (*int64, bool) {
-	if o == nil || IsNil(o.Cpu) {
-		return nil, false
-	}
-	return o.Cpu, true
+func (o *MachineType) GetCpuOk() (ret MachineTypeGetCpuRetType, ok bool) {
+	return getMachineTypeGetCpuAttributeTypeOk(o.Cpu)
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *MachineType) HasCpu() bool {
-	if o != nil && !IsNil(o.Cpu) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCpuOk()
+	return ok
 }
 
 // SetCpu gets a reference to the given int64 and assigns it to the Cpu field.
-func (o *MachineType) SetCpu(v *int64) {
-	o.Cpu = v
+func (o *MachineType) SetCpu(v MachineTypeGetCpuRetType) {
+	setMachineTypeGetCpuAttributeType(&o.Cpu, v)
 }
 
 // GetGpu returns the Gpu field value if set, zero value otherwise.
-func (o *MachineType) GetGpu() *int64 {
-	if o == nil || IsNil(o.Gpu) {
-		var ret *int64
-		return ret
-	}
-	return o.Gpu
+func (o *MachineType) GetGpu() (res MachineTypeGetGpuRetType) {
+	res, _ = o.GetGpuOk()
+	return
 }
 
 // GetGpuOk returns a tuple with the Gpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetGpuOk() (*int64, bool) {
-	if o == nil || IsNil(o.Gpu) {
-		return nil, false
-	}
-	return o.Gpu, true
+func (o *MachineType) GetGpuOk() (ret MachineTypeGetGpuRetType, ok bool) {
+	return getMachineTypeGetGpuAttributeTypeOk(o.Gpu)
 }
 
 // HasGpu returns a boolean if a field has been set.
 func (o *MachineType) HasGpu() bool {
-	if o != nil && !IsNil(o.Gpu) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGpuOk()
+	return ok
 }
 
 // SetGpu gets a reference to the given int64 and assigns it to the Gpu field.
-func (o *MachineType) SetGpu(v *int64) {
-	o.Gpu = v
+func (o *MachineType) SetGpu(v MachineTypeGetGpuRetType) {
+	setMachineTypeGetGpuAttributeType(&o.Gpu, v)
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *MachineType) GetMemory() *int64 {
-	if o == nil || IsNil(o.Memory) {
-		var ret *int64
-		return ret
-	}
-	return o.Memory
+func (o *MachineType) GetMemory() (res MachineTypeGetMemoryRetType) {
+	res, _ = o.GetMemoryOk()
+	return
 }
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetMemoryOk() (*int64, bool) {
-	if o == nil || IsNil(o.Memory) {
-		return nil, false
-	}
-	return o.Memory, true
+func (o *MachineType) GetMemoryOk() (ret MachineTypeGetMemoryRetType, ok bool) {
+	return getMachineTypeGetMemoryAttributeTypeOk(o.Memory)
 }
 
 // HasMemory returns a boolean if a field has been set.
 func (o *MachineType) HasMemory() bool {
-	if o != nil && !IsNil(o.Memory) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMemoryOk()
+	return ok
 }
 
 // SetMemory gets a reference to the given int64 and assigns it to the Memory field.
-func (o *MachineType) SetMemory(v *int64) {
-	o.Memory = v
+func (o *MachineType) SetMemory(v MachineTypeGetMemoryRetType) {
+	setMachineTypeGetMemoryAttributeType(&o.Memory, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *MachineType) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *MachineType) GetName() (res MachineTypeGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *MachineType) GetNameOk() (ret MachineTypeGetNameRetType, ok bool) {
+	return getMachineTypeGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *MachineType) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *MachineType) SetName(v *string) {
-	o.Name = v
+func (o *MachineType) SetName(v MachineTypeGetNameRetType) {
+	setMachineTypeGetNameAttributeType(&o.Name, v)
 }
 
 func (o MachineType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Architecture) {
-		toSerialize["architecture"] = o.Architecture
+	if val, ok := getMachineTypeGetArchitectureAttributeTypeOk(o.Architecture); ok {
+		toSerialize["Architecture"] = val
 	}
-	if !IsNil(o.Cpu) {
-		toSerialize["cpu"] = o.Cpu
+	if val, ok := getMachineTypeGetCpuAttributeTypeOk(o.Cpu); ok {
+		toSerialize["Cpu"] = val
 	}
-	if !IsNil(o.Gpu) {
-		toSerialize["gpu"] = o.Gpu
+	if val, ok := getMachineTypeGetGpuAttributeTypeOk(o.Gpu); ok {
+		toSerialize["Gpu"] = val
 	}
-	if !IsNil(o.Memory) {
-		toSerialize["memory"] = o.Memory
+	if val, ok := getMachineTypeGetMemoryAttributeTypeOk(o.Memory); ok {
+		toSerialize["Memory"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getMachineTypeGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,10 +17,30 @@ import (
 // checks if the InstanceDocumentationACL type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceDocumentationACL{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type InstanceDocumentationACLGetItemsAttributeType = *[]string
+type InstanceDocumentationACLGetItemsArgType = []string
+type InstanceDocumentationACLGetItemsRetType = []string
+
+func getInstanceDocumentationACLGetItemsAttributeTypeOk(arg InstanceDocumentationACLGetItemsAttributeType) (ret InstanceDocumentationACLGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceDocumentationACLGetItemsAttributeType(arg *InstanceDocumentationACLGetItemsAttributeType, val InstanceDocumentationACLGetItemsRetType) {
+	*arg = &val
+}
+
 // InstanceDocumentationACL struct for InstanceDocumentationACL
 type InstanceDocumentationACL struct {
 	// a simple list with IP addresses with CIDR.
-	Items *[]string `json:"items,omitempty"`
+	Items InstanceDocumentationACLGetItemsAttributeType `json:"items,omitempty"`
 }
 
 // NewInstanceDocumentationACL instantiates a new InstanceDocumentationACL object
@@ -41,41 +61,32 @@ func NewInstanceDocumentationACLWithDefaults() *InstanceDocumentationACL {
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *InstanceDocumentationACL) GetItems() *[]string {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]string
-		return ret
-	}
-	return o.Items
+func (o *InstanceDocumentationACL) GetItems() (res InstanceDocumentationACLGetItemsRetType) {
+	res, _ = o.GetItemsOk()
+	return
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceDocumentationACL) GetItemsOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Items) {
-		return nil, false
-	}
-	return o.Items, true
+func (o *InstanceDocumentationACL) GetItemsOk() (ret InstanceDocumentationACLGetItemsRetType, ok bool) {
+	return getInstanceDocumentationACLGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *InstanceDocumentationACL) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemsOk()
+	return ok
 }
 
 // SetItems gets a reference to the given []string and assigns it to the Items field.
-func (o *InstanceDocumentationACL) SetItems(v *[]string) {
-	o.Items = v
+func (o *InstanceDocumentationACL) SetItems(v InstanceDocumentationACLGetItemsRetType) {
+	setInstanceDocumentationACLGetItemsAttributeType(&o.Items, v)
 }
 
 func (o InstanceDocumentationACL) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Items) {
-		toSerialize["items"] = o.Items
+	if val, ok := getInstanceDocumentationACLGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
 }
