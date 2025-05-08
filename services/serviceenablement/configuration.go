@@ -18,7 +18,7 @@ import (
 func NewConfiguration() *config.Configuration {
 	cfg := &config.Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI-Generator/1.0.0/go",
+		UserAgent:     "stackit-sdk-go/serviceenablement",
 		Debug:         false,
 		Servers: config.ServerConfigurations{
 			{
