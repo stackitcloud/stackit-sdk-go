@@ -17,14 +17,76 @@ import (
 // checks if the ValidationError type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ValidationError{}
 
+/*
+	types and functions for loc
+*/
+
+// isArray
+type ValidationErrorGetLocAttributeType = *[]LocationInner
+type ValidationErrorGetLocArgType = []LocationInner
+type ValidationErrorGetLocRetType = []LocationInner
+
+func getValidationErrorGetLocAttributeTypeOk(arg ValidationErrorGetLocAttributeType) (ret ValidationErrorGetLocRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setValidationErrorGetLocAttributeType(arg *ValidationErrorGetLocAttributeType, val ValidationErrorGetLocRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for msg
+*/
+
+// isNotNullableString
+type ValidationErrorGetMsgAttributeType = *string
+
+func getValidationErrorGetMsgAttributeTypeOk(arg ValidationErrorGetMsgAttributeType) (ret ValidationErrorGetMsgRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setValidationErrorGetMsgAttributeType(arg *ValidationErrorGetMsgAttributeType, val ValidationErrorGetMsgRetType) {
+	*arg = &val
+}
+
+type ValidationErrorGetMsgArgType = string
+type ValidationErrorGetMsgRetType = string
+
+/*
+	types and functions for type
+*/
+
+// isNotNullableString
+type ValidationErrorGetTypeAttributeType = *string
+
+func getValidationErrorGetTypeAttributeTypeOk(arg ValidationErrorGetTypeAttributeType) (ret ValidationErrorGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setValidationErrorGetTypeAttributeType(arg *ValidationErrorGetTypeAttributeType, val ValidationErrorGetTypeRetType) {
+	*arg = &val
+}
+
+type ValidationErrorGetTypeArgType = string
+type ValidationErrorGetTypeRetType = string
+
 // ValidationError struct for ValidationError
 type ValidationError struct {
 	// REQUIRED
-	Loc *[]LocationInner `json:"loc"`
+	Loc ValidationErrorGetLocAttributeType `json:"loc"`
 	// REQUIRED
-	Msg *string `json:"msg"`
+	Msg ValidationErrorGetMsgAttributeType `json:"msg"`
 	// REQUIRED
-	Type *string `json:"type"`
+	Type ValidationErrorGetTypeAttributeType `json:"type"`
 }
 
 type _ValidationError ValidationError
@@ -33,11 +95,11 @@ type _ValidationError ValidationError
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidationError(loc *[]LocationInner, msg *string, type_ *string) *ValidationError {
+func NewValidationError(loc ValidationErrorGetLocArgType, msg ValidationErrorGetMsgArgType, type_ ValidationErrorGetTypeArgType) *ValidationError {
 	this := ValidationError{}
-	this.Loc = loc
-	this.Msg = msg
-	this.Type = type_
+	setValidationErrorGetLocAttributeType(&this.Loc, loc)
+	setValidationErrorGetMsgAttributeType(&this.Msg, msg)
+	setValidationErrorGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -50,82 +112,67 @@ func NewValidationErrorWithDefaults() *ValidationError {
 }
 
 // GetLoc returns the Loc field value
-func (o *ValidationError) GetLoc() *[]LocationInner {
-	if o == nil || IsNil(o.Loc) {
-		var ret *[]LocationInner
-		return ret
-	}
-
-	return o.Loc
+func (o *ValidationError) GetLoc() (ret ValidationErrorGetLocRetType) {
+	ret, _ = o.GetLocOk()
+	return ret
 }
 
 // GetLocOk returns a tuple with the Loc field value
 // and a boolean to check if the value has been set.
-func (o *ValidationError) GetLocOk() (*[]LocationInner, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Loc, true
+func (o *ValidationError) GetLocOk() (ret ValidationErrorGetLocRetType, ok bool) {
+	return getValidationErrorGetLocAttributeTypeOk(o.Loc)
 }
 
 // SetLoc sets field value
-func (o *ValidationError) SetLoc(v *[]LocationInner) {
-	o.Loc = v
+func (o *ValidationError) SetLoc(v ValidationErrorGetLocRetType) {
+	setValidationErrorGetLocAttributeType(&o.Loc, v)
 }
 
 // GetMsg returns the Msg field value
-func (o *ValidationError) GetMsg() *string {
-	if o == nil || IsNil(o.Msg) {
-		var ret *string
-		return ret
-	}
-
-	return o.Msg
+func (o *ValidationError) GetMsg() (ret ValidationErrorGetMsgRetType) {
+	ret, _ = o.GetMsgOk()
+	return ret
 }
 
 // GetMsgOk returns a tuple with the Msg field value
 // and a boolean to check if the value has been set.
-func (o *ValidationError) GetMsgOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Msg, true
+func (o *ValidationError) GetMsgOk() (ret ValidationErrorGetMsgRetType, ok bool) {
+	return getValidationErrorGetMsgAttributeTypeOk(o.Msg)
 }
 
 // SetMsg sets field value
-func (o *ValidationError) SetMsg(v *string) {
-	o.Msg = v
+func (o *ValidationError) SetMsg(v ValidationErrorGetMsgRetType) {
+	setValidationErrorGetMsgAttributeType(&o.Msg, v)
 }
 
 // GetType returns the Type field value
-func (o *ValidationError) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *ValidationError) GetType() (ret ValidationErrorGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ValidationError) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *ValidationError) GetTypeOk() (ret ValidationErrorGetTypeRetType, ok bool) {
+	return getValidationErrorGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *ValidationError) SetType(v *string) {
-	o.Type = v
+func (o *ValidationError) SetType(v ValidationErrorGetTypeRetType) {
+	setValidationErrorGetTypeAttributeType(&o.Type, v)
 }
 
 func (o ValidationError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["loc"] = o.Loc
-	toSerialize["msg"] = o.Msg
-	toSerialize["type"] = o.Type
+	if val, ok := getValidationErrorGetLocAttributeTypeOk(o.Loc); ok {
+		toSerialize["Loc"] = val
+	}
+	if val, ok := getValidationErrorGetMsgAttributeTypeOk(o.Msg); ok {
+		toSerialize["Msg"] = val
+	}
+	if val, ok := getValidationErrorGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,25 +17,212 @@ import (
 // checks if the BaseSecurityGroupRule type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &BaseSecurityGroupRule{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type BaseSecurityGroupRuleGetDescriptionAttributeType = *string
+
+func getBaseSecurityGroupRuleGetDescriptionAttributeTypeOk(arg BaseSecurityGroupRuleGetDescriptionAttributeType) (ret BaseSecurityGroupRuleGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBaseSecurityGroupRuleGetDescriptionAttributeType(arg *BaseSecurityGroupRuleGetDescriptionAttributeType, val BaseSecurityGroupRuleGetDescriptionRetType) {
+	*arg = &val
+}
+
+type BaseSecurityGroupRuleGetDescriptionArgType = string
+type BaseSecurityGroupRuleGetDescriptionRetType = string
+
+/*
+	types and functions for direction
+*/
+
+// isNotNullableString
+type BaseSecurityGroupRuleGetDirectionAttributeType = *string
+
+func getBaseSecurityGroupRuleGetDirectionAttributeTypeOk(arg BaseSecurityGroupRuleGetDirectionAttributeType) (ret BaseSecurityGroupRuleGetDirectionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBaseSecurityGroupRuleGetDirectionAttributeType(arg *BaseSecurityGroupRuleGetDirectionAttributeType, val BaseSecurityGroupRuleGetDirectionRetType) {
+	*arg = &val
+}
+
+type BaseSecurityGroupRuleGetDirectionArgType = string
+type BaseSecurityGroupRuleGetDirectionRetType = string
+
+/*
+	types and functions for ethertype
+*/
+
+// isNotNullableString
+type BaseSecurityGroupRuleGetEthertypeAttributeType = *string
+
+func getBaseSecurityGroupRuleGetEthertypeAttributeTypeOk(arg BaseSecurityGroupRuleGetEthertypeAttributeType) (ret BaseSecurityGroupRuleGetEthertypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBaseSecurityGroupRuleGetEthertypeAttributeType(arg *BaseSecurityGroupRuleGetEthertypeAttributeType, val BaseSecurityGroupRuleGetEthertypeRetType) {
+	*arg = &val
+}
+
+type BaseSecurityGroupRuleGetEthertypeArgType = string
+type BaseSecurityGroupRuleGetEthertypeRetType = string
+
+/*
+	types and functions for icmpParameters
+*/
+
+// isModel
+type BaseSecurityGroupRuleGetIcmpParametersAttributeType = *ICMPParameters
+type BaseSecurityGroupRuleGetIcmpParametersArgType = ICMPParameters
+type BaseSecurityGroupRuleGetIcmpParametersRetType = ICMPParameters
+
+func getBaseSecurityGroupRuleGetIcmpParametersAttributeTypeOk(arg BaseSecurityGroupRuleGetIcmpParametersAttributeType) (ret BaseSecurityGroupRuleGetIcmpParametersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBaseSecurityGroupRuleGetIcmpParametersAttributeType(arg *BaseSecurityGroupRuleGetIcmpParametersAttributeType, val BaseSecurityGroupRuleGetIcmpParametersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type BaseSecurityGroupRuleGetIdAttributeType = *string
+
+func getBaseSecurityGroupRuleGetIdAttributeTypeOk(arg BaseSecurityGroupRuleGetIdAttributeType) (ret BaseSecurityGroupRuleGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBaseSecurityGroupRuleGetIdAttributeType(arg *BaseSecurityGroupRuleGetIdAttributeType, val BaseSecurityGroupRuleGetIdRetType) {
+	*arg = &val
+}
+
+type BaseSecurityGroupRuleGetIdArgType = string
+type BaseSecurityGroupRuleGetIdRetType = string
+
+/*
+	types and functions for ipRange
+*/
+
+// isNotNullableString
+type BaseSecurityGroupRuleGetIpRangeAttributeType = *string
+
+func getBaseSecurityGroupRuleGetIpRangeAttributeTypeOk(arg BaseSecurityGroupRuleGetIpRangeAttributeType) (ret BaseSecurityGroupRuleGetIpRangeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBaseSecurityGroupRuleGetIpRangeAttributeType(arg *BaseSecurityGroupRuleGetIpRangeAttributeType, val BaseSecurityGroupRuleGetIpRangeRetType) {
+	*arg = &val
+}
+
+type BaseSecurityGroupRuleGetIpRangeArgType = string
+type BaseSecurityGroupRuleGetIpRangeRetType = string
+
+/*
+	types and functions for portRange
+*/
+
+// isModel
+type BaseSecurityGroupRuleGetPortRangeAttributeType = *PortRange
+type BaseSecurityGroupRuleGetPortRangeArgType = PortRange
+type BaseSecurityGroupRuleGetPortRangeRetType = PortRange
+
+func getBaseSecurityGroupRuleGetPortRangeAttributeTypeOk(arg BaseSecurityGroupRuleGetPortRangeAttributeType) (ret BaseSecurityGroupRuleGetPortRangeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBaseSecurityGroupRuleGetPortRangeAttributeType(arg *BaseSecurityGroupRuleGetPortRangeAttributeType, val BaseSecurityGroupRuleGetPortRangeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for remoteSecurityGroupId
+*/
+
+// isNotNullableString
+type BaseSecurityGroupRuleGetRemoteSecurityGroupIdAttributeType = *string
+
+func getBaseSecurityGroupRuleGetRemoteSecurityGroupIdAttributeTypeOk(arg BaseSecurityGroupRuleGetRemoteSecurityGroupIdAttributeType) (ret BaseSecurityGroupRuleGetRemoteSecurityGroupIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBaseSecurityGroupRuleGetRemoteSecurityGroupIdAttributeType(arg *BaseSecurityGroupRuleGetRemoteSecurityGroupIdAttributeType, val BaseSecurityGroupRuleGetRemoteSecurityGroupIdRetType) {
+	*arg = &val
+}
+
+type BaseSecurityGroupRuleGetRemoteSecurityGroupIdArgType = string
+type BaseSecurityGroupRuleGetRemoteSecurityGroupIdRetType = string
+
+/*
+	types and functions for securityGroupId
+*/
+
+// isNotNullableString
+type BaseSecurityGroupRuleGetSecurityGroupIdAttributeType = *string
+
+func getBaseSecurityGroupRuleGetSecurityGroupIdAttributeTypeOk(arg BaseSecurityGroupRuleGetSecurityGroupIdAttributeType) (ret BaseSecurityGroupRuleGetSecurityGroupIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBaseSecurityGroupRuleGetSecurityGroupIdAttributeType(arg *BaseSecurityGroupRuleGetSecurityGroupIdAttributeType, val BaseSecurityGroupRuleGetSecurityGroupIdRetType) {
+	*arg = &val
+}
+
+type BaseSecurityGroupRuleGetSecurityGroupIdArgType = string
+type BaseSecurityGroupRuleGetSecurityGroupIdRetType = string
+
 // BaseSecurityGroupRule The base schema for a security group rule.
 type BaseSecurityGroupRule struct {
 	// Description Object. Allows string up to 127 Characters.
-	Description *string `json:"description,omitempty"`
+	Description BaseSecurityGroupRuleGetDescriptionAttributeType `json:"description,omitempty"`
 	// The direction of the traffic which the rule should match.
 	// REQUIRED
-	Direction *string `json:"direction"`
+	Direction BaseSecurityGroupRuleGetDirectionAttributeType `json:"direction"`
 	// The ethertype which the rule should match.
-	Ethertype      *string         `json:"ethertype,omitempty"`
-	IcmpParameters *ICMPParameters `json:"icmpParameters,omitempty"`
+	Ethertype      BaseSecurityGroupRuleGetEthertypeAttributeType      `json:"ethertype,omitempty"`
+	IcmpParameters BaseSecurityGroupRuleGetIcmpParametersAttributeType `json:"icmpParameters,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id BaseSecurityGroupRuleGetIdAttributeType `json:"id,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
-	IpRange   *string    `json:"ipRange,omitempty"`
-	PortRange *PortRange `json:"portRange,omitempty"`
+	IpRange   BaseSecurityGroupRuleGetIpRangeAttributeType   `json:"ipRange,omitempty"`
+	PortRange BaseSecurityGroupRuleGetPortRangeAttributeType `json:"portRange,omitempty"`
 	// Universally Unique Identifier (UUID).
-	RemoteSecurityGroupId *string `json:"remoteSecurityGroupId,omitempty"`
+	RemoteSecurityGroupId BaseSecurityGroupRuleGetRemoteSecurityGroupIdAttributeType `json:"remoteSecurityGroupId,omitempty"`
 	// Universally Unique Identifier (UUID).
-	SecurityGroupId *string `json:"securityGroupId,omitempty"`
+	SecurityGroupId BaseSecurityGroupRuleGetSecurityGroupIdAttributeType `json:"securityGroupId,omitempty"`
 }
 
 type _BaseSecurityGroupRule BaseSecurityGroupRule
@@ -44,11 +231,9 @@ type _BaseSecurityGroupRule BaseSecurityGroupRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBaseSecurityGroupRule(direction *string) *BaseSecurityGroupRule {
+func NewBaseSecurityGroupRule(direction BaseSecurityGroupRuleGetDirectionArgType) *BaseSecurityGroupRule {
 	this := BaseSecurityGroupRule{}
-	this.Direction = direction
-	var ethertype string = "IPv4"
-	this.Ethertype = &ethertype
+	setBaseSecurityGroupRuleGetDirectionAttributeType(&this.Direction, direction)
 	return &this
 }
 
@@ -63,311 +248,234 @@ func NewBaseSecurityGroupRuleWithDefaults() *BaseSecurityGroupRule {
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *BaseSecurityGroupRule) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *BaseSecurityGroupRule) GetDescription() (res BaseSecurityGroupRuleGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSecurityGroupRule) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *BaseSecurityGroupRule) GetDescriptionOk() (ret BaseSecurityGroupRuleGetDescriptionRetType, ok bool) {
+	return getBaseSecurityGroupRuleGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *BaseSecurityGroupRule) SetDescription(v *string) {
-	o.Description = v
+func (o *BaseSecurityGroupRule) SetDescription(v BaseSecurityGroupRuleGetDescriptionRetType) {
+	setBaseSecurityGroupRuleGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDirection returns the Direction field value
-func (o *BaseSecurityGroupRule) GetDirection() *string {
-	if o == nil || IsNil(o.Direction) {
-		var ret *string
-		return ret
-	}
-
-	return o.Direction
+func (o *BaseSecurityGroupRule) GetDirection() (ret BaseSecurityGroupRuleGetDirectionRetType) {
+	ret, _ = o.GetDirectionOk()
+	return ret
 }
 
 // GetDirectionOk returns a tuple with the Direction field value
 // and a boolean to check if the value has been set.
-func (o *BaseSecurityGroupRule) GetDirectionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Direction, true
+func (o *BaseSecurityGroupRule) GetDirectionOk() (ret BaseSecurityGroupRuleGetDirectionRetType, ok bool) {
+	return getBaseSecurityGroupRuleGetDirectionAttributeTypeOk(o.Direction)
 }
 
 // SetDirection sets field value
-func (o *BaseSecurityGroupRule) SetDirection(v *string) {
-	o.Direction = v
+func (o *BaseSecurityGroupRule) SetDirection(v BaseSecurityGroupRuleGetDirectionRetType) {
+	setBaseSecurityGroupRuleGetDirectionAttributeType(&o.Direction, v)
 }
 
 // GetEthertype returns the Ethertype field value if set, zero value otherwise.
-func (o *BaseSecurityGroupRule) GetEthertype() *string {
-	if o == nil || IsNil(o.Ethertype) {
-		var ret *string
-		return ret
-	}
-	return o.Ethertype
+func (o *BaseSecurityGroupRule) GetEthertype() (res BaseSecurityGroupRuleGetEthertypeRetType) {
+	res, _ = o.GetEthertypeOk()
+	return
 }
 
 // GetEthertypeOk returns a tuple with the Ethertype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSecurityGroupRule) GetEthertypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Ethertype) {
-		return nil, false
-	}
-	return o.Ethertype, true
+func (o *BaseSecurityGroupRule) GetEthertypeOk() (ret BaseSecurityGroupRuleGetEthertypeRetType, ok bool) {
+	return getBaseSecurityGroupRuleGetEthertypeAttributeTypeOk(o.Ethertype)
 }
 
 // HasEthertype returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasEthertype() bool {
-	if o != nil && !IsNil(o.Ethertype) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEthertypeOk()
+	return ok
 }
 
 // SetEthertype gets a reference to the given string and assigns it to the Ethertype field.
-func (o *BaseSecurityGroupRule) SetEthertype(v *string) {
-	o.Ethertype = v
+func (o *BaseSecurityGroupRule) SetEthertype(v BaseSecurityGroupRuleGetEthertypeRetType) {
+	setBaseSecurityGroupRuleGetEthertypeAttributeType(&o.Ethertype, v)
 }
 
 // GetIcmpParameters returns the IcmpParameters field value if set, zero value otherwise.
-func (o *BaseSecurityGroupRule) GetIcmpParameters() *ICMPParameters {
-	if o == nil || IsNil(o.IcmpParameters) {
-		var ret *ICMPParameters
-		return ret
-	}
-	return o.IcmpParameters
+func (o *BaseSecurityGroupRule) GetIcmpParameters() (res BaseSecurityGroupRuleGetIcmpParametersRetType) {
+	res, _ = o.GetIcmpParametersOk()
+	return
 }
 
 // GetIcmpParametersOk returns a tuple with the IcmpParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSecurityGroupRule) GetIcmpParametersOk() (*ICMPParameters, bool) {
-	if o == nil || IsNil(o.IcmpParameters) {
-		return nil, false
-	}
-	return o.IcmpParameters, true
+func (o *BaseSecurityGroupRule) GetIcmpParametersOk() (ret BaseSecurityGroupRuleGetIcmpParametersRetType, ok bool) {
+	return getBaseSecurityGroupRuleGetIcmpParametersAttributeTypeOk(o.IcmpParameters)
 }
 
 // HasIcmpParameters returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasIcmpParameters() bool {
-	if o != nil && !IsNil(o.IcmpParameters) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIcmpParametersOk()
+	return ok
 }
 
 // SetIcmpParameters gets a reference to the given ICMPParameters and assigns it to the IcmpParameters field.
-func (o *BaseSecurityGroupRule) SetIcmpParameters(v *ICMPParameters) {
-	o.IcmpParameters = v
+func (o *BaseSecurityGroupRule) SetIcmpParameters(v BaseSecurityGroupRuleGetIcmpParametersRetType) {
+	setBaseSecurityGroupRuleGetIcmpParametersAttributeType(&o.IcmpParameters, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *BaseSecurityGroupRule) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *BaseSecurityGroupRule) GetId() (res BaseSecurityGroupRuleGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSecurityGroupRule) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *BaseSecurityGroupRule) GetIdOk() (ret BaseSecurityGroupRuleGetIdRetType, ok bool) {
+	return getBaseSecurityGroupRuleGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *BaseSecurityGroupRule) SetId(v *string) {
-	o.Id = v
+func (o *BaseSecurityGroupRule) SetId(v BaseSecurityGroupRuleGetIdRetType) {
+	setBaseSecurityGroupRuleGetIdAttributeType(&o.Id, v)
 }
 
 // GetIpRange returns the IpRange field value if set, zero value otherwise.
-func (o *BaseSecurityGroupRule) GetIpRange() *string {
-	if o == nil || IsNil(o.IpRange) {
-		var ret *string
-		return ret
-	}
-	return o.IpRange
+func (o *BaseSecurityGroupRule) GetIpRange() (res BaseSecurityGroupRuleGetIpRangeRetType) {
+	res, _ = o.GetIpRangeOk()
+	return
 }
 
 // GetIpRangeOk returns a tuple with the IpRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSecurityGroupRule) GetIpRangeOk() (*string, bool) {
-	if o == nil || IsNil(o.IpRange) {
-		return nil, false
-	}
-	return o.IpRange, true
+func (o *BaseSecurityGroupRule) GetIpRangeOk() (ret BaseSecurityGroupRuleGetIpRangeRetType, ok bool) {
+	return getBaseSecurityGroupRuleGetIpRangeAttributeTypeOk(o.IpRange)
 }
 
 // HasIpRange returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasIpRange() bool {
-	if o != nil && !IsNil(o.IpRange) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIpRangeOk()
+	return ok
 }
 
 // SetIpRange gets a reference to the given string and assigns it to the IpRange field.
-func (o *BaseSecurityGroupRule) SetIpRange(v *string) {
-	o.IpRange = v
+func (o *BaseSecurityGroupRule) SetIpRange(v BaseSecurityGroupRuleGetIpRangeRetType) {
+	setBaseSecurityGroupRuleGetIpRangeAttributeType(&o.IpRange, v)
 }
 
 // GetPortRange returns the PortRange field value if set, zero value otherwise.
-func (o *BaseSecurityGroupRule) GetPortRange() *PortRange {
-	if o == nil || IsNil(o.PortRange) {
-		var ret *PortRange
-		return ret
-	}
-	return o.PortRange
+func (o *BaseSecurityGroupRule) GetPortRange() (res BaseSecurityGroupRuleGetPortRangeRetType) {
+	res, _ = o.GetPortRangeOk()
+	return
 }
 
 // GetPortRangeOk returns a tuple with the PortRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSecurityGroupRule) GetPortRangeOk() (*PortRange, bool) {
-	if o == nil || IsNil(o.PortRange) {
-		return nil, false
-	}
-	return o.PortRange, true
+func (o *BaseSecurityGroupRule) GetPortRangeOk() (ret BaseSecurityGroupRuleGetPortRangeRetType, ok bool) {
+	return getBaseSecurityGroupRuleGetPortRangeAttributeTypeOk(o.PortRange)
 }
 
 // HasPortRange returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasPortRange() bool {
-	if o != nil && !IsNil(o.PortRange) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPortRangeOk()
+	return ok
 }
 
 // SetPortRange gets a reference to the given PortRange and assigns it to the PortRange field.
-func (o *BaseSecurityGroupRule) SetPortRange(v *PortRange) {
-	o.PortRange = v
+func (o *BaseSecurityGroupRule) SetPortRange(v BaseSecurityGroupRuleGetPortRangeRetType) {
+	setBaseSecurityGroupRuleGetPortRangeAttributeType(&o.PortRange, v)
 }
 
 // GetRemoteSecurityGroupId returns the RemoteSecurityGroupId field value if set, zero value otherwise.
-func (o *BaseSecurityGroupRule) GetRemoteSecurityGroupId() *string {
-	if o == nil || IsNil(o.RemoteSecurityGroupId) {
-		var ret *string
-		return ret
-	}
-	return o.RemoteSecurityGroupId
+func (o *BaseSecurityGroupRule) GetRemoteSecurityGroupId() (res BaseSecurityGroupRuleGetRemoteSecurityGroupIdRetType) {
+	res, _ = o.GetRemoteSecurityGroupIdOk()
+	return
 }
 
 // GetRemoteSecurityGroupIdOk returns a tuple with the RemoteSecurityGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSecurityGroupRule) GetRemoteSecurityGroupIdOk() (*string, bool) {
-	if o == nil || IsNil(o.RemoteSecurityGroupId) {
-		return nil, false
-	}
-	return o.RemoteSecurityGroupId, true
+func (o *BaseSecurityGroupRule) GetRemoteSecurityGroupIdOk() (ret BaseSecurityGroupRuleGetRemoteSecurityGroupIdRetType, ok bool) {
+	return getBaseSecurityGroupRuleGetRemoteSecurityGroupIdAttributeTypeOk(o.RemoteSecurityGroupId)
 }
 
 // HasRemoteSecurityGroupId returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasRemoteSecurityGroupId() bool {
-	if o != nil && !IsNil(o.RemoteSecurityGroupId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRemoteSecurityGroupIdOk()
+	return ok
 }
 
 // SetRemoteSecurityGroupId gets a reference to the given string and assigns it to the RemoteSecurityGroupId field.
-func (o *BaseSecurityGroupRule) SetRemoteSecurityGroupId(v *string) {
-	o.RemoteSecurityGroupId = v
+func (o *BaseSecurityGroupRule) SetRemoteSecurityGroupId(v BaseSecurityGroupRuleGetRemoteSecurityGroupIdRetType) {
+	setBaseSecurityGroupRuleGetRemoteSecurityGroupIdAttributeType(&o.RemoteSecurityGroupId, v)
 }
 
 // GetSecurityGroupId returns the SecurityGroupId field value if set, zero value otherwise.
-func (o *BaseSecurityGroupRule) GetSecurityGroupId() *string {
-	if o == nil || IsNil(o.SecurityGroupId) {
-		var ret *string
-		return ret
-	}
-	return o.SecurityGroupId
+func (o *BaseSecurityGroupRule) GetSecurityGroupId() (res BaseSecurityGroupRuleGetSecurityGroupIdRetType) {
+	res, _ = o.GetSecurityGroupIdOk()
+	return
 }
 
 // GetSecurityGroupIdOk returns a tuple with the SecurityGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSecurityGroupRule) GetSecurityGroupIdOk() (*string, bool) {
-	if o == nil || IsNil(o.SecurityGroupId) {
-		return nil, false
-	}
-	return o.SecurityGroupId, true
+func (o *BaseSecurityGroupRule) GetSecurityGroupIdOk() (ret BaseSecurityGroupRuleGetSecurityGroupIdRetType, ok bool) {
+	return getBaseSecurityGroupRuleGetSecurityGroupIdAttributeTypeOk(o.SecurityGroupId)
 }
 
 // HasSecurityGroupId returns a boolean if a field has been set.
 func (o *BaseSecurityGroupRule) HasSecurityGroupId() bool {
-	if o != nil && !IsNil(o.SecurityGroupId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSecurityGroupIdOk()
+	return ok
 }
 
 // SetSecurityGroupId gets a reference to the given string and assigns it to the SecurityGroupId field.
-func (o *BaseSecurityGroupRule) SetSecurityGroupId(v *string) {
-	o.SecurityGroupId = v
+func (o *BaseSecurityGroupRule) SetSecurityGroupId(v BaseSecurityGroupRuleGetSecurityGroupIdRetType) {
+	setBaseSecurityGroupRuleGetSecurityGroupIdAttributeType(&o.SecurityGroupId, v)
 }
 
 func (o BaseSecurityGroupRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getBaseSecurityGroupRuleGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["direction"] = o.Direction
-	if !IsNil(o.Ethertype) {
-		toSerialize["ethertype"] = o.Ethertype
+	if val, ok := getBaseSecurityGroupRuleGetDirectionAttributeTypeOk(o.Direction); ok {
+		toSerialize["Direction"] = val
 	}
-	if !IsNil(o.IcmpParameters) {
-		toSerialize["icmpParameters"] = o.IcmpParameters
+	if val, ok := getBaseSecurityGroupRuleGetEthertypeAttributeTypeOk(o.Ethertype); ok {
+		toSerialize["Ethertype"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getBaseSecurityGroupRuleGetIcmpParametersAttributeTypeOk(o.IcmpParameters); ok {
+		toSerialize["IcmpParameters"] = val
 	}
-	if !IsNil(o.IpRange) {
-		toSerialize["ipRange"] = o.IpRange
+	if val, ok := getBaseSecurityGroupRuleGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.PortRange) {
-		toSerialize["portRange"] = o.PortRange
+	if val, ok := getBaseSecurityGroupRuleGetIpRangeAttributeTypeOk(o.IpRange); ok {
+		toSerialize["IpRange"] = val
 	}
-	if !IsNil(o.RemoteSecurityGroupId) {
-		toSerialize["remoteSecurityGroupId"] = o.RemoteSecurityGroupId
+	if val, ok := getBaseSecurityGroupRuleGetPortRangeAttributeTypeOk(o.PortRange); ok {
+		toSerialize["PortRange"] = val
 	}
-	if !IsNil(o.SecurityGroupId) {
-		toSerialize["securityGroupId"] = o.SecurityGroupId
+	if val, ok := getBaseSecurityGroupRuleGetRemoteSecurityGroupIdAttributeTypeOk(o.RemoteSecurityGroupId); ok {
+		toSerialize["RemoteSecurityGroupId"] = val
+	}
+	if val, ok := getBaseSecurityGroupRuleGetSecurityGroupIdAttributeTypeOk(o.SecurityGroupId); ok {
+		toSerialize["SecurityGroupId"] = val
 	}
 	return toSerialize, nil
 }

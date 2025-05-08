@@ -18,10 +18,30 @@ import (
 // checks if the CreateAccessKeyPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateAccessKeyPayload{}
 
+/*
+	types and functions for expires
+*/
+
+// isDateTime
+type CreateAccessKeyPayloadGetExpiresAttributeType = *time.Time
+type CreateAccessKeyPayloadGetExpiresArgType = time.Time
+type CreateAccessKeyPayloadGetExpiresRetType = time.Time
+
+func getCreateAccessKeyPayloadGetExpiresAttributeTypeOk(arg CreateAccessKeyPayloadGetExpiresAttributeType) (ret CreateAccessKeyPayloadGetExpiresRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAccessKeyPayloadGetExpiresAttributeType(arg *CreateAccessKeyPayloadGetExpiresAttributeType, val CreateAccessKeyPayloadGetExpiresRetType) {
+	*arg = &val
+}
+
 // CreateAccessKeyPayload struct for CreateAccessKeyPayload
 type CreateAccessKeyPayload struct {
 	// Expiration date. Null means never expires.
-	Expires *time.Time `json:"expires,omitempty"`
+	Expires CreateAccessKeyPayloadGetExpiresAttributeType `json:"expires,omitempty"`
 }
 
 // NewCreateAccessKeyPayload instantiates a new CreateAccessKeyPayload object
@@ -42,41 +62,32 @@ func NewCreateAccessKeyPayloadWithDefaults() *CreateAccessKeyPayload {
 }
 
 // GetExpires returns the Expires field value if set, zero value otherwise.
-func (o *CreateAccessKeyPayload) GetExpires() *time.Time {
-	if o == nil || IsNil(o.Expires) {
-		var ret *time.Time
-		return ret
-	}
-	return o.Expires
+func (o *CreateAccessKeyPayload) GetExpires() (res CreateAccessKeyPayloadGetExpiresRetType) {
+	res, _ = o.GetExpiresOk()
+	return
 }
 
 // GetExpiresOk returns a tuple with the Expires field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAccessKeyPayload) GetExpiresOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.Expires) {
-		return nil, false
-	}
-	return o.Expires, true
+func (o *CreateAccessKeyPayload) GetExpiresOk() (ret CreateAccessKeyPayloadGetExpiresRetType, ok bool) {
+	return getCreateAccessKeyPayloadGetExpiresAttributeTypeOk(o.Expires)
 }
 
 // HasExpires returns a boolean if a field has been set.
 func (o *CreateAccessKeyPayload) HasExpires() bool {
-	if o != nil && !IsNil(o.Expires) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExpiresOk()
+	return ok
 }
 
 // SetExpires gets a reference to the given time.Time and assigns it to the Expires field.
-func (o *CreateAccessKeyPayload) SetExpires(v *time.Time) {
-	o.Expires = v
+func (o *CreateAccessKeyPayload) SetExpires(v CreateAccessKeyPayloadGetExpiresRetType) {
+	setCreateAccessKeyPayloadGetExpiresAttributeType(&o.Expires, v)
 }
 
 func (o CreateAccessKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Expires) {
-		toSerialize["expires"] = o.Expires
+	if val, ok := getCreateAccessKeyPayloadGetExpiresAttributeTypeOk(o.Expires); ok {
+		toSerialize["Expires"] = val
 	}
 	return toSerialize, nil
 }

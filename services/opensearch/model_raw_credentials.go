@@ -17,10 +17,30 @@ import (
 // checks if the RawCredentials type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RawCredentials{}
 
+/*
+	types and functions for credentials
+*/
+
+// isModel
+type RawCredentialsGetCredentialsAttributeType = *Credentials
+type RawCredentialsGetCredentialsArgType = Credentials
+type RawCredentialsGetCredentialsRetType = Credentials
+
+func getRawCredentialsGetCredentialsAttributeTypeOk(arg RawCredentialsGetCredentialsAttributeType) (ret RawCredentialsGetCredentialsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRawCredentialsGetCredentialsAttributeType(arg *RawCredentialsGetCredentialsAttributeType, val RawCredentialsGetCredentialsRetType) {
+	*arg = &val
+}
+
 // RawCredentials struct for RawCredentials
 type RawCredentials struct {
 	// REQUIRED
-	Credentials *Credentials `json:"credentials"`
+	Credentials RawCredentialsGetCredentialsAttributeType `json:"credentials"`
 }
 
 type _RawCredentials RawCredentials
@@ -29,9 +49,9 @@ type _RawCredentials RawCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRawCredentials(credentials *Credentials) *RawCredentials {
+func NewRawCredentials(credentials RawCredentialsGetCredentialsArgType) *RawCredentials {
 	this := RawCredentials{}
-	this.Credentials = credentials
+	setRawCredentialsGetCredentialsAttributeType(&this.Credentials, credentials)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewRawCredentialsWithDefaults() *RawCredentials {
 }
 
 // GetCredentials returns the Credentials field value
-func (o *RawCredentials) GetCredentials() *Credentials {
-	if o == nil || IsNil(o.Credentials) {
-		var ret *Credentials
-		return ret
-	}
-
-	return o.Credentials
+func (o *RawCredentials) GetCredentials() (ret RawCredentialsGetCredentialsRetType) {
+	ret, _ = o.GetCredentialsOk()
+	return ret
 }
 
 // GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *RawCredentials) GetCredentialsOk() (*Credentials, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Credentials, true
+func (o *RawCredentials) GetCredentialsOk() (ret RawCredentialsGetCredentialsRetType, ok bool) {
+	return getRawCredentialsGetCredentialsAttributeTypeOk(o.Credentials)
 }
 
 // SetCredentials sets field value
-func (o *RawCredentials) SetCredentials(v *Credentials) {
-	o.Credentials = v
+func (o *RawCredentials) SetCredentials(v RawCredentialsGetCredentialsRetType) {
+	setRawCredentialsGetCredentialsAttributeType(&o.Credentials, v)
 }
 
 func (o RawCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["credentials"] = o.Credentials
+	if val, ok := getRawCredentialsGetCredentialsAttributeTypeOk(o.Credentials); ok {
+		toSerialize["Credentials"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,11 +17,73 @@ import (
 // checks if the InstanceHostMetric type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceHostMetric{}
 
+/*
+	types and functions for datapoints
+*/
+
+// isArray
+type InstanceHostMetricGetDatapointsAttributeType = *[]InstanceDataPoint
+type InstanceHostMetricGetDatapointsArgType = []InstanceDataPoint
+type InstanceHostMetricGetDatapointsRetType = []InstanceDataPoint
+
+func getInstanceHostMetricGetDatapointsAttributeTypeOk(arg InstanceHostMetricGetDatapointsAttributeType) (ret InstanceHostMetricGetDatapointsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceHostMetricGetDatapointsAttributeType(arg *InstanceHostMetricGetDatapointsAttributeType, val InstanceHostMetricGetDatapointsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type InstanceHostMetricGetNameAttributeType = *string
+
+func getInstanceHostMetricGetNameAttributeTypeOk(arg InstanceHostMetricGetNameAttributeType) (ret InstanceHostMetricGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceHostMetricGetNameAttributeType(arg *InstanceHostMetricGetNameAttributeType, val InstanceHostMetricGetNameRetType) {
+	*arg = &val
+}
+
+type InstanceHostMetricGetNameArgType = string
+type InstanceHostMetricGetNameRetType = string
+
+/*
+	types and functions for units
+*/
+
+// isNotNullableString
+type InstanceHostMetricGetUnitsAttributeType = *string
+
+func getInstanceHostMetricGetUnitsAttributeTypeOk(arg InstanceHostMetricGetUnitsAttributeType) (ret InstanceHostMetricGetUnitsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceHostMetricGetUnitsAttributeType(arg *InstanceHostMetricGetUnitsAttributeType, val InstanceHostMetricGetUnitsRetType) {
+	*arg = &val
+}
+
+type InstanceHostMetricGetUnitsArgType = string
+type InstanceHostMetricGetUnitsRetType = string
+
 // InstanceHostMetric struct for InstanceHostMetric
 type InstanceHostMetric struct {
-	Datapoints *[]InstanceDataPoint `json:"datapoints,omitempty"`
-	Name       *string              `json:"name,omitempty"`
-	Units      *string              `json:"units,omitempty"`
+	Datapoints InstanceHostMetricGetDatapointsAttributeType `json:"datapoints,omitempty"`
+	Name       InstanceHostMetricGetNameAttributeType       `json:"name,omitempty"`
+	Units      InstanceHostMetricGetUnitsAttributeType      `json:"units,omitempty"`
 }
 
 // NewInstanceHostMetric instantiates a new InstanceHostMetric object
@@ -42,111 +104,84 @@ func NewInstanceHostMetricWithDefaults() *InstanceHostMetric {
 }
 
 // GetDatapoints returns the Datapoints field value if set, zero value otherwise.
-func (o *InstanceHostMetric) GetDatapoints() *[]InstanceDataPoint {
-	if o == nil || IsNil(o.Datapoints) {
-		var ret *[]InstanceDataPoint
-		return ret
-	}
-	return o.Datapoints
+func (o *InstanceHostMetric) GetDatapoints() (res InstanceHostMetricGetDatapointsRetType) {
+	res, _ = o.GetDatapointsOk()
+	return
 }
 
 // GetDatapointsOk returns a tuple with the Datapoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceHostMetric) GetDatapointsOk() (*[]InstanceDataPoint, bool) {
-	if o == nil || IsNil(o.Datapoints) {
-		return nil, false
-	}
-	return o.Datapoints, true
+func (o *InstanceHostMetric) GetDatapointsOk() (ret InstanceHostMetricGetDatapointsRetType, ok bool) {
+	return getInstanceHostMetricGetDatapointsAttributeTypeOk(o.Datapoints)
 }
 
 // HasDatapoints returns a boolean if a field has been set.
 func (o *InstanceHostMetric) HasDatapoints() bool {
-	if o != nil && !IsNil(o.Datapoints) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDatapointsOk()
+	return ok
 }
 
 // SetDatapoints gets a reference to the given []InstanceDataPoint and assigns it to the Datapoints field.
-func (o *InstanceHostMetric) SetDatapoints(v *[]InstanceDataPoint) {
-	o.Datapoints = v
+func (o *InstanceHostMetric) SetDatapoints(v InstanceHostMetricGetDatapointsRetType) {
+	setInstanceHostMetricGetDatapointsAttributeType(&o.Datapoints, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *InstanceHostMetric) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *InstanceHostMetric) GetName() (res InstanceHostMetricGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceHostMetric) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *InstanceHostMetric) GetNameOk() (ret InstanceHostMetricGetNameRetType, ok bool) {
+	return getInstanceHostMetricGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *InstanceHostMetric) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *InstanceHostMetric) SetName(v *string) {
-	o.Name = v
+func (o *InstanceHostMetric) SetName(v InstanceHostMetricGetNameRetType) {
+	setInstanceHostMetricGetNameAttributeType(&o.Name, v)
 }
 
 // GetUnits returns the Units field value if set, zero value otherwise.
-func (o *InstanceHostMetric) GetUnits() *string {
-	if o == nil || IsNil(o.Units) {
-		var ret *string
-		return ret
-	}
-	return o.Units
+func (o *InstanceHostMetric) GetUnits() (res InstanceHostMetricGetUnitsRetType) {
+	res, _ = o.GetUnitsOk()
+	return
 }
 
 // GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceHostMetric) GetUnitsOk() (*string, bool) {
-	if o == nil || IsNil(o.Units) {
-		return nil, false
-	}
-	return o.Units, true
+func (o *InstanceHostMetric) GetUnitsOk() (ret InstanceHostMetricGetUnitsRetType, ok bool) {
+	return getInstanceHostMetricGetUnitsAttributeTypeOk(o.Units)
 }
 
 // HasUnits returns a boolean if a field has been set.
 func (o *InstanceHostMetric) HasUnits() bool {
-	if o != nil && !IsNil(o.Units) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUnitsOk()
+	return ok
 }
 
 // SetUnits gets a reference to the given string and assigns it to the Units field.
-func (o *InstanceHostMetric) SetUnits(v *string) {
-	o.Units = v
+func (o *InstanceHostMetric) SetUnits(v InstanceHostMetricGetUnitsRetType) {
+	setInstanceHostMetricGetUnitsAttributeType(&o.Units, v)
 }
 
 func (o InstanceHostMetric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Datapoints) {
-		toSerialize["datapoints"] = o.Datapoints
+	if val, ok := getInstanceHostMetricGetDatapointsAttributeTypeOk(o.Datapoints); ok {
+		toSerialize["Datapoints"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getInstanceHostMetricGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Units) {
-		toSerialize["units"] = o.Units
+	if val, ok := getInstanceHostMetricGetUnitsAttributeTypeOk(o.Units); ok {
+		toSerialize["Units"] = val
 	}
 	return toSerialize, nil
 }

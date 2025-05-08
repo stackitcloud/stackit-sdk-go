@@ -17,18 +17,202 @@ import (
 // checks if the Route type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Route{}
 
+/*
+	types and functions for continue
+*/
+
+// isBoolean
+type RoutegetContinueAttributeType = *bool
+type RoutegetContinueArgType = bool
+type RoutegetContinueRetType = bool
+
+func getRoutegetContinueAttributeTypeOk(arg RoutegetContinueAttributeType) (ret RoutegetContinueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRoutegetContinueAttributeType(arg *RoutegetContinueAttributeType, val RoutegetContinueRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for groupBy
+*/
+
+// isArray
+type RouteGetGroupByAttributeType = *[]string
+type RouteGetGroupByArgType = []string
+type RouteGetGroupByRetType = []string
+
+func getRouteGetGroupByAttributeTypeOk(arg RouteGetGroupByAttributeType) (ret RouteGetGroupByRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetGroupByAttributeType(arg *RouteGetGroupByAttributeType, val RouteGetGroupByRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for groupInterval
+*/
+
+// isNotNullableString
+type RouteGetGroupIntervalAttributeType = *string
+
+func getRouteGetGroupIntervalAttributeTypeOk(arg RouteGetGroupIntervalAttributeType) (ret RouteGetGroupIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetGroupIntervalAttributeType(arg *RouteGetGroupIntervalAttributeType, val RouteGetGroupIntervalRetType) {
+	*arg = &val
+}
+
+type RouteGetGroupIntervalArgType = string
+type RouteGetGroupIntervalRetType = string
+
+/*
+	types and functions for groupWait
+*/
+
+// isNotNullableString
+type RouteGetGroupWaitAttributeType = *string
+
+func getRouteGetGroupWaitAttributeTypeOk(arg RouteGetGroupWaitAttributeType) (ret RouteGetGroupWaitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetGroupWaitAttributeType(arg *RouteGetGroupWaitAttributeType, val RouteGetGroupWaitRetType) {
+	*arg = &val
+}
+
+type RouteGetGroupWaitArgType = string
+type RouteGetGroupWaitRetType = string
+
+/*
+	types and functions for match
+*/
+
+// isContainer
+type RouteGetMatchAttributeType = *map[string]string
+type RouteGetMatchArgType = map[string]string
+type RouteGetMatchRetType = map[string]string
+
+func getRouteGetMatchAttributeTypeOk(arg RouteGetMatchAttributeType) (ret RouteGetMatchRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetMatchAttributeType(arg *RouteGetMatchAttributeType, val RouteGetMatchRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for matchRe
+*/
+
+// isContainer
+type RouteGetMatchReAttributeType = *map[string]string
+type RouteGetMatchReArgType = map[string]string
+type RouteGetMatchReRetType = map[string]string
+
+func getRouteGetMatchReAttributeTypeOk(arg RouteGetMatchReAttributeType) (ret RouteGetMatchReRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetMatchReAttributeType(arg *RouteGetMatchReAttributeType, val RouteGetMatchReRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for receiver
+*/
+
+// isNotNullableString
+type RouteGetReceiverAttributeType = *string
+
+func getRouteGetReceiverAttributeTypeOk(arg RouteGetReceiverAttributeType) (ret RouteGetReceiverRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetReceiverAttributeType(arg *RouteGetReceiverAttributeType, val RouteGetReceiverRetType) {
+	*arg = &val
+}
+
+type RouteGetReceiverArgType = string
+type RouteGetReceiverRetType = string
+
+/*
+	types and functions for repeatInterval
+*/
+
+// isNotNullableString
+type RouteGetRepeatIntervalAttributeType = *string
+
+func getRouteGetRepeatIntervalAttributeTypeOk(arg RouteGetRepeatIntervalAttributeType) (ret RouteGetRepeatIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetRepeatIntervalAttributeType(arg *RouteGetRepeatIntervalAttributeType, val RouteGetRepeatIntervalRetType) {
+	*arg = &val
+}
+
+type RouteGetRepeatIntervalArgType = string
+type RouteGetRepeatIntervalRetType = string
+
+/*
+	types and functions for routes
+*/
+
+// isArray
+type RouteGetRoutesAttributeType = *[]RouteSerializer
+type RouteGetRoutesArgType = []RouteSerializer
+type RouteGetRoutesRetType = []RouteSerializer
+
+func getRouteGetRoutesAttributeTypeOk(arg RouteGetRoutesAttributeType) (ret RouteGetRoutesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetRoutesAttributeType(arg *RouteGetRoutesAttributeType, val RouteGetRoutesRetType) {
+	*arg = &val
+}
+
 // Route struct for Route
 type Route struct {
-	Continue      *bool              `json:"continue,omitempty"`
-	GroupBy       *[]string          `json:"groupBy,omitempty"`
-	GroupInterval *string            `json:"groupInterval,omitempty"`
-	GroupWait     *string            `json:"groupWait,omitempty"`
-	Match         *map[string]string `json:"match,omitempty"`
-	MatchRe       *map[string]string `json:"matchRe,omitempty"`
+	Continue      RoutegetContinueAttributeType      `json:"continue,omitempty"`
+	GroupBy       RouteGetGroupByAttributeType       `json:"groupBy,omitempty"`
+	GroupInterval RouteGetGroupIntervalAttributeType `json:"groupInterval,omitempty"`
+	GroupWait     RouteGetGroupWaitAttributeType     `json:"groupWait,omitempty"`
+	Match         RouteGetMatchAttributeType         `json:"match,omitempty"`
+	MatchRe       RouteGetMatchReAttributeType       `json:"matchRe,omitempty"`
 	// REQUIRED
-	Receiver       *string            `json:"receiver"`
-	RepeatInterval *string            `json:"repeatInterval,omitempty"`
-	Routes         *[]RouteSerializer `json:"routes,omitempty"`
+	Receiver       RouteGetReceiverAttributeType       `json:"receiver"`
+	RepeatInterval RouteGetRepeatIntervalAttributeType `json:"repeatInterval,omitempty"`
+	Routes         RouteGetRoutesAttributeType         `json:"routes,omitempty"`
 }
 
 type _Route Route
@@ -37,17 +221,9 @@ type _Route Route
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRoute(receiver *string) *Route {
+func NewRoute(receiver RouteGetReceiverArgType) *Route {
 	this := Route{}
-	var continue_ bool = false
-	this.Continue = &continue_
-	var groupInterval string = "5m"
-	this.GroupInterval = &groupInterval
-	var groupWait string = "30s"
-	this.GroupWait = &groupWait
-	this.Receiver = receiver
-	var repeatInterval string = "4h"
-	this.RepeatInterval = &repeatInterval
+	setRouteGetReceiverAttributeType(&this.Receiver, receiver)
 	return &this
 }
 
@@ -68,311 +244,234 @@ func NewRouteWithDefaults() *Route {
 }
 
 // GetContinue returns the Continue field value if set, zero value otherwise.
-func (o *Route) GetContinue() *bool {
-	if o == nil || IsNil(o.Continue) {
-		var ret *bool
-		return ret
-	}
-	return o.Continue
+func (o *Route) GetContinue() (res RoutegetContinueRetType) {
+	res, _ = o.GetContinueOk()
+	return
 }
 
 // GetContinueOk returns a tuple with the Continue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetContinueOk() (*bool, bool) {
-	if o == nil || IsNil(o.Continue) {
-		return nil, false
-	}
-	return o.Continue, true
+func (o *Route) GetContinueOk() (ret RoutegetContinueRetType, ok bool) {
+	return getRoutegetContinueAttributeTypeOk(o.Continue)
 }
 
 // HasContinue returns a boolean if a field has been set.
 func (o *Route) HasContinue() bool {
-	if o != nil && !IsNil(o.Continue) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetContinueOk()
+	return ok
 }
 
 // SetContinue gets a reference to the given bool and assigns it to the Continue field.
-func (o *Route) SetContinue(v *bool) {
-	o.Continue = v
+func (o *Route) SetContinue(v RoutegetContinueRetType) {
+	setRoutegetContinueAttributeType(&o.Continue, v)
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
-func (o *Route) GetGroupBy() *[]string {
-	if o == nil || IsNil(o.GroupBy) {
-		var ret *[]string
-		return ret
-	}
-	return o.GroupBy
+func (o *Route) GetGroupBy() (res RouteGetGroupByRetType) {
+	res, _ = o.GetGroupByOk()
+	return
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetGroupByOk() (*[]string, bool) {
-	if o == nil || IsNil(o.GroupBy) {
-		return nil, false
-	}
-	return o.GroupBy, true
+func (o *Route) GetGroupByOk() (ret RouteGetGroupByRetType, ok bool) {
+	return getRouteGetGroupByAttributeTypeOk(o.GroupBy)
 }
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *Route) HasGroupBy() bool {
-	if o != nil && !IsNil(o.GroupBy) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGroupByOk()
+	return ok
 }
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
-func (o *Route) SetGroupBy(v *[]string) {
-	o.GroupBy = v
+func (o *Route) SetGroupBy(v RouteGetGroupByRetType) {
+	setRouteGetGroupByAttributeType(&o.GroupBy, v)
 }
 
 // GetGroupInterval returns the GroupInterval field value if set, zero value otherwise.
-func (o *Route) GetGroupInterval() *string {
-	if o == nil || IsNil(o.GroupInterval) {
-		var ret *string
-		return ret
-	}
-	return o.GroupInterval
+func (o *Route) GetGroupInterval() (res RouteGetGroupIntervalRetType) {
+	res, _ = o.GetGroupIntervalOk()
+	return
 }
 
 // GetGroupIntervalOk returns a tuple with the GroupInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetGroupIntervalOk() (*string, bool) {
-	if o == nil || IsNil(o.GroupInterval) {
-		return nil, false
-	}
-	return o.GroupInterval, true
+func (o *Route) GetGroupIntervalOk() (ret RouteGetGroupIntervalRetType, ok bool) {
+	return getRouteGetGroupIntervalAttributeTypeOk(o.GroupInterval)
 }
 
 // HasGroupInterval returns a boolean if a field has been set.
 func (o *Route) HasGroupInterval() bool {
-	if o != nil && !IsNil(o.GroupInterval) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGroupIntervalOk()
+	return ok
 }
 
 // SetGroupInterval gets a reference to the given string and assigns it to the GroupInterval field.
-func (o *Route) SetGroupInterval(v *string) {
-	o.GroupInterval = v
+func (o *Route) SetGroupInterval(v RouteGetGroupIntervalRetType) {
+	setRouteGetGroupIntervalAttributeType(&o.GroupInterval, v)
 }
 
 // GetGroupWait returns the GroupWait field value if set, zero value otherwise.
-func (o *Route) GetGroupWait() *string {
-	if o == nil || IsNil(o.GroupWait) {
-		var ret *string
-		return ret
-	}
-	return o.GroupWait
+func (o *Route) GetGroupWait() (res RouteGetGroupWaitRetType) {
+	res, _ = o.GetGroupWaitOk()
+	return
 }
 
 // GetGroupWaitOk returns a tuple with the GroupWait field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetGroupWaitOk() (*string, bool) {
-	if o == nil || IsNil(o.GroupWait) {
-		return nil, false
-	}
-	return o.GroupWait, true
+func (o *Route) GetGroupWaitOk() (ret RouteGetGroupWaitRetType, ok bool) {
+	return getRouteGetGroupWaitAttributeTypeOk(o.GroupWait)
 }
 
 // HasGroupWait returns a boolean if a field has been set.
 func (o *Route) HasGroupWait() bool {
-	if o != nil && !IsNil(o.GroupWait) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGroupWaitOk()
+	return ok
 }
 
 // SetGroupWait gets a reference to the given string and assigns it to the GroupWait field.
-func (o *Route) SetGroupWait(v *string) {
-	o.GroupWait = v
+func (o *Route) SetGroupWait(v RouteGetGroupWaitRetType) {
+	setRouteGetGroupWaitAttributeType(&o.GroupWait, v)
 }
 
 // GetMatch returns the Match field value if set, zero value otherwise.
-func (o *Route) GetMatch() *map[string]string {
-	if o == nil || IsNil(o.Match) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.Match
+func (o *Route) GetMatch() (res RouteGetMatchRetType) {
+	res, _ = o.GetMatchOk()
+	return
 }
 
 // GetMatchOk returns a tuple with the Match field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetMatchOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Match) {
-		return nil, false
-	}
-	return o.Match, true
+func (o *Route) GetMatchOk() (ret RouteGetMatchRetType, ok bool) {
+	return getRouteGetMatchAttributeTypeOk(o.Match)
 }
 
 // HasMatch returns a boolean if a field has been set.
 func (o *Route) HasMatch() bool {
-	if o != nil && !IsNil(o.Match) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMatchOk()
+	return ok
 }
 
 // SetMatch gets a reference to the given map[string]string and assigns it to the Match field.
-func (o *Route) SetMatch(v *map[string]string) {
-	o.Match = v
+func (o *Route) SetMatch(v RouteGetMatchRetType) {
+	setRouteGetMatchAttributeType(&o.Match, v)
 }
 
 // GetMatchRe returns the MatchRe field value if set, zero value otherwise.
-func (o *Route) GetMatchRe() *map[string]string {
-	if o == nil || IsNil(o.MatchRe) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.MatchRe
+func (o *Route) GetMatchRe() (res RouteGetMatchReRetType) {
+	res, _ = o.GetMatchReOk()
+	return
 }
 
 // GetMatchReOk returns a tuple with the MatchRe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetMatchReOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.MatchRe) {
-		return nil, false
-	}
-	return o.MatchRe, true
+func (o *Route) GetMatchReOk() (ret RouteGetMatchReRetType, ok bool) {
+	return getRouteGetMatchReAttributeTypeOk(o.MatchRe)
 }
 
 // HasMatchRe returns a boolean if a field has been set.
 func (o *Route) HasMatchRe() bool {
-	if o != nil && !IsNil(o.MatchRe) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMatchReOk()
+	return ok
 }
 
 // SetMatchRe gets a reference to the given map[string]string and assigns it to the MatchRe field.
-func (o *Route) SetMatchRe(v *map[string]string) {
-	o.MatchRe = v
+func (o *Route) SetMatchRe(v RouteGetMatchReRetType) {
+	setRouteGetMatchReAttributeType(&o.MatchRe, v)
 }
 
 // GetReceiver returns the Receiver field value
-func (o *Route) GetReceiver() *string {
-	if o == nil || IsNil(o.Receiver) {
-		var ret *string
-		return ret
-	}
-
-	return o.Receiver
+func (o *Route) GetReceiver() (ret RouteGetReceiverRetType) {
+	ret, _ = o.GetReceiverOk()
+	return ret
 }
 
 // GetReceiverOk returns a tuple with the Receiver field value
 // and a boolean to check if the value has been set.
-func (o *Route) GetReceiverOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Receiver, true
+func (o *Route) GetReceiverOk() (ret RouteGetReceiverRetType, ok bool) {
+	return getRouteGetReceiverAttributeTypeOk(o.Receiver)
 }
 
 // SetReceiver sets field value
-func (o *Route) SetReceiver(v *string) {
-	o.Receiver = v
+func (o *Route) SetReceiver(v RouteGetReceiverRetType) {
+	setRouteGetReceiverAttributeType(&o.Receiver, v)
 }
 
 // GetRepeatInterval returns the RepeatInterval field value if set, zero value otherwise.
-func (o *Route) GetRepeatInterval() *string {
-	if o == nil || IsNil(o.RepeatInterval) {
-		var ret *string
-		return ret
-	}
-	return o.RepeatInterval
+func (o *Route) GetRepeatInterval() (res RouteGetRepeatIntervalRetType) {
+	res, _ = o.GetRepeatIntervalOk()
+	return
 }
 
 // GetRepeatIntervalOk returns a tuple with the RepeatInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetRepeatIntervalOk() (*string, bool) {
-	if o == nil || IsNil(o.RepeatInterval) {
-		return nil, false
-	}
-	return o.RepeatInterval, true
+func (o *Route) GetRepeatIntervalOk() (ret RouteGetRepeatIntervalRetType, ok bool) {
+	return getRouteGetRepeatIntervalAttributeTypeOk(o.RepeatInterval)
 }
 
 // HasRepeatInterval returns a boolean if a field has been set.
 func (o *Route) HasRepeatInterval() bool {
-	if o != nil && !IsNil(o.RepeatInterval) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRepeatIntervalOk()
+	return ok
 }
 
 // SetRepeatInterval gets a reference to the given string and assigns it to the RepeatInterval field.
-func (o *Route) SetRepeatInterval(v *string) {
-	o.RepeatInterval = v
+func (o *Route) SetRepeatInterval(v RouteGetRepeatIntervalRetType) {
+	setRouteGetRepeatIntervalAttributeType(&o.RepeatInterval, v)
 }
 
 // GetRoutes returns the Routes field value if set, zero value otherwise.
-func (o *Route) GetRoutes() *[]RouteSerializer {
-	if o == nil || IsNil(o.Routes) {
-		var ret *[]RouteSerializer
-		return ret
-	}
-	return o.Routes
+func (o *Route) GetRoutes() (res RouteGetRoutesRetType) {
+	res, _ = o.GetRoutesOk()
+	return
 }
 
 // GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Route) GetRoutesOk() (*[]RouteSerializer, bool) {
-	if o == nil || IsNil(o.Routes) {
-		return nil, false
-	}
-	return o.Routes, true
+func (o *Route) GetRoutesOk() (ret RouteGetRoutesRetType, ok bool) {
+	return getRouteGetRoutesAttributeTypeOk(o.Routes)
 }
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *Route) HasRoutes() bool {
-	if o != nil && !IsNil(o.Routes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRoutesOk()
+	return ok
 }
 
 // SetRoutes gets a reference to the given []RouteSerializer and assigns it to the Routes field.
-func (o *Route) SetRoutes(v *[]RouteSerializer) {
-	o.Routes = v
+func (o *Route) SetRoutes(v RouteGetRoutesRetType) {
+	setRouteGetRoutesAttributeType(&o.Routes, v)
 }
 
 func (o Route) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Continue) {
-		toSerialize["continue"] = o.Continue
+	if val, ok := getRoutegetContinueAttributeTypeOk(o.Continue); ok {
+		toSerialize["Continue"] = val
 	}
-	if !IsNil(o.GroupBy) {
-		toSerialize["groupBy"] = o.GroupBy
+	if val, ok := getRouteGetGroupByAttributeTypeOk(o.GroupBy); ok {
+		toSerialize["GroupBy"] = val
 	}
-	if !IsNil(o.GroupInterval) {
-		toSerialize["groupInterval"] = o.GroupInterval
+	if val, ok := getRouteGetGroupIntervalAttributeTypeOk(o.GroupInterval); ok {
+		toSerialize["GroupInterval"] = val
 	}
-	if !IsNil(o.GroupWait) {
-		toSerialize["groupWait"] = o.GroupWait
+	if val, ok := getRouteGetGroupWaitAttributeTypeOk(o.GroupWait); ok {
+		toSerialize["GroupWait"] = val
 	}
-	if !IsNil(o.Match) {
-		toSerialize["match"] = o.Match
+	if val, ok := getRouteGetMatchAttributeTypeOk(o.Match); ok {
+		toSerialize["Match"] = val
 	}
-	if !IsNil(o.MatchRe) {
-		toSerialize["matchRe"] = o.MatchRe
+	if val, ok := getRouteGetMatchReAttributeTypeOk(o.MatchRe); ok {
+		toSerialize["MatchRe"] = val
 	}
-	toSerialize["receiver"] = o.Receiver
-	if !IsNil(o.RepeatInterval) {
-		toSerialize["repeatInterval"] = o.RepeatInterval
+	if val, ok := getRouteGetReceiverAttributeTypeOk(o.Receiver); ok {
+		toSerialize["Receiver"] = val
 	}
-	if !IsNil(o.Routes) {
-		toSerialize["routes"] = o.Routes
+	if val, ok := getRouteGetRepeatIntervalAttributeTypeOk(o.RepeatInterval); ok {
+		toSerialize["RepeatInterval"] = val
+	}
+	if val, ok := getRouteGetRoutesAttributeTypeOk(o.Routes); ok {
+		toSerialize["Routes"] = val
 	}
 	return toSerialize, nil
 }

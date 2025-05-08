@@ -17,18 +17,143 @@ import (
 // checks if the Credentials type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Credentials{}
 
+/*
+	types and functions for host
+*/
+
+// isNotNullableString
+type CredentialsGetHostAttributeType = *string
+
+func getCredentialsGetHostAttributeTypeOk(arg CredentialsGetHostAttributeType) (ret CredentialsGetHostRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetHostAttributeType(arg *CredentialsGetHostAttributeType, val CredentialsGetHostRetType) {
+	*arg = &val
+}
+
+type CredentialsGetHostArgType = string
+type CredentialsGetHostRetType = string
+
+/*
+	types and functions for password
+*/
+
+// isNotNullableString
+type CredentialsGetPasswordAttributeType = *string
+
+func getCredentialsGetPasswordAttributeTypeOk(arg CredentialsGetPasswordAttributeType) (ret CredentialsGetPasswordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetPasswordAttributeType(arg *CredentialsGetPasswordAttributeType, val CredentialsGetPasswordRetType) {
+	*arg = &val
+}
+
+type CredentialsGetPasswordArgType = string
+type CredentialsGetPasswordRetType = string
+
+/*
+	types and functions for port
+*/
+
+// isInteger
+type CredentialsGetPortAttributeType = *int64
+type CredentialsGetPortArgType = int64
+type CredentialsGetPortRetType = int64
+
+func getCredentialsGetPortAttributeTypeOk(arg CredentialsGetPortAttributeType) (ret CredentialsGetPortRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetPortAttributeType(arg *CredentialsGetPortAttributeType, val CredentialsGetPortRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for syslog_drain_url
+*/
+
+// isNotNullableString
+type CredentialsGetSyslogDrainUrlAttributeType = *string
+
+func getCredentialsGetSyslogDrainUrlAttributeTypeOk(arg CredentialsGetSyslogDrainUrlAttributeType) (ret CredentialsGetSyslogDrainUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetSyslogDrainUrlAttributeType(arg *CredentialsGetSyslogDrainUrlAttributeType, val CredentialsGetSyslogDrainUrlRetType) {
+	*arg = &val
+}
+
+type CredentialsGetSyslogDrainUrlArgType = string
+type CredentialsGetSyslogDrainUrlRetType = string
+
+/*
+	types and functions for uri
+*/
+
+// isNotNullableString
+type CredentialsGetUriAttributeType = *string
+
+func getCredentialsGetUriAttributeTypeOk(arg CredentialsGetUriAttributeType) (ret CredentialsGetUriRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetUriAttributeType(arg *CredentialsGetUriAttributeType, val CredentialsGetUriRetType) {
+	*arg = &val
+}
+
+type CredentialsGetUriArgType = string
+type CredentialsGetUriRetType = string
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type CredentialsGetUsernameAttributeType = *string
+
+func getCredentialsGetUsernameAttributeTypeOk(arg CredentialsGetUsernameAttributeType) (ret CredentialsGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetUsernameAttributeType(arg *CredentialsGetUsernameAttributeType, val CredentialsGetUsernameRetType) {
+	*arg = &val
+}
+
+type CredentialsGetUsernameArgType = string
+type CredentialsGetUsernameRetType = string
+
 // Credentials struct for Credentials
 type Credentials struct {
 	// REQUIRED
-	Host *string `json:"host"`
+	Host CredentialsGetHostAttributeType `json:"host"`
 	// REQUIRED
-	Password *string `json:"password"`
+	Password CredentialsGetPasswordAttributeType `json:"password"`
 	// Can be cast to int32 without loss of precision.
-	Port           *int64  `json:"port,omitempty"`
-	SyslogDrainUrl *string `json:"syslog_drain_url,omitempty"`
-	Uri            *string `json:"uri,omitempty"`
+	Port           CredentialsGetPortAttributeType           `json:"port,omitempty"`
+	SyslogDrainUrl CredentialsGetSyslogDrainUrlAttributeType `json:"syslog_drain_url,omitempty"`
+	Uri            CredentialsGetUriAttributeType            `json:"uri,omitempty"`
 	// REQUIRED
-	Username *string `json:"username"`
+	Username CredentialsGetUsernameAttributeType `json:"username"`
 }
 
 type _Credentials Credentials
@@ -37,11 +162,11 @@ type _Credentials Credentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredentials(host *string, password *string, username *string) *Credentials {
+func NewCredentials(host CredentialsGetHostArgType, password CredentialsGetPasswordArgType, username CredentialsGetUsernameArgType) *Credentials {
 	this := Credentials{}
-	this.Host = host
-	this.Password = password
-	this.Username = username
+	setCredentialsGetHostAttributeType(&this.Host, host)
+	setCredentialsGetPasswordAttributeType(&this.Password, password)
+	setCredentialsGetUsernameAttributeType(&this.Username, username)
 	return &this
 }
 
@@ -54,187 +179,145 @@ func NewCredentialsWithDefaults() *Credentials {
 }
 
 // GetHost returns the Host field value
-func (o *Credentials) GetHost() *string {
-	if o == nil || IsNil(o.Host) {
-		var ret *string
-		return ret
-	}
-
-	return o.Host
+func (o *Credentials) GetHost() (ret CredentialsGetHostRetType) {
+	ret, _ = o.GetHostOk()
+	return ret
 }
 
 // GetHostOk returns a tuple with the Host field value
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetHostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Host, true
+func (o *Credentials) GetHostOk() (ret CredentialsGetHostRetType, ok bool) {
+	return getCredentialsGetHostAttributeTypeOk(o.Host)
 }
 
 // SetHost sets field value
-func (o *Credentials) SetHost(v *string) {
-	o.Host = v
+func (o *Credentials) SetHost(v CredentialsGetHostRetType) {
+	setCredentialsGetHostAttributeType(&o.Host, v)
 }
 
 // GetPassword returns the Password field value
-func (o *Credentials) GetPassword() *string {
-	if o == nil || IsNil(o.Password) {
-		var ret *string
-		return ret
-	}
-
-	return o.Password
+func (o *Credentials) GetPassword() (ret CredentialsGetPasswordRetType) {
+	ret, _ = o.GetPasswordOk()
+	return ret
 }
 
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Password, true
+func (o *Credentials) GetPasswordOk() (ret CredentialsGetPasswordRetType, ok bool) {
+	return getCredentialsGetPasswordAttributeTypeOk(o.Password)
 }
 
 // SetPassword sets field value
-func (o *Credentials) SetPassword(v *string) {
-	o.Password = v
+func (o *Credentials) SetPassword(v CredentialsGetPasswordRetType) {
+	setCredentialsGetPasswordAttributeType(&o.Password, v)
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *Credentials) GetPort() *int64 {
-	if o == nil || IsNil(o.Port) {
-		var ret *int64
-		return ret
-	}
-	return o.Port
+func (o *Credentials) GetPort() (res CredentialsGetPortRetType) {
+	res, _ = o.GetPortOk()
+	return
 }
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetPortOk() (*int64, bool) {
-	if o == nil || IsNil(o.Port) {
-		return nil, false
-	}
-	return o.Port, true
+func (o *Credentials) GetPortOk() (ret CredentialsGetPortRetType, ok bool) {
+	return getCredentialsGetPortAttributeTypeOk(o.Port)
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *Credentials) HasPort() bool {
-	if o != nil && !IsNil(o.Port) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPortOk()
+	return ok
 }
 
 // SetPort gets a reference to the given int64 and assigns it to the Port field.
-func (o *Credentials) SetPort(v *int64) {
-	o.Port = v
+func (o *Credentials) SetPort(v CredentialsGetPortRetType) {
+	setCredentialsGetPortAttributeType(&o.Port, v)
 }
 
 // GetSyslogDrainUrl returns the SyslogDrainUrl field value if set, zero value otherwise.
-func (o *Credentials) GetSyslogDrainUrl() *string {
-	if o == nil || IsNil(o.SyslogDrainUrl) {
-		var ret *string
-		return ret
-	}
-	return o.SyslogDrainUrl
+func (o *Credentials) GetSyslogDrainUrl() (res CredentialsGetSyslogDrainUrlRetType) {
+	res, _ = o.GetSyslogDrainUrlOk()
+	return
 }
 
 // GetSyslogDrainUrlOk returns a tuple with the SyslogDrainUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetSyslogDrainUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.SyslogDrainUrl) {
-		return nil, false
-	}
-	return o.SyslogDrainUrl, true
+func (o *Credentials) GetSyslogDrainUrlOk() (ret CredentialsGetSyslogDrainUrlRetType, ok bool) {
+	return getCredentialsGetSyslogDrainUrlAttributeTypeOk(o.SyslogDrainUrl)
 }
 
 // HasSyslogDrainUrl returns a boolean if a field has been set.
 func (o *Credentials) HasSyslogDrainUrl() bool {
-	if o != nil && !IsNil(o.SyslogDrainUrl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSyslogDrainUrlOk()
+	return ok
 }
 
 // SetSyslogDrainUrl gets a reference to the given string and assigns it to the SyslogDrainUrl field.
-func (o *Credentials) SetSyslogDrainUrl(v *string) {
-	o.SyslogDrainUrl = v
+func (o *Credentials) SetSyslogDrainUrl(v CredentialsGetSyslogDrainUrlRetType) {
+	setCredentialsGetSyslogDrainUrlAttributeType(&o.SyslogDrainUrl, v)
 }
 
 // GetUri returns the Uri field value if set, zero value otherwise.
-func (o *Credentials) GetUri() *string {
-	if o == nil || IsNil(o.Uri) {
-		var ret *string
-		return ret
-	}
-	return o.Uri
+func (o *Credentials) GetUri() (res CredentialsGetUriRetType) {
+	res, _ = o.GetUriOk()
+	return
 }
 
 // GetUriOk returns a tuple with the Uri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetUriOk() (*string, bool) {
-	if o == nil || IsNil(o.Uri) {
-		return nil, false
-	}
-	return o.Uri, true
+func (o *Credentials) GetUriOk() (ret CredentialsGetUriRetType, ok bool) {
+	return getCredentialsGetUriAttributeTypeOk(o.Uri)
 }
 
 // HasUri returns a boolean if a field has been set.
 func (o *Credentials) HasUri() bool {
-	if o != nil && !IsNil(o.Uri) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUriOk()
+	return ok
 }
 
 // SetUri gets a reference to the given string and assigns it to the Uri field.
-func (o *Credentials) SetUri(v *string) {
-	o.Uri = v
+func (o *Credentials) SetUri(v CredentialsGetUriRetType) {
+	setCredentialsGetUriAttributeType(&o.Uri, v)
 }
 
 // GetUsername returns the Username field value
-func (o *Credentials) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-
-	return o.Username
+func (o *Credentials) GetUsername() (ret CredentialsGetUsernameRetType) {
+	ret, _ = o.GetUsernameOk()
+	return ret
 }
 
 // GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetUsernameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Username, true
+func (o *Credentials) GetUsernameOk() (ret CredentialsGetUsernameRetType, ok bool) {
+	return getCredentialsGetUsernameAttributeTypeOk(o.Username)
 }
 
 // SetUsername sets field value
-func (o *Credentials) SetUsername(v *string) {
-	o.Username = v
+func (o *Credentials) SetUsername(v CredentialsGetUsernameRetType) {
+	setCredentialsGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o Credentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["host"] = o.Host
-	toSerialize["password"] = o.Password
-	if !IsNil(o.Port) {
-		toSerialize["port"] = o.Port
+	if val, ok := getCredentialsGetHostAttributeTypeOk(o.Host); ok {
+		toSerialize["Host"] = val
 	}
-	if !IsNil(o.SyslogDrainUrl) {
-		toSerialize["syslog_drain_url"] = o.SyslogDrainUrl
+	if val, ok := getCredentialsGetPasswordAttributeTypeOk(o.Password); ok {
+		toSerialize["Password"] = val
 	}
-	if !IsNil(o.Uri) {
-		toSerialize["uri"] = o.Uri
+	if val, ok := getCredentialsGetPortAttributeTypeOk(o.Port); ok {
+		toSerialize["Port"] = val
 	}
-	toSerialize["username"] = o.Username
+	if val, ok := getCredentialsGetSyslogDrainUrlAttributeTypeOk(o.SyslogDrainUrl); ok {
+		toSerialize["SyslogDrainUrl"] = val
+	}
+	if val, ok := getCredentialsGetUriAttributeTypeOk(o.Uri); ok {
+		toSerialize["Uri"] = val
+	}
+	if val, ok := getCredentialsGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -1,13 +1,18 @@
 package clients
 
 import (
+	"context"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
+	"encoding/json"
 	"encoding/pem"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
+	"net/http/httptest"
+	"net/url"
 	"strings"
 	"testing"
 	"time"
@@ -20,6 +25,8 @@ import (
 var (
 	testSigningKey = []byte(`Test`)
 )
+
+const testBearerToken = "eyJhbGciOiJub25lIn0.eyJleHAiOjIxNDc0ODM2NDd9." //nolint:gosec // linter false positive
 
 func fixtureServiceAccountKey(mods ...func(*ServiceAccountKeyResponse)) *ServiceAccountKeyResponse {
 	validUntil := time.Now().Add(time.Hour)
@@ -268,13 +275,14 @@ func TestRequestToken(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			mockDo := func(_ *http.Request) (resp *http.Response, err error) {
-				return tt.mockResponse, tt.mockError
-			}
-
 			c := &KeyFlow{
+				authClient: &http.Client{
+					Transport: mockTransportFn{func(_ *http.Request) (*http.Response, error) {
+						return tt.mockResponse, tt.mockError
+					}},
+				},
 				config: &KeyFlowConfig{},
-				doer:   mockDo,
+				rt:     http.DefaultTransport,
 			}
 
 			res, err := c.requestToken(tt.grant, tt.assertion)
@@ -289,7 +297,7 @@ func TestRequestToken(t *testing.T) {
 			if tt.expectedError != nil {
 				if err == nil {
 					t.Errorf("Expected error '%v' but no error was returned", tt.expectedError)
-				} else if tt.expectedError.Error() != err.Error() {
+				} else if errors.Is(err, tt.expectedError) {
 					t.Errorf("Error is not correct. Expected %v, got %v", tt.expectedError, err)
 				}
 			} else {
@@ -302,4 +310,212 @@ func TestRequestToken(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestKeyFlow_Do(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		name      string
+		keyFlow   *KeyFlow
+		handlerFn func(tb testing.TB) http.HandlerFunc
+		want      int
+		wantErr   bool
+	}{
+		{
+			name:    "success",
+			keyFlow: &KeyFlow{rt: http.DefaultTransport, config: &KeyFlowConfig{}},
+			handlerFn: func(tb testing.TB) http.HandlerFunc {
+				tb.Helper()
+
+				return func(w http.ResponseWriter, r *http.Request) {
+					if r.Header.Get("Authorization") != "Bearer "+testBearerToken {
+						tb.Errorf("expected Authorization header to be 'Bearer %s', but got %s", testBearerToken, r.Header.Get("Authorization"))
+					}
+
+					w.Header().Set("Content-Type", "application/json")
+					w.WriteHeader(http.StatusOK)
+					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
+				}
+			},
+			want:    http.StatusOK,
+			wantErr: false,
+		},
+		{
+			name:    "success with code 500",
+			keyFlow: &KeyFlow{rt: http.DefaultTransport, config: &KeyFlowConfig{}},
+			handlerFn: func(_ testing.TB) http.HandlerFunc {
+				return func(w http.ResponseWriter, _ *http.Request) {
+					w.Header().Set("Content-Type", "text/html")
+					w.WriteHeader(http.StatusInternalServerError)
+					_, _ = fmt.Fprintln(w, `<html>Internal Server Error</html>`)
+				}
+			},
+			want:    http.StatusInternalServerError,
+			wantErr: false,
+		},
+		{
+			name: "success with custom transport",
+			keyFlow: &KeyFlow{
+				rt: mockTransportFn{
+					fn: func(req *http.Request) (*http.Response, error) {
+						req.Header.Set("User-Agent", "custom_transport")
+
+						return http.DefaultTransport.RoundTrip(req)
+					},
+				},
+				config: &KeyFlowConfig{},
+			},
+			handlerFn: func(tb testing.TB) http.HandlerFunc {
+				tb.Helper()
+
+				return func(w http.ResponseWriter, r *http.Request) {
+					if r.Header.Get("User-Agent") != "custom_transport" {
+						tb.Errorf("expected User-Agent header to be 'custom_transport', but got %s", r.Header.Get("User-Agent"))
+					}
+
+					w.Header().Set("Content-Type", "application/json")
+					w.WriteHeader(http.StatusOK)
+					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
+				}
+			},
+			want:    http.StatusOK,
+			wantErr: false,
+		},
+		{
+			name: "fail with custom proxy",
+			keyFlow: &KeyFlow{
+				rt: &http.Transport{
+					Proxy: func(_ *http.Request) (*url.URL, error) {
+						return nil, fmt.Errorf("proxy error")
+					},
+				},
+				config: &KeyFlowConfig{},
+			},
+			handlerFn: func(testing.TB) http.HandlerFunc {
+				return func(w http.ResponseWriter, _ *http.Request) {
+					w.Header().Set("Content-Type", "application/json")
+					w.WriteHeader(http.StatusOK)
+					_, _ = fmt.Fprintln(w, `{"status":"ok"}`)
+				}
+			},
+			want:    0,
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ctx := context.Background()
+			ctx, cancel := context.WithCancel(ctx)
+			t.Cleanup(cancel) // This cancels the refresher goroutine
+
+			privateKeyBytes, err := generatePrivateKey()
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
+
+			tt.keyFlow.config.ServiceAccountKey = fixtureServiceAccountKey()
+			tt.keyFlow.config.PrivateKey = string(privateKeyBytes)
+			tt.keyFlow.config.BackgroundTokenRefreshContext = ctx
+			tt.keyFlow.authClient = &http.Client{
+				Transport: mockTransportFn{
+					fn: func(_ *http.Request) (*http.Response, error) {
+						res := httptest.NewRecorder()
+						res.WriteHeader(http.StatusOK)
+						res.Header().Set("Content-Type", "application/json")
+
+						token := &TokenResponseBody{
+							AccessToken:  testBearerToken,
+							ExpiresIn:    2147483647,
+							RefreshToken: testBearerToken,
+							TokenType:    "Bearer",
+						}
+
+						if err := json.NewEncoder(res.Body).Encode(token); err != nil {
+							t.Logf("no error is expected, but got %v", err)
+						}
+
+						return res.Result(), nil
+					},
+				},
+			}
+
+			if err := tt.keyFlow.validate(); err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
+
+			go continuousRefreshToken(tt.keyFlow)
+
+			tokenCtx, tokenCancel := context.WithTimeout(context.Background(), 1*time.Second)
+
+		token:
+			for {
+				select {
+				case <-tokenCtx.Done():
+					t.Error(tokenCtx.Err())
+				case <-time.After(50 * time.Millisecond):
+					tt.keyFlow.tokenMutex.RLock()
+					if tt.keyFlow.token != nil {
+						tt.keyFlow.tokenMutex.RUnlock()
+						tokenCancel()
+						break token
+					}
+
+					tt.keyFlow.tokenMutex.RUnlock()
+				}
+			}
+
+			server := httptest.NewServer(tt.handlerFn(t))
+			t.Cleanup(server.Close)
+
+			u, err := url.Parse(server.URL)
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
+
+			req, err := http.NewRequest(http.MethodGet, u.String(), http.NoBody)
+			if err != nil {
+				t.Errorf("no error is expected, but got %v", err)
+			}
+
+			httpClient := &http.Client{
+				Transport: tt.keyFlow,
+			}
+
+			res, err := httpClient.Do(req)
+
+			if tt.wantErr {
+				if err == nil {
+					t.Errorf("error is expected, but got %v", err)
+				}
+			} else {
+				if err != nil {
+					t.Errorf("no error is expected, but got %v", err)
+				}
+
+				if res.StatusCode != tt.want {
+					t.Errorf("expected status code %d, but got %d", tt.want, res.StatusCode)
+				}
+
+				// Defer discard and close the body
+				t.Cleanup(func() {
+					if _, err := io.Copy(io.Discard, res.Body); err != nil {
+						t.Errorf("no error is expected, but got %v", err)
+					}
+
+					if err := res.Body.Close(); err != nil {
+						t.Errorf("no error is expected, but got %v", err)
+					}
+				})
+			}
+		})
+	}
+}
+
+type mockTransportFn struct {
+	fn func(req *http.Request) (*http.Response, error)
+}
+
+func (m mockTransportFn) RoundTrip(req *http.Request) (*http.Response, error) {
+	return m.fn(req)
 }

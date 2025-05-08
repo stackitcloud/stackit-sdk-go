@@ -17,13 +17,75 @@ import (
 // checks if the ServiceKeysList type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ServiceKeysList{}
 
+/*
+	types and functions for credentialsInfo
+*/
+
+// isContainer
+type ServiceKeysListGetCredentialsInfoAttributeType = *map[string]string
+type ServiceKeysListGetCredentialsInfoArgType = map[string]string
+type ServiceKeysListGetCredentialsInfoRetType = map[string]string
+
+func getServiceKeysListGetCredentialsInfoAttributeTypeOk(arg ServiceKeysListGetCredentialsInfoAttributeType) (ret ServiceKeysListGetCredentialsInfoRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceKeysListGetCredentialsInfoAttributeType(arg *ServiceKeysListGetCredentialsInfoAttributeType, val ServiceKeysListGetCredentialsInfoRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ServiceKeysListGetIdAttributeType = *string
+
+func getServiceKeysListGetIdAttributeTypeOk(arg ServiceKeysListGetIdAttributeType) (ret ServiceKeysListGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceKeysListGetIdAttributeType(arg *ServiceKeysListGetIdAttributeType, val ServiceKeysListGetIdRetType) {
+	*arg = &val
+}
+
+type ServiceKeysListGetIdArgType = string
+type ServiceKeysListGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ServiceKeysListGetNameAttributeType = *string
+
+func getServiceKeysListGetNameAttributeTypeOk(arg ServiceKeysListGetNameAttributeType) (ret ServiceKeysListGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceKeysListGetNameAttributeType(arg *ServiceKeysListGetNameAttributeType, val ServiceKeysListGetNameRetType) {
+	*arg = &val
+}
+
+type ServiceKeysListGetNameArgType = string
+type ServiceKeysListGetNameRetType = string
+
 // ServiceKeysList struct for ServiceKeysList
 type ServiceKeysList struct {
-	CredentialsInfo *map[string]string `json:"credentialsInfo,omitempty"`
+	CredentialsInfo ServiceKeysListGetCredentialsInfoAttributeType `json:"credentialsInfo,omitempty"`
 	// REQUIRED
-	Id *string `json:"id"`
+	Id ServiceKeysListGetIdAttributeType `json:"id"`
 	// REQUIRED
-	Name *string `json:"name"`
+	Name ServiceKeysListGetNameAttributeType `json:"name"`
 }
 
 type _ServiceKeysList ServiceKeysList
@@ -32,10 +94,10 @@ type _ServiceKeysList ServiceKeysList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceKeysList(id *string, name *string) *ServiceKeysList {
+func NewServiceKeysList(id ServiceKeysListGetIdArgType, name ServiceKeysListGetNameArgType) *ServiceKeysList {
 	this := ServiceKeysList{}
-	this.Id = id
-	this.Name = name
+	setServiceKeysListGetIdAttributeType(&this.Id, id)
+	setServiceKeysListGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -48,92 +110,73 @@ func NewServiceKeysListWithDefaults() *ServiceKeysList {
 }
 
 // GetCredentialsInfo returns the CredentialsInfo field value if set, zero value otherwise.
-func (o *ServiceKeysList) GetCredentialsInfo() *map[string]string {
-	if o == nil || IsNil(o.CredentialsInfo) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.CredentialsInfo
+func (o *ServiceKeysList) GetCredentialsInfo() (res ServiceKeysListGetCredentialsInfoRetType) {
+	res, _ = o.GetCredentialsInfoOk()
+	return
 }
 
 // GetCredentialsInfoOk returns a tuple with the CredentialsInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceKeysList) GetCredentialsInfoOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.CredentialsInfo) {
-		return nil, false
-	}
-	return o.CredentialsInfo, true
+func (o *ServiceKeysList) GetCredentialsInfoOk() (ret ServiceKeysListGetCredentialsInfoRetType, ok bool) {
+	return getServiceKeysListGetCredentialsInfoAttributeTypeOk(o.CredentialsInfo)
 }
 
 // HasCredentialsInfo returns a boolean if a field has been set.
 func (o *ServiceKeysList) HasCredentialsInfo() bool {
-	if o != nil && !IsNil(o.CredentialsInfo) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCredentialsInfoOk()
+	return ok
 }
 
 // SetCredentialsInfo gets a reference to the given map[string]string and assigns it to the CredentialsInfo field.
-func (o *ServiceKeysList) SetCredentialsInfo(v *map[string]string) {
-	o.CredentialsInfo = v
+func (o *ServiceKeysList) SetCredentialsInfo(v ServiceKeysListGetCredentialsInfoRetType) {
+	setServiceKeysListGetCredentialsInfoAttributeType(&o.CredentialsInfo, v)
 }
 
 // GetId returns the Id field value
-func (o *ServiceKeysList) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *ServiceKeysList) GetId() (ret ServiceKeysListGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ServiceKeysList) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *ServiceKeysList) GetIdOk() (ret ServiceKeysListGetIdRetType, ok bool) {
+	return getServiceKeysListGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *ServiceKeysList) SetId(v *string) {
-	o.Id = v
+func (o *ServiceKeysList) SetId(v ServiceKeysListGetIdRetType) {
+	setServiceKeysListGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value
-func (o *ServiceKeysList) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *ServiceKeysList) GetName() (ret ServiceKeysListGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ServiceKeysList) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *ServiceKeysList) GetNameOk() (ret ServiceKeysListGetNameRetType, ok bool) {
+	return getServiceKeysListGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *ServiceKeysList) SetName(v *string) {
-	o.Name = v
+func (o *ServiceKeysList) SetName(v ServiceKeysListGetNameRetType) {
+	setServiceKeysListGetNameAttributeType(&o.Name, v)
 }
 
 func (o ServiceKeysList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CredentialsInfo) {
-		toSerialize["credentialsInfo"] = o.CredentialsInfo
+	if val, ok := getServiceKeysListGetCredentialsInfoAttributeTypeOk(o.CredentialsInfo); ok {
+		toSerialize["CredentialsInfo"] = val
 	}
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
+	if val, ok := getServiceKeysListGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getServiceKeysListGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,12 +17,53 @@ import (
 // checks if the ListCredentialsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListCredentialsResponse{}
 
+/*
+	types and functions for credentials
+*/
+
+// isArray
+type ListCredentialsResponseGetCredentialsAttributeType = *[]ServiceKeysList
+type ListCredentialsResponseGetCredentialsArgType = []ServiceKeysList
+type ListCredentialsResponseGetCredentialsRetType = []ServiceKeysList
+
+func getListCredentialsResponseGetCredentialsAttributeTypeOk(arg ListCredentialsResponseGetCredentialsAttributeType) (ret ListCredentialsResponseGetCredentialsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListCredentialsResponseGetCredentialsAttributeType(arg *ListCredentialsResponseGetCredentialsAttributeType, val ListCredentialsResponseGetCredentialsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ListCredentialsResponseGetMessageAttributeType = *string
+
+func getListCredentialsResponseGetMessageAttributeTypeOk(arg ListCredentialsResponseGetMessageAttributeType) (ret ListCredentialsResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListCredentialsResponseGetMessageAttributeType(arg *ListCredentialsResponseGetMessageAttributeType, val ListCredentialsResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ListCredentialsResponseGetMessageArgType = string
+type ListCredentialsResponseGetMessageRetType = string
+
 // ListCredentialsResponse struct for ListCredentialsResponse
 type ListCredentialsResponse struct {
 	// REQUIRED
-	Credentials *[]ServiceKeysList `json:"credentials"`
+	Credentials ListCredentialsResponseGetCredentialsAttributeType `json:"credentials"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message ListCredentialsResponseGetMessageAttributeType `json:"message"`
 }
 
 type _ListCredentialsResponse ListCredentialsResponse
@@ -31,10 +72,10 @@ type _ListCredentialsResponse ListCredentialsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListCredentialsResponse(credentials *[]ServiceKeysList, message *string) *ListCredentialsResponse {
+func NewListCredentialsResponse(credentials ListCredentialsResponseGetCredentialsArgType, message ListCredentialsResponseGetMessageArgType) *ListCredentialsResponse {
 	this := ListCredentialsResponse{}
-	this.Credentials = credentials
-	this.Message = message
+	setListCredentialsResponseGetCredentialsAttributeType(&this.Credentials, credentials)
+	setListCredentialsResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewListCredentialsResponseWithDefaults() *ListCredentialsResponse {
 }
 
 // GetCredentials returns the Credentials field value
-func (o *ListCredentialsResponse) GetCredentials() *[]ServiceKeysList {
-	if o == nil || IsNil(o.Credentials) {
-		var ret *[]ServiceKeysList
-		return ret
-	}
-
-	return o.Credentials
+func (o *ListCredentialsResponse) GetCredentials() (ret ListCredentialsResponseGetCredentialsRetType) {
+	ret, _ = o.GetCredentialsOk()
+	return ret
 }
 
 // GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *ListCredentialsResponse) GetCredentialsOk() (*[]ServiceKeysList, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Credentials, true
+func (o *ListCredentialsResponse) GetCredentialsOk() (ret ListCredentialsResponseGetCredentialsRetType, ok bool) {
+	return getListCredentialsResponseGetCredentialsAttributeTypeOk(o.Credentials)
 }
 
 // SetCredentials sets field value
-func (o *ListCredentialsResponse) SetCredentials(v *[]ServiceKeysList) {
-	o.Credentials = v
+func (o *ListCredentialsResponse) SetCredentials(v ListCredentialsResponseGetCredentialsRetType) {
+	setListCredentialsResponseGetCredentialsAttributeType(&o.Credentials, v)
 }
 
 // GetMessage returns the Message field value
-func (o *ListCredentialsResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *ListCredentialsResponse) GetMessage() (ret ListCredentialsResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *ListCredentialsResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ListCredentialsResponse) GetMessageOk() (ret ListCredentialsResponseGetMessageRetType, ok bool) {
+	return getListCredentialsResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *ListCredentialsResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ListCredentialsResponse) SetMessage(v ListCredentialsResponseGetMessageRetType) {
+	setListCredentialsResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o ListCredentialsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["credentials"] = o.Credentials
-	toSerialize["message"] = o.Message
+	if val, ok := getListCredentialsResponseGetCredentialsAttributeTypeOk(o.Credentials); ok {
+		toSerialize["Credentials"] = val
+	}
+	if val, ok := getListCredentialsResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

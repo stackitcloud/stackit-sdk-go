@@ -17,9 +17,30 @@ import (
 // checks if the Zookie type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Zookie{}
 
+/*
+	types and functions for zookie
+*/
+
+// isNotNullableString
+type ZookieGetZookieAttributeType = *string
+
+func getZookieGetZookieAttributeTypeOk(arg ZookieGetZookieAttributeType) (ret ZookieGetZookieRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZookieGetZookieAttributeType(arg *ZookieGetZookieAttributeType, val ZookieGetZookieRetType) {
+	*arg = &val
+}
+
+type ZookieGetZookieArgType = string
+type ZookieGetZookieRetType = string
+
 // Zookie struct for Zookie
 type Zookie struct {
-	Zookie *string `json:"zookie,omitempty"`
+	Zookie ZookieGetZookieAttributeType `json:"zookie,omitempty"`
 }
 
 // NewZookie instantiates a new Zookie object
@@ -40,41 +61,32 @@ func NewZookieWithDefaults() *Zookie {
 }
 
 // GetZookie returns the Zookie field value if set, zero value otherwise.
-func (o *Zookie) GetZookie() *string {
-	if o == nil || IsNil(o.Zookie) {
-		var ret *string
-		return ret
-	}
-	return o.Zookie
+func (o *Zookie) GetZookie() (res ZookieGetZookieRetType) {
+	res, _ = o.GetZookieOk()
+	return
 }
 
 // GetZookieOk returns a tuple with the Zookie field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zookie) GetZookieOk() (*string, bool) {
-	if o == nil || IsNil(o.Zookie) {
-		return nil, false
-	}
-	return o.Zookie, true
+func (o *Zookie) GetZookieOk() (ret ZookieGetZookieRetType, ok bool) {
+	return getZookieGetZookieAttributeTypeOk(o.Zookie)
 }
 
 // HasZookie returns a boolean if a field has been set.
 func (o *Zookie) HasZookie() bool {
-	if o != nil && !IsNil(o.Zookie) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetZookieOk()
+	return ok
 }
 
 // SetZookie gets a reference to the given string and assigns it to the Zookie field.
-func (o *Zookie) SetZookie(v *string) {
-	o.Zookie = v
+func (o *Zookie) SetZookie(v ZookieGetZookieRetType) {
+	setZookieGetZookieAttributeType(&o.Zookie, v)
 }
 
 func (o Zookie) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Zookie) {
-		toSerialize["zookie"] = o.Zookie
+	if val, ok := getZookieGetZookieAttributeTypeOk(o.Zookie); ok {
+		toSerialize["Zookie"] = val
 	}
 	return toSerialize, nil
 }

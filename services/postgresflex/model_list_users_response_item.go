@@ -17,10 +17,52 @@ import (
 // checks if the ListUsersResponseItem type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListUsersResponseItem{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ListUsersResponseItemGetIdAttributeType = *string
+
+func getListUsersResponseItemGetIdAttributeTypeOk(arg ListUsersResponseItemGetIdAttributeType) (ret ListUsersResponseItemGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListUsersResponseItemGetIdAttributeType(arg *ListUsersResponseItemGetIdAttributeType, val ListUsersResponseItemGetIdRetType) {
+	*arg = &val
+}
+
+type ListUsersResponseItemGetIdArgType = string
+type ListUsersResponseItemGetIdRetType = string
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type ListUsersResponseItemGetUsernameAttributeType = *string
+
+func getListUsersResponseItemGetUsernameAttributeTypeOk(arg ListUsersResponseItemGetUsernameAttributeType) (ret ListUsersResponseItemGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListUsersResponseItemGetUsernameAttributeType(arg *ListUsersResponseItemGetUsernameAttributeType, val ListUsersResponseItemGetUsernameRetType) {
+	*arg = &val
+}
+
+type ListUsersResponseItemGetUsernameArgType = string
+type ListUsersResponseItemGetUsernameRetType = string
+
 // ListUsersResponseItem struct for ListUsersResponseItem
 type ListUsersResponseItem struct {
-	Id       *string `json:"id,omitempty"`
-	Username *string `json:"username,omitempty"`
+	Id       ListUsersResponseItemGetIdAttributeType       `json:"id,omitempty"`
+	Username ListUsersResponseItemGetUsernameAttributeType `json:"username,omitempty"`
 }
 
 // NewListUsersResponseItem instantiates a new ListUsersResponseItem object
@@ -41,76 +83,58 @@ func NewListUsersResponseItemWithDefaults() *ListUsersResponseItem {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *ListUsersResponseItem) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *ListUsersResponseItem) GetId() (res ListUsersResponseItemGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListUsersResponseItem) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *ListUsersResponseItem) GetIdOk() (ret ListUsersResponseItemGetIdRetType, ok bool) {
+	return getListUsersResponseItemGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *ListUsersResponseItem) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *ListUsersResponseItem) SetId(v *string) {
-	o.Id = v
+func (o *ListUsersResponseItem) SetId(v ListUsersResponseItemGetIdRetType) {
+	setListUsersResponseItemGetIdAttributeType(&o.Id, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *ListUsersResponseItem) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-	return o.Username
+func (o *ListUsersResponseItem) GetUsername() (res ListUsersResponseItemGetUsernameRetType) {
+	res, _ = o.GetUsernameOk()
+	return
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListUsersResponseItem) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
-		return nil, false
-	}
-	return o.Username, true
+func (o *ListUsersResponseItem) GetUsernameOk() (ret ListUsersResponseItemGetUsernameRetType, ok bool) {
+	return getListUsersResponseItemGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *ListUsersResponseItem) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUsernameOk()
+	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *ListUsersResponseItem) SetUsername(v *string) {
-	o.Username = v
+func (o *ListUsersResponseItem) SetUsername(v ListUsersResponseItemGetUsernameRetType) {
+	setListUsersResponseItemGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o ListUsersResponseItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getListUsersResponseItemGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
+	if val, ok := getListUsersResponseItemGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
 	}
 	return toSerialize, nil
 }

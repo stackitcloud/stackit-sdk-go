@@ -17,17 +17,121 @@ import (
 // checks if the ListRecordSetsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListRecordSetsResponse{}
 
+/*
+	types and functions for itemsPerPage
+*/
+
+// isInteger
+type ListRecordSetsResponseGetItemsPerPageAttributeType = *int64
+type ListRecordSetsResponseGetItemsPerPageArgType = int64
+type ListRecordSetsResponseGetItemsPerPageRetType = int64
+
+func getListRecordSetsResponseGetItemsPerPageAttributeTypeOk(arg ListRecordSetsResponseGetItemsPerPageAttributeType) (ret ListRecordSetsResponseGetItemsPerPageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListRecordSetsResponseGetItemsPerPageAttributeType(arg *ListRecordSetsResponseGetItemsPerPageAttributeType, val ListRecordSetsResponseGetItemsPerPageRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ListRecordSetsResponseGetMessageAttributeType = *string
+
+func getListRecordSetsResponseGetMessageAttributeTypeOk(arg ListRecordSetsResponseGetMessageAttributeType) (ret ListRecordSetsResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListRecordSetsResponseGetMessageAttributeType(arg *ListRecordSetsResponseGetMessageAttributeType, val ListRecordSetsResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ListRecordSetsResponseGetMessageArgType = string
+type ListRecordSetsResponseGetMessageRetType = string
+
+/*
+	types and functions for rrSets
+*/
+
+// isArray
+type ListRecordSetsResponseGetRrSetsAttributeType = *[]RecordSet
+type ListRecordSetsResponseGetRrSetsArgType = []RecordSet
+type ListRecordSetsResponseGetRrSetsRetType = []RecordSet
+
+func getListRecordSetsResponseGetRrSetsAttributeTypeOk(arg ListRecordSetsResponseGetRrSetsAttributeType) (ret ListRecordSetsResponseGetRrSetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListRecordSetsResponseGetRrSetsAttributeType(arg *ListRecordSetsResponseGetRrSetsAttributeType, val ListRecordSetsResponseGetRrSetsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for totalItems
+*/
+
+// isInteger
+type ListRecordSetsResponseGetTotalItemsAttributeType = *int64
+type ListRecordSetsResponseGetTotalItemsArgType = int64
+type ListRecordSetsResponseGetTotalItemsRetType = int64
+
+func getListRecordSetsResponseGetTotalItemsAttributeTypeOk(arg ListRecordSetsResponseGetTotalItemsAttributeType) (ret ListRecordSetsResponseGetTotalItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListRecordSetsResponseGetTotalItemsAttributeType(arg *ListRecordSetsResponseGetTotalItemsAttributeType, val ListRecordSetsResponseGetTotalItemsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for totalPages
+*/
+
+// isInteger
+type ListRecordSetsResponseGetTotalPagesAttributeType = *int64
+type ListRecordSetsResponseGetTotalPagesArgType = int64
+type ListRecordSetsResponseGetTotalPagesRetType = int64
+
+func getListRecordSetsResponseGetTotalPagesAttributeTypeOk(arg ListRecordSetsResponseGetTotalPagesAttributeType) (ret ListRecordSetsResponseGetTotalPagesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListRecordSetsResponseGetTotalPagesAttributeType(arg *ListRecordSetsResponseGetTotalPagesAttributeType, val ListRecordSetsResponseGetTotalPagesRetType) {
+	*arg = &val
+}
+
 // ListRecordSetsResponse ResponseRRSetAll.
 type ListRecordSetsResponse struct {
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	ItemsPerPage *int64  `json:"itemsPerPage"`
-	Message      *string `json:"message,omitempty"`
+	ItemsPerPage ListRecordSetsResponseGetItemsPerPageAttributeType `json:"itemsPerPage"`
+	Message      ListRecordSetsResponseGetMessageAttributeType      `json:"message,omitempty"`
 	// REQUIRED
-	RrSets *[]RecordSet `json:"rrSets"`
+	RrSets ListRecordSetsResponseGetRrSetsAttributeType `json:"rrSets"`
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	TotalItems *int64 `json:"totalItems"`
+	TotalItems ListRecordSetsResponseGetTotalItemsAttributeType `json:"totalItems"`
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	TotalPages *int64 `json:"totalPages"`
+	TotalPages ListRecordSetsResponseGetTotalPagesAttributeType `json:"totalPages"`
 }
 
 type _ListRecordSetsResponse ListRecordSetsResponse
@@ -36,12 +140,12 @@ type _ListRecordSetsResponse ListRecordSetsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListRecordSetsResponse(itemsPerPage *int64, rrSets *[]RecordSet, totalItems *int64, totalPages *int64) *ListRecordSetsResponse {
+func NewListRecordSetsResponse(itemsPerPage ListRecordSetsResponseGetItemsPerPageArgType, rrSets ListRecordSetsResponseGetRrSetsArgType, totalItems ListRecordSetsResponseGetTotalItemsArgType, totalPages ListRecordSetsResponseGetTotalPagesArgType) *ListRecordSetsResponse {
 	this := ListRecordSetsResponse{}
-	this.ItemsPerPage = itemsPerPage
-	this.RrSets = rrSets
-	this.TotalItems = totalItems
-	this.TotalPages = totalPages
+	setListRecordSetsResponseGetItemsPerPageAttributeType(&this.ItemsPerPage, itemsPerPage)
+	setListRecordSetsResponseGetRrSetsAttributeType(&this.RrSets, rrSets)
+	setListRecordSetsResponseGetTotalItemsAttributeType(&this.TotalItems, totalItems)
+	setListRecordSetsResponseGetTotalPagesAttributeType(&this.TotalPages, totalPages)
 	return &this
 }
 
@@ -54,142 +158,113 @@ func NewListRecordSetsResponseWithDefaults() *ListRecordSetsResponse {
 }
 
 // GetItemsPerPage returns the ItemsPerPage field value
-func (o *ListRecordSetsResponse) GetItemsPerPage() *int64 {
-	if o == nil || IsNil(o.ItemsPerPage) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ItemsPerPage
+func (o *ListRecordSetsResponse) GetItemsPerPage() (ret ListRecordSetsResponseGetItemsPerPageRetType) {
+	ret, _ = o.GetItemsPerPageOk()
+	return ret
 }
 
 // GetItemsPerPageOk returns a tuple with the ItemsPerPage field value
 // and a boolean to check if the value has been set.
-func (o *ListRecordSetsResponse) GetItemsPerPageOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ItemsPerPage, true
+func (o *ListRecordSetsResponse) GetItemsPerPageOk() (ret ListRecordSetsResponseGetItemsPerPageRetType, ok bool) {
+	return getListRecordSetsResponseGetItemsPerPageAttributeTypeOk(o.ItemsPerPage)
 }
 
 // SetItemsPerPage sets field value
-func (o *ListRecordSetsResponse) SetItemsPerPage(v *int64) {
-	o.ItemsPerPage = v
+func (o *ListRecordSetsResponse) SetItemsPerPage(v ListRecordSetsResponseGetItemsPerPageRetType) {
+	setListRecordSetsResponseGetItemsPerPageAttributeType(&o.ItemsPerPage, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ListRecordSetsResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *ListRecordSetsResponse) GetMessage() (res ListRecordSetsResponseGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListRecordSetsResponse) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ListRecordSetsResponse) GetMessageOk() (ret ListRecordSetsResponseGetMessageRetType, ok bool) {
+	return getListRecordSetsResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ListRecordSetsResponse) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ListRecordSetsResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ListRecordSetsResponse) SetMessage(v ListRecordSetsResponseGetMessageRetType) {
+	setListRecordSetsResponseGetMessageAttributeType(&o.Message, v)
 }
 
 // GetRrSets returns the RrSets field value
-func (o *ListRecordSetsResponse) GetRrSets() *[]RecordSet {
-	if o == nil || IsNil(o.RrSets) {
-		var ret *[]RecordSet
-		return ret
-	}
-
-	return o.RrSets
+func (o *ListRecordSetsResponse) GetRrSets() (ret ListRecordSetsResponseGetRrSetsRetType) {
+	ret, _ = o.GetRrSetsOk()
+	return ret
 }
 
 // GetRrSetsOk returns a tuple with the RrSets field value
 // and a boolean to check if the value has been set.
-func (o *ListRecordSetsResponse) GetRrSetsOk() (*[]RecordSet, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RrSets, true
+func (o *ListRecordSetsResponse) GetRrSetsOk() (ret ListRecordSetsResponseGetRrSetsRetType, ok bool) {
+	return getListRecordSetsResponseGetRrSetsAttributeTypeOk(o.RrSets)
 }
 
 // SetRrSets sets field value
-func (o *ListRecordSetsResponse) SetRrSets(v *[]RecordSet) {
-	o.RrSets = v
+func (o *ListRecordSetsResponse) SetRrSets(v ListRecordSetsResponseGetRrSetsRetType) {
+	setListRecordSetsResponseGetRrSetsAttributeType(&o.RrSets, v)
 }
 
 // GetTotalItems returns the TotalItems field value
-func (o *ListRecordSetsResponse) GetTotalItems() *int64 {
-	if o == nil || IsNil(o.TotalItems) {
-		var ret *int64
-		return ret
-	}
-
-	return o.TotalItems
+func (o *ListRecordSetsResponse) GetTotalItems() (ret ListRecordSetsResponseGetTotalItemsRetType) {
+	ret, _ = o.GetTotalItemsOk()
+	return ret
 }
 
 // GetTotalItemsOk returns a tuple with the TotalItems field value
 // and a boolean to check if the value has been set.
-func (o *ListRecordSetsResponse) GetTotalItemsOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TotalItems, true
+func (o *ListRecordSetsResponse) GetTotalItemsOk() (ret ListRecordSetsResponseGetTotalItemsRetType, ok bool) {
+	return getListRecordSetsResponseGetTotalItemsAttributeTypeOk(o.TotalItems)
 }
 
 // SetTotalItems sets field value
-func (o *ListRecordSetsResponse) SetTotalItems(v *int64) {
-	o.TotalItems = v
+func (o *ListRecordSetsResponse) SetTotalItems(v ListRecordSetsResponseGetTotalItemsRetType) {
+	setListRecordSetsResponseGetTotalItemsAttributeType(&o.TotalItems, v)
 }
 
 // GetTotalPages returns the TotalPages field value
-func (o *ListRecordSetsResponse) GetTotalPages() *int64 {
-	if o == nil || IsNil(o.TotalPages) {
-		var ret *int64
-		return ret
-	}
-
-	return o.TotalPages
+func (o *ListRecordSetsResponse) GetTotalPages() (ret ListRecordSetsResponseGetTotalPagesRetType) {
+	ret, _ = o.GetTotalPagesOk()
+	return ret
 }
 
 // GetTotalPagesOk returns a tuple with the TotalPages field value
 // and a boolean to check if the value has been set.
-func (o *ListRecordSetsResponse) GetTotalPagesOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TotalPages, true
+func (o *ListRecordSetsResponse) GetTotalPagesOk() (ret ListRecordSetsResponseGetTotalPagesRetType, ok bool) {
+	return getListRecordSetsResponseGetTotalPagesAttributeTypeOk(o.TotalPages)
 }
 
 // SetTotalPages sets field value
-func (o *ListRecordSetsResponse) SetTotalPages(v *int64) {
-	o.TotalPages = v
+func (o *ListRecordSetsResponse) SetTotalPages(v ListRecordSetsResponseGetTotalPagesRetType) {
+	setListRecordSetsResponseGetTotalPagesAttributeType(&o.TotalPages, v)
 }
 
 func (o ListRecordSetsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["itemsPerPage"] = o.ItemsPerPage
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getListRecordSetsResponseGetItemsPerPageAttributeTypeOk(o.ItemsPerPage); ok {
+		toSerialize["ItemsPerPage"] = val
 	}
-	toSerialize["rrSets"] = o.RrSets
-	toSerialize["totalItems"] = o.TotalItems
-	toSerialize["totalPages"] = o.TotalPages
+	if val, ok := getListRecordSetsResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
+	if val, ok := getListRecordSetsResponseGetRrSetsAttributeTypeOk(o.RrSets); ok {
+		toSerialize["RrSets"] = val
+	}
+	if val, ok := getListRecordSetsResponseGetTotalItemsAttributeTypeOk(o.TotalItems); ok {
+		toSerialize["TotalItems"] = val
+	}
+	if val, ok := getListRecordSetsResponseGetTotalPagesAttributeTypeOk(o.TotalPages); ok {
+		toSerialize["TotalPages"] = val
+	}
 	return toSerialize, nil
 }
 

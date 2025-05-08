@@ -18,12 +18,94 @@ import (
 // checks if the KubernetesVersion type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &KubernetesVersion{}
 
+/*
+	types and functions for expirationDate
+*/
+
+// isDateTime
+type KubernetesVersionGetExpirationDateAttributeType = *time.Time
+type KubernetesVersionGetExpirationDateArgType = time.Time
+type KubernetesVersionGetExpirationDateRetType = time.Time
+
+func getKubernetesVersionGetExpirationDateAttributeTypeOk(arg KubernetesVersionGetExpirationDateAttributeType) (ret KubernetesVersionGetExpirationDateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKubernetesVersionGetExpirationDateAttributeType(arg *KubernetesVersionGetExpirationDateAttributeType, val KubernetesVersionGetExpirationDateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for featureGates
+*/
+
+// isContainer
+type KubernetesVersionGetFeatureGatesAttributeType = *map[string]string
+type KubernetesVersionGetFeatureGatesArgType = map[string]string
+type KubernetesVersionGetFeatureGatesRetType = map[string]string
+
+func getKubernetesVersionGetFeatureGatesAttributeTypeOk(arg KubernetesVersionGetFeatureGatesAttributeType) (ret KubernetesVersionGetFeatureGatesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKubernetesVersionGetFeatureGatesAttributeType(arg *KubernetesVersionGetFeatureGatesAttributeType, val KubernetesVersionGetFeatureGatesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for state
+*/
+
+// isNotNullableString
+type KubernetesVersionGetStateAttributeType = *string
+
+func getKubernetesVersionGetStateAttributeTypeOk(arg KubernetesVersionGetStateAttributeType) (ret KubernetesVersionGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKubernetesVersionGetStateAttributeType(arg *KubernetesVersionGetStateAttributeType, val KubernetesVersionGetStateRetType) {
+	*arg = &val
+}
+
+type KubernetesVersionGetStateArgType = string
+type KubernetesVersionGetStateRetType = string
+
+/*
+	types and functions for version
+*/
+
+// isNotNullableString
+type KubernetesVersionGetVersionAttributeType = *string
+
+func getKubernetesVersionGetVersionAttributeTypeOk(arg KubernetesVersionGetVersionAttributeType) (ret KubernetesVersionGetVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKubernetesVersionGetVersionAttributeType(arg *KubernetesVersionGetVersionAttributeType, val KubernetesVersionGetVersionRetType) {
+	*arg = &val
+}
+
+type KubernetesVersionGetVersionArgType = string
+type KubernetesVersionGetVersionRetType = string
+
 // KubernetesVersion struct for KubernetesVersion
 type KubernetesVersion struct {
-	ExpirationDate *time.Time         `json:"expirationDate,omitempty"`
-	FeatureGates   *map[string]string `json:"featureGates,omitempty"`
-	State          *string            `json:"state,omitempty"`
-	Version        *string            `json:"version,omitempty"`
+	ExpirationDate KubernetesVersionGetExpirationDateAttributeType `json:"expirationDate,omitempty"`
+	FeatureGates   KubernetesVersionGetFeatureGatesAttributeType   `json:"featureGates,omitempty"`
+	State          KubernetesVersionGetStateAttributeType          `json:"state,omitempty"`
+	Version        KubernetesVersionGetVersionAttributeType        `json:"version,omitempty"`
 }
 
 // NewKubernetesVersion instantiates a new KubernetesVersion object
@@ -44,146 +126,110 @@ func NewKubernetesVersionWithDefaults() *KubernetesVersion {
 }
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
-func (o *KubernetesVersion) GetExpirationDate() *time.Time {
-	if o == nil || IsNil(o.ExpirationDate) {
-		var ret *time.Time
-		return ret
-	}
-	return o.ExpirationDate
+func (o *KubernetesVersion) GetExpirationDate() (res KubernetesVersionGetExpirationDateRetType) {
+	res, _ = o.GetExpirationDateOk()
+	return
 }
 
 // GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KubernetesVersion) GetExpirationDateOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.ExpirationDate) {
-		return nil, false
-	}
-	return o.ExpirationDate, true
+func (o *KubernetesVersion) GetExpirationDateOk() (ret KubernetesVersionGetExpirationDateRetType, ok bool) {
+	return getKubernetesVersionGetExpirationDateAttributeTypeOk(o.ExpirationDate)
 }
 
 // HasExpirationDate returns a boolean if a field has been set.
 func (o *KubernetesVersion) HasExpirationDate() bool {
-	if o != nil && !IsNil(o.ExpirationDate) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExpirationDateOk()
+	return ok
 }
 
 // SetExpirationDate gets a reference to the given time.Time and assigns it to the ExpirationDate field.
-func (o *KubernetesVersion) SetExpirationDate(v *time.Time) {
-	o.ExpirationDate = v
+func (o *KubernetesVersion) SetExpirationDate(v KubernetesVersionGetExpirationDateRetType) {
+	setKubernetesVersionGetExpirationDateAttributeType(&o.ExpirationDate, v)
 }
 
 // GetFeatureGates returns the FeatureGates field value if set, zero value otherwise.
-func (o *KubernetesVersion) GetFeatureGates() *map[string]string {
-	if o == nil || IsNil(o.FeatureGates) {
-		var ret *map[string]string
-		return ret
-	}
-	return o.FeatureGates
+func (o *KubernetesVersion) GetFeatureGates() (res KubernetesVersionGetFeatureGatesRetType) {
+	res, _ = o.GetFeatureGatesOk()
+	return
 }
 
 // GetFeatureGatesOk returns a tuple with the FeatureGates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KubernetesVersion) GetFeatureGatesOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.FeatureGates) {
-		return nil, false
-	}
-	return o.FeatureGates, true
+func (o *KubernetesVersion) GetFeatureGatesOk() (ret KubernetesVersionGetFeatureGatesRetType, ok bool) {
+	return getKubernetesVersionGetFeatureGatesAttributeTypeOk(o.FeatureGates)
 }
 
 // HasFeatureGates returns a boolean if a field has been set.
 func (o *KubernetesVersion) HasFeatureGates() bool {
-	if o != nil && !IsNil(o.FeatureGates) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetFeatureGatesOk()
+	return ok
 }
 
 // SetFeatureGates gets a reference to the given map[string]string and assigns it to the FeatureGates field.
-func (o *KubernetesVersion) SetFeatureGates(v *map[string]string) {
-	o.FeatureGates = v
+func (o *KubernetesVersion) SetFeatureGates(v KubernetesVersionGetFeatureGatesRetType) {
+	setKubernetesVersionGetFeatureGatesAttributeType(&o.FeatureGates, v)
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *KubernetesVersion) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-	return o.State
+func (o *KubernetesVersion) GetState() (res KubernetesVersionGetStateRetType) {
+	res, _ = o.GetStateOk()
+	return
 }
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KubernetesVersion) GetStateOk() (*string, bool) {
-	if o == nil || IsNil(o.State) {
-		return nil, false
-	}
-	return o.State, true
+func (o *KubernetesVersion) GetStateOk() (ret KubernetesVersionGetStateRetType, ok bool) {
+	return getKubernetesVersionGetStateAttributeTypeOk(o.State)
 }
 
 // HasState returns a boolean if a field has been set.
 func (o *KubernetesVersion) HasState() bool {
-	if o != nil && !IsNil(o.State) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStateOk()
+	return ok
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *KubernetesVersion) SetState(v *string) {
-	o.State = v
+func (o *KubernetesVersion) SetState(v KubernetesVersionGetStateRetType) {
+	setKubernetesVersionGetStateAttributeType(&o.State, v)
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *KubernetesVersion) GetVersion() *string {
-	if o == nil || IsNil(o.Version) {
-		var ret *string
-		return ret
-	}
-	return o.Version
+func (o *KubernetesVersion) GetVersion() (res KubernetesVersionGetVersionRetType) {
+	res, _ = o.GetVersionOk()
+	return
 }
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KubernetesVersion) GetVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.Version) {
-		return nil, false
-	}
-	return o.Version, true
+func (o *KubernetesVersion) GetVersionOk() (ret KubernetesVersionGetVersionRetType, ok bool) {
+	return getKubernetesVersionGetVersionAttributeTypeOk(o.Version)
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *KubernetesVersion) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVersionOk()
+	return ok
 }
 
 // SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *KubernetesVersion) SetVersion(v *string) {
-	o.Version = v
+func (o *KubernetesVersion) SetVersion(v KubernetesVersionGetVersionRetType) {
+	setKubernetesVersionGetVersionAttributeType(&o.Version, v)
 }
 
 func (o KubernetesVersion) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ExpirationDate) {
-		toSerialize["expirationDate"] = o.ExpirationDate
+	if val, ok := getKubernetesVersionGetExpirationDateAttributeTypeOk(o.ExpirationDate); ok {
+		toSerialize["ExpirationDate"] = val
 	}
-	if !IsNil(o.FeatureGates) {
-		toSerialize["featureGates"] = o.FeatureGates
+	if val, ok := getKubernetesVersionGetFeatureGatesAttributeTypeOk(o.FeatureGates); ok {
+		toSerialize["FeatureGates"] = val
 	}
-	if !IsNil(o.State) {
-		toSerialize["state"] = o.State
+	if val, ok := getKubernetesVersionGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
 	}
-	if !IsNil(o.Version) {
-		toSerialize["version"] = o.Version
+	if val, ok := getKubernetesVersionGetVersionAttributeTypeOk(o.Version); ok {
+		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
 }

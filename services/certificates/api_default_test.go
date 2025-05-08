@@ -24,14 +24,14 @@ import (
 func Test_certificates_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCertificate", func(t *testing.T) {
-		path := "/v2beta/projects/{projectId}/regions/{region}/certificates"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/certificates"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateCertificateResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -65,8 +65,8 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
+		projectId := projectIdValue
+		region := regionValue
 		createCertificatePayload := CreateCertificatePayload{}
 
 		resp, reqErr := apiClient.CreateCertificate(context.Background(), projectId, region).CreateCertificatePayload(createCertificatePayload).Execute()
@@ -74,22 +74,22 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService DeleteCertificate", func(t *testing.T) {
-		path := "/v2beta/projects/{projectId}/regions/{region}/certificates/{id}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		idValue := "id"
-		path = strings.Replace(path, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
+		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/certificates/{id}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		idValue := "id-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := map[string]interface{}{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -123,31 +123,31 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
-		id := "id"
+		projectId := projectIdValue
+		region := regionValue
+		id := idValue
 
 		resp, reqErr := apiClient.DeleteCertificate(context.Background(), projectId, region, id).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetCertificate", func(t *testing.T) {
-		path := "/v2beta/projects/{projectId}/regions/{region}/certificates/{id}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		idValue := "id"
-		path = strings.Replace(path, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
+		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/certificates/{id}"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		idValue := "id-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetCertificateResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -181,29 +181,29 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
-		id := "id"
+		projectId := projectIdValue
+		region := regionValue
+		id := idValue
 
 		resp, reqErr := apiClient.GetCertificate(context.Background(), projectId, region, id).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListCertificates", func(t *testing.T) {
-		path := "/v2beta/projects/{projectId}/regions/{region}/certificates"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionValue := "region"
-		path = strings.Replace(path, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		_apiUrlPath := "/v2beta/projects/{projectId}/regions/{region}/certificates"
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListCertificatesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -237,15 +237,15 @@ func Test_certificates_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		region := "region"
+		projectId := projectIdValue
+		region := regionValue
 
 		resp, reqErr := apiClient.ListCertificates(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})

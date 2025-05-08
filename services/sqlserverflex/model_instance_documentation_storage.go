@@ -17,12 +17,53 @@ import (
 // checks if the InstanceDocumentationStorage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &InstanceDocumentationStorage{}
 
+/*
+	types and functions for class
+*/
+
+// isNotNullableString
+type InstanceDocumentationStorageGetClassAttributeType = *string
+
+func getInstanceDocumentationStorageGetClassAttributeTypeOk(arg InstanceDocumentationStorageGetClassAttributeType) (ret InstanceDocumentationStorageGetClassRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceDocumentationStorageGetClassAttributeType(arg *InstanceDocumentationStorageGetClassAttributeType, val InstanceDocumentationStorageGetClassRetType) {
+	*arg = &val
+}
+
+type InstanceDocumentationStorageGetClassArgType = string
+type InstanceDocumentationStorageGetClassRetType = string
+
+/*
+	types and functions for size
+*/
+
+// isLong
+type InstanceDocumentationStorageGetSizeAttributeType = *int64
+type InstanceDocumentationStorageGetSizeArgType = int64
+type InstanceDocumentationStorageGetSizeRetType = int64
+
+func getInstanceDocumentationStorageGetSizeAttributeTypeOk(arg InstanceDocumentationStorageGetSizeAttributeType) (ret InstanceDocumentationStorageGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceDocumentationStorageGetSizeAttributeType(arg *InstanceDocumentationStorageGetSizeAttributeType, val InstanceDocumentationStorageGetSizeRetType) {
+	*arg = &val
+}
+
 // InstanceDocumentationStorage struct for InstanceDocumentationStorage
 type InstanceDocumentationStorage struct {
 	// Class of the instance.
-	Class *string `json:"class,omitempty"`
+	Class InstanceDocumentationStorageGetClassAttributeType `json:"class,omitempty"`
 	// Size of the instance storage in GB
-	Size *int64 `json:"size,omitempty"`
+	Size InstanceDocumentationStorageGetSizeAttributeType `json:"size,omitempty"`
 }
 
 // NewInstanceDocumentationStorage instantiates a new InstanceDocumentationStorage object
@@ -31,8 +72,6 @@ type InstanceDocumentationStorage struct {
 // will change when the set of required properties is changed
 func NewInstanceDocumentationStorage() *InstanceDocumentationStorage {
 	this := InstanceDocumentationStorage{}
-	var class string = "premium-perf12-stackit"
-	this.Class = &class
 	return &this
 }
 
@@ -47,76 +86,58 @@ func NewInstanceDocumentationStorageWithDefaults() *InstanceDocumentationStorage
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
-func (o *InstanceDocumentationStorage) GetClass() *string {
-	if o == nil || IsNil(o.Class) {
-		var ret *string
-		return ret
-	}
-	return o.Class
+func (o *InstanceDocumentationStorage) GetClass() (res InstanceDocumentationStorageGetClassRetType) {
+	res, _ = o.GetClassOk()
+	return
 }
 
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceDocumentationStorage) GetClassOk() (*string, bool) {
-	if o == nil || IsNil(o.Class) {
-		return nil, false
-	}
-	return o.Class, true
+func (o *InstanceDocumentationStorage) GetClassOk() (ret InstanceDocumentationStorageGetClassRetType, ok bool) {
+	return getInstanceDocumentationStorageGetClassAttributeTypeOk(o.Class)
 }
 
 // HasClass returns a boolean if a field has been set.
 func (o *InstanceDocumentationStorage) HasClass() bool {
-	if o != nil && !IsNil(o.Class) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetClassOk()
+	return ok
 }
 
 // SetClass gets a reference to the given string and assigns it to the Class field.
-func (o *InstanceDocumentationStorage) SetClass(v *string) {
-	o.Class = v
+func (o *InstanceDocumentationStorage) SetClass(v InstanceDocumentationStorageGetClassRetType) {
+	setInstanceDocumentationStorageGetClassAttributeType(&o.Class, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *InstanceDocumentationStorage) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-	return o.Size
+func (o *InstanceDocumentationStorage) GetSize() (res InstanceDocumentationStorageGetSizeRetType) {
+	res, _ = o.GetSizeOk()
+	return
 }
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceDocumentationStorage) GetSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.Size) {
-		return nil, false
-	}
-	return o.Size, true
+func (o *InstanceDocumentationStorage) GetSizeOk() (ret InstanceDocumentationStorageGetSizeRetType, ok bool) {
+	return getInstanceDocumentationStorageGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
 func (o *InstanceDocumentationStorage) HasSize() bool {
-	if o != nil && !IsNil(o.Size) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSizeOk()
+	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *InstanceDocumentationStorage) SetSize(v *int64) {
-	o.Size = v
+func (o *InstanceDocumentationStorage) SetSize(v InstanceDocumentationStorageGetSizeRetType) {
+	setInstanceDocumentationStorageGetSizeAttributeType(&o.Size, v)
 }
 
 func (o InstanceDocumentationStorage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Class) {
-		toSerialize["class"] = o.Class
+	if val, ok := getInstanceDocumentationStorageGetClassAttributeTypeOk(o.Class); ok {
+		toSerialize["Class"] = val
 	}
-	if !IsNil(o.Size) {
-		toSerialize["size"] = o.Size
+	if val, ok := getInstanceDocumentationStorageGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
 	}
 	return toSerialize, nil
 }

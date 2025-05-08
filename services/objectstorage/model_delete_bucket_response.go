@@ -17,14 +17,56 @@ import (
 // checks if the DeleteBucketResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeleteBucketResponse{}
 
+/*
+	types and functions for bucket
+*/
+
+// isNotNullableString
+type DeleteBucketResponseGetBucketAttributeType = *string
+
+func getDeleteBucketResponseGetBucketAttributeTypeOk(arg DeleteBucketResponseGetBucketAttributeType) (ret DeleteBucketResponseGetBucketRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDeleteBucketResponseGetBucketAttributeType(arg *DeleteBucketResponseGetBucketAttributeType, val DeleteBucketResponseGetBucketRetType) {
+	*arg = &val
+}
+
+type DeleteBucketResponseGetBucketArgType = string
+type DeleteBucketResponseGetBucketRetType = string
+
+/*
+	types and functions for project
+*/
+
+// isNotNullableString
+type DeleteBucketResponseGetProjectAttributeType = *string
+
+func getDeleteBucketResponseGetProjectAttributeTypeOk(arg DeleteBucketResponseGetProjectAttributeType) (ret DeleteBucketResponseGetProjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDeleteBucketResponseGetProjectAttributeType(arg *DeleteBucketResponseGetProjectAttributeType, val DeleteBucketResponseGetProjectRetType) {
+	*arg = &val
+}
+
+type DeleteBucketResponseGetProjectArgType = string
+type DeleteBucketResponseGetProjectRetType = string
+
 // DeleteBucketResponse struct for DeleteBucketResponse
 type DeleteBucketResponse struct {
 	// Name of the bucket
 	// REQUIRED
-	Bucket *string `json:"bucket"`
+	Bucket DeleteBucketResponseGetBucketAttributeType `json:"bucket"`
 	// Project ID
 	// REQUIRED
-	Project *string `json:"project"`
+	Project DeleteBucketResponseGetProjectAttributeType `json:"project"`
 }
 
 type _DeleteBucketResponse DeleteBucketResponse
@@ -33,10 +75,10 @@ type _DeleteBucketResponse DeleteBucketResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeleteBucketResponse(bucket *string, project *string) *DeleteBucketResponse {
+func NewDeleteBucketResponse(bucket DeleteBucketResponseGetBucketArgType, project DeleteBucketResponseGetProjectArgType) *DeleteBucketResponse {
 	this := DeleteBucketResponse{}
-	this.Bucket = bucket
-	this.Project = project
+	setDeleteBucketResponseGetBucketAttributeType(&this.Bucket, bucket)
+	setDeleteBucketResponseGetProjectAttributeType(&this.Project, project)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewDeleteBucketResponseWithDefaults() *DeleteBucketResponse {
 }
 
 // GetBucket returns the Bucket field value
-func (o *DeleteBucketResponse) GetBucket() *string {
-	if o == nil || IsNil(o.Bucket) {
-		var ret *string
-		return ret
-	}
-
-	return o.Bucket
+func (o *DeleteBucketResponse) GetBucket() (ret DeleteBucketResponseGetBucketRetType) {
+	ret, _ = o.GetBucketOk()
+	return ret
 }
 
 // GetBucketOk returns a tuple with the Bucket field value
 // and a boolean to check if the value has been set.
-func (o *DeleteBucketResponse) GetBucketOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Bucket, true
+func (o *DeleteBucketResponse) GetBucketOk() (ret DeleteBucketResponseGetBucketRetType, ok bool) {
+	return getDeleteBucketResponseGetBucketAttributeTypeOk(o.Bucket)
 }
 
 // SetBucket sets field value
-func (o *DeleteBucketResponse) SetBucket(v *string) {
-	o.Bucket = v
+func (o *DeleteBucketResponse) SetBucket(v DeleteBucketResponseGetBucketRetType) {
+	setDeleteBucketResponseGetBucketAttributeType(&o.Bucket, v)
 }
 
 // GetProject returns the Project field value
-func (o *DeleteBucketResponse) GetProject() *string {
-	if o == nil || IsNil(o.Project) {
-		var ret *string
-		return ret
-	}
-
-	return o.Project
+func (o *DeleteBucketResponse) GetProject() (ret DeleteBucketResponseGetProjectRetType) {
+	ret, _ = o.GetProjectOk()
+	return ret
 }
 
 // GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *DeleteBucketResponse) GetProjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Project, true
+func (o *DeleteBucketResponse) GetProjectOk() (ret DeleteBucketResponseGetProjectRetType, ok bool) {
+	return getDeleteBucketResponseGetProjectAttributeTypeOk(o.Project)
 }
 
 // SetProject sets field value
-func (o *DeleteBucketResponse) SetProject(v *string) {
-	o.Project = v
+func (o *DeleteBucketResponse) SetProject(v DeleteBucketResponseGetProjectRetType) {
+	setDeleteBucketResponseGetProjectAttributeType(&o.Project, v)
 }
 
 func (o DeleteBucketResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bucket"] = o.Bucket
-	toSerialize["project"] = o.Project
+	if val, ok := getDeleteBucketResponseGetBucketAttributeTypeOk(o.Bucket); ok {
+		toSerialize["Bucket"] = val
+	}
+	if val, ok := getDeleteBucketResponseGetProjectAttributeTypeOk(o.Project); ok {
+		toSerialize["Project"] = val
+	}
 	return toSerialize, nil
 }
 

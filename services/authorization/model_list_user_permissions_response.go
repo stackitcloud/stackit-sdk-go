@@ -17,10 +17,30 @@ import (
 // checks if the ListUserPermissionsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListUserPermissionsResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListUserPermissionsResponseGetItemsAttributeType = *[]UserPermission
+type ListUserPermissionsResponseGetItemsArgType = []UserPermission
+type ListUserPermissionsResponseGetItemsRetType = []UserPermission
+
+func getListUserPermissionsResponseGetItemsAttributeTypeOk(arg ListUserPermissionsResponseGetItemsAttributeType) (ret ListUserPermissionsResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListUserPermissionsResponseGetItemsAttributeType(arg *ListUserPermissionsResponseGetItemsAttributeType, val ListUserPermissionsResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // ListUserPermissionsResponse struct for ListUserPermissionsResponse
 type ListUserPermissionsResponse struct {
 	// REQUIRED
-	Items *[]UserPermission `json:"items"`
+	Items ListUserPermissionsResponseGetItemsAttributeType `json:"items"`
 }
 
 type _ListUserPermissionsResponse ListUserPermissionsResponse
@@ -29,9 +49,9 @@ type _ListUserPermissionsResponse ListUserPermissionsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListUserPermissionsResponse(items *[]UserPermission) *ListUserPermissionsResponse {
+func NewListUserPermissionsResponse(items ListUserPermissionsResponseGetItemsArgType) *ListUserPermissionsResponse {
 	this := ListUserPermissionsResponse{}
-	this.Items = items
+	setListUserPermissionsResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewListUserPermissionsResponseWithDefaults() *ListUserPermissionsResponse {
 }
 
 // GetItems returns the Items field value
-func (o *ListUserPermissionsResponse) GetItems() *[]UserPermission {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]UserPermission
-		return ret
-	}
-
-	return o.Items
+func (o *ListUserPermissionsResponse) GetItems() (ret ListUserPermissionsResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *ListUserPermissionsResponse) GetItemsOk() (*[]UserPermission, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListUserPermissionsResponse) GetItemsOk() (ret ListUserPermissionsResponseGetItemsRetType, ok bool) {
+	return getListUserPermissionsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *ListUserPermissionsResponse) SetItems(v *[]UserPermission) {
-	o.Items = v
+func (o *ListUserPermissionsResponse) SetItems(v ListUserPermissionsResponseGetItemsRetType) {
+	setListUserPermissionsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o ListUserPermissionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getListUserPermissionsResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 

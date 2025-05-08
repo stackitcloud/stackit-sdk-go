@@ -18,23 +18,166 @@ import (
 // checks if the Project type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Project{}
 
+/*
+	types and functions for areaId
+*/
+
+// isModel
+type ProjectGetAreaIdAttributeType = *AreaId
+type ProjectGetAreaIdArgType = AreaId
+type ProjectGetAreaIdRetType = AreaId
+
+func getProjectGetAreaIdAttributeTypeOk(arg ProjectGetAreaIdAttributeType) (ret ProjectGetAreaIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectGetAreaIdAttributeType(arg *ProjectGetAreaIdAttributeType, val ProjectGetAreaIdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type ProjectGetCreatedAtAttributeType = *time.Time
+type ProjectGetCreatedAtArgType = time.Time
+type ProjectGetCreatedAtRetType = time.Time
+
+func getProjectGetCreatedAtAttributeTypeOk(arg ProjectGetCreatedAtAttributeType) (ret ProjectGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectGetCreatedAtAttributeType(arg *ProjectGetCreatedAtAttributeType, val ProjectGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for internetAccess
+*/
+
+// isBoolean
+type ProjectgetInternetAccessAttributeType = *bool
+type ProjectgetInternetAccessArgType = bool
+type ProjectgetInternetAccessRetType = bool
+
+func getProjectgetInternetAccessAttributeTypeOk(arg ProjectgetInternetAccessAttributeType) (ret ProjectgetInternetAccessRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectgetInternetAccessAttributeType(arg *ProjectgetInternetAccessAttributeType, val ProjectgetInternetAccessRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for openstackProjectId
+*/
+
+// isNotNullableString
+type ProjectGetOpenstackProjectIdAttributeType = *string
+
+func getProjectGetOpenstackProjectIdAttributeTypeOk(arg ProjectGetOpenstackProjectIdAttributeType) (ret ProjectGetOpenstackProjectIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectGetOpenstackProjectIdAttributeType(arg *ProjectGetOpenstackProjectIdAttributeType, val ProjectGetOpenstackProjectIdRetType) {
+	*arg = &val
+}
+
+type ProjectGetOpenstackProjectIdArgType = string
+type ProjectGetOpenstackProjectIdRetType = string
+
+/*
+	types and functions for projectId
+*/
+
+// isNotNullableString
+type ProjectGetProjectIdAttributeType = *string
+
+func getProjectGetProjectIdAttributeTypeOk(arg ProjectGetProjectIdAttributeType) (ret ProjectGetProjectIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectGetProjectIdAttributeType(arg *ProjectGetProjectIdAttributeType, val ProjectGetProjectIdRetType) {
+	*arg = &val
+}
+
+type ProjectGetProjectIdArgType = string
+type ProjectGetProjectIdRetType = string
+
+/*
+	types and functions for state
+*/
+
+// isNotNullableString
+type ProjectGetStateAttributeType = *string
+
+func getProjectGetStateAttributeTypeOk(arg ProjectGetStateAttributeType) (ret ProjectGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectGetStateAttributeType(arg *ProjectGetStateAttributeType, val ProjectGetStateRetType) {
+	*arg = &val
+}
+
+type ProjectGetStateArgType = string
+type ProjectGetStateRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type ProjectGetUpdatedAtAttributeType = *time.Time
+type ProjectGetUpdatedAtArgType = time.Time
+type ProjectGetUpdatedAtRetType = time.Time
+
+func getProjectGetUpdatedAtAttributeTypeOk(arg ProjectGetUpdatedAtAttributeType) (ret ProjectGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProjectGetUpdatedAtAttributeType(arg *ProjectGetUpdatedAtAttributeType, val ProjectGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // Project Object that represents a STACKIT project.
 type Project struct {
 	// REQUIRED
-	AreaId *AreaId `json:"areaId"`
+	AreaId ProjectGetAreaIdAttributeType `json:"areaId"`
 	// Date-time when resource was created.
-	CreatedAt      *time.Time `json:"createdAt,omitempty"`
-	InternetAccess *bool      `json:"internetAccess,omitempty"`
+	CreatedAt      ProjectGetCreatedAtAttributeType      `json:"createdAt,omitempty"`
+	InternetAccess ProjectgetInternetAccessAttributeType `json:"internetAccess,omitempty"`
 	// The identifier (ID) of an OpenStack project.
-	OpenstackProjectId *string `json:"openstackProjectId,omitempty"`
+	OpenstackProjectId ProjectGetOpenstackProjectIdAttributeType `json:"openstackProjectId,omitempty"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	ProjectId *string `json:"projectId"`
+	ProjectId ProjectGetProjectIdAttributeType `json:"projectId"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
-	State *string `json:"state"`
+	State ProjectGetStateAttributeType `json:"state"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt ProjectGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 type _Project Project
@@ -43,11 +186,11 @@ type _Project Project
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProject(areaId *AreaId, projectId *string, state *string) *Project {
+func NewProject(areaId ProjectGetAreaIdArgType, projectId ProjectGetProjectIdArgType, state ProjectGetStateArgType) *Project {
 	this := Project{}
-	this.AreaId = areaId
-	this.ProjectId = projectId
-	this.State = state
+	setProjectGetAreaIdAttributeType(&this.AreaId, areaId)
+	setProjectGetProjectIdAttributeType(&this.ProjectId, projectId)
+	setProjectGetStateAttributeType(&this.State, state)
 	return &this
 }
 
@@ -60,221 +203,170 @@ func NewProjectWithDefaults() *Project {
 }
 
 // GetAreaId returns the AreaId field value
-func (o *Project) GetAreaId() *AreaId {
-	if o == nil || IsNil(o.AreaId) {
-		var ret *AreaId
-		return ret
-	}
-
-	return o.AreaId
+func (o *Project) GetAreaId() (ret ProjectGetAreaIdRetType) {
+	ret, _ = o.GetAreaIdOk()
+	return ret
 }
 
 // GetAreaIdOk returns a tuple with the AreaId field value
 // and a boolean to check if the value has been set.
-func (o *Project) GetAreaIdOk() (*AreaId, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AreaId, true
+func (o *Project) GetAreaIdOk() (ret ProjectGetAreaIdRetType, ok bool) {
+	return getProjectGetAreaIdAttributeTypeOk(o.AreaId)
 }
 
 // SetAreaId sets field value
-func (o *Project) SetAreaId(v *AreaId) {
-	o.AreaId = v
+func (o *Project) SetAreaId(v ProjectGetAreaIdRetType) {
+	setProjectGetAreaIdAttributeType(&o.AreaId, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Project) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *Project) GetCreatedAt() (res ProjectGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *Project) GetCreatedAtOk() (ret ProjectGetCreatedAtRetType, ok bool) {
+	return getProjectGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Project) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Project) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *Project) SetCreatedAt(v ProjectGetCreatedAtRetType) {
+	setProjectGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetInternetAccess returns the InternetAccess field value if set, zero value otherwise.
-func (o *Project) GetInternetAccess() *bool {
-	if o == nil || IsNil(o.InternetAccess) {
-		var ret *bool
-		return ret
-	}
-	return o.InternetAccess
+func (o *Project) GetInternetAccess() (res ProjectgetInternetAccessRetType) {
+	res, _ = o.GetInternetAccessOk()
+	return
 }
 
 // GetInternetAccessOk returns a tuple with the InternetAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetInternetAccessOk() (*bool, bool) {
-	if o == nil || IsNil(o.InternetAccess) {
-		return nil, false
-	}
-	return o.InternetAccess, true
+func (o *Project) GetInternetAccessOk() (ret ProjectgetInternetAccessRetType, ok bool) {
+	return getProjectgetInternetAccessAttributeTypeOk(o.InternetAccess)
 }
 
 // HasInternetAccess returns a boolean if a field has been set.
 func (o *Project) HasInternetAccess() bool {
-	if o != nil && !IsNil(o.InternetAccess) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInternetAccessOk()
+	return ok
 }
 
 // SetInternetAccess gets a reference to the given bool and assigns it to the InternetAccess field.
-func (o *Project) SetInternetAccess(v *bool) {
-	o.InternetAccess = v
+func (o *Project) SetInternetAccess(v ProjectgetInternetAccessRetType) {
+	setProjectgetInternetAccessAttributeType(&o.InternetAccess, v)
 }
 
 // GetOpenstackProjectId returns the OpenstackProjectId field value if set, zero value otherwise.
-func (o *Project) GetOpenstackProjectId() *string {
-	if o == nil || IsNil(o.OpenstackProjectId) {
-		var ret *string
-		return ret
-	}
-	return o.OpenstackProjectId
+func (o *Project) GetOpenstackProjectId() (res ProjectGetOpenstackProjectIdRetType) {
+	res, _ = o.GetOpenstackProjectIdOk()
+	return
 }
 
 // GetOpenstackProjectIdOk returns a tuple with the OpenstackProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetOpenstackProjectIdOk() (*string, bool) {
-	if o == nil || IsNil(o.OpenstackProjectId) {
-		return nil, false
-	}
-	return o.OpenstackProjectId, true
+func (o *Project) GetOpenstackProjectIdOk() (ret ProjectGetOpenstackProjectIdRetType, ok bool) {
+	return getProjectGetOpenstackProjectIdAttributeTypeOk(o.OpenstackProjectId)
 }
 
 // HasOpenstackProjectId returns a boolean if a field has been set.
 func (o *Project) HasOpenstackProjectId() bool {
-	if o != nil && !IsNil(o.OpenstackProjectId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOpenstackProjectIdOk()
+	return ok
 }
 
 // SetOpenstackProjectId gets a reference to the given string and assigns it to the OpenstackProjectId field.
-func (o *Project) SetOpenstackProjectId(v *string) {
-	o.OpenstackProjectId = v
+func (o *Project) SetOpenstackProjectId(v ProjectGetOpenstackProjectIdRetType) {
+	setProjectGetOpenstackProjectIdAttributeType(&o.OpenstackProjectId, v)
 }
 
 // GetProjectId returns the ProjectId field value
-func (o *Project) GetProjectId() *string {
-	if o == nil || IsNil(o.ProjectId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ProjectId
+func (o *Project) GetProjectId() (ret ProjectGetProjectIdRetType) {
+	ret, _ = o.GetProjectIdOk()
+	return ret
 }
 
 // GetProjectIdOk returns a tuple with the ProjectId field value
 // and a boolean to check if the value has been set.
-func (o *Project) GetProjectIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProjectId, true
+func (o *Project) GetProjectIdOk() (ret ProjectGetProjectIdRetType, ok bool) {
+	return getProjectGetProjectIdAttributeTypeOk(o.ProjectId)
 }
 
 // SetProjectId sets field value
-func (o *Project) SetProjectId(v *string) {
-	o.ProjectId = v
+func (o *Project) SetProjectId(v ProjectGetProjectIdRetType) {
+	setProjectGetProjectIdAttributeType(&o.ProjectId, v)
 }
 
 // GetState returns the State field value
-func (o *Project) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-
-	return o.State
+func (o *Project) GetState() (ret ProjectGetStateRetType) {
+	ret, _ = o.GetStateOk()
+	return ret
 }
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *Project) GetStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.State, true
+func (o *Project) GetStateOk() (ret ProjectGetStateRetType, ok bool) {
+	return getProjectGetStateAttributeTypeOk(o.State)
 }
 
 // SetState sets field value
-func (o *Project) SetState(v *string) {
-	o.State = v
+func (o *Project) SetState(v ProjectGetStateRetType) {
+	setProjectGetStateAttributeType(&o.State, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Project) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *Project) GetUpdatedAt() (res ProjectGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Project) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *Project) GetUpdatedAtOk() (ret ProjectGetUpdatedAtRetType, ok bool) {
+	return getProjectGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Project) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Project) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *Project) SetUpdatedAt(v ProjectGetUpdatedAtRetType) {
+	setProjectGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 func (o Project) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["areaId"] = o.AreaId
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getProjectGetAreaIdAttributeTypeOk(o.AreaId); ok {
+		toSerialize["AreaId"] = val
 	}
-	if !IsNil(o.InternetAccess) {
-		toSerialize["internetAccess"] = o.InternetAccess
+	if val, ok := getProjectGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if !IsNil(o.OpenstackProjectId) {
-		toSerialize["openstackProjectId"] = o.OpenstackProjectId
+	if val, ok := getProjectgetInternetAccessAttributeTypeOk(o.InternetAccess); ok {
+		toSerialize["InternetAccess"] = val
 	}
-	toSerialize["projectId"] = o.ProjectId
-	toSerialize["state"] = o.State
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getProjectGetOpenstackProjectIdAttributeTypeOk(o.OpenstackProjectId); ok {
+		toSerialize["OpenstackProjectId"] = val
+	}
+	if val, ok := getProjectGetProjectIdAttributeTypeOk(o.ProjectId); ok {
+		toSerialize["ProjectId"] = val
+	}
+	if val, ok := getProjectGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
+	}
+	if val, ok := getProjectGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,26 +17,152 @@ import (
 // checks if the CreateAccessKeyResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateAccessKeyResponse{}
 
+/*
+	types and functions for accessKey
+*/
+
+// isNotNullableString
+type CreateAccessKeyResponseGetAccessKeyAttributeType = *string
+
+func getCreateAccessKeyResponseGetAccessKeyAttributeTypeOk(arg CreateAccessKeyResponseGetAccessKeyAttributeType) (ret CreateAccessKeyResponseGetAccessKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAccessKeyResponseGetAccessKeyAttributeType(arg *CreateAccessKeyResponseGetAccessKeyAttributeType, val CreateAccessKeyResponseGetAccessKeyRetType) {
+	*arg = &val
+}
+
+type CreateAccessKeyResponseGetAccessKeyArgType = string
+type CreateAccessKeyResponseGetAccessKeyRetType = string
+
+/*
+	types and functions for displayName
+*/
+
+// isNotNullableString
+type CreateAccessKeyResponseGetDisplayNameAttributeType = *string
+
+func getCreateAccessKeyResponseGetDisplayNameAttributeTypeOk(arg CreateAccessKeyResponseGetDisplayNameAttributeType) (ret CreateAccessKeyResponseGetDisplayNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAccessKeyResponseGetDisplayNameAttributeType(arg *CreateAccessKeyResponseGetDisplayNameAttributeType, val CreateAccessKeyResponseGetDisplayNameRetType) {
+	*arg = &val
+}
+
+type CreateAccessKeyResponseGetDisplayNameArgType = string
+type CreateAccessKeyResponseGetDisplayNameRetType = string
+
+/*
+	types and functions for expires
+*/
+
+// isNotNullableString
+type CreateAccessKeyResponseGetExpiresAttributeType = *string
+
+func getCreateAccessKeyResponseGetExpiresAttributeTypeOk(arg CreateAccessKeyResponseGetExpiresAttributeType) (ret CreateAccessKeyResponseGetExpiresRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAccessKeyResponseGetExpiresAttributeType(arg *CreateAccessKeyResponseGetExpiresAttributeType, val CreateAccessKeyResponseGetExpiresRetType) {
+	*arg = &val
+}
+
+type CreateAccessKeyResponseGetExpiresArgType = string
+type CreateAccessKeyResponseGetExpiresRetType = string
+
+/*
+	types and functions for keyId
+*/
+
+// isNotNullableString
+type CreateAccessKeyResponseGetKeyIdAttributeType = *string
+
+func getCreateAccessKeyResponseGetKeyIdAttributeTypeOk(arg CreateAccessKeyResponseGetKeyIdAttributeType) (ret CreateAccessKeyResponseGetKeyIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAccessKeyResponseGetKeyIdAttributeType(arg *CreateAccessKeyResponseGetKeyIdAttributeType, val CreateAccessKeyResponseGetKeyIdRetType) {
+	*arg = &val
+}
+
+type CreateAccessKeyResponseGetKeyIdArgType = string
+type CreateAccessKeyResponseGetKeyIdRetType = string
+
+/*
+	types and functions for project
+*/
+
+// isNotNullableString
+type CreateAccessKeyResponseGetProjectAttributeType = *string
+
+func getCreateAccessKeyResponseGetProjectAttributeTypeOk(arg CreateAccessKeyResponseGetProjectAttributeType) (ret CreateAccessKeyResponseGetProjectRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAccessKeyResponseGetProjectAttributeType(arg *CreateAccessKeyResponseGetProjectAttributeType, val CreateAccessKeyResponseGetProjectRetType) {
+	*arg = &val
+}
+
+type CreateAccessKeyResponseGetProjectArgType = string
+type CreateAccessKeyResponseGetProjectRetType = string
+
+/*
+	types and functions for secretAccessKey
+*/
+
+// isNotNullableString
+type CreateAccessKeyResponseGetSecretAccessKeyAttributeType = *string
+
+func getCreateAccessKeyResponseGetSecretAccessKeyAttributeTypeOk(arg CreateAccessKeyResponseGetSecretAccessKeyAttributeType) (ret CreateAccessKeyResponseGetSecretAccessKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAccessKeyResponseGetSecretAccessKeyAttributeType(arg *CreateAccessKeyResponseGetSecretAccessKeyAttributeType, val CreateAccessKeyResponseGetSecretAccessKeyRetType) {
+	*arg = &val
+}
+
+type CreateAccessKeyResponseGetSecretAccessKeyArgType = string
+type CreateAccessKeyResponseGetSecretAccessKeyRetType = string
+
 // CreateAccessKeyResponse struct for CreateAccessKeyResponse
 type CreateAccessKeyResponse struct {
 	// Access key
 	// REQUIRED
-	AccessKey *string `json:"accessKey"`
+	AccessKey CreateAccessKeyResponseGetAccessKeyAttributeType `json:"accessKey"`
 	// Obfuscated access key
 	// REQUIRED
-	DisplayName *string `json:"displayName"`
+	DisplayName CreateAccessKeyResponseGetDisplayNameAttributeType `json:"displayName"`
 	// Expiration date. Null means never expires.
 	// REQUIRED
-	Expires *string `json:"expires"`
+	Expires CreateAccessKeyResponseGetExpiresAttributeType `json:"expires"`
 	// Identifies the pair of access key and secret access key for deletion
 	// REQUIRED
-	KeyId *string `json:"keyId"`
+	KeyId CreateAccessKeyResponseGetKeyIdAttributeType `json:"keyId"`
 	// Project ID
 	// REQUIRED
-	Project *string `json:"project"`
+	Project CreateAccessKeyResponseGetProjectAttributeType `json:"project"`
 	// Secret access key
 	// REQUIRED
-	SecretAccessKey *string `json:"secretAccessKey"`
+	SecretAccessKey CreateAccessKeyResponseGetSecretAccessKeyAttributeType `json:"secretAccessKey"`
 }
 
 type _CreateAccessKeyResponse CreateAccessKeyResponse
@@ -45,14 +171,14 @@ type _CreateAccessKeyResponse CreateAccessKeyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateAccessKeyResponse(accessKey *string, displayName *string, expires *string, keyId *string, project *string, secretAccessKey *string) *CreateAccessKeyResponse {
+func NewCreateAccessKeyResponse(accessKey CreateAccessKeyResponseGetAccessKeyArgType, displayName CreateAccessKeyResponseGetDisplayNameArgType, expires CreateAccessKeyResponseGetExpiresArgType, keyId CreateAccessKeyResponseGetKeyIdArgType, project CreateAccessKeyResponseGetProjectArgType, secretAccessKey CreateAccessKeyResponseGetSecretAccessKeyArgType) *CreateAccessKeyResponse {
 	this := CreateAccessKeyResponse{}
-	this.AccessKey = accessKey
-	this.DisplayName = displayName
-	this.Expires = expires
-	this.KeyId = keyId
-	this.Project = project
-	this.SecretAccessKey = secretAccessKey
+	setCreateAccessKeyResponseGetAccessKeyAttributeType(&this.AccessKey, accessKey)
+	setCreateAccessKeyResponseGetDisplayNameAttributeType(&this.DisplayName, displayName)
+	setCreateAccessKeyResponseGetExpiresAttributeType(&this.Expires, expires)
+	setCreateAccessKeyResponseGetKeyIdAttributeType(&this.KeyId, keyId)
+	setCreateAccessKeyResponseGetProjectAttributeType(&this.Project, project)
+	setCreateAccessKeyResponseGetSecretAccessKeyAttributeType(&this.SecretAccessKey, secretAccessKey)
 	return &this
 }
 
@@ -65,157 +191,127 @@ func NewCreateAccessKeyResponseWithDefaults() *CreateAccessKeyResponse {
 }
 
 // GetAccessKey returns the AccessKey field value
-func (o *CreateAccessKeyResponse) GetAccessKey() *string {
-	if o == nil || IsNil(o.AccessKey) {
-		var ret *string
-		return ret
-	}
-
-	return o.AccessKey
+func (o *CreateAccessKeyResponse) GetAccessKey() (ret CreateAccessKeyResponseGetAccessKeyRetType) {
+	ret, _ = o.GetAccessKeyOk()
+	return ret
 }
 
 // GetAccessKeyOk returns a tuple with the AccessKey field value
 // and a boolean to check if the value has been set.
-func (o *CreateAccessKeyResponse) GetAccessKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AccessKey, true
+func (o *CreateAccessKeyResponse) GetAccessKeyOk() (ret CreateAccessKeyResponseGetAccessKeyRetType, ok bool) {
+	return getCreateAccessKeyResponseGetAccessKeyAttributeTypeOk(o.AccessKey)
 }
 
 // SetAccessKey sets field value
-func (o *CreateAccessKeyResponse) SetAccessKey(v *string) {
-	o.AccessKey = v
+func (o *CreateAccessKeyResponse) SetAccessKey(v CreateAccessKeyResponseGetAccessKeyRetType) {
+	setCreateAccessKeyResponseGetAccessKeyAttributeType(&o.AccessKey, v)
 }
 
 // GetDisplayName returns the DisplayName field value
-func (o *CreateAccessKeyResponse) GetDisplayName() *string {
-	if o == nil || IsNil(o.DisplayName) {
-		var ret *string
-		return ret
-	}
-
-	return o.DisplayName
+func (o *CreateAccessKeyResponse) GetDisplayName() (ret CreateAccessKeyResponseGetDisplayNameRetType) {
+	ret, _ = o.GetDisplayNameOk()
+	return ret
 }
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value
 // and a boolean to check if the value has been set.
-func (o *CreateAccessKeyResponse) GetDisplayNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DisplayName, true
+func (o *CreateAccessKeyResponse) GetDisplayNameOk() (ret CreateAccessKeyResponseGetDisplayNameRetType, ok bool) {
+	return getCreateAccessKeyResponseGetDisplayNameAttributeTypeOk(o.DisplayName)
 }
 
 // SetDisplayName sets field value
-func (o *CreateAccessKeyResponse) SetDisplayName(v *string) {
-	o.DisplayName = v
+func (o *CreateAccessKeyResponse) SetDisplayName(v CreateAccessKeyResponseGetDisplayNameRetType) {
+	setCreateAccessKeyResponseGetDisplayNameAttributeType(&o.DisplayName, v)
 }
 
 // GetExpires returns the Expires field value
-func (o *CreateAccessKeyResponse) GetExpires() *string {
-	if o == nil || IsNil(o.Expires) {
-		var ret *string
-		return ret
-	}
-
-	return o.Expires
+func (o *CreateAccessKeyResponse) GetExpires() (ret CreateAccessKeyResponseGetExpiresRetType) {
+	ret, _ = o.GetExpiresOk()
+	return ret
 }
 
 // GetExpiresOk returns a tuple with the Expires field value
 // and a boolean to check if the value has been set.
-func (o *CreateAccessKeyResponse) GetExpiresOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Expires, true
+func (o *CreateAccessKeyResponse) GetExpiresOk() (ret CreateAccessKeyResponseGetExpiresRetType, ok bool) {
+	return getCreateAccessKeyResponseGetExpiresAttributeTypeOk(o.Expires)
 }
 
 // SetExpires sets field value
-func (o *CreateAccessKeyResponse) SetExpires(v *string) {
-	o.Expires = v
+func (o *CreateAccessKeyResponse) SetExpires(v CreateAccessKeyResponseGetExpiresRetType) {
+	setCreateAccessKeyResponseGetExpiresAttributeType(&o.Expires, v)
 }
 
 // GetKeyId returns the KeyId field value
-func (o *CreateAccessKeyResponse) GetKeyId() *string {
-	if o == nil || IsNil(o.KeyId) {
-		var ret *string
-		return ret
-	}
-
-	return o.KeyId
+func (o *CreateAccessKeyResponse) GetKeyId() (ret CreateAccessKeyResponseGetKeyIdRetType) {
+	ret, _ = o.GetKeyIdOk()
+	return ret
 }
 
 // GetKeyIdOk returns a tuple with the KeyId field value
 // and a boolean to check if the value has been set.
-func (o *CreateAccessKeyResponse) GetKeyIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyId, true
+func (o *CreateAccessKeyResponse) GetKeyIdOk() (ret CreateAccessKeyResponseGetKeyIdRetType, ok bool) {
+	return getCreateAccessKeyResponseGetKeyIdAttributeTypeOk(o.KeyId)
 }
 
 // SetKeyId sets field value
-func (o *CreateAccessKeyResponse) SetKeyId(v *string) {
-	o.KeyId = v
+func (o *CreateAccessKeyResponse) SetKeyId(v CreateAccessKeyResponseGetKeyIdRetType) {
+	setCreateAccessKeyResponseGetKeyIdAttributeType(&o.KeyId, v)
 }
 
 // GetProject returns the Project field value
-func (o *CreateAccessKeyResponse) GetProject() *string {
-	if o == nil || IsNil(o.Project) {
-		var ret *string
-		return ret
-	}
-
-	return o.Project
+func (o *CreateAccessKeyResponse) GetProject() (ret CreateAccessKeyResponseGetProjectRetType) {
+	ret, _ = o.GetProjectOk()
+	return ret
 }
 
 // GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-func (o *CreateAccessKeyResponse) GetProjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Project, true
+func (o *CreateAccessKeyResponse) GetProjectOk() (ret CreateAccessKeyResponseGetProjectRetType, ok bool) {
+	return getCreateAccessKeyResponseGetProjectAttributeTypeOk(o.Project)
 }
 
 // SetProject sets field value
-func (o *CreateAccessKeyResponse) SetProject(v *string) {
-	o.Project = v
+func (o *CreateAccessKeyResponse) SetProject(v CreateAccessKeyResponseGetProjectRetType) {
+	setCreateAccessKeyResponseGetProjectAttributeType(&o.Project, v)
 }
 
 // GetSecretAccessKey returns the SecretAccessKey field value
-func (o *CreateAccessKeyResponse) GetSecretAccessKey() *string {
-	if o == nil || IsNil(o.SecretAccessKey) {
-		var ret *string
-		return ret
-	}
-
-	return o.SecretAccessKey
+func (o *CreateAccessKeyResponse) GetSecretAccessKey() (ret CreateAccessKeyResponseGetSecretAccessKeyRetType) {
+	ret, _ = o.GetSecretAccessKeyOk()
+	return ret
 }
 
 // GetSecretAccessKeyOk returns a tuple with the SecretAccessKey field value
 // and a boolean to check if the value has been set.
-func (o *CreateAccessKeyResponse) GetSecretAccessKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SecretAccessKey, true
+func (o *CreateAccessKeyResponse) GetSecretAccessKeyOk() (ret CreateAccessKeyResponseGetSecretAccessKeyRetType, ok bool) {
+	return getCreateAccessKeyResponseGetSecretAccessKeyAttributeTypeOk(o.SecretAccessKey)
 }
 
 // SetSecretAccessKey sets field value
-func (o *CreateAccessKeyResponse) SetSecretAccessKey(v *string) {
-	o.SecretAccessKey = v
+func (o *CreateAccessKeyResponse) SetSecretAccessKey(v CreateAccessKeyResponseGetSecretAccessKeyRetType) {
+	setCreateAccessKeyResponseGetSecretAccessKeyAttributeType(&o.SecretAccessKey, v)
 }
 
 func (o CreateAccessKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["accessKey"] = o.AccessKey
-	toSerialize["displayName"] = o.DisplayName
-	toSerialize["expires"] = o.Expires
-	toSerialize["keyId"] = o.KeyId
-	toSerialize["project"] = o.Project
-	toSerialize["secretAccessKey"] = o.SecretAccessKey
+	if val, ok := getCreateAccessKeyResponseGetAccessKeyAttributeTypeOk(o.AccessKey); ok {
+		toSerialize["AccessKey"] = val
+	}
+	if val, ok := getCreateAccessKeyResponseGetDisplayNameAttributeTypeOk(o.DisplayName); ok {
+		toSerialize["DisplayName"] = val
+	}
+	if val, ok := getCreateAccessKeyResponseGetExpiresAttributeTypeOk(o.Expires); ok {
+		toSerialize["Expires"] = val
+	}
+	if val, ok := getCreateAccessKeyResponseGetKeyIdAttributeTypeOk(o.KeyId); ok {
+		toSerialize["KeyId"] = val
+	}
+	if val, ok := getCreateAccessKeyResponseGetProjectAttributeTypeOk(o.Project); ok {
+		toSerialize["Project"] = val
+	}
+	if val, ok := getCreateAccessKeyResponseGetSecretAccessKeyAttributeTypeOk(o.SecretAccessKey); ok {
+		toSerialize["SecretAccessKey"] = val
+	}
 	return toSerialize, nil
 }
 

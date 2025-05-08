@@ -17,18 +17,179 @@ import (
 // checks if the Cluster type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Cluster{}
 
+/*
+	types and functions for extensions
+*/
+
+// isModel
+type ClusterGetExtensionsAttributeType = *Extension
+type ClusterGetExtensionsArgType = Extension
+type ClusterGetExtensionsRetType = Extension
+
+func getClusterGetExtensionsAttributeTypeOk(arg ClusterGetExtensionsAttributeType) (ret ClusterGetExtensionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterGetExtensionsAttributeType(arg *ClusterGetExtensionsAttributeType, val ClusterGetExtensionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for hibernation
+*/
+
+// isModel
+type ClusterGetHibernationAttributeType = *Hibernation
+type ClusterGetHibernationArgType = Hibernation
+type ClusterGetHibernationRetType = Hibernation
+
+func getClusterGetHibernationAttributeTypeOk(arg ClusterGetHibernationAttributeType) (ret ClusterGetHibernationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterGetHibernationAttributeType(arg *ClusterGetHibernationAttributeType, val ClusterGetHibernationRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for kubernetes
+*/
+
+// isModel
+type ClusterGetKubernetesAttributeType = *Kubernetes
+type ClusterGetKubernetesArgType = Kubernetes
+type ClusterGetKubernetesRetType = Kubernetes
+
+func getClusterGetKubernetesAttributeTypeOk(arg ClusterGetKubernetesAttributeType) (ret ClusterGetKubernetesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterGetKubernetesAttributeType(arg *ClusterGetKubernetesAttributeType, val ClusterGetKubernetesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for maintenance
+*/
+
+// isModel
+type ClusterGetMaintenanceAttributeType = *Maintenance
+type ClusterGetMaintenanceArgType = Maintenance
+type ClusterGetMaintenanceRetType = Maintenance
+
+func getClusterGetMaintenanceAttributeTypeOk(arg ClusterGetMaintenanceAttributeType) (ret ClusterGetMaintenanceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterGetMaintenanceAttributeType(arg *ClusterGetMaintenanceAttributeType, val ClusterGetMaintenanceRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ClusterGetNameAttributeType = *string
+
+func getClusterGetNameAttributeTypeOk(arg ClusterGetNameAttributeType) (ret ClusterGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterGetNameAttributeType(arg *ClusterGetNameAttributeType, val ClusterGetNameRetType) {
+	*arg = &val
+}
+
+type ClusterGetNameArgType = string
+type ClusterGetNameRetType = string
+
+/*
+	types and functions for network
+*/
+
+// isModel
+type ClusterGetNetworkAttributeType = *Network
+type ClusterGetNetworkArgType = Network
+type ClusterGetNetworkRetType = Network
+
+func getClusterGetNetworkAttributeTypeOk(arg ClusterGetNetworkAttributeType) (ret ClusterGetNetworkRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterGetNetworkAttributeType(arg *ClusterGetNetworkAttributeType, val ClusterGetNetworkRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for nodepools
+*/
+
+// isArray
+type ClusterGetNodepoolsAttributeType = *[]Nodepool
+type ClusterGetNodepoolsArgType = []Nodepool
+type ClusterGetNodepoolsRetType = []Nodepool
+
+func getClusterGetNodepoolsAttributeTypeOk(arg ClusterGetNodepoolsAttributeType) (ret ClusterGetNodepoolsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterGetNodepoolsAttributeType(arg *ClusterGetNodepoolsAttributeType, val ClusterGetNodepoolsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for status
+*/
+
+// isModel
+type ClusterGetStatusAttributeType = *ClusterStatus
+type ClusterGetStatusArgType = ClusterStatus
+type ClusterGetStatusRetType = ClusterStatus
+
+func getClusterGetStatusAttributeTypeOk(arg ClusterGetStatusAttributeType) (ret ClusterGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterGetStatusAttributeType(arg *ClusterGetStatusAttributeType, val ClusterGetStatusRetType) {
+	*arg = &val
+}
+
 // Cluster struct for Cluster
 type Cluster struct {
-	Extensions  *Extension   `json:"extensions,omitempty"`
-	Hibernation *Hibernation `json:"hibernation,omitempty"`
+	Extensions  ClusterGetExtensionsAttributeType  `json:"extensions,omitempty"`
+	Hibernation ClusterGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
-	Kubernetes  *Kubernetes  `json:"kubernetes"`
-	Maintenance *Maintenance `json:"maintenance,omitempty"`
-	Name        *string      `json:"name,omitempty"`
-	Network     *Network     `json:"network,omitempty"`
+	Kubernetes  ClusterGetKubernetesAttributeType  `json:"kubernetes"`
+	Maintenance ClusterGetMaintenanceAttributeType `json:"maintenance,omitempty"`
+	Name        ClusterGetNameAttributeType        `json:"name,omitempty"`
+	Network     ClusterGetNetworkAttributeType     `json:"network,omitempty"`
 	// REQUIRED
-	Nodepools *[]Nodepool    `json:"nodepools"`
-	Status    *ClusterStatus `json:"status,omitempty"`
+	Nodepools ClusterGetNodepoolsAttributeType `json:"nodepools"`
+	Status    ClusterGetStatusAttributeType    `json:"status,omitempty"`
 }
 
 type _Cluster Cluster
@@ -37,10 +198,10 @@ type _Cluster Cluster
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCluster(kubernetes *Kubernetes, nodepools *[]Nodepool) *Cluster {
+func NewCluster(kubernetes ClusterGetKubernetesArgType, nodepools ClusterGetNodepoolsArgType) *Cluster {
 	this := Cluster{}
-	this.Kubernetes = kubernetes
-	this.Nodepools = nodepools
+	setClusterGetKubernetesAttributeType(&this.Kubernetes, kubernetes)
+	setClusterGetNodepoolsAttributeType(&this.Nodepools, nodepools)
 	return &this
 }
 
@@ -53,266 +214,202 @@ func NewClusterWithDefaults() *Cluster {
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
-func (o *Cluster) GetExtensions() *Extension {
-	if o == nil || IsNil(o.Extensions) {
-		var ret *Extension
-		return ret
-	}
-	return o.Extensions
+func (o *Cluster) GetExtensions() (res ClusterGetExtensionsRetType) {
+	res, _ = o.GetExtensionsOk()
+	return
 }
 
 // GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Cluster) GetExtensionsOk() (*Extension, bool) {
-	if o == nil || IsNil(o.Extensions) {
-		return nil, false
-	}
-	return o.Extensions, true
+func (o *Cluster) GetExtensionsOk() (ret ClusterGetExtensionsRetType, ok bool) {
+	return getClusterGetExtensionsAttributeTypeOk(o.Extensions)
 }
 
 // HasExtensions returns a boolean if a field has been set.
 func (o *Cluster) HasExtensions() bool {
-	if o != nil && !IsNil(o.Extensions) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExtensionsOk()
+	return ok
 }
 
 // SetExtensions gets a reference to the given Extension and assigns it to the Extensions field.
-func (o *Cluster) SetExtensions(v *Extension) {
-	o.Extensions = v
+func (o *Cluster) SetExtensions(v ClusterGetExtensionsRetType) {
+	setClusterGetExtensionsAttributeType(&o.Extensions, v)
 }
 
 // GetHibernation returns the Hibernation field value if set, zero value otherwise.
-func (o *Cluster) GetHibernation() *Hibernation {
-	if o == nil || IsNil(o.Hibernation) {
-		var ret *Hibernation
-		return ret
-	}
-	return o.Hibernation
+func (o *Cluster) GetHibernation() (res ClusterGetHibernationRetType) {
+	res, _ = o.GetHibernationOk()
+	return
 }
 
 // GetHibernationOk returns a tuple with the Hibernation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Cluster) GetHibernationOk() (*Hibernation, bool) {
-	if o == nil || IsNil(o.Hibernation) {
-		return nil, false
-	}
-	return o.Hibernation, true
+func (o *Cluster) GetHibernationOk() (ret ClusterGetHibernationRetType, ok bool) {
+	return getClusterGetHibernationAttributeTypeOk(o.Hibernation)
 }
 
 // HasHibernation returns a boolean if a field has been set.
 func (o *Cluster) HasHibernation() bool {
-	if o != nil && !IsNil(o.Hibernation) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHibernationOk()
+	return ok
 }
 
 // SetHibernation gets a reference to the given Hibernation and assigns it to the Hibernation field.
-func (o *Cluster) SetHibernation(v *Hibernation) {
-	o.Hibernation = v
+func (o *Cluster) SetHibernation(v ClusterGetHibernationRetType) {
+	setClusterGetHibernationAttributeType(&o.Hibernation, v)
 }
 
 // GetKubernetes returns the Kubernetes field value
-func (o *Cluster) GetKubernetes() *Kubernetes {
-	if o == nil || IsNil(o.Kubernetes) {
-		var ret *Kubernetes
-		return ret
-	}
-
-	return o.Kubernetes
+func (o *Cluster) GetKubernetes() (ret ClusterGetKubernetesRetType) {
+	ret, _ = o.GetKubernetesOk()
+	return ret
 }
 
 // GetKubernetesOk returns a tuple with the Kubernetes field value
 // and a boolean to check if the value has been set.
-func (o *Cluster) GetKubernetesOk() (*Kubernetes, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Kubernetes, true
+func (o *Cluster) GetKubernetesOk() (ret ClusterGetKubernetesRetType, ok bool) {
+	return getClusterGetKubernetesAttributeTypeOk(o.Kubernetes)
 }
 
 // SetKubernetes sets field value
-func (o *Cluster) SetKubernetes(v *Kubernetes) {
-	o.Kubernetes = v
+func (o *Cluster) SetKubernetes(v ClusterGetKubernetesRetType) {
+	setClusterGetKubernetesAttributeType(&o.Kubernetes, v)
 }
 
 // GetMaintenance returns the Maintenance field value if set, zero value otherwise.
-func (o *Cluster) GetMaintenance() *Maintenance {
-	if o == nil || IsNil(o.Maintenance) {
-		var ret *Maintenance
-		return ret
-	}
-	return o.Maintenance
+func (o *Cluster) GetMaintenance() (res ClusterGetMaintenanceRetType) {
+	res, _ = o.GetMaintenanceOk()
+	return
 }
 
 // GetMaintenanceOk returns a tuple with the Maintenance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Cluster) GetMaintenanceOk() (*Maintenance, bool) {
-	if o == nil || IsNil(o.Maintenance) {
-		return nil, false
-	}
-	return o.Maintenance, true
+func (o *Cluster) GetMaintenanceOk() (ret ClusterGetMaintenanceRetType, ok bool) {
+	return getClusterGetMaintenanceAttributeTypeOk(o.Maintenance)
 }
 
 // HasMaintenance returns a boolean if a field has been set.
 func (o *Cluster) HasMaintenance() bool {
-	if o != nil && !IsNil(o.Maintenance) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMaintenanceOk()
+	return ok
 }
 
 // SetMaintenance gets a reference to the given Maintenance and assigns it to the Maintenance field.
-func (o *Cluster) SetMaintenance(v *Maintenance) {
-	o.Maintenance = v
+func (o *Cluster) SetMaintenance(v ClusterGetMaintenanceRetType) {
+	setClusterGetMaintenanceAttributeType(&o.Maintenance, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Cluster) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Cluster) GetName() (res ClusterGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Cluster) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Cluster) GetNameOk() (ret ClusterGetNameRetType, ok bool) {
+	return getClusterGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Cluster) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Cluster) SetName(v *string) {
-	o.Name = v
+func (o *Cluster) SetName(v ClusterGetNameRetType) {
+	setClusterGetNameAttributeType(&o.Name, v)
 }
 
 // GetNetwork returns the Network field value if set, zero value otherwise.
-func (o *Cluster) GetNetwork() *Network {
-	if o == nil || IsNil(o.Network) {
-		var ret *Network
-		return ret
-	}
-	return o.Network
+func (o *Cluster) GetNetwork() (res ClusterGetNetworkRetType) {
+	res, _ = o.GetNetworkOk()
+	return
 }
 
 // GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Cluster) GetNetworkOk() (*Network, bool) {
-	if o == nil || IsNil(o.Network) {
-		return nil, false
-	}
-	return o.Network, true
+func (o *Cluster) GetNetworkOk() (ret ClusterGetNetworkRetType, ok bool) {
+	return getClusterGetNetworkAttributeTypeOk(o.Network)
 }
 
 // HasNetwork returns a boolean if a field has been set.
 func (o *Cluster) HasNetwork() bool {
-	if o != nil && !IsNil(o.Network) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNetworkOk()
+	return ok
 }
 
 // SetNetwork gets a reference to the given Network and assigns it to the Network field.
-func (o *Cluster) SetNetwork(v *Network) {
-	o.Network = v
+func (o *Cluster) SetNetwork(v ClusterGetNetworkRetType) {
+	setClusterGetNetworkAttributeType(&o.Network, v)
 }
 
 // GetNodepools returns the Nodepools field value
-func (o *Cluster) GetNodepools() *[]Nodepool {
-	if o == nil || IsNil(o.Nodepools) {
-		var ret *[]Nodepool
-		return ret
-	}
-
-	return o.Nodepools
+func (o *Cluster) GetNodepools() (ret ClusterGetNodepoolsRetType) {
+	ret, _ = o.GetNodepoolsOk()
+	return ret
 }
 
 // GetNodepoolsOk returns a tuple with the Nodepools field value
 // and a boolean to check if the value has been set.
-func (o *Cluster) GetNodepoolsOk() (*[]Nodepool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Nodepools, true
+func (o *Cluster) GetNodepoolsOk() (ret ClusterGetNodepoolsRetType, ok bool) {
+	return getClusterGetNodepoolsAttributeTypeOk(o.Nodepools)
 }
 
 // SetNodepools sets field value
-func (o *Cluster) SetNodepools(v *[]Nodepool) {
-	o.Nodepools = v
+func (o *Cluster) SetNodepools(v ClusterGetNodepoolsRetType) {
+	setClusterGetNodepoolsAttributeType(&o.Nodepools, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Cluster) GetStatus() *ClusterStatus {
-	if o == nil || IsNil(o.Status) {
-		var ret *ClusterStatus
-		return ret
-	}
-	return o.Status
+func (o *Cluster) GetStatus() (res ClusterGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Cluster) GetStatusOk() (*ClusterStatus, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *Cluster) GetStatusOk() (ret ClusterGetStatusRetType, ok bool) {
+	return getClusterGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Cluster) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given ClusterStatus and assigns it to the Status field.
-func (o *Cluster) SetStatus(v *ClusterStatus) {
-	o.Status = v
+func (o *Cluster) SetStatus(v ClusterGetStatusRetType) {
+	setClusterGetStatusAttributeType(&o.Status, v)
 }
 
 func (o Cluster) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Extensions) {
-		toSerialize["extensions"] = o.Extensions
+	if val, ok := getClusterGetExtensionsAttributeTypeOk(o.Extensions); ok {
+		toSerialize["Extensions"] = val
 	}
-	if !IsNil(o.Hibernation) {
-		toSerialize["hibernation"] = o.Hibernation
+	if val, ok := getClusterGetHibernationAttributeTypeOk(o.Hibernation); ok {
+		toSerialize["Hibernation"] = val
 	}
-	toSerialize["kubernetes"] = o.Kubernetes
-	if !IsNil(o.Maintenance) {
-		toSerialize["maintenance"] = o.Maintenance
+	if val, ok := getClusterGetKubernetesAttributeTypeOk(o.Kubernetes); ok {
+		toSerialize["Kubernetes"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getClusterGetMaintenanceAttributeTypeOk(o.Maintenance); ok {
+		toSerialize["Maintenance"] = val
 	}
-	if !IsNil(o.Network) {
-		toSerialize["network"] = o.Network
+	if val, ok := getClusterGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	toSerialize["nodepools"] = o.Nodepools
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getClusterGetNetworkAttributeTypeOk(o.Network); ok {
+		toSerialize["Network"] = val
+	}
+	if val, ok := getClusterGetNodepoolsAttributeTypeOk(o.Nodepools); ok {
+		toSerialize["Nodepools"] = val
+	}
+	if val, ok := getClusterGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
 }

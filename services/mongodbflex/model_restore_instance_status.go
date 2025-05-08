@@ -17,13 +17,118 @@ import (
 // checks if the RestoreInstanceStatus type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RestoreInstanceStatus{}
 
+/*
+	types and functions for backupID
+*/
+
+// isNotNullableString
+type RestoreInstanceStatusGetBackupIDAttributeType = *string
+
+func getRestoreInstanceStatusGetBackupIDAttributeTypeOk(arg RestoreInstanceStatusGetBackupIDAttributeType) (ret RestoreInstanceStatusGetBackupIDRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreInstanceStatusGetBackupIDAttributeType(arg *RestoreInstanceStatusGetBackupIDAttributeType, val RestoreInstanceStatusGetBackupIDRetType) {
+	*arg = &val
+}
+
+type RestoreInstanceStatusGetBackupIDArgType = string
+type RestoreInstanceStatusGetBackupIDRetType = string
+
+/*
+	types and functions for date
+*/
+
+// isNotNullableString
+type RestoreInstanceStatusGetDateAttributeType = *string
+
+func getRestoreInstanceStatusGetDateAttributeTypeOk(arg RestoreInstanceStatusGetDateAttributeType) (ret RestoreInstanceStatusGetDateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreInstanceStatusGetDateAttributeType(arg *RestoreInstanceStatusGetDateAttributeType, val RestoreInstanceStatusGetDateRetType) {
+	*arg = &val
+}
+
+type RestoreInstanceStatusGetDateArgType = string
+type RestoreInstanceStatusGetDateRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type RestoreInstanceStatusGetIdAttributeType = *string
+
+func getRestoreInstanceStatusGetIdAttributeTypeOk(arg RestoreInstanceStatusGetIdAttributeType) (ret RestoreInstanceStatusGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreInstanceStatusGetIdAttributeType(arg *RestoreInstanceStatusGetIdAttributeType, val RestoreInstanceStatusGetIdRetType) {
+	*arg = &val
+}
+
+type RestoreInstanceStatusGetIdArgType = string
+type RestoreInstanceStatusGetIdRetType = string
+
+/*
+	types and functions for instanceId
+*/
+
+// isNotNullableString
+type RestoreInstanceStatusGetInstanceIdAttributeType = *string
+
+func getRestoreInstanceStatusGetInstanceIdAttributeTypeOk(arg RestoreInstanceStatusGetInstanceIdAttributeType) (ret RestoreInstanceStatusGetInstanceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreInstanceStatusGetInstanceIdAttributeType(arg *RestoreInstanceStatusGetInstanceIdAttributeType, val RestoreInstanceStatusGetInstanceIdRetType) {
+	*arg = &val
+}
+
+type RestoreInstanceStatusGetInstanceIdArgType = string
+type RestoreInstanceStatusGetInstanceIdRetType = string
+
+/*
+	types and functions for status
+*/
+
+// isNotNullableString
+type RestoreInstanceStatusGetStatusAttributeType = *string
+
+func getRestoreInstanceStatusGetStatusAttributeTypeOk(arg RestoreInstanceStatusGetStatusAttributeType) (ret RestoreInstanceStatusGetStatusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRestoreInstanceStatusGetStatusAttributeType(arg *RestoreInstanceStatusGetStatusAttributeType, val RestoreInstanceStatusGetStatusRetType) {
+	*arg = &val
+}
+
+type RestoreInstanceStatusGetStatusArgType = string
+type RestoreInstanceStatusGetStatusRetType = string
+
 // RestoreInstanceStatus struct for RestoreInstanceStatus
 type RestoreInstanceStatus struct {
-	BackupID   *string `json:"backupID,omitempty"`
-	Date       *string `json:"date,omitempty"`
-	Id         *string `json:"id,omitempty"`
-	InstanceId *string `json:"instanceId,omitempty"`
-	Status     *string `json:"status,omitempty"`
+	BackupID   RestoreInstanceStatusGetBackupIDAttributeType   `json:"backupID,omitempty"`
+	Date       RestoreInstanceStatusGetDateAttributeType       `json:"date,omitempty"`
+	Id         RestoreInstanceStatusGetIdAttributeType         `json:"id,omitempty"`
+	InstanceId RestoreInstanceStatusGetInstanceIdAttributeType `json:"instanceId,omitempty"`
+	Status     RestoreInstanceStatusGetStatusAttributeType     `json:"status,omitempty"`
 }
 
 // NewRestoreInstanceStatus instantiates a new RestoreInstanceStatus object
@@ -44,181 +149,136 @@ func NewRestoreInstanceStatusWithDefaults() *RestoreInstanceStatus {
 }
 
 // GetBackupID returns the BackupID field value if set, zero value otherwise.
-func (o *RestoreInstanceStatus) GetBackupID() *string {
-	if o == nil || IsNil(o.BackupID) {
-		var ret *string
-		return ret
-	}
-	return o.BackupID
+func (o *RestoreInstanceStatus) GetBackupID() (res RestoreInstanceStatusGetBackupIDRetType) {
+	res, _ = o.GetBackupIDOk()
+	return
 }
 
 // GetBackupIDOk returns a tuple with the BackupID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreInstanceStatus) GetBackupIDOk() (*string, bool) {
-	if o == nil || IsNil(o.BackupID) {
-		return nil, false
-	}
-	return o.BackupID, true
+func (o *RestoreInstanceStatus) GetBackupIDOk() (ret RestoreInstanceStatusGetBackupIDRetType, ok bool) {
+	return getRestoreInstanceStatusGetBackupIDAttributeTypeOk(o.BackupID)
 }
 
 // HasBackupID returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasBackupID() bool {
-	if o != nil && !IsNil(o.BackupID) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBackupIDOk()
+	return ok
 }
 
 // SetBackupID gets a reference to the given string and assigns it to the BackupID field.
-func (o *RestoreInstanceStatus) SetBackupID(v *string) {
-	o.BackupID = v
+func (o *RestoreInstanceStatus) SetBackupID(v RestoreInstanceStatusGetBackupIDRetType) {
+	setRestoreInstanceStatusGetBackupIDAttributeType(&o.BackupID, v)
 }
 
 // GetDate returns the Date field value if set, zero value otherwise.
-func (o *RestoreInstanceStatus) GetDate() *string {
-	if o == nil || IsNil(o.Date) {
-		var ret *string
-		return ret
-	}
-	return o.Date
+func (o *RestoreInstanceStatus) GetDate() (res RestoreInstanceStatusGetDateRetType) {
+	res, _ = o.GetDateOk()
+	return
 }
 
 // GetDateOk returns a tuple with the Date field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreInstanceStatus) GetDateOk() (*string, bool) {
-	if o == nil || IsNil(o.Date) {
-		return nil, false
-	}
-	return o.Date, true
+func (o *RestoreInstanceStatus) GetDateOk() (ret RestoreInstanceStatusGetDateRetType, ok bool) {
+	return getRestoreInstanceStatusGetDateAttributeTypeOk(o.Date)
 }
 
 // HasDate returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasDate() bool {
-	if o != nil && !IsNil(o.Date) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDateOk()
+	return ok
 }
 
 // SetDate gets a reference to the given string and assigns it to the Date field.
-func (o *RestoreInstanceStatus) SetDate(v *string) {
-	o.Date = v
+func (o *RestoreInstanceStatus) SetDate(v RestoreInstanceStatusGetDateRetType) {
+	setRestoreInstanceStatusGetDateAttributeType(&o.Date, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *RestoreInstanceStatus) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *RestoreInstanceStatus) GetId() (res RestoreInstanceStatusGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreInstanceStatus) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *RestoreInstanceStatus) GetIdOk() (ret RestoreInstanceStatusGetIdRetType, ok bool) {
+	return getRestoreInstanceStatusGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *RestoreInstanceStatus) SetId(v *string) {
-	o.Id = v
+func (o *RestoreInstanceStatus) SetId(v RestoreInstanceStatusGetIdRetType) {
+	setRestoreInstanceStatusGetIdAttributeType(&o.Id, v)
 }
 
 // GetInstanceId returns the InstanceId field value if set, zero value otherwise.
-func (o *RestoreInstanceStatus) GetInstanceId() *string {
-	if o == nil || IsNil(o.InstanceId) {
-		var ret *string
-		return ret
-	}
-	return o.InstanceId
+func (o *RestoreInstanceStatus) GetInstanceId() (res RestoreInstanceStatusGetInstanceIdRetType) {
+	res, _ = o.GetInstanceIdOk()
+	return
 }
 
 // GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreInstanceStatus) GetInstanceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.InstanceId) {
-		return nil, false
-	}
-	return o.InstanceId, true
+func (o *RestoreInstanceStatus) GetInstanceIdOk() (ret RestoreInstanceStatusGetInstanceIdRetType, ok bool) {
+	return getRestoreInstanceStatusGetInstanceIdAttributeTypeOk(o.InstanceId)
 }
 
 // HasInstanceId returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasInstanceId() bool {
-	if o != nil && !IsNil(o.InstanceId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInstanceIdOk()
+	return ok
 }
 
 // SetInstanceId gets a reference to the given string and assigns it to the InstanceId field.
-func (o *RestoreInstanceStatus) SetInstanceId(v *string) {
-	o.InstanceId = v
+func (o *RestoreInstanceStatus) SetInstanceId(v RestoreInstanceStatusGetInstanceIdRetType) {
+	setRestoreInstanceStatusGetInstanceIdAttributeType(&o.InstanceId, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *RestoreInstanceStatus) GetStatus() *string {
-	if o == nil || IsNil(o.Status) {
-		var ret *string
-		return ret
-	}
-	return o.Status
+func (o *RestoreInstanceStatus) GetStatus() (res RestoreInstanceStatusGetStatusRetType) {
+	res, _ = o.GetStatusOk()
+	return
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RestoreInstanceStatus) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
+func (o *RestoreInstanceStatus) GetStatusOk() (ret RestoreInstanceStatusGetStatusRetType, ok bool) {
+	return getRestoreInstanceStatusGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *RestoreInstanceStatus) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatusOk()
+	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *RestoreInstanceStatus) SetStatus(v *string) {
-	o.Status = v
+func (o *RestoreInstanceStatus) SetStatus(v RestoreInstanceStatusGetStatusRetType) {
+	setRestoreInstanceStatusGetStatusAttributeType(&o.Status, v)
 }
 
 func (o RestoreInstanceStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BackupID) {
-		toSerialize["backupID"] = o.BackupID
+	if val, ok := getRestoreInstanceStatusGetBackupIDAttributeTypeOk(o.BackupID); ok {
+		toSerialize["BackupID"] = val
 	}
-	if !IsNil(o.Date) {
-		toSerialize["date"] = o.Date
+	if val, ok := getRestoreInstanceStatusGetDateAttributeTypeOk(o.Date); ok {
+		toSerialize["Date"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getRestoreInstanceStatusGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.InstanceId) {
-		toSerialize["instanceId"] = o.InstanceId
+	if val, ok := getRestoreInstanceStatusGetInstanceIdAttributeTypeOk(o.InstanceId); ok {
+		toSerialize["InstanceId"] = val
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
+	if val, ok := getRestoreInstanceStatusGetStatusAttributeTypeOk(o.Status); ok {
+		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
 }

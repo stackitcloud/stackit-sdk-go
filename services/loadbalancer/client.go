@@ -66,10 +66,7 @@ func NewAPIClient(opts ...config.ConfigurationOption) (*APIClient, error) {
 		}
 	}
 
-	err := config.ConfigureRegion(cfg)
-	if err != nil {
-		return nil, fmt.Errorf("configuring region: %w", err)
-	}
+	// using new regional api, so no region is set here
 
 	if cfg.HTTPClient == nil {
 		cfg.HTTPClient = &http.Client{}
@@ -308,7 +305,7 @@ func (c *APIClient) prepareRequest(
 	var body *bytes.Buffer
 
 	// Detect postBody type and post.
-	if postBody != nil {
+	if !IsNil(postBody) {
 		contentType := headerParams["Content-Type"]
 		if contentType == "" {
 			contentType = detectContentType(postBody)

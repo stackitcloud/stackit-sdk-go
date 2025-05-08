@@ -17,9 +17,29 @@ import (
 // checks if the ListClustersResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListClustersResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListClustersResponseGetItemsAttributeType = *[]Cluster
+type ListClustersResponseGetItemsArgType = []Cluster
+type ListClustersResponseGetItemsRetType = []Cluster
+
+func getListClustersResponseGetItemsAttributeTypeOk(arg ListClustersResponseGetItemsAttributeType) (ret ListClustersResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListClustersResponseGetItemsAttributeType(arg *ListClustersResponseGetItemsAttributeType, val ListClustersResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // ListClustersResponse struct for ListClustersResponse
 type ListClustersResponse struct {
-	Items *[]Cluster `json:"items,omitempty"`
+	Items ListClustersResponseGetItemsAttributeType `json:"items,omitempty"`
 }
 
 // NewListClustersResponse instantiates a new ListClustersResponse object
@@ -40,41 +60,32 @@ func NewListClustersResponseWithDefaults() *ListClustersResponse {
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *ListClustersResponse) GetItems() *[]Cluster {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]Cluster
-		return ret
-	}
-	return o.Items
+func (o *ListClustersResponse) GetItems() (res ListClustersResponseGetItemsRetType) {
+	res, _ = o.GetItemsOk()
+	return
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListClustersResponse) GetItemsOk() (*[]Cluster, bool) {
-	if o == nil || IsNil(o.Items) {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListClustersResponse) GetItemsOk() (ret ListClustersResponseGetItemsRetType, ok bool) {
+	return getListClustersResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *ListClustersResponse) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemsOk()
+	return ok
 }
 
 // SetItems gets a reference to the given []Cluster and assigns it to the Items field.
-func (o *ListClustersResponse) SetItems(v *[]Cluster) {
-	o.Items = v
+func (o *ListClustersResponse) SetItems(v ListClustersResponseGetItemsRetType) {
+	setListClustersResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o ListClustersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Items) {
-		toSerialize["items"] = o.Items
+	if val, ok := getListClustersResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
 }

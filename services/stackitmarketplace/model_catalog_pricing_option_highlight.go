@@ -17,10 +17,31 @@ import (
 // checks if the CatalogPricingOptionHighlight type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CatalogPricingOptionHighlight{}
 
+/*
+	types and functions for highlightContent
+*/
+
+// isNotNullableString
+type CatalogPricingOptionHighlightGetHighlightContentAttributeType = *string
+
+func getCatalogPricingOptionHighlightGetHighlightContentAttributeTypeOk(arg CatalogPricingOptionHighlightGetHighlightContentAttributeType) (ret CatalogPricingOptionHighlightGetHighlightContentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogPricingOptionHighlightGetHighlightContentAttributeType(arg *CatalogPricingOptionHighlightGetHighlightContentAttributeType, val CatalogPricingOptionHighlightGetHighlightContentRetType) {
+	*arg = &val
+}
+
+type CatalogPricingOptionHighlightGetHighlightContentArgType = string
+type CatalogPricingOptionHighlightGetHighlightContentRetType = string
+
 // CatalogPricingOptionHighlight struct for CatalogPricingOptionHighlight
 type CatalogPricingOptionHighlight struct {
 	// The highlight content.
-	HighlightContent *string `json:"highlightContent,omitempty"`
+	HighlightContent CatalogPricingOptionHighlightGetHighlightContentAttributeType `json:"highlightContent,omitempty"`
 }
 
 // NewCatalogPricingOptionHighlight instantiates a new CatalogPricingOptionHighlight object
@@ -41,41 +62,32 @@ func NewCatalogPricingOptionHighlightWithDefaults() *CatalogPricingOptionHighlig
 }
 
 // GetHighlightContent returns the HighlightContent field value if set, zero value otherwise.
-func (o *CatalogPricingOptionHighlight) GetHighlightContent() *string {
-	if o == nil || IsNil(o.HighlightContent) {
-		var ret *string
-		return ret
-	}
-	return o.HighlightContent
+func (o *CatalogPricingOptionHighlight) GetHighlightContent() (res CatalogPricingOptionHighlightGetHighlightContentRetType) {
+	res, _ = o.GetHighlightContentOk()
+	return
 }
 
 // GetHighlightContentOk returns a tuple with the HighlightContent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogPricingOptionHighlight) GetHighlightContentOk() (*string, bool) {
-	if o == nil || IsNil(o.HighlightContent) {
-		return nil, false
-	}
-	return o.HighlightContent, true
+func (o *CatalogPricingOptionHighlight) GetHighlightContentOk() (ret CatalogPricingOptionHighlightGetHighlightContentRetType, ok bool) {
+	return getCatalogPricingOptionHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent)
 }
 
 // HasHighlightContent returns a boolean if a field has been set.
 func (o *CatalogPricingOptionHighlight) HasHighlightContent() bool {
-	if o != nil && !IsNil(o.HighlightContent) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHighlightContentOk()
+	return ok
 }
 
 // SetHighlightContent gets a reference to the given string and assigns it to the HighlightContent field.
-func (o *CatalogPricingOptionHighlight) SetHighlightContent(v *string) {
-	o.HighlightContent = v
+func (o *CatalogPricingOptionHighlight) SetHighlightContent(v CatalogPricingOptionHighlightGetHighlightContentRetType) {
+	setCatalogPricingOptionHighlightGetHighlightContentAttributeType(&o.HighlightContent, v)
 }
 
 func (o CatalogPricingOptionHighlight) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.HighlightContent) {
-		toSerialize["highlightContent"] = o.HighlightContent
+	if val, ok := getCatalogPricingOptionHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent); ok {
+		toSerialize["HighlightContent"] = val
 	}
 	return toSerialize, nil
 }

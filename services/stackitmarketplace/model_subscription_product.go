@@ -17,32 +17,240 @@ import (
 // checks if the SubscriptionProduct type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SubscriptionProduct{}
 
-// SubscriptionProduct struct for SubscriptionProduct
+/*
+	types and functions for deliveryMethod
+*/
+
+// isEnumRef
+type SubscriptionProductGetDeliveryMethodAttributeType = *DeliveryMethod
+type SubscriptionProductGetDeliveryMethodArgType = DeliveryMethod
+type SubscriptionProductGetDeliveryMethodRetType = DeliveryMethod
+
+func getSubscriptionProductGetDeliveryMethodAttributeTypeOk(arg SubscriptionProductGetDeliveryMethodAttributeType) (ret SubscriptionProductGetDeliveryMethodRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetDeliveryMethodAttributeType(arg *SubscriptionProductGetDeliveryMethodAttributeType, val SubscriptionProductGetDeliveryMethodRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for lifecycleState
+*/
+
+// isEnumRef
+type SubscriptionProductGetLifecycleStateAttributeType = *ProductLifecycleState
+type SubscriptionProductGetLifecycleStateArgType = ProductLifecycleState
+type SubscriptionProductGetLifecycleStateRetType = ProductLifecycleState
+
+func getSubscriptionProductGetLifecycleStateAttributeTypeOk(arg SubscriptionProductGetLifecycleStateAttributeType) (ret SubscriptionProductGetLifecycleStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetLifecycleStateAttributeType(arg *SubscriptionProductGetLifecycleStateAttributeType, val SubscriptionProductGetLifecycleStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for priceType
+*/
+
+// isEnumRef
+type SubscriptionProductGetPriceTypeAttributeType = *PriceType
+type SubscriptionProductGetPriceTypeArgType = PriceType
+type SubscriptionProductGetPriceTypeRetType = PriceType
+
+func getSubscriptionProductGetPriceTypeAttributeTypeOk(arg SubscriptionProductGetPriceTypeAttributeType) (ret SubscriptionProductGetPriceTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetPriceTypeAttributeType(arg *SubscriptionProductGetPriceTypeAttributeType, val SubscriptionProductGetPriceTypeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for pricingPlan
+*/
+
+// isNotNullableString
+type SubscriptionProductGetPricingPlanAttributeType = *string
+
+func getSubscriptionProductGetPricingPlanAttributeTypeOk(arg SubscriptionProductGetPricingPlanAttributeType) (ret SubscriptionProductGetPricingPlanRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetPricingPlanAttributeType(arg *SubscriptionProductGetPricingPlanAttributeType, val SubscriptionProductGetPricingPlanRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetPricingPlanArgType = string
+type SubscriptionProductGetPricingPlanRetType = string
+
+/*
+	types and functions for productId
+*/
+
+// isNotNullableString
+type SubscriptionProductGetProductIdAttributeType = *string
+
+func getSubscriptionProductGetProductIdAttributeTypeOk(arg SubscriptionProductGetProductIdAttributeType) (ret SubscriptionProductGetProductIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetProductIdAttributeType(arg *SubscriptionProductGetProductIdAttributeType, val SubscriptionProductGetProductIdRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetProductIdArgType = string
+type SubscriptionProductGetProductIdRetType = string
+
+/*
+	types and functions for productName
+*/
+
+// isNotNullableString
+type SubscriptionProductGetProductNameAttributeType = *string
+
+func getSubscriptionProductGetProductNameAttributeTypeOk(arg SubscriptionProductGetProductNameAttributeType) (ret SubscriptionProductGetProductNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetProductNameAttributeType(arg *SubscriptionProductGetProductNameAttributeType, val SubscriptionProductGetProductNameRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetProductNameArgType = string
+type SubscriptionProductGetProductNameRetType = string
+
+/*
+	types and functions for vendorName
+*/
+
+// isNotNullableString
+type SubscriptionProductGetVendorNameAttributeType = *string
+
+func getSubscriptionProductGetVendorNameAttributeTypeOk(arg SubscriptionProductGetVendorNameAttributeType) (ret SubscriptionProductGetVendorNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetVendorNameAttributeType(arg *SubscriptionProductGetVendorNameAttributeType, val SubscriptionProductGetVendorNameRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetVendorNameArgType = string
+type SubscriptionProductGetVendorNameRetType = string
+
+/*
+	types and functions for vendorPlanId
+*/
+
+// isNotNullableString
+type SubscriptionProductGetVendorPlanIdAttributeType = *string
+
+func getSubscriptionProductGetVendorPlanIdAttributeTypeOk(arg SubscriptionProductGetVendorPlanIdAttributeType) (ret SubscriptionProductGetVendorPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetVendorPlanIdAttributeType(arg *SubscriptionProductGetVendorPlanIdAttributeType, val SubscriptionProductGetVendorPlanIdRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetVendorPlanIdArgType = string
+type SubscriptionProductGetVendorPlanIdRetType = string
+
+/*
+	types and functions for vendorProductId
+*/
+
+// isNotNullableString
+type SubscriptionProductGetVendorProductIdAttributeType = *string
+
+func getSubscriptionProductGetVendorProductIdAttributeTypeOk(arg SubscriptionProductGetVendorProductIdAttributeType) (ret SubscriptionProductGetVendorProductIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetVendorProductIdAttributeType(arg *SubscriptionProductGetVendorProductIdAttributeType, val SubscriptionProductGetVendorProductIdRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetVendorProductIdArgType = string
+type SubscriptionProductGetVendorProductIdRetType = string
+
+/*
+	types and functions for vendorWebsiteUrl
+*/
+
+// isNotNullableString
+type SubscriptionProductGetVendorWebsiteUrlAttributeType = *string
+
+func getSubscriptionProductGetVendorWebsiteUrlAttributeTypeOk(arg SubscriptionProductGetVendorWebsiteUrlAttributeType) (ret SubscriptionProductGetVendorWebsiteUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetVendorWebsiteUrlAttributeType(arg *SubscriptionProductGetVendorWebsiteUrlAttributeType, val SubscriptionProductGetVendorWebsiteUrlRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetVendorWebsiteUrlArgType = string
+type SubscriptionProductGetVendorWebsiteUrlRetType = string
+
+// SubscriptionProduct The product of a subscription
 type SubscriptionProduct struct {
-	// The product's delivery method.
 	// REQUIRED
-	DeliveryMethod *string `json:"deliveryMethod"`
-	// The lifecycle state of the product.
+	DeliveryMethod SubscriptionProductGetDeliveryMethodAttributeType `json:"deliveryMethod"`
 	// REQUIRED
-	LifecycleState *string `json:"lifecycleState"`
-	// The product's price type.
+	LifecycleState SubscriptionProductGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// REQUIRED
-	PriceType *string `json:"priceType"`
-	// The product's pricing plan.
+	PriceType SubscriptionProductGetPriceTypeAttributeType `json:"priceType"`
+	// Additional price type information.
 	// REQUIRED
-	PricingPlan *string `json:"pricingPlan"`
-	// The product ID.
+	PricingPlan SubscriptionProductGetPricingPlanAttributeType `json:"pricingPlan"`
+	// The user-readable product ID.
 	// REQUIRED
-	ProductId *string `json:"productId"`
+	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId"`
 	// The name of the product.
 	// REQUIRED
-	ProductName *string `json:"productName"`
+	ProductName SubscriptionProductGetProductNameAttributeType `json:"productName"`
 	// The product's vendor name.
 	// REQUIRED
-	VendorName *string `json:"vendorName"`
-	// The vendor's website.
+	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName"`
+	// The vendor provided plan ID.
+	VendorPlanId SubscriptionProductGetVendorPlanIdAttributeType `json:"vendorPlanId,omitempty"`
+	// The vendor provided product ID.
+	VendorProductId SubscriptionProductGetVendorProductIdAttributeType `json:"vendorProductId,omitempty"`
+	// Uniform Resource Locator.
 	// REQUIRED
-	VendorWebsiteUrl *string `json:"vendorWebsiteUrl"`
+	VendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlAttributeType `json:"vendorWebsiteUrl"`
 }
 
 type _SubscriptionProduct SubscriptionProduct
@@ -51,16 +259,16 @@ type _SubscriptionProduct SubscriptionProduct
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionProduct(deliveryMethod *string, lifecycleState *string, priceType *string, pricingPlan *string, productId *string, productName *string, vendorName *string, vendorWebsiteUrl *string) *SubscriptionProduct {
+func NewSubscriptionProduct(deliveryMethod SubscriptionProductGetDeliveryMethodArgType, lifecycleState SubscriptionProductGetLifecycleStateArgType, priceType SubscriptionProductGetPriceTypeArgType, pricingPlan SubscriptionProductGetPricingPlanArgType, productId SubscriptionProductGetProductIdArgType, productName SubscriptionProductGetProductNameArgType, vendorName SubscriptionProductGetVendorNameArgType, vendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlArgType) *SubscriptionProduct {
 	this := SubscriptionProduct{}
-	this.DeliveryMethod = deliveryMethod
-	this.LifecycleState = lifecycleState
-	this.PriceType = priceType
-	this.PricingPlan = pricingPlan
-	this.ProductId = productId
-	this.ProductName = productName
-	this.VendorName = vendorName
-	this.VendorWebsiteUrl = vendorWebsiteUrl
+	setSubscriptionProductGetDeliveryMethodAttributeType(&this.DeliveryMethod, deliveryMethod)
+	setSubscriptionProductGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
+	setSubscriptionProductGetPriceTypeAttributeType(&this.PriceType, priceType)
+	setSubscriptionProductGetPricingPlanAttributeType(&this.PricingPlan, pricingPlan)
+	setSubscriptionProductGetProductIdAttributeType(&this.ProductId, productId)
+	setSubscriptionProductGetProductNameAttributeType(&this.ProductName, productName)
+	setSubscriptionProductGetVendorNameAttributeType(&this.VendorName, vendorName)
+	setSubscriptionProductGetVendorWebsiteUrlAttributeType(&this.VendorWebsiteUrl, vendorWebsiteUrl)
 	return &this
 }
 
@@ -73,207 +281,219 @@ func NewSubscriptionProductWithDefaults() *SubscriptionProduct {
 }
 
 // GetDeliveryMethod returns the DeliveryMethod field value
-func (o *SubscriptionProduct) GetDeliveryMethod() *string {
-	if o == nil || IsNil(o.DeliveryMethod) {
-		var ret *string
-		return ret
-	}
-
-	return o.DeliveryMethod
+func (o *SubscriptionProduct) GetDeliveryMethod() (ret SubscriptionProductGetDeliveryMethodRetType) {
+	ret, _ = o.GetDeliveryMethodOk()
+	return ret
 }
 
 // GetDeliveryMethodOk returns a tuple with the DeliveryMethod field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionProduct) GetDeliveryMethodOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DeliveryMethod, true
+func (o *SubscriptionProduct) GetDeliveryMethodOk() (ret SubscriptionProductGetDeliveryMethodRetType, ok bool) {
+	return getSubscriptionProductGetDeliveryMethodAttributeTypeOk(o.DeliveryMethod)
 }
 
 // SetDeliveryMethod sets field value
-func (o *SubscriptionProduct) SetDeliveryMethod(v *string) {
-	o.DeliveryMethod = v
+func (o *SubscriptionProduct) SetDeliveryMethod(v SubscriptionProductGetDeliveryMethodRetType) {
+	setSubscriptionProductGetDeliveryMethodAttributeType(&o.DeliveryMethod, v)
 }
 
 // GetLifecycleState returns the LifecycleState field value
-func (o *SubscriptionProduct) GetLifecycleState() *string {
-	if o == nil || IsNil(o.LifecycleState) {
-		var ret *string
-		return ret
-	}
-
-	return o.LifecycleState
+func (o *SubscriptionProduct) GetLifecycleState() (ret SubscriptionProductGetLifecycleStateRetType) {
+	ret, _ = o.GetLifecycleStateOk()
+	return ret
 }
 
 // GetLifecycleStateOk returns a tuple with the LifecycleState field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionProduct) GetLifecycleStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LifecycleState, true
+func (o *SubscriptionProduct) GetLifecycleStateOk() (ret SubscriptionProductGetLifecycleStateRetType, ok bool) {
+	return getSubscriptionProductGetLifecycleStateAttributeTypeOk(o.LifecycleState)
 }
 
 // SetLifecycleState sets field value
-func (o *SubscriptionProduct) SetLifecycleState(v *string) {
-	o.LifecycleState = v
+func (o *SubscriptionProduct) SetLifecycleState(v SubscriptionProductGetLifecycleStateRetType) {
+	setSubscriptionProductGetLifecycleStateAttributeType(&o.LifecycleState, v)
 }
 
 // GetPriceType returns the PriceType field value
-func (o *SubscriptionProduct) GetPriceType() *string {
-	if o == nil || IsNil(o.PriceType) {
-		var ret *string
-		return ret
-	}
-
-	return o.PriceType
+func (o *SubscriptionProduct) GetPriceType() (ret SubscriptionProductGetPriceTypeRetType) {
+	ret, _ = o.GetPriceTypeOk()
+	return ret
 }
 
 // GetPriceTypeOk returns a tuple with the PriceType field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionProduct) GetPriceTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PriceType, true
+func (o *SubscriptionProduct) GetPriceTypeOk() (ret SubscriptionProductGetPriceTypeRetType, ok bool) {
+	return getSubscriptionProductGetPriceTypeAttributeTypeOk(o.PriceType)
 }
 
 // SetPriceType sets field value
-func (o *SubscriptionProduct) SetPriceType(v *string) {
-	o.PriceType = v
+func (o *SubscriptionProduct) SetPriceType(v SubscriptionProductGetPriceTypeRetType) {
+	setSubscriptionProductGetPriceTypeAttributeType(&o.PriceType, v)
 }
 
 // GetPricingPlan returns the PricingPlan field value
-func (o *SubscriptionProduct) GetPricingPlan() *string {
-	if o == nil || IsNil(o.PricingPlan) {
-		var ret *string
-		return ret
-	}
-
-	return o.PricingPlan
+func (o *SubscriptionProduct) GetPricingPlan() (ret SubscriptionProductGetPricingPlanRetType) {
+	ret, _ = o.GetPricingPlanOk()
+	return ret
 }
 
 // GetPricingPlanOk returns a tuple with the PricingPlan field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionProduct) GetPricingPlanOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PricingPlan, true
+func (o *SubscriptionProduct) GetPricingPlanOk() (ret SubscriptionProductGetPricingPlanRetType, ok bool) {
+	return getSubscriptionProductGetPricingPlanAttributeTypeOk(o.PricingPlan)
 }
 
 // SetPricingPlan sets field value
-func (o *SubscriptionProduct) SetPricingPlan(v *string) {
-	o.PricingPlan = v
+func (o *SubscriptionProduct) SetPricingPlan(v SubscriptionProductGetPricingPlanRetType) {
+	setSubscriptionProductGetPricingPlanAttributeType(&o.PricingPlan, v)
 }
 
 // GetProductId returns the ProductId field value
-func (o *SubscriptionProduct) GetProductId() *string {
-	if o == nil || IsNil(o.ProductId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ProductId
+func (o *SubscriptionProduct) GetProductId() (ret SubscriptionProductGetProductIdRetType) {
+	ret, _ = o.GetProductIdOk()
+	return ret
 }
 
 // GetProductIdOk returns a tuple with the ProductId field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionProduct) GetProductIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProductId, true
+func (o *SubscriptionProduct) GetProductIdOk() (ret SubscriptionProductGetProductIdRetType, ok bool) {
+	return getSubscriptionProductGetProductIdAttributeTypeOk(o.ProductId)
 }
 
 // SetProductId sets field value
-func (o *SubscriptionProduct) SetProductId(v *string) {
-	o.ProductId = v
+func (o *SubscriptionProduct) SetProductId(v SubscriptionProductGetProductIdRetType) {
+	setSubscriptionProductGetProductIdAttributeType(&o.ProductId, v)
 }
 
 // GetProductName returns the ProductName field value
-func (o *SubscriptionProduct) GetProductName() *string {
-	if o == nil || IsNil(o.ProductName) {
-		var ret *string
-		return ret
-	}
-
-	return o.ProductName
+func (o *SubscriptionProduct) GetProductName() (ret SubscriptionProductGetProductNameRetType) {
+	ret, _ = o.GetProductNameOk()
+	return ret
 }
 
 // GetProductNameOk returns a tuple with the ProductName field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionProduct) GetProductNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProductName, true
+func (o *SubscriptionProduct) GetProductNameOk() (ret SubscriptionProductGetProductNameRetType, ok bool) {
+	return getSubscriptionProductGetProductNameAttributeTypeOk(o.ProductName)
 }
 
 // SetProductName sets field value
-func (o *SubscriptionProduct) SetProductName(v *string) {
-	o.ProductName = v
+func (o *SubscriptionProduct) SetProductName(v SubscriptionProductGetProductNameRetType) {
+	setSubscriptionProductGetProductNameAttributeType(&o.ProductName, v)
 }
 
 // GetVendorName returns the VendorName field value
-func (o *SubscriptionProduct) GetVendorName() *string {
-	if o == nil || IsNil(o.VendorName) {
-		var ret *string
-		return ret
-	}
-
-	return o.VendorName
+func (o *SubscriptionProduct) GetVendorName() (ret SubscriptionProductGetVendorNameRetType) {
+	ret, _ = o.GetVendorNameOk()
+	return ret
 }
 
 // GetVendorNameOk returns a tuple with the VendorName field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionProduct) GetVendorNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VendorName, true
+func (o *SubscriptionProduct) GetVendorNameOk() (ret SubscriptionProductGetVendorNameRetType, ok bool) {
+	return getSubscriptionProductGetVendorNameAttributeTypeOk(o.VendorName)
 }
 
 // SetVendorName sets field value
-func (o *SubscriptionProduct) SetVendorName(v *string) {
-	o.VendorName = v
+func (o *SubscriptionProduct) SetVendorName(v SubscriptionProductGetVendorNameRetType) {
+	setSubscriptionProductGetVendorNameAttributeType(&o.VendorName, v)
+}
+
+// GetVendorPlanId returns the VendorPlanId field value if set, zero value otherwise.
+func (o *SubscriptionProduct) GetVendorPlanId() (res SubscriptionProductGetVendorPlanIdRetType) {
+	res, _ = o.GetVendorPlanIdOk()
+	return
+}
+
+// GetVendorPlanIdOk returns a tuple with the VendorPlanId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionProduct) GetVendorPlanIdOk() (ret SubscriptionProductGetVendorPlanIdRetType, ok bool) {
+	return getSubscriptionProductGetVendorPlanIdAttributeTypeOk(o.VendorPlanId)
+}
+
+// HasVendorPlanId returns a boolean if a field has been set.
+func (o *SubscriptionProduct) HasVendorPlanId() bool {
+	_, ok := o.GetVendorPlanIdOk()
+	return ok
+}
+
+// SetVendorPlanId gets a reference to the given string and assigns it to the VendorPlanId field.
+func (o *SubscriptionProduct) SetVendorPlanId(v SubscriptionProductGetVendorPlanIdRetType) {
+	setSubscriptionProductGetVendorPlanIdAttributeType(&o.VendorPlanId, v)
+}
+
+// GetVendorProductId returns the VendorProductId field value if set, zero value otherwise.
+func (o *SubscriptionProduct) GetVendorProductId() (res SubscriptionProductGetVendorProductIdRetType) {
+	res, _ = o.GetVendorProductIdOk()
+	return
+}
+
+// GetVendorProductIdOk returns a tuple with the VendorProductId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionProduct) GetVendorProductIdOk() (ret SubscriptionProductGetVendorProductIdRetType, ok bool) {
+	return getSubscriptionProductGetVendorProductIdAttributeTypeOk(o.VendorProductId)
+}
+
+// HasVendorProductId returns a boolean if a field has been set.
+func (o *SubscriptionProduct) HasVendorProductId() bool {
+	_, ok := o.GetVendorProductIdOk()
+	return ok
+}
+
+// SetVendorProductId gets a reference to the given string and assigns it to the VendorProductId field.
+func (o *SubscriptionProduct) SetVendorProductId(v SubscriptionProductGetVendorProductIdRetType) {
+	setSubscriptionProductGetVendorProductIdAttributeType(&o.VendorProductId, v)
 }
 
 // GetVendorWebsiteUrl returns the VendorWebsiteUrl field value
-func (o *SubscriptionProduct) GetVendorWebsiteUrl() *string {
-	if o == nil || IsNil(o.VendorWebsiteUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.VendorWebsiteUrl
+func (o *SubscriptionProduct) GetVendorWebsiteUrl() (ret SubscriptionProductGetVendorWebsiteUrlRetType) {
+	ret, _ = o.GetVendorWebsiteUrlOk()
+	return ret
 }
 
 // GetVendorWebsiteUrlOk returns a tuple with the VendorWebsiteUrl field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionProduct) GetVendorWebsiteUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VendorWebsiteUrl, true
+func (o *SubscriptionProduct) GetVendorWebsiteUrlOk() (ret SubscriptionProductGetVendorWebsiteUrlRetType, ok bool) {
+	return getSubscriptionProductGetVendorWebsiteUrlAttributeTypeOk(o.VendorWebsiteUrl)
 }
 
 // SetVendorWebsiteUrl sets field value
-func (o *SubscriptionProduct) SetVendorWebsiteUrl(v *string) {
-	o.VendorWebsiteUrl = v
+func (o *SubscriptionProduct) SetVendorWebsiteUrl(v SubscriptionProductGetVendorWebsiteUrlRetType) {
+	setSubscriptionProductGetVendorWebsiteUrlAttributeType(&o.VendorWebsiteUrl, v)
 }
 
 func (o SubscriptionProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["deliveryMethod"] = o.DeliveryMethod
-	toSerialize["lifecycleState"] = o.LifecycleState
-	toSerialize["priceType"] = o.PriceType
-	toSerialize["pricingPlan"] = o.PricingPlan
-	toSerialize["productId"] = o.ProductId
-	toSerialize["productName"] = o.ProductName
-	toSerialize["vendorName"] = o.VendorName
-	toSerialize["vendorWebsiteUrl"] = o.VendorWebsiteUrl
+	if val, ok := getSubscriptionProductGetDeliveryMethodAttributeTypeOk(o.DeliveryMethod); ok {
+		toSerialize["DeliveryMethod"] = val
+	}
+	if val, ok := getSubscriptionProductGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
+		toSerialize["LifecycleState"] = val
+	}
+	if val, ok := getSubscriptionProductGetPriceTypeAttributeTypeOk(o.PriceType); ok {
+		toSerialize["PriceType"] = val
+	}
+	if val, ok := getSubscriptionProductGetPricingPlanAttributeTypeOk(o.PricingPlan); ok {
+		toSerialize["PricingPlan"] = val
+	}
+	if val, ok := getSubscriptionProductGetProductIdAttributeTypeOk(o.ProductId); ok {
+		toSerialize["ProductId"] = val
+	}
+	if val, ok := getSubscriptionProductGetProductNameAttributeTypeOk(o.ProductName); ok {
+		toSerialize["ProductName"] = val
+	}
+	if val, ok := getSubscriptionProductGetVendorNameAttributeTypeOk(o.VendorName); ok {
+		toSerialize["VendorName"] = val
+	}
+	if val, ok := getSubscriptionProductGetVendorPlanIdAttributeTypeOk(o.VendorPlanId); ok {
+		toSerialize["VendorPlanId"] = val
+	}
+	if val, ok := getSubscriptionProductGetVendorProductIdAttributeTypeOk(o.VendorProductId); ok {
+		toSerialize["VendorProductId"] = val
+	}
+	if val, ok := getSubscriptionProductGetVendorWebsiteUrlAttributeTypeOk(o.VendorWebsiteUrl); ok {
+		toSerialize["VendorWebsiteUrl"] = val
+	}
 	return toSerialize, nil
 }
 

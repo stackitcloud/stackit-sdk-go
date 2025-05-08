@@ -17,17 +17,79 @@ import (
 // checks if the Parent type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Parent{}
 
+/*
+	types and functions for containerId
+*/
+
+// isNotNullableString
+type ParentGetContainerIdAttributeType = *string
+
+func getParentGetContainerIdAttributeTypeOk(arg ParentGetContainerIdAttributeType) (ret ParentGetContainerIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setParentGetContainerIdAttributeType(arg *ParentGetContainerIdAttributeType, val ParentGetContainerIdRetType) {
+	*arg = &val
+}
+
+type ParentGetContainerIdArgType = string
+type ParentGetContainerIdRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ParentGetIdAttributeType = *string
+
+func getParentGetIdAttributeTypeOk(arg ParentGetIdAttributeType) (ret ParentGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setParentGetIdAttributeType(arg *ParentGetIdAttributeType, val ParentGetIdRetType) {
+	*arg = &val
+}
+
+type ParentGetIdArgType = string
+type ParentGetIdRetType = string
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type ParentGetTypeAttributeType = *string
+type ParentGetTypeArgType = string
+type ParentGetTypeRetType = string
+
+func getParentGetTypeAttributeTypeOk(arg ParentGetTypeAttributeType) (ret ParentGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setParentGetTypeAttributeType(arg *ParentGetTypeAttributeType, val ParentGetTypeRetType) {
+	*arg = &val
+}
+
 // Parent Parent container.
 type Parent struct {
 	// User-friendly identifier of either organization or folder (will replace id).
 	// REQUIRED
-	ContainerId *string `json:"containerId"`
+	ContainerId ParentGetContainerIdAttributeType `json:"containerId"`
 	// Identifier of either organization or folder.
 	// REQUIRED
-	Id *string `json:"id"`
+	Id ParentGetIdAttributeType `json:"id"`
 	// Container type of parent container.
 	// REQUIRED
-	Type *string `json:"type"`
+	Type ParentGetTypeAttributeType `json:"type"`
 }
 
 type _Parent Parent
@@ -36,11 +98,11 @@ type _Parent Parent
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewParent(containerId *string, id *string, type_ *string) *Parent {
+func NewParent(containerId ParentGetContainerIdArgType, id ParentGetIdArgType, type_ ParentGetTypeArgType) *Parent {
 	this := Parent{}
-	this.ContainerId = containerId
-	this.Id = id
-	this.Type = type_
+	setParentGetContainerIdAttributeType(&this.ContainerId, containerId)
+	setParentGetIdAttributeType(&this.Id, id)
+	setParentGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -53,82 +115,67 @@ func NewParentWithDefaults() *Parent {
 }
 
 // GetContainerId returns the ContainerId field value
-func (o *Parent) GetContainerId() *string {
-	if o == nil || IsNil(o.ContainerId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ContainerId
+func (o *Parent) GetContainerId() (ret ParentGetContainerIdRetType) {
+	ret, _ = o.GetContainerIdOk()
+	return ret
 }
 
 // GetContainerIdOk returns a tuple with the ContainerId field value
 // and a boolean to check if the value has been set.
-func (o *Parent) GetContainerIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContainerId, true
+func (o *Parent) GetContainerIdOk() (ret ParentGetContainerIdRetType, ok bool) {
+	return getParentGetContainerIdAttributeTypeOk(o.ContainerId)
 }
 
 // SetContainerId sets field value
-func (o *Parent) SetContainerId(v *string) {
-	o.ContainerId = v
+func (o *Parent) SetContainerId(v ParentGetContainerIdRetType) {
+	setParentGetContainerIdAttributeType(&o.ContainerId, v)
 }
 
 // GetId returns the Id field value
-func (o *Parent) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *Parent) GetId() (ret ParentGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Parent) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Parent) GetIdOk() (ret ParentGetIdRetType, ok bool) {
+	return getParentGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *Parent) SetId(v *string) {
-	o.Id = v
+func (o *Parent) SetId(v ParentGetIdRetType) {
+	setParentGetIdAttributeType(&o.Id, v)
 }
 
 // GetType returns the Type field value
-func (o *Parent) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *Parent) GetType() (ret ParentGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Parent) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *Parent) GetTypeOk() (ret ParentGetTypeRetType, ok bool) {
+	return getParentGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *Parent) SetType(v *string) {
-	o.Type = v
+func (o *Parent) SetType(v ParentGetTypeRetType) {
+	setParentGetTypeAttributeType(&o.Type, v)
 }
 
 func (o Parent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["containerId"] = o.ContainerId
-	toSerialize["id"] = o.Id
-	toSerialize["type"] = o.Type
+	if val, ok := getParentGetContainerIdAttributeTypeOk(o.ContainerId); ok {
+		toSerialize["ContainerId"] = val
+	}
+	if val, ok := getParentGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getParentGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

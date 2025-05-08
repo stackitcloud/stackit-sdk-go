@@ -17,17 +17,78 @@ import (
 // checks if the CatalogProductOverviewVendor type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CatalogProductOverviewVendor{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CatalogProductOverviewVendorGetNameAttributeType = *string
+
+func getCatalogProductOverviewVendorGetNameAttributeTypeOk(arg CatalogProductOverviewVendorGetNameAttributeType) (ret CatalogProductOverviewVendorGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewVendorGetNameAttributeType(arg *CatalogProductOverviewVendorGetNameAttributeType, val CatalogProductOverviewVendorGetNameRetType) {
+	*arg = &val
+}
+
+type CatalogProductOverviewVendorGetNameArgType = string
+type CatalogProductOverviewVendorGetNameRetType = string
+
+/*
+	types and functions for vendorId
+*/
+
+// isModel
+type CatalogProductOverviewVendorGetVendorIdAttributeType = *VendorId
+type CatalogProductOverviewVendorGetVendorIdArgType = VendorId
+type CatalogProductOverviewVendorGetVendorIdRetType = VendorId
+
+func getCatalogProductOverviewVendorGetVendorIdAttributeTypeOk(arg CatalogProductOverviewVendorGetVendorIdAttributeType) (ret CatalogProductOverviewVendorGetVendorIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewVendorGetVendorIdAttributeType(arg *CatalogProductOverviewVendorGetVendorIdAttributeType, val CatalogProductOverviewVendorGetVendorIdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for websiteUrl
+*/
+
+// isNotNullableString
+type CatalogProductOverviewVendorGetWebsiteUrlAttributeType = *string
+
+func getCatalogProductOverviewVendorGetWebsiteUrlAttributeTypeOk(arg CatalogProductOverviewVendorGetWebsiteUrlAttributeType) (ret CatalogProductOverviewVendorGetWebsiteUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewVendorGetWebsiteUrlAttributeType(arg *CatalogProductOverviewVendorGetWebsiteUrlAttributeType, val CatalogProductOverviewVendorGetWebsiteUrlRetType) {
+	*arg = &val
+}
+
+type CatalogProductOverviewVendorGetWebsiteUrlArgType = string
+type CatalogProductOverviewVendorGetWebsiteUrlRetType = string
+
 // CatalogProductOverviewVendor struct for CatalogProductOverviewVendor
 type CatalogProductOverviewVendor struct {
-	// The vendor name.
+	// The product's vendor name.
 	// REQUIRED
-	Name *string `json:"name"`
-	// The vendor ID.
+	Name CatalogProductOverviewVendorGetNameAttributeType `json:"name"`
 	// REQUIRED
-	VendorId *string `json:"vendorId"`
-	// The vendor website URL.
+	VendorId CatalogProductOverviewVendorGetVendorIdAttributeType `json:"vendorId"`
+	// Uniform Resource Locator.
 	// REQUIRED
-	WebsiteUrl *string `json:"websiteUrl"`
+	WebsiteUrl CatalogProductOverviewVendorGetWebsiteUrlAttributeType `json:"websiteUrl"`
 }
 
 type _CatalogProductOverviewVendor CatalogProductOverviewVendor
@@ -36,11 +97,11 @@ type _CatalogProductOverviewVendor CatalogProductOverviewVendor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCatalogProductOverviewVendor(name *string, vendorId *string, websiteUrl *string) *CatalogProductOverviewVendor {
+func NewCatalogProductOverviewVendor(name CatalogProductOverviewVendorGetNameArgType, vendorId CatalogProductOverviewVendorGetVendorIdArgType, websiteUrl CatalogProductOverviewVendorGetWebsiteUrlArgType) *CatalogProductOverviewVendor {
 	this := CatalogProductOverviewVendor{}
-	this.Name = name
-	this.VendorId = vendorId
-	this.WebsiteUrl = websiteUrl
+	setCatalogProductOverviewVendorGetNameAttributeType(&this.Name, name)
+	setCatalogProductOverviewVendorGetVendorIdAttributeType(&this.VendorId, vendorId)
+	setCatalogProductOverviewVendorGetWebsiteUrlAttributeType(&this.WebsiteUrl, websiteUrl)
 	return &this
 }
 
@@ -53,82 +114,67 @@ func NewCatalogProductOverviewVendorWithDefaults() *CatalogProductOverviewVendor
 }
 
 // GetName returns the Name field value
-func (o *CatalogProductOverviewVendor) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CatalogProductOverviewVendor) GetName() (ret CatalogProductOverviewVendorGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverviewVendor) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CatalogProductOverviewVendor) GetNameOk() (ret CatalogProductOverviewVendorGetNameRetType, ok bool) {
+	return getCatalogProductOverviewVendorGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CatalogProductOverviewVendor) SetName(v *string) {
-	o.Name = v
+func (o *CatalogProductOverviewVendor) SetName(v CatalogProductOverviewVendorGetNameRetType) {
+	setCatalogProductOverviewVendorGetNameAttributeType(&o.Name, v)
 }
 
 // GetVendorId returns the VendorId field value
-func (o *CatalogProductOverviewVendor) GetVendorId() *string {
-	if o == nil || IsNil(o.VendorId) {
-		var ret *string
-		return ret
-	}
-
-	return o.VendorId
+func (o *CatalogProductOverviewVendor) GetVendorId() (ret CatalogProductOverviewVendorGetVendorIdRetType) {
+	ret, _ = o.GetVendorIdOk()
+	return ret
 }
 
 // GetVendorIdOk returns a tuple with the VendorId field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverviewVendor) GetVendorIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VendorId, true
+func (o *CatalogProductOverviewVendor) GetVendorIdOk() (ret CatalogProductOverviewVendorGetVendorIdRetType, ok bool) {
+	return getCatalogProductOverviewVendorGetVendorIdAttributeTypeOk(o.VendorId)
 }
 
 // SetVendorId sets field value
-func (o *CatalogProductOverviewVendor) SetVendorId(v *string) {
-	o.VendorId = v
+func (o *CatalogProductOverviewVendor) SetVendorId(v CatalogProductOverviewVendorGetVendorIdRetType) {
+	setCatalogProductOverviewVendorGetVendorIdAttributeType(&o.VendorId, v)
 }
 
 // GetWebsiteUrl returns the WebsiteUrl field value
-func (o *CatalogProductOverviewVendor) GetWebsiteUrl() *string {
-	if o == nil || IsNil(o.WebsiteUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.WebsiteUrl
+func (o *CatalogProductOverviewVendor) GetWebsiteUrl() (ret CatalogProductOverviewVendorGetWebsiteUrlRetType) {
+	ret, _ = o.GetWebsiteUrlOk()
+	return ret
 }
 
 // GetWebsiteUrlOk returns a tuple with the WebsiteUrl field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverviewVendor) GetWebsiteUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.WebsiteUrl, true
+func (o *CatalogProductOverviewVendor) GetWebsiteUrlOk() (ret CatalogProductOverviewVendorGetWebsiteUrlRetType, ok bool) {
+	return getCatalogProductOverviewVendorGetWebsiteUrlAttributeTypeOk(o.WebsiteUrl)
 }
 
 // SetWebsiteUrl sets field value
-func (o *CatalogProductOverviewVendor) SetWebsiteUrl(v *string) {
-	o.WebsiteUrl = v
+func (o *CatalogProductOverviewVendor) SetWebsiteUrl(v CatalogProductOverviewVendorGetWebsiteUrlRetType) {
+	setCatalogProductOverviewVendorGetWebsiteUrlAttributeType(&o.WebsiteUrl, v)
 }
 
 func (o CatalogProductOverviewVendor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["vendorId"] = o.VendorId
-	toSerialize["websiteUrl"] = o.WebsiteUrl
+	if val, ok := getCatalogProductOverviewVendorGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getCatalogProductOverviewVendorGetVendorIdAttributeTypeOk(o.VendorId); ok {
+		toSerialize["VendorId"] = val
+	}
+	if val, ok := getCatalogProductOverviewVendorGetWebsiteUrlAttributeTypeOk(o.WebsiteUrl); ok {
+		toSerialize["WebsiteUrl"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -18,20 +18,21 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
 func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ApproveSubscription", func(t *testing.T) {
-		path := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}/approve"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		subscriptionIdValue := "subscriptionId"
-		path = strings.Replace(path, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
+		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}/approve"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		subscriptionIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -62,8 +63,8 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		subscriptionId := "subscriptionId"
+		projectId := projectIdValue
+		subscriptionId := subscriptionIdValue
 
 		reqErr := apiClient.ApproveSubscription(context.Background(), projectId, subscriptionId).Execute()
 
@@ -73,12 +74,12 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetCatalogProduct", func(t *testing.T) {
-		path := "/v1/catalog/products/{productId}"
-		productIdValue := "productId"
-		path = strings.Replace(path, "{"+"productId"+"}", url.PathEscape(ParameterValueToString(productIdValue, "productId")), -1)
+		_apiUrlPath := "/v1/catalog/products/{productId}"
+		productIdValue := "productId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"productId"+"}", url.PathEscape(ParameterValueToString(productIdValue, "productId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CatalogProductDetail{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -112,27 +113,27 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		productId := "productId"
+		productId := productIdValue
 
 		resp, reqErr := apiClient.GetCatalogProduct(context.Background(), productId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService GetVendorSubscription", func(t *testing.T) {
-		path := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		subscriptionIdValue := "subscriptionId"
-		path = strings.Replace(path, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
+		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		subscriptionIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VendorSubscription{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -166,24 +167,24 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
-		subscriptionId := "subscriptionId"
+		projectId := projectIdValue
+		subscriptionId := subscriptionIdValue
 
 		resp, reqErr := apiClient.GetVendorSubscription(context.Background(), projectId, subscriptionId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService InquiriesCreateInquiry", func(t *testing.T) {
-		path := "/v1/inquiries"
+		_apiUrlPath := "/v1/inquiries"
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -224,10 +225,10 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListCatalogProducts", func(t *testing.T) {
-		path := "/v1/catalog/products"
+		_apiUrlPath := "/v1/catalog/products"
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListCatalogProductsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -266,18 +267,18 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ListVendorSubscriptions", func(t *testing.T) {
-		path := "/v1/vendors/projects/{projectId}/subscriptions"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListVendorSubscriptionsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -311,25 +312,25 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListVendorSubscriptions(context.Background(), projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})
 
 	t.Run("Test DefaultApiService ResolveCustomer", func(t *testing.T) {
-		path := "/v1/vendors/projects/{projectId}/resolve-customer"
-		projectIdValue := "projectId"
-		path = strings.Replace(path, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		_apiUrlPath := "/v1/vendors/projects/{projectId}/resolve-customer"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(path, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VendorSubscription{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
@@ -363,7 +364,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		projectId := "projectId"
+		projectId := projectIdValue
 		resolveCustomerPayload := ResolveCustomerPayload{}
 
 		resp, reqErr := apiClient.ResolveCustomer(context.Background(), projectId).ResolveCustomerPayload(resolveCustomerPayload).Execute()
@@ -371,7 +372,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
-		if resp == nil {
+		if IsNil(resp) {
 			t.Fatalf("response not present")
 		}
 	})

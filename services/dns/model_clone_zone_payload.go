@@ -17,17 +17,100 @@ import (
 // checks if the CloneZonePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CloneZonePayload{}
 
+/*
+	types and functions for adjustRecords
+*/
+
+// isBoolean
+type CloneZonePayloadgetAdjustRecordsAttributeType = *bool
+type CloneZonePayloadgetAdjustRecordsArgType = bool
+type CloneZonePayloadgetAdjustRecordsRetType = bool
+
+func getCloneZonePayloadgetAdjustRecordsAttributeTypeOk(arg CloneZonePayloadgetAdjustRecordsAttributeType) (ret CloneZonePayloadgetAdjustRecordsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneZonePayloadgetAdjustRecordsAttributeType(arg *CloneZonePayloadgetAdjustRecordsAttributeType, val CloneZonePayloadgetAdjustRecordsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type CloneZonePayloadGetDescriptionAttributeType = *string
+
+func getCloneZonePayloadGetDescriptionAttributeTypeOk(arg CloneZonePayloadGetDescriptionAttributeType) (ret CloneZonePayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneZonePayloadGetDescriptionAttributeType(arg *CloneZonePayloadGetDescriptionAttributeType, val CloneZonePayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+type CloneZonePayloadGetDescriptionArgType = string
+type CloneZonePayloadGetDescriptionRetType = string
+
+/*
+	types and functions for dnsName
+*/
+
+// isNotNullableString
+type CloneZonePayloadGetDnsNameAttributeType = *string
+
+func getCloneZonePayloadGetDnsNameAttributeTypeOk(arg CloneZonePayloadGetDnsNameAttributeType) (ret CloneZonePayloadGetDnsNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneZonePayloadGetDnsNameAttributeType(arg *CloneZonePayloadGetDnsNameAttributeType, val CloneZonePayloadGetDnsNameRetType) {
+	*arg = &val
+}
+
+type CloneZonePayloadGetDnsNameArgType = string
+type CloneZonePayloadGetDnsNameRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CloneZonePayloadGetNameAttributeType = *string
+
+func getCloneZonePayloadGetNameAttributeTypeOk(arg CloneZonePayloadGetNameAttributeType) (ret CloneZonePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCloneZonePayloadGetNameAttributeType(arg *CloneZonePayloadGetNameAttributeType, val CloneZonePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CloneZonePayloadGetNameArgType = string
+type CloneZonePayloadGetNameRetType = string
+
 // CloneZonePayload metadata to clone a zone.
 type CloneZonePayload struct {
 	// Adjust record set content and replace the dns name of the original zone with the new dns name of the cloned zone
-	AdjustRecords *bool `json:"adjustRecords,omitempty"`
+	AdjustRecords CloneZonePayloadgetAdjustRecordsAttributeType `json:"adjustRecords,omitempty"`
 	// New Description for the cloned zone. Leave empty to use the same description as the original zone
-	Description *string `json:"description,omitempty"`
+	Description CloneZonePayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// DnsName is the dns name of the zone to clone
 	// REQUIRED
-	DnsName *string `json:"dnsName"`
+	DnsName CloneZonePayloadGetDnsNameAttributeType `json:"dnsName"`
 	// New Name for the cloned zone. Leave empty to use the same name as the original zone
-	Name *string `json:"name,omitempty"`
+	Name CloneZonePayloadGetNameAttributeType `json:"name,omitempty"`
 }
 
 type _CloneZonePayload CloneZonePayload
@@ -36,9 +119,9 @@ type _CloneZonePayload CloneZonePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCloneZonePayload(dnsName *string) *CloneZonePayload {
+func NewCloneZonePayload(dnsName CloneZonePayloadGetDnsNameArgType) *CloneZonePayload {
 	this := CloneZonePayload{}
-	this.DnsName = dnsName
+	setCloneZonePayloadGetDnsNameAttributeType(&this.DnsName, dnsName)
 	return &this
 }
 
@@ -51,136 +134,104 @@ func NewCloneZonePayloadWithDefaults() *CloneZonePayload {
 }
 
 // GetAdjustRecords returns the AdjustRecords field value if set, zero value otherwise.
-func (o *CloneZonePayload) GetAdjustRecords() *bool {
-	if o == nil || IsNil(o.AdjustRecords) {
-		var ret *bool
-		return ret
-	}
-	return o.AdjustRecords
+func (o *CloneZonePayload) GetAdjustRecords() (res CloneZonePayloadgetAdjustRecordsRetType) {
+	res, _ = o.GetAdjustRecordsOk()
+	return
 }
 
 // GetAdjustRecordsOk returns a tuple with the AdjustRecords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloneZonePayload) GetAdjustRecordsOk() (*bool, bool) {
-	if o == nil || IsNil(o.AdjustRecords) {
-		return nil, false
-	}
-	return o.AdjustRecords, true
+func (o *CloneZonePayload) GetAdjustRecordsOk() (ret CloneZonePayloadgetAdjustRecordsRetType, ok bool) {
+	return getCloneZonePayloadgetAdjustRecordsAttributeTypeOk(o.AdjustRecords)
 }
 
 // HasAdjustRecords returns a boolean if a field has been set.
 func (o *CloneZonePayload) HasAdjustRecords() bool {
-	if o != nil && !IsNil(o.AdjustRecords) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAdjustRecordsOk()
+	return ok
 }
 
 // SetAdjustRecords gets a reference to the given bool and assigns it to the AdjustRecords field.
-func (o *CloneZonePayload) SetAdjustRecords(v *bool) {
-	o.AdjustRecords = v
+func (o *CloneZonePayload) SetAdjustRecords(v CloneZonePayloadgetAdjustRecordsRetType) {
+	setCloneZonePayloadgetAdjustRecordsAttributeType(&o.AdjustRecords, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *CloneZonePayload) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *CloneZonePayload) GetDescription() (res CloneZonePayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloneZonePayload) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *CloneZonePayload) GetDescriptionOk() (ret CloneZonePayloadGetDescriptionRetType, ok bool) {
+	return getCloneZonePayloadGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CloneZonePayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *CloneZonePayload) SetDescription(v *string) {
-	o.Description = v
+func (o *CloneZonePayload) SetDescription(v CloneZonePayloadGetDescriptionRetType) {
+	setCloneZonePayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDnsName returns the DnsName field value
-func (o *CloneZonePayload) GetDnsName() *string {
-	if o == nil || IsNil(o.DnsName) {
-		var ret *string
-		return ret
-	}
-
-	return o.DnsName
+func (o *CloneZonePayload) GetDnsName() (ret CloneZonePayloadGetDnsNameRetType) {
+	ret, _ = o.GetDnsNameOk()
+	return ret
 }
 
 // GetDnsNameOk returns a tuple with the DnsName field value
 // and a boolean to check if the value has been set.
-func (o *CloneZonePayload) GetDnsNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DnsName, true
+func (o *CloneZonePayload) GetDnsNameOk() (ret CloneZonePayloadGetDnsNameRetType, ok bool) {
+	return getCloneZonePayloadGetDnsNameAttributeTypeOk(o.DnsName)
 }
 
 // SetDnsName sets field value
-func (o *CloneZonePayload) SetDnsName(v *string) {
-	o.DnsName = v
+func (o *CloneZonePayload) SetDnsName(v CloneZonePayloadGetDnsNameRetType) {
+	setCloneZonePayloadGetDnsNameAttributeType(&o.DnsName, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *CloneZonePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *CloneZonePayload) GetName() (res CloneZonePayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloneZonePayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CloneZonePayload) GetNameOk() (ret CloneZonePayloadGetNameRetType, ok bool) {
+	return getCloneZonePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CloneZonePayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CloneZonePayload) SetName(v *string) {
-	o.Name = v
+func (o *CloneZonePayload) SetName(v CloneZonePayloadGetNameRetType) {
+	setCloneZonePayloadGetNameAttributeType(&o.Name, v)
 }
 
 func (o CloneZonePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AdjustRecords) {
-		toSerialize["adjustRecords"] = o.AdjustRecords
+	if val, ok := getCloneZonePayloadgetAdjustRecordsAttributeTypeOk(o.AdjustRecords); ok {
+		toSerialize["AdjustRecords"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getCloneZonePayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["dnsName"] = o.DnsName
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getCloneZonePayloadGetDnsNameAttributeTypeOk(o.DnsName); ok {
+		toSerialize["DnsName"] = val
+	}
+	if val, ok := getCloneZonePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }

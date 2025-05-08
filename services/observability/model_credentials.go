@@ -17,12 +17,54 @@ import (
 // checks if the Credentials type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Credentials{}
 
+/*
+	types and functions for password
+*/
+
+// isNotNullableString
+type CredentialsGetPasswordAttributeType = *string
+
+func getCredentialsGetPasswordAttributeTypeOk(arg CredentialsGetPasswordAttributeType) (ret CredentialsGetPasswordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetPasswordAttributeType(arg *CredentialsGetPasswordAttributeType, val CredentialsGetPasswordRetType) {
+	*arg = &val
+}
+
+type CredentialsGetPasswordArgType = string
+type CredentialsGetPasswordRetType = string
+
+/*
+	types and functions for username
+*/
+
+// isNotNullableString
+type CredentialsGetUsernameAttributeType = *string
+
+func getCredentialsGetUsernameAttributeTypeOk(arg CredentialsGetUsernameAttributeType) (ret CredentialsGetUsernameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetUsernameAttributeType(arg *CredentialsGetUsernameAttributeType, val CredentialsGetUsernameRetType) {
+	*arg = &val
+}
+
+type CredentialsGetUsernameArgType = string
+type CredentialsGetUsernameRetType = string
+
 // Credentials struct for Credentials
 type Credentials struct {
 	// REQUIRED
-	Password *string `json:"password"`
+	Password CredentialsGetPasswordAttributeType `json:"password"`
 	// REQUIRED
-	Username *string `json:"username"`
+	Username CredentialsGetUsernameAttributeType `json:"username"`
 }
 
 type _Credentials Credentials
@@ -31,10 +73,10 @@ type _Credentials Credentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredentials(password *string, username *string) *Credentials {
+func NewCredentials(password CredentialsGetPasswordArgType, username CredentialsGetUsernameArgType) *Credentials {
 	this := Credentials{}
-	this.Password = password
-	this.Username = username
+	setCredentialsGetPasswordAttributeType(&this.Password, password)
+	setCredentialsGetUsernameAttributeType(&this.Username, username)
 	return &this
 }
 
@@ -47,57 +89,47 @@ func NewCredentialsWithDefaults() *Credentials {
 }
 
 // GetPassword returns the Password field value
-func (o *Credentials) GetPassword() *string {
-	if o == nil || IsNil(o.Password) {
-		var ret *string
-		return ret
-	}
-
-	return o.Password
+func (o *Credentials) GetPassword() (ret CredentialsGetPasswordRetType) {
+	ret, _ = o.GetPasswordOk()
+	return ret
 }
 
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Password, true
+func (o *Credentials) GetPasswordOk() (ret CredentialsGetPasswordRetType, ok bool) {
+	return getCredentialsGetPasswordAttributeTypeOk(o.Password)
 }
 
 // SetPassword sets field value
-func (o *Credentials) SetPassword(v *string) {
-	o.Password = v
+func (o *Credentials) SetPassword(v CredentialsGetPasswordRetType) {
+	setCredentialsGetPasswordAttributeType(&o.Password, v)
 }
 
 // GetUsername returns the Username field value
-func (o *Credentials) GetUsername() *string {
-	if o == nil || IsNil(o.Username) {
-		var ret *string
-		return ret
-	}
-
-	return o.Username
+func (o *Credentials) GetUsername() (ret CredentialsGetUsernameRetType) {
+	ret, _ = o.GetUsernameOk()
+	return ret
 }
 
 // GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
-func (o *Credentials) GetUsernameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Username, true
+func (o *Credentials) GetUsernameOk() (ret CredentialsGetUsernameRetType, ok bool) {
+	return getCredentialsGetUsernameAttributeTypeOk(o.Username)
 }
 
 // SetUsername sets field value
-func (o *Credentials) SetUsername(v *string) {
-	o.Username = v
+func (o *Credentials) SetUsername(v CredentialsGetUsernameRetType) {
+	setCredentialsGetUsernameAttributeType(&o.Username, v)
 }
 
 func (o Credentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["password"] = o.Password
-	toSerialize["username"] = o.Username
+	if val, ok := getCredentialsGetPasswordAttributeTypeOk(o.Password); ok {
+		toSerialize["Password"] = val
+	}
+	if val, ok := getCredentialsGetUsernameAttributeTypeOk(o.Username); ok {
+		toSerialize["Username"] = val
+	}
 	return toSerialize, nil
 }
 

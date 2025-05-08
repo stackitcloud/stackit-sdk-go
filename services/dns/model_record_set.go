@@ -17,44 +17,313 @@ import (
 // checks if the RecordSet type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RecordSet{}
 
+/*
+	types and functions for active
+*/
+
+// isBoolean
+type RecordSetgetActiveAttributeType = *bool
+type RecordSetgetActiveArgType = bool
+type RecordSetgetActiveRetType = bool
+
+func getRecordSetgetActiveAttributeTypeOk(arg RecordSetgetActiveAttributeType) (ret RecordSetgetActiveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetgetActiveAttributeType(arg *RecordSetgetActiveAttributeType, val RecordSetgetActiveRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for comment
+*/
+
+// isNotNullableString
+type RecordSetGetCommentAttributeType = *string
+
+func getRecordSetGetCommentAttributeTypeOk(arg RecordSetGetCommentAttributeType) (ret RecordSetGetCommentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetCommentAttributeType(arg *RecordSetGetCommentAttributeType, val RecordSetGetCommentRetType) {
+	*arg = &val
+}
+
+type RecordSetGetCommentArgType = string
+type RecordSetGetCommentRetType = string
+
+/*
+	types and functions for creationFinished
+*/
+
+// isNotNullableString
+type RecordSetGetCreationFinishedAttributeType = *string
+
+func getRecordSetGetCreationFinishedAttributeTypeOk(arg RecordSetGetCreationFinishedAttributeType) (ret RecordSetGetCreationFinishedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetCreationFinishedAttributeType(arg *RecordSetGetCreationFinishedAttributeType, val RecordSetGetCreationFinishedRetType) {
+	*arg = &val
+}
+
+type RecordSetGetCreationFinishedArgType = string
+type RecordSetGetCreationFinishedRetType = string
+
+/*
+	types and functions for creationStarted
+*/
+
+// isNotNullableString
+type RecordSetGetCreationStartedAttributeType = *string
+
+func getRecordSetGetCreationStartedAttributeTypeOk(arg RecordSetGetCreationStartedAttributeType) (ret RecordSetGetCreationStartedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetCreationStartedAttributeType(arg *RecordSetGetCreationStartedAttributeType, val RecordSetGetCreationStartedRetType) {
+	*arg = &val
+}
+
+type RecordSetGetCreationStartedArgType = string
+type RecordSetGetCreationStartedRetType = string
+
+/*
+	types and functions for error
+*/
+
+// isNotNullableString
+type RecordSetGetErrorAttributeType = *string
+
+func getRecordSetGetErrorAttributeTypeOk(arg RecordSetGetErrorAttributeType) (ret RecordSetGetErrorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetErrorAttributeType(arg *RecordSetGetErrorAttributeType, val RecordSetGetErrorRetType) {
+	*arg = &val
+}
+
+type RecordSetGetErrorArgType = string
+type RecordSetGetErrorRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type RecordSetGetIdAttributeType = *string
+
+func getRecordSetGetIdAttributeTypeOk(arg RecordSetGetIdAttributeType) (ret RecordSetGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetIdAttributeType(arg *RecordSetGetIdAttributeType, val RecordSetGetIdRetType) {
+	*arg = &val
+}
+
+type RecordSetGetIdArgType = string
+type RecordSetGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type RecordSetGetNameAttributeType = *string
+
+func getRecordSetGetNameAttributeTypeOk(arg RecordSetGetNameAttributeType) (ret RecordSetGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetNameAttributeType(arg *RecordSetGetNameAttributeType, val RecordSetGetNameRetType) {
+	*arg = &val
+}
+
+type RecordSetGetNameArgType = string
+type RecordSetGetNameRetType = string
+
+/*
+	types and functions for records
+*/
+
+// isArray
+type RecordSetGetRecordsAttributeType = *[]Record
+type RecordSetGetRecordsArgType = []Record
+type RecordSetGetRecordsRetType = []Record
+
+func getRecordSetGetRecordsAttributeTypeOk(arg RecordSetGetRecordsAttributeType) (ret RecordSetGetRecordsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetRecordsAttributeType(arg *RecordSetGetRecordsAttributeType, val RecordSetGetRecordsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for state
+*/
+
+// isEnumRef
+type RecordSetGetStateAttributeType = *string
+type RecordSetGetStateArgType = string
+type RecordSetGetStateRetType = string
+
+func getRecordSetGetStateAttributeTypeOk(arg RecordSetGetStateAttributeType) (ret RecordSetGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetStateAttributeType(arg *RecordSetGetStateAttributeType, val RecordSetGetStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for ttl
+*/
+
+// isInteger
+type RecordSetGetTtlAttributeType = *int64
+type RecordSetGetTtlArgType = int64
+type RecordSetGetTtlRetType = int64
+
+func getRecordSetGetTtlAttributeTypeOk(arg RecordSetGetTtlAttributeType) (ret RecordSetGetTtlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetTtlAttributeType(arg *RecordSetGetTtlAttributeType, val RecordSetGetTtlRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type RecordSetGetTypeAttributeType = *string
+type RecordSetGetTypeArgType = string
+type RecordSetGetTypeRetType = string
+
+func getRecordSetGetTypeAttributeTypeOk(arg RecordSetGetTypeAttributeType) (ret RecordSetGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetTypeAttributeType(arg *RecordSetGetTypeAttributeType, val RecordSetGetTypeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for updateFinished
+*/
+
+// isNotNullableString
+type RecordSetGetUpdateFinishedAttributeType = *string
+
+func getRecordSetGetUpdateFinishedAttributeTypeOk(arg RecordSetGetUpdateFinishedAttributeType) (ret RecordSetGetUpdateFinishedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetUpdateFinishedAttributeType(arg *RecordSetGetUpdateFinishedAttributeType, val RecordSetGetUpdateFinishedRetType) {
+	*arg = &val
+}
+
+type RecordSetGetUpdateFinishedArgType = string
+type RecordSetGetUpdateFinishedRetType = string
+
+/*
+	types and functions for updateStarted
+*/
+
+// isNotNullableString
+type RecordSetGetUpdateStartedAttributeType = *string
+
+func getRecordSetGetUpdateStartedAttributeTypeOk(arg RecordSetGetUpdateStartedAttributeType) (ret RecordSetGetUpdateStartedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRecordSetGetUpdateStartedAttributeType(arg *RecordSetGetUpdateStartedAttributeType, val RecordSetGetUpdateStartedRetType) {
+	*arg = &val
+}
+
+type RecordSetGetUpdateStartedArgType = string
+type RecordSetGetUpdateStartedRetType = string
+
 // RecordSet RRSet.
 type RecordSet struct {
 	// if the record set is active or not
-	Active *bool `json:"active,omitempty"`
+	Active RecordSetgetActiveAttributeType `json:"active,omitempty"`
 	// comment
-	Comment *string `json:"comment,omitempty"`
+	Comment RecordSetGetCommentAttributeType `json:"comment,omitempty"`
 	// when record set creation finished
 	// REQUIRED
-	CreationFinished *string `json:"creationFinished"`
+	CreationFinished RecordSetGetCreationFinishedAttributeType `json:"creationFinished"`
 	// when record set creation started
 	// REQUIRED
-	CreationStarted *string `json:"creationStarted"`
+	CreationStarted RecordSetGetCreationStartedAttributeType `json:"creationStarted"`
 	// Error shows error in case create/update/delete failed
-	Error *string `json:"error,omitempty"`
+	Error RecordSetGetErrorAttributeType `json:"error,omitempty"`
 	// rr set id
 	// REQUIRED
-	Id *string `json:"id"`
+	Id RecordSetGetIdAttributeType `json:"id"`
 	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4
 	// REQUIRED
-	Name *string `json:"name"`
+	Name RecordSetGetNameAttributeType `json:"name"`
 	// records
 	// REQUIRED
-	Records *[]Record `json:"records"`
+	Records RecordSetGetRecordsAttributeType `json:"records"`
 	// record set state
 	// REQUIRED
-	State *string `json:"state"`
+	State RecordSetGetStateAttributeType `json:"state"`
 	// time to live
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Ttl *int64 `json:"ttl"`
+	Ttl RecordSetGetTtlAttributeType `json:"ttl"`
 	// record set type
 	// REQUIRED
-	Type *string `json:"type"`
+	Type RecordSetGetTypeAttributeType `json:"type"`
 	// when record set update/deletion finished
 	// REQUIRED
-	UpdateFinished *string `json:"updateFinished"`
+	UpdateFinished RecordSetGetUpdateFinishedAttributeType `json:"updateFinished"`
 	// when record set update/deletion started
 	// REQUIRED
-	UpdateStarted *string `json:"updateStarted"`
+	UpdateStarted RecordSetGetUpdateStartedAttributeType `json:"updateStarted"`
 }
 
 type _RecordSet RecordSet
@@ -63,18 +332,18 @@ type _RecordSet RecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecordSet(creationFinished *string, creationStarted *string, id *string, name *string, records *[]Record, state *string, ttl *int64, type_ *string, updateFinished *string, updateStarted *string) *RecordSet {
+func NewRecordSet(creationFinished RecordSetGetCreationFinishedArgType, creationStarted RecordSetGetCreationStartedArgType, id RecordSetGetIdArgType, name RecordSetGetNameArgType, records RecordSetGetRecordsArgType, state RecordSetGetStateArgType, ttl RecordSetGetTtlArgType, type_ RecordSetGetTypeArgType, updateFinished RecordSetGetUpdateFinishedArgType, updateStarted RecordSetGetUpdateStartedArgType) *RecordSet {
 	this := RecordSet{}
-	this.CreationFinished = creationFinished
-	this.CreationStarted = creationStarted
-	this.Id = id
-	this.Name = name
-	this.Records = records
-	this.State = state
-	this.Ttl = ttl
-	this.Type = type_
-	this.UpdateFinished = updateFinished
-	this.UpdateStarted = updateStarted
+	setRecordSetGetCreationFinishedAttributeType(&this.CreationFinished, creationFinished)
+	setRecordSetGetCreationStartedAttributeType(&this.CreationStarted, creationStarted)
+	setRecordSetGetIdAttributeType(&this.Id, id)
+	setRecordSetGetNameAttributeType(&this.Name, name)
+	setRecordSetGetRecordsAttributeType(&this.Records, records)
+	setRecordSetGetStateAttributeType(&this.State, state)
+	setRecordSetGetTtlAttributeType(&this.Ttl, ttl)
+	setRecordSetGetTypeAttributeType(&this.Type, type_)
+	setRecordSetGetUpdateFinishedAttributeType(&this.UpdateFinished, updateFinished)
+	setRecordSetGetUpdateStartedAttributeType(&this.UpdateStarted, updateStarted)
 	return &this
 }
 
@@ -87,362 +356,285 @@ func NewRecordSetWithDefaults() *RecordSet {
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *RecordSet) GetActive() *bool {
-	if o == nil || IsNil(o.Active) {
-		var ret *bool
-		return ret
-	}
-	return o.Active
+func (o *RecordSet) GetActive() (res RecordSetgetActiveRetType) {
+	res, _ = o.GetActiveOk()
+	return
 }
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetActiveOk() (*bool, bool) {
-	if o == nil || IsNil(o.Active) {
-		return nil, false
-	}
-	return o.Active, true
+func (o *RecordSet) GetActiveOk() (ret RecordSetgetActiveRetType, ok bool) {
+	return getRecordSetgetActiveAttributeTypeOk(o.Active)
 }
 
 // HasActive returns a boolean if a field has been set.
 func (o *RecordSet) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetActiveOk()
+	return ok
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *RecordSet) SetActive(v *bool) {
-	o.Active = v
+func (o *RecordSet) SetActive(v RecordSetgetActiveRetType) {
+	setRecordSetgetActiveAttributeType(&o.Active, v)
 }
 
 // GetComment returns the Comment field value if set, zero value otherwise.
-func (o *RecordSet) GetComment() *string {
-	if o == nil || IsNil(o.Comment) {
-		var ret *string
-		return ret
-	}
-	return o.Comment
+func (o *RecordSet) GetComment() (res RecordSetGetCommentRetType) {
+	res, _ = o.GetCommentOk()
+	return
 }
 
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetCommentOk() (*string, bool) {
-	if o == nil || IsNil(o.Comment) {
-		return nil, false
-	}
-	return o.Comment, true
+func (o *RecordSet) GetCommentOk() (ret RecordSetGetCommentRetType, ok bool) {
+	return getRecordSetGetCommentAttributeTypeOk(o.Comment)
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *RecordSet) HasComment() bool {
-	if o != nil && !IsNil(o.Comment) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCommentOk()
+	return ok
 }
 
 // SetComment gets a reference to the given string and assigns it to the Comment field.
-func (o *RecordSet) SetComment(v *string) {
-	o.Comment = v
+func (o *RecordSet) SetComment(v RecordSetGetCommentRetType) {
+	setRecordSetGetCommentAttributeType(&o.Comment, v)
 }
 
 // GetCreationFinished returns the CreationFinished field value
-func (o *RecordSet) GetCreationFinished() *string {
-	if o == nil || IsNil(o.CreationFinished) {
-		var ret *string
-		return ret
-	}
-
-	return o.CreationFinished
+func (o *RecordSet) GetCreationFinished() (ret RecordSetGetCreationFinishedRetType) {
+	ret, _ = o.GetCreationFinishedOk()
+	return ret
 }
 
 // GetCreationFinishedOk returns a tuple with the CreationFinished field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetCreationFinishedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreationFinished, true
+func (o *RecordSet) GetCreationFinishedOk() (ret RecordSetGetCreationFinishedRetType, ok bool) {
+	return getRecordSetGetCreationFinishedAttributeTypeOk(o.CreationFinished)
 }
 
 // SetCreationFinished sets field value
-func (o *RecordSet) SetCreationFinished(v *string) {
-	o.CreationFinished = v
+func (o *RecordSet) SetCreationFinished(v RecordSetGetCreationFinishedRetType) {
+	setRecordSetGetCreationFinishedAttributeType(&o.CreationFinished, v)
 }
 
 // GetCreationStarted returns the CreationStarted field value
-func (o *RecordSet) GetCreationStarted() *string {
-	if o == nil || IsNil(o.CreationStarted) {
-		var ret *string
-		return ret
-	}
-
-	return o.CreationStarted
+func (o *RecordSet) GetCreationStarted() (ret RecordSetGetCreationStartedRetType) {
+	ret, _ = o.GetCreationStartedOk()
+	return ret
 }
 
 // GetCreationStartedOk returns a tuple with the CreationStarted field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetCreationStartedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreationStarted, true
+func (o *RecordSet) GetCreationStartedOk() (ret RecordSetGetCreationStartedRetType, ok bool) {
+	return getRecordSetGetCreationStartedAttributeTypeOk(o.CreationStarted)
 }
 
 // SetCreationStarted sets field value
-func (o *RecordSet) SetCreationStarted(v *string) {
-	o.CreationStarted = v
+func (o *RecordSet) SetCreationStarted(v RecordSetGetCreationStartedRetType) {
+	setRecordSetGetCreationStartedAttributeType(&o.CreationStarted, v)
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *RecordSet) GetError() *string {
-	if o == nil || IsNil(o.Error) {
-		var ret *string
-		return ret
-	}
-	return o.Error
+func (o *RecordSet) GetError() (res RecordSetGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetErrorOk() (*string, bool) {
-	if o == nil || IsNil(o.Error) {
-		return nil, false
-	}
-	return o.Error, true
+func (o *RecordSet) GetErrorOk() (ret RecordSetGetErrorRetType, ok bool) {
+	return getRecordSetGetErrorAttributeTypeOk(o.Error)
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *RecordSet) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorOk()
+	return ok
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
-func (o *RecordSet) SetError(v *string) {
-	o.Error = v
+func (o *RecordSet) SetError(v RecordSetGetErrorRetType) {
+	setRecordSetGetErrorAttributeType(&o.Error, v)
 }
 
 // GetId returns the Id field value
-func (o *RecordSet) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *RecordSet) GetId() (ret RecordSetGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *RecordSet) GetIdOk() (ret RecordSetGetIdRetType, ok bool) {
+	return getRecordSetGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *RecordSet) SetId(v *string) {
-	o.Id = v
+func (o *RecordSet) SetId(v RecordSetGetIdRetType) {
+	setRecordSetGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value
-func (o *RecordSet) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *RecordSet) GetName() (ret RecordSetGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *RecordSet) GetNameOk() (ret RecordSetGetNameRetType, ok bool) {
+	return getRecordSetGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *RecordSet) SetName(v *string) {
-	o.Name = v
+func (o *RecordSet) SetName(v RecordSetGetNameRetType) {
+	setRecordSetGetNameAttributeType(&o.Name, v)
 }
 
 // GetRecords returns the Records field value
-func (o *RecordSet) GetRecords() *[]Record {
-	if o == nil || IsNil(o.Records) {
-		var ret *[]Record
-		return ret
-	}
-
-	return o.Records
+func (o *RecordSet) GetRecords() (ret RecordSetGetRecordsRetType) {
+	ret, _ = o.GetRecordsOk()
+	return ret
 }
 
 // GetRecordsOk returns a tuple with the Records field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetRecordsOk() (*[]Record, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Records, true
+func (o *RecordSet) GetRecordsOk() (ret RecordSetGetRecordsRetType, ok bool) {
+	return getRecordSetGetRecordsAttributeTypeOk(o.Records)
 }
 
 // SetRecords sets field value
-func (o *RecordSet) SetRecords(v *[]Record) {
-	o.Records = v
+func (o *RecordSet) SetRecords(v RecordSetGetRecordsRetType) {
+	setRecordSetGetRecordsAttributeType(&o.Records, v)
 }
 
 // GetState returns the State field value
-func (o *RecordSet) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-
-	return o.State
+func (o *RecordSet) GetState() (ret RecordSetGetStateRetType) {
+	ret, _ = o.GetStateOk()
+	return ret
 }
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.State, true
+func (o *RecordSet) GetStateOk() (ret RecordSetGetStateRetType, ok bool) {
+	return getRecordSetGetStateAttributeTypeOk(o.State)
 }
 
 // SetState sets field value
-func (o *RecordSet) SetState(v *string) {
-	o.State = v
+func (o *RecordSet) SetState(v RecordSetGetStateRetType) {
+	setRecordSetGetStateAttributeType(&o.State, v)
 }
 
 // GetTtl returns the Ttl field value
-func (o *RecordSet) GetTtl() *int64 {
-	if o == nil || IsNil(o.Ttl) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Ttl
+func (o *RecordSet) GetTtl() (ret RecordSetGetTtlRetType) {
+	ret, _ = o.GetTtlOk()
+	return ret
 }
 
 // GetTtlOk returns a tuple with the Ttl field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetTtlOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Ttl, true
+func (o *RecordSet) GetTtlOk() (ret RecordSetGetTtlRetType, ok bool) {
+	return getRecordSetGetTtlAttributeTypeOk(o.Ttl)
 }
 
 // SetTtl sets field value
-func (o *RecordSet) SetTtl(v *int64) {
-	o.Ttl = v
+func (o *RecordSet) SetTtl(v RecordSetGetTtlRetType) {
+	setRecordSetGetTtlAttributeType(&o.Ttl, v)
 }
 
 // GetType returns the Type field value
-func (o *RecordSet) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *RecordSet) GetType() (ret RecordSetGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *RecordSet) GetTypeOk() (ret RecordSetGetTypeRetType, ok bool) {
+	return getRecordSetGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *RecordSet) SetType(v *string) {
-	o.Type = v
+func (o *RecordSet) SetType(v RecordSetGetTypeRetType) {
+	setRecordSetGetTypeAttributeType(&o.Type, v)
 }
 
 // GetUpdateFinished returns the UpdateFinished field value
-func (o *RecordSet) GetUpdateFinished() *string {
-	if o == nil || IsNil(o.UpdateFinished) {
-		var ret *string
-		return ret
-	}
-
-	return o.UpdateFinished
+func (o *RecordSet) GetUpdateFinished() (ret RecordSetGetUpdateFinishedRetType) {
+	ret, _ = o.GetUpdateFinishedOk()
+	return ret
 }
 
 // GetUpdateFinishedOk returns a tuple with the UpdateFinished field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetUpdateFinishedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UpdateFinished, true
+func (o *RecordSet) GetUpdateFinishedOk() (ret RecordSetGetUpdateFinishedRetType, ok bool) {
+	return getRecordSetGetUpdateFinishedAttributeTypeOk(o.UpdateFinished)
 }
 
 // SetUpdateFinished sets field value
-func (o *RecordSet) SetUpdateFinished(v *string) {
-	o.UpdateFinished = v
+func (o *RecordSet) SetUpdateFinished(v RecordSetGetUpdateFinishedRetType) {
+	setRecordSetGetUpdateFinishedAttributeType(&o.UpdateFinished, v)
 }
 
 // GetUpdateStarted returns the UpdateStarted field value
-func (o *RecordSet) GetUpdateStarted() *string {
-	if o == nil || IsNil(o.UpdateStarted) {
-		var ret *string
-		return ret
-	}
-
-	return o.UpdateStarted
+func (o *RecordSet) GetUpdateStarted() (ret RecordSetGetUpdateStartedRetType) {
+	ret, _ = o.GetUpdateStartedOk()
+	return ret
 }
 
 // GetUpdateStartedOk returns a tuple with the UpdateStarted field value
 // and a boolean to check if the value has been set.
-func (o *RecordSet) GetUpdateStartedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UpdateStarted, true
+func (o *RecordSet) GetUpdateStartedOk() (ret RecordSetGetUpdateStartedRetType, ok bool) {
+	return getRecordSetGetUpdateStartedAttributeTypeOk(o.UpdateStarted)
 }
 
 // SetUpdateStarted sets field value
-func (o *RecordSet) SetUpdateStarted(v *string) {
-	o.UpdateStarted = v
+func (o *RecordSet) SetUpdateStarted(v RecordSetGetUpdateStartedRetType) {
+	setRecordSetGetUpdateStartedAttributeType(&o.UpdateStarted, v)
 }
 
 func (o RecordSet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Active) {
-		toSerialize["active"] = o.Active
+	if val, ok := getRecordSetgetActiveAttributeTypeOk(o.Active); ok {
+		toSerialize["Active"] = val
 	}
-	if !IsNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
+	if val, ok := getRecordSetGetCommentAttributeTypeOk(o.Comment); ok {
+		toSerialize["Comment"] = val
 	}
-	toSerialize["creationFinished"] = o.CreationFinished
-	toSerialize["creationStarted"] = o.CreationStarted
-	if !IsNil(o.Error) {
-		toSerialize["error"] = o.Error
+	if val, ok := getRecordSetGetCreationFinishedAttributeTypeOk(o.CreationFinished); ok {
+		toSerialize["CreationFinished"] = val
 	}
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["records"] = o.Records
-	toSerialize["state"] = o.State
-	toSerialize["ttl"] = o.Ttl
-	toSerialize["type"] = o.Type
-	toSerialize["updateFinished"] = o.UpdateFinished
-	toSerialize["updateStarted"] = o.UpdateStarted
+	if val, ok := getRecordSetGetCreationStartedAttributeTypeOk(o.CreationStarted); ok {
+		toSerialize["CreationStarted"] = val
+	}
+	if val, ok := getRecordSetGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
+	}
+	if val, ok := getRecordSetGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getRecordSetGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getRecordSetGetRecordsAttributeTypeOk(o.Records); ok {
+		toSerialize["Records"] = val
+	}
+	if val, ok := getRecordSetGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
+	}
+	if val, ok := getRecordSetGetTtlAttributeTypeOk(o.Ttl); ok {
+		toSerialize["Ttl"] = val
+	}
+	if val, ok := getRecordSetGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
+	if val, ok := getRecordSetGetUpdateFinishedAttributeTypeOk(o.UpdateFinished); ok {
+		toSerialize["UpdateFinished"] = val
+	}
+	if val, ok := getRecordSetGetUpdateStartedAttributeTypeOk(o.UpdateStarted); ok {
+		toSerialize["UpdateStarted"] = val
+	}
 	return toSerialize, nil
 }
 

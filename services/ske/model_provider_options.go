@@ -17,13 +17,113 @@ import (
 // checks if the ProviderOptions type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ProviderOptions{}
 
+/*
+	types and functions for availabilityZones
+*/
+
+// isArray
+type ProviderOptionsGetAvailabilityZonesAttributeType = *[]AvailabilityZone
+type ProviderOptionsGetAvailabilityZonesArgType = []AvailabilityZone
+type ProviderOptionsGetAvailabilityZonesRetType = []AvailabilityZone
+
+func getProviderOptionsGetAvailabilityZonesAttributeTypeOk(arg ProviderOptionsGetAvailabilityZonesAttributeType) (ret ProviderOptionsGetAvailabilityZonesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProviderOptionsGetAvailabilityZonesAttributeType(arg *ProviderOptionsGetAvailabilityZonesAttributeType, val ProviderOptionsGetAvailabilityZonesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for kubernetesVersions
+*/
+
+// isArray
+type ProviderOptionsGetKubernetesVersionsAttributeType = *[]KubernetesVersion
+type ProviderOptionsGetKubernetesVersionsArgType = []KubernetesVersion
+type ProviderOptionsGetKubernetesVersionsRetType = []KubernetesVersion
+
+func getProviderOptionsGetKubernetesVersionsAttributeTypeOk(arg ProviderOptionsGetKubernetesVersionsAttributeType) (ret ProviderOptionsGetKubernetesVersionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProviderOptionsGetKubernetesVersionsAttributeType(arg *ProviderOptionsGetKubernetesVersionsAttributeType, val ProviderOptionsGetKubernetesVersionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for machineImages
+*/
+
+// isArray
+type ProviderOptionsGetMachineImagesAttributeType = *[]MachineImage
+type ProviderOptionsGetMachineImagesArgType = []MachineImage
+type ProviderOptionsGetMachineImagesRetType = []MachineImage
+
+func getProviderOptionsGetMachineImagesAttributeTypeOk(arg ProviderOptionsGetMachineImagesAttributeType) (ret ProviderOptionsGetMachineImagesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProviderOptionsGetMachineImagesAttributeType(arg *ProviderOptionsGetMachineImagesAttributeType, val ProviderOptionsGetMachineImagesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for machineTypes
+*/
+
+// isArray
+type ProviderOptionsGetMachineTypesAttributeType = *[]MachineType
+type ProviderOptionsGetMachineTypesArgType = []MachineType
+type ProviderOptionsGetMachineTypesRetType = []MachineType
+
+func getProviderOptionsGetMachineTypesAttributeTypeOk(arg ProviderOptionsGetMachineTypesAttributeType) (ret ProviderOptionsGetMachineTypesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProviderOptionsGetMachineTypesAttributeType(arg *ProviderOptionsGetMachineTypesAttributeType, val ProviderOptionsGetMachineTypesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for volumeTypes
+*/
+
+// isArray
+type ProviderOptionsGetVolumeTypesAttributeType = *[]VolumeType
+type ProviderOptionsGetVolumeTypesArgType = []VolumeType
+type ProviderOptionsGetVolumeTypesRetType = []VolumeType
+
+func getProviderOptionsGetVolumeTypesAttributeTypeOk(arg ProviderOptionsGetVolumeTypesAttributeType) (ret ProviderOptionsGetVolumeTypesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setProviderOptionsGetVolumeTypesAttributeType(arg *ProviderOptionsGetVolumeTypesAttributeType, val ProviderOptionsGetVolumeTypesRetType) {
+	*arg = &val
+}
+
 // ProviderOptions struct for ProviderOptions
 type ProviderOptions struct {
-	AvailabilityZones  *[]AvailabilityZone  `json:"availabilityZones,omitempty"`
-	KubernetesVersions *[]KubernetesVersion `json:"kubernetesVersions,omitempty"`
-	MachineImages      *[]MachineImage      `json:"machineImages,omitempty"`
-	MachineTypes       *[]MachineType       `json:"machineTypes,omitempty"`
-	VolumeTypes        *[]VolumeType        `json:"volumeTypes,omitempty"`
+	AvailabilityZones  ProviderOptionsGetAvailabilityZonesAttributeType  `json:"availabilityZones,omitempty"`
+	KubernetesVersions ProviderOptionsGetKubernetesVersionsAttributeType `json:"kubernetesVersions,omitempty"`
+	MachineImages      ProviderOptionsGetMachineImagesAttributeType      `json:"machineImages,omitempty"`
+	MachineTypes       ProviderOptionsGetMachineTypesAttributeType       `json:"machineTypes,omitempty"`
+	VolumeTypes        ProviderOptionsGetVolumeTypesAttributeType        `json:"volumeTypes,omitempty"`
 }
 
 // NewProviderOptions instantiates a new ProviderOptions object
@@ -44,181 +144,136 @@ func NewProviderOptionsWithDefaults() *ProviderOptions {
 }
 
 // GetAvailabilityZones returns the AvailabilityZones field value if set, zero value otherwise.
-func (o *ProviderOptions) GetAvailabilityZones() *[]AvailabilityZone {
-	if o == nil || IsNil(o.AvailabilityZones) {
-		var ret *[]AvailabilityZone
-		return ret
-	}
-	return o.AvailabilityZones
+func (o *ProviderOptions) GetAvailabilityZones() (res ProviderOptionsGetAvailabilityZonesRetType) {
+	res, _ = o.GetAvailabilityZonesOk()
+	return
 }
 
 // GetAvailabilityZonesOk returns a tuple with the AvailabilityZones field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProviderOptions) GetAvailabilityZonesOk() (*[]AvailabilityZone, bool) {
-	if o == nil || IsNil(o.AvailabilityZones) {
-		return nil, false
-	}
-	return o.AvailabilityZones, true
+func (o *ProviderOptions) GetAvailabilityZonesOk() (ret ProviderOptionsGetAvailabilityZonesRetType, ok bool) {
+	return getProviderOptionsGetAvailabilityZonesAttributeTypeOk(o.AvailabilityZones)
 }
 
 // HasAvailabilityZones returns a boolean if a field has been set.
 func (o *ProviderOptions) HasAvailabilityZones() bool {
-	if o != nil && !IsNil(o.AvailabilityZones) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAvailabilityZonesOk()
+	return ok
 }
 
 // SetAvailabilityZones gets a reference to the given []AvailabilityZone and assigns it to the AvailabilityZones field.
-func (o *ProviderOptions) SetAvailabilityZones(v *[]AvailabilityZone) {
-	o.AvailabilityZones = v
+func (o *ProviderOptions) SetAvailabilityZones(v ProviderOptionsGetAvailabilityZonesRetType) {
+	setProviderOptionsGetAvailabilityZonesAttributeType(&o.AvailabilityZones, v)
 }
 
 // GetKubernetesVersions returns the KubernetesVersions field value if set, zero value otherwise.
-func (o *ProviderOptions) GetKubernetesVersions() *[]KubernetesVersion {
-	if o == nil || IsNil(o.KubernetesVersions) {
-		var ret *[]KubernetesVersion
-		return ret
-	}
-	return o.KubernetesVersions
+func (o *ProviderOptions) GetKubernetesVersions() (res ProviderOptionsGetKubernetesVersionsRetType) {
+	res, _ = o.GetKubernetesVersionsOk()
+	return
 }
 
 // GetKubernetesVersionsOk returns a tuple with the KubernetesVersions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProviderOptions) GetKubernetesVersionsOk() (*[]KubernetesVersion, bool) {
-	if o == nil || IsNil(o.KubernetesVersions) {
-		return nil, false
-	}
-	return o.KubernetesVersions, true
+func (o *ProviderOptions) GetKubernetesVersionsOk() (ret ProviderOptionsGetKubernetesVersionsRetType, ok bool) {
+	return getProviderOptionsGetKubernetesVersionsAttributeTypeOk(o.KubernetesVersions)
 }
 
 // HasKubernetesVersions returns a boolean if a field has been set.
 func (o *ProviderOptions) HasKubernetesVersions() bool {
-	if o != nil && !IsNil(o.KubernetesVersions) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetKubernetesVersionsOk()
+	return ok
 }
 
 // SetKubernetesVersions gets a reference to the given []KubernetesVersion and assigns it to the KubernetesVersions field.
-func (o *ProviderOptions) SetKubernetesVersions(v *[]KubernetesVersion) {
-	o.KubernetesVersions = v
+func (o *ProviderOptions) SetKubernetesVersions(v ProviderOptionsGetKubernetesVersionsRetType) {
+	setProviderOptionsGetKubernetesVersionsAttributeType(&o.KubernetesVersions, v)
 }
 
 // GetMachineImages returns the MachineImages field value if set, zero value otherwise.
-func (o *ProviderOptions) GetMachineImages() *[]MachineImage {
-	if o == nil || IsNil(o.MachineImages) {
-		var ret *[]MachineImage
-		return ret
-	}
-	return o.MachineImages
+func (o *ProviderOptions) GetMachineImages() (res ProviderOptionsGetMachineImagesRetType) {
+	res, _ = o.GetMachineImagesOk()
+	return
 }
 
 // GetMachineImagesOk returns a tuple with the MachineImages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProviderOptions) GetMachineImagesOk() (*[]MachineImage, bool) {
-	if o == nil || IsNil(o.MachineImages) {
-		return nil, false
-	}
-	return o.MachineImages, true
+func (o *ProviderOptions) GetMachineImagesOk() (ret ProviderOptionsGetMachineImagesRetType, ok bool) {
+	return getProviderOptionsGetMachineImagesAttributeTypeOk(o.MachineImages)
 }
 
 // HasMachineImages returns a boolean if a field has been set.
 func (o *ProviderOptions) HasMachineImages() bool {
-	if o != nil && !IsNil(o.MachineImages) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMachineImagesOk()
+	return ok
 }
 
 // SetMachineImages gets a reference to the given []MachineImage and assigns it to the MachineImages field.
-func (o *ProviderOptions) SetMachineImages(v *[]MachineImage) {
-	o.MachineImages = v
+func (o *ProviderOptions) SetMachineImages(v ProviderOptionsGetMachineImagesRetType) {
+	setProviderOptionsGetMachineImagesAttributeType(&o.MachineImages, v)
 }
 
 // GetMachineTypes returns the MachineTypes field value if set, zero value otherwise.
-func (o *ProviderOptions) GetMachineTypes() *[]MachineType {
-	if o == nil || IsNil(o.MachineTypes) {
-		var ret *[]MachineType
-		return ret
-	}
-	return o.MachineTypes
+func (o *ProviderOptions) GetMachineTypes() (res ProviderOptionsGetMachineTypesRetType) {
+	res, _ = o.GetMachineTypesOk()
+	return
 }
 
 // GetMachineTypesOk returns a tuple with the MachineTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProviderOptions) GetMachineTypesOk() (*[]MachineType, bool) {
-	if o == nil || IsNil(o.MachineTypes) {
-		return nil, false
-	}
-	return o.MachineTypes, true
+func (o *ProviderOptions) GetMachineTypesOk() (ret ProviderOptionsGetMachineTypesRetType, ok bool) {
+	return getProviderOptionsGetMachineTypesAttributeTypeOk(o.MachineTypes)
 }
 
 // HasMachineTypes returns a boolean if a field has been set.
 func (o *ProviderOptions) HasMachineTypes() bool {
-	if o != nil && !IsNil(o.MachineTypes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMachineTypesOk()
+	return ok
 }
 
 // SetMachineTypes gets a reference to the given []MachineType and assigns it to the MachineTypes field.
-func (o *ProviderOptions) SetMachineTypes(v *[]MachineType) {
-	o.MachineTypes = v
+func (o *ProviderOptions) SetMachineTypes(v ProviderOptionsGetMachineTypesRetType) {
+	setProviderOptionsGetMachineTypesAttributeType(&o.MachineTypes, v)
 }
 
 // GetVolumeTypes returns the VolumeTypes field value if set, zero value otherwise.
-func (o *ProviderOptions) GetVolumeTypes() *[]VolumeType {
-	if o == nil || IsNil(o.VolumeTypes) {
-		var ret *[]VolumeType
-		return ret
-	}
-	return o.VolumeTypes
+func (o *ProviderOptions) GetVolumeTypes() (res ProviderOptionsGetVolumeTypesRetType) {
+	res, _ = o.GetVolumeTypesOk()
+	return
 }
 
 // GetVolumeTypesOk returns a tuple with the VolumeTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProviderOptions) GetVolumeTypesOk() (*[]VolumeType, bool) {
-	if o == nil || IsNil(o.VolumeTypes) {
-		return nil, false
-	}
-	return o.VolumeTypes, true
+func (o *ProviderOptions) GetVolumeTypesOk() (ret ProviderOptionsGetVolumeTypesRetType, ok bool) {
+	return getProviderOptionsGetVolumeTypesAttributeTypeOk(o.VolumeTypes)
 }
 
 // HasVolumeTypes returns a boolean if a field has been set.
 func (o *ProviderOptions) HasVolumeTypes() bool {
-	if o != nil && !IsNil(o.VolumeTypes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetVolumeTypesOk()
+	return ok
 }
 
 // SetVolumeTypes gets a reference to the given []VolumeType and assigns it to the VolumeTypes field.
-func (o *ProviderOptions) SetVolumeTypes(v *[]VolumeType) {
-	o.VolumeTypes = v
+func (o *ProviderOptions) SetVolumeTypes(v ProviderOptionsGetVolumeTypesRetType) {
+	setProviderOptionsGetVolumeTypesAttributeType(&o.VolumeTypes, v)
 }
 
 func (o ProviderOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AvailabilityZones) {
-		toSerialize["availabilityZones"] = o.AvailabilityZones
+	if val, ok := getProviderOptionsGetAvailabilityZonesAttributeTypeOk(o.AvailabilityZones); ok {
+		toSerialize["AvailabilityZones"] = val
 	}
-	if !IsNil(o.KubernetesVersions) {
-		toSerialize["kubernetesVersions"] = o.KubernetesVersions
+	if val, ok := getProviderOptionsGetKubernetesVersionsAttributeTypeOk(o.KubernetesVersions); ok {
+		toSerialize["KubernetesVersions"] = val
 	}
-	if !IsNil(o.MachineImages) {
-		toSerialize["machineImages"] = o.MachineImages
+	if val, ok := getProviderOptionsGetMachineImagesAttributeTypeOk(o.MachineImages); ok {
+		toSerialize["MachineImages"] = val
 	}
-	if !IsNil(o.MachineTypes) {
-		toSerialize["machineTypes"] = o.MachineTypes
+	if val, ok := getProviderOptionsGetMachineTypesAttributeTypeOk(o.MachineTypes); ok {
+		toSerialize["MachineTypes"] = val
 	}
-	if !IsNil(o.VolumeTypes) {
-		toSerialize["volumeTypes"] = o.VolumeTypes
+	if val, ok := getProviderOptionsGetVolumeTypesAttributeTypeOk(o.VolumeTypes); ok {
+		toSerialize["VolumeTypes"] = val
 	}
 	return toSerialize, nil
 }

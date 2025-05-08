@@ -17,11 +17,31 @@ import (
 // checks if the SecurityGroupRuleListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SecurityGroupRuleListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type SecurityGroupRuleListResponseGetItemsAttributeType = *[]SecurityGroupRule
+type SecurityGroupRuleListResponseGetItemsArgType = []SecurityGroupRule
+type SecurityGroupRuleListResponseGetItemsRetType = []SecurityGroupRule
+
+func getSecurityGroupRuleListResponseGetItemsAttributeTypeOk(arg SecurityGroupRuleListResponseGetItemsAttributeType) (ret SecurityGroupRuleListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSecurityGroupRuleListResponseGetItemsAttributeType(arg *SecurityGroupRuleListResponseGetItemsAttributeType, val SecurityGroupRuleListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // SecurityGroupRuleListResponse Security group rule list response.
 type SecurityGroupRuleListResponse struct {
 	// A list containing security group rule objects.
 	// REQUIRED
-	Items *[]SecurityGroupRule `json:"items"`
+	Items SecurityGroupRuleListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _SecurityGroupRuleListResponse SecurityGroupRuleListResponse
@@ -30,9 +50,9 @@ type _SecurityGroupRuleListResponse SecurityGroupRuleListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSecurityGroupRuleListResponse(items *[]SecurityGroupRule) *SecurityGroupRuleListResponse {
+func NewSecurityGroupRuleListResponse(items SecurityGroupRuleListResponseGetItemsArgType) *SecurityGroupRuleListResponse {
 	this := SecurityGroupRuleListResponse{}
-	this.Items = items
+	setSecurityGroupRuleListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewSecurityGroupRuleListResponseWithDefaults() *SecurityGroupRuleListRespon
 }
 
 // GetItems returns the Items field value
-func (o *SecurityGroupRuleListResponse) GetItems() *[]SecurityGroupRule {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]SecurityGroupRule
-		return ret
-	}
-
-	return o.Items
+func (o *SecurityGroupRuleListResponse) GetItems() (ret SecurityGroupRuleListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *SecurityGroupRuleListResponse) GetItemsOk() (*[]SecurityGroupRule, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *SecurityGroupRuleListResponse) GetItemsOk() (ret SecurityGroupRuleListResponseGetItemsRetType, ok bool) {
+	return getSecurityGroupRuleListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *SecurityGroupRuleListResponse) SetItems(v *[]SecurityGroupRule) {
-	o.Items = v
+func (o *SecurityGroupRuleListResponse) SetItems(v SecurityGroupRuleListResponseGetItemsRetType) {
+	setSecurityGroupRuleListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o SecurityGroupRuleListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getSecurityGroupRuleListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 

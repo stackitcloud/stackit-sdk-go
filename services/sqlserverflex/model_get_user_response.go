@@ -17,9 +17,29 @@ import (
 // checks if the GetUserResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetUserResponse{}
 
+/*
+	types and functions for item
+*/
+
+// isModel
+type GetUserResponseGetItemAttributeType = *UserResponseUser
+type GetUserResponseGetItemArgType = UserResponseUser
+type GetUserResponseGetItemRetType = UserResponseUser
+
+func getGetUserResponseGetItemAttributeTypeOk(arg GetUserResponseGetItemAttributeType) (ret GetUserResponseGetItemRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetUserResponseGetItemAttributeType(arg *GetUserResponseGetItemAttributeType, val GetUserResponseGetItemRetType) {
+	*arg = &val
+}
+
 // GetUserResponse struct for GetUserResponse
 type GetUserResponse struct {
-	Item *UserResponseUser `json:"item,omitempty"`
+	Item GetUserResponseGetItemAttributeType `json:"item,omitempty"`
 }
 
 // NewGetUserResponse instantiates a new GetUserResponse object
@@ -40,41 +60,32 @@ func NewGetUserResponseWithDefaults() *GetUserResponse {
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
-func (o *GetUserResponse) GetItem() *UserResponseUser {
-	if o == nil || IsNil(o.Item) {
-		var ret *UserResponseUser
-		return ret
-	}
-	return o.Item
+func (o *GetUserResponse) GetItem() (res GetUserResponseGetItemRetType) {
+	res, _ = o.GetItemOk()
+	return
 }
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetUserResponse) GetItemOk() (*UserResponseUser, bool) {
-	if o == nil || IsNil(o.Item) {
-		return nil, false
-	}
-	return o.Item, true
+func (o *GetUserResponse) GetItemOk() (ret GetUserResponseGetItemRetType, ok bool) {
+	return getGetUserResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
 func (o *GetUserResponse) HasItem() bool {
-	if o != nil && !IsNil(o.Item) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemOk()
+	return ok
 }
 
 // SetItem gets a reference to the given UserResponseUser and assigns it to the Item field.
-func (o *GetUserResponse) SetItem(v *UserResponseUser) {
-	o.Item = v
+func (o *GetUserResponse) SetItem(v GetUserResponseGetItemRetType) {
+	setGetUserResponseGetItemAttributeType(&o.Item, v)
 }
 
 func (o GetUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Item) {
-		toSerialize["item"] = o.Item
+	if val, ok := getGetUserResponseGetItemAttributeTypeOk(o.Item); ok {
+		toSerialize["Item"] = val
 	}
 	return toSerialize, nil
 }

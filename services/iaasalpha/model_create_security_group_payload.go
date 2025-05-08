@@ -18,25 +18,188 @@ import (
 // checks if the CreateSecurityGroupPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateSecurityGroupPayload{}
 
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type CreateSecurityGroupPayloadGetCreatedAtAttributeType = *time.Time
+type CreateSecurityGroupPayloadGetCreatedAtArgType = time.Time
+type CreateSecurityGroupPayloadGetCreatedAtRetType = time.Time
+
+func getCreateSecurityGroupPayloadGetCreatedAtAttributeTypeOk(arg CreateSecurityGroupPayloadGetCreatedAtAttributeType) (ret CreateSecurityGroupPayloadGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupPayloadGetCreatedAtAttributeType(arg *CreateSecurityGroupPayloadGetCreatedAtAttributeType, val CreateSecurityGroupPayloadGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type CreateSecurityGroupPayloadGetDescriptionAttributeType = *string
+
+func getCreateSecurityGroupPayloadGetDescriptionAttributeTypeOk(arg CreateSecurityGroupPayloadGetDescriptionAttributeType) (ret CreateSecurityGroupPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupPayloadGetDescriptionAttributeType(arg *CreateSecurityGroupPayloadGetDescriptionAttributeType, val CreateSecurityGroupPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+type CreateSecurityGroupPayloadGetDescriptionArgType = string
+type CreateSecurityGroupPayloadGetDescriptionRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type CreateSecurityGroupPayloadGetIdAttributeType = *string
+
+func getCreateSecurityGroupPayloadGetIdAttributeTypeOk(arg CreateSecurityGroupPayloadGetIdAttributeType) (ret CreateSecurityGroupPayloadGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupPayloadGetIdAttributeType(arg *CreateSecurityGroupPayloadGetIdAttributeType, val CreateSecurityGroupPayloadGetIdRetType) {
+	*arg = &val
+}
+
+type CreateSecurityGroupPayloadGetIdArgType = string
+type CreateSecurityGroupPayloadGetIdRetType = string
+
+/*
+	types and functions for labels
+*/
+
+// isFreeform
+type CreateSecurityGroupPayloadGetLabelsAttributeType = *map[string]interface{}
+type CreateSecurityGroupPayloadGetLabelsArgType = map[string]interface{}
+type CreateSecurityGroupPayloadGetLabelsRetType = map[string]interface{}
+
+func getCreateSecurityGroupPayloadGetLabelsAttributeTypeOk(arg CreateSecurityGroupPayloadGetLabelsAttributeType) (ret CreateSecurityGroupPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupPayloadGetLabelsAttributeType(arg *CreateSecurityGroupPayloadGetLabelsAttributeType, val CreateSecurityGroupPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateSecurityGroupPayloadGetNameAttributeType = *string
+
+func getCreateSecurityGroupPayloadGetNameAttributeTypeOk(arg CreateSecurityGroupPayloadGetNameAttributeType) (ret CreateSecurityGroupPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupPayloadGetNameAttributeType(arg *CreateSecurityGroupPayloadGetNameAttributeType, val CreateSecurityGroupPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateSecurityGroupPayloadGetNameArgType = string
+type CreateSecurityGroupPayloadGetNameRetType = string
+
+/*
+	types and functions for rules
+*/
+
+// isArray
+type CreateSecurityGroupPayloadGetRulesAttributeType = *[]SecurityGroupRule
+type CreateSecurityGroupPayloadGetRulesArgType = []SecurityGroupRule
+type CreateSecurityGroupPayloadGetRulesRetType = []SecurityGroupRule
+
+func getCreateSecurityGroupPayloadGetRulesAttributeTypeOk(arg CreateSecurityGroupPayloadGetRulesAttributeType) (ret CreateSecurityGroupPayloadGetRulesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupPayloadGetRulesAttributeType(arg *CreateSecurityGroupPayloadGetRulesAttributeType, val CreateSecurityGroupPayloadGetRulesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for stateful
+*/
+
+// isBoolean
+type CreateSecurityGroupPayloadgetStatefulAttributeType = *bool
+type CreateSecurityGroupPayloadgetStatefulArgType = bool
+type CreateSecurityGroupPayloadgetStatefulRetType = bool
+
+func getCreateSecurityGroupPayloadgetStatefulAttributeTypeOk(arg CreateSecurityGroupPayloadgetStatefulAttributeType) (ret CreateSecurityGroupPayloadgetStatefulRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupPayloadgetStatefulAttributeType(arg *CreateSecurityGroupPayloadgetStatefulAttributeType, val CreateSecurityGroupPayloadgetStatefulRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type CreateSecurityGroupPayloadGetUpdatedAtAttributeType = *time.Time
+type CreateSecurityGroupPayloadGetUpdatedAtArgType = time.Time
+type CreateSecurityGroupPayloadGetUpdatedAtRetType = time.Time
+
+func getCreateSecurityGroupPayloadGetUpdatedAtAttributeTypeOk(arg CreateSecurityGroupPayloadGetUpdatedAtAttributeType) (ret CreateSecurityGroupPayloadGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupPayloadGetUpdatedAtAttributeType(arg *CreateSecurityGroupPayloadGetUpdatedAtAttributeType, val CreateSecurityGroupPayloadGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // CreateSecurityGroupPayload Object that represents a security group.
 type CreateSecurityGroupPayload struct {
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt CreateSecurityGroupPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 127 Characters.
-	Description *string `json:"description,omitempty"`
+	Description CreateSecurityGroupPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id *string `json:"id,omitempty"`
+	Id CreateSecurityGroupPayloadGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
-	Labels *map[string]interface{} `json:"labels,omitempty"`
+	Labels CreateSecurityGroupPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CreateSecurityGroupPayloadGetNameAttributeType `json:"name"`
 	// A list containing security group rule objects.
-	Rules *[]SecurityGroupRule `json:"rules,omitempty"`
+	Rules CreateSecurityGroupPayloadGetRulesAttributeType `json:"rules,omitempty"`
 	// Shows if a security group is stateful or stateless. You can only have one type of security groups per network interface/server.
-	Stateful *bool `json:"stateful,omitempty"`
+	Stateful CreateSecurityGroupPayloadgetStatefulAttributeType `json:"stateful,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt CreateSecurityGroupPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 type _CreateSecurityGroupPayload CreateSecurityGroupPayload
@@ -45,11 +208,9 @@ type _CreateSecurityGroupPayload CreateSecurityGroupPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateSecurityGroupPayload(name *string) *CreateSecurityGroupPayload {
+func NewCreateSecurityGroupPayload(name CreateSecurityGroupPayloadGetNameArgType) *CreateSecurityGroupPayload {
 	this := CreateSecurityGroupPayload{}
-	this.Name = name
-	var stateful bool = true
-	this.Stateful = &stateful
+	setCreateSecurityGroupPayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -64,276 +225,208 @@ func NewCreateSecurityGroupPayloadWithDefaults() *CreateSecurityGroupPayload {
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *CreateSecurityGroupPayload) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *CreateSecurityGroupPayload) GetCreatedAt() (res CreateSecurityGroupPayloadGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupPayload) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *CreateSecurityGroupPayload) GetCreatedAtOk() (ret CreateSecurityGroupPayloadGetCreatedAtRetType, ok bool) {
+	return getCreateSecurityGroupPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *CreateSecurityGroupPayload) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *CreateSecurityGroupPayload) SetCreatedAt(v CreateSecurityGroupPayloadGetCreatedAtRetType) {
+	setCreateSecurityGroupPayloadGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *CreateSecurityGroupPayload) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *CreateSecurityGroupPayload) GetDescription() (res CreateSecurityGroupPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupPayload) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *CreateSecurityGroupPayload) GetDescriptionOk() (ret CreateSecurityGroupPayloadGetDescriptionRetType, ok bool) {
+	return getCreateSecurityGroupPayloadGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *CreateSecurityGroupPayload) SetDescription(v *string) {
-	o.Description = v
+func (o *CreateSecurityGroupPayload) SetDescription(v CreateSecurityGroupPayloadGetDescriptionRetType) {
+	setCreateSecurityGroupPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *CreateSecurityGroupPayload) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *CreateSecurityGroupPayload) GetId() (res CreateSecurityGroupPayloadGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupPayload) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *CreateSecurityGroupPayload) GetIdOk() (ret CreateSecurityGroupPayloadGetIdRetType, ok bool) {
+	return getCreateSecurityGroupPayloadGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *CreateSecurityGroupPayload) SetId(v *string) {
-	o.Id = v
+func (o *CreateSecurityGroupPayload) SetId(v CreateSecurityGroupPayloadGetIdRetType) {
+	setCreateSecurityGroupPayloadGetIdAttributeType(&o.Id, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateSecurityGroupPayload) GetLabels() *map[string]interface{} {
-	if o == nil || IsNil(o.Labels) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.Labels
+func (o *CreateSecurityGroupPayload) GetLabels() (res CreateSecurityGroupPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupPayload) GetLabelsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return &map[string]interface{}{}, false
-	}
-	return o.Labels, true
+func (o *CreateSecurityGroupPayload) GetLabelsOk() (ret CreateSecurityGroupPayloadGetLabelsRetType, ok bool) {
+	return getCreateSecurityGroupPayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given map[string]interface{} and assigns it to the Labels field.
-func (o *CreateSecurityGroupPayload) SetLabels(v *map[string]interface{}) {
-	o.Labels = v
+func (o *CreateSecurityGroupPayload) SetLabels(v CreateSecurityGroupPayloadGetLabelsRetType) {
+	setCreateSecurityGroupPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateSecurityGroupPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateSecurityGroupPayload) GetName() (ret CreateSecurityGroupPayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupPayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateSecurityGroupPayload) GetNameOk() (ret CreateSecurityGroupPayloadGetNameRetType, ok bool) {
+	return getCreateSecurityGroupPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateSecurityGroupPayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateSecurityGroupPayload) SetName(v CreateSecurityGroupPayloadGetNameRetType) {
+	setCreateSecurityGroupPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetRules returns the Rules field value if set, zero value otherwise.
-func (o *CreateSecurityGroupPayload) GetRules() *[]SecurityGroupRule {
-	if o == nil || IsNil(o.Rules) {
-		var ret *[]SecurityGroupRule
-		return ret
-	}
-	return o.Rules
+func (o *CreateSecurityGroupPayload) GetRules() (res CreateSecurityGroupPayloadGetRulesRetType) {
+	res, _ = o.GetRulesOk()
+	return
 }
 
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupPayload) GetRulesOk() (*[]SecurityGroupRule, bool) {
-	if o == nil || IsNil(o.Rules) {
-		return nil, false
-	}
-	return o.Rules, true
+func (o *CreateSecurityGroupPayload) GetRulesOk() (ret CreateSecurityGroupPayloadGetRulesRetType, ok bool) {
+	return getCreateSecurityGroupPayloadGetRulesAttributeTypeOk(o.Rules)
 }
 
 // HasRules returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasRules() bool {
-	if o != nil && !IsNil(o.Rules) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRulesOk()
+	return ok
 }
 
 // SetRules gets a reference to the given []SecurityGroupRule and assigns it to the Rules field.
-func (o *CreateSecurityGroupPayload) SetRules(v *[]SecurityGroupRule) {
-	o.Rules = v
+func (o *CreateSecurityGroupPayload) SetRules(v CreateSecurityGroupPayloadGetRulesRetType) {
+	setCreateSecurityGroupPayloadGetRulesAttributeType(&o.Rules, v)
 }
 
 // GetStateful returns the Stateful field value if set, zero value otherwise.
-func (o *CreateSecurityGroupPayload) GetStateful() *bool {
-	if o == nil || IsNil(o.Stateful) {
-		var ret *bool
-		return ret
-	}
-	return o.Stateful
+func (o *CreateSecurityGroupPayload) GetStateful() (res CreateSecurityGroupPayloadgetStatefulRetType) {
+	res, _ = o.GetStatefulOk()
+	return
 }
 
 // GetStatefulOk returns a tuple with the Stateful field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupPayload) GetStatefulOk() (*bool, bool) {
-	if o == nil || IsNil(o.Stateful) {
-		return nil, false
-	}
-	return o.Stateful, true
+func (o *CreateSecurityGroupPayload) GetStatefulOk() (ret CreateSecurityGroupPayloadgetStatefulRetType, ok bool) {
+	return getCreateSecurityGroupPayloadgetStatefulAttributeTypeOk(o.Stateful)
 }
 
 // HasStateful returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasStateful() bool {
-	if o != nil && !IsNil(o.Stateful) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStatefulOk()
+	return ok
 }
 
 // SetStateful gets a reference to the given bool and assigns it to the Stateful field.
-func (o *CreateSecurityGroupPayload) SetStateful(v *bool) {
-	o.Stateful = v
+func (o *CreateSecurityGroupPayload) SetStateful(v CreateSecurityGroupPayloadgetStatefulRetType) {
+	setCreateSecurityGroupPayloadgetStatefulAttributeType(&o.Stateful, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *CreateSecurityGroupPayload) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *CreateSecurityGroupPayload) GetUpdatedAt() (res CreateSecurityGroupPayloadGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateSecurityGroupPayload) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *CreateSecurityGroupPayload) GetUpdatedAtOk() (ret CreateSecurityGroupPayloadGetUpdatedAtRetType, ok bool) {
+	return getCreateSecurityGroupPayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *CreateSecurityGroupPayload) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *CreateSecurityGroupPayload) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *CreateSecurityGroupPayload) SetUpdatedAt(v CreateSecurityGroupPayloadGetUpdatedAtRetType) {
+	setCreateSecurityGroupPayloadGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 func (o CreateSecurityGroupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getCreateSecurityGroupPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getCreateSecurityGroupPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getCreateSecurityGroupPayloadGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getCreateSecurityGroupPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Rules) {
-		toSerialize["rules"] = o.Rules
+	if val, ok := getCreateSecurityGroupPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.Stateful) {
-		toSerialize["stateful"] = o.Stateful
+	if val, ok := getCreateSecurityGroupPayloadGetRulesAttributeTypeOk(o.Rules); ok {
+		toSerialize["Rules"] = val
 	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getCreateSecurityGroupPayloadgetStatefulAttributeTypeOk(o.Stateful); ok {
+		toSerialize["Stateful"] = val
+	}
+	if val, ok := getCreateSecurityGroupPayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

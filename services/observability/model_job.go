@@ -17,28 +17,353 @@ import (
 // checks if the Job type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Job{}
 
+/*
+	types and functions for basicAuth
+*/
+
+// isModel
+type JobGetBasicAuthAttributeType = *BasicAuth
+type JobGetBasicAuthArgType = BasicAuth
+type JobGetBasicAuthRetType = BasicAuth
+
+func getJobGetBasicAuthAttributeTypeOk(arg JobGetBasicAuthAttributeType) (ret JobGetBasicAuthRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetBasicAuthAttributeType(arg *JobGetBasicAuthAttributeType, val JobGetBasicAuthRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for bearerToken
+*/
+
+// isNotNullableString
+type JobGetBearerTokenAttributeType = *string
+
+func getJobGetBearerTokenAttributeTypeOk(arg JobGetBearerTokenAttributeType) (ret JobGetBearerTokenRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetBearerTokenAttributeType(arg *JobGetBearerTokenAttributeType, val JobGetBearerTokenRetType) {
+	*arg = &val
+}
+
+type JobGetBearerTokenArgType = string
+type JobGetBearerTokenRetType = string
+
+/*
+	types and functions for honorLabels
+*/
+
+// isBoolean
+type JobgetHonorLabelsAttributeType = *bool
+type JobgetHonorLabelsArgType = bool
+type JobgetHonorLabelsRetType = bool
+
+func getJobgetHonorLabelsAttributeTypeOk(arg JobgetHonorLabelsAttributeType) (ret JobgetHonorLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobgetHonorLabelsAttributeType(arg *JobgetHonorLabelsAttributeType, val JobgetHonorLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for honorTimeStamps
+*/
+
+// isBoolean
+type JobgetHonorTimeStampsAttributeType = *bool
+type JobgetHonorTimeStampsArgType = bool
+type JobgetHonorTimeStampsRetType = bool
+
+func getJobgetHonorTimeStampsAttributeTypeOk(arg JobgetHonorTimeStampsAttributeType) (ret JobgetHonorTimeStampsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobgetHonorTimeStampsAttributeType(arg *JobgetHonorTimeStampsAttributeType, val JobgetHonorTimeStampsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for httpSdConfigs
+*/
+
+// isArray
+type JobGetHttpSdConfigsAttributeType = *[]HTTPServiceSD
+type JobGetHttpSdConfigsArgType = []HTTPServiceSD
+type JobGetHttpSdConfigsRetType = []HTTPServiceSD
+
+func getJobGetHttpSdConfigsAttributeTypeOk(arg JobGetHttpSdConfigsAttributeType) (ret JobGetHttpSdConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetHttpSdConfigsAttributeType(arg *JobGetHttpSdConfigsAttributeType, val JobGetHttpSdConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for jobName
+*/
+
+// isNotNullableString
+type JobGetJobNameAttributeType = *string
+
+func getJobGetJobNameAttributeTypeOk(arg JobGetJobNameAttributeType) (ret JobGetJobNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetJobNameAttributeType(arg *JobGetJobNameAttributeType, val JobGetJobNameRetType) {
+	*arg = &val
+}
+
+type JobGetJobNameArgType = string
+type JobGetJobNameRetType = string
+
+/*
+	types and functions for metricsPath
+*/
+
+// isNotNullableString
+type JobGetMetricsPathAttributeType = *string
+
+func getJobGetMetricsPathAttributeTypeOk(arg JobGetMetricsPathAttributeType) (ret JobGetMetricsPathRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetMetricsPathAttributeType(arg *JobGetMetricsPathAttributeType, val JobGetMetricsPathRetType) {
+	*arg = &val
+}
+
+type JobGetMetricsPathArgType = string
+type JobGetMetricsPathRetType = string
+
+/*
+	types and functions for metricsRelabelConfigs
+*/
+
+// isArray
+type JobGetMetricsRelabelConfigsAttributeType = *[]MetricsRelabelConfig
+type JobGetMetricsRelabelConfigsArgType = []MetricsRelabelConfig
+type JobGetMetricsRelabelConfigsRetType = []MetricsRelabelConfig
+
+func getJobGetMetricsRelabelConfigsAttributeTypeOk(arg JobGetMetricsRelabelConfigsAttributeType) (ret JobGetMetricsRelabelConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetMetricsRelabelConfigsAttributeType(arg *JobGetMetricsRelabelConfigsAttributeType, val JobGetMetricsRelabelConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for oauth2
+*/
+
+// isModel
+type JobGetOauth2AttributeType = *OAuth2
+type JobGetOauth2ArgType = OAuth2
+type JobGetOauth2RetType = OAuth2
+
+func getJobGetOauth2AttributeTypeOk(arg JobGetOauth2AttributeType) (ret JobGetOauth2RetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetOauth2AttributeType(arg *JobGetOauth2AttributeType, val JobGetOauth2RetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for params
+*/
+
+// isContainer
+type JobGetParamsAttributeType = *map[string][]string
+type JobGetParamsArgType = map[string][]string
+type JobGetParamsRetType = map[string][]string
+
+func getJobGetParamsAttributeTypeOk(arg JobGetParamsAttributeType) (ret JobGetParamsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetParamsAttributeType(arg *JobGetParamsAttributeType, val JobGetParamsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for sampleLimit
+*/
+
+// isInteger
+type JobGetSampleLimitAttributeType = *int64
+type JobGetSampleLimitArgType = int64
+type JobGetSampleLimitRetType = int64
+
+func getJobGetSampleLimitAttributeTypeOk(arg JobGetSampleLimitAttributeType) (ret JobGetSampleLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetSampleLimitAttributeType(arg *JobGetSampleLimitAttributeType, val JobGetSampleLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for scheme
+*/
+
+// isEnumRef
+type JobGetSchemeAttributeType = *string
+type JobGetSchemeArgType = string
+type JobGetSchemeRetType = string
+
+func getJobGetSchemeAttributeTypeOk(arg JobGetSchemeAttributeType) (ret JobGetSchemeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetSchemeAttributeType(arg *JobGetSchemeAttributeType, val JobGetSchemeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for scrapeInterval
+*/
+
+// isNotNullableString
+type JobGetScrapeIntervalAttributeType = *string
+
+func getJobGetScrapeIntervalAttributeTypeOk(arg JobGetScrapeIntervalAttributeType) (ret JobGetScrapeIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetScrapeIntervalAttributeType(arg *JobGetScrapeIntervalAttributeType, val JobGetScrapeIntervalRetType) {
+	*arg = &val
+}
+
+type JobGetScrapeIntervalArgType = string
+type JobGetScrapeIntervalRetType = string
+
+/*
+	types and functions for scrapeTimeout
+*/
+
+// isNotNullableString
+type JobGetScrapeTimeoutAttributeType = *string
+
+func getJobGetScrapeTimeoutAttributeTypeOk(arg JobGetScrapeTimeoutAttributeType) (ret JobGetScrapeTimeoutRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetScrapeTimeoutAttributeType(arg *JobGetScrapeTimeoutAttributeType, val JobGetScrapeTimeoutRetType) {
+	*arg = &val
+}
+
+type JobGetScrapeTimeoutArgType = string
+type JobGetScrapeTimeoutRetType = string
+
+/*
+	types and functions for staticConfigs
+*/
+
+// isArray
+type JobGetStaticConfigsAttributeType = *[]StaticConfigs
+type JobGetStaticConfigsArgType = []StaticConfigs
+type JobGetStaticConfigsRetType = []StaticConfigs
+
+func getJobGetStaticConfigsAttributeTypeOk(arg JobGetStaticConfigsAttributeType) (ret JobGetStaticConfigsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetStaticConfigsAttributeType(arg *JobGetStaticConfigsAttributeType, val JobGetStaticConfigsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tlsConfig
+*/
+
+// isModel
+type JobGetTlsConfigAttributeType = *TLSConfig
+type JobGetTlsConfigArgType = TLSConfig
+type JobGetTlsConfigRetType = TLSConfig
+
+func getJobGetTlsConfigAttributeTypeOk(arg JobGetTlsConfigAttributeType) (ret JobGetTlsConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setJobGetTlsConfigAttributeType(arg *JobGetTlsConfigAttributeType, val JobGetTlsConfigRetType) {
+	*arg = &val
+}
+
 // Job struct for Job
 type Job struct {
-	BasicAuth       *BasicAuth       `json:"basicAuth,omitempty"`
-	BearerToken     *string          `json:"bearerToken,omitempty"`
-	HonorLabels     *bool            `json:"honorLabels,omitempty"`
-	HonorTimeStamps *bool            `json:"honorTimeStamps,omitempty"`
-	HttpSdConfigs   *[]HTTPServiceSD `json:"httpSdConfigs,omitempty"`
+	BasicAuth       JobGetBasicAuthAttributeType       `json:"basicAuth,omitempty"`
+	BearerToken     JobGetBearerTokenAttributeType     `json:"bearerToken,omitempty"`
+	HonorLabels     JobgetHonorLabelsAttributeType     `json:"honorLabels,omitempty"`
+	HonorTimeStamps JobgetHonorTimeStampsAttributeType `json:"honorTimeStamps,omitempty"`
+	HttpSdConfigs   JobGetHttpSdConfigsAttributeType   `json:"httpSdConfigs,omitempty"`
 	// REQUIRED
-	JobName               *string                 `json:"jobName"`
-	MetricsPath           *string                 `json:"metricsPath,omitempty"`
-	MetricsRelabelConfigs *[]MetricsRelabelConfig `json:"metricsRelabelConfigs,omitempty"`
-	Oauth2                *OAuth2                 `json:"oauth2,omitempty"`
-	Params                *map[string][]string    `json:"params,omitempty"`
-	SampleLimit           *int64                  `json:"sampleLimit,omitempty"`
-	Scheme                *string                 `json:"scheme,omitempty"`
+	JobName               JobGetJobNameAttributeType               `json:"jobName"`
+	MetricsPath           JobGetMetricsPathAttributeType           `json:"metricsPath,omitempty"`
+	MetricsRelabelConfigs JobGetMetricsRelabelConfigsAttributeType `json:"metricsRelabelConfigs,omitempty"`
+	Oauth2                JobGetOauth2AttributeType                `json:"oauth2,omitempty"`
+	Params                JobGetParamsAttributeType                `json:"params,omitempty"`
+	SampleLimit           JobGetSampleLimitAttributeType           `json:"sampleLimit,omitempty"`
+	Scheme                JobGetSchemeAttributeType                `json:"scheme,omitempty"`
 	// REQUIRED
-	ScrapeInterval *string `json:"scrapeInterval"`
+	ScrapeInterval JobGetScrapeIntervalAttributeType `json:"scrapeInterval"`
 	// REQUIRED
-	ScrapeTimeout *string `json:"scrapeTimeout"`
+	ScrapeTimeout JobGetScrapeTimeoutAttributeType `json:"scrapeTimeout"`
 	// REQUIRED
-	StaticConfigs *[]StaticConfigs `json:"staticConfigs"`
-	TlsConfig     *TLSConfig       `json:"tlsConfig,omitempty"`
+	StaticConfigs JobGetStaticConfigsAttributeType `json:"staticConfigs"`
+	TlsConfig     JobGetTlsConfigAttributeType     `json:"tlsConfig,omitempty"`
 }
 
 type _Job Job
@@ -47,20 +372,12 @@ type _Job Job
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJob(jobName *string, scrapeInterval *string, scrapeTimeout *string, staticConfigs *[]StaticConfigs) *Job {
+func NewJob(jobName JobGetJobNameArgType, scrapeInterval JobGetScrapeIntervalArgType, scrapeTimeout JobGetScrapeTimeoutArgType, staticConfigs JobGetStaticConfigsArgType) *Job {
 	this := Job{}
-	var honorLabels bool = false
-	this.HonorLabels = &honorLabels
-	var honorTimeStamps bool = false
-	this.HonorTimeStamps = &honorTimeStamps
-	this.JobName = jobName
-	var metricsPath string = "/metrics"
-	this.MetricsPath = &metricsPath
-	var scheme string = "http"
-	this.Scheme = &scheme
-	this.ScrapeInterval = scrapeInterval
-	this.ScrapeTimeout = scrapeTimeout
-	this.StaticConfigs = staticConfigs
+	setJobGetJobNameAttributeType(&this.JobName, jobName)
+	setJobGetScrapeIntervalAttributeType(&this.ScrapeInterval, scrapeInterval)
+	setJobGetScrapeTimeoutAttributeType(&this.ScrapeTimeout, scrapeTimeout)
+	setJobGetStaticConfigsAttributeType(&this.StaticConfigs, staticConfigs)
 	return &this
 }
 
@@ -81,526 +398,398 @@ func NewJobWithDefaults() *Job {
 }
 
 // GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
-func (o *Job) GetBasicAuth() *BasicAuth {
-	if o == nil || IsNil(o.BasicAuth) {
-		var ret *BasicAuth
-		return ret
-	}
-	return o.BasicAuth
+func (o *Job) GetBasicAuth() (res JobGetBasicAuthRetType) {
+	res, _ = o.GetBasicAuthOk()
+	return
 }
 
 // GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetBasicAuthOk() (*BasicAuth, bool) {
-	if o == nil || IsNil(o.BasicAuth) {
-		return nil, false
-	}
-	return o.BasicAuth, true
+func (o *Job) GetBasicAuthOk() (ret JobGetBasicAuthRetType, ok bool) {
+	return getJobGetBasicAuthAttributeTypeOk(o.BasicAuth)
 }
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *Job) HasBasicAuth() bool {
-	if o != nil && !IsNil(o.BasicAuth) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBasicAuthOk()
+	return ok
 }
 
 // SetBasicAuth gets a reference to the given BasicAuth and assigns it to the BasicAuth field.
-func (o *Job) SetBasicAuth(v *BasicAuth) {
-	o.BasicAuth = v
+func (o *Job) SetBasicAuth(v JobGetBasicAuthRetType) {
+	setJobGetBasicAuthAttributeType(&o.BasicAuth, v)
 }
 
 // GetBearerToken returns the BearerToken field value if set, zero value otherwise.
-func (o *Job) GetBearerToken() *string {
-	if o == nil || IsNil(o.BearerToken) {
-		var ret *string
-		return ret
-	}
-	return o.BearerToken
+func (o *Job) GetBearerToken() (res JobGetBearerTokenRetType) {
+	res, _ = o.GetBearerTokenOk()
+	return
 }
 
 // GetBearerTokenOk returns a tuple with the BearerToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetBearerTokenOk() (*string, bool) {
-	if o == nil || IsNil(o.BearerToken) {
-		return nil, false
-	}
-	return o.BearerToken, true
+func (o *Job) GetBearerTokenOk() (ret JobGetBearerTokenRetType, ok bool) {
+	return getJobGetBearerTokenAttributeTypeOk(o.BearerToken)
 }
 
 // HasBearerToken returns a boolean if a field has been set.
 func (o *Job) HasBearerToken() bool {
-	if o != nil && !IsNil(o.BearerToken) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBearerTokenOk()
+	return ok
 }
 
 // SetBearerToken gets a reference to the given string and assigns it to the BearerToken field.
-func (o *Job) SetBearerToken(v *string) {
-	o.BearerToken = v
+func (o *Job) SetBearerToken(v JobGetBearerTokenRetType) {
+	setJobGetBearerTokenAttributeType(&o.BearerToken, v)
 }
 
 // GetHonorLabels returns the HonorLabels field value if set, zero value otherwise.
-func (o *Job) GetHonorLabels() *bool {
-	if o == nil || IsNil(o.HonorLabels) {
-		var ret *bool
-		return ret
-	}
-	return o.HonorLabels
+func (o *Job) GetHonorLabels() (res JobgetHonorLabelsRetType) {
+	res, _ = o.GetHonorLabelsOk()
+	return
 }
 
 // GetHonorLabelsOk returns a tuple with the HonorLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetHonorLabelsOk() (*bool, bool) {
-	if o == nil || IsNil(o.HonorLabels) {
-		return nil, false
-	}
-	return o.HonorLabels, true
+func (o *Job) GetHonorLabelsOk() (ret JobgetHonorLabelsRetType, ok bool) {
+	return getJobgetHonorLabelsAttributeTypeOk(o.HonorLabels)
 }
 
 // HasHonorLabels returns a boolean if a field has been set.
 func (o *Job) HasHonorLabels() bool {
-	if o != nil && !IsNil(o.HonorLabels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHonorLabelsOk()
+	return ok
 }
 
 // SetHonorLabels gets a reference to the given bool and assigns it to the HonorLabels field.
-func (o *Job) SetHonorLabels(v *bool) {
-	o.HonorLabels = v
+func (o *Job) SetHonorLabels(v JobgetHonorLabelsRetType) {
+	setJobgetHonorLabelsAttributeType(&o.HonorLabels, v)
 }
 
 // GetHonorTimeStamps returns the HonorTimeStamps field value if set, zero value otherwise.
-func (o *Job) GetHonorTimeStamps() *bool {
-	if o == nil || IsNil(o.HonorTimeStamps) {
-		var ret *bool
-		return ret
-	}
-	return o.HonorTimeStamps
+func (o *Job) GetHonorTimeStamps() (res JobgetHonorTimeStampsRetType) {
+	res, _ = o.GetHonorTimeStampsOk()
+	return
 }
 
 // GetHonorTimeStampsOk returns a tuple with the HonorTimeStamps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetHonorTimeStampsOk() (*bool, bool) {
-	if o == nil || IsNil(o.HonorTimeStamps) {
-		return nil, false
-	}
-	return o.HonorTimeStamps, true
+func (o *Job) GetHonorTimeStampsOk() (ret JobgetHonorTimeStampsRetType, ok bool) {
+	return getJobgetHonorTimeStampsAttributeTypeOk(o.HonorTimeStamps)
 }
 
 // HasHonorTimeStamps returns a boolean if a field has been set.
 func (o *Job) HasHonorTimeStamps() bool {
-	if o != nil && !IsNil(o.HonorTimeStamps) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHonorTimeStampsOk()
+	return ok
 }
 
 // SetHonorTimeStamps gets a reference to the given bool and assigns it to the HonorTimeStamps field.
-func (o *Job) SetHonorTimeStamps(v *bool) {
-	o.HonorTimeStamps = v
+func (o *Job) SetHonorTimeStamps(v JobgetHonorTimeStampsRetType) {
+	setJobgetHonorTimeStampsAttributeType(&o.HonorTimeStamps, v)
 }
 
 // GetHttpSdConfigs returns the HttpSdConfigs field value if set, zero value otherwise.
-func (o *Job) GetHttpSdConfigs() *[]HTTPServiceSD {
-	if o == nil || IsNil(o.HttpSdConfigs) {
-		var ret *[]HTTPServiceSD
-		return ret
-	}
-	return o.HttpSdConfigs
+func (o *Job) GetHttpSdConfigs() (res JobGetHttpSdConfigsRetType) {
+	res, _ = o.GetHttpSdConfigsOk()
+	return
 }
 
 // GetHttpSdConfigsOk returns a tuple with the HttpSdConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetHttpSdConfigsOk() (*[]HTTPServiceSD, bool) {
-	if o == nil || IsNil(o.HttpSdConfigs) {
-		return nil, false
-	}
-	return o.HttpSdConfigs, true
+func (o *Job) GetHttpSdConfigsOk() (ret JobGetHttpSdConfigsRetType, ok bool) {
+	return getJobGetHttpSdConfigsAttributeTypeOk(o.HttpSdConfigs)
 }
 
 // HasHttpSdConfigs returns a boolean if a field has been set.
 func (o *Job) HasHttpSdConfigs() bool {
-	if o != nil && !IsNil(o.HttpSdConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHttpSdConfigsOk()
+	return ok
 }
 
 // SetHttpSdConfigs gets a reference to the given []HTTPServiceSD and assigns it to the HttpSdConfigs field.
-func (o *Job) SetHttpSdConfigs(v *[]HTTPServiceSD) {
-	o.HttpSdConfigs = v
+func (o *Job) SetHttpSdConfigs(v JobGetHttpSdConfigsRetType) {
+	setJobGetHttpSdConfigsAttributeType(&o.HttpSdConfigs, v)
 }
 
 // GetJobName returns the JobName field value
-func (o *Job) GetJobName() *string {
-	if o == nil || IsNil(o.JobName) {
-		var ret *string
-		return ret
-	}
-
-	return o.JobName
+func (o *Job) GetJobName() (ret JobGetJobNameRetType) {
+	ret, _ = o.GetJobNameOk()
+	return ret
 }
 
 // GetJobNameOk returns a tuple with the JobName field value
 // and a boolean to check if the value has been set.
-func (o *Job) GetJobNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.JobName, true
+func (o *Job) GetJobNameOk() (ret JobGetJobNameRetType, ok bool) {
+	return getJobGetJobNameAttributeTypeOk(o.JobName)
 }
 
 // SetJobName sets field value
-func (o *Job) SetJobName(v *string) {
-	o.JobName = v
+func (o *Job) SetJobName(v JobGetJobNameRetType) {
+	setJobGetJobNameAttributeType(&o.JobName, v)
 }
 
 // GetMetricsPath returns the MetricsPath field value if set, zero value otherwise.
-func (o *Job) GetMetricsPath() *string {
-	if o == nil || IsNil(o.MetricsPath) {
-		var ret *string
-		return ret
-	}
-	return o.MetricsPath
+func (o *Job) GetMetricsPath() (res JobGetMetricsPathRetType) {
+	res, _ = o.GetMetricsPathOk()
+	return
 }
 
 // GetMetricsPathOk returns a tuple with the MetricsPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetMetricsPathOk() (*string, bool) {
-	if o == nil || IsNil(o.MetricsPath) {
-		return nil, false
-	}
-	return o.MetricsPath, true
+func (o *Job) GetMetricsPathOk() (ret JobGetMetricsPathRetType, ok bool) {
+	return getJobGetMetricsPathAttributeTypeOk(o.MetricsPath)
 }
 
 // HasMetricsPath returns a boolean if a field has been set.
 func (o *Job) HasMetricsPath() bool {
-	if o != nil && !IsNil(o.MetricsPath) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMetricsPathOk()
+	return ok
 }
 
 // SetMetricsPath gets a reference to the given string and assigns it to the MetricsPath field.
-func (o *Job) SetMetricsPath(v *string) {
-	o.MetricsPath = v
+func (o *Job) SetMetricsPath(v JobGetMetricsPathRetType) {
+	setJobGetMetricsPathAttributeType(&o.MetricsPath, v)
 }
 
 // GetMetricsRelabelConfigs returns the MetricsRelabelConfigs field value if set, zero value otherwise.
-func (o *Job) GetMetricsRelabelConfigs() *[]MetricsRelabelConfig {
-	if o == nil || IsNil(o.MetricsRelabelConfigs) {
-		var ret *[]MetricsRelabelConfig
-		return ret
-	}
-	return o.MetricsRelabelConfigs
+func (o *Job) GetMetricsRelabelConfigs() (res JobGetMetricsRelabelConfigsRetType) {
+	res, _ = o.GetMetricsRelabelConfigsOk()
+	return
 }
 
 // GetMetricsRelabelConfigsOk returns a tuple with the MetricsRelabelConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetMetricsRelabelConfigsOk() (*[]MetricsRelabelConfig, bool) {
-	if o == nil || IsNil(o.MetricsRelabelConfigs) {
-		return nil, false
-	}
-	return o.MetricsRelabelConfigs, true
+func (o *Job) GetMetricsRelabelConfigsOk() (ret JobGetMetricsRelabelConfigsRetType, ok bool) {
+	return getJobGetMetricsRelabelConfigsAttributeTypeOk(o.MetricsRelabelConfigs)
 }
 
 // HasMetricsRelabelConfigs returns a boolean if a field has been set.
 func (o *Job) HasMetricsRelabelConfigs() bool {
-	if o != nil && !IsNil(o.MetricsRelabelConfigs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMetricsRelabelConfigsOk()
+	return ok
 }
 
 // SetMetricsRelabelConfigs gets a reference to the given []MetricsRelabelConfig and assigns it to the MetricsRelabelConfigs field.
-func (o *Job) SetMetricsRelabelConfigs(v *[]MetricsRelabelConfig) {
-	o.MetricsRelabelConfigs = v
+func (o *Job) SetMetricsRelabelConfigs(v JobGetMetricsRelabelConfigsRetType) {
+	setJobGetMetricsRelabelConfigsAttributeType(&o.MetricsRelabelConfigs, v)
 }
 
 // GetOauth2 returns the Oauth2 field value if set, zero value otherwise.
-func (o *Job) GetOauth2() *OAuth2 {
-	if o == nil || IsNil(o.Oauth2) {
-		var ret *OAuth2
-		return ret
-	}
-	return o.Oauth2
+func (o *Job) GetOauth2() (res JobGetOauth2RetType) {
+	res, _ = o.GetOauth2Ok()
+	return
 }
 
 // GetOauth2Ok returns a tuple with the Oauth2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetOauth2Ok() (*OAuth2, bool) {
-	if o == nil || IsNil(o.Oauth2) {
-		return nil, false
-	}
-	return o.Oauth2, true
+func (o *Job) GetOauth2Ok() (ret JobGetOauth2RetType, ok bool) {
+	return getJobGetOauth2AttributeTypeOk(o.Oauth2)
 }
 
 // HasOauth2 returns a boolean if a field has been set.
 func (o *Job) HasOauth2() bool {
-	if o != nil && !IsNil(o.Oauth2) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOauth2Ok()
+	return ok
 }
 
 // SetOauth2 gets a reference to the given OAuth2 and assigns it to the Oauth2 field.
-func (o *Job) SetOauth2(v *OAuth2) {
-	o.Oauth2 = v
+func (o *Job) SetOauth2(v JobGetOauth2RetType) {
+	setJobGetOauth2AttributeType(&o.Oauth2, v)
 }
 
 // GetParams returns the Params field value if set, zero value otherwise.
-func (o *Job) GetParams() *map[string][]string {
-	if o == nil || IsNil(o.Params) {
-		var ret *map[string][]string
-		return ret
-	}
-	return o.Params
+func (o *Job) GetParams() (res JobGetParamsRetType) {
+	res, _ = o.GetParamsOk()
+	return
 }
 
 // GetParamsOk returns a tuple with the Params field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetParamsOk() (*map[string][]string, bool) {
-	if o == nil || IsNil(o.Params) {
-		return nil, false
-	}
-	return o.Params, true
+func (o *Job) GetParamsOk() (ret JobGetParamsRetType, ok bool) {
+	return getJobGetParamsAttributeTypeOk(o.Params)
 }
 
 // HasParams returns a boolean if a field has been set.
 func (o *Job) HasParams() bool {
-	if o != nil && !IsNil(o.Params) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetParamsOk()
+	return ok
 }
 
 // SetParams gets a reference to the given map[string][]string and assigns it to the Params field.
-func (o *Job) SetParams(v *map[string][]string) {
-	o.Params = v
+func (o *Job) SetParams(v JobGetParamsRetType) {
+	setJobGetParamsAttributeType(&o.Params, v)
 }
 
 // GetSampleLimit returns the SampleLimit field value if set, zero value otherwise.
-func (o *Job) GetSampleLimit() *int64 {
-	if o == nil || IsNil(o.SampleLimit) {
-		var ret *int64
-		return ret
-	}
-	return o.SampleLimit
+func (o *Job) GetSampleLimit() (res JobGetSampleLimitRetType) {
+	res, _ = o.GetSampleLimitOk()
+	return
 }
 
 // GetSampleLimitOk returns a tuple with the SampleLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetSampleLimitOk() (*int64, bool) {
-	if o == nil || IsNil(o.SampleLimit) {
-		return nil, false
-	}
-	return o.SampleLimit, true
+func (o *Job) GetSampleLimitOk() (ret JobGetSampleLimitRetType, ok bool) {
+	return getJobGetSampleLimitAttributeTypeOk(o.SampleLimit)
 }
 
 // HasSampleLimit returns a boolean if a field has been set.
 func (o *Job) HasSampleLimit() bool {
-	if o != nil && !IsNil(o.SampleLimit) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSampleLimitOk()
+	return ok
 }
 
 // SetSampleLimit gets a reference to the given int64 and assigns it to the SampleLimit field.
-func (o *Job) SetSampleLimit(v *int64) {
-	o.SampleLimit = v
+func (o *Job) SetSampleLimit(v JobGetSampleLimitRetType) {
+	setJobGetSampleLimitAttributeType(&o.SampleLimit, v)
 }
 
 // GetScheme returns the Scheme field value if set, zero value otherwise.
-func (o *Job) GetScheme() *string {
-	if o == nil || IsNil(o.Scheme) {
-		var ret *string
-		return ret
-	}
-	return o.Scheme
+func (o *Job) GetScheme() (res JobGetSchemeRetType) {
+	res, _ = o.GetSchemeOk()
+	return
 }
 
 // GetSchemeOk returns a tuple with the Scheme field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetSchemeOk() (*string, bool) {
-	if o == nil || IsNil(o.Scheme) {
-		return nil, false
-	}
-	return o.Scheme, true
+func (o *Job) GetSchemeOk() (ret JobGetSchemeRetType, ok bool) {
+	return getJobGetSchemeAttributeTypeOk(o.Scheme)
 }
 
 // HasScheme returns a boolean if a field has been set.
 func (o *Job) HasScheme() bool {
-	if o != nil && !IsNil(o.Scheme) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetSchemeOk()
+	return ok
 }
 
 // SetScheme gets a reference to the given string and assigns it to the Scheme field.
-func (o *Job) SetScheme(v *string) {
-	o.Scheme = v
+func (o *Job) SetScheme(v JobGetSchemeRetType) {
+	setJobGetSchemeAttributeType(&o.Scheme, v)
 }
 
 // GetScrapeInterval returns the ScrapeInterval field value
-func (o *Job) GetScrapeInterval() *string {
-	if o == nil || IsNil(o.ScrapeInterval) {
-		var ret *string
-		return ret
-	}
-
-	return o.ScrapeInterval
+func (o *Job) GetScrapeInterval() (ret JobGetScrapeIntervalRetType) {
+	ret, _ = o.GetScrapeIntervalOk()
+	return ret
 }
 
 // GetScrapeIntervalOk returns a tuple with the ScrapeInterval field value
 // and a boolean to check if the value has been set.
-func (o *Job) GetScrapeIntervalOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ScrapeInterval, true
+func (o *Job) GetScrapeIntervalOk() (ret JobGetScrapeIntervalRetType, ok bool) {
+	return getJobGetScrapeIntervalAttributeTypeOk(o.ScrapeInterval)
 }
 
 // SetScrapeInterval sets field value
-func (o *Job) SetScrapeInterval(v *string) {
-	o.ScrapeInterval = v
+func (o *Job) SetScrapeInterval(v JobGetScrapeIntervalRetType) {
+	setJobGetScrapeIntervalAttributeType(&o.ScrapeInterval, v)
 }
 
 // GetScrapeTimeout returns the ScrapeTimeout field value
-func (o *Job) GetScrapeTimeout() *string {
-	if o == nil || IsNil(o.ScrapeTimeout) {
-		var ret *string
-		return ret
-	}
-
-	return o.ScrapeTimeout
+func (o *Job) GetScrapeTimeout() (ret JobGetScrapeTimeoutRetType) {
+	ret, _ = o.GetScrapeTimeoutOk()
+	return ret
 }
 
 // GetScrapeTimeoutOk returns a tuple with the ScrapeTimeout field value
 // and a boolean to check if the value has been set.
-func (o *Job) GetScrapeTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ScrapeTimeout, true
+func (o *Job) GetScrapeTimeoutOk() (ret JobGetScrapeTimeoutRetType, ok bool) {
+	return getJobGetScrapeTimeoutAttributeTypeOk(o.ScrapeTimeout)
 }
 
 // SetScrapeTimeout sets field value
-func (o *Job) SetScrapeTimeout(v *string) {
-	o.ScrapeTimeout = v
+func (o *Job) SetScrapeTimeout(v JobGetScrapeTimeoutRetType) {
+	setJobGetScrapeTimeoutAttributeType(&o.ScrapeTimeout, v)
 }
 
 // GetStaticConfigs returns the StaticConfigs field value
-func (o *Job) GetStaticConfigs() *[]StaticConfigs {
-	if o == nil || IsNil(o.StaticConfigs) {
-		var ret *[]StaticConfigs
-		return ret
-	}
-
-	return o.StaticConfigs
+func (o *Job) GetStaticConfigs() (ret JobGetStaticConfigsRetType) {
+	ret, _ = o.GetStaticConfigsOk()
+	return ret
 }
 
 // GetStaticConfigsOk returns a tuple with the StaticConfigs field value
 // and a boolean to check if the value has been set.
-func (o *Job) GetStaticConfigsOk() (*[]StaticConfigs, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.StaticConfigs, true
+func (o *Job) GetStaticConfigsOk() (ret JobGetStaticConfigsRetType, ok bool) {
+	return getJobGetStaticConfigsAttributeTypeOk(o.StaticConfigs)
 }
 
 // SetStaticConfigs sets field value
-func (o *Job) SetStaticConfigs(v *[]StaticConfigs) {
-	o.StaticConfigs = v
+func (o *Job) SetStaticConfigs(v JobGetStaticConfigsRetType) {
+	setJobGetStaticConfigsAttributeType(&o.StaticConfigs, v)
 }
 
 // GetTlsConfig returns the TlsConfig field value if set, zero value otherwise.
-func (o *Job) GetTlsConfig() *TLSConfig {
-	if o == nil || IsNil(o.TlsConfig) {
-		var ret *TLSConfig
-		return ret
-	}
-	return o.TlsConfig
+func (o *Job) GetTlsConfig() (res JobGetTlsConfigRetType) {
+	res, _ = o.GetTlsConfigOk()
+	return
 }
 
 // GetTlsConfigOk returns a tuple with the TlsConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Job) GetTlsConfigOk() (*TLSConfig, bool) {
-	if o == nil || IsNil(o.TlsConfig) {
-		return nil, false
-	}
-	return o.TlsConfig, true
+func (o *Job) GetTlsConfigOk() (ret JobGetTlsConfigRetType, ok bool) {
+	return getJobGetTlsConfigAttributeTypeOk(o.TlsConfig)
 }
 
 // HasTlsConfig returns a boolean if a field has been set.
 func (o *Job) HasTlsConfig() bool {
-	if o != nil && !IsNil(o.TlsConfig) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsConfigOk()
+	return ok
 }
 
 // SetTlsConfig gets a reference to the given TLSConfig and assigns it to the TlsConfig field.
-func (o *Job) SetTlsConfig(v *TLSConfig) {
-	o.TlsConfig = v
+func (o *Job) SetTlsConfig(v JobGetTlsConfigRetType) {
+	setJobGetTlsConfigAttributeType(&o.TlsConfig, v)
 }
 
 func (o Job) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BasicAuth) {
-		toSerialize["basicAuth"] = o.BasicAuth
+	if val, ok := getJobGetBasicAuthAttributeTypeOk(o.BasicAuth); ok {
+		toSerialize["BasicAuth"] = val
 	}
-	if !IsNil(o.BearerToken) {
-		toSerialize["bearerToken"] = o.BearerToken
+	if val, ok := getJobGetBearerTokenAttributeTypeOk(o.BearerToken); ok {
+		toSerialize["BearerToken"] = val
 	}
-	if !IsNil(o.HonorLabels) {
-		toSerialize["honorLabels"] = o.HonorLabels
+	if val, ok := getJobgetHonorLabelsAttributeTypeOk(o.HonorLabels); ok {
+		toSerialize["HonorLabels"] = val
 	}
-	if !IsNil(o.HonorTimeStamps) {
-		toSerialize["honorTimeStamps"] = o.HonorTimeStamps
+	if val, ok := getJobgetHonorTimeStampsAttributeTypeOk(o.HonorTimeStamps); ok {
+		toSerialize["HonorTimeStamps"] = val
 	}
-	if !IsNil(o.HttpSdConfigs) {
-		toSerialize["httpSdConfigs"] = o.HttpSdConfigs
+	if val, ok := getJobGetHttpSdConfigsAttributeTypeOk(o.HttpSdConfigs); ok {
+		toSerialize["HttpSdConfigs"] = val
 	}
-	toSerialize["jobName"] = o.JobName
-	if !IsNil(o.MetricsPath) {
-		toSerialize["metricsPath"] = o.MetricsPath
+	if val, ok := getJobGetJobNameAttributeTypeOk(o.JobName); ok {
+		toSerialize["JobName"] = val
 	}
-	if !IsNil(o.MetricsRelabelConfigs) {
-		toSerialize["metricsRelabelConfigs"] = o.MetricsRelabelConfigs
+	if val, ok := getJobGetMetricsPathAttributeTypeOk(o.MetricsPath); ok {
+		toSerialize["MetricsPath"] = val
 	}
-	if !IsNil(o.Oauth2) {
-		toSerialize["oauth2"] = o.Oauth2
+	if val, ok := getJobGetMetricsRelabelConfigsAttributeTypeOk(o.MetricsRelabelConfigs); ok {
+		toSerialize["MetricsRelabelConfigs"] = val
 	}
-	if !IsNil(o.Params) {
-		toSerialize["params"] = o.Params
+	if val, ok := getJobGetOauth2AttributeTypeOk(o.Oauth2); ok {
+		toSerialize["Oauth2"] = val
 	}
-	if !IsNil(o.SampleLimit) {
-		toSerialize["sampleLimit"] = o.SampleLimit
+	if val, ok := getJobGetParamsAttributeTypeOk(o.Params); ok {
+		toSerialize["Params"] = val
 	}
-	if !IsNil(o.Scheme) {
-		toSerialize["scheme"] = o.Scheme
+	if val, ok := getJobGetSampleLimitAttributeTypeOk(o.SampleLimit); ok {
+		toSerialize["SampleLimit"] = val
 	}
-	toSerialize["scrapeInterval"] = o.ScrapeInterval
-	toSerialize["scrapeTimeout"] = o.ScrapeTimeout
-	toSerialize["staticConfigs"] = o.StaticConfigs
-	if !IsNil(o.TlsConfig) {
-		toSerialize["tlsConfig"] = o.TlsConfig
+	if val, ok := getJobGetSchemeAttributeTypeOk(o.Scheme); ok {
+		toSerialize["Scheme"] = val
+	}
+	if val, ok := getJobGetScrapeIntervalAttributeTypeOk(o.ScrapeInterval); ok {
+		toSerialize["ScrapeInterval"] = val
+	}
+	if val, ok := getJobGetScrapeTimeoutAttributeTypeOk(o.ScrapeTimeout); ok {
+		toSerialize["ScrapeTimeout"] = val
+	}
+	if val, ok := getJobGetStaticConfigsAttributeTypeOk(o.StaticConfigs); ok {
+		toSerialize["StaticConfigs"] = val
+	}
+	if val, ok := getJobGetTlsConfigAttributeTypeOk(o.TlsConfig); ok {
+		toSerialize["TlsConfig"] = val
 	}
 	return toSerialize, nil
 }

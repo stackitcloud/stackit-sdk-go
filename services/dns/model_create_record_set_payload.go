@@ -17,21 +17,124 @@ import (
 // checks if the CreateRecordSetPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateRecordSetPayload{}
 
+/*
+	types and functions for comment
+*/
+
+// isNotNullableString
+type CreateRecordSetPayloadGetCommentAttributeType = *string
+
+func getCreateRecordSetPayloadGetCommentAttributeTypeOk(arg CreateRecordSetPayloadGetCommentAttributeType) (ret CreateRecordSetPayloadGetCommentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateRecordSetPayloadGetCommentAttributeType(arg *CreateRecordSetPayloadGetCommentAttributeType, val CreateRecordSetPayloadGetCommentRetType) {
+	*arg = &val
+}
+
+type CreateRecordSetPayloadGetCommentArgType = string
+type CreateRecordSetPayloadGetCommentRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CreateRecordSetPayloadGetNameAttributeType = *string
+
+func getCreateRecordSetPayloadGetNameAttributeTypeOk(arg CreateRecordSetPayloadGetNameAttributeType) (ret CreateRecordSetPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateRecordSetPayloadGetNameAttributeType(arg *CreateRecordSetPayloadGetNameAttributeType, val CreateRecordSetPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type CreateRecordSetPayloadGetNameArgType = string
+type CreateRecordSetPayloadGetNameRetType = string
+
+/*
+	types and functions for records
+*/
+
+// isArray
+type CreateRecordSetPayloadGetRecordsAttributeType = *[]RecordPayload
+type CreateRecordSetPayloadGetRecordsArgType = []RecordPayload
+type CreateRecordSetPayloadGetRecordsRetType = []RecordPayload
+
+func getCreateRecordSetPayloadGetRecordsAttributeTypeOk(arg CreateRecordSetPayloadGetRecordsAttributeType) (ret CreateRecordSetPayloadGetRecordsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateRecordSetPayloadGetRecordsAttributeType(arg *CreateRecordSetPayloadGetRecordsAttributeType, val CreateRecordSetPayloadGetRecordsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for ttl
+*/
+
+// isInteger
+type CreateRecordSetPayloadGetTtlAttributeType = *int64
+type CreateRecordSetPayloadGetTtlArgType = int64
+type CreateRecordSetPayloadGetTtlRetType = int64
+
+func getCreateRecordSetPayloadGetTtlAttributeTypeOk(arg CreateRecordSetPayloadGetTtlAttributeType) (ret CreateRecordSetPayloadGetTtlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateRecordSetPayloadGetTtlAttributeType(arg *CreateRecordSetPayloadGetTtlAttributeType, val CreateRecordSetPayloadGetTtlRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type CreateRecordSetPayloadGetTypeAttributeType = *string
+type CreateRecordSetPayloadGetTypeArgType = string
+type CreateRecordSetPayloadGetTypeRetType = string
+
+func getCreateRecordSetPayloadGetTypeAttributeTypeOk(arg CreateRecordSetPayloadGetTypeAttributeType) (ret CreateRecordSetPayloadGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateRecordSetPayloadGetTypeAttributeType(arg *CreateRecordSetPayloadGetTypeAttributeType, val CreateRecordSetPayloadGetTypeRetType) {
+	*arg = &val
+}
+
 // CreateRecordSetPayload RRSetPost for rr set info.
 type CreateRecordSetPayload struct {
 	// user comment
-	Comment *string `json:"comment,omitempty"`
+	Comment CreateRecordSetPayloadGetCommentAttributeType `json:"comment,omitempty"`
 	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4
 	// REQUIRED
-	Name *string `json:"name"`
+	Name CreateRecordSetPayloadGetNameAttributeType `json:"name"`
 	// records
 	// REQUIRED
-	Records *[]RecordPayload `json:"records"`
+	Records CreateRecordSetPayloadGetRecordsAttributeType `json:"records"`
 	// time to live. If nothing provided we will set the zone ttl.
-	Ttl *int64 `json:"ttl,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	Ttl CreateRecordSetPayloadGetTtlAttributeType `json:"ttl,omitempty"`
 	// record set type
 	// REQUIRED
-	Type *string `json:"type"`
+	Type CreateRecordSetPayloadGetTypeAttributeType `json:"type"`
 }
 
 type _CreateRecordSetPayload CreateRecordSetPayload
@@ -40,11 +143,11 @@ type _CreateRecordSetPayload CreateRecordSetPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateRecordSetPayload(name *string, records *[]RecordPayload, type_ *string) *CreateRecordSetPayload {
+func NewCreateRecordSetPayload(name CreateRecordSetPayloadGetNameArgType, records CreateRecordSetPayloadGetRecordsArgType, type_ CreateRecordSetPayloadGetTypeArgType) *CreateRecordSetPayload {
 	this := CreateRecordSetPayload{}
-	this.Name = name
-	this.Records = records
-	this.Type = type_
+	setCreateRecordSetPayloadGetNameAttributeType(&this.Name, name)
+	setCreateRecordSetPayloadGetRecordsAttributeType(&this.Records, records)
+	setCreateRecordSetPayloadGetTypeAttributeType(&this.Type, type_)
 	return &this
 }
 
@@ -57,152 +160,119 @@ func NewCreateRecordSetPayloadWithDefaults() *CreateRecordSetPayload {
 }
 
 // GetComment returns the Comment field value if set, zero value otherwise.
-func (o *CreateRecordSetPayload) GetComment() *string {
-	if o == nil || IsNil(o.Comment) {
-		var ret *string
-		return ret
-	}
-	return o.Comment
+func (o *CreateRecordSetPayload) GetComment() (res CreateRecordSetPayloadGetCommentRetType) {
+	res, _ = o.GetCommentOk()
+	return
 }
 
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRecordSetPayload) GetCommentOk() (*string, bool) {
-	if o == nil || IsNil(o.Comment) {
-		return nil, false
-	}
-	return o.Comment, true
+func (o *CreateRecordSetPayload) GetCommentOk() (ret CreateRecordSetPayloadGetCommentRetType, ok bool) {
+	return getCreateRecordSetPayloadGetCommentAttributeTypeOk(o.Comment)
 }
 
 // HasComment returns a boolean if a field has been set.
 func (o *CreateRecordSetPayload) HasComment() bool {
-	if o != nil && !IsNil(o.Comment) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCommentOk()
+	return ok
 }
 
 // SetComment gets a reference to the given string and assigns it to the Comment field.
-func (o *CreateRecordSetPayload) SetComment(v *string) {
-	o.Comment = v
+func (o *CreateRecordSetPayload) SetComment(v CreateRecordSetPayloadGetCommentRetType) {
+	setCreateRecordSetPayloadGetCommentAttributeType(&o.Comment, v)
 }
 
 // GetName returns the Name field value
-func (o *CreateRecordSetPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CreateRecordSetPayload) GetName() (ret CreateRecordSetPayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateRecordSetPayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CreateRecordSetPayload) GetNameOk() (ret CreateRecordSetPayloadGetNameRetType, ok bool) {
+	return getCreateRecordSetPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CreateRecordSetPayload) SetName(v *string) {
-	o.Name = v
+func (o *CreateRecordSetPayload) SetName(v CreateRecordSetPayloadGetNameRetType) {
+	setCreateRecordSetPayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetRecords returns the Records field value
-func (o *CreateRecordSetPayload) GetRecords() *[]RecordPayload {
-	if o == nil || IsNil(o.Records) {
-		var ret *[]RecordPayload
-		return ret
-	}
-
-	return o.Records
+func (o *CreateRecordSetPayload) GetRecords() (ret CreateRecordSetPayloadGetRecordsRetType) {
+	ret, _ = o.GetRecordsOk()
+	return ret
 }
 
 // GetRecordsOk returns a tuple with the Records field value
 // and a boolean to check if the value has been set.
-func (o *CreateRecordSetPayload) GetRecordsOk() (*[]RecordPayload, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Records, true
+func (o *CreateRecordSetPayload) GetRecordsOk() (ret CreateRecordSetPayloadGetRecordsRetType, ok bool) {
+	return getCreateRecordSetPayloadGetRecordsAttributeTypeOk(o.Records)
 }
 
 // SetRecords sets field value
-func (o *CreateRecordSetPayload) SetRecords(v *[]RecordPayload) {
-	o.Records = v
+func (o *CreateRecordSetPayload) SetRecords(v CreateRecordSetPayloadGetRecordsRetType) {
+	setCreateRecordSetPayloadGetRecordsAttributeType(&o.Records, v)
 }
 
 // GetTtl returns the Ttl field value if set, zero value otherwise.
-func (o *CreateRecordSetPayload) GetTtl() *int64 {
-	if o == nil || IsNil(o.Ttl) {
-		var ret *int64
-		return ret
-	}
-	return o.Ttl
+func (o *CreateRecordSetPayload) GetTtl() (res CreateRecordSetPayloadGetTtlRetType) {
+	res, _ = o.GetTtlOk()
+	return
 }
 
 // GetTtlOk returns a tuple with the Ttl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRecordSetPayload) GetTtlOk() (*int64, bool) {
-	if o == nil || IsNil(o.Ttl) {
-		return nil, false
-	}
-	return o.Ttl, true
+func (o *CreateRecordSetPayload) GetTtlOk() (ret CreateRecordSetPayloadGetTtlRetType, ok bool) {
+	return getCreateRecordSetPayloadGetTtlAttributeTypeOk(o.Ttl)
 }
 
 // HasTtl returns a boolean if a field has been set.
 func (o *CreateRecordSetPayload) HasTtl() bool {
-	if o != nil && !IsNil(o.Ttl) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTtlOk()
+	return ok
 }
 
 // SetTtl gets a reference to the given int64 and assigns it to the Ttl field.
-func (o *CreateRecordSetPayload) SetTtl(v *int64) {
-	o.Ttl = v
+func (o *CreateRecordSetPayload) SetTtl(v CreateRecordSetPayloadGetTtlRetType) {
+	setCreateRecordSetPayloadGetTtlAttributeType(&o.Ttl, v)
 }
 
 // GetType returns the Type field value
-func (o *CreateRecordSetPayload) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *CreateRecordSetPayload) GetType() (ret CreateRecordSetPayloadGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *CreateRecordSetPayload) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *CreateRecordSetPayload) GetTypeOk() (ret CreateRecordSetPayloadGetTypeRetType, ok bool) {
+	return getCreateRecordSetPayloadGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *CreateRecordSetPayload) SetType(v *string) {
-	o.Type = v
+func (o *CreateRecordSetPayload) SetType(v CreateRecordSetPayloadGetTypeRetType) {
+	setCreateRecordSetPayloadGetTypeAttributeType(&o.Type, v)
 }
 
 func (o CreateRecordSetPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Comment) {
-		toSerialize["comment"] = o.Comment
+	if val, ok := getCreateRecordSetPayloadGetCommentAttributeTypeOk(o.Comment); ok {
+		toSerialize["Comment"] = val
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["records"] = o.Records
-	if !IsNil(o.Ttl) {
-		toSerialize["ttl"] = o.Ttl
+	if val, ok := getCreateRecordSetPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	toSerialize["type"] = o.Type
+	if val, ok := getCreateRecordSetPayloadGetRecordsAttributeTypeOk(o.Records); ok {
+		toSerialize["Records"] = val
+	}
+	if val, ok := getCreateRecordSetPayloadGetTtlAttributeTypeOk(o.Ttl); ok {
+		toSerialize["Ttl"] = val
+	}
+	if val, ok := getCreateRecordSetPayloadGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
 	return toSerialize, nil
 }
 

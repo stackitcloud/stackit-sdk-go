@@ -17,10 +17,52 @@ import (
 // checks if the PartialUpdateTokenPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateTokenPayload{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type PartialUpdateTokenPayloadGetDescriptionAttributeType = *string
+
+func getPartialUpdateTokenPayloadGetDescriptionAttributeTypeOk(arg PartialUpdateTokenPayloadGetDescriptionAttributeType) (ret PartialUpdateTokenPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateTokenPayloadGetDescriptionAttributeType(arg *PartialUpdateTokenPayloadGetDescriptionAttributeType, val PartialUpdateTokenPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+type PartialUpdateTokenPayloadGetDescriptionArgType = string
+type PartialUpdateTokenPayloadGetDescriptionRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type PartialUpdateTokenPayloadGetNameAttributeType = *string
+
+func getPartialUpdateTokenPayloadGetNameAttributeTypeOk(arg PartialUpdateTokenPayloadGetNameAttributeType) (ret PartialUpdateTokenPayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateTokenPayloadGetNameAttributeType(arg *PartialUpdateTokenPayloadGetNameAttributeType, val PartialUpdateTokenPayloadGetNameRetType) {
+	*arg = &val
+}
+
+type PartialUpdateTokenPayloadGetNameArgType = string
+type PartialUpdateTokenPayloadGetNameRetType = string
+
 // PartialUpdateTokenPayload struct for PartialUpdateTokenPayload
 type PartialUpdateTokenPayload struct {
-	Description *string `json:"description,omitempty"`
-	Name        *string `json:"name,omitempty"`
+	Description PartialUpdateTokenPayloadGetDescriptionAttributeType `json:"description,omitempty"`
+	Name        PartialUpdateTokenPayloadGetNameAttributeType        `json:"name,omitempty"`
 }
 
 // NewPartialUpdateTokenPayload instantiates a new PartialUpdateTokenPayload object
@@ -41,76 +83,58 @@ func NewPartialUpdateTokenPayloadWithDefaults() *PartialUpdateTokenPayload {
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *PartialUpdateTokenPayload) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *PartialUpdateTokenPayload) GetDescription() (res PartialUpdateTokenPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateTokenPayload) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *PartialUpdateTokenPayload) GetDescriptionOk() (ret PartialUpdateTokenPayloadGetDescriptionRetType, ok bool) {
+	return getPartialUpdateTokenPayloadGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PartialUpdateTokenPayload) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *PartialUpdateTokenPayload) SetDescription(v *string) {
-	o.Description = v
+func (o *PartialUpdateTokenPayload) SetDescription(v PartialUpdateTokenPayloadGetDescriptionRetType) {
+	setPartialUpdateTokenPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PartialUpdateTokenPayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *PartialUpdateTokenPayload) GetName() (res PartialUpdateTokenPayloadGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateTokenPayload) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *PartialUpdateTokenPayload) GetNameOk() (ret PartialUpdateTokenPayloadGetNameRetType, ok bool) {
+	return getPartialUpdateTokenPayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialUpdateTokenPayload) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PartialUpdateTokenPayload) SetName(v *string) {
-	o.Name = v
+func (o *PartialUpdateTokenPayload) SetName(v PartialUpdateTokenPayloadGetNameRetType) {
+	setPartialUpdateTokenPayloadGetNameAttributeType(&o.Name, v)
 }
 
 func (o PartialUpdateTokenPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getPartialUpdateTokenPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getPartialUpdateTokenPayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
 }

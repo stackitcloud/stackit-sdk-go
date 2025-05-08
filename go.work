@@ -10,6 +10,7 @@ use (
 	./examples/errorhandling
 	./examples/iaas
 	./examples/iaasalpha
+	./examples/kms
 	./examples/loadbalancer
 	./examples/logme
 	./examples/mariadb
@@ -30,12 +31,16 @@ use (
 	./examples/sqlserverflex
 	./examples/waiter
 	./scripts
+	./services/alb
 	./services/archiving
 	./services/authorization
+	./services/cdn
 	./services/certificates
 	./services/dns
+	./services/git
 	./services/iaas
 	./services/iaasalpha
+	./services/kms
 	./services/lbapplication
 	./services/loadbalancer
 	./services/logme

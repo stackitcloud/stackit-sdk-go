@@ -17,11 +17,52 @@ import (
 // checks if the ListTokenResp type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListTokenResp{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ListTokenRespGetMessageAttributeType = *string
+
+func getListTokenRespGetMessageAttributeTypeOk(arg ListTokenRespGetMessageAttributeType) (ret ListTokenRespGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListTokenRespGetMessageAttributeType(arg *ListTokenRespGetMessageAttributeType, val ListTokenRespGetMessageRetType) {
+	*arg = &val
+}
+
+type ListTokenRespGetMessageArgType = string
+type ListTokenRespGetMessageRetType = string
+
+/*
+	types and functions for tokens
+*/
+
+// isArray
+type ListTokenRespGetTokensAttributeType = *[]Token
+type ListTokenRespGetTokensArgType = []Token
+type ListTokenRespGetTokensRetType = []Token
+
+func getListTokenRespGetTokensAttributeTypeOk(arg ListTokenRespGetTokensAttributeType) (ret ListTokenRespGetTokensRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListTokenRespGetTokensAttributeType(arg *ListTokenRespGetTokensAttributeType, val ListTokenRespGetTokensRetType) {
+	*arg = &val
+}
+
 // ListTokenResp struct for ListTokenResp
 type ListTokenResp struct {
-	Message *string `json:"message,omitempty"`
+	Message ListTokenRespGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Tokens *[]Token `json:"tokens"`
+	Tokens ListTokenRespGetTokensAttributeType `json:"tokens"`
 }
 
 type _ListTokenResp ListTokenResp
@@ -30,9 +71,9 @@ type _ListTokenResp ListTokenResp
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListTokenResp(tokens *[]Token) *ListTokenResp {
+func NewListTokenResp(tokens ListTokenRespGetTokensArgType) *ListTokenResp {
 	this := ListTokenResp{}
-	this.Tokens = tokens
+	setListTokenRespGetTokensAttributeType(&this.Tokens, tokens)
 	return &this
 }
 
@@ -45,67 +86,53 @@ func NewListTokenRespWithDefaults() *ListTokenResp {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ListTokenResp) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *ListTokenResp) GetMessage() (res ListTokenRespGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListTokenResp) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ListTokenResp) GetMessageOk() (ret ListTokenRespGetMessageRetType, ok bool) {
+	return getListTokenRespGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ListTokenResp) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ListTokenResp) SetMessage(v *string) {
-	o.Message = v
+func (o *ListTokenResp) SetMessage(v ListTokenRespGetMessageRetType) {
+	setListTokenRespGetMessageAttributeType(&o.Message, v)
 }
 
 // GetTokens returns the Tokens field value
-func (o *ListTokenResp) GetTokens() *[]Token {
-	if o == nil || IsNil(o.Tokens) {
-		var ret *[]Token
-		return ret
-	}
-
-	return o.Tokens
+func (o *ListTokenResp) GetTokens() (ret ListTokenRespGetTokensRetType) {
+	ret, _ = o.GetTokensOk()
+	return ret
 }
 
 // GetTokensOk returns a tuple with the Tokens field value
 // and a boolean to check if the value has been set.
-func (o *ListTokenResp) GetTokensOk() (*[]Token, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Tokens, true
+func (o *ListTokenResp) GetTokensOk() (ret ListTokenRespGetTokensRetType, ok bool) {
+	return getListTokenRespGetTokensAttributeTypeOk(o.Tokens)
 }
 
 // SetTokens sets field value
-func (o *ListTokenResp) SetTokens(v *[]Token) {
-	o.Tokens = v
+func (o *ListTokenResp) SetTokens(v ListTokenRespGetTokensRetType) {
+	setListTokenRespGetTokensAttributeType(&o.Tokens, v)
 }
 
 func (o ListTokenResp) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getListTokenRespGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
-	toSerialize["tokens"] = o.Tokens
+	if val, ok := getListTokenRespGetTokensAttributeTypeOk(o.Tokens); ok {
+		toSerialize["Tokens"] = val
+	}
 	return toSerialize, nil
 }
 

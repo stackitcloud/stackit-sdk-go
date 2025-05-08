@@ -1,0 +1,23 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 2c8562e1..649d463b 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,3 +1,7 @@
++## Release (2025-XX-YY)
++  - `cdn`: [v0.3.0](services/cdn/CHANGELOG.md#v030-2025-04-04)
++    - **New:** Add waiter for creation of `CustomDomain`
++
+ ## Release (2025-XX-YY)
+ - `cdn`: [v0.2.0](services/cdn/CHANGELOG.md#v020-2025-04-01)
+   - **API enhancement:** Provide waiter infrastructure
+diff --git a/services/cdn/CHANGELOG.md b/services/cdn/CHANGELOG.md
+index dd315f01..b8e57e59 100644
+--- a/services/cdn/CHANGELOG.md
++++ b/services/cdn/CHANGELOG.md
+@@ -1,3 +1,6 @@
++## v0.3.0 (2025-04-04)
++- **New:** Add waiter for creation of `CustomDomain`
++
+ ## v0.2.0 (2025-04-01)
+ - **API enhancement:** Provide waiter infrastructure
+ 

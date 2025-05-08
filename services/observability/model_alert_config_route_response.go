@@ -17,12 +17,53 @@ import (
 // checks if the AlertConfigRouteResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AlertConfigRouteResponse{}
 
+/*
+	types and functions for data
+*/
+
+// isModel
+type AlertConfigRouteResponseGetDataAttributeType = *Route
+type AlertConfigRouteResponseGetDataArgType = Route
+type AlertConfigRouteResponseGetDataRetType = Route
+
+func getAlertConfigRouteResponseGetDataAttributeTypeOk(arg AlertConfigRouteResponseGetDataAttributeType) (ret AlertConfigRouteResponseGetDataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAlertConfigRouteResponseGetDataAttributeType(arg *AlertConfigRouteResponseGetDataAttributeType, val AlertConfigRouteResponseGetDataRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type AlertConfigRouteResponseGetMessageAttributeType = *string
+
+func getAlertConfigRouteResponseGetMessageAttributeTypeOk(arg AlertConfigRouteResponseGetMessageAttributeType) (ret AlertConfigRouteResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAlertConfigRouteResponseGetMessageAttributeType(arg *AlertConfigRouteResponseGetMessageAttributeType, val AlertConfigRouteResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type AlertConfigRouteResponseGetMessageArgType = string
+type AlertConfigRouteResponseGetMessageRetType = string
+
 // AlertConfigRouteResponse struct for AlertConfigRouteResponse
 type AlertConfigRouteResponse struct {
 	// REQUIRED
-	Data *Route `json:"data"`
+	Data AlertConfigRouteResponseGetDataAttributeType `json:"data"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message AlertConfigRouteResponseGetMessageAttributeType `json:"message"`
 }
 
 type _AlertConfigRouteResponse AlertConfigRouteResponse
@@ -31,10 +72,10 @@ type _AlertConfigRouteResponse AlertConfigRouteResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlertConfigRouteResponse(data *Route, message *string) *AlertConfigRouteResponse {
+func NewAlertConfigRouteResponse(data AlertConfigRouteResponseGetDataArgType, message AlertConfigRouteResponseGetMessageArgType) *AlertConfigRouteResponse {
 	this := AlertConfigRouteResponse{}
-	this.Data = data
-	this.Message = message
+	setAlertConfigRouteResponseGetDataAttributeType(&this.Data, data)
+	setAlertConfigRouteResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewAlertConfigRouteResponseWithDefaults() *AlertConfigRouteResponse {
 }
 
 // GetData returns the Data field value
-func (o *AlertConfigRouteResponse) GetData() *Route {
-	if o == nil || IsNil(o.Data) {
-		var ret *Route
-		return ret
-	}
-
-	return o.Data
+func (o *AlertConfigRouteResponse) GetData() (ret AlertConfigRouteResponseGetDataRetType) {
+	ret, _ = o.GetDataOk()
+	return ret
 }
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *AlertConfigRouteResponse) GetDataOk() (*Route, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Data, true
+func (o *AlertConfigRouteResponse) GetDataOk() (ret AlertConfigRouteResponseGetDataRetType, ok bool) {
+	return getAlertConfigRouteResponseGetDataAttributeTypeOk(o.Data)
 }
 
 // SetData sets field value
-func (o *AlertConfigRouteResponse) SetData(v *Route) {
-	o.Data = v
+func (o *AlertConfigRouteResponse) SetData(v AlertConfigRouteResponseGetDataRetType) {
+	setAlertConfigRouteResponseGetDataAttributeType(&o.Data, v)
 }
 
 // GetMessage returns the Message field value
-func (o *AlertConfigRouteResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *AlertConfigRouteResponse) GetMessage() (ret AlertConfigRouteResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *AlertConfigRouteResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *AlertConfigRouteResponse) GetMessageOk() (ret AlertConfigRouteResponseGetMessageRetType, ok bool) {
+	return getAlertConfigRouteResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *AlertConfigRouteResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *AlertConfigRouteResponse) SetMessage(v AlertConfigRouteResponseGetMessageRetType) {
+	setAlertConfigRouteResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o AlertConfigRouteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["data"] = o.Data
-	toSerialize["message"] = o.Message
+	if val, ok := getAlertConfigRouteResponseGetDataAttributeTypeOk(o.Data); ok {
+		toSerialize["Data"] = val
+	}
+	if val, ok := getAlertConfigRouteResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

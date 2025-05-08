@@ -17,10 +17,30 @@ import (
 // checks if the ErrorMessage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ErrorMessage{}
 
+/*
+	types and functions for detail
+*/
+
+// isArray
+type ErrorMessageGetDetailAttributeType = *[]DetailedError
+type ErrorMessageGetDetailArgType = []DetailedError
+type ErrorMessageGetDetailRetType = []DetailedError
+
+func getErrorMessageGetDetailAttributeTypeOk(arg ErrorMessageGetDetailAttributeType) (ret ErrorMessageGetDetailRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setErrorMessageGetDetailAttributeType(arg *ErrorMessageGetDetailAttributeType, val ErrorMessageGetDetailRetType) {
+	*arg = &val
+}
+
 // ErrorMessage struct for ErrorMessage
 type ErrorMessage struct {
 	// REQUIRED
-	Detail *[]DetailedError `json:"detail"`
+	Detail ErrorMessageGetDetailAttributeType `json:"detail"`
 }
 
 type _ErrorMessage ErrorMessage
@@ -29,9 +49,9 @@ type _ErrorMessage ErrorMessage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewErrorMessage(detail *[]DetailedError) *ErrorMessage {
+func NewErrorMessage(detail ErrorMessageGetDetailArgType) *ErrorMessage {
 	this := ErrorMessage{}
-	this.Detail = detail
+	setErrorMessageGetDetailAttributeType(&this.Detail, detail)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewErrorMessageWithDefaults() *ErrorMessage {
 }
 
 // GetDetail returns the Detail field value
-func (o *ErrorMessage) GetDetail() *[]DetailedError {
-	if o == nil || IsNil(o.Detail) {
-		var ret *[]DetailedError
-		return ret
-	}
-
-	return o.Detail
+func (o *ErrorMessage) GetDetail() (ret ErrorMessageGetDetailRetType) {
+	ret, _ = o.GetDetailOk()
+	return ret
 }
 
 // GetDetailOk returns a tuple with the Detail field value
 // and a boolean to check if the value has been set.
-func (o *ErrorMessage) GetDetailOk() (*[]DetailedError, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Detail, true
+func (o *ErrorMessage) GetDetailOk() (ret ErrorMessageGetDetailRetType, ok bool) {
+	return getErrorMessageGetDetailAttributeTypeOk(o.Detail)
 }
 
 // SetDetail sets field value
-func (o *ErrorMessage) SetDetail(v *[]DetailedError) {
-	o.Detail = v
+func (o *ErrorMessage) SetDetail(v ErrorMessageGetDetailRetType) {
+	setErrorMessageGetDetailAttributeType(&o.Detail, v)
 }
 
 func (o ErrorMessage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["detail"] = o.Detail
+	if val, ok := getErrorMessageGetDetailAttributeTypeOk(o.Detail); ok {
+		toSerialize["Detail"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,9 +17,30 @@ import (
 // checks if the UpdateBackupsConfigPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateBackupsConfigPayload{}
 
+/*
+	types and functions for encryption_key
+*/
+
+// isNotNullableString
+type UpdateBackupsConfigPayloadGetEncryptionKeyAttributeType = *string
+
+func getUpdateBackupsConfigPayloadGetEncryptionKeyAttributeTypeOk(arg UpdateBackupsConfigPayloadGetEncryptionKeyAttributeType) (ret UpdateBackupsConfigPayloadGetEncryptionKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupsConfigPayloadGetEncryptionKeyAttributeType(arg *UpdateBackupsConfigPayloadGetEncryptionKeyAttributeType, val UpdateBackupsConfigPayloadGetEncryptionKeyRetType) {
+	*arg = &val
+}
+
+type UpdateBackupsConfigPayloadGetEncryptionKeyArgType = string
+type UpdateBackupsConfigPayloadGetEncryptionKeyRetType = string
+
 // UpdateBackupsConfigPayload struct for UpdateBackupsConfigPayload
 type UpdateBackupsConfigPayload struct {
-	EncryptionKey *string `json:"encryption_key,omitempty"`
+	EncryptionKey UpdateBackupsConfigPayloadGetEncryptionKeyAttributeType `json:"encryption_key,omitempty"`
 }
 
 // NewUpdateBackupsConfigPayload instantiates a new UpdateBackupsConfigPayload object
@@ -40,41 +61,32 @@ func NewUpdateBackupsConfigPayloadWithDefaults() *UpdateBackupsConfigPayload {
 }
 
 // GetEncryptionKey returns the EncryptionKey field value if set, zero value otherwise.
-func (o *UpdateBackupsConfigPayload) GetEncryptionKey() *string {
-	if o == nil || IsNil(o.EncryptionKey) {
-		var ret *string
-		return ret
-	}
-	return o.EncryptionKey
+func (o *UpdateBackupsConfigPayload) GetEncryptionKey() (res UpdateBackupsConfigPayloadGetEncryptionKeyRetType) {
+	res, _ = o.GetEncryptionKeyOk()
+	return
 }
 
 // GetEncryptionKeyOk returns a tuple with the EncryptionKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupsConfigPayload) GetEncryptionKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.EncryptionKey) {
-		return nil, false
-	}
-	return o.EncryptionKey, true
+func (o *UpdateBackupsConfigPayload) GetEncryptionKeyOk() (ret UpdateBackupsConfigPayloadGetEncryptionKeyRetType, ok bool) {
+	return getUpdateBackupsConfigPayloadGetEncryptionKeyAttributeTypeOk(o.EncryptionKey)
 }
 
 // HasEncryptionKey returns a boolean if a field has been set.
 func (o *UpdateBackupsConfigPayload) HasEncryptionKey() bool {
-	if o != nil && !IsNil(o.EncryptionKey) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetEncryptionKeyOk()
+	return ok
 }
 
 // SetEncryptionKey gets a reference to the given string and assigns it to the EncryptionKey field.
-func (o *UpdateBackupsConfigPayload) SetEncryptionKey(v *string) {
-	o.EncryptionKey = v
+func (o *UpdateBackupsConfigPayload) SetEncryptionKey(v UpdateBackupsConfigPayloadGetEncryptionKeyRetType) {
+	setUpdateBackupsConfigPayloadGetEncryptionKeyAttributeType(&o.EncryptionKey, v)
 }
 
 func (o UpdateBackupsConfigPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.EncryptionKey) {
-		toSerialize["encryption_key"] = o.EncryptionKey
+	if val, ok := getUpdateBackupsConfigPayloadGetEncryptionKeyAttributeTypeOk(o.EncryptionKey); ok {
+		toSerialize["EncryptionKey"] = val
 	}
 	return toSerialize, nil
 }

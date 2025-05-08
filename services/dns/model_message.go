@@ -17,9 +17,30 @@ import (
 // checks if the Message type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Message{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type MessageGetMessageAttributeType = *string
+
+func getMessageGetMessageAttributeTypeOk(arg MessageGetMessageAttributeType) (ret MessageGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMessageGetMessageAttributeType(arg *MessageGetMessageAttributeType, val MessageGetMessageRetType) {
+	*arg = &val
+}
+
+type MessageGetMessageArgType = string
+type MessageGetMessageRetType = string
+
 // Message struct for Message
 type Message struct {
-	Message *string `json:"message,omitempty"`
+	Message MessageGetMessageAttributeType `json:"message,omitempty"`
 }
 
 // NewMessage instantiates a new Message object
@@ -40,41 +61,32 @@ func NewMessageWithDefaults() *Message {
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *Message) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-	return o.Message
+func (o *Message) GetMessage() (res MessageGetMessageRetType) {
+	res, _ = o.GetMessageOk()
+	return
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Message) GetMessageOk() (*string, bool) {
-	if o == nil || IsNil(o.Message) {
-		return nil, false
-	}
-	return o.Message, true
+func (o *Message) GetMessageOk() (ret MessageGetMessageRetType, ok bool) {
+	return getMessageGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *Message) HasMessage() bool {
-	if o != nil && !IsNil(o.Message) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMessageOk()
+	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *Message) SetMessage(v *string) {
-	o.Message = v
+func (o *Message) SetMessage(v MessageGetMessageRetType) {
+	setMessageGetMessageAttributeType(&o.Message, v)
 }
 
 func (o Message) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
+	if val, ok := getMessageGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
 }

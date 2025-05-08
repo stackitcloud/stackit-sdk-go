@@ -18,16 +18,98 @@ import (
 // checks if the ImageShareConsumer type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ImageShareConsumer{}
 
+/*
+	types and functions for consumerProjectId
+*/
+
+// isNotNullableString
+type ImageShareConsumerGetConsumerProjectIdAttributeType = *string
+
+func getImageShareConsumerGetConsumerProjectIdAttributeTypeOk(arg ImageShareConsumerGetConsumerProjectIdAttributeType) (ret ImageShareConsumerGetConsumerProjectIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageShareConsumerGetConsumerProjectIdAttributeType(arg *ImageShareConsumerGetConsumerProjectIdAttributeType, val ImageShareConsumerGetConsumerProjectIdRetType) {
+	*arg = &val
+}
+
+type ImageShareConsumerGetConsumerProjectIdArgType = string
+type ImageShareConsumerGetConsumerProjectIdRetType = string
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type ImageShareConsumerGetCreatedAtAttributeType = *time.Time
+type ImageShareConsumerGetCreatedAtArgType = time.Time
+type ImageShareConsumerGetCreatedAtRetType = time.Time
+
+func getImageShareConsumerGetCreatedAtAttributeTypeOk(arg ImageShareConsumerGetCreatedAtAttributeType) (ret ImageShareConsumerGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageShareConsumerGetCreatedAtAttributeType(arg *ImageShareConsumerGetCreatedAtAttributeType, val ImageShareConsumerGetCreatedAtRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for imageId
+*/
+
+// isNotNullableString
+type ImageShareConsumerGetImageIdAttributeType = *string
+
+func getImageShareConsumerGetImageIdAttributeTypeOk(arg ImageShareConsumerGetImageIdAttributeType) (ret ImageShareConsumerGetImageIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageShareConsumerGetImageIdAttributeType(arg *ImageShareConsumerGetImageIdAttributeType, val ImageShareConsumerGetImageIdRetType) {
+	*arg = &val
+}
+
+type ImageShareConsumerGetImageIdArgType = string
+type ImageShareConsumerGetImageIdRetType = string
+
+/*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type ImageShareConsumerGetUpdatedAtAttributeType = *time.Time
+type ImageShareConsumerGetUpdatedAtArgType = time.Time
+type ImageShareConsumerGetUpdatedAtRetType = time.Time
+
+func getImageShareConsumerGetUpdatedAtAttributeTypeOk(arg ImageShareConsumerGetUpdatedAtAttributeType) (ret ImageShareConsumerGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageShareConsumerGetUpdatedAtAttributeType(arg *ImageShareConsumerGetUpdatedAtAttributeType, val ImageShareConsumerGetUpdatedAtRetType) {
+	*arg = &val
+}
+
 // ImageShareConsumer The details of an Image share consumer.
 type ImageShareConsumer struct {
 	// Universally Unique Identifier (UUID).
-	ConsumerProjectId *string `json:"consumerProjectId,omitempty"`
+	ConsumerProjectId ImageShareConsumerGetConsumerProjectIdAttributeType `json:"consumerProjectId,omitempty"`
 	// Date-time when resource was created.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	CreatedAt ImageShareConsumerGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Universally Unique Identifier (UUID).
-	ImageId *string `json:"imageId,omitempty"`
+	ImageId ImageShareConsumerGetImageIdAttributeType `json:"imageId,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt ImageShareConsumerGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
 
 // NewImageShareConsumer instantiates a new ImageShareConsumer object
@@ -48,146 +130,110 @@ func NewImageShareConsumerWithDefaults() *ImageShareConsumer {
 }
 
 // GetConsumerProjectId returns the ConsumerProjectId field value if set, zero value otherwise.
-func (o *ImageShareConsumer) GetConsumerProjectId() *string {
-	if o == nil || IsNil(o.ConsumerProjectId) {
-		var ret *string
-		return ret
-	}
-	return o.ConsumerProjectId
+func (o *ImageShareConsumer) GetConsumerProjectId() (res ImageShareConsumerGetConsumerProjectIdRetType) {
+	res, _ = o.GetConsumerProjectIdOk()
+	return
 }
 
 // GetConsumerProjectIdOk returns a tuple with the ConsumerProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageShareConsumer) GetConsumerProjectIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ConsumerProjectId) {
-		return nil, false
-	}
-	return o.ConsumerProjectId, true
+func (o *ImageShareConsumer) GetConsumerProjectIdOk() (ret ImageShareConsumerGetConsumerProjectIdRetType, ok bool) {
+	return getImageShareConsumerGetConsumerProjectIdAttributeTypeOk(o.ConsumerProjectId)
 }
 
 // HasConsumerProjectId returns a boolean if a field has been set.
 func (o *ImageShareConsumer) HasConsumerProjectId() bool {
-	if o != nil && !IsNil(o.ConsumerProjectId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetConsumerProjectIdOk()
+	return ok
 }
 
 // SetConsumerProjectId gets a reference to the given string and assigns it to the ConsumerProjectId field.
-func (o *ImageShareConsumer) SetConsumerProjectId(v *string) {
-	o.ConsumerProjectId = v
+func (o *ImageShareConsumer) SetConsumerProjectId(v ImageShareConsumerGetConsumerProjectIdRetType) {
+	setImageShareConsumerGetConsumerProjectIdAttributeType(&o.ConsumerProjectId, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *ImageShareConsumer) GetCreatedAt() *time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.CreatedAt
+func (o *ImageShareConsumer) GetCreatedAt() (res ImageShareConsumerGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageShareConsumer) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
-		return nil, false
-	}
-	return o.CreatedAt, true
+func (o *ImageShareConsumer) GetCreatedAtOk() (ret ImageShareConsumerGetCreatedAtRetType, ok bool) {
+	return getImageShareConsumerGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ImageShareConsumer) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCreatedAtOk()
+	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *ImageShareConsumer) SetCreatedAt(v *time.Time) {
-	o.CreatedAt = v
+func (o *ImageShareConsumer) SetCreatedAt(v ImageShareConsumerGetCreatedAtRetType) {
+	setImageShareConsumerGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetImageId returns the ImageId field value if set, zero value otherwise.
-func (o *ImageShareConsumer) GetImageId() *string {
-	if o == nil || IsNil(o.ImageId) {
-		var ret *string
-		return ret
-	}
-	return o.ImageId
+func (o *ImageShareConsumer) GetImageId() (res ImageShareConsumerGetImageIdRetType) {
+	res, _ = o.GetImageIdOk()
+	return
 }
 
 // GetImageIdOk returns a tuple with the ImageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageShareConsumer) GetImageIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ImageId) {
-		return nil, false
-	}
-	return o.ImageId, true
+func (o *ImageShareConsumer) GetImageIdOk() (ret ImageShareConsumerGetImageIdRetType, ok bool) {
+	return getImageShareConsumerGetImageIdAttributeTypeOk(o.ImageId)
 }
 
 // HasImageId returns a boolean if a field has been set.
 func (o *ImageShareConsumer) HasImageId() bool {
-	if o != nil && !IsNil(o.ImageId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetImageIdOk()
+	return ok
 }
 
 // SetImageId gets a reference to the given string and assigns it to the ImageId field.
-func (o *ImageShareConsumer) SetImageId(v *string) {
-	o.ImageId = v
+func (o *ImageShareConsumer) SetImageId(v ImageShareConsumerGetImageIdRetType) {
+	setImageShareConsumerGetImageIdAttributeType(&o.ImageId, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *ImageShareConsumer) GetUpdatedAt() *time.Time {
-	if o == nil || IsNil(o.UpdatedAt) {
-		var ret *time.Time
-		return ret
-	}
-	return o.UpdatedAt
+func (o *ImageShareConsumer) GetUpdatedAt() (res ImageShareConsumerGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
 }
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImageShareConsumer) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
-		return nil, false
-	}
-	return o.UpdatedAt, true
+func (o *ImageShareConsumer) GetUpdatedAtOk() (ret ImageShareConsumerGetUpdatedAtRetType, ok bool) {
+	return getImageShareConsumerGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *ImageShareConsumer) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUpdatedAtOk()
+	return ok
 }
 
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *ImageShareConsumer) SetUpdatedAt(v *time.Time) {
-	o.UpdatedAt = v
+func (o *ImageShareConsumer) SetUpdatedAt(v ImageShareConsumerGetUpdatedAtRetType) {
+	setImageShareConsumerGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 func (o ImageShareConsumer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ConsumerProjectId) {
-		toSerialize["consumerProjectId"] = o.ConsumerProjectId
+	if val, ok := getImageShareConsumerGetConsumerProjectIdAttributeTypeOk(o.ConsumerProjectId); ok {
+		toSerialize["ConsumerProjectId"] = val
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if val, ok := getImageShareConsumerGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
-	if !IsNil(o.ImageId) {
-		toSerialize["imageId"] = o.ImageId
+	if val, ok := getImageShareConsumerGetImageIdAttributeTypeOk(o.ImageId); ok {
+		toSerialize["ImageId"] = val
 	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updatedAt"] = o.UpdatedAt
+	if val, ok := getImageShareConsumerGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }

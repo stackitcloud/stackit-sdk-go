@@ -17,9 +17,29 @@ import (
 // checks if the ApiInstalledListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ApiInstalledListResponse{}
 
+/*
+	types and functions for installed
+*/
+
+// isArray
+type ApiInstalledListResponseGetInstalledAttributeType = *[]ApiExtensionList
+type ApiInstalledListResponseGetInstalledArgType = []ApiExtensionList
+type ApiInstalledListResponseGetInstalledRetType = []ApiExtensionList
+
+func getApiInstalledListResponseGetInstalledAttributeTypeOk(arg ApiInstalledListResponseGetInstalledAttributeType) (ret ApiInstalledListResponseGetInstalledRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setApiInstalledListResponseGetInstalledAttributeType(arg *ApiInstalledListResponseGetInstalledAttributeType, val ApiInstalledListResponseGetInstalledRetType) {
+	*arg = &val
+}
+
 // ApiInstalledListResponse struct for ApiInstalledListResponse
 type ApiInstalledListResponse struct {
-	Installed *[]ApiExtensionList `json:"installed,omitempty"`
+	Installed ApiInstalledListResponseGetInstalledAttributeType `json:"installed,omitempty"`
 }
 
 // NewApiInstalledListResponse instantiates a new ApiInstalledListResponse object
@@ -40,41 +60,32 @@ func NewApiInstalledListResponseWithDefaults() *ApiInstalledListResponse {
 }
 
 // GetInstalled returns the Installed field value if set, zero value otherwise.
-func (o *ApiInstalledListResponse) GetInstalled() *[]ApiExtensionList {
-	if o == nil || IsNil(o.Installed) {
-		var ret *[]ApiExtensionList
-		return ret
-	}
-	return o.Installed
+func (o *ApiInstalledListResponse) GetInstalled() (res ApiInstalledListResponseGetInstalledRetType) {
+	res, _ = o.GetInstalledOk()
+	return
 }
 
 // GetInstalledOk returns a tuple with the Installed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiInstalledListResponse) GetInstalledOk() (*[]ApiExtensionList, bool) {
-	if o == nil || IsNil(o.Installed) {
-		return nil, false
-	}
-	return o.Installed, true
+func (o *ApiInstalledListResponse) GetInstalledOk() (ret ApiInstalledListResponseGetInstalledRetType, ok bool) {
+	return getApiInstalledListResponseGetInstalledAttributeTypeOk(o.Installed)
 }
 
 // HasInstalled returns a boolean if a field has been set.
 func (o *ApiInstalledListResponse) HasInstalled() bool {
-	if o != nil && !IsNil(o.Installed) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetInstalledOk()
+	return ok
 }
 
 // SetInstalled gets a reference to the given []ApiExtensionList and assigns it to the Installed field.
-func (o *ApiInstalledListResponse) SetInstalled(v *[]ApiExtensionList) {
-	o.Installed = v
+func (o *ApiInstalledListResponse) SetInstalled(v ApiInstalledListResponseGetInstalledRetType) {
+	setApiInstalledListResponseGetInstalledAttributeType(&o.Installed, v)
 }
 
 func (o ApiInstalledListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Installed) {
-		toSerialize["installed"] = o.Installed
+	if val, ok := getApiInstalledListResponseGetInstalledAttributeTypeOk(o.Installed); ok {
+		toSerialize["Installed"] = val
 	}
 	return toSerialize, nil
 }

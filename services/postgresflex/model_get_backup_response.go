@@ -17,9 +17,29 @@ import (
 // checks if the GetBackupResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetBackupResponse{}
 
+/*
+	types and functions for item
+*/
+
+// isModel
+type GetBackupResponseGetItemAttributeType = *Backup
+type GetBackupResponseGetItemArgType = Backup
+type GetBackupResponseGetItemRetType = Backup
+
+func getGetBackupResponseGetItemAttributeTypeOk(arg GetBackupResponseGetItemAttributeType) (ret GetBackupResponseGetItemRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetBackupResponseGetItemAttributeType(arg *GetBackupResponseGetItemAttributeType, val GetBackupResponseGetItemRetType) {
+	*arg = &val
+}
+
 // GetBackupResponse struct for GetBackupResponse
 type GetBackupResponse struct {
-	Item *Backup `json:"item,omitempty"`
+	Item GetBackupResponseGetItemAttributeType `json:"item,omitempty"`
 }
 
 // NewGetBackupResponse instantiates a new GetBackupResponse object
@@ -40,41 +60,32 @@ func NewGetBackupResponseWithDefaults() *GetBackupResponse {
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
-func (o *GetBackupResponse) GetItem() *Backup {
-	if o == nil || IsNil(o.Item) {
-		var ret *Backup
-		return ret
-	}
-	return o.Item
+func (o *GetBackupResponse) GetItem() (res GetBackupResponseGetItemRetType) {
+	res, _ = o.GetItemOk()
+	return
 }
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetBackupResponse) GetItemOk() (*Backup, bool) {
-	if o == nil || IsNil(o.Item) {
-		return nil, false
-	}
-	return o.Item, true
+func (o *GetBackupResponse) GetItemOk() (ret GetBackupResponseGetItemRetType, ok bool) {
+	return getGetBackupResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
 func (o *GetBackupResponse) HasItem() bool {
-	if o != nil && !IsNil(o.Item) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemOk()
+	return ok
 }
 
 // SetItem gets a reference to the given Backup and assigns it to the Item field.
-func (o *GetBackupResponse) SetItem(v *Backup) {
-	o.Item = v
+func (o *GetBackupResponse) SetItem(v GetBackupResponseGetItemRetType) {
+	setGetBackupResponseGetItemAttributeType(&o.Item, v)
 }
 
 func (o GetBackupResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Item) {
-		toSerialize["item"] = o.Item
+	if val, ok := getGetBackupResponseGetItemAttributeTypeOk(o.Item); ok {
+		toSerialize["Item"] = val
 	}
 	return toSerialize, nil
 }

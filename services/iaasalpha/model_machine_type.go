@@ -17,24 +17,146 @@ import (
 // checks if the MachineType type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MachineType{}
 
-// MachineType Machine Type.
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type MachineTypeGetDescriptionAttributeType = *string
+
+func getMachineTypeGetDescriptionAttributeTypeOk(arg MachineTypeGetDescriptionAttributeType) (ret MachineTypeGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetDescriptionAttributeType(arg *MachineTypeGetDescriptionAttributeType, val MachineTypeGetDescriptionRetType) {
+	*arg = &val
+}
+
+type MachineTypeGetDescriptionArgType = string
+type MachineTypeGetDescriptionRetType = string
+
+/*
+	types and functions for disk
+*/
+
+// isLong
+type MachineTypeGetDiskAttributeType = *int64
+type MachineTypeGetDiskArgType = int64
+type MachineTypeGetDiskRetType = int64
+
+func getMachineTypeGetDiskAttributeTypeOk(arg MachineTypeGetDiskAttributeType) (ret MachineTypeGetDiskRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetDiskAttributeType(arg *MachineTypeGetDiskAttributeType, val MachineTypeGetDiskRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for extraSpecs
+*/
+
+// isFreeform
+type MachineTypeGetExtraSpecsAttributeType = *map[string]interface{}
+type MachineTypeGetExtraSpecsArgType = map[string]interface{}
+type MachineTypeGetExtraSpecsRetType = map[string]interface{}
+
+func getMachineTypeGetExtraSpecsAttributeTypeOk(arg MachineTypeGetExtraSpecsAttributeType) (ret MachineTypeGetExtraSpecsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetExtraSpecsAttributeType(arg *MachineTypeGetExtraSpecsAttributeType, val MachineTypeGetExtraSpecsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type MachineTypeGetNameAttributeType = *string
+
+func getMachineTypeGetNameAttributeTypeOk(arg MachineTypeGetNameAttributeType) (ret MachineTypeGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetNameAttributeType(arg *MachineTypeGetNameAttributeType, val MachineTypeGetNameRetType) {
+	*arg = &val
+}
+
+type MachineTypeGetNameArgType = string
+type MachineTypeGetNameRetType = string
+
+/*
+	types and functions for ram
+*/
+
+// isLong
+type MachineTypeGetRamAttributeType = *int64
+type MachineTypeGetRamArgType = int64
+type MachineTypeGetRamRetType = int64
+
+func getMachineTypeGetRamAttributeTypeOk(arg MachineTypeGetRamAttributeType) (ret MachineTypeGetRamRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetRamAttributeType(arg *MachineTypeGetRamAttributeType, val MachineTypeGetRamRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for vcpus
+*/
+
+// isLong
+type MachineTypeGetVcpusAttributeType = *int64
+type MachineTypeGetVcpusArgType = int64
+type MachineTypeGetVcpusRetType = int64
+
+func getMachineTypeGetVcpusAttributeTypeOk(arg MachineTypeGetVcpusAttributeType) (ret MachineTypeGetVcpusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMachineTypeGetVcpusAttributeType(arg *MachineTypeGetVcpusAttributeType, val MachineTypeGetVcpusRetType) {
+	*arg = &val
+}
+
+// MachineType Machine Type. Filterable Fields: `disk`, `extraSpecs`, `name`, `ram`, `vcpus`.
 type MachineType struct {
 	// Description Object. Allows string up to 127 Characters.
-	Description *string `json:"description,omitempty"`
+	Description MachineTypeGetDescriptionAttributeType `json:"description,omitempty"`
 	// Size in Gigabyte.
 	// REQUIRED
-	Disk *int64 `json:"disk"`
+	Disk MachineTypeGetDiskAttributeType `json:"disk"`
 	// Properties to control certain aspects or scheduling behavior for an object.
-	ExtraSpecs *map[string]interface{} `json:"extraSpecs,omitempty"`
+	ExtraSpecs MachineTypeGetExtraSpecsAttributeType `json:"extraSpecs,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name *string `json:"name"`
+	Name MachineTypeGetNameAttributeType `json:"name"`
 	// Size in Megabyte.
 	// REQUIRED
-	Ram *int64 `json:"ram"`
+	Ram MachineTypeGetRamAttributeType `json:"ram"`
 	// The number of virtual CPUs of a server.
 	// REQUIRED
-	Vcpus *int64 `json:"vcpus"`
+	Vcpus MachineTypeGetVcpusAttributeType `json:"vcpus"`
 }
 
 type _MachineType MachineType
@@ -43,12 +165,12 @@ type _MachineType MachineType
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMachineType(disk *int64, name *string, ram *int64, vcpus *int64) *MachineType {
+func NewMachineType(disk MachineTypeGetDiskArgType, name MachineTypeGetNameArgType, ram MachineTypeGetRamArgType, vcpus MachineTypeGetVcpusArgType) *MachineType {
 	this := MachineType{}
-	this.Disk = disk
-	this.Name = name
-	this.Ram = ram
-	this.Vcpus = vcpus
+	setMachineTypeGetDiskAttributeType(&this.Disk, disk)
+	setMachineTypeGetNameAttributeType(&this.Name, name)
+	setMachineTypeGetRamAttributeType(&this.Ram, ram)
+	setMachineTypeGetVcpusAttributeType(&this.Vcpus, vcpus)
 	return &this
 }
 
@@ -61,177 +183,139 @@ func NewMachineTypeWithDefaults() *MachineType {
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *MachineType) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *MachineType) GetDescription() (res MachineTypeGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *MachineType) GetDescriptionOk() (ret MachineTypeGetDescriptionRetType, ok bool) {
+	return getMachineTypeGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *MachineType) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *MachineType) SetDescription(v *string) {
-	o.Description = v
+func (o *MachineType) SetDescription(v MachineTypeGetDescriptionRetType) {
+	setMachineTypeGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDisk returns the Disk field value
-func (o *MachineType) GetDisk() *int64 {
-	if o == nil || IsNil(o.Disk) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Disk
+func (o *MachineType) GetDisk() (ret MachineTypeGetDiskRetType) {
+	ret, _ = o.GetDiskOk()
+	return ret
 }
 
 // GetDiskOk returns a tuple with the Disk field value
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetDiskOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Disk, true
+func (o *MachineType) GetDiskOk() (ret MachineTypeGetDiskRetType, ok bool) {
+	return getMachineTypeGetDiskAttributeTypeOk(o.Disk)
 }
 
 // SetDisk sets field value
-func (o *MachineType) SetDisk(v *int64) {
-	o.Disk = v
+func (o *MachineType) SetDisk(v MachineTypeGetDiskRetType) {
+	setMachineTypeGetDiskAttributeType(&o.Disk, v)
 }
 
 // GetExtraSpecs returns the ExtraSpecs field value if set, zero value otherwise.
-func (o *MachineType) GetExtraSpecs() *map[string]interface{} {
-	if o == nil || IsNil(o.ExtraSpecs) {
-		var ret *map[string]interface{}
-		return ret
-	}
-	return o.ExtraSpecs
+func (o *MachineType) GetExtraSpecs() (res MachineTypeGetExtraSpecsRetType) {
+	res, _ = o.GetExtraSpecsOk()
+	return
 }
 
 // GetExtraSpecsOk returns a tuple with the ExtraSpecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetExtraSpecsOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.ExtraSpecs) {
-		return &map[string]interface{}{}, false
-	}
-	return o.ExtraSpecs, true
+func (o *MachineType) GetExtraSpecsOk() (ret MachineTypeGetExtraSpecsRetType, ok bool) {
+	return getMachineTypeGetExtraSpecsAttributeTypeOk(o.ExtraSpecs)
 }
 
 // HasExtraSpecs returns a boolean if a field has been set.
 func (o *MachineType) HasExtraSpecs() bool {
-	if o != nil && !IsNil(o.ExtraSpecs) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExtraSpecsOk()
+	return ok
 }
 
 // SetExtraSpecs gets a reference to the given map[string]interface{} and assigns it to the ExtraSpecs field.
-func (o *MachineType) SetExtraSpecs(v *map[string]interface{}) {
-	o.ExtraSpecs = v
+func (o *MachineType) SetExtraSpecs(v MachineTypeGetExtraSpecsRetType) {
+	setMachineTypeGetExtraSpecsAttributeType(&o.ExtraSpecs, v)
 }
 
 // GetName returns the Name field value
-func (o *MachineType) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *MachineType) GetName() (ret MachineTypeGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *MachineType) GetNameOk() (ret MachineTypeGetNameRetType, ok bool) {
+	return getMachineTypeGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *MachineType) SetName(v *string) {
-	o.Name = v
+func (o *MachineType) SetName(v MachineTypeGetNameRetType) {
+	setMachineTypeGetNameAttributeType(&o.Name, v)
 }
 
 // GetRam returns the Ram field value
-func (o *MachineType) GetRam() *int64 {
-	if o == nil || IsNil(o.Ram) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Ram
+func (o *MachineType) GetRam() (ret MachineTypeGetRamRetType) {
+	ret, _ = o.GetRamOk()
+	return ret
 }
 
 // GetRamOk returns a tuple with the Ram field value
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetRamOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Ram, true
+func (o *MachineType) GetRamOk() (ret MachineTypeGetRamRetType, ok bool) {
+	return getMachineTypeGetRamAttributeTypeOk(o.Ram)
 }
 
 // SetRam sets field value
-func (o *MachineType) SetRam(v *int64) {
-	o.Ram = v
+func (o *MachineType) SetRam(v MachineTypeGetRamRetType) {
+	setMachineTypeGetRamAttributeType(&o.Ram, v)
 }
 
 // GetVcpus returns the Vcpus field value
-func (o *MachineType) GetVcpus() *int64 {
-	if o == nil || IsNil(o.Vcpus) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Vcpus
+func (o *MachineType) GetVcpus() (ret MachineTypeGetVcpusRetType) {
+	ret, _ = o.GetVcpusOk()
+	return ret
 }
 
 // GetVcpusOk returns a tuple with the Vcpus field value
 // and a boolean to check if the value has been set.
-func (o *MachineType) GetVcpusOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Vcpus, true
+func (o *MachineType) GetVcpusOk() (ret MachineTypeGetVcpusRetType, ok bool) {
+	return getMachineTypeGetVcpusAttributeTypeOk(o.Vcpus)
 }
 
 // SetVcpus sets field value
-func (o *MachineType) SetVcpus(v *int64) {
-	o.Vcpus = v
+func (o *MachineType) SetVcpus(v MachineTypeGetVcpusRetType) {
+	setMachineTypeGetVcpusAttributeType(&o.Vcpus, v)
 }
 
 func (o MachineType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getMachineTypeGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["disk"] = o.Disk
-	if !IsNil(o.ExtraSpecs) {
-		toSerialize["extraSpecs"] = o.ExtraSpecs
+	if val, ok := getMachineTypeGetDiskAttributeTypeOk(o.Disk); ok {
+		toSerialize["Disk"] = val
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["ram"] = o.Ram
-	toSerialize["vcpus"] = o.Vcpus
+	if val, ok := getMachineTypeGetExtraSpecsAttributeTypeOk(o.ExtraSpecs); ok {
+		toSerialize["ExtraSpecs"] = val
+	}
+	if val, ok := getMachineTypeGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getMachineTypeGetRamAttributeTypeOk(o.Ram); ok {
+		toSerialize["Ram"] = val
+	}
+	if val, ok := getMachineTypeGetVcpusAttributeTypeOk(o.Vcpus); ok {
+		toSerialize["Vcpus"] = val
+	}
 	return toSerialize, nil
 }
 

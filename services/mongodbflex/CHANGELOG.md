@@ -1,3 +1,12 @@
+## v1.0.0 (2025-05-02)
+- **Breaking Change:** Introduce typed enum constants for status attributes
+
+## v0.18.2 (2025-04-29)
+- **Bugfix:** Correctly handle empty payload in body
+
+## v0.18.1 (2025-03-19)
+- **Internal:** Backwards compatible change to generated code
+
 ## v0.18.0 (2025-02-21)
 - **New:** Minimal go version is now Go 1.21
 

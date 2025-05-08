@@ -17,77 +17,636 @@ import (
 // checks if the Zone type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Zone{}
 
+/*
+	types and functions for acl
+*/
+
+// isNotNullableString
+type ZoneGetAclAttributeType = *string
+
+func getZoneGetAclAttributeTypeOk(arg ZoneGetAclAttributeType) (ret ZoneGetAclRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetAclAttributeType(arg *ZoneGetAclAttributeType, val ZoneGetAclRetType) {
+	*arg = &val
+}
+
+type ZoneGetAclArgType = string
+type ZoneGetAclRetType = string
+
+/*
+	types and functions for active
+*/
+
+// isBoolean
+type ZonegetActiveAttributeType = *bool
+type ZonegetActiveArgType = bool
+type ZonegetActiveRetType = bool
+
+func getZonegetActiveAttributeTypeOk(arg ZonegetActiveAttributeType) (ret ZonegetActiveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZonegetActiveAttributeType(arg *ZonegetActiveAttributeType, val ZonegetActiveRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for contactEmail
+*/
+
+// isNotNullableString
+type ZoneGetContactEmailAttributeType = *string
+
+func getZoneGetContactEmailAttributeTypeOk(arg ZoneGetContactEmailAttributeType) (ret ZoneGetContactEmailRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetContactEmailAttributeType(arg *ZoneGetContactEmailAttributeType, val ZoneGetContactEmailRetType) {
+	*arg = &val
+}
+
+type ZoneGetContactEmailArgType = string
+type ZoneGetContactEmailRetType = string
+
+/*
+	types and functions for creationFinished
+*/
+
+// isNotNullableString
+type ZoneGetCreationFinishedAttributeType = *string
+
+func getZoneGetCreationFinishedAttributeTypeOk(arg ZoneGetCreationFinishedAttributeType) (ret ZoneGetCreationFinishedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetCreationFinishedAttributeType(arg *ZoneGetCreationFinishedAttributeType, val ZoneGetCreationFinishedRetType) {
+	*arg = &val
+}
+
+type ZoneGetCreationFinishedArgType = string
+type ZoneGetCreationFinishedRetType = string
+
+/*
+	types and functions for creationStarted
+*/
+
+// isNotNullableString
+type ZoneGetCreationStartedAttributeType = *string
+
+func getZoneGetCreationStartedAttributeTypeOk(arg ZoneGetCreationStartedAttributeType) (ret ZoneGetCreationStartedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetCreationStartedAttributeType(arg *ZoneGetCreationStartedAttributeType, val ZoneGetCreationStartedRetType) {
+	*arg = &val
+}
+
+type ZoneGetCreationStartedArgType = string
+type ZoneGetCreationStartedRetType = string
+
+/*
+	types and functions for defaultTTL
+*/
+
+// isInteger
+type ZoneGetDefaultTTLAttributeType = *int64
+type ZoneGetDefaultTTLArgType = int64
+type ZoneGetDefaultTTLRetType = int64
+
+func getZoneGetDefaultTTLAttributeTypeOk(arg ZoneGetDefaultTTLAttributeType) (ret ZoneGetDefaultTTLRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetDefaultTTLAttributeType(arg *ZoneGetDefaultTTLAttributeType, val ZoneGetDefaultTTLRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type ZoneGetDescriptionAttributeType = *string
+
+func getZoneGetDescriptionAttributeTypeOk(arg ZoneGetDescriptionAttributeType) (ret ZoneGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetDescriptionAttributeType(arg *ZoneGetDescriptionAttributeType, val ZoneGetDescriptionRetType) {
+	*arg = &val
+}
+
+type ZoneGetDescriptionArgType = string
+type ZoneGetDescriptionRetType = string
+
+/*
+	types and functions for dnsName
+*/
+
+// isNotNullableString
+type ZoneGetDnsNameAttributeType = *string
+
+func getZoneGetDnsNameAttributeTypeOk(arg ZoneGetDnsNameAttributeType) (ret ZoneGetDnsNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetDnsNameAttributeType(arg *ZoneGetDnsNameAttributeType, val ZoneGetDnsNameRetType) {
+	*arg = &val
+}
+
+type ZoneGetDnsNameArgType = string
+type ZoneGetDnsNameRetType = string
+
+/*
+	types and functions for error
+*/
+
+// isNotNullableString
+type ZoneGetErrorAttributeType = *string
+
+func getZoneGetErrorAttributeTypeOk(arg ZoneGetErrorAttributeType) (ret ZoneGetErrorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetErrorAttributeType(arg *ZoneGetErrorAttributeType, val ZoneGetErrorRetType) {
+	*arg = &val
+}
+
+type ZoneGetErrorArgType = string
+type ZoneGetErrorRetType = string
+
+/*
+	types and functions for expireTime
+*/
+
+// isInteger
+type ZoneGetExpireTimeAttributeType = *int64
+type ZoneGetExpireTimeArgType = int64
+type ZoneGetExpireTimeRetType = int64
+
+func getZoneGetExpireTimeAttributeTypeOk(arg ZoneGetExpireTimeAttributeType) (ret ZoneGetExpireTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetExpireTimeAttributeType(arg *ZoneGetExpireTimeAttributeType, val ZoneGetExpireTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for extensions
+*/
+
+// isModel
+type ZoneGetExtensionsAttributeType = *DomainExtensions
+type ZoneGetExtensionsArgType = DomainExtensions
+type ZoneGetExtensionsRetType = DomainExtensions
+
+func getZoneGetExtensionsAttributeTypeOk(arg ZoneGetExtensionsAttributeType) (ret ZoneGetExtensionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetExtensionsAttributeType(arg *ZoneGetExtensionsAttributeType, val ZoneGetExtensionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ZoneGetIdAttributeType = *string
+
+func getZoneGetIdAttributeTypeOk(arg ZoneGetIdAttributeType) (ret ZoneGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetIdAttributeType(arg *ZoneGetIdAttributeType, val ZoneGetIdRetType) {
+	*arg = &val
+}
+
+type ZoneGetIdArgType = string
+type ZoneGetIdRetType = string
+
+/*
+	types and functions for isReverseZone
+*/
+
+// isBoolean
+type ZonegetIsReverseZoneAttributeType = *bool
+type ZonegetIsReverseZoneArgType = bool
+type ZonegetIsReverseZoneRetType = bool
+
+func getZonegetIsReverseZoneAttributeTypeOk(arg ZonegetIsReverseZoneAttributeType) (ret ZonegetIsReverseZoneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZonegetIsReverseZoneAttributeType(arg *ZonegetIsReverseZoneAttributeType, val ZonegetIsReverseZoneRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for labels
+*/
+
+// isArray
+type ZoneGetLabelsAttributeType = *[]Label
+type ZoneGetLabelsArgType = []Label
+type ZoneGetLabelsRetType = []Label
+
+func getZoneGetLabelsAttributeTypeOk(arg ZoneGetLabelsAttributeType) (ret ZoneGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetLabelsAttributeType(arg *ZoneGetLabelsAttributeType, val ZoneGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ZoneGetNameAttributeType = *string
+
+func getZoneGetNameAttributeTypeOk(arg ZoneGetNameAttributeType) (ret ZoneGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetNameAttributeType(arg *ZoneGetNameAttributeType, val ZoneGetNameRetType) {
+	*arg = &val
+}
+
+type ZoneGetNameArgType = string
+type ZoneGetNameRetType = string
+
+/*
+	types and functions for negativeCache
+*/
+
+// isInteger
+type ZoneGetNegativeCacheAttributeType = *int64
+type ZoneGetNegativeCacheArgType = int64
+type ZoneGetNegativeCacheRetType = int64
+
+func getZoneGetNegativeCacheAttributeTypeOk(arg ZoneGetNegativeCacheAttributeType) (ret ZoneGetNegativeCacheRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetNegativeCacheAttributeType(arg *ZoneGetNegativeCacheAttributeType, val ZoneGetNegativeCacheRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for primaries
+*/
+
+// isArray
+type ZoneGetPrimariesAttributeType = *[]string
+type ZoneGetPrimariesArgType = []string
+type ZoneGetPrimariesRetType = []string
+
+func getZoneGetPrimariesAttributeTypeOk(arg ZoneGetPrimariesAttributeType) (ret ZoneGetPrimariesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetPrimariesAttributeType(arg *ZoneGetPrimariesAttributeType, val ZoneGetPrimariesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for primaryNameServer
+*/
+
+// isNotNullableString
+type ZoneGetPrimaryNameServerAttributeType = *string
+
+func getZoneGetPrimaryNameServerAttributeTypeOk(arg ZoneGetPrimaryNameServerAttributeType) (ret ZoneGetPrimaryNameServerRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetPrimaryNameServerAttributeType(arg *ZoneGetPrimaryNameServerAttributeType, val ZoneGetPrimaryNameServerRetType) {
+	*arg = &val
+}
+
+type ZoneGetPrimaryNameServerArgType = string
+type ZoneGetPrimaryNameServerRetType = string
+
+/*
+	types and functions for recordCount
+*/
+
+// isInteger
+type ZoneGetRecordCountAttributeType = *int64
+type ZoneGetRecordCountArgType = int64
+type ZoneGetRecordCountRetType = int64
+
+func getZoneGetRecordCountAttributeTypeOk(arg ZoneGetRecordCountAttributeType) (ret ZoneGetRecordCountRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetRecordCountAttributeType(arg *ZoneGetRecordCountAttributeType, val ZoneGetRecordCountRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for refreshTime
+*/
+
+// isInteger
+type ZoneGetRefreshTimeAttributeType = *int64
+type ZoneGetRefreshTimeArgType = int64
+type ZoneGetRefreshTimeRetType = int64
+
+func getZoneGetRefreshTimeAttributeTypeOk(arg ZoneGetRefreshTimeAttributeType) (ret ZoneGetRefreshTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetRefreshTimeAttributeType(arg *ZoneGetRefreshTimeAttributeType, val ZoneGetRefreshTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for retryTime
+*/
+
+// isInteger
+type ZoneGetRetryTimeAttributeType = *int64
+type ZoneGetRetryTimeArgType = int64
+type ZoneGetRetryTimeRetType = int64
+
+func getZoneGetRetryTimeAttributeTypeOk(arg ZoneGetRetryTimeAttributeType) (ret ZoneGetRetryTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetRetryTimeAttributeType(arg *ZoneGetRetryTimeAttributeType, val ZoneGetRetryTimeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for serialNumber
+*/
+
+// isInteger
+type ZoneGetSerialNumberAttributeType = *int64
+type ZoneGetSerialNumberArgType = int64
+type ZoneGetSerialNumberRetType = int64
+
+func getZoneGetSerialNumberAttributeTypeOk(arg ZoneGetSerialNumberAttributeType) (ret ZoneGetSerialNumberRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetSerialNumberAttributeType(arg *ZoneGetSerialNumberAttributeType, val ZoneGetSerialNumberRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for state
+*/
+
+// isEnumRef
+type ZoneGetStateAttributeType = *string
+type ZoneGetStateArgType = string
+type ZoneGetStateRetType = string
+
+func getZoneGetStateAttributeTypeOk(arg ZoneGetStateAttributeType) (ret ZoneGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetStateAttributeType(arg *ZoneGetStateAttributeType, val ZoneGetStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for type
+*/
+
+// isEnumRef
+type ZoneGetTypeAttributeType = *string
+type ZoneGetTypeArgType = string
+type ZoneGetTypeRetType = string
+
+func getZoneGetTypeAttributeTypeOk(arg ZoneGetTypeAttributeType) (ret ZoneGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetTypeAttributeType(arg *ZoneGetTypeAttributeType, val ZoneGetTypeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for updateFinished
+*/
+
+// isNotNullableString
+type ZoneGetUpdateFinishedAttributeType = *string
+
+func getZoneGetUpdateFinishedAttributeTypeOk(arg ZoneGetUpdateFinishedAttributeType) (ret ZoneGetUpdateFinishedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetUpdateFinishedAttributeType(arg *ZoneGetUpdateFinishedAttributeType, val ZoneGetUpdateFinishedRetType) {
+	*arg = &val
+}
+
+type ZoneGetUpdateFinishedArgType = string
+type ZoneGetUpdateFinishedRetType = string
+
+/*
+	types and functions for updateStarted
+*/
+
+// isNotNullableString
+type ZoneGetUpdateStartedAttributeType = *string
+
+func getZoneGetUpdateStartedAttributeTypeOk(arg ZoneGetUpdateStartedAttributeType) (ret ZoneGetUpdateStartedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetUpdateStartedAttributeType(arg *ZoneGetUpdateStartedAttributeType, val ZoneGetUpdateStartedRetType) {
+	*arg = &val
+}
+
+type ZoneGetUpdateStartedArgType = string
+type ZoneGetUpdateStartedRetType = string
+
+/*
+	types and functions for visibility
+*/
+
+// isEnumRef
+type ZoneGetVisibilityAttributeType = *string
+type ZoneGetVisibilityArgType = string
+type ZoneGetVisibilityRetType = string
+
+func getZoneGetVisibilityAttributeTypeOk(arg ZoneGetVisibilityAttributeType) (ret ZoneGetVisibilityRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setZoneGetVisibilityAttributeType(arg *ZoneGetVisibilityAttributeType, val ZoneGetVisibilityRetType) {
+	*arg = &val
+}
+
 // Zone Zone.
 type Zone struct {
 	// access control list
 	// REQUIRED
-	Acl    *string `json:"acl"`
-	Active *bool   `json:"active,omitempty"`
+	Acl    ZoneGetAclAttributeType    `json:"acl"`
+	Active ZonegetActiveAttributeType `json:"active,omitempty"`
 	// contact email from soa record
-	ContactEmail *string `json:"contactEmail,omitempty"`
+	ContactEmail ZoneGetContactEmailAttributeType `json:"contactEmail,omitempty"`
 	// when zone creation finished
 	// REQUIRED
-	CreationFinished *string `json:"creationFinished"`
+	CreationFinished ZoneGetCreationFinishedAttributeType `json:"creationFinished"`
 	// when zone creation started
 	// REQUIRED
-	CreationStarted *string `json:"creationStarted"`
+	CreationStarted ZoneGetCreationStartedAttributeType `json:"creationStarted"`
 	// default time to live
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	DefaultTTL *int64 `json:"defaultTTL"`
+	DefaultTTL ZoneGetDefaultTTLAttributeType `json:"defaultTTL"`
 	// description of the zone
-	Description *string `json:"description,omitempty"`
+	Description ZoneGetDescriptionAttributeType `json:"description,omitempty"`
 	// zone name
 	// REQUIRED
-	DnsName *string `json:"dnsName"`
+	DnsName ZoneGetDnsNameAttributeType `json:"dnsName"`
 	// Error shows error in case create/update/delete failed
-	Error *string `json:"error,omitempty"`
+	Error ZoneGetErrorAttributeType `json:"error,omitempty"`
 	// expire time
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	ExpireTime *int64            `json:"expireTime"`
-	Extensions *DomainExtensions `json:"extensions,omitempty"`
+	ExpireTime ZoneGetExpireTimeAttributeType `json:"expireTime"`
+	Extensions ZoneGetExtensionsAttributeType `json:"extensions,omitempty"`
 	// zone id
 	// REQUIRED
-	Id *string `json:"id"`
+	Id ZoneGetIdAttributeType `json:"id"`
 	// if the zone is a reverse zone or not
-	IsReverseZone *bool    `json:"isReverseZone,omitempty"`
-	Labels        *[]Label `json:"labels,omitempty"`
+	IsReverseZone ZonegetIsReverseZoneAttributeType `json:"isReverseZone,omitempty"`
+	Labels        ZoneGetLabelsAttributeType        `json:"labels,omitempty"`
 	// user given name
 	// REQUIRED
-	Name *string `json:"name"`
+	Name ZoneGetNameAttributeType `json:"name"`
 	// negative caching
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	NegativeCache *int64 `json:"negativeCache"`
+	NegativeCache ZoneGetNegativeCacheAttributeType `json:"negativeCache"`
 	// primary name server for secondary zone
-	Primaries *[]string `json:"primaries,omitempty"`
+	Primaries ZoneGetPrimariesAttributeType `json:"primaries,omitempty"`
 	// primary name server. FQDN
 	// REQUIRED
-	PrimaryNameServer *string `json:"primaryNameServer"`
+	PrimaryNameServer ZoneGetPrimaryNameServerAttributeType `json:"primaryNameServer"`
 	// record count how many records are in the zone
-	RecordCount *int64 `json:"recordCount,omitempty"`
+	// Can be cast to int32 without loss of precision.
+	RecordCount ZoneGetRecordCountAttributeType `json:"recordCount,omitempty"`
 	// refresh time
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	RefreshTime *int64 `json:"refreshTime"`
+	RefreshTime ZoneGetRefreshTimeAttributeType `json:"refreshTime"`
 	// retry time
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	RetryTime *int64 `json:"retryTime"`
+	RetryTime ZoneGetRetryTimeAttributeType `json:"retryTime"`
 	// serial number
+	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	SerialNumber *int64 `json:"serialNumber"`
+	SerialNumber ZoneGetSerialNumberAttributeType `json:"serialNumber"`
 	// zone state
 	// REQUIRED
-	State *string `json:"state"`
+	State ZoneGetStateAttributeType `json:"state"`
 	// zone type
 	// REQUIRED
-	Type *string `json:"type"`
+	Type ZoneGetTypeAttributeType `json:"type"`
 	// when zone update/deletion finished
 	// REQUIRED
-	UpdateFinished *string `json:"updateFinished"`
+	UpdateFinished ZoneGetUpdateFinishedAttributeType `json:"updateFinished"`
 	// when zone update/deletion started
 	// REQUIRED
-	UpdateStarted *string `json:"updateStarted"`
+	UpdateStarted ZoneGetUpdateStartedAttributeType `json:"updateStarted"`
 	// visibility of the zone
 	// REQUIRED
-	Visibility *string `json:"visibility"`
+	Visibility ZoneGetVisibilityAttributeType `json:"visibility"`
 }
 
 type _Zone Zone
@@ -96,26 +655,26 @@ type _Zone Zone
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewZone(acl *string, creationFinished *string, creationStarted *string, defaultTTL *int64, dnsName *string, expireTime *int64, id *string, name *string, negativeCache *int64, primaryNameServer *string, refreshTime *int64, retryTime *int64, serialNumber *int64, state *string, type_ *string, updateFinished *string, updateStarted *string, visibility *string) *Zone {
+func NewZone(acl ZoneGetAclArgType, creationFinished ZoneGetCreationFinishedArgType, creationStarted ZoneGetCreationStartedArgType, defaultTTL ZoneGetDefaultTTLArgType, dnsName ZoneGetDnsNameArgType, expireTime ZoneGetExpireTimeArgType, id ZoneGetIdArgType, name ZoneGetNameArgType, negativeCache ZoneGetNegativeCacheArgType, primaryNameServer ZoneGetPrimaryNameServerArgType, refreshTime ZoneGetRefreshTimeArgType, retryTime ZoneGetRetryTimeArgType, serialNumber ZoneGetSerialNumberArgType, state ZoneGetStateArgType, type_ ZoneGetTypeArgType, updateFinished ZoneGetUpdateFinishedArgType, updateStarted ZoneGetUpdateStartedArgType, visibility ZoneGetVisibilityArgType) *Zone {
 	this := Zone{}
-	this.Acl = acl
-	this.CreationFinished = creationFinished
-	this.CreationStarted = creationStarted
-	this.DefaultTTL = defaultTTL
-	this.DnsName = dnsName
-	this.ExpireTime = expireTime
-	this.Id = id
-	this.Name = name
-	this.NegativeCache = negativeCache
-	this.PrimaryNameServer = primaryNameServer
-	this.RefreshTime = refreshTime
-	this.RetryTime = retryTime
-	this.SerialNumber = serialNumber
-	this.State = state
-	this.Type = type_
-	this.UpdateFinished = updateFinished
-	this.UpdateStarted = updateStarted
-	this.Visibility = visibility
+	setZoneGetAclAttributeType(&this.Acl, acl)
+	setZoneGetCreationFinishedAttributeType(&this.CreationFinished, creationFinished)
+	setZoneGetCreationStartedAttributeType(&this.CreationStarted, creationStarted)
+	setZoneGetDefaultTTLAttributeType(&this.DefaultTTL, defaultTTL)
+	setZoneGetDnsNameAttributeType(&this.DnsName, dnsName)
+	setZoneGetExpireTimeAttributeType(&this.ExpireTime, expireTime)
+	setZoneGetIdAttributeType(&this.Id, id)
+	setZoneGetNameAttributeType(&this.Name, name)
+	setZoneGetNegativeCacheAttributeType(&this.NegativeCache, negativeCache)
+	setZoneGetPrimaryNameServerAttributeType(&this.PrimaryNameServer, primaryNameServer)
+	setZoneGetRefreshTimeAttributeType(&this.RefreshTime, refreshTime)
+	setZoneGetRetryTimeAttributeType(&this.RetryTime, retryTime)
+	setZoneGetSerialNumberAttributeType(&this.SerialNumber, serialNumber)
+	setZoneGetStateAttributeType(&this.State, state)
+	setZoneGetTypeAttributeType(&this.Type, type_)
+	setZoneGetUpdateFinishedAttributeType(&this.UpdateFinished, updateFinished)
+	setZoneGetUpdateStartedAttributeType(&this.UpdateStarted, updateStarted)
+	setZoneGetVisibilityAttributeType(&this.Visibility, visibility)
 	return &this
 }
 
@@ -128,772 +687,601 @@ func NewZoneWithDefaults() *Zone {
 }
 
 // GetAcl returns the Acl field value
-func (o *Zone) GetAcl() *string {
-	if o == nil || IsNil(o.Acl) {
-		var ret *string
-		return ret
-	}
-
-	return o.Acl
+func (o *Zone) GetAcl() (ret ZoneGetAclRetType) {
+	ret, _ = o.GetAclOk()
+	return ret
 }
 
 // GetAclOk returns a tuple with the Acl field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetAclOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Acl, true
+func (o *Zone) GetAclOk() (ret ZoneGetAclRetType, ok bool) {
+	return getZoneGetAclAttributeTypeOk(o.Acl)
 }
 
 // SetAcl sets field value
-func (o *Zone) SetAcl(v *string) {
-	o.Acl = v
+func (o *Zone) SetAcl(v ZoneGetAclRetType) {
+	setZoneGetAclAttributeType(&o.Acl, v)
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *Zone) GetActive() *bool {
-	if o == nil || IsNil(o.Active) {
-		var ret *bool
-		return ret
-	}
-	return o.Active
+func (o *Zone) GetActive() (res ZonegetActiveRetType) {
+	res, _ = o.GetActiveOk()
+	return
 }
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zone) GetActiveOk() (*bool, bool) {
-	if o == nil || IsNil(o.Active) {
-		return nil, false
-	}
-	return o.Active, true
+func (o *Zone) GetActiveOk() (ret ZonegetActiveRetType, ok bool) {
+	return getZonegetActiveAttributeTypeOk(o.Active)
 }
 
 // HasActive returns a boolean if a field has been set.
 func (o *Zone) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetActiveOk()
+	return ok
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *Zone) SetActive(v *bool) {
-	o.Active = v
+func (o *Zone) SetActive(v ZonegetActiveRetType) {
+	setZonegetActiveAttributeType(&o.Active, v)
 }
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise.
-func (o *Zone) GetContactEmail() *string {
-	if o == nil || IsNil(o.ContactEmail) {
-		var ret *string
-		return ret
-	}
-	return o.ContactEmail
+func (o *Zone) GetContactEmail() (res ZoneGetContactEmailRetType) {
+	res, _ = o.GetContactEmailOk()
+	return
 }
 
 // GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zone) GetContactEmailOk() (*string, bool) {
-	if o == nil || IsNil(o.ContactEmail) {
-		return nil, false
-	}
-	return o.ContactEmail, true
+func (o *Zone) GetContactEmailOk() (ret ZoneGetContactEmailRetType, ok bool) {
+	return getZoneGetContactEmailAttributeTypeOk(o.ContactEmail)
 }
 
 // HasContactEmail returns a boolean if a field has been set.
 func (o *Zone) HasContactEmail() bool {
-	if o != nil && !IsNil(o.ContactEmail) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetContactEmailOk()
+	return ok
 }
 
 // SetContactEmail gets a reference to the given string and assigns it to the ContactEmail field.
-func (o *Zone) SetContactEmail(v *string) {
-	o.ContactEmail = v
+func (o *Zone) SetContactEmail(v ZoneGetContactEmailRetType) {
+	setZoneGetContactEmailAttributeType(&o.ContactEmail, v)
 }
 
 // GetCreationFinished returns the CreationFinished field value
-func (o *Zone) GetCreationFinished() *string {
-	if o == nil || IsNil(o.CreationFinished) {
-		var ret *string
-		return ret
-	}
-
-	return o.CreationFinished
+func (o *Zone) GetCreationFinished() (ret ZoneGetCreationFinishedRetType) {
+	ret, _ = o.GetCreationFinishedOk()
+	return ret
 }
 
 // GetCreationFinishedOk returns a tuple with the CreationFinished field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetCreationFinishedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreationFinished, true
+func (o *Zone) GetCreationFinishedOk() (ret ZoneGetCreationFinishedRetType, ok bool) {
+	return getZoneGetCreationFinishedAttributeTypeOk(o.CreationFinished)
 }
 
 // SetCreationFinished sets field value
-func (o *Zone) SetCreationFinished(v *string) {
-	o.CreationFinished = v
+func (o *Zone) SetCreationFinished(v ZoneGetCreationFinishedRetType) {
+	setZoneGetCreationFinishedAttributeType(&o.CreationFinished, v)
 }
 
 // GetCreationStarted returns the CreationStarted field value
-func (o *Zone) GetCreationStarted() *string {
-	if o == nil || IsNil(o.CreationStarted) {
-		var ret *string
-		return ret
-	}
-
-	return o.CreationStarted
+func (o *Zone) GetCreationStarted() (ret ZoneGetCreationStartedRetType) {
+	ret, _ = o.GetCreationStartedOk()
+	return ret
 }
 
 // GetCreationStartedOk returns a tuple with the CreationStarted field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetCreationStartedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreationStarted, true
+func (o *Zone) GetCreationStartedOk() (ret ZoneGetCreationStartedRetType, ok bool) {
+	return getZoneGetCreationStartedAttributeTypeOk(o.CreationStarted)
 }
 
 // SetCreationStarted sets field value
-func (o *Zone) SetCreationStarted(v *string) {
-	o.CreationStarted = v
+func (o *Zone) SetCreationStarted(v ZoneGetCreationStartedRetType) {
+	setZoneGetCreationStartedAttributeType(&o.CreationStarted, v)
 }
 
 // GetDefaultTTL returns the DefaultTTL field value
-func (o *Zone) GetDefaultTTL() *int64 {
-	if o == nil || IsNil(o.DefaultTTL) {
-		var ret *int64
-		return ret
-	}
-
-	return o.DefaultTTL
+func (o *Zone) GetDefaultTTL() (ret ZoneGetDefaultTTLRetType) {
+	ret, _ = o.GetDefaultTTLOk()
+	return ret
 }
 
 // GetDefaultTTLOk returns a tuple with the DefaultTTL field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetDefaultTTLOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DefaultTTL, true
+func (o *Zone) GetDefaultTTLOk() (ret ZoneGetDefaultTTLRetType, ok bool) {
+	return getZoneGetDefaultTTLAttributeTypeOk(o.DefaultTTL)
 }
 
 // SetDefaultTTL sets field value
-func (o *Zone) SetDefaultTTL(v *int64) {
-	o.DefaultTTL = v
+func (o *Zone) SetDefaultTTL(v ZoneGetDefaultTTLRetType) {
+	setZoneGetDefaultTTLAttributeType(&o.DefaultTTL, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Zone) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *Zone) GetDescription() (res ZoneGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zone) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *Zone) GetDescriptionOk() (ret ZoneGetDescriptionRetType, ok bool) {
+	return getZoneGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Zone) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Zone) SetDescription(v *string) {
-	o.Description = v
+func (o *Zone) SetDescription(v ZoneGetDescriptionRetType) {
+	setZoneGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDnsName returns the DnsName field value
-func (o *Zone) GetDnsName() *string {
-	if o == nil || IsNil(o.DnsName) {
-		var ret *string
-		return ret
-	}
-
-	return o.DnsName
+func (o *Zone) GetDnsName() (ret ZoneGetDnsNameRetType) {
+	ret, _ = o.GetDnsNameOk()
+	return ret
 }
 
 // GetDnsNameOk returns a tuple with the DnsName field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetDnsNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DnsName, true
+func (o *Zone) GetDnsNameOk() (ret ZoneGetDnsNameRetType, ok bool) {
+	return getZoneGetDnsNameAttributeTypeOk(o.DnsName)
 }
 
 // SetDnsName sets field value
-func (o *Zone) SetDnsName(v *string) {
-	o.DnsName = v
+func (o *Zone) SetDnsName(v ZoneGetDnsNameRetType) {
+	setZoneGetDnsNameAttributeType(&o.DnsName, v)
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *Zone) GetError() *string {
-	if o == nil || IsNil(o.Error) {
-		var ret *string
-		return ret
-	}
-	return o.Error
+func (o *Zone) GetError() (res ZoneGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zone) GetErrorOk() (*string, bool) {
-	if o == nil || IsNil(o.Error) {
-		return nil, false
-	}
-	return o.Error, true
+func (o *Zone) GetErrorOk() (ret ZoneGetErrorRetType, ok bool) {
+	return getZoneGetErrorAttributeTypeOk(o.Error)
 }
 
 // HasError returns a boolean if a field has been set.
 func (o *Zone) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetErrorOk()
+	return ok
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
-func (o *Zone) SetError(v *string) {
-	o.Error = v
+func (o *Zone) SetError(v ZoneGetErrorRetType) {
+	setZoneGetErrorAttributeType(&o.Error, v)
 }
 
 // GetExpireTime returns the ExpireTime field value
-func (o *Zone) GetExpireTime() *int64 {
-	if o == nil || IsNil(o.ExpireTime) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ExpireTime
+func (o *Zone) GetExpireTime() (ret ZoneGetExpireTimeRetType) {
+	ret, _ = o.GetExpireTimeOk()
+	return ret
 }
 
 // GetExpireTimeOk returns a tuple with the ExpireTime field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetExpireTimeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExpireTime, true
+func (o *Zone) GetExpireTimeOk() (ret ZoneGetExpireTimeRetType, ok bool) {
+	return getZoneGetExpireTimeAttributeTypeOk(o.ExpireTime)
 }
 
 // SetExpireTime sets field value
-func (o *Zone) SetExpireTime(v *int64) {
-	o.ExpireTime = v
+func (o *Zone) SetExpireTime(v ZoneGetExpireTimeRetType) {
+	setZoneGetExpireTimeAttributeType(&o.ExpireTime, v)
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
-func (o *Zone) GetExtensions() *DomainExtensions {
-	if o == nil || IsNil(o.Extensions) {
-		var ret *DomainExtensions
-		return ret
-	}
-	return o.Extensions
+func (o *Zone) GetExtensions() (res ZoneGetExtensionsRetType) {
+	res, _ = o.GetExtensionsOk()
+	return
 }
 
 // GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zone) GetExtensionsOk() (*DomainExtensions, bool) {
-	if o == nil || IsNil(o.Extensions) {
-		return nil, false
-	}
-	return o.Extensions, true
+func (o *Zone) GetExtensionsOk() (ret ZoneGetExtensionsRetType, ok bool) {
+	return getZoneGetExtensionsAttributeTypeOk(o.Extensions)
 }
 
 // HasExtensions returns a boolean if a field has been set.
 func (o *Zone) HasExtensions() bool {
-	if o != nil && !IsNil(o.Extensions) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetExtensionsOk()
+	return ok
 }
 
 // SetExtensions gets a reference to the given DomainExtensions and assigns it to the Extensions field.
-func (o *Zone) SetExtensions(v *DomainExtensions) {
-	o.Extensions = v
+func (o *Zone) SetExtensions(v ZoneGetExtensionsRetType) {
+	setZoneGetExtensionsAttributeType(&o.Extensions, v)
 }
 
 // GetId returns the Id field value
-func (o *Zone) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *Zone) GetId() (ret ZoneGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Zone) GetIdOk() (ret ZoneGetIdRetType, ok bool) {
+	return getZoneGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *Zone) SetId(v *string) {
-	o.Id = v
+func (o *Zone) SetId(v ZoneGetIdRetType) {
+	setZoneGetIdAttributeType(&o.Id, v)
 }
 
 // GetIsReverseZone returns the IsReverseZone field value if set, zero value otherwise.
-func (o *Zone) GetIsReverseZone() *bool {
-	if o == nil || IsNil(o.IsReverseZone) {
-		var ret *bool
-		return ret
-	}
-	return o.IsReverseZone
+func (o *Zone) GetIsReverseZone() (res ZonegetIsReverseZoneRetType) {
+	res, _ = o.GetIsReverseZoneOk()
+	return
 }
 
 // GetIsReverseZoneOk returns a tuple with the IsReverseZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zone) GetIsReverseZoneOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsReverseZone) {
-		return nil, false
-	}
-	return o.IsReverseZone, true
+func (o *Zone) GetIsReverseZoneOk() (ret ZonegetIsReverseZoneRetType, ok bool) {
+	return getZonegetIsReverseZoneAttributeTypeOk(o.IsReverseZone)
 }
 
 // HasIsReverseZone returns a boolean if a field has been set.
 func (o *Zone) HasIsReverseZone() bool {
-	if o != nil && !IsNil(o.IsReverseZone) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIsReverseZoneOk()
+	return ok
 }
 
 // SetIsReverseZone gets a reference to the given bool and assigns it to the IsReverseZone field.
-func (o *Zone) SetIsReverseZone(v *bool) {
-	o.IsReverseZone = v
+func (o *Zone) SetIsReverseZone(v ZonegetIsReverseZoneRetType) {
+	setZonegetIsReverseZoneAttributeType(&o.IsReverseZone, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Zone) GetLabels() *[]Label {
-	if o == nil || IsNil(o.Labels) {
-		var ret *[]Label
-		return ret
-	}
-	return o.Labels
+func (o *Zone) GetLabels() (res ZoneGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zone) GetLabelsOk() (*[]Label, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
+func (o *Zone) GetLabelsOk() (ret ZoneGetLabelsRetType, ok bool) {
+	return getZoneGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Zone) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLabelsOk()
+	return ok
 }
 
 // SetLabels gets a reference to the given []Label and assigns it to the Labels field.
-func (o *Zone) SetLabels(v *[]Label) {
-	o.Labels = v
+func (o *Zone) SetLabels(v ZoneGetLabelsRetType) {
+	setZoneGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value
-func (o *Zone) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *Zone) GetName() (ret ZoneGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Zone) GetNameOk() (ret ZoneGetNameRetType, ok bool) {
+	return getZoneGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *Zone) SetName(v *string) {
-	o.Name = v
+func (o *Zone) SetName(v ZoneGetNameRetType) {
+	setZoneGetNameAttributeType(&o.Name, v)
 }
 
 // GetNegativeCache returns the NegativeCache field value
-func (o *Zone) GetNegativeCache() *int64 {
-	if o == nil || IsNil(o.NegativeCache) {
-		var ret *int64
-		return ret
-	}
-
-	return o.NegativeCache
+func (o *Zone) GetNegativeCache() (ret ZoneGetNegativeCacheRetType) {
+	ret, _ = o.GetNegativeCacheOk()
+	return ret
 }
 
 // GetNegativeCacheOk returns a tuple with the NegativeCache field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetNegativeCacheOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.NegativeCache, true
+func (o *Zone) GetNegativeCacheOk() (ret ZoneGetNegativeCacheRetType, ok bool) {
+	return getZoneGetNegativeCacheAttributeTypeOk(o.NegativeCache)
 }
 
 // SetNegativeCache sets field value
-func (o *Zone) SetNegativeCache(v *int64) {
-	o.NegativeCache = v
+func (o *Zone) SetNegativeCache(v ZoneGetNegativeCacheRetType) {
+	setZoneGetNegativeCacheAttributeType(&o.NegativeCache, v)
 }
 
 // GetPrimaries returns the Primaries field value if set, zero value otherwise.
-func (o *Zone) GetPrimaries() *[]string {
-	if o == nil || IsNil(o.Primaries) {
-		var ret *[]string
-		return ret
-	}
-	return o.Primaries
+func (o *Zone) GetPrimaries() (res ZoneGetPrimariesRetType) {
+	res, _ = o.GetPrimariesOk()
+	return
 }
 
 // GetPrimariesOk returns a tuple with the Primaries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zone) GetPrimariesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Primaries) {
-		return nil, false
-	}
-	return o.Primaries, true
+func (o *Zone) GetPrimariesOk() (ret ZoneGetPrimariesRetType, ok bool) {
+	return getZoneGetPrimariesAttributeTypeOk(o.Primaries)
 }
 
 // HasPrimaries returns a boolean if a field has been set.
 func (o *Zone) HasPrimaries() bool {
-	if o != nil && !IsNil(o.Primaries) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPrimariesOk()
+	return ok
 }
 
 // SetPrimaries gets a reference to the given []string and assigns it to the Primaries field.
-func (o *Zone) SetPrimaries(v *[]string) {
-	o.Primaries = v
+func (o *Zone) SetPrimaries(v ZoneGetPrimariesRetType) {
+	setZoneGetPrimariesAttributeType(&o.Primaries, v)
 }
 
 // GetPrimaryNameServer returns the PrimaryNameServer field value
-func (o *Zone) GetPrimaryNameServer() *string {
-	if o == nil || IsNil(o.PrimaryNameServer) {
-		var ret *string
-		return ret
-	}
-
-	return o.PrimaryNameServer
+func (o *Zone) GetPrimaryNameServer() (ret ZoneGetPrimaryNameServerRetType) {
+	ret, _ = o.GetPrimaryNameServerOk()
+	return ret
 }
 
 // GetPrimaryNameServerOk returns a tuple with the PrimaryNameServer field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetPrimaryNameServerOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PrimaryNameServer, true
+func (o *Zone) GetPrimaryNameServerOk() (ret ZoneGetPrimaryNameServerRetType, ok bool) {
+	return getZoneGetPrimaryNameServerAttributeTypeOk(o.PrimaryNameServer)
 }
 
 // SetPrimaryNameServer sets field value
-func (o *Zone) SetPrimaryNameServer(v *string) {
-	o.PrimaryNameServer = v
+func (o *Zone) SetPrimaryNameServer(v ZoneGetPrimaryNameServerRetType) {
+	setZoneGetPrimaryNameServerAttributeType(&o.PrimaryNameServer, v)
 }
 
 // GetRecordCount returns the RecordCount field value if set, zero value otherwise.
-func (o *Zone) GetRecordCount() *int64 {
-	if o == nil || IsNil(o.RecordCount) {
-		var ret *int64
-		return ret
-	}
-	return o.RecordCount
+func (o *Zone) GetRecordCount() (res ZoneGetRecordCountRetType) {
+	res, _ = o.GetRecordCountOk()
+	return
 }
 
 // GetRecordCountOk returns a tuple with the RecordCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Zone) GetRecordCountOk() (*int64, bool) {
-	if o == nil || IsNil(o.RecordCount) {
-		return nil, false
-	}
-	return o.RecordCount, true
+func (o *Zone) GetRecordCountOk() (ret ZoneGetRecordCountRetType, ok bool) {
+	return getZoneGetRecordCountAttributeTypeOk(o.RecordCount)
 }
 
 // HasRecordCount returns a boolean if a field has been set.
 func (o *Zone) HasRecordCount() bool {
-	if o != nil && !IsNil(o.RecordCount) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRecordCountOk()
+	return ok
 }
 
 // SetRecordCount gets a reference to the given int64 and assigns it to the RecordCount field.
-func (o *Zone) SetRecordCount(v *int64) {
-	o.RecordCount = v
+func (o *Zone) SetRecordCount(v ZoneGetRecordCountRetType) {
+	setZoneGetRecordCountAttributeType(&o.RecordCount, v)
 }
 
 // GetRefreshTime returns the RefreshTime field value
-func (o *Zone) GetRefreshTime() *int64 {
-	if o == nil || IsNil(o.RefreshTime) {
-		var ret *int64
-		return ret
-	}
-
-	return o.RefreshTime
+func (o *Zone) GetRefreshTime() (ret ZoneGetRefreshTimeRetType) {
+	ret, _ = o.GetRefreshTimeOk()
+	return ret
 }
 
 // GetRefreshTimeOk returns a tuple with the RefreshTime field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetRefreshTimeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RefreshTime, true
+func (o *Zone) GetRefreshTimeOk() (ret ZoneGetRefreshTimeRetType, ok bool) {
+	return getZoneGetRefreshTimeAttributeTypeOk(o.RefreshTime)
 }
 
 // SetRefreshTime sets field value
-func (o *Zone) SetRefreshTime(v *int64) {
-	o.RefreshTime = v
+func (o *Zone) SetRefreshTime(v ZoneGetRefreshTimeRetType) {
+	setZoneGetRefreshTimeAttributeType(&o.RefreshTime, v)
 }
 
 // GetRetryTime returns the RetryTime field value
-func (o *Zone) GetRetryTime() *int64 {
-	if o == nil || IsNil(o.RetryTime) {
-		var ret *int64
-		return ret
-	}
-
-	return o.RetryTime
+func (o *Zone) GetRetryTime() (ret ZoneGetRetryTimeRetType) {
+	ret, _ = o.GetRetryTimeOk()
+	return ret
 }
 
 // GetRetryTimeOk returns a tuple with the RetryTime field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetRetryTimeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RetryTime, true
+func (o *Zone) GetRetryTimeOk() (ret ZoneGetRetryTimeRetType, ok bool) {
+	return getZoneGetRetryTimeAttributeTypeOk(o.RetryTime)
 }
 
 // SetRetryTime sets field value
-func (o *Zone) SetRetryTime(v *int64) {
-	o.RetryTime = v
+func (o *Zone) SetRetryTime(v ZoneGetRetryTimeRetType) {
+	setZoneGetRetryTimeAttributeType(&o.RetryTime, v)
 }
 
 // GetSerialNumber returns the SerialNumber field value
-func (o *Zone) GetSerialNumber() *int64 {
-	if o == nil || IsNil(o.SerialNumber) {
-		var ret *int64
-		return ret
-	}
-
-	return o.SerialNumber
+func (o *Zone) GetSerialNumber() (ret ZoneGetSerialNumberRetType) {
+	ret, _ = o.GetSerialNumberOk()
+	return ret
 }
 
 // GetSerialNumberOk returns a tuple with the SerialNumber field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetSerialNumberOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SerialNumber, true
+func (o *Zone) GetSerialNumberOk() (ret ZoneGetSerialNumberRetType, ok bool) {
+	return getZoneGetSerialNumberAttributeTypeOk(o.SerialNumber)
 }
 
 // SetSerialNumber sets field value
-func (o *Zone) SetSerialNumber(v *int64) {
-	o.SerialNumber = v
+func (o *Zone) SetSerialNumber(v ZoneGetSerialNumberRetType) {
+	setZoneGetSerialNumberAttributeType(&o.SerialNumber, v)
 }
 
 // GetState returns the State field value
-func (o *Zone) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-
-	return o.State
+func (o *Zone) GetState() (ret ZoneGetStateRetType) {
+	ret, _ = o.GetStateOk()
+	return ret
 }
 
 // GetStateOk returns a tuple with the State field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.State, true
+func (o *Zone) GetStateOk() (ret ZoneGetStateRetType, ok bool) {
+	return getZoneGetStateAttributeTypeOk(o.State)
 }
 
 // SetState sets field value
-func (o *Zone) SetState(v *string) {
-	o.State = v
+func (o *Zone) SetState(v ZoneGetStateRetType) {
+	setZoneGetStateAttributeType(&o.State, v)
 }
 
 // GetType returns the Type field value
-func (o *Zone) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-
-	return o.Type
+func (o *Zone) GetType() (ret ZoneGetTypeRetType) {
+	ret, _ = o.GetTypeOk()
+	return ret
 }
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Type, true
+func (o *Zone) GetTypeOk() (ret ZoneGetTypeRetType, ok bool) {
+	return getZoneGetTypeAttributeTypeOk(o.Type)
 }
 
 // SetType sets field value
-func (o *Zone) SetType(v *string) {
-	o.Type = v
+func (o *Zone) SetType(v ZoneGetTypeRetType) {
+	setZoneGetTypeAttributeType(&o.Type, v)
 }
 
 // GetUpdateFinished returns the UpdateFinished field value
-func (o *Zone) GetUpdateFinished() *string {
-	if o == nil || IsNil(o.UpdateFinished) {
-		var ret *string
-		return ret
-	}
-
-	return o.UpdateFinished
+func (o *Zone) GetUpdateFinished() (ret ZoneGetUpdateFinishedRetType) {
+	ret, _ = o.GetUpdateFinishedOk()
+	return ret
 }
 
 // GetUpdateFinishedOk returns a tuple with the UpdateFinished field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetUpdateFinishedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UpdateFinished, true
+func (o *Zone) GetUpdateFinishedOk() (ret ZoneGetUpdateFinishedRetType, ok bool) {
+	return getZoneGetUpdateFinishedAttributeTypeOk(o.UpdateFinished)
 }
 
 // SetUpdateFinished sets field value
-func (o *Zone) SetUpdateFinished(v *string) {
-	o.UpdateFinished = v
+func (o *Zone) SetUpdateFinished(v ZoneGetUpdateFinishedRetType) {
+	setZoneGetUpdateFinishedAttributeType(&o.UpdateFinished, v)
 }
 
 // GetUpdateStarted returns the UpdateStarted field value
-func (o *Zone) GetUpdateStarted() *string {
-	if o == nil || IsNil(o.UpdateStarted) {
-		var ret *string
-		return ret
-	}
-
-	return o.UpdateStarted
+func (o *Zone) GetUpdateStarted() (ret ZoneGetUpdateStartedRetType) {
+	ret, _ = o.GetUpdateStartedOk()
+	return ret
 }
 
 // GetUpdateStartedOk returns a tuple with the UpdateStarted field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetUpdateStartedOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UpdateStarted, true
+func (o *Zone) GetUpdateStartedOk() (ret ZoneGetUpdateStartedRetType, ok bool) {
+	return getZoneGetUpdateStartedAttributeTypeOk(o.UpdateStarted)
 }
 
 // SetUpdateStarted sets field value
-func (o *Zone) SetUpdateStarted(v *string) {
-	o.UpdateStarted = v
+func (o *Zone) SetUpdateStarted(v ZoneGetUpdateStartedRetType) {
+	setZoneGetUpdateStartedAttributeType(&o.UpdateStarted, v)
 }
 
 // GetVisibility returns the Visibility field value
-func (o *Zone) GetVisibility() *string {
-	if o == nil || IsNil(o.Visibility) {
-		var ret *string
-		return ret
-	}
-
-	return o.Visibility
+func (o *Zone) GetVisibility() (ret ZoneGetVisibilityRetType) {
+	ret, _ = o.GetVisibilityOk()
+	return ret
 }
 
 // GetVisibilityOk returns a tuple with the Visibility field value
 // and a boolean to check if the value has been set.
-func (o *Zone) GetVisibilityOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Visibility, true
+func (o *Zone) GetVisibilityOk() (ret ZoneGetVisibilityRetType, ok bool) {
+	return getZoneGetVisibilityAttributeTypeOk(o.Visibility)
 }
 
 // SetVisibility sets field value
-func (o *Zone) SetVisibility(v *string) {
-	o.Visibility = v
+func (o *Zone) SetVisibility(v ZoneGetVisibilityRetType) {
+	setZoneGetVisibilityAttributeType(&o.Visibility, v)
 }
 
 func (o Zone) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["acl"] = o.Acl
-	if !IsNil(o.Active) {
-		toSerialize["active"] = o.Active
+	if val, ok := getZoneGetAclAttributeTypeOk(o.Acl); ok {
+		toSerialize["Acl"] = val
 	}
-	if !IsNil(o.ContactEmail) {
-		toSerialize["contactEmail"] = o.ContactEmail
+	if val, ok := getZonegetActiveAttributeTypeOk(o.Active); ok {
+		toSerialize["Active"] = val
 	}
-	toSerialize["creationFinished"] = o.CreationFinished
-	toSerialize["creationStarted"] = o.CreationStarted
-	toSerialize["defaultTTL"] = o.DefaultTTL
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getZoneGetContactEmailAttributeTypeOk(o.ContactEmail); ok {
+		toSerialize["ContactEmail"] = val
 	}
-	toSerialize["dnsName"] = o.DnsName
-	if !IsNil(o.Error) {
-		toSerialize["error"] = o.Error
+	if val, ok := getZoneGetCreationFinishedAttributeTypeOk(o.CreationFinished); ok {
+		toSerialize["CreationFinished"] = val
 	}
-	toSerialize["expireTime"] = o.ExpireTime
-	if !IsNil(o.Extensions) {
-		toSerialize["extensions"] = o.Extensions
+	if val, ok := getZoneGetCreationStartedAttributeTypeOk(o.CreationStarted); ok {
+		toSerialize["CreationStarted"] = val
 	}
-	toSerialize["id"] = o.Id
-	if !IsNil(o.IsReverseZone) {
-		toSerialize["isReverseZone"] = o.IsReverseZone
+	if val, ok := getZoneGetDefaultTTLAttributeTypeOk(o.DefaultTTL); ok {
+		toSerialize["DefaultTTL"] = val
 	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	if val, ok := getZoneGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["negativeCache"] = o.NegativeCache
-	if !IsNil(o.Primaries) {
-		toSerialize["primaries"] = o.Primaries
+	if val, ok := getZoneGetDnsNameAttributeTypeOk(o.DnsName); ok {
+		toSerialize["DnsName"] = val
 	}
-	toSerialize["primaryNameServer"] = o.PrimaryNameServer
-	if !IsNil(o.RecordCount) {
-		toSerialize["recordCount"] = o.RecordCount
+	if val, ok := getZoneGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
 	}
-	toSerialize["refreshTime"] = o.RefreshTime
-	toSerialize["retryTime"] = o.RetryTime
-	toSerialize["serialNumber"] = o.SerialNumber
-	toSerialize["state"] = o.State
-	toSerialize["type"] = o.Type
-	toSerialize["updateFinished"] = o.UpdateFinished
-	toSerialize["updateStarted"] = o.UpdateStarted
-	toSerialize["visibility"] = o.Visibility
+	if val, ok := getZoneGetExpireTimeAttributeTypeOk(o.ExpireTime); ok {
+		toSerialize["ExpireTime"] = val
+	}
+	if val, ok := getZoneGetExtensionsAttributeTypeOk(o.Extensions); ok {
+		toSerialize["Extensions"] = val
+	}
+	if val, ok := getZoneGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getZonegetIsReverseZoneAttributeTypeOk(o.IsReverseZone); ok {
+		toSerialize["IsReverseZone"] = val
+	}
+	if val, ok := getZoneGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
+	}
+	if val, ok := getZoneGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getZoneGetNegativeCacheAttributeTypeOk(o.NegativeCache); ok {
+		toSerialize["NegativeCache"] = val
+	}
+	if val, ok := getZoneGetPrimariesAttributeTypeOk(o.Primaries); ok {
+		toSerialize["Primaries"] = val
+	}
+	if val, ok := getZoneGetPrimaryNameServerAttributeTypeOk(o.PrimaryNameServer); ok {
+		toSerialize["PrimaryNameServer"] = val
+	}
+	if val, ok := getZoneGetRecordCountAttributeTypeOk(o.RecordCount); ok {
+		toSerialize["RecordCount"] = val
+	}
+	if val, ok := getZoneGetRefreshTimeAttributeTypeOk(o.RefreshTime); ok {
+		toSerialize["RefreshTime"] = val
+	}
+	if val, ok := getZoneGetRetryTimeAttributeTypeOk(o.RetryTime); ok {
+		toSerialize["RetryTime"] = val
+	}
+	if val, ok := getZoneGetSerialNumberAttributeTypeOk(o.SerialNumber); ok {
+		toSerialize["SerialNumber"] = val
+	}
+	if val, ok := getZoneGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
+	}
+	if val, ok := getZoneGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
+	}
+	if val, ok := getZoneGetUpdateFinishedAttributeTypeOk(o.UpdateFinished); ok {
+		toSerialize["UpdateFinished"] = val
+	}
+	if val, ok := getZoneGetUpdateStartedAttributeTypeOk(o.UpdateStarted); ok {
+		toSerialize["UpdateStarted"] = val
+	}
+	if val, ok := getZoneGetVisibilityAttributeTypeOk(o.Visibility); ok {
+		toSerialize["Visibility"] = val
+	}
 	return toSerialize, nil
 }
 

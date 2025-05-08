@@ -17,11 +17,52 @@ import (
 // checks if the Rule type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Rule{}
 
+/*
+	types and functions for host
+*/
+
+// isNotNullableString
+type RuleGetHostAttributeType = *string
+
+func getRuleGetHostAttributeTypeOk(arg RuleGetHostAttributeType) (ret RuleGetHostRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRuleGetHostAttributeType(arg *RuleGetHostAttributeType, val RuleGetHostRetType) {
+	*arg = &val
+}
+
+type RuleGetHostArgType = string
+type RuleGetHostRetType = string
+
+/*
+	types and functions for http
+*/
+
+// isModel
+type RuleGetHttpAttributeType = *HTTPConfig
+type RuleGetHttpArgType = HTTPConfig
+type RuleGetHttpRetType = HTTPConfig
+
+func getRuleGetHttpAttributeTypeOk(arg RuleGetHttpAttributeType) (ret RuleGetHttpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRuleGetHttpAttributeType(arg *RuleGetHttpAttributeType, val RuleGetHttpRetType) {
+	*arg = &val
+}
+
 // Rule struct for Rule
 type Rule struct {
 	// Host for the rule
-	Host *string     `json:"host,omitempty"`
-	Http *HTTPConfig `json:"http,omitempty"`
+	Host RuleGetHostAttributeType `json:"host,omitempty"`
+	Http RuleGetHttpAttributeType `json:"http,omitempty"`
 }
 
 // NewRule instantiates a new Rule object
@@ -42,76 +83,58 @@ func NewRuleWithDefaults() *Rule {
 }
 
 // GetHost returns the Host field value if set, zero value otherwise.
-func (o *Rule) GetHost() *string {
-	if o == nil || IsNil(o.Host) {
-		var ret *string
-		return ret
-	}
-	return o.Host
+func (o *Rule) GetHost() (res RuleGetHostRetType) {
+	res, _ = o.GetHostOk()
+	return
 }
 
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Rule) GetHostOk() (*string, bool) {
-	if o == nil || IsNil(o.Host) {
-		return nil, false
-	}
-	return o.Host, true
+func (o *Rule) GetHostOk() (ret RuleGetHostRetType, ok bool) {
+	return getRuleGetHostAttributeTypeOk(o.Host)
 }
 
 // HasHost returns a boolean if a field has been set.
 func (o *Rule) HasHost() bool {
-	if o != nil && !IsNil(o.Host) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHostOk()
+	return ok
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
-func (o *Rule) SetHost(v *string) {
-	o.Host = v
+func (o *Rule) SetHost(v RuleGetHostRetType) {
+	setRuleGetHostAttributeType(&o.Host, v)
 }
 
 // GetHttp returns the Http field value if set, zero value otherwise.
-func (o *Rule) GetHttp() *HTTPConfig {
-	if o == nil || IsNil(o.Http) {
-		var ret *HTTPConfig
-		return ret
-	}
-	return o.Http
+func (o *Rule) GetHttp() (res RuleGetHttpRetType) {
+	res, _ = o.GetHttpOk()
+	return
 }
 
 // GetHttpOk returns a tuple with the Http field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Rule) GetHttpOk() (*HTTPConfig, bool) {
-	if o == nil || IsNil(o.Http) {
-		return nil, false
-	}
-	return o.Http, true
+func (o *Rule) GetHttpOk() (ret RuleGetHttpRetType, ok bool) {
+	return getRuleGetHttpAttributeTypeOk(o.Http)
 }
 
 // HasHttp returns a boolean if a field has been set.
 func (o *Rule) HasHttp() bool {
-	if o != nil && !IsNil(o.Http) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHttpOk()
+	return ok
 }
 
 // SetHttp gets a reference to the given HTTPConfig and assigns it to the Http field.
-func (o *Rule) SetHttp(v *HTTPConfig) {
-	o.Http = v
+func (o *Rule) SetHttp(v RuleGetHttpRetType) {
+	setRuleGetHttpAttributeType(&o.Http, v)
 }
 
 func (o Rule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Host) {
-		toSerialize["host"] = o.Host
+	if val, ok := getRuleGetHostAttributeTypeOk(o.Host); ok {
+		toSerialize["Host"] = val
 	}
-	if !IsNil(o.Http) {
-		toSerialize["http"] = o.Http
+	if val, ok := getRuleGetHttpAttributeTypeOk(o.Http); ok {
+		toSerialize["Http"] = val
 	}
 	return toSerialize, nil
 }

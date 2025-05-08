@@ -17,20 +17,123 @@ import (
 // checks if the CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2{}
 
+/*
+	types and functions for clientId
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeType = *string
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdArgType = string
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdRetType = string
+
+/*
+	types and functions for clientSecret
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeType = *string
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretArgType = string
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretRetType = string
+
+/*
+	types and functions for scopes
+*/
+
+// isArray
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeType = *[]string
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesArgType = []string
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesRetType = []string
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tlsConfig
+*/
+
+// isModel
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeType = *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigArgType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigRetType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tokenUrl
+*/
+
+// isNotNullableString
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeType = *string
+
+func getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeTypeOk(arg CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeType) (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeType(arg *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeType, val CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlRetType) {
+	*arg = &val
+}
+
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlArgType = string
+type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlRetType = string
+
 // CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 OAuth 2.0 authentication using the client credentials grant type. Prometheus fetches an access token from the specified endpoint with the given client access and secret keys. `Additional Validators:` * if oauth2 is in the body no other authentication method should be in the body
 type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 struct {
 	// clientId
 	// REQUIRED
-	ClientId *string `json:"clientId"`
+	ClientId CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeType `json:"clientId"`
 	// clientSecret
 	// REQUIRED
-	ClientSecret *string `json:"clientSecret"`
+	ClientSecret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeType `json:"clientSecret"`
 	// The URL to fetch the token from.
-	Scopes    *[]string                                                   `json:"scopes,omitempty"`
-	TlsConfig *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig `json:"tlsConfig,omitempty"`
+	Scopes    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeType    `json:"scopes,omitempty"`
+	TlsConfig CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeType `json:"tlsConfig,omitempty"`
 	// The URL to fetch the token from.
 	// REQUIRED
-	TokenUrl *string `json:"tokenUrl"`
+	TokenUrl CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeType `json:"tokenUrl"`
 }
 
 type _CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
@@ -39,11 +142,11 @@ type _CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 CreateScrapeConfigPayloa
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2(clientId *string, clientSecret *string, tokenUrl *string) *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 {
+func NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2(clientId CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdArgType, clientSecret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretArgType, tokenUrl CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlArgType) *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 {
 	this := CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2{}
-	this.ClientId = clientId
-	this.ClientSecret = clientSecret
-	this.TokenUrl = tokenUrl
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeType(&this.ClientId, clientId)
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeType(&this.ClientSecret, clientSecret)
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeType(&this.TokenUrl, tokenUrl)
 	return &this
 }
 
@@ -56,152 +159,119 @@ func NewCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2WithDefaults() *CreateS
 }
 
 // GetClientId returns the ClientId field value
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientId() *string {
-	if o == nil || IsNil(o.ClientId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ClientId
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientId() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdRetType) {
+	ret, _ = o.GetClientIdOk()
+	return ret
 }
 
 // GetClientIdOk returns a tuple with the ClientId field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ClientId, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientIdOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeTypeOk(o.ClientId)
 }
 
 // SetClientId sets field value
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetClientId(v *string) {
-	o.ClientId = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetClientId(v CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeType(&o.ClientId, v)
 }
 
 // GetClientSecret returns the ClientSecret field value
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientSecret() *string {
-	if o == nil || IsNil(o.ClientSecret) {
-		var ret *string
-		return ret
-	}
-
-	return o.ClientSecret
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientSecret() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretRetType) {
+	ret, _ = o.GetClientSecretOk()
+	return ret
 }
 
 // GetClientSecretOk returns a tuple with the ClientSecret field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientSecretOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ClientSecret, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetClientSecretOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeTypeOk(o.ClientSecret)
 }
 
 // SetClientSecret sets field value
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetClientSecret(v *string) {
-	o.ClientSecret = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetClientSecret(v CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeType(&o.ClientSecret, v)
 }
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetScopes() *[]string {
-	if o == nil || IsNil(o.Scopes) {
-		var ret *[]string
-		return ret
-	}
-	return o.Scopes
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetScopes() (res CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesRetType) {
+	res, _ = o.GetScopesOk()
+	return
 }
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetScopesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Scopes) {
-		return nil, false
-	}
-	return o.Scopes, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetScopesOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeTypeOk(o.Scopes)
 }
 
 // HasScopes returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) HasScopes() bool {
-	if o != nil && !IsNil(o.Scopes) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetScopesOk()
+	return ok
 }
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetScopes(v *[]string) {
-	o.Scopes = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetScopes(v CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeType(&o.Scopes, v)
 }
 
 // GetTlsConfig returns the TlsConfig field value if set, zero value otherwise.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetTlsConfig() *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig {
-	if o == nil || IsNil(o.TlsConfig) {
-		var ret *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
-		return ret
-	}
-	return o.TlsConfig
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetTlsConfig() (res CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigRetType) {
+	res, _ = o.GetTlsConfigOk()
+	return
 }
 
 // GetTlsConfigOk returns a tuple with the TlsConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetTlsConfigOk() (*CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig, bool) {
-	if o == nil || IsNil(o.TlsConfig) {
-		return nil, false
-	}
-	return o.TlsConfig, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetTlsConfigOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeTypeOk(o.TlsConfig)
 }
 
 // HasTlsConfig returns a boolean if a field has been set.
 func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) HasTlsConfig() bool {
-	if o != nil && !IsNil(o.TlsConfig) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTlsConfigOk()
+	return ok
 }
 
 // SetTlsConfig gets a reference to the given CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig and assigns it to the TlsConfig field.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetTlsConfig(v *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) {
-	o.TlsConfig = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetTlsConfig(v CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeType(&o.TlsConfig, v)
 }
 
 // GetTokenUrl returns the TokenUrl field value
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetTokenUrl() *string {
-	if o == nil || IsNil(o.TokenUrl) {
-		var ret *string
-		return ret
-	}
-
-	return o.TokenUrl
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetTokenUrl() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlRetType) {
+	ret, _ = o.GetTokenUrlOk()
+	return ret
 }
 
 // GetTokenUrlOk returns a tuple with the TokenUrl field value
 // and a boolean to check if the value has been set.
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetTokenUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TokenUrl, true
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) GetTokenUrlOk() (ret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlRetType, ok bool) {
+	return getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeTypeOk(o.TokenUrl)
 }
 
 // SetTokenUrl sets field value
-func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetTokenUrl(v *string) {
-	o.TokenUrl = v
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) SetTokenUrl(v CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlRetType) {
+	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeType(&o.TokenUrl, v)
 }
 
 func (o CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["clientId"] = o.ClientId
-	toSerialize["clientSecret"] = o.ClientSecret
-	if !IsNil(o.Scopes) {
-		toSerialize["scopes"] = o.Scopes
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeTypeOk(o.ClientId); ok {
+		toSerialize["ClientId"] = val
 	}
-	if !IsNil(o.TlsConfig) {
-		toSerialize["tlsConfig"] = o.TlsConfig
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeTypeOk(o.ClientSecret); ok {
+		toSerialize["ClientSecret"] = val
 	}
-	toSerialize["tokenUrl"] = o.TokenUrl
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeTypeOk(o.Scopes); ok {
+		toSerialize["Scopes"] = val
+	}
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeTypeOk(o.TlsConfig); ok {
+		toSerialize["TlsConfig"] = val
+	}
+	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeTypeOk(o.TokenUrl); ok {
+		toSerialize["TokenUrl"] = val
+	}
 	return toSerialize, nil
 }
 

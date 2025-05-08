@@ -1,3 +1,16 @@
+## v0.22.1 (2025-04-29)
+- **Bugfix:** Correctly handle empty payload in body
+
+## v0.22.0 (2025-04-03)
+  - **Feature:** Adapt constants to evolved API.
+  
+## v0.21.2 (2025-04-02)
+- **Bugfix:** `PartialUpdateInstanceWaitHandler` does not finish when update is succeeded
+- **Deprecation:** Deprecated `InstanceStateSuccess`, `InstanceStateFailed`, `InstanceTypeCreate`, `InstanceTypeUpdate`, `InstanceTypeDelete` and will be removed after 2nd October 2025
+
+## v0.21.1 (2025-03-19)
+- **Internal:** Backwards compatible change to generated code
+
 ## v0.21.0 (2025-02-21)
 - **New:** Minimal go version is now Go 1.21
 

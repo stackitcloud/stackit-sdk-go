@@ -17,13 +17,73 @@ import (
 // checks if the UpdateGrafanaConfigsPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateGrafanaConfigsPayload{}
 
+/*
+	types and functions for genericOauth
+*/
+
+// isModel
+type UpdateGrafanaConfigsPayloadGetGenericOauthAttributeType = *UpdateGrafanaConfigsPayloadGenericOauth
+type UpdateGrafanaConfigsPayloadGetGenericOauthArgType = UpdateGrafanaConfigsPayloadGenericOauth
+type UpdateGrafanaConfigsPayloadGetGenericOauthRetType = UpdateGrafanaConfigsPayloadGenericOauth
+
+func getUpdateGrafanaConfigsPayloadGetGenericOauthAttributeTypeOk(arg UpdateGrafanaConfigsPayloadGetGenericOauthAttributeType) (ret UpdateGrafanaConfigsPayloadGetGenericOauthRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateGrafanaConfigsPayloadGetGenericOauthAttributeType(arg *UpdateGrafanaConfigsPayloadGetGenericOauthAttributeType, val UpdateGrafanaConfigsPayloadGetGenericOauthRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for publicReadAccess
+*/
+
+// isBoolean
+type UpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeType = *bool
+type UpdateGrafanaConfigsPayloadgetPublicReadAccessArgType = bool
+type UpdateGrafanaConfigsPayloadgetPublicReadAccessRetType = bool
+
+func getUpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeTypeOk(arg UpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeType) (ret UpdateGrafanaConfigsPayloadgetPublicReadAccessRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeType(arg *UpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeType, val UpdateGrafanaConfigsPayloadgetPublicReadAccessRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for useStackitSso
+*/
+
+// isBoolean
+type UpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeType = *bool
+type UpdateGrafanaConfigsPayloadgetUseStackitSsoArgType = bool
+type UpdateGrafanaConfigsPayloadgetUseStackitSsoRetType = bool
+
+func getUpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeTypeOk(arg UpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeType) (ret UpdateGrafanaConfigsPayloadgetUseStackitSsoRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeType(arg *UpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeType, val UpdateGrafanaConfigsPayloadgetUseStackitSsoRetType) {
+	*arg = &val
+}
+
 // UpdateGrafanaConfigsPayload Sending any of the attributes results in a set of the attribute and overwrites any previous configuration.
 type UpdateGrafanaConfigsPayload struct {
-	GenericOauth *UpdateGrafanaConfigsPayloadGenericOauth `json:"genericOauth,omitempty"`
+	GenericOauth UpdateGrafanaConfigsPayloadGetGenericOauthAttributeType `json:"genericOauth,omitempty"`
 	// If it's true, anyone can access the Grafana dashboards without logging in. If it is wrong, a login is required.
-	PublicReadAccess *bool `json:"publicReadAccess,omitempty"`
+	PublicReadAccess UpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeType `json:"publicReadAccess,omitempty"`
 	// If it's true, it overwrites the current genericOauth config and configures STACKIT SSO for this instance.
-	UseStackitSso *bool `json:"useStackitSso,omitempty"`
+	UseStackitSso UpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeType `json:"useStackitSso,omitempty"`
 }
 
 // NewUpdateGrafanaConfigsPayload instantiates a new UpdateGrafanaConfigsPayload object
@@ -44,111 +104,84 @@ func NewUpdateGrafanaConfigsPayloadWithDefaults() *UpdateGrafanaConfigsPayload {
 }
 
 // GetGenericOauth returns the GenericOauth field value if set, zero value otherwise.
-func (o *UpdateGrafanaConfigsPayload) GetGenericOauth() *UpdateGrafanaConfigsPayloadGenericOauth {
-	if o == nil || IsNil(o.GenericOauth) {
-		var ret *UpdateGrafanaConfigsPayloadGenericOauth
-		return ret
-	}
-	return o.GenericOauth
+func (o *UpdateGrafanaConfigsPayload) GetGenericOauth() (res UpdateGrafanaConfigsPayloadGetGenericOauthRetType) {
+	res, _ = o.GetGenericOauthOk()
+	return
 }
 
 // GetGenericOauthOk returns a tuple with the GenericOauth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateGrafanaConfigsPayload) GetGenericOauthOk() (*UpdateGrafanaConfigsPayloadGenericOauth, bool) {
-	if o == nil || IsNil(o.GenericOauth) {
-		return nil, false
-	}
-	return o.GenericOauth, true
+func (o *UpdateGrafanaConfigsPayload) GetGenericOauthOk() (ret UpdateGrafanaConfigsPayloadGetGenericOauthRetType, ok bool) {
+	return getUpdateGrafanaConfigsPayloadGetGenericOauthAttributeTypeOk(o.GenericOauth)
 }
 
 // HasGenericOauth returns a boolean if a field has been set.
 func (o *UpdateGrafanaConfigsPayload) HasGenericOauth() bool {
-	if o != nil && !IsNil(o.GenericOauth) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetGenericOauthOk()
+	return ok
 }
 
 // SetGenericOauth gets a reference to the given UpdateGrafanaConfigsPayloadGenericOauth and assigns it to the GenericOauth field.
-func (o *UpdateGrafanaConfigsPayload) SetGenericOauth(v *UpdateGrafanaConfigsPayloadGenericOauth) {
-	o.GenericOauth = v
+func (o *UpdateGrafanaConfigsPayload) SetGenericOauth(v UpdateGrafanaConfigsPayloadGetGenericOauthRetType) {
+	setUpdateGrafanaConfigsPayloadGetGenericOauthAttributeType(&o.GenericOauth, v)
 }
 
 // GetPublicReadAccess returns the PublicReadAccess field value if set, zero value otherwise.
-func (o *UpdateGrafanaConfigsPayload) GetPublicReadAccess() *bool {
-	if o == nil || IsNil(o.PublicReadAccess) {
-		var ret *bool
-		return ret
-	}
-	return o.PublicReadAccess
+func (o *UpdateGrafanaConfigsPayload) GetPublicReadAccess() (res UpdateGrafanaConfigsPayloadgetPublicReadAccessRetType) {
+	res, _ = o.GetPublicReadAccessOk()
+	return
 }
 
 // GetPublicReadAccessOk returns a tuple with the PublicReadAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateGrafanaConfigsPayload) GetPublicReadAccessOk() (*bool, bool) {
-	if o == nil || IsNil(o.PublicReadAccess) {
-		return nil, false
-	}
-	return o.PublicReadAccess, true
+func (o *UpdateGrafanaConfigsPayload) GetPublicReadAccessOk() (ret UpdateGrafanaConfigsPayloadgetPublicReadAccessRetType, ok bool) {
+	return getUpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeTypeOk(o.PublicReadAccess)
 }
 
 // HasPublicReadAccess returns a boolean if a field has been set.
 func (o *UpdateGrafanaConfigsPayload) HasPublicReadAccess() bool {
-	if o != nil && !IsNil(o.PublicReadAccess) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPublicReadAccessOk()
+	return ok
 }
 
 // SetPublicReadAccess gets a reference to the given bool and assigns it to the PublicReadAccess field.
-func (o *UpdateGrafanaConfigsPayload) SetPublicReadAccess(v *bool) {
-	o.PublicReadAccess = v
+func (o *UpdateGrafanaConfigsPayload) SetPublicReadAccess(v UpdateGrafanaConfigsPayloadgetPublicReadAccessRetType) {
+	setUpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeType(&o.PublicReadAccess, v)
 }
 
 // GetUseStackitSso returns the UseStackitSso field value if set, zero value otherwise.
-func (o *UpdateGrafanaConfigsPayload) GetUseStackitSso() *bool {
-	if o == nil || IsNil(o.UseStackitSso) {
-		var ret *bool
-		return ret
-	}
-	return o.UseStackitSso
+func (o *UpdateGrafanaConfigsPayload) GetUseStackitSso() (res UpdateGrafanaConfigsPayloadgetUseStackitSsoRetType) {
+	res, _ = o.GetUseStackitSsoOk()
+	return
 }
 
 // GetUseStackitSsoOk returns a tuple with the UseStackitSso field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateGrafanaConfigsPayload) GetUseStackitSsoOk() (*bool, bool) {
-	if o == nil || IsNil(o.UseStackitSso) {
-		return nil, false
-	}
-	return o.UseStackitSso, true
+func (o *UpdateGrafanaConfigsPayload) GetUseStackitSsoOk() (ret UpdateGrafanaConfigsPayloadgetUseStackitSsoRetType, ok bool) {
+	return getUpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeTypeOk(o.UseStackitSso)
 }
 
 // HasUseStackitSso returns a boolean if a field has been set.
 func (o *UpdateGrafanaConfigsPayload) HasUseStackitSso() bool {
-	if o != nil && !IsNil(o.UseStackitSso) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetUseStackitSsoOk()
+	return ok
 }
 
 // SetUseStackitSso gets a reference to the given bool and assigns it to the UseStackitSso field.
-func (o *UpdateGrafanaConfigsPayload) SetUseStackitSso(v *bool) {
-	o.UseStackitSso = v
+func (o *UpdateGrafanaConfigsPayload) SetUseStackitSso(v UpdateGrafanaConfigsPayloadgetUseStackitSsoRetType) {
+	setUpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeType(&o.UseStackitSso, v)
 }
 
 func (o UpdateGrafanaConfigsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.GenericOauth) {
-		toSerialize["genericOauth"] = o.GenericOauth
+	if val, ok := getUpdateGrafanaConfigsPayloadGetGenericOauthAttributeTypeOk(o.GenericOauth); ok {
+		toSerialize["GenericOauth"] = val
 	}
-	if !IsNil(o.PublicReadAccess) {
-		toSerialize["publicReadAccess"] = o.PublicReadAccess
+	if val, ok := getUpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeTypeOk(o.PublicReadAccess); ok {
+		toSerialize["PublicReadAccess"] = val
 	}
-	if !IsNil(o.UseStackitSso) {
-		toSerialize["useStackitSso"] = o.UseStackitSso
+	if val, ok := getUpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeTypeOk(o.UseStackitSso); ok {
+		toSerialize["UseStackitSso"] = val
 	}
 	return toSerialize, nil
 }

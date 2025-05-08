@@ -17,12 +17,75 @@ import (
 // checks if the SKU type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SKU{}
 
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type SKUGetDescriptionAttributeType = *string
+
+func getSKUGetDescriptionAttributeTypeOk(arg SKUGetDescriptionAttributeType) (ret SKUGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSKUGetDescriptionAttributeType(arg *SKUGetDescriptionAttributeType, val SKUGetDescriptionRetType) {
+	*arg = &val
+}
+
+type SKUGetDescriptionArgType = string
+type SKUGetDescriptionRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type SKUGetIdAttributeType = *string
+
+func getSKUGetIdAttributeTypeOk(arg SKUGetIdAttributeType) (ret SKUGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSKUGetIdAttributeType(arg *SKUGetIdAttributeType, val SKUGetIdRetType) {
+	*arg = &val
+}
+
+type SKUGetIdArgType = string
+type SKUGetIdRetType = string
+
+/*
+	types and functions for type
+*/
+
+// isNotNullableString
+type SKUGetTypeAttributeType = *string
+
+func getSKUGetTypeAttributeTypeOk(arg SKUGetTypeAttributeType) (ret SKUGetTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSKUGetTypeAttributeType(arg *SKUGetTypeAttributeType, val SKUGetTypeRetType) {
+	*arg = &val
+}
+
+type SKUGetTypeArgType = string
+type SKUGetTypeRetType = string
+
 // SKU struct for SKU
 type SKU struct {
-	Description *string `json:"description,omitempty"`
+	Description SKUGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
-	Id   *string `json:"id"`
-	Type *string `json:"type,omitempty"`
+	Id   SKUGetIdAttributeType   `json:"id"`
+	Type SKUGetTypeAttributeType `json:"type,omitempty"`
 }
 
 type _SKU SKU
@@ -31,9 +94,9 @@ type _SKU SKU
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSKU(id *string) *SKU {
+func NewSKU(id SKUGetIdArgType) *SKU {
 	this := SKU{}
-	this.Id = id
+	setSKUGetIdAttributeType(&this.Id, id)
 	return &this
 }
 
@@ -46,101 +109,78 @@ func NewSKUWithDefaults() *SKU {
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *SKU) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *SKU) GetDescription() (res SKUGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SKU) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *SKU) GetDescriptionOk() (ret SKUGetDescriptionRetType, ok bool) {
+	return getSKUGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *SKU) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *SKU) SetDescription(v *string) {
-	o.Description = v
+func (o *SKU) SetDescription(v SKUGetDescriptionRetType) {
+	setSKUGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetId returns the Id field value
-func (o *SKU) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *SKU) GetId() (ret SKUGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *SKU) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *SKU) GetIdOk() (ret SKUGetIdRetType, ok bool) {
+	return getSKUGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *SKU) SetId(v *string) {
-	o.Id = v
+func (o *SKU) SetId(v SKUGetIdRetType) {
+	setSKUGetIdAttributeType(&o.Id, v)
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *SKU) GetType() *string {
-	if o == nil || IsNil(o.Type) {
-		var ret *string
-		return ret
-	}
-	return o.Type
+func (o *SKU) GetType() (res SKUGetTypeRetType) {
+	res, _ = o.GetTypeOk()
+	return
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SKU) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
+func (o *SKU) GetTypeOk() (ret SKUGetTypeRetType, ok bool) {
+	return getSKUGetTypeAttributeTypeOk(o.Type)
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *SKU) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTypeOk()
+	return ok
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *SKU) SetType(v *string) {
-	o.Type = v
+func (o *SKU) SetType(v SKUGetTypeRetType) {
+	setSKUGetTypeAttributeType(&o.Type, v)
 }
 
 func (o SKU) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getSKUGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	toSerialize["id"] = o.Id
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if val, ok := getSKUGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getSKUGetTypeAttributeTypeOk(o.Type); ok {
+		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
 }

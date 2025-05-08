@@ -17,10 +17,50 @@ import (
 // checks if the ListUsersResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListUsersResponse{}
 
+/*
+	types and functions for count
+*/
+
+// isLong
+type ListUsersResponseGetCountAttributeType = *int64
+type ListUsersResponseGetCountArgType = int64
+type ListUsersResponseGetCountRetType = int64
+
+func getListUsersResponseGetCountAttributeTypeOk(arg ListUsersResponseGetCountAttributeType) (ret ListUsersResponseGetCountRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListUsersResponseGetCountAttributeType(arg *ListUsersResponseGetCountAttributeType, val ListUsersResponseGetCountRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListUsersResponseGetItemsAttributeType = *[]ListUsersResponseItem
+type ListUsersResponseGetItemsArgType = []ListUsersResponseItem
+type ListUsersResponseGetItemsRetType = []ListUsersResponseItem
+
+func getListUsersResponseGetItemsAttributeTypeOk(arg ListUsersResponseGetItemsAttributeType) (ret ListUsersResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListUsersResponseGetItemsAttributeType(arg *ListUsersResponseGetItemsAttributeType, val ListUsersResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // ListUsersResponse struct for ListUsersResponse
 type ListUsersResponse struct {
-	Count *int64                   `json:"count,omitempty"`
-	Items *[]ListUsersResponseItem `json:"items,omitempty"`
+	Count ListUsersResponseGetCountAttributeType `json:"count,omitempty"`
+	Items ListUsersResponseGetItemsAttributeType `json:"items,omitempty"`
 }
 
 // NewListUsersResponse instantiates a new ListUsersResponse object
@@ -41,76 +81,58 @@ func NewListUsersResponseWithDefaults() *ListUsersResponse {
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *ListUsersResponse) GetCount() *int64 {
-	if o == nil || IsNil(o.Count) {
-		var ret *int64
-		return ret
-	}
-	return o.Count
+func (o *ListUsersResponse) GetCount() (res ListUsersResponseGetCountRetType) {
+	res, _ = o.GetCountOk()
+	return
 }
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListUsersResponse) GetCountOk() (*int64, bool) {
-	if o == nil || IsNil(o.Count) {
-		return nil, false
-	}
-	return o.Count, true
+func (o *ListUsersResponse) GetCountOk() (ret ListUsersResponseGetCountRetType, ok bool) {
+	return getListUsersResponseGetCountAttributeTypeOk(o.Count)
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListUsersResponse) HasCount() bool {
-	if o != nil && !IsNil(o.Count) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCountOk()
+	return ok
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
-func (o *ListUsersResponse) SetCount(v *int64) {
-	o.Count = v
+func (o *ListUsersResponse) SetCount(v ListUsersResponseGetCountRetType) {
+	setListUsersResponseGetCountAttributeType(&o.Count, v)
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *ListUsersResponse) GetItems() *[]ListUsersResponseItem {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]ListUsersResponseItem
-		return ret
-	}
-	return o.Items
+func (o *ListUsersResponse) GetItems() (res ListUsersResponseGetItemsRetType) {
+	res, _ = o.GetItemsOk()
+	return
 }
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListUsersResponse) GetItemsOk() (*[]ListUsersResponseItem, bool) {
-	if o == nil || IsNil(o.Items) {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListUsersResponse) GetItemsOk() (ret ListUsersResponseGetItemsRetType, ok bool) {
+	return getListUsersResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
 func (o *ListUsersResponse) HasItems() bool {
-	if o != nil && !IsNil(o.Items) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetItemsOk()
+	return ok
 }
 
 // SetItems gets a reference to the given []ListUsersResponseItem and assigns it to the Items field.
-func (o *ListUsersResponse) SetItems(v *[]ListUsersResponseItem) {
-	o.Items = v
+func (o *ListUsersResponse) SetItems(v ListUsersResponseGetItemsRetType) {
+	setListUsersResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o ListUsersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Count) {
-		toSerialize["count"] = o.Count
+	if val, ok := getListUsersResponseGetCountAttributeTypeOk(o.Count); ok {
+		toSerialize["Count"] = val
 	}
-	if !IsNil(o.Items) {
-		toSerialize["items"] = o.Items
+	if val, ok := getListUsersResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,11 +17,31 @@ import (
 // checks if the PublicIpListResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PublicIpListResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type PublicIpListResponseGetItemsAttributeType = *[]PublicIp
+type PublicIpListResponseGetItemsArgType = []PublicIp
+type PublicIpListResponseGetItemsRetType = []PublicIp
+
+func getPublicIpListResponseGetItemsAttributeTypeOk(arg PublicIpListResponseGetItemsAttributeType) (ret PublicIpListResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPublicIpListResponseGetItemsAttributeType(arg *PublicIpListResponseGetItemsAttributeType, val PublicIpListResponseGetItemsRetType) {
+	*arg = &val
+}
+
 // PublicIpListResponse Public IP list response.
 type PublicIpListResponse struct {
 	// A list of public IPs.
 	// REQUIRED
-	Items *[]PublicIp `json:"items"`
+	Items PublicIpListResponseGetItemsAttributeType `json:"items"`
 }
 
 type _PublicIpListResponse PublicIpListResponse
@@ -30,9 +50,9 @@ type _PublicIpListResponse PublicIpListResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPublicIpListResponse(items *[]PublicIp) *PublicIpListResponse {
+func NewPublicIpListResponse(items PublicIpListResponseGetItemsArgType) *PublicIpListResponse {
 	this := PublicIpListResponse{}
-	this.Items = items
+	setPublicIpListResponseGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
@@ -45,32 +65,27 @@ func NewPublicIpListResponseWithDefaults() *PublicIpListResponse {
 }
 
 // GetItems returns the Items field value
-func (o *PublicIpListResponse) GetItems() *[]PublicIp {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]PublicIp
-		return ret
-	}
-
-	return o.Items
+func (o *PublicIpListResponse) GetItems() (ret PublicIpListResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *PublicIpListResponse) GetItemsOk() (*[]PublicIp, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *PublicIpListResponse) GetItemsOk() (ret PublicIpListResponseGetItemsRetType, ok bool) {
+	return getPublicIpListResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *PublicIpListResponse) SetItems(v *[]PublicIp) {
-	o.Items = v
+func (o *PublicIpListResponse) SetItems(v PublicIpListResponseGetItemsRetType) {
+	setPublicIpListResponseGetItemsAttributeType(&o.Items, v)
 }
 
 func (o PublicIpListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
+	if val, ok := getPublicIpListResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
 	return toSerialize, nil
 }
 

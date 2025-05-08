@@ -17,19 +17,141 @@ import (
 // checks if the Matcher type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Matcher{}
 
+/*
+	types and functions for cookiePersistence
+*/
+
+// isModel
+type MatcherGetCookiePersistenceAttributeType = *CookiePersistence
+type MatcherGetCookiePersistenceArgType = CookiePersistence
+type MatcherGetCookiePersistenceRetType = CookiePersistence
+
+func getMatcherGetCookiePersistenceAttributeTypeOk(arg MatcherGetCookiePersistenceAttributeType) (ret MatcherGetCookiePersistenceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMatcherGetCookiePersistenceAttributeType(arg *MatcherGetCookiePersistenceAttributeType, val MatcherGetCookiePersistenceRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for headers
+*/
+
+// isArray
+type MatcherGetHeadersAttributeType = *[]Header
+type MatcherGetHeadersArgType = []Header
+type MatcherGetHeadersRetType = []Header
+
+func getMatcherGetHeadersAttributeTypeOk(arg MatcherGetHeadersAttributeType) (ret MatcherGetHeadersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMatcherGetHeadersAttributeType(arg *MatcherGetHeadersAttributeType, val MatcherGetHeadersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for pathPrefix
+*/
+
+// isNotNullableString
+type MatcherGetPathPrefixAttributeType = *string
+
+func getMatcherGetPathPrefixAttributeTypeOk(arg MatcherGetPathPrefixAttributeType) (ret MatcherGetPathPrefixRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMatcherGetPathPrefixAttributeType(arg *MatcherGetPathPrefixAttributeType, val MatcherGetPathPrefixRetType) {
+	*arg = &val
+}
+
+type MatcherGetPathPrefixArgType = string
+type MatcherGetPathPrefixRetType = string
+
+/*
+	types and functions for queryParameters
+*/
+
+// isArray
+type MatcherGetQueryParametersAttributeType = *[]QueryParameters
+type MatcherGetQueryParametersArgType = []QueryParameters
+type MatcherGetQueryParametersRetType = []QueryParameters
+
+func getMatcherGetQueryParametersAttributeTypeOk(arg MatcherGetQueryParametersAttributeType) (ret MatcherGetQueryParametersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMatcherGetQueryParametersAttributeType(arg *MatcherGetQueryParametersAttributeType, val MatcherGetQueryParametersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for targetPool
+*/
+
+// isNotNullableString
+type MatcherGetTargetPoolAttributeType = *string
+
+func getMatcherGetTargetPoolAttributeTypeOk(arg MatcherGetTargetPoolAttributeType) (ret MatcherGetTargetPoolRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMatcherGetTargetPoolAttributeType(arg *MatcherGetTargetPoolAttributeType, val MatcherGetTargetPoolRetType) {
+	*arg = &val
+}
+
+type MatcherGetTargetPoolArgType = string
+type MatcherGetTargetPoolRetType = string
+
+/*
+	types and functions for webSocket
+*/
+
+// isBoolean
+type MatchergetWebSocketAttributeType = *bool
+type MatchergetWebSocketArgType = bool
+type MatchergetWebSocketRetType = bool
+
+func getMatchergetWebSocketAttributeTypeOk(arg MatchergetWebSocketAttributeType) (ret MatchergetWebSocketRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setMatchergetWebSocketAttributeType(arg *MatchergetWebSocketAttributeType, val MatchergetWebSocketRetType) {
+	*arg = &val
+}
+
 // Matcher struct for Matcher
 type Matcher struct {
-	CookiePersistence *CookiePersistence `json:"cookiePersistence,omitempty"`
+	CookiePersistence MatcherGetCookiePersistenceAttributeType `json:"cookiePersistence,omitempty"`
 	// Headers for the matcher
-	Headers *[]Header `json:"headers,omitempty"`
+	Headers MatcherGetHeadersAttributeType `json:"headers,omitempty"`
 	// Path prefix for the matcher
-	PathPrefix *string `json:"pathPrefix,omitempty"`
+	PathPrefix MatcherGetPathPrefixAttributeType `json:"pathPrefix,omitempty"`
 	// Query Parameters for the matcher
-	QueryParameters *[]QueryParameters `json:"queryParameters,omitempty"`
+	QueryParameters MatcherGetQueryParametersAttributeType `json:"queryParameters,omitempty"`
 	// Reference target pool by target pool name.
-	TargetPool *string `json:"targetPool,omitempty"`
+	TargetPool MatcherGetTargetPoolAttributeType `json:"targetPool,omitempty"`
 	// If enabled, when client sends an HTTP request with and Upgrade header, indicating the desire to establish a Websocket connection,  if backend server supports WebSocket, it responds with HTTP 101 status code, switching protocols from HTTP to WebSocket. Hence the client and the server can exchange data in real-time using one long-lived TCP connection.
-	WebSocket *bool `json:"webSocket,omitempty"`
+	WebSocket MatchergetWebSocketAttributeType `json:"webSocket,omitempty"`
 }
 
 // NewMatcher instantiates a new Matcher object
@@ -50,216 +172,162 @@ func NewMatcherWithDefaults() *Matcher {
 }
 
 // GetCookiePersistence returns the CookiePersistence field value if set, zero value otherwise.
-func (o *Matcher) GetCookiePersistence() *CookiePersistence {
-	if o == nil || IsNil(o.CookiePersistence) {
-		var ret *CookiePersistence
-		return ret
-	}
-	return o.CookiePersistence
+func (o *Matcher) GetCookiePersistence() (res MatcherGetCookiePersistenceRetType) {
+	res, _ = o.GetCookiePersistenceOk()
+	return
 }
 
 // GetCookiePersistenceOk returns a tuple with the CookiePersistence field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Matcher) GetCookiePersistenceOk() (*CookiePersistence, bool) {
-	if o == nil || IsNil(o.CookiePersistence) {
-		return nil, false
-	}
-	return o.CookiePersistence, true
+func (o *Matcher) GetCookiePersistenceOk() (ret MatcherGetCookiePersistenceRetType, ok bool) {
+	return getMatcherGetCookiePersistenceAttributeTypeOk(o.CookiePersistence)
 }
 
 // HasCookiePersistence returns a boolean if a field has been set.
 func (o *Matcher) HasCookiePersistence() bool {
-	if o != nil && !IsNil(o.CookiePersistence) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCookiePersistenceOk()
+	return ok
 }
 
 // SetCookiePersistence gets a reference to the given CookiePersistence and assigns it to the CookiePersistence field.
-func (o *Matcher) SetCookiePersistence(v *CookiePersistence) {
-	o.CookiePersistence = v
+func (o *Matcher) SetCookiePersistence(v MatcherGetCookiePersistenceRetType) {
+	setMatcherGetCookiePersistenceAttributeType(&o.CookiePersistence, v)
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
-func (o *Matcher) GetHeaders() *[]Header {
-	if o == nil || IsNil(o.Headers) {
-		var ret *[]Header
-		return ret
-	}
-	return o.Headers
+func (o *Matcher) GetHeaders() (res MatcherGetHeadersRetType) {
+	res, _ = o.GetHeadersOk()
+	return
 }
 
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Matcher) GetHeadersOk() (*[]Header, bool) {
-	if o == nil || IsNil(o.Headers) {
-		return nil, false
-	}
-	return o.Headers, true
+func (o *Matcher) GetHeadersOk() (ret MatcherGetHeadersRetType, ok bool) {
+	return getMatcherGetHeadersAttributeTypeOk(o.Headers)
 }
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *Matcher) HasHeaders() bool {
-	if o != nil && !IsNil(o.Headers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetHeadersOk()
+	return ok
 }
 
 // SetHeaders gets a reference to the given []Header and assigns it to the Headers field.
-func (o *Matcher) SetHeaders(v *[]Header) {
-	o.Headers = v
+func (o *Matcher) SetHeaders(v MatcherGetHeadersRetType) {
+	setMatcherGetHeadersAttributeType(&o.Headers, v)
 }
 
 // GetPathPrefix returns the PathPrefix field value if set, zero value otherwise.
-func (o *Matcher) GetPathPrefix() *string {
-	if o == nil || IsNil(o.PathPrefix) {
-		var ret *string
-		return ret
-	}
-	return o.PathPrefix
+func (o *Matcher) GetPathPrefix() (res MatcherGetPathPrefixRetType) {
+	res, _ = o.GetPathPrefixOk()
+	return
 }
 
 // GetPathPrefixOk returns a tuple with the PathPrefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Matcher) GetPathPrefixOk() (*string, bool) {
-	if o == nil || IsNil(o.PathPrefix) {
-		return nil, false
-	}
-	return o.PathPrefix, true
+func (o *Matcher) GetPathPrefixOk() (ret MatcherGetPathPrefixRetType, ok bool) {
+	return getMatcherGetPathPrefixAttributeTypeOk(o.PathPrefix)
 }
 
 // HasPathPrefix returns a boolean if a field has been set.
 func (o *Matcher) HasPathPrefix() bool {
-	if o != nil && !IsNil(o.PathPrefix) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPathPrefixOk()
+	return ok
 }
 
 // SetPathPrefix gets a reference to the given string and assigns it to the PathPrefix field.
-func (o *Matcher) SetPathPrefix(v *string) {
-	o.PathPrefix = v
+func (o *Matcher) SetPathPrefix(v MatcherGetPathPrefixRetType) {
+	setMatcherGetPathPrefixAttributeType(&o.PathPrefix, v)
 }
 
 // GetQueryParameters returns the QueryParameters field value if set, zero value otherwise.
-func (o *Matcher) GetQueryParameters() *[]QueryParameters {
-	if o == nil || IsNil(o.QueryParameters) {
-		var ret *[]QueryParameters
-		return ret
-	}
-	return o.QueryParameters
+func (o *Matcher) GetQueryParameters() (res MatcherGetQueryParametersRetType) {
+	res, _ = o.GetQueryParametersOk()
+	return
 }
 
 // GetQueryParametersOk returns a tuple with the QueryParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Matcher) GetQueryParametersOk() (*[]QueryParameters, bool) {
-	if o == nil || IsNil(o.QueryParameters) {
-		return nil, false
-	}
-	return o.QueryParameters, true
+func (o *Matcher) GetQueryParametersOk() (ret MatcherGetQueryParametersRetType, ok bool) {
+	return getMatcherGetQueryParametersAttributeTypeOk(o.QueryParameters)
 }
 
 // HasQueryParameters returns a boolean if a field has been set.
 func (o *Matcher) HasQueryParameters() bool {
-	if o != nil && !IsNil(o.QueryParameters) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetQueryParametersOk()
+	return ok
 }
 
 // SetQueryParameters gets a reference to the given []QueryParameters and assigns it to the QueryParameters field.
-func (o *Matcher) SetQueryParameters(v *[]QueryParameters) {
-	o.QueryParameters = v
+func (o *Matcher) SetQueryParameters(v MatcherGetQueryParametersRetType) {
+	setMatcherGetQueryParametersAttributeType(&o.QueryParameters, v)
 }
 
 // GetTargetPool returns the TargetPool field value if set, zero value otherwise.
-func (o *Matcher) GetTargetPool() *string {
-	if o == nil || IsNil(o.TargetPool) {
-		var ret *string
-		return ret
-	}
-	return o.TargetPool
+func (o *Matcher) GetTargetPool() (res MatcherGetTargetPoolRetType) {
+	res, _ = o.GetTargetPoolOk()
+	return
 }
 
 // GetTargetPoolOk returns a tuple with the TargetPool field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Matcher) GetTargetPoolOk() (*string, bool) {
-	if o == nil || IsNil(o.TargetPool) {
-		return nil, false
-	}
-	return o.TargetPool, true
+func (o *Matcher) GetTargetPoolOk() (ret MatcherGetTargetPoolRetType, ok bool) {
+	return getMatcherGetTargetPoolAttributeTypeOk(o.TargetPool)
 }
 
 // HasTargetPool returns a boolean if a field has been set.
 func (o *Matcher) HasTargetPool() bool {
-	if o != nil && !IsNil(o.TargetPool) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetTargetPoolOk()
+	return ok
 }
 
 // SetTargetPool gets a reference to the given string and assigns it to the TargetPool field.
-func (o *Matcher) SetTargetPool(v *string) {
-	o.TargetPool = v
+func (o *Matcher) SetTargetPool(v MatcherGetTargetPoolRetType) {
+	setMatcherGetTargetPoolAttributeType(&o.TargetPool, v)
 }
 
 // GetWebSocket returns the WebSocket field value if set, zero value otherwise.
-func (o *Matcher) GetWebSocket() *bool {
-	if o == nil || IsNil(o.WebSocket) {
-		var ret *bool
-		return ret
-	}
-	return o.WebSocket
+func (o *Matcher) GetWebSocket() (res MatchergetWebSocketRetType) {
+	res, _ = o.GetWebSocketOk()
+	return
 }
 
 // GetWebSocketOk returns a tuple with the WebSocket field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Matcher) GetWebSocketOk() (*bool, bool) {
-	if o == nil || IsNil(o.WebSocket) {
-		return nil, false
-	}
-	return o.WebSocket, true
+func (o *Matcher) GetWebSocketOk() (ret MatchergetWebSocketRetType, ok bool) {
+	return getMatchergetWebSocketAttributeTypeOk(o.WebSocket)
 }
 
 // HasWebSocket returns a boolean if a field has been set.
 func (o *Matcher) HasWebSocket() bool {
-	if o != nil && !IsNil(o.WebSocket) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetWebSocketOk()
+	return ok
 }
 
 // SetWebSocket gets a reference to the given bool and assigns it to the WebSocket field.
-func (o *Matcher) SetWebSocket(v *bool) {
-	o.WebSocket = v
+func (o *Matcher) SetWebSocket(v MatchergetWebSocketRetType) {
+	setMatchergetWebSocketAttributeType(&o.WebSocket, v)
 }
 
 func (o Matcher) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CookiePersistence) {
-		toSerialize["cookiePersistence"] = o.CookiePersistence
+	if val, ok := getMatcherGetCookiePersistenceAttributeTypeOk(o.CookiePersistence); ok {
+		toSerialize["CookiePersistence"] = val
 	}
-	if !IsNil(o.Headers) {
-		toSerialize["headers"] = o.Headers
+	if val, ok := getMatcherGetHeadersAttributeTypeOk(o.Headers); ok {
+		toSerialize["Headers"] = val
 	}
-	if !IsNil(o.PathPrefix) {
-		toSerialize["pathPrefix"] = o.PathPrefix
+	if val, ok := getMatcherGetPathPrefixAttributeTypeOk(o.PathPrefix); ok {
+		toSerialize["PathPrefix"] = val
 	}
-	if !IsNil(o.QueryParameters) {
-		toSerialize["queryParameters"] = o.QueryParameters
+	if val, ok := getMatcherGetQueryParametersAttributeTypeOk(o.QueryParameters); ok {
+		toSerialize["QueryParameters"] = val
 	}
-	if !IsNil(o.TargetPool) {
-		toSerialize["targetPool"] = o.TargetPool
+	if val, ok := getMatcherGetTargetPoolAttributeTypeOk(o.TargetPool); ok {
+		toSerialize["TargetPool"] = val
 	}
-	if !IsNil(o.WebSocket) {
-		toSerialize["webSocket"] = o.WebSocket
+	if val, ok := getMatchergetWebSocketAttributeTypeOk(o.WebSocket); ok {
+		toSerialize["WebSocket"] = val
 	}
 	return toSerialize, nil
 }

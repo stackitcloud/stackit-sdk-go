@@ -17,9 +17,29 @@ import (
 // checks if the ListDatabasesResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListDatabasesResponse{}
 
+/*
+	types and functions for databases
+*/
+
+// isArray
+type ListDatabasesResponseGetDatabasesAttributeType = *[]Database
+type ListDatabasesResponseGetDatabasesArgType = []Database
+type ListDatabasesResponseGetDatabasesRetType = []Database
+
+func getListDatabasesResponseGetDatabasesAttributeTypeOk(arg ListDatabasesResponseGetDatabasesAttributeType) (ret ListDatabasesResponseGetDatabasesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListDatabasesResponseGetDatabasesAttributeType(arg *ListDatabasesResponseGetDatabasesAttributeType, val ListDatabasesResponseGetDatabasesRetType) {
+	*arg = &val
+}
+
 // ListDatabasesResponse struct for ListDatabasesResponse
 type ListDatabasesResponse struct {
-	Databases *[]Database `json:"databases,omitempty"`
+	Databases ListDatabasesResponseGetDatabasesAttributeType `json:"databases,omitempty"`
 }
 
 // NewListDatabasesResponse instantiates a new ListDatabasesResponse object
@@ -40,41 +60,32 @@ func NewListDatabasesResponseWithDefaults() *ListDatabasesResponse {
 }
 
 // GetDatabases returns the Databases field value if set, zero value otherwise.
-func (o *ListDatabasesResponse) GetDatabases() *[]Database {
-	if o == nil || IsNil(o.Databases) {
-		var ret *[]Database
-		return ret
-	}
-	return o.Databases
+func (o *ListDatabasesResponse) GetDatabases() (res ListDatabasesResponseGetDatabasesRetType) {
+	res, _ = o.GetDatabasesOk()
+	return
 }
 
 // GetDatabasesOk returns a tuple with the Databases field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListDatabasesResponse) GetDatabasesOk() (*[]Database, bool) {
-	if o == nil || IsNil(o.Databases) {
-		return nil, false
-	}
-	return o.Databases, true
+func (o *ListDatabasesResponse) GetDatabasesOk() (ret ListDatabasesResponseGetDatabasesRetType, ok bool) {
+	return getListDatabasesResponseGetDatabasesAttributeTypeOk(o.Databases)
 }
 
 // HasDatabases returns a boolean if a field has been set.
 func (o *ListDatabasesResponse) HasDatabases() bool {
-	if o != nil && !IsNil(o.Databases) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDatabasesOk()
+	return ok
 }
 
 // SetDatabases gets a reference to the given []Database and assigns it to the Databases field.
-func (o *ListDatabasesResponse) SetDatabases(v *[]Database) {
-	o.Databases = v
+func (o *ListDatabasesResponse) SetDatabases(v ListDatabasesResponseGetDatabasesRetType) {
+	setListDatabasesResponseGetDatabasesAttributeType(&o.Databases, v)
 }
 
 func (o ListDatabasesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Databases) {
-		toSerialize["databases"] = o.Databases
+	if val, ok := getListDatabasesResponseGetDatabasesAttributeTypeOk(o.Databases); ok {
+		toSerialize["Databases"] = val
 	}
 	return toSerialize, nil
 }

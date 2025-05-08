@@ -17,27 +17,168 @@ import (
 // checks if the CatalogProductOverview type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CatalogProductOverview{}
 
+/*
+	types and functions for deliveryMethod
+*/
+
+// isEnumRef
+type CatalogProductOverviewGetDeliveryMethodAttributeType = *DeliveryMethod
+type CatalogProductOverviewGetDeliveryMethodArgType = DeliveryMethod
+type CatalogProductOverviewGetDeliveryMethodRetType = DeliveryMethod
+
+func getCatalogProductOverviewGetDeliveryMethodAttributeTypeOk(arg CatalogProductOverviewGetDeliveryMethodAttributeType) (ret CatalogProductOverviewGetDeliveryMethodRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewGetDeliveryMethodAttributeType(arg *CatalogProductOverviewGetDeliveryMethodAttributeType, val CatalogProductOverviewGetDeliveryMethodRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for lifecycleState
+*/
+
+// isEnumRef
+type CatalogProductOverviewGetLifecycleStateAttributeType = *ProductLifecycleState
+type CatalogProductOverviewGetLifecycleStateArgType = ProductLifecycleState
+type CatalogProductOverviewGetLifecycleStateRetType = ProductLifecycleState
+
+func getCatalogProductOverviewGetLifecycleStateAttributeTypeOk(arg CatalogProductOverviewGetLifecycleStateAttributeType) (ret CatalogProductOverviewGetLifecycleStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewGetLifecycleStateAttributeType(arg *CatalogProductOverviewGetLifecycleStateAttributeType, val CatalogProductOverviewGetLifecycleStateRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for logo
+*/
+
+// isByteArray
+type CatalogProductOverviewGetLogoAttributeType = *[]byte
+type CatalogProductOverviewGetLogoArgType = []byte
+type CatalogProductOverviewGetLogoRetType = []byte
+
+func getCatalogProductOverviewGetLogoAttributeTypeOk(arg CatalogProductOverviewGetLogoAttributeType) (ret CatalogProductOverviewGetLogoRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewGetLogoAttributeType(arg *CatalogProductOverviewGetLogoAttributeType, val CatalogProductOverviewGetLogoRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type CatalogProductOverviewGetNameAttributeType = *string
+
+func getCatalogProductOverviewGetNameAttributeTypeOk(arg CatalogProductOverviewGetNameAttributeType) (ret CatalogProductOverviewGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewGetNameAttributeType(arg *CatalogProductOverviewGetNameAttributeType, val CatalogProductOverviewGetNameRetType) {
+	*arg = &val
+}
+
+type CatalogProductOverviewGetNameArgType = string
+type CatalogProductOverviewGetNameRetType = string
+
+/*
+	types and functions for productId
+*/
+
+// isNotNullableString
+type CatalogProductOverviewGetProductIdAttributeType = *string
+
+func getCatalogProductOverviewGetProductIdAttributeTypeOk(arg CatalogProductOverviewGetProductIdAttributeType) (ret CatalogProductOverviewGetProductIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewGetProductIdAttributeType(arg *CatalogProductOverviewGetProductIdAttributeType, val CatalogProductOverviewGetProductIdRetType) {
+	*arg = &val
+}
+
+type CatalogProductOverviewGetProductIdArgType = string
+type CatalogProductOverviewGetProductIdRetType = string
+
+/*
+	types and functions for summary
+*/
+
+// isNotNullableString
+type CatalogProductOverviewGetSummaryAttributeType = *string
+
+func getCatalogProductOverviewGetSummaryAttributeTypeOk(arg CatalogProductOverviewGetSummaryAttributeType) (ret CatalogProductOverviewGetSummaryRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewGetSummaryAttributeType(arg *CatalogProductOverviewGetSummaryAttributeType, val CatalogProductOverviewGetSummaryRetType) {
+	*arg = &val
+}
+
+type CatalogProductOverviewGetSummaryArgType = string
+type CatalogProductOverviewGetSummaryRetType = string
+
+/*
+	types and functions for vendor
+*/
+
+// isModel
+type CatalogProductOverviewGetVendorAttributeType = *CatalogProductOverviewVendor
+type CatalogProductOverviewGetVendorArgType = CatalogProductOverviewVendor
+type CatalogProductOverviewGetVendorRetType = CatalogProductOverviewVendor
+
+func getCatalogProductOverviewGetVendorAttributeTypeOk(arg CatalogProductOverviewGetVendorAttributeType) (ret CatalogProductOverviewGetVendorRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewGetVendorAttributeType(arg *CatalogProductOverviewGetVendorAttributeType, val CatalogProductOverviewGetVendorRetType) {
+	*arg = &val
+}
+
 // CatalogProductOverview struct for CatalogProductOverview
 type CatalogProductOverview struct {
-	// The product type. For reference: SAAS - Software as a Service, SAI - STACKIT Application Image
 	// REQUIRED
-	DeliveryMethod *string `json:"deliveryMethod"`
-	// The lifecycle state of the product.
+	DeliveryMethod CatalogProductOverviewGetDeliveryMethodAttributeType `json:"deliveryMethod"`
 	// REQUIRED
-	LifecycleState *string `json:"lifecycleState"`
+	LifecycleState CatalogProductOverviewGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// The logo base64 encoded.
-	Logo *string `json:"logo,omitempty"`
-	// The product name.
+	Logo CatalogProductOverviewGetLogoAttributeType `json:"logo,omitempty"`
+	// The name of the product.
 	// REQUIRED
-	Name *string `json:"name"`
-	// The product ID.
+	Name CatalogProductOverviewGetNameAttributeType `json:"name"`
+	// The user-readable product ID.
 	// REQUIRED
-	ProductId *string `json:"productId"`
-	// The short summary of the product.
+	ProductId CatalogProductOverviewGetProductIdAttributeType `json:"productId"`
+	// A custom message.
 	// REQUIRED
-	Summary *string `json:"summary"`
+	Summary CatalogProductOverviewGetSummaryAttributeType `json:"summary"`
 	// REQUIRED
-	Vendor *CatalogProductOverviewVendor `json:"vendor"`
+	Vendor CatalogProductOverviewGetVendorAttributeType `json:"vendor"`
 }
 
 type _CatalogProductOverview CatalogProductOverview
@@ -46,14 +187,14 @@ type _CatalogProductOverview CatalogProductOverview
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCatalogProductOverview(deliveryMethod *string, lifecycleState *string, name *string, productId *string, summary *string, vendor *CatalogProductOverviewVendor) *CatalogProductOverview {
+func NewCatalogProductOverview(deliveryMethod CatalogProductOverviewGetDeliveryMethodArgType, lifecycleState CatalogProductOverviewGetLifecycleStateArgType, name CatalogProductOverviewGetNameArgType, productId CatalogProductOverviewGetProductIdArgType, summary CatalogProductOverviewGetSummaryArgType, vendor CatalogProductOverviewGetVendorArgType) *CatalogProductOverview {
 	this := CatalogProductOverview{}
-	this.DeliveryMethod = deliveryMethod
-	this.LifecycleState = lifecycleState
-	this.Name = name
-	this.ProductId = productId
-	this.Summary = summary
-	this.Vendor = vendor
+	setCatalogProductOverviewGetDeliveryMethodAttributeType(&this.DeliveryMethod, deliveryMethod)
+	setCatalogProductOverviewGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
+	setCatalogProductOverviewGetNameAttributeType(&this.Name, name)
+	setCatalogProductOverviewGetProductIdAttributeType(&this.ProductId, productId)
+	setCatalogProductOverviewGetSummaryAttributeType(&this.Summary, summary)
+	setCatalogProductOverviewGetVendorAttributeType(&this.Vendor, vendor)
 	return &this
 }
 
@@ -66,192 +207,153 @@ func NewCatalogProductOverviewWithDefaults() *CatalogProductOverview {
 }
 
 // GetDeliveryMethod returns the DeliveryMethod field value
-func (o *CatalogProductOverview) GetDeliveryMethod() *string {
-	if o == nil || IsNil(o.DeliveryMethod) {
-		var ret *string
-		return ret
-	}
-
-	return o.DeliveryMethod
+func (o *CatalogProductOverview) GetDeliveryMethod() (ret CatalogProductOverviewGetDeliveryMethodRetType) {
+	ret, _ = o.GetDeliveryMethodOk()
+	return ret
 }
 
 // GetDeliveryMethodOk returns a tuple with the DeliveryMethod field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverview) GetDeliveryMethodOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DeliveryMethod, true
+func (o *CatalogProductOverview) GetDeliveryMethodOk() (ret CatalogProductOverviewGetDeliveryMethodRetType, ok bool) {
+	return getCatalogProductOverviewGetDeliveryMethodAttributeTypeOk(o.DeliveryMethod)
 }
 
 // SetDeliveryMethod sets field value
-func (o *CatalogProductOverview) SetDeliveryMethod(v *string) {
-	o.DeliveryMethod = v
+func (o *CatalogProductOverview) SetDeliveryMethod(v CatalogProductOverviewGetDeliveryMethodRetType) {
+	setCatalogProductOverviewGetDeliveryMethodAttributeType(&o.DeliveryMethod, v)
 }
 
 // GetLifecycleState returns the LifecycleState field value
-func (o *CatalogProductOverview) GetLifecycleState() *string {
-	if o == nil || IsNil(o.LifecycleState) {
-		var ret *string
-		return ret
-	}
-
-	return o.LifecycleState
+func (o *CatalogProductOverview) GetLifecycleState() (ret CatalogProductOverviewGetLifecycleStateRetType) {
+	ret, _ = o.GetLifecycleStateOk()
+	return ret
 }
 
 // GetLifecycleStateOk returns a tuple with the LifecycleState field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverview) GetLifecycleStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LifecycleState, true
+func (o *CatalogProductOverview) GetLifecycleStateOk() (ret CatalogProductOverviewGetLifecycleStateRetType, ok bool) {
+	return getCatalogProductOverviewGetLifecycleStateAttributeTypeOk(o.LifecycleState)
 }
 
 // SetLifecycleState sets field value
-func (o *CatalogProductOverview) SetLifecycleState(v *string) {
-	o.LifecycleState = v
+func (o *CatalogProductOverview) SetLifecycleState(v CatalogProductOverviewGetLifecycleStateRetType) {
+	setCatalogProductOverviewGetLifecycleStateAttributeType(&o.LifecycleState, v)
 }
 
 // GetLogo returns the Logo field value if set, zero value otherwise.
-func (o *CatalogProductOverview) GetLogo() *string {
-	if o == nil || IsNil(o.Logo) {
-		var ret *string
-		return ret
-	}
-	return o.Logo
+func (o *CatalogProductOverview) GetLogo() (res CatalogProductOverviewGetLogoRetType) {
+	res, _ = o.GetLogoOk()
+	return
 }
 
 // GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverview) GetLogoOk() (*string, bool) {
-	if o == nil || IsNil(o.Logo) {
-		return nil, false
-	}
-	return o.Logo, true
+func (o *CatalogProductOverview) GetLogoOk() (ret CatalogProductOverviewGetLogoRetType, ok bool) {
+	return getCatalogProductOverviewGetLogoAttributeTypeOk(o.Logo)
 }
 
 // HasLogo returns a boolean if a field has been set.
 func (o *CatalogProductOverview) HasLogo() bool {
-	if o != nil && !IsNil(o.Logo) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetLogoOk()
+	return ok
 }
 
 // SetLogo gets a reference to the given string and assigns it to the Logo field.
-func (o *CatalogProductOverview) SetLogo(v *string) {
-	o.Logo = v
+func (o *CatalogProductOverview) SetLogo(v CatalogProductOverviewGetLogoRetType) {
+	setCatalogProductOverviewGetLogoAttributeType(&o.Logo, v)
 }
 
 // GetName returns the Name field value
-func (o *CatalogProductOverview) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *CatalogProductOverview) GetName() (ret CatalogProductOverviewGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverview) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *CatalogProductOverview) GetNameOk() (ret CatalogProductOverviewGetNameRetType, ok bool) {
+	return getCatalogProductOverviewGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *CatalogProductOverview) SetName(v *string) {
-	o.Name = v
+func (o *CatalogProductOverview) SetName(v CatalogProductOverviewGetNameRetType) {
+	setCatalogProductOverviewGetNameAttributeType(&o.Name, v)
 }
 
 // GetProductId returns the ProductId field value
-func (o *CatalogProductOverview) GetProductId() *string {
-	if o == nil || IsNil(o.ProductId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ProductId
+func (o *CatalogProductOverview) GetProductId() (ret CatalogProductOverviewGetProductIdRetType) {
+	ret, _ = o.GetProductIdOk()
+	return ret
 }
 
 // GetProductIdOk returns a tuple with the ProductId field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverview) GetProductIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProductId, true
+func (o *CatalogProductOverview) GetProductIdOk() (ret CatalogProductOverviewGetProductIdRetType, ok bool) {
+	return getCatalogProductOverviewGetProductIdAttributeTypeOk(o.ProductId)
 }
 
 // SetProductId sets field value
-func (o *CatalogProductOverview) SetProductId(v *string) {
-	o.ProductId = v
+func (o *CatalogProductOverview) SetProductId(v CatalogProductOverviewGetProductIdRetType) {
+	setCatalogProductOverviewGetProductIdAttributeType(&o.ProductId, v)
 }
 
 // GetSummary returns the Summary field value
-func (o *CatalogProductOverview) GetSummary() *string {
-	if o == nil || IsNil(o.Summary) {
-		var ret *string
-		return ret
-	}
-
-	return o.Summary
+func (o *CatalogProductOverview) GetSummary() (ret CatalogProductOverviewGetSummaryRetType) {
+	ret, _ = o.GetSummaryOk()
+	return ret
 }
 
 // GetSummaryOk returns a tuple with the Summary field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverview) GetSummaryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Summary, true
+func (o *CatalogProductOverview) GetSummaryOk() (ret CatalogProductOverviewGetSummaryRetType, ok bool) {
+	return getCatalogProductOverviewGetSummaryAttributeTypeOk(o.Summary)
 }
 
 // SetSummary sets field value
-func (o *CatalogProductOverview) SetSummary(v *string) {
-	o.Summary = v
+func (o *CatalogProductOverview) SetSummary(v CatalogProductOverviewGetSummaryRetType) {
+	setCatalogProductOverviewGetSummaryAttributeType(&o.Summary, v)
 }
 
 // GetVendor returns the Vendor field value
-func (o *CatalogProductOverview) GetVendor() *CatalogProductOverviewVendor {
-	if o == nil || IsNil(o.Vendor) {
-		var ret *CatalogProductOverviewVendor
-		return ret
-	}
-
-	return o.Vendor
+func (o *CatalogProductOverview) GetVendor() (ret CatalogProductOverviewGetVendorRetType) {
+	ret, _ = o.GetVendorOk()
+	return ret
 }
 
 // GetVendorOk returns a tuple with the Vendor field value
 // and a boolean to check if the value has been set.
-func (o *CatalogProductOverview) GetVendorOk() (*CatalogProductOverviewVendor, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Vendor, true
+func (o *CatalogProductOverview) GetVendorOk() (ret CatalogProductOverviewGetVendorRetType, ok bool) {
+	return getCatalogProductOverviewGetVendorAttributeTypeOk(o.Vendor)
 }
 
 // SetVendor sets field value
-func (o *CatalogProductOverview) SetVendor(v *CatalogProductOverviewVendor) {
-	o.Vendor = v
+func (o *CatalogProductOverview) SetVendor(v CatalogProductOverviewGetVendorRetType) {
+	setCatalogProductOverviewGetVendorAttributeType(&o.Vendor, v)
 }
 
 func (o CatalogProductOverview) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["deliveryMethod"] = o.DeliveryMethod
-	toSerialize["lifecycleState"] = o.LifecycleState
-	if !IsNil(o.Logo) {
-		toSerialize["logo"] = o.Logo
+	if val, ok := getCatalogProductOverviewGetDeliveryMethodAttributeTypeOk(o.DeliveryMethod); ok {
+		toSerialize["DeliveryMethod"] = val
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["productId"] = o.ProductId
-	toSerialize["summary"] = o.Summary
-	toSerialize["vendor"] = o.Vendor
+	if val, ok := getCatalogProductOverviewGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
+		toSerialize["LifecycleState"] = val
+	}
+	if val, ok := getCatalogProductOverviewGetLogoAttributeTypeOk(o.Logo); ok {
+		toSerialize["Logo"] = val
+	}
+	if val, ok := getCatalogProductOverviewGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getCatalogProductOverviewGetProductIdAttributeTypeOk(o.ProductId); ok {
+		toSerialize["ProductId"] = val
+	}
+	if val, ok := getCatalogProductOverviewGetSummaryAttributeTypeOk(o.Summary); ok {
+		toSerialize["Summary"] = val
+	}
+	if val, ok := getCatalogProductOverviewGetVendorAttributeTypeOk(o.Vendor); ok {
+		toSerialize["Vendor"] = val
+	}
 	return toSerialize, nil
 }
 

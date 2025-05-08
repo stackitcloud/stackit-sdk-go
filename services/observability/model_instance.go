@@ -17,26 +17,229 @@ import (
 // checks if the Instance type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Instance{}
 
+/*
+	types and functions for cluster
+*/
+
+// isNotNullableString
+type InstanceGetClusterAttributeType = *string
+
+func getInstanceGetClusterAttributeTypeOk(arg InstanceGetClusterAttributeType) (ret InstanceGetClusterRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetClusterAttributeType(arg *InstanceGetClusterAttributeType, val InstanceGetClusterRetType) {
+	*arg = &val
+}
+
+type InstanceGetClusterArgType = string
+type InstanceGetClusterRetType = string
+
+/*
+	types and functions for grafanaPublicReadAccess
+*/
+
+// isBoolean
+type InstancegetGrafanaPublicReadAccessAttributeType = *bool
+type InstancegetGrafanaPublicReadAccessArgType = bool
+type InstancegetGrafanaPublicReadAccessRetType = bool
+
+func getInstancegetGrafanaPublicReadAccessAttributeTypeOk(arg InstancegetGrafanaPublicReadAccessAttributeType) (ret InstancegetGrafanaPublicReadAccessRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstancegetGrafanaPublicReadAccessAttributeType(arg *InstancegetGrafanaPublicReadAccessAttributeType, val InstancegetGrafanaPublicReadAccessRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for grafanaUseStackitSso
+*/
+
+// isBoolean
+type InstancegetGrafanaUseStackitSsoAttributeType = *bool
+type InstancegetGrafanaUseStackitSsoArgType = bool
+type InstancegetGrafanaUseStackitSsoRetType = bool
+
+func getInstancegetGrafanaUseStackitSsoAttributeTypeOk(arg InstancegetGrafanaUseStackitSsoAttributeType) (ret InstancegetGrafanaUseStackitSsoRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstancegetGrafanaUseStackitSsoAttributeType(arg *InstancegetGrafanaUseStackitSsoAttributeType, val InstancegetGrafanaUseStackitSsoRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for instance
+*/
+
+// isNotNullableString
+type InstanceGetInstanceAttributeType = *string
+
+func getInstanceGetInstanceAttributeTypeOk(arg InstanceGetInstanceAttributeType) (ret InstanceGetInstanceRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetInstanceAttributeType(arg *InstanceGetInstanceAttributeType, val InstanceGetInstanceRetType) {
+	*arg = &val
+}
+
+type InstanceGetInstanceArgType = string
+type InstanceGetInstanceRetType = string
+
+/*
+	types and functions for metricsRetentionTime1h
+*/
+
+// isInteger
+type InstanceGetMetricsRetentionTime1hAttributeType = *int64
+type InstanceGetMetricsRetentionTime1hArgType = int64
+type InstanceGetMetricsRetentionTime1hRetType = int64
+
+func getInstanceGetMetricsRetentionTime1hAttributeTypeOk(arg InstanceGetMetricsRetentionTime1hAttributeType) (ret InstanceGetMetricsRetentionTime1hRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetMetricsRetentionTime1hAttributeType(arg *InstanceGetMetricsRetentionTime1hAttributeType, val InstanceGetMetricsRetentionTime1hRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for metricsRetentionTime5m
+*/
+
+// isInteger
+type InstanceGetMetricsRetentionTime5mAttributeType = *int64
+type InstanceGetMetricsRetentionTime5mArgType = int64
+type InstanceGetMetricsRetentionTime5mRetType = int64
+
+func getInstanceGetMetricsRetentionTime5mAttributeTypeOk(arg InstanceGetMetricsRetentionTime5mAttributeType) (ret InstanceGetMetricsRetentionTime5mRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetMetricsRetentionTime5mAttributeType(arg *InstanceGetMetricsRetentionTime5mAttributeType, val InstanceGetMetricsRetentionTime5mRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for metricsRetentionTimeRaw
+*/
+
+// isInteger
+type InstanceGetMetricsRetentionTimeRawAttributeType = *int64
+type InstanceGetMetricsRetentionTimeRawArgType = int64
+type InstanceGetMetricsRetentionTimeRawRetType = int64
+
+func getInstanceGetMetricsRetentionTimeRawAttributeTypeOk(arg InstanceGetMetricsRetentionTimeRawAttributeType) (ret InstanceGetMetricsRetentionTimeRawRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetMetricsRetentionTimeRawAttributeType(arg *InstanceGetMetricsRetentionTimeRawAttributeType, val InstanceGetMetricsRetentionTimeRawRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type InstanceGetNameAttributeType = *string
+
+func getInstanceGetNameAttributeTypeOk(arg InstanceGetNameAttributeType) (ret InstanceGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetNameAttributeType(arg *InstanceGetNameAttributeType, val InstanceGetNameRetType) {
+	*arg = &val
+}
+
+type InstanceGetNameArgType = string
+type InstanceGetNameRetType = string
+
+/*
+	types and functions for plan
+*/
+
+// isModel
+type InstanceGetPlanAttributeType = *PlanModel
+type InstanceGetPlanArgType = PlanModel
+type InstanceGetPlanRetType = PlanModel
+
+func getInstanceGetPlanAttributeTypeOk(arg InstanceGetPlanAttributeType) (ret InstanceGetPlanRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetPlanAttributeType(arg *InstanceGetPlanAttributeType, val InstanceGetPlanRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for state
+*/
+
+// isEnumRef
+type InstanceGetStateAttributeType = *string
+type InstanceGetStateArgType = string
+type InstanceGetStateRetType = string
+
+func getInstanceGetStateAttributeTypeOk(arg InstanceGetStateAttributeType) (ret InstanceGetStateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetStateAttributeType(arg *InstanceGetStateAttributeType, val InstanceGetStateRetType) {
+	*arg = &val
+}
+
 // Instance struct for Instance
 type Instance struct {
 	// REQUIRED
-	Cluster *string `json:"cluster"`
+	Cluster InstanceGetClusterAttributeType `json:"cluster"`
 	// REQUIRED
-	GrafanaPublicReadAccess *bool `json:"grafanaPublicReadAccess"`
+	GrafanaPublicReadAccess InstancegetGrafanaPublicReadAccessAttributeType `json:"grafanaPublicReadAccess"`
 	// REQUIRED
-	GrafanaUseStackitSso *bool `json:"grafanaUseStackitSso"`
+	GrafanaUseStackitSso InstancegetGrafanaUseStackitSsoAttributeType `json:"grafanaUseStackitSso"`
 	// REQUIRED
-	Instance *string `json:"instance"`
+	Instance InstanceGetInstanceAttributeType `json:"instance"`
 	// REQUIRED
-	MetricsRetentionTime1h *int64 `json:"metricsRetentionTime1h"`
+	MetricsRetentionTime1h InstanceGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h"`
 	// REQUIRED
-	MetricsRetentionTime5m *int64 `json:"metricsRetentionTime5m"`
+	MetricsRetentionTime5m InstanceGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m"`
 	// REQUIRED
-	MetricsRetentionTimeRaw *int64  `json:"metricsRetentionTimeRaw"`
-	Name                    *string `json:"name,omitempty"`
+	MetricsRetentionTimeRaw InstanceGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw"`
+	Name                    InstanceGetNameAttributeType                    `json:"name,omitempty"`
 	// REQUIRED
-	Plan  *PlanModel `json:"plan"`
-	State *string    `json:"state,omitempty"`
+	Plan  InstanceGetPlanAttributeType  `json:"plan"`
+	State InstanceGetStateAttributeType `json:"state,omitempty"`
 }
 
 type _Instance Instance
@@ -45,16 +248,16 @@ type _Instance Instance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance(cluster *string, grafanaPublicReadAccess *bool, grafanaUseStackitSso *bool, instance *string, metricsRetentionTime1h *int64, metricsRetentionTime5m *int64, metricsRetentionTimeRaw *int64, plan *PlanModel) *Instance {
+func NewInstance(cluster InstanceGetClusterArgType, grafanaPublicReadAccess InstancegetGrafanaPublicReadAccessArgType, grafanaUseStackitSso InstancegetGrafanaUseStackitSsoArgType, instance InstanceGetInstanceArgType, metricsRetentionTime1h InstanceGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceGetMetricsRetentionTimeRawArgType, plan InstanceGetPlanArgType) *Instance {
 	this := Instance{}
-	this.Cluster = cluster
-	this.GrafanaPublicReadAccess = grafanaPublicReadAccess
-	this.GrafanaUseStackitSso = grafanaUseStackitSso
-	this.Instance = instance
-	this.MetricsRetentionTime1h = metricsRetentionTime1h
-	this.MetricsRetentionTime5m = metricsRetentionTime5m
-	this.MetricsRetentionTimeRaw = metricsRetentionTimeRaw
-	this.Plan = plan
+	setInstanceGetClusterAttributeType(&this.Cluster, cluster)
+	setInstancegetGrafanaPublicReadAccessAttributeType(&this.GrafanaPublicReadAccess, grafanaPublicReadAccess)
+	setInstancegetGrafanaUseStackitSsoAttributeType(&this.GrafanaUseStackitSso, grafanaUseStackitSso)
+	setInstanceGetInstanceAttributeType(&this.Instance, instance)
+	setInstanceGetMetricsRetentionTime1hAttributeType(&this.MetricsRetentionTime1h, metricsRetentionTime1h)
+	setInstanceGetMetricsRetentionTime5mAttributeType(&this.MetricsRetentionTime5m, metricsRetentionTime5m)
+	setInstanceGetMetricsRetentionTimeRawAttributeType(&this.MetricsRetentionTimeRaw, metricsRetentionTimeRaw)
+	setInstanceGetPlanAttributeType(&this.Plan, plan)
 	return &this
 }
 
@@ -67,276 +270,218 @@ func NewInstanceWithDefaults() *Instance {
 }
 
 // GetCluster returns the Cluster field value
-func (o *Instance) GetCluster() *string {
-	if o == nil || IsNil(o.Cluster) {
-		var ret *string
-		return ret
-	}
-
-	return o.Cluster
+func (o *Instance) GetCluster() (ret InstanceGetClusterRetType) {
+	ret, _ = o.GetClusterOk()
+	return ret
 }
 
 // GetClusterOk returns a tuple with the Cluster field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetClusterOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Cluster, true
+func (o *Instance) GetClusterOk() (ret InstanceGetClusterRetType, ok bool) {
+	return getInstanceGetClusterAttributeTypeOk(o.Cluster)
 }
 
 // SetCluster sets field value
-func (o *Instance) SetCluster(v *string) {
-	o.Cluster = v
+func (o *Instance) SetCluster(v InstanceGetClusterRetType) {
+	setInstanceGetClusterAttributeType(&o.Cluster, v)
 }
 
 // GetGrafanaPublicReadAccess returns the GrafanaPublicReadAccess field value
-func (o *Instance) GetGrafanaPublicReadAccess() *bool {
-	if o == nil || IsNil(o.GrafanaPublicReadAccess) {
-		var ret *bool
-		return ret
-	}
-
-	return o.GrafanaPublicReadAccess
+func (o *Instance) GetGrafanaPublicReadAccess() (ret InstancegetGrafanaPublicReadAccessRetType) {
+	ret, _ = o.GetGrafanaPublicReadAccessOk()
+	return ret
 }
 
 // GetGrafanaPublicReadAccessOk returns a tuple with the GrafanaPublicReadAccess field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetGrafanaPublicReadAccessOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaPublicReadAccess, true
+func (o *Instance) GetGrafanaPublicReadAccessOk() (ret InstancegetGrafanaPublicReadAccessRetType, ok bool) {
+	return getInstancegetGrafanaPublicReadAccessAttributeTypeOk(o.GrafanaPublicReadAccess)
 }
 
 // SetGrafanaPublicReadAccess sets field value
-func (o *Instance) SetGrafanaPublicReadAccess(v *bool) {
-	o.GrafanaPublicReadAccess = v
+func (o *Instance) SetGrafanaPublicReadAccess(v InstancegetGrafanaPublicReadAccessRetType) {
+	setInstancegetGrafanaPublicReadAccessAttributeType(&o.GrafanaPublicReadAccess, v)
 }
 
 // GetGrafanaUseStackitSso returns the GrafanaUseStackitSso field value
-func (o *Instance) GetGrafanaUseStackitSso() *bool {
-	if o == nil || IsNil(o.GrafanaUseStackitSso) {
-		var ret *bool
-		return ret
-	}
-
-	return o.GrafanaUseStackitSso
+func (o *Instance) GetGrafanaUseStackitSso() (ret InstancegetGrafanaUseStackitSsoRetType) {
+	ret, _ = o.GetGrafanaUseStackitSsoOk()
+	return ret
 }
 
 // GetGrafanaUseStackitSsoOk returns a tuple with the GrafanaUseStackitSso field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetGrafanaUseStackitSsoOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GrafanaUseStackitSso, true
+func (o *Instance) GetGrafanaUseStackitSsoOk() (ret InstancegetGrafanaUseStackitSsoRetType, ok bool) {
+	return getInstancegetGrafanaUseStackitSsoAttributeTypeOk(o.GrafanaUseStackitSso)
 }
 
 // SetGrafanaUseStackitSso sets field value
-func (o *Instance) SetGrafanaUseStackitSso(v *bool) {
-	o.GrafanaUseStackitSso = v
+func (o *Instance) SetGrafanaUseStackitSso(v InstancegetGrafanaUseStackitSsoRetType) {
+	setInstancegetGrafanaUseStackitSsoAttributeType(&o.GrafanaUseStackitSso, v)
 }
 
 // GetInstance returns the Instance field value
-func (o *Instance) GetInstance() *string {
-	if o == nil || IsNil(o.Instance) {
-		var ret *string
-		return ret
-	}
-
-	return o.Instance
+func (o *Instance) GetInstance() (ret InstanceGetInstanceRetType) {
+	ret, _ = o.GetInstanceOk()
+	return ret
 }
 
 // GetInstanceOk returns a tuple with the Instance field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetInstanceOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Instance, true
+func (o *Instance) GetInstanceOk() (ret InstanceGetInstanceRetType, ok bool) {
+	return getInstanceGetInstanceAttributeTypeOk(o.Instance)
 }
 
 // SetInstance sets field value
-func (o *Instance) SetInstance(v *string) {
-	o.Instance = v
+func (o *Instance) SetInstance(v InstanceGetInstanceRetType) {
+	setInstanceGetInstanceAttributeType(&o.Instance, v)
 }
 
 // GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
-func (o *Instance) GetMetricsRetentionTime1h() *int64 {
-	if o == nil || IsNil(o.MetricsRetentionTime1h) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MetricsRetentionTime1h
+func (o *Instance) GetMetricsRetentionTime1h() (ret InstanceGetMetricsRetentionTime1hRetType) {
+	ret, _ = o.GetMetricsRetentionTime1hOk()
+	return ret
 }
 
 // GetMetricsRetentionTime1hOk returns a tuple with the MetricsRetentionTime1h field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetMetricsRetentionTime1hOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTime1h, true
+func (o *Instance) GetMetricsRetentionTime1hOk() (ret InstanceGetMetricsRetentionTime1hRetType, ok bool) {
+	return getInstanceGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h)
 }
 
 // SetMetricsRetentionTime1h sets field value
-func (o *Instance) SetMetricsRetentionTime1h(v *int64) {
-	o.MetricsRetentionTime1h = v
+func (o *Instance) SetMetricsRetentionTime1h(v InstanceGetMetricsRetentionTime1hRetType) {
+	setInstanceGetMetricsRetentionTime1hAttributeType(&o.MetricsRetentionTime1h, v)
 }
 
 // GetMetricsRetentionTime5m returns the MetricsRetentionTime5m field value
-func (o *Instance) GetMetricsRetentionTime5m() *int64 {
-	if o == nil || IsNil(o.MetricsRetentionTime5m) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MetricsRetentionTime5m
+func (o *Instance) GetMetricsRetentionTime5m() (ret InstanceGetMetricsRetentionTime5mRetType) {
+	ret, _ = o.GetMetricsRetentionTime5mOk()
+	return ret
 }
 
 // GetMetricsRetentionTime5mOk returns a tuple with the MetricsRetentionTime5m field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetMetricsRetentionTime5mOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTime5m, true
+func (o *Instance) GetMetricsRetentionTime5mOk() (ret InstanceGetMetricsRetentionTime5mRetType, ok bool) {
+	return getInstanceGetMetricsRetentionTime5mAttributeTypeOk(o.MetricsRetentionTime5m)
 }
 
 // SetMetricsRetentionTime5m sets field value
-func (o *Instance) SetMetricsRetentionTime5m(v *int64) {
-	o.MetricsRetentionTime5m = v
+func (o *Instance) SetMetricsRetentionTime5m(v InstanceGetMetricsRetentionTime5mRetType) {
+	setInstanceGetMetricsRetentionTime5mAttributeType(&o.MetricsRetentionTime5m, v)
 }
 
 // GetMetricsRetentionTimeRaw returns the MetricsRetentionTimeRaw field value
-func (o *Instance) GetMetricsRetentionTimeRaw() *int64 {
-	if o == nil || IsNil(o.MetricsRetentionTimeRaw) {
-		var ret *int64
-		return ret
-	}
-
-	return o.MetricsRetentionTimeRaw
+func (o *Instance) GetMetricsRetentionTimeRaw() (ret InstanceGetMetricsRetentionTimeRawRetType) {
+	ret, _ = o.GetMetricsRetentionTimeRawOk()
+	return ret
 }
 
 // GetMetricsRetentionTimeRawOk returns a tuple with the MetricsRetentionTimeRaw field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetMetricsRetentionTimeRawOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MetricsRetentionTimeRaw, true
+func (o *Instance) GetMetricsRetentionTimeRawOk() (ret InstanceGetMetricsRetentionTimeRawRetType, ok bool) {
+	return getInstanceGetMetricsRetentionTimeRawAttributeTypeOk(o.MetricsRetentionTimeRaw)
 }
 
 // SetMetricsRetentionTimeRaw sets field value
-func (o *Instance) SetMetricsRetentionTimeRaw(v *int64) {
-	o.MetricsRetentionTimeRaw = v
+func (o *Instance) SetMetricsRetentionTimeRaw(v InstanceGetMetricsRetentionTimeRawRetType) {
+	setInstanceGetMetricsRetentionTimeRawAttributeType(&o.MetricsRetentionTimeRaw, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *Instance) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *Instance) GetName() (res InstanceGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *Instance) GetNameOk() (ret InstanceGetNameRetType, ok bool) {
+	return getInstanceGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Instance) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Instance) SetName(v *string) {
-	o.Name = v
+func (o *Instance) SetName(v InstanceGetNameRetType) {
+	setInstanceGetNameAttributeType(&o.Name, v)
 }
 
 // GetPlan returns the Plan field value
-func (o *Instance) GetPlan() *PlanModel {
-	if o == nil || IsNil(o.Plan) {
-		var ret *PlanModel
-		return ret
-	}
-
-	return o.Plan
+func (o *Instance) GetPlan() (ret InstanceGetPlanRetType) {
+	ret, _ = o.GetPlanOk()
+	return ret
 }
 
 // GetPlanOk returns a tuple with the Plan field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetPlanOk() (*PlanModel, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Plan, true
+func (o *Instance) GetPlanOk() (ret InstanceGetPlanRetType, ok bool) {
+	return getInstanceGetPlanAttributeTypeOk(o.Plan)
 }
 
 // SetPlan sets field value
-func (o *Instance) SetPlan(v *PlanModel) {
-	o.Plan = v
+func (o *Instance) SetPlan(v InstanceGetPlanRetType) {
+	setInstanceGetPlanAttributeType(&o.Plan, v)
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *Instance) GetState() *string {
-	if o == nil || IsNil(o.State) {
-		var ret *string
-		return ret
-	}
-	return o.State
+func (o *Instance) GetState() (res InstanceGetStateRetType) {
+	res, _ = o.GetStateOk()
+	return
 }
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStateOk() (*string, bool) {
-	if o == nil || IsNil(o.State) {
-		return nil, false
-	}
-	return o.State, true
+func (o *Instance) GetStateOk() (ret InstanceGetStateRetType, ok bool) {
+	return getInstanceGetStateAttributeTypeOk(o.State)
 }
 
 // HasState returns a boolean if a field has been set.
 func (o *Instance) HasState() bool {
-	if o != nil && !IsNil(o.State) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetStateOk()
+	return ok
 }
 
 // SetState gets a reference to the given string and assigns it to the State field.
-func (o *Instance) SetState(v *string) {
-	o.State = v
+func (o *Instance) SetState(v InstanceGetStateRetType) {
+	setInstanceGetStateAttributeType(&o.State, v)
 }
 
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cluster"] = o.Cluster
-	toSerialize["grafanaPublicReadAccess"] = o.GrafanaPublicReadAccess
-	toSerialize["grafanaUseStackitSso"] = o.GrafanaUseStackitSso
-	toSerialize["instance"] = o.Instance
-	toSerialize["metricsRetentionTime1h"] = o.MetricsRetentionTime1h
-	toSerialize["metricsRetentionTime5m"] = o.MetricsRetentionTime5m
-	toSerialize["metricsRetentionTimeRaw"] = o.MetricsRetentionTimeRaw
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getInstanceGetClusterAttributeTypeOk(o.Cluster); ok {
+		toSerialize["Cluster"] = val
 	}
-	toSerialize["plan"] = o.Plan
-	if !IsNil(o.State) {
-		toSerialize["state"] = o.State
+	if val, ok := getInstancegetGrafanaPublicReadAccessAttributeTypeOk(o.GrafanaPublicReadAccess); ok {
+		toSerialize["GrafanaPublicReadAccess"] = val
+	}
+	if val, ok := getInstancegetGrafanaUseStackitSsoAttributeTypeOk(o.GrafanaUseStackitSso); ok {
+		toSerialize["GrafanaUseStackitSso"] = val
+	}
+	if val, ok := getInstanceGetInstanceAttributeTypeOk(o.Instance); ok {
+		toSerialize["Instance"] = val
+	}
+	if val, ok := getInstanceGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h); ok {
+		toSerialize["MetricsRetentionTime1h"] = val
+	}
+	if val, ok := getInstanceGetMetricsRetentionTime5mAttributeTypeOk(o.MetricsRetentionTime5m); ok {
+		toSerialize["MetricsRetentionTime5m"] = val
+	}
+	if val, ok := getInstanceGetMetricsRetentionTimeRawAttributeTypeOk(o.MetricsRetentionTimeRaw); ok {
+		toSerialize["MetricsRetentionTimeRaw"] = val
+	}
+	if val, ok := getInstanceGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getInstanceGetPlanAttributeTypeOk(o.Plan); ok {
+		toSerialize["Plan"] = val
+	}
+	if val, ok := getInstanceGetStateAttributeTypeOk(o.State); ok {
+		toSerialize["State"] = val
 	}
 	return toSerialize, nil
 }

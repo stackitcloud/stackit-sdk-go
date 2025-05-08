@@ -17,14 +17,76 @@ import (
 // checks if the UserPermission type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UserPermission{}
 
+/*
+	types and functions for permissions
+*/
+
+// isArray
+type UserPermissionGetPermissionsAttributeType = *[]ExistingPermission
+type UserPermissionGetPermissionsArgType = []ExistingPermission
+type UserPermissionGetPermissionsRetType = []ExistingPermission
+
+func getUserPermissionGetPermissionsAttributeTypeOk(arg UserPermissionGetPermissionsAttributeType) (ret UserPermissionGetPermissionsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserPermissionGetPermissionsAttributeType(arg *UserPermissionGetPermissionsAttributeType, val UserPermissionGetPermissionsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for resourceId
+*/
+
+// isNotNullableString
+type UserPermissionGetResourceIdAttributeType = *string
+
+func getUserPermissionGetResourceIdAttributeTypeOk(arg UserPermissionGetResourceIdAttributeType) (ret UserPermissionGetResourceIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserPermissionGetResourceIdAttributeType(arg *UserPermissionGetResourceIdAttributeType, val UserPermissionGetResourceIdRetType) {
+	*arg = &val
+}
+
+type UserPermissionGetResourceIdArgType = string
+type UserPermissionGetResourceIdRetType = string
+
+/*
+	types and functions for resourceType
+*/
+
+// isNotNullableString
+type UserPermissionGetResourceTypeAttributeType = *string
+
+func getUserPermissionGetResourceTypeAttributeTypeOk(arg UserPermissionGetResourceTypeAttributeType) (ret UserPermissionGetResourceTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUserPermissionGetResourceTypeAttributeType(arg *UserPermissionGetResourceTypeAttributeType, val UserPermissionGetResourceTypeRetType) {
+	*arg = &val
+}
+
+type UserPermissionGetResourceTypeArgType = string
+type UserPermissionGetResourceTypeRetType = string
+
 // UserPermission struct for UserPermission
 type UserPermission struct {
 	// REQUIRED
-	Permissions *[]ExistingPermission `json:"permissions"`
+	Permissions UserPermissionGetPermissionsAttributeType `json:"permissions"`
 	// REQUIRED
-	ResourceId *string `json:"resourceId"`
+	ResourceId UserPermissionGetResourceIdAttributeType `json:"resourceId"`
 	// REQUIRED
-	ResourceType *string `json:"resourceType"`
+	ResourceType UserPermissionGetResourceTypeAttributeType `json:"resourceType"`
 }
 
 type _UserPermission UserPermission
@@ -33,11 +95,11 @@ type _UserPermission UserPermission
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserPermission(permissions *[]ExistingPermission, resourceId *string, resourceType *string) *UserPermission {
+func NewUserPermission(permissions UserPermissionGetPermissionsArgType, resourceId UserPermissionGetResourceIdArgType, resourceType UserPermissionGetResourceTypeArgType) *UserPermission {
 	this := UserPermission{}
-	this.Permissions = permissions
-	this.ResourceId = resourceId
-	this.ResourceType = resourceType
+	setUserPermissionGetPermissionsAttributeType(&this.Permissions, permissions)
+	setUserPermissionGetResourceIdAttributeType(&this.ResourceId, resourceId)
+	setUserPermissionGetResourceTypeAttributeType(&this.ResourceType, resourceType)
 	return &this
 }
 
@@ -50,82 +112,67 @@ func NewUserPermissionWithDefaults() *UserPermission {
 }
 
 // GetPermissions returns the Permissions field value
-func (o *UserPermission) GetPermissions() *[]ExistingPermission {
-	if o == nil || IsNil(o.Permissions) {
-		var ret *[]ExistingPermission
-		return ret
-	}
-
-	return o.Permissions
+func (o *UserPermission) GetPermissions() (ret UserPermissionGetPermissionsRetType) {
+	ret, _ = o.GetPermissionsOk()
+	return ret
 }
 
 // GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
-func (o *UserPermission) GetPermissionsOk() (*[]ExistingPermission, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Permissions, true
+func (o *UserPermission) GetPermissionsOk() (ret UserPermissionGetPermissionsRetType, ok bool) {
+	return getUserPermissionGetPermissionsAttributeTypeOk(o.Permissions)
 }
 
 // SetPermissions sets field value
-func (o *UserPermission) SetPermissions(v *[]ExistingPermission) {
-	o.Permissions = v
+func (o *UserPermission) SetPermissions(v UserPermissionGetPermissionsRetType) {
+	setUserPermissionGetPermissionsAttributeType(&o.Permissions, v)
 }
 
 // GetResourceId returns the ResourceId field value
-func (o *UserPermission) GetResourceId() *string {
-	if o == nil || IsNil(o.ResourceId) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceId
+func (o *UserPermission) GetResourceId() (ret UserPermissionGetResourceIdRetType) {
+	ret, _ = o.GetResourceIdOk()
+	return ret
 }
 
 // GetResourceIdOk returns a tuple with the ResourceId field value
 // and a boolean to check if the value has been set.
-func (o *UserPermission) GetResourceIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceId, true
+func (o *UserPermission) GetResourceIdOk() (ret UserPermissionGetResourceIdRetType, ok bool) {
+	return getUserPermissionGetResourceIdAttributeTypeOk(o.ResourceId)
 }
 
 // SetResourceId sets field value
-func (o *UserPermission) SetResourceId(v *string) {
-	o.ResourceId = v
+func (o *UserPermission) SetResourceId(v UserPermissionGetResourceIdRetType) {
+	setUserPermissionGetResourceIdAttributeType(&o.ResourceId, v)
 }
 
 // GetResourceType returns the ResourceType field value
-func (o *UserPermission) GetResourceType() *string {
-	if o == nil || IsNil(o.ResourceType) {
-		var ret *string
-		return ret
-	}
-
-	return o.ResourceType
+func (o *UserPermission) GetResourceType() (ret UserPermissionGetResourceTypeRetType) {
+	ret, _ = o.GetResourceTypeOk()
+	return ret
 }
 
 // GetResourceTypeOk returns a tuple with the ResourceType field value
 // and a boolean to check if the value has been set.
-func (o *UserPermission) GetResourceTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceType, true
+func (o *UserPermission) GetResourceTypeOk() (ret UserPermissionGetResourceTypeRetType, ok bool) {
+	return getUserPermissionGetResourceTypeAttributeTypeOk(o.ResourceType)
 }
 
 // SetResourceType sets field value
-func (o *UserPermission) SetResourceType(v *string) {
-	o.ResourceType = v
+func (o *UserPermission) SetResourceType(v UserPermissionGetResourceTypeRetType) {
+	setUserPermissionGetResourceTypeAttributeType(&o.ResourceType, v)
 }
 
 func (o UserPermission) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["permissions"] = o.Permissions
-	toSerialize["resourceId"] = o.ResourceId
-	toSerialize["resourceType"] = o.ResourceType
+	if val, ok := getUserPermissionGetPermissionsAttributeTypeOk(o.Permissions); ok {
+		toSerialize["Permissions"] = val
+	}
+	if val, ok := getUserPermissionGetResourceIdAttributeTypeOk(o.ResourceId); ok {
+		toSerialize["ResourceId"] = val
+	}
+	if val, ok := getUserPermissionGetResourceTypeAttributeTypeOk(o.ResourceType); ok {
+		toSerialize["ResourceType"] = val
+	}
 	return toSerialize, nil
 }
 

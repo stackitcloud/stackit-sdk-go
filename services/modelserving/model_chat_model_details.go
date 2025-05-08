@@ -17,37 +17,303 @@ import (
 // checks if the ChatModelDetails type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ChatModelDetails{}
 
+/*
+	types and functions for bits
+*/
+
+// isEnumRef
+type ChatModelDetailsGetBitsAttributeType = *int64
+type ChatModelDetailsGetBitsArgType = int64
+type ChatModelDetailsGetBitsRetType = int64
+
+func getChatModelDetailsGetBitsAttributeTypeOk(arg ChatModelDetailsGetBitsAttributeType) (ret ChatModelDetailsGetBitsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetBitsAttributeType(arg *ChatModelDetailsGetBitsAttributeType, val ChatModelDetailsGetBitsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for category
+*/
+
+// isEnumRef
+type ChatModelDetailsGetCategoryAttributeType = *string
+type ChatModelDetailsGetCategoryArgType = string
+type ChatModelDetailsGetCategoryRetType = string
+
+func getChatModelDetailsGetCategoryAttributeTypeOk(arg ChatModelDetailsGetCategoryAttributeType) (ret ChatModelDetailsGetCategoryRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetCategoryAttributeType(arg *ChatModelDetailsGetCategoryAttributeType, val ChatModelDetailsGetCategoryRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for contextLength
+*/
+
+// isLong
+type ChatModelDetailsGetContextLengthAttributeType = *int64
+type ChatModelDetailsGetContextLengthArgType = int64
+type ChatModelDetailsGetContextLengthRetType = int64
+
+func getChatModelDetailsGetContextLengthAttributeTypeOk(arg ChatModelDetailsGetContextLengthAttributeType) (ret ChatModelDetailsGetContextLengthRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetContextLengthAttributeType(arg *ChatModelDetailsGetContextLengthAttributeType, val ChatModelDetailsGetContextLengthRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type ChatModelDetailsGetDescriptionAttributeType = *string
+
+func getChatModelDetailsGetDescriptionAttributeTypeOk(arg ChatModelDetailsGetDescriptionAttributeType) (ret ChatModelDetailsGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetDescriptionAttributeType(arg *ChatModelDetailsGetDescriptionAttributeType, val ChatModelDetailsGetDescriptionRetType) {
+	*arg = &val
+}
+
+type ChatModelDetailsGetDescriptionArgType = string
+type ChatModelDetailsGetDescriptionRetType = string
+
+/*
+	types and functions for displayedName
+*/
+
+// isNotNullableString
+type ChatModelDetailsGetDisplayedNameAttributeType = *string
+
+func getChatModelDetailsGetDisplayedNameAttributeTypeOk(arg ChatModelDetailsGetDisplayedNameAttributeType) (ret ChatModelDetailsGetDisplayedNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetDisplayedNameAttributeType(arg *ChatModelDetailsGetDisplayedNameAttributeType, val ChatModelDetailsGetDisplayedNameRetType) {
+	*arg = &val
+}
+
+type ChatModelDetailsGetDisplayedNameArgType = string
+type ChatModelDetailsGetDisplayedNameRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type ChatModelDetailsGetIdAttributeType = *string
+
+func getChatModelDetailsGetIdAttributeTypeOk(arg ChatModelDetailsGetIdAttributeType) (ret ChatModelDetailsGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetIdAttributeType(arg *ChatModelDetailsGetIdAttributeType, val ChatModelDetailsGetIdRetType) {
+	*arg = &val
+}
+
+type ChatModelDetailsGetIdArgType = string
+type ChatModelDetailsGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type ChatModelDetailsGetNameAttributeType = *string
+
+func getChatModelDetailsGetNameAttributeTypeOk(arg ChatModelDetailsGetNameAttributeType) (ret ChatModelDetailsGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetNameAttributeType(arg *ChatModelDetailsGetNameAttributeType, val ChatModelDetailsGetNameRetType) {
+	*arg = &val
+}
+
+type ChatModelDetailsGetNameArgType = string
+type ChatModelDetailsGetNameRetType = string
+
+/*
+	types and functions for quantizationMethod
+*/
+
+// isEnumRef
+type ChatModelDetailsGetQuantizationMethodAttributeType = *string
+type ChatModelDetailsGetQuantizationMethodArgType = string
+type ChatModelDetailsGetQuantizationMethodRetType = string
+
+func getChatModelDetailsGetQuantizationMethodAttributeTypeOk(arg ChatModelDetailsGetQuantizationMethodAttributeType) (ret ChatModelDetailsGetQuantizationMethodRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetQuantizationMethodAttributeType(arg *ChatModelDetailsGetQuantizationMethodAttributeType, val ChatModelDetailsGetQuantizationMethodRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for region
+*/
+
+// isNotNullableString
+type ChatModelDetailsGetRegionAttributeType = *string
+
+func getChatModelDetailsGetRegionAttributeTypeOk(arg ChatModelDetailsGetRegionAttributeType) (ret ChatModelDetailsGetRegionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetRegionAttributeType(arg *ChatModelDetailsGetRegionAttributeType, val ChatModelDetailsGetRegionRetType) {
+	*arg = &val
+}
+
+type ChatModelDetailsGetRegionArgType = string
+type ChatModelDetailsGetRegionRetType = string
+
+/*
+	types and functions for size
+*/
+
+// isLong
+type ChatModelDetailsGetSizeAttributeType = *int64
+type ChatModelDetailsGetSizeArgType = int64
+type ChatModelDetailsGetSizeRetType = int64
+
+func getChatModelDetailsGetSizeAttributeTypeOk(arg ChatModelDetailsGetSizeAttributeType) (ret ChatModelDetailsGetSizeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetSizeAttributeType(arg *ChatModelDetailsGetSizeAttributeType, val ChatModelDetailsGetSizeRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for skus
+*/
+
+// isArray
+type ChatModelDetailsGetSkusAttributeType = *[]SKU
+type ChatModelDetailsGetSkusArgType = []SKU
+type ChatModelDetailsGetSkusRetType = []SKU
+
+func getChatModelDetailsGetSkusAttributeTypeOk(arg ChatModelDetailsGetSkusAttributeType) (ret ChatModelDetailsGetSkusRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetSkusAttributeType(arg *ChatModelDetailsGetSkusAttributeType, val ChatModelDetailsGetSkusRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tags
+*/
+
+// isArray
+type ChatModelDetailsGetTagsAttributeType = *[]string
+type ChatModelDetailsGetTagsArgType = []string
+type ChatModelDetailsGetTagsRetType = []string
+
+func getChatModelDetailsGetTagsAttributeTypeOk(arg ChatModelDetailsGetTagsAttributeType) (ret ChatModelDetailsGetTagsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetTagsAttributeType(arg *ChatModelDetailsGetTagsAttributeType, val ChatModelDetailsGetTagsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for url
+*/
+
+// isNotNullableString
+type ChatModelDetailsGetUrlAttributeType = *string
+
+func getChatModelDetailsGetUrlAttributeTypeOk(arg ChatModelDetailsGetUrlAttributeType) (ret ChatModelDetailsGetUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setChatModelDetailsGetUrlAttributeType(arg *ChatModelDetailsGetUrlAttributeType, val ChatModelDetailsGetUrlRetType) {
+	*arg = &val
+}
+
+type ChatModelDetailsGetUrlArgType = string
+type ChatModelDetailsGetUrlRetType = string
+
 // ChatModelDetails struct for ChatModelDetails
 type ChatModelDetails struct {
 	// Can be cast to int32 without loss of precision.
-	Bits *int64 `json:"bits,omitempty"`
+	Bits ChatModelDetailsGetBitsAttributeType `json:"bits,omitempty"`
 	// REQUIRED
-	Category *string `json:"category"`
+	Category ChatModelDetailsGetCategoryAttributeType `json:"category"`
 	// REQUIRED
-	ContextLength *int64 `json:"contextLength"`
+	ContextLength ChatModelDetailsGetContextLengthAttributeType `json:"contextLength"`
 	// REQUIRED
-	Description *string `json:"description"`
+	Description ChatModelDetailsGetDescriptionAttributeType `json:"description"`
 	// REQUIRED
-	DisplayedName *string `json:"displayedName"`
+	DisplayedName ChatModelDetailsGetDisplayedNameAttributeType `json:"displayedName"`
 	// generated uuid to identify a model
 	// REQUIRED
-	Id *string `json:"id"`
+	Id ChatModelDetailsGetIdAttributeType `json:"id"`
 	// huggingface name
 	// REQUIRED
-	Name               *string `json:"name"`
-	QuantizationMethod *string `json:"quantizationMethod,omitempty"`
+	Name               ChatModelDetailsGetNameAttributeType               `json:"name"`
+	QuantizationMethod ChatModelDetailsGetQuantizationMethodAttributeType `json:"quantizationMethod,omitempty"`
 	// REQUIRED
-	Region *string `json:"region"`
+	Region ChatModelDetailsGetRegionAttributeType `json:"region"`
 	// model size in bytes
 	// REQUIRED
-	Size *int64 `json:"size"`
+	Size ChatModelDetailsGetSizeAttributeType `json:"size"`
 	// REQUIRED
-	Skus *[]SKU `json:"skus"`
+	Skus ChatModelDetailsGetSkusAttributeType `json:"skus"`
 	// REQUIRED
-	Tags *[]string `json:"tags"`
+	Tags ChatModelDetailsGetTagsAttributeType `json:"tags"`
 	// url of the model
 	// REQUIRED
-	Url *string `json:"url"`
+	Url ChatModelDetailsGetUrlAttributeType `json:"url"`
 }
 
 type _ChatModelDetails ChatModelDetails
@@ -56,19 +322,19 @@ type _ChatModelDetails ChatModelDetails
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChatModelDetails(category *string, contextLength *int64, description *string, displayedName *string, id *string, name *string, region *string, size *int64, skus *[]SKU, tags *[]string, url *string) *ChatModelDetails {
+func NewChatModelDetails(category ChatModelDetailsGetCategoryArgType, contextLength ChatModelDetailsGetContextLengthArgType, description ChatModelDetailsGetDescriptionArgType, displayedName ChatModelDetailsGetDisplayedNameArgType, id ChatModelDetailsGetIdArgType, name ChatModelDetailsGetNameArgType, region ChatModelDetailsGetRegionArgType, size ChatModelDetailsGetSizeArgType, skus ChatModelDetailsGetSkusArgType, tags ChatModelDetailsGetTagsArgType, url ChatModelDetailsGetUrlArgType) *ChatModelDetails {
 	this := ChatModelDetails{}
-	this.Category = category
-	this.ContextLength = contextLength
-	this.Description = description
-	this.DisplayedName = displayedName
-	this.Id = id
-	this.Name = name
-	this.Region = region
-	this.Size = size
-	this.Skus = skus
-	this.Tags = tags
-	this.Url = url
+	setChatModelDetailsGetCategoryAttributeType(&this.Category, category)
+	setChatModelDetailsGetContextLengthAttributeType(&this.ContextLength, contextLength)
+	setChatModelDetailsGetDescriptionAttributeType(&this.Description, description)
+	setChatModelDetailsGetDisplayedNameAttributeType(&this.DisplayedName, displayedName)
+	setChatModelDetailsGetIdAttributeType(&this.Id, id)
+	setChatModelDetailsGetNameAttributeType(&this.Name, name)
+	setChatModelDetailsGetRegionAttributeType(&this.Region, region)
+	setChatModelDetailsGetSizeAttributeType(&this.Size, size)
+	setChatModelDetailsGetSkusAttributeType(&this.Skus, skus)
+	setChatModelDetailsGetTagsAttributeType(&this.Tags, tags)
+	setChatModelDetailsGetUrlAttributeType(&this.Url, url)
 	return &this
 }
 
@@ -81,352 +347,279 @@ func NewChatModelDetailsWithDefaults() *ChatModelDetails {
 }
 
 // GetBits returns the Bits field value if set, zero value otherwise.
-func (o *ChatModelDetails) GetBits() *int64 {
-	if o == nil || IsNil(o.Bits) {
-		var ret *int64
-		return ret
-	}
-	return o.Bits
+func (o *ChatModelDetails) GetBits() (res ChatModelDetailsGetBitsRetType) {
+	res, _ = o.GetBitsOk()
+	return
 }
 
 // GetBitsOk returns a tuple with the Bits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetBitsOk() (*int64, bool) {
-	if o == nil || IsNil(o.Bits) {
-		return nil, false
-	}
-	return o.Bits, true
+func (o *ChatModelDetails) GetBitsOk() (ret ChatModelDetailsGetBitsRetType, ok bool) {
+	return getChatModelDetailsGetBitsAttributeTypeOk(o.Bits)
 }
 
 // HasBits returns a boolean if a field has been set.
 func (o *ChatModelDetails) HasBits() bool {
-	if o != nil && !IsNil(o.Bits) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetBitsOk()
+	return ok
 }
 
 // SetBits gets a reference to the given int64 and assigns it to the Bits field.
-func (o *ChatModelDetails) SetBits(v *int64) {
-	o.Bits = v
+func (o *ChatModelDetails) SetBits(v ChatModelDetailsGetBitsRetType) {
+	setChatModelDetailsGetBitsAttributeType(&o.Bits, v)
 }
 
 // GetCategory returns the Category field value
-func (o *ChatModelDetails) GetCategory() *string {
-	if o == nil || IsNil(o.Category) {
-		var ret *string
-		return ret
-	}
-
-	return o.Category
+func (o *ChatModelDetails) GetCategory() (ret ChatModelDetailsGetCategoryRetType) {
+	ret, _ = o.GetCategoryOk()
+	return ret
 }
 
 // GetCategoryOk returns a tuple with the Category field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetCategoryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Category, true
+func (o *ChatModelDetails) GetCategoryOk() (ret ChatModelDetailsGetCategoryRetType, ok bool) {
+	return getChatModelDetailsGetCategoryAttributeTypeOk(o.Category)
 }
 
 // SetCategory sets field value
-func (o *ChatModelDetails) SetCategory(v *string) {
-	o.Category = v
+func (o *ChatModelDetails) SetCategory(v ChatModelDetailsGetCategoryRetType) {
+	setChatModelDetailsGetCategoryAttributeType(&o.Category, v)
 }
 
 // GetContextLength returns the ContextLength field value
-func (o *ChatModelDetails) GetContextLength() *int64 {
-	if o == nil || IsNil(o.ContextLength) {
-		var ret *int64
-		return ret
-	}
-
-	return o.ContextLength
+func (o *ChatModelDetails) GetContextLength() (ret ChatModelDetailsGetContextLengthRetType) {
+	ret, _ = o.GetContextLengthOk()
+	return ret
 }
 
 // GetContextLengthOk returns a tuple with the ContextLength field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetContextLengthOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContextLength, true
+func (o *ChatModelDetails) GetContextLengthOk() (ret ChatModelDetailsGetContextLengthRetType, ok bool) {
+	return getChatModelDetailsGetContextLengthAttributeTypeOk(o.ContextLength)
 }
 
 // SetContextLength sets field value
-func (o *ChatModelDetails) SetContextLength(v *int64) {
-	o.ContextLength = v
+func (o *ChatModelDetails) SetContextLength(v ChatModelDetailsGetContextLengthRetType) {
+	setChatModelDetailsGetContextLengthAttributeType(&o.ContextLength, v)
 }
 
 // GetDescription returns the Description field value
-func (o *ChatModelDetails) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-
-	return o.Description
+func (o *ChatModelDetails) GetDescription() (ret ChatModelDetailsGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description, true
+func (o *ChatModelDetails) GetDescriptionOk() (ret ChatModelDetailsGetDescriptionRetType, ok bool) {
+	return getChatModelDetailsGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
-func (o *ChatModelDetails) SetDescription(v *string) {
-	o.Description = v
+func (o *ChatModelDetails) SetDescription(v ChatModelDetailsGetDescriptionRetType) {
+	setChatModelDetailsGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDisplayedName returns the DisplayedName field value
-func (o *ChatModelDetails) GetDisplayedName() *string {
-	if o == nil || IsNil(o.DisplayedName) {
-		var ret *string
-		return ret
-	}
-
-	return o.DisplayedName
+func (o *ChatModelDetails) GetDisplayedName() (ret ChatModelDetailsGetDisplayedNameRetType) {
+	ret, _ = o.GetDisplayedNameOk()
+	return ret
 }
 
 // GetDisplayedNameOk returns a tuple with the DisplayedName field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetDisplayedNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DisplayedName, true
+func (o *ChatModelDetails) GetDisplayedNameOk() (ret ChatModelDetailsGetDisplayedNameRetType, ok bool) {
+	return getChatModelDetailsGetDisplayedNameAttributeTypeOk(o.DisplayedName)
 }
 
 // SetDisplayedName sets field value
-func (o *ChatModelDetails) SetDisplayedName(v *string) {
-	o.DisplayedName = v
+func (o *ChatModelDetails) SetDisplayedName(v ChatModelDetailsGetDisplayedNameRetType) {
+	setChatModelDetailsGetDisplayedNameAttributeType(&o.DisplayedName, v)
 }
 
 // GetId returns the Id field value
-func (o *ChatModelDetails) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-
-	return o.Id
+func (o *ChatModelDetails) GetId() (ret ChatModelDetailsGetIdRetType) {
+	ret, _ = o.GetIdOk()
+	return ret
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Id, true
+func (o *ChatModelDetails) GetIdOk() (ret ChatModelDetailsGetIdRetType, ok bool) {
+	return getChatModelDetailsGetIdAttributeTypeOk(o.Id)
 }
 
 // SetId sets field value
-func (o *ChatModelDetails) SetId(v *string) {
-	o.Id = v
+func (o *ChatModelDetails) SetId(v ChatModelDetailsGetIdRetType) {
+	setChatModelDetailsGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value
-func (o *ChatModelDetails) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *ChatModelDetails) GetName() (ret ChatModelDetailsGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *ChatModelDetails) GetNameOk() (ret ChatModelDetailsGetNameRetType, ok bool) {
+	return getChatModelDetailsGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *ChatModelDetails) SetName(v *string) {
-	o.Name = v
+func (o *ChatModelDetails) SetName(v ChatModelDetailsGetNameRetType) {
+	setChatModelDetailsGetNameAttributeType(&o.Name, v)
 }
 
 // GetQuantizationMethod returns the QuantizationMethod field value if set, zero value otherwise.
-func (o *ChatModelDetails) GetQuantizationMethod() *string {
-	if o == nil || IsNil(o.QuantizationMethod) {
-		var ret *string
-		return ret
-	}
-	return o.QuantizationMethod
+func (o *ChatModelDetails) GetQuantizationMethod() (res ChatModelDetailsGetQuantizationMethodRetType) {
+	res, _ = o.GetQuantizationMethodOk()
+	return
 }
 
 // GetQuantizationMethodOk returns a tuple with the QuantizationMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetQuantizationMethodOk() (*string, bool) {
-	if o == nil || IsNil(o.QuantizationMethod) {
-		return nil, false
-	}
-	return o.QuantizationMethod, true
+func (o *ChatModelDetails) GetQuantizationMethodOk() (ret ChatModelDetailsGetQuantizationMethodRetType, ok bool) {
+	return getChatModelDetailsGetQuantizationMethodAttributeTypeOk(o.QuantizationMethod)
 }
 
 // HasQuantizationMethod returns a boolean if a field has been set.
 func (o *ChatModelDetails) HasQuantizationMethod() bool {
-	if o != nil && !IsNil(o.QuantizationMethod) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetQuantizationMethodOk()
+	return ok
 }
 
 // SetQuantizationMethod gets a reference to the given string and assigns it to the QuantizationMethod field.
-func (o *ChatModelDetails) SetQuantizationMethod(v *string) {
-	o.QuantizationMethod = v
+func (o *ChatModelDetails) SetQuantizationMethod(v ChatModelDetailsGetQuantizationMethodRetType) {
+	setChatModelDetailsGetQuantizationMethodAttributeType(&o.QuantizationMethod, v)
 }
 
 // GetRegion returns the Region field value
-func (o *ChatModelDetails) GetRegion() *string {
-	if o == nil || IsNil(o.Region) {
-		var ret *string
-		return ret
-	}
-
-	return o.Region
+func (o *ChatModelDetails) GetRegion() (ret ChatModelDetailsGetRegionRetType) {
+	ret, _ = o.GetRegionOk()
+	return ret
 }
 
 // GetRegionOk returns a tuple with the Region field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetRegionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Region, true
+func (o *ChatModelDetails) GetRegionOk() (ret ChatModelDetailsGetRegionRetType, ok bool) {
+	return getChatModelDetailsGetRegionAttributeTypeOk(o.Region)
 }
 
 // SetRegion sets field value
-func (o *ChatModelDetails) SetRegion(v *string) {
-	o.Region = v
+func (o *ChatModelDetails) SetRegion(v ChatModelDetailsGetRegionRetType) {
+	setChatModelDetailsGetRegionAttributeType(&o.Region, v)
 }
 
 // GetSize returns the Size field value
-func (o *ChatModelDetails) GetSize() *int64 {
-	if o == nil || IsNil(o.Size) {
-		var ret *int64
-		return ret
-	}
-
-	return o.Size
+func (o *ChatModelDetails) GetSize() (ret ChatModelDetailsGetSizeRetType) {
+	ret, _ = o.GetSizeOk()
+	return ret
 }
 
 // GetSizeOk returns a tuple with the Size field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetSizeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Size, true
+func (o *ChatModelDetails) GetSizeOk() (ret ChatModelDetailsGetSizeRetType, ok bool) {
+	return getChatModelDetailsGetSizeAttributeTypeOk(o.Size)
 }
 
 // SetSize sets field value
-func (o *ChatModelDetails) SetSize(v *int64) {
-	o.Size = v
+func (o *ChatModelDetails) SetSize(v ChatModelDetailsGetSizeRetType) {
+	setChatModelDetailsGetSizeAttributeType(&o.Size, v)
 }
 
 // GetSkus returns the Skus field value
-func (o *ChatModelDetails) GetSkus() *[]SKU {
-	if o == nil || IsNil(o.Skus) {
-		var ret *[]SKU
-		return ret
-	}
-
-	return o.Skus
+func (o *ChatModelDetails) GetSkus() (ret ChatModelDetailsGetSkusRetType) {
+	ret, _ = o.GetSkusOk()
+	return ret
 }
 
 // GetSkusOk returns a tuple with the Skus field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetSkusOk() (*[]SKU, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Skus, true
+func (o *ChatModelDetails) GetSkusOk() (ret ChatModelDetailsGetSkusRetType, ok bool) {
+	return getChatModelDetailsGetSkusAttributeTypeOk(o.Skus)
 }
 
 // SetSkus sets field value
-func (o *ChatModelDetails) SetSkus(v *[]SKU) {
-	o.Skus = v
+func (o *ChatModelDetails) SetSkus(v ChatModelDetailsGetSkusRetType) {
+	setChatModelDetailsGetSkusAttributeType(&o.Skus, v)
 }
 
 // GetTags returns the Tags field value
-func (o *ChatModelDetails) GetTags() *[]string {
-	if o == nil || IsNil(o.Tags) {
-		var ret *[]string
-		return ret
-	}
-
-	return o.Tags
+func (o *ChatModelDetails) GetTags() (ret ChatModelDetailsGetTagsRetType) {
+	ret, _ = o.GetTagsOk()
+	return ret
 }
 
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetTagsOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Tags, true
+func (o *ChatModelDetails) GetTagsOk() (ret ChatModelDetailsGetTagsRetType, ok bool) {
+	return getChatModelDetailsGetTagsAttributeTypeOk(o.Tags)
 }
 
 // SetTags sets field value
-func (o *ChatModelDetails) SetTags(v *[]string) {
-	o.Tags = v
+func (o *ChatModelDetails) SetTags(v ChatModelDetailsGetTagsRetType) {
+	setChatModelDetailsGetTagsAttributeType(&o.Tags, v)
 }
 
 // GetUrl returns the Url field value
-func (o *ChatModelDetails) GetUrl() *string {
-	if o == nil || IsNil(o.Url) {
-		var ret *string
-		return ret
-	}
-
-	return o.Url
+func (o *ChatModelDetails) GetUrl() (ret ChatModelDetailsGetUrlRetType) {
+	ret, _ = o.GetUrlOk()
+	return ret
 }
 
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
-func (o *ChatModelDetails) GetUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Url, true
+func (o *ChatModelDetails) GetUrlOk() (ret ChatModelDetailsGetUrlRetType, ok bool) {
+	return getChatModelDetailsGetUrlAttributeTypeOk(o.Url)
 }
 
 // SetUrl sets field value
-func (o *ChatModelDetails) SetUrl(v *string) {
-	o.Url = v
+func (o *ChatModelDetails) SetUrl(v ChatModelDetailsGetUrlRetType) {
+	setChatModelDetailsGetUrlAttributeType(&o.Url, v)
 }
 
 func (o ChatModelDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Bits) {
-		toSerialize["bits"] = o.Bits
+	if val, ok := getChatModelDetailsGetBitsAttributeTypeOk(o.Bits); ok {
+		toSerialize["Bits"] = val
 	}
-	toSerialize["category"] = o.Category
-	toSerialize["contextLength"] = o.ContextLength
-	toSerialize["description"] = o.Description
-	toSerialize["displayedName"] = o.DisplayedName
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
-	if !IsNil(o.QuantizationMethod) {
-		toSerialize["quantizationMethod"] = o.QuantizationMethod
+	if val, ok := getChatModelDetailsGetCategoryAttributeTypeOk(o.Category); ok {
+		toSerialize["Category"] = val
 	}
-	toSerialize["region"] = o.Region
-	toSerialize["size"] = o.Size
-	toSerialize["skus"] = o.Skus
-	toSerialize["tags"] = o.Tags
-	toSerialize["url"] = o.Url
+	if val, ok := getChatModelDetailsGetContextLengthAttributeTypeOk(o.ContextLength); ok {
+		toSerialize["ContextLength"] = val
+	}
+	if val, ok := getChatModelDetailsGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
+	if val, ok := getChatModelDetailsGetDisplayedNameAttributeTypeOk(o.DisplayedName); ok {
+		toSerialize["DisplayedName"] = val
+	}
+	if val, ok := getChatModelDetailsGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
+	}
+	if val, ok := getChatModelDetailsGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getChatModelDetailsGetQuantizationMethodAttributeTypeOk(o.QuantizationMethod); ok {
+		toSerialize["QuantizationMethod"] = val
+	}
+	if val, ok := getChatModelDetailsGetRegionAttributeTypeOk(o.Region); ok {
+		toSerialize["Region"] = val
+	}
+	if val, ok := getChatModelDetailsGetSizeAttributeTypeOk(o.Size); ok {
+		toSerialize["Size"] = val
+	}
+	if val, ok := getChatModelDetailsGetSkusAttributeTypeOk(o.Skus); ok {
+		toSerialize["Skus"] = val
+	}
+	if val, ok := getChatModelDetailsGetTagsAttributeTypeOk(o.Tags); ok {
+		toSerialize["Tags"] = val
+	}
+	if val, ok := getChatModelDetailsGetUrlAttributeTypeOk(o.Url); ok {
+		toSerialize["Url"] = val
+	}
 	return toSerialize, nil
 }
 

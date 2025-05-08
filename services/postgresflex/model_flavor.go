@@ -17,12 +17,94 @@ import (
 // checks if the Flavor type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Flavor{}
 
+/*
+	types and functions for cpu
+*/
+
+// isLong
+type FlavorGetCpuAttributeType = *int64
+type FlavorGetCpuArgType = int64
+type FlavorGetCpuRetType = int64
+
+func getFlavorGetCpuAttributeTypeOk(arg FlavorGetCpuAttributeType) (ret FlavorGetCpuRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setFlavorGetCpuAttributeType(arg *FlavorGetCpuAttributeType, val FlavorGetCpuRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for description
+*/
+
+// isNotNullableString
+type FlavorGetDescriptionAttributeType = *string
+
+func getFlavorGetDescriptionAttributeTypeOk(arg FlavorGetDescriptionAttributeType) (ret FlavorGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setFlavorGetDescriptionAttributeType(arg *FlavorGetDescriptionAttributeType, val FlavorGetDescriptionRetType) {
+	*arg = &val
+}
+
+type FlavorGetDescriptionArgType = string
+type FlavorGetDescriptionRetType = string
+
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type FlavorGetIdAttributeType = *string
+
+func getFlavorGetIdAttributeTypeOk(arg FlavorGetIdAttributeType) (ret FlavorGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setFlavorGetIdAttributeType(arg *FlavorGetIdAttributeType, val FlavorGetIdRetType) {
+	*arg = &val
+}
+
+type FlavorGetIdArgType = string
+type FlavorGetIdRetType = string
+
+/*
+	types and functions for memory
+*/
+
+// isLong
+type FlavorGetMemoryAttributeType = *int64
+type FlavorGetMemoryArgType = int64
+type FlavorGetMemoryRetType = int64
+
+func getFlavorGetMemoryAttributeTypeOk(arg FlavorGetMemoryAttributeType) (ret FlavorGetMemoryRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setFlavorGetMemoryAttributeType(arg *FlavorGetMemoryAttributeType, val FlavorGetMemoryRetType) {
+	*arg = &val
+}
+
 // Flavor struct for Flavor
 type Flavor struct {
-	Cpu         *int64  `json:"cpu,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Id          *string `json:"id,omitempty"`
-	Memory      *int64  `json:"memory,omitempty"`
+	Cpu         FlavorGetCpuAttributeType         `json:"cpu,omitempty"`
+	Description FlavorGetDescriptionAttributeType `json:"description,omitempty"`
+	Id          FlavorGetIdAttributeType          `json:"id,omitempty"`
+	Memory      FlavorGetMemoryAttributeType      `json:"memory,omitempty"`
 }
 
 // NewFlavor instantiates a new Flavor object
@@ -43,146 +125,110 @@ func NewFlavorWithDefaults() *Flavor {
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
-func (o *Flavor) GetCpu() *int64 {
-	if o == nil || IsNil(o.Cpu) {
-		var ret *int64
-		return ret
-	}
-	return o.Cpu
+func (o *Flavor) GetCpu() (res FlavorGetCpuRetType) {
+	res, _ = o.GetCpuOk()
+	return
 }
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Flavor) GetCpuOk() (*int64, bool) {
-	if o == nil || IsNil(o.Cpu) {
-		return nil, false
-	}
-	return o.Cpu, true
+func (o *Flavor) GetCpuOk() (ret FlavorGetCpuRetType, ok bool) {
+	return getFlavorGetCpuAttributeTypeOk(o.Cpu)
 }
 
 // HasCpu returns a boolean if a field has been set.
 func (o *Flavor) HasCpu() bool {
-	if o != nil && !IsNil(o.Cpu) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCpuOk()
+	return ok
 }
 
 // SetCpu gets a reference to the given int64 and assigns it to the Cpu field.
-func (o *Flavor) SetCpu(v *int64) {
-	o.Cpu = v
+func (o *Flavor) SetCpu(v FlavorGetCpuRetType) {
+	setFlavorGetCpuAttributeType(&o.Cpu, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Flavor) GetDescription() *string {
-	if o == nil || IsNil(o.Description) {
-		var ret *string
-		return ret
-	}
-	return o.Description
+func (o *Flavor) GetDescription() (res FlavorGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Flavor) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
+func (o *Flavor) GetDescriptionOk() (ret FlavorGetDescriptionRetType, ok bool) {
+	return getFlavorGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Flavor) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDescriptionOk()
+	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Flavor) SetDescription(v *string) {
-	o.Description = v
+func (o *Flavor) SetDescription(v FlavorGetDescriptionRetType) {
+	setFlavorGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Flavor) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *Flavor) GetId() (res FlavorGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Flavor) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *Flavor) GetIdOk() (ret FlavorGetIdRetType, ok bool) {
+	return getFlavorGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Flavor) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Flavor) SetId(v *string) {
-	o.Id = v
+func (o *Flavor) SetId(v FlavorGetIdRetType) {
+	setFlavorGetIdAttributeType(&o.Id, v)
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *Flavor) GetMemory() *int64 {
-	if o == nil || IsNil(o.Memory) {
-		var ret *int64
-		return ret
-	}
-	return o.Memory
+func (o *Flavor) GetMemory() (res FlavorGetMemoryRetType) {
+	res, _ = o.GetMemoryOk()
+	return
 }
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Flavor) GetMemoryOk() (*int64, bool) {
-	if o == nil || IsNil(o.Memory) {
-		return nil, false
-	}
-	return o.Memory, true
+func (o *Flavor) GetMemoryOk() (ret FlavorGetMemoryRetType, ok bool) {
+	return getFlavorGetMemoryAttributeTypeOk(o.Memory)
 }
 
 // HasMemory returns a boolean if a field has been set.
 func (o *Flavor) HasMemory() bool {
-	if o != nil && !IsNil(o.Memory) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetMemoryOk()
+	return ok
 }
 
 // SetMemory gets a reference to the given int64 and assigns it to the Memory field.
-func (o *Flavor) SetMemory(v *int64) {
-	o.Memory = v
+func (o *Flavor) SetMemory(v FlavorGetMemoryRetType) {
+	setFlavorGetMemoryAttributeType(&o.Memory, v)
 }
 
 func (o Flavor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Cpu) {
-		toSerialize["cpu"] = o.Cpu
+	if val, ok := getFlavorGetCpuAttributeTypeOk(o.Cpu); ok {
+		toSerialize["Cpu"] = val
 	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
+	if val, ok := getFlavorGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getFlavorGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Memory) {
-		toSerialize["memory"] = o.Memory
+	if val, ok := getFlavorGetMemoryAttributeTypeOk(o.Memory); ok {
+		toSerialize["Memory"] = val
 	}
 	return toSerialize, nil
 }

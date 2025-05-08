@@ -17,12 +17,53 @@ import (
 // checks if the Kubernetes type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Kubernetes{}
 
+/*
+	types and functions for allowPrivilegedContainers
+*/
+
+// isBoolean
+type KubernetesgetAllowPrivilegedContainersAttributeType = *bool
+type KubernetesgetAllowPrivilegedContainersArgType = bool
+type KubernetesgetAllowPrivilegedContainersRetType = bool
+
+func getKubernetesgetAllowPrivilegedContainersAttributeTypeOk(arg KubernetesgetAllowPrivilegedContainersAttributeType) (ret KubernetesgetAllowPrivilegedContainersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKubernetesgetAllowPrivilegedContainersAttributeType(arg *KubernetesgetAllowPrivilegedContainersAttributeType, val KubernetesgetAllowPrivilegedContainersRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for version
+*/
+
+// isNotNullableString
+type KubernetesGetVersionAttributeType = *string
+
+func getKubernetesGetVersionAttributeTypeOk(arg KubernetesGetVersionAttributeType) (ret KubernetesGetVersionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKubernetesGetVersionAttributeType(arg *KubernetesGetVersionAttributeType, val KubernetesGetVersionRetType) {
+	*arg = &val
+}
+
+type KubernetesGetVersionArgType = string
+type KubernetesGetVersionRetType = string
+
 // Kubernetes For valid versions please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `kubernetesVersions`.
 type Kubernetes struct {
 	// DEPRECATED as of Kubernetes 1.25+ Flag to specify if privileged mode for containers is enabled or not. This should be used with care since it also disables a couple of other features like the use of some volume type (e.g. PVCs). By default this is set to true.
-	AllowPrivilegedContainers *bool `json:"allowPrivilegedContainers,omitempty"`
+	AllowPrivilegedContainers KubernetesgetAllowPrivilegedContainersAttributeType `json:"allowPrivilegedContainers,omitempty"`
 	// REQUIRED
-	Version *string `json:"version"`
+	Version KubernetesGetVersionAttributeType `json:"version"`
 }
 
 type _Kubernetes Kubernetes
@@ -31,9 +72,9 @@ type _Kubernetes Kubernetes
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKubernetes(version *string) *Kubernetes {
+func NewKubernetes(version KubernetesGetVersionArgType) *Kubernetes {
 	this := Kubernetes{}
-	this.Version = version
+	setKubernetesGetVersionAttributeType(&this.Version, version)
 	return &this
 }
 
@@ -46,67 +87,53 @@ func NewKubernetesWithDefaults() *Kubernetes {
 }
 
 // GetAllowPrivilegedContainers returns the AllowPrivilegedContainers field value if set, zero value otherwise.
-func (o *Kubernetes) GetAllowPrivilegedContainers() *bool {
-	if o == nil || IsNil(o.AllowPrivilegedContainers) {
-		var ret *bool
-		return ret
-	}
-	return o.AllowPrivilegedContainers
+func (o *Kubernetes) GetAllowPrivilegedContainers() (res KubernetesgetAllowPrivilegedContainersRetType) {
+	res, _ = o.GetAllowPrivilegedContainersOk()
+	return
 }
 
 // GetAllowPrivilegedContainersOk returns a tuple with the AllowPrivilegedContainers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Kubernetes) GetAllowPrivilegedContainersOk() (*bool, bool) {
-	if o == nil || IsNil(o.AllowPrivilegedContainers) {
-		return nil, false
-	}
-	return o.AllowPrivilegedContainers, true
+func (o *Kubernetes) GetAllowPrivilegedContainersOk() (ret KubernetesgetAllowPrivilegedContainersRetType, ok bool) {
+	return getKubernetesgetAllowPrivilegedContainersAttributeTypeOk(o.AllowPrivilegedContainers)
 }
 
 // HasAllowPrivilegedContainers returns a boolean if a field has been set.
 func (o *Kubernetes) HasAllowPrivilegedContainers() bool {
-	if o != nil && !IsNil(o.AllowPrivilegedContainers) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAllowPrivilegedContainersOk()
+	return ok
 }
 
 // SetAllowPrivilegedContainers gets a reference to the given bool and assigns it to the AllowPrivilegedContainers field.
-func (o *Kubernetes) SetAllowPrivilegedContainers(v *bool) {
-	o.AllowPrivilegedContainers = v
+func (o *Kubernetes) SetAllowPrivilegedContainers(v KubernetesgetAllowPrivilegedContainersRetType) {
+	setKubernetesgetAllowPrivilegedContainersAttributeType(&o.AllowPrivilegedContainers, v)
 }
 
 // GetVersion returns the Version field value
-func (o *Kubernetes) GetVersion() *string {
-	if o == nil || IsNil(o.Version) {
-		var ret *string
-		return ret
-	}
-
-	return o.Version
+func (o *Kubernetes) GetVersion() (ret KubernetesGetVersionRetType) {
+	ret, _ = o.GetVersionOk()
+	return ret
 }
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *Kubernetes) GetVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Version, true
+func (o *Kubernetes) GetVersionOk() (ret KubernetesGetVersionRetType, ok bool) {
+	return getKubernetesGetVersionAttributeTypeOk(o.Version)
 }
 
 // SetVersion sets field value
-func (o *Kubernetes) SetVersion(v *string) {
-	o.Version = v
+func (o *Kubernetes) SetVersion(v KubernetesGetVersionRetType) {
+	setKubernetesGetVersionAttributeType(&o.Version, v)
 }
 
 func (o Kubernetes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AllowPrivilegedContainers) {
-		toSerialize["allowPrivilegedContainers"] = o.AllowPrivilegedContainers
+	if val, ok := getKubernetesgetAllowPrivilegedContainersAttributeTypeOk(o.AllowPrivilegedContainers); ok {
+		toSerialize["AllowPrivilegedContainers"] = val
 	}
-	toSerialize["version"] = o.Version
+	if val, ok := getKubernetesGetVersionAttributeTypeOk(o.Version); ok {
+		toSerialize["Version"] = val
+	}
 	return toSerialize, nil
 }
 

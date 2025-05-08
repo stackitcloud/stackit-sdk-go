@@ -1,3 +1,12 @@
+## v0.17.1 (2025-04-09)
+- **Improvement:** Improve error message for key flow authentication
+
+## v0.17.0 (2025-03-25)
+- **New:** Helper functions for generic openapi error codes
+
+## v0.16.2 (2025-03-21)
+- **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
+
 ## v0.16.1 (2025-02-25)
 
 - **Bugfix:** STACKIT_PRIVATE_KEY and STACKIT_SERVICE_ACCOUNT_KEY can be set via environment variable or via credentials file.

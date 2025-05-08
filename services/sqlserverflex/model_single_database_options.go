@@ -17,14 +17,76 @@ import (
 // checks if the SingleDatabaseOptions type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SingleDatabaseOptions{}
 
+/*
+	types and functions for collationName
+*/
+
+// isNotNullableString
+type SingleDatabaseOptionsGetCollationNameAttributeType = *string
+
+func getSingleDatabaseOptionsGetCollationNameAttributeTypeOk(arg SingleDatabaseOptionsGetCollationNameAttributeType) (ret SingleDatabaseOptionsGetCollationNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSingleDatabaseOptionsGetCollationNameAttributeType(arg *SingleDatabaseOptionsGetCollationNameAttributeType, val SingleDatabaseOptionsGetCollationNameRetType) {
+	*arg = &val
+}
+
+type SingleDatabaseOptionsGetCollationNameArgType = string
+type SingleDatabaseOptionsGetCollationNameRetType = string
+
+/*
+	types and functions for compatibilityLevel
+*/
+
+// isLong
+type SingleDatabaseOptionsGetCompatibilityLevelAttributeType = *int64
+type SingleDatabaseOptionsGetCompatibilityLevelArgType = int64
+type SingleDatabaseOptionsGetCompatibilityLevelRetType = int64
+
+func getSingleDatabaseOptionsGetCompatibilityLevelAttributeTypeOk(arg SingleDatabaseOptionsGetCompatibilityLevelAttributeType) (ret SingleDatabaseOptionsGetCompatibilityLevelRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSingleDatabaseOptionsGetCompatibilityLevelAttributeType(arg *SingleDatabaseOptionsGetCompatibilityLevelAttributeType, val SingleDatabaseOptionsGetCompatibilityLevelRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for owner
+*/
+
+// isNotNullableString
+type SingleDatabaseOptionsGetOwnerAttributeType = *string
+
+func getSingleDatabaseOptionsGetOwnerAttributeTypeOk(arg SingleDatabaseOptionsGetOwnerAttributeType) (ret SingleDatabaseOptionsGetOwnerRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSingleDatabaseOptionsGetOwnerAttributeType(arg *SingleDatabaseOptionsGetOwnerAttributeType, val SingleDatabaseOptionsGetOwnerRetType) {
+	*arg = &val
+}
+
+type SingleDatabaseOptionsGetOwnerArgType = string
+type SingleDatabaseOptionsGetOwnerRetType = string
+
 // SingleDatabaseOptions Database specific options
 type SingleDatabaseOptions struct {
 	// Name of the collation of the database
-	CollationName *string `json:"collationName,omitempty"`
+	CollationName SingleDatabaseOptionsGetCollationNameAttributeType `json:"collationName,omitempty"`
 	// CompatibilityLevel of the Database.
-	CompatibilityLevel *int64 `json:"compatibilityLevel,omitempty"`
+	CompatibilityLevel SingleDatabaseOptionsGetCompatibilityLevelAttributeType `json:"compatibilityLevel,omitempty"`
 	// Name of the owner of the database.
-	Owner *string `json:"owner,omitempty"`
+	Owner SingleDatabaseOptionsGetOwnerAttributeType `json:"owner,omitempty"`
 }
 
 // NewSingleDatabaseOptions instantiates a new SingleDatabaseOptions object
@@ -45,111 +107,84 @@ func NewSingleDatabaseOptionsWithDefaults() *SingleDatabaseOptions {
 }
 
 // GetCollationName returns the CollationName field value if set, zero value otherwise.
-func (o *SingleDatabaseOptions) GetCollationName() *string {
-	if o == nil || IsNil(o.CollationName) {
-		var ret *string
-		return ret
-	}
-	return o.CollationName
+func (o *SingleDatabaseOptions) GetCollationName() (res SingleDatabaseOptionsGetCollationNameRetType) {
+	res, _ = o.GetCollationNameOk()
+	return
 }
 
 // GetCollationNameOk returns a tuple with the CollationName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SingleDatabaseOptions) GetCollationNameOk() (*string, bool) {
-	if o == nil || IsNil(o.CollationName) {
-		return nil, false
-	}
-	return o.CollationName, true
+func (o *SingleDatabaseOptions) GetCollationNameOk() (ret SingleDatabaseOptionsGetCollationNameRetType, ok bool) {
+	return getSingleDatabaseOptionsGetCollationNameAttributeTypeOk(o.CollationName)
 }
 
 // HasCollationName returns a boolean if a field has been set.
 func (o *SingleDatabaseOptions) HasCollationName() bool {
-	if o != nil && !IsNil(o.CollationName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCollationNameOk()
+	return ok
 }
 
 // SetCollationName gets a reference to the given string and assigns it to the CollationName field.
-func (o *SingleDatabaseOptions) SetCollationName(v *string) {
-	o.CollationName = v
+func (o *SingleDatabaseOptions) SetCollationName(v SingleDatabaseOptionsGetCollationNameRetType) {
+	setSingleDatabaseOptionsGetCollationNameAttributeType(&o.CollationName, v)
 }
 
 // GetCompatibilityLevel returns the CompatibilityLevel field value if set, zero value otherwise.
-func (o *SingleDatabaseOptions) GetCompatibilityLevel() *int64 {
-	if o == nil || IsNil(o.CompatibilityLevel) {
-		var ret *int64
-		return ret
-	}
-	return o.CompatibilityLevel
+func (o *SingleDatabaseOptions) GetCompatibilityLevel() (res SingleDatabaseOptionsGetCompatibilityLevelRetType) {
+	res, _ = o.GetCompatibilityLevelOk()
+	return
 }
 
 // GetCompatibilityLevelOk returns a tuple with the CompatibilityLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SingleDatabaseOptions) GetCompatibilityLevelOk() (*int64, bool) {
-	if o == nil || IsNil(o.CompatibilityLevel) {
-		return nil, false
-	}
-	return o.CompatibilityLevel, true
+func (o *SingleDatabaseOptions) GetCompatibilityLevelOk() (ret SingleDatabaseOptionsGetCompatibilityLevelRetType, ok bool) {
+	return getSingleDatabaseOptionsGetCompatibilityLevelAttributeTypeOk(o.CompatibilityLevel)
 }
 
 // HasCompatibilityLevel returns a boolean if a field has been set.
 func (o *SingleDatabaseOptions) HasCompatibilityLevel() bool {
-	if o != nil && !IsNil(o.CompatibilityLevel) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetCompatibilityLevelOk()
+	return ok
 }
 
 // SetCompatibilityLevel gets a reference to the given int64 and assigns it to the CompatibilityLevel field.
-func (o *SingleDatabaseOptions) SetCompatibilityLevel(v *int64) {
-	o.CompatibilityLevel = v
+func (o *SingleDatabaseOptions) SetCompatibilityLevel(v SingleDatabaseOptionsGetCompatibilityLevelRetType) {
+	setSingleDatabaseOptionsGetCompatibilityLevelAttributeType(&o.CompatibilityLevel, v)
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
-func (o *SingleDatabaseOptions) GetOwner() *string {
-	if o == nil || IsNil(o.Owner) {
-		var ret *string
-		return ret
-	}
-	return o.Owner
+func (o *SingleDatabaseOptions) GetOwner() (res SingleDatabaseOptionsGetOwnerRetType) {
+	res, _ = o.GetOwnerOk()
+	return
 }
 
 // GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SingleDatabaseOptions) GetOwnerOk() (*string, bool) {
-	if o == nil || IsNil(o.Owner) {
-		return nil, false
-	}
-	return o.Owner, true
+func (o *SingleDatabaseOptions) GetOwnerOk() (ret SingleDatabaseOptionsGetOwnerRetType, ok bool) {
+	return getSingleDatabaseOptionsGetOwnerAttributeTypeOk(o.Owner)
 }
 
 // HasOwner returns a boolean if a field has been set.
 func (o *SingleDatabaseOptions) HasOwner() bool {
-	if o != nil && !IsNil(o.Owner) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOwnerOk()
+	return ok
 }
 
 // SetOwner gets a reference to the given string and assigns it to the Owner field.
-func (o *SingleDatabaseOptions) SetOwner(v *string) {
-	o.Owner = v
+func (o *SingleDatabaseOptions) SetOwner(v SingleDatabaseOptionsGetOwnerRetType) {
+	setSingleDatabaseOptionsGetOwnerAttributeType(&o.Owner, v)
 }
 
 func (o SingleDatabaseOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CollationName) {
-		toSerialize["collationName"] = o.CollationName
+	if val, ok := getSingleDatabaseOptionsGetCollationNameAttributeTypeOk(o.CollationName); ok {
+		toSerialize["CollationName"] = val
 	}
-	if !IsNil(o.CompatibilityLevel) {
-		toSerialize["compatibilityLevel"] = o.CompatibilityLevel
+	if val, ok := getSingleDatabaseOptionsGetCompatibilityLevelAttributeTypeOk(o.CompatibilityLevel); ok {
+		toSerialize["CompatibilityLevel"] = val
 	}
-	if !IsNil(o.Owner) {
-		toSerialize["owner"] = o.Owner
+	if val, ok := getSingleDatabaseOptionsGetOwnerAttributeTypeOk(o.Owner); ok {
+		toSerialize["Owner"] = val
 	}
 	return toSerialize, nil
 }

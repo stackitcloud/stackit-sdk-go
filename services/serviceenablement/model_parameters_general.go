@@ -17,11 +17,73 @@ import (
 // checks if the ParametersGeneral type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ParametersGeneral{}
 
+/*
+	types and functions for organizationId
+*/
+
+// isNotNullableString
+type ParametersGeneralGetOrganizationIdAttributeType = *string
+
+func getParametersGeneralGetOrganizationIdAttributeTypeOk(arg ParametersGeneralGetOrganizationIdAttributeType) (ret ParametersGeneralGetOrganizationIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setParametersGeneralGetOrganizationIdAttributeType(arg *ParametersGeneralGetOrganizationIdAttributeType, val ParametersGeneralGetOrganizationIdRetType) {
+	*arg = &val
+}
+
+type ParametersGeneralGetOrganizationIdArgType = string
+type ParametersGeneralGetOrganizationIdRetType = string
+
+/*
+	types and functions for projectName
+*/
+
+// isNotNullableString
+type ParametersGeneralGetProjectNameAttributeType = *string
+
+func getParametersGeneralGetProjectNameAttributeTypeOk(arg ParametersGeneralGetProjectNameAttributeType) (ret ParametersGeneralGetProjectNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setParametersGeneralGetProjectNameAttributeType(arg *ParametersGeneralGetProjectNameAttributeType, val ParametersGeneralGetProjectNameRetType) {
+	*arg = &val
+}
+
+type ParametersGeneralGetProjectNameArgType = string
+type ParametersGeneralGetProjectNameRetType = string
+
+/*
+	types and functions for projectScope
+*/
+
+// isEnumRef
+type ParametersGeneralGetProjectScopeAttributeType = *string
+type ParametersGeneralGetProjectScopeArgType = string
+type ParametersGeneralGetProjectScopeRetType = string
+
+func getParametersGeneralGetProjectScopeAttributeTypeOk(arg ParametersGeneralGetProjectScopeAttributeType) (ret ParametersGeneralGetProjectScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setParametersGeneralGetProjectScopeAttributeType(arg *ParametersGeneralGetProjectScopeAttributeType, val ParametersGeneralGetProjectScopeRetType) {
+	*arg = &val
+}
+
 // ParametersGeneral struct for ParametersGeneral
 type ParametersGeneral struct {
-	OrganizationId *string `json:"organizationId,omitempty"`
-	ProjectName    *string `json:"projectName,omitempty"`
-	ProjectScope   *string `json:"projectScope,omitempty"`
+	OrganizationId ParametersGeneralGetOrganizationIdAttributeType `json:"organizationId,omitempty"`
+	ProjectName    ParametersGeneralGetProjectNameAttributeType    `json:"projectName,omitempty"`
+	ProjectScope   ParametersGeneralGetProjectScopeAttributeType   `json:"projectScope,omitempty"`
 }
 
 // NewParametersGeneral instantiates a new ParametersGeneral object
@@ -30,8 +92,6 @@ type ParametersGeneral struct {
 // will change when the set of required properties is changed
 func NewParametersGeneral() *ParametersGeneral {
 	this := ParametersGeneral{}
-	var projectScope string = "PUBLIC"
-	this.ProjectScope = &projectScope
 	return &this
 }
 
@@ -46,111 +106,84 @@ func NewParametersGeneralWithDefaults() *ParametersGeneral {
 }
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
-func (o *ParametersGeneral) GetOrganizationId() *string {
-	if o == nil || IsNil(o.OrganizationId) {
-		var ret *string
-		return ret
-	}
-	return o.OrganizationId
+func (o *ParametersGeneral) GetOrganizationId() (res ParametersGeneralGetOrganizationIdRetType) {
+	res, _ = o.GetOrganizationIdOk()
+	return
 }
 
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ParametersGeneral) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || IsNil(o.OrganizationId) {
-		return nil, false
-	}
-	return o.OrganizationId, true
+func (o *ParametersGeneral) GetOrganizationIdOk() (ret ParametersGeneralGetOrganizationIdRetType, ok bool) {
+	return getParametersGeneralGetOrganizationIdAttributeTypeOk(o.OrganizationId)
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *ParametersGeneral) HasOrganizationId() bool {
-	if o != nil && !IsNil(o.OrganizationId) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetOrganizationIdOk()
+	return ok
 }
 
 // SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
-func (o *ParametersGeneral) SetOrganizationId(v *string) {
-	o.OrganizationId = v
+func (o *ParametersGeneral) SetOrganizationId(v ParametersGeneralGetOrganizationIdRetType) {
+	setParametersGeneralGetOrganizationIdAttributeType(&o.OrganizationId, v)
 }
 
 // GetProjectName returns the ProjectName field value if set, zero value otherwise.
-func (o *ParametersGeneral) GetProjectName() *string {
-	if o == nil || IsNil(o.ProjectName) {
-		var ret *string
-		return ret
-	}
-	return o.ProjectName
+func (o *ParametersGeneral) GetProjectName() (res ParametersGeneralGetProjectNameRetType) {
+	res, _ = o.GetProjectNameOk()
+	return
 }
 
 // GetProjectNameOk returns a tuple with the ProjectName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ParametersGeneral) GetProjectNameOk() (*string, bool) {
-	if o == nil || IsNil(o.ProjectName) {
-		return nil, false
-	}
-	return o.ProjectName, true
+func (o *ParametersGeneral) GetProjectNameOk() (ret ParametersGeneralGetProjectNameRetType, ok bool) {
+	return getParametersGeneralGetProjectNameAttributeTypeOk(o.ProjectName)
 }
 
 // HasProjectName returns a boolean if a field has been set.
 func (o *ParametersGeneral) HasProjectName() bool {
-	if o != nil && !IsNil(o.ProjectName) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProjectNameOk()
+	return ok
 }
 
 // SetProjectName gets a reference to the given string and assigns it to the ProjectName field.
-func (o *ParametersGeneral) SetProjectName(v *string) {
-	o.ProjectName = v
+func (o *ParametersGeneral) SetProjectName(v ParametersGeneralGetProjectNameRetType) {
+	setParametersGeneralGetProjectNameAttributeType(&o.ProjectName, v)
 }
 
 // GetProjectScope returns the ProjectScope field value if set, zero value otherwise.
-func (o *ParametersGeneral) GetProjectScope() *string {
-	if o == nil || IsNil(o.ProjectScope) {
-		var ret *string
-		return ret
-	}
-	return o.ProjectScope
+func (o *ParametersGeneral) GetProjectScope() (res ParametersGeneralGetProjectScopeRetType) {
+	res, _ = o.GetProjectScopeOk()
+	return
 }
 
 // GetProjectScopeOk returns a tuple with the ProjectScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ParametersGeneral) GetProjectScopeOk() (*string, bool) {
-	if o == nil || IsNil(o.ProjectScope) {
-		return nil, false
-	}
-	return o.ProjectScope, true
+func (o *ParametersGeneral) GetProjectScopeOk() (ret ParametersGeneralGetProjectScopeRetType, ok bool) {
+	return getParametersGeneralGetProjectScopeAttributeTypeOk(o.ProjectScope)
 }
 
 // HasProjectScope returns a boolean if a field has been set.
 func (o *ParametersGeneral) HasProjectScope() bool {
-	if o != nil && !IsNil(o.ProjectScope) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetProjectScopeOk()
+	return ok
 }
 
 // SetProjectScope gets a reference to the given string and assigns it to the ProjectScope field.
-func (o *ParametersGeneral) SetProjectScope(v *string) {
-	o.ProjectScope = v
+func (o *ParametersGeneral) SetProjectScope(v ParametersGeneralGetProjectScopeRetType) {
+	setParametersGeneralGetProjectScopeAttributeType(&o.ProjectScope, v)
 }
 
 func (o ParametersGeneral) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.OrganizationId) {
-		toSerialize["organizationId"] = o.OrganizationId
+	if val, ok := getParametersGeneralGetOrganizationIdAttributeTypeOk(o.OrganizationId); ok {
+		toSerialize["OrganizationId"] = val
 	}
-	if !IsNil(o.ProjectName) {
-		toSerialize["projectName"] = o.ProjectName
+	if val, ok := getParametersGeneralGetProjectNameAttributeTypeOk(o.ProjectName); ok {
+		toSerialize["ProjectName"] = val
 	}
-	if !IsNil(o.ProjectScope) {
-		toSerialize["projectScope"] = o.ProjectScope
+	if val, ok := getParametersGeneralGetProjectScopeAttributeTypeOk(o.ProjectScope); ok {
+		toSerialize["ProjectScope"] = val
 	}
 	return toSerialize, nil
 }

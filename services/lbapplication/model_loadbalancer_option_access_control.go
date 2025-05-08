@@ -17,10 +17,30 @@ import (
 // checks if the LoadbalancerOptionAccessControl type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &LoadbalancerOptionAccessControl{}
 
+/*
+	types and functions for allowedSourceRanges
+*/
+
+// isArray
+type LoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeType = *[]string
+type LoadbalancerOptionAccessControlGetAllowedSourceRangesArgType = []string
+type LoadbalancerOptionAccessControlGetAllowedSourceRangesRetType = []string
+
+func getLoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeTypeOk(arg LoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeType) (ret LoadbalancerOptionAccessControlGetAllowedSourceRangesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeType(arg *LoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeType, val LoadbalancerOptionAccessControlGetAllowedSourceRangesRetType) {
+	*arg = &val
+}
+
 // LoadbalancerOptionAccessControl Use this option to limit the IP ranges that can use the application load balancer.
 type LoadbalancerOptionAccessControl struct {
 	// Application Load Balancer is accessible only from an IP address in this range
-	AllowedSourceRanges *[]string `json:"allowedSourceRanges,omitempty"`
+	AllowedSourceRanges LoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeType `json:"allowedSourceRanges,omitempty"`
 }
 
 // NewLoadbalancerOptionAccessControl instantiates a new LoadbalancerOptionAccessControl object
@@ -41,41 +61,32 @@ func NewLoadbalancerOptionAccessControlWithDefaults() *LoadbalancerOptionAccessC
 }
 
 // GetAllowedSourceRanges returns the AllowedSourceRanges field value if set, zero value otherwise.
-func (o *LoadbalancerOptionAccessControl) GetAllowedSourceRanges() *[]string {
-	if o == nil || IsNil(o.AllowedSourceRanges) {
-		var ret *[]string
-		return ret
-	}
-	return o.AllowedSourceRanges
+func (o *LoadbalancerOptionAccessControl) GetAllowedSourceRanges() (res LoadbalancerOptionAccessControlGetAllowedSourceRangesRetType) {
+	res, _ = o.GetAllowedSourceRangesOk()
+	return
 }
 
 // GetAllowedSourceRangesOk returns a tuple with the AllowedSourceRanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadbalancerOptionAccessControl) GetAllowedSourceRangesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.AllowedSourceRanges) {
-		return nil, false
-	}
-	return o.AllowedSourceRanges, true
+func (o *LoadbalancerOptionAccessControl) GetAllowedSourceRangesOk() (ret LoadbalancerOptionAccessControlGetAllowedSourceRangesRetType, ok bool) {
+	return getLoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeTypeOk(o.AllowedSourceRanges)
 }
 
 // HasAllowedSourceRanges returns a boolean if a field has been set.
 func (o *LoadbalancerOptionAccessControl) HasAllowedSourceRanges() bool {
-	if o != nil && !IsNil(o.AllowedSourceRanges) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetAllowedSourceRangesOk()
+	return ok
 }
 
 // SetAllowedSourceRanges gets a reference to the given []string and assigns it to the AllowedSourceRanges field.
-func (o *LoadbalancerOptionAccessControl) SetAllowedSourceRanges(v *[]string) {
-	o.AllowedSourceRanges = v
+func (o *LoadbalancerOptionAccessControl) SetAllowedSourceRanges(v LoadbalancerOptionAccessControlGetAllowedSourceRangesRetType) {
+	setLoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeType(&o.AllowedSourceRanges, v)
 }
 
 func (o LoadbalancerOptionAccessControl) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AllowedSourceRanges) {
-		toSerialize["allowedSourceRanges"] = o.AllowedSourceRanges
+	if val, ok := getLoadbalancerOptionAccessControlGetAllowedSourceRangesAttributeTypeOk(o.AllowedSourceRanges); ok {
+		toSerialize["AllowedSourceRanges"] = val
 	}
 	return toSerialize, nil
 }

@@ -17,16 +17,100 @@ import (
 // checks if the GetCertificateResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GetCertificateResponse{}
 
+/*
+	types and functions for id
+*/
+
+// isNotNullableString
+type GetCertificateResponseGetIdAttributeType = *string
+
+func getGetCertificateResponseGetIdAttributeTypeOk(arg GetCertificateResponseGetIdAttributeType) (ret GetCertificateResponseGetIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetCertificateResponseGetIdAttributeType(arg *GetCertificateResponseGetIdAttributeType, val GetCertificateResponseGetIdRetType) {
+	*arg = &val
+}
+
+type GetCertificateResponseGetIdArgType = string
+type GetCertificateResponseGetIdRetType = string
+
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type GetCertificateResponseGetNameAttributeType = *string
+
+func getGetCertificateResponseGetNameAttributeTypeOk(arg GetCertificateResponseGetNameAttributeType) (ret GetCertificateResponseGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetCertificateResponseGetNameAttributeType(arg *GetCertificateResponseGetNameAttributeType, val GetCertificateResponseGetNameRetType) {
+	*arg = &val
+}
+
+type GetCertificateResponseGetNameArgType = string
+type GetCertificateResponseGetNameRetType = string
+
+/*
+	types and functions for publicKey
+*/
+
+// isNotNullableString
+type GetCertificateResponseGetPublicKeyAttributeType = *string
+
+func getGetCertificateResponseGetPublicKeyAttributeTypeOk(arg GetCertificateResponseGetPublicKeyAttributeType) (ret GetCertificateResponseGetPublicKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetCertificateResponseGetPublicKeyAttributeType(arg *GetCertificateResponseGetPublicKeyAttributeType, val GetCertificateResponseGetPublicKeyRetType) {
+	*arg = &val
+}
+
+type GetCertificateResponseGetPublicKeyArgType = string
+type GetCertificateResponseGetPublicKeyRetType = string
+
+/*
+	types and functions for region
+*/
+
+// isNotNullableString
+type GetCertificateResponseGetRegionAttributeType = *string
+
+func getGetCertificateResponseGetRegionAttributeTypeOk(arg GetCertificateResponseGetRegionAttributeType) (ret GetCertificateResponseGetRegionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetCertificateResponseGetRegionAttributeType(arg *GetCertificateResponseGetRegionAttributeType, val GetCertificateResponseGetRegionRetType) {
+	*arg = &val
+}
+
+type GetCertificateResponseGetRegionArgType = string
+type GetCertificateResponseGetRegionRetType = string
+
 // GetCertificateResponse GetCertificateResponse returns name, id and public key
 type GetCertificateResponse struct {
 	// The certificates resource id
-	Id *string `json:"id,omitempty"`
+	Id GetCertificateResponseGetIdAttributeType `json:"id,omitempty"`
 	// TLS certificate name
-	Name *string `json:"name,omitempty"`
+	Name GetCertificateResponseGetNameAttributeType `json:"name,omitempty"`
 	// The PEM encoded public key part
-	PublicKey *string `json:"publicKey,omitempty"`
+	PublicKey GetCertificateResponseGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// Region of the LoadBalancer
-	Region *string `json:"region,omitempty"`
+	Region GetCertificateResponseGetRegionAttributeType `json:"region,omitempty"`
 }
 
 // NewGetCertificateResponse instantiates a new GetCertificateResponse object
@@ -47,146 +131,110 @@ func NewGetCertificateResponseWithDefaults() *GetCertificateResponse {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *GetCertificateResponse) GetId() *string {
-	if o == nil || IsNil(o.Id) {
-		var ret *string
-		return ret
-	}
-	return o.Id
+func (o *GetCertificateResponse) GetId() (res GetCertificateResponseGetIdRetType) {
+	res, _ = o.GetIdOk()
+	return
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCertificateResponse) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
-		return nil, false
-	}
-	return o.Id, true
+func (o *GetCertificateResponse) GetIdOk() (ret GetCertificateResponseGetIdRetType, ok bool) {
+	return getGetCertificateResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *GetCertificateResponse) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetIdOk()
+	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *GetCertificateResponse) SetId(v *string) {
-	o.Id = v
+func (o *GetCertificateResponse) SetId(v GetCertificateResponseGetIdRetType) {
+	setGetCertificateResponseGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *GetCertificateResponse) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-	return o.Name
+func (o *GetCertificateResponse) GetName() (res GetCertificateResponseGetNameRetType) {
+	res, _ = o.GetNameOk()
+	return
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCertificateResponse) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
+func (o *GetCertificateResponse) GetNameOk() (ret GetCertificateResponseGetNameRetType, ok bool) {
+	return getGetCertificateResponseGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *GetCertificateResponse) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetNameOk()
+	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *GetCertificateResponse) SetName(v *string) {
-	o.Name = v
+func (o *GetCertificateResponse) SetName(v GetCertificateResponseGetNameRetType) {
+	setGetCertificateResponseGetNameAttributeType(&o.Name, v)
 }
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
-func (o *GetCertificateResponse) GetPublicKey() *string {
-	if o == nil || IsNil(o.PublicKey) {
-		var ret *string
-		return ret
-	}
-	return o.PublicKey
+func (o *GetCertificateResponse) GetPublicKey() (res GetCertificateResponseGetPublicKeyRetType) {
+	res, _ = o.GetPublicKeyOk()
+	return
 }
 
 // GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCertificateResponse) GetPublicKeyOk() (*string, bool) {
-	if o == nil || IsNil(o.PublicKey) {
-		return nil, false
-	}
-	return o.PublicKey, true
+func (o *GetCertificateResponse) GetPublicKeyOk() (ret GetCertificateResponseGetPublicKeyRetType, ok bool) {
+	return getGetCertificateResponseGetPublicKeyAttributeTypeOk(o.PublicKey)
 }
 
 // HasPublicKey returns a boolean if a field has been set.
 func (o *GetCertificateResponse) HasPublicKey() bool {
-	if o != nil && !IsNil(o.PublicKey) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetPublicKeyOk()
+	return ok
 }
 
 // SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
-func (o *GetCertificateResponse) SetPublicKey(v *string) {
-	o.PublicKey = v
+func (o *GetCertificateResponse) SetPublicKey(v GetCertificateResponseGetPublicKeyRetType) {
+	setGetCertificateResponseGetPublicKeyAttributeType(&o.PublicKey, v)
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
-func (o *GetCertificateResponse) GetRegion() *string {
-	if o == nil || IsNil(o.Region) {
-		var ret *string
-		return ret
-	}
-	return o.Region
+func (o *GetCertificateResponse) GetRegion() (res GetCertificateResponseGetRegionRetType) {
+	res, _ = o.GetRegionOk()
+	return
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCertificateResponse) GetRegionOk() (*string, bool) {
-	if o == nil || IsNil(o.Region) {
-		return nil, false
-	}
-	return o.Region, true
+func (o *GetCertificateResponse) GetRegionOk() (ret GetCertificateResponseGetRegionRetType, ok bool) {
+	return getGetCertificateResponseGetRegionAttributeTypeOk(o.Region)
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *GetCertificateResponse) HasRegion() bool {
-	if o != nil && !IsNil(o.Region) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRegionOk()
+	return ok
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *GetCertificateResponse) SetRegion(v *string) {
-	o.Region = v
+func (o *GetCertificateResponse) SetRegion(v GetCertificateResponseGetRegionRetType) {
+	setGetCertificateResponseGetRegionAttributeType(&o.Region, v)
 }
 
 func (o GetCertificateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if val, ok := getGetCertificateResponseGetIdAttributeTypeOk(o.Id); ok {
+		toSerialize["Id"] = val
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if val, ok := getGetCertificateResponseGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
 	}
-	if !IsNil(o.PublicKey) {
-		toSerialize["publicKey"] = o.PublicKey
+	if val, ok := getGetCertificateResponseGetPublicKeyAttributeTypeOk(o.PublicKey); ok {
+		toSerialize["PublicKey"] = val
 	}
-	if !IsNil(o.Region) {
-		toSerialize["region"] = o.Region
+	if val, ok := getGetCertificateResponseGetRegionAttributeTypeOk(o.Region); ok {
+		toSerialize["Region"] = val
 	}
 	return toSerialize, nil
 }

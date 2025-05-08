@@ -17,12 +17,53 @@ import (
 // checks if the ListInstancesResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListInstancesResponse{}
 
+/*
+	types and functions for instances
+*/
+
+// isArray
+type ListInstancesResponseGetInstancesAttributeType = *[]ProjectInstanceFull
+type ListInstancesResponseGetInstancesArgType = []ProjectInstanceFull
+type ListInstancesResponseGetInstancesRetType = []ProjectInstanceFull
+
+func getListInstancesResponseGetInstancesAttributeTypeOk(arg ListInstancesResponseGetInstancesAttributeType) (ret ListInstancesResponseGetInstancesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListInstancesResponseGetInstancesAttributeType(arg *ListInstancesResponseGetInstancesAttributeType, val ListInstancesResponseGetInstancesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type ListInstancesResponseGetMessageAttributeType = *string
+
+func getListInstancesResponseGetMessageAttributeTypeOk(arg ListInstancesResponseGetMessageAttributeType) (ret ListInstancesResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListInstancesResponseGetMessageAttributeType(arg *ListInstancesResponseGetMessageAttributeType, val ListInstancesResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type ListInstancesResponseGetMessageArgType = string
+type ListInstancesResponseGetMessageRetType = string
+
 // ListInstancesResponse struct for ListInstancesResponse
 type ListInstancesResponse struct {
 	// REQUIRED
-	Instances *[]ProjectInstanceFull `json:"instances"`
+	Instances ListInstancesResponseGetInstancesAttributeType `json:"instances"`
 	// REQUIRED
-	Message *string `json:"message"`
+	Message ListInstancesResponseGetMessageAttributeType `json:"message"`
 }
 
 type _ListInstancesResponse ListInstancesResponse
@@ -31,10 +72,10 @@ type _ListInstancesResponse ListInstancesResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListInstancesResponse(instances *[]ProjectInstanceFull, message *string) *ListInstancesResponse {
+func NewListInstancesResponse(instances ListInstancesResponseGetInstancesArgType, message ListInstancesResponseGetMessageArgType) *ListInstancesResponse {
 	this := ListInstancesResponse{}
-	this.Instances = instances
-	this.Message = message
+	setListInstancesResponseGetInstancesAttributeType(&this.Instances, instances)
+	setListInstancesResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -47,57 +88,47 @@ func NewListInstancesResponseWithDefaults() *ListInstancesResponse {
 }
 
 // GetInstances returns the Instances field value
-func (o *ListInstancesResponse) GetInstances() *[]ProjectInstanceFull {
-	if o == nil || IsNil(o.Instances) {
-		var ret *[]ProjectInstanceFull
-		return ret
-	}
-
-	return o.Instances
+func (o *ListInstancesResponse) GetInstances() (ret ListInstancesResponseGetInstancesRetType) {
+	ret, _ = o.GetInstancesOk()
+	return ret
 }
 
 // GetInstancesOk returns a tuple with the Instances field value
 // and a boolean to check if the value has been set.
-func (o *ListInstancesResponse) GetInstancesOk() (*[]ProjectInstanceFull, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Instances, true
+func (o *ListInstancesResponse) GetInstancesOk() (ret ListInstancesResponseGetInstancesRetType, ok bool) {
+	return getListInstancesResponseGetInstancesAttributeTypeOk(o.Instances)
 }
 
 // SetInstances sets field value
-func (o *ListInstancesResponse) SetInstances(v *[]ProjectInstanceFull) {
-	o.Instances = v
+func (o *ListInstancesResponse) SetInstances(v ListInstancesResponseGetInstancesRetType) {
+	setListInstancesResponseGetInstancesAttributeType(&o.Instances, v)
 }
 
 // GetMessage returns the Message field value
-func (o *ListInstancesResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *ListInstancesResponse) GetMessage() (ret ListInstancesResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *ListInstancesResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *ListInstancesResponse) GetMessageOk() (ret ListInstancesResponseGetMessageRetType, ok bool) {
+	return getListInstancesResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *ListInstancesResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *ListInstancesResponse) SetMessage(v ListInstancesResponseGetMessageRetType) {
+	setListInstancesResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o ListInstancesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["instances"] = o.Instances
-	toSerialize["message"] = o.Message
+	if val, ok := getListInstancesResponseGetInstancesAttributeTypeOk(o.Instances); ok {
+		toSerialize["Instances"] = val
+	}
+	if val, ok := getListInstancesResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

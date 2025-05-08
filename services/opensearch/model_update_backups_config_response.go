@@ -17,10 +17,31 @@ import (
 // checks if the UpdateBackupsConfigResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateBackupsConfigResponse{}
 
+/*
+	types and functions for message
+*/
+
+// isNotNullableString
+type UpdateBackupsConfigResponseGetMessageAttributeType = *string
+
+func getUpdateBackupsConfigResponseGetMessageAttributeTypeOk(arg UpdateBackupsConfigResponseGetMessageAttributeType) (ret UpdateBackupsConfigResponseGetMessageRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupsConfigResponseGetMessageAttributeType(arg *UpdateBackupsConfigResponseGetMessageAttributeType, val UpdateBackupsConfigResponseGetMessageRetType) {
+	*arg = &val
+}
+
+type UpdateBackupsConfigResponseGetMessageArgType = string
+type UpdateBackupsConfigResponseGetMessageRetType = string
+
 // UpdateBackupsConfigResponse struct for UpdateBackupsConfigResponse
 type UpdateBackupsConfigResponse struct {
 	// REQUIRED
-	Message *string `json:"message"`
+	Message UpdateBackupsConfigResponseGetMessageAttributeType `json:"message"`
 }
 
 type _UpdateBackupsConfigResponse UpdateBackupsConfigResponse
@@ -29,9 +50,9 @@ type _UpdateBackupsConfigResponse UpdateBackupsConfigResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateBackupsConfigResponse(message *string) *UpdateBackupsConfigResponse {
+func NewUpdateBackupsConfigResponse(message UpdateBackupsConfigResponseGetMessageArgType) *UpdateBackupsConfigResponse {
 	this := UpdateBackupsConfigResponse{}
-	this.Message = message
+	setUpdateBackupsConfigResponseGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
@@ -44,32 +65,27 @@ func NewUpdateBackupsConfigResponseWithDefaults() *UpdateBackupsConfigResponse {
 }
 
 // GetMessage returns the Message field value
-func (o *UpdateBackupsConfigResponse) GetMessage() *string {
-	if o == nil || IsNil(o.Message) {
-		var ret *string
-		return ret
-	}
-
-	return o.Message
+func (o *UpdateBackupsConfigResponse) GetMessage() (ret UpdateBackupsConfigResponseGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
+	return ret
 }
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *UpdateBackupsConfigResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Message, true
+func (o *UpdateBackupsConfigResponse) GetMessageOk() (ret UpdateBackupsConfigResponseGetMessageRetType, ok bool) {
+	return getUpdateBackupsConfigResponseGetMessageAttributeTypeOk(o.Message)
 }
 
 // SetMessage sets field value
-func (o *UpdateBackupsConfigResponse) SetMessage(v *string) {
-	o.Message = v
+func (o *UpdateBackupsConfigResponse) SetMessage(v UpdateBackupsConfigResponseGetMessageRetType) {
+	setUpdateBackupsConfigResponseGetMessageAttributeType(&o.Message, v)
 }
 
 func (o UpdateBackupsConfigResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["message"] = o.Message
+	if val, ok := getUpdateBackupsConfigResponseGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
+	}
 	return toSerialize, nil
 }
 

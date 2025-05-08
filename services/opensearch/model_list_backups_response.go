@@ -17,10 +17,30 @@ import (
 // checks if the ListBackupsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListBackupsResponse{}
 
+/*
+	types and functions for instanceBackups
+*/
+
+// isArray
+type ListBackupsResponseGetInstanceBackupsAttributeType = *[]Backup
+type ListBackupsResponseGetInstanceBackupsArgType = []Backup
+type ListBackupsResponseGetInstanceBackupsRetType = []Backup
+
+func getListBackupsResponseGetInstanceBackupsAttributeTypeOk(arg ListBackupsResponseGetInstanceBackupsAttributeType) (ret ListBackupsResponseGetInstanceBackupsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListBackupsResponseGetInstanceBackupsAttributeType(arg *ListBackupsResponseGetInstanceBackupsAttributeType, val ListBackupsResponseGetInstanceBackupsRetType) {
+	*arg = &val
+}
+
 // ListBackupsResponse struct for ListBackupsResponse
 type ListBackupsResponse struct {
 	// REQUIRED
-	InstanceBackups *[]Backup `json:"instanceBackups"`
+	InstanceBackups ListBackupsResponseGetInstanceBackupsAttributeType `json:"instanceBackups"`
 }
 
 type _ListBackupsResponse ListBackupsResponse
@@ -29,9 +49,9 @@ type _ListBackupsResponse ListBackupsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListBackupsResponse(instanceBackups *[]Backup) *ListBackupsResponse {
+func NewListBackupsResponse(instanceBackups ListBackupsResponseGetInstanceBackupsArgType) *ListBackupsResponse {
 	this := ListBackupsResponse{}
-	this.InstanceBackups = instanceBackups
+	setListBackupsResponseGetInstanceBackupsAttributeType(&this.InstanceBackups, instanceBackups)
 	return &this
 }
 
@@ -44,32 +64,27 @@ func NewListBackupsResponseWithDefaults() *ListBackupsResponse {
 }
 
 // GetInstanceBackups returns the InstanceBackups field value
-func (o *ListBackupsResponse) GetInstanceBackups() *[]Backup {
-	if o == nil || IsNil(o.InstanceBackups) {
-		var ret *[]Backup
-		return ret
-	}
-
-	return o.InstanceBackups
+func (o *ListBackupsResponse) GetInstanceBackups() (ret ListBackupsResponseGetInstanceBackupsRetType) {
+	ret, _ = o.GetInstanceBackupsOk()
+	return ret
 }
 
 // GetInstanceBackupsOk returns a tuple with the InstanceBackups field value
 // and a boolean to check if the value has been set.
-func (o *ListBackupsResponse) GetInstanceBackupsOk() (*[]Backup, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.InstanceBackups, true
+func (o *ListBackupsResponse) GetInstanceBackupsOk() (ret ListBackupsResponseGetInstanceBackupsRetType, ok bool) {
+	return getListBackupsResponseGetInstanceBackupsAttributeTypeOk(o.InstanceBackups)
 }
 
 // SetInstanceBackups sets field value
-func (o *ListBackupsResponse) SetInstanceBackups(v *[]Backup) {
-	o.InstanceBackups = v
+func (o *ListBackupsResponse) SetInstanceBackups(v ListBackupsResponseGetInstanceBackupsRetType) {
+	setListBackupsResponseGetInstanceBackupsAttributeType(&o.InstanceBackups, v)
 }
 
 func (o ListBackupsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["instanceBackups"] = o.InstanceBackups
+	if val, ok := getListBackupsResponseGetInstanceBackupsAttributeTypeOk(o.InstanceBackups); ok {
+		toSerialize["InstanceBackups"] = val
+	}
 	return toSerialize, nil
 }
 

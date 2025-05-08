@@ -17,16 +17,76 @@ import (
 // checks if the ListProjectsResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ListProjectsResponse{}
 
+/*
+	types and functions for items
+*/
+
+// isArray
+type ListProjectsResponseGetItemsAttributeType = *[]Project
+type ListProjectsResponseGetItemsArgType = []Project
+type ListProjectsResponseGetItemsRetType = []Project
+
+func getListProjectsResponseGetItemsAttributeTypeOk(arg ListProjectsResponseGetItemsAttributeType) (ret ListProjectsResponseGetItemsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListProjectsResponseGetItemsAttributeType(arg *ListProjectsResponseGetItemsAttributeType, val ListProjectsResponseGetItemsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for limit
+*/
+
+// isNumber
+type ListProjectsResponseGetLimitAttributeType = *float64
+type ListProjectsResponseGetLimitArgType = float64
+type ListProjectsResponseGetLimitRetType = float64
+
+func getListProjectsResponseGetLimitAttributeTypeOk(arg ListProjectsResponseGetLimitAttributeType) (ret ListProjectsResponseGetLimitRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListProjectsResponseGetLimitAttributeType(arg *ListProjectsResponseGetLimitAttributeType, val ListProjectsResponseGetLimitRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for offset
+*/
+
+// isNumber
+type ListProjectsResponseGetOffsetAttributeType = *float64
+type ListProjectsResponseGetOffsetArgType = float64
+type ListProjectsResponseGetOffsetRetType = float64
+
+func getListProjectsResponseGetOffsetAttributeTypeOk(arg ListProjectsResponseGetOffsetAttributeType) (ret ListProjectsResponseGetOffsetRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListProjectsResponseGetOffsetAttributeType(arg *ListProjectsResponseGetOffsetAttributeType, val ListProjectsResponseGetOffsetRetType) {
+	*arg = &val
+}
+
 // ListProjectsResponse struct for ListProjectsResponse
 type ListProjectsResponse struct {
 	// REQUIRED
-	Items *[]Project `json:"items"`
+	Items ListProjectsResponseGetItemsAttributeType `json:"items"`
 	// The maximum number of projects to return in the response. If not present, an appropriate default will be used.
 	// REQUIRED
-	Limit *float64 `json:"limit"`
+	Limit ListProjectsResponseGetLimitAttributeType `json:"limit"`
 	// The offset of the first item in the collection to return.
 	// REQUIRED
-	Offset *float64 `json:"offset"`
+	Offset ListProjectsResponseGetOffsetAttributeType `json:"offset"`
 }
 
 type _ListProjectsResponse ListProjectsResponse
@@ -35,11 +95,11 @@ type _ListProjectsResponse ListProjectsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListProjectsResponse(items *[]Project, limit *float64, offset *float64) *ListProjectsResponse {
+func NewListProjectsResponse(items ListProjectsResponseGetItemsArgType, limit ListProjectsResponseGetLimitArgType, offset ListProjectsResponseGetOffsetArgType) *ListProjectsResponse {
 	this := ListProjectsResponse{}
-	this.Items = items
-	this.Limit = limit
-	this.Offset = offset
+	setListProjectsResponseGetItemsAttributeType(&this.Items, items)
+	setListProjectsResponseGetLimitAttributeType(&this.Limit, limit)
+	setListProjectsResponseGetOffsetAttributeType(&this.Offset, offset)
 	return &this
 }
 
@@ -56,82 +116,67 @@ func NewListProjectsResponseWithDefaults() *ListProjectsResponse {
 }
 
 // GetItems returns the Items field value
-func (o *ListProjectsResponse) GetItems() *[]Project {
-	if o == nil || IsNil(o.Items) {
-		var ret *[]Project
-		return ret
-	}
-
-	return o.Items
+func (o *ListProjectsResponse) GetItems() (ret ListProjectsResponseGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
+	return ret
 }
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *ListProjectsResponse) GetItemsOk() (*[]Project, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
+func (o *ListProjectsResponse) GetItemsOk() (ret ListProjectsResponseGetItemsRetType, ok bool) {
+	return getListProjectsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // SetItems sets field value
-func (o *ListProjectsResponse) SetItems(v *[]Project) {
-	o.Items = v
+func (o *ListProjectsResponse) SetItems(v ListProjectsResponseGetItemsRetType) {
+	setListProjectsResponseGetItemsAttributeType(&o.Items, v)
 }
 
 // GetLimit returns the Limit field value
-func (o *ListProjectsResponse) GetLimit() *float64 {
-	if o == nil || IsNil(o.Limit) {
-		var ret *float64
-		return ret
-	}
-
-	return o.Limit
+func (o *ListProjectsResponse) GetLimit() (ret ListProjectsResponseGetLimitRetType) {
+	ret, _ = o.GetLimitOk()
+	return ret
 }
 
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
-func (o *ListProjectsResponse) GetLimitOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Limit, true
+func (o *ListProjectsResponse) GetLimitOk() (ret ListProjectsResponseGetLimitRetType, ok bool) {
+	return getListProjectsResponseGetLimitAttributeTypeOk(o.Limit)
 }
 
 // SetLimit sets field value
-func (o *ListProjectsResponse) SetLimit(v *float64) {
-	o.Limit = v
+func (o *ListProjectsResponse) SetLimit(v ListProjectsResponseGetLimitRetType) {
+	setListProjectsResponseGetLimitAttributeType(&o.Limit, v)
 }
 
 // GetOffset returns the Offset field value
-func (o *ListProjectsResponse) GetOffset() *float64 {
-	if o == nil || IsNil(o.Offset) {
-		var ret *float64
-		return ret
-	}
-
-	return o.Offset
+func (o *ListProjectsResponse) GetOffset() (ret ListProjectsResponseGetOffsetRetType) {
+	ret, _ = o.GetOffsetOk()
+	return ret
 }
 
 // GetOffsetOk returns a tuple with the Offset field value
 // and a boolean to check if the value has been set.
-func (o *ListProjectsResponse) GetOffsetOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Offset, true
+func (o *ListProjectsResponse) GetOffsetOk() (ret ListProjectsResponseGetOffsetRetType, ok bool) {
+	return getListProjectsResponseGetOffsetAttributeTypeOk(o.Offset)
 }
 
 // SetOffset sets field value
-func (o *ListProjectsResponse) SetOffset(v *float64) {
-	o.Offset = v
+func (o *ListProjectsResponse) SetOffset(v ListProjectsResponseGetOffsetRetType) {
+	setListProjectsResponseGetOffsetAttributeType(&o.Offset, v)
 }
 
 func (o ListProjectsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
-	toSerialize["limit"] = o.Limit
-	toSerialize["offset"] = o.Offset
+	if val, ok := getListProjectsResponseGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
+	}
+	if val, ok := getListProjectsResponseGetLimitAttributeTypeOk(o.Limit); ok {
+		toSerialize["Limit"] = val
+	}
+	if val, ok := getListProjectsResponseGetOffsetAttributeTypeOk(o.Offset); ok {
+		toSerialize["Offset"] = val
+	}
 	return toSerialize, nil
 }
 

@@ -17,14 +17,56 @@ import (
 // checks if the TriggerDatabaseRestorePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &TriggerDatabaseRestorePayload{}
 
+/*
+	types and functions for name
+*/
+
+// isNotNullableString
+type TriggerDatabaseRestorePayloadGetNameAttributeType = *string
+
+func getTriggerDatabaseRestorePayloadGetNameAttributeTypeOk(arg TriggerDatabaseRestorePayloadGetNameAttributeType) (ret TriggerDatabaseRestorePayloadGetNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTriggerDatabaseRestorePayloadGetNameAttributeType(arg *TriggerDatabaseRestorePayloadGetNameAttributeType, val TriggerDatabaseRestorePayloadGetNameRetType) {
+	*arg = &val
+}
+
+type TriggerDatabaseRestorePayloadGetNameArgType = string
+type TriggerDatabaseRestorePayloadGetNameRetType = string
+
+/*
+	types and functions for restoreDateTime
+*/
+
+// isNotNullableString
+type TriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeType = *string
+
+func getTriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeTypeOk(arg TriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeType) (ret TriggerDatabaseRestorePayloadGetRestoreDateTimeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setTriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeType(arg *TriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeType, val TriggerDatabaseRestorePayloadGetRestoreDateTimeRetType) {
+	*arg = &val
+}
+
+type TriggerDatabaseRestorePayloadGetRestoreDateTimeArgType = string
+type TriggerDatabaseRestorePayloadGetRestoreDateTimeRetType = string
+
 // TriggerDatabaseRestorePayload struct for TriggerDatabaseRestorePayload
 type TriggerDatabaseRestorePayload struct {
 	// Name for the restored database no overwrite allowed at the moment
 	// REQUIRED
-	Name *string `json:"name"`
+	Name TriggerDatabaseRestorePayloadGetNameAttributeType `json:"name"`
 	// Time of the restore point formate RFC3339
 	// REQUIRED
-	RestoreDateTime *string `json:"restoreDateTime"`
+	RestoreDateTime TriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeType `json:"restoreDateTime"`
 }
 
 type _TriggerDatabaseRestorePayload TriggerDatabaseRestorePayload
@@ -33,10 +75,10 @@ type _TriggerDatabaseRestorePayload TriggerDatabaseRestorePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTriggerDatabaseRestorePayload(name *string, restoreDateTime *string) *TriggerDatabaseRestorePayload {
+func NewTriggerDatabaseRestorePayload(name TriggerDatabaseRestorePayloadGetNameArgType, restoreDateTime TriggerDatabaseRestorePayloadGetRestoreDateTimeArgType) *TriggerDatabaseRestorePayload {
 	this := TriggerDatabaseRestorePayload{}
-	this.Name = name
-	this.RestoreDateTime = restoreDateTime
+	setTriggerDatabaseRestorePayloadGetNameAttributeType(&this.Name, name)
+	setTriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeType(&this.RestoreDateTime, restoreDateTime)
 	return &this
 }
 
@@ -49,57 +91,47 @@ func NewTriggerDatabaseRestorePayloadWithDefaults() *TriggerDatabaseRestorePaylo
 }
 
 // GetName returns the Name field value
-func (o *TriggerDatabaseRestorePayload) GetName() *string {
-	if o == nil || IsNil(o.Name) {
-		var ret *string
-		return ret
-	}
-
-	return o.Name
+func (o *TriggerDatabaseRestorePayload) GetName() (ret TriggerDatabaseRestorePayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *TriggerDatabaseRestorePayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name, true
+func (o *TriggerDatabaseRestorePayload) GetNameOk() (ret TriggerDatabaseRestorePayloadGetNameRetType, ok bool) {
+	return getTriggerDatabaseRestorePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
-func (o *TriggerDatabaseRestorePayload) SetName(v *string) {
-	o.Name = v
+func (o *TriggerDatabaseRestorePayload) SetName(v TriggerDatabaseRestorePayloadGetNameRetType) {
+	setTriggerDatabaseRestorePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetRestoreDateTime returns the RestoreDateTime field value
-func (o *TriggerDatabaseRestorePayload) GetRestoreDateTime() *string {
-	if o == nil || IsNil(o.RestoreDateTime) {
-		var ret *string
-		return ret
-	}
-
-	return o.RestoreDateTime
+func (o *TriggerDatabaseRestorePayload) GetRestoreDateTime() (ret TriggerDatabaseRestorePayloadGetRestoreDateTimeRetType) {
+	ret, _ = o.GetRestoreDateTimeOk()
+	return ret
 }
 
 // GetRestoreDateTimeOk returns a tuple with the RestoreDateTime field value
 // and a boolean to check if the value has been set.
-func (o *TriggerDatabaseRestorePayload) GetRestoreDateTimeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RestoreDateTime, true
+func (o *TriggerDatabaseRestorePayload) GetRestoreDateTimeOk() (ret TriggerDatabaseRestorePayloadGetRestoreDateTimeRetType, ok bool) {
+	return getTriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeTypeOk(o.RestoreDateTime)
 }
 
 // SetRestoreDateTime sets field value
-func (o *TriggerDatabaseRestorePayload) SetRestoreDateTime(v *string) {
-	o.RestoreDateTime = v
+func (o *TriggerDatabaseRestorePayload) SetRestoreDateTime(v TriggerDatabaseRestorePayloadGetRestoreDateTimeRetType) {
+	setTriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeType(&o.RestoreDateTime, v)
 }
 
 func (o TriggerDatabaseRestorePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["restoreDateTime"] = o.RestoreDateTime
+	if val, ok := getTriggerDatabaseRestorePayloadGetNameAttributeTypeOk(o.Name); ok {
+		toSerialize["Name"] = val
+	}
+	if val, ok := getTriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeTypeOk(o.RestoreDateTime); ok {
+		toSerialize["RestoreDateTime"] = val
+	}
 	return toSerialize, nil
 }
 

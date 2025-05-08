@@ -1,6 +1,6 @@
 <div align="center">
 <br>
-<img src=".github/images/stackit-logo.png" alt="STACKIT logo" width="50%"/>
+<img src=".github/images/stackit-logo.svg" alt="STACKIT logo" width="50%"/>
 <br>
 <br>
 </div>
@@ -227,6 +227,10 @@ If you encounter any issues or have suggestions for improvements, please open an
 ## Contribute
 
 Your contribution is welcome! For more details on how to contribute, refer to our [Contribution Guide](./CONTRIBUTION.md).
+
+## Release creation
+
+See the [release documentation](./RELEASE.md) for further information.
 
 ## License
 

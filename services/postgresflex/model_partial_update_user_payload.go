@@ -17,10 +17,51 @@ import (
 // checks if the PartialUpdateUserPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PartialUpdateUserPayload{}
 
+/*
+	types and functions for database
+*/
+
+// isNotNullableString
+type PartialUpdateUserPayloadGetDatabaseAttributeType = *string
+
+func getPartialUpdateUserPayloadGetDatabaseAttributeTypeOk(arg PartialUpdateUserPayloadGetDatabaseAttributeType) (ret PartialUpdateUserPayloadGetDatabaseRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateUserPayloadGetDatabaseAttributeType(arg *PartialUpdateUserPayloadGetDatabaseAttributeType, val PartialUpdateUserPayloadGetDatabaseRetType) {
+	*arg = &val
+}
+
+type PartialUpdateUserPayloadGetDatabaseArgType = string
+type PartialUpdateUserPayloadGetDatabaseRetType = string
+
+/*
+	types and functions for roles
+*/
+
+// isArray
+type PartialUpdateUserPayloadGetRolesAttributeType = *[]string
+type PartialUpdateUserPayloadGetRolesArgType = []string
+type PartialUpdateUserPayloadGetRolesRetType = []string
+
+func getPartialUpdateUserPayloadGetRolesAttributeTypeOk(arg PartialUpdateUserPayloadGetRolesAttributeType) (ret PartialUpdateUserPayloadGetRolesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateUserPayloadGetRolesAttributeType(arg *PartialUpdateUserPayloadGetRolesAttributeType, val PartialUpdateUserPayloadGetRolesRetType) {
+	*arg = &val
+}
+
 // PartialUpdateUserPayload struct for PartialUpdateUserPayload
 type PartialUpdateUserPayload struct {
-	Database *string   `json:"database,omitempty"`
-	Roles    *[]string `json:"roles,omitempty"`
+	Database PartialUpdateUserPayloadGetDatabaseAttributeType `json:"database,omitempty"`
+	Roles    PartialUpdateUserPayloadGetRolesAttributeType    `json:"roles,omitempty"`
 }
 
 // NewPartialUpdateUserPayload instantiates a new PartialUpdateUserPayload object
@@ -41,76 +82,58 @@ func NewPartialUpdateUserPayloadWithDefaults() *PartialUpdateUserPayload {
 }
 
 // GetDatabase returns the Database field value if set, zero value otherwise.
-func (o *PartialUpdateUserPayload) GetDatabase() *string {
-	if o == nil || IsNil(o.Database) {
-		var ret *string
-		return ret
-	}
-	return o.Database
+func (o *PartialUpdateUserPayload) GetDatabase() (res PartialUpdateUserPayloadGetDatabaseRetType) {
+	res, _ = o.GetDatabaseOk()
+	return
 }
 
 // GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateUserPayload) GetDatabaseOk() (*string, bool) {
-	if o == nil || IsNil(o.Database) {
-		return nil, false
-	}
-	return o.Database, true
+func (o *PartialUpdateUserPayload) GetDatabaseOk() (ret PartialUpdateUserPayloadGetDatabaseRetType, ok bool) {
+	return getPartialUpdateUserPayloadGetDatabaseAttributeTypeOk(o.Database)
 }
 
 // HasDatabase returns a boolean if a field has been set.
 func (o *PartialUpdateUserPayload) HasDatabase() bool {
-	if o != nil && !IsNil(o.Database) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetDatabaseOk()
+	return ok
 }
 
 // SetDatabase gets a reference to the given string and assigns it to the Database field.
-func (o *PartialUpdateUserPayload) SetDatabase(v *string) {
-	o.Database = v
+func (o *PartialUpdateUserPayload) SetDatabase(v PartialUpdateUserPayloadGetDatabaseRetType) {
+	setPartialUpdateUserPayloadGetDatabaseAttributeType(&o.Database, v)
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *PartialUpdateUserPayload) GetRoles() *[]string {
-	if o == nil || IsNil(o.Roles) {
-		var ret *[]string
-		return ret
-	}
-	return o.Roles
+func (o *PartialUpdateUserPayload) GetRoles() (res PartialUpdateUserPayloadGetRolesRetType) {
+	res, _ = o.GetRolesOk()
+	return
 }
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialUpdateUserPayload) GetRolesOk() (*[]string, bool) {
-	if o == nil || IsNil(o.Roles) {
-		return nil, false
-	}
-	return o.Roles, true
+func (o *PartialUpdateUserPayload) GetRolesOk() (ret PartialUpdateUserPayloadGetRolesRetType, ok bool) {
+	return getPartialUpdateUserPayloadGetRolesAttributeTypeOk(o.Roles)
 }
 
 // HasRoles returns a boolean if a field has been set.
 func (o *PartialUpdateUserPayload) HasRoles() bool {
-	if o != nil && !IsNil(o.Roles) {
-		return true
-	}
-
-	return false
+	_, ok := o.GetRolesOk()
+	return ok
 }
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *PartialUpdateUserPayload) SetRoles(v *[]string) {
-	o.Roles = v
+func (o *PartialUpdateUserPayload) SetRoles(v PartialUpdateUserPayloadGetRolesRetType) {
+	setPartialUpdateUserPayloadGetRolesAttributeType(&o.Roles, v)
 }
 
 func (o PartialUpdateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Database) {
-		toSerialize["database"] = o.Database
+	if val, ok := getPartialUpdateUserPayloadGetDatabaseAttributeTypeOk(o.Database); ok {
+		toSerialize["Database"] = val
 	}
-	if !IsNil(o.Roles) {
-		toSerialize["roles"] = o.Roles
+	if val, ok := getPartialUpdateUserPayloadGetRolesAttributeTypeOk(o.Roles); ok {
+		toSerialize["Roles"] = val
 	}
 	return toSerialize, nil
 }
