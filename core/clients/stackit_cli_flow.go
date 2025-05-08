@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"errors"
+	"net/http"
 	"os"
 	"os/exec"
 	"runtime"
@@ -17,25 +18,25 @@ type STACKITCLIFlow struct {
 }
 
 // STACKITCLIFlowConfig is the flow config
-type STACKITCLIFlowConfig struct{}
+type STACKITCLIFlowConfig struct {
+	HTTPTransport http.RoundTripper
+}
 
 // GetConfig returns the flow configuration
 func (c *STACKITCLIFlow) GetConfig() STACKITCLIFlowConfig {
 	return STACKITCLIFlowConfig{}
 }
 
-func (c *STACKITCLIFlow) Init(_ *STACKITCLIFlowConfig) error {
+func (c *STACKITCLIFlow) Init(cfg *STACKITCLIFlowConfig) error {
 	token, err := c.getTokenFromCLI()
 	if err != nil {
 		return err
 	}
 
-	c.config = &TokenFlowConfig{
+	return c.TokenFlow.Init(&TokenFlowConfig{
 		ServiceAccountToken: strings.TrimSpace(token),
-	}
-
-	c.configureHTTPClient()
-	return c.validate()
+		HTTPTransport:       cfg.HTTPTransport,
+	})
 }
 
 func (c *STACKITCLIFlow) getTokenFromCLI() (string, error) {

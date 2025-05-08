@@ -235,9 +235,14 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 }
 
 // StackitCliAuth configures the [clients.STACKITCLIFlow] and returns an http.RoundTripper
-func StackitCliAuth(_ *config.Configuration) (http.RoundTripper, error) {
+func StackitCliAuth(cfg *config.Configuration) (http.RoundTripper, error) {
+	cliCfg := clients.STACKITCLIFlowConfig{}
+	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
+		cliCfg.HTTPTransport = cfg.HTTPClient.Transport
+	}
+
 	client := &clients.STACKITCLIFlow{}
-	if err := client.Init(&clients.STACKITCLIFlowConfig{}); err != nil {
+	if err := client.Init(&cliCfg); err != nil {
 		return nil, fmt.Errorf("error initializing client: %w", err)
 	}
 

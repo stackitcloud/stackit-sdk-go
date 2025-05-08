@@ -1,6 +1,7 @@
 package clients
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"net/http"
@@ -24,23 +25,25 @@ func TestSTACKITCLIFlow_Init(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			ctx := context.TODO()
+
 			c := &STACKITCLIFlow{}
 
-			_, _ = runSTACKITCLICommand(t.Context(), "stackit config profile delete test-stackit-cli-flow-init -y")
-			_, err := runSTACKITCLICommand(t.Context(), "stackit config profile create test-stackit-cli-flow-init")
+			_, _ = runSTACKITCLICommand(ctx, "stackit config profile delete test-stackit-cli-flow-init -y")
+			_, err := runSTACKITCLICommand(ctx, "stackit config profile create test-stackit-cli-flow-init")
 			if err != nil {
 				t.Errorf("runSTACKITCLICommand() error = %v", err)
 				return
 			}
 
-			_, err = runSTACKITCLICommand(t.Context(), "stackit auth activate-service-account --service-account-token="+testServiceAccountToken)
+			_, err = runSTACKITCLICommand(ctx, "stackit auth activate-service-account --service-account-token="+testServiceAccountToken)
 			if err != nil {
 				t.Errorf("runSTACKITCLICommand() error = %v", err)
 				return
 			}
 
 			defer func() {
-				_, _ = runSTACKITCLICommand(t.Context(), "stackit config profile delete test-stackit-cli-flow-init -y")
+				_, _ = runSTACKITCLICommand(ctx, "stackit config profile delete test-stackit-cli-flow-init -y")
 			}()
 
 			if err := c.Init(tt.args.cfg); (err != nil) != tt.wantErr {
@@ -70,21 +73,23 @@ func TestSTACKITCLIFlow_Do(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			_, _ = runSTACKITCLICommand(t.Context(), "stackit config profile delete test-stackit-cli-flow-do -y")
-			_, err := runSTACKITCLICommand(t.Context(), "stackit config profile create test-stackit-cli-flow-do")
+			ctx := context.TODO()
+
+			_, _ = runSTACKITCLICommand(ctx, "stackit config profile delete test-stackit-cli-flow-do -y")
+			_, err := runSTACKITCLICommand(ctx, "stackit config profile create test-stackit-cli-flow-do")
 			if err != nil {
 				t.Errorf("runSTACKITCLICommand() error = %v", err)
 				return
 			}
 
-			_, err = runSTACKITCLICommand(t.Context(), "stackit auth activate-service-account --service-account-token="+testServiceAccountToken)
+			_, err = runSTACKITCLICommand(ctx, "stackit auth activate-service-account --service-account-token="+testServiceAccountToken)
 			if err != nil {
 				t.Errorf("runSTACKITCLICommand() error = %v", err)
 				return
 			}
 
 			defer func() {
-				_, _ = runSTACKITCLICommand(t.Context(), "stackit config profile delete test-stackit-cli-flow-do -y")
+				_, _ = runSTACKITCLICommand(ctx, "stackit config profile delete test-stackit-cli-flow-do -y")
 			}()
 
 			c := &STACKITCLIFlow{}
