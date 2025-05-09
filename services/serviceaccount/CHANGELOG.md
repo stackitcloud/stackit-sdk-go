@@ -1,3 +1,6 @@
+## v0.6.3 (2025-05-09)
+- **Feature:** Update user-agent header
+
 ## v0.6.2 (2025-04-29)
 - **Bugfix:** Correctly handle empty payload in body
 

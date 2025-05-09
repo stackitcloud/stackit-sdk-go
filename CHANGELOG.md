@@ -1,20 +1,37 @@
-## Release (2025-05-XX)
-- `resourcemanager`: [v0.13.2](services/resourcemanager/CHANGELOG.md#v0132-2025-05-02)
-  - **Feature:**
-    - Added API calls for folder management
-- `stackitmarketplace`: [1.0.0](services/stackitmarketplace/CHANGELOG.md#v100-2025-05-02)
-  - **Breaking Change:**
+## Release (2025-05-09)
+- `resourcemanager`:
+  - [v0.13.3](services/resourcemanager/CHANGELOG.md#v0133-2025-05-09)
+    - **Feature:** Update user-agent header
+  - [v0.13.2](services/resourcemanager/CHANGELOG.md#v0132-2025-05-02)
+    - **Feature:**
+      - Added API calls for folder management
+- `stackitmarketplace`: 
+  - [v1.0.1](services/stackitmarketplace/CHANGELOG.md#v101-2025-05-09)
+      - **Feature:** Update user-agent header
+  - [1.0.0](services/stackitmarketplace/CHANGELOG.md#v100-2025-05-02)
+    - **Breaking Change:**
       - Introduced dedicated type for product id with appropriate validations
-  - **Feature:** 
+    - **Feature:** 
       - Improved nil-safety
       - subscription products contain the plan id
-- `modelserving` [v0.2.2](services/modelserving/CHANGELOG.md#v022-2025-05-02)
-  - **Feature:** Improved nil-safety
-- `mongodbflex`: [1.0.0](services/mongodbflex/CHANGELOG.md#v100-2025-05-02)
-  - **Breaking Change:** Introduce typed enum constants for status attributes
-- `git`: [v0.3.2](services/git/CHANGELOG.md#v032-2025-05-02)
-  - **Bugfix**: Spelling corrections in documentation
+- `modelserving`:
+  - [v0.2.3](services/modelserving/CHANGELOG.md#v023-2025-05-09)
+    - **Feature:** Update user-agent header
+  - [v0.2.2](services/modelserving/CHANGELOG.md#v022-2025-05-02)
+    - **Feature:** Improved nil-safety
+- `mongodbflex`: 
+  - [1.0.1](services/mongodbflex/CHANGELOG.md#v101-2025-05-09)
+    - **Feature:** Update user-agent header
+  - [1.0.0](services/mongodbflex/CHANGELOG.md#v100-2025-05-02)
+    - **Breaking Change:** Introduce typed enum constants for status attributes
+- `git`:
+  - [v0.3.3](services/git/CHANGELOG.md#v033-2025-05-09)
+    - **Feature:** Update user-agent header
+  - [v0.3.2](services/git/CHANGELOG.md#v032-2025-05-02)
+    - **Bugfix**: Spelling corrections in documentation
 - `cdn`:
+  - [v1.0.2](services/cdn/CHANGELOG.md#v102-2025-05-09)
+    - **Feature:** Update user-agent header
   - [v1.0.1](services/cdn/CHANGELOG.md#v101-2025-05-05)
     - **Enhancement:** Increase waiter timeouts
   - [v1.0.0](services/cdn/CHANGELOG.md#v100-2025-05-02)
@@ -22,8 +39,56 @@
     - **Feature:** Create distribution payload has additional optional attributes for blocked countries, IPs and volume limitation
     - **Feature:** Config Patch payload has additional optional attributes for blocked countries, IPs and volume limitation
     - **Breaking Change:** Config has additional required attributes for blocked countries, IPs and volume limitation
-- `alb`: [v0.2.2](services/alb/CHANGELOG.md#v022-2025-05-02)
-  - **Feature:** Switch to beta2 API
+- `alb`: 
+  - [v0.2.3](services/alb/CHANGELOG.md#v023-2025-05-09)
+    - **Feature:** Update user-agent header
+  - [v0.2.2](services/alb/CHANGELOG.md#v022-2025-05-02)
+    - **Feature:** Switch to beta2 API
+- `authorization`: [v0.6.3](services/authorization/CHANGELOG.md#v063-2025-05-09)
+  - **Feature:** Update user-agent header
+- `certificates`: [v1.0.3](services/certificates/CHANGELOG.md#v103-2025-05-09)
+  - **Feature:** Update user-agent header
+- `dns`: [v0.13.3](services/dns/CHANGELOG.md#v0133-2025-05-09)
+  - **Feature:** Update user-agent header
+- `iaas`: [v0.22.2](services/iaas/CHANGELOG.md#v0222-2025-05-09)
+  - **Feature:** Update user-agent header
+- `kms`: [v0.0.2](services/kms/CHANGELOG.md#v002-2025-05-09)
+  - **Feature:** Update user-agent header
+- `loadbalancer`: [v1.0.3](services/loadbalancer/CHANGELOG.md#v103-2025-05-09)
+  - **Feature:** Update user-agent header
+- `logme`: [v0.22.2](services/logme/CHANGELOG.md#v0222-2025-05-09)
+  - **Feature:** Update user-agent header
+- `mariadb`: [v0.22.2](services/mariadb/CHANGELOG.md#v0222-2025-05-09)
+  - **Feature:** Update user-agent header
+- `objectstorage`: [v1.1.3](services/objectstorage/CHANGELOG.md#v113-2025-05-09)
+  - **Feature:** Update user-agent header
+- `observability`: [0.5.2](services/observability/CHANGELOG.md#v052-2025-05-09)
+  - **Feature:** Update user-agent header
+- `opensearch`: [v0.21.2](services/opensearch/CHANGELOG.md#v0212-2025-05-09)
+  - **Feature:** Update user-agent header
+- `postgresflex`: [v1.0.4](services/postgresflex/CHANGELOG.md#v104-2025-05-09)
+  - **Feature:** Update user-agent header
+- `rabbitmq`: [v0.22.2](services/rabbitmq/CHANGELOG.md#v0222-2025-05-09)
+  - **Feature:** Update user-agent header
+- `redis`: [v0.22.2](services/redis/CHANGELOG.md#v0222-2025-05-09)
+  - **Feature:** Update user-agent header
+- `runcommand`: [v1.0.2](services/runcommand/CHANGELOG.md#v102-2025-05-09)
+  - **Feature:** Update user-agent header
+- `secretsmanager`: [v0.11.4](services/secretsmanager/CHANGELOG.md#v0114-2025-05-09)
+  - **Feature:** Update user-agent header
+- `serverbackup`: [v1.0.3](services/serverbackup/CHANGELOG.md#v103-2025-05-09)
+  - **Feature:** Update user-agent header
+- `serverupdate`: [v1.0.3](services/serverupdate/CHANGELOG.md#v103-2025-05-09)
+  - **Feature:** Update user-agent header
+- `serviceaccount`: [v0.6.3](services/serviceaccount/CHANGELOG.md#v063-2025-05-09)
+  - **Feature:** Update user-agent header
+- `serviceenablement`: [v1.0.3](services/serviceenablement/CHANGELOG.md#v103-2025-05-09)
+  - **Feature:** Update user-agent header
+- `ske`: [v0.22.3](services/ske/CHANGELOG.md#v0223-2025-05-09)
+  - **Feature:** Update user-agent header
+- `sqlserverflex`: [v1.0.3](services/sqlserverflex/CHANGELOG.md#v103-2025-05-09)
+  - **Feature:** Update user-agent header
+
 
 ## Release (2025-04-30)
 - `core`: [v0.17.1](core/CHANGELOG.md#v0171-2025-04-09)
