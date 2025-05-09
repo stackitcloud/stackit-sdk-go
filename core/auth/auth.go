@@ -63,12 +63,6 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 			return nil, fmt.Errorf("configuring token authentication: %w", err)
 		}
 		return tokenRoundTripper, nil
-	} else if !cfg.DisableCLIAuthFlow {
-		cliRoundTripper, err := StackitCliAuth(cfg)
-		if err != nil {
-			return nil, fmt.Errorf("configuring CLI authentication: %w", err)
-		}
-		return cliRoundTripper, nil
 	}
 
 	authRoundTripper, err := DefaultAuth(cfg)

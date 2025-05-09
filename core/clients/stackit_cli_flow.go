@@ -40,11 +40,11 @@ func (c *STACKITCLIFlow) Init(cfg *STACKITCLIFlowConfig) error {
 }
 
 func (c *STACKITCLIFlow) getTokenFromCLI() (string, error) {
-	return runSTACKITCLICommand(context.TODO(), "stackit auth get-access-token")
+	return RunSTACKITCLICommand(context.TODO(), "stackit auth get-access-token")
 }
 
-// runSTACKITCLICommand executes the command line and returns the output.
-func runSTACKITCLICommand(ctx context.Context, commandLine string) (string, error) {
+// RunSTACKITCLICommand executes the command line and returns the output.
+func RunSTACKITCLICommand(ctx context.Context, commandLine string) (string, error) {
 	var cliCmd *exec.Cmd
 	if runtime.GOOS == "windows" {
 		dir := os.Getenv("SYSTEMROOT")
