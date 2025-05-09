@@ -14,14 +14,28 @@ const testServiceAccountToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbC
 
 func TestSTACKITCLIFlow_Init(t *testing.T) {
 	type args struct {
-		cfg *STACKITCLIFlowConfig
+		cfg    *STACKITCLIFlowConfig
+		confFn func(t *testing.T)
 	}
 	tests := []struct {
 		name    string
 		args    args
 		wantErr bool
 	}{
-		{"ok", args{&STACKITCLIFlowConfig{}}, false},
+		{"ok", args{
+			cfg: &STACKITCLIFlowConfig{},
+			confFn: func(t *testing.T) {
+				_, err := runSTACKITCLICommand(context.TODO(), "stackit auth activate-service-account --service-account-token="+testServiceAccountToken)
+				if err != nil {
+					t.Errorf("runSTACKITCLICommand() error = %v", err)
+					return
+				}
+			},
+		}, false},
+		{"no token", args{
+			cfg:    &STACKITCLIFlowConfig{},
+			confFn: func(t *testing.T) {},
+		}, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -36,19 +50,20 @@ func TestSTACKITCLIFlow_Init(t *testing.T) {
 				return
 			}
 
-			_, err = runSTACKITCLICommand(ctx, "stackit auth activate-service-account --service-account-token="+testServiceAccountToken)
-			if err != nil {
-				t.Errorf("runSTACKITCLICommand() error = %v", err)
-				return
-			}
+			tt.args.confFn(t)
 
 			defer func() {
 				_, _ = runSTACKITCLICommand(ctx, "stackit config profile delete test-stackit-cli-flow-init -y")
 			}()
 
-			if err := c.Init(tt.args.cfg); (err != nil) != tt.wantErr {
-				t.Errorf("TokenFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
+			if err := c.Init(tt.args.cfg); err != nil {
+				if (err != nil) != tt.wantErr {
+					t.Errorf("TokenFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
+				}
+
+				return
 			}
+
 			if c.config == nil {
 				t.Error("config is nil")
 			}
