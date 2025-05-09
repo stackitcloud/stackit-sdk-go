@@ -13,10 +13,15 @@ import (
 )
 
 const (
+	// Deprecated: StatusUnspecified is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_UNSPECIFIED] instead.
 	StatusUnspecified = "STATUS_UNSPECIFIED"
-	StatusPending     = "STATUS_PENDING"
-	StatusReady       = "STATUS_READY"
-	StatusError       = "STATUS_ERROR"
+	// Deprecated: StatusPending is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_PENDING] instead.
+	StatusPending = "STATUS_PENDING"
+	// Deprecated: StatusReady is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_READY] instead.
+	StatusReady = "STATUS_READY"
+	// Deprecated: StatusError is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_ERROR] instead.
+	StatusError = "STATUS_ERROR"
+	// Deprecated: StatusTerminating is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_TERMINATING] instead.
 	StatusTerminating = "STATUS_TERMINATING"
 )
 
@@ -32,11 +37,11 @@ func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client APIClient
 		}
 		if response.HasStatus() {
 			switch *response.Status {
-			case StatusPending:
+			case alb.LOADBALANCERSTATUS_PENDING:
 				return false, nil, nil
-			case StatusUnspecified:
+			case alb.LOADBALANCERSTATUS_UNSPECIFIED:
 				return false, nil, nil
-			case StatusError:
+			case alb.LOADBALANCERSTATUS_ERROR:
 				return true, response, fmt.Errorf("loadbalancer in error: %s", *response.Status)
 			default:
 				return true, response, nil

@@ -17,7 +17,7 @@ type apiClientInstanceMocked struct {
 	deletionSucceedsWithErrors bool
 	resourceId                 string
 	resourceOperation          *string
-	resourceState              string
+	resourceState              mariadb.InstanceStatus
 	resourceDescription        string
 }
 
@@ -29,7 +29,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 			StatusCode: 500,
 		}
 	}
-	if a.resourceOperation != nil && *a.resourceOperation == deleteOperation && a.resourceState == InstanceStatusActive {
+	if a.resourceOperation != nil && *a.resourceOperation == deleteOperation && a.resourceState == mariadb.INSTANCESTATUS_ACTIVE {
 		if a.deletionSucceedsWithErrors {
 			return &mariadb.Instance{
 				InstanceId: &a.resourceId,
@@ -80,21 +80,21 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState mariadb.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: InstanceStatusActive,
+			resourceState: mariadb.INSTANCESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: InstanceStatusFailed,
+			resourceState: mariadb.INSTANCESTATUS_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -149,21 +149,21 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState mariadb.InstanceStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: InstanceStatusActive,
+			resourceState: mariadb.INSTANCESTATUS_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: InstanceStatusFailed,
+			resourceState: mariadb.INSTANCESTATUS_FAILED,
 			wantErr:       true,
 			wantResp:      true,
 		},
@@ -218,7 +218,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 		desc                      string
 		getFails                  bool
 		deleteSucceeedsWithErrors bool
-		resourceState             string
+		resourceState             mariadb.InstanceStatus
 		resourceDescription       string
 		wantErr                   bool
 	}{
@@ -226,20 +226,20 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 			desc:                      "delete_succeeded",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             InstanceStatusActive,
+			resourceState:             mariadb.INSTANCESTATUS_ACTIVE,
 			wantErr:                   false,
 		},
 		{
 			desc:                      "delete_failed",
 			getFails:                  false,
 			deleteSucceeedsWithErrors: false,
-			resourceState:             InstanceStatusFailed,
+			resourceState:             mariadb.INSTANCESTATUS_FAILED,
 			wantErr:                   true,
 		},
 		{
 			desc:                      "delete_succeeds_with_errors",
 			getFails:                  false,
-			resourceState:             InstanceStatusActive,
+			resourceState:             mariadb.INSTANCESTATUS_ACTIVE,
 			deleteSucceeedsWithErrors: true,
 			resourceDescription:       "Deleting resource: cf failed with error: DeleteFailed",
 			wantErr:                   true,

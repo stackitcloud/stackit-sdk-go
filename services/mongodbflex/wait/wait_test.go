@@ -14,7 +14,7 @@ import (
 // Used for testing instance operations
 type apiClientInstanceMocked struct {
 	instanceId        string
-	instanceState     string
+	instanceState     mongodbflex.InstanceStatus
 	instanceIsDeleted bool
 	instanceGetFails  bool
 
@@ -65,7 +65,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc                string
 		instanceGetFails    bool
-		instanceState       string
+		instanceState       mongodbflex.InstanceStatus
 		usersGetErrorStatus int
 		wantErr             bool
 		wantResp            bool
@@ -73,14 +73,14 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "create_succeeded",
 			instanceGetFails: false,
-			instanceState:    InstanceStateSuccess,
+			instanceState:    mongodbflex.INSTANCESTATUS_READY,
 			wantErr:          false,
 			wantResp:         true,
 		},
 		{
 			desc:             "create_failed",
 			instanceGetFails: false,
-			instanceState:    InstanceStateFailed,
+			instanceState:    mongodbflex.INSTANCESTATUS_FAILED,
 			wantErr:          true,
 			wantResp:         true,
 		},
@@ -100,7 +100,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceState:    InstanceStateProcessing,
+			instanceState:    mongodbflex.INSTANCESTATUS_PROCESSING,
 			wantErr:          true,
 			wantResp:         false,
 		},
@@ -143,21 +143,21 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc             string
 		instanceGetFails bool
-		instanceState    string
+		instanceState    mongodbflex.InstanceStatus
 		wantErr          bool
 		wantResp         bool
 	}{
 		{
 			desc:             "update_succeeded",
 			instanceGetFails: false,
-			instanceState:    InstanceStateSuccess,
+			instanceState:    mongodbflex.INSTANCESTATUS_READY,
 			wantErr:          false,
 			wantResp:         true,
 		},
 		{
 			desc:             "update_failed",
 			instanceGetFails: false,
-			instanceState:    InstanceStateFailed,
+			instanceState:    mongodbflex.INSTANCESTATUS_FAILED,
 			wantErr:          true,
 			wantResp:         true,
 		},
@@ -177,7 +177,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceState:    InstanceStateProcessing,
+			instanceState:    mongodbflex.INSTANCESTATUS_PROCESSING,
 			wantErr:          true,
 			wantResp:         false,
 		},
@@ -220,19 +220,19 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc             string
 		instanceGetFails bool
-		instanceState    string
+		instanceState    mongodbflex.InstanceStatus
 		wantErr          bool
 	}{
 		{
 			desc:             "delete_succeeded",
 			instanceGetFails: false,
-			instanceState:    InstanceStateSuccess,
+			instanceState:    mongodbflex.INSTANCESTATUS_READY,
 			wantErr:          false,
 		},
 		{
 			desc:             "delete_failed",
 			instanceGetFails: false,
-			instanceState:    InstanceStateFailed,
+			instanceState:    mongodbflex.INSTANCESTATUS_FAILED,
 			wantErr:          true,
 		},
 		{
@@ -247,7 +247,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 
 			apiClient := &apiClientInstanceMocked{
 				instanceGetFails:  tt.instanceGetFails,
-				instanceIsDeleted: tt.instanceState == InstanceStateSuccess,
+				instanceIsDeleted: tt.instanceState == mongodbflex.INSTANCESTATUS_READY,
 				instanceId:        instanceId,
 				instanceState:     tt.instanceState,
 			}

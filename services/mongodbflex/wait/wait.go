@@ -13,11 +13,15 @@ import (
 )
 
 const (
-	InstanceStateEmpty      = ""
+	InstanceStateEmpty = ""
+	// Deprecated: InstanceStateProcessing is deprecated and will be removed after 9th November 2025. Use [mongodbflex.INSTANCESTATUS_PROCESSING] instead.
 	InstanceStateProcessing = "PROCESSING"
-	InstanceStateUnknown    = "UNKNOWN"
-	InstanceStateSuccess    = "READY"
-	InstanceStateFailed     = "FAILED"
+	// Deprecated: InstanceStateUnknown is deprecated and will be removed after 9th November 2025. Use [mongodbflex.INSTANCESTATUS_UNKNOWN] instead.
+	InstanceStateUnknown = "UNKNOWN"
+	// Deprecated: InstanceStateSuccess is deprecated and will be removed after 9th November 2025. Use [mongodbflex.INSTANCESTATUS_READY] instead.
+	InstanceStateSuccess = "READY"
+	// Deprecated: InstanceStateFailed is deprecated and will be removed after 9th November 2025. Use [mongodbflex.INSTANCESTATUS_FAILED] instead.
+	InstanceStateFailed = "FAILED"
 
 	RestoreJobProcessing = "IN_PROGRESS"
 	RestoreJobFinished   = "FINISHED"
@@ -46,13 +50,13 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case InstanceStateEmpty:
 			return false, nil, nil
-		case InstanceStateProcessing:
+		case mongodbflex.INSTANCESTATUS_PROCESSING:
 			return false, nil, nil
-		case InstanceStateUnknown:
+		case mongodbflex.INSTANCESTATUS_UNKNOWN:
 			return false, nil, nil
-		case InstanceStateSuccess:
+		case mongodbflex.INSTANCESTATUS_READY:
 			return true, s, nil
-		case InstanceStateFailed:
+		case mongodbflex.INSTANCESTATUS_FAILED:
 			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
 	})
@@ -125,13 +129,13 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
 		case InstanceStateEmpty:
 			return false, nil, nil
-		case InstanceStateProcessing:
+		case mongodbflex.INSTANCESTATUS_PROCESSING:
 			return false, nil, nil
-		case InstanceStateUnknown:
+		case mongodbflex.INSTANCESTATUS_UNKNOWN:
 			return false, nil, nil
-		case InstanceStateSuccess:
+		case mongodbflex.INSTANCESTATUS_READY:
 			return true, s, nil
-		case InstanceStateFailed:
+		case mongodbflex.INSTANCESTATUS_FAILED:
 			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
 		}
 	})

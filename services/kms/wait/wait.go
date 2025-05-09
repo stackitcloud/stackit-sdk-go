@@ -12,24 +12,36 @@ import (
 )
 
 const (
-	StatusKeyActive   = "active"
+	// Deprecated: StatusKeyActive is deprecated and will be removed after 9th November 2025. Use [kms.KEYSTATE_ACTIVE] instead.
+	StatusKeyActive = "active"
+	// Deprecated: StatusKeyNotReady is deprecated and will be removed after 9th November 2025. Use [kms.KEYSTATE_VERSION_NOT_READY] instead.
 	StatusKeyNotReady = "version_not_ready"
-	StatusKeyDeleted  = "deleted"
+	// Deprecated: StatusKeyDeleted is deprecated and will be removed after 9th November 2025. Use [kms.KEYSTATE_DELETED] instead.
+	StatusKeyDeleted = "deleted"
 )
 
 const (
-	StatusKeyVersionActive              = "active"
+	// Deprecated: StatusKeyVersionActive is deprecated and will be removed after 9th November 2025. Use [kms.VERSIONSTATE_ACTIVE] instead.
+	StatusKeyVersionActive = "active"
+	// Deprecated: StatusKeyVersionKeyMaterialNotReady is deprecated and will be removed after 9th November 2025. Use [kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY] instead.
 	StatusKeyVersionKeyMaterialNotReady = "key_material_not_ready"
-	StatusKeyVersionKeyMaterialInvalid  = "key_material_invalid"
-	StatusKeyVersionDisabled            = "disabled"
-	StatusKeyVersionDestroyed           = "destroyed"
+	// Deprecated: StatusKeyVersionKeyMaterialInvalid is deprecated and will be removed after 9th November 2025. Use [kms.VERSIONSTATE_KEY_MATERIAL_INVALID] instead.
+	StatusKeyVersionKeyMaterialInvalid = "key_material_invalid"
+	// Deprecated: StatusKeyVersionDisabled is deprecated and will be removed after 9th November 2025. Use [kms.VERSIONSTATE_DISABLED] instead.
+	StatusKeyVersionDisabled = "disabled"
+	// Deprecated: StatusKeyVersionDestroyed is deprecated and will be removed after 9th November 2025. Use [kms.VERSIONSTATE_DESTROYED] instead.
+	StatusKeyVersionDestroyed = "destroyed"
 )
 
 const (
-	StatusWrappingKeyActive              = "active"
+	// Deprecated: StatusWrappingKeyActive is deprecated and will be removed after 9th November 2025. Use [kms.WRAPPINGKEYSTATE_ACTIVE] instead.
+	StatusWrappingKeyActive = "active"
+	// Deprecated: StatusWrappingKeyKeyMaterialNotReady is deprecated and will be removed after 9th November 2025. Use [kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY] instead.
 	StatusWrappingKeyKeyMaterialNotReady = "key_material_not_ready"
-	StatusWrappingKeyExpired             = "expired"
-	StatusWrappingKeyDeleting            = "deleting"
+	// Deprecated: StatusWrappingKeyExpired is deprecated and will be removed after 9th November 2025. Use [kms.WRAPPINGKEYSTATE_EXPIRED] instead.
+	StatusWrappingKeyExpired = "expired"
+	// Deprecated: StatusWrappingKeyDeleting is deprecated and will be removed after 9th November 2025. Use [kms.WRAPPINGKEYSTATE_DELETING] instead.
+	StatusWrappingKeyDeleting = "deleting"
 )
 
 type ApiKmsClient interface {
@@ -47,7 +59,7 @@ func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 
 		if response.State != nil {
 			switch *response.State {
-			case StatusKeyNotReady:
+			case kms.KEYSTATE_VERSION_NOT_READY:
 				return false, nil, nil
 			default:
 				return true, response, nil
@@ -87,13 +99,13 @@ func EnableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proje
 
 		if response.State != nil {
 			switch *response.State {
-			case StatusKeyVersionDestroyed:
+			case kms.VERSIONSTATE_DESTROYED:
 				return true, response, nil
-			case StatusKeyVersionKeyMaterialInvalid:
+			case kms.VERSIONSTATE_KEY_MATERIAL_INVALID:
 				return true, response, nil
-			case StatusKeyVersionDisabled:
+			case kms.VERSIONSTATE_DISABLED:
 				return true, response, nil
-			case StatusKeyVersionKeyMaterialNotReady:
+			case kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY:
 				return false, nil, nil
 			default:
 				return true, response, nil
@@ -133,7 +145,7 @@ func CreateWrappingKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 
 		if state := response.State; state != nil {
 			switch *state {
-			case StatusWrappingKeyKeyMaterialNotReady:
+			case kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY:
 				return false, nil, nil
 			default:
 				return true, response, nil

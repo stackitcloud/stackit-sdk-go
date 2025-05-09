@@ -10,12 +10,18 @@ import (
 )
 
 const (
+	// Deprecated: CreateSuccess is deprecated and will be removed after 9th November 2025. Use [dns.ZONESTATE_CREATE_SUCCEEDED] or [dns.RECORDSETSTATE_CREATE_SUCCEEDED] instead.
 	CreateSuccess = "CREATE_SUCCEEDED"
-	CreateFail    = "CREATE_FAILED"
+	// Deprecated: CreateFail is deprecated and will be removed after 9th November 2025. Use [dns.ZONESTATE_CREATE_FAILED] or [dns.RECORDSETSTATE_CREATE_FAILED] instead.
+	CreateFail = "CREATE_FAILED"
+	// Deprecated: UpdateSuccess is deprecated and will be removed after 9th November 2025. Use [dns.ZONESTATE_UPDATE_SUCCEEDED] or [dns.RECORDSETSTATE_UPDATE_SUCCEEDED] instead.
 	UpdateSuccess = "UPDATE_SUCCEEDED"
-	UpdateFail    = "UPDATE_FAILED"
+	// Deprecated: UpdateSuccess is deprecated and will be removed after 9th November 2025. Use [dns.ZONESTATE_UPDATE_FAILED] or [dns.RECORDSETSTATE_UPDATE_FAILED] instead.
+	UpdateFail = "UPDATE_FAILED"
+	// Deprecated: UpdateSuccess is deprecated and will be removed after 9th November 2025. Use [dns.ZONESTATE_DELETE_SUCCEEDED] or [dns.RECORDSETSTATE_DELETE_SUCCEEDED] instead.
 	DeleteSuccess = "DELETE_SUCCEEDED"
-	DeleteFail    = "DELETE_FAILED"
+	// Deprecated: UpdateSuccess is deprecated and will be removed after 9th November 2025. Use [dns.ZONESTATE_DELETE_FAILED] or [dns.RECORDSETSTATE_DELETE_FAILED] instead.
+	DeleteFail = "DELETE_FAILED"
 )
 
 // Interfaces needed for tests
@@ -34,10 +40,10 @@ func CreateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 		if s.Zone.Id == nil || s.Zone.State == nil {
 			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
 		}
-		if *s.Zone.Id == instanceId && *s.Zone.State == CreateSuccess {
+		if *s.Zone.Id == instanceId && *s.Zone.State == dns.ZONESTATE_CREATE_SUCCEEDED {
 			return true, s, nil
 		}
-		if *s.Zone.Id == instanceId && *s.Zone.State == CreateFail {
+		if *s.Zone.Id == instanceId && *s.Zone.State == dns.ZONESTATE_CREATE_FAILED {
 			return true, s, fmt.Errorf("create failed for zone with id %s", instanceId)
 		}
 		return false, nil, nil
@@ -56,10 +62,10 @@ func PartialUpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, pro
 		if s.Zone.Id == nil || s.Zone.State == nil {
 			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
 		}
-		if *s.Zone.Id == instanceId && *s.Zone.State == UpdateSuccess {
+		if *s.Zone.Id == instanceId && *s.Zone.State == dns.ZONESTATE_UPDATE_SUCCEEDED {
 			return true, s, nil
 		}
-		if *s.Zone.Id == instanceId && *s.Zone.State == UpdateFail {
+		if *s.Zone.Id == instanceId && *s.Zone.State == dns.ZONESTATE_UPDATE_FAILED {
 			return true, s, fmt.Errorf("update failed for zone with id %s", instanceId)
 		}
 		return false, nil, nil
@@ -79,10 +85,10 @@ func DeleteZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 		if s.Zone.Id == nil || s.Zone.State == nil {
 			return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: the id or the state are missing", instanceId)
 		}
-		if *s.Zone.Id == instanceId && *s.Zone.State == DeleteSuccess {
+		if *s.Zone.Id == instanceId && *s.Zone.State == dns.ZONESTATE_DELETE_SUCCEEDED {
 			return true, s, nil
 		}
-		if *s.Zone.Id == instanceId && *s.Zone.State == DeleteFail {
+		if *s.Zone.Id == instanceId && *s.Zone.State == dns.ZONESTATE_DELETE_FAILED {
 			return true, s, fmt.Errorf("delete failed for zone with id %s", instanceId)
 		}
 		return false, nil, nil
@@ -101,10 +107,10 @@ func CreateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 		if s.Rrset.Id == nil || s.Rrset.State == nil {
 			return false, nil, fmt.Errorf("create failed for record set with id %s. The response is not valid: the id or the state are missing", instanceId)
 		}
-		if *s.Rrset.Id == rrSetId && *s.Rrset.State == CreateSuccess {
+		if *s.Rrset.Id == rrSetId && *s.Rrset.State == dns.RECORDSETSTATE_CREATE_SUCCEEDED {
 			return true, s, nil
 		}
-		if *s.Rrset.Id == rrSetId && *s.Rrset.State == CreateFail {
+		if *s.Rrset.Id == rrSetId && *s.Rrset.State == dns.RECORDSETSTATE_CREATE_FAILED {
 			return true, s, fmt.Errorf("create failed for record with id %s", rrSetId)
 		}
 		return false, nil, nil
@@ -123,10 +129,10 @@ func PartialUpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface
 		if s.Rrset.Id == nil || s.Rrset.State == nil {
 			return false, nil, fmt.Errorf("update failed for record set with id %s. The response is not valid: the id or the state are missing", rrSetId)
 		}
-		if *s.Rrset.Id == rrSetId && *s.Rrset.State == UpdateSuccess {
+		if *s.Rrset.Id == rrSetId && *s.Rrset.State == dns.RECORDSETSTATE_UPDATE_SUCCEEDED {
 			return true, s, nil
 		}
-		if *s.Rrset.Id == rrSetId && *s.Rrset.State == UpdateFail {
+		if *s.Rrset.Id == rrSetId && *s.Rrset.State == dns.RECORDSETSTATE_UPDATE_FAILED {
 			return true, s, fmt.Errorf("update failed for record with id %s", rrSetId)
 		}
 		return false, nil, nil
@@ -146,10 +152,10 @@ func DeleteRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 		if s.Rrset.Id == nil || s.Rrset.State == nil {
 			return false, nil, fmt.Errorf("delete failed for record set with id %s. The response is not valid: the id or the state are missing", rrSetId)
 		}
-		if *s.Rrset.Id == rrSetId && *s.Rrset.State == DeleteSuccess {
+		if *s.Rrset.Id == rrSetId && *s.Rrset.State == dns.RECORDSETSTATE_DELETE_SUCCEEDED {
 			return true, s, nil
 		}
-		if *s.Rrset.Id == rrSetId && *s.Rrset.State == DeleteFail {
+		if *s.Rrset.Id == rrSetId && *s.Rrset.State == dns.RECORDSETSTATE_DELETE_FAILED {
 			return true, s, fmt.Errorf("delete failed for record with id %s", rrSetId)
 		}
 		return false, nil, nil

@@ -12,10 +12,6 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/services/modelserving"
 )
 
-const (
-	activeState = "active"
-)
-
 type APIClientInterface interface {
 	GetTokenExecute(ctx context.Context, region, projectId, tokenId string) (*modelserving.GetTokenResponse, error)
 }
@@ -32,7 +28,7 @@ func CreateModelServingWaitHandler(ctx context.Context, a APIClientInterface, re
 				tokenId,
 			)
 		}
-		if *getTokenResp.Token.State == activeState {
+		if *getTokenResp.Token.State == modelserving.TOKENSTATE_ACTIVE {
 			return true, getTokenResp, nil
 		}
 

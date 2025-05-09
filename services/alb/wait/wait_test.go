@@ -50,37 +50,37 @@ func TestCreateOrUpdateLoadbalancerWaitHandler(t *testing.T) {
 		{
 			"create succeeded immediately",
 			[]response{
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusReady)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_READY)}, nil},
 			},
-			&alb.LoadBalancer{Status: utils.Ptr(StatusReady)},
+			&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_READY)},
 			false,
 		},
 		{
 			"create succeeded delayed",
 			[]response{
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusReady)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_READY)}, nil},
 			},
-			&alb.LoadBalancer{Status: utils.Ptr(StatusReady)},
+			&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_READY)},
 			false,
 		},
 		{
 			"create failed delayed",
 			[]response{
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusError)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_ERROR)}, nil},
 			},
-			&alb.LoadBalancer{Status: utils.Ptr(StatusError)},
+			&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_ERROR)},
 			true,
 		},
 		{
 			"timeout",
 			[]response{
-				{&alb.LoadBalancer{Status: alb.PtrString(StatusPending)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
 			},
 			nil,
 			true,
@@ -88,9 +88,9 @@ func TestCreateOrUpdateLoadbalancerWaitHandler(t *testing.T) {
 		{
 			"broken state",
 			[]response{
-				{&alb.LoadBalancer{Status: alb.PtrString("bogus")}, nil},
+				{&alb.LoadBalancer{Status: alb.LoadBalancerGetStatusAttributeType(utils.Ptr("bogus"))}, nil},
 			},
-			&alb.LoadBalancer{Status: alb.PtrString("bogus")},
+			&alb.LoadBalancer{Status: alb.LoadBalancerGetStatusAttributeType(utils.Ptr("bogus"))},
 			false,
 		},
 		// no special update tests needed as the states are the same
@@ -133,9 +133,9 @@ func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 		{
 			"Delete with '404' delayed",
 			[]response{
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
 				{nil, oapierror.NewError(http.StatusNotFound, "not found")},
 			},
 			false,
@@ -150,9 +150,9 @@ func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 		{
 			"Delete with 'gone' delayed",
 			[]response{
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
 				{nil, oapierror.NewError(http.StatusGone, "not found")},
 			},
 			false,
@@ -160,20 +160,20 @@ func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 		{
 			"Delete with error delayed",
 			[]response{
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(string(StatusError))}, oapierror.NewError(http.StatusInternalServerError, "kapow")},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_ERROR)}, oapierror.NewError(http.StatusInternalServerError, "kapow")},
 			},
 			true,
 		},
 		{
 			"Cannot delete",
 			[]response{
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(StatusPending)}, nil},
-				{&alb.LoadBalancer{Status: utils.Ptr(string(StatusError))}, oapierror.NewError(http.StatusOK, "ok")},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_PENDING)}, nil},
+				{&alb.LoadBalancer{Status: utils.Ptr(alb.LOADBALANCERSTATUS_ERROR)}, oapierror.NewError(http.StatusOK, "ok")},
 			},
 			true,
 		},
