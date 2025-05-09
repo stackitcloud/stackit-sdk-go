@@ -10,6 +10,7 @@ import (
 	"testing"
 )
 
+//nolint:gosec // testServiceAccountToken is a test token
 const testServiceAccountToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImR1bW15QGV4YW1wbGUuY29tIiwiZXhwIjo5MDA3MTkyNTQ3NDA5OTF9.sM2yd5GL9kK4h8IKHbr_fA2XmrzEsLOeLTIPrU0VfMg"
 
 func TestSTACKITCLIFlow_Init(t *testing.T) {
@@ -32,9 +33,9 @@ func TestSTACKITCLIFlow_Init(t *testing.T) {
 				}
 			},
 		}, false},
-		{"no token", args{
+		{"no-token", args{
 			cfg:    &STACKITCLIFlowConfig{},
-			confFn: func(t *testing.T) {},
+			confFn: func(_ *testing.T) {},
 		}, true},
 	}
 	for _, tt := range tests {
@@ -43,8 +44,10 @@ func TestSTACKITCLIFlow_Init(t *testing.T) {
 
 			c := &STACKITCLIFlow{}
 
-			_, _ = runSTACKITCLICommand(ctx, "stackit config profile delete test-stackit-cli-flow-init -y")
-			_, err := runSTACKITCLICommand(ctx, "stackit config profile create test-stackit-cli-flow-init")
+			cliProfileName := "test-stackit-cli-flow-init" + tt.name
+
+			_, _ = runSTACKITCLICommand(ctx, fmt.Sprintf("stackit config profile delete %s -y", cliProfileName))
+			_, err := runSTACKITCLICommand(ctx, "stackit config profile create "+cliProfileName)
 			if err != nil {
 				t.Errorf("runSTACKITCLICommand() error = %v", err)
 				return
@@ -53,7 +56,7 @@ func TestSTACKITCLIFlow_Init(t *testing.T) {
 			tt.args.confFn(t)
 
 			defer func() {
-				_, _ = runSTACKITCLICommand(ctx, "stackit config profile delete test-stackit-cli-flow-init -y")
+				_, _ = runSTACKITCLICommand(ctx, fmt.Sprintf("stackit config profile delete %s -y", cliProfileName))
 			}()
 
 			if err := c.Init(tt.args.cfg); err != nil {
