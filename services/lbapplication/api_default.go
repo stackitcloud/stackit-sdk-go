@@ -1,7 +1,7 @@
 /*
 Application Load Balancer API
 
-This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
+### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
 API version: 1beta.0.0
 */
@@ -159,7 +159,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 /*
 CreateCredentials: Create credentials for observability of the application load balancer
 
-Creates and stores credentials for use with Application Load Balancer Observability.
+Deprecated: Creates and stores credentials for use with Application Load Balancer Observability.
 
 	For example, when using ARGUS, credentials must first be created via the ARGUS API
 	and then stored with this endpoint to be used by the Application Load Balancer.
@@ -176,6 +176,12 @@ func (a *APIClient) CreateCredentials(ctx context.Context, projectId string) Api
 	}
 }
 
+/*
+Deprecated: Creates and stores credentials for use with Application Load Balancer Observability.
+
+	For example, when using ARGUS, credentials must first be created via the ARGUS API
+	and then stored with this endpoint to be used by the Application Load Balancer.
+*/
 func (a *APIClient) CreateCredentialsExecute(ctx context.Context, projectId string) (*CreateCredentialsResponse, error) {
 	r := ApiCreateCredentialsRequest{
 		apiService: a.defaultApi,
@@ -318,7 +324,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 /*
 CreateLoadBalancer: Create an application load balancer in a project
 
-Creates an Application Load Balancer.
+Deprecated: Creates an Application Load Balancer.
 
 	The default load balancing algorithm is Maglev, and selecting a different algorithm is currently not supported.
 
@@ -334,6 +340,11 @@ func (a *APIClient) CreateLoadBalancer(ctx context.Context, projectId string) Ap
 	}
 }
 
+/*
+Deprecated: Creates an Application Load Balancer.
+
+	The default load balancing algorithm is Maglev, and selecting a different algorithm is currently not supported.
+*/
 func (a *APIClient) CreateLoadBalancerExecute(ctx context.Context, projectId string) (*LoadBalancer, error) {
 	r := ApiCreateLoadBalancerRequest{
 		apiService: a.defaultApi,
@@ -458,7 +469,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 /*
 DeleteCredentials: Delete a single credential in a project.
 
-Deletes the stored Observability credentials.
+Deprecated: Deletes the stored Observability credentials.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -474,6 +485,9 @@ func (a *APIClient) DeleteCredentials(ctx context.Context, projectId string, cre
 	}
 }
 
+/*
+Deprecated: Deletes the stored Observability credentials.
+*/
 func (a *APIClient) DeleteCredentialsExecute(ctx context.Context, projectId string, credentialsRef string) (map[string]interface{}, error) {
 	r := ApiDeleteCredentialsRequest{
 		apiService:     a.defaultApi,
@@ -599,7 +613,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 /*
 DeleteLoadBalancer: Delete a given load balancer in a project.
 
-Deletes the specified Application Load Balancer.
+Deprecated: Deletes the specified Application Load Balancer.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -615,6 +629,9 @@ func (a *APIClient) DeleteLoadBalancer(ctx context.Context, projectId string, na
 	}
 }
 
+/*
+Deprecated: Deletes the specified Application Load Balancer.
+*/
 func (a *APIClient) DeleteLoadBalancerExecute(ctx context.Context, projectId string, name string) (map[string]interface{}, error) {
 	r := ApiDeleteLoadBalancerRequest{
 		apiService: a.defaultApi,
@@ -1037,7 +1054,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 /*
 GetCredentials: Get a single credential reference in a project.
 
-Gets the stored Observability credentials.
+Deprecated: Gets the stored Observability credentials.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -1053,6 +1070,9 @@ func (a *APIClient) GetCredentials(ctx context.Context, projectId string, creden
 	}
 }
 
+/*
+Deprecated: Gets the stored Observability credentials.
+*/
 func (a *APIClient) GetCredentialsExecute(ctx context.Context, projectId string, credentialsRef string) (*GetCredentialsResponse, error) {
 	r := ApiGetCredentialsRequest{
 		apiService:     a.defaultApi,
@@ -1178,7 +1198,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 /*
 GetLoadBalancer: Get a single application load balancer in a project.
 
-Retrieves details of a specific Application Load Balancer in a project.
+Deprecated: Retrieves details of a specific Application Load Balancer in a project.
 
 	Includes creation and update information, current status, and any error descriptions.
 
@@ -1196,6 +1216,11 @@ func (a *APIClient) GetLoadBalancer(ctx context.Context, projectId string, name 
 	}
 }
 
+/*
+Deprecated: Retrieves details of a specific Application Load Balancer in a project.
+
+	Includes creation and update information, current status, and any error descriptions.
+*/
 func (a *APIClient) GetLoadBalancerExecute(ctx context.Context, projectId string, name string) (*LoadBalancer, error) {
 	r := ApiGetLoadBalancerRequest{
 		apiService: a.defaultApi,
@@ -1319,7 +1344,7 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 /*
 GetQuota: Get the quota of application load balancers and target pools in a project.
 
-Retrieves the configured Application Load Balancer quota for the project.
+Deprecated: Retrieves the configured Application Load Balancer quota for the project.
 
 	The default quota is 3.
 
@@ -1335,6 +1360,11 @@ func (a *APIClient) GetQuota(ctx context.Context, projectId string) ApiGetQuotaR
 	}
 }
 
+/*
+Deprecated: Retrieves the configured Application Load Balancer quota for the project.
+
+	The default quota is 3.
+*/
 func (a *APIClient) GetQuotaExecute(ctx context.Context, projectId string) (*GetQuotaResponse, error) {
 	r := ApiGetQuotaRequest{
 		apiService: a.defaultApi,
@@ -1600,7 +1630,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 /*
 ListCredentials: List all credentials in a project.
 
-Lists the stored Observability credentials.
+Deprecated: Lists the stored Observability credentials.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -1614,6 +1644,9 @@ func (a *APIClient) ListCredentials(ctx context.Context, projectId string) ApiLi
 	}
 }
 
+/*
+Deprecated: Lists the stored Observability credentials.
+*/
 func (a *APIClient) ListCredentialsExecute(ctx context.Context, projectId string) (*ListCredentialsResponse, error) {
 	r := ApiListCredentialsRequest{
 		apiService: a.defaultApi,
@@ -1758,7 +1791,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 /*
 ListLoadBalancers: List load balancers in a project.
 
-Lists all Application Load Balancers in a project.
+Deprecated: Lists all Application Load Balancers in a project.
 
 	Includes details from creation or updates, along with their status and any error descriptions.
 
@@ -1774,6 +1807,11 @@ func (a *APIClient) ListLoadBalancers(ctx context.Context, projectId string) Api
 	}
 }
 
+/*
+Deprecated: Lists all Application Load Balancers in a project.
+
+	Includes details from creation or updates, along with their status and any error descriptions.
+*/
 func (a *APIClient) ListLoadBalancersExecute(ctx context.Context, projectId string) (*ListLoadBalancersResponse, error) {
 	r := ApiListLoadBalancersRequest{
 		apiService: a.defaultApi,
@@ -1894,7 +1932,7 @@ func (r ApiListPlansRequest) Execute() (*ListPlansResponse, error) {
 /*
 ListPlans: List available service plans.
 
-Lists the configured service plans for a project.
+Deprecated: Lists the configured service plans for a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListPlansRequest
@@ -1906,6 +1944,9 @@ func (a *APIClient) ListPlans(ctx context.Context) ApiListPlansRequest {
 	}
 }
 
+/*
+Deprecated: Lists the configured service plans for a project.
+*/
 func (a *APIClient) ListPlansExecute(ctx context.Context) (*ListPlansResponse, error) {
 	r := ApiListPlansRequest{
 		apiService: a.defaultApi,
@@ -2040,7 +2081,7 @@ func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, erro
 /*
 UpdateCredentials: Update credentials for observability in a project.
 
-Updates the stored Observability credentials.
+Deprecated: Updates the stored Observability credentials.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -2056,6 +2097,9 @@ func (a *APIClient) UpdateCredentials(ctx context.Context, projectId string, cre
 	}
 }
 
+/*
+Deprecated: Updates the stored Observability credentials.
+*/
 func (a *APIClient) UpdateCredentialsExecute(ctx context.Context, projectId string, credentialsRef string) (*UpdateCredentialsResponse, error) {
 	r := ApiUpdateCredentialsRequest{
 		apiService:     a.defaultApi,
@@ -2192,7 +2236,7 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 /*
 UpdateLoadBalancer: Update a load balancer in a project.
 
-Updates an existing Application Load Balancer by modifying its listeners and target pools.
+Deprecated: Updates an existing Application Load Balancer by modifying its listeners and target pools.
 
 	Ensure the resource version is current to maintain concurrency safety.
 	The default load balancing algorithm is Maglev, and selecting a different algorithm is currently not supported.
@@ -2211,6 +2255,12 @@ func (a *APIClient) UpdateLoadBalancer(ctx context.Context, projectId string, na
 	}
 }
 
+/*
+Deprecated: Updates an existing Application Load Balancer by modifying its listeners and target pools.
+
+	Ensure the resource version is current to maintain concurrency safety.
+	The default load balancing algorithm is Maglev, and selecting a different algorithm is currently not supported.
+*/
 func (a *APIClient) UpdateLoadBalancerExecute(ctx context.Context, projectId string, name string) (*LoadBalancer, error) {
 	r := ApiUpdateLoadBalancerRequest{
 		apiService: a.defaultApi,
@@ -2349,7 +2399,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 /*
 UpdateTargetPool: Update a single target pool of a load balancer in a project.
 
-Replaces the content of a specific target pool in the Application Load Balancer (useful for adding or removing target servers).
+Deprecated: Replaces the content of a specific target pool in the Application Load Balancer (useful for adding or removing target servers).
 
 	Only updates the specified target pool, leaving others unchanged.
 	Cannot be used to create or rename target pools.
@@ -2370,6 +2420,12 @@ func (a *APIClient) UpdateTargetPool(ctx context.Context, projectId string, name
 	}
 }
 
+/*
+Deprecated: Replaces the content of a specific target pool in the Application Load Balancer (useful for adding or removing target servers).
+
+	Only updates the specified target pool, leaving others unchanged.
+	Cannot be used to create or rename target pools.
+*/
 func (a *APIClient) UpdateTargetPoolExecute(ctx context.Context, projectId string, name string, targetPoolName string) (*TargetPool, error) {
 	r := ApiUpdateTargetPoolRequest{
 		apiService:     a.defaultApi,
