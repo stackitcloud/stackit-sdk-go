@@ -12,6 +12,7 @@ package modelserving
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ChatModelDetails type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,116 @@ var _ MappedNullable = &ChatModelDetails{}
 	types and functions for bits
 */
 
-// isEnumRef
-type ChatModelDetailsGetBitsAttributeType = *int64
-type ChatModelDetailsGetBitsArgType = int64
-type ChatModelDetailsGetBitsRetType = int64
+//isEnum
+
+// ChatModelDetailsBits the model 'ChatModelDetails'
+type ChatModelDetailsBits int32
+
+// List of Bits
+const (
+	CHATMODELDETAILSBITS_1Bit   ChatModelDetailsBits = 1
+	CHATMODELDETAILSBITS_2Bits  ChatModelDetailsBits = 2
+	CHATMODELDETAILSBITS_4Bits  ChatModelDetailsBits = 4
+	CHATMODELDETAILSBITS_8Bits  ChatModelDetailsBits = 8
+	CHATMODELDETAILSBITS_16Bits ChatModelDetailsBits = 16
+)
+
+// All allowed values of ChatModelDetails enum
+var AllowedChatModelDetailsBitsEnumValues = []ChatModelDetailsBits{
+	1,
+	2,
+	4,
+	8,
+	16,
+}
+
+func (v *ChatModelDetailsBits) UnmarshalJSON(src []byte) error {
+	var value int32
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue int32
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ChatModelDetailsBits(value)
+	for _, existing := range AllowedChatModelDetailsBitsEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ChatModelDetails", value)
+}
+
+// NewChatModelDetailsBitsFromValue returns a pointer to a valid ChatModelDetailsBits
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewChatModelDetailsBitsFromValue(v int32) (*ChatModelDetailsBits, error) {
+	ev := ChatModelDetailsBits(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ChatModelDetailsBits: valid values are %v", v, AllowedChatModelDetailsBitsEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ChatModelDetailsBits) IsValid() bool {
+	for _, existing := range AllowedChatModelDetailsBitsEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to BitsBits value
+func (v ChatModelDetailsBits) Ptr() *ChatModelDetailsBits {
+	return &v
+}
+
+type NullableChatModelDetailsBits struct {
+	value *ChatModelDetailsBits
+	isSet bool
+}
+
+func (v NullableChatModelDetailsBits) Get() *ChatModelDetailsBits {
+	return v.value
+}
+
+func (v *NullableChatModelDetailsBits) Set(val *ChatModelDetailsBits) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableChatModelDetailsBits) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableChatModelDetailsBits) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableChatModelDetailsBits(val *ChatModelDetailsBits) *NullableChatModelDetailsBits {
+	return &NullableChatModelDetailsBits{value: val, isSet: true}
+}
+
+func (v NullableChatModelDetailsBits) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableChatModelDetailsBits) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ChatModelDetailsGetBitsAttributeType = *ChatModelDetailsBits
+type ChatModelDetailsGetBitsArgType = ChatModelDetailsBits
+type ChatModelDetailsGetBitsRetType = ChatModelDetailsBits
 
 func getChatModelDetailsGetBitsAttributeTypeOk(arg ChatModelDetailsGetBitsAttributeType) (ret ChatModelDetailsGetBitsRetType, ok bool) {
 	if arg == nil {
@@ -41,10 +148,112 @@ func setChatModelDetailsGetBitsAttributeType(arg *ChatModelDetailsGetBitsAttribu
 	types and functions for category
 */
 
-// isEnumRef
-type ChatModelDetailsGetCategoryAttributeType = *string
-type ChatModelDetailsGetCategoryArgType = string
-type ChatModelDetailsGetCategoryRetType = string
+//isEnum
+
+// ChatModelDetailsCategory the model 'ChatModelDetails'
+type ChatModelDetailsCategory string
+
+// List of Category
+const (
+	CHATMODELDETAILSCATEGORY_STANDARD ChatModelDetailsCategory = "standard"
+	CHATMODELDETAILSCATEGORY_PLUS     ChatModelDetailsCategory = "plus"
+	CHATMODELDETAILSCATEGORY_PREMIUM  ChatModelDetailsCategory = "premium"
+)
+
+// All allowed values of ChatModelDetails enum
+var AllowedChatModelDetailsCategoryEnumValues = []ChatModelDetailsCategory{
+	"standard",
+	"plus",
+	"premium",
+}
+
+func (v *ChatModelDetailsCategory) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ChatModelDetailsCategory(value)
+	for _, existing := range AllowedChatModelDetailsCategoryEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ChatModelDetails", value)
+}
+
+// NewChatModelDetailsCategoryFromValue returns a pointer to a valid ChatModelDetailsCategory
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewChatModelDetailsCategoryFromValue(v string) (*ChatModelDetailsCategory, error) {
+	ev := ChatModelDetailsCategory(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ChatModelDetailsCategory: valid values are %v", v, AllowedChatModelDetailsCategoryEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ChatModelDetailsCategory) IsValid() bool {
+	for _, existing := range AllowedChatModelDetailsCategoryEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to CategoryCategory value
+func (v ChatModelDetailsCategory) Ptr() *ChatModelDetailsCategory {
+	return &v
+}
+
+type NullableChatModelDetailsCategory struct {
+	value *ChatModelDetailsCategory
+	isSet bool
+}
+
+func (v NullableChatModelDetailsCategory) Get() *ChatModelDetailsCategory {
+	return v.value
+}
+
+func (v *NullableChatModelDetailsCategory) Set(val *ChatModelDetailsCategory) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableChatModelDetailsCategory) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableChatModelDetailsCategory) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableChatModelDetailsCategory(val *ChatModelDetailsCategory) *NullableChatModelDetailsCategory {
+	return &NullableChatModelDetailsCategory{value: val, isSet: true}
+}
+
+func (v NullableChatModelDetailsCategory) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableChatModelDetailsCategory) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ChatModelDetailsGetCategoryAttributeType = *ChatModelDetailsCategory
+type ChatModelDetailsGetCategoryArgType = ChatModelDetailsCategory
+type ChatModelDetailsGetCategoryRetType = ChatModelDetailsCategory
 
 func getChatModelDetailsGetCategoryAttributeTypeOk(arg ChatModelDetailsGetCategoryAttributeType) (ret ChatModelDetailsGetCategoryRetType, ok bool) {
 	if arg == nil {
@@ -165,10 +374,110 @@ type ChatModelDetailsGetNameRetType = string
 	types and functions for quantizationMethod
 */
 
-// isEnumRef
-type ChatModelDetailsGetQuantizationMethodAttributeType = *string
-type ChatModelDetailsGetQuantizationMethodArgType = string
-type ChatModelDetailsGetQuantizationMethodRetType = string
+//isEnum
+
+// ChatModelDetailsQuantizationMethod the model 'ChatModelDetails'
+type ChatModelDetailsQuantizationMethod string
+
+// List of QuantizationMethod
+const (
+	CHATMODELDETAILSQUANTIZATION_METHOD_PTQ ChatModelDetailsQuantizationMethod = "PTQ"
+	CHATMODELDETAILSQUANTIZATION_METHOD_QAT ChatModelDetailsQuantizationMethod = "QAT"
+)
+
+// All allowed values of ChatModelDetails enum
+var AllowedChatModelDetailsQuantizationMethodEnumValues = []ChatModelDetailsQuantizationMethod{
+	"PTQ",
+	"QAT",
+}
+
+func (v *ChatModelDetailsQuantizationMethod) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ChatModelDetailsQuantizationMethod(value)
+	for _, existing := range AllowedChatModelDetailsQuantizationMethodEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ChatModelDetails", value)
+}
+
+// NewChatModelDetailsQuantizationMethodFromValue returns a pointer to a valid ChatModelDetailsQuantizationMethod
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewChatModelDetailsQuantizationMethodFromValue(v string) (*ChatModelDetailsQuantizationMethod, error) {
+	ev := ChatModelDetailsQuantizationMethod(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ChatModelDetailsQuantizationMethod: valid values are %v", v, AllowedChatModelDetailsQuantizationMethodEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ChatModelDetailsQuantizationMethod) IsValid() bool {
+	for _, existing := range AllowedChatModelDetailsQuantizationMethodEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to QuantizationMethodQuantizationMethod value
+func (v ChatModelDetailsQuantizationMethod) Ptr() *ChatModelDetailsQuantizationMethod {
+	return &v
+}
+
+type NullableChatModelDetailsQuantizationMethod struct {
+	value *ChatModelDetailsQuantizationMethod
+	isSet bool
+}
+
+func (v NullableChatModelDetailsQuantizationMethod) Get() *ChatModelDetailsQuantizationMethod {
+	return v.value
+}
+
+func (v *NullableChatModelDetailsQuantizationMethod) Set(val *ChatModelDetailsQuantizationMethod) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableChatModelDetailsQuantizationMethod) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableChatModelDetailsQuantizationMethod) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableChatModelDetailsQuantizationMethod(val *ChatModelDetailsQuantizationMethod) *NullableChatModelDetailsQuantizationMethod {
+	return &NullableChatModelDetailsQuantizationMethod{value: val, isSet: true}
+}
+
+func (v NullableChatModelDetailsQuantizationMethod) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableChatModelDetailsQuantizationMethod) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ChatModelDetailsGetQuantizationMethodAttributeType = *ChatModelDetailsQuantizationMethod
+type ChatModelDetailsGetQuantizationMethodArgType = ChatModelDetailsQuantizationMethod
+type ChatModelDetailsGetQuantizationMethodRetType = ChatModelDetailsQuantizationMethod
 
 func getChatModelDetailsGetQuantizationMethodAttributeTypeOk(arg ChatModelDetailsGetQuantizationMethodAttributeType) (ret ChatModelDetailsGetQuantizationMethodRetType, ok bool) {
 	if arg == nil {

@@ -12,6 +12,7 @@ package serverbackup
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Backup type satisfies the MappedNullable interface at compile time
@@ -146,10 +147,124 @@ func setBackupGetSizeAttributeType(arg *BackupGetSizeAttributeType, val BackupGe
 	types and functions for status
 */
 
-// isEnumRef
-type BackupGetStatusAttributeType = *string
-type BackupGetStatusArgType = string
-type BackupGetStatusRetType = string
+//isEnum
+
+// BackupStatus the model 'Backup'
+type BackupStatus string
+
+// List of Status
+const (
+	BACKUPSTATUS_CREATING       BackupStatus = "creating"
+	BACKUPSTATUS_AVAILABLE      BackupStatus = "available"
+	BACKUPSTATUS_DELETING       BackupStatus = "deleting"
+	BACKUPSTATUS_ERROR          BackupStatus = "error"
+	BACKUPSTATUS_RESTORING      BackupStatus = "restoring"
+	BACKUPSTATUS_ERROR_DELETING BackupStatus = "error_deleting"
+	BACKUPSTATUS_BACKING_UP     BackupStatus = "backing up"
+	BACKUPSTATUS_INCONSISTENT   BackupStatus = "inconsistent"
+	BACKUPSTATUS_ERROR_CREATING BackupStatus = "error-creating"
+)
+
+// All allowed values of Backup enum
+var AllowedBackupStatusEnumValues = []BackupStatus{
+	"creating",
+	"available",
+	"deleting",
+	"error",
+	"restoring",
+	"error_deleting",
+	"backing up",
+	"inconsistent",
+	"error-creating",
+}
+
+func (v *BackupStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := BackupStatus(value)
+	for _, existing := range AllowedBackupStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Backup", value)
+}
+
+// NewBackupStatusFromValue returns a pointer to a valid BackupStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewBackupStatusFromValue(v string) (*BackupStatus, error) {
+	ev := BackupStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for BackupStatus: valid values are %v", v, AllowedBackupStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v BackupStatus) IsValid() bool {
+	for _, existing := range AllowedBackupStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v BackupStatus) Ptr() *BackupStatus {
+	return &v
+}
+
+type NullableBackupStatus struct {
+	value *BackupStatus
+	isSet bool
+}
+
+func (v NullableBackupStatus) Get() *BackupStatus {
+	return v.value
+}
+
+func (v *NullableBackupStatus) Set(val *BackupStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBackupStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBackupStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBackupStatus(val *BackupStatus) *NullableBackupStatus {
+	return &NullableBackupStatus{value: val, isSet: true}
+}
+
+func (v NullableBackupStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableBackupStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type BackupGetStatusAttributeType = *BackupStatus
+type BackupGetStatusArgType = BackupStatus
+type BackupGetStatusRetType = BackupStatus
 
 func getBackupGetStatusAttributeTypeOk(arg BackupGetStatusAttributeType) (ret BackupGetStatusRetType, ok bool) {
 	if arg == nil {

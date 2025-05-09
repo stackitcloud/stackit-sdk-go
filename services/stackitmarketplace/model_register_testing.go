@@ -71,10 +71,10 @@ type _RegisterTesting RegisterTesting
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterTesting(registerTesting RegisterTestingGetRegisterTestingArgType, type_ RegisterTestingGetTypeArgType) *RegisterTesting {
+func NewRegisterTesting(registerTesting RegisterTestingGetRegisterTestingArgType, types RegisterTestingGetTypeArgType) *RegisterTesting {
 	this := RegisterTesting{}
 	setRegisterTestingGetRegisterTestingAttributeType(&this.RegisterTesting, registerTesting)
-	setRegisterTestingGetTypeAttributeType(&this.Type, type_)
+	setRegisterTestingGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

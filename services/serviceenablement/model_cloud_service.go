@@ -12,6 +12,7 @@ package serviceenablement
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CloudService type satisfies the MappedNullable interface at compile time
@@ -61,10 +62,110 @@ func setCloudServiceGetLabelsAttributeType(arg *CloudServiceGetLabelsAttributeTy
 	types and functions for scope
 */
 
-// isEnumRef
-type CloudServiceGetScopeAttributeType = *string
-type CloudServiceGetScopeArgType = string
-type CloudServiceGetScopeRetType = string
+//isEnum
+
+// CloudServiceScope the model 'CloudService'
+type CloudServiceScope string
+
+// List of Scope
+const (
+	CLOUDSERVICESCOPE_PRIVATE CloudServiceScope = "PRIVATE"
+	CLOUDSERVICESCOPE_PUBLIC  CloudServiceScope = "PUBLIC"
+)
+
+// All allowed values of CloudService enum
+var AllowedCloudServiceScopeEnumValues = []CloudServiceScope{
+	"PRIVATE",
+	"PUBLIC",
+}
+
+func (v *CloudServiceScope) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CloudServiceScope(value)
+	for _, existing := range AllowedCloudServiceScopeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CloudService", value)
+}
+
+// NewCloudServiceScopeFromValue returns a pointer to a valid CloudServiceScope
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCloudServiceScopeFromValue(v string) (*CloudServiceScope, error) {
+	ev := CloudServiceScope(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CloudServiceScope: valid values are %v", v, AllowedCloudServiceScopeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CloudServiceScope) IsValid() bool {
+	for _, existing := range AllowedCloudServiceScopeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ScopeScope value
+func (v CloudServiceScope) Ptr() *CloudServiceScope {
+	return &v
+}
+
+type NullableCloudServiceScope struct {
+	value *CloudServiceScope
+	isSet bool
+}
+
+func (v NullableCloudServiceScope) Get() *CloudServiceScope {
+	return v.value
+}
+
+func (v *NullableCloudServiceScope) Set(val *CloudServiceScope) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCloudServiceScope) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCloudServiceScope) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCloudServiceScope(val *CloudServiceScope) *NullableCloudServiceScope {
+	return &NullableCloudServiceScope{value: val, isSet: true}
+}
+
+func (v NullableCloudServiceScope) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCloudServiceScope) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CloudServiceGetScopeAttributeType = *CloudServiceScope
+type CloudServiceGetScopeArgType = CloudServiceScope
+type CloudServiceGetScopeRetType = CloudServiceScope
 
 func getCloudServiceGetScopeAttributeTypeOk(arg CloudServiceGetScopeAttributeType) (ret CloudServiceGetScopeRetType, ok bool) {
 	if arg == nil {
@@ -121,7 +222,7 @@ func NewCloudService() *CloudService {
 // but it doesn't guarantee that properties required by API are set
 func NewCloudServiceWithDefaults() *CloudService {
 	this := CloudService{}
-	var scope string = "PUBLIC"
+	var scope CloudServiceScope = "PUBLIC"
 	this.Scope = &scope
 	return &this
 }

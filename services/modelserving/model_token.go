@@ -12,6 +12,7 @@ package modelserving
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -106,10 +107,114 @@ type TokenGetRegionRetType = string
 	types and functions for state
 */
 
-// isEnumRef
-type TokenGetStateAttributeType = *string
-type TokenGetStateArgType = string
-type TokenGetStateRetType = string
+//isEnum
+
+// TokenState the model 'Token'
+type TokenState string
+
+// List of State
+const (
+	TOKENSTATE_CREATING TokenState = "creating"
+	TOKENSTATE_ACTIVE   TokenState = "active"
+	TOKENSTATE_DELETING TokenState = "deleting"
+	TOKENSTATE_INACTIVE TokenState = "inactive"
+)
+
+// All allowed values of Token enum
+var AllowedTokenStateEnumValues = []TokenState{
+	"creating",
+	"active",
+	"deleting",
+	"inactive",
+}
+
+func (v *TokenState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := TokenState(value)
+	for _, existing := range AllowedTokenStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Token", value)
+}
+
+// NewTokenStateFromValue returns a pointer to a valid TokenState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewTokenStateFromValue(v string) (*TokenState, error) {
+	ev := TokenState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for TokenState: valid values are %v", v, AllowedTokenStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v TokenState) IsValid() bool {
+	for _, existing := range AllowedTokenStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v TokenState) Ptr() *TokenState {
+	return &v
+}
+
+type NullableTokenState struct {
+	value *TokenState
+	isSet bool
+}
+
+func (v NullableTokenState) Get() *TokenState {
+	return v.value
+}
+
+func (v *NullableTokenState) Set(val *TokenState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTokenState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTokenState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTokenState(val *TokenState) *NullableTokenState {
+	return &NullableTokenState{value: val, isSet: true}
+}
+
+func (v NullableTokenState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableTokenState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type TokenGetStateAttributeType = *TokenState
+type TokenGetStateArgType = TokenState
+type TokenGetStateRetType = TokenState
 
 func getTokenGetStateAttributeTypeOk(arg TokenGetStateAttributeType) (ret TokenGetStateRetType, ok bool) {
 	if arg == nil {

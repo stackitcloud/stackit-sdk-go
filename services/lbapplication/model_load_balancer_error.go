@@ -1,7 +1,7 @@
 /*
 Application Load Balancer API
 
-This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
+### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
 API version: 1beta.0.0
 */
@@ -12,6 +12,7 @@ package lbapplication
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the LoadBalancerError type satisfies the MappedNullable interface at compile time
@@ -42,10 +43,124 @@ type LoadBalancerErrorGetDescriptionRetType = string
 	types and functions for type
 */
 
-// isEnumRef
-type LoadBalancerErrorGetTypeAttributeType = *string
-type LoadBalancerErrorGetTypeArgType = string
-type LoadBalancerErrorGetTypeRetType = string
+//isEnum
+
+// LoadBalancerErrorTypes The error type specifies which part of the application load balancer encountered the error. I.e. the API will not check if a provided public IP is actually available in the project. Instead the application load balancer with try to use the provided IP and if not available reports TYPE_FIP_NOT_CONFIGURED error.
+type LoadBalancerErrorTypes string
+
+// List of Type
+const (
+	LOADBALANCERERRORTYPE_UNSPECIFIED                 LoadBalancerErrorTypes = "TYPE_UNSPECIFIED"
+	LOADBALANCERERRORTYPE_INTERNAL                    LoadBalancerErrorTypes = "TYPE_INTERNAL"
+	LOADBALANCERERRORTYPE_QUOTA_SECGROUP_EXCEEDED     LoadBalancerErrorTypes = "TYPE_QUOTA_SECGROUP_EXCEEDED"
+	LOADBALANCERERRORTYPE_QUOTA_SECGROUPRULE_EXCEEDED LoadBalancerErrorTypes = "TYPE_QUOTA_SECGROUPRULE_EXCEEDED"
+	LOADBALANCERERRORTYPE_PORT_NOT_CONFIGURED         LoadBalancerErrorTypes = "TYPE_PORT_NOT_CONFIGURED"
+	LOADBALANCERERRORTYPE_FIP_NOT_CONFIGURED          LoadBalancerErrorTypes = "TYPE_FIP_NOT_CONFIGURED"
+	LOADBALANCERERRORTYPE_TARGET_NOT_ACTIVE           LoadBalancerErrorTypes = "TYPE_TARGET_NOT_ACTIVE"
+	LOADBALANCERERRORTYPE_METRICS_MISCONFIGURED       LoadBalancerErrorTypes = "TYPE_METRICS_MISCONFIGURED"
+	LOADBALANCERERRORTYPE_LOGS_MISCONFIGURED          LoadBalancerErrorTypes = "TYPE_LOGS_MISCONFIGURED"
+)
+
+// All allowed values of LoadBalancerError enum
+var AllowedLoadBalancerErrorTypesEnumValues = []LoadBalancerErrorTypes{
+	"TYPE_UNSPECIFIED",
+	"TYPE_INTERNAL",
+	"TYPE_QUOTA_SECGROUP_EXCEEDED",
+	"TYPE_QUOTA_SECGROUPRULE_EXCEEDED",
+	"TYPE_PORT_NOT_CONFIGURED",
+	"TYPE_FIP_NOT_CONFIGURED",
+	"TYPE_TARGET_NOT_ACTIVE",
+	"TYPE_METRICS_MISCONFIGURED",
+	"TYPE_LOGS_MISCONFIGURED",
+}
+
+func (v *LoadBalancerErrorTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := LoadBalancerErrorTypes(value)
+	for _, existing := range AllowedLoadBalancerErrorTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid LoadBalancerError", value)
+}
+
+// NewLoadBalancerErrorTypesFromValue returns a pointer to a valid LoadBalancerErrorTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewLoadBalancerErrorTypesFromValue(v string) (*LoadBalancerErrorTypes, error) {
+	ev := LoadBalancerErrorTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for LoadBalancerErrorTypes: valid values are %v", v, AllowedLoadBalancerErrorTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v LoadBalancerErrorTypes) IsValid() bool {
+	for _, existing := range AllowedLoadBalancerErrorTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v LoadBalancerErrorTypes) Ptr() *LoadBalancerErrorTypes {
+	return &v
+}
+
+type NullableLoadBalancerErrorTypes struct {
+	value *LoadBalancerErrorTypes
+	isSet bool
+}
+
+func (v NullableLoadBalancerErrorTypes) Get() *LoadBalancerErrorTypes {
+	return v.value
+}
+
+func (v *NullableLoadBalancerErrorTypes) Set(val *LoadBalancerErrorTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoadBalancerErrorTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoadBalancerErrorTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoadBalancerErrorTypes(val *LoadBalancerErrorTypes) *NullableLoadBalancerErrorTypes {
+	return &NullableLoadBalancerErrorTypes{value: val, isSet: true}
+}
+
+func (v NullableLoadBalancerErrorTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableLoadBalancerErrorTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type LoadBalancerErrorGetTypeAttributeType = *LoadBalancerErrorTypes
+type LoadBalancerErrorGetTypeArgType = LoadBalancerErrorTypes
+type LoadBalancerErrorGetTypeRetType = LoadBalancerErrorTypes
 
 func getLoadBalancerErrorGetTypeAttributeTypeOk(arg LoadBalancerErrorGetTypeAttributeType) (ret LoadBalancerErrorGetTypeRetType, ok bool) {
 	if arg == nil {

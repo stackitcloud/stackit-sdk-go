@@ -12,6 +12,7 @@ package observability
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ProjectInstanceFull type satisfies the MappedNullable interface at compile time
@@ -151,10 +152,124 @@ type ProjectInstanceFullGetServiceNameRetType = string
 	types and functions for status
 */
 
-// isEnumRef
-type ProjectInstanceFullGetStatusAttributeType = *string
-type ProjectInstanceFullGetStatusArgType = string
-type ProjectInstanceFullGetStatusRetType = string
+//isEnum
+
+// ProjectInstanceFullStatus the model 'ProjectInstanceFull'
+type ProjectInstanceFullStatus string
+
+// List of Status
+const (
+	PROJECTINSTANCEFULLSTATUS_CREATING         ProjectInstanceFullStatus = "CREATING"
+	PROJECTINSTANCEFULLSTATUS_CREATE_SUCCEEDED ProjectInstanceFullStatus = "CREATE_SUCCEEDED"
+	PROJECTINSTANCEFULLSTATUS_CREATE_FAILED    ProjectInstanceFullStatus = "CREATE_FAILED"
+	PROJECTINSTANCEFULLSTATUS_DELETING         ProjectInstanceFullStatus = "DELETING"
+	PROJECTINSTANCEFULLSTATUS_DELETE_SUCCEEDED ProjectInstanceFullStatus = "DELETE_SUCCEEDED"
+	PROJECTINSTANCEFULLSTATUS_DELETE_FAILED    ProjectInstanceFullStatus = "DELETE_FAILED"
+	PROJECTINSTANCEFULLSTATUS_UPDATING         ProjectInstanceFullStatus = "UPDATING"
+	PROJECTINSTANCEFULLSTATUS_UPDATE_SUCCEEDED ProjectInstanceFullStatus = "UPDATE_SUCCEEDED"
+	PROJECTINSTANCEFULLSTATUS_UPDATE_FAILED    ProjectInstanceFullStatus = "UPDATE_FAILED"
+)
+
+// All allowed values of ProjectInstanceFull enum
+var AllowedProjectInstanceFullStatusEnumValues = []ProjectInstanceFullStatus{
+	"CREATING",
+	"CREATE_SUCCEEDED",
+	"CREATE_FAILED",
+	"DELETING",
+	"DELETE_SUCCEEDED",
+	"DELETE_FAILED",
+	"UPDATING",
+	"UPDATE_SUCCEEDED",
+	"UPDATE_FAILED",
+}
+
+func (v *ProjectInstanceFullStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ProjectInstanceFullStatus(value)
+	for _, existing := range AllowedProjectInstanceFullStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ProjectInstanceFull", value)
+}
+
+// NewProjectInstanceFullStatusFromValue returns a pointer to a valid ProjectInstanceFullStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewProjectInstanceFullStatusFromValue(v string) (*ProjectInstanceFullStatus, error) {
+	ev := ProjectInstanceFullStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ProjectInstanceFullStatus: valid values are %v", v, AllowedProjectInstanceFullStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ProjectInstanceFullStatus) IsValid() bool {
+	for _, existing := range AllowedProjectInstanceFullStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v ProjectInstanceFullStatus) Ptr() *ProjectInstanceFullStatus {
+	return &v
+}
+
+type NullableProjectInstanceFullStatus struct {
+	value *ProjectInstanceFullStatus
+	isSet bool
+}
+
+func (v NullableProjectInstanceFullStatus) Get() *ProjectInstanceFullStatus {
+	return v.value
+}
+
+func (v *NullableProjectInstanceFullStatus) Set(val *ProjectInstanceFullStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProjectInstanceFullStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProjectInstanceFullStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableProjectInstanceFullStatus(val *ProjectInstanceFullStatus) *NullableProjectInstanceFullStatus {
+	return &NullableProjectInstanceFullStatus{value: val, isSet: true}
+}
+
+func (v NullableProjectInstanceFullStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableProjectInstanceFullStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ProjectInstanceFullGetStatusAttributeType = *ProjectInstanceFullStatus
+type ProjectInstanceFullGetStatusArgType = ProjectInstanceFullStatus
+type ProjectInstanceFullGetStatusRetType = ProjectInstanceFullStatus
 
 func getProjectInstanceFullGetStatusAttributeTypeOk(arg ProjectInstanceFullGetStatusAttributeType) (ret ProjectInstanceFullGetStatusRetType, ok bool) {
 	if arg == nil {
