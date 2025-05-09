@@ -18,7 +18,17 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
       - name: Install STACKIT CLI
-        uses: jkroepke/setup-stackit-cli@v1
+        run: |-
+          OS=$(uname | tr '[:upper:]' '[:lower:]')
+          ARCH=$(uname -m)
+          
+          [ "$ARCH" = "x86_64" ] && ARCH=amd64
+          [ "$ARCH" = "aarch64" ] && ARCH=amd64
+          
+          echo Downloading stackit-cli from https://github.com/stackitcloud/stackit-cli/releases/download/v${STACKIT_CLI_VERSION}/stackit-cli_${STACKIT_CLI_VERSION}_${OS}_${ARCH}.tar.gz
+          curl -sSfLo - https://github.com/stackitcloud/stackit-cli/releases/download/v${STACKIT_CLI_VERSION}/stackit-cli_${STACKIT_CLI_VERSION}_${OS}_${ARCH}.tar.gz | sudo tar zxf - -C /usr/local/bin/ stackit
+        env:
+          STACKIT_CLI_VERSION: 0.31.0
       - name: Test
         run: make test
 
