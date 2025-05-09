@@ -13,30 +13,42 @@ import (
 )
 
 const (
-	InstanceStatusActive   = "active"
-	InstanceStatusFailed   = "failed"
-	InstanceStatusStopped  = "stopped"
+	// Deprecated: InstanceStatusActive is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCESTATUS_ACTIVE] instead.
+	InstanceStatusActive = "active"
+	// Deprecated: InstanceStatusFailed is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCESTATUS_FAILED] instead.
+	InstanceStatusFailed = "failed"
+	// Deprecated: InstanceStatusStopped is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCESTATUS_STOPPED] instead.
+	InstanceStatusStopped = "stopped"
+	// Deprecated: InstanceStatusCreating is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCESTATUS_CREATING] instead.
 	InstanceStatusCreating = "creating"
+	// Deprecated: InstanceStatusDeleting is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCESTATUS_DELETING] instead.
 	InstanceStatusDeleting = "deleting"
+	// Deprecated: InstanceStatusUpdating is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCESTATUS_UPDATING] instead.
 	InstanceStatusUpdating = "updating"
 
+	// Deprecated: InstanceOperationStateInProgress is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCELASTOPERATIONSTATE_IN_PROGRESS] instead.
 	InstanceOperationStateInProgress = "in progress"
-	InstanceOperationStateSucceeded  = "succeeded"
-	InstanceOperationStateFailed     = "failed"
+	// Deprecated: InstanceOperationStateSucceeded is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCELASTOPERATIONSTATE_SUCCEEDED] instead.
+	InstanceOperationStateSucceeded = "succeeded"
+	// Deprecated: InstanceOperationStateFailed is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCELASTOPERATIONSTATE_FAILED] instead.
+	InstanceOperationStateFailed = "failed"
 
+	// Deprecated: InstanceOperationTypeCreate is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCELASTOPERATIONTYPE_CREATE] instead.
 	InstanceOperationTypeCreate = "create"
+	// Deprecated: InstanceOperationTypeUpdate is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCELASTOPERATIONTYPE_UPDATE] instead.
 	InstanceOperationTypeUpdate = "update"
+	// Deprecated: InstanceOperationTypeDelete is deprecated and will be removed after 9th November 2025. Use [logme.INSTANCELASTOPERATIONTYPE_DELETE] instead.
 	InstanceOperationTypeDelete = "delete"
 
-	// Deprecated: InstanceStateSuccess is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationStateSucceeded] instead.
+	// Deprecated: InstanceStateSuccess is deprecated and will be removed after 2nd October 2025. Use [logme.INSTANCELASTOPERATIONSTATE_SUCCEEDED] instead.
 	InstanceStateSuccess = "succeeded"
-	// Deprecated: InstanceStateFailed is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationStateFailed] instead.
+	// Deprecated: InstanceStateFailed is deprecated and will be removed after 2nd October 2025. Use [logme.INSTANCELASTOPERATIONSTATE_FAILED] instead.
 	InstanceStateFailed = "failed"
-	// Deprecated: InstanceTypeCreate is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationTypeCreate] instead.
+	// Deprecated: InstanceTypeCreate is deprecated and will be removed after 2nd October 2025. Use [logme.INSTANCELASTOPERATIONTYPE_CREATE] instead.
 	InstanceTypeCreate = "create"
-	// Deprecated: InstanceTypeUpdate is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationTypeUpdate] instead.
+	// Deprecated: InstanceTypeUpdate is deprecated and will be removed after 2nd October 2025. Use [logme.INSTANCELASTOPERATIONTYPE_UPDATE] instead.
 	InstanceTypeUpdate = "update"
-	// Deprecated: InstanceTypeDelete is deprecated and will be removed after 2nd October 2025. Use [InstanceOperationTypeDelete] instead.
+	// Deprecated: InstanceTypeDelete is deprecated and will be removed after 2nd October 2025. Use [logme.INSTANCELASTOPERATIONTYPE_DELETE] instead.
 	InstanceTypeDelete = "delete"
 )
 
@@ -61,9 +73,9 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status is missing", instanceId)
 		}
 		switch *s.Status {
-		case InstanceStatusActive:
+		case logme.INSTANCESTATUS_ACTIVE:
 			return true, s, nil
-		case InstanceStatusFailed:
+		case logme.INSTANCESTATUS_FAILED:
 			var failedDescription string
 			if s.LastOperation != nil && s.LastOperation.Description != nil {
 				failedDescription = *s.LastOperation.Description
@@ -87,9 +99,9 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceIn
 			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the instance id or the status are missing", instanceId)
 		}
 		switch *s.Status {
-		case InstanceStatusActive:
+		case logme.INSTANCESTATUS_ACTIVE:
 			return true, s, nil
-		case InstanceStatusFailed:
+		case logme.INSTANCESTATUS_FAILED:
 			var failedDescription string
 			if s.LastOperation != nil && s.LastOperation.Description != nil {
 				failedDescription = *s.LastOperation.Description
@@ -110,10 +122,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 			if s.LastOperation == nil || s.LastOperation.Description == nil || s.Status == nil {
 				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status or last operation description are missing", instanceId)
 			}
-			if *s.Status != InstanceStatusDeleting {
+			if *s.Status != logme.INSTANCESTATUS_DELETING {
 				return false, nil, nil
 			}
-			if *s.Status == InstanceStatusActive {
+			if *s.Status == logme.INSTANCESTATUS_ACTIVE {
 				if strings.Contains(*s.LastOperation.Description, "DeleteFailed") || strings.Contains(*s.LastOperation.Description, "failed") {
 					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", *s.LastOperation.Description)
 				}

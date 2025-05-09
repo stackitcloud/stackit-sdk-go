@@ -16,7 +16,7 @@ import (
 type apiClientClusterMocked struct {
 	getFails             bool
 	name                 string
-	resourceState        string
+	resourceState        ske.ClusterStatusState
 	invalidArgusInstance bool
 }
 
@@ -34,7 +34,7 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 			Status: &ske.ClusterStatus{
 				Aggregated: &rs,
 				Error: &ske.RuntimeError{
-					Code:    utils.Ptr(string(InvalidArgusInstanceErrorCode)),
+					Code:    utils.Ptr(ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND),
 					Message: utils.Ptr("invalid argus instance"),
 				},
 			},
@@ -71,7 +71,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc                 string
 		getFails             bool
-		resourceState        string
+		resourceState        ske.ClusterStatusState
 		invalidArgusInstance bool
 		wantErr              bool
 		wantResp             bool
@@ -79,21 +79,21 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: StateHealthy,
+			resourceState: ske.CLUSTERSTATUSSTATE_HEALTHY,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: StateHibernated,
+			resourceState: ske.CLUSTERSTATUSSTATE_HIBERNATED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:                 "unhealthy_cluster",
 			getFails:             false,
-			resourceState:        StateUnhealthy,
+			resourceState:        ske.CLUSTERSTATUSSTATE_UNHEALTHY,
 			invalidArgusInstance: true,
 			wantErr:              false,
 			wantResp:             true,
@@ -141,7 +141,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 
 				if tt.invalidArgusInstance {
 					wantRes.Status.Error = &ske.RuntimeError{
-						Code:    utils.Ptr(string(InvalidArgusInstanceErrorCode)),
+						Code:    utils.Ptr(ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND),
 						Message: utils.Ptr("invalid argus instance"),
 					}
 				}
@@ -165,21 +165,21 @@ func TestRotateCredentialsWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState string
+		resourceState ske.ClusterStatusState
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "reconciliation_succeeded_1",
 			getFails:      false,
-			resourceState: StateHealthy,
+			resourceState: ske.CLUSTERSTATUSSTATE_HEALTHY,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "reconciliation_succeeded_2",
 			getFails:      false,
-			resourceState: StateHibernated,
+			resourceState: ske.CLUSTERSTATUSSTATE_HIBERNATED,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -199,7 +199,7 @@ func TestRotateCredentialsWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: StateReconciling,
+			resourceState: ske.CLUSTERSTATUSSTATE_RECONCILING,
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -214,12 +214,11 @@ func TestRotateCredentialsWaitHandler(t *testing.T) {
 				resourceState: tt.resourceState,
 			}
 			var wantRes *ske.Cluster
-			rs := ske.ClusterStatusState(tt.resourceState)
 			if tt.wantResp {
 				wantRes = &ske.Cluster{
 					Name: &name,
 					Status: &ske.ClusterStatus{
-						Aggregated: &rs,
+						Aggregated: &tt.resourceState,
 					},
 				}
 			}

@@ -12,7 +12,9 @@ import (
 )
 
 const (
-	ActiveState   = resourcemanager.LifecycleState("ACTIVE")
+	// Deprecated: ActiveState is deprecated and will be removed after 9th November 2025. Use [resourcemanager.LIFECYCLESTATE_ACTIVE] instead.
+	ActiveState = resourcemanager.LifecycleState("ACTIVE")
+	// Deprecated: CreatingState is deprecated and will be removed after 9th November 2025. Use [resourcemanager.LIFECYCLESTATE_CREATING] instead.
 	CreatingState = resourcemanager.LifecycleState("CREATING")
 )
 
@@ -31,10 +33,10 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, contain
 		if p.ContainerId == nil || p.LifecycleState == nil {
 			return false, nil, fmt.Errorf("creation failed: response invalid for container id %s. Container id or LifeCycleState missing", containerId)
 		}
-		if *p.ContainerId == containerId && *p.LifecycleState == ActiveState {
+		if *p.ContainerId == containerId && *p.LifecycleState == resourcemanager.LIFECYCLESTATE_ACTIVE {
 			return true, p, nil
 		}
-		if *p.ContainerId == containerId && *p.LifecycleState == CreatingState {
+		if *p.ContainerId == containerId && *p.LifecycleState == resourcemanager.LIFECYCLESTATE_CREATING {
 			return false, nil, nil
 		}
 		return true, p, fmt.Errorf("creation failed: received project state '%s'", *p.LifecycleState)
