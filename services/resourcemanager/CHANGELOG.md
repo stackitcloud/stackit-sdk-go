@@ -1,3 +1,6 @@
+## v0.13.3 (2025-05-09)
+- **Feature:** Update user-agent header
+
 ## v0.13.2 (2025-05-02)
 - **Feature:**
   - Added API calls for folder management

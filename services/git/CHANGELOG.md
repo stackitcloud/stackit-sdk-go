@@ -1,3 +1,6 @@
+## v0.3.3 (2025-05-09)
+- **Feature:** Update user-agent header
+
 ## v0.3.2 (2025-05-02)
 - **Bugfix**: Spelling corrections in documentation
 
