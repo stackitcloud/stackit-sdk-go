@@ -1,4 +1,4 @@
-## Release (2025-05-XX)
+## Release (2025-05-09)
 - `resourcemanager`:
   - [v0.13.3](services/resourcemanager/CHANGELOG.md#v0133-2025-05-09)
     - **Feature:** Update user-agent header
