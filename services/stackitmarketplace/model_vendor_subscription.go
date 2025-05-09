@@ -38,6 +38,26 @@ func setVendorSubscriptionGetLifecycleStateAttributeType(arg *VendorSubscription
 }
 
 /*
+	types and functions for organizationId
+*/
+
+// isModel
+type VendorSubscriptionGetOrganizationIdAttributeType = *OrganizationId
+type VendorSubscriptionGetOrganizationIdArgType = OrganizationId
+type VendorSubscriptionGetOrganizationIdRetType = OrganizationId
+
+func getVendorSubscriptionGetOrganizationIdAttributeTypeOk(arg VendorSubscriptionGetOrganizationIdAttributeType) (ret VendorSubscriptionGetOrganizationIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVendorSubscriptionGetOrganizationIdAttributeType(arg *VendorSubscriptionGetOrganizationIdAttributeType, val VendorSubscriptionGetOrganizationIdRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for product
 */
 
@@ -102,6 +122,8 @@ type VendorSubscription struct {
 	// REQUIRED
 	LifecycleState VendorSubscriptionGetLifecycleStateAttributeType `json:"lifecycleState"`
 	// REQUIRED
+	OrganizationId VendorSubscriptionGetOrganizationIdAttributeType `json:"organizationId"`
+	// REQUIRED
 	Product VendorSubscriptionGetProductAttributeType `json:"product"`
 	// REQUIRED
 	ProjectId VendorSubscriptionGetProjectIdAttributeType `json:"projectId"`
@@ -115,9 +137,10 @@ type _VendorSubscription VendorSubscription
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVendorSubscription(lifecycleState VendorSubscriptionGetLifecycleStateArgType, product VendorSubscriptionGetProductArgType, projectId VendorSubscriptionGetProjectIdArgType, subscriptionId VendorSubscriptionGetSubscriptionIdArgType) *VendorSubscription {
+func NewVendorSubscription(lifecycleState VendorSubscriptionGetLifecycleStateArgType, organizationId VendorSubscriptionGetOrganizationIdArgType, product VendorSubscriptionGetProductArgType, projectId VendorSubscriptionGetProjectIdArgType, subscriptionId VendorSubscriptionGetSubscriptionIdArgType) *VendorSubscription {
 	this := VendorSubscription{}
 	setVendorSubscriptionGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
+	setVendorSubscriptionGetOrganizationIdAttributeType(&this.OrganizationId, organizationId)
 	setVendorSubscriptionGetProductAttributeType(&this.Product, product)
 	setVendorSubscriptionGetProjectIdAttributeType(&this.ProjectId, projectId)
 	setVendorSubscriptionGetSubscriptionIdAttributeType(&this.SubscriptionId, subscriptionId)
@@ -147,6 +170,23 @@ func (o *VendorSubscription) GetLifecycleStateOk() (ret VendorSubscriptionGetLif
 // SetLifecycleState sets field value
 func (o *VendorSubscription) SetLifecycleState(v VendorSubscriptionGetLifecycleStateRetType) {
 	setVendorSubscriptionGetLifecycleStateAttributeType(&o.LifecycleState, v)
+}
+
+// GetOrganizationId returns the OrganizationId field value
+func (o *VendorSubscription) GetOrganizationId() (ret VendorSubscriptionGetOrganizationIdRetType) {
+	ret, _ = o.GetOrganizationIdOk()
+	return ret
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value
+// and a boolean to check if the value has been set.
+func (o *VendorSubscription) GetOrganizationIdOk() (ret VendorSubscriptionGetOrganizationIdRetType, ok bool) {
+	return getVendorSubscriptionGetOrganizationIdAttributeTypeOk(o.OrganizationId)
+}
+
+// SetOrganizationId sets field value
+func (o *VendorSubscription) SetOrganizationId(v VendorSubscriptionGetOrganizationIdRetType) {
+	setVendorSubscriptionGetOrganizationIdAttributeType(&o.OrganizationId, v)
 }
 
 // GetProduct returns the Product field value
@@ -204,6 +244,9 @@ func (o VendorSubscription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getVendorSubscriptionGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
 		toSerialize["LifecycleState"] = val
+	}
+	if val, ok := getVendorSubscriptionGetOrganizationIdAttributeTypeOk(o.OrganizationId); ok {
+		toSerialize["OrganizationId"] = val
 	}
 	if val, ok := getVendorSubscriptionGetProductAttributeTypeOk(o.Product); ok {
 		toSerialize["Product"] = val
