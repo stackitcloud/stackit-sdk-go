@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Taint type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,112 @@ var _ MappedNullable = &Taint{}
 	types and functions for effect
 */
 
-// isEnumRef
-type TaintGetEffectAttributeType = *string
-type TaintGetEffectArgType = string
-type TaintGetEffectRetType = string
+//isEnum
+
+// TaintEffect the model 'Taint'
+type TaintEffect string
+
+// List of Effect
+const (
+	TAINTEFFECT_NO_SCHEDULE        TaintEffect = "NoSchedule"
+	TAINTEFFECT_PREFER_NO_SCHEDULE TaintEffect = "PreferNoSchedule"
+	TAINTEFFECT_NO_EXECUTE         TaintEffect = "NoExecute"
+)
+
+// All allowed values of Taint enum
+var AllowedTaintEffectEnumValues = []TaintEffect{
+	"NoSchedule",
+	"PreferNoSchedule",
+	"NoExecute",
+}
+
+func (v *TaintEffect) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := TaintEffect(value)
+	for _, existing := range AllowedTaintEffectEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Taint", value)
+}
+
+// NewTaintEffectFromValue returns a pointer to a valid TaintEffect
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewTaintEffectFromValue(v string) (*TaintEffect, error) {
+	ev := TaintEffect(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for TaintEffect: valid values are %v", v, AllowedTaintEffectEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v TaintEffect) IsValid() bool {
+	for _, existing := range AllowedTaintEffectEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to EffectEffect value
+func (v TaintEffect) Ptr() *TaintEffect {
+	return &v
+}
+
+type NullableTaintEffect struct {
+	value *TaintEffect
+	isSet bool
+}
+
+func (v NullableTaintEffect) Get() *TaintEffect {
+	return v.value
+}
+
+func (v *NullableTaintEffect) Set(val *TaintEffect) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTaintEffect) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTaintEffect) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTaintEffect(val *TaintEffect) *NullableTaintEffect {
+	return &NullableTaintEffect{value: val, isSet: true}
+}
+
+func (v NullableTaintEffect) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableTaintEffect) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type TaintGetEffectAttributeType = *TaintEffect
+type TaintGetEffectArgType = TaintEffect
+type TaintGetEffectRetType = TaintEffect
 
 func getTaintGetEffectAttributeTypeOk(arg TaintGetEffectAttributeType) (ret TaintGetEffectRetType, ok bool) {
 	if arg == nil {

@@ -12,6 +12,7 @@ package serviceaccount
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -103,10 +104,108 @@ type CreateServiceAccountKeyResponseGetIdRetType = string
 	types and functions for keyAlgorithm
 */
 
-// isEnumRef
-type CreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType = *string
-type CreateServiceAccountKeyResponseGetKeyAlgorithmArgType = string
-type CreateServiceAccountKeyResponseGetKeyAlgorithmRetType = string
+//isEnum
+
+// CreateServiceAccountKeyResponseKeyAlgorithm the model 'CreateServiceAccountKeyResponse'
+type CreateServiceAccountKeyResponseKeyAlgorithm string
+
+// List of KeyAlgorithm
+const (
+	CREATESERVICEACCOUNTKEYRESPONSEKEY_ALGORITHM_RSA_2048 CreateServiceAccountKeyResponseKeyAlgorithm = "RSA_2048"
+)
+
+// All allowed values of CreateServiceAccountKeyResponse enum
+var AllowedCreateServiceAccountKeyResponseKeyAlgorithmEnumValues = []CreateServiceAccountKeyResponseKeyAlgorithm{
+	"RSA_2048",
+}
+
+func (v *CreateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CreateServiceAccountKeyResponseKeyAlgorithm(value)
+	for _, existing := range AllowedCreateServiceAccountKeyResponseKeyAlgorithmEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CreateServiceAccountKeyResponse", value)
+}
+
+// NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyAlgorithm
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue(v string) (*CreateServiceAccountKeyResponseKeyAlgorithm, error) {
+	ev := CreateServiceAccountKeyResponseKeyAlgorithm(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CreateServiceAccountKeyResponseKeyAlgorithm: valid values are %v", v, AllowedCreateServiceAccountKeyResponseKeyAlgorithmEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CreateServiceAccountKeyResponseKeyAlgorithm) IsValid() bool {
+	for _, existing := range AllowedCreateServiceAccountKeyResponseKeyAlgorithmEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyAlgorithmKeyAlgorithm value
+func (v CreateServiceAccountKeyResponseKeyAlgorithm) Ptr() *CreateServiceAccountKeyResponseKeyAlgorithm {
+	return &v
+}
+
+type NullableCreateServiceAccountKeyResponseKeyAlgorithm struct {
+	value *CreateServiceAccountKeyResponseKeyAlgorithm
+	isSet bool
+}
+
+func (v NullableCreateServiceAccountKeyResponseKeyAlgorithm) Get() *CreateServiceAccountKeyResponseKeyAlgorithm {
+	return v.value
+}
+
+func (v *NullableCreateServiceAccountKeyResponseKeyAlgorithm) Set(val *CreateServiceAccountKeyResponseKeyAlgorithm) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateServiceAccountKeyResponseKeyAlgorithm) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateServiceAccountKeyResponseKeyAlgorithm) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateServiceAccountKeyResponseKeyAlgorithm(val *CreateServiceAccountKeyResponseKeyAlgorithm) *NullableCreateServiceAccountKeyResponseKeyAlgorithm {
+	return &NullableCreateServiceAccountKeyResponseKeyAlgorithm{value: val, isSet: true}
+}
+
+func (v NullableCreateServiceAccountKeyResponseKeyAlgorithm) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType = *CreateServiceAccountKeyResponseKeyAlgorithm
+type CreateServiceAccountKeyResponseGetKeyAlgorithmArgType = CreateServiceAccountKeyResponseKeyAlgorithm
+type CreateServiceAccountKeyResponseGetKeyAlgorithmRetType = CreateServiceAccountKeyResponseKeyAlgorithm
 
 func getCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeTypeOk(arg CreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType) (ret CreateServiceAccountKeyResponseGetKeyAlgorithmRetType, ok bool) {
 	if arg == nil {
@@ -123,10 +222,110 @@ func setCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *CreateS
 	types and functions for keyOrigin
 */
 
-// isEnumRef
-type CreateServiceAccountKeyResponseGetKeyOriginAttributeType = *string
-type CreateServiceAccountKeyResponseGetKeyOriginArgType = string
-type CreateServiceAccountKeyResponseGetKeyOriginRetType = string
+//isEnum
+
+// CreateServiceAccountKeyResponseKeyOrigin the model 'CreateServiceAccountKeyResponse'
+type CreateServiceAccountKeyResponseKeyOrigin string
+
+// List of KeyOrigin
+const (
+	CREATESERVICEACCOUNTKEYRESPONSEKEY_ORIGIN_USER_PROVIDED CreateServiceAccountKeyResponseKeyOrigin = "USER_PROVIDED"
+	CREATESERVICEACCOUNTKEYRESPONSEKEY_ORIGIN_GENERATED     CreateServiceAccountKeyResponseKeyOrigin = "GENERATED"
+)
+
+// All allowed values of CreateServiceAccountKeyResponse enum
+var AllowedCreateServiceAccountKeyResponseKeyOriginEnumValues = []CreateServiceAccountKeyResponseKeyOrigin{
+	"USER_PROVIDED",
+	"GENERATED",
+}
+
+func (v *CreateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CreateServiceAccountKeyResponseKeyOrigin(value)
+	for _, existing := range AllowedCreateServiceAccountKeyResponseKeyOriginEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CreateServiceAccountKeyResponse", value)
+}
+
+// NewCreateServiceAccountKeyResponseKeyOriginFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyOrigin
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCreateServiceAccountKeyResponseKeyOriginFromValue(v string) (*CreateServiceAccountKeyResponseKeyOrigin, error) {
+	ev := CreateServiceAccountKeyResponseKeyOrigin(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CreateServiceAccountKeyResponseKeyOrigin: valid values are %v", v, AllowedCreateServiceAccountKeyResponseKeyOriginEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CreateServiceAccountKeyResponseKeyOrigin) IsValid() bool {
+	for _, existing := range AllowedCreateServiceAccountKeyResponseKeyOriginEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyOriginKeyOrigin value
+func (v CreateServiceAccountKeyResponseKeyOrigin) Ptr() *CreateServiceAccountKeyResponseKeyOrigin {
+	return &v
+}
+
+type NullableCreateServiceAccountKeyResponseKeyOrigin struct {
+	value *CreateServiceAccountKeyResponseKeyOrigin
+	isSet bool
+}
+
+func (v NullableCreateServiceAccountKeyResponseKeyOrigin) Get() *CreateServiceAccountKeyResponseKeyOrigin {
+	return v.value
+}
+
+func (v *NullableCreateServiceAccountKeyResponseKeyOrigin) Set(val *CreateServiceAccountKeyResponseKeyOrigin) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateServiceAccountKeyResponseKeyOrigin) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateServiceAccountKeyResponseKeyOrigin) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateServiceAccountKeyResponseKeyOrigin(val *CreateServiceAccountKeyResponseKeyOrigin) *NullableCreateServiceAccountKeyResponseKeyOrigin {
+	return &NullableCreateServiceAccountKeyResponseKeyOrigin{value: val, isSet: true}
+}
+
+func (v NullableCreateServiceAccountKeyResponseKeyOrigin) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CreateServiceAccountKeyResponseGetKeyOriginAttributeType = *CreateServiceAccountKeyResponseKeyOrigin
+type CreateServiceAccountKeyResponseGetKeyOriginArgType = CreateServiceAccountKeyResponseKeyOrigin
+type CreateServiceAccountKeyResponseGetKeyOriginRetType = CreateServiceAccountKeyResponseKeyOrigin
 
 func getCreateServiceAccountKeyResponseGetKeyOriginAttributeTypeOk(arg CreateServiceAccountKeyResponseGetKeyOriginAttributeType) (ret CreateServiceAccountKeyResponseGetKeyOriginRetType, ok bool) {
 	if arg == nil {
@@ -143,10 +342,110 @@ func setCreateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *CreateServ
 	types and functions for keyType
 */
 
-// isEnumRef
-type CreateServiceAccountKeyResponseGetKeyTypeAttributeType = *string
-type CreateServiceAccountKeyResponseGetKeyTypeArgType = string
-type CreateServiceAccountKeyResponseGetKeyTypeRetType = string
+//isEnum
+
+// CreateServiceAccountKeyResponseKeyType the model 'CreateServiceAccountKeyResponse'
+type CreateServiceAccountKeyResponseKeyType string
+
+// List of KeyType
+const (
+	CREATESERVICEACCOUNTKEYRESPONSEKEY_TYPE_USER_MANAGED   CreateServiceAccountKeyResponseKeyType = "USER_MANAGED"
+	CREATESERVICEACCOUNTKEYRESPONSEKEY_TYPE_SYSTEM_MANAGED CreateServiceAccountKeyResponseKeyType = "SYSTEM_MANAGED"
+)
+
+// All allowed values of CreateServiceAccountKeyResponse enum
+var AllowedCreateServiceAccountKeyResponseKeyTypeEnumValues = []CreateServiceAccountKeyResponseKeyType{
+	"USER_MANAGED",
+	"SYSTEM_MANAGED",
+}
+
+func (v *CreateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CreateServiceAccountKeyResponseKeyType(value)
+	for _, existing := range AllowedCreateServiceAccountKeyResponseKeyTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CreateServiceAccountKeyResponse", value)
+}
+
+// NewCreateServiceAccountKeyResponseKeyTypeFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCreateServiceAccountKeyResponseKeyTypeFromValue(v string) (*CreateServiceAccountKeyResponseKeyType, error) {
+	ev := CreateServiceAccountKeyResponseKeyType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CreateServiceAccountKeyResponseKeyType: valid values are %v", v, AllowedCreateServiceAccountKeyResponseKeyTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CreateServiceAccountKeyResponseKeyType) IsValid() bool {
+	for _, existing := range AllowedCreateServiceAccountKeyResponseKeyTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyTypeKeyType value
+func (v CreateServiceAccountKeyResponseKeyType) Ptr() *CreateServiceAccountKeyResponseKeyType {
+	return &v
+}
+
+type NullableCreateServiceAccountKeyResponseKeyType struct {
+	value *CreateServiceAccountKeyResponseKeyType
+	isSet bool
+}
+
+func (v NullableCreateServiceAccountKeyResponseKeyType) Get() *CreateServiceAccountKeyResponseKeyType {
+	return v.value
+}
+
+func (v *NullableCreateServiceAccountKeyResponseKeyType) Set(val *CreateServiceAccountKeyResponseKeyType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateServiceAccountKeyResponseKeyType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateServiceAccountKeyResponseKeyType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateServiceAccountKeyResponseKeyType(val *CreateServiceAccountKeyResponseKeyType) *NullableCreateServiceAccountKeyResponseKeyType {
+	return &NullableCreateServiceAccountKeyResponseKeyType{value: val, isSet: true}
+}
+
+func (v NullableCreateServiceAccountKeyResponseKeyType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CreateServiceAccountKeyResponseGetKeyTypeAttributeType = *CreateServiceAccountKeyResponseKeyType
+type CreateServiceAccountKeyResponseGetKeyTypeArgType = CreateServiceAccountKeyResponseKeyType
+type CreateServiceAccountKeyResponseGetKeyTypeRetType = CreateServiceAccountKeyResponseKeyType
 
 func getCreateServiceAccountKeyResponseGetKeyTypeAttributeTypeOk(arg CreateServiceAccountKeyResponseGetKeyTypeAttributeType) (ret CreateServiceAccountKeyResponseGetKeyTypeRetType, ok bool) {
 	if arg == nil {

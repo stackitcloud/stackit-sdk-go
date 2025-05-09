@@ -12,6 +12,7 @@ package cdn
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -144,10 +145,116 @@ type DistributionGetProjectIdRetType = string
 	types and functions for status
 */
 
-// isEnumRef
-type DistributionGetStatusAttributeType = *string
-type DistributionGetStatusArgType = string
-type DistributionGetStatusRetType = string
+//isEnum
+
+// DistributionStatus - `CREATING`: The distribution was just created.    All the relevant resources are created in the background. Once fully reconciled,   this switches to `ACTIVE`. If there are any issues, the status changes to    `ERROR`. You can look at the `errors` array to get more infos. - `ACTIVE`: The usual state. The desired configuration is synced, there are no errors - `UPDATING`: The state when there is a discrepancy between the desired and    actual configuration state. This occurs right after an update. Will switch to    `ACTIVE` or `ERROR`, depending on if synchronizing succeeds or not. - `DELETING`: The state right after a delete request was received. The distribution will stay in this status   until all resources have been successfully removed, or until we encounter an `ERROR` state.    **NOTE:** You can keep fetching the distribution while it is deleting.    After successful deletion, trying to get a distribution will return a 404 Not Found response - `ERROR`: The error state. Look at the `errors` array for more info.
+type DistributionStatus string
+
+// List of Status
+const (
+	DISTRIBUTIONSTATUS_CREATING DistributionStatus = "CREATING"
+	DISTRIBUTIONSTATUS_ACTIVE   DistributionStatus = "ACTIVE"
+	DISTRIBUTIONSTATUS_UPDATING DistributionStatus = "UPDATING"
+	DISTRIBUTIONSTATUS_DELETING DistributionStatus = "DELETING"
+	DISTRIBUTIONSTATUS_ERROR    DistributionStatus = "ERROR"
+)
+
+// All allowed values of Distribution enum
+var AllowedDistributionStatusEnumValues = []DistributionStatus{
+	"CREATING",
+	"ACTIVE",
+	"UPDATING",
+	"DELETING",
+	"ERROR",
+}
+
+func (v *DistributionStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := DistributionStatus(value)
+	for _, existing := range AllowedDistributionStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Distribution", value)
+}
+
+// NewDistributionStatusFromValue returns a pointer to a valid DistributionStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewDistributionStatusFromValue(v string) (*DistributionStatus, error) {
+	ev := DistributionStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for DistributionStatus: valid values are %v", v, AllowedDistributionStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v DistributionStatus) IsValid() bool {
+	for _, existing := range AllowedDistributionStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v DistributionStatus) Ptr() *DistributionStatus {
+	return &v
+}
+
+type NullableDistributionStatus struct {
+	value *DistributionStatus
+	isSet bool
+}
+
+func (v NullableDistributionStatus) Get() *DistributionStatus {
+	return v.value
+}
+
+func (v *NullableDistributionStatus) Set(val *DistributionStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDistributionStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDistributionStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDistributionStatus(val *DistributionStatus) *NullableDistributionStatus {
+	return &NullableDistributionStatus{value: val, isSet: true}
+}
+
+func (v NullableDistributionStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDistributionStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type DistributionGetStatusAttributeType = *DistributionStatus
+type DistributionGetStatusArgType = DistributionStatus
+type DistributionGetStatusRetType = DistributionStatus
 
 func getDistributionGetStatusAttributeTypeOk(arg DistributionGetStatusAttributeType) (ret DistributionGetStatusRetType, ok bool) {
 	if arg == nil {

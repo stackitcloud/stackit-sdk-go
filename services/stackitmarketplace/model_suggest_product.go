@@ -71,10 +71,10 @@ type _SuggestProduct SuggestProduct
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSuggestProduct(suggestProduct SuggestProductGetSuggestProductArgType, type_ SuggestProductGetTypeArgType) *SuggestProduct {
+func NewSuggestProduct(suggestProduct SuggestProductGetSuggestProductArgType, types SuggestProductGetTypeArgType) *SuggestProduct {
 	this := SuggestProduct{}
 	setSuggestProductGetSuggestProductAttributeType(&this.SuggestProduct, suggestProduct)
-	setSuggestProductGetTypeAttributeType(&this.Type, type_)
+	setSuggestProductGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

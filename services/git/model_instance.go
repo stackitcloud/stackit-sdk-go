@@ -12,6 +12,7 @@ package git
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -84,10 +85,118 @@ type InstanceGetNameRetType = string
 	types and functions for state
 */
 
-// isEnumRef
-type InstanceGetStateAttributeType = *string
-type InstanceGetStateArgType = string
-type InstanceGetStateRetType = string
+//isEnum
+
+// InstanceState The current state of the STACKIT Git instance.
+type InstanceState string
+
+// List of State
+const (
+	INSTANCESTATE_CREATING              InstanceState = "Creating"
+	INSTANCESTATE_WAITING_FOR_RESOURCES InstanceState = "WaitingForResources"
+	INSTANCESTATE_UPDATING              InstanceState = "Updating"
+	INSTANCESTATE_DELETING              InstanceState = "Deleting"
+	INSTANCESTATE_READY                 InstanceState = "Ready"
+	INSTANCESTATE_ERROR                 InstanceState = "Error"
+)
+
+// All allowed values of Instance enum
+var AllowedInstanceStateEnumValues = []InstanceState{
+	"Creating",
+	"WaitingForResources",
+	"Updating",
+	"Deleting",
+	"Ready",
+	"Error",
+}
+
+func (v *InstanceState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceState(value)
+	for _, existing := range AllowedInstanceStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Instance", value)
+}
+
+// NewInstanceStateFromValue returns a pointer to a valid InstanceState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceStateFromValue(v string) (*InstanceState, error) {
+	ev := InstanceState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceState: valid values are %v", v, AllowedInstanceStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceState) IsValid() bool {
+	for _, existing := range AllowedInstanceStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v InstanceState) Ptr() *InstanceState {
+	return &v
+}
+
+type NullableInstanceState struct {
+	value *InstanceState
+	isSet bool
+}
+
+func (v NullableInstanceState) Get() *InstanceState {
+	return v.value
+}
+
+func (v *NullableInstanceState) Set(val *InstanceState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceState(val *InstanceState) *NullableInstanceState {
+	return &NullableInstanceState{value: val, isSet: true}
+}
+
+func (v NullableInstanceState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceGetStateAttributeType = *InstanceState
+type InstanceGetStateArgType = InstanceState
+type InstanceGetStateRetType = InstanceState
 
 func getInstanceGetStateAttributeTypeOk(arg InstanceGetStateAttributeType) (ret InstanceGetStateRetType, ok bool) {
 	if arg == nil {

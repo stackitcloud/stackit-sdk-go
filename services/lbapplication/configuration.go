@@ -1,7 +1,7 @@
 /*
 Application Load Balancer API
 
-This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
+### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
 API version: 1beta.0.0
 */
@@ -18,7 +18,7 @@ import (
 func NewConfiguration() *config.Configuration {
 	cfg := &config.Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI-Generator/1.0.0/go",
+		UserAgent:     "stackit-sdk-go/lbapplication",
 		Debug:         false,
 		Servers: config.ServerConfigurations{
 			{

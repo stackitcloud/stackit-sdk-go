@@ -75,10 +75,10 @@ type _BootVolumeSource BootVolumeSource
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBootVolumeSource(id BootVolumeSourceGetIdArgType, type_ BootVolumeSourceGetTypeArgType) *BootVolumeSource {
+func NewBootVolumeSource(id BootVolumeSourceGetIdArgType, types BootVolumeSourceGetTypeArgType) *BootVolumeSource {
 	this := BootVolumeSource{}
 	setBootVolumeSourceGetIdAttributeType(&this.Id, id)
-	setBootVolumeSourceGetTypeAttributeType(&this.Type, type_)
+	setBootVolumeSourceGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

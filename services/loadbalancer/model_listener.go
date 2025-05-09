@@ -12,6 +12,7 @@ package loadbalancer
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Listener type satisfies the MappedNullable interface at compile time
@@ -83,10 +84,116 @@ func setListenerGetPortAttributeType(arg *ListenerGetPortAttributeType, val List
 	types and functions for protocol
 */
 
-// isEnumRef
-type ListenerGetProtocolAttributeType = *string
-type ListenerGetProtocolArgType = string
-type ListenerGetProtocolRetType = string
+//isEnum
+
+// ListenerProtocol Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP, PROTOCOL_TCP_PROXY and PROTOCOL_TLS_PASSTHROUGH are supported.
+type ListenerProtocol string
+
+// List of Protocol
+const (
+	LISTENERPROTOCOL_UNSPECIFIED     ListenerProtocol = "PROTOCOL_UNSPECIFIED"
+	LISTENERPROTOCOL_TCP             ListenerProtocol = "PROTOCOL_TCP"
+	LISTENERPROTOCOL_UDP             ListenerProtocol = "PROTOCOL_UDP"
+	LISTENERPROTOCOL_TCP_PROXY       ListenerProtocol = "PROTOCOL_TCP_PROXY"
+	LISTENERPROTOCOL_TLS_PASSTHROUGH ListenerProtocol = "PROTOCOL_TLS_PASSTHROUGH"
+)
+
+// All allowed values of Listener enum
+var AllowedListenerProtocolEnumValues = []ListenerProtocol{
+	"PROTOCOL_UNSPECIFIED",
+	"PROTOCOL_TCP",
+	"PROTOCOL_UDP",
+	"PROTOCOL_TCP_PROXY",
+	"PROTOCOL_TLS_PASSTHROUGH",
+}
+
+func (v *ListenerProtocol) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ListenerProtocol(value)
+	for _, existing := range AllowedListenerProtocolEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Listener", value)
+}
+
+// NewListenerProtocolFromValue returns a pointer to a valid ListenerProtocol
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewListenerProtocolFromValue(v string) (*ListenerProtocol, error) {
+	ev := ListenerProtocol(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ListenerProtocol: valid values are %v", v, AllowedListenerProtocolEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ListenerProtocol) IsValid() bool {
+	for _, existing := range AllowedListenerProtocolEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ProtocolProtocol value
+func (v ListenerProtocol) Ptr() *ListenerProtocol {
+	return &v
+}
+
+type NullableListenerProtocol struct {
+	value *ListenerProtocol
+	isSet bool
+}
+
+func (v NullableListenerProtocol) Get() *ListenerProtocol {
+	return v.value
+}
+
+func (v *NullableListenerProtocol) Set(val *ListenerProtocol) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListenerProtocol) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListenerProtocol) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListenerProtocol(val *ListenerProtocol) *NullableListenerProtocol {
+	return &NullableListenerProtocol{value: val, isSet: true}
+}
+
+func (v NullableListenerProtocol) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableListenerProtocol) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ListenerGetProtocolAttributeType = *ListenerProtocol
+type ListenerGetProtocolArgType = ListenerProtocol
+type ListenerGetProtocolRetType = ListenerProtocol
 
 func getListenerGetProtocolAttributeTypeOk(arg ListenerGetProtocolAttributeType) (ret ListenerGetProtocolRetType, ok bool) {
 	if arg == nil {

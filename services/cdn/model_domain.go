@@ -12,6 +12,7 @@ package cdn
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Domain type satisfies the MappedNullable interface at compile time
@@ -82,10 +83,110 @@ func setDomainGetStatusAttributeType(arg *DomainGetStatusAttributeType, val Doma
 	types and functions for type
 */
 
-// isEnumRef
-type DomainGetTypeAttributeType = *string
-type DomainGetTypeArgType = string
-type DomainGetTypeRetType = string
+//isEnum
+
+// DomainTypes Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint
+type DomainTypes string
+
+// List of Type
+const (
+	DOMAINTYPE_MANAGED DomainTypes = "managed"
+	DOMAINTYPE_CUSTOM  DomainTypes = "custom"
+)
+
+// All allowed values of Domain enum
+var AllowedDomainTypesEnumValues = []DomainTypes{
+	"managed",
+	"custom",
+}
+
+func (v *DomainTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := DomainTypes(value)
+	for _, existing := range AllowedDomainTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Domain", value)
+}
+
+// NewDomainTypesFromValue returns a pointer to a valid DomainTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewDomainTypesFromValue(v string) (*DomainTypes, error) {
+	ev := DomainTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for DomainTypes: valid values are %v", v, AllowedDomainTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v DomainTypes) IsValid() bool {
+	for _, existing := range AllowedDomainTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v DomainTypes) Ptr() *DomainTypes {
+	return &v
+}
+
+type NullableDomainTypes struct {
+	value *DomainTypes
+	isSet bool
+}
+
+func (v NullableDomainTypes) Get() *DomainTypes {
+	return v.value
+}
+
+func (v *NullableDomainTypes) Set(val *DomainTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDomainTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDomainTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDomainTypes(val *DomainTypes) *NullableDomainTypes {
+	return &NullableDomainTypes{value: val, isSet: true}
+}
+
+func (v NullableDomainTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDomainTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type DomainGetTypeAttributeType = *DomainTypes
+type DomainGetTypeArgType = DomainTypes
+type DomainGetTypeRetType = DomainTypes
 
 func getDomainGetTypeAttributeTypeOk(arg DomainGetTypeAttributeType) (ret DomainGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -118,11 +219,11 @@ type _Domain Domain
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDomain(name DomainGetNameArgType, status DomainGetStatusArgType, type_ DomainGetTypeArgType) *Domain {
+func NewDomain(name DomainGetNameArgType, status DomainGetStatusArgType, types DomainGetTypeArgType) *Domain {
 	this := Domain{}
 	setDomainGetNameAttributeType(&this.Name, name)
 	setDomainGetStatusAttributeType(&this.Status, status)
-	setDomainGetTypeAttributeType(&this.Type, type_)
+	setDomainGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

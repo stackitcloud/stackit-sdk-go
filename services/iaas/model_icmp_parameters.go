@@ -73,10 +73,10 @@ type _ICMPParameters ICMPParameters
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewICMPParameters(code ICMPParametersGetCodeArgType, type_ ICMPParametersGetTypeArgType) *ICMPParameters {
+func NewICMPParameters(code ICMPParametersGetCodeArgType, types ICMPParametersGetTypeArgType) *ICMPParameters {
 	this := ICMPParameters{}
 	setICMPParametersGetCodeAttributeType(&this.Code, code)
-	setICMPParametersGetTypeAttributeType(&this.Type, type_)
+	setICMPParametersGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

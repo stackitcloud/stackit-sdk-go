@@ -12,6 +12,7 @@ package modelserving
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the EmbeddingModelDetails type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,112 @@ var _ MappedNullable = &EmbeddingModelDetails{}
 	types and functions for category
 */
 
-// isEnumRef
-type EmbeddingModelDetailsGetCategoryAttributeType = *string
-type EmbeddingModelDetailsGetCategoryArgType = string
-type EmbeddingModelDetailsGetCategoryRetType = string
+//isEnum
+
+// EmbeddingModelDetailsCategory the model 'EmbeddingModelDetails'
+type EmbeddingModelDetailsCategory string
+
+// List of Category
+const (
+	EMBEDDINGMODELDETAILSCATEGORY_STANDARD EmbeddingModelDetailsCategory = "standard"
+	EMBEDDINGMODELDETAILSCATEGORY_PLUS     EmbeddingModelDetailsCategory = "plus"
+	EMBEDDINGMODELDETAILSCATEGORY_PREMIUM  EmbeddingModelDetailsCategory = "premium"
+)
+
+// All allowed values of EmbeddingModelDetails enum
+var AllowedEmbeddingModelDetailsCategoryEnumValues = []EmbeddingModelDetailsCategory{
+	"standard",
+	"plus",
+	"premium",
+}
+
+func (v *EmbeddingModelDetailsCategory) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := EmbeddingModelDetailsCategory(value)
+	for _, existing := range AllowedEmbeddingModelDetailsCategoryEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid EmbeddingModelDetails", value)
+}
+
+// NewEmbeddingModelDetailsCategoryFromValue returns a pointer to a valid EmbeddingModelDetailsCategory
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewEmbeddingModelDetailsCategoryFromValue(v string) (*EmbeddingModelDetailsCategory, error) {
+	ev := EmbeddingModelDetailsCategory(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for EmbeddingModelDetailsCategory: valid values are %v", v, AllowedEmbeddingModelDetailsCategoryEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v EmbeddingModelDetailsCategory) IsValid() bool {
+	for _, existing := range AllowedEmbeddingModelDetailsCategoryEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to CategoryCategory value
+func (v EmbeddingModelDetailsCategory) Ptr() *EmbeddingModelDetailsCategory {
+	return &v
+}
+
+type NullableEmbeddingModelDetailsCategory struct {
+	value *EmbeddingModelDetailsCategory
+	isSet bool
+}
+
+func (v NullableEmbeddingModelDetailsCategory) Get() *EmbeddingModelDetailsCategory {
+	return v.value
+}
+
+func (v *NullableEmbeddingModelDetailsCategory) Set(val *EmbeddingModelDetailsCategory) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEmbeddingModelDetailsCategory) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEmbeddingModelDetailsCategory) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableEmbeddingModelDetailsCategory(val *EmbeddingModelDetailsCategory) *NullableEmbeddingModelDetailsCategory {
+	return &NullableEmbeddingModelDetailsCategory{value: val, isSet: true}
+}
+
+func (v NullableEmbeddingModelDetailsCategory) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableEmbeddingModelDetailsCategory) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type EmbeddingModelDetailsGetCategoryAttributeType = *EmbeddingModelDetailsCategory
+type EmbeddingModelDetailsGetCategoryArgType = EmbeddingModelDetailsCategory
+type EmbeddingModelDetailsGetCategoryRetType = EmbeddingModelDetailsCategory
 
 func getEmbeddingModelDetailsGetCategoryAttributeTypeOk(arg EmbeddingModelDetailsGetCategoryAttributeType) (ret EmbeddingModelDetailsGetCategoryRetType, ok bool) {
 	if arg == nil {

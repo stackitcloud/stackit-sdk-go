@@ -96,11 +96,11 @@ type _HttpBackend HttpBackend
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpBackend(originRequestHeaders HttpBackendGetOriginRequestHeadersArgType, originUrl HttpBackendGetOriginUrlArgType, type_ HttpBackendGetTypeArgType) *HttpBackend {
+func NewHttpBackend(originRequestHeaders HttpBackendGetOriginRequestHeadersArgType, originUrl HttpBackendGetOriginUrlArgType, types HttpBackendGetTypeArgType) *HttpBackend {
 	this := HttpBackend{}
 	setHttpBackendGetOriginRequestHeadersAttributeType(&this.OriginRequestHeaders, originRequestHeaders)
 	setHttpBackendGetOriginUrlAttributeType(&this.OriginUrl, originUrl)
-	setHttpBackendGetTypeAttributeType(&this.Type, type_)
+	setHttpBackendGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

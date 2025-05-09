@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CRI type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,110 @@ var _ MappedNullable = &CRI{}
 	types and functions for name
 */
 
-// isEnumRef
-type CRIGetNameAttributeType = *string
-type CRIGetNameArgType = string
-type CRIGetNameRetType = string
+//isEnum
+
+// CRIName the model 'CRI'
+type CRIName string
+
+// List of Name
+const (
+	CRINAME_DOCKER     CRIName = "docker"
+	CRINAME_CONTAINERD CRIName = "containerd"
+)
+
+// All allowed values of CRI enum
+var AllowedCRINameEnumValues = []CRIName{
+	"docker",
+	"containerd",
+}
+
+func (v *CRIName) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CRIName(value)
+	for _, existing := range AllowedCRINameEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CRI", value)
+}
+
+// NewCRINameFromValue returns a pointer to a valid CRIName
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCRINameFromValue(v string) (*CRIName, error) {
+	ev := CRIName(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CRIName: valid values are %v", v, AllowedCRINameEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CRIName) IsValid() bool {
+	for _, existing := range AllowedCRINameEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to NameName value
+func (v CRIName) Ptr() *CRIName {
+	return &v
+}
+
+type NullableCRIName struct {
+	value *CRIName
+	isSet bool
+}
+
+func (v NullableCRIName) Get() *CRIName {
+	return v.value
+}
+
+func (v *NullableCRIName) Set(val *CRIName) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCRIName) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCRIName) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCRIName(val *CRIName) *NullableCRIName {
+	return &NullableCRIName{value: val, isSet: true}
+}
+
+func (v NullableCRIName) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCRIName) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CRIGetNameAttributeType = *CRIName
+type CRIGetNameArgType = CRIName
+type CRIGetNameRetType = CRIName
 
 func getCRIGetNameAttributeTypeOk(arg CRIGetNameAttributeType) (ret CRIGetNameRetType, ok bool) {
 	if arg == nil {

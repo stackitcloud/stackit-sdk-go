@@ -95,9 +95,9 @@ type _HttpBackendPatch HttpBackendPatch
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpBackendPatch(type_ HttpBackendPatchGetTypeArgType) *HttpBackendPatch {
+func NewHttpBackendPatch(types HttpBackendPatchGetTypeArgType) *HttpBackendPatch {
 	this := HttpBackendPatch{}
-	setHttpBackendPatchGetTypeAttributeType(&this.Type, type_)
+	setHttpBackendPatchGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

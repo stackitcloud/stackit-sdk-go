@@ -12,6 +12,7 @@ package runcommand
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Commands type satisfies the MappedNullable interface at compile time
@@ -125,10 +126,114 @@ type CommandsGetStartedAtRetType = string
 	types and functions for status
 */
 
-// isEnumRef
-type CommandsGetStatusAttributeType = *string
-type CommandsGetStatusArgType = string
-type CommandsGetStatusRetType = string
+//isEnum
+
+// CommandsStatus the model 'Commands'
+type CommandsStatus string
+
+// List of Status
+const (
+	COMMANDSSTATUS_PENDING   CommandsStatus = "pending"
+	COMMANDSSTATUS_RUNNING   CommandsStatus = "running"
+	COMMANDSSTATUS_COMPLETED CommandsStatus = "completed"
+	COMMANDSSTATUS_FAILED    CommandsStatus = "failed"
+)
+
+// All allowed values of Commands enum
+var AllowedCommandsStatusEnumValues = []CommandsStatus{
+	"pending",
+	"running",
+	"completed",
+	"failed",
+}
+
+func (v *CommandsStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CommandsStatus(value)
+	for _, existing := range AllowedCommandsStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Commands", value)
+}
+
+// NewCommandsStatusFromValue returns a pointer to a valid CommandsStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCommandsStatusFromValue(v string) (*CommandsStatus, error) {
+	ev := CommandsStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CommandsStatus: valid values are %v", v, AllowedCommandsStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CommandsStatus) IsValid() bool {
+	for _, existing := range AllowedCommandsStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v CommandsStatus) Ptr() *CommandsStatus {
+	return &v
+}
+
+type NullableCommandsStatus struct {
+	value *CommandsStatus
+	isSet bool
+}
+
+func (v NullableCommandsStatus) Get() *CommandsStatus {
+	return v.value
+}
+
+func (v *NullableCommandsStatus) Set(val *CommandsStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCommandsStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCommandsStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCommandsStatus(val *CommandsStatus) *NullableCommandsStatus {
+	return &NullableCommandsStatus{value: val, isSet: true}
+}
+
+func (v NullableCommandsStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCommandsStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CommandsGetStatusAttributeType = *CommandsStatus
+type CommandsGetStatusArgType = CommandsStatus
+type CommandsGetStatusRetType = CommandsStatus
 
 func getCommandsGetStatusAttributeTypeOk(arg CommandsGetStatusAttributeType) (ret CommandsGetStatusRetType, ok bool) {
 	if arg == nil {

@@ -95,11 +95,11 @@ type _ValidationError ValidationError
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidationError(loc ValidationErrorGetLocArgType, msg ValidationErrorGetMsgArgType, type_ ValidationErrorGetTypeArgType) *ValidationError {
+func NewValidationError(loc ValidationErrorGetLocArgType, msg ValidationErrorGetMsgArgType, types ValidationErrorGetTypeArgType) *ValidationError {
 	this := ValidationError{}
 	setValidationErrorGetLocAttributeType(&this.Loc, loc)
 	setValidationErrorGetMsgAttributeType(&this.Msg, msg)
-	setValidationErrorGetTypeAttributeType(&this.Type, type_)
+	setValidationErrorGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

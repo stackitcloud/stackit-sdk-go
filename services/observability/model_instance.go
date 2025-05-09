@@ -12,6 +12,7 @@ package observability
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Instance type satisfies the MappedNullable interface at compile time
@@ -204,10 +205,132 @@ func setInstanceGetPlanAttributeType(arg *InstanceGetPlanAttributeType, val Inst
 	types and functions for state
 */
 
-// isEnumRef
-type InstanceGetStateAttributeType = *string
-type InstanceGetStateArgType = string
-type InstanceGetStateRetType = string
+//isEnum
+
+// InstanceState the model 'Instance'
+type InstanceState string
+
+// List of State
+const (
+	INSTANCESTATE_CREATION_STARTED                                                   InstanceState = "Component creation started"
+	INSTANCESTATE_CREATION_FAILED                                                    InstanceState = "Component creation failed"
+	INSTANCESTATE_CREATION_SUCCEEDED__NOW_NEED_TO_CHECK_READINESS                    InstanceState = "Component creation succeeded. Now need to check readiness"
+	INSTANCESTATE_CREATION_SUCCEEDED                                                 InstanceState = "Component creation succeeded"
+	INSTANCESTATE_DELETION_STARTED                                                   InstanceState = "Component deletion started"
+	INSTANCESTATE_DELETION_FAILED                                                    InstanceState = "Component deletion failed"
+	INSTANCESTATE_DELETION_SUCCEEDED                                                 InstanceState = "Component deletion succeeded"
+	INSTANCESTATE_DELETION_OF_ROUTINE_SUCCEEDED__NOW_NEED_TO_CHECK_IF_RESOURCES_GONE InstanceState = "Component deletion of routine succeeded. Now need to check if resources gone"
+	INSTANCESTATE_DELETION_BUCKETS_SUCCEEDED                                         InstanceState = "Component deletion buckets succeeded"
+	INSTANCESTATE_UPDATE_FAILED                                                      InstanceState = "Component update failed"
+	INSTANCESTATE_UPDATE_STARTED                                                     InstanceState = "Component update started"
+	INSTANCESTATE_UPDATE_CREATION_SUCCEEDED                                          InstanceState = "Component update creation succeeded"
+	INSTANCESTATE_UPDATE_DOWNGRADE_DELETION_RESOURCES_SUCCEEDED                      InstanceState = "Component update downgrade deletion resources succeeded"
+)
+
+// All allowed values of Instance enum
+var AllowedInstanceStateEnumValues = []InstanceState{
+	"Component creation started",
+	"Component creation failed",
+	"Component creation succeeded. Now need to check readiness",
+	"Component creation succeeded",
+	"Component deletion started",
+	"Component deletion failed",
+	"Component deletion succeeded",
+	"Component deletion of routine succeeded. Now need to check if resources gone",
+	"Component deletion buckets succeeded",
+	"Component update failed",
+	"Component update started",
+	"Component update creation succeeded",
+	"Component update downgrade deletion resources succeeded",
+}
+
+func (v *InstanceState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceState(value)
+	for _, existing := range AllowedInstanceStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Instance", value)
+}
+
+// NewInstanceStateFromValue returns a pointer to a valid InstanceState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceStateFromValue(v string) (*InstanceState, error) {
+	ev := InstanceState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceState: valid values are %v", v, AllowedInstanceStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceState) IsValid() bool {
+	for _, existing := range AllowedInstanceStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v InstanceState) Ptr() *InstanceState {
+	return &v
+}
+
+type NullableInstanceState struct {
+	value *InstanceState
+	isSet bool
+}
+
+func (v NullableInstanceState) Get() *InstanceState {
+	return v.value
+}
+
+func (v *NullableInstanceState) Set(val *InstanceState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceState(val *InstanceState) *NullableInstanceState {
+	return &NullableInstanceState{value: val, isSet: true}
+}
+
+func (v NullableInstanceState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceGetStateAttributeType = *InstanceState
+type InstanceGetStateArgType = InstanceState
+type InstanceGetStateRetType = InstanceState
 
 func getInstanceGetStateAttributeTypeOk(arg InstanceGetStateAttributeType) (ret InstanceGetStateRetType, ok bool) {
 	if arg == nil {

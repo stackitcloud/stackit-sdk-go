@@ -71,10 +71,10 @@ type _BecomeVendor BecomeVendor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBecomeVendor(becomeVendor BecomeVendorGetBecomeVendorArgType, type_ BecomeVendorGetTypeArgType) *BecomeVendor {
+func NewBecomeVendor(becomeVendor BecomeVendorGetBecomeVendorArgType, types BecomeVendorGetTypeArgType) *BecomeVendor {
 	this := BecomeVendor{}
 	setBecomeVendorGetBecomeVendorAttributeType(&this.BecomeVendor, becomeVendor)
-	setBecomeVendorGetTypeAttributeType(&this.Type, type_)
+	setBecomeVendorGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

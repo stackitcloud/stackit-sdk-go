@@ -12,6 +12,7 @@ package alb
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateLoadBalancerPayload type satisfies the MappedNullable interface at compile time
@@ -206,10 +207,116 @@ type CreateLoadBalancerPayloadGetRegionRetType = string
 	types and functions for status
 */
 
-// isEnumRef
-type CreateLoadBalancerPayloadGetStatusAttributeType = *string
-type CreateLoadBalancerPayloadGetStatusArgType = string
-type CreateLoadBalancerPayloadGetStatusRetType = string
+//isEnum
+
+// CreateLoadBalancerPayloadStatus the model 'CreateLoadBalancerPayload'
+type CreateLoadBalancerPayloadStatus string
+
+// List of Status
+const (
+	CREATELOADBALANCERPAYLOADSTATUS_UNSPECIFIED CreateLoadBalancerPayloadStatus = "STATUS_UNSPECIFIED"
+	CREATELOADBALANCERPAYLOADSTATUS_PENDING     CreateLoadBalancerPayloadStatus = "STATUS_PENDING"
+	CREATELOADBALANCERPAYLOADSTATUS_READY       CreateLoadBalancerPayloadStatus = "STATUS_READY"
+	CREATELOADBALANCERPAYLOADSTATUS_ERROR       CreateLoadBalancerPayloadStatus = "STATUS_ERROR"
+	CREATELOADBALANCERPAYLOADSTATUS_TERMINATING CreateLoadBalancerPayloadStatus = "STATUS_TERMINATING"
+)
+
+// All allowed values of CreateLoadBalancerPayload enum
+var AllowedCreateLoadBalancerPayloadStatusEnumValues = []CreateLoadBalancerPayloadStatus{
+	"STATUS_UNSPECIFIED",
+	"STATUS_PENDING",
+	"STATUS_READY",
+	"STATUS_ERROR",
+	"STATUS_TERMINATING",
+}
+
+func (v *CreateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CreateLoadBalancerPayloadStatus(value)
+	for _, existing := range AllowedCreateLoadBalancerPayloadStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CreateLoadBalancerPayload", value)
+}
+
+// NewCreateLoadBalancerPayloadStatusFromValue returns a pointer to a valid CreateLoadBalancerPayloadStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCreateLoadBalancerPayloadStatusFromValue(v string) (*CreateLoadBalancerPayloadStatus, error) {
+	ev := CreateLoadBalancerPayloadStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CreateLoadBalancerPayloadStatus: valid values are %v", v, AllowedCreateLoadBalancerPayloadStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CreateLoadBalancerPayloadStatus) IsValid() bool {
+	for _, existing := range AllowedCreateLoadBalancerPayloadStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v CreateLoadBalancerPayloadStatus) Ptr() *CreateLoadBalancerPayloadStatus {
+	return &v
+}
+
+type NullableCreateLoadBalancerPayloadStatus struct {
+	value *CreateLoadBalancerPayloadStatus
+	isSet bool
+}
+
+func (v NullableCreateLoadBalancerPayloadStatus) Get() *CreateLoadBalancerPayloadStatus {
+	return v.value
+}
+
+func (v *NullableCreateLoadBalancerPayloadStatus) Set(val *CreateLoadBalancerPayloadStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateLoadBalancerPayloadStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateLoadBalancerPayloadStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateLoadBalancerPayloadStatus(val *CreateLoadBalancerPayloadStatus) *NullableCreateLoadBalancerPayloadStatus {
+	return &NullableCreateLoadBalancerPayloadStatus{value: val, isSet: true}
+}
+
+func (v NullableCreateLoadBalancerPayloadStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CreateLoadBalancerPayloadGetStatusAttributeType = *CreateLoadBalancerPayloadStatus
+type CreateLoadBalancerPayloadGetStatusArgType = CreateLoadBalancerPayloadStatus
+type CreateLoadBalancerPayloadGetStatusRetType = CreateLoadBalancerPayloadStatus
 
 func getCreateLoadBalancerPayloadGetStatusAttributeTypeOk(arg CreateLoadBalancerPayloadGetStatusAttributeType) (ret CreateLoadBalancerPayloadGetStatusRetType, ok bool) {
 	if arg == nil {

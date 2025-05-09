@@ -12,6 +12,7 @@ package observability
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the GetInstanceResponse type satisfies the MappedNullable interface at compile time
@@ -274,10 +275,124 @@ type GetInstanceResponseGetServiceNameRetType = string
 	types and functions for status
 */
 
-// isEnumRef
-type GetInstanceResponseGetStatusAttributeType = *string
-type GetInstanceResponseGetStatusArgType = string
-type GetInstanceResponseGetStatusRetType = string
+//isEnum
+
+// GetInstanceResponseStatus the model 'GetInstanceResponse'
+type GetInstanceResponseStatus string
+
+// List of Status
+const (
+	GETINSTANCERESPONSESTATUS_CREATING         GetInstanceResponseStatus = "CREATING"
+	GETINSTANCERESPONSESTATUS_CREATE_SUCCEEDED GetInstanceResponseStatus = "CREATE_SUCCEEDED"
+	GETINSTANCERESPONSESTATUS_CREATE_FAILED    GetInstanceResponseStatus = "CREATE_FAILED"
+	GETINSTANCERESPONSESTATUS_DELETING         GetInstanceResponseStatus = "DELETING"
+	GETINSTANCERESPONSESTATUS_DELETE_SUCCEEDED GetInstanceResponseStatus = "DELETE_SUCCEEDED"
+	GETINSTANCERESPONSESTATUS_DELETE_FAILED    GetInstanceResponseStatus = "DELETE_FAILED"
+	GETINSTANCERESPONSESTATUS_UPDATING         GetInstanceResponseStatus = "UPDATING"
+	GETINSTANCERESPONSESTATUS_UPDATE_SUCCEEDED GetInstanceResponseStatus = "UPDATE_SUCCEEDED"
+	GETINSTANCERESPONSESTATUS_UPDATE_FAILED    GetInstanceResponseStatus = "UPDATE_FAILED"
+)
+
+// All allowed values of GetInstanceResponse enum
+var AllowedGetInstanceResponseStatusEnumValues = []GetInstanceResponseStatus{
+	"CREATING",
+	"CREATE_SUCCEEDED",
+	"CREATE_FAILED",
+	"DELETING",
+	"DELETE_SUCCEEDED",
+	"DELETE_FAILED",
+	"UPDATING",
+	"UPDATE_SUCCEEDED",
+	"UPDATE_FAILED",
+}
+
+func (v *GetInstanceResponseStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := GetInstanceResponseStatus(value)
+	for _, existing := range AllowedGetInstanceResponseStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid GetInstanceResponse", value)
+}
+
+// NewGetInstanceResponseStatusFromValue returns a pointer to a valid GetInstanceResponseStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewGetInstanceResponseStatusFromValue(v string) (*GetInstanceResponseStatus, error) {
+	ev := GetInstanceResponseStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for GetInstanceResponseStatus: valid values are %v", v, AllowedGetInstanceResponseStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v GetInstanceResponseStatus) IsValid() bool {
+	for _, existing := range AllowedGetInstanceResponseStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v GetInstanceResponseStatus) Ptr() *GetInstanceResponseStatus {
+	return &v
+}
+
+type NullableGetInstanceResponseStatus struct {
+	value *GetInstanceResponseStatus
+	isSet bool
+}
+
+func (v NullableGetInstanceResponseStatus) Get() *GetInstanceResponseStatus {
+	return v.value
+}
+
+func (v *NullableGetInstanceResponseStatus) Set(val *GetInstanceResponseStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetInstanceResponseStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetInstanceResponseStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetInstanceResponseStatus(val *GetInstanceResponseStatus) *NullableGetInstanceResponseStatus {
+	return &NullableGetInstanceResponseStatus{value: val, isSet: true}
+}
+
+func (v NullableGetInstanceResponseStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetInstanceResponseStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type GetInstanceResponseGetStatusAttributeType = *GetInstanceResponseStatus
+type GetInstanceResponseGetStatusArgType = GetInstanceResponseStatus
+type GetInstanceResponseGetStatusRetType = GetInstanceResponseStatus
 
 func getGetInstanceResponseGetStatusAttributeTypeOk(arg GetInstanceResponseGetStatusAttributeType) (ret GetInstanceResponseGetStatusRetType, ok bool) {
 	if arg == nil {

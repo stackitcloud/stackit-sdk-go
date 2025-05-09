@@ -12,6 +12,7 @@ package observability
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Job type satisfies the MappedNullable interface at compile time
@@ -244,10 +245,110 @@ func setJobGetSampleLimitAttributeType(arg *JobGetSampleLimitAttributeType, val 
 	types and functions for scheme
 */
 
-// isEnumRef
-type JobGetSchemeAttributeType = *string
-type JobGetSchemeArgType = string
-type JobGetSchemeRetType = string
+//isEnum
+
+// JobScheme the model 'Job'
+type JobScheme string
+
+// List of Scheme
+const (
+	JOBSCHEME_HTTP  JobScheme = "http"
+	JOBSCHEME_HTTPS JobScheme = "https"
+)
+
+// All allowed values of Job enum
+var AllowedJobSchemeEnumValues = []JobScheme{
+	"http",
+	"https",
+}
+
+func (v *JobScheme) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := JobScheme(value)
+	for _, existing := range AllowedJobSchemeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Job", value)
+}
+
+// NewJobSchemeFromValue returns a pointer to a valid JobScheme
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewJobSchemeFromValue(v string) (*JobScheme, error) {
+	ev := JobScheme(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for JobScheme: valid values are %v", v, AllowedJobSchemeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v JobScheme) IsValid() bool {
+	for _, existing := range AllowedJobSchemeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to SchemeScheme value
+func (v JobScheme) Ptr() *JobScheme {
+	return &v
+}
+
+type NullableJobScheme struct {
+	value *JobScheme
+	isSet bool
+}
+
+func (v NullableJobScheme) Get() *JobScheme {
+	return v.value
+}
+
+func (v *NullableJobScheme) Set(val *JobScheme) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableJobScheme) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableJobScheme) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableJobScheme(val *JobScheme) *NullableJobScheme {
+	return &NullableJobScheme{value: val, isSet: true}
+}
+
+func (v NullableJobScheme) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableJobScheme) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type JobGetSchemeAttributeType = *JobScheme
+type JobGetSchemeArgType = JobScheme
+type JobGetSchemeRetType = JobScheme
 
 func getJobGetSchemeAttributeTypeOk(arg JobGetSchemeAttributeType) (ret JobGetSchemeRetType, ok bool) {
 	if arg == nil {
@@ -392,7 +493,7 @@ func NewJobWithDefaults() *Job {
 	this.HonorTimeStamps = &honorTimeStamps
 	var metricsPath string = "/metrics"
 	this.MetricsPath = &metricsPath
-	var scheme string = "http"
+	var scheme JobScheme = "http"
 	this.Scheme = &scheme
 	return &this
 }

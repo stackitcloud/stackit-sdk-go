@@ -75,10 +75,10 @@ type _BackupSource BackupSource
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBackupSource(id BackupSourceGetIdArgType, type_ BackupSourceGetTypeArgType) *BackupSource {
+func NewBackupSource(id BackupSourceGetIdArgType, types BackupSourceGetTypeArgType) *BackupSource {
 	this := BackupSource{}
 	setBackupSourceGetIdAttributeType(&this.Id, id)
-	setBackupSourceGetTypeAttributeType(&this.Type, type_)
+	setBackupSourceGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

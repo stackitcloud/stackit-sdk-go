@@ -75,10 +75,10 @@ type _VolumeSource VolumeSource
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVolumeSource(id VolumeSourceGetIdArgType, type_ VolumeSourceGetTypeArgType) *VolumeSource {
+func NewVolumeSource(id VolumeSourceGetIdArgType, types VolumeSourceGetTypeArgType) *VolumeSource {
 	this := VolumeSource{}
 	setVolumeSourceGetIdAttributeType(&this.Id, id)
-	setVolumeSourceGetTypeAttributeType(&this.Type, type_)
+	setVolumeSourceGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 
