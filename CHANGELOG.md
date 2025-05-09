@@ -1,6 +1,6 @@
 ## Release (2025-XX-YY)
 - `core`: [v0.17.2](core/CHANGELOG.md#v0172-2025-XX-YY)
-  - **New:** If a custom http.Client is provided, the http.Transport is respected. This allows customizing the http.Client with custom timeouts or instrumentation.
+  - **New:** Add STACKIT CLI auth flow.
 
 ## Release (2025-05-XX)
 - `resourcemanager`: [v0.13.2](services/resourcemanager/CHANGELOG.md#v0132-2025-05-02)
