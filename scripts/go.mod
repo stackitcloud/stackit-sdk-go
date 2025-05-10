@@ -14,7 +14,7 @@ exclude (
 	github.com/go-git/go-git/v5 v5.16.0
 
 	github.com/skeema/knownhosts v1.3.1
-	golang.org/x/crypto v0.34.0
+	golang.org/x/crypto v0.35.0
 	golang.org/x/crypto v0.35.0
 	golang.org/x/crypto v0.36.0
 
