@@ -1,3 +1,6 @@
+## v1.0.2 (2025-05-12)
+- **Breaking Change:** Added organization id to `VendorSubscription`
+
 ## v1.0.1 (2025-05-09)
 - **Feature:** Update user-agent header
 
