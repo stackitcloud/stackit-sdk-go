@@ -1071,9 +1071,9 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 }
 
 /*
-ListVendorSubscriptions: List all subscriptions
+ListVendorSubscriptions: List all subscriptions of a project.
 
-List all subscriptions.
+List all subscriptions of a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The project ID.
