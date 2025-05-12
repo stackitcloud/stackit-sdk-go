@@ -218,7 +218,7 @@ func TestRotateCredentialsWaitHandler(t *testing.T) {
 				wantRes = &ske.Cluster{
 					Name: &name,
 					Status: &ske.ClusterStatus{
-						Aggregated: &tt.resourceState,
+						Aggregated: utils.Ptr(tt.resourceState),
 					},
 				}
 			}
