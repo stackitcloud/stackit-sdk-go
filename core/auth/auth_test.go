@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"context"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
@@ -16,6 +17,9 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
+
+//nolint:gosec // testServiceAccountToken is a test token
+const testServiceAccountToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImR1bW15QGV4YW1wbGUuY29tIiwiZXhwIjo5MDA3MTkyNTQ3NDA5OTF9.sM2yd5GL9kK4h8IKHbr_fA2XmrzEsLOeLTIPrU0VfMg"
 
 func setTemporaryHome(t *testing.T) {
 	old := userHomeDir
@@ -150,6 +154,7 @@ func TestSetupAuth(t *testing.T) {
 		setKeyPaths                 bool
 		setCredentialsFilePathToken bool
 		setCredentialsFilePathKey   bool
+		setCLIToken                 bool
 		isValid                     bool
 	}{
 		{
@@ -187,6 +192,13 @@ func TestSetupAuth(t *testing.T) {
 			config:                      nil,
 			setToken:                    false,
 			setCredentialsFilePathToken: true,
+			isValid:                     true,
+		},
+		{
+			desc:                        "cli auth",
+			config:                      nil,
+			setCredentialsFilePathToken: false,
+			setCLIToken:                 true,
 			isValid:                     true,
 		},
 		{
@@ -238,6 +250,25 @@ func TestSetupAuth(t *testing.T) {
 				t.Setenv("STACKIT_CREDENTIALS_PATH", credentialsKeyFile.Name())
 			} else {
 				t.Setenv("STACKIT_CREDENTIALS_PATH", "")
+			}
+
+			if test.setCLIToken {
+				_, _ = clients.RunSTACKITCLICommand(context.TODO(), "stackit config profile delete test-setup-auth -y")
+				_, err := clients.RunSTACKITCLICommand(context.TODO(), "stackit config profile create test-setup-auth")
+				if err != nil {
+					t.Errorf("RunSTACKITCLICommand() error = %v", err)
+					return
+				}
+
+				_, err = clients.RunSTACKITCLICommand(context.TODO(), "stackit auth activate-service-account --service-account-token="+testServiceAccountToken)
+				if err != nil {
+					t.Errorf("RunSTACKITCLICommand() error = %v", err)
+					return
+				}
+
+				defer func() {
+					_, _ = clients.RunSTACKITCLICommand(context.TODO(), "stackit config profile delete test-setup-auth -y")
+				}()
 			}
 
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "test-email")
