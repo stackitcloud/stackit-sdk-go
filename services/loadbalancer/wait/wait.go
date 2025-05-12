@@ -14,15 +14,15 @@ import (
 
 // Load balancer instance status
 const (
-	// Deprecated: InstanceStatusUnspecified is deprecated and will be removed after 9th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_UNSPECIFIED] instead.
+	// Deprecated: InstanceStatusUnspecified is deprecated and will be removed after 12th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_UNSPECIFIED] instead.
 	InstanceStatusUnspecified = "STATUS_UNSPECIFIED"
-	// Deprecated: InstanceStatusPending is deprecated and will be removed after 9th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_PENDING] instead.
+	// Deprecated: InstanceStatusPending is deprecated and will be removed after 12th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_PENDING] instead.
 	InstanceStatusPending = "STATUS_PENDING"
-	// Deprecated: InstanceStatusReady is deprecated and will be removed after 9th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_READY] instead.
+	// Deprecated: InstanceStatusReady is deprecated and will be removed after 12th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_READY] instead.
 	InstanceStatusReady = "STATUS_READY"
-	// Deprecated: InstanceStatusError is deprecated and will be removed after 9th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_ERROR] instead.
+	// Deprecated: InstanceStatusError is deprecated and will be removed after 12th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_ERROR] instead.
 	InstanceStatusError = "STATUS_ERROR"
-	// Deprecated: InstanceStatusTerminating is deprecated and will be removed after 9th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_TERMINATING] instead.
+	// Deprecated: InstanceStatusTerminating is deprecated and will be removed after 12th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_TERMINATING] instead.
 	InstanceStatusTerminating = "STATUS_TERMINATING"
 )
 

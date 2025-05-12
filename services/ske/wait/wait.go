@@ -10,28 +10,28 @@ import (
 )
 
 const (
-	// Deprecated: StateHealthy is deprecated and will be removed after 9th November 2025. Use [ske.CLUSTERSTATUSSTATE_HEALTHY] instead.
+	// Deprecated: StateHealthy is deprecated and will be removed after 12th November 2025. Use [ske.CLUSTERSTATUSSTATE_HEALTHY] instead.
 	StateHealthy = "STATE_HEALTHY"
-	// Deprecated: StateHibernated is deprecated and will be removed after 9th November 2025. Use [ske.CLUSTERSTATUSSTATE_HIBERNATED] instead.
+	// Deprecated: StateHibernated is deprecated and will be removed after 12th November 2025. Use [ske.CLUSTERSTATUSSTATE_HIBERNATED] instead.
 	StateHibernated = "STATE_HIBERNATED"
 	StateFailed     = "STATE_FAILED"
-	// Deprecated: StateDeleting is deprecated and will be removed after 9th November 2025. Use [ske.CLUSTERSTATUSSTATE_DELETING] instead.
+	// Deprecated: StateDeleting is deprecated and will be removed after 12th November 2025. Use [ske.CLUSTERSTATUSSTATE_DELETING] instead.
 	StateDeleting = "STATE_DELETING"
-	// Deprecated: StateCreated is deprecated and will be removed after 9th November 2025.
+	// Deprecated: StateCreated is deprecated and will be removed after 12th November 2025.
 	StateCreated = "STATE_CREATED"
-	// Deprecated: StateUnhealthy is deprecated and will be removed after 9th November 2025. Use [ske.CLUSTERSTATUSSTATE_UNHEALTHY] instead.
+	// Deprecated: StateUnhealthy is deprecated and will be removed after 12th November 2025. Use [ske.CLUSTERSTATUSSTATE_UNHEALTHY] instead.
 	StateUnhealthy = "STATE_UNHEALTHY"
-	// Deprecated: StateReconciling is deprecated and will be removed after 9th November 2025. Use [ske.CLUSTERSTATUSSTATE_RECONCILING] instead.
+	// Deprecated: StateReconciling is deprecated and will be removed after 12th November 2025. Use [ske.CLUSTERSTATUSSTATE_RECONCILING] instead.
 	StateReconciling = "STATE_RECONCILING"
-	// Deprecated: CredentialsRotationStatePreparing is deprecated and will be removed after 9th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_PREPARING] instead.
+	// Deprecated: CredentialsRotationStatePreparing is deprecated and will be removed after 12th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_PREPARING] instead.
 	CredentialsRotationStatePreparing = "PREPARING"
-	// Deprecated: CredentialsRotationStatePrepared is deprecated and will be removed after 9th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_PREPARED] instead.
+	// Deprecated: CredentialsRotationStatePrepared is deprecated and will be removed after 12th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_PREPARED] instead.
 	CredentialsRotationStatePrepared = "PREPARED"
-	// Deprecated: CredentialsRotationStateCompleting is deprecated and will be removed after 9th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETING] instead.
+	// Deprecated: CredentialsRotationStateCompleting is deprecated and will be removed after 12th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETING] instead.
 	CredentialsRotationStateCompleting = "COMPLETING"
-	// Deprecated: CredentialsRotationStateCompleted is deprecated and will be removed after 9th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED] instead.
+	// Deprecated: CredentialsRotationStateCompleted is deprecated and will be removed after 12th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED] instead.
 	CredentialsRotationStateCompleted = "COMPLETED"
-	// Deprecated: InvalidArgusInstanceErrorCode is deprecated and will be removed after 9th November 2025. Use [ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND] instead.
+	// Deprecated: InvalidArgusInstanceErrorCode is deprecated and will be removed after 12th November 2025. Use [ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND] instead.
 	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 

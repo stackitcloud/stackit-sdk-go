@@ -10,13 +10,13 @@ import (
 )
 
 const (
-	// Deprecated: ServiceStateEnabled is deprecated and will be removed after 9th November 2025. Use [serviceenablement.SERVICESTATUSSTATE_ENABLED] instead.
+	// Deprecated: ServiceStateEnabled is deprecated and will be removed after 12th November 2025. Use [serviceenablement.SERVICESTATUSSTATE_ENABLED] instead.
 	ServiceStateEnabled = "ENABLED"
-	// Deprecated: ServiceStateEnabling is deprecated and will be removed after 9th November 2025. Use [serviceenablement.SERVICESTATUSSTATE_ENABLING] instead.
+	// Deprecated: ServiceStateEnabling is deprecated and will be removed after 12th November 2025. Use [serviceenablement.SERVICESTATUSSTATE_ENABLING] instead.
 	ServiceStateEnabling = "ENABLING"
-	// Deprecated: ServiceStateDisabled is deprecated and will be removed after 9th November 2025. Use [serviceenablement.SERVICESTATUSSTATE_DISABLED] instead.
+	// Deprecated: ServiceStateDisabled is deprecated and will be removed after 12th November 2025. Use [serviceenablement.SERVICESTATUSSTATE_DISABLED] instead.
 	ServiceStateDisabled = "DISABLED"
-	// Deprecated: ServiceStateDisabling is deprecated and will be removed after 9th November 2025. Use [serviceenablement.SERVICESTATUSSTATE_DISABLING] instead.
+	// Deprecated: ServiceStateDisabling is deprecated and will be removed after 12th November 2025. Use [serviceenablement.SERVICESTATUSSTATE_DISABLING] instead.
 	ServiceStateDisabling = "DISABLING"
 )
 

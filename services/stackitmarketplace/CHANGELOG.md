@@ -1,3 +1,6 @@
+## v2.0.0 (2025-05-12)
+- **Breaking change:** Introduce typed enum constants for status attributes
+
 ## v1.1.0 (2025-05-13)
 - **Breaking Change:** Added organization id to `VendorSubscription`
 

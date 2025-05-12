@@ -1,3 +1,6 @@
+## v2.0.0 (2025-05-12)
+- **Breaking change:** Introduce typed enum constants for status attributes
+
 ## v1.0.3 (2025-05-09)
 - **Feature:** Update user-agent header
 

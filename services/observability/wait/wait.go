@@ -10,17 +10,17 @@ import (
 )
 
 const (
-	// Deprecated: CreateSuccess is deprecated and will be removed after 9th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_CREATE_SUCCEEDED] instead.
+	// Deprecated: CreateSuccess is deprecated and will be removed after 12th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_CREATE_SUCCEEDED] instead.
 	CreateSuccess = "CREATE_SUCCEEDED"
-	// Deprecated: CreateFail is deprecated and will be removed after 9th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_CREATE_FAILED] instead.
+	// Deprecated: CreateFail is deprecated and will be removed after 12th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_CREATE_FAILED] instead.
 	CreateFail = "CREATE_FAILED"
-	// Deprecated: UpdateSuccess is deprecated and will be removed after 9th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_UPDATE_SUCCEEDED] instead.
+	// Deprecated: UpdateSuccess is deprecated and will be removed after 12th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_UPDATE_SUCCEEDED] instead.
 	UpdateSuccess = "UPDATE_SUCCEEDED"
-	// Deprecated: UpdateFail is deprecated and will be removed after 9th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_UPDATE_FAILED] instead.
+	// Deprecated: UpdateFail is deprecated and will be removed after 12th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_UPDATE_FAILED] instead.
 	UpdateFail = "UPDATE_FAILED"
-	// Deprecated: DeleteSuccess is deprecated and will be removed after 9th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_DELETE_SUCCEEDED] instead.
+	// Deprecated: DeleteSuccess is deprecated and will be removed after 12th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_DELETE_SUCCEEDED] instead.
 	DeleteSuccess = "DELETE_SUCCEEDED"
-	// Deprecated: DeleteFail is deprecated and will be removed after 9th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_DELETE_FAILED] instead.
+	// Deprecated: DeleteFail is deprecated and will be removed after 12th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_DELETE_FAILED] instead.
 	DeleteFail = "DELETE_FAILED"
 )
 

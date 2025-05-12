@@ -1,3 +1,6 @@
+## v1.0.0 (2025-05-12)
+- **Breaking change:** Introduce typed enum constants for status attributes
+
 ## v0.22.4 (2025-05-13)
 - **Feature:** Added `ClusterError`
 

@@ -12,9 +12,9 @@ import (
 )
 
 const (
-	// Deprecated: ActiveState is deprecated and will be removed after 9th November 2025. Use [resourcemanager.LIFECYCLESTATE_ACTIVE] instead.
+	// Deprecated: ActiveState is deprecated and will be removed after 12th November 2025. Use [resourcemanager.LIFECYCLESTATE_ACTIVE] instead.
 	ActiveState = resourcemanager.LifecycleState("ACTIVE")
-	// Deprecated: CreatingState is deprecated and will be removed after 9th November 2025. Use [resourcemanager.LIFECYCLESTATE_CREATING] instead.
+	// Deprecated: CreatingState is deprecated and will be removed after 12th November 2025. Use [resourcemanager.LIFECYCLESTATE_CREATING] instead.
 	CreatingState = resourcemanager.LifecycleState("CREATING")
 )
 

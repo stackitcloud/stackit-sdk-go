@@ -1,3 +1,6 @@
+## v1.0.0 (2025-05-12)
+- **Breaking change:** Introduce typed enum constants for status attributes
+
 ## v0.3.0 (2025-02-21)
 - **New:** Minimal go version is now Go 1.21
 

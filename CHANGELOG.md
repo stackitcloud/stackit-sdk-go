@@ -1,9 +1,54 @@
-## Release (2025-XX-XX)
-- `stackitmarketplace`: [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
-  - **Breaking Change:** Added organization id to `VendorSubscription`
-- `ske`: [v0.22.4](services/ske/CHANGELOG.md#v0224-2025-05-13)
-  - **Feature:** Added `ClusterError`
-
+## Release (2025-xx-xx)
+- `alb`: [v0.3.0](services/alb/CHANGELOG.md#v030-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `cdn`: [v1.1.0](services/cdn/CHANGELOG.md#v110-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `dns`: [v0.14.0](services/dns/CHANGELOG.md#v0140-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `git`: [v0.4.0](services/git/CHANGELOG.md#v040-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `kms`: [v0.1.0](services/kms/CHANGELOG.md#v010-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `lbapplication`: [v0.4.0](services/lbapplication/CHANGELOG.md#v040-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `loadbalancer`: [v1.1.0](services/loadbalancer/CHANGELOG.md#v110-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `logme`: [v0.23.0](services/logme/CHANGELOG.md#v0230-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `mariadb`: [v0.23.0](services/mariadb/CHANGELOG.md#v0230-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `modelserving`: [v0.3.0](services/modelserving/CHANGELOG.md#v030-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `mongodbflex`: [v1.1.0](services/mongodbflex/CHANGELOG.md#v110-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `observability`: [v0.6.0](services/observability/CHANGELOG.md#v060-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `opensearch`: [v0.22.0](services/opensearch/CHANGELOG.md#v0220-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `rabbitmq`: [v0.23.0](services/rabbitmq/CHANGELOG.md#v0230-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `redis`: [v0.23.0](services/redis/CHANGELOG.md#v0230-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `resourcemanager`: [v0.14.0](services/resourcemanager/CHANGELOG.md#v0140-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `runcommand`: [v1.1.0](services/runcommand/CHANGELOG.md#v110-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `serverbackup`: [v1.1.0](services/serverbackup/CHANGELOG.md#v110-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `serviceaccount`: [v0.7.0](services/serviceaccount/CHANGELOG.md#v070-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `serviceenablement`: [v1.1.0](services/serviceenablement/CHANGELOG.md#v110-2025-05-12)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+- `ske`: 
+  - [v0.23.0](services/ske/CHANGELOG.md#v0230-2025-05-12)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+  - [v0.22.4](services/ske/CHANGELOG.md#v0224-2025-05-13)
+    - **Feature:** Added `ClusterError`
+- `stackitmarketplace`: 
+  - [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
+      - **Breaking Change:** Added organization id to `VendorSubscription`
+  - [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-12)
+    - **Breaking change:** Introduce typed enum constants for status attributes
 
 ## Release (2025-05-09)
 - `resourcemanager`:

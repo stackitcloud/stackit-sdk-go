@@ -13,30 +13,30 @@ import (
 )
 
 const (
-	// Deprecated: InstanceStatusActive is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCESTATUS_ACTIVE] instead.
+	// Deprecated: InstanceStatusActive is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_ACTIVE] instead.
 	InstanceStatusActive = "active"
-	// Deprecated: InstanceStatusFailed is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCESTATUS_FAILED] instead.
+	// Deprecated: InstanceStatusFailed is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_FAILED] instead.
 	InstanceStatusFailed = "failed"
-	// Deprecated: InstanceStatusStopped is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCESTATUS_STOPPED] instead.
+	// Deprecated: InstanceStatusStopped is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_STOPPED] instead.
 	InstanceStatusStopped = "stopped"
-	// Deprecated: InstanceStatusCreating is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCESTATUS_CREATING] instead.
+	// Deprecated: InstanceStatusCreating is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_CREATING] instead.
 	InstanceStatusCreating = "creating"
-	// Deprecated: InstanceStatusDeleting is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCESTATUS_DELETING] instead.
+	// Deprecated: InstanceStatusDeleting is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_DELETING] instead.
 	InstanceStatusDeleting = "deleting"
-	// Deprecated: InstanceStatusUpdating is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCESTATUS_UPDATING] instead.
+	// Deprecated: InstanceStatusUpdating is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_UPDATING] instead.
 	InstanceStatusUpdating = "updating"
 
-	// Deprecated: InstanceOperationStateInProgress is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONSTATE_IN_PROGRESS] instead.
+	// Deprecated: InstanceOperationStateInProgress is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONSTATE_IN_PROGRESS] instead.
 	InstanceOperationStateInProgress = "in progress"
-	// Deprecated: InstanceOperationStateSucceeded is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONSTATE_SUCCEEDED] instead.
+	// Deprecated: InstanceOperationStateSucceeded is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONSTATE_SUCCEEDED] instead.
 	InstanceOperationStateSucceeded = "succeeded"
-	// Deprecated: InstanceOperationStateFailed is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONSTATE_FAILED] instead.
+	// Deprecated: InstanceOperationStateFailed is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONSTATE_FAILED] instead.
 	InstanceOperationStateFailed = "failed"
-	// Deprecated: InstanceOperationTypeCreate is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONTYPE_CREATE] instead.
+	// Deprecated: InstanceOperationTypeCreate is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONTYPE_CREATE] instead.
 	InstanceOperationTypeCreate = "create"
-	// Deprecated: InstanceOperationTypeUpdate is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONTYPE_UPDATE] instead.
+	// Deprecated: InstanceOperationTypeUpdate is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONTYPE_UPDATE] instead.
 	InstanceOperationTypeUpdate = "update"
-	// Deprecated: InstanceOperationTypeDelete is deprecated and will be removed after 9th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONTYPE_DELETE] instead.
+	// Deprecated: InstanceOperationTypeDelete is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCELASTOPERATIONTYPE_DELETE] instead.
 	InstanceOperationTypeDelete = "delete"
 
 	// Deprecated: InstanceStateSuccess is deprecated and will be removed after 2nd October 2025. Use [rabbitmq.INSTANCELASTOPERATIONSTATE_SUCCEEDED] instead.

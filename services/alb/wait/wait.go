@@ -13,15 +13,15 @@ import (
 )
 
 const (
-	// Deprecated: StatusUnspecified is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_UNSPECIFIED] instead.
+	// Deprecated: StatusUnspecified is deprecated and will be removed after 12th November 2025. Use [alb.LOADBALANCERSTATUS_UNSPECIFIED] instead.
 	StatusUnspecified = "STATUS_UNSPECIFIED"
-	// Deprecated: StatusPending is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_PENDING] instead.
+	// Deprecated: StatusPending is deprecated and will be removed after 12th November 2025. Use [alb.LOADBALANCERSTATUS_PENDING] instead.
 	StatusPending = "STATUS_PENDING"
-	// Deprecated: StatusReady is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_READY] instead.
+	// Deprecated: StatusReady is deprecated and will be removed after 12th November 2025. Use [alb.LOADBALANCERSTATUS_READY] instead.
 	StatusReady = "STATUS_READY"
-	// Deprecated: StatusError is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_ERROR] instead.
+	// Deprecated: StatusError is deprecated and will be removed after 12th November 2025. Use [alb.LOADBALANCERSTATUS_ERROR] instead.
 	StatusError = "STATUS_ERROR"
-	// Deprecated: StatusTerminating is deprecated and will be removed after 9th November 2025. Use [alb.LOADBALANCERSTATUS_TERMINATING] instead.
+	// Deprecated: StatusTerminating is deprecated and will be removed after 12th November 2025. Use [alb.LOADBALANCERSTATUS_TERMINATING] instead.
 	StatusTerminating = "STATUS_TERMINATING"
 )
 

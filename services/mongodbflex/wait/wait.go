@@ -14,13 +14,13 @@ import (
 
 const (
 	InstanceStateEmpty = ""
-	// Deprecated: InstanceStateProcessing is deprecated and will be removed after 9th November 2025. Use [mongodbflex.INSTANCESTATUS_PROCESSING] instead.
+	// Deprecated: InstanceStateProcessing is deprecated and will be removed after 12th November 2025. Use [mongodbflex.INSTANCESTATUS_PROCESSING] instead.
 	InstanceStateProcessing = "PROCESSING"
-	// Deprecated: InstanceStateUnknown is deprecated and will be removed after 9th November 2025. Use [mongodbflex.INSTANCESTATUS_UNKNOWN] instead.
+	// Deprecated: InstanceStateUnknown is deprecated and will be removed after 12th November 2025. Use [mongodbflex.INSTANCESTATUS_UNKNOWN] instead.
 	InstanceStateUnknown = "UNKNOWN"
-	// Deprecated: InstanceStateSuccess is deprecated and will be removed after 9th November 2025. Use [mongodbflex.INSTANCESTATUS_READY] instead.
+	// Deprecated: InstanceStateSuccess is deprecated and will be removed after 12th November 2025. Use [mongodbflex.INSTANCESTATUS_READY] instead.
 	InstanceStateSuccess = "READY"
-	// Deprecated: InstanceStateFailed is deprecated and will be removed after 9th November 2025. Use [mongodbflex.INSTANCESTATUS_FAILED] instead.
+	// Deprecated: InstanceStateFailed is deprecated and will be removed after 12th November 2025. Use [mongodbflex.INSTANCESTATUS_FAILED] instead.
 	InstanceStateFailed = "FAILED"
 
 	RestoreJobProcessing = "IN_PROGRESS"
