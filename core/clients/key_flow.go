@@ -408,7 +408,7 @@ func tokenExpired(token string) (bool, error) {
 	}
 
 	// Pretend to be `tokenExpirationLeeway` into the future to avoid token expiring
-	// between retrieving the token and using it in the actual request.
+	// between retrieving the token and upstream systems validating it.
 	now := time.Now().Add(tokenExpirationLeeway)
 
 	return now.After(expirationTimestampNumeric.Time), nil
