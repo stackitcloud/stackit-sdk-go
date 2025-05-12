@@ -2,7 +2,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/objectstorage
 
 go 1.21
 
-require github.com/stackitcloud/stackit-sdk-go/services/objectstorage v1.1.2
+require github.com/stackitcloud/stackit-sdk-go/services/objectstorage v1.1.3
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.2.2 // indirect
