@@ -210,6 +210,12 @@ func TestTokenExpired(t *testing.T) {
 			expectedIsExpired: true,
 		},
 		{
+			desc:              "token almost expired",
+			tokenExpiresAt:    time.Now().Add(tokenExpirationLeeway),
+			expectedErr:       false,
+			expectedIsExpired: true,
+		},
+		{
 			desc:         "token invalid",
 			tokenInvalid: true,
 			expectedErr:  true,

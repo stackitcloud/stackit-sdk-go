@@ -32,6 +32,7 @@ const (
 	tokenAPI              = "https://service-account.api.stackit.cloud/token" //nolint:gosec // linter false positive
 	defaultTokenType      = "Bearer"
 	defaultScope          = ""
+	tokenExpirationLeeway = time.Second * 5
 )
 
 // KeyFlow handles auth with SA key
@@ -400,11 +401,15 @@ func tokenExpired(token string) (bool, error) {
 	if err != nil {
 		return false, fmt.Errorf("parse token: %w", err)
 	}
+
 	expirationTimestampNumeric, err := tokenParsed.Claims.GetExpirationTime()
 	if err != nil {
 		return false, fmt.Errorf("get expiration timestamp: %w", err)
 	}
-	expirationTimestamp := expirationTimestampNumeric.Time
-	now := time.Now()
-	return now.After(expirationTimestamp), nil
+
+	// Pretend to be `tokenExpirationLeeway` into the future to avoid token expiring
+	// between retrieving the token and using it in the actual request.
+	now := time.Now().Add(tokenExpirationLeeway)
+
+	return now.After(expirationTimestampNumeric.Time), nil
 }
