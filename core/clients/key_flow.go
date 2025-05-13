@@ -32,7 +32,8 @@ const (
 	tokenAPI              = "https://service-account.api.stackit.cloud/token" //nolint:gosec // linter false positive
 	defaultTokenType      = "Bearer"
 	defaultScope          = ""
-	tokenExpirationLeeway = time.Second * 5
+
+	defaultTokenExpirationLeeway = time.Second * 5
 )
 
 // KeyFlow handles auth with SA key
@@ -46,6 +47,10 @@ type KeyFlow struct {
 
 	tokenMutex sync.RWMutex
 	token      *TokenResponseBody
+
+	// If the current access token would expire in less than TokenExpirationLeeway,
+	// the client will refresh it early to prevent clock skew or other timing issues.
+	tokenExpirationLeeway time.Duration
 }
 
 // KeyFlowConfig is the flow config
@@ -130,6 +135,8 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 		c.config.TokenUrl = tokenAPI
 	}
 
+	c.tokenExpirationLeeway = defaultTokenExpirationLeeway
+
 	if c.rt = cfg.HTTPTransport; c.rt == nil {
 		c.rt = http.DefaultTransport
 	}
@@ -205,7 +212,7 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 	}
 	c.tokenMutex.RUnlock()
 
-	accessTokenExpired, err := tokenExpired(accessToken)
+	accessTokenExpired, err := tokenExpired(accessToken, c.tokenExpirationLeeway)
 	if err != nil {
 		return "", fmt.Errorf("check access token is expired: %w", err)
 	}
@@ -253,6 +260,10 @@ func (c *KeyFlow) validate() error {
 	}
 	c.privateKeyPEM = pem.EncodeToMemory(privKeyPEM)
 
+	if c.tokenExpirationLeeway < 0 {
+		return fmt.Errorf("token expiration leeway cannot be negative")
+	}
+
 	return nil
 }
 
@@ -269,7 +280,7 @@ func (c *KeyFlow) recreateAccessToken() error {
 	}
 	c.tokenMutex.RUnlock()
 
-	refreshTokenExpired, err := tokenExpired(refreshToken)
+	refreshTokenExpired, err := tokenExpired(refreshToken, c.tokenExpirationLeeway)
 	if err != nil {
 		return err
 	}
@@ -390,7 +401,7 @@ func (c *KeyFlow) parseTokenResponse(res *http.Response) error {
 	return nil
 }
 
-func tokenExpired(token string) (bool, error) {
+func tokenExpired(token string, tokenExpirationLeeway time.Duration) (bool, error) {
 	if token == "" {
 		return true, nil
 	}

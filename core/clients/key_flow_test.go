@@ -190,6 +190,7 @@ func TestSetToken(t *testing.T) {
 }
 
 func TestTokenExpired(t *testing.T) {
+	tokenExpirationLeeway := 5 * time.Second
 	tests := []struct {
 		desc              string
 		tokenInvalid      bool
@@ -235,7 +236,7 @@ func TestTokenExpired(t *testing.T) {
 				}
 			}
 
-			isExpired, err := tokenExpired(token)
+			isExpired, err := tokenExpired(token, tokenExpirationLeeway)
 			if err != nil && !tt.expectedErr {
 				t.Fatalf("failed on valid input: %v", err)
 			}
