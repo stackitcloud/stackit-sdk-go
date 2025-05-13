@@ -1,4 +1,4 @@
-## v1.0.2 (2025-05-13)
+## v1.1.0 (2025-05-13)
 - **Breaking Change:** Added organization id to `VendorSubscription`
 
 ## v1.0.1 (2025-05-09)
