@@ -58,6 +58,26 @@ func setRuleGetHeadersAttributeType(arg *RuleGetHeadersAttributeType, val RuleGe
 }
 
 /*
+	types and functions for path
+*/
+
+// isModel
+type RuleGetPathAttributeType = *Path
+type RuleGetPathArgType = Path
+type RuleGetPathRetType = Path
+
+func getRuleGetPathAttributeTypeOk(arg RuleGetPathAttributeType) (ret RuleGetPathRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRuleGetPathAttributeType(arg *RuleGetPathAttributeType, val RuleGetPathRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for pathPrefix
 */
 
@@ -144,7 +164,8 @@ type Rule struct {
 	CookiePersistence RuleGetCookiePersistenceAttributeType `json:"cookiePersistence,omitempty"`
 	// Headers for the rule.
 	Headers RuleGetHeadersAttributeType `json:"headers,omitempty"`
-	// Path prefix for the rule. If empty or '/', it matches the root path.
+	Path    RuleGetPathAttributeType    `json:"path,omitempty"`
+	// Legacy path prefix match. Optional. If not set, defaults to root path '/'. Cannot be set if 'path' is used. Prefer using 'path.prefix' instead. Only matches on full segment boundaries, e.g. '/foo' matches '/foo' and '/foo/bar' but NOT '/foobar'.
 	PathPrefix RuleGetPathPrefixAttributeType `json:"pathPrefix,omitempty"`
 	// Query Parameters for the rule.
 	QueryParameters RuleGetQueryParametersAttributeType `json:"queryParameters,omitempty"`
@@ -215,6 +236,29 @@ func (o *Rule) HasHeaders() bool {
 // SetHeaders gets a reference to the given []HttpHeader and assigns it to the Headers field.
 func (o *Rule) SetHeaders(v RuleGetHeadersRetType) {
 	setRuleGetHeadersAttributeType(&o.Headers, v)
+}
+
+// GetPath returns the Path field value if set, zero value otherwise.
+func (o *Rule) GetPath() (res RuleGetPathRetType) {
+	res, _ = o.GetPathOk()
+	return
+}
+
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Rule) GetPathOk() (ret RuleGetPathRetType, ok bool) {
+	return getRuleGetPathAttributeTypeOk(o.Path)
+}
+
+// HasPath returns a boolean if a field has been set.
+func (o *Rule) HasPath() bool {
+	_, ok := o.GetPathOk()
+	return ok
+}
+
+// SetPath gets a reference to the given Path and assigns it to the Path field.
+func (o *Rule) SetPath(v RuleGetPathRetType) {
+	setRuleGetPathAttributeType(&o.Path, v)
 }
 
 // GetPathPrefix returns the PathPrefix field value if set, zero value otherwise.
@@ -316,6 +360,9 @@ func (o Rule) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getRuleGetHeadersAttributeTypeOk(o.Headers); ok {
 		toSerialize["Headers"] = val
+	}
+	if val, ok := getRuleGetPathAttributeTypeOk(o.Path); ok {
+		toSerialize["Path"] = val
 	}
 	if val, ok := getRuleGetPathPrefixAttributeTypeOk(o.PathPrefix); ok {
 		toSerialize["PathPrefix"] = val
