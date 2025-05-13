@@ -17,7 +17,7 @@ import (
 // checks if the ProjectId type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ProjectId{}
 
-// ProjectId The associated consumer project ID.
+// ProjectId The associated project ID.
 type ProjectId struct {
 }
 

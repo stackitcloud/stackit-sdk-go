@@ -119,6 +119,26 @@ func setClusterStatusGetErrorAttributeType(arg *ClusterStatusGetErrorAttributeTy
 }
 
 /*
+	types and functions for errors
+*/
+
+// isArray
+type ClusterStatusGetErrorsAttributeType = *[]ClusterError
+type ClusterStatusGetErrorsArgType = []ClusterError
+type ClusterStatusGetErrorsRetType = []ClusterError
+
+func getClusterStatusGetErrorsAttributeTypeOk(arg ClusterStatusGetErrorsAttributeType) (ret ClusterStatusGetErrorsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterStatusGetErrorsAttributeType(arg *ClusterStatusGetErrorsAttributeType, val ClusterStatusGetErrorsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for hibernated
 */
 
@@ -147,6 +167,7 @@ type ClusterStatus struct {
 	// The outgoing network ranges (in CIDR notation) of traffic originating from workload on the cluster.
 	EgressAddressRanges ClusterStatusGetEgressAddressRangesAttributeType `json:"egressAddressRanges,omitempty"`
 	Error               ClusterStatusGetErrorAttributeType               `json:"error,omitempty"`
+	Errors              ClusterStatusGetErrorsAttributeType              `json:"errors,omitempty"`
 	Hibernated          ClusterStatusgetHibernatedAttributeType          `json:"hibernated,omitempty"`
 }
 
@@ -284,6 +305,29 @@ func (o *ClusterStatus) SetError(v ClusterStatusGetErrorRetType) {
 	setClusterStatusGetErrorAttributeType(&o.Error, v)
 }
 
+// GetErrors returns the Errors field value if set, zero value otherwise.
+func (o *ClusterStatus) GetErrors() (res ClusterStatusGetErrorsRetType) {
+	res, _ = o.GetErrorsOk()
+	return
+}
+
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterStatus) GetErrorsOk() (ret ClusterStatusGetErrorsRetType, ok bool) {
+	return getClusterStatusGetErrorsAttributeTypeOk(o.Errors)
+}
+
+// HasErrors returns a boolean if a field has been set.
+func (o *ClusterStatus) HasErrors() bool {
+	_, ok := o.GetErrorsOk()
+	return ok
+}
+
+// SetErrors gets a reference to the given []ClusterError and assigns it to the Errors field.
+func (o *ClusterStatus) SetErrors(v ClusterStatusGetErrorsRetType) {
+	setClusterStatusGetErrorsAttributeType(&o.Errors, v)
+}
+
 // GetHibernated returns the Hibernated field value if set, zero value otherwise.
 func (o *ClusterStatus) GetHibernated() (res ClusterStatusgetHibernatedRetType) {
 	res, _ = o.GetHibernatedOk()
@@ -323,6 +367,9 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getClusterStatusGetErrorAttributeTypeOk(o.Error); ok {
 		toSerialize["Error"] = val
+	}
+	if val, ok := getClusterStatusGetErrorsAttributeTypeOk(o.Errors); ok {
+		toSerialize["Errors"] = val
 	}
 	if val, ok := getClusterStatusgetHibernatedAttributeTypeOk(o.Hibernated); ok {
 		toSerialize["Hibernated"] = val
