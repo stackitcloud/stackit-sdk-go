@@ -1,3 +1,7 @@
+## Release (2025-XX-XX)
+- `stackitmarketplace`: [v1.0.2](services/stackitmarketplace/CHANGELOG.md#v102-2025-05-13)
+  - **Breaking Change:** Added organization id to `VendorSubscription`
+
 ## Release (2025-05-09)
 - `resourcemanager`:
   - [v0.13.3](services/resourcemanager/CHANGELOG.md#v0133-2025-05-09)
