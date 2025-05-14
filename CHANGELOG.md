@@ -1,6 +1,9 @@
 ## Release (2025-xx-xx)
-- `alb`: [v0.3.0](services/alb/CHANGELOG.md#v030-2025-05-14)
-  - **Breaking change:** Introduce typed enum constants for status attributes
+- `alb`:
+  - [v0.3.1](services/alb/CHANGELOG.md#v031-2025-05-15)
+    - **Feature:** New field `Path` for `Rule`
+  - [v0.3.0](services/alb/CHANGELOG.md#v030-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
 - `cdn`: [v1.1.0](services/cdn/CHANGELOG.md#v110-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `dns`: [v0.14.0](services/dns/CHANGELOG.md#v0140-2025-05-14)
