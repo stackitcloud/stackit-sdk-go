@@ -1,3 +1,6 @@
+## v1.2.1 (2025-05-15)
+- **Feature:** Add new method `VendorsSubscriptionsReject`
+
 ## v1.2.0 (2025-05-14)
 - **Breaking change:** Introduce typed enum constants for status attributes
 

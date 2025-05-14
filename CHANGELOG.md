@@ -55,7 +55,9 @@
     - **Feature:** Added `ClusterError`
 - `sqlserverflex`: [v1.1.0](services/sqlserverflex/CHANGELOG.md#v110-2025-05-14)
   - **Features**: Add new method `ListMetrics`
-- `stackitmarketplace`: 
+- `stackitmarketplace`:
+  - [v1.2.1](services/stackitmarketplace/CHANGELOG.md#v121-2025-05-15)
+    - **Feature:** Add new method `VendorsSubscriptionsReject`
   - [v1.2.0](services/stackitmarketplace/CHANGELOG.md#v120-2025-05-14)
     - **Breaking change:** Introduce typed enum constants for status attributes
   - [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
