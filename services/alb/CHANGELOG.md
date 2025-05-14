@@ -1,3 +1,6 @@
+## v0.3.0 (2025-05-14)
+- **Feature:** New field `Path` for `Rule`
+
 ## v0.2.3 (2025-05-09)
 - **Feature:** Update user-agent header
 
