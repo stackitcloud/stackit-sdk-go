@@ -12,24 +12,24 @@ import (
 )
 
 const (
-	// Deprecated: StatusKeyActive is deprecated and will be removed after 12th November 2025. Use [kms.KEYSTATE_ACTIVE] instead.
+	// Deprecated: StatusKeyActive is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_ACTIVE] instead.
 	StatusKeyActive = "active"
-	// Deprecated: StatusKeyNotReady is deprecated and will be removed after 12th November 2025. Use [kms.KEYSTATE_VERSION_NOT_READY] instead.
+	// Deprecated: StatusKeyNotReady is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_VERSION_NOT_READY] instead.
 	StatusKeyNotReady = "version_not_ready"
-	// Deprecated: StatusKeyDeleted is deprecated and will be removed after 12th November 2025. Use [kms.KEYSTATE_DELETED] instead.
+	// Deprecated: StatusKeyDeleted is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_DELETED] instead.
 	StatusKeyDeleted = "deleted"
 )
 
 const (
-	// Deprecated: StatusKeyVersionActive is deprecated and will be removed after 12th November 2025. Use [kms.VERSIONSTATE_ACTIVE] instead.
+	// Deprecated: StatusKeyVersionActive is deprecated and will be removed after 14th November 2025. Use [kms.VERSIONSTATE_ACTIVE] instead.
 	StatusKeyVersionActive = "active"
-	// Deprecated: StatusKeyVersionKeyMaterialNotReady is deprecated and will be removed after 12th November 2025. Use [kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY] instead.
+	// Deprecated: StatusKeyVersionKeyMaterialNotReady is deprecated and will be removed after 14th November 2025. Use [kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY] instead.
 	StatusKeyVersionKeyMaterialNotReady = "key_material_not_ready"
-	// Deprecated: StatusKeyVersionKeyMaterialInvalid is deprecated and will be removed after 12th November 2025. Use [kms.VERSIONSTATE_KEY_MATERIAL_INVALID] instead.
+	// Deprecated: StatusKeyVersionKeyMaterialInvalid is deprecated and will be removed after 14th November 2025. Use [kms.VERSIONSTATE_KEY_MATERIAL_INVALID] instead.
 	StatusKeyVersionKeyMaterialInvalid = "key_material_invalid"
-	// Deprecated: StatusKeyVersionDisabled is deprecated and will be removed after 12th November 2025. Use [kms.VERSIONSTATE_DISABLED] instead.
+	// Deprecated: StatusKeyVersionDisabled is deprecated and will be removed after 14th November 2025. Use [kms.VERSIONSTATE_DISABLED] instead.
 	StatusKeyVersionDisabled = "disabled"
-	// Deprecated: StatusKeyVersionDestroyed is deprecated and will be removed after 12th November 2025. Use [kms.VERSIONSTATE_DESTROYED] instead.
+	// Deprecated: StatusKeyVersionDestroyed is deprecated and will be removed after 14th November 2025. Use [kms.VERSIONSTATE_DESTROYED] instead.
 	StatusKeyVersionDestroyed = "destroyed"
 )
 

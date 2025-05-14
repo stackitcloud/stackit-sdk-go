@@ -13,15 +13,15 @@ import (
 )
 
 const (
-	// Deprecated: DistributionStatusCreating is deprecated and will be removed after 12th November 2025. Use [cdn.DISTRIBUTIONSTATUS_CREATING] instead.
+	// Deprecated: DistributionStatusCreating is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_CREATING] instead.
 	DistributionStatusCreating = "CREATING"
-	// Deprecated: DistributionStatusActive is deprecated and will be removed after 12th November 2025. Use [cdn.DISTRIBUTIONSTATUS_ACTIVE] instead.
+	// Deprecated: DistributionStatusActive is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_ACTIVE] instead.
 	DistributionStatusActive = "ACTIVE"
-	// Deprecated: DistributionStatusUpdating is deprecated and will be removed after 12th November 2025. Use [cdn.DISTRIBUTIONSTATUS_UPDATING] instead.
+	// Deprecated: DistributionStatusUpdating is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_UPDATING] instead.
 	DistributionStatusUpdating = "UPDATING"
-	// Deprecated: DistributionStatusDeleting is deprecated and will be removed after 12th November 2025. Use [cdn.DISTRIBUTIONSTATUS_DELETING] instead.
+	// Deprecated: DistributionStatusDeleting is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_DELETING] instead.
 	DistributionStatusDeleting = "DELETING"
-	// Deprecated: DistributionStatusError is deprecated and will be removed after 12th November 2025. Use [cdn.DISTRIBUTIONSTATUS_ERROR] instead.
+	// Deprecated: DistributionStatusError is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_ERROR] instead.
 	DistributionStatusError = "ERROR"
 )
 

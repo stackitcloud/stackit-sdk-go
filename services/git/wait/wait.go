@@ -13,11 +13,11 @@ import (
 )
 
 const (
-	// Deprecated: InstanceStateReady is deprecated and will be removed after 12th November 2025. Use [git.INSTANCESTATE_READY] instead.
+	// Deprecated: InstanceStateReady is deprecated and will be removed after 14th November 2025. Use [git.INSTANCESTATE_READY] instead.
 	InstanceStateReady = "Ready"
-	// Deprecated: InstanceStateCreating is deprecated and will be removed after 12th November 2025. Use [git.INSTANCESTATE_CREATING] instead.
+	// Deprecated: InstanceStateCreating is deprecated and will be removed after 14th November 2025. Use [git.INSTANCESTATE_CREATING] instead.
 	InstanceStateCreating = "Creating"
-	// Deprecated: InstanceStateError is deprecated and will be removed after 12th November 2025. Use [git.INSTANCESTATE_ERROR] instead.
+	// Deprecated: InstanceStateError is deprecated and will be removed after 14th November 2025. Use [git.INSTANCESTATE_ERROR] instead.
 	InstanceStateError = "Error"
 )
 

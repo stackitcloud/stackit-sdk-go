@@ -1,4 +1,4 @@
-## v1.0.0 (2025-05-12)
+## v0.23.0 (2025-05-14)
 - **Breaking change:** Introduce typed enum constants for status attributes
 
 ## v0.22.4 (2025-05-13)

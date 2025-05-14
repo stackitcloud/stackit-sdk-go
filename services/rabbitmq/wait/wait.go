@@ -13,13 +13,13 @@ import (
 )
 
 const (
-	// Deprecated: InstanceStatusActive is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_ACTIVE] instead.
+	// Deprecated: InstanceStatusActive is deprecated and will be removed after 14th November 2025. Use [rabbitmq.INSTANCESTATUS_ACTIVE] instead.
 	InstanceStatusActive = "active"
-	// Deprecated: InstanceStatusFailed is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_FAILED] instead.
+	// Deprecated: InstanceStatusFailed is deprecated and will be removed after 14th November 2025. Use [rabbitmq.INSTANCESTATUS_FAILED] instead.
 	InstanceStatusFailed = "failed"
-	// Deprecated: InstanceStatusStopped is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_STOPPED] instead.
+	// Deprecated: InstanceStatusStopped is deprecated and will be removed after 14th November 2025. Use [rabbitmq.INSTANCESTATUS_STOPPED] instead.
 	InstanceStatusStopped = "stopped"
-	// Deprecated: InstanceStatusCreating is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_CREATING] instead.
+	// Deprecated: InstanceStatusCreating is deprecated and will be removed after 14th November 2025. Use [rabbitmq.INSTANCESTATUS_CREATING] instead.
 	InstanceStatusCreating = "creating"
 	// Deprecated: InstanceStatusDeleting is deprecated and will be removed after 12th November 2025. Use [rabbitmq.INSTANCESTATUS_DELETING] instead.
 	InstanceStatusDeleting = "deleting"
