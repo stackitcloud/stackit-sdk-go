@@ -53,6 +53,8 @@
     - **Breaking change:** Introduce typed enum constants for status attributes
   - [v0.22.4](services/ske/CHANGELOG.md#v0224-2025-05-13)
     - **Feature:** Added `ClusterError`
+- `sqlserverflex`: [v1.1.0](services/sqlserverflex/CHANGELOG.md#v110-2025-05-14)
+  - **Features**: Add new method `ListMetrics`
 - `stackitmarketplace`: 
   - [v1.2.0](services/stackitmarketplace/CHANGELOG.md#v120-2025-05-14)
     - **Breaking change:** Introduce typed enum constants for status attributes
