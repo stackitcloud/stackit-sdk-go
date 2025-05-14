@@ -13,6 +13,7 @@ package modelserving
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -22,10 +23,211 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateToken create auth token for shared model use
+		create auth token for shared model use
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@return ApiCreateTokenRequest
+	*/
+	CreateToken(ctx context.Context, regionId string, projectId string) ApiCreateTokenRequest
+	/*
+		CreateTokenExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@return CreateTokenResponse
+
+	*/
+	CreateTokenExecute(ctx context.Context, regionId string, projectId string) (*CreateTokenResponse, error)
+	/*
+		DeleteToken delete auth token in shared model use
+		delete auth token in shared model use
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@param tId token id
+		@return ApiDeleteTokenRequest
+	*/
+	DeleteToken(ctx context.Context, regionId string, projectId string, tId string) ApiDeleteTokenRequest
+	/*
+		DeleteTokenExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@param tId token id
+		@return MessageResponse
+
+	*/
+	DeleteTokenExecute(ctx context.Context, regionId string, projectId string, tId string) (*MessageResponse, error)
+	/*
+		GetChatModel details of a llm model
+		details of a llm model
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param modelId model id
+		@return ApiGetChatModelRequest
+	*/
+	GetChatModel(ctx context.Context, regionId string, modelId string) ApiGetChatModelRequest
+	/*
+		GetChatModelExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param modelId model id
+		@return GetChatModelResponse
+
+	*/
+	GetChatModelExecute(ctx context.Context, regionId string, modelId string) (*GetChatModelResponse, error)
+	/*
+		GetEmbeddingModel details of an embedding model
+		details of an embedding model
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param modelId model id
+		@return ApiGetEmbeddingModelRequest
+	*/
+	GetEmbeddingModel(ctx context.Context, regionId string, modelId string) ApiGetEmbeddingModelRequest
+	/*
+		GetEmbeddingModelExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param modelId model id
+		@return GetEmbeddingsModelResp
+
+	*/
+	GetEmbeddingModelExecute(ctx context.Context, regionId string, modelId string) (*GetEmbeddingsModelResp, error)
+	/*
+		GetToken get auth token for shared model use
+		get auth token for shared model use
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@param tId token id
+		@return ApiGetTokenRequest
+	*/
+	GetToken(ctx context.Context, regionId string, projectId string, tId string) ApiGetTokenRequest
+	/*
+		GetTokenExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@param tId token id
+		@return GetTokenResponse
+
+	*/
+	GetTokenExecute(ctx context.Context, regionId string, projectId string, tId string) (*GetTokenResponse, error)
+	/*
+		ListModels List of shared model
+		List of shared model
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@return ApiListModelsRequest
+	*/
+	ListModels(ctx context.Context, regionId string) ApiListModelsRequest
+	/*
+		ListModelsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@return ListModelsResponse
+
+	*/
+	ListModelsExecute(ctx context.Context, regionId string) (*ListModelsResponse, error)
+	/*
+		ListTokens auth tokens for shared model in non dedicated instances
+		auth tokens for shared model in non dedicated instances
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@return ApiListTokensRequest
+	*/
+	ListTokens(ctx context.Context, regionId string, projectId string) ApiListTokensRequest
+	/*
+		ListTokensExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@return ListTokenResp
+
+	*/
+	ListTokensExecute(ctx context.Context, regionId string, projectId string) (*ListTokenResp, error)
+	/*
+		PartialUpdateToken partial update auth token for shared model use
+		partial update auth token for shared model use
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@param tId token id
+		@return ApiPartialUpdateTokenRequest
+	*/
+	PartialUpdateToken(ctx context.Context, regionId string, projectId string, tId string) ApiPartialUpdateTokenRequest
+	/*
+		PartialUpdateTokenExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param regionId region name
+		@param projectId portal project id
+		@param tId token id
+		@return UpdateTokenResponse
+
+	*/
+	PartialUpdateTokenExecute(ctx context.Context, regionId string, projectId string, tId string) (*UpdateTokenResponse, error)
+}
+
+type ApiCreateTokenRequest interface {
+	CreateTokenPayload(createTokenPayload CreateTokenPayload) ApiCreateTokenRequest
+	Execute() (*CreateTokenResponse, error)
+}
+
+type ApiDeleteTokenRequest interface {
+	Execute() (*MessageResponse, error)
+}
+
+type ApiGetChatModelRequest interface {
+	Execute() (*GetChatModelResponse, error)
+}
+
+type ApiGetEmbeddingModelRequest interface {
+	Execute() (*GetEmbeddingsModelResp, error)
+}
+
+type ApiGetTokenRequest interface {
+	Execute() (*GetTokenResponse, error)
+}
+
+type ApiListModelsRequest interface {
+	Execute() (*ListModelsResponse, error)
+}
+
+type ApiListTokensRequest interface {
+	Execute() (*ListTokenResp, error)
+}
+
+type ApiPartialUpdateTokenRequest interface {
+	PartialUpdateTokenPayload(partialUpdateTokenPayload PartialUpdateTokenPayload) ApiPartialUpdateTokenRequest
+	Execute() (*UpdateTokenResponse, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateTokenRequest struct {
+type CreateTokenRequest struct {
 	ctx                context.Context
 	apiService         *DefaultApiService
 	regionId           string
@@ -33,12 +235,12 @@ type ApiCreateTokenRequest struct {
 	createTokenPayload *CreateTokenPayload
 }
 
-func (r ApiCreateTokenRequest) CreateTokenPayload(createTokenPayload CreateTokenPayload) ApiCreateTokenRequest {
+func (r CreateTokenRequest) CreateTokenPayload(createTokenPayload CreateTokenPayload) ApiCreateTokenRequest {
 	r.createTokenPayload = &createTokenPayload
 	return r
 }
 
-func (r ApiCreateTokenRequest) Execute() (*CreateTokenResponse, error) {
+func (r CreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -46,7 +248,11 @@ func (r ApiCreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 		localVarReturnValue *CreateTokenResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateToken")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -78,7 +284,7 @@ func (r ApiCreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.createTokenPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -88,7 +294,7 @@ func (r ApiCreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -112,7 +318,7 @@ func (r ApiCreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -123,7 +329,7 @@ func (r ApiCreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -134,7 +340,7 @@ func (r ApiCreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -145,7 +351,7 @@ func (r ApiCreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -156,7 +362,7 @@ func (r ApiCreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -180,7 +386,7 @@ create auth token for shared model use
 	@return ApiCreateTokenRequest
 */
 func (a *APIClient) CreateToken(ctx context.Context, regionId string, projectId string) ApiCreateTokenRequest {
-	return ApiCreateTokenRequest{
+	return CreateTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -189,7 +395,7 @@ func (a *APIClient) CreateToken(ctx context.Context, regionId string, projectId 
 }
 
 func (a *APIClient) CreateTokenExecute(ctx context.Context, regionId string, projectId string) (*CreateTokenResponse, error) {
-	r := ApiCreateTokenRequest{
+	r := CreateTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -198,7 +404,7 @@ func (a *APIClient) CreateTokenExecute(ctx context.Context, regionId string, pro
 	return r.Execute()
 }
 
-type ApiDeleteTokenRequest struct {
+type DeleteTokenRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	regionId   string
@@ -206,7 +412,7 @@ type ApiDeleteTokenRequest struct {
 	tId        string
 }
 
-func (r ApiDeleteTokenRequest) Execute() (*MessageResponse, error) {
+func (r DeleteTokenRequest) Execute() (*MessageResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -214,7 +420,11 @@ func (r ApiDeleteTokenRequest) Execute() (*MessageResponse, error) {
 		localVarReturnValue *MessageResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteToken")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -245,7 +455,7 @@ func (r ApiDeleteTokenRequest) Execute() (*MessageResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -255,7 +465,7 @@ func (r ApiDeleteTokenRequest) Execute() (*MessageResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -279,7 +489,7 @@ func (r ApiDeleteTokenRequest) Execute() (*MessageResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -290,7 +500,7 @@ func (r ApiDeleteTokenRequest) Execute() (*MessageResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -301,7 +511,7 @@ func (r ApiDeleteTokenRequest) Execute() (*MessageResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -312,7 +522,7 @@ func (r ApiDeleteTokenRequest) Execute() (*MessageResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -323,7 +533,7 @@ func (r ApiDeleteTokenRequest) Execute() (*MessageResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -348,7 +558,7 @@ delete auth token in shared model use
 	@return ApiDeleteTokenRequest
 */
 func (a *APIClient) DeleteToken(ctx context.Context, regionId string, projectId string, tId string) ApiDeleteTokenRequest {
-	return ApiDeleteTokenRequest{
+	return DeleteTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -358,7 +568,7 @@ func (a *APIClient) DeleteToken(ctx context.Context, regionId string, projectId 
 }
 
 func (a *APIClient) DeleteTokenExecute(ctx context.Context, regionId string, projectId string, tId string) (*MessageResponse, error) {
-	r := ApiDeleteTokenRequest{
+	r := DeleteTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -368,14 +578,14 @@ func (a *APIClient) DeleteTokenExecute(ctx context.Context, regionId string, pro
 	return r.Execute()
 }
 
-type ApiGetChatModelRequest struct {
+type GetChatModelRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	regionId   string
 	modelId    string
 }
 
-func (r ApiGetChatModelRequest) Execute() (*GetChatModelResponse, error) {
+func (r GetChatModelRequest) Execute() (*GetChatModelResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -383,7 +593,11 @@ func (r ApiGetChatModelRequest) Execute() (*GetChatModelResponse, error) {
 		localVarReturnValue *GetChatModelResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetChatModel")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetChatModel")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -413,7 +627,7 @@ func (r ApiGetChatModelRequest) Execute() (*GetChatModelResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -423,7 +637,7 @@ func (r ApiGetChatModelRequest) Execute() (*GetChatModelResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -447,7 +661,7 @@ func (r ApiGetChatModelRequest) Execute() (*GetChatModelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -458,7 +672,7 @@ func (r ApiGetChatModelRequest) Execute() (*GetChatModelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -469,7 +683,7 @@ func (r ApiGetChatModelRequest) Execute() (*GetChatModelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -480,7 +694,7 @@ func (r ApiGetChatModelRequest) Execute() (*GetChatModelResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -504,7 +718,7 @@ details of a llm model
 	@return ApiGetChatModelRequest
 */
 func (a *APIClient) GetChatModel(ctx context.Context, regionId string, modelId string) ApiGetChatModelRequest {
-	return ApiGetChatModelRequest{
+	return GetChatModelRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -513,7 +727,7 @@ func (a *APIClient) GetChatModel(ctx context.Context, regionId string, modelId s
 }
 
 func (a *APIClient) GetChatModelExecute(ctx context.Context, regionId string, modelId string) (*GetChatModelResponse, error) {
-	r := ApiGetChatModelRequest{
+	r := GetChatModelRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -522,14 +736,14 @@ func (a *APIClient) GetChatModelExecute(ctx context.Context, regionId string, mo
 	return r.Execute()
 }
 
-type ApiGetEmbeddingModelRequest struct {
+type GetEmbeddingModelRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	regionId   string
 	modelId    string
 }
 
-func (r ApiGetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) {
+func (r GetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -537,7 +751,11 @@ func (r ApiGetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) 
 		localVarReturnValue *GetEmbeddingsModelResp
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetEmbeddingModel")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetEmbeddingModel")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -567,7 +785,7 @@ func (r ApiGetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -577,7 +795,7 @@ func (r ApiGetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -601,7 +819,7 @@ func (r ApiGetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -612,7 +830,7 @@ func (r ApiGetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -623,7 +841,7 @@ func (r ApiGetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -634,7 +852,7 @@ func (r ApiGetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -658,7 +876,7 @@ details of an embedding model
 	@return ApiGetEmbeddingModelRequest
 */
 func (a *APIClient) GetEmbeddingModel(ctx context.Context, regionId string, modelId string) ApiGetEmbeddingModelRequest {
-	return ApiGetEmbeddingModelRequest{
+	return GetEmbeddingModelRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -667,7 +885,7 @@ func (a *APIClient) GetEmbeddingModel(ctx context.Context, regionId string, mode
 }
 
 func (a *APIClient) GetEmbeddingModelExecute(ctx context.Context, regionId string, modelId string) (*GetEmbeddingsModelResp, error) {
-	r := ApiGetEmbeddingModelRequest{
+	r := GetEmbeddingModelRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -676,7 +894,7 @@ func (a *APIClient) GetEmbeddingModelExecute(ctx context.Context, regionId strin
 	return r.Execute()
 }
 
-type ApiGetTokenRequest struct {
+type GetTokenRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	regionId   string
@@ -684,7 +902,7 @@ type ApiGetTokenRequest struct {
 	tId        string
 }
 
-func (r ApiGetTokenRequest) Execute() (*GetTokenResponse, error) {
+func (r GetTokenRequest) Execute() (*GetTokenResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -692,7 +910,11 @@ func (r ApiGetTokenRequest) Execute() (*GetTokenResponse, error) {
 		localVarReturnValue *GetTokenResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetToken")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -723,7 +945,7 @@ func (r ApiGetTokenRequest) Execute() (*GetTokenResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -733,7 +955,7 @@ func (r ApiGetTokenRequest) Execute() (*GetTokenResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -757,7 +979,7 @@ func (r ApiGetTokenRequest) Execute() (*GetTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -768,7 +990,7 @@ func (r ApiGetTokenRequest) Execute() (*GetTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -779,7 +1001,7 @@ func (r ApiGetTokenRequest) Execute() (*GetTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -790,7 +1012,7 @@ func (r ApiGetTokenRequest) Execute() (*GetTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -801,7 +1023,7 @@ func (r ApiGetTokenRequest) Execute() (*GetTokenResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -826,7 +1048,7 @@ get auth token for shared model use
 	@return ApiGetTokenRequest
 */
 func (a *APIClient) GetToken(ctx context.Context, regionId string, projectId string, tId string) ApiGetTokenRequest {
-	return ApiGetTokenRequest{
+	return GetTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -836,7 +1058,7 @@ func (a *APIClient) GetToken(ctx context.Context, regionId string, projectId str
 }
 
 func (a *APIClient) GetTokenExecute(ctx context.Context, regionId string, projectId string, tId string) (*GetTokenResponse, error) {
-	r := ApiGetTokenRequest{
+	r := GetTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -846,13 +1068,13 @@ func (a *APIClient) GetTokenExecute(ctx context.Context, regionId string, projec
 	return r.Execute()
 }
 
-type ApiListModelsRequest struct {
+type ListModelsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	regionId   string
 }
 
-func (r ApiListModelsRequest) Execute() (*ListModelsResponse, error) {
+func (r ListModelsRequest) Execute() (*ListModelsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -860,7 +1082,11 @@ func (r ApiListModelsRequest) Execute() (*ListModelsResponse, error) {
 		localVarReturnValue *ListModelsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListModels")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListModels")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -889,7 +1115,7 @@ func (r ApiListModelsRequest) Execute() (*ListModelsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -899,7 +1125,7 @@ func (r ApiListModelsRequest) Execute() (*ListModelsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -923,7 +1149,7 @@ func (r ApiListModelsRequest) Execute() (*ListModelsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -934,7 +1160,7 @@ func (r ApiListModelsRequest) Execute() (*ListModelsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -945,7 +1171,7 @@ func (r ApiListModelsRequest) Execute() (*ListModelsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -956,7 +1182,7 @@ func (r ApiListModelsRequest) Execute() (*ListModelsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -979,7 +1205,7 @@ List of shared model
 	@return ApiListModelsRequest
 */
 func (a *APIClient) ListModels(ctx context.Context, regionId string) ApiListModelsRequest {
-	return ApiListModelsRequest{
+	return ListModelsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -987,7 +1213,7 @@ func (a *APIClient) ListModels(ctx context.Context, regionId string) ApiListMode
 }
 
 func (a *APIClient) ListModelsExecute(ctx context.Context, regionId string) (*ListModelsResponse, error) {
-	r := ApiListModelsRequest{
+	r := ListModelsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -995,14 +1221,14 @@ func (a *APIClient) ListModelsExecute(ctx context.Context, regionId string) (*Li
 	return r.Execute()
 }
 
-type ApiListTokensRequest struct {
+type ListTokensRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	regionId   string
 	projectId  string
 }
 
-func (r ApiListTokensRequest) Execute() (*ListTokenResp, error) {
+func (r ListTokensRequest) Execute() (*ListTokenResp, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1010,7 +1236,11 @@ func (r ApiListTokensRequest) Execute() (*ListTokenResp, error) {
 		localVarReturnValue *ListTokenResp
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListTokens")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListTokens")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1040,7 +1270,7 @@ func (r ApiListTokensRequest) Execute() (*ListTokenResp, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1050,7 +1280,7 @@ func (r ApiListTokensRequest) Execute() (*ListTokenResp, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1074,7 +1304,7 @@ func (r ApiListTokensRequest) Execute() (*ListTokenResp, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1085,7 +1315,7 @@ func (r ApiListTokensRequest) Execute() (*ListTokenResp, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1096,7 +1326,7 @@ func (r ApiListTokensRequest) Execute() (*ListTokenResp, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1107,7 +1337,7 @@ func (r ApiListTokensRequest) Execute() (*ListTokenResp, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1131,7 +1361,7 @@ auth tokens for shared model in non dedicated instances
 	@return ApiListTokensRequest
 */
 func (a *APIClient) ListTokens(ctx context.Context, regionId string, projectId string) ApiListTokensRequest {
-	return ApiListTokensRequest{
+	return ListTokensRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -1140,7 +1370,7 @@ func (a *APIClient) ListTokens(ctx context.Context, regionId string, projectId s
 }
 
 func (a *APIClient) ListTokensExecute(ctx context.Context, regionId string, projectId string) (*ListTokenResp, error) {
-	r := ApiListTokensRequest{
+	r := ListTokensRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -1149,7 +1379,7 @@ func (a *APIClient) ListTokensExecute(ctx context.Context, regionId string, proj
 	return r.Execute()
 }
 
-type ApiPartialUpdateTokenRequest struct {
+type PartialUpdateTokenRequest struct {
 	ctx                       context.Context
 	apiService                *DefaultApiService
 	regionId                  string
@@ -1158,12 +1388,12 @@ type ApiPartialUpdateTokenRequest struct {
 	partialUpdateTokenPayload *PartialUpdateTokenPayload
 }
 
-func (r ApiPartialUpdateTokenRequest) PartialUpdateTokenPayload(partialUpdateTokenPayload PartialUpdateTokenPayload) ApiPartialUpdateTokenRequest {
+func (r PartialUpdateTokenRequest) PartialUpdateTokenPayload(partialUpdateTokenPayload PartialUpdateTokenPayload) ApiPartialUpdateTokenRequest {
 	r.partialUpdateTokenPayload = &partialUpdateTokenPayload
 	return r
 }
 
-func (r ApiPartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
+func (r PartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -1171,7 +1401,11 @@ func (r ApiPartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 		localVarReturnValue *UpdateTokenResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateToken")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1204,7 +1438,7 @@ func (r ApiPartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.partialUpdateTokenPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1214,7 +1448,7 @@ func (r ApiPartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1238,7 +1472,7 @@ func (r ApiPartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1249,7 +1483,7 @@ func (r ApiPartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1260,7 +1494,7 @@ func (r ApiPartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1271,7 +1505,7 @@ func (r ApiPartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1282,7 +1516,7 @@ func (r ApiPartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1307,7 +1541,7 @@ partial update auth token for shared model use
 	@return ApiPartialUpdateTokenRequest
 */
 func (a *APIClient) PartialUpdateToken(ctx context.Context, regionId string, projectId string, tId string) ApiPartialUpdateTokenRequest {
-	return ApiPartialUpdateTokenRequest{
+	return PartialUpdateTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
@@ -1317,7 +1551,7 @@ func (a *APIClient) PartialUpdateToken(ctx context.Context, regionId string, pro
 }
 
 func (a *APIClient) PartialUpdateTokenExecute(ctx context.Context, regionId string, projectId string, tId string) (*UpdateTokenResponse, error) {
-	r := ApiPartialUpdateTokenRequest{
+	r := PartialUpdateTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		regionId:   regionId,
