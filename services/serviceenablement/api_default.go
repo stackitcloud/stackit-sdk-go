@@ -13,6 +13,7 @@ package serviceenablement
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -22,10 +23,104 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		DisableServiceRegional Method for DisableServiceRegional
+		disables the service in a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@param serviceId
+		@return ApiDisableServiceRegionalRequest
+	*/
+	DisableServiceRegional(ctx context.Context, region string, projectId string, serviceId string) ApiDisableServiceRegionalRequest
+	/*
+		DisableServiceRegionalExecute executes the request
+
+	*/
+	DisableServiceRegionalExecute(ctx context.Context, region string, projectId string, serviceId string) error
+	/*
+		EnableServiceRegional Method for EnableServiceRegional
+		enables the service in a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@param serviceId
+		@return ApiEnableServiceRegionalRequest
+	*/
+	EnableServiceRegional(ctx context.Context, region string, projectId string, serviceId string) ApiEnableServiceRegionalRequest
+	/*
+		EnableServiceRegionalExecute executes the request
+
+	*/
+	EnableServiceRegionalExecute(ctx context.Context, region string, projectId string, serviceId string) error
+	/*
+		GetServiceStatusRegional Method for GetServiceStatusRegional
+		returns the current status of a service in a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@param serviceId
+		@return ApiGetServiceStatusRegionalRequest
+	*/
+	GetServiceStatusRegional(ctx context.Context, region string, projectId string, serviceId string) ApiGetServiceStatusRegionalRequest
+	/*
+		GetServiceStatusRegionalExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@param serviceId
+		@return ServiceStatus
+
+	*/
+	GetServiceStatusRegionalExecute(ctx context.Context, region string, projectId string, serviceId string) (*ServiceStatus, error)
+	/*
+		ListServiceStatusRegional Method for ListServiceStatusRegional
+		returns a list of all available services for a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@return ApiListServiceStatusRegionalRequest
+	*/
+	ListServiceStatusRegional(ctx context.Context, region string, projectId string) ApiListServiceStatusRegionalRequest
+	/*
+		ListServiceStatusRegionalExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@return ListServiceStatusRegional200Response
+
+	*/
+	ListServiceStatusRegionalExecute(ctx context.Context, region string, projectId string) (*ListServiceStatusRegional200Response, error)
+}
+
+type ApiDisableServiceRegionalRequest interface {
+	Execute() error
+}
+
+type ApiEnableServiceRegionalRequest interface {
+	Execute() error
+}
+
+type ApiGetServiceStatusRegionalRequest interface {
+	Execute() (*ServiceStatus, error)
+}
+
+type ApiListServiceStatusRegionalRequest interface {
+	Cursor(cursor string) ApiListServiceStatusRegionalRequest
+	Execute() (*ListServiceStatusRegional200Response, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiDisableServiceRegionalRequest struct {
+type DisableServiceRegionalRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	region     string
@@ -33,14 +128,18 @@ type ApiDisableServiceRegionalRequest struct {
 	serviceId  string
 }
 
-func (r ApiDisableServiceRegionalRequest) Execute() error {
+func (r DisableServiceRegionalRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableServiceRegional")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableServiceRegional")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -71,7 +170,7 @@ func (r ApiDisableServiceRegionalRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -81,7 +180,7 @@ func (r ApiDisableServiceRegionalRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -105,7 +204,7 @@ func (r ApiDisableServiceRegionalRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -116,7 +215,7 @@ func (r ApiDisableServiceRegionalRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -143,7 +242,7 @@ disables the service in a project.
 	@return ApiDisableServiceRegionalRequest
 */
 func (a *APIClient) DisableServiceRegional(ctx context.Context, region string, projectId string, serviceId string) ApiDisableServiceRegionalRequest {
-	return ApiDisableServiceRegionalRequest{
+	return DisableServiceRegionalRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
@@ -153,7 +252,7 @@ func (a *APIClient) DisableServiceRegional(ctx context.Context, region string, p
 }
 
 func (a *APIClient) DisableServiceRegionalExecute(ctx context.Context, region string, projectId string, serviceId string) error {
-	r := ApiDisableServiceRegionalRequest{
+	r := DisableServiceRegionalRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
@@ -163,7 +262,7 @@ func (a *APIClient) DisableServiceRegionalExecute(ctx context.Context, region st
 	return r.Execute()
 }
 
-type ApiEnableServiceRegionalRequest struct {
+type EnableServiceRegionalRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	region     string
@@ -171,14 +270,18 @@ type ApiEnableServiceRegionalRequest struct {
 	serviceId  string
 }
 
-func (r ApiEnableServiceRegionalRequest) Execute() error {
+func (r EnableServiceRegionalRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableServiceRegional")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableServiceRegional")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -209,7 +312,7 @@ func (r ApiEnableServiceRegionalRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -219,7 +322,7 @@ func (r ApiEnableServiceRegionalRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -243,7 +346,7 @@ func (r ApiEnableServiceRegionalRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -254,7 +357,7 @@ func (r ApiEnableServiceRegionalRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -281,7 +384,7 @@ enables the service in a project.
 	@return ApiEnableServiceRegionalRequest
 */
 func (a *APIClient) EnableServiceRegional(ctx context.Context, region string, projectId string, serviceId string) ApiEnableServiceRegionalRequest {
-	return ApiEnableServiceRegionalRequest{
+	return EnableServiceRegionalRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
@@ -291,7 +394,7 @@ func (a *APIClient) EnableServiceRegional(ctx context.Context, region string, pr
 }
 
 func (a *APIClient) EnableServiceRegionalExecute(ctx context.Context, region string, projectId string, serviceId string) error {
-	r := ApiEnableServiceRegionalRequest{
+	r := EnableServiceRegionalRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
@@ -301,7 +404,7 @@ func (a *APIClient) EnableServiceRegionalExecute(ctx context.Context, region str
 	return r.Execute()
 }
 
-type ApiGetServiceStatusRegionalRequest struct {
+type GetServiceStatusRegionalRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	region     string
@@ -309,7 +412,7 @@ type ApiGetServiceStatusRegionalRequest struct {
 	serviceId  string
 }
 
-func (r ApiGetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
+func (r GetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -317,7 +420,11 @@ func (r ApiGetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
 		localVarReturnValue *ServiceStatus
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceStatusRegional")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceStatusRegional")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -348,7 +455,7 @@ func (r ApiGetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -358,7 +465,7 @@ func (r ApiGetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -382,7 +489,7 @@ func (r ApiGetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -393,7 +500,7 @@ func (r ApiGetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -405,7 +512,7 @@ func (r ApiGetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -430,7 +537,7 @@ returns the current status of a service in a project.
 	@return ApiGetServiceStatusRegionalRequest
 */
 func (a *APIClient) GetServiceStatusRegional(ctx context.Context, region string, projectId string, serviceId string) ApiGetServiceStatusRegionalRequest {
-	return ApiGetServiceStatusRegionalRequest{
+	return GetServiceStatusRegionalRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
@@ -440,7 +547,7 @@ func (a *APIClient) GetServiceStatusRegional(ctx context.Context, region string,
 }
 
 func (a *APIClient) GetServiceStatusRegionalExecute(ctx context.Context, region string, projectId string, serviceId string) (*ServiceStatus, error) {
-	r := ApiGetServiceStatusRegionalRequest{
+	r := GetServiceStatusRegionalRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
@@ -450,7 +557,7 @@ func (a *APIClient) GetServiceStatusRegionalExecute(ctx context.Context, region 
 	return r.Execute()
 }
 
-type ApiListServiceStatusRegionalRequest struct {
+type ListServiceStatusRegionalRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	region     string
@@ -458,12 +565,12 @@ type ApiListServiceStatusRegionalRequest struct {
 	cursor     *string
 }
 
-func (r ApiListServiceStatusRegionalRequest) Cursor(cursor string) ApiListServiceStatusRegionalRequest {
+func (r ListServiceStatusRegionalRequest) Cursor(cursor string) ApiListServiceStatusRegionalRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegional200Response, error) {
+func (r ListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegional200Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -471,7 +578,11 @@ func (r ApiListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegion
 		localVarReturnValue *ListServiceStatusRegional200Response
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceStatusRegional")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceStatusRegional")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -504,7 +615,7 @@ func (r ApiListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegion
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -514,7 +625,7 @@ func (r ApiListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegion
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -538,7 +649,7 @@ func (r ApiListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegion
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -549,7 +660,7 @@ func (r ApiListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegion
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -560,7 +671,7 @@ func (r ApiListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegion
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -584,7 +695,7 @@ returns a list of all available services for a project.
 	@return ApiListServiceStatusRegionalRequest
 */
 func (a *APIClient) ListServiceStatusRegional(ctx context.Context, region string, projectId string) ApiListServiceStatusRegionalRequest {
-	return ApiListServiceStatusRegionalRequest{
+	return ListServiceStatusRegionalRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
@@ -593,7 +704,7 @@ func (a *APIClient) ListServiceStatusRegional(ctx context.Context, region string
 }
 
 func (a *APIClient) ListServiceStatusRegionalExecute(ctx context.Context, region string, projectId string) (*ListServiceStatusRegional200Response, error) {
-	r := ApiListServiceStatusRegionalRequest{
+	r := ListServiceStatusRegionalRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
