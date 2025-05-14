@@ -1,5 +1,5 @@
-## v1.1.0 (2025-05-14)
-- **Features**: Add new method `ListMetrics`
+## v1.0.4 (2025-05-14)
+- **Features**: Added new method `ListMetrics`
 
 ## v1.0.3 (2025-05-09)
 - **Feature:** Update user-agent header

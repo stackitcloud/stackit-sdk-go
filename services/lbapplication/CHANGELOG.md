@@ -1,5 +1,5 @@
 ## v0.4.1 (2025-05-15)
-- **Deprecated:** `lb-application` service is deprecated and no longer maintained. Use the `alb` service instead
+- **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
 
 ## v0.4.0 (2025-05-14)
 - **Breaking change:** Introduce typed enum constants for status attributes
