@@ -1,4 +1,6 @@
 ## Release (2025-XX-XX)
+- `sqlserverflex`: [v1.1.0](services/sqlserverflex/CHANGELOG.md#v110-2025-05-14)
+  - **Features**: Add new method `ListMetrics`
 - `stackitmarketplace`: [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
   - **Breaking Change:** Added organization id to `VendorSubscription`
 - `ske`: [v0.22.4](services/ske/CHANGELOG.md#v0224-2025-05-13)
