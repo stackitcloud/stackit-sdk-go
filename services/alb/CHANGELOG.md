@@ -1,3 +1,6 @@
+## v0.4.0 (2025-05-15)
+- **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+
 ## v0.3.1 (2025-05-15)
 - **Feature:** New field `Path` for `Rule`
 

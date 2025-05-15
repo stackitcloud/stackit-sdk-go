@@ -1,3 +1,6 @@
+## v1.3.0 (2025-05-15)
+- **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+
 ## v1.2.1 (2025-05-15)
 - **Feature:** Add new method `VendorsSubscriptionsReject`
 
