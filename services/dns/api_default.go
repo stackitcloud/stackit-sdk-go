@@ -23,10 +23,773 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CloneZone Clone an existing zone with all record sets to a new zone with a different name
+		Clone an existing zone with all record sets to a new zone with a different name
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiCloneZoneRequest
+	*/
+	CloneZone(ctx context.Context, projectId string, zoneId string) ApiCloneZoneRequest
+	/*
+		CloneZoneExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ZoneResponse
+
+	*/
+	CloneZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error)
+	/*
+		CreateLabel Create or update label
+		Create or update label
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiCreateLabelRequest
+	*/
+	CreateLabel(ctx context.Context, projectId string, zoneId string) ApiCreateLabelRequest
+	/*
+		CreateLabelExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return CreateLabelResponse
+
+	*/
+	CreateLabelExecute(ctx context.Context, projectId string, zoneId string) (*CreateLabelResponse, error)
+	/*
+		CreateMoveCode request a move code to move zone to another project
+		move zone from one project to another
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiCreateMoveCodeRequest
+	*/
+	CreateMoveCode(ctx context.Context, projectId string, zoneId string) ApiCreateMoveCodeRequest
+	/*
+		CreateMoveCodeExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return MoveCodeResponse
+
+	*/
+	CreateMoveCodeExecute(ctx context.Context, projectId string, zoneId string) (*MoveCodeResponse, error)
+	/*
+		CreateRecordSet Post record set
+		Post record set
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiCreateRecordSetRequest
+	*/
+	CreateRecordSet(ctx context.Context, projectId string, zoneId string) ApiCreateRecordSetRequest
+	/*
+		CreateRecordSetExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return RecordSetResponse
+
+	*/
+	CreateRecordSetExecute(ctx context.Context, projectId string, zoneId string) (*RecordSetResponse, error)
+	/*
+		CreateZone Post create a new zone
+		Post zone create a new zone
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return ApiCreateZoneRequest
+	*/
+	CreateZone(ctx context.Context, projectId string) ApiCreateZoneRequest
+	/*
+		CreateZoneExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return ZoneResponse
+
+	*/
+	CreateZoneExecute(ctx context.Context, projectId string) (*ZoneResponse, error)
+	/*
+		DeleteLabel Delete a label
+		Delete a label
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param key key of the label
+		@return ApiDeleteLabelRequest
+	*/
+	DeleteLabel(ctx context.Context, projectId string, zoneId string, key string) ApiDeleteLabelRequest
+	/*
+		DeleteLabelExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param key key of the label
+		@return DeleteLabelResponse
+
+	*/
+	DeleteLabelExecute(ctx context.Context, projectId string, zoneId string, key string) (*DeleteLabelResponse, error)
+	/*
+		DeleteMoveCode delete/invalidate a move code
+		delete/invalidate a move code
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiDeleteMoveCodeRequest
+	*/
+	DeleteMoveCode(ctx context.Context, projectId string, zoneId string) ApiDeleteMoveCodeRequest
+	/*
+		DeleteMoveCodeExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return Message
+
+	*/
+	DeleteMoveCodeExecute(ctx context.Context, projectId string, zoneId string) (*Message, error)
+	/*
+		DeleteRecordSet Delete a record set
+		Delete a record set
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return ApiDeleteRecordSetRequest
+	*/
+	DeleteRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiDeleteRecordSetRequest
+	/*
+		DeleteRecordSetExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return Message
+
+	*/
+	DeleteRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error)
+	/*
+		DeleteZone Delete a zone
+		Delete a zone
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiDeleteZoneRequest
+	*/
+	DeleteZone(ctx context.Context, projectId string, zoneId string) ApiDeleteZoneRequest
+	/*
+		DeleteZoneExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return Message
+
+	*/
+	DeleteZoneExecute(ctx context.Context, projectId string, zoneId string) (*Message, error)
+	/*
+		ExportRecordSets Export all records in a single zone
+		Export Zone
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiExportRecordSetsRequest
+	*/
+	ExportRecordSets(ctx context.Context, projectId string, zoneId string) ApiExportRecordSetsRequest
+	/*
+		ExportRecordSetsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ZoneDataExchange
+
+	*/
+	ExportRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ZoneDataExchange, error)
+	/*
+		GetRecordSet Get a single rrset
+		Get rrset
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return ApiGetRecordSetRequest
+	*/
+	GetRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiGetRecordSetRequest
+	/*
+		GetRecordSetExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return RecordSetResponse
+
+	*/
+	GetRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*RecordSetResponse, error)
+	/*
+		GetZone Get a single zone
+		Get zone
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiGetZoneRequest
+	*/
+	GetZone(ctx context.Context, projectId string, zoneId string) ApiGetZoneRequest
+	/*
+		GetZoneExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ZoneResponse
+
+	*/
+	GetZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error)
+	/*
+		ImportRecordSets Imports a zone
+		Imports a zone and overwrites/deletes/inserts all desired records
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiImportRecordSetsRequest
+	*/
+	ImportRecordSets(ctx context.Context, projectId string, zoneId string) ApiImportRecordSetsRequest
+	/*
+		ImportRecordSetsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ImportRecordSetsResponse
+
+	*/
+	ImportRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ImportRecordSetsResponse, error)
+	/*
+		ListLabels Get all labels
+		All Labels
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiListLabelsRequest
+	*/
+	ListLabels(ctx context.Context, projectId string, zoneId string) ApiListLabelsRequest
+	/*
+		ListLabelsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ListLabelsResponse
+
+	*/
+	ListLabelsExecute(ctx context.Context, projectId string, zoneId string) (*ListLabelsResponse, error)
+	/*
+		ListRecordSets All get selected RRSets
+		All RRSet
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiListRecordSetsRequest
+	*/
+	ListRecordSets(ctx context.Context, projectId string, zoneId string) ApiListRecordSetsRequest
+	/*
+		ListRecordSetsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ListRecordSetsResponse
+
+	*/
+	ListRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ListRecordSetsResponse, error)
+	/*
+		ListZones All get selected zones
+		All zone
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return ApiListZonesRequest
+	*/
+	ListZones(ctx context.Context, projectId string) ApiListZonesRequest
+	/*
+		ListZonesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return ListZonesResponse
+
+	*/
+	ListZonesExecute(ctx context.Context, projectId string) (*ListZonesResponse, error)
+	/*
+		MoveZone move zone from one project to another
+		move zone from one project to another
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return ApiMoveZoneRequest
+	*/
+	MoveZone(ctx context.Context, projectId string) ApiMoveZoneRequest
+	/*
+		MoveZoneExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return Message
+
+	*/
+	MoveZoneExecute(ctx context.Context, projectId string) (*Message, error)
+	/*
+		PartialUpdateRecord PatchRecords updates a record in a rrset
+		PatchRecords rrset updates a record in a rrset
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return ApiPartialUpdateRecordRequest
+	*/
+	PartialUpdateRecord(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiPartialUpdateRecordRequest
+	/*
+		PartialUpdateRecordExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return Message
+
+	*/
+	PartialUpdateRecordExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error)
+	/*
+		PartialUpdateRecordSet Patch updates a record set
+		Patch record set
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return ApiPartialUpdateRecordSetRequest
+	*/
+	PartialUpdateRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiPartialUpdateRecordSetRequest
+	/*
+		PartialUpdateRecordSetExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return Message
+
+	*/
+	PartialUpdateRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error)
+	/*
+		PartialUpdateZone Patch update an existing zone
+		Patch update an existing zone
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiPartialUpdateZoneRequest
+	*/
+	PartialUpdateZone(ctx context.Context, projectId string, zoneId string) ApiPartialUpdateZoneRequest
+	/*
+		PartialUpdateZoneExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ZoneResponse
+
+	*/
+	PartialUpdateZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error)
+	/*
+		RestoreRecordSet Restore record set
+		Restore record set
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return ApiRestoreRecordSetRequest
+	*/
+	RestoreRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiRestoreRecordSetRequest
+	/*
+		RestoreRecordSetExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@param rrSetId record set id
+		@return Message
+
+	*/
+	RestoreRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error)
+	/*
+		RestoreZone Restore  an inactive zone
+		Restore  an inactive zone
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiRestoreZoneRequest
+	*/
+	RestoreZone(ctx context.Context, projectId string, zoneId string) ApiRestoreZoneRequest
+	/*
+		RestoreZoneExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return Message
+
+	*/
+	RestoreZoneExecute(ctx context.Context, projectId string, zoneId string) (*Message, error)
+	/*
+		RetrieveZone Queue secondary zone for a zone transfer request.
+		The zone transfer will usually be performed within a few seconds, and will be tried only once by randomly choosing one of the configured primary name servers. If that single attempt fails, no further attempt will be performed. The zone will be transferred to our inbound name server regardless of its serial, but the internal zone distribution is only reliable if the zone's serial on the customer's primary name server is higher than on the STACKIT name server. <br>NOTE: As said above, this endpoint is not a reliable way to decrease a zone's serial. To guarantee consistent zones over all STACKIT location, the zone's serial MUST always be increased on zone changes.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiRetrieveZoneRequest
+	*/
+	RetrieveZone(ctx context.Context, projectId string, zoneId string) ApiRetrieveZoneRequest
+	/*
+		RetrieveZoneExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return Message
+
+	*/
+	RetrieveZoneExecute(ctx context.Context, projectId string, zoneId string) (*Message, error)
+	/*
+		ValidateMoveCode validate the move code is still valid for the zone
+		validate the move code is still valid for the zone
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return ApiValidateMoveCodeRequest
+	*/
+	ValidateMoveCode(ctx context.Context, projectId string, zoneId string) ApiValidateMoveCodeRequest
+	/*
+		ValidateMoveCodeExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param zoneId zone id
+		@return Message
+
+	*/
+	ValidateMoveCodeExecute(ctx context.Context, projectId string, zoneId string) (*Message, error)
+}
+
+type ApiCloneZoneRequest interface {
+	// zone to clone
+	CloneZonePayload(cloneZonePayload CloneZonePayload) ApiCloneZoneRequest
+	Execute() (*ZoneResponse, error)
+}
+
+type ApiCreateLabelRequest interface {
+	// record set to create
+	CreateLabelPayload(createLabelPayload CreateLabelPayload) ApiCreateLabelRequest
+	Execute() (*CreateLabelResponse, error)
+}
+
+type ApiCreateMoveCodeRequest interface {
+	Execute() (*MoveCodeResponse, error)
+}
+
+type ApiCreateRecordSetRequest interface {
+	// record set to create
+	CreateRecordSetPayload(createRecordSetPayload CreateRecordSetPayload) ApiCreateRecordSetRequest
+	Execute() (*RecordSetResponse, error)
+}
+
+type ApiCreateZoneRequest interface {
+	// zone to create
+	CreateZonePayload(createZonePayload CreateZonePayload) ApiCreateZoneRequest
+	Execute() (*ZoneResponse, error)
+}
+
+type ApiDeleteLabelRequest interface {
+	Execute() (*DeleteLabelResponse, error)
+}
+
+type ApiDeleteMoveCodeRequest interface {
+	Execute() (*Message, error)
+}
+
+type ApiDeleteRecordSetRequest interface {
+	Execute() (*Message, error)
+}
+
+type ApiDeleteZoneRequest interface {
+	Execute() (*Message, error)
+}
+
+type ApiExportRecordSetsRequest interface {
+	// export configuration
+	ExportRecordSetsPayload(exportRecordSetsPayload ExportRecordSetsPayload) ApiExportRecordSetsRequest
+	Execute() (*ZoneDataExchange, error)
+}
+
+type ApiGetRecordSetRequest interface {
+	Execute() (*RecordSetResponse, error)
+}
+
+type ApiGetZoneRequest interface {
+	Execute() (*ZoneResponse, error)
+}
+
+type ApiImportRecordSetsRequest interface {
+	// accepts all response bodies for the export endpoint
+	ImportRecordSetsPayload(importRecordSetsPayload ImportRecordSetsPayload) ApiImportRecordSetsRequest
+	// format of the data to import
+	Format(format string) ApiImportRecordSetsRequest
+	// type of the zone import
+	ImportType(importType string) ApiImportRecordSetsRequest
+	Execute() (*ImportRecordSetsResponse, error)
+}
+
+type ApiListLabelsRequest interface {
+	Execute() (*ListLabelsResponse, error)
+}
+
+type ApiListRecordSetsRequest interface {
+	// page
+	Page(page int32) ApiListRecordSetsRequest
+	// page size
+	PageSize(pageSize int32) ApiListRecordSetsRequest
+	// filter name equal
+	NameEq(nameEq string) ApiListRecordSetsRequest
+	// filter name like
+	NameLike(nameLike string) ApiListRecordSetsRequest
+	// filter type
+	TypeEq(typeEq string) ApiListRecordSetsRequest
+	// filter state
+	StateEq(stateEq string) ApiListRecordSetsRequest
+	// filter state
+	StateNeq(stateNeq string) ApiListRecordSetsRequest
+	// filter active equal
+	ActiveEq(activeEq bool) ApiListRecordSetsRequest
+	// filter creation started greater with utc timestamp
+	CreationStartedGt(creationStartedGt string) ApiListRecordSetsRequest
+	// filter creation started lesser with utc timestamp
+	CreationStartedLt(creationStartedLt string) ApiListRecordSetsRequest
+	// filter creation started greater equal with utc timestamp
+	CreationStartedGte(creationStartedGte string) ApiListRecordSetsRequest
+	// filter creation started lesser equal with utc timestamp
+	CreationStartedLte(creationStartedLte string) ApiListRecordSetsRequest
+	// filter creation finished greater with utc timestamp
+	CreationFinishedGt(creationFinishedGt string) ApiListRecordSetsRequest
+	// filter creation finished lesser with utc timestamp
+	CreationFinishedLt(creationFinishedLt string) ApiListRecordSetsRequest
+	// filter creation finished greater equal with utc timestamp
+	CreationFinishedGte(creationFinishedGte string) ApiListRecordSetsRequest
+	// filter creation finished lesser equal with utc timestamp
+	CreationFinishedLte(creationFinishedLte string) ApiListRecordSetsRequest
+	// filter update started greater with utc timestamp
+	UpdateStartedGt(updateStartedGt string) ApiListRecordSetsRequest
+	// filter update started lesser with utc timestamp
+	UpdateStartedLt(updateStartedLt string) ApiListRecordSetsRequest
+	// filter update started greater equal with utc timestamp
+	UpdateStartedGte(updateStartedGte string) ApiListRecordSetsRequest
+	// filter update started lesser equal with utc timestamp
+	UpdateStartedLte(updateStartedLte string) ApiListRecordSetsRequest
+	// filter update finished greater with utc timestamp
+	UpdateFinishedGt(updateFinishedGt string) ApiListRecordSetsRequest
+	// filter update finished lesser with utc timestamp
+	UpdateFinishedLt(updateFinishedLt string) ApiListRecordSetsRequest
+	// filter update finished greater equal with utc timestamp
+	UpdateFinishedGte(updateFinishedGte string) ApiListRecordSetsRequest
+	// filter update finished lesser equal with utc timestamp
+	UpdateFinishedLte(updateFinishedLte string) ApiListRecordSetsRequest
+	// order by name
+	OrderByName(orderByName string) ApiListRecordSetsRequest
+	// order by creationStarted
+	OrderByCreationStarted(orderByCreationStarted string) ApiListRecordSetsRequest
+	// order by creationFinished
+	OrderByCreationFinished(orderByCreationFinished string) ApiListRecordSetsRequest
+	// order by updateStarted
+	OrderByUpdateStarted(orderByUpdateStarted string) ApiListRecordSetsRequest
+	// order by updateFinished
+	OrderByUpdateFinished(orderByUpdateFinished string) ApiListRecordSetsRequest
+	// order by type
+	OrderByType(orderByType string) ApiListRecordSetsRequest
+	// order by state
+	OrderByState(orderByState string) ApiListRecordSetsRequest
+	// order by record count
+	OrderByRecordCount(orderByRecordCount string) ApiListRecordSetsRequest
+	Execute() (*ListRecordSetsResponse, error)
+}
+
+type ApiListZonesRequest interface {
+	// page
+	Page(page int32) ApiListZonesRequest
+	// page size
+	PageSize(pageSize int32) ApiListZonesRequest
+	// filter dns name equal
+	DnsNameEq(dnsNameEq string) ApiListZonesRequest
+	// filter dns name like
+	DnsNameLike(dnsNameLike string) ApiListZonesRequest
+	// filter type
+	TypeEq(typeEq string) ApiListZonesRequest
+	// filter name equal
+	NameEq(nameEq string) ApiListZonesRequest
+	// filter name not equal
+	NameNeq(nameNeq string) ApiListZonesRequest
+	// filter name like
+	NameLike(nameLike string) ApiListZonesRequest
+	// filter description equal
+	DescriptionEq(descriptionEq string) ApiListZonesRequest
+	// filter description not equal
+	DescriptionNeq(descriptionNeq string) ApiListZonesRequest
+	// filter description like
+	DescriptionLike(descriptionLike string) ApiListZonesRequest
+	// filter state
+	StateEq(stateEq string) ApiListZonesRequest
+	// filter state
+	StateNeq(stateNeq string) ApiListZonesRequest
+	// filter primary name server equal
+	PrimaryNameServerEq(primaryNameServerEq string) ApiListZonesRequest
+	// filter primary name server like
+	PrimaryNameServerLike(primaryNameServerLike string) ApiListZonesRequest
+	// filter reverse zone equal
+	IsReverseZoneEq(isReverseZoneEq bool) ApiListZonesRequest
+	// filter active equal
+	ActiveEq(activeEq bool) ApiListZonesRequest
+	// filter creation started greater with utc timestamp
+	CreationStartedGt(creationStartedGt string) ApiListZonesRequest
+	// filter creation started lesser with utc timestamp
+	CreationStartedLt(creationStartedLt string) ApiListZonesRequest
+	// filter creation started greater equal with utc timestamp
+	CreationStartedGte(creationStartedGte string) ApiListZonesRequest
+	// filter creation started lesser equal with utc timestamp
+	CreationStartedLte(creationStartedLte string) ApiListZonesRequest
+	// filter creation finished greater with utc timestamp
+	CreationFinishedGt(creationFinishedGt string) ApiListZonesRequest
+	// filter creation finished lesser with utc timestamp
+	CreationFinishedLt(creationFinishedLt string) ApiListZonesRequest
+	// filter creation finished greater equal with utc timestamp
+	CreationFinishedGte(creationFinishedGte string) ApiListZonesRequest
+	// filter creation finished lesser equal with utc timestamp
+	CreationFinishedLte(creationFinishedLte string) ApiListZonesRequest
+	// filter update started greater with utc timestamp
+	UpdateStartedGt(updateStartedGt string) ApiListZonesRequest
+	// filter update started lesser with utc timestamp
+	UpdateStartedLt(updateStartedLt string) ApiListZonesRequest
+	// filter update started greater equal with utc timestamp
+	UpdateStartedGte(updateStartedGte string) ApiListZonesRequest
+	// filter update started lesser equal with utc timestamp
+	UpdateStartedLte(updateStartedLte string) ApiListZonesRequest
+	// filter update finished greater with utc timestamp
+	UpdateFinishedGt(updateFinishedGt string) ApiListZonesRequest
+	// filter update finished lesser with utc timestamp
+	UpdateFinishedLt(updateFinishedLt string) ApiListZonesRequest
+	// filter update finished greater equal with utc timestamp
+	UpdateFinishedGte(updateFinishedGte string) ApiListZonesRequest
+	// filter update finished lesser equal with utc timestamp
+	UpdateFinishedLte(updateFinishedLte string) ApiListZonesRequest
+	// filter zones according to the zone label keys.
+	LabelKeyEq(labelKeyEq []string) ApiListZonesRequest
+	// filter zones according to the zone label values.
+	LabelValueEq(labelValueEq []string) ApiListZonesRequest
+	// order by dns name
+	OrderByDnsName(orderByDnsName string) ApiListZonesRequest
+	// order by name
+	OrderByName(orderByName string) ApiListZonesRequest
+	// order by record count
+	OrderByRecordCount(orderByRecordCount string) ApiListZonesRequest
+	// order by type
+	OrderByType(orderByType string) ApiListZonesRequest
+	// order by description
+	OrderByDescription(orderByDescription string) ApiListZonesRequest
+	// order by creationStarted
+	OrderByCreationStarted(orderByCreationStarted string) ApiListZonesRequest
+	// order by creationFinished
+	OrderByCreationFinished(orderByCreationFinished string) ApiListZonesRequest
+	// order by updateStarted
+	OrderByUpdateStarted(orderByUpdateStarted string) ApiListZonesRequest
+	// order by updateFinished
+	OrderByUpdateFinished(orderByUpdateFinished string) ApiListZonesRequest
+	Execute() (*ListZonesResponse, error)
+}
+
+type ApiMoveZoneRequest interface {
+	// information about the move
+	MoveZonePayload(moveZonePayload MoveZonePayload) ApiMoveZoneRequest
+	Execute() (*Message, error)
+}
+
+type ApiPartialUpdateRecordRequest interface {
+	// rrset to update
+	PartialUpdateRecordPayload(partialUpdateRecordPayload PartialUpdateRecordPayload) ApiPartialUpdateRecordRequest
+	Execute() (*Message, error)
+}
+
+type ApiPartialUpdateRecordSetRequest interface {
+	// record set to patch
+	PartialUpdateRecordSetPayload(partialUpdateRecordSetPayload PartialUpdateRecordSetPayload) ApiPartialUpdateRecordSetRequest
+	Execute() (*Message, error)
+}
+
+type ApiPartialUpdateZoneRequest interface {
+	// zone to update
+	PartialUpdateZonePayload(partialUpdateZonePayload PartialUpdateZonePayload) ApiPartialUpdateZoneRequest
+	Execute() (*ZoneResponse, error)
+}
+
+type ApiRestoreRecordSetRequest interface {
+	Execute() (*Message, error)
+}
+
+type ApiRestoreZoneRequest interface {
+	Execute() (*Message, error)
+}
+
+type ApiRetrieveZoneRequest interface {
+	Execute() (*Message, error)
+}
+
+type ApiValidateMoveCodeRequest interface {
+	// information about the move
+	ValidateMoveCodePayload(validateMoveCodePayload ValidateMoveCodePayload) ApiValidateMoveCodeRequest
+	Execute() (*Message, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCloneZoneRequest struct {
+type CloneZoneRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
 	projectId        string
@@ -36,12 +799,12 @@ type ApiCloneZoneRequest struct {
 
 // zone to clone
 
-func (r ApiCloneZoneRequest) CloneZonePayload(cloneZonePayload CloneZonePayload) ApiCloneZoneRequest {
+func (r CloneZoneRequest) CloneZonePayload(cloneZonePayload CloneZonePayload) ApiCloneZoneRequest {
 	r.cloneZonePayload = &cloneZonePayload
 	return r
 }
 
-func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
+func (r CloneZoneRequest) Execute() (*ZoneResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -49,7 +812,11 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 		localVarReturnValue *ZoneResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CloneZone")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CloneZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -84,7 +851,7 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.cloneZonePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -94,7 +861,7 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -118,7 +885,7 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -129,7 +896,7 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -140,7 +907,7 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -151,7 +918,7 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -162,7 +929,7 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -173,7 +940,7 @@ func (r ApiCloneZoneRequest) Execute() (*ZoneResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -197,7 +964,7 @@ Clone an existing zone with all record sets to a new zone with a different name
 	@return ApiCloneZoneRequest
 */
 func (a *APIClient) CloneZone(ctx context.Context, projectId string, zoneId string) ApiCloneZoneRequest {
-	return ApiCloneZoneRequest{
+	return CloneZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -206,7 +973,7 @@ func (a *APIClient) CloneZone(ctx context.Context, projectId string, zoneId stri
 }
 
 func (a *APIClient) CloneZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error) {
-	r := ApiCloneZoneRequest{
+	r := CloneZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -215,7 +982,7 @@ func (a *APIClient) CloneZoneExecute(ctx context.Context, projectId string, zone
 	return r.Execute()
 }
 
-type ApiCreateLabelRequest struct {
+type CreateLabelRequest struct {
 	ctx                context.Context
 	apiService         *DefaultApiService
 	projectId          string
@@ -225,12 +992,12 @@ type ApiCreateLabelRequest struct {
 
 // record set to create
 
-func (r ApiCreateLabelRequest) CreateLabelPayload(createLabelPayload CreateLabelPayload) ApiCreateLabelRequest {
+func (r CreateLabelRequest) CreateLabelPayload(createLabelPayload CreateLabelPayload) ApiCreateLabelRequest {
 	r.createLabelPayload = &createLabelPayload
 	return r
 }
 
-func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
+func (r CreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -238,7 +1005,11 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 		localVarReturnValue *CreateLabelResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateLabel")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateLabel")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -273,7 +1044,7 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.createLabelPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -283,7 +1054,7 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -307,7 +1078,7 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -318,7 +1089,7 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -329,7 +1100,7 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -340,7 +1111,7 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -351,7 +1122,7 @@ func (r ApiCreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -375,7 +1146,7 @@ Create or update label
 	@return ApiCreateLabelRequest
 */
 func (a *APIClient) CreateLabel(ctx context.Context, projectId string, zoneId string) ApiCreateLabelRequest {
-	return ApiCreateLabelRequest{
+	return CreateLabelRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -384,7 +1155,7 @@ func (a *APIClient) CreateLabel(ctx context.Context, projectId string, zoneId st
 }
 
 func (a *APIClient) CreateLabelExecute(ctx context.Context, projectId string, zoneId string) (*CreateLabelResponse, error) {
-	r := ApiCreateLabelRequest{
+	r := CreateLabelRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -393,14 +1164,14 @@ func (a *APIClient) CreateLabelExecute(ctx context.Context, projectId string, zo
 	return r.Execute()
 }
 
-type ApiCreateMoveCodeRequest struct {
+type CreateMoveCodeRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	zoneId     string
 }
 
-func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
+func (r CreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -408,7 +1179,11 @@ func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 		localVarReturnValue *MoveCodeResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateMoveCode")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateMoveCode")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -438,7 +1213,7 @@ func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -448,7 +1223,7 @@ func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -472,7 +1247,7 @@ func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -483,7 +1258,7 @@ func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -494,7 +1269,7 @@ func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -505,7 +1280,7 @@ func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -516,7 +1291,7 @@ func (r ApiCreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -540,7 +1315,7 @@ move zone from one project to another
 	@return ApiCreateMoveCodeRequest
 */
 func (a *APIClient) CreateMoveCode(ctx context.Context, projectId string, zoneId string) ApiCreateMoveCodeRequest {
-	return ApiCreateMoveCodeRequest{
+	return CreateMoveCodeRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -549,7 +1324,7 @@ func (a *APIClient) CreateMoveCode(ctx context.Context, projectId string, zoneId
 }
 
 func (a *APIClient) CreateMoveCodeExecute(ctx context.Context, projectId string, zoneId string) (*MoveCodeResponse, error) {
-	r := ApiCreateMoveCodeRequest{
+	r := CreateMoveCodeRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -558,7 +1333,7 @@ func (a *APIClient) CreateMoveCodeExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiCreateRecordSetRequest struct {
+type CreateRecordSetRequest struct {
 	ctx                    context.Context
 	apiService             *DefaultApiService
 	projectId              string
@@ -568,12 +1343,12 @@ type ApiCreateRecordSetRequest struct {
 
 // record set to create
 
-func (r ApiCreateRecordSetRequest) CreateRecordSetPayload(createRecordSetPayload CreateRecordSetPayload) ApiCreateRecordSetRequest {
+func (r CreateRecordSetRequest) CreateRecordSetPayload(createRecordSetPayload CreateRecordSetPayload) ApiCreateRecordSetRequest {
 	r.createRecordSetPayload = &createRecordSetPayload
 	return r
 }
 
-func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
+func (r CreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -581,7 +1356,11 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		localVarReturnValue *RecordSetResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateRecordSet")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -616,7 +1395,7 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.createRecordSetPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -626,7 +1405,7 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -650,7 +1429,7 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -661,7 +1440,7 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -672,7 +1451,7 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -683,7 +1462,7 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -694,7 +1473,7 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -705,7 +1484,7 @@ func (r ApiCreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -729,7 +1508,7 @@ Post record set
 	@return ApiCreateRecordSetRequest
 */
 func (a *APIClient) CreateRecordSet(ctx context.Context, projectId string, zoneId string) ApiCreateRecordSetRequest {
-	return ApiCreateRecordSetRequest{
+	return CreateRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -738,7 +1517,7 @@ func (a *APIClient) CreateRecordSet(ctx context.Context, projectId string, zoneI
 }
 
 func (a *APIClient) CreateRecordSetExecute(ctx context.Context, projectId string, zoneId string) (*RecordSetResponse, error) {
-	r := ApiCreateRecordSetRequest{
+	r := CreateRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -747,7 +1526,7 @@ func (a *APIClient) CreateRecordSetExecute(ctx context.Context, projectId string
 	return r.Execute()
 }
 
-type ApiCreateZoneRequest struct {
+type CreateZoneRequest struct {
 	ctx               context.Context
 	apiService        *DefaultApiService
 	projectId         string
@@ -756,12 +1535,12 @@ type ApiCreateZoneRequest struct {
 
 // zone to create
 
-func (r ApiCreateZoneRequest) CreateZonePayload(createZonePayload CreateZonePayload) ApiCreateZoneRequest {
+func (r CreateZoneRequest) CreateZonePayload(createZonePayload CreateZonePayload) ApiCreateZoneRequest {
 	r.createZonePayload = &createZonePayload
 	return r
 }
 
-func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
+func (r CreateZoneRequest) Execute() (*ZoneResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -769,7 +1548,11 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 		localVarReturnValue *ZoneResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateZone")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -803,7 +1586,7 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.createZonePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -813,7 +1596,7 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -837,7 +1620,7 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -848,7 +1631,7 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -859,7 +1642,7 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -870,7 +1653,7 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -881,7 +1664,7 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -892,7 +1675,7 @@ func (r ApiCreateZoneRequest) Execute() (*ZoneResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -915,7 +1698,7 @@ Post zone create a new zone
 	@return ApiCreateZoneRequest
 */
 func (a *APIClient) CreateZone(ctx context.Context, projectId string) ApiCreateZoneRequest {
-	return ApiCreateZoneRequest{
+	return CreateZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -923,7 +1706,7 @@ func (a *APIClient) CreateZone(ctx context.Context, projectId string) ApiCreateZ
 }
 
 func (a *APIClient) CreateZoneExecute(ctx context.Context, projectId string) (*ZoneResponse, error) {
-	r := ApiCreateZoneRequest{
+	r := CreateZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -931,7 +1714,7 @@ func (a *APIClient) CreateZoneExecute(ctx context.Context, projectId string) (*Z
 	return r.Execute()
 }
 
-type ApiDeleteLabelRequest struct {
+type DeleteLabelRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -939,7 +1722,7 @@ type ApiDeleteLabelRequest struct {
 	key        string
 }
 
-func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
+func (r DeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -947,7 +1730,11 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 		localVarReturnValue *DeleteLabelResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteLabel")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteLabel")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -978,7 +1765,7 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -988,7 +1775,7 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1012,7 +1799,7 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1023,7 +1810,7 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1034,7 +1821,7 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1045,7 +1832,7 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1056,7 +1843,7 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1067,7 +1854,7 @@ func (r ApiDeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1092,7 +1879,7 @@ Delete a label
 	@return ApiDeleteLabelRequest
 */
 func (a *APIClient) DeleteLabel(ctx context.Context, projectId string, zoneId string, key string) ApiDeleteLabelRequest {
-	return ApiDeleteLabelRequest{
+	return DeleteLabelRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1102,7 +1889,7 @@ func (a *APIClient) DeleteLabel(ctx context.Context, projectId string, zoneId st
 }
 
 func (a *APIClient) DeleteLabelExecute(ctx context.Context, projectId string, zoneId string, key string) (*DeleteLabelResponse, error) {
-	r := ApiDeleteLabelRequest{
+	r := DeleteLabelRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1112,14 +1899,14 @@ func (a *APIClient) DeleteLabelExecute(ctx context.Context, projectId string, zo
 	return r.Execute()
 }
 
-type ApiDeleteMoveCodeRequest struct {
+type DeleteMoveCodeRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	zoneId     string
 }
 
-func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
+func (r DeleteMoveCodeRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -1127,7 +1914,11 @@ func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteMoveCode")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteMoveCode")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1157,7 +1948,7 @@ func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1167,7 +1958,7 @@ func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1191,7 +1982,7 @@ func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1202,7 +1993,7 @@ func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1213,7 +2004,7 @@ func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1224,7 +2015,7 @@ func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1235,7 +2026,7 @@ func (r ApiDeleteMoveCodeRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1259,7 +2050,7 @@ delete/invalidate a move code
 	@return ApiDeleteMoveCodeRequest
 */
 func (a *APIClient) DeleteMoveCode(ctx context.Context, projectId string, zoneId string) ApiDeleteMoveCodeRequest {
-	return ApiDeleteMoveCodeRequest{
+	return DeleteMoveCodeRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1268,7 +2059,7 @@ func (a *APIClient) DeleteMoveCode(ctx context.Context, projectId string, zoneId
 }
 
 func (a *APIClient) DeleteMoveCodeExecute(ctx context.Context, projectId string, zoneId string) (*Message, error) {
-	r := ApiDeleteMoveCodeRequest{
+	r := DeleteMoveCodeRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1277,7 +2068,7 @@ func (a *APIClient) DeleteMoveCodeExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiDeleteRecordSetRequest struct {
+type DeleteRecordSetRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -1285,7 +2076,7 @@ type ApiDeleteRecordSetRequest struct {
 	rrSetId    string
 }
 
-func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
+func (r DeleteRecordSetRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -1293,7 +2084,11 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteRecordSet")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1324,7 +2119,7 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1334,7 +2129,7 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1358,7 +2153,7 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1369,7 +2164,7 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1380,7 +2175,7 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1391,7 +2186,7 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1402,7 +2197,7 @@ func (r ApiDeleteRecordSetRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1427,7 +2222,7 @@ Delete a record set
 	@return ApiDeleteRecordSetRequest
 */
 func (a *APIClient) DeleteRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiDeleteRecordSetRequest {
-	return ApiDeleteRecordSetRequest{
+	return DeleteRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1437,7 +2232,7 @@ func (a *APIClient) DeleteRecordSet(ctx context.Context, projectId string, zoneI
 }
 
 func (a *APIClient) DeleteRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error) {
-	r := ApiDeleteRecordSetRequest{
+	r := DeleteRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1447,14 +2242,14 @@ func (a *APIClient) DeleteRecordSetExecute(ctx context.Context, projectId string
 	return r.Execute()
 }
 
-type ApiDeleteZoneRequest struct {
+type DeleteZoneRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	zoneId     string
 }
 
-func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
+func (r DeleteZoneRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -1462,7 +2257,11 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteZone")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1492,7 +2291,7 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1502,7 +2301,7 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1526,7 +2325,7 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1537,7 +2336,7 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1548,7 +2347,7 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1559,7 +2358,7 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1570,7 +2369,7 @@ func (r ApiDeleteZoneRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1594,7 +2393,7 @@ Delete a zone
 	@return ApiDeleteZoneRequest
 */
 func (a *APIClient) DeleteZone(ctx context.Context, projectId string, zoneId string) ApiDeleteZoneRequest {
-	return ApiDeleteZoneRequest{
+	return DeleteZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1603,7 +2402,7 @@ func (a *APIClient) DeleteZone(ctx context.Context, projectId string, zoneId str
 }
 
 func (a *APIClient) DeleteZoneExecute(ctx context.Context, projectId string, zoneId string) (*Message, error) {
-	r := ApiDeleteZoneRequest{
+	r := DeleteZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1612,7 +2411,7 @@ func (a *APIClient) DeleteZoneExecute(ctx context.Context, projectId string, zon
 	return r.Execute()
 }
 
-type ApiExportRecordSetsRequest struct {
+type ExportRecordSetsRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	projectId               string
@@ -1622,12 +2421,12 @@ type ApiExportRecordSetsRequest struct {
 
 // export configuration
 
-func (r ApiExportRecordSetsRequest) ExportRecordSetsPayload(exportRecordSetsPayload ExportRecordSetsPayload) ApiExportRecordSetsRequest {
+func (r ExportRecordSetsRequest) ExportRecordSetsPayload(exportRecordSetsPayload ExportRecordSetsPayload) ApiExportRecordSetsRequest {
 	r.exportRecordSetsPayload = &exportRecordSetsPayload
 	return r
 }
 
-func (r ApiExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
+func (r ExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1635,7 +2434,11 @@ func (r ApiExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 		localVarReturnValue *ZoneDataExchange
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ExportRecordSets")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ExportRecordSets")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1670,7 +2473,7 @@ func (r ApiExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 	}
 	// body params
 	localVarPostBody = r.exportRecordSetsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1680,7 +2483,7 @@ func (r ApiExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1704,7 +2507,7 @@ func (r ApiExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1715,7 +2518,7 @@ func (r ApiExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1726,7 +2529,7 @@ func (r ApiExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1737,7 +2540,7 @@ func (r ApiExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1761,7 +2564,7 @@ Export Zone
 	@return ApiExportRecordSetsRequest
 */
 func (a *APIClient) ExportRecordSets(ctx context.Context, projectId string, zoneId string) ApiExportRecordSetsRequest {
-	return ApiExportRecordSetsRequest{
+	return ExportRecordSetsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1770,7 +2573,7 @@ func (a *APIClient) ExportRecordSets(ctx context.Context, projectId string, zone
 }
 
 func (a *APIClient) ExportRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ZoneDataExchange, error) {
-	r := ApiExportRecordSetsRequest{
+	r := ExportRecordSetsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1779,7 +2582,7 @@ func (a *APIClient) ExportRecordSetsExecute(ctx context.Context, projectId strin
 	return r.Execute()
 }
 
-type ApiGetRecordSetRequest struct {
+type GetRecordSetRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -1787,7 +2590,7 @@ type ApiGetRecordSetRequest struct {
 	rrSetId    string
 }
 
-func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
+func (r GetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1795,7 +2598,11 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		localVarReturnValue *RecordSetResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetRecordSet")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1826,7 +2633,7 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1836,7 +2643,7 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1860,7 +2667,7 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1871,7 +2678,7 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1882,7 +2689,7 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1893,7 +2700,7 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1904,7 +2711,7 @@ func (r ApiGetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1929,7 +2736,7 @@ Get rrset
 	@return ApiGetRecordSetRequest
 */
 func (a *APIClient) GetRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiGetRecordSetRequest {
-	return ApiGetRecordSetRequest{
+	return GetRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1939,7 +2746,7 @@ func (a *APIClient) GetRecordSet(ctx context.Context, projectId string, zoneId s
 }
 
 func (a *APIClient) GetRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*RecordSetResponse, error) {
-	r := ApiGetRecordSetRequest{
+	r := GetRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1949,14 +2756,14 @@ func (a *APIClient) GetRecordSetExecute(ctx context.Context, projectId string, z
 	return r.Execute()
 }
 
-type ApiGetZoneRequest struct {
+type GetZoneRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	zoneId     string
 }
 
-func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
+func (r GetZoneRequest) Execute() (*ZoneResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1964,7 +2771,11 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 		localVarReturnValue *ZoneResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetZone")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1994,7 +2805,7 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2004,7 +2815,7 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2028,7 +2839,7 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2039,7 +2850,7 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2050,7 +2861,7 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2061,7 +2872,7 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2072,7 +2883,7 @@ func (r ApiGetZoneRequest) Execute() (*ZoneResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2096,7 +2907,7 @@ Get zone
 	@return ApiGetZoneRequest
 */
 func (a *APIClient) GetZone(ctx context.Context, projectId string, zoneId string) ApiGetZoneRequest {
-	return ApiGetZoneRequest{
+	return GetZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2105,7 +2916,7 @@ func (a *APIClient) GetZone(ctx context.Context, projectId string, zoneId string
 }
 
 func (a *APIClient) GetZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error) {
-	r := ApiGetZoneRequest{
+	r := GetZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2114,7 +2925,7 @@ func (a *APIClient) GetZoneExecute(ctx context.Context, projectId string, zoneId
 	return r.Execute()
 }
 
-type ApiImportRecordSetsRequest struct {
+type ImportRecordSetsRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	projectId               string
@@ -2126,26 +2937,26 @@ type ApiImportRecordSetsRequest struct {
 
 // accepts all response bodies for the export endpoint
 
-func (r ApiImportRecordSetsRequest) ImportRecordSetsPayload(importRecordSetsPayload ImportRecordSetsPayload) ApiImportRecordSetsRequest {
+func (r ImportRecordSetsRequest) ImportRecordSetsPayload(importRecordSetsPayload ImportRecordSetsPayload) ApiImportRecordSetsRequest {
 	r.importRecordSetsPayload = &importRecordSetsPayload
 	return r
 }
 
 // format of the data to import
 
-func (r ApiImportRecordSetsRequest) Format(format string) ApiImportRecordSetsRequest {
+func (r ImportRecordSetsRequest) Format(format string) ApiImportRecordSetsRequest {
 	r.format = &format
 	return r
 }
 
 // type of the zone import
 
-func (r ApiImportRecordSetsRequest) ImportType(importType string) ApiImportRecordSetsRequest {
+func (r ImportRecordSetsRequest) ImportType(importType string) ApiImportRecordSetsRequest {
 	r.importType = &importType
 	return r
 }
 
-func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error) {
+func (r ImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -2153,7 +2964,11 @@ func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error)
 		localVarReturnValue *ImportRecordSetsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ImportRecordSets")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ImportRecordSets")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2194,7 +3009,7 @@ func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error)
 	}
 	// body params
 	localVarPostBody = r.importRecordSetsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2204,7 +3019,7 @@ func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error)
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2228,7 +3043,7 @@ func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2239,7 +3054,7 @@ func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2250,7 +3065,7 @@ func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2261,7 +3076,7 @@ func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2272,7 +3087,7 @@ func (r ApiImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error)
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2296,7 +3111,7 @@ Imports a zone and overwrites/deletes/inserts all desired records
 	@return ApiImportRecordSetsRequest
 */
 func (a *APIClient) ImportRecordSets(ctx context.Context, projectId string, zoneId string) ApiImportRecordSetsRequest {
-	return ApiImportRecordSetsRequest{
+	return ImportRecordSetsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2305,7 +3120,7 @@ func (a *APIClient) ImportRecordSets(ctx context.Context, projectId string, zone
 }
 
 func (a *APIClient) ImportRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ImportRecordSetsResponse, error) {
-	r := ApiImportRecordSetsRequest{
+	r := ImportRecordSetsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2314,14 +3129,14 @@ func (a *APIClient) ImportRecordSetsExecute(ctx context.Context, projectId strin
 	return r.Execute()
 }
 
-type ApiListLabelsRequest struct {
+type ListLabelsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	zoneId     string
 }
 
-func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
+func (r ListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -2329,7 +3144,11 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 		localVarReturnValue *ListLabelsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListLabels")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListLabels")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2359,7 +3178,7 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2369,7 +3188,7 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2393,7 +3212,7 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2404,7 +3223,7 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2415,7 +3234,7 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2426,7 +3245,7 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2437,7 +3256,7 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2448,7 +3267,7 @@ func (r ApiListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2472,7 +3291,7 @@ All Labels
 	@return ApiListLabelsRequest
 */
 func (a *APIClient) ListLabels(ctx context.Context, projectId string, zoneId string) ApiListLabelsRequest {
-	return ApiListLabelsRequest{
+	return ListLabelsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2481,7 +3300,7 @@ func (a *APIClient) ListLabels(ctx context.Context, projectId string, zoneId str
 }
 
 func (a *APIClient) ListLabelsExecute(ctx context.Context, projectId string, zoneId string) (*ListLabelsResponse, error) {
-	r := ApiListLabelsRequest{
+	r := ListLabelsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2490,7 +3309,7 @@ func (a *APIClient) ListLabelsExecute(ctx context.Context, projectId string, zon
 	return r.Execute()
 }
 
-type ApiListRecordSetsRequest struct {
+type ListRecordSetsRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	projectId               string
@@ -2531,229 +3350,229 @@ type ApiListRecordSetsRequest struct {
 
 // page
 
-func (r ApiListRecordSetsRequest) Page(page int32) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) Page(page int32) ApiListRecordSetsRequest {
 	r.page = &page
 	return r
 }
 
 // page size
 
-func (r ApiListRecordSetsRequest) PageSize(pageSize int32) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) PageSize(pageSize int32) ApiListRecordSetsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // filter name equal
 
-func (r ApiListRecordSetsRequest) NameEq(nameEq string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) NameEq(nameEq string) ApiListRecordSetsRequest {
 	r.nameEq = &nameEq
 	return r
 }
 
 // filter name like
 
-func (r ApiListRecordSetsRequest) NameLike(nameLike string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) NameLike(nameLike string) ApiListRecordSetsRequest {
 	r.nameLike = &nameLike
 	return r
 }
 
 // filter type
 
-func (r ApiListRecordSetsRequest) TypeEq(typeEq string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) TypeEq(typeEq string) ApiListRecordSetsRequest {
 	r.typeEq = &typeEq
 	return r
 }
 
 // filter state
 
-func (r ApiListRecordSetsRequest) StateEq(stateEq string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) StateEq(stateEq string) ApiListRecordSetsRequest {
 	r.stateEq = &stateEq
 	return r
 }
 
 // filter state
 
-func (r ApiListRecordSetsRequest) StateNeq(stateNeq string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) StateNeq(stateNeq string) ApiListRecordSetsRequest {
 	r.stateNeq = &stateNeq
 	return r
 }
 
 // filter active equal
 
-func (r ApiListRecordSetsRequest) ActiveEq(activeEq bool) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) ActiveEq(activeEq bool) ApiListRecordSetsRequest {
 	r.activeEq = &activeEq
 	return r
 }
 
 // filter creation started greater with utc timestamp
 
-func (r ApiListRecordSetsRequest) CreationStartedGt(creationStartedGt string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) CreationStartedGt(creationStartedGt string) ApiListRecordSetsRequest {
 	r.creationStartedGt = &creationStartedGt
 	return r
 }
 
 // filter creation started lesser with utc timestamp
 
-func (r ApiListRecordSetsRequest) CreationStartedLt(creationStartedLt string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) CreationStartedLt(creationStartedLt string) ApiListRecordSetsRequest {
 	r.creationStartedLt = &creationStartedLt
 	return r
 }
 
 // filter creation started greater equal with utc timestamp
 
-func (r ApiListRecordSetsRequest) CreationStartedGte(creationStartedGte string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) CreationStartedGte(creationStartedGte string) ApiListRecordSetsRequest {
 	r.creationStartedGte = &creationStartedGte
 	return r
 }
 
 // filter creation started lesser equal with utc timestamp
 
-func (r ApiListRecordSetsRequest) CreationStartedLte(creationStartedLte string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) CreationStartedLte(creationStartedLte string) ApiListRecordSetsRequest {
 	r.creationStartedLte = &creationStartedLte
 	return r
 }
 
 // filter creation finished greater with utc timestamp
 
-func (r ApiListRecordSetsRequest) CreationFinishedGt(creationFinishedGt string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) CreationFinishedGt(creationFinishedGt string) ApiListRecordSetsRequest {
 	r.creationFinishedGt = &creationFinishedGt
 	return r
 }
 
 // filter creation finished lesser with utc timestamp
 
-func (r ApiListRecordSetsRequest) CreationFinishedLt(creationFinishedLt string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) CreationFinishedLt(creationFinishedLt string) ApiListRecordSetsRequest {
 	r.creationFinishedLt = &creationFinishedLt
 	return r
 }
 
 // filter creation finished greater equal with utc timestamp
 
-func (r ApiListRecordSetsRequest) CreationFinishedGte(creationFinishedGte string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) CreationFinishedGte(creationFinishedGte string) ApiListRecordSetsRequest {
 	r.creationFinishedGte = &creationFinishedGte
 	return r
 }
 
 // filter creation finished lesser equal with utc timestamp
 
-func (r ApiListRecordSetsRequest) CreationFinishedLte(creationFinishedLte string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) CreationFinishedLte(creationFinishedLte string) ApiListRecordSetsRequest {
 	r.creationFinishedLte = &creationFinishedLte
 	return r
 }
 
 // filter update started greater with utc timestamp
 
-func (r ApiListRecordSetsRequest) UpdateStartedGt(updateStartedGt string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) UpdateStartedGt(updateStartedGt string) ApiListRecordSetsRequest {
 	r.updateStartedGt = &updateStartedGt
 	return r
 }
 
 // filter update started lesser with utc timestamp
 
-func (r ApiListRecordSetsRequest) UpdateStartedLt(updateStartedLt string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) UpdateStartedLt(updateStartedLt string) ApiListRecordSetsRequest {
 	r.updateStartedLt = &updateStartedLt
 	return r
 }
 
 // filter update started greater equal with utc timestamp
 
-func (r ApiListRecordSetsRequest) UpdateStartedGte(updateStartedGte string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) UpdateStartedGte(updateStartedGte string) ApiListRecordSetsRequest {
 	r.updateStartedGte = &updateStartedGte
 	return r
 }
 
 // filter update started lesser equal with utc timestamp
 
-func (r ApiListRecordSetsRequest) UpdateStartedLte(updateStartedLte string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) UpdateStartedLte(updateStartedLte string) ApiListRecordSetsRequest {
 	r.updateStartedLte = &updateStartedLte
 	return r
 }
 
 // filter update finished greater with utc timestamp
 
-func (r ApiListRecordSetsRequest) UpdateFinishedGt(updateFinishedGt string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) UpdateFinishedGt(updateFinishedGt string) ApiListRecordSetsRequest {
 	r.updateFinishedGt = &updateFinishedGt
 	return r
 }
 
 // filter update finished lesser with utc timestamp
 
-func (r ApiListRecordSetsRequest) UpdateFinishedLt(updateFinishedLt string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) UpdateFinishedLt(updateFinishedLt string) ApiListRecordSetsRequest {
 	r.updateFinishedLt = &updateFinishedLt
 	return r
 }
 
 // filter update finished greater equal with utc timestamp
 
-func (r ApiListRecordSetsRequest) UpdateFinishedGte(updateFinishedGte string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) UpdateFinishedGte(updateFinishedGte string) ApiListRecordSetsRequest {
 	r.updateFinishedGte = &updateFinishedGte
 	return r
 }
 
 // filter update finished lesser equal with utc timestamp
 
-func (r ApiListRecordSetsRequest) UpdateFinishedLte(updateFinishedLte string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) UpdateFinishedLte(updateFinishedLte string) ApiListRecordSetsRequest {
 	r.updateFinishedLte = &updateFinishedLte
 	return r
 }
 
 // order by name
 
-func (r ApiListRecordSetsRequest) OrderByName(orderByName string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) OrderByName(orderByName string) ApiListRecordSetsRequest {
 	r.orderByName = &orderByName
 	return r
 }
 
 // order by creationStarted
 
-func (r ApiListRecordSetsRequest) OrderByCreationStarted(orderByCreationStarted string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) OrderByCreationStarted(orderByCreationStarted string) ApiListRecordSetsRequest {
 	r.orderByCreationStarted = &orderByCreationStarted
 	return r
 }
 
 // order by creationFinished
 
-func (r ApiListRecordSetsRequest) OrderByCreationFinished(orderByCreationFinished string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) OrderByCreationFinished(orderByCreationFinished string) ApiListRecordSetsRequest {
 	r.orderByCreationFinished = &orderByCreationFinished
 	return r
 }
 
 // order by updateStarted
 
-func (r ApiListRecordSetsRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiListRecordSetsRequest {
 	r.orderByUpdateStarted = &orderByUpdateStarted
 	return r
 }
 
 // order by updateFinished
 
-func (r ApiListRecordSetsRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiListRecordSetsRequest {
 	r.orderByUpdateFinished = &orderByUpdateFinished
 	return r
 }
 
 // order by type
 
-func (r ApiListRecordSetsRequest) OrderByType(orderByType string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) OrderByType(orderByType string) ApiListRecordSetsRequest {
 	r.orderByType = &orderByType
 	return r
 }
 
 // order by state
 
-func (r ApiListRecordSetsRequest) OrderByState(orderByState string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) OrderByState(orderByState string) ApiListRecordSetsRequest {
 	r.orderByState = &orderByState
 	return r
 }
 
 // order by record count
 
-func (r ApiListRecordSetsRequest) OrderByRecordCount(orderByRecordCount string) ApiListRecordSetsRequest {
+func (r ListRecordSetsRequest) OrderByRecordCount(orderByRecordCount string) ApiListRecordSetsRequest {
 	r.orderByRecordCount = &orderByRecordCount
 	return r
 }
 
-func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
+func (r ListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -2761,7 +3580,11 @@ func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 		localVarReturnValue *ListRecordSetsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListRecordSets")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListRecordSets")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2887,7 +3710,7 @@ func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2897,7 +3720,7 @@ func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2921,7 +3744,7 @@ func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2932,7 +3755,7 @@ func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2943,7 +3766,7 @@ func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2954,7 +3777,7 @@ func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2965,7 +3788,7 @@ func (r ApiListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2989,7 +3812,7 @@ All RRSet
 	@return ApiListRecordSetsRequest
 */
 func (a *APIClient) ListRecordSets(ctx context.Context, projectId string, zoneId string) ApiListRecordSetsRequest {
-	return ApiListRecordSetsRequest{
+	return ListRecordSetsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2998,7 +3821,7 @@ func (a *APIClient) ListRecordSets(ctx context.Context, projectId string, zoneId
 }
 
 func (a *APIClient) ListRecordSetsExecute(ctx context.Context, projectId string, zoneId string) (*ListRecordSetsResponse, error) {
-	r := ApiListRecordSetsRequest{
+	r := ListRecordSetsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -3007,7 +3830,7 @@ func (a *APIClient) ListRecordSetsExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiListZonesRequest struct {
+type ListZonesRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	projectId               string
@@ -3059,313 +3882,313 @@ type ApiListZonesRequest struct {
 
 // page
 
-func (r ApiListZonesRequest) Page(page int32) ApiListZonesRequest {
+func (r ListZonesRequest) Page(page int32) ApiListZonesRequest {
 	r.page = &page
 	return r
 }
 
 // page size
 
-func (r ApiListZonesRequest) PageSize(pageSize int32) ApiListZonesRequest {
+func (r ListZonesRequest) PageSize(pageSize int32) ApiListZonesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // filter dns name equal
 
-func (r ApiListZonesRequest) DnsNameEq(dnsNameEq string) ApiListZonesRequest {
+func (r ListZonesRequest) DnsNameEq(dnsNameEq string) ApiListZonesRequest {
 	r.dnsNameEq = &dnsNameEq
 	return r
 }
 
 // filter dns name like
 
-func (r ApiListZonesRequest) DnsNameLike(dnsNameLike string) ApiListZonesRequest {
+func (r ListZonesRequest) DnsNameLike(dnsNameLike string) ApiListZonesRequest {
 	r.dnsNameLike = &dnsNameLike
 	return r
 }
 
 // filter type
 
-func (r ApiListZonesRequest) TypeEq(typeEq string) ApiListZonesRequest {
+func (r ListZonesRequest) TypeEq(typeEq string) ApiListZonesRequest {
 	r.typeEq = &typeEq
 	return r
 }
 
 // filter name equal
 
-func (r ApiListZonesRequest) NameEq(nameEq string) ApiListZonesRequest {
+func (r ListZonesRequest) NameEq(nameEq string) ApiListZonesRequest {
 	r.nameEq = &nameEq
 	return r
 }
 
 // filter name not equal
 
-func (r ApiListZonesRequest) NameNeq(nameNeq string) ApiListZonesRequest {
+func (r ListZonesRequest) NameNeq(nameNeq string) ApiListZonesRequest {
 	r.nameNeq = &nameNeq
 	return r
 }
 
 // filter name like
 
-func (r ApiListZonesRequest) NameLike(nameLike string) ApiListZonesRequest {
+func (r ListZonesRequest) NameLike(nameLike string) ApiListZonesRequest {
 	r.nameLike = &nameLike
 	return r
 }
 
 // filter description equal
 
-func (r ApiListZonesRequest) DescriptionEq(descriptionEq string) ApiListZonesRequest {
+func (r ListZonesRequest) DescriptionEq(descriptionEq string) ApiListZonesRequest {
 	r.descriptionEq = &descriptionEq
 	return r
 }
 
 // filter description not equal
 
-func (r ApiListZonesRequest) DescriptionNeq(descriptionNeq string) ApiListZonesRequest {
+func (r ListZonesRequest) DescriptionNeq(descriptionNeq string) ApiListZonesRequest {
 	r.descriptionNeq = &descriptionNeq
 	return r
 }
 
 // filter description like
 
-func (r ApiListZonesRequest) DescriptionLike(descriptionLike string) ApiListZonesRequest {
+func (r ListZonesRequest) DescriptionLike(descriptionLike string) ApiListZonesRequest {
 	r.descriptionLike = &descriptionLike
 	return r
 }
 
 // filter state
 
-func (r ApiListZonesRequest) StateEq(stateEq string) ApiListZonesRequest {
+func (r ListZonesRequest) StateEq(stateEq string) ApiListZonesRequest {
 	r.stateEq = &stateEq
 	return r
 }
 
 // filter state
 
-func (r ApiListZonesRequest) StateNeq(stateNeq string) ApiListZonesRequest {
+func (r ListZonesRequest) StateNeq(stateNeq string) ApiListZonesRequest {
 	r.stateNeq = &stateNeq
 	return r
 }
 
 // filter primary name server equal
 
-func (r ApiListZonesRequest) PrimaryNameServerEq(primaryNameServerEq string) ApiListZonesRequest {
+func (r ListZonesRequest) PrimaryNameServerEq(primaryNameServerEq string) ApiListZonesRequest {
 	r.primaryNameServerEq = &primaryNameServerEq
 	return r
 }
 
 // filter primary name server like
 
-func (r ApiListZonesRequest) PrimaryNameServerLike(primaryNameServerLike string) ApiListZonesRequest {
+func (r ListZonesRequest) PrimaryNameServerLike(primaryNameServerLike string) ApiListZonesRequest {
 	r.primaryNameServerLike = &primaryNameServerLike
 	return r
 }
 
 // filter reverse zone equal
 
-func (r ApiListZonesRequest) IsReverseZoneEq(isReverseZoneEq bool) ApiListZonesRequest {
+func (r ListZonesRequest) IsReverseZoneEq(isReverseZoneEq bool) ApiListZonesRequest {
 	r.isReverseZoneEq = &isReverseZoneEq
 	return r
 }
 
 // filter active equal
 
-func (r ApiListZonesRequest) ActiveEq(activeEq bool) ApiListZonesRequest {
+func (r ListZonesRequest) ActiveEq(activeEq bool) ApiListZonesRequest {
 	r.activeEq = &activeEq
 	return r
 }
 
 // filter creation started greater with utc timestamp
 
-func (r ApiListZonesRequest) CreationStartedGt(creationStartedGt string) ApiListZonesRequest {
+func (r ListZonesRequest) CreationStartedGt(creationStartedGt string) ApiListZonesRequest {
 	r.creationStartedGt = &creationStartedGt
 	return r
 }
 
 // filter creation started lesser with utc timestamp
 
-func (r ApiListZonesRequest) CreationStartedLt(creationStartedLt string) ApiListZonesRequest {
+func (r ListZonesRequest) CreationStartedLt(creationStartedLt string) ApiListZonesRequest {
 	r.creationStartedLt = &creationStartedLt
 	return r
 }
 
 // filter creation started greater equal with utc timestamp
 
-func (r ApiListZonesRequest) CreationStartedGte(creationStartedGte string) ApiListZonesRequest {
+func (r ListZonesRequest) CreationStartedGte(creationStartedGte string) ApiListZonesRequest {
 	r.creationStartedGte = &creationStartedGte
 	return r
 }
 
 // filter creation started lesser equal with utc timestamp
 
-func (r ApiListZonesRequest) CreationStartedLte(creationStartedLte string) ApiListZonesRequest {
+func (r ListZonesRequest) CreationStartedLte(creationStartedLte string) ApiListZonesRequest {
 	r.creationStartedLte = &creationStartedLte
 	return r
 }
 
 // filter creation finished greater with utc timestamp
 
-func (r ApiListZonesRequest) CreationFinishedGt(creationFinishedGt string) ApiListZonesRequest {
+func (r ListZonesRequest) CreationFinishedGt(creationFinishedGt string) ApiListZonesRequest {
 	r.creationFinishedGt = &creationFinishedGt
 	return r
 }
 
 // filter creation finished lesser with utc timestamp
 
-func (r ApiListZonesRequest) CreationFinishedLt(creationFinishedLt string) ApiListZonesRequest {
+func (r ListZonesRequest) CreationFinishedLt(creationFinishedLt string) ApiListZonesRequest {
 	r.creationFinishedLt = &creationFinishedLt
 	return r
 }
 
 // filter creation finished greater equal with utc timestamp
 
-func (r ApiListZonesRequest) CreationFinishedGte(creationFinishedGte string) ApiListZonesRequest {
+func (r ListZonesRequest) CreationFinishedGte(creationFinishedGte string) ApiListZonesRequest {
 	r.creationFinishedGte = &creationFinishedGte
 	return r
 }
 
 // filter creation finished lesser equal with utc timestamp
 
-func (r ApiListZonesRequest) CreationFinishedLte(creationFinishedLte string) ApiListZonesRequest {
+func (r ListZonesRequest) CreationFinishedLte(creationFinishedLte string) ApiListZonesRequest {
 	r.creationFinishedLte = &creationFinishedLte
 	return r
 }
 
 // filter update started greater with utc timestamp
 
-func (r ApiListZonesRequest) UpdateStartedGt(updateStartedGt string) ApiListZonesRequest {
+func (r ListZonesRequest) UpdateStartedGt(updateStartedGt string) ApiListZonesRequest {
 	r.updateStartedGt = &updateStartedGt
 	return r
 }
 
 // filter update started lesser with utc timestamp
 
-func (r ApiListZonesRequest) UpdateStartedLt(updateStartedLt string) ApiListZonesRequest {
+func (r ListZonesRequest) UpdateStartedLt(updateStartedLt string) ApiListZonesRequest {
 	r.updateStartedLt = &updateStartedLt
 	return r
 }
 
 // filter update started greater equal with utc timestamp
 
-func (r ApiListZonesRequest) UpdateStartedGte(updateStartedGte string) ApiListZonesRequest {
+func (r ListZonesRequest) UpdateStartedGte(updateStartedGte string) ApiListZonesRequest {
 	r.updateStartedGte = &updateStartedGte
 	return r
 }
 
 // filter update started lesser equal with utc timestamp
 
-func (r ApiListZonesRequest) UpdateStartedLte(updateStartedLte string) ApiListZonesRequest {
+func (r ListZonesRequest) UpdateStartedLte(updateStartedLte string) ApiListZonesRequest {
 	r.updateStartedLte = &updateStartedLte
 	return r
 }
 
 // filter update finished greater with utc timestamp
 
-func (r ApiListZonesRequest) UpdateFinishedGt(updateFinishedGt string) ApiListZonesRequest {
+func (r ListZonesRequest) UpdateFinishedGt(updateFinishedGt string) ApiListZonesRequest {
 	r.updateFinishedGt = &updateFinishedGt
 	return r
 }
 
 // filter update finished lesser with utc timestamp
 
-func (r ApiListZonesRequest) UpdateFinishedLt(updateFinishedLt string) ApiListZonesRequest {
+func (r ListZonesRequest) UpdateFinishedLt(updateFinishedLt string) ApiListZonesRequest {
 	r.updateFinishedLt = &updateFinishedLt
 	return r
 }
 
 // filter update finished greater equal with utc timestamp
 
-func (r ApiListZonesRequest) UpdateFinishedGte(updateFinishedGte string) ApiListZonesRequest {
+func (r ListZonesRequest) UpdateFinishedGte(updateFinishedGte string) ApiListZonesRequest {
 	r.updateFinishedGte = &updateFinishedGte
 	return r
 }
 
 // filter update finished lesser equal with utc timestamp
 
-func (r ApiListZonesRequest) UpdateFinishedLte(updateFinishedLte string) ApiListZonesRequest {
+func (r ListZonesRequest) UpdateFinishedLte(updateFinishedLte string) ApiListZonesRequest {
 	r.updateFinishedLte = &updateFinishedLte
 	return r
 }
 
 // filter zones according to the zone label keys.
 
-func (r ApiListZonesRequest) LabelKeyEq(labelKeyEq []string) ApiListZonesRequest {
+func (r ListZonesRequest) LabelKeyEq(labelKeyEq []string) ApiListZonesRequest {
 	r.labelKeyEq = &labelKeyEq
 	return r
 }
 
 // filter zones according to the zone label values.
 
-func (r ApiListZonesRequest) LabelValueEq(labelValueEq []string) ApiListZonesRequest {
+func (r ListZonesRequest) LabelValueEq(labelValueEq []string) ApiListZonesRequest {
 	r.labelValueEq = &labelValueEq
 	return r
 }
 
 // order by dns name
 
-func (r ApiListZonesRequest) OrderByDnsName(orderByDnsName string) ApiListZonesRequest {
+func (r ListZonesRequest) OrderByDnsName(orderByDnsName string) ApiListZonesRequest {
 	r.orderByDnsName = &orderByDnsName
 	return r
 }
 
 // order by name
 
-func (r ApiListZonesRequest) OrderByName(orderByName string) ApiListZonesRequest {
+func (r ListZonesRequest) OrderByName(orderByName string) ApiListZonesRequest {
 	r.orderByName = &orderByName
 	return r
 }
 
 // order by record count
 
-func (r ApiListZonesRequest) OrderByRecordCount(orderByRecordCount string) ApiListZonesRequest {
+func (r ListZonesRequest) OrderByRecordCount(orderByRecordCount string) ApiListZonesRequest {
 	r.orderByRecordCount = &orderByRecordCount
 	return r
 }
 
 // order by type
 
-func (r ApiListZonesRequest) OrderByType(orderByType string) ApiListZonesRequest {
+func (r ListZonesRequest) OrderByType(orderByType string) ApiListZonesRequest {
 	r.orderByType = &orderByType
 	return r
 }
 
 // order by description
 
-func (r ApiListZonesRequest) OrderByDescription(orderByDescription string) ApiListZonesRequest {
+func (r ListZonesRequest) OrderByDescription(orderByDescription string) ApiListZonesRequest {
 	r.orderByDescription = &orderByDescription
 	return r
 }
 
 // order by creationStarted
 
-func (r ApiListZonesRequest) OrderByCreationStarted(orderByCreationStarted string) ApiListZonesRequest {
+func (r ListZonesRequest) OrderByCreationStarted(orderByCreationStarted string) ApiListZonesRequest {
 	r.orderByCreationStarted = &orderByCreationStarted
 	return r
 }
 
 // order by creationFinished
 
-func (r ApiListZonesRequest) OrderByCreationFinished(orderByCreationFinished string) ApiListZonesRequest {
+func (r ListZonesRequest) OrderByCreationFinished(orderByCreationFinished string) ApiListZonesRequest {
 	r.orderByCreationFinished = &orderByCreationFinished
 	return r
 }
 
 // order by updateStarted
 
-func (r ApiListZonesRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiListZonesRequest {
+func (r ListZonesRequest) OrderByUpdateStarted(orderByUpdateStarted string) ApiListZonesRequest {
 	r.orderByUpdateStarted = &orderByUpdateStarted
 	return r
 }
 
 // order by updateFinished
 
-func (r ApiListZonesRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiListZonesRequest {
+func (r ListZonesRequest) OrderByUpdateFinished(orderByUpdateFinished string) ApiListZonesRequest {
 	r.orderByUpdateFinished = &orderByUpdateFinished
 	return r
 }
 
-func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
+func (r ListZonesRequest) Execute() (*ListZonesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -3373,7 +4196,11 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 		localVarReturnValue *ListZonesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListZones")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListZones")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3534,7 +4361,7 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3544,7 +4371,7 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3568,7 +4395,7 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3579,7 +4406,7 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3590,7 +4417,7 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3601,7 +4428,7 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3612,7 +4439,7 @@ func (r ApiListZonesRequest) Execute() (*ListZonesResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3635,7 +4462,7 @@ All zone
 	@return ApiListZonesRequest
 */
 func (a *APIClient) ListZones(ctx context.Context, projectId string) ApiListZonesRequest {
-	return ApiListZonesRequest{
+	return ListZonesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -3643,7 +4470,7 @@ func (a *APIClient) ListZones(ctx context.Context, projectId string) ApiListZone
 }
 
 func (a *APIClient) ListZonesExecute(ctx context.Context, projectId string) (*ListZonesResponse, error) {
-	r := ApiListZonesRequest{
+	r := ListZonesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -3651,7 +4478,7 @@ func (a *APIClient) ListZonesExecute(ctx context.Context, projectId string) (*Li
 	return r.Execute()
 }
 
-type ApiMoveZoneRequest struct {
+type MoveZoneRequest struct {
 	ctx             context.Context
 	apiService      *DefaultApiService
 	projectId       string
@@ -3660,12 +4487,12 @@ type ApiMoveZoneRequest struct {
 
 // information about the move
 
-func (r ApiMoveZoneRequest) MoveZonePayload(moveZonePayload MoveZonePayload) ApiMoveZoneRequest {
+func (r MoveZoneRequest) MoveZonePayload(moveZonePayload MoveZonePayload) ApiMoveZoneRequest {
 	r.moveZonePayload = &moveZonePayload
 	return r
 }
 
-func (r ApiMoveZoneRequest) Execute() (*Message, error) {
+func (r MoveZoneRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -3673,7 +4500,11 @@ func (r ApiMoveZoneRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MoveZone")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MoveZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3707,7 +4538,7 @@ func (r ApiMoveZoneRequest) Execute() (*Message, error) {
 	}
 	// body params
 	localVarPostBody = r.moveZonePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3717,7 +4548,7 @@ func (r ApiMoveZoneRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3741,7 +4572,7 @@ func (r ApiMoveZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3752,7 +4583,7 @@ func (r ApiMoveZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3763,7 +4594,7 @@ func (r ApiMoveZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3774,7 +4605,7 @@ func (r ApiMoveZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3785,7 +4616,7 @@ func (r ApiMoveZoneRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3808,7 +4639,7 @@ move zone from one project to another
 	@return ApiMoveZoneRequest
 */
 func (a *APIClient) MoveZone(ctx context.Context, projectId string) ApiMoveZoneRequest {
-	return ApiMoveZoneRequest{
+	return MoveZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -3816,7 +4647,7 @@ func (a *APIClient) MoveZone(ctx context.Context, projectId string) ApiMoveZoneR
 }
 
 func (a *APIClient) MoveZoneExecute(ctx context.Context, projectId string) (*Message, error) {
-	r := ApiMoveZoneRequest{
+	r := MoveZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -3824,7 +4655,7 @@ func (a *APIClient) MoveZoneExecute(ctx context.Context, projectId string) (*Mes
 	return r.Execute()
 }
 
-type ApiPartialUpdateRecordRequest struct {
+type PartialUpdateRecordRequest struct {
 	ctx                        context.Context
 	apiService                 *DefaultApiService
 	projectId                  string
@@ -3835,12 +4666,12 @@ type ApiPartialUpdateRecordRequest struct {
 
 // rrset to update
 
-func (r ApiPartialUpdateRecordRequest) PartialUpdateRecordPayload(partialUpdateRecordPayload PartialUpdateRecordPayload) ApiPartialUpdateRecordRequest {
+func (r PartialUpdateRecordRequest) PartialUpdateRecordPayload(partialUpdateRecordPayload PartialUpdateRecordPayload) ApiPartialUpdateRecordRequest {
 	r.partialUpdateRecordPayload = &partialUpdateRecordPayload
 	return r
 }
 
-func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
+func (r PartialUpdateRecordRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -3848,7 +4679,11 @@ func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateRecord")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateRecord")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3884,7 +4719,7 @@ func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 	}
 	// body params
 	localVarPostBody = r.partialUpdateRecordPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3894,7 +4729,7 @@ func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3918,7 +4753,7 @@ func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3929,7 +4764,7 @@ func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3940,7 +4775,7 @@ func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3951,7 +4786,7 @@ func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3962,7 +4797,7 @@ func (r ApiPartialUpdateRecordRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3987,7 +4822,7 @@ PatchRecords rrset updates a record in a rrset
 	@return ApiPartialUpdateRecordRequest
 */
 func (a *APIClient) PartialUpdateRecord(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiPartialUpdateRecordRequest {
-	return ApiPartialUpdateRecordRequest{
+	return PartialUpdateRecordRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -3997,7 +4832,7 @@ func (a *APIClient) PartialUpdateRecord(ctx context.Context, projectId string, z
 }
 
 func (a *APIClient) PartialUpdateRecordExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error) {
-	r := ApiPartialUpdateRecordRequest{
+	r := PartialUpdateRecordRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4007,7 +4842,7 @@ func (a *APIClient) PartialUpdateRecordExecute(ctx context.Context, projectId st
 	return r.Execute()
 }
 
-type ApiPartialUpdateRecordSetRequest struct {
+type PartialUpdateRecordSetRequest struct {
 	ctx                           context.Context
 	apiService                    *DefaultApiService
 	projectId                     string
@@ -4018,12 +4853,12 @@ type ApiPartialUpdateRecordSetRequest struct {
 
 // record set to patch
 
-func (r ApiPartialUpdateRecordSetRequest) PartialUpdateRecordSetPayload(partialUpdateRecordSetPayload PartialUpdateRecordSetPayload) ApiPartialUpdateRecordSetRequest {
+func (r PartialUpdateRecordSetRequest) PartialUpdateRecordSetPayload(partialUpdateRecordSetPayload PartialUpdateRecordSetPayload) ApiPartialUpdateRecordSetRequest {
 	r.partialUpdateRecordSetPayload = &partialUpdateRecordSetPayload
 	return r
 }
 
-func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
+func (r PartialUpdateRecordSetRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -4031,7 +4866,11 @@ func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateRecordSet")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4067,7 +4906,7 @@ func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 	}
 	// body params
 	localVarPostBody = r.partialUpdateRecordSetPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4077,7 +4916,7 @@ func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4101,7 +4940,7 @@ func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4112,7 +4951,7 @@ func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4123,7 +4962,7 @@ func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4134,7 +4973,7 @@ func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4145,7 +4984,7 @@ func (r ApiPartialUpdateRecordSetRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4170,7 +5009,7 @@ Patch record set
 	@return ApiPartialUpdateRecordSetRequest
 */
 func (a *APIClient) PartialUpdateRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiPartialUpdateRecordSetRequest {
-	return ApiPartialUpdateRecordSetRequest{
+	return PartialUpdateRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4180,7 +5019,7 @@ func (a *APIClient) PartialUpdateRecordSet(ctx context.Context, projectId string
 }
 
 func (a *APIClient) PartialUpdateRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error) {
-	r := ApiPartialUpdateRecordSetRequest{
+	r := PartialUpdateRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4190,7 +5029,7 @@ func (a *APIClient) PartialUpdateRecordSetExecute(ctx context.Context, projectId
 	return r.Execute()
 }
 
-type ApiPartialUpdateZoneRequest struct {
+type PartialUpdateZoneRequest struct {
 	ctx                      context.Context
 	apiService               *DefaultApiService
 	projectId                string
@@ -4200,12 +5039,12 @@ type ApiPartialUpdateZoneRequest struct {
 
 // zone to update
 
-func (r ApiPartialUpdateZoneRequest) PartialUpdateZonePayload(partialUpdateZonePayload PartialUpdateZonePayload) ApiPartialUpdateZoneRequest {
+func (r PartialUpdateZoneRequest) PartialUpdateZonePayload(partialUpdateZonePayload PartialUpdateZonePayload) ApiPartialUpdateZoneRequest {
 	r.partialUpdateZonePayload = &partialUpdateZonePayload
 	return r
 }
 
-func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
+func (r PartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -4213,7 +5052,11 @@ func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 		localVarReturnValue *ZoneResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateZone")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4248,7 +5091,7 @@ func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.partialUpdateZonePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4258,7 +5101,7 @@ func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4282,7 +5125,7 @@ func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4293,7 +5136,7 @@ func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4304,7 +5147,7 @@ func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4315,7 +5158,7 @@ func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4326,7 +5169,7 @@ func (r ApiPartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4350,7 +5193,7 @@ Patch update an existing zone
 	@return ApiPartialUpdateZoneRequest
 */
 func (a *APIClient) PartialUpdateZone(ctx context.Context, projectId string, zoneId string) ApiPartialUpdateZoneRequest {
-	return ApiPartialUpdateZoneRequest{
+	return PartialUpdateZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4359,7 +5202,7 @@ func (a *APIClient) PartialUpdateZone(ctx context.Context, projectId string, zon
 }
 
 func (a *APIClient) PartialUpdateZoneExecute(ctx context.Context, projectId string, zoneId string) (*ZoneResponse, error) {
-	r := ApiPartialUpdateZoneRequest{
+	r := PartialUpdateZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4368,7 +5211,7 @@ func (a *APIClient) PartialUpdateZoneExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiRestoreRecordSetRequest struct {
+type RestoreRecordSetRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -4376,7 +5219,7 @@ type ApiRestoreRecordSetRequest struct {
 	rrSetId    string
 }
 
-func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
+func (r RestoreRecordSetRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -4384,7 +5227,11 @@ func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreRecordSet")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4415,7 +5262,7 @@ func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4425,7 +5272,7 @@ func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4449,7 +5296,7 @@ func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4460,7 +5307,7 @@ func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4471,7 +5318,7 @@ func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4482,7 +5329,7 @@ func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4493,7 +5340,7 @@ func (r ApiRestoreRecordSetRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4518,7 +5365,7 @@ Restore record set
 	@return ApiRestoreRecordSetRequest
 */
 func (a *APIClient) RestoreRecordSet(ctx context.Context, projectId string, zoneId string, rrSetId string) ApiRestoreRecordSetRequest {
-	return ApiRestoreRecordSetRequest{
+	return RestoreRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4528,7 +5375,7 @@ func (a *APIClient) RestoreRecordSet(ctx context.Context, projectId string, zone
 }
 
 func (a *APIClient) RestoreRecordSetExecute(ctx context.Context, projectId string, zoneId string, rrSetId string) (*Message, error) {
-	r := ApiRestoreRecordSetRequest{
+	r := RestoreRecordSetRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4538,14 +5385,14 @@ func (a *APIClient) RestoreRecordSetExecute(ctx context.Context, projectId strin
 	return r.Execute()
 }
 
-type ApiRestoreZoneRequest struct {
+type RestoreZoneRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	zoneId     string
 }
 
-func (r ApiRestoreZoneRequest) Execute() (*Message, error) {
+func (r RestoreZoneRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -4553,7 +5400,11 @@ func (r ApiRestoreZoneRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreZone")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4583,7 +5434,7 @@ func (r ApiRestoreZoneRequest) Execute() (*Message, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4593,7 +5444,7 @@ func (r ApiRestoreZoneRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4617,7 +5468,7 @@ func (r ApiRestoreZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4628,7 +5479,7 @@ func (r ApiRestoreZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4639,7 +5490,7 @@ func (r ApiRestoreZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4650,7 +5501,7 @@ func (r ApiRestoreZoneRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4674,7 +5525,7 @@ Restore  an inactive zone
 	@return ApiRestoreZoneRequest
 */
 func (a *APIClient) RestoreZone(ctx context.Context, projectId string, zoneId string) ApiRestoreZoneRequest {
-	return ApiRestoreZoneRequest{
+	return RestoreZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4683,7 +5534,7 @@ func (a *APIClient) RestoreZone(ctx context.Context, projectId string, zoneId st
 }
 
 func (a *APIClient) RestoreZoneExecute(ctx context.Context, projectId string, zoneId string) (*Message, error) {
-	r := ApiRestoreZoneRequest{
+	r := RestoreZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4692,14 +5543,14 @@ func (a *APIClient) RestoreZoneExecute(ctx context.Context, projectId string, zo
 	return r.Execute()
 }
 
-type ApiRetrieveZoneRequest struct {
+type RetrieveZoneRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	zoneId     string
 }
 
-func (r ApiRetrieveZoneRequest) Execute() (*Message, error) {
+func (r RetrieveZoneRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -4707,7 +5558,11 @@ func (r ApiRetrieveZoneRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RetrieveZone")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RetrieveZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4737,7 +5592,7 @@ func (r ApiRetrieveZoneRequest) Execute() (*Message, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4747,7 +5602,7 @@ func (r ApiRetrieveZoneRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4771,7 +5626,7 @@ func (r ApiRetrieveZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4782,7 +5637,7 @@ func (r ApiRetrieveZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4793,7 +5648,7 @@ func (r ApiRetrieveZoneRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4804,7 +5659,7 @@ func (r ApiRetrieveZoneRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4828,7 +5683,7 @@ The zone transfer will usually be performed within a few seconds, and will be tr
 	@return ApiRetrieveZoneRequest
 */
 func (a *APIClient) RetrieveZone(ctx context.Context, projectId string, zoneId string) ApiRetrieveZoneRequest {
-	return ApiRetrieveZoneRequest{
+	return RetrieveZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4837,7 +5692,7 @@ func (a *APIClient) RetrieveZone(ctx context.Context, projectId string, zoneId s
 }
 
 func (a *APIClient) RetrieveZoneExecute(ctx context.Context, projectId string, zoneId string) (*Message, error) {
-	r := ApiRetrieveZoneRequest{
+	r := RetrieveZoneRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -4846,7 +5701,7 @@ func (a *APIClient) RetrieveZoneExecute(ctx context.Context, projectId string, z
 	return r.Execute()
 }
 
-type ApiValidateMoveCodeRequest struct {
+type ValidateMoveCodeRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	projectId               string
@@ -4856,12 +5711,12 @@ type ApiValidateMoveCodeRequest struct {
 
 // information about the move
 
-func (r ApiValidateMoveCodeRequest) ValidateMoveCodePayload(validateMoveCodePayload ValidateMoveCodePayload) ApiValidateMoveCodeRequest {
+func (r ValidateMoveCodeRequest) ValidateMoveCodePayload(validateMoveCodePayload ValidateMoveCodePayload) ApiValidateMoveCodeRequest {
 	r.validateMoveCodePayload = &validateMoveCodePayload
 	return r
 }
 
-func (r ApiValidateMoveCodeRequest) Execute() (*Message, error) {
+func (r ValidateMoveCodeRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -4869,7 +5724,11 @@ func (r ApiValidateMoveCodeRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ValidateMoveCode")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ValidateMoveCode")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4904,7 +5763,7 @@ func (r ApiValidateMoveCodeRequest) Execute() (*Message, error) {
 	}
 	// body params
 	localVarPostBody = r.validateMoveCodePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4914,7 +5773,7 @@ func (r ApiValidateMoveCodeRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4938,7 +5797,7 @@ func (r ApiValidateMoveCodeRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4949,7 +5808,7 @@ func (r ApiValidateMoveCodeRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4960,7 +5819,7 @@ func (r ApiValidateMoveCodeRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4971,7 +5830,7 @@ func (r ApiValidateMoveCodeRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4995,7 +5854,7 @@ validate the move code is still valid for the zone
 	@return ApiValidateMoveCodeRequest
 */
 func (a *APIClient) ValidateMoveCode(ctx context.Context, projectId string, zoneId string) ApiValidateMoveCodeRequest {
-	return ApiValidateMoveCodeRequest{
+	return ValidateMoveCodeRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -5004,7 +5863,7 @@ func (a *APIClient) ValidateMoveCode(ctx context.Context, projectId string, zone
 }
 
 func (a *APIClient) ValidateMoveCodeExecute(ctx context.Context, projectId string, zoneId string) (*Message, error) {
-	r := ApiValidateMoveCodeRequest{
+	r := ValidateMoveCodeRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

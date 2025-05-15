@@ -472,7 +472,7 @@ func setZoneGetSerialNumberAttributeType(arg *ZoneGetSerialNumberAttributeType, 
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // ZoneState zone state
 type ZoneState string
@@ -606,7 +606,7 @@ func setZoneGetStateAttributeType(arg *ZoneGetStateAttributeType, val ZoneGetSta
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // ZoneTypes zone type
 type ZoneTypes string
@@ -768,7 +768,7 @@ type ZoneGetUpdateStartedRetType = string
 	types and functions for visibility
 */
 
-//isEnum
+// isEnum
 
 // ZoneVisibility visibility of the zone
 type ZoneVisibility string
